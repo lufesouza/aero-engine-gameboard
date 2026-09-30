@@ -250,7 +250,7 @@ class History2010Tests(unittest.TestCase):
         self.assertAlmostEqual(r["shares"]["nb"]["2040"]["boeing"], r["shares"]["nb"]["2030"]["boeing"], places=6)
 
 
-class CliTests(unittest.TestCase):
+class CliBase(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.env = dict(os.environ, WARGAME_RUNS_DIR=self.tmp.name)
@@ -265,6 +265,8 @@ class CliTests(unittest.TestCase):
             self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
         return p.returncode, (json.loads(p.stdout) if p.stdout.strip().startswith("{") else p.stdout)
 
+
+class CliTests(CliBase):
     def test_full_turn_cycle_and_fog(self):
         self.run_cli("new", "--run-id", "g", "--turns", "2")
         _, inj = self.run_cli("inject", "--run", "g", "--auto")
@@ -350,6 +352,179 @@ class CliTests(unittest.TestCase):
             self.run_cli("new", "--run-id", rid, "--force", "--seed", "7")
             picks.append(self.run_cli("inject", "--run", rid, "--auto")[1]["applied"]["id"])
         self.assertEqual(picks[0], picks[1])
+
+
+def rr_orders(launch=(), cancel=(), t1000=False):
+    return {"launch": list(launch), "cancel": list(cancel), "t1000_upgrade": t1000}
+
+
+def rr_rec(turn, b=None, a=None, rr=None, injects=()):
+    r = rec(turn, b, a, injects)
+    r["orders"]["rolls_royce"] = rr or rr_orders()
+    return r
+
+
+class RollsRoyceTests(unittest.TestCase):
+    """The optional supplier player (Rolls-Royce)."""
+
+    def setUp(self):
+        self.cfg = M.load_config("base", {"suppliers": {"rolls_royce": {"active": True}}})
+
+    def ev(self, hist):
+        return M.evaluate(self.cfg, M.build_world(self.cfg, hist))
+
+    def uf_nb(self, year, variant="solo", terms="standard"):
+        return {"program": "uf_nb", "year": year, "variant": variant, "terms": terms}
+
+    def test_inactive_by_default(self):
+        cfg = M.load_config("base")
+        self.assertEqual(M.players(cfg), M.SIDES)
+        self.assertNotIn("rolls_royce", M.evaluate(cfg, M.build_world(cfg, [rec(1)])))
+        self.assertEqual(M.players(self.cfg), ("boeing", "airbus", "rolls_royce"))
+
+    def test_status_quo_is_zero(self):
+        for inj in ([], ["rr_durability_crisis"], ["nb_demand_shock"], ["supply_chain_crunch"]):
+            u = M.payoff(self.cfg, [rr_rec(1, injects=inj), rr_rec(2)])
+            for s in M.players(self.cfg):
+                self.assertAlmostEqual(u[s], 0.0, places=9)
+
+    def test_uncommitted_engine_falls_back(self):
+        c = self.cfg
+        with_rr = [rr_rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")]))]
+        with_cfm = [rr_rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="cfm_ducted")]))]
+        w = M.build_world(c, with_rr)
+        self.assertEqual((w.programs["ngsa"].engine, w.programs["ngsa"].engine_requested), ("cfm_ducted", "rr_ultrafan_nb"))
+        self.assertAlmostEqual(M.payoff(c, with_rr)["airbus"], M.payoff(c, with_cfm)["airbus"], places=9)
+        self.assertAlmostEqual(M.payoff(c, with_rr)["rolls_royce"], 0.0, places=9)
+
+    def test_commitment_same_turn_and_components(self):
+        c = self.cfg
+        hist = [rr_rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")]), rr=rr_orders([self.uf_nb(2026)]))]
+        w = M.build_world(c, hist)
+        self.assertEqual((w.programs["ngsa"].engine, w.programs["ngsa"].supplier), ("rr_ultrafan_nb", "rolls_royce"))
+        r = self.ev(hist)["rolls_royce"]
+        self.assertGreater(r["components_pv_b"]["nb_engines"], 0)
+        self.assertLess(r["components_pv_b"]["capex"], 0)
+        self.assertAlmostEqual(sum(r["components_pv_b"].values()), r["delta_pv_b"], places=2)
+        self.assertAlmostEqual(r["undiscounted_b"]["capex"], -8.0 * 1.25, places=6)
+        self.assertEqual(r["programs"][0]["selected_by"], ["airbus:ngsa"])
+
+    def test_airframe_waits_for_late_engine(self):
+        c = self.cfg
+        hist = [rr_rec(1, b=orders("boeing", [L(c, "fps", 2026, engine="rr_ultrafan_nb")]), rr=rr_orders([self.uf_nb(2028)]))]
+        p = M.build_world(c, hist).programs["fps"]
+        self.assertEqual((p.engine_wait, p.eis), (2, 2035))  # own EIS 2033, engine ready 2028 + 7
+        hist2 = [dict(hist[0], injects=[]), rr_rec(2, injects=["ultrafan_test_setback"])]
+        self.assertEqual(M.build_world(c, hist2).programs["fps"].eis, 2037)
+
+    def test_losing_the_a350_costs_rr(self):
+        c = self.cfg
+        r = self.ev([rr_rec(1, a=orders("airbus", [L(c, "rea350", 2026, engine="ge_genx_next")]))])["rolls_royce"]
+        self.assertLess(r["components_pv_b"]["wb_engines"], 0)
+
+    def test_jv_halves_capex_and_value(self):
+        c = self.cfg
+        def run(v):
+            return self.ev([rr_rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")]),
+                                   rr=rr_orders([self.uf_nb(2026, v)]))])["rolls_royce"]
+        solo, jv = run("solo"), run("jv_pw")
+        self.assertAlmostEqual(jv["undiscounted_b"]["capex"], solo["undiscounted_b"]["capex"] / 2, places=6)
+        self.assertAlmostEqual(jv["undiscounted_b"]["nb_engines"], solo["undiscounted_b"]["nb_engines"] / 2, places=2)
+
+    def test_aggressive_terms_shift_value_to_airframer(self):
+        c = self.cfg
+        def run(t):
+            return M.payoff(c, [rr_rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")]),
+                                       rr=rr_orders([self.uf_nb(2026, terms=t)]))])
+        std, agg = run("standard"), run("aggressive")
+        self.assertGreater(agg["airbus"], std["airbus"])
+        self.assertLess(agg["rolls_royce"], std["rolls_royce"])
+
+    def test_t1000_upgrade(self):
+        r = self.ev([rr_rec(1, rr=rr_orders(t1000=True))])["rolls_royce"]
+        self.assertGreater(r["components_pv_b"]["wb_engines"], 0)
+        self.assertGreater(r["components_pv_b"]["installed_base"], 0)
+        self.assertAlmostEqual(r["undiscounted_b"]["capex"], -2.0 * 1.25, places=6)
+
+    def test_validation_and_digest(self):
+        c = self.cfg
+        canon, errs, _ = M.validate_orders(c, [], 1, "rolls_royce", {"launch": [{"program": "uf_nb", "variant": "jv_pw", "terms": "aggressive"}],
+                                                                     "t1000_upgrade": True})
+        self.assertEqual(errs, [])
+        self.assertEqual(canon["launch"][0], {"program": "uf_nb", "year": 2026, "terms": "aggressive", "variant": "jv_pw"})
+        self.assertEqual(M.canonical_key("rolls_royce", canon), "rolls_royce|L=uf_nb/jv_pw/aggressive/2026|C=|F=t1000_upgrade:1")
+        for bad in ({"launch": ["fps"]}, {"launch": [{"program": "uf_nb", "terms": "cheap"}]}, {"delay_tactics": True},
+                    {"launch": [{"program": "uf_wb", "variant": "solo"}]}):
+            self.assertTrue(M.validate_orders(c, [], 1, "rolls_royce", bad)[1], bad)
+        flown = [rr_rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")]), rr=rr_orders([self.uf_nb(2026)]))]
+        self.assertTrue(M.validate_orders(c, flown, 2, "rolls_royce", {"cancel": ["uf_nb"]})[1])
+        unused = [rr_rec(1, rr=rr_orders([self.uf_nb(2026)]))]
+        self.assertEqual(M.validate_orders(c, unused, 2, "rolls_royce", {"cancel": ["uf_nb"]})[1], [])
+        _, _, warns = M.validate_orders(c, [], 1, "airbus", {"launch": [{"program": "rea350", "engine": "rr_ultrafan_wb"}]})
+        self.assertTrue(any("falls back" in w for w in warns))
+        self.assertTrue(M.validate_orders(M.load_config("base"), [], 1, "rolls_royce", {})[1])  # inactive: not a player
+
+    def test_supplier_stage_and_scorecard(self):
+        c = self.cfg
+        rep = S.supplier_stage(c, [], 1, [], "rolls_royce")
+        self.assertEqual(len(rep["your_options"]), 30)
+        self.assertIn("nobody launches", rep["scenarios"])
+        idle = next(r for r in rep["your_options"] if r["label"] == "no new moves")
+        self.assertAlmostEqual(idle["by_scenario_b"]["nobody launches"], 0.0, places=6)
+        hist = [rr_rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")]), rr=rr_orders([self.uf_nb(2026)]))]
+        hist[0]["statements"] = {"rolls_royce": {"prediction": {"airbus": {"launch": [{"program": "ngsa", "engine": "rr_ultrafan_nb"}]},
+                                                                 "boeing": {"launch": []}}}}
+        sc = S.turn_scorecard(c, hist)
+        row = next(r for r in sc["rows"] if r["side"] == "rolls_royce")
+        self.assertEqual(row["prediction_accuracy"], 1.0)
+        self.assertGreaterEqual(row["best_response_value_b"], row["myopic_value_b"])
+        self.assertIn("rolls_royce", sc["summary"])
+
+
+class RollsRoyceCliTests(CliBase):
+    def test_three_player_turn(self):
+        _, new = self.run_cli("new", "--run-id", "rr", "--turns", "2", "--suppliers", "rolls_royce")
+        self.assertEqual(new["players"], ["boeing", "airbus", "rolls_royce"])
+        code, err = self.run_cli("new", "--run-id", "h", "--scenario", "hist-2010-neo", "--suppliers", "rolls_royce", ok=False)
+        self.assertEqual(code, 1)
+        _, inj = self.run_cli("injects", "--run", "rr")
+        self.assertIn("ultrafan_test_setback", [i["id"] for i in inj["eligible"]])
+        self.run_cli("inject", "--run", "rr", "--none")
+        _, br = self.run_cli("brief", "--run", "rr", "--side", "rolls_royce")
+        self.assertIn("your_levers_this_turn", br)
+        _, opt = self.run_cli("options", "--run", "rr", "--side", "rolls_royce")
+        self.assertTrue(opt["your_options"])
+        orders_in = {"boeing": {}, "airbus": {"launch": [{"program": "ngsa", "year": 2028, "engine": "rr_ultrafan_nb"}]},
+                     "rolls_royce": {"launch": [{"program": "uf_nb", "variant": "solo"}], "rationale": "RR-PRIVATE",
+                                     "disclose": ["We will build a narrowbody UltraFan."]}}
+        code, res = self.run_cli("adjudicate", "--run", "rr", stdin={"boeing": {}, "airbus": {}}, ok=False)
+        self.assertEqual((code, res["status"]), (2, "invalid"))  # Rolls-Royce orders missing
+        code, res = self.run_cli("adjudicate", "--run", "rr", "--expect-digest", "boeing=0,airbus=0,rolls_royce=0",
+                                 stdin=orders_in, ok=False)
+        self.assertEqual(code, 1)
+        _, res = self.run_cli("adjudicate", "--run", "rr", stdin=orders_in)
+        self.assertIn("rolls_royce", res["projection"])
+        self.assertEqual(res["warnings"].get("airbus", []), [w for w in res["warnings"].get("airbus", []) if "falls back" not in w])
+        _, ba = self.run_cli("brief", "--run", "rr", "--side", "airbus")
+        text = json.dumps(ba)
+        self.assertIn("We will build a narrowbody UltraFan.", text)
+        self.assertNotIn("RR-PRIVATE", text)
+        self.assertEqual(ba["programs"][0]["engine"], "rr_ultrafan_nb")
+        _, wi = self.run_cli("whatif", "--run", "rr", "--side", "rolls_royce", stdin={"rolls_royce": {"2": {"t1000_upgrade": True}}})
+        self.assertGreater(wi["rolls_royce"]["change_vs_current_projection_b"], -5)
+        self.run_cli("inject", "--run", "rr", "--id", "rr_durability_crisis")
+        _, res = self.run_cli("adjudicate", "--run", "rr", stdin={"boeing": {}, "airbus": {}, "rolls_royce": {}})
+        self.assertTrue(res["game_complete"])
+        _, sc = self.run_cli("scorecard", "--run", "rr")
+        self.assertEqual({r["side"] for r in sc["rows"]}, {"boeing", "airbus", "rolls_royce"})
+        _, md = self.run_cli("report", "--run", "rr", "--format", "md")
+        self.assertIn("Supplier engine programs", md)
+        self.assertIn("Rolls-Royce", md)
+        self.run_cli("new", "--run-id", "two", "--turns", "1")
+        code, _ = self.run_cli("brief", "--run", "two", "--side", "rolls_royce", ok=False)
+        self.assertEqual(code, 1)
+        _, inj = self.run_cli("injects", "--run", "two")
+        self.assertNotIn("ultrafan_test_setback", [i["id"] for i in inj["eligible"]])
 
 
 if __name__ == "__main__":

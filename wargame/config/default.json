@@ -179,7 +179,54 @@
         "title": "Transatlantic trade dispute",
         "narrative": "Tariffs on imported aircraft cut both manufacturers' margins by 1 pp for five years.",
         "effects": [{"type": "margin_add", "player": "all", "segment": "all", "kind": "all", "pp": -1.0, "years_from_turn_start": [0, 4]}]
+      },
+      "rr_durability_crisis": {
+        "title": "Rolls-Royce widebody durability crisis",
+        "narrative": "Hot-section durability problems ground part of the Trent fleet. Rolls-Royce pays for spare engines, shop visits and airline compensation: its incumbent widebody engines earn 40% less lifecycle value for four years.",
+        "requires_supplier": "rolls_royce",
+        "effects": [{"type": "supplier_value_mult", "supplier": "rolls_royce", "kind": "incumbent", "mult": 0.6, "years_from_turn_start": [0, 3]}]
+      },
+      "ultrafan_test_setback": {
+        "title": "UltraFan test setback",
+        "narrative": "Ground tests of the UltraFan gearbox and fan system find problems. Every Rolls-Royce engine program in development slips two years; airframes waiting for it wait longer.",
+        "requires_supplier": "rolls_royce",
+        "effects": [{"type": "supplier_slip", "supplier": "rolls_royce", "years": 2}]
       }
+    }
+  },
+
+  "suppliers": {
+    "_about": "Optional supplier players. Rolls-Royce plays only when a run is created with --suppliers rolls_royce (sets active). Its payoff is the lifecycle value of the large civil engines it delivers versus the status quo, in $B PV to years.pv_base at its WACC. Parameters are tagged in wargame/README.md.",
+    "rolls_royce": {
+      "label": "Rolls-Royce",
+      "active": false,
+      "wacc": 0.10,
+      "alpha": 0.25,
+      "engines_per_aircraft": {"nb": 2, "wb": 2},
+      "incumbent_fit": {"boeing": {"nb": 0.0, "wb": 0.2}, "airbus": {"nb": 0.0, "wb": 0.95}},
+      "incumbent_value_m_per_engine": {"nb": 0.0, "wb": 4.0},
+      "fallback_engine": {"nb": "cfm_ducted", "wb": "ge_genx_next"},
+      "programs": {
+        "uf_wb": {"label": "UltraFan widebody engine", "segment": "wb", "engine_option": "rr_ultrafan_wb",
+                  "dev_years": 5, "capex_b": 3.0, "value_m_per_engine": 4.5},
+        "uf_nb": {"label": "UltraFan narrowbody engine", "segment": "nb", "engine_option": "rr_ultrafan_nb",
+                  "dev_years": 7, "capex_b": 8.0, "value_m_per_engine": 1.6,
+                  "variants": {
+                    "solo": {"label": "Solo"},
+                    "jv_pw": {"label": "Joint Venture with Pratt & Whitney", "partner": "Pratt & Whitney", "dev_years": 6,
+                              "capex_share_partner": 0.5, "value_share_partner": 0.5, "strain_relief": 0.5}
+                  },
+                  "default_variant": "solo"}
+      },
+      "ramp": {"start_frac": 0.4, "years": 6,
+               "_about": "A new engine earns start_frac of its lifecycle value per engine at EIS, rising linearly to 100% after `years` (early durability and learning costs)."},
+      "terms": {
+        "standard": {"label": "standard terms", "airframer_margin_pp": 0.0, "value_mult": 1.0},
+        "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.0, "value_mult": 0.8}
+      },
+      "t1000_upgrade": {"label": "Trent 1000 upgrade", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "lag_years": 2,
+                        "capex_b": 2.0, "capex_years": 2, "installed_base_saving_b_per_year": 0.15, "saving_years": 10},
+      "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
     }
   }
 }

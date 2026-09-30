@@ -10,7 +10,8 @@ from __future__ import annotations
 
 import itertools
 
-from .model import SIDES, build_world, empty_orders, other, payoff, programs_of, tactic_enabled, turn_years
+from .model import (SIDES, SUPPLIERS, active_suppliers, build_world, empty_orders, other, payoff, players, programs_of,
+                    supplier_requirement, tactic_enabled, turn_years)
 
 
 def _launch_entry(cfg, pid, year, variant=None):
@@ -24,11 +25,15 @@ def _launch_entry(cfg, pid, year, variant=None):
 def describe_orders(cfg, side, o):
     parts = []
     for L in o.get("launch", []):
-        v = f" ({L['variant']})" if L.get("variant") else ""
-        parts.append(f"launch {L['program']}{v}")
+        bits = [x for x in (L.get("variant"), L.get("terms") if side in SUPPLIERS else None) if x]
+        eng = ""
+        if side in SIDES and L.get("engine") and L["engine"] != cfg["programs"][L["program"]]["default_engine"]:
+            eng = f" with {L['engine']}"
+        parts.append(f"launch {L['program']}{' (' + ', '.join(bits) + ')' if bits else ''}{eng}")
     for pid in o.get("cancel", []):
         parts.append(f"cancel {pid}")
-    for flag, label in (("rate_increase", "rate increase"), ("delay_tactics", "Delay Tactics"), ("poaching", "Poaching")):
+    for flag, label in (("rate_increase", "rate increase"), ("delay_tactics", "Delay Tactics"), ("poaching", "Poaching"),
+                        ("t1000_upgrade", "Trent 1000 upgrade")):
         if o.get(flag):
             parts.append(label)
     return " + ".join(parts) if parts else "no new moves"
@@ -54,7 +59,45 @@ def _nash(n_rows, n_cols, cell, tol, eps):
 # Stage game (this turn only)
 # ---------------------------------------------------------------------------
 
+def supplier_candidates(cfg, world, sup, turn):
+    """A supplier's orders for this turn: each engine program x variant x terms, cancels, Trent 1000 upgrade."""
+    a, _ = turn_years(cfg, turn)
+    scfg = cfg["suppliers"][sup]
+    per_prog = []
+    for spid, spc in scfg["programs"].items():
+        opts = [None]
+        sp = world.sup_programs.get(spid)
+        if sp is None:
+            for v in (spc["variants"] if "variants" in spc else [None]):
+                opts += [("launch", v, t) for t in scfg["terms"]]
+        elif sp.live() and sp.ready > a and not any(p.supplier_program == spid and p.cancelled_year is None
+                                                    for p in world.programs.values()):
+            opts.append(("cancel", None, None))
+        per_prog.append((spid, opts))
+    flags = [("t1000_upgrade", [False, True])] if scfg.get("t1000_upgrade") and world.t1000_year is None else []
+    cands = []
+    for combo in itertools.product(*[opts for _, opts in per_prog]):
+        for fl in itertools.product(*[vals for _, vals in flags]):
+            o = empty_orders(sup)
+            for (spid, _), act in zip(per_prog, combo):
+                if act is None:
+                    continue
+                if act[0] == "launch":
+                    e = {"program": spid, "year": a, "terms": act[2]}
+                    if act[1]:
+                        e["variant"] = act[1]
+                    o["launch"].append(e)
+                else:
+                    o["cancel"].append(spid)
+            for (name, _), v in zip(flags, fl):
+                o[name] = v
+            cands.append(o)
+    return cands
+
+
 def stage_candidates(cfg, world, side, turn):
+    if side in SUPPLIERS:
+        return supplier_candidates(cfg, world, side, turn)
     a, _ = turn_years(cfg, turn)
     per_prog = []
     for pid in programs_of(cfg, side):
@@ -142,10 +185,13 @@ def stage_report(cfg, sg, side, compact=False):
     def label(s, idx):
         return {"id": ids[s][idx], "label": describe_orders(cfg, s, (B if s == "boeing" else A)[idx])}
 
+    sup_txt = (f" Active supplier(s) ({', '.join(active_suppliers(cfg))}) make no new moves this turn, so an engine a supplier "
+               "has not yet committed to falls back to the segment's alternative; use whatif with supplier orders to test a commitment."
+               if active_suppliers(cfg) else "")
     out = {
         "assumption": "Stage game: both sides choose this turn's orders simultaneously and nobody moves after this turn. "
                       "Payoffs are full-game delta PV ($B, PV to the scenario base year) versus the status quo. Launch year = first year of the turn, "
-                      "default engine and variant; use whatif to test other years or engines.",
+                      "default engine and variant; use whatif to test other years or engines." + sup_txt,
         "pure_nash": [{"boeing": label("boeing", i), "airbus": label("airbus", j),
                        "payoffs_b": {"boeing": round(T[(i, j)][0], 3), "airbus": round(T[(i, j)][1], 3)}}
                       for (i, j, _, _) in sg["pure"]],
@@ -169,6 +215,92 @@ def stage_report(cfg, sg, side, compact=False):
             "cells": [[[round(T[(i, j)][0], 2), round(T[(i, j)][1], 2)] for j in range(len(A))] for i in range(len(B))],
         }
     return out
+
+
+def _non_supplier_engine(cfg, pid, sup):
+    pc = cfg["programs"][pid]
+    seg = pc["segment"]
+    eng = pc["default_engine"]
+    req = supplier_requirement(cfg, seg, eng)
+    return cfg["suppliers"][sup]["fallback_engine"][seg] if (req and req[0] == sup) else eng
+
+
+def _supplier_engine(cfg, pid, sup):
+    seg = cfg["programs"][pid]["segment"]
+    for spid, spc in cfg["suppliers"][sup]["programs"].items():
+        if spc["segment"] == seg:
+            return spid, spc["engine_option"]
+    return None, None
+
+
+def supplier_stage(cfg, history, turn, pending_injects, sup, viewer_mask=frozenset(), market=None):
+    """The supplier's options this turn against a set of airframer engine-selection scenarios.
+
+    Airframer scenarios: nobody launches; each airframe program not yet launched launches
+    this turn with the supplier's engine or with the alternative (one program at a time);
+    all of them with the supplier's engine; all with the alternative. The airframers'
+    other orders are "no new moves". For each supplier launch option the report also
+    gives each airframer's incentive: its payoff with the supplier's engine minus with
+    the alternative, if it launched that program this turn.
+    """
+    a, _ = turn_years(cfg, turn)
+    base = history + [{"turn": turn, "injects": list(pending_injects), "orders": {}, "market": {}}]
+    world0 = build_world(cfg, base, viewer_mask)
+    cands = supplier_candidates(cfg, world0, sup, turn)
+    open_progs = [pid for pid, pc in cfg["programs"].items() if pid not in world0.programs
+                  and _supplier_engine(cfg, pid, sup)[0] is not None]
+
+    def launch(pid, eng):
+        pc = cfg["programs"][pid]
+        e = {"program": pid, "year": a, "engine": eng}
+        if "variants" in pc:
+            e["variant"] = pc["default_variant"]
+        return e
+
+    scen = [("nobody launches", {})]
+    for pid in open_progs:
+        scen.append((f"{pid} with {_supplier_engine(cfg, pid, sup)[1]}", {pid: _supplier_engine(cfg, pid, sup)[1]}))
+        scen.append((f"{pid} with {_non_supplier_engine(cfg, pid, sup)}", {pid: _non_supplier_engine(cfg, pid, sup)}))
+    if len(open_progs) > 1:
+        scen.append(("all open programs with your engines", {pid: _supplier_engine(cfg, pid, sup)[1] for pid in open_progs}))
+        scen.append(("all open programs with the alternatives", {pid: _non_supplier_engine(cfg, pid, sup) for pid in open_progs}))
+
+    def hist_for(o_sup, picks):
+        orders = {s: empty_orders(s) for s in SIDES}
+        for pid, eng in picks.items():
+            orders[cfg["programs"][pid]["owner"]]["launch"].append(launch(pid, eng))
+        orders[sup] = o_sup
+        for s in active_suppliers(cfg):
+            orders.setdefault(s, empty_orders(s))
+        return history + [{"turn": turn, "injects": list(pending_injects), "orders": orders, "market": market or {}}]
+
+    rows = []
+    for i, o in enumerate(cands):
+        vals = [payoff(cfg, hist_for(o, picks), viewer_mask)[sup] for _, picks in scen]
+        incent = {}
+        for pid in open_progs:
+            spid, eng = _supplier_engine(cfg, pid, sup)
+            if not any(L["program"] == spid for L in o["launch"]) and spid not in world0.sup_programs:
+                continue
+            owner = cfg["programs"][pid]["owner"]
+            u_rr = payoff(cfg, hist_for(o, {pid: eng}), viewer_mask)[owner]
+            u_alt = payoff(cfg, hist_for(o, {pid: _non_supplier_engine(cfg, pid, sup)}), viewer_mask)[owner]
+            incent[pid] = round(u_rr - u_alt, 3)
+        rows.append({"id": f"R{i + 1}", "label": describe_orders(cfg, sup, o), "orders": o,
+                     "by_scenario_b": {name: round(v, 3) for (name, _), v in zip(scen, vals)},
+                     "worst_case": round(min(vals), 3), "best_case": round(max(vals), 3),
+                     "airframer_incentive_b": incent})
+    rows.sort(key=lambda r: -r["best_case"])
+    return {
+        "assumption": ("Your options this turn against airframer engine-selection scenarios (launch in the first year of the "
+                       "turn, default variants; airframers' other orders are no new moves; nobody moves after this turn). "
+                       "Values are your full-game delta PV ($B, PV to the scenario base year at your WACC) versus the status quo. "
+                       "airframer_incentive_b: that airframer's payoff with your engine minus with the alternative engine "
+                       "(positive = it prefers yours), given your option's terms."),
+        "scenarios": [name for name, _ in scen],
+        "open_airframe_programs": open_progs,
+        "your_options": rows,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -274,8 +406,10 @@ def plan_game(cfg, state_history, from_turn, turns_total, current_turn, pending_
             act = f["actual"] or {}
             ob = act.get("boeing") if plan_b is None else _plan_orders(cfg, "boeing", plan_b, f["turn"], act.get("boeing"), segment)
             oa = act.get("airbus") if plan_a is None else _plan_orders(cfg, "airbus", plan_a, f["turn"], act.get("airbus"), segment)
-            h.append({"turn": f["turn"], "injects": f["injects"], "market": f["market"],
-                      "orders": {"boeing": ob or empty_orders("boeing"), "airbus": oa or empty_orders("airbus")}})
+            orders = {"boeing": ob or empty_orders("boeing"), "airbus": oa or empty_orders("airbus")}
+            for sup in active_suppliers(cfg):  # suppliers keep their recorded orders; none in unplayed turns
+                orders[sup] = act.get(sup) or empty_orders(sup)
+            h.append({"turn": f["turn"], "injects": f["injects"], "market": f["market"], "orders": orders})
         return h
 
     PB, PA = plans["boeing"], plans["airbus"]
@@ -310,7 +444,9 @@ def plan_game(cfg, state_history, from_turn, turns_total, current_turn, pending_
         "plan_counts": {"boeing": len(PB), "airbus": len(PA)},
         "assumption": ("Normal-form game over plans for the remaining turns (launch turn per program, tactics on/off for "
                        "every remaining turn, default engines, launch in the first year of a turn). Adjudicated turns keep "
-                       "their recorded injects and market reactions. Payoffs: full-game delta PV ($B, PV to the scenario base year)."),
+                       "their recorded injects and market reactions. Payoffs: full-game delta PV ($B, PV to the scenario base year)."
+                       + (" Supplier orders are held at their recorded values (no new supplier moves in unplayed turns)."
+                          if active_suppliers(cfg) else "")),
         "pure_nash": [cell(i, j) for (i, j, _, _) in pure],
         "near_nash_count": len(near),
         "near_nash_eps_b": eq["near_eps_b"],
@@ -345,6 +481,32 @@ def plan_game(cfg, state_history, from_turn, turns_total, current_turn, pending_
 # ---------------------------------------------------------------------------
 # Referee scorecard (player efficiency)
 # ---------------------------------------------------------------------------
+
+def _supplier_prediction_score(cfg, prediction, actual_orders):
+    """A supplier's forecast of both airframers: launch yes/no and, for launches, which engine."""
+    if not isinstance(prediction, dict):
+        return None
+    hits = total = 0
+    for side in SIDES:
+        pred = prediction.get(side)
+        if not isinstance(pred, dict):
+            continue
+        act = actual_orders.get(side) or {}
+        pl = {}
+        for L in pred.get("launch", []) or []:
+            if isinstance(L, str):
+                pl[L] = None
+            elif isinstance(L, dict) and L.get("program"):
+                pl[L["program"]] = L.get("engine")
+        al = {L["program"]: L.get("engine") for L in act.get("launch", [])}
+        for pid in programs_of(cfg, side):
+            total += 1
+            hits += (pid in pl) == (pid in al)
+            if pid in pl and pid in al and pl[pid]:
+                total += 1
+                hits += pl[pid] == al[pid]
+    return round(hits / total, 3) if total else None
+
 
 def _prediction_score(cfg, predictor, prediction, actual):
     """Share of the rival's decisions this turn that the predictor called right.
@@ -385,12 +547,10 @@ def turn_scorecard(cfg, history):
         w0 = build_world(cfg, before + [{"turn": k, "injects": rec.get("injects", []), "orders": {}, "market": {}}])
         proj = rec.get("projection") or {}
         stm = rec.get("statements") or {}
-        for side in SIDES:
-            opp = other(side)
-
-            def val(o, side=side, opp=opp):
+        for side in players(cfg):
+            def val(o, side=side):
                 r = {"turn": k, "injects": rec.get("injects", []), "market": rec.get("market", {}),
-                     "orders": {side: o, opp: rec["orders"][opp]}}
+                     "orders": dict(rec["orders"], **{side: o})}
                 return payoff(cfg, before + [r])[side]
 
             cands = stage_candidates(cfg, w0, side, k)
@@ -410,14 +570,16 @@ def turn_scorecard(cfg, history):
                 "best_response_value_b": round(best_v, 3),
                 "regret_b": round(best_v - actual, 3),
                 "capture": round((actual - worst) / (best_v - worst), 3) if best_v > worst else 1.0,
-                "prediction_accuracy": _prediction_score(cfg, side, stm.get(side, {}).get("prediction"), rec["orders"][opp]),
+                "prediction_accuracy": (_supplier_prediction_score(cfg, stm.get(side, {}).get("prediction"), rec["orders"])
+                                        if side in SUPPLIERS else
+                                        _prediction_score(cfg, side, stm.get(side, {}).get("prediction"), rec["orders"][other(side)])),
                 "expected_delta_pv_b": exp,
                 "projection_after_turn_b": realised,
                 "expectation_error_b": round(realised - exp, 3) if (exp is not None and realised is not None) else None,
                 "disclosures": len(stm.get(side, {}).get("disclose", []) or []),
             })
     summary = {}
-    for side in SIDES:
+    for side in players(cfg):
         rs = [r for r in rows if r["side"] == side]
         preds = [r["prediction_accuracy"] for r in rs if r["prediction_accuracy"] is not None]
         errs = [abs(r["expectation_error_b"]) for r in rs if r["expectation_error_b"] is not None]
@@ -430,7 +592,8 @@ def turn_scorecard(cfg, history):
             "disclosures": sum(r["disclosures"] for r in rs),
         }
     return {"rows": rows, "summary": summary,
-            "method": ("capture and regret score each turn's orders against the rival's actual orders that turn, "
+            "method": ("capture and regret score each turn's orders against the other players' actual orders that turn, "
                        "assuming no later moves (the players' stage-game view). prediction_accuracy scores the "
-                       "player's forecast of the rival's launches, cancels and flags. expectation_error = engine "
-                       "projection after adjudication minus the player's expected_delta_pv_b.")}
+                       "player's forecast of the rival's launches, cancels and flags (a supplier: each airframer's "
+                       "launches and engine choices). expectation_error = engine projection after adjudication minus "
+                       "the player's expected_delta_pv_b.")}

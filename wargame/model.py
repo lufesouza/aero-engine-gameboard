@@ -8,6 +8,14 @@ present value, to years.pv_base at that player's WACC, of its operating-profit
 stream minus the status-quo stream (nobody moves, same injects), less
 alpha-loaded capex, alpha-loaded strain, and tactic costs. The components
 always sum exactly to the total.
+
+Optional supplier players (today only Rolls-Royce, cfg["suppliers"]["rolls_royce"],
+switched on with "active": true) sit on top of the two airframers. The supplier
+launches engine programs that airframers can then select; its payoff is the
+lifecycle value of the engines it delivers (units x share x engines per aircraft
+x its fit on each airframe x value per engine) versus the status quo, less its
+own alpha-loaded capex and strain. With no active supplier the game is exactly
+the two-player game.
 """
 
 from __future__ import annotations
@@ -19,6 +27,7 @@ from dataclasses import dataclass, field
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SIDES = ("boeing", "airbus")
+SUPPLIERS = ("rolls_royce",)
 SEGMENTS = ("nb", "wb")
 NEVER = 10**6  # EIS of a program that does not exist
 KEY_YEARS = (2030, 2035, 2040, 2045, 2050, 2060)
@@ -26,6 +35,38 @@ KEY_YEARS = (2030, 2035, 2040, 2045, 2050, 2060)
 
 def other(side):
     return "airbus" if side == "boeing" else "boeing"
+
+
+def active_suppliers(cfg):
+    return tuple(s for s in SUPPLIERS if cfg.get("suppliers", {}).get(s, {}).get("active"))
+
+
+def players(cfg):
+    """Everyone who submits orders in this game: the two airframers plus active suppliers."""
+    return SIDES + active_suppliers(cfg)
+
+
+def player_label(cfg, side):
+    if side in SIDES:
+        return cfg["players"][side]["label"]
+    return cfg["suppliers"][side]["label"]
+
+
+def supplier_requirement(cfg, seg, engine):
+    """(supplier, supplier program) an airframer engine option depends on, if that supplier plays."""
+    for sup in active_suppliers(cfg):
+        for spid, spc in cfg["suppliers"][sup]["programs"].items():
+            if spc["segment"] == seg and spc["engine_option"] == engine:
+                return sup, spid
+    return None
+
+
+def sparam(cfg, sup, spid, variant, key, default=None):
+    """A supplier program parameter, overridden by its variant when the variant sets it."""
+    spc = cfg["suppliers"][sup]["programs"][spid]
+    if variant and key in spc.get("variants", {}).get(variant, {}):
+        return spc["variants"][variant][key]
+    return spc.get(key, default)
 
 
 def deep_merge(base, over):
@@ -112,6 +153,8 @@ def empty_orders(side):
     base = {"launch": [], "cancel": []}
     if side == "boeing":
         base["rate_increase"] = False
+    elif side == "rolls_royce":
+        base["t1000_upgrade"] = False
     else:
         base["delay_tactics"] = False
         base["poaching"] = False
@@ -138,10 +181,15 @@ class Program:
     slips: list = field(default_factory=list)
     cancelled_year: int | None = None
     capture_mult: float = 1.0  # market-cell reaction
+    supplier: str | None = None  # supplier whose engine program this airframe depends on
+    supplier_program: str | None = None
+    supplier_margin_pp: float = 0.0  # airframer margin from the supplier's terms
+    engine_requested: str | None = None  # set when the requested engine was not available
+    engine_wait: int = 0  # years the airframe waits for its engine to be ready
 
     @property
     def eis(self):
-        return self.launch_year + self.base_dev_years + self.extra_dev_years + self.slip_years
+        return self.launch_year + self.base_dev_years + self.extra_dev_years + self.slip_years + self.engine_wait
 
     @property
     def dev_end(self):
@@ -163,6 +211,36 @@ class Program:
 
 
 @dataclass
+class SupplierProgram:
+    """An engine program launched by a supplier player (e.g. Rolls-Royce UltraFan)."""
+    pid: str
+    owner: str
+    segment: str
+    launch_year: int
+    launch_turn: int
+    dev_years: int
+    variant: str | None
+    terms: str
+    slip_years: int = 0
+    slips: list = field(default_factory=list)
+    cancelled_year: int | None = None
+
+    @property
+    def ready(self):
+        """First year the engine can enter service on an airframe."""
+        return self.launch_year + self.dev_years + self.slip_years
+
+    @property
+    def dev_end(self):
+        if self.cancelled_year is not None:
+            return min(self.cancelled_year, self.ready)
+        return self.ready
+
+    def live(self):
+        return self.cancelled_year is None
+
+
+@dataclass
 class World:
     cfg: dict
     programs: dict = field(default_factory=dict)
@@ -180,6 +258,9 @@ class World:
     share_shifts: list = field(default_factory=list)  # (seg, to_player, pp, y0, y1, unless_launched, turn)
     dev_years_add: dict = field(default_factory=lambda: {"boeing": 0, "airbus": 0})
     events: list = field(default_factory=list)  # adjudication log with visibility
+    sup_programs: dict = field(default_factory=dict)  # supplier engine programs by id
+    t1000_year: int | None = None  # Rolls-Royce Trent 1000 upgrade commitment
+    supplier_value_mults: list = field(default_factory=list)  # (supplier, kind, y0, y1, mult)
 
     def prog(self, side, seg):
         pid = program_for(self.cfg, side, seg)
@@ -214,6 +295,16 @@ def _apply_inject(w, turn, a, iid):
                 w.tech_ready_add[s] += int(e["years"])
         elif t == "strain_mult":
             w.strain_mults.append((a, float(e["mult"]), e.get("player", "all")))
+        elif t == "supplier_value_mult":
+            w.supplier_value_mults.append((e.get("supplier", "rolls_royce"), e.get("kind", "all"), y0, y1, float(e["mult"])))
+        elif t == "supplier_slip":
+            yrs = int(e["years"])
+            for sp in w.sup_programs.values():
+                if sp.owner == e.get("supplier", "rolls_royce") and sp.live() and sp.ready > a:
+                    sp.slip_years += yrs
+                    sp.slips.append({"turn": turn, "years": yrs, "cause": inj["title"]})
+                    w.event(turn, f"{player_label(w.cfg, sp.owner)} {w.cfg['suppliers'][sp.owner]['programs'][sp.pid]['label']} "
+                                  f"slips {yrs} year(s); ready in {sp.ready}.")
         elif t == "dev_years_add":
             players = SIDES if e.get("player", "all") == "all" else (e["player"],)
             yrs = int(e["years"])
@@ -233,8 +324,10 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
 
     A turn record is {"turn": k, "injects": [ids], "orders": {side: canonical},
     "market": {"capture_mult": {program: mult}}}. Order within a turn:
-    injects (known to both sides before they order), then both sides' orders,
-    then Airbus tactics, then the market reaction.
+    injects (known to both sides before they order), then supplier orders
+    (engine commitments are in place before airframers' engine selections are
+    resolved), then both sides' orders, then Airbus tactics, then the market
+    reaction.
 
     masked_delay_turns renders Boeing's (or the public's) belief: Delay Tactics
     in those turns keep their observable effect (the fps slip) but their cost
@@ -248,6 +341,8 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
         for iid in rec.get("injects", []):
             _apply_inject(w, k, a, iid)
         orders = rec.get("orders") or {}
+        for sup in active_suppliers(cfg):
+            _apply_supplier_orders(w, k, a, sup, orders.get(sup))
         for side in SIDES:
             o = orders.get(side)
             if not o:
@@ -258,17 +353,39 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
                 w.event(k, f"{cfg['players'][side]['label']} cancels {cfg['programs'][pid]['label']} (sunk capex lost).")
             for L in o.get("launch", []):
                 pc = cfg["programs"][L["program"]]
-                eng = cfg["engine_options"][pc["segment"]][L["engine"]]
+                seg = pc["segment"]
+                engine = L["engine"]
+                eng = cfg["engine_options"][seg][engine]
+                req = supplier_requirement(cfg, seg, engine)
+                requested, sup, spid, terms_pp, eis_add = None, None, None, 0.0, eng["eis_add"]
+                if req:
+                    sup, spid = req
+                    sp = w.sup_programs.get(spid)
+                    scfg = cfg["suppliers"][sup]
+                    if sp is None or not sp.live():
+                        # The supplier has not committed to this engine: fall back to the segment's alternative.
+                        requested, engine = engine, scfg["fallback_engine"][seg]
+                        eng = cfg["engine_options"][seg][engine]
+                        eis_add, sup, spid = eng["eis_add"], None, None
+                        w.event(k, f"{player_label(cfg, req[0])} has not committed to the {cfg['engine_options'][seg][requested]['label']}, "
+                                   f"so {cfg['players'][side]['label']}'s {pc['label']} falls back to the {eng['label']}.")
+                    else:
+                        # Engine timing comes from the supplier's program, not from eis_add.
+                        eis_add = 0
+                        terms_pp = scfg["terms"][sp.terms]["airframer_margin_pp"]
                 p = Program(
-                    pid=L["program"], owner=side, segment=pc["segment"], launch_year=L["year"], launch_turn=k,
+                    pid=L["program"], owner=side, segment=seg, launch_year=L["year"], launch_turn=k,
                     base_dev_years=pparam(cfg, L["program"], L.get("variant"), "dev_years"),
-                    extra_dev_years=w.dev_years_add[side] + eng["eis_add"],
-                    variant=L.get("variant"), engine=L["engine"],
+                    extra_dev_years=w.dev_years_add[side] + eis_add,
+                    variant=L.get("variant"), engine=engine, supplier=sup, supplier_program=spid,
+                    supplier_margin_pp=terms_pp, engine_requested=requested,
                 )
                 w.programs[p.pid] = p
+                _update_engine_waits(w)
                 vtxt = f" as a {pc['variants'][p.variant]['label']}" if p.variant else ""
+                wtxt = f" (waits {p.engine_wait} year(s) for the engine)" if p.engine_wait else ""
                 w.event(k, f"{cfg['players'][side]['label']} launches {pc['label']}{vtxt} in {p.launch_year} "
-                           f"with the {eng['label']}; planned entry into service {p.eis}.")
+                           f"with the {eng['label']}; planned entry into service {p.eis}{wtxt}.")
             if side == "boeing" and o.get("rate_increase") and w.rate_year is None:
                 w.rate_year = a
                 w.event(k, f"Boeing commits to a 737 rate increase from {a} (extra share from {a + tac['rate_increase']['lag_years']}).")
@@ -285,6 +402,7 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
                 s = min(dt["slip_years_per_turn"], dt["max_total_slip"] - tgt.delay_slip_years)
                 tgt.slip_years += s
                 tgt.delay_slip_years += s
+                _update_engine_waits(w)
                 cause = dt["public_cause_unexposed"] if k in masked_delay_turns else "Delay Tactics"
                 tgt.slips.append({"turn": k, "years": s, "cause": cause, "covert": True})
                 w.event(k, f"fps entry into service slips {s} year(s) to {tgt.eis}: {dt['public_cause_unexposed']}.")
@@ -315,7 +433,45 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
         for pid, m in mk.items():
             if pid in w.programs:
                 w.programs[pid].capture_mult = min(hi, max(lo, float(m)))
+        _update_engine_waits(w)
     return w
+
+
+def _update_engine_waits(w):
+    """An airframe cannot enter service before its supplier's engine is ready."""
+    for p in w.programs.values():
+        if p.supplier_program:
+            sp = w.sup_programs[p.supplier_program]
+            own = p.launch_year + p.base_dev_years + p.extra_dev_years + p.slip_years
+            p.engine_wait = max(0, sp.ready - own)
+
+
+def _apply_supplier_orders(w, k, a, sup, o):
+    if not o:
+        return
+    cfg = w.cfg
+    scfg = cfg["suppliers"][sup]
+    lab = player_label(cfg, sup)
+    for spid in o.get("cancel", []):
+        sp = w.sup_programs[spid]
+        sp.cancelled_year = a
+        w.event(k, f"{lab} cancels the {scfg['programs'][spid]['label']} (sunk capex lost).")
+    for L in o.get("launch", []):
+        spid = L["program"]
+        spc = scfg["programs"][spid]
+        variant = L.get("variant")
+        sp = SupplierProgram(pid=spid, owner=sup, segment=spc["segment"], launch_year=L["year"], launch_turn=k,
+                             dev_years=sparam(cfg, sup, spid, variant, "dev_years"), variant=variant,
+                             terms=L.get("terms", "standard"))
+        w.sup_programs[spid] = sp
+        vtxt = f" ({spc['variants'][variant]['label']})" if variant else ""
+        w.event(k, f"{lab} launches the {spc['label']}{vtxt} in {sp.launch_year} on {scfg['terms'][sp.terms]['label']}; "
+                   f"engine ready for service in {sp.ready}.")
+    t1 = scfg.get("t1000_upgrade")
+    if t1 and o.get("t1000_upgrade") and w.t1000_year is None:
+        w.t1000_year = a
+        w.event(k, f"{lab} commits to the {t1['label']} from {a} (more share of {t1['segment'].upper()} deliveries at "
+                   f"{player_label(cfg, t1['fit_side'])} from {a + t1['lag_years']}).")
 
 
 # ---------------------------------------------------------------------------
@@ -421,6 +577,7 @@ def evaluate(cfg, world):
             ready = pparam(cfg, p.pid, p.variant, "tech_ready_year") + world.tech_ready_add[seg]
             m -= pparam(cfg, p.pid, p.variant, "early_penalty_pp_per_year") / 100.0 * max(0, ready - p.eis)
             m += cfg["engine_options"][seg][p.engine]["margin_pp"] / 100.0
+            m += p.supplier_margin_pp / 100.0
             m += margin_adds(side, seg, "new", y)
             m *= 1.0 - vparam(cfg, p.pid, p.variant, "margin_share_partner")
             return m, sq_m
@@ -526,6 +683,8 @@ def evaluate(cfg, world):
             "programs": progs,
         }
         out[side]["_exact"] = total
+    for sup in active_suppliers(cfg):
+        out[sup] = _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult)
     out["shares"] = {
         seg: {str(y): {s: round(share_paths[seg][y][0][s], 4) for s in SIDES} for y in KEY_YEARS if y_start <= y <= y_end}
         for seg in SEGMENTS
@@ -533,10 +692,146 @@ def evaluate(cfg, world):
     return out
 
 
+def _strain_schedule(windows, full_overlap_b, norm_years, mult):
+    """Overlap strain for one player. windows: (start, end, relief, is_background)."""
+    sched = {}
+    for i in range(len(windows)):
+        for j in range(i + 1, len(windows)):
+            (s1, e1, r1, b1), (s2, e2, r2, b2) = windows[i], windows[j]
+            if b1 and b2:
+                continue
+            start, end = max(s1, s2), min(e1, e2)
+            overlap = end - start
+            if overlap <= 0:
+                continue
+            nominal = full_overlap_b * min(1.0, overlap / norm_years) * (1.0 - max(r1, r2))
+            for y in range(start, end):
+                sched[y] = sched.get(y, 0.0) + nominal / overlap * mult(y)
+    return sched
+
+
+def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
+    """A supplier's delta PV: lifecycle value of engines delivered versus the status quo.
+
+    Engines delivered in a year = aircraft delivered by each airframer in the segment x
+    engines per aircraft x the supplier's fit on that airframe (its incumbent share until
+    the airframer's new program enters service; then 1 minus any partner share if the
+    program flies the supplier's engine, else 0). Each engine is booked at delivery at its
+    lifecycle value (OE margin plus PV of aftermarket profit, $M): the incumbent value,
+    or for a new engine its value x terms multiplier x a maturity ramp after EIS.
+    """
+    scfg = cfg["suppliers"][sup]
+    y_start, y_end, pv_base = cfg["years"]["start"], cfg["years"]["end"], cfg["years"]["pv_base"]
+    wacc, alpha = scfg["wacc"], scfg["alpha"]
+    epa = scfg["engines_per_aircraft"]
+    ramp = scfg["ramp"]
+    t1 = scfg.get("t1000_upgrade")
+
+    def df(y):
+        return (1.0 + wacc) ** -(y - pv_base)
+
+    def vmult(kind, y):
+        m = 1.0
+        for (who, k, y0, y1, v) in world.supplier_value_mults:
+            if who == sup and k in ("all", kind) and y0 <= y <= y1:
+                m *= v
+        return m
+
+    def fit_value(side, seg, y):
+        """(fit, value $M per engine) in the moving world."""
+        p = world.prog(side, seg)
+        if p is not None and p.in_service(y):
+            if p.supplier != sup:
+                return 0.0, 0.0
+            sp = world.sup_programs[p.supplier_program]
+            share = 1.0 - sparam(cfg, sup, sp.pid, sp.variant, "value_share_partner", 0.0)
+            age = y - p.eis
+            r = min(1.0, ramp["start_frac"] + (1.0 - ramp["start_frac"]) * age / max(1, ramp["years"]))
+            v = sparam(cfg, sup, sp.pid, sp.variant, "value_m_per_engine") * scfg["terms"][sp.terms]["value_mult"] * r
+            return share, v * vmult("new", y)
+        fit = scfg["incumbent_fit"][side][seg]
+        if t1 and world.t1000_year is not None and side == t1["fit_side"] and seg == t1["segment"] \
+                and y >= world.t1000_year + t1["lag_years"]:
+            fit = min(1.0, fit + t1["fit_pp"] / 100.0)
+        return fit, scfg["incumbent_value_m_per_engine"][seg] * vmult("incumbent", y)
+
+    capex = {}
+    windows = []
+    for sp in world.sup_programs.values():
+        if sp.owner != sup:
+            continue
+        c = sparam(cfg, sup, sp.pid, sp.variant, "capex_b") * (1.0 - sparam(cfg, sup, sp.pid, sp.variant, "capex_share_partner", 0.0))
+        base = sparam(cfg, sup, sp.pid, sp.variant, "dev_years")
+        for i, y in enumerate(range(sp.launch_year, sp.ready)):
+            if sp.cancelled_year is not None and y >= sp.cancelled_year:
+                break
+            amt = c / base if i < base else c * cfg["extension_capex_frac_per_year"]
+            capex[y] = capex.get(y, 0.0) + amt
+        windows.append((sp.launch_year, sp.dev_end, sparam(cfg, sup, sp.pid, sp.variant, "strain_relief", 0.0), False))
+    if t1 and world.t1000_year is not None:
+        for y in range(world.t1000_year, world.t1000_year + t1["capex_years"]):
+            capex[y] = capex.get(y, 0.0) + t1["capex_b"] / t1["capex_years"]
+        windows.append((world.t1000_year, world.t1000_year + t1["capex_years"], 0.0, False))
+    st = scfg["strain"]
+    windows += [(b["start"], b["end"], 0.0, True) for b in st.get("background", [])]
+    strain = _strain_schedule(windows, st["full_overlap_b"], st["norm_years"], lambda y: strain_mult(y, sup))
+
+    comp = {"nb_engines": 0.0, "wb_engines": 0.0, "installed_base": 0.0, "capex": 0.0, "strain": 0.0}
+    und = dict(comp)
+    delivered = {}
+    for y in range(y_start, y_end + 1):
+        d = df(y)
+        for seg in SEGMENTS:
+            sh, sq_sh = share_paths[seg][y]
+            u = units(seg, y)
+            eng_now = eng_sq = val_now = val_sq = 0.0
+            for side in SIDES:
+                f, v = fit_value(side, seg, y)
+                n = u * sh[side] * epa[seg] * f
+                eng_now += n
+                val_now += n * v
+                n0 = u * sq_sh[side] * epa[seg] * scfg["incumbent_fit"][side][seg]
+                eng_sq += n0
+                val_sq += n0 * scfg["incumbent_value_m_per_engine"][seg] * vmult("incumbent", y)
+            delta = (val_now - val_sq) / 1000.0
+            comp[f"{seg}_engines"] += delta * d
+            und[f"{seg}_engines"] += delta
+            if y in KEY_YEARS:
+                delivered.setdefault(str(y), {})[seg] = {"engines": round(eng_now, 1), "status_quo": round(eng_sq, 1)}
+        if t1 and world.t1000_year is not None:
+            y0 = world.t1000_year + t1["lag_years"]
+            if y0 <= y < y0 + t1["saving_years"]:
+                comp["installed_base"] += t1["installed_base_saving_b_per_year"] * d
+                und["installed_base"] += t1["installed_base_saving_b_per_year"]
+        comp["capex"] -= capex.get(y, 0.0) * (1.0 + alpha) * d
+        comp["strain"] -= strain.get(y, 0.0) * (1.0 + alpha) * d
+        und["capex"] -= capex.get(y, 0.0) * (1.0 + alpha)
+        und["strain"] -= strain.get(y, 0.0) * (1.0 + alpha)
+    total = sum(comp.values())
+    progs = []
+    for spid, spc in scfg["programs"].items():
+        sp = world.sup_programs.get(spid)
+        if sp is None:
+            continue
+        users = [f"{p.owner}:{p.pid}" for p in world.programs.values() if p.supplier_program == spid and p.cancelled_year is None]
+        progs.append({"program": spid, "label": spc["label"], "segment": sp.segment, "launch_year": sp.launch_year,
+                      "ready": sp.ready if sp.live() else None, "cancelled_year": sp.cancelled_year, "variant": sp.variant,
+                      "terms": sp.terms, "selected_by": users, "slips": sp.slips})
+    return {
+        "delta_pv_b": round(total, 3),
+        "components_pv_b": {k: round(v, 3) for k, v in comp.items()},
+        "undiscounted_b": {k: round(v, 3) for k, v in und.items()},
+        "programs": progs,
+        "t1000_upgrade_year": world.t1000_year,
+        "engines_delivered": delivered,
+        "_exact": total,
+    }
+
+
 def payoff(cfg, history, masked_delay_turns=frozenset()):
-    """Exact (unrounded) payoffs for a history: {"boeing": x, "airbus": y}."""
+    """Exact (unrounded) payoffs for a history: {"boeing": x, "airbus": y, [supplier: z]}."""
     r = evaluate(cfg, build_world(cfg, history, masked_delay_turns))
-    return {s: r[s]["_exact"] for s in SIDES}
+    return {s: r[s]["_exact"] for s in players(cfg)}
 
 
 def belief_mask(cfg, history, viewer):
@@ -554,8 +849,9 @@ def belief_mask(cfg, history, viewer):
 
 
 def strip_exact(result):
-    for s in SIDES:
-        result.get(s, {}).pop("_exact", None)
+    for s in SIDES + SUPPLIERS:
+        if isinstance(result.get(s), dict):
+            result[s].pop("_exact", None)
     return result
 
 
@@ -578,10 +874,12 @@ def validate_orders(cfg, history, turn, side, orders):
     the mechanical fields; text fields are kept separately by the caller.
     """
     errors, warnings = [], []
-    if side not in SIDES:
-        return None, [f"unknown side '{side}'"], []
+    if side not in players(cfg):
+        return None, [f"unknown side '{side}'" + (" (this game has no active supplier of that name)" if side in SUPPLIERS else "")], []
     if not isinstance(orders, dict):
         return None, ["orders must be a JSON object"], []
+    if side in SUPPLIERS:
+        return _validate_supplier_orders(cfg, history, turn, side, orders)
     a, b = turn_years(cfg, turn)
     w = build_world(cfg, history)
     canon = empty_orders(side)
@@ -625,6 +923,21 @@ def validate_orders(cfg, history, turn, side, orders):
             errors.append(f"engine '{engine}' is not available for {pc['segment'].upper()} "
                           f"(options: {', '.join(cfg['engine_options'][pc['segment']])})")
             continue
+        req = supplier_requirement(cfg, pc["segment"], engine)
+        if req:
+            sp = w.sup_programs.get(req[1])
+            scfg = cfg["suppliers"][req[0]]
+            fb = scfg["fallback_engine"][pc["segment"]]
+            if sp is None or not sp.live():
+                warnings.append(f"'{engine}' needs {scfg['label']} to launch its {scfg['programs'][req[1]]['label']} ({req[1]}); "
+                                f"it has not{' (it was cancelled)' if sp else ''}. If {scfg['label']} does not launch it this turn, "
+                                f"'{pid}' falls back to '{fb}'.")
+            else:
+                own = year + pparam(cfg, pid, requested_variant(pc, L), "dev_years") + w.dev_years_add[side]
+                wait = max(0, sp.ready - own)
+                warnings.append(f"'{engine}': {scfg['label']} committed in {sp.launch_year} on {sp.terms} terms "
+                                f"({scfg['terms'][sp.terms]['airframer_margin_pp']:+.1f} pp margin to you); engine ready {sp.ready}"
+                                + (f", so '{pid}' waits {wait} year(s) for it" if wait else "") + ".")
         entry = {"program": pid, "year": year, "engine": engine}
         requested = L.get("variant")
         if requested in ("", "none"):
@@ -672,8 +985,113 @@ def validate_orders(cfg, history, turn, side, orders):
     return (canon if not errors else None), errors, warnings
 
 
+def requested_variant(pc, L):
+    v = L.get("variant")
+    if v in ("", "none"):
+        v = None
+    return (v or pc.get("default_variant")) if "variants" in pc else None
+
+
+def _validate_supplier_orders(cfg, history, turn, side, orders):
+    errors, warnings = [], []
+    a, b = turn_years(cfg, turn)
+    w = build_world(cfg, history)
+    scfg = cfg["suppliers"][side]
+    canon = empty_orders(side)
+    allowed = set(canon) | set(TEXT_FIELDS) | set(META_FIELDS) | {"side"}
+    for k in orders:
+        if k not in allowed:
+            warnings.append(f"ignored unknown field '{k}'")
+    if orders.get("side") not in (None, side):
+        errors.append(f"orders are labelled for side '{orders.get('side')}' but were submitted for '{side}'")
+    launches = orders.get("launch", []) or []
+    cancels = orders.get("cancel", []) or []
+    if not isinstance(launches, list) or not isinstance(cancels, list):
+        return None, ["'launch' and 'cancel' must be lists"], warnings
+    mine = list(scfg["programs"])
+    seen = set()
+    for L in launches:
+        if isinstance(L, str):
+            L = {"program": L}
+        if not isinstance(L, dict) or "program" not in L:
+            errors.append(f"launch entry {L!r} must be an object with a 'program'")
+            continue
+        pid = L["program"]
+        if pid not in mine:
+            errors.append(f"'{pid}' is not a {scfg['label']} program (yours: {', '.join(mine)})")
+            continue
+        if pid in seen:
+            errors.append(f"'{pid}' is launched twice")
+            continue
+        seen.add(pid)
+        if pid in w.sup_programs:
+            errors.append(f"'{pid}' was already launched in turn {w.sup_programs[pid].launch_turn}; a program can be launched once")
+            continue
+        spc = scfg["programs"][pid]
+        year = L.get("year", a)
+        if not isinstance(year, int) or not (a <= year <= b):
+            errors.append(f"launch year for '{pid}' must be an integer in this turn's years {a}-{b} (got {year!r})")
+            continue
+        terms = L.get("terms") or "standard"
+        if terms not in scfg["terms"]:
+            errors.append(f"terms '{terms}' are not valid (options: {', '.join(scfg['terms'])})")
+            continue
+        entry = {"program": pid, "year": year, "terms": terms}
+        requested = L.get("variant")
+        if requested in ("", "none"):
+            requested = None
+        if "variants" in spc:
+            variant = requested or spc["default_variant"]
+            if variant not in spc["variants"]:
+                errors.append(f"variant '{variant}' is not valid for '{pid}' (options: {', '.join(spc['variants'])})")
+                continue
+            entry["variant"] = variant
+        elif requested:
+            errors.append(f"'{pid}' has no variants (use \"none\")")
+            continue
+        canon["launch"].append(entry)
+    for pid in cancels:
+        sp = w.sup_programs.get(pid)
+        users = [p.pid for p in w.programs.values() if p.supplier_program == pid and p.cancelled_year is None]
+        if pid not in mine:
+            errors.append(f"cannot cancel '{pid}': not a {scfg['label']} program")
+        elif sp is None:
+            errors.append(f"cannot cancel '{pid}': it has not been launched")
+        elif pid in seen:
+            errors.append(f"cannot launch and cancel '{pid}' in the same turn")
+        elif not sp.live():
+            errors.append(f"'{pid}' is already cancelled")
+        elif sp.ready <= a:
+            errors.append(f"cannot cancel '{pid}': the engine was ready in {sp.ready}")
+        elif users:
+            errors.append(f"cannot cancel '{pid}': {', '.join(users)} flies it (contractual commitment)")
+        elif pid not in canon["cancel"]:
+            canon["cancel"].append(pid)
+    if "t1000_upgrade" in orders:
+        v = orders["t1000_upgrade"]
+        if not isinstance(v, bool):
+            errors.append("'t1000_upgrade' must be true or false")
+        elif v and not scfg.get("t1000_upgrade"):
+            errors.append("'t1000_upgrade' is not available in this scenario")
+        else:
+            canon["t1000_upgrade"] = v
+            if v and w.t1000_year is not None:
+                warnings.append(f"Trent 1000 upgrade already committed in {w.t1000_year}; no additional effect")
+    for flag in ("rate_increase", "delay_tactics", "poaching"):
+        if orders.get(flag):
+            errors.append(f"'{flag}' is an airframer lever")
+    canon["launch"].sort(key=lambda e: e["program"])
+    canon["cancel"].sort()
+    return (canon if not errors else None), errors, warnings
+
+
 def canonical_key(side, o):
     """ASCII key of the mechanical content of canonical orders (mirrored in the workflow script)."""
+    if side in SUPPLIERS:
+        launches = ";".join(f"{L['program']}/{L.get('variant') or '-'}/{L.get('terms', 'standard')}/{L['year']}"
+                            for L in sorted(o.get("launch", []), key=lambda e: e["program"]))
+        cancels = ",".join(sorted(set(o.get("cancel", []))))
+        return f"{side}|L={launches}|C={cancels}|F=t1000_upgrade:{int(bool(o.get('t1000_upgrade')))}"
     launches = ";".join(f"{L['program']}/{L.get('variant') or '-'}/{L['engine']}/{L['year']}"
                         for L in sorted(o.get("launch", []), key=lambda e: e["program"]))
     cancels = ",".join(sorted(set(o.get("cancel", []))))

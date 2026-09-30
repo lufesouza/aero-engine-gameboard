@@ -1,10 +1,10 @@
 export const meta = {
   name: 'boeing-airbus-wargame',
   description: 'Boeing vs Airbus war game refereed by the Game Orchestrator: profile-driven players issue sealed orders and choose what to disclose, a market cell reacts, the engine adjudicates, then a verified after-action review and a referee efficiency scorecard',
-  whenToUse: 'Run an AI-vs-AI Boeing vs Airbus war game on the wargame/ engine. Optional args: {turns, scenario, injects: "umpire"|"auto"|"none", games (1-4), run_id, seed, doctrine: {boeing, airbus}, fixed_orders: {boeing|airbus: {"<turn>": orders}}, verify: true|false}',
+  whenToUse: 'Run an AI-vs-AI Boeing vs Airbus war game on the wargame/ engine, optionally with Rolls-Royce as a third player (the engine supplier). Optional args: {turns, scenario, injects: "umpire"|"auto"|"none", games (1-4), run_id, seed, suppliers: ["rolls_royce"], doctrine: {boeing, airbus, rolls_royce}, fixed_orders: {boeing|airbus|rolls_royce: {"<turn>": orders}}, verify: true|false}',
   phases: [
     { title: 'Setup', detail: 'the Game Orchestrator creates the run(s)' },
-    { title: 'Turns', detail: 'inject, sealed Boeing and Airbus orders, market reaction, engine adjudication' },
+    { title: 'Turns', detail: 'inject, sealed Boeing and Airbus (and Rolls-Royce) orders, market reaction, engine adjudication' },
     { title: 'After-action review', detail: 'equilibria, regret, turning points, checkable claims' },
     { title: 'Verify', detail: 'three independent checks per claim' },
     { title: 'Report', detail: 'report.md and the referee efficiency report per game, plus a cross-game synthesis' },
@@ -28,10 +28,17 @@ const FIXED = A.fixed_orders && typeof A.fixed_orders === 'object' ? A.fixed_ord
 const VERIFY = A.verify !== false
 const MAX_CLAIMS = 8
 const SIDES = ['boeing', 'airbus']
-const LABEL = { boeing: 'Boeing', airbus: 'Airbus' }
+// Optional supplier players. Rolls-Royce is the only one the engine knows today.
+const SUPPLIERS = (Array.isArray(A.suppliers) ? A.suppliers : typeof A.suppliers === 'string' ? A.suppliers.split(',') : [])
+  .map(x => String(x).trim())
+  .filter((x, i, all) => x === 'rolls_royce' && all.indexOf(x) === i)
+const PLAYERS = SIDES.concat(SUPPLIERS)
+const LABEL = { boeing: 'Boeing', airbus: 'Airbus', rolls_royce: 'Rolls-Royce' }
+const ROLE = { boeing: 'boeing-strategist', airbus: 'airbus-strategist', rolls_royce: 'rolls-royce-strategist' }
 
 if (Number.isInteger(A.games) && A.games !== GAMES) log(`games clamped to ${GAMES} (allowed 1-4)`)
 if (A.scenario && A.scenario !== SCENARIO) log(`ignored invalid scenario '${A.scenario}'; using base`)
+if (A.suppliers && !SUPPLIERS.length) log(`ignored unknown suppliers ${JSON.stringify(A.suppliers)}; the engine knows rolls_royce`)
 
 // ---------------------------------------------------------------------------
 // Schemas
@@ -77,6 +84,40 @@ const ORDERS_SCHEMA = {
       expected_delta_pv_b: { type: 'number' },
     },
     required: ['launch', 'cancel', 'delay_tactics', 'poaching', 'public_statement', 'disclose', 'prediction', 'rationale', 'expected_delta_pv_b'],
+  },
+  rolls_royce: {
+    type: 'object',
+    properties: {
+      launch: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: {
+            program: { type: 'string', enum: ['uf_wb', 'uf_nb'] },
+            year: { type: 'integer' },
+            variant: { type: 'string', enum: ['solo', 'jv_pw', 'none'] },
+            terms: { type: 'string', enum: ['standard', 'aggressive'] },
+          },
+          required: ['program', 'year', 'variant', 'terms'],
+        },
+      },
+      cancel: { type: 'array', items: { type: 'string', enum: ['uf_wb', 'uf_nb'] } },
+      t1000_upgrade: { type: 'boolean' },
+      public_statement: { type: 'string' },
+      disclose: { type: 'array', items: { type: 'string' } },
+      prediction: {
+        type: 'object',
+        properties: Object.fromEntries(['boeing', 'airbus'].map(s => [s, {
+          type: 'object',
+          properties: { launch: { type: 'array', items: { type: 'object', properties: { program: { type: 'string' }, engine: { type: 'string' } }, required: ['program', 'engine'] } } },
+          required: ['launch'],
+        }])),
+        required: ['boeing', 'airbus'],
+      },
+      rationale: { type: 'string' },
+      expected_delta_pv_b: { type: 'number' },
+    },
+    required: ['launch', 'cancel', 't1000_upgrade', 'public_statement', 'disclose', 'prediction', 'rationale', 'expected_delta_pv_b'],
   },
 }
 
@@ -152,6 +193,9 @@ const ADJ_SCHEMA = {
     airbus_delta_pv_b: { type: 'number' },
     boeing_errors: { type: 'array', items: { type: 'string' } },
     airbus_errors: { type: 'array', items: { type: 'string' } },
+    rolls_royce_digest: { type: 'string' },
+    rolls_royce_delta_pv_b: { type: 'number' },
+    rolls_royce_errors: { type: 'array', items: { type: 'string' } },
     game_complete: { type: 'boolean' },
     public_events: { type: 'array', items: { type: 'string' } },
     error: { type: 'string' },
@@ -165,13 +209,13 @@ const AAR_SCHEMA = {
     headline: { type: 'string' },
     final_delta_pv_b: {
       type: 'object',
-      properties: { boeing: { type: 'number' }, airbus: { type: 'number' } },
+      properties: { boeing: { type: 'number' }, airbus: { type: 'number' }, rolls_royce: { type: 'number' } },
       required: ['boeing', 'airbus'],
     },
     equilibrium_comparison: { type: 'string' },
     regret_b: {
       type: 'object',
-      properties: { boeing: { type: 'number' }, airbus: { type: 'number' } },
+      properties: { boeing: { type: 'number' }, airbus: { type: 'number' }, rolls_royce: { type: 'number' } },
       required: ['boeing', 'airbus'],
     },
     turning_points: {
@@ -200,6 +244,7 @@ const AAR_SCHEMA = {
       properties: {
         boeing: { type: 'array', items: { type: 'string' } },
         airbus: { type: 'array', items: { type: 'string' } },
+        rolls_royce: { type: 'array', items: { type: 'string' } },
       },
       required: ['boeing', 'airbus'],
     },
@@ -271,6 +316,12 @@ function fnv1a(s) {
 
 // Mirrors wargame/model.py canonical_key for the payload built by enginePayload.
 function canonKey(side, o) {
+  const byProgram = (x, y) => (x.program < y.program ? -1 : x.program > y.program ? 1 : 0)
+  if (side === 'rolls_royce') {
+    const ls = (o.launch || []).slice().sort(byProgram)
+      .map(L => `${L.program}/${L.variant || '-'}/${L.terms || 'standard'}/${L.year}`).join(';')
+    return `${side}|L=${ls}|C=${Array.from(new Set(o.cancel || [])).sort().join(',')}|F=t1000_upgrade:${o.t1000_upgrade ? 1 : 0}`
+  }
   const launches = (o.launch || [])
     .slice()
     .sort((x, y) => (x.program < y.program ? -1 : x.program > y.program ? 1 : 0))
@@ -285,12 +336,14 @@ function clean(s) {
   return String(s == null ? '' : s).split('WARGAME_EOF').join('WARGAME-EOF')
 }
 
-// Orders exactly as the engine will see them. fps always carries an explicit variant.
+// Orders exactly as the engine will see them. fps and uf_nb always carry an explicit variant.
 function enginePayload(side, o) {
   const p = {
     launch: (o.launch || []).map(L => {
-      const e = { program: L.program, year: L.year, engine: L.engine }
-      const v = L.variant && L.variant !== 'none' ? L.variant : L.program === 'fps' ? 'solo' : null
+      const e = side === 'rolls_royce'
+        ? { program: L.program, year: L.year, terms: L.terms || 'standard' }
+        : { program: L.program, year: L.year, engine: L.engine }
+      const v = L.variant && L.variant !== 'none' ? L.variant : L.program === 'fps' || L.program === 'uf_nb' ? 'solo' : null
       if (v) e.variant = v
       return e
     }),
@@ -302,6 +355,7 @@ function enginePayload(side, o) {
   if (o.prediction && typeof o.prediction === 'object') p.prediction = o.prediction
   if (typeof o.expected_delta_pv_b === 'number') p.expected_delta_pv_b = o.expected_delta_pv_b
   if (side === 'boeing') p.rate_increase = !!o.rate_increase
+  else if (side === 'rolls_royce') p.t1000_upgrade = !!o.t1000_upgrade
   else {
     p.delay_tactics = !!o.delay_tactics
     p.poaching = !!o.poaching
@@ -312,13 +366,15 @@ function enginePayload(side, o) {
 function publicPart(side, o) {
   const p = { launch: o.launch || [], cancel: o.cancel || [], public_statement: o.public_statement || '', disclose: o.disclose || [] }
   if (side === 'boeing') p.rate_increase = !!o.rate_increase
+  else if (side === 'rolls_royce') p.t1000_upgrade = !!o.t1000_upgrade
   else p.poaching = !!o.poaching // Delay Tactics are covert and never shown
   return p
 }
 
 function describe(side, o) {
-  const parts = (o.launch || []).map(L => `launch ${L.program}${L.variant && L.variant !== 'none' ? ' ' + L.variant : ''} ${L.year}`)
+  const parts = (o.launch || []).map(L => `launch ${L.program}${L.variant && L.variant !== 'none' ? ' ' + L.variant : ''}${L.terms ? ' ' + L.terms : ''}${side !== 'rolls_royce' && L.engine ? ' ' + L.engine : ''} ${L.year}`)
   ;(o.cancel || []).forEach(p => parts.push(`cancel ${p}`))
+  if (side === 'rolls_royce' && o.t1000_upgrade) parts.push('Trent 1000 upgrade')
   if (side === 'boeing' && o.rate_increase) parts.push('rate increase')
   if (side === 'airbus' && o.delay_tactics) parts.push('Delay Tactics')
   if (side === 'airbus' && o.poaching) parts.push('Poaching')
@@ -338,10 +394,10 @@ function setupPrompt() {
   const prefix = RUN_ID || 'wg-<timestamp>'
   const cmds = []
   for (let i = 1; i <= GAMES; i++) {
-    cmds.push(`${ENGINE} new --run-id ${prefix}${suffix(i)} --scenario ${SCENARIO}${TURNS ? ' --turns ' + TURNS : ''} --seed ${SEED + i - 1}`)
+    cmds.push(`${ENGINE} new --run-id ${prefix}${suffix(i)} --scenario ${SCENARIO}${TURNS ? ' --turns ' + TURNS : ''} --seed ${SEED + i - 1}${SUPPLIERS.length ? ' --suppliers ' + SUPPLIERS.join(',') : ''}`)
   }
   return [
-    `Create ${GAMES} Boeing vs Airbus war game run(s) with the wargame engine. You are the Game Orchestrator (referee).`,
+    `Create ${GAMES} Boeing vs Airbus${SUPPLIERS.length ? ' (plus ' + SUPPLIERS.map(s => LABEL[s]).join(', ') + ' as supplier)' : ''} war game run(s) with the wargame engine. You are the Game Orchestrator (referee).`,
     RUN_ID ? '' : 'First get a timestamp with `date +%Y%m%d-%H%M%S` and substitute it for <timestamp> below.',
     'Run:\n```bash\n' + cmds.join('\n') + '\n```',
     'If a command fails (for example the run id already exists or the scenario or turn count is invalid), stop and put the exact error in `error`.',
@@ -369,20 +425,30 @@ function controlTurnPrompt(g, t) {
 function playerPrompt(g, t, side, ctl, errors) {
   const ty = g.years[t]
   const variantRule = side === 'boeing' ? '"solo" or "jv" for fps, "none" for re787' : '"none"'
+  const launchRule = side === 'rolls_royce'
+    ? `Every launch entry needs program (uf_wb or uf_nb), year (${ty.first_year}-${ty.last_year}), variant ("solo" or "jv_pw" for uf_nb, "none" for uf_wb) and terms ("standard" or "aggressive").`
+    : `Every launch entry needs program, year (${ty.first_year}-${ty.last_year}), engine and variant (${variantRule}).`
+  const supplierNote = SUPPLIERS.length && side !== 'rolls_royce'
+    ? 'Rolls-Royce plays this game as the engine supplier. An RR engine (rr_ultrafan_nb, rr_ultrafan_wb) is only real if RR has committed to it: see supplier_engines in your levers and supplier_programs in your brief. If RR has not committed by adjudication, your program falls back to the alternative engine.'
+    : ''
+  const predictionRule = side === 'rolls_royce'
+    ? "In prediction, give your private forecast of each airframer's launches this turn, with the engine each will choose (boeing and airbus keys). The referee scores it and never shares it."
+    : "In prediction, give your private forecast of the rival's orders this turn. The referee scores it and never shares it."
   return [
     `War game run \`${g.runId}\`. You are ${LABEL[side]}. This is turn ${t} of ${g.turnsTotal} (${ty.first_year}-${ty.last_year}${ty.label ? ', ' + ty.label : ''}).`,
     `Follow your role instructions. Read your behavioural profile (wargame/profiles/${side}/profile.md, starting with the Quick card), then run brief, rules (on turn 1), options, whatif and validate, and return your orders. Always pass \`--run ${g.runId} --side ${side}\`.`,
     `Control's public situation report:\n${ctl.situation}`,
     DOCTRINE[side] ? `Board guidance for this game. Treat it as a real constraint on your decisions: ${DOCTRINE[side]}` : '',
+    supplierNote,
     errors && errors.length ? `The engine rejected your previous orders for this turn:\n- ${errors.join('\n- ')}\nFix them, re-run validate, and resubmit.` : '',
-    `Every launch entry needs program, year (${ty.first_year}-${ty.last_year}), engine and variant (${variantRule}). Put the engine numbers you relied on in the rationale. Put the engine's projected delta PV for these orders, assuming no later moves, in expected_delta_pv_b. In disclose, list anything you CHOOSE to make public; the referee passes it to the rival and the market next turn, and it may be empty. In prediction, give your private forecast of the rival's orders this turn. The referee scores it and never shares it.`,
+    `${launchRule} Put the engine numbers you relied on in the rationale. Put the engine's projected delta PV for these orders, assuming no later moves, in expected_delta_pv_b. In disclose, list anything you CHOOSE to make public; the referee passes it to the other players and the market next turn, and it may be empty. ${predictionRule}`,
   ]
     .filter(Boolean)
     .join('\n\n')
 }
 
 function marketPrompt(g, t, orders, ctl) {
-  const pub = SIDES.map(s => `${LABEL[s]}: ${JSON.stringify(publicPart(s, orders[s]))}`).join('\n')
+  const pub = PLAYERS.map(s => `${LABEL[s]}: ${JSON.stringify(publicPart(s, orders[s]))}`).join('\n')
   return [
     `War game run \`${g.runId}\`, turn ${t}. You are the market cell.`,
     `Read the public view: \`${ENGINE} brief --run ${g.runId} --side market\`. Add \`${ENGINE} rules --run ${g.runId} --side market\` if you need the mechanics.`,
@@ -399,10 +465,10 @@ function adjudicatePrompt(g, t, cmd, retry) {
     '```bash\n' + cmd + '\n```',
     'Report from the engine output:',
     '- status: "ok"; "invalid" if the engine printed status "invalid"; otherwise "error".',
-    '- orders_digest values, as boeing_digest and airbus_digest.',
-    '- projection delta_pv_b per side, as boeing_delta_pv_b and airbus_delta_pv_b.',
+    `- orders_digest values, as ${PLAYERS.map(s => s + '_digest').join(' and ')}.`,
+    `- projection delta_pv_b per side, as ${PLAYERS.map(s => s + '_delta_pv_b').join(' and ')}.`,
     '- game_complete, and the text of this turn\'s public events.',
-    '- For "invalid": the per-side error lists (boeing_errors, airbus_errors).',
+    `- For "invalid": the per-side error lists (${PLAYERS.map(s => s + '_errors').join(', ')}).`,
     '- For "error": the exact error text, in error.',
     'If the status is "ok", do one more thing as referee. For each side whose orders carry a non-empty "disclose" list, check it against the PUBLIC record only (`brief --side market` plus this turn\'s public events). Then run `python3 -m wargame.engine annotate --run ' + g.runId + ' --turn ' + t + ' --side <side> --note "<consistent with the public record | contradicted by the public record: ... | not publicly verifiable>"`. Never use private knowledge, such as covert orders, in a note.',
   ]
@@ -412,9 +478,10 @@ function adjudicatePrompt(g, t, cmd, retry) {
 
 function aarPrompt(g, expectations) {
   return [
-    `After-action review of completed war game run \`${g.runId}\`. Scenario ${SCENARIO}, ${g.turnsTotal} turns, inject policy ${INJECTS}${DOCTRINE.boeing || DOCTRINE.airbus ? ', board guidance ' + JSON.stringify(DOCTRINE) : ''}.`,
+    `After-action review of completed war game run \`${g.runId}\`. Scenario ${SCENARIO}, ${g.turnsTotal} turns, inject policy ${INJECTS}${Object.keys(DOCTRINE).length ? ', board guidance ' + JSON.stringify(DOCTRINE) : ''}.`,
     `Run \`${ENGINE} report --run ${g.runId}\`, \`${ENGINE} equilibria --run ${g.runId} --from-turn 1\`, and the narrowbody and widebody sub-games (\`--segment nb\`, \`--segment wb\`). Use \`${ENGINE} whatif --run ${g.runId} --side analyst\` for the counterfactuals behind your turning points.`,
     `Each side's engine-projected delta PV at the moment it ordered (assuming no later moves), per turn:\n${expectations}`,
+    SUPPLIERS.length ? `Rolls-Royce played as the engine supplier. equilibria covers the airframers only (supplier orders held as played); for Rolls-Royce use \`${ENGINE} scorecard --run ${g.runId}\` (its myopic regret) and whatif counterfactuals, and include rolls_royce in final_delta_pv_b, regret_b (its total myopic regret) and lessons.` : '',
     'Produce:',
     '- a one-sentence headline;',
     '- final delta PV per side;',
@@ -442,12 +509,12 @@ function reportPrompt(g, aar, verified, refuted, dropped, expectations) {
     `Write the report for completed war game run \`${g.runId}\` to \`wargame/runs/${g.runId}/report.md\` (Markdown), then return its path and a three-sentence summary.`,
     'Structure:',
     '1. Title and a short headline paragraph. Use only verified facts.',
-    `2. Setup: scenario ${SCENARIO}, ${g.turnsTotal} turns, inject policy ${INJECTS}${DOCTRINE.boeing || DOCTRINE.airbus ? ', board guidance ' + JSON.stringify(DOCTRINE) : ''}.`,
+    `2. Setup: scenario ${SCENARIO}, ${g.turnsTotal} turns, inject policy ${INJECTS}${Object.keys(DOCTRINE).length ? ', board guidance ' + JSON.stringify(DOCTRINE) : ''}.`,
     `3. Engine tables: paste the output of \`${ENGINE} report --run ${g.runId} --format md\` verbatim. Do not retype the numbers.`,
     `4. Turn-by-turn narrative from \`${ENGINE} report --run ${g.runId}\`: the inject, what each side did and why (from their rationales), the market reaction, and the projection change.`,
     '5. Equilibrium benchmark and regret.',
     '6. Turning points.',
-    '7. Lessons for Boeing and for Airbus.',
+    `7. Lessons for Boeing and for Airbus${SUPPLIERS.length ? ' and for Rolls-Royce' : ''}.`,
     '8. Verified claims, each with its command and the checkers\' vote.',
     '9. Appendix: claims that failed verification or were not checked, with their votes. Nothing is silently dropped.',
     '10. Model caveats, separating CALIBRATED from PLACEHOLDER parameters (see wargame/README.md).',
@@ -465,21 +532,21 @@ function refereePrompt(g) {
   return [
     `You are the Game Orchestrator. War game run \`${g.runId}\` is complete. Write the referee's efficiency report to \`wargame/runs/${g.runId}/referee_report.md\`, then return its path and a three-sentence summary.`,
     `Run \`${ENGINE} scorecard --run ${g.runId} --final --format md\` and paste its tables verbatim. Use \`${ENGINE} scorecard --run ${g.runId} --final\` (JSON) and \`${ENGINE} report --run ${g.runId}\` for detail.`,
-    'Follow the end-of-game section of your role instructions. For each player, give an efficiency verdict covering:',
+    `Follow the end-of-game section of your role instructions. For each player (${PLAYERS.map(s => LABEL[s]).join(', ')}), give an efficiency verdict covering:`,
     '- value capture and myopic regret;',
     '- hindsight regret;',
     '- prediction accuracy;',
     '- calibration;',
     '- information use: what it chose to disclose, and whether that was credible, strategic, or contradicted by events;',
     '- discipline;',
-    '- doctrine fidelity: compare its orders with its profile Quick card (wargame/profiles/<side>/profile.md) and its declared doctrine premium.',
+    '- doctrine fidelity: compare its orders with its profile Quick card (wargame/profiles/<side>/profile.md, where <side> is boeing, airbus or rolls_royce) and its declared doctrine premium.',
     'Finish with a comparative ranking that separates skill from documented company doctrine. Every number must come from engine output.',
   ].join('\n')
 }
 
 function synthesisPrompt(done, path) {
   return [
-    `Write a cross-game synthesis of ${done.length} independent plays of the same Boeing vs Airbus war game to \`${path}\` (Markdown), then return its path and a three-sentence summary.`,
+    `Write a cross-game synthesis of ${done.length} independent plays of the same Boeing vs Airbus${SUPPLIERS.length ? ' (with Rolls-Royce)' : ''} war game to \`${path}\` (Markdown), then return its path and a three-sentence summary.`,
     `Runs: ${done.map(d => `\`${d.run_id}\` (report: ${d.report_path})`).join(', ')}.`,
     `Read each report.md and \`${ENGINE} report --run <id>\`. Compare decisions and outcomes across games: which choices were robust and which depended on injects or on the other side's play. Use a table of final delta PV per side per game, taken from engine output. Give conclusions for Boeing and for Airbus, and note where the games disagreed.`,
   ].join('\n\n')
@@ -497,10 +564,14 @@ function fixedOrdersFor(g, side, t) {
   const ty = g.years[t]
   const launch = (o.launch || []).map(L => {
     const e = typeof L === 'string' ? { program: L } : Object.assign({}, L)
+    const year = Number.isInteger(e.year) ? e.year : ty.first_year
+    if (side === 'rolls_royce') {
+      return { program: e.program, year, variant: e.variant || (e.program === 'uf_nb' ? 'solo' : 'none'), terms: e.terms || 'standard' }
+    }
     if (!e.engine) throw new Error(`fixed_orders.${side}.${t}: launch of ${e.program} needs an engine`)
     return {
       program: e.program,
-      year: Number.isInteger(e.year) ? e.year : ty.first_year,
+      year,
       engine: e.engine,
       variant: e.variant || (e.program === 'fps' ? 'solo' : 'none'),
     }
@@ -514,6 +585,7 @@ function fixedOrdersFor(g, side, t) {
     scripted: true,
   }
   if (side === 'boeing') out.rate_increase = !!o.rate_increase
+  else if (side === 'rolls_royce') out.t1000_upgrade = !!o.t1000_upgrade
   else {
     out.delay_tactics = !!o.delay_tactics
     out.poaching = !!o.poaching
@@ -527,7 +599,7 @@ async function sideOrders(g, t, side, ctl, errors) {
     if (errors && errors.length) throw new Error(`${g.tag}fixed_orders for ${side} turn ${t} are invalid: ${errors.join('; ')}`)
     return fixed
   }
-  const r = await call(`${side}-strategist`, playerPrompt(g, t, side, ctl, errors), {
+  const r = await call(ROLE[side], playerPrompt(g, t, side, ctl, errors), {
     label: `${g.tag}T${t} ${LABEL[side]}${errors ? ' (fix)' : ''}`,
     phase: 'Turns',
     schema: ORDERS_SCHEMA[side],
@@ -537,16 +609,14 @@ async function sideOrders(g, t, side, ctl, errors) {
 }
 
 async function adjudicate(g, t, orders, market, retry) {
-  const payload = {
-    boeing: enginePayload('boeing', orders.boeing),
-    airbus: enginePayload('airbus', orders.airbus),
-    market: { narrative: clean(market.narrative), capture_mult: {} },
-  }
+  const payload = {}
+  PLAYERS.forEach(s => (payload[s] = enginePayload(s, orders[s])))
+  payload.market = { narrative: clean(market.narrative), capture_mult: {} }
   for (const r of market.reactions || []) payload.market.capture_mult[r.program] = r.capture_mult
   const digests = {}
-  SIDES.forEach(s => (digests[s] = fnv1a(canonKey(s, payload[s]))))
+  PLAYERS.forEach(s => (digests[s] = fnv1a(canonKey(s, payload[s]))))
   const cmd =
-    `${ENGINE} adjudicate --run ${g.runId} --turn ${t} --expect-digest boeing=${digests.boeing},airbus=${digests.airbus} <<'WARGAME_EOF'\n` +
+    `${ENGINE} adjudicate --run ${g.runId} --turn ${t} --expect-digest ${PLAYERS.map(s => `${s}=${digests[s]}`).join(',')} <<'WARGAME_EOF'\n` +
     `${JSON.stringify(payload, null, 1)}\nWARGAME_EOF`
   const r = await call('game-orchestrator', adjudicatePrompt(g, t, cmd, retry), {
     label: `${g.tag}T${t} adjudicate${retry ? ' (retry)' : ''}`,
@@ -570,9 +640,9 @@ async function playGame(g) {
     log(`${g.tag}T${t} inject: ${ctl.inject_title || ctl.inject_id}`)
 
     const orders = {}
-    const got = await parallel(SIDES.map(side => () => sideOrders(g, t, side, ctl, null)))
-    SIDES.forEach((s, i) => (orders[s] = got[i]))
-    SIDES.forEach(s => {
+    const got = await parallel(PLAYERS.map(side => () => sideOrders(g, t, side, ctl, null)))
+    PLAYERS.forEach((s, i) => (orders[s] = got[i]))
+    PLAYERS.forEach(s => {
       if (!orders[s]) throw new Error(`${g.tag}${LABEL[s]} failed to order in turn ${t}`)
     })
 
@@ -585,12 +655,12 @@ async function playGame(g) {
     let adj = await adjudicate(g, t, orders, market, false)
     if (adj.status === 'invalid') {
       const fixed = await parallel(
-        SIDES.map(side => () => {
+        PLAYERS.map(side => () => {
           const errs = adj[`${side}_errors`] || []
           return errs.length ? sideOrders(g, t, side, ctl, errs) : Promise.resolve(orders[side])
         }),
       )
-      SIDES.forEach((s, i) => {
+      PLAYERS.forEach((s, i) => {
         if (fixed[i]) orders[s] = fixed[i]
       })
       adj = await adjudicate(g, t, orders, market, false)
@@ -598,28 +668,29 @@ async function playGame(g) {
       adj = await adjudicate(g, t, orders, market, true)
     }
     if (adj.status !== 'ok') {
-      throw new Error(`${g.tag}turn ${t} adjudication failed: ${adj.error || JSON.stringify(adj.boeing_errors || adj.airbus_errors || adj)}`)
+      throw new Error(`${g.tag}turn ${t} adjudication failed: ${adj.error || JSON.stringify(adj.boeing_errors || adj.airbus_errors || adj.rolls_royce_errors || adj)}`)
     }
-    SIDES.forEach(s => {
+    PLAYERS.forEach(s => {
       const got = adj[`${s}_digest`]
       if (got && got !== adj.expected_digests[s]) {
         log(`${g.tag}T${t} WARNING: control reported ${s} digest ${got}, expected ${adj.expected_digests[s]} (the engine enforces the digest, so this is probably a transcription slip in the report)`)
       }
     })
     log(
-      `${g.tag}T${t}: Boeing ${describe('boeing', orders.boeing)} | Airbus ${describe('airbus', orders.airbus)} | projected $B: Boeing ${fmt(adj.boeing_delta_pv_b)}, Airbus ${fmt(adj.airbus_delta_pv_b)}`,
+      `${g.tag}T${t}: ${PLAYERS.map(s => `${LABEL[s]} ${describe(s, orders[s])}`).join(' | ')} | projected $B: ${PLAYERS.map(s => `${LABEL[s]} ${fmt(adj[s + '_delta_pv_b'])}`).join(', ')}`,
     )
+    const pick = f => Object.fromEntries(PLAYERS.map(s => [s, f(s)]))
     turns.push({
       turn: t,
       inject: ctl.inject_title || ctl.inject_id,
-      orders: { boeing: describe('boeing', orders.boeing), airbus: describe('airbus', orders.airbus) },
-      expected: { boeing: orders.boeing.expected_delta_pv_b, airbus: orders.airbus.expected_delta_pv_b },
-      projected: { boeing: adj.boeing_delta_pv_b, airbus: adj.airbus_delta_pv_b },
+      orders: pick(s => describe(s, orders[s])),
+      expected: pick(s => orders[s].expected_delta_pv_b),
+      projected: pick(s => adj[s + '_delta_pv_b']),
     })
   }
 
   const expectations = turns
-    .map(x => `T${x.turn}: Boeing expected ${fmt(x.expected.boeing)}, Airbus expected ${fmt(x.expected.airbus)} ($B)`)
+    .map(x => `T${x.turn}: ${PLAYERS.map(s => `${LABEL[s]} expected ${fmt(x.expected[s])}`).join(', ')} ($B)`)
     .join('\n')
 
   const aar = await call('wargame-analyst', aarPrompt(g, expectations), {
@@ -708,7 +779,7 @@ for (const g of games) {
     if (!years[t]) throw new Error(`setup did not return the years of turn ${t}`)
   }
 }
-log(`${games.length} game(s): ${games.map(g => g.runId).join(', ')} (${setup.scenario_title}, ${games[0].turnsTotal} turns, injects: ${INJECTS})`)
+log(`${games.length} game(s): ${games.map(g => g.runId).join(', ')} (${setup.scenario_title}, ${games[0].turnsTotal} turns, injects: ${INJECTS}, players: ${PLAYERS.map(s => LABEL[s]).join(', ')})`)
 
 phase('Turns')
 const results = await parallel(
@@ -733,6 +804,7 @@ if (done.length > 1) {
 return {
   scenario: SCENARIO,
   inject_policy: INJECTS,
+  players: PLAYERS,
   games: results,
   synthesis: synthesis ? synthesis.path : null,
 }
