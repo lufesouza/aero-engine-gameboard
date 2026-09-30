@@ -18,9 +18,11 @@ BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", 
 RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "Morgan Stanley", "NYSE BA Financials",
        "wargame/scenarios", "referee_only", "wargame/README.md", "profiles/build"]
 BLOCK = {
-    "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-", "boeing-strategist.md", "wargame/runs",
+    "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-2010.md", "airbus-strategist.md", "boeing-strategist.md",
+                    "wargame/runs",
                     "wargame-airbus"] + BUILD + RAW,
-    "airbus-2010": ["profiles/boeing", "profiles/airbus/", "boeing-", "airbus-strategist.md", "wargame/runs",
+    "airbus-2010": ["profiles/boeing", "profiles/airbus/", "boeing-2010.md", "boeing-strategist.md", "airbus-strategist.md",
+                    "wargame/runs",
                     "wargame-boeing"] + BUILD + RAW,
     "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + BUILD,
     "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + BUILD,
