@@ -14,14 +14,21 @@ import sys
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
          "/scratchpad/audit", "/scratchpad/ab_synth_work", "/scratchpad/text"]
+# Raw uploads contain every year; the period-locked 2010 players may not read them.
+RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "Morgan Stanley", "NYSE BA Financials"]
 BLOCK = {
+    "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-", "boeing-strategist.md", "wargame/runs",
+                    "wargame-airbus"] + BUILD + RAW,
+    "airbus-2010": ["profiles/boeing", "profiles/airbus/", "boeing-", "airbus-strategist.md", "wargame/runs",
+                    "wargame-boeing"] + BUILD + RAW,
     "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + BUILD,
     "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + BUILD,
     "wargame-market": ["profiles/", "wargame/runs", "wargame-boeing", "wargame-airbus"] + BUILD,
 }
 
 
-PLAYER_SIDE = {"boeing-strategist": "boeing", "airbus-strategist": "airbus", "wargame-market": "market"}
+PLAYER_SIDE = {"boeing-strategist": "boeing", "airbus-strategist": "airbus", "wargame-market": "market",
+               "boeing-2010": "boeing", "airbus-2010": "airbus"}
 READ_ONLY = {"brief", "rules", "options", "whatif", "validate", "equilibria", "scenarios", "status"}
 
 

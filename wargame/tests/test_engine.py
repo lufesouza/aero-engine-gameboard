@@ -193,6 +193,63 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(M.belief_mask(c, hist2, "boeing"), frozenset())  # exposed after two turns
 
 
+class History2010Tests(unittest.TestCase):
+    """The hist-2010-neo backtest scenario and the engine features it relies on."""
+
+    def setUp(self):
+        self.cfg = M.load_config("hist-2010-neo")
+
+    def B(self, year, variant):
+        o = M.empty_orders("boeing")
+        o["launch"] = [{"program": "b737next", "year": year, "engine": "cfm_leap", "variant": variant}]
+        return o
+
+    def neo(self):
+        o = M.empty_orders("airbus")
+        o["launch"] = [{"program": "a320neo", "year": 2010, "engine": "cfm_leap"}]
+        return o
+
+    def test_scenario_replaces_sections(self):
+        self.assertEqual(set(self.cfg["programs"]), {"b737next", "a320neo"})
+        self.assertEqual(self.cfg["years"]["pv_base"], 2010)
+        self.assertFalse(M.tactic_enabled(self.cfg, "delay_tactics"))
+        self.assertAlmostEqual(M.payoff(self.cfg, [rec(1)])["boeing"], 0.0, places=9)
+
+    def test_variant_economics(self):
+        w = M.build_world(self.cfg, [rec(1, a=self.neo()), rec(2, self.B(2011, "cleansheet"))])
+        self.assertEqual(w.programs["b737next"].eis, 2020)
+        w = M.build_world(self.cfg, [rec(1, a=self.neo()), rec(2, self.B(2011, "reengine"))])
+        self.assertEqual(w.programs["b737next"].eis, 2017)
+        r = M.evaluate(self.cfg, M.build_world(self.cfg, [rec(1, a=self.neo()), rec(2, self.B(2011, "cleansheet"))]))
+        self.assertAlmostEqual(r["boeing"]["undiscounted_b"]["capex"], -18.0 * (1 + self.cfg["players"]["boeing"]["alpha"]), places=3)
+
+    def test_disabled_tactics_rejected(self):
+        _, errors, _ = M.validate_orders(self.cfg, [rec(1)], 1, "airbus", {"delay_tactics": True})
+        self.assertTrue(any("not available in this scenario" in e for e in errors))
+
+    def test_background_development_adds_strain(self):
+        r = M.evaluate(self.cfg, M.build_world(self.cfg, [rec(1, self.B(2010, "reengine"))]))
+        self.assertLess(r["boeing"]["components_pv_b"]["strain"], 0)  # overlaps 787/747-8 to 2012
+        r = M.evaluate(self.cfg, M.build_world(self.cfg, [rec(1), rec(2), rec(3, self.B(2012, "reengine"))]))
+        self.assertAlmostEqual(r["boeing"]["components_pv_b"]["strain"], 0.0, places=9)  # background ends 2012
+
+    def test_conditional_share_shift(self):
+        hit = [rec(1, a=self.neo()), rec(2, injects=["major_order_split"])]
+        answered = [rec(1, a=self.neo()), rec(2, self.B(2011, "reengine"), injects=["major_order_split"])]
+        base_answered = [rec(1, a=self.neo()), rec(2, self.B(2011, "reengine"))]
+        # doing nothing: the defection is in the status quo too, so no extra delta
+        self.assertAlmostEqual(M.payoff(self.cfg, hit)["boeing"],
+                               M.payoff(self.cfg, [rec(1, a=self.neo()), rec(2)])["boeing"], places=1)
+        # answering in the same turn averts the loss: worth more than without the shock
+        self.assertGreater(M.payoff(self.cfg, answered)["boeing"], M.payoff(self.cfg, base_answered)["boeing"])
+
+    def test_tech_edge_recaptures_share(self):
+        r = M.evaluate(self.cfg, M.build_world(self.cfg, [rec(1, a=self.neo()), rec(2, self.B(2011, "cleansheet"))]))
+        self.assertGreater(r["shares"]["nb"]["2040"]["boeing"], r["shares"]["nb"]["2030"]["boeing"])
+        r = M.evaluate(self.cfg, M.build_world(self.cfg, [rec(1, a=self.neo()), rec(2, self.B(2011, "reengine"))]))
+        self.assertAlmostEqual(r["shares"]["nb"]["2040"]["boeing"], r["shares"]["nb"]["2030"]["boeing"], places=6)
+
+
 class CliTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

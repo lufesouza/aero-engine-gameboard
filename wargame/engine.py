@@ -105,21 +105,24 @@ def levers(cfg, world, side, turn):
     for pid in M.programs_of(cfg, side):
         pc = cfg["programs"][pid]
         if pid not in world.programs:
-            item = {"program": pid, "label": pc["label"], "years": [a, b], "dev_years": pc["dev_years"] + world.dev_years_add[side],
+            item = {"program": pid, "label": pc["label"], "years": [a, b], "dev_years": pc.get("dev_years", 0) + world.dev_years_add[side],
                     "engines": list(cfg["engine_options"][pc["segment"]]), "default_engine": pc["default_engine"]}
             if "variants" in pc:
                 item["variants"] = list(pc["variants"])
+                item["variant_terms"] = {v: {k: x for k, x in vt.items() if k != "label"} for v, vt in pc["variants"].items()}
             lv["launch"].append(item)
         else:
             p = world.programs[pid]
             if p.cancelled_year is None and p.eis > a:
                 lv["cancel"].append({"program": pid, "label": pc["label"], "eis": p.eis})
     if side == "boeing":
-        lv["flags"].append({"flag": "rate_increase", "available": world.rate_year is None,
-                            "note": "one-time commitment" if world.rate_year is None else f"already committed in {world.rate_year}"})
+        if M.tactic_enabled(cfg, "rate_increase"):
+            lv["flags"].append({"flag": "rate_increase", "available": world.rate_year is None,
+                                "note": "one-time commitment" if world.rate_year is None else f"already committed in {world.rate_year}"})
     else:
-        lv["flags"] += [{"flag": "delay_tactics", "available": True, "note": "covert; applies to this turn only"},
-                        {"flag": "poaching", "available": True, "note": "public; applies to this turn only"}]
+        lv["flags"] += [x for x in ({"flag": "delay_tactics", "available": True, "note": "covert; applies to this turn only"},
+                                    {"flag": "poaching", "available": True, "note": "public; applies to this turn only"})
+                        if M.tactic_enabled(cfg, x["flag"])]
     tmpl = M.empty_orders(side)
     tmpl.update({"public_statement": "", "rationale": ""})
     lv["orders_template"] = tmpl

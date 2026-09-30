@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import itertools
 
-from .model import SIDES, build_world, empty_orders, other, payoff, programs_of, turn_years
+from .model import SIDES, build_world, empty_orders, other, payoff, programs_of, tactic_enabled, turn_years
 
 
 def _launch_entry(cfg, pid, year, variant=None):
@@ -69,10 +69,10 @@ def stage_candidates(cfg, world, side, turn):
         per_prog.append((pid, opts))
     flags = []
     if side == "boeing":
-        if world.rate_year is None:
+        if world.rate_year is None and tactic_enabled(cfg, "rate_increase"):
             flags.append(("rate_increase", [False, True]))
     else:
-        flags += [("delay_tactics", [False, True]), ("poaching", [False, True])]
+        flags += [(f, [False, True]) for f in ("delay_tactics", "poaching") if tactic_enabled(cfg, f)]
     cands = []
     for combo in itertools.product(*[opts for _, opts in per_prog]):
         for fl in itertools.product(*[vals for _, vals in flags]):
@@ -189,11 +189,10 @@ def plan_space(cfg, side, base_world, turns, segment):
         per_prog.append((pid, opts))
     flag_opts = []
     if segment == "all":
-        if side == "boeing" and base_world.rate_year is None:
+        if side == "boeing" and base_world.rate_year is None and tactic_enabled(cfg, "rate_increase"):
             flag_opts.append(("rate_increase", [None] + list(turns)))
         if side == "airbus":
-            flag_opts.append(("delay_tactics", [False, True]))
-            flag_opts.append(("poaching", [False, True]))
+            flag_opts += [(f, [False, True]) for f in ("delay_tactics", "poaching") if tactic_enabled(cfg, f)]
     plans = []
     for combo in itertools.product(*[o for _, o in per_prog]):
         for fl in itertools.product(*[v for _, v in flag_opts]):

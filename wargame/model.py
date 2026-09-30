@@ -57,7 +57,10 @@ def load_config(scenario="base", overrides=None):
         raise ValueError(f"unknown scenario '{scenario}'; available: {', '.join(list_scenarios())}")
     with open(path) as f:
         sc = json.load(f)
-    cfg = deep_merge(cfg, sc.get("overrides", {}))
+    ov = sc.get("overrides", {})
+    for key in sc.get("replace", []):
+        cfg[key] = copy.deepcopy(ov[key])
+    cfg = deep_merge(cfg, {k: v for k, v in ov.items() if k not in sc.get("replace", [])})
     if overrides:
         cfg = deep_merge(cfg, overrides)
     cfg["scenario"] = {"id": scenario, "title": sc.get("title", scenario), "narrative": sc.get("narrative", "")}
@@ -80,6 +83,29 @@ def program_for(cfg, side, seg):
         if p["owner"] == side and p["segment"] == seg:
             return pid
     return None
+
+
+VARIANT_KEYS = ("dev_years", "capex_b", "margin_alone", "margin_both", "tech_ready_year",
+                "early_penalty_pp_per_year", "capture_mult", "tech_level")
+
+
+def pparam(cfg, pid, variant, key, default=None):
+    """A program parameter, overridden by the chosen variant when the variant sets it."""
+    pc = cfg["programs"][pid]
+    if variant and key in pc.get("variants", {}).get(variant, {}):
+        return pc["variants"][variant][key]
+    return pc.get(key, default)
+
+
+def vparam(cfg, pid, variant, key):
+    """Joint-venture style variant terms (partner shares, strain relief); 0 when absent."""
+    if not variant:
+        return 0.0
+    return cfg["programs"][pid].get("variants", {}).get(variant, {}).get(key, 0.0)
+
+
+def tactic_enabled(cfg, name):
+    return cfg["tactics"].get(name, {}).get("enabled", True)
 
 
 def empty_orders(side):
@@ -148,10 +174,10 @@ class World:
     cost_events: list = field(default_factory=list)
     injects: list = field(default_factory=list)
     tech_ready_add: dict = field(default_factory=lambda: {"nb": 0, "wb": 0})
-    strain_mults: list = field(default_factory=list)  # (from_year, mult)
+    strain_mults: list = field(default_factory=list)  # (from_year, mult, player|"all")
     units_mults: list = field(default_factory=list)  # (seg, y0, y1, mult)
     margin_adds: list = field(default_factory=list)  # (player, seg, kind, y0, y1, pp)
-    share_shifts: list = field(default_factory=list)  # (seg, to_player, pp, y0, y1)
+    share_shifts: list = field(default_factory=list)  # (seg, to_player, pp, y0, y1, unless_launched, turn)
     dev_years_add: dict = field(default_factory=lambda: {"boeing": 0, "airbus": 0})
     events: list = field(default_factory=list)  # adjudication log with visibility
 
@@ -179,13 +205,15 @@ def _apply_inject(w, turn, a, iid):
         elif t == "margin_add":
             w.margin_adds.append((e.get("player", "all"), e.get("segment", "all"), e.get("kind", "all"), y0, y1, float(e["pp"])))
         elif t == "share_shift":
-            w.share_shifts.append((e["segment"], e["to_player"], float(e["pp"]), y0, y1))
+            # unless_launched: the shift does not hit the moving world if that program was launched
+            # by the end of this turn (e.g. a customer defects unless Boeing commits to an answer).
+            w.share_shifts.append((e["segment"], e["to_player"], float(e["pp"]), y0, y1, e.get("unless_launched"), turn))
         elif t == "tech_ready_add":
             segs = SEGMENTS if e.get("segment", "all") == "all" else (e["segment"],)
             for s in segs:
                 w.tech_ready_add[s] += int(e["years"])
         elif t == "strain_mult":
-            w.strain_mults.append((a, float(e["mult"])))
+            w.strain_mults.append((a, float(e["mult"]), e.get("player", "all")))
         elif t == "dev_years_add":
             players = SIDES if e.get("player", "all") == "all" else (e["player"],)
             yrs = int(e["years"])
@@ -233,7 +261,8 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
                 eng = cfg["engine_options"][pc["segment"]][L["engine"]]
                 p = Program(
                     pid=L["program"], owner=side, segment=pc["segment"], launch_year=L["year"], launch_turn=k,
-                    base_dev_years=pc["dev_years"], extra_dev_years=w.dev_years_add[side] + eng["eis_add"],
+                    base_dev_years=pparam(cfg, L["program"], L.get("variant"), "dev_years"),
+                    extra_dev_years=w.dev_years_add[side] + eng["eis_add"],
                     variant=L.get("variant"), engine=L["engine"],
                 )
                 w.programs[p.pid] = p
@@ -314,10 +343,14 @@ def evaluate(cfg, world):
                 u *= m
         return u
 
-    def world_shift_boeing(seg, y):
+    def averted(pid, turn):
+        p = world.programs.get(pid) if pid else None
+        return p is not None and p.cancelled_year is None and p.launch_turn <= turn
+
+    def world_shift_boeing(seg, y, moving=False):
         d = 0.0
-        for (s, to, pp, y0, y1) in world.share_shifts:
-            if s == seg and y0 <= y <= y1:
+        for (s, to, pp, y0, y1, unless, turn) in world.share_shifts:
+            if s == seg and y0 <= y <= y1 and not (moving and averted(unless, turn)):
                 d += pp if to == "boeing" else -pp
         return d / 100.0
 
@@ -334,11 +367,13 @@ def evaluate(cfg, world):
 
     def capture_speed(p):
         eng = cfg["engine_options"][p.segment][p.engine]
-        return seg_cfg[p.segment]["capture_pp_per_year"] * p.capture_mult * eng["capture_mult"] / 100.0
+        vm = pparam(cfg, p.pid, p.variant, "capture_mult", 1.0) or 1.0
+        return seg_cfg[p.segment]["capture_pp_per_year"] * p.capture_mult * eng["capture_mult"] * vm / 100.0
 
     def shares(seg, y):
         sq_b = min(1.0, max(0.0, seg_cfg[seg]["sq_share"]["boeing"] + world_shift_boeing(seg, y)))
-        s_b = min(1.0, max(0.0, sq_b + move_shift_boeing(seg, y)))
+        s_b = min(1.0, max(0.0, seg_cfg[seg]["sq_share"]["boeing"] + world_shift_boeing(seg, y, moving=True)
+                           + move_shift_boeing(seg, y)))
         pb, pa = world.prog("boeing", seg), world.prog("airbus", seg)
         eb, ea = eis_of(pb), eis_of(pa)
         if eb < ea:
@@ -353,6 +388,18 @@ def evaluate(cfg, world):
             if n and s_a < cap:
                 s_a = min(cap, s_a + capture_speed(pa) * n)
             s_b = 1.0 - s_a
+        # Optional technology edge: once both new products are in service, the more advanced one
+        # (higher tech_level) keeps taking share. Equal levels (the default) keep the freeze rule.
+        if eb < NEVER and ea < NEVER and y > max(eb, ea):
+            tb = pparam(cfg, pb.pid, pb.variant, "tech_level", 1.0)
+            ta = pparam(cfg, pa.pid, pa.variant, "tech_level", 1.0)
+            if tb != ta:
+                n2 = y - max(eb, ea)
+                gain = seg_cfg[seg]["capture_pp_per_year"] / 100.0 * abs(tb - ta) * n2
+                if tb > ta:
+                    s_b = max(s_b, min(seg_cfg[seg]["leader_cap"]["boeing"], s_b + gain))
+                else:
+                    s_b = min(s_b, 1.0 - min(seg_cfg[seg]["leader_cap"]["airbus"], (1.0 - s_b) + gain))
         return {"boeing": s_b, "airbus": 1.0 - s_b}, {"boeing": sq_b, "airbus": 1.0 - sq_b}
 
     def margin_adds(side, seg, kind, y):
@@ -369,13 +416,13 @@ def evaluate(cfg, world):
         if p is not None and p.in_service(y):
             pc = cfg["programs"][p.pid]
             rival = world.prog(other(side), seg)
-            m = pc["margin_both"] if (rival is not None and rival.in_service(y)) else pc["margin_alone"]
-            ready = pc["tech_ready_year"] + world.tech_ready_add[seg]
-            m -= pc["early_penalty_pp_per_year"] / 100.0 * max(0, ready - p.eis)
+            both = rival is not None and rival.in_service(y)
+            m = pparam(cfg, p.pid, p.variant, "margin_both" if both else "margin_alone")
+            ready = pparam(cfg, p.pid, p.variant, "tech_ready_year") + world.tech_ready_add[seg]
+            m -= pparam(cfg, p.pid, p.variant, "early_penalty_pp_per_year") / 100.0 * max(0, ready - p.eis)
             m += cfg["engine_options"][seg][p.engine]["margin_pp"] / 100.0
             m += margin_adds(side, seg, "new", y)
-            if p.variant:
-                m *= 1.0 - pc["variants"][p.variant]["margin_share_partner"]
+            m *= 1.0 - vparam(cfg, p.pid, p.variant, "margin_share_partner")
             return m, sq_m
         return sq_m, sq_m
 
@@ -388,10 +435,10 @@ def evaluate(cfg, world):
     def df(side, y):
         return (1.0 + cfg["players"][side]["wacc"]) ** -(y - pv_base)
 
-    def strain_mult(y):
+    def strain_mult(y, side):
         m = 1.0
-        for (y0, mult) in world.strain_mults:
-            if y >= y0:
+        for (y0, mult, who) in world.strain_mults:
+            if y >= y0 and who in ("all", side):
                 m *= mult
         return m
 
@@ -400,8 +447,7 @@ def evaluate(cfg, world):
     strain = {s: {} for s in SIDES}
     for p in world.programs.values():
         pc = cfg["programs"][p.pid]
-        share = pc["variants"][p.variant]["capex_share_partner"] if p.variant else 0.0
-        c = pc["capex_b"] * (1.0 - share)
+        c = pparam(cfg, p.pid, p.variant, "capex_b") * (1.0 - vparam(cfg, p.pid, p.variant, "capex_share_partner"))
         for i, y in enumerate(range(p.launch_year, p.eis)):
             if p.cancelled_year is not None and y >= p.cancelled_year:
                 break
@@ -411,17 +457,23 @@ def evaluate(cfg, world):
         for y in range(world.rate_year, world.rate_year + rt["capex_years"]):
             capex["boeing"][y] = capex["boeing"].get(y, 0.0) + rt["capex_b"] / rt["capex_years"]
     for side in SIDES:
-        nb, wb = world.prog(side, "nb"), world.prog(side, "wb")
-        if nb is None or wb is None:
-            continue
-        start, end = max(nb.launch_year, wb.launch_year), min(nb.dev_end, wb.dev_end)
-        overlap = end - start
-        if overlap <= 0:
-            continue
-        relief = max(cfg["programs"][p.pid]["variants"][p.variant]["strain_relief"] if p.variant else 0.0 for p in (nb, wb))
-        nominal = cfg["strain"]["full_overlap_b"] * min(1.0, overlap / cfg["strain"]["norm_years"]) * (1.0 - relief)
-        for y in range(start, end):
-            strain[side][y] = strain[side].get(y, 0.0) + nominal / overlap * strain_mult(y)
+        # (start, end, relief, is_background): the player's new programs plus any background
+        # developments the scenario says are already under way (e.g. 787 and 747-8 in 2010).
+        wins = [(p.launch_year, p.dev_end, vparam(cfg, p.pid, p.variant, "strain_relief"), False)
+                for p in world.programs.values() if p.owner == side]
+        wins += [(b["start"], b["end"], 0.0, True) for b in cfg["strain"].get("background", []) if b["owner"] == side]
+        for i in range(len(wins)):
+            for j in range(i + 1, len(wins)):
+                (s1, e1, r1, b1), (s2, e2, r2, b2) = wins[i], wins[j]
+                if b1 and b2:
+                    continue
+                start, end = max(s1, s2), min(e1, e2)
+                overlap = end - start
+                if overlap <= 0:
+                    continue
+                nominal = cfg["strain"]["full_overlap_b"] * min(1.0, overlap / cfg["strain"]["norm_years"]) * (1.0 - max(r1, r2))
+                for y in range(start, end):
+                    strain[side][y] = strain[side].get(y, 0.0) + nominal / overlap * strain_mult(y, side)
 
     out = {}
     share_paths = {seg: {} for seg in SEGMENTS}
@@ -609,6 +661,8 @@ def validate_orders(cfg, history, turn, side, orders):
         elif owner != side:
             if v:
                 errors.append(f"'{flag}' is an {owner} lever")
+        elif v and not tactic_enabled(cfg, flag):
+            errors.append(f"'{flag}' is not available in this scenario")
         else:
             canon[flag] = v
     if side == "boeing" and canon.get("rate_increase") and w.rate_year is not None:
