@@ -168,7 +168,7 @@ def brief(st, viewer):
                         for r in st["history"] for s in M.SIDES if r.get("statements", {}).get(s, {}).get("disclose")],
         "market_reports": [{"turn": r["turn"], "narrative": r.get("market_narrative", "")} for r in st["history"]],
         "projected_market_shares": proj["shares"],
-        "projection_note": "Projections assume nobody makes any further move. delta_pv_b is full-game PV ($B, 2026) versus the status quo.",
+        "projection_note": f"Projections assume nobody makes any further move. delta_pv_b is full-game PV ($B, {cfg['years']['pv_base']}) versus the status quo.",
     }
     if viewer in M.SIDES:
         opp = M.other(viewer)
@@ -192,7 +192,7 @@ def rules(cfg, side):
     return {
         "your_side": side,
         "your_programs": M.programs_of(cfg, side) if side in M.SIDES else None,
-        "objective": "Maximise your full-game delta PV ($B, PV to 2026 at your WACC) versus the status quo in which nobody moves.",
+        "objective": f"Maximise your full-game delta PV ($B, PV to {cfg['years']['pv_base']} at your WACC) versus the status quo in which nobody moves.",
         "turns": cfg["turns"],
         "payoff_formula": ("sum over years and segments of units x share x net price x margin, minus the same for the status quo, "
                            "discounted at your WACC; minus capex x (1 + alpha), minus strain x (1 + alpha), minus tactic costs."),

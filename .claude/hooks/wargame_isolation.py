@@ -15,7 +15,8 @@ import sys
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
          "/scratchpad/audit", "/scratchpad/ab_synth_work", "/scratchpad/text"]
 # Raw uploads contain every year; the period-locked 2010 players may not read them.
-RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "Morgan Stanley", "NYSE BA Financials"]
+RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "Morgan Stanley", "NYSE BA Financials",
+       "wargame/scenarios", "referee_only", "wargame/README.md", "profiles/build"]
 BLOCK = {
     "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-", "boeing-strategist.md", "wargame/runs",
                     "wargame-airbus"] + BUILD + RAW,

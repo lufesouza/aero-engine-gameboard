@@ -144,7 +144,7 @@ def stage_report(cfg, sg, side, compact=False):
 
     out = {
         "assumption": "Stage game: both sides choose this turn's orders simultaneously and nobody moves after this turn. "
-                      "Payoffs are full-game delta PV ($B, PV 2026) versus the status quo. Launch year = first year of the turn, "
+                      "Payoffs are full-game delta PV ($B, PV to the scenario base year) versus the status quo. Launch year = first year of the turn, "
                       "default engine and variant; use whatif to test other years or engines.",
         "pure_nash": [{"boeing": label("boeing", i), "airbus": label("airbus", j),
                        "payoffs_b": {"boeing": round(T[(i, j)][0], 3), "airbus": round(T[(i, j)][1], 3)}}
@@ -310,7 +310,7 @@ def plan_game(cfg, state_history, from_turn, turns_total, current_turn, pending_
         "plan_counts": {"boeing": len(PB), "airbus": len(PA)},
         "assumption": ("Normal-form game over plans for the remaining turns (launch turn per program, tactics on/off for "
                        "every remaining turn, default engines, launch in the first year of a turn). Adjudicated turns keep "
-                       "their recorded injects and market reactions. Payoffs: full-game delta PV ($B, PV 2026)."),
+                       "their recorded injects and market reactions. Payoffs: full-game delta PV ($B, PV to the scenario base year)."),
         "pure_nash": [cell(i, j) for (i, j, _, _) in pure],
         "near_nash_count": len(near),
         "near_nash_eps_b": eq["near_eps_b"],

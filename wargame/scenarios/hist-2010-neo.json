@@ -1,116 +1,302 @@
 {
   "title": "History test: 2010, Airbus moves to launch the A320neo",
-  "narrative": "A backtest set in 2010. Airbus has told the market it will launch the A320neo, a re-engined A320 with new-generation engines. Boeing must decide how to answer: re-engine the 737, launch a clean-sheet single-aisle, or Do Nothing for now. Boeing's 787 and 747-8, and Airbus's A350 XWB, are still in development. Real outcome, for comparison after the game: Airbus launched the neo on 1 Dec 2010 (EIS Jan 2016). Boeing leaned towards a new airplane until American Airlines split a record order in July 2011, then launched the 737 MAX re-engine in Aug 2011 (EIS May 2017).",
-  "replace": ["turns", "programs", "engine_options", "injects", "tactics"],
+  "narrative": "A backtest set in 2010. Airbus has told the market it will launch the A320neo, a re-engined A320 with new-generation engines. Boeing must decide how to answer: re-engine the 737, launch a clean-sheet single-aisle, or Do Nothing for now. Boeing's 787 and 747-8 and Airbus's A350 XWB are still in development.",
+  "replace": [
+    "turns",
+    "programs",
+    "engine_options",
+    "injects",
+    "tactics"
+  ],
   "overrides": {
-    "years": {"pv_base": 2010, "start": 2010, "end": 2040},
+    "years": {
+      "pv_base": 2010,
+      "start": 2010,
+      "end": 2040
+    },
     "turns": [
-      {"turn": 1, "years": [2010, 2010], "label": "A320neo announced"},
-      {"turn": 2, "years": [2011, 2011], "label": "Order battle"},
-      {"turn": 3, "years": [2012, 2013], "label": "Commitment"},
-      {"turn": 4, "years": [2014, 2015], "label": "Execution"}
+      {
+        "turn": 1,
+        "years": [
+          2010,
+          2010
+        ],
+        "label": "A320neo announced"
+      },
+      {
+        "turn": 2,
+        "years": [
+          2011,
+          2011
+        ],
+        "label": "Order battle"
+      },
+      {
+        "turn": 3,
+        "years": [
+          2012,
+          2013
+        ],
+        "label": "Commitment"
+      },
+      {
+        "turn": 4,
+        "years": [
+          2014,
+          2015
+        ],
+        "label": "Execution"
+      }
     ],
     "segments": {
       "nb": {
         "label": "Narrowbody",
         "units_per_year": 1300,
         "net_price_m": 45.0,
-        "sq_share": {"boeing": 0.48, "airbus": 0.52},
+        "sq_share": {
+          "boeing": 0.48,
+          "airbus": 0.52
+        },
         "capture_pp_per_year": 2.0,
-        "leader_cap": {"boeing": 0.65, "airbus": 0.65}
+        "leader_cap": {
+          "boeing": 0.65,
+          "airbus": 0.65
+        }
       }
     },
     "incumbents": {
-      "boeing": {"nb": {"label": "737NG", "margin": 0.12}},
-      "airbus": {"nb": {"label": "A320ceo family", "margin": 0.09}}
+      "boeing": {
+        "nb": {
+          "label": "737NG",
+          "margin": 0.12
+        }
+      },
+      "airbus": {
+        "nb": {
+          "label": "A320ceo family",
+          "margin": 0.09
+        }
+      }
     },
     "programs": {
       "b737next": {
-        "owner": "boeing", "segment": "nb",
+        "owner": "boeing",
+        "segment": "nb",
         "label": "Boeing 737 successor (re-engine or clean sheet)",
-        "dev_years": 6, "capex_b": 2.5,
-        "margin_alone": 0.14, "margin_both": 0.13,
-        "tech_ready_year": 2016, "early_penalty_pp_per_year": 2.0,
+        "dev_years": 6,
+        "capex_b": 2.5,
+        "margin_alone": 0.14,
+        "margin_both": 0.13,
+        "tech_ready_year": 2016,
+        "early_penalty_pp_per_year": 2.0,
         "default_engine": "cfm_leap",
         "variants": {
-          "reengine": {"label": "737 re-engine (new engines on the existing airframe)",
-                       "dev_years": 6, "capex_b": 2.5, "margin_alone": 0.14, "margin_both": 0.13,
-                       "tech_ready_year": 2016, "early_penalty_pp_per_year": 2.0, "capture_mult": 1.0},
-          "cleansheet": {"label": "all-new single-aisle (clean sheet)",
-                         "dev_years": 9, "capex_b": 18.0, "margin_alone": 0.19, "margin_both": 0.18,
-                         "tech_ready_year": 2019, "early_penalty_pp_per_year": 3.0, "capture_mult": 1.3, "tech_level": 1.5}
+          "reengine": {
+            "label": "737 re-engine (new engines on the existing airframe)",
+            "dev_years": 6,
+            "capex_b": 2.5,
+            "margin_alone": 0.14,
+            "margin_both": 0.13,
+            "tech_ready_year": 2016,
+            "early_penalty_pp_per_year": 2.0,
+            "capture_mult": 1.0
+          },
+          "cleansheet": {
+            "label": "all-new single-aisle (clean sheet)",
+            "dev_years": 9,
+            "capex_b": 18.0,
+            "margin_alone": 0.19,
+            "margin_both": 0.18,
+            "tech_ready_year": 2019,
+            "early_penalty_pp_per_year": 3.0,
+            "capture_mult": 1.3,
+            "tech_level": 1.5
+          }
         },
         "default_variant": "reengine"
       },
       "a320neo": {
-        "owner": "airbus", "segment": "nb",
+        "owner": "airbus",
+        "segment": "nb",
         "label": "A320neo (A320 re-engine)",
-        "dev_years": 5, "capex_b": 1.8,
-        "margin_alone": 0.12, "margin_both": 0.11,
-        "tech_ready_year": 2015, "early_penalty_pp_per_year": 2.0,
+        "dev_years": 5,
+        "capex_b": 1.8,
+        "margin_alone": 0.12,
+        "margin_both": 0.11,
+        "tech_ready_year": 2015,
+        "early_penalty_pp_per_year": 2.0,
         "default_engine": "cfm_leap"
       }
     },
     "engine_options": {
       "nb": {
-        "cfm_leap": {"label": "CFM LEAP", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
-        "pw_gtf": {"label": "Pratt & Whitney PW1000G geared turbofan", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 0.95}
+        "cfm_leap": {
+          "label": "CFM LEAP",
+          "margin_pp": 0.0,
+          "eis_add": 0,
+          "capture_mult": 1.0
+        },
+        "pw_gtf": {
+          "label": "Pratt & Whitney PW1000G geared turbofan",
+          "margin_pp": 0.5,
+          "eis_add": 0,
+          "capture_mult": 0.95
+        }
       },
       "wb": {
-        "none": {"label": "no widebody program in this scenario", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0}
+        "none": {
+          "label": "no widebody program in this scenario",
+          "margin_pp": 0.0,
+          "eis_add": 0,
+          "capture_mult": 1.0
+        }
       }
     },
     "strain": {
       "full_overlap_b": 3.0,
       "norm_years": 5,
       "background": [
-        {"owner": "boeing", "start": 2004, "end": 2012, "label": "787 and 747-8 development"},
-        {"owner": "airbus", "start": 2006, "end": 2015, "label": "A350 XWB development"}
+        {
+          "owner": "boeing",
+          "start": 2004,
+          "end": 2012,
+          "label": "787 and 747-8 development"
+        },
+        {
+          "owner": "airbus",
+          "start": 2006,
+          "end": 2015,
+          "label": "A350 XWB development"
+        }
       ]
     },
     "tactics": {
       "rate_increase": {
-        "owner": "boeing", "label": "737 Rate Increase", "segment": "nb",
-        "share_pp": 1.5, "lag_years": 2, "capex_b": 1.0, "capex_years": 2,
-        "alpha_add": 0.05, "alpha_window_years": 4
+        "owner": "boeing",
+        "label": "737 Rate Increase",
+        "segment": "nb",
+        "share_pp": 1.5,
+        "lag_years": 2,
+        "capex_b": 1.0,
+        "capex_years": 2,
+        "alpha_add": 0.05,
+        "alpha_window_years": 4
       },
-      "delay_tactics": {"owner": "airbus", "label": "Delay Tactics", "enabled": false, "target_program": "b737next",
-                        "slip_years_per_turn": 1, "max_total_slip": 2, "cost_b_per_turn": 0.5,
-                        "exposure_after_turns": 2, "exposure_share_pp": 1.0, "exposure_years": 5,
-                        "public_cause_unexposed": "supplier bottleneck (cause not attributed)"},
-      "poaching": {"owner": "airbus", "label": "Poaching", "enabled": false,
-                   "victim_cost_b_per_turn": 0.75, "cost_b_per_turn": 0.25, "beneficiary_saving_b_per_turn": 0.4}
+      "delay_tactics": {
+        "owner": "airbus",
+        "label": "Delay Tactics",
+        "enabled": false,
+        "target_program": "b737next",
+        "slip_years_per_turn": 1,
+        "max_total_slip": 2,
+        "cost_b_per_turn": 0.5,
+        "exposure_after_turns": 2,
+        "exposure_share_pp": 1.0,
+        "exposure_years": 5,
+        "public_cause_unexposed": "supplier bottleneck (cause not attributed)"
+      },
+      "poaching": {
+        "owner": "airbus",
+        "label": "Poaching",
+        "enabled": false,
+        "victim_cost_b_per_turn": 0.75,
+        "cost_b_per_turn": 0.25,
+        "beneficiary_saving_b_per_turn": 0.4
+      }
     },
     "injects": {
       "max_per_turn": 1,
       "deck": {
-        "quiet_turn": {"title": "Quiet period", "narrative": "No major external shock this period.", "effects": []},
+        "quiet_turn": {
+          "title": "Quiet period",
+          "narrative": "No major external shock this period.",
+          "effects": []
+        },
         "major_order_split": {
           "title": "A loyal Boeing customer splits a record narrowbody order",
           "narrative": "A historically all-Boeing major US airline places a record narrowbody order split between Boeing and the A320neo. Unless Boeing has committed to an A320neo competitor by the end of this period, it loses 3 pp of narrowbody share for five years.",
-          "effects": [{"type": "share_shift", "segment": "nb", "to_player": "airbus", "pp": 3.0, "years_from_turn_start": [0, 4], "unless_launched": "b737next"}]
+          "effects": [
+            {
+              "type": "share_shift",
+              "segment": "nb",
+              "to_player": "airbus",
+              "pp": 3.0,
+              "years_from_turn_start": [
+                0,
+                4
+              ],
+              "unless_launched": "b737next"
+            }
+          ]
         },
         "fuel_price_spike": {
           "title": "Oil above $100 a barrel",
           "narrative": "Jet fuel stays high. Airlines pay about 1.5 pp more margin for new-generation fuel efficiency.",
-          "effects": [{"type": "margin_add", "player": "all", "segment": "nb", "kind": "new", "pp": 1.5, "years_from_turn_start": [0, 99]}]
+          "effects": [
+            {
+              "type": "margin_add",
+              "player": "all",
+              "segment": "nb",
+              "kind": "new",
+              "pp": 1.5,
+              "years_from_turn_start": [
+                0,
+                99
+              ]
+            }
+          ]
         },
         "order_boom": {
           "title": "Record narrowbody order boom",
           "narrative": "Asian and low-cost carriers place record orders. Narrowbody deliveries run 10% higher for five years.",
-          "effects": [{"type": "units_mult", "segment": "nb", "mult": 1.10, "years_from_turn_start": [0, 4]}]
+          "effects": [
+            {
+              "type": "units_mult",
+              "segment": "nb",
+              "mult": 1.1,
+              "years_from_turn_start": [
+                0,
+                4
+              ]
+            }
+          ]
         },
         "boeing_787_setbacks": {
           "title": "More 787 setbacks",
           "narrative": "Further 787 problems tie up Boeing engineering. Running any new Boeing program at the same time costs 50% more.",
-          "effects": [{"type": "strain_mult", "player": "boeing", "mult": 1.5}]
+          "effects": [
+            {
+              "type": "strain_mult",
+              "player": "boeing",
+              "mult": 1.5
+            }
+          ]
         },
         "eurozone_downturn": {
           "title": "Eurozone debt crisis",
           "narrative": "European traffic weakens and some deliveries are deferred. Narrowbody deliveries fall 5% for two years.",
-          "effects": [{"type": "units_mult", "segment": "nb", "mult": 0.95, "years_from_turn_start": [0, 1]}]
+          "effects": [
+            {
+              "type": "units_mult",
+              "segment": "nb",
+              "mult": 0.95,
+              "years_from_turn_start": [
+                0,
+                1
+              ]
+            }
+          ]
         }
       }
+    }
+  },
+  "referee_only": {
+    "actual_outcome": "Airbus launched the A320neo on 1 Dec 2010 (entry into service Jan 2016). Boeing leaned towards an all-new airplane through early 2011; after American Airlines split a record order with Airbus in July 2011, Boeing launched the 737 MAX re-engine in Aug 2011 (entry into service May 2017) and did not launch a clean sheet.",
+    "historical_inject_path": {
+      "1": "quiet_turn",
+      "2": "major_order_split",
+      "3": "boeing_787_setbacks",
+      "4": "order_boom"
     }
   }
 }

@@ -1,0 +1,182 @@
+[
+ {
+  "trigger": "Boeing launches a clean-sheet single-aisle (b737next, variant cleansheet)",
+  "response": "Against the 787 we did not concede. We answered with our own new airplane (the relaunched A350), arriving 2-3 years behind, and bridged with aggressive pricing of the older product. Here the neo is already the bridge. We expect a Boeing clean sheet to slip beyond its announced date (inference from Boeing's 787 record).",
+  "lag": "2-3 years (A350 against 787); for the neo, same turn: hold",
+  "strength": "moderate",
+  "basis": "evidence (analogue) + inference",
+  "war_game_translation": "Keep a320neo, launched or launching in 2010. No cancel. Public statement claims the in-service lead. Use whatif to add 1-2 years of slip to Boeing's clean sheet.",
+  "evidence": [
+   "A-0001",
+   "A-0002",
+   "A-0005",
+   "B-0205",
+   "B-0213"
+  ]
+ },
+ {
+  "trigger": "Boeing Re-engines the 737 (b737next, variant reengine)",
+  "response": "No direct precedent in the evidence. Our revealed intent is to gain share and not sit still. A like-for-like Boeing answer takes 6 years against our 5 (engine), so we keep the lead.",
+  "lag": "same turn",
+  "strength": "weak",
+  "basis": "evidence (intent) + engine + inference",
+  "war_game_translation": "Keep a320neo. No cancel. Engine choice by the section 9 test (tie within $0.3B: cfm_leap for capture).",
+  "evidence": [
+   "A-0015",
+   "A-0008"
+  ]
+ },
+ {
+  "trigger": "Boeing Does Nothing (keeps upgrading the 737NG)",
+  "response": "We keep ramping and taking share. Boeing's stated alternative to re-engining is incremental NG improvement, 5% fuel so far and 2% coming.",
+  "lag": "ongoing",
+  "strength": "moderate",
+  "basis": "evidence",
+  "war_game_translation": "Launch a320neo in 2010 (Turn 1), then no new moves. Do not delay to reduce A350 strain unless the section 9 waiting test is met.",
+  "evidence": [
+   "A-0019",
+   "A-0020",
+   "A-0015",
+   "B-0286"
+  ]
+ },
+ {
+  "trigger": "Boeing Rate Increase (737)",
+  "response": "We ramped faster than Boeing on similar orders (high 30s against low 30s) and were raising narrowbody rates in parallel in 2010, competing for the same suppliers.",
+  "lag": "same year",
+  "strength": "moderate",
+  "basis": "evidence",
+  "war_game_translation": "No rate lever in this scenario. Hold the neo; do not cancel. Say in the public statement that we are raising rates too. Predict rate_increase: true in Turn 1.",
+  "evidence": [
+   "A-0009",
+   "A-0019",
+   "A-0020",
+   "B-0274",
+   "B-0269",
+   "B-0284"
+  ]
+ },
+ {
+  "trigger": "Boeing re-engines, upgrades or stretches a widebody (777 changes, 787-10)",
+  "response": "We widened our family to cover two Boeing lines with one airplane and marketed its performance aggressively (A350-1000).",
+  "lag": "1-2 years",
+  "strength": "weak",
+  "basis": "evidence",
+  "war_game_translation": "No widebody lever in this scenario. Neo orders unchanged.",
+  "evidence": [
+   "A-0001",
+   "A-0005",
+   "A-0027",
+   "B-0265",
+   "B-0290"
+  ]
+ },
+ {
+  "trigger": "Boeing price aggression or order-campaign losses",
+  "response": "We priced older products aggressively to hold customers until the newer product arrived. Our own announced price increases did not stick.",
+  "lag": "immediate",
+  "strength": "moderate",
+  "basis": "evidence",
+  "war_game_translation": "Pricing is not a lever. Never cancel because of lost campaigns. Do not disclose price commitments.",
+  "evidence": [
+   "A-0002",
+   "A-0003",
+   "A-0010"
+  ]
+ },
+ {
+  "trigger": "Boeing acquires or partners (for example a regional-jet maker, or a CSeries-type entrant)",
+  "response": "No record of our response. Boeing notes Embraer and Bombardier moving up in size and new entrants targeting 70-190 seats.",
+  "lag": "unknown",
+  "strength": "weak",
+  "basis": "evidence (threat only); response unknown",
+  "war_game_translation": "We have no Joint Venture lever here. Note it in the rationale; do not change neo orders.",
+  "evidence": [
+   "A-0017",
+   "A-0023"
+  ]
+ },
+ {
+  "trigger": "Boeing stumbles (787 delays, 747-8 charges, the More 787 setbacks inject)",
+  "response": "We marketed our own new airplane's capabilities harder. Boeing itself admits the 787 plan outran its ability to execute.",
+  "lag": "months",
+  "strength": "weak",
+  "basis": "evidence + inference",
+  "war_game_translation": "Hold the plan. The inject raises Boeing's strain; that argues against Boeing launching quickly, not for us waiting.",
+  "evidence": [
+   "A-0027",
+   "B-0205",
+   "B-0213",
+   "B-0247",
+   "B-0249"
+  ]
+ },
+ {
+  "trigger": "Demand shock or downturn (Eurozone downturn inject)",
+  "response": "We leaned more on export-credit agencies (45% of 2010 deliveries, against 35% in 2009) to hold deliveries. We carried less over-ordering cushion than Boeing (inference).",
+  "lag": "same year",
+  "strength": "moderate",
+  "basis": "evidence + inference",
+  "war_game_translation": "Do not cancel or defer the neo for a two-year dip. Re-run whatif with the inject applied.",
+  "evidence": [
+   "A-0026",
+   "A-0028",
+   "A-0016",
+   "B-0186"
+  ]
+ },
+ {
+  "trigger": "Weak dollar or cost pressure on our margins",
+  "response": "We cut overhead, shortened the development cycle and raised productivity through 2012, then used the gains for product development, price-led share or earnings.",
+  "lag": "multi-year",
+  "strength": "moderate",
+  "basis": "evidence",
+  "war_game_translation": "Cost pressure is not a reason to delay the neo launch.",
+  "evidence": [
+   "A-0018",
+   "A-0024"
+  ]
+ },
+ {
+  "trigger": "Supply-chain or engine problems (ours or shared suppliers)",
+  "response": "We ran a dispersed, hard-to-manage production footprint and absorbed program delays (A380 wiring). Boeing expects us to hit 787-type problems on new programs.",
+  "lag": "unknown",
+  "strength": "weak",
+  "basis": "evidence + inference",
+  "war_game_translation": "Test 0-1 year of neo slip in whatif. No cancel for a slip alone. Never disclose EIS before 2015.",
+  "evidence": [
+   "A-0007",
+   "A-0011",
+   "A-0013",
+   "A-0014",
+   "B-0274"
+  ]
+ },
+ {
+  "trigger": "Regulatory or trade action (WTO, procurement protests)",
+  "response": "No record of our response. Boeing litigates: it welcomed the 2010 WTO ruling against launch aid and filed a tanker protest within 11 days. Boeing argues subsidies let us take more risk.",
+  "lag": "unknown",
+  "strength": "weak",
+  "basis": "evidence (Boeing's behaviour) + inference",
+  "war_game_translation": "Fund the neo without new launch aid, to give Boeing no new trade target (inference). No order change.",
+  "evidence": [
+   "A-0025",
+   "A-0021",
+   "A-0022",
+   "B-0271",
+   "B-0174"
+  ]
+ },
+ {
+  "trigger": "Fuel spike, order boom, or a loyal Boeing customer splitting an order (injects)",
+  "response": "Boeing reported customers pushing for re-engined or new airplanes because of fuel prices. We pursue share when demand favours us.",
+  "lag": "same turn",
+  "strength": "weak",
+  "basis": "evidence + inference",
+  "war_game_translation": "Each strengthens holding the neo; none flips it. Use in the public statement.",
+  "evidence": [
+   "B-0234",
+   "A-0015"
+  ]
+ }
+]
