@@ -1,7 +1,8 @@
 # Boeing vs Airbus war game
 
-A multi-turn strategy war game. Three agents sit at the table:
+A multi-turn strategy war game. Three agents sit at the table, five with the engine makers:
 - **Boeing** and **Airbus** are independent players, each built from its company's documented record;
+- **Rolls-Royce** and **Pratt & Whitney** are optional engine-supplier players, also built from their own records. They decide which engines to build for the airframers, on what terms, and whether to partner;
 - the **Game Orchestrator** is the referee. It gives each player its task, relays only what a player chooses to make public, and measures each player's efficiency.
 
 A **market** cell reacts to public moves. A deterministic Python engine adjudicates every move, so no payoff is ever an agent's guess. After the last turn an **analyst** reviews the game against its game-theoretic benchmark. Every claim in that review is checked by three independent agents before it reaches the report.
@@ -33,6 +34,7 @@ Arguments are all optional. Pass them in the request, e.g. *"run the boeing-airb
 | `run_id` | `wg-<timestamp>` | run name (`-g<i>` appended when `games` > 1) |
 | `doctrine` | none | board guidance per side, e.g. `{"boeing": "balance sheet cannot fund two programs at once"}` |
 | `fixed_orders` | none | script one side, e.g. `{"boeing": {"1": {"launch": [{"program": "fps", "engine": "cfm_ducted", "variant": "jv"}]}}}` |
+| `suppliers` | none | engine makers who play: `["rolls_royce"]`, `["pratt_whitney"]` or both |
 | `verify` | true | run the three-checker verification of the after-action review claims |
 
 Output: `wargame/runs/<run_id>/report.md`, plus `state.json` and `turns/T<k>.json`. A 4-turn game spawns roughly 45 agents, most of them in the verification stage. `verify: false` makes it cheaper.
@@ -66,7 +68,9 @@ Defined in `.claude/agents/`. Each is a Claude Code subagent you can also call o
 |---|---|---|
 | `boeing-strategist` | Blue: fps (Solo / Joint Venture), 787 Re-engine, 737 Rate Increase, cancellations, engine choice. Plays from `wargame/profiles/boeing/` | public view + Boeing's own numbers + Boeing's profile |
 | `airbus-strategist` | Red: NGSA, A350 Re-engine, Delay Tactics (covert), Poaching, cancellations, engine choice. Plays from `wargame/profiles/airbus/` | public view + Airbus's own numbers + Airbus's profile |
-| `wargame-market` | Green: airlines, lessors, engine OEMs (CFM/GE, PW, RR) set bounded capture multipliers | public view only |
+| `rolls-royce-strategist` | Engine supplier (optional): UltraFan widebody, UltraFan narrowbody (Solo / Joint Venture with P&W), terms, Trent 1000 upgrade, cancellations. Plays from `wargame/profiles/rolls_royce/` | public view + RR's own numbers + RR's profile |
+| `pratt-whitney-strategist` | Engine supplier (optional): next-generation GTF, a widebody engine, terms, GTF durability upgrade, joining RR's Joint Venture, cancellations. Plays from `wargame/profiles/pratt_whitney/` | public view + P&W's own numbers + P&W's profile |
+| `wargame-market` | Green: airlines, lessors, and the engine OEMs that are not players (CFM/GE, and RR/PW unless they play) set bounded capture multipliers | public view only |
 | `game-orchestrator` | Referee (White): creates runs, applies injects, gives both players equal sealed tasks, relays public statements and **disclosures** with a public-record note, adjudicates verbatim, and scores efficiency | everything; never computes payoffs, and never leaks private information |
 | `wargame-analyst` | after-action review and report | everything |
 
@@ -155,6 +159,31 @@ Money is $B in constant 2026 dollars. A side's score is **delta PV**: the presen
 - **Fog of war.** Boeing's brief and tools show an fps slip as "supplier bottleneck (cause not attributed)" until exposure. Boeing's estimate of Airbus's payoff leaves out costs Boeing cannot observe. Sealed orders and rationales are never shown to the other side.
 
 `python3 -m wargame.engine rules` prints all of this, with the live parameters.
+
+### Engine makers (optional supplier players)
+
+Create a run with `--suppliers rolls_royce`, `--suppliers pratt_whitney` or `--suppliers rolls_royce,pratt_whitney`. Without it the game is exactly the two-player game.
+
+- **Engine commitments.** Supplier orders apply first in each turn. An airframer may select an engine maker's new engine (`rr_ultrafan_nb`, `rr_ultrafan_wb`, `pw_gtf2`, `pw_wb_new`) only if its maker has launched that engine program by adjudication. Otherwise the airframe falls back to CFM (narrowbody) or GE (widebody), and the event is public. A committed engine is ready at launch + development years (+ slips). The airframe enters service at the later of its own date and the engine's ready year. The maker's terms add `airframer_margin_pp` to the airframe's margin.
+- **Supplier payoff.** Lifecycle value of the engines it delivers, versus the status quo:
+  - engines delivered = segment units × airframer share × engines per aircraft × the maker's fit on that airframe;
+  - fit is its incumbent share until that airframer's new program in the segment enters service, then 1 (sole source; a Joint Venture splits it) if the program flies its engine, else 0;
+  - each engine is booked at delivery at its lifecycle value, meaning OE margin plus PV of aftermarket profit. A new engine starts at `ramp.start_frac` of its value and matures over `ramp.years`.
+
+  Minus the maker's own alpha-loaded engine capex and strain, at its own WACC.
+- **What each stands to lose.**
+  - Rolls-Royce's status quo is the A350 and A330neo (sole source) and a Trent 1000 share of the 787. An A350 Re-engine on another engine takes the Airbus widebody franchise away.
+  - Pratt & Whitney's status quo is its GTF share of A320neo deliveries. An NGSA on another engine takes it away.
+- **Levers.**
+  - Rolls-Royce: `uf_wb`; `uf_nb` Solo or `jv_pw`; standard or aggressive terms; `t1000_upgrade`; cancel.
+  - Pratt & Whitney: `gtf_next`; `pw_wb`; terms; `gtf_upgrade`; `join_rr_jv`; cancel.
+  - Each one-time upgrade adds fit on the incumbent airframe and saves installed-base cost.
+- **The Joint Venture.** When both play, RR's `uf_nb` as `jv_pw` launches only if P&W sets `join_rr_jv` in the same turn. Each then pays half the capex and earns half the value. When P&W does not play, the Joint Venture is with an outside partner and always launches.
+- **Tools.**
+  - `options --side <supplier>` ranks the maker's options against airframer engine-selection scenarios, and shows each airframer's incentive to choose its engine.
+  - The scorecard scores suppliers on capture, myopic regret, prediction of airframer engine choices and calibration.
+  - Plan-game equilibria and hindsight regret cover the airframers, with supplier orders held as played.
+- **Injects.** Four injects apply only when their maker plays: an RR durability crisis, an UltraFan test setback, a GTF durability crisis and a next-generation GTF test setback.
 
 ### Game-theory tools
 
