@@ -56,13 +56,45 @@ Defined in `.claude/agents/`. Each is a Claude Code subagent you can also call o
 
 | Agent | Role | Sees |
 |---|---|---|
-| `boeing-strategist` | Blue: fps (Solo / Joint Venture), 787 Re-engine, 737 Rate Increase, cancellations, engine choice | public view + Boeing's own numbers |
-| `airbus-strategist` | Red: NGSA, A350 Re-engine, Delay Tactics (covert), Poaching, cancellations, engine choice | public view + Airbus's own numbers |
+| `boeing-strategist` | Blue: fps (Solo / Joint Venture), 787 Re-engine, 737 Rate Increase, cancellations, engine choice. Plays from `wargame/profiles/boeing/` | public view + Boeing's own numbers + Boeing's profile |
+| `airbus-strategist` | Red: NGSA, A350 Re-engine, Delay Tactics (covert), Poaching, cancellations, engine choice. Plays from `wargame/profiles/airbus/` | public view + Airbus's own numbers + Airbus's profile |
 | `wargame-market` | Green: airlines, lessors, engine OEMs (CFM/GE, PW, RR) set bounded capture multipliers | public view only |
 | `wargame-control` | White: creates runs, applies injects, runs adjudication verbatim | everything; never computes payoffs |
 | `wargame-analyst` | after-action review and report | everything |
 
 The orchestration is `.claude/workflows/boeing-airbus-wargame.js`. The interactive mode is `.claude/skills/wargame/SKILL.md`.
+
+## Behavioural agents
+
+The two strategists are **independent agents built from each company's record**, not generic optimisers. Each plays from its own folder:
+
+| File | What it holds |
+|---|---|
+| `profile.md` | A Quick card (ranked objectives, hard rules, default plan, top triggers, biases), then 10 sections: objectives, financial behaviour, operational behaviour and slip priors, product doctrine, **reaction function**, lever-by-lever playbook, how it reads the rival, biases and failure modes, a turn-by-turn decision procedure, and confidence and gaps |
+| `reaction_function.json` | "If the rival does X → we historically did Y", with lag, strength, the war-game translation and evidence ids |
+| `financials.md` | Decision-relevant financial history and the analysts' forward view |
+| `evidence.jsonl` | Every cited statement (B-#### / A-####): verbatim quote, source, page, date, speaker, finding. Each quote was machine-checked against its source page |
+| `citation_audit.md` | An independent audit of every load-bearing claim against its cited evidence |
+
+**Where the evidence comes from.** These are the files uploaded to the repository root.
+- **Boeing:** 151 earnings calls, conferences and investor days from 2006-2025; 16 10-Ks; the Goldman Sachs and Morgan Stanley models; Capital IQ history.
+- **Airbus:** its FY2025 Board Report (OCR'd). Its 2006-2025 behaviour also appears as observed in Boeing's calls and 10-Ks, and every such item is tagged as an outside view.
+
+The Airbus record is thinner. Airbus earnings-call transcripts or older annual reports would improve it most. `wargame/profiles/build/README.md` explains how to rebuild.
+
+**How they decide.** Each turn a strategist:
+1. reads its Quick card;
+2. matches the situation to its reaction function;
+3. uses the engine (`options`, `whatif`) as its finance team;
+4. decides by its profile's decision procedure.
+
+When history leads it away from the PV-best option, it reports the **doctrine premium** (the $B it gave up) and the evidence ids behind the choice.
+
+**Independence.** The agents share nothing but the public game.
+- Each profile was synthesised by agents that never saw the other side's material.
+- The Airbus agent's view of Boeing is limited to Boeing's 2023-25 public statements.
+- The Boeing agent's view of Airbus is what Boeing has said about Airbus.
+- The PreToolUse hook `.claude/hooks/wargame_isolation.py` enforces this at runtime. Boeing's agent cannot read Airbus's profile or role card, and Airbus's cannot read Boeing's. Neither player, nor the market cell, can read run state, where sealed orders live.
 
 ## How a turn works
 

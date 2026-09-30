@@ -364,7 +364,7 @@ function playerPrompt(g, t, side, ctl, errors) {
   const variantRule = side === 'boeing' ? '"solo" or "jv" for fps, "none" for re787' : '"none"'
   return [
     `War game run \`${g.runId}\`. You are ${LABEL[side]}. This is turn ${t} of ${g.turnsTotal} (${ty.first_year}-${ty.last_year}${ty.label ? ', ' + ty.label : ''}).`,
-    `Follow your role instructions: brief, rules (on turn 1), options, whatif, validate. Then return your orders. Always pass \`--run ${g.runId} --side ${side}\`.`,
+    `Follow your role instructions. Read your behavioural profile (wargame/profiles/${side}/profile.md, starting with the Quick card), then run brief, rules (on turn 1), options, whatif and validate, and return your orders. Always pass \`--run ${g.runId} --side ${side}\`.`,
     `Control's public situation report:\n${ctl.situation}`,
     DOCTRINE[side] ? `Board guidance for this game. Treat it as a real constraint on your decisions: ${DOCTRINE[side]}` : '',
     errors && errors.length ? `The engine rejected your previous orders for this turn:\n- ${errors.join('\n- ')}\nFix them, re-run validate, and resubmit.` : '',
