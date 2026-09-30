@@ -10,8 +10,8 @@ from __future__ import annotations
 
 import itertools
 
-from .model import (SIDES, SUPPLIERS, active_suppliers, build_world, empty_orders, other, payoff, players, programs_of,
-                    supplier_requirement, tactic_enabled, turn_years)
+from .model import (SIDES, SUPPLIERS, active_suppliers, build_world, empty_orders, jv_partner_player, other, payoff,
+                    players, programs_of, supplier_requirement, tactic_enabled, turn_years)
 
 
 def _launch_entry(cfg, pid, year, variant=None):
@@ -33,7 +33,8 @@ def describe_orders(cfg, side, o):
     for pid in o.get("cancel", []):
         parts.append(f"cancel {pid}")
     for flag, label in (("rate_increase", "rate increase"), ("delay_tactics", "Delay Tactics"), ("poaching", "Poaching"),
-                        ("t1000_upgrade", "Trent 1000 upgrade")):
+                        ("t1000_upgrade", "Trent 1000 upgrade"), ("gtf_upgrade", "GTF durability upgrade"),
+                        ("join_rr_jv", "join the Rolls-Royce UltraFan Joint Venture")):
         if o.get(flag):
             parts.append(label)
     return " + ".join(parts) if parts else "no new moves"
@@ -74,7 +75,10 @@ def supplier_candidates(cfg, world, sup, turn):
                                                     for p in world.programs.values()):
             opts.append(("cancel", None, None))
         per_prog.append((spid, opts))
-    flags = [("t1000_upgrade", [False, True])] if scfg.get("t1000_upgrade") and world.t1000_year is None else []
+    # The one-time upgrade is a candidate while unused. Joining a partner's Joint Venture is left out:
+    # alone it does nothing, so the partner's own options model it (see supplier_stage).
+    up = scfg.get("upgrade")
+    flags = [(up["flag"], [False, True])] if up and sup not in world.upgrade_years else []
     cands = []
     for combo in itertools.product(*[opts for _, opts in per_prog]):
         for fl in itertools.product(*[vals for _, vals in flags]):
@@ -272,6 +276,10 @@ def supplier_stage(cfg, history, turn, pending_injects, sup, viewer_mask=frozens
         orders[sup] = o_sup
         for s in active_suppliers(cfg):
             orders.setdefault(s, empty_orders(s))
+        for L in o_sup.get("launch", []):  # a Joint Venture option assumes its partner player joins
+            partner = jv_partner_player(cfg, sup, L["program"], L.get("variant"))
+            if partner:
+                orders[partner] = dict(orders[partner], **{cfg["suppliers"][partner]["jv"]["flag"]: True})
         return history + [{"turn": turn, "injects": list(pending_injects), "orders": orders, "market": market or {}}]
 
     rows = []
@@ -293,7 +301,8 @@ def supplier_stage(cfg, history, turn, pending_injects, sup, viewer_mask=frozens
     rows.sort(key=lambda r: -r["best_case"])
     return {
         "assumption": ("Your options this turn against airframer engine-selection scenarios (launch in the first year of the "
-                       "turn, default variants; airframers' other orders are no new moves; nobody moves after this turn). "
+                       "turn, default variants; airframers' other orders are no new moves; nobody moves after this turn; "
+                       "other suppliers make no new moves, except that a Joint Venture option assumes its partner joins). "
                        "Values are your full-game delta PV ($B, PV to the scenario base year at your WACC) versus the status quo. "
                        "airframer_incentive_b: that airframer's payoff with your engine minus with the alternative engine "
                        "(positive = it prefers yours), given your option's terms."),

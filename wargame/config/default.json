@@ -191,12 +191,24 @@
         "narrative": "Ground tests of the UltraFan gearbox and fan system find problems. Every Rolls-Royce engine program in development slips two years; airframes waiting for it wait longer.",
         "requires_supplier": "rolls_royce",
         "effects": [{"type": "supplier_slip", "supplier": "rolls_royce", "years": 2}]
+      },
+      "gtf_durability_crisis": {
+        "title": "GTF durability crisis",
+        "narrative": "A manufacturing flaw forces early removals and inspections across the GTF fleet. Pratt & Whitney pays for spare engines, shop visits and airline compensation: its incumbent narrowbody engines earn 50% less lifecycle value for four years.",
+        "requires_supplier": "pratt_whitney",
+        "effects": [{"type": "supplier_value_mult", "supplier": "pratt_whitney", "kind": "incumbent", "mult": 0.5, "years_from_turn_start": [0, 3]}]
+      },
+      "gtf_next_test_setback": {
+        "title": "Next-generation GTF test setback",
+        "narrative": "Durability testing of Pratt & Whitney's next engine finds hot-section problems. Every Pratt & Whitney engine program in development slips two years; airframes waiting for it wait longer.",
+        "requires_supplier": "pratt_whitney",
+        "effects": [{"type": "supplier_slip", "supplier": "pratt_whitney", "years": 2}]
       }
     }
   },
 
   "suppliers": {
-    "_about": "Optional supplier players. Rolls-Royce plays only when a run is created with --suppliers rolls_royce (sets active). Its payoff is the lifecycle value of the large civil engines it delivers versus the status quo, in $B PV to years.pv_base at its WACC. Parameters are tagged in wargame/README.md.",
+    "_about": "Optional supplier players, the engine makers. Each plays only when a run is created with --suppliers <id>[,<id>] (sets active). Its payoff is the lifecycle value of the large civil engines it delivers versus the status quo, in $B PV to years.pv_base at its WACC. Parameters are tagged in wargame/README.md.",
     "rolls_royce": {
       "label": "Rolls-Royce",
       "active": false,
@@ -213,7 +225,7 @@
                   "dev_years": 7, "capex_b": 8.0, "value_m_per_engine": 1.6,
                   "variants": {
                     "solo": {"label": "Solo"},
-                    "jv_pw": {"label": "Joint Venture with Pratt & Whitney", "partner": "Pratt & Whitney", "dev_years": 6,
+                    "jv_pw": {"label": "Joint Venture with Pratt & Whitney", "partner": "Pratt & Whitney", "partner_player": "pratt_whitney", "dev_years": 6,
                               "capex_share_partner": 0.5, "value_share_partner": 0.5, "strain_relief": 0.5}
                   },
                   "default_variant": "solo"}
@@ -224,8 +236,34 @@
         "standard": {"label": "standard terms", "airframer_margin_pp": 0.0, "value_mult": 1.0},
         "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.0, "value_mult": 0.8}
       },
-      "t1000_upgrade": {"label": "Trent 1000 upgrade", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "lag_years": 2,
+      "upgrade": {"flag": "t1000_upgrade", "label": "Trent 1000 upgrade", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "lag_years": 2,
                         "capex_b": 2.0, "capex_years": 2, "installed_base_saving_b_per_year": 0.15, "saving_years": 10},
+      "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
+    },
+    "pratt_whitney": {
+      "label": "Pratt & Whitney",
+      "active": false,
+      "wacc": 0.085,
+      "alpha": 0.3,
+      "engines_per_aircraft": {"nb": 2, "wb": 2},
+      "incumbent_fit": {"boeing": {"nb": 0.0, "wb": 0.0}, "airbus": {"nb": 0.35, "wb": 0.0}},
+      "incumbent_value_m_per_engine": {"nb": 0.8, "wb": 0.0},
+      "fallback_engine": {"nb": "cfm_ducted", "wb": "ge_genx_next"},
+      "programs": {
+        "gtf_next": {"label": "next-generation geared turbofan (narrowbody)", "segment": "nb", "engine_option": "pw_gtf2",
+                     "dev_years": 6, "capex_b": 5.0, "value_m_per_engine": 1.2},
+        "pw_wb": {"label": "new Pratt & Whitney widebody engine", "segment": "wb", "engine_option": "pw_wb_new",
+                  "dev_years": 7, "capex_b": 6.0, "value_m_per_engine": 3.0}
+      },
+      "ramp": {"start_frac": 0.3, "years": 7,
+               "_about": "A new engine earns start_frac of its lifecycle value per engine at EIS, rising linearly to 100% after `years`."},
+      "terms": {
+        "standard": {"label": "standard terms", "airframer_margin_pp": 0.0, "value_mult": 1.0},
+        "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.0, "value_mult": 0.8}
+      },
+      "upgrade": {"flag": "gtf_upgrade", "label": "GTF durability upgrade", "segment": "nb", "fit_side": "airbus", "fit_pp": 5.0,
+                  "lag_years": 2, "capex_b": 1.5, "capex_years": 2, "installed_base_saving_b_per_year": 0.4, "saving_years": 8},
+      "jv": {"flag": "join_rr_jv", "partner_of": "rolls_royce", "program": "uf_nb", "variant": "jv_pw"},
       "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
     }
   }

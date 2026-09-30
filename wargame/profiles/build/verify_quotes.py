@@ -62,7 +62,7 @@ def segment_ok(seg, hay):
 
 def check(item):
     src = item.get("source")
-    if src not in ("transcripts", "boeing_10k", "airbus_fy2025"):
+    if src not in ("transcripts", "boeing_10k", "airbus_fy2025") and not os.path.exists(f"{S}/text/{src}.txt"):
         return False, "unknown source"
     try:
         p = int(item.get("page"))

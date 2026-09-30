@@ -9,8 +9,8 @@ stream minus the status-quo stream (nobody moves, same injects), less
 alpha-loaded capex, alpha-loaded strain, and tactic costs. The components
 always sum exactly to the total.
 
-Optional supplier players (today only Rolls-Royce, cfg["suppliers"]["rolls_royce"],
-switched on with "active": true) sit on top of the two airframers. The supplier
+Optional supplier players (the engine makers Rolls-Royce and Pratt & Whitney,
+cfg["suppliers"][<id>], each switched on with "active": true) sit on top of the two airframers. The supplier
 launches engine programs that airframers can then select; its payoff is the
 lifecycle value of the engines it delivers (units x share x engines per aircraft
 x its fit on each airframe x value per engine) versus the status quo, less its
@@ -27,7 +27,10 @@ from dataclasses import dataclass, field
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SIDES = ("boeing", "airbus")
-SUPPLIERS = ("rolls_royce",)
+SUPPLIERS = ("rolls_royce", "pratt_whitney")
+# One-turn boolean levers of each supplier: its one-time upgrade and, for Pratt & Whitney,
+# joining Rolls-Royce's UltraFan narrowbody Joint Venture.
+SUPPLIER_FLAGS = {"rolls_royce": ("t1000_upgrade",), "pratt_whitney": ("gtf_upgrade", "join_rr_jv")}
 SEGMENTS = ("nb", "wb")
 NEVER = 10**6  # EIS of a program that does not exist
 KEY_YEARS = (2030, 2035, 2040, 2045, 2050, 2060)
@@ -153,8 +156,8 @@ def empty_orders(side):
     base = {"launch": [], "cancel": []}
     if side == "boeing":
         base["rate_increase"] = False
-    elif side == "rolls_royce":
-        base["t1000_upgrade"] = False
+    elif side in SUPPLIERS:
+        base.update({f: False for f in SUPPLIER_FLAGS[side]})
     else:
         base["delay_tactics"] = False
         base["poaching"] = False
@@ -224,6 +227,7 @@ class SupplierProgram:
     slip_years: int = 0
     slips: list = field(default_factory=list)
     cancelled_year: int | None = None
+    partner: str | None = None  # a supplier player that co-owns it as a Joint Venture partner
 
     @property
     def ready(self):
@@ -259,7 +263,7 @@ class World:
     dev_years_add: dict = field(default_factory=lambda: {"boeing": 0, "airbus": 0})
     events: list = field(default_factory=list)  # adjudication log with visibility
     sup_programs: dict = field(default_factory=dict)  # supplier engine programs by id
-    t1000_year: int | None = None  # Rolls-Royce Trent 1000 upgrade commitment
+    upgrade_years: dict = field(default_factory=dict)  # supplier -> year of its one-time upgrade
     supplier_value_mults: list = field(default_factory=list)  # (supplier, kind, y0, y1, mult)
 
     def prog(self, side, seg):
@@ -342,7 +346,7 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
             _apply_inject(w, k, a, iid)
         orders = rec.get("orders") or {}
         for sup in active_suppliers(cfg):
-            _apply_supplier_orders(w, k, a, sup, orders.get(sup))
+            _apply_supplier_orders(w, k, a, sup, orders.get(sup), orders)
         for side in SIDES:
             o = orders.get(side)
             if not o:
@@ -446,12 +450,17 @@ def _update_engine_waits(w):
             p.engine_wait = max(0, sp.ready - own)
 
 
-def _apply_supplier_orders(w, k, a, sup, o):
-    if not o:
-        return
+def jv_partner_player(cfg, sup, spid, variant):
+    """The active supplier player a Joint Venture variant needs as partner, if any."""
+    partner = sparam(cfg, sup, spid, variant, "partner_player") if variant else None
+    return partner if partner in active_suppliers(cfg) else None
+
+
+def _apply_supplier_orders(w, k, a, sup, o, all_orders):
     cfg = w.cfg
     scfg = cfg["suppliers"][sup]
     lab = player_label(cfg, sup)
+    o = o or {}
     for spid in o.get("cancel", []):
         sp = w.sup_programs[spid]
         sp.cancelled_year = a
@@ -460,18 +469,32 @@ def _apply_supplier_orders(w, k, a, sup, o):
         spid = L["program"]
         spc = scfg["programs"][spid]
         variant = L.get("variant")
+        partner = jv_partner_player(cfg, sup, spid, variant)
+        if partner:
+            flag = cfg["suppliers"][partner]["jv"]["flag"]
+            if not (all_orders.get(partner) or {}).get(flag):
+                w.event(k, f"{lab} proposes the {spc['label']} as a {spc['variants'][variant]['label']}, but "
+                           f"{player_label(cfg, partner)} does not join this turn, so it is not launched.")
+                continue
         sp = SupplierProgram(pid=spid, owner=sup, segment=spc["segment"], launch_year=L["year"], launch_turn=k,
                              dev_years=sparam(cfg, sup, spid, variant, "dev_years"), variant=variant,
-                             terms=L.get("terms", "standard"))
+                             terms=L.get("terms", "standard"), partner=partner)
         w.sup_programs[spid] = sp
         vtxt = f" ({spc['variants'][variant]['label']})" if variant else ""
         w.event(k, f"{lab} launches the {spc['label']}{vtxt} in {sp.launch_year} on {scfg['terms'][sp.terms]['label']}; "
                    f"engine ready for service in {sp.ready}.")
-    t1 = scfg.get("t1000_upgrade")
-    if t1 and o.get("t1000_upgrade") and w.t1000_year is None:
-        w.t1000_year = a
-        w.event(k, f"{lab} commits to the {t1['label']} from {a} (more share of {t1['segment'].upper()} deliveries at "
-                   f"{player_label(cfg, t1['fit_side'])} from {a + t1['lag_years']}).")
+    up = scfg.get("upgrade")
+    if up and o.get(up["flag"]) and sup not in w.upgrade_years:
+        w.upgrade_years[sup] = a
+        w.event(k, f"{lab} commits to the {up['label']} from {a} (more share of {up['segment'].upper()} deliveries at "
+                   f"{player_label(cfg, up['fit_side'])} from {a + up['lag_years']}).")
+    jv = scfg.get("jv")
+    if jv and o.get(jv["flag"]):
+        owner = jv["partner_of"]
+        joined = any(sp.partner == sup and sp.launch_turn == k for sp in w.sup_programs.values())
+        if not joined:
+            w.event(k, f"{lab} offers to join the {player_label(cfg, owner)} "
+                       f"{cfg['suppliers'][owner]['programs'][jv['program']]['label']} Joint Venture, but no Joint Venture is launched this turn.")
 
 
 # ---------------------------------------------------------------------------
@@ -725,7 +748,8 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
     wacc, alpha = scfg["wacc"], scfg["alpha"]
     epa = scfg["engines_per_aircraft"]
     ramp = scfg["ramp"]
-    t1 = scfg.get("t1000_upgrade")
+    t1 = scfg.get("upgrade")
+    t1_year = world.upgrade_years.get(sup)
 
     def df(y):
         return (1.0 + wacc) ** -(y - pv_base)
@@ -741,37 +765,41 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
         """(fit, value $M per engine) in the moving world."""
         p = world.prog(side, seg)
         if p is not None and p.in_service(y):
-            if p.supplier != sup:
+            sp = world.sup_programs.get(p.supplier_program) if p.supplier_program else None
+            if sp is None or sup not in (sp.owner, sp.partner):
                 return 0.0, 0.0
-            sp = world.sup_programs[p.supplier_program]
-            share = 1.0 - sparam(cfg, sup, sp.pid, sp.variant, "value_share_partner", 0.0)
+            # The engine's value per engine uses its owner's parameters; a Joint Venture splits it.
+            ocfg = cfg["suppliers"][sp.owner]
+            partner_share = sparam(cfg, sp.owner, sp.pid, sp.variant, "value_share_partner", 0.0)
+            share = partner_share if sup == sp.partner else 1.0 - partner_share
             age = y - p.eis
             r = min(1.0, ramp["start_frac"] + (1.0 - ramp["start_frac"]) * age / max(1, ramp["years"]))
-            v = sparam(cfg, sup, sp.pid, sp.variant, "value_m_per_engine") * scfg["terms"][sp.terms]["value_mult"] * r
+            v = sparam(cfg, sp.owner, sp.pid, sp.variant, "value_m_per_engine") * ocfg["terms"][sp.terms]["value_mult"] * r
             return share, v * vmult("new", y)
         fit = scfg["incumbent_fit"][side][seg]
-        if t1 and world.t1000_year is not None and side == t1["fit_side"] and seg == t1["segment"] \
-                and y >= world.t1000_year + t1["lag_years"]:
+        if t1 and t1_year is not None and side == t1["fit_side"] and seg == t1["segment"] \
+                and y >= t1_year + t1["lag_years"]:
             fit = min(1.0, fit + t1["fit_pp"] / 100.0)
         return fit, scfg["incumbent_value_m_per_engine"][seg] * vmult("incumbent", y)
 
     capex = {}
     windows = []
     for sp in world.sup_programs.values():
-        if sp.owner != sup:
+        if sup not in (sp.owner, sp.partner):
             continue
-        c = sparam(cfg, sup, sp.pid, sp.variant, "capex_b") * (1.0 - sparam(cfg, sup, sp.pid, sp.variant, "capex_share_partner", 0.0))
-        base = sparam(cfg, sup, sp.pid, sp.variant, "dev_years")
+        cs = sparam(cfg, sp.owner, sp.pid, sp.variant, "capex_share_partner", 0.0)
+        c = sparam(cfg, sp.owner, sp.pid, sp.variant, "capex_b") * (cs if sup == sp.partner else 1.0 - cs)
+        base = sparam(cfg, sp.owner, sp.pid, sp.variant, "dev_years")
         for i, y in enumerate(range(sp.launch_year, sp.ready)):
             if sp.cancelled_year is not None and y >= sp.cancelled_year:
                 break
             amt = c / base if i < base else c * cfg["extension_capex_frac_per_year"]
             capex[y] = capex.get(y, 0.0) + amt
-        windows.append((sp.launch_year, sp.dev_end, sparam(cfg, sup, sp.pid, sp.variant, "strain_relief", 0.0), False))
-    if t1 and world.t1000_year is not None:
-        for y in range(world.t1000_year, world.t1000_year + t1["capex_years"]):
+        windows.append((sp.launch_year, sp.dev_end, sparam(cfg, sp.owner, sp.pid, sp.variant, "strain_relief", 0.0), False))
+    if t1 and t1_year is not None:
+        for y in range(t1_year, t1_year + t1["capex_years"]):
             capex[y] = capex.get(y, 0.0) + t1["capex_b"] / t1["capex_years"]
-        windows.append((world.t1000_year, world.t1000_year + t1["capex_years"], 0.0, False))
+        windows.append((t1_year, t1_year + t1["capex_years"], 0.0, False))
     st = scfg["strain"]
     windows += [(b["start"], b["end"], 0.0, True) for b in st.get("background", [])]
     strain = _strain_schedule(windows, st["full_overlap_b"], st["norm_years"], lambda y: strain_mult(y, sup))
@@ -798,8 +826,8 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
             und[f"{seg}_engines"] += delta
             if y in KEY_YEARS:
                 delivered.setdefault(str(y), {})[seg] = {"engines": round(eng_now, 1), "status_quo": round(eng_sq, 1)}
-        if t1 and world.t1000_year is not None:
-            y0 = world.t1000_year + t1["lag_years"]
+        if t1 and t1_year is not None:
+            y0 = t1_year + t1["lag_years"]
             if y0 <= y < y0 + t1["saving_years"]:
                 comp["installed_base"] += t1["installed_base_saving_b_per_year"] * d
                 und["installed_base"] += t1["installed_base_saving_b_per_year"]
@@ -809,20 +837,20 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
         und["strain"] -= strain.get(y, 0.0) * (1.0 + alpha)
     total = sum(comp.values())
     progs = []
-    for spid, spc in scfg["programs"].items():
-        sp = world.sup_programs.get(spid)
-        if sp is None:
+    for spid, sp in world.sup_programs.items():
+        if sup not in (sp.owner, sp.partner):
             continue
+        spc = cfg["suppliers"][sp.owner]["programs"][spid]
         users = [f"{p.owner}:{p.pid}" for p in world.programs.values() if p.supplier_program == spid and p.cancelled_year is None]
-        progs.append({"program": spid, "label": spc["label"], "segment": sp.segment, "launch_year": sp.launch_year,
-                      "ready": sp.ready if sp.live() else None, "cancelled_year": sp.cancelled_year, "variant": sp.variant,
-                      "terms": sp.terms, "selected_by": users, "slips": sp.slips})
+        progs.append({"program": spid, "label": spc["label"], "owner": sp.owner, "partner": sp.partner, "segment": sp.segment,
+                      "launch_year": sp.launch_year, "ready": sp.ready if sp.live() else None, "cancelled_year": sp.cancelled_year,
+                      "variant": sp.variant, "terms": sp.terms, "selected_by": users, "slips": sp.slips})
     return {
         "delta_pv_b": round(total, 3),
         "components_pv_b": {k: round(v, 3) for k, v in comp.items()},
         "undiscounted_b": {k: round(v, 3) for k, v in und.items()},
         "programs": progs,
-        "t1000_upgrade_year": world.t1000_year,
+        "upgrade_year": t1_year,
         "engines_delivered": delivered,
         "_exact": total,
     }
@@ -1067,16 +1095,39 @@ def _validate_supplier_orders(cfg, history, turn, side, orders):
             errors.append(f"cannot cancel '{pid}': {', '.join(users)} flies it (contractual commitment)")
         elif pid not in canon["cancel"]:
             canon["cancel"].append(pid)
-    if "t1000_upgrade" in orders:
-        v = orders["t1000_upgrade"]
+    up, jv = scfg.get("upgrade"), scfg.get("jv")
+    for flag in SUPPLIER_FLAGS[side]:
+        if flag not in orders:
+            continue
+        v = orders[flag]
         if not isinstance(v, bool):
-            errors.append("'t1000_upgrade' must be true or false")
-        elif v and not scfg.get("t1000_upgrade"):
-            errors.append("'t1000_upgrade' is not available in this scenario")
+            errors.append(f"'{flag}' must be true or false")
+            continue
+        if not v:
+            continue
+        if up and flag == up["flag"]:
+            canon[flag] = True
+            if side in w.upgrade_years:
+                warnings.append(f"{up['label']} already committed in {w.upgrade_years[side]}; no additional effect")
+        elif jv and flag == jv["flag"]:
+            owner = jv["partner_of"]
+            if owner not in active_suppliers(cfg):
+                errors.append(f"'{flag}': {cfg['suppliers'][owner]['label']} is not a player in this run")
+            elif jv["program"] in w.sup_programs:
+                errors.append(f"'{flag}': the {cfg['suppliers'][owner]['programs'][jv['program']]['label']} was already launched")
+            else:
+                canon[flag] = True
+                warnings.append(f"You join only if {cfg['suppliers'][owner]['label']} launches {jv['program']} as "
+                                f"'{jv['variant']}' this turn; you would then pay "
+                                f"{sparam(cfg, owner, jv['program'], jv['variant'], 'capex_share_partner', 0.0):.0%} of its capex and earn "
+                                f"{sparam(cfg, owner, jv['program'], jv['variant'], 'value_share_partner', 0.0):.0%} of its value.")
         else:
-            canon["t1000_upgrade"] = v
-            if v and w.t1000_year is not None:
-                warnings.append(f"Trent 1000 upgrade already committed in {w.t1000_year}; no additional effect")
+            errors.append(f"'{flag}' is not available in this scenario")
+    for L in canon["launch"]:
+        partner = jv_partner_player(cfg, side, L["program"], L.get("variant"))
+        if partner:
+            warnings.append(f"'{L['program']}' as '{L['variant']}' needs {cfg['suppliers'][partner]['label']} to set "
+                            f"'{cfg['suppliers'][partner]['jv']['flag']}' this turn; otherwise it is not launched.")
     for flag in ("rate_increase", "delay_tactics", "poaching"):
         if orders.get(flag):
             errors.append(f"'{flag}' is an airframer lever")
@@ -1091,7 +1142,7 @@ def canonical_key(side, o):
         launches = ";".join(f"{L['program']}/{L.get('variant') or '-'}/{L.get('terms', 'standard')}/{L['year']}"
                             for L in sorted(o.get("launch", []), key=lambda e: e["program"]))
         cancels = ",".join(sorted(set(o.get("cancel", []))))
-        return f"{side}|L={launches}|C={cancels}|F=t1000_upgrade:{int(bool(o.get('t1000_upgrade')))}"
+        return f"{side}|L={launches}|C={cancels}|F=" + ",".join(f"{f}:{int(bool(o.get(f)))}" for f in SUPPLIER_FLAGS[side])
     launches = ";".join(f"{L['program']}/{L.get('variant') or '-'}/{L['engine']}/{L['year']}"
                         for L in sorted(o.get("launch", []), key=lambda e: e["program"]))
     cancels = ",".join(sorted(set(o.get("cancel", []))))

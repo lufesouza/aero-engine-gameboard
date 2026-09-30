@@ -1,21 +1,28 @@
-"""Dump every non-empty cell of the three Rolls-Royce workbooks for citation.
+"""Dump every non-empty cell of the engine makers' workbooks for citation.
 
-Usage: rr_cells_dump.py <folder holding the workbooks, normally the repo root> <output folder>
+Usage: cells_dump.py <rr|pw> <folder holding the workbooks, normally the repo root> <output folder>
 
 One file per sheet, <source>__<sheet>.tsv, with lines: ref <TAB> value <TAB> row label
-<TAB> nearest period header above. Source ids: ms_model (Morgan Stanley RR model,
-28 Jan 2026), ciq_estimates (Capital IQ estimates report), ciq_segments (Capital IQ
-segments, FY2015-FY2025). Also writes index.json and cells_cache.json, which
-verify_cells.py reads (point RR_CELLS_DIR at the output folder).
-Needs openpyxl and xlrd.
+<TAB> nearest period header above. Also writes index.json and cells_cache.json, which
+verify_cells.py reads (point RR_CELLS_DIR at the output folder). Needs openpyxl and xlrd.
+
+Source ids:
+- rr: ms_model (Morgan Stanley Rolls-Royce model, 28 Jan 2026), ciq_estimates (Capital IQ
+  estimates report), ciq_segments (Capital IQ segments, FY2015-FY2025);
+- pw: gs_rtx (Goldman Sachs RTX model, 21 Oct 2025, including its GTF Analysis sheet).
+  GoldmanSachs_GTF_Oct_22_2025.xlsx holds the same values cell for cell, so it is not dumped twice.
 """
 import datetime, json, os, re, sys
 import openpyxl, xlrd
 from openpyxl.utils import get_column_letter
-RAW = sys.argv[1]; OUT = sys.argv[2]
-FILES = {"ms_model": "Morgan Stanley Rolls-Royce model.xlsm",
-         "ciq_estimates": "Rolls-Royce Holdings plc LSE RR Estimates Report.xls",
-         "ciq_segments": "Rolls-Royce Holdings plc LSE RR Financials Segments.xls"}
+SETS = {
+    "rr": {"ms_model": "Morgan Stanley Rolls-Royce model.xlsm",
+           "ciq_estimates": "Rolls-Royce Holdings plc LSE RR Estimates Report.xls",
+           "ciq_segments": "Rolls-Royce Holdings plc LSE RR Financials Segments.xls"},
+    "pw": {"gs_rtx": "GoldmanSachs_RTX102125_Oct_22_2025.xlsx"},
+}
+FILES = SETS[sys.argv[1]]
+RAW = sys.argv[2]; OUT = sys.argv[3]
 PER = re.compile(r"(^|\D)(19|20)\d\d(\D|$)|^(FY|FH|FQ|1H|2H|CY|H1|H2)|\d{2}e$|12 months|Dec-\d\d")
 def fmt(v):
     if v is None: return ""
@@ -60,9 +67,11 @@ index, allcache = {}, {}
 for src, fn in FILES.items():
     path = os.path.join(RAW, fn)
     index[src] = {}; allcache[src] = {}
-    if fn.lower().endswith(".xlsm"):
+    if fn.lower().endswith((".xlsm", ".xlsx")):
         wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
         for ws in wb.worksheets:
+            if ws.title.startswith("__"):
+                continue
             grid = [list(row) for row in ws.iter_rows(values_only=True, max_col=min(ws.max_column or 1, 200))]
             f, cache = dump(src, ws.title, grid)
             index[src][ws.title] = f; allcache[src][ws.title] = cache

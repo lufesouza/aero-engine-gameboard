@@ -481,6 +481,80 @@ class RollsRoyceTests(unittest.TestCase):
         self.assertIn("rolls_royce", sc["summary"])
 
 
+class PrattWhitneyTests(unittest.TestCase):
+    """The second supplier player (Pratt & Whitney) and the RR-PW Joint Venture."""
+
+    def setUp(self):
+        self.cfg = M.load_config("base", {"suppliers": {"rolls_royce": {"active": True}, "pratt_whitney": {"active": True}}})
+        c = self.cfg
+        self.ngsa = lambda eng: orders("airbus", [L(c, "ngsa", 2028, engine=eng)])
+
+    def rec4(self, turn=1, b=None, a=None, rr=None, pw=None, injects=()):
+        r = rec(turn, b, a, injects)
+        r["orders"]["rolls_royce"] = rr or M.empty_orders("rolls_royce")
+        r["orders"]["pratt_whitney"] = pw or M.empty_orders("pratt_whitney")
+        return r
+
+    def pw(self, launch=(), **flags):
+        return orders("pratt_whitney", list(launch), **flags)
+
+    def test_four_players_and_status_quo(self):
+        self.assertEqual(M.players(self.cfg), ("boeing", "airbus", "rolls_royce", "pratt_whitney"))
+        for inj in ([], ["gtf_durability_crisis"], ["nb_demand_shock"]):
+            u = M.payoff(self.cfg, [self.rec4(injects=inj), self.rec4(2)])
+            for s in M.players(self.cfg):
+                self.assertAlmostEqual(u[s], 0.0, places=9)
+
+    def test_pw_engine_needs_commitment_and_ngsa_on_cfm_costs_pw(self):
+        c = self.cfg
+        w = M.build_world(c, [self.rec4(a=self.ngsa("pw_gtf2"))])
+        self.assertEqual(w.programs["ngsa"].engine, "cfm_ducted")  # PW did not commit: fallback
+        won = M.evaluate(c, M.build_world(c, [self.rec4(a=self.ngsa("pw_gtf2"), pw=self.pw([{"program": "gtf_next", "year": 2026, "terms": "standard"}]))]))
+        self.assertGreater(won["pratt_whitney"]["components_pv_b"]["nb_engines"], 0)
+        lost = M.evaluate(c, M.build_world(c, [self.rec4(a=self.ngsa("cfm_ducted"))]))
+        self.assertLess(lost["pratt_whitney"]["components_pv_b"]["nb_engines"], 0)  # A320neo share lost at NGSA EIS
+
+    def test_joint_venture_needs_both(self):
+        c = self.cfg
+        rr = orders("rolls_royce", [{"program": "uf_nb", "year": 2026, "variant": "jv_pw", "terms": "standard"}])
+        alone = M.build_world(c, [self.rec4(a=self.ngsa("rr_ultrafan_nb"), rr=rr)])
+        self.assertNotIn("uf_nb", alone.sup_programs)
+        self.assertEqual(alone.programs["ngsa"].engine, "cfm_ducted")
+        both = [self.rec4(a=self.ngsa("rr_ultrafan_nb"), rr=rr, pw=self.pw(join_rr_jv=True))]
+        w = M.build_world(c, both)
+        self.assertEqual(w.sup_programs["uf_nb"].partner, "pratt_whitney")
+        r = M.evaluate(c, w)
+        for sup in ("rolls_royce", "pratt_whitney"):  # each pays half the $8B, loaded by its own alpha
+            self.assertAlmostEqual(r[sup]["undiscounted_b"]["capex"], -4.0 * (1 + c["suppliers"][sup]["alpha"]), places=6)
+        self.assertGreater(r["pratt_whitney"]["components_pv_b"]["nb_engines"], -3.0)  # JV value offsets part of the lost share
+        solo = [self.rec4(a=self.ngsa("rr_ultrafan_nb"), rr=orders("rolls_royce", [{"program": "uf_nb", "year": 2026, "variant": "solo"}]))]
+        self.assertLess(M.evaluate(c, M.build_world(c, solo))["pratt_whitney"]["components_pv_b"]["nb_engines"],
+                        r["pratt_whitney"]["components_pv_b"]["nb_engines"])
+
+    def test_join_validation(self):
+        c = self.cfg
+        self.assertEqual(M.validate_orders(c, [], 1, "pratt_whitney", {"join_rr_jv": True})[1], [])
+        rr_only = M.load_config("base", {"suppliers": {"pratt_whitney": {"active": True}}})
+        self.assertTrue(M.validate_orders(rr_only, [], 1, "pratt_whitney", {"join_rr_jv": True})[1])  # RR not playing
+        launched = [self.rec4(rr=orders("rolls_royce", [{"program": "uf_nb", "year": 2026, "variant": "solo"}]))]
+        self.assertTrue(M.validate_orders(c, launched, 2, "pratt_whitney", {"join_rr_jv": True})[1])
+        self.assertEqual(M.canonical_key("pratt_whitney", M.empty_orders("pratt_whitney")),
+                         "pratt_whitney|L=|C=|F=gtf_upgrade:0,join_rr_jv:0")
+
+    def test_gtf_upgrade_and_crisis(self):
+        c = self.cfg
+        r = M.evaluate(c, M.build_world(c, [self.rec4(pw=self.pw(gtf_upgrade=True))]))["pratt_whitney"]
+        self.assertGreater(r["components_pv_b"]["nb_engines"], 0)
+        self.assertGreater(r["components_pv_b"]["installed_base"], 0)
+        self.assertEqual(r["upgrade_year"], 2026)
+
+    def test_pw_stage(self):
+        rep = S.supplier_stage(self.cfg, [], 1, [], "pratt_whitney")
+        self.assertEqual(len(rep["your_options"]), 18)  # (1 + 2 terms)^2 x upgrade on/off
+        jv = next(r for r in S.supplier_stage(self.cfg, [], 1, [], "rolls_royce")["your_options"] if "jv_pw" in r["label"])
+        self.assertGreater(jv["best_case"], 0)  # a JV option assumes the partner joins
+
+
 class RollsRoyceCliTests(CliBase):
     def test_three_player_turn(self):
         _, new = self.run_cli("new", "--run-id", "rr", "--turns", "2", "--suppliers", "rolls_royce")
@@ -525,6 +599,24 @@ class RollsRoyceCliTests(CliBase):
         self.assertEqual(code, 1)
         _, inj = self.run_cli("injects", "--run", "two")
         self.assertNotIn("ultrafan_test_setback", [i["id"] for i in inj["eligible"]])
+
+    def test_four_player_turn_with_joint_venture(self):
+        _, new = self.run_cli("new", "--run-id", "four", "--turns", "1", "--suppliers", "rolls_royce,pratt_whitney")
+        self.assertEqual(new["players"], ["boeing", "airbus", "rolls_royce", "pratt_whitney"])
+        self.run_cli("inject", "--run", "four", "--id", "gtf_durability_crisis")
+        _, br = self.run_cli("brief", "--run", "four", "--side", "pratt_whitney")
+        self.assertIn("join_rr_jv", [f["flag"] for f in br["your_levers_this_turn"]["flags"]])
+        _, opt = self.run_cli("options", "--run", "four", "--side", "pratt_whitney")
+        self.assertTrue(opt["your_options"])
+        orders_in = {"boeing": {}, "airbus": {"launch": [{"program": "ngsa", "year": 2028, "engine": "rr_ultrafan_nb"}]},
+                     "rolls_royce": {"launch": [{"program": "uf_nb", "variant": "jv_pw"}]},
+                     "pratt_whitney": {"join_rr_jv": True, "gtf_upgrade": True}}
+        _, res = self.run_cli("adjudicate", "--run", "four", stdin=orders_in)
+        self.assertEqual(set(res["projection"]), {"boeing", "airbus", "rolls_royce", "pratt_whitney"})
+        _, md = self.run_cli("report", "--run", "four", "--format", "md")
+        self.assertIn("Rolls-Royce + Pratt & Whitney", md)
+        _, sc = self.run_cli("scorecard", "--run", "four")
+        self.assertEqual(len(sc["rows"]), 4)
 
 
 if __name__ == "__main__":
