@@ -1,0 +1,528 @@
+{
+ "run_id": "hist2010-neo",
+ "status": "complete",
+ "scenario": {
+  "id": "hist-2010-neo",
+  "title": "History test: 2010, Airbus moves to launch the A320neo",
+  "narrative": "A backtest set in 2010. Airbus has told the market it will launch the A320neo, a re-engined A320 with new-generation engines. Boeing must decide how to answer: re-engine the 737, launch a clean-sheet single-aisle, or Do Nothing for now. Boeing's 787 and 747-8 and Airbus's A350 XWB are still in development."
+ },
+ "turns_total": 4,
+ "final": {
+  "boeing": {
+   "delta_pv_b": -2.246,
+   "components_pv_b": {
+    "nb_operating": 2.149,
+    "wb_operating": 0.0,
+    "capex": -3.662,
+    "strain": -0.733,
+    "tactics": 0.0
+   },
+   "undiscounted_b": {
+    "nb_operating": 6.711,
+    "wb_operating": 0.0,
+    "capex": -4.663,
+    "strain": -0.81,
+    "tactics": 0.0
+   },
+   "programs": [
+    {
+     "program": "b737next",
+     "label": "Boeing 737 successor (re-engine or clean sheet)",
+     "segment": "nb",
+     "launch_year": 2011,
+     "eis": 2017,
+     "planned_eis_at_launch": 2017,
+     "cancelled_year": null,
+     "variant": "reengine",
+     "engine": "pw_gtf",
+     "engine_label": "Pratt & Whitney PW1000G geared turbofan",
+     "capture_mult": 0.95,
+     "margin_at_eis": 0.135,
+     "slips": []
+    }
+   ]
+  },
+  "airbus": {
+   "delta_pv_b": 1.566,
+   "components_pv_b": {
+    "nb_operating": 6.947,
+    "wb_operating": 0.0,
+    "capex": -2.018,
+    "strain": -3.363,
+    "tactics": 0.0
+   },
+   "undiscounted_b": {
+    "nb_operating": 23.843,
+    "wb_operating": 0.0,
+    "capex": -2.34,
+    "strain": -3.9,
+    "tactics": 0.0
+   },
+   "programs": [
+    {
+     "program": "a320neo",
+     "label": "A320neo (A320 re-engine)",
+     "segment": "nb",
+     "launch_year": 2010,
+     "eis": 2015,
+     "planned_eis_at_launch": 2015,
+     "cancelled_year": null,
+     "variant": null,
+     "engine": "pw_gtf",
+     "engine_label": "Pratt & Whitney PW1000G geared turbofan",
+     "capture_mult": 1.08,
+     "margin_at_eis": 0.125,
+     "slips": []
+    }
+   ]
+  }
+ },
+ "shares": {
+  "nb": {
+   "2030": {
+    "boeing": 0.454,
+    "airbus": 0.546
+   },
+   "2035": {
+    "boeing": 0.454,
+    "airbus": 0.546
+   },
+   "2040": {
+    "boeing": 0.454,
+    "airbus": 0.546
+   }
+  },
+  "wb": {
+   "2030": {
+    "boeing": 0.588,
+    "airbus": 0.412
+   },
+   "2035": {
+    "boeing": 0.588,
+    "airbus": 0.412
+   },
+   "2040": {
+    "boeing": 0.588,
+    "airbus": 0.412
+   }
+  }
+ },
+ "trajectory": [
+  {
+   "turn": 1,
+   "projection": {
+    "boeing": {
+     "delta_pv_b": -4.336,
+     "components_pv_b": {
+      "nb_operating": -3.05,
+      "wb_operating": 0.0,
+      "capex": -1.286,
+      "strain": 0.0,
+      "tactics": 0.0
+     }
+    },
+    "airbus": {
+     "delta_pv_b": 7.874,
+     "components_pv_b": {
+      "nb_operating": 13.255,
+      "wb_operating": 0.0,
+      "capex": -2.018,
+      "strain": -3.363,
+      "tactics": 0.0
+     }
+    }
+   }
+  },
+  {
+   "turn": 2,
+   "projection": {
+    "boeing": {
+     "delta_pv_b": -2.304,
+     "components_pv_b": {
+      "nb_operating": 2.091,
+      "wb_operating": 0.0,
+      "capex": -3.662,
+      "strain": -0.733,
+      "tactics": 0.0
+     }
+    },
+    "airbus": {
+     "delta_pv_b": 1.354,
+     "components_pv_b": {
+      "nb_operating": 6.735,
+      "wb_operating": 0.0,
+      "capex": -2.018,
+      "strain": -3.363,
+      "tactics": 0.0
+     }
+    }
+   }
+  },
+  {
+   "turn": 3,
+   "projection": {
+    "boeing": {
+     "delta_pv_b": -2.304,
+     "components_pv_b": {
+      "nb_operating": 2.091,
+      "wb_operating": 0.0,
+      "capex": -3.662,
+      "strain": -0.733,
+      "tactics": 0.0
+     }
+    },
+    "airbus": {
+     "delta_pv_b": 1.354,
+     "components_pv_b": {
+      "nb_operating": 6.735,
+      "wb_operating": 0.0,
+      "capex": -2.018,
+      "strain": -3.363,
+      "tactics": 0.0
+     }
+    }
+   }
+  },
+  {
+   "turn": 4,
+   "projection": {
+    "boeing": {
+     "delta_pv_b": -2.246,
+     "components_pv_b": {
+      "nb_operating": 2.149,
+      "wb_operating": 0.0,
+      "capex": -3.662,
+      "strain": -0.733,
+      "tactics": 0.0
+     }
+    },
+    "airbus": {
+     "delta_pv_b": 1.566,
+     "components_pv_b": {
+      "nb_operating": 6.947,
+      "wb_operating": 0.0,
+      "capex": -2.018,
+      "strain": -3.363,
+      "tactics": 0.0
+     }
+    }
+   }
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "years": [
+    2010,
+    2010
+   ],
+   "injects": [
+    "quiet_turn"
+   ],
+   "orders": {
+    "boeing": {
+     "launch": [],
+     "cancel": [],
+     "rate_increase": true
+    },
+    "airbus": {
+     "launch": [
+      {
+       "program": "a320neo",
+       "year": 2010,
+       "engine": "pw_gtf"
+      }
+     ],
+     "cancel": [],
+     "delay_tactics": false,
+     "poaching": false
+    }
+   },
+   "statements": {
+    "boeing": {
+     "public_statement": "Our first priority remains delivering the 787 and the 747-8 to our customers. Demand for the 737 is strong: the backlog is above 2,000 airplanes, and we are raising production to 38 a month in the second quarter of 2013. We took that step only after in-depth reviews with our suppliers. The Next-Generation 737 keeps getting better. It has gained about 5% in fuel burn from its engines since entry into service, another 2% is being introduced now, and a new interior is coming into service. For the future of the single-aisle we are studying two paths hard: re-engining the 737, or an all-new airplane around 2020. Our customers will make that decision with us, and we expect to announce our course early in 2011. Airbus's stated intention to re-engine the A320 does not change that timetable. We will judge its fuel-burn and schedule claims on demonstrated performance, not design goals. We also note that the WTO found every instance of Airbus launch aid challenged by the United States to be illegal. We will price the 737 to compete, and we will not buy share with bad deals.",
+     "rationale": "1) WHICH RULE APPLIES. This matches reaction trigger 1 (strong): Airbus announces a re-engine. The response is no launch in the announcement turn, a public decision date, and defence of the 737NG through upgrades, rate and pricing room [B-0261, B-0266, B-0285, B-0286, B-0273]. Trigger 2 also applies: Airbus's performance is claimed, not shown, so we wait for proof [B-0068, B-0279, B-2381]. The inject is quiet_turn, with no downturn or supply shock, so the \u00a76 default for the 737 Rate Increase stands. It passes our demand test (737 backlog above 2,000 plus expected option exercises [B-0284]; [B-0264]) and our supplier-readiness test [B-0268, B-0270].\n\n2) HARD-RULE SCREEN. Launching b737next in 2010 would start a third major development while the 787 has not delivered [B-0287] and the 747-8 is not certified [B-0275]. Their development runs to 2012, so a 2010 start overlaps it by two years. The engine prices that strain at $1.49B, against $0.73B for a 2011 start. That breaks our rules of one major development at a time and no overlapping engineering peaks [B-0276, B-0216, B-0248], and it breaks trigger 1. A Clean Sheet in 2010 also fails on value.\n\n3) ENGINE NUMBERS (whatif; Airbus launches the A320neo in 2010 with CFM). Stage game, assuming nobody moves after this turn: Do Nothing -3.64; Rate Increase only (our orders) -4.34; Re-engine 2010 with LEAP -3.37; Re-engine 2010 with GTF -2.66; Clean Sheet 2010 -12.19. Full paths: Rate Increase now + Re-engine 2011 with LEAP -3.68, with GTF -3.05; no Rate Increase + Re-engine 2011 with GTF -2.61; Rate Increase now + Clean Sheet 2011 with LEAP -12.04; Rate Increase now + Re-engine 2012 with LEAP -3.49. Waiting a year costs nothing in engine terms: Re-engine 2011 with GTF (-2.61) edges out Re-engine 2010 with GTF (-2.66), because a 2011 start halves the strain. The $1.68B stage-game gap between Re-engine 2010 with GTF and our orders only exists because the stage game assumes no further moves. On a path basis the best alternative beats our default by about $0.45B, below the $1B override threshold in procedure step 5 (about the size of charges we absorbed without changing strategy [B-0143, B-0208]). The default stands.\n\n4) DOCTRINE PREMIUM. The Rate Increase loses PV in the engine: -$0.43B if Airbus stands still, -$0.70B against Do Nothing in the stage game with the A320neo, and -$0.45B on the planned Re-engine path. We accept a doctrine premium of about $0.45-0.70B. It is our Turn 1 default, it passes the demand and supplier tests, it protects share while the product decision matures, and it is below the $1B override threshold. Deferring the launch carries about $0 of extra premium on a path basis.\n\n5) LOOKING AHEAD (not decided now). The engine puts Re-engine 2011 about $8.4B ahead of Clean Sheet 2011 (-3.68 vs -12.04). That is far above the $2B threshold of flip test (c) in \u00a76. The GTF adds about $0.63B to a Re-engine, above our $0.5B engine flip threshold, but only about $0.46B to a Clean Sheet. Turn 2 will re-run these tests, including the engine-maturity check [B-0130, B-0288]. Publicly we keep both paths open, as we did in October 2010 [B-0285, B-0277, B-0282].\n\n6) PREDICTION. Airbus launches the a320neo this turn, probability about 90%. It has told the market it will, we already expected a geared-turbofan A320 re-engine [B-0261], and the engine shows the a320neo is Airbus's best response to every Boeing option (+$7.08B to Airbus if we Do Nothing). We still treat Airbus as an independent agent whose statements we discount [B-2364]. No Airbus cancellations.\n\n7) EXPECTED DELTA PV. 0.9 x -4.34 + 0.1 x -0.43 = -3.95. No slip allowance is needed because we launch no program this turn.\n\n8) TIME LOCK. Where general recollection of later events came to mind, I set it aside unused. This decision rests only on the 2010 profile, evidence dated before December 2010, and the engine's figures.",
+     "disclose": [
+      "737 production will rise to 38 airplanes a month in 2Q 2013, supported by a backlog of more than 2,000 airplanes and by supplier readiness reviews.",
+      "Boeing will announce its single-aisle course (Re-engine of the 737 or an all-new airplane around 2020) early in 2011, after completing its work with customers and engine makers.",
+      "The 737NG continues to improve: a further 2% fuel-burn improvement and a new interior are being introduced now."
+     ],
+     "prediction": {
+      "launch": [
+       "a320neo"
+      ],
+      "cancel": []
+     },
+     "expected_delta_pv_b": -3.95
+    },
+    "airbus": {
+     "public_statement": "Airbus is launching the A320neo today. We are putting new-generation engines on the world's most successful single-aisle family, and customers will fly it from 2015. The A320neo brings a step change in fuel burn, emissions and noise, far beyond what incremental improvements to today's aircraft can offer. It keeps the commonality our operators rely on, and it does so at low risk and low cost. Airlines asked for new-engine efficiency this decade, not the next, and we will deliver it first. Demand for our single-aisle family is recovering strongly, and we are raising production to meet it. We are building the A350 XWB and the A320neo in parallel, with the confidence and the means to do both.",
+     "rationale": "SITUATION. Boeing has made no move in the game yet. Its public base case is a new airplane around 2020, with 737NG upgrades until then: 5% fuel gained and 2% more coming [B-0285, B-0289, B-0286]. It has promised to set its course by the end of 2010 [B-0261, B-0266] and announced three 737 rate increases in 2010, to 38 a month [B-0269, B-0284]. This matches the Do Nothing and Rate Increase rows of our reaction function: launch in 2010 and ramp in parallel [A-0019, A-0020, A-0015, B-0274]. Our revealed intent is to gain share and not sit still [A-0015, A-0008]. The engine shows launching now dominates. In `options`, the only pure Nash is Boeing Re-engine against our neo launch.\n\nWAITING TEST (whatif, our delta PV, $B). Launching in 2010 beats launching in 2011 against every Boeing response. With GTF: 8.426 vs 8.147 if Boeing Does Nothing; 1.797 vs 1.073 against a 2010 Re-engine; 1.898 vs 1.155 against a 2010 clean sheet. A 2012 launch is lower still. For us, Do Nothing ranges from 0.0 down to -4.829 (-4.260 against a Boeing Re-engine). A 2011 launch would also tie a 2010 Boeing Re-engine on service entry (2016), which the hard rule forbids. Decision: launch now.\n\nENGINE TEST. pw_gtf beats cfm_leap in every case: by 1.35 against Do Nothing (8.426 vs 7.076), by 1.31 against a Rate Increase (7.783 vs 6.470), by 1.20 against a 2010 Re-engine (1.797 vs 0.595), by 1.17 against Re-engine plus rate (0.801 vs -0.367), by 1.06 against a 2010 clean sheet, and by 1.04-1.24 against later Boeing launches in 2011-2014. That is far outside the $0.3B tie band, so the choice is pw_gtf. Both engines give service entry in 2015, so the choice does not change first-mover status. Our share-first bias would lean to CFM's 1.0 capture, but GTF's lead is larger than the $1.0B cap on any doctrine premium. The choice also fits the 2010 market's expectation of a geared-turbofan A320 re-engine [B-0261].\n\nDOCTRINE PREMIUM. None ($0). We take the engine's highest-PV option.\n\nCOMPONENTS (GTF, 2010, Boeing Does Nothing). Narrowbody operating +13.81; capex -2.02; strain -3.36 from running the neo alongside the A350 in 2010-2015. We accept this concurrency [A-0001, A-0005, A-0021] because the capture gain far exceeds the strain. Narrowbody share reaches the 65% cap by 2030.\n\nRESPONSE TO BOEING. Against a Re-engine we keep at least a one-year service lead (2015 vs 2016 or later) and stay positive: +0.80 to +2.80. Against a clean sheet the neo is our bridge; we expect Boeing's schedule to slip [B-0205, B-0213] and stay positive: +1.90 to +4.74. No cancel test arises.\n\nPREDICTION. Boeing orders a Rate Increase and does not launch this turn. It is still studying [B-0261, B-0285], reads customer feedback as leaning toward a new airplane [B-0277], would re-engine only if a new airplane were 10-15 years away [B-0282], and calls two developments in four or five years 'no sense' [B-0276]. The main risk is a Boeing Re-engine this turn: in the stage game it is Boeing's best response (-3.37 vs -3.64 for Do Nothing), a narrow gap. We would still be at +0.80 even with a rate increase added.\n\nEXPECTED dPV of about 3.5 is a weighted estimate: 20% Boeing only raises rates (7.78); 15% it re-engines plus raises rates this turn (0.80); 25% it re-engines in 2011-12 (1.84-2.80); 40% it launches a clean sheet in 2011-14 (2.03-4.74); less a small allowance for a neo slip of 0-1 year [A-0007, A-0014].\n\nTIME LOCK. This decision uses only the airbus_2010 profile, its evidence (all dated before December 2010) and engine outputs. No knowledge from after 30 November 2010 was used.",
+     "disclose": [
+      "Airbus has launched the A320neo in 2010, with entry into service targeted for 2015.",
+      "The A320neo will be powered by the Pratt & Whitney PW1000G geared turbofan."
+     ],
+     "prediction": {
+      "launch": [],
+      "cancel": [],
+      "rate_increase": true
+     },
+     "expected_delta_pv_b": 3.5
+    }
+   },
+   "market": {
+    "capture_mult": {
+     "a320neo": 1.05
+    }
+   },
+   "market_narrative": "Airlines and lessors welcome the A320neo as a low-risk re-engine with fleet commonality and a credible 2015 date, but with no named launch customer and a GTF-only offer (a first-generation engine that shuts out CFM-loyal operators), lessors pencil in slots rather than sign. Boeing loyalists hold: the 737 rate increase and 737NG improvements cover near-term needs, and Boeing's promised early-2011 decision keeps them waiting rather than switching. Net: a modest edge for the neo, not a stampede."
+  },
+  {
+   "turn": 2,
+   "years": [
+    2011,
+    2011
+   ],
+   "injects": [
+    "major_order_split"
+   ],
+   "orders": {
+    "boeing": {
+     "launch": [
+      {
+       "program": "b737next",
+       "year": 2011,
+       "engine": "pw_gtf",
+       "variant": "reengine"
+      }
+     ],
+     "cancel": [],
+     "rate_increase": false
+    },
+    "airbus": {
+     "launch": [],
+     "cancel": [],
+     "delay_tactics": false,
+     "poaching": false
+    }
+   },
+   "statements": {
+    "boeing": {
+     "public_statement": "We promised our customers a decision on the future of the single-aisle, and we have made it with them. Today Boeing is launching a Re-engine of the 737. Our customers told us they want new-engine fuel efficiency this decade, together with the reliability, commonality and low risk of the airplane they already fly. That is what we will deliver. The new-engine 737 will be powered by the Pratt & Whitney PW1000G geared turbofan, with entry into service planned for 2017. We have built margin into that schedule, and we intend to keep it. We studied an all-new single-aisle for around 2020 very hard. It remains in our future, but we will launch it only when the technology delivers a step change for our customers at a fair return for our shareholders. Until then we will keep maturing that technology. Meanwhile the Next-Generation 737 keeps improving, and we are raising production to 38 airplanes a month in 2013. Our first priority remains delivering the 787 and the 747-8. This program fits within our R&D plan and our balance sheet. Airbus has made its claims for the A320neo. We will compete on demonstrated performance, not design goals. We will price to compete, and we will not buy share with bad deals.",
+     "rationale": "1) WHICH RULES APPLY. This turn carries the major_order_split inject: a historically all-Boeing major US airline split a record narrowbody order with the A320neo. That is reaction trigger 3 (customers defect; moderate): a product decision 'starts and ends' with customers [B-0004, B-0277, B-0234]. Profile section 6 says to commit within the turn, and the flip tests still choose the variant. It also closes our promised decision window. We said we would chart a course by end-2010 [B-0261, B-0266] and told the market 'early 2011' in Turn 1. Waiting beyond Turn 2 is outside our precedent range while the A320neo is about 4 years from service (reaction row 3). The Rate Increase is already committed (2010) and is not available. There is no 787 setback inject, so nothing forces a one-turn delay [B-0216]. The fuel, boom and downturn injects are absent.\n\n2) ENGINE NUMBERS (whatif, full-game delta PV, $B; Airbus makes no new moves). Do Nothing -4.336. Launches in 2011: Re-engine LEAP -2.892; Re-engine GTF -2.259; Clean Sheet LEAP -11.239; Clean Sheet GTF -10.780. Wait to Turn 3: Re-engine 2012 LEAP -3.486, GTF -2.944; Clean Sheet 2012 LEAP -11.277; Re-engine 2013 LEAP -3.962. Wait to Turn 4: Re-engine 2014 LEAP -4.380. If Airbus cancels the a320neo: Re-engine GTF +4.538, Re-engine LEAP +3.793, Clean Sheet LEAP -4.441, Do Nothing -0.428. The order-split share shift hits both the status quo and every path that does not launch this turn. Committing now averts it, which is part of why waiting costs about $0.6-0.7B.\n\n3) HARD-RULE SCREEN. Re-engine 2011 enters service in 2017, after tech_ready 2016, so there is no early penalty [B-0032, B-0233]. Its only overlap with 787/747-8 development (to 2012) is one year, and the engine prices that strain at $0.733B. Both are in their last stages: the 787 is in final flight test [B-0287] and the 747-8 is near certification. The Re-engine's engineering peak therefore comes after theirs, not on top of them [B-0216, B-0248]. $2.5B over 6 years fits the R&D wedge we kept for the 737 [B-0230, B-0233]. It needs no new capital, and it keeps the balance-sheet priorities intact [B-0232, B-0201]. Clean Sheet also passes the hard rules, but it fails on value (below).\n\n4) VARIANT: FLIP FROM THE CLEAN SHEET DEFAULT TO RE-ENGINE. The section 6 default for Turn 2 was a 2011 Clean Sheet with LEAP, EIS 2020 [B-0285, B-0276]. Flip test (b) fires: customers are defecting (major_order_split), and Re-engine leads Clean Sheet by $8.35B with LEAP (-2.892 vs -11.239), or $8.52B with GTF, far above $1B. Flip test (c) fires as well (lead above $2B). Flip test (a) does not fire, because a Clean Sheet could still enter service in 2020. This fits our own framework. We re-engine if the new airplane is really 10-15 years away [B-0282], and a new airplane must be a 20-40% step change earned at a fair return [B-0038, B-0242]. At $18B the Clean Sheet destroys about $8B of value against a Re-engine in the engine's economics. So the all-new airplane moves beyond this decade, and the 'two developments in 4-5 years' objection [B-0276] then points to doing only the Re-engine now. Customers had a pro-re-engine camp [B-0277], and a Boeing loyalist has now shown it will buy a re-engined rival rather than wait. We launch a single variant (section 6). Our reflex answer to an Airbus move is the derivative [B-0014, B-0030]. We price in its known risks through the slip allowance [B-0142, B-0169, B-0173].\n\n5) TIMING. We commit in 2011, not in Turn 3. Waiting costs $0.59B (LEAP) or $0.69B (GTF), and it breaks the inject's commit-this-turn rule and our public timetable [B-0261, B-0214].\n\n6) ENGINE: FLIP FROM CFM LEAP TO PW GTF. Section 6 and reaction row 15 allow pw_gtf only if it adds more than $0.5B of delta PV and no engine-maturity problem is public. The GTF adds $0.633B on the Re-engine (-2.259 vs -2.892), and $0.745B if Airbus cancels. It adds $0.542B on the one-year-later proxy that we use as our slip allowance (Re-engine 2012: -2.944 vs -3.486), so it clears the bar even after the slip prior. Maturity check (promised in Turn 1; B-0130, B-0288): no engine inject, slip or failure is public. The Turn 1 market report calls the GTF 'first-generation', which is a risk flag, not a problem. The same report calls the GTF-powered A320neo's 2015 date 'credible'. On our 2017 date the engine would have about two years in airline service before it reaches us (inference). A Re-engine adds only one new technology to a proven airframe, so the 787 lesson against stacking new technologies [B-0130] bears less than it would on a Clean Sheet. If an engine-supplier problem appears, our playbook is to rely on the maker's fix, not to switch [B-0288]. Sensitivity (inference): a GTF-specific one-year slip, more than about 20% likely, would pull its edge below $0.5B. Nothing public supports that today. There is no doctrine premium. The chosen option (Re-engine 2011, PW GTF) is the engine's maximum among our options: +$2.077B vs Do Nothing, and $8.52B ahead of the Clean Sheet default. Airbus's best response to it is no new moves (pure Nash in options: our Re-engine against Airbus A1).\n\n7) PREDICTION OF AIRBUS. No new launches and no cancel. Airbus's only other lever is to cancel the a320neo, which our estimate says would cut its delta PV from +1.30 to about -6.27 against our Re-engine. The program is winning orders, including this record split from a Boeing loyalist. Probability of no new moves is about 97%. We discount Airbus's performance and EIS claims until they are demonstrated [B-2381, B-2364, B-0068], and we expect aggressive pricing of the current A320 to bridge customers [B-2356, B-2357]. Our pricing answer is stable prices with room to compete, not fire sales [B-0273, B-0003, B-0226].\n\n8) EXPECTED DELTA PV WITH A PRIVATE SLIP ALLOWANCE. Base -2.259. Section 3 slip prior for a Re-engine: up to 1 year, and we take an expected 0.5 year given our biases on optimistic schedules and underestimated derivatives [B-0041, B-0142]. A one-year slip costs about $1.0B: about $0.87B of later operating profit plus about $0.16B of alpha-loaded extension capex. That gives -2.259 - 0.52 = -2.78 with about 97% weight. An Airbus cancel gives about +4.0 after the slip, with about 3% weight. Expected: about -2.6.\n\n9) TIME LOCK. This decision rests only on the 2010 profile, evidence dated before December 2010, the game's Turn 1-2 reports and the engine's figures. Where general recollection of later events came to mind, I set it aside unused. That includes any recollection of what either company actually chose or how any program or engine later performed.",
+     "disclose": [
+      "Boeing has launched a Re-engine of the 737 in 2011, powered by the Pratt & Whitney PW1000G geared turbofan, with entry into service planned for 2017.",
+      "An all-new single-aisle airplane remains under study for a later date. Boeing will launch it only when technology delivers a step-change improvement at a fair return.",
+      "737 production remains on plan to reach 38 airplanes a month in 2013."
+     ],
+     "prediction": {
+      "launch": [],
+      "cancel": []
+     },
+     "expected_delta_pv_b": -2.6
+    },
+    "airbus": {
+     "public_statement": "The A320neo is on track, and the market is answering. This year a historically all-Boeing major US airline chose the A320neo in a record single-aisle order. That is the clearest sign yet that operators want new-engine efficiency this decade, not in the 2020s. The A320neo with the Pratt & Whitney PW1000G geared turbofan brings a step change in fuel burn, noise and emissions, far beyond the 2% increments on offer elsewhere. It keeps full commonality with the A320-family fleets our customers already fly. Development is under way, and we are committed to entry into service in 2015. We are raising single-aisle production to meet demand, and we are building the A320neo and the A350 XWB in parallel with the resources to do both. We are funding the A320neo ourselves, and we will let our customers' orders answer any debate about how our aircraft are financed. Whatever our competitor decides, and whenever it decides, the A320neo will already be flying for our customers.",
+     "rationale": "SITUATION AND CLASSIFICATION. Boeing's public moves so far are a Rate Increase committed in 2010 and no narrowbody launch. Its Turn 1 statement keeps two paths open (a 737 Re-engine, or an all-new airplane around 2020) and promises a decision early in 2011. So Boeing is still in Do Nothing plus Rate Increase, with a launch decision due this period. This turn's inject favours us. A historically all-Boeing major US airline split a record narrowbody order with the A320neo. Boeing loses 3 pp of narrowbody share for five years unless it commits to an A320neo competitor by the end of 2011. Matching rows: 'fuel spike, order boom or split (injects): each strengthens holding' [B-0234, A-0015]; Rate Increase: hold the neo and say we raise rates too [A-0019, A-0020, B-0274]; Boeing Re-engine or clean sheet: keep the neo, no cancel [A-0015, A-0008, A-0001, A-0002, A-0005]. Our only lever this turn is cancel. The launch (2010) and engine (pw_gtf) are locked from Turn 1.\n\nENGINE NUMBERS (whatif, our full-game delta PV, $B; market capture multiplier 1.05; GTF margin at EIS 12.5%). Hold against Boeing Do Nothing: +7.916 (narrowbody operating +13.297, capex -2.018, strain -3.363; our 2030 narrowbody share 65%). Hold against a Boeing Re-engine launched in 2011 (EIS 2017): +1.300 (narrowbody operating +6.682; 2030 share 54.5%). Hold against a clean sheet in 2011 (EIS 2020): +1.602. Hold against later Boeing launches: Re-engine in 2012 +2.971, 2013 +3.889, 2014 +4.733; clean sheet in 2012 +3.354, 2013 +4.341, 2014 +4.875. Cancel: -2.064 against Do Nothing, -6.335 against a 2011 Re-engine, -5.617 against a 2011 clean sheet, and -4.175 to -5.360 against later launches. Holding beats cancelling by $7.1B to $10.0B in every case. In `options --compact`, the only pure Nash is Boeing Re-engine against our 'no new moves' (Boeing -2.892, Airbus +1.300).\n\nCANCEL TEST (section 9.6). Not met on either leg. Cancelling never gains; it loses at least $7.1B. And no Boeing narrowbody can enter service before ours: the earliest possible is a 2011 Re-engine in 2017, against our 2015. A neo slip of 0-1 year [A-0007, A-0014, B-0173] would still leave us first. In Turn 1, moving our EIS one year later cost $0.28-0.74B, far from changing this answer. Hard rule kept: no cancel.\n\nWAITING AND ENGINE TESTS. Not applicable: already launched in 2010, engine locked. The market report says a GTF-only offer shuts out CFM-loyal operators. We have no engine lever this turn. The Turn 1 engine test (pw_gtf ahead by $1.0-1.35B in every case) stands, and our share-over-margin bias [A-0002, A-0010, A-0015] cannot act here.\n\nDOCTRINE PREMIUM. None ($0). Holding is both the doctrine answer and the engine's highest-PV option.\n\nSTATEMENT AND DISCLOSURES. Bold on performance, as is our habit [A-0027]. We commit to EIS 2015, never earlier (the engine's tech-ready year), and name the engine. We give no price or rate numbers, since our announced price increases did not stick [A-0010]. We say we raise rates in parallel [A-0019, B-0274]. We state an intention to self-fund, to give Boeing no new WTO target after the 2010 ruling [A-0025, A-0021] (profile inference). We also cite the split order, which is public in the game. We disclose no thresholds.\n\nPREDICTION: Boeing launches b737next Re-engine this turn; no cancel; no new rate increase (it committed its increase in 2010, and `options` shows no rate lever for it this turn). This departs from the profile's weak prior (section 9.8) that a clean sheet is somewhat more likely than a Re-engine [B-0277, B-0285]. The reasons all come from pre-December-2010 evidence and this game. (1) Boeing says a new narrowbody means '2020 timing' and that it 'would probably have to address changes to the 777 before that' [B-0289]. A clean-sheet launch in 2011 therefore conflicts with its own sequencing. (2) Boeing said the 737 re-engine decision would come 'a little quicker than the final 777 decision' [B-0221]. It also has a budget wedge to move quickly [B-0233]. (3) Customers drive the choice [B-0234, B-0277]. The inject shows a loyal Boeing customer defecting. Boeing's Turn 1 statement says 'our customers will make that decision with us'. (4) In the engine, a Re-engine is Boeing's best response: about -2.89 against -4.34 for Do Nothing (the gap now includes the 3 pp inject penalty) and about -11.2 for a clean sheet. (5) Boeing's own logic [B-0276, B-0282] does allow a re-engine once the new airplane is pushed out to the 2020s [B-0285: 'conceivable']. Rough weights: Re-engine in 2011 50%; clean sheet in 2011 15%; Do Nothing this turn 35% (a later Re-engine 20%, a later clean sheet 10%, no launch before 2015 5%). If Boeing re-engines, its EIS is 2017 at the earliest, a two-year lead for us. If it goes clean sheet, the neo is our bridge, and we expect Boeing's schedule to slip beyond 2020 [B-0205, B-0213].\n\nEXPECTED dPV. 0.50 x 1.300 + 0.15 x 1.602 + 0.20 x 3.43 (mid of 2.971-3.889) + 0.10 x 4.19 (mid of 3.354-4.875) + 0.05 x 7.916 = 2.39. Less about 0.2 for a possible neo slip of 0-1 year [A-0007, A-0014]: about 2.2.\n\nTIME LOCK. This decision uses only the airbus_2010 profile, its evidence (all dated before December 2010), the game's public record for Turns 1-2 and engine outputs. I set aside any general recollection of later events. The Boeing forecast rests only on the evidence ids and engine figures cited above. No knowledge from after 30 November 2010 was used.",
+     "disclose": [
+      "The A320neo remains on schedule for entry into service in 2015.",
+      "The A320neo is powered by the Pratt & Whitney PW1000G geared turbofan.",
+      "A historically all-Boeing major US airline has ordered the A320neo as part of a record narrowbody order.",
+      "Airbus intends to fund A320neo development without new launch aid."
+     ],
+     "prediction": {
+      "launch": [
+       {
+        "program": "b737next",
+        "variant": "reengine"
+       }
+      ],
+      "cancel": [],
+      "rate_increase": false
+     },
+     "expected_delta_pv_b": 2.2
+    }
+   },
+   "market": {
+    "capture_mult": {
+     "a320neo": 1.08,
+     "b737next": 0.95
+    }
+   },
+   "market_narrative": "The record split order from a historically all-Boeing US major is the signal of the period: the A320neo now has a marquee customer, a 2015 date that has held, and self-funding that ends the launch-aid argument, so lessors turn pencilled slots into firm positions. Boeing's 737 re-engine stops the losses: loyal operators keep airframe commonality, and 38/month protects near-term deliveries. But choosing the PW1000G breaks engine commonality with an all-CFM56 737 fleet, puts Boeing behind Airbus in the same first-generation GTF supply queue, and arrives two years later; open talk of a later all-new jet gives some buyers a reason to wait. Net: Boeing holds its base, Airbus gains momentum."
+  },
+  {
+   "turn": 3,
+   "years": [
+    2012,
+    2013
+   ],
+   "injects": [
+    "boeing_787_setbacks"
+   ],
+   "orders": {
+    "boeing": {
+     "launch": [],
+     "cancel": [],
+     "rate_increase": false
+    },
+    "airbus": {
+     "launch": [],
+     "cancel": [],
+     "delay_tactics": false,
+     "poaching": false
+    }
+   },
+   "statements": {
+    "boeing": {
+     "public_statement": "Our first priority is to work through the latest 787 issues and deliver the airplane our customers have been waiting for. We are adding resources to do that, as we have before. That work will not come at the expense of the 737. The new-engine 737 program continues on plan for entry into service in 2017. Its engineering team is dedicated to it and will stay dedicated to it, and we built margin into that schedule so that we can keep our commitment. We are working hand in hand with Pratt & Whitney and our suppliers to secure engine deliveries for our customers. We are also supporting operators as they bring a new engine into their 737 fleets, with training and maintenance programs. Customers told us they want new-engine efficiency this decade on the airplane they already fly, and that is our single-aisle answer. We do not plan an all-new single-aisle this decade. Operators can order the new-engine 737 knowing it is the airplane they will fly for many years. The Next-Generation 737 keeps improving, and we remain on plan to build 38 airplanes a month in 2013 on a backlog of more than 2,000 airplanes. Airbus says the A320neo is on track. We will judge it, as we judge ourselves, on demonstrated performance. Airbus says it will fund the A320neo without new launch aid. The WTO found every instance of launch aid challenged by the United States to be illegal, and we will continue to insist that it be removed. We will price the 737 to compete, and we will not buy share with bad deals.",
+     "rationale": "1) WHICH RULES APPLY. The only live lever is Cancel on the 737 Re-engine (launched 2011, PW1000G, EIS 2017). Engine, variant and launch are locked, and the Rate Increase was used in 2010. This turn carries the boeing_787_setbacks inject. Reaction row 13 (our own program slips; strong) says: protect the program, spend to hold its schedule, embed staff, never cancel, and hold any FURTHER development until engineering capacity frees up [B-0040, B-0048, B-0073, B-0216, B-0248, B-0091, B-0130]. Its war-game translation is explicit: 'Never cancel an already-launched b737next because of it.' Reaction row 14 (launched program; strong): cancel only if expected revenues no longer outweigh remaining costs AND the airplane has lost its competitive edge [B-0153, B-0192, B-0141, B-0072]. Section 6 default for Turn 3 is 'Cancel: No'. Section 9 step 6 forbids launching in a setback turn; we launch nothing.\n\n2) ENGINE NUMBERS (whatif, full-game delta PV, $B, PV to 2010). Keep vs Airbus no new moves: -2.304 (nb operating +2.091, capex -3.662, strain -0.733; NB share 2030 45.4%). Cancel now (2012) vs Airbus no new moves: -5.620 (nb operating -3.092, capex -1.795; NB share 2030 35.0%). Keep vs Airbus cancels a320neo: +4.455. Cancel vs Airbus cancels: -1.671. Keep now and cancel in Turn 4: -6.498. Keeping beats cancelling by $3.316B if Airbus stands pat and by $6.126B if Airbus cancels, so Keep strictly dominates. The options table gives one pure Nash: Boeing no new moves / Airbus no new moves. The inject does not change our strain line (-0.733, same as Turn 2), because it prices only NEW programs run alongside the 787. It therefore adds no cost to keeping the Re-engine.\n\n3) B-0153 TEST (the only doctrinal ground for Cancel). Remaining costs: keeping adds about $1.87B of alpha-loaded capex PV (-3.662 vs -1.795). Expected revenues: keeping adds about $5.18B of narrowbody operating PV (+2.091 vs -3.092). Revenues outweigh remaining costs by $3.3B. Competitive edge: the Re-engine freezes the A320neo's share capture at our 2017 EIS, holds 45.4% of narrowbodies against 35.0% if cancelled, and earns a 13.5% margin at EIS. Both limbs of the test say continue. Cancel also breaks objective 1 (deliver on our commitments [B-0040]), and it would hand the Boeing-loyal base to the A320neo in the same period in which a historic Boeing customer split an order [B-0004, B-0277]. As on the 747-8 [B-0192, B-0141], we take the pressure and keep going.\n\n4) HOW WE MANAGE THE INJECT (inside the program, not by cancelling). Following the 787 and 747-8 lessons, where recovery work starved the next program of engineers [B-0091, B-0248] and peaks overlapped against plan [B-0216]: (a) ring-fence the Re-engine's engineering team from 787 recovery; (b) keep the 2017 date, which already carries schedule margin [B-0214, B-0048]; (c) embed Boeing staff with Pratt & Whitney and nacelle and strut suppliers early [B-0073], and rely on the maker's fixes rather than switching [B-0288]; (d) push any all-new single-aisle study out past this decade. That is our 'next program waits' reflex [B-0216, B-0130]. It also closes the market report's point that open talk of a later all-new jet gives buyers a reason to wait. Our own rule says a re-engine makes sense only if the new airplane is 10-15 years away [B-0282], and two developments within 4-5 years 'makes no sense' [B-0276]. The market report flags the lost CFM56 engine commonality and the GTF supply-queue position. Both are locked. We answer them through customer support (training and maintenance transition), our pricing room [B-0273], and supplier-priority work with the engine maker. We do not buy share with bad deals [B-0226, B-0003].\n\n5) DOCTRINE PREMIUM. None. Keep is the engine's maximum in every state: +$3.32B over Cancel against Airbus no new moves, +$6.13B against an Airbus cancel. No PV is given up.\n\n6) PREDICTION OF AIRBUS. No launches, no cancel (about 98%). The engine prices an a320neo cancel at -7.36 for Airbus, against +1.35 for standing pat. Its program has a marquee order, a held 2015 date and self-funding. We still treat its claims as undemonstrated until flying [B-2381, B-2364, B-0068]. We expect it to keep raising rates harder than we do [B-2374] and to price the current A320 aggressively to bridge customers [B-2356]. Its 'no new launch aid' pledge is an unverifiable intention. We contest subsidies through the WTO record [B-2379, B-2375] and do not treat the pledge as settled. We also expect Airbus to hit its own supply-chain strain running the A350 and the A320neo in parallel [B-2367, B-2368]. Its engine-side strain estimate is -3.36.\n\n7) EXPECTED DELTA PV WITH A PRIVATE SLIP ALLOWANCE. Base -2.304. The section 3 prior for a Re-engine is up to 1 year. Last turn we took 0.5 year. We raise it to about 0.6 year this turn, because 787 setbacks historically pulled engineers off the next program [B-0091, B-0248] and we carry known biases toward optimistic schedules and underestimated derivatives [B-0041, B-0142, B-0169, B-0173]. A one-year slip costs about $1.0B (Turn 2 estimate: lost operating profit plus extension capex), so -2.304 - 0.6 = about -2.90 at 98% weight. Airbus cancel: +4.455 - 0.6 = about +3.86 at 2% weight. Expected: about -2.76.\n\n8) TIME LOCK. This decision rests only on the 2010 profile, evidence dated before December 2010, the game's Turn 1-3 reports and injects, and the engine's figures. Where general recollection of later events came to mind (how either program, engine or the 787 actually fared after 2010, or what either company later decided), I set it aside unused. The 787 setback is treated only as the game's generic inject.",
+     "disclose": [
+      "The 737 Re-engine program continues, with no change to scope, engine (Pratt & Whitney PW1000G) or planned entry into service in 2017.",
+      "Engineering resources for the 737 Re-engine are dedicated to that program and will not be diverted to 787 recovery work.",
+      "Boeing does not plan to launch an all-new single-aisle airplane this decade.",
+      "737 production remains on plan to reach 38 airplanes a month in 2013."
+     ],
+     "prediction": {
+      "launch": [],
+      "cancel": []
+     },
+     "expected_delta_pv_b": -2.76
+    },
+    "airbus": {
+     "public_statement": "The A320neo is on schedule, and our customers are making it the reference in the single-aisle market. Development is well advanced, and we remain committed to entry into service in 2015. That is two years before the competing re-engined aircraft. The A320neo with the Pratt & Whitney PW1000G geared turbofan brings a step change in fuel burn, noise and emissions. It keeps full commonality with the A320-family fleets our operators already fly, so airlines can add it without disruption. Lessors and airlines are turning their positions into firm orders, and we are raising single-aisle production to deliver them. We are developing the A320neo and the A350 XWB in parallel, on our own balance sheet and without new launch aid. We will let our customers' orders, and the aircraft itself, answer every question about performance and financing. We compete on delivered fuel burn and on dates we keep.",
+     "rationale": "SITUATION AND CLASSIFICATION. Boeing launched a 737 Re-engine in 2011 with the PW1000G, entry into service 2017, and committed its Rate Increase in 2010. Its statement confirms a clean sheet stays under study for later. So Boeing is Re-engine plus Rate Increase. Matching rows: Re-engine, keep the neo, no cancel [A-0015, A-0008]; Rate Increase, hold the neo and say we raise rates too [A-0019, A-0020, B-0274]. This period's inject (more 787 setbacks: any new Boeing program run in parallel costs Boeing 50% more) matches the 'Boeing stumbles' row: hold the plan, and market our own capabilities harder [A-0027, B-0205, B-0213]. The inject raises Boeing's cost of moving. It is no reason for us to change course. Our only lever is cancel; launch (2010), engine (pw_gtf) and EIS (2015) are locked. The market report is favourable: capture multiplier up to 1.08 (from 1.05), the 2015 date has held, lessors are firming slots, and Boeing sits behind us in the same GTF supply queue with a service entry two years later.\n\nENGINE NUMBERS (whatif, our full-game delta PV, $B). Hold against Boeing 'no new moves': +1.354 (narrowbody operating +6.735, capex -2.018, strain -3.363; Airbus narrowbody share 54.6% from 2030). Cancel against Boeing 'no new moves': -7.358 (narrowbody operating -4.955, capex -0.901, strain -1.502; our 2030 share 35%). Hold against a Boeing cancel of its Re-engine: +7.970 (share 65%, the cap). Cancel against a Boeing cancel: -3.220. Holding beats cancelling by $8.71B if Boeing holds and by $11.19B if Boeing cancels. Cancelling would save about $2.98B of capex and strain, but it would give up about $11.7B of narrowbody operating value. In `options --compact`, the only pure Nash is 'no new moves' for both sides (Boeing -2.304, Airbus +1.354). There are no near-Nash cells within $1.0B.\n\nCANCEL TEST (section 9.6). Not met on either leg. (1) Cancelling never gains; it loses $8.7-11.2B. (2) Boeing's new narrowbody does not enter service before ours: 2017 against our 2015. Our slip prior of 0-1 year [A-0007, A-0014, B-0173] still leaves us first. In Turn 1 a one-year EIS shift cost $0.28-0.74B. Any Boeing slip from 787 engineering strain would only widen our lead [B-0205, B-0213] (inference). Hard rule kept: no cancel.\n\nWAITING AND ENGINE TESTS. Not applicable: launched in 2010, engine locked. The Turn 1 engine test (pw_gtf ahead by $1.0-1.35B in every case) stands.\n\nDOCTRINE PREMIUM. None ($0). Holding is both the doctrine answer and the engine's highest-PV option.\n\nSTATEMENT AND DISCLOSURES. Bold on performance, as is our habit [A-0027], but every disclosure is kept verifiable to avoid over-claiming (section 8). We restate EIS 2015, never earlier (the tech-ready year), and the PW1000G. We say the neo arrives two years before the competing Re-engine (public in the game). We say we are raising single-aisle production, with no rate or price numbers, since our announced price increases did not stick [A-0010]. We restate self-funding: no new launch aid, so Boeing has no new WTO target after the 2010 ruling [A-0025, A-0021] (profile inference). We say nothing that mocks the 787, and we disclose no thresholds.\n\nPREDICTION: Boeing makes no new moves. No launch, no cancel, no new Rate Increase. Reasons, all from pre-December-2010 evidence and this game. (1) Its only levers this turn are 'no new moves' and 'cancel b737next'. On my estimate, cancelling costs Boeing about $3.3B (-5.620 against -2.304). (2) Boeing rarely kills a program it believes in [B-0153, B-0192]. Its Turn 2 statement says it has built margin into the 2017 schedule and that the program 'fits within our R&D plan and our balance sheet'. (3) Its Rate Increase was committed in 2010 [B-0269, B-0284] and was restated as on plan for 2013. (4) The 787 setbacks inject makes any extra Boeing program 50% more costly. Boeing already calls two developments in four or five years 'no sense' [B-0276] and puts the 777 before a new single-aisle [B-0289]. A clean sheet is therefore off the table this period (inference). Weights: hold 97%, cancel 3%.\n\nEXPECTED dPV. 0.97 x 1.354 + 0.03 x 7.970 = 1.55. Less about 0.15 for a possible neo slip of 0-1 year [A-0007, A-0014] (Turn 1 slip cost $0.28-0.74B at roughly 25% probability): about 1.4. Turn 4 injects are unknown and could move this either way.\n\nTIME LOCK. This decision uses only the airbus_2010 profile, its evidence (all dated before December 2010), the game's public record for Turns 1-3 and engine outputs. I set aside any general recollection of later events, including how either re-engine program actually unfolded. No knowledge from after 30 November 2010 was used.",
+     "disclose": [
+      "The A320neo remains on schedule for entry into service in 2015.",
+      "The A320neo is powered by the Pratt & Whitney PW1000G geared turbofan.",
+      "Airbus is raising A320-family production to meet demand.",
+      "Airbus is funding A320neo development without new launch aid."
+     ],
+     "prediction": {
+      "launch": [],
+      "cancel": [],
+      "rate_increase": false
+     },
+     "expected_delta_pv_b": 1.4
+    }
+   },
+   "market": {
+    "capture_mult": {
+     "a320neo": 1.08,
+     "b737next": 0.95
+    }
+   },
+   "market_narrative": "More 787 trouble revives doubts about Boeing's engineering bandwidth, and its claim that the 737 re-engine team is ring-fenced cannot yet be verified. But its pledge of no all-new single-aisle this decade removes the main reason 737 operators had to wait, so loyal customers firm up new-engine 737 orders. Airbus offered nothing new: the A320neo's 2015 date has held for a third period and production is rising, so lessors keep their positions, but that lead is already priced in. Pratt & Whitney now carries both programs on a first-generation GTF, a shared supply risk that favours neither airframer. Net: no change; both multipliers hold."
+  },
+  {
+   "turn": 4,
+   "years": [
+    2014,
+    2015
+   ],
+   "injects": [
+    "order_boom"
+   ],
+   "orders": {
+    "boeing": {
+     "launch": [],
+     "cancel": [],
+     "rate_increase": false
+    },
+    "airbus": {
+     "launch": [],
+     "cancel": [],
+     "delay_tactics": false,
+     "poaching": false
+    }
+   },
+   "statements": {
+    "boeing": {
+     "public_statement": "The record orders we are seeing from Asian and low-cost carriers confirm what our customers told us: they want new-engine efficiency on the airplane they already fly. The new-engine 737 remains on plan for entry into service in 2017 with the Pratt & Whitney PW1000G geared turbofan, with no change to its scope. Its engineering team remains dedicated to it, we built margin into the schedule, and Boeing people are working alongside Pratt & Whitney and our key suppliers to keep engines and parts arriving on time. We do not plan an all-new single-aisle this decade, so operators can order the new-engine 737 knowing it is the airplane they will fly for many years. Demand for the 737 is strong. We will consider further production increases the way we always have: only when the demand is visible, the business case is sound and our suppliers are ready, and with ample notice to our supply chain. We will not get beyond our headlights, and we will not buy share with bad deals. Our first priority remains delivering the airplanes we have promised, the 787 among them, while keeping our balance sheet strong. Airbus says the A320neo enters service this period. We welcome a contest decided on delivered fuel burn and on dates kept, and we will judge every airplane, ours included, on demonstrated performance in airline service. We will price the 737 to compete, and we will continue to insist that illegal launch aid be removed.",
+     "rationale": "1) WHICH RULES APPLY. The only live lever is Cancel on the 737 Re-engine (launched 2011, PW1000G, EIS 2017). Launch, variant and engine are locked. The Rate Increase was used in 2010 and is not available. This turn's inject is order_boom: narrowbody deliveries run 10% higher for five years. Reaction row 12 (demand recovery or order boom led by single-aisle, emerging-market and low-cost carriers; strong): raise 737 rates in measured steps once demand is visible and suppliers are ready [B-0269, B-0270, B-0284, B-0268, B-0191, B-0163]. Its war-game translation says the order_boom confirms the Rate Increase, which we took in Turn 1, so the boom confirms our path and prompts no program change. Reaction row 14 (launched program; strong): take the charge and keep going; cancel only if expected revenues no longer outweigh remaining costs AND the airplane has lost its competitive edge [B-0153, B-0192, B-0141, B-0072]. Its translation: Cancel is almost never used on b737next. The Section 6 default for Turn 4 is 'Execute; Cancel only if it fails the B-0153 test'. No 787 setback and no downturn or supply inject lands this turn.\n\n2) ENGINE NUMBERS (options and whatif, full-game delta PV, $B, PV to 2010). Keep vs Airbus no new moves: -2.246 (nb operating +2.149, capex -3.662, strain -0.733; NB share 2030 45.4%). Keep vs Airbus cancels a320neo: +4.586 (NB share 65.0%). Cancel now vs Airbus no new moves: -6.510 (nb operating -3.105, capex -2.672, strain -0.733; NB share 2030 35.0%). Cancel vs Airbus cancels: -2.519. Keep beats Cancel by $4.264B if Airbus stands pat and by $7.105B if Airbus cancels, so Keep strictly dominates. Options table: one pure Nash, Boeing no new moves / Airbus no new moves (-2.246 / +1.566), and no near-Nash alternatives. The boom lifts our Keep projection from -2.304 last turn to -2.246 (+$0.058B). The gap between Keep and Cancel has widened from $3.316B in Turn 3 to $4.264B: more capex is already sunk, and the boom enlarges the market a cancelled program would hand to the A320neo.\n\n3) B-0153 TEST (the only doctrinal ground for Cancel). Remaining costs: keeping adds about $0.99B of alpha-loaded capex PV (-3.662 vs -2.672). Expected revenues: keeping adds about $5.25B of narrowbody operating PV (+2.149 vs -3.105). Revenues outweigh remaining costs by about $4.26B. Competitive edge: the Re-engine freezes the A320neo's capture at our 2017 EIS, holds 45.4% of narrowbodies against 35.0% if cancelled, and earns a 13.5% margin at EIS against 12% on the 737NG. Both limbs say continue. Cancelling would also break objective 1 (deliver on our commitments [B-0040, B-0035]) and our Turn 3 public pledges, and it would leave loyal operators with no new-engine 737 in a record order market, the same customers who firmed up new-engine 737 orders after our 'no all-new single-aisle this decade' pledge (Turn 3 market report) [B-0004, B-0277]. As on the 747-8, we take the pressure and keep going [B-0192, B-0141, B-0243].\n\n4) HOW WE USE THE BOOM (outside this game's levers). Following row 12: we tell the market we will assess further 737 production increases above 38 a month only on our three tests: visible demand, a sound business case and supplier readiness [B-0070, B-0270, B-0268], with at least ten months' notice [B-0191], 'without getting beyond our headlights' [B-0124]. Our bias is toward raising over time [B-0042]. We do not match Airbus's rate moves [B-2374, B-0186]. Airbus raising rates at the same time strains shared suppliers [B-0274], so supplier readiness comes before any number. We give no specific future rate and no share target [B-0060, B-0214]. Pricing stays stable with room to compete, no fire sales and no bad deals [B-0273, B-0003, B-0226]. The Section 2 capital order also holds: extra boom cash flow goes to development and the balance sheet before any buybacks while the Re-engine and the 787 still carry development risk [B-0232, B-0201]. We note our bias toward returning cash while risk is open [B-0050] and do not act on it.\n\n5) EXECUTION RISK, MANAGED INSIDE THE PROGRAM. The market report flags the shared first-generation GTF supply queue, with Airbus ahead of us. It also flags doubts about our engineering bandwidth after the 2012-13 787 setbacks. Row 15 (supply or engine problems): embed Boeing staff with Pratt & Whitney and key suppliers, rely on the engine maker's fix rather than switching, and qualify no new source mid-program, since that takes a year or more [B-0073, B-0288, B-0184]. The engine is locked anyway. Row 13: keep the Re-engine team ring-fenced from 787 work [B-0091, B-0248, B-0216] and keep the 2017 date, which carries schedule margin [B-0214, B-0048].\n\n6) DOCTRINE PREMIUM. None. Keep is the engine's maximum in both Airbus states (+$4.264B over Cancel against Airbus no new moves, +$7.105B against an Airbus cancel). No PV is given up.\n\n7) PREDICTION OF AIRBUS. No launches, no cancel (about 98%). Our estimate of Airbus's payoff: +1.566 if it stands pat against our Keep, -9.471 if it cancels the a320neo. Its program has held its 2015 date for three periods, has marquee orders and now has a record boom to sell into. Airbus has no other lever. We expect it to keep ramping harder than we do [B-2374] and to price aggressively where it needs to bridge customers [B-2356]. We treat its fuel-burn claims as unproven until shown in airline service [B-2381, B-2364, B-0068]. We expect it to meet the strain of running the A350 and the A320neo in parallel (engine estimate of its strain: -3.363) [B-2367, B-2368]. Its 'no new launch aid' pledge is an unverifiable intention, and the WTO record stands [B-2379].\n\n8) EXPECTED DELTA PV WITH A PRIVATE SLIP ALLOWANCE. Base -2.246. The Section 3 prior for a Re-engine is up to 1 year. We take an expected 0.5 year. That is down from 0.6 in Turn 3, because no new 787 setback lands this turn and the program is further along. It is not lower, because the boom and Airbus's own ramp press on shared suppliers [B-0274], the GTF queue is shared, and we carry known biases toward optimistic schedules and underestimated derivatives [B-0041, B-0142, B-0169, B-0173]. A one-year slip costs about $1.0B (Turn 2 estimate: lost operating profit plus 10%-a-year extension capex, alpha-loaded). So: 0.98 x (-2.246 - 0.5) + 0.02 x (4.586 - 0.5) = -2.691 + 0.082 = about -2.61.\n\n9) TIME LOCK. This decision rests only on the 2010 profile, evidence dated before December 2010, the game's Turn 1-4 reports and injects, and the engine's figures. Where general recollection of later events came to mind (how either program, engine or the 787 actually fared after 2010, later production rates, product names, or what either company later decided), I set it aside unused. The GTF supply risk is treated only as the game's market-report flag, and the boom only as the game's generic inject.",
+     "disclose": [
+      "The 737 Re-engine continues with no change to scope, engine (Pratt & Whitney PW1000G) or planned entry into service in 2017. Boeing is not cancelling or re-scoping the program.",
+      "Boeing does not plan to launch an all-new single-aisle airplane this decade.",
+      "Boeing staff are embedded with Pratt & Whitney and key 737 suppliers to protect engine and part deliveries for the 2017 entry into service.",
+      "Boeing is assessing further 737 production increases above 38 a month. It will decide only on visible demand, a sound business case and supplier readiness, and will give suppliers at least ten months' notice."
+     ],
+     "prediction": {
+      "launch": [],
+      "cancel": []
+     },
+     "expected_delta_pv_b": -2.61
+    },
+    "airbus": {
+     "public_statement": "Single-aisle demand has never been stronger. Asian and low-cost carriers placed record narrowbody orders this period, and the A320 family is ready to deliver them. The A320neo is in the final stage of development and on schedule. We remain committed to entry into service in 2015, two years before the competing re-engined aircraft. The A320neo with the Pratt & Whitney PW1000G geared turbofan brings a step change in fuel burn, noise and emissions. It keeps full commonality with the A320-family fleets our customers already fly, so airlines can add it to their fleets from day one. We are working hand in hand with Pratt & Whitney to mature the new engine and secure deliveries, because a record backlog is worth only what we deliver. We are raising single-aisle production to meet demand. We have developed the A320neo alongside the A350 XWB on our own balance sheet, without new launch aid. We will let the aircraft in service, and our customers' orders, answer every question about performance and financing. We compete on delivered fuel burn and on dates we keep.",
+     "rationale": "SITUATION AND CLASSIFICATION. Boeing launched a 737 Re-engine in 2011 with the PW1000G, with entry into service in 2017. It committed its Rate Increase in 2010. In 2012-13 it restated both, pledged no all-new single-aisle this decade and said its Re-engine engineering is ring-fenced from 787 recovery. The referee notes that last claim is not verifiable. So Boeing is Re-engine plus Rate Increase, holding. The matching rows are: Re-engine, keep the neo, no cancel [A-0015, A-0008]; Rate Increase, hold the neo and say we raise rates too [A-0019, A-0020, B-0274]; Boeing stumbles, since the 787 setbacks are still in the background, hold the plan and market our capabilities harder [A-0027, B-0205, B-0213]. This period's inject is a record narrowbody order boom, with deliveries 10% higher for five years. It matches the 'fuel spike, order boom or split' row: it strengthens holding and flips nothing [B-0234, A-0015]. Our only lever is cancel. Launch (2010), engine (pw_gtf) and EIS (2015) are locked. Both capture multipliers held: ours 1.08, Boeing's 0.95.\n\nENGINE NUMBERS (whatif; our full-game delta PV in $B, PV to 2010 at 8%). Hold against Boeing 'no new moves': +1.566. That breaks down as narrowbody operating +6.947, capex -2.018 and strain -3.363, with our narrowbody share at 54.6% from 2030. The order boom lifted the hold value from +1.354 in Turn 3. Cancel against Boeing 'no new moves': -9.471 (narrowbody operating -5.007, capex -1.674, strain -2.790, share 35%). Hold against a Boeing cancel of its Re-engine: +8.252 (share 65%, the leader cap). Cancel against a Boeing cancel: -5.305. Holding beats cancelling by $11.04B if Boeing holds and by $13.56B if Boeing cancels. By 2014 almost all capex and strain are sunk: cancelling saves only about $0.34B of capex and $0.57B of strain, but gives up about $11.95B of narrowbody operating value. The `options --compact` output shows one pure Nash, 'no new moves' for both sides (Boeing -2.246, Airbus +1.566), and no near-Nash cells within $1.0B.\n\nCANCEL TEST (section 9.6). Neither leg is met. (1) Cancelling never gains; it loses $11.0-13.6B. (2) Boeing's new narrowbody does not enter service before ours: 2017 against our 2015. Our slip prior is 0-1 year [A-0007, A-0014, B-0173]. Even a one-year slip to 2016 leaves us first. Whatif cannot model a slip (it ignored a 'slips' field), so I use the Turn 1 proxy: one year of EIS delay cost $0.28-0.74B, far too little to change this answer. The GTF supply risk named in the market report is shared with Boeing's Re-engine and favours neither side. It is a slip risk, not a cancel reason, under the supply-chain row [A-0013, A-0014]. The hard rule holds: no cancel.\n\nWAITING AND ENGINE TESTS. These do not apply: the neo launched in 2010 and the engine is locked. The Turn 1 engine test stands: pw_gtf led by $1.0-1.35B in every case.\n\nDOCTRINE PREMIUM. None ($0). Holding is both the doctrine answer and the engine's highest-PV option.\n\nSTATEMENT AND DISCLOSURES. The statement is bold on performance, as is our habit [A-0027]. Every disclosure is kept verifiable to avoid over-claiming (section 8). We restate EIS 2015, never earlier, since 2015 is the tech-ready year. We restate the PW1000G. We say the neo arrives two years before the competing Re-engine, which is public in the game. We say we are raising single-aisle production against the order boom, with no rate or price numbers, because our announced price increases did not stick [A-0010]. Our aggressive-ramp bias [A-0019] carries deferral risk [B-0186], so we promise no figures. We restate self-funding without new launch aid, so Boeing has no new WTO target after the 2010 ruling [A-0025, A-0021] (profile inference). We name joint work with Pratt & Whitney on engine maturity as an intention. We say nothing about the 787 and disclose no thresholds.\n\nPREDICTION. Boeing makes no new moves: no launch, no cancel and no new Rate Increase. The reasons come only from pre-December-2010 evidence and this game. (1) Boeing's only levers are 'no new moves' and 'cancel b737next'. On my estimate, cancelling costs Boeing $4.26B (-6.510 against -2.246). The order boom has widened that gap from about $3.3B in Turn 3. (2) Boeing rarely kills a program it believes in [B-0153, B-0192]. It has restated EIS 2017 and dedicated engineering twice. (3) Its Rate Increase was committed in 2010 [B-0269, B-0284], and it has no new rate lever in `options`. (4) Its pledge of no all-new single-aisle this decade, together with its view that two developments in four or five years 'makes no sense' [B-0276] and its 777-first sequencing [B-0289], rules out a clean sheet. Weights: hold 98%, cancel 2%.\n\nEXPECTED dPV. 0.98 x 1.566 + 0.02 x 8.252 = 1.70. I deduct about 0.15 for a possible neo slip of 0-1 year [A-0007, A-0014]: roughly a 25% chance at $0.28-0.74B. Result: about 1.55.\n\nTIME LOCK. This decision uses only the airbus_2010 profile, its evidence (all dated before December 2010), the game's public record for Turns 1-4 and engine outputs. I set aside any general recollection of later events, including how either re-engine program or its engines actually performed after 2010. No knowledge from after 30 November 2010 was used.",
+     "disclose": [
+      "The A320neo remains on schedule for entry into service in 2015.",
+      "The A320neo is powered by the Pratt & Whitney PW1000G geared turbofan. Airbus is working with Pratt & Whitney on engine maturity and delivery ramp-up for entry into service.",
+      "Airbus is raising A320-family production to meet record narrowbody demand from Asian and low-cost carriers.",
+      "Airbus is funding A320neo development without new launch aid."
+     ],
+     "prediction": {
+      "launch": [],
+      "cancel": [],
+      "rate_increase": false
+     },
+     "expected_delta_pv_b": 1.55
+    }
+   },
+   "market": {
+    "capture_mult": {
+     "a320neo": 1.08,
+     "b737next": 0.95
+    }
+   },
+   "market_narrative": "The record order boom lifts every narrowbody backlog: Asian and low-cost carriers and lessors sign for both families and slots sell out years ahead. The A320neo enters its service window with its 2015 date intact and commonality priced in, so lessors hold; as A320 slots fill, some overflow goes to the 737 re-engine. Boeing's possible rate above 38/month is only under study, and its 2017 date is still two years behind. Pratt & Whitney's first-generation GTF ramp is a shared risk. Net: both sell more, relative standing unchanged, both multipliers hold."
+  }
+ ],
+ "events": [
+  {
+   "turn": 1,
+   "text": "Inject: Quiet period - No major external shock this period.",
+   "visibility": "public",
+   "side": null
+  },
+  {
+   "turn": 1,
+   "text": "Boeing commits to a 737 rate increase from 2010 (extra share from 2012).",
+   "visibility": "public",
+   "side": null
+  },
+  {
+   "turn": 1,
+   "text": "Airbus launches A320neo (A320 re-engine) in 2010 with the Pratt & Whitney PW1000G geared turbofan; planned entry into service 2015.",
+   "visibility": "public",
+   "side": null
+  },
+  {
+   "turn": 2,
+   "text": "Inject: A loyal Boeing customer splits a record narrowbody order - A historically all-Boeing major US airline places a record narrowbody order split between Boeing and the A320neo. Unless Boeing has committed to an A320neo competitor by the end of this period, it loses 3 pp of narrowbody share for five years.",
+   "visibility": "public",
+   "side": null
+  },
+  {
+   "turn": 2,
+   "text": "Boeing launches Boeing 737 successor (re-engine or clean sheet) as a 737 re-engine (new engines on the existing airframe) in 2011 with the Pratt & Whitney PW1000G geared turbofan; planned entry into service 2017.",
+   "visibility": "public",
+   "side": null
+  },
+  {
+   "turn": 3,
+   "text": "Inject: More 787 setbacks - Further 787 problems tie up Boeing engineering. Running any new Boeing program at the same time costs 50% more.",
+   "visibility": "public",
+   "side": null
+  },
+  {
+   "turn": 4,
+   "text": "Inject: Record narrowbody order boom - Asian and low-cost carriers place record orders. Narrowbody deliveries run 10% higher for five years.",
+   "visibility": "public",
+   "side": null
+  }
+ ],
+ "delay_tactics_turns": [],
+ "poaching_turns": [],
+ "delay_tactics_exposed_year": null
+}

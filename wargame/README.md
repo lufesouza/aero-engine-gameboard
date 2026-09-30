@@ -194,6 +194,15 @@ The engine borrows its widebody economics and structural rules from the Boeing/A
 
 Treat results as a way to see how incentives interact, not as forecasts. To calibrate further, edit `config/default.json` or add a scenario file with `overrides`.
 
+## History backtests
+
+`scenarios/hist-2010-neo.json` replays 2010-2015: Airbus launches the A320neo, and Boeing chooses between re-engining the 737, a clean sheet, or waiting.
+- **Players.** It is played by `boeing-2010` and `airbus-2010`. They use **period-locked profiles** (`profiles/boeing_2010/`, `profiles/airbus_2010/`) built only from evidence dated before 1 Dec 2010, with hindsight annotations scrubbed.
+- **Isolation.** The hook blocks these players from today's profiles, the raw sources and the scenario files, which hold the real outcome in a `referee_only` field.
+- **Results.** They are in `wargame/backtests/hist2010-neo/`: the referee's report, the scorecard, and the full game record.
+
+Headline: 8 of 10 historical checkpoints match, 1 is partial and 1 misses (Boeing's engine choice, traced to the scenario's engine table). Read the report's validity caveats before relying on the matches.
+
 ## Customising
 
 - **Scenarios:** add `scenarios/<name>.json` with `title`, `narrative` and `overrides`. Overrides are deep-merged over `config/default.json`.
