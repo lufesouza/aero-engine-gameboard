@@ -1,0 +1,8 @@
+{
+  "title": "Supply crunch",
+  "narrative": "Aerospace supply chains stay tight all game: full-overlap strain is $5B instead of $3B and program capex is 20% higher.",
+  "overrides": {
+    "strain": {"full_overlap_b": 5.0},
+    "programs": {"fps": {"capex_b": 36.0}, "ngsa": {"capex_b": 30.0}, "re787": {"capex_b": 5.04}, "rea350": {"capex_b": 5.04}}
+  }
+}

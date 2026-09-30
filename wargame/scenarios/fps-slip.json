@@ -1,0 +1,7 @@
+{
+  "title": "fps slip",
+  "narrative": "Boeing's fps needs nine years of development instead of seven (a structural slip), and new-generation narrowbody technology matures in 2036.",
+  "overrides": {
+    "programs": {"fps": {"dev_years": 9, "tech_ready_year": 2036}, "ngsa": {"tech_ready_year": 2036}}
+  }
+}

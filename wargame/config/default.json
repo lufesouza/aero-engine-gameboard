@@ -1,0 +1,185 @@
+{
+  "_about": "Boeing vs Airbus war-game adjudication parameters. Money in $B (constant 2026 dollars), PV'd to years.pv_base at each player's WACC. Every value is tagged in wargame/README.md as CALIBRATED (taken from the combined_dash.py landmarks) or PLACEHOLDER (edit freely).",
+
+  "years": {"pv_base": 2026, "start": 2026, "end": 2060},
+
+  "turns": [
+    {"turn": 1, "years": [2026, 2028], "label": "Positioning"},
+    {"turn": 2, "years": [2029, 2031], "label": "Commitment"},
+    {"turn": 3, "years": [2032, 2034], "label": "Execution"},
+    {"turn": 4, "years": [2035, 2037], "label": "Entry into service"}
+  ],
+
+  "players": {
+    "boeing": {"label": "Boeing", "wacc": 0.105, "alpha": 0.30},
+    "airbus": {"label": "Airbus", "wacc": 0.08, "alpha": 0.30}
+  },
+
+  "segments": {
+    "nb": {
+      "label": "Narrowbody",
+      "units_per_year": 2000,
+      "net_price_m": 55.0,
+      "sq_share": {"boeing": 0.40, "airbus": 0.60},
+      "capture_pp_per_year": 1.5,
+      "leader_cap": {"boeing": 0.80, "airbus": 0.80}
+    },
+    "wb": {
+      "label": "Widebody",
+      "units_per_year": 170,
+      "net_price_m": 180.0,
+      "sq_share": {"boeing": 0.588, "airbus": 0.412},
+      "capture_pp_per_year": 1.0,
+      "leader_cap": {"boeing": 0.85, "airbus": 0.60}
+    }
+  },
+
+  "incumbents": {
+    "boeing": {
+      "nb": {"label": "737 MAX", "margin": 0.08},
+      "wb": {"label": "787", "margin": 0.20}
+    },
+    "airbus": {
+      "nb": {"label": "A320neo family", "margin": 0.1314},
+      "wb": {"label": "A350", "margin": 0.0495}
+    }
+  },
+
+  "programs": {
+    "fps": {
+      "owner": "boeing", "segment": "nb",
+      "label": "fps (new Boeing single-aisle)",
+      "dev_years": 7, "capex_b": 30.0,
+      "margin_alone": 0.2564, "margin_both": 0.2564,
+      "tech_ready_year": 2035, "early_penalty_pp_per_year": 2.0,
+      "default_engine": "cfm_ducted",
+      "variants": {
+        "solo": {"label": "Solo", "capex_share_partner": 0.0, "margin_share_partner": 0.0, "strain_relief": 0.0},
+        "jv": {"label": "Joint Venture (Embraer)", "partner": "Embraer", "capex_share_partner": 0.35, "margin_share_partner": 0.25, "strain_relief": 0.5}
+      },
+      "default_variant": "solo"
+    },
+    "re787": {
+      "owner": "boeing", "segment": "wb",
+      "label": "787 Re-engine",
+      "dev_years": 5, "capex_b": 4.2,
+      "margin_alone": 0.2521, "margin_both": 0.1577,
+      "tech_ready_year": 2035, "early_penalty_pp_per_year": 1.0,
+      "default_engine": "ge_genx_next"
+    },
+    "ngsa": {
+      "owner": "airbus", "segment": "nb",
+      "label": "NGSA (Airbus next-generation single-aisle)",
+      "dev_years": 7, "capex_b": 25.0,
+      "margin_alone": 0.2628, "margin_both": 0.2628,
+      "tech_ready_year": 2035, "early_penalty_pp_per_year": 2.0,
+      "default_engine": "cfm_ducted"
+    },
+    "rea350": {
+      "owner": "airbus", "segment": "wb",
+      "label": "A350 Re-engine",
+      "dev_years": 5, "capex_b": 4.2,
+      "margin_alone": 0.1076, "margin_both": 0.0647,
+      "tech_ready_year": 2035, "early_penalty_pp_per_year": 1.0,
+      "default_engine": "rr_ultrafan_wb"
+    }
+  },
+
+  "engine_options": {
+    "nb": {
+      "cfm_ducted": {"label": "CFM advanced ducted turbofan", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
+      "cfm_open_fan": {"label": "CFM RISE open fan", "margin_pp": 1.5, "eis_add": 1, "capture_mult": 0.85},
+      "pw_gtf2": {"label": "Pratt & Whitney GTF2", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 0.95},
+      "rr_ultrafan_nb": {"label": "Rolls-Royce UltraFan (narrowbody)", "margin_pp": 1.0, "eis_add": 1, "capture_mult": 0.95}
+    },
+    "wb": {
+      "ge_genx_next": {"label": "GE GEnx upgrade", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
+      "rr_ultrafan_wb": {"label": "Rolls-Royce UltraFan (widebody)", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 1.0},
+      "pw_wb_new": {"label": "Pratt & Whitney new widebody engine", "margin_pp": 0.5, "eis_add": 1, "capture_mult": 0.9}
+    }
+  },
+
+  "extension_capex_frac_per_year": 0.10,
+
+  "strain": {
+    "full_overlap_b": 3.0,
+    "norm_years": 5,
+    "_about": "Overlap-aware strain: a player developing an NB program and a WB program at the same time pays full_overlap_b x clamp(overlap_years / norm_years, 0, 1), spread over the overlap years and alpha-loaded like capex."
+  },
+
+  "tactics": {
+    "rate_increase": {
+      "owner": "boeing", "label": "737 Rate Increase", "segment": "nb",
+      "share_pp": 2.0, "lag_years": 2, "capex_b": 1.2, "capex_years": 2,
+      "alpha_add": 0.05, "alpha_window_years": 6
+    },
+    "delay_tactics": {
+      "owner": "airbus", "label": "Delay Tactics (supplier bottleneck on fps)", "target_program": "fps",
+      "slip_years_per_turn": 1, "max_total_slip": 2, "cost_b_per_turn": 0.5,
+      "exposure_after_turns": 2, "exposure_share_pp": 1.0, "exposure_years": 5,
+      "public_cause_unexposed": "supplier bottleneck (cause not attributed)"
+    },
+    "poaching": {
+      "owner": "airbus", "label": "Poaching (engineering talent)",
+      "victim_cost_b_per_turn": 0.75, "cost_b_per_turn": 0.25, "beneficiary_saving_b_per_turn": 0.4
+    }
+  },
+
+  "market": {
+    "capture_mult_min": 0.75,
+    "capture_mult_max": 1.25
+  },
+
+  "equilibrium": {"pure_tol_b": 0.01, "near_eps_b": 1.0},
+
+  "injects": {
+    "max_per_turn": 1,
+    "deck": {
+      "quiet_turn": {
+        "title": "Quiet turn",
+        "narrative": "No major external shock this period.",
+        "effects": []
+      },
+      "nb_demand_shock": {
+        "title": "Narrowbody demand shock",
+        "narrative": "A traffic downturn and airline deferrals cut narrowbody deliveries by 10% for three years.",
+        "effects": [{"type": "units_mult", "segment": "nb", "mult": 0.90, "years_from_turn_start": [0, 2]}]
+      },
+      "wb_demand_boom": {
+        "title": "Widebody demand boom",
+        "narrative": "Long-haul traffic recovers faster than forecast; widebody demand rises 15% for the rest of the game.",
+        "effects": [{"type": "units_mult", "segment": "wb", "mult": 1.15, "years_from_turn_start": [0, 99]}]
+      },
+      "engine_maturity_slip": {
+        "title": "Next-generation engine maturity slips",
+        "narrative": "Engine OEMs report durability issues; next-generation engine technology is ready two years later than planned.",
+        "effects": [{"type": "tech_ready_add", "segment": "all", "years": 2}]
+      },
+      "supply_chain_crunch": {
+        "title": "Supply-chain crunch",
+        "narrative": "Castings, forgings and labour shortages make running concurrent programs 50% more expensive from now on.",
+        "effects": [{"type": "strain_mult", "mult": 1.5}]
+      },
+      "certification_scrutiny": {
+        "title": "FAA certification scrutiny on Boeing",
+        "narrative": "Regulators tighten oversight of Boeing: programs in development slip one year and new Boeing launches need one extra development year.",
+        "effects": [{"type": "dev_years_add", "player": "boeing", "years": 1, "applies_to": "all"}]
+      },
+      "fuel_price_spike": {
+        "title": "Fuel price spike",
+        "narrative": "Jet fuel prices spike and stay high; airlines pay 1.5 pp more margin for new-generation efficiency.",
+        "effects": [{"type": "margin_add", "player": "all", "segment": "all", "kind": "new", "pp": 1.5, "years_from_turn_start": [0, 99]}]
+      },
+      "boeing_quality_escape": {
+        "title": "Boeing quality escape",
+        "narrative": "A production quality escape grounds deliveries: Boeing loses 2 pp of narrowbody share for three years.",
+        "effects": [{"type": "share_shift", "segment": "nb", "to_player": "airbus", "pp": 2.0, "years_from_turn_start": [0, 2]}]
+      },
+      "trade_dispute": {
+        "title": "Transatlantic trade dispute",
+        "narrative": "Tariffs on imported aircraft cut both manufacturers' margins by 1 pp for five years.",
+        "effects": [{"type": "margin_add", "player": "all", "segment": "all", "kind": "all", "pp": -1.0, "years_from_turn_start": [0, 4]}]
+      }
+    }
+  }
+}
