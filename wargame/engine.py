@@ -367,6 +367,14 @@ def cmd_whatif(args):
     cfg = st["config"]
     req = read_stdin_json()
     overrides = req.get("orders", req)
+    bad = [k for k in overrides if k not in M.SIDES]
+    if bad or not any(k in overrides for k in M.SIDES):
+        raise GameError('whatif expects {"boeing": {"<turn>": orders}, "airbus": {"<turn>": orders}}; '
+                        f"got top-level keys {sorted(overrides)}")
+    for s_ in M.SIDES:
+        for t in (overrides.get(s_) or {}):
+            if not str(t).isdigit():
+                raise GameError(f'whatif: "{s_}" must map turn numbers to orders, e.g. {{"{s_}": {{"2": {{...}}}}}}; got key {t!r}')
     hist, notes = _apply_overrides(st, overrides, args.side)
     mask = M.belief_mask(cfg, st["history"] + pending_record(st), args.side)
     r = M.strip_exact(M.evaluate(cfg, M.build_world(cfg, hist, mask)))
