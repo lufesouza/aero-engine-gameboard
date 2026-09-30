@@ -1,0 +1,297 @@
+[
+ {
+  "trigger": "Airbus launches a new narrowbody: NGSA appears in the event log as launched or in development",
+  "response": "[HIST] Bet first that 'the market will wait' for a clean sheet. Reversed to a fast, date-certain answer (the MAX re-engine) once an anchor customer (American) split its order. Committed before board approval, took half the order, set a 50% share target, and accepted deeper discounts for being late.",
+  "lag": "7-8 months from the NEO launch to the MAX (Boeing's own estimate: ~1.5 years behind). Game: the next turn.",
+  "strength": "strong",
+  "war_game_translation": "Turn NGSA appears: public denial ('doesn't change our plans'); no fps order unless the H1 exception applies (inference: NGSA already visible in the Turn-1 brief, then a Joint Venture launched in 2028). Next turn at the latest: launch fps at the H2 year = max(turn start, tech_ready_year - dev_years - engine eis_add), i.e. 2029 in the base game, with cfm_ducted. Joint Venture if the slip test (Airbus delay_tactics in fps development turns) favours it by more than $1B and it trails Solo by no more than $2B nominal. Never time fps to NGSA's date.",
+  "evidence": [
+   "B-0291",
+   "B-0303",
+   "B-0331",
+   "B-0413",
+   "B-0419",
+   "B-0422",
+   "B-0423",
+   "B-0450",
+   "B-0521",
+   "B-0733",
+   "B-0803",
+   "B-0804"
+  ]
+ },
+ {
+  "trigger": "Airbus signals a next-generation single-aisle (statements, engine studies) but has not launched NGSA",
+  "response": "[NOW] Sets no decision dates; 'the market is not ready'. A new airplane is gated on market readiness, cash recovery and technology converging, on being solidly investment grade, on FAA reform, and on first finishing the 737-7, 737-10 and 777X.",
+  "lag": "Open-ended. Game: no order.",
+  "strength": "weak",
+  "war_game_translation": "Follow the default plan: no fps in Turn 1 (H1); fps in 2029 if it passes the go/no-go test. Treat an Airbus move as real only when it is a launch in the event log.",
+  "evidence": [
+   "B-2313",
+   "B-2315",
+   "B-2316",
+   "B-2303",
+   "B-2327",
+   "B-2325",
+   "B-2276",
+   "B-2536",
+   "B-0524"
+  ]
+ },
+ {
+  "trigger": "Airbus re-engines a widebody (the game's A350 Re-engine; analogue A330neo 2014)",
+  "response": "Launched no product in reply. Declined a 767 re-engine, stressed the 787's value, modelled Airbus's discounting as survivable, and dismissed the A330neo as old technology.",
+  "lag": "Same month. Game: same turn, statement only.",
+  "strength": "weak",
+  "war_game_translation": "If Airbus has launched the A350 Re-engine and Boeing has not launched the 787 Re-engine: no 787 Re-engine for the rest of the game (inference from the engine, not precedent: the widebody sub-game is Chicken and following cost about $5.5B in the base engine; in the only analogue, the A330neo, Boeing already had the newer airplane). If the 787 Re-engine is already launched: keep it (never cancel). Statement: the 787 remains the most efficient airplane in its segment.",
+  "evidence": [
+   "B-0847",
+   "B-0858",
+   "B-0917",
+   "B-0920",
+   "B-0921",
+   "B-1017",
+   "B-2446",
+   "B-1812"
+  ]
+ },
+ {
+  "trigger": "Airbus launches or redesigns a widebody (A350 XWB, A350-1000)",
+  "response": "Held its plan until the rival design and EIS were credible, then bracketed it with derivatives (787-10 below, 777X above; the 777-8X sized against the A350-1000). Said it would defer 777X spending if the A350-1000 slipped.",
+  "lag": "About 6-7 years (A350 relaunch 2006 to the 2013 widebody launches). Game: 1-2 turns, never the same turn.",
+  "strength": "strong",
+  "war_game_translation": "No Airbus lever maps to a new widebody. Use this row only as a timing guide: Boeing answers a widebody threat with a derivative (the 787 Re-engine) no earlier than the next turn, and never answers with a clean sheet.",
+  "evidence": [
+   "B-0010",
+   "B-0029",
+   "B-0067",
+   "B-0279",
+   "B-0524",
+   "B-0546",
+   "B-0764",
+   "B-0789",
+   "B-0860"
+  ]
+ },
+ {
+  "trigger": "Airbus leaves the widebody uncontested (no A350 Re-engine)",
+  "response": "Took share and price where Airbus had no answer: shifted from protecting backlog to taking share, bundled 777 and 777X, refused 777 discounts. Aims to be the most efficient airplane in every segment, and staggers developments.",
+  "lag": "Immediate. Game: when the fps overlap rule allows.",
+  "strength": "moderate",
+  "war_game_translation": "A 787 Re-engine with ge_genx_next is in character if whatif shows a gain above $1B: in 2034 against a 2029 fps (at most 2 years' overlap; +1.03 base), or in 2030 if no fps is in development (+2.96 base). Never in Turn 1. Otherwise Do Nothing on the widebody.",
+  "evidence": [
+   "B-0342",
+   "B-0979",
+   "B-1036",
+   "B-2424",
+   "B-0634",
+   "B-0934",
+   "B-0919",
+   "B-1323"
+  ]
+ },
+ {
+  "trigger": "Airbus stretches or adds a variant (A321neo, LR, XLR, A220-500)",
+  "response": "Minimum-capex answers (MAX-9, a denser MAX 8, then the MAX 10) or none. Explicitly no niche airplane: a new airplane must be 20-30% better and target the largest segment.",
+  "lag": "About 1 year from study to MAX 10 launch; about 5 years after the A321 lead emerged. Game: no fps order.",
+  "strength": "moderate",
+  "war_game_translation": "No change to fps timing or variant. Statement only: the next airplane will target the heart of the market.",
+  "evidence": [
+   "B-0593",
+   "B-0931",
+   "B-1153",
+   "B-1271",
+   "B-1401",
+   "B-1738",
+   "B-1814",
+   "B-2063",
+   "B-2070",
+   "B-1938"
+  ]
+ },
+ {
+  "trigger": "Airbus announces higher production rates",
+  "response": "Never matched. Held its own plan and supply-chain gates; refused to use rate announcements to signal share; accepted planning below Airbus. Its own step came later, on its own tests.",
+  "lag": "Held the same day; its own step came 8-9 months later. Game: no order.",
+  "strength": "weak",
+  "war_game_translation": "Never take the Rate Increase because of Airbus. Commit it on Boeing's own gates: Turn 1 by default, deferred only by a quality-escape, FAA-scrutiny or supply-chain-crunch inject.",
+  "evidence": [
+   "B-0070",
+   "B-1034",
+   "B-1054",
+   "B-1428",
+   "B-1442",
+   "B-1802",
+   "B-1804",
+   "B-2046",
+   "B-2351"
+  ]
+ },
+ {
+  "trigger": "Airbus prices aggressively or wins head-to-head campaigns",
+  "response": "Matched in must-win campaigns, sometimes beyond near-term productivity, funded by Partnering for Success and 3-4% annual productivity. Went after Airbus operators. Walked away from deals needing early slots or ruinous prices. Does not react to single campaign losses.",
+  "lag": "Within the campaign. Game: no order.",
+  "strength": "moderate",
+  "war_game_translation": "There is no price lever. Do not change or cancel programs because of campaign losses or a lower market capture multiplier. Statement: value and productivity, no price war.",
+  "evidence": [
+   "B-0353",
+   "B-0414",
+   "B-0592",
+   "B-0604",
+   "B-0654",
+   "B-0840",
+   "B-0951",
+   "B-1024",
+   "B-0818",
+   "B-0961",
+   "B-1868"
+  ]
+ },
+ {
+  "trigger": "Airbus acquires or partners (CSeries/A220 in 2017)",
+  "response": "Said the plan was unchanged and kept the trade case, then opened Embraer talks and agreed an 80%-controlled Joint Venture ($4.2B), while denying it was reactive. Walked away in the 2020 cash crisis, leaving the A220 segment uncontested.",
+  "lag": "Days to deny; about 2-3 months to Embraer talks; about 5 months from MoU to terms. Game: the next launch decision.",
+  "strength": "strong",
+  "war_game_translation": "Deny in the same turn. At the next fps launch decision, run Solo vs Joint Venture explicitly and take the Joint Venture if the slip test or a stress flag favours it (within the $2B cap).",
+  "evidence": [
+   "B-1308",
+   "B-1317",
+   "B-1318",
+   "B-1326",
+   "B-1381",
+   "B-1492",
+   "B-1493",
+   "B-1674",
+   "B-1666"
+  ]
+ },
+ {
+  "trigger": "Airbus stumbles: NGSA or the A350 Re-engine slips or is cancelled",
+  "response": "Took the pricing gain and held firm prices; did not accelerate its own program. [HIST] Would defer its own derivative spending when the rival slipped.",
+  "lag": "Immediate. Game: same turn.",
+  "strength": "weak",
+  "war_game_translation": "Keep the fps at the H2 year: neither accelerate nor defer (deferring Turn 2 to Turn 3 costs $4.6-5.8B in the base engine, above the $2B cap). Never cancel a launched Boeing program because Airbus stumbled.",
+  "evidence": [
+   "B-2424",
+   "B-0546",
+   "B-0555",
+   "B-1036",
+   "B-1529"
+  ]
+ },
+ {
+  "trigger": "Narrowbody demand shock (inject; analogues 2008-09, COVID, 2025 China tariffs)",
+  "response": "[HIST] Held narrowbody rates on overbooking and cut widebodies, reversing within about a year; steered customers to deferrals. [NOW] Kept the 38-42-47-52 ladder through the China tariff shock and remarketed slots.",
+  "lag": "About 6 weeks to one quarter. Game: same turn.",
+  "strength": "moderate",
+  "war_game_translation": "Keep the Rate Increase plan and the fps plan. Never cancel fps or the 787 Re-engine. A second consecutive Boeing-negative shock counts as a stress flag (favours the Joint Venture).",
+  "evidence": [
+   "B-0156",
+   "B-0659",
+   "B-0250",
+   "B-0318",
+   "B-1671",
+   "B-1684",
+   "B-2287",
+   "B-2294"
+  ]
+ },
+ {
+  "trigger": "Supply-chain or engine problem: supply-chain-crunch or engine-maturity-slip inject, or an unattributed fps slip ('supplier bottleneck', i.e. Delay Tactics before exposure)",
+  "response": "Never blamed Airbus; checked engine allocation and found no favouritism. Embedded staff in suppliers, kept them ahead of final assembly with buffers, added second sources, funded them, and insourced (Spirit). Kept slipping programs (the 777X six years late, reaffirmed), ring-fenced in-development programs under cash stress, and tried to keep development peaks apart.",
+  "lag": "Weeks. Game: same turn.",
+  "strength": "moderate",
+  "war_game_translation": "Unattributed fps slip: continue fps (cancelling in Turn 3 scored -14.1 vs -4.6 for continuing), re-baseline once publicly, and launch no 787 Re-engine that would overlap fps development. Supply-chain crunch: defer the Rate Increase one turn; avoid overlap (strain x1.5). Engine-maturity slip: move an unlaunched fps to the new H2 year; keep cfm_ducted.",
+  "evidence": [
+   "B-0495",
+   "B-0587",
+   "B-1923",
+   "B-2029",
+   "B-2097",
+   "B-2038",
+   "B-2043",
+   "B-1303",
+   "B-2184",
+   "B-2273",
+   "B-2243",
+   "B-1812",
+   "B-1710",
+   "B-0216",
+   "B-1597",
+   "B-2304",
+   "B-2061",
+   "B-2174",
+   "B-2264"
+  ]
+ },
+ {
+  "trigger": "Trade or regulatory action by or against Airbus (trade-dispute inject; Delay Tactics exposed)",
+  "response": "[HIST] Filed a GAO protest 11 days after losing the tanker and re-won with an aggressive fixed-price bid; pursued WTO launch-aid cases and a CSeries trade case; lobbied for Ex-Im. [NOW] Shares Airbus's interest in tariff-free trade and absorbs tariff costs to protect supply.",
+  "lag": "11 days to a protest; about 3 years to the re-win. Game: same-turn statement.",
+  "strength": "strong",
+  "war_game_translation": "On exposure of Delay Tactics: a public level-playing-field complaint that promises legal and trade remedies. On a trade-dispute inject: say Boeing wants tariff-free trade. Change no orders; there is no retaliation lever.",
+  "evidence": [
+   "B-0077",
+   "B-0174",
+   "B-0578",
+   "B-2379",
+   "B-1418",
+   "B-1339",
+   "B-1077",
+   "B-2509",
+   "B-2290",
+   "B-2289"
+  ]
+ },
+ {
+  "trigger": "Talent pressure (the game's Poaching; there is no Airbus poaching episode in the evidence)",
+  "response": "Answered engineering scarcity by moving about 8,000 defence staff into commercial, moving work packages to sites with staff, mass hiring and retention spending. Treats talent as a 'ruthless' competition; engineering capacity binds concurrent programs.",
+  "lag": "Same year. Game: same turn.",
+  "strength": "weak",
+  "war_game_translation": "Absorb the $0.75B a turn. It changes neither launch timing nor Solo vs Joint Venture: the engine charges Poaching identically under both variants. Statement: hiring and internal redeployment.",
+  "evidence": [
+   "B-0729",
+   "B-0846",
+   "B-1941",
+   "B-1376",
+   "B-1835",
+   "B-0091",
+   "B-0248"
+  ]
+ },
+ {
+  "trigger": "Boeing's own crisis: quality-escape or FAA-certification-scrutiny inject",
+  "response": "[NOW] Froze the 737 at 38 after Alaska 1282, stood the factory down, accepted an FAA rate cap until KPIs were proven (38 to 42 only in October 2025). [HIST] The MAX crisis pulled staff off the NMA, which was then shelved; the order became fix the MAX, repair the balance sheet, then answer the competition.",
+  "lag": "Immediate; the 2024 cap held until October 2025. Game: this turn.",
+  "strength": "strong",
+  "war_game_translation": "No Rate Increase this turn. An unlaunched fps waits one turn, unless NGSA is in development; then launch it as a Joint Venture (inference). A launched fps or 787 Re-engine continues. Statement: quality and stability before rate.",
+  "evidence": [
+   "B-2133",
+   "B-2148",
+   "B-2136",
+   "B-2103",
+   "B-2236",
+   "B-2354",
+   "B-1593",
+   "B-1613",
+   "B-1658",
+   "B-2325"
+  ]
+ },
+ {
+  "trigger": "Airbus does nothing",
+  "response": "No rush: saw no competitive pressure to hurry a new narrowbody; execution of the backlog and finishing developments come first.",
+  "lag": "None. Game: follow the gates.",
+  "strength": "weak",
+  "war_game_translation": "Turn 1: Rate Increase only. Turn 2: fps in 2029 (Solo by default) if it passes the go/no-go test. A staggered 787 Re-engine only if whatif shows a gain above $1B. Cancel nothing.",
+  "evidence": [
+   "B-1902",
+   "B-1750",
+   "B-2205",
+   "B-2218",
+   "B-2276",
+   "B-2305",
+   "B-2303"
+  ]
+ }
+]

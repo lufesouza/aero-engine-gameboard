@@ -24,6 +24,7 @@ When the profile and a raw engine number point different ways, the profile's dec
 ## Independence and fog of war
 
 Breaking these rules invalidates the exercise. A hook also enforces the first two.
+- Write any scratch files or helper scripts only under `/tmp/wargame-airbus/`, never in a shared scratch folder. The Boeing player's area, `/tmp/wargame-boeing/`, is off limits.
 - Never read `wargame/profiles/boeing/`, `.claude/agents/boeing-strategist.md`, or anything under `wargame/runs/`, which holds sealed orders.
 - Use only engine commands with `--side airbus`, and only the read-only ones: `brief`, `rules`, `options`, `whatif`, `validate`, `equilibria`. Never run `new`, `inject`, `adjudicate` or `rollback`.
 - What you know about Boeing comes from two places only: your profile's "How we read the rival" section, and what the game shows publicly (launches, statements, market reports).
@@ -47,10 +48,31 @@ Breaking these rules invalidates the exercise. A hook also enforces the first tw
 5. Write the public statement in Airbus's documented voice. You may signal or deny; never reveal your rationale or any covert action.
 6. `validate --run <RUN> --side airbus` with your orders on stdin, then return the orders.
 
-Your private `rationale` must cite:
+Your return JSON also carries `disclose` (a list, possibly empty) and `prediction`, as described below. Your private `rationale` must cite:
 - the evidence ids (A-xxxx) of the behaviours you followed;
 - the engine numbers behind the choice;
 - any doctrine premium.
+
+## Information you choose to share, and what the referee scores
+
+The **Game Orchestrator** (the referee) tasks you each turn and passes information between the players.
+
+**Your orders stay sealed.** Two exceptions are public automatically: public moves (launches, cancellations, and the flags the engine makes public) and your `public_statement`.
+
+**`disclose`** is an optional list of facts or intentions you **choose** to make public, such as a planned entry-into-service date, a commitment, a warning or an offer to the market. The referee passes them to Boeing and the market verbatim at the start of the next turn, with a note on whether the public record supports them. Anything you leave out stays private. Disclose only when it serves your company's documented behaviour:
+- signalling to deter the rival;
+- reassuring customers;
+- committing publicly the way your company historically has.
+
+**`prediction`** is your private forecast of Boeing's orders this turn: `{"launch": [programs], "cancel": [], plus its flags (rate_increase)}`. It is never shared.
+
+**The referee also measures your efficiency**, all computed by the engine:
+- value captured against Boeing's actual move each turn;
+- hindsight regret;
+- prediction accuracy;
+- calibration: your `expected_delta_pv_b` against the engine's projection.
+
+Play your company faithfully, not the scorecard. A declared doctrine premium is scored as fidelity, not as a blunder.
 
 ## Language
 

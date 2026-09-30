@@ -341,3 +341,97 @@ def plan_game(cfg, state_history, from_turn, turns_total, current_turn, pending_
                          "regret_b": round(best_v - act[s], 3)}
         out["regret_vs_actual"] = regret
     return out
+
+
+# ---------------------------------------------------------------------------
+# Referee scorecard (player efficiency)
+# ---------------------------------------------------------------------------
+
+def _prediction_score(cfg, predictor, prediction, actual):
+    """Share of the rival's decisions this turn that the predictor called right.
+
+    Decisions scored: launch yes/no for each rival program not launched before,
+    cancel yes/no for each rival program, and each rival flag.
+    """
+    rival = other(predictor)
+    if not isinstance(prediction, dict):
+        return None
+    pl = {(L if isinstance(L, str) else L.get("program")) for L in prediction.get("launch", []) or []}
+    al = {L["program"] for L in actual.get("launch", [])}
+    pc, ac = set(prediction.get("cancel", []) or []), set(actual.get("cancel", []))
+    flags = ("rate_increase",) if rival == "boeing" else ("delay_tactics", "poaching")
+    hits = total = 0
+    for pid in programs_of(cfg, rival):
+        total += 2
+        hits += (pid in pl) == (pid in al)
+        hits += (pid in pc) == (pid in ac)
+    for f in flags:
+        if f in prediction:
+            total += 1
+            hits += bool(prediction.get(f)) == bool(actual.get(f))
+    return round(hits / total, 3) if total else None
+
+
+def turn_scorecard(cfg, history):
+    """Per turn and side: value captured against the rival's ACTUAL orders that turn.
+
+    Myopic by construction (no moves after the scored turn), like the stage game the
+    players see. capture = (actual - worst) / (best - worst) over the stage candidates
+    plus the actual orders; regret = best - actual.
+    """
+    rows = []
+    for idx, rec in enumerate(history):
+        k = rec["turn"]
+        before = history[:idx]
+        w0 = build_world(cfg, before + [{"turn": k, "injects": rec.get("injects", []), "orders": {}, "market": {}}])
+        proj = rec.get("projection") or {}
+        stm = rec.get("statements") or {}
+        for side in SIDES:
+            opp = other(side)
+
+            def val(o, side=side, opp=opp):
+                r = {"turn": k, "injects": rec.get("injects", []), "market": rec.get("market", {}),
+                     "orders": {side: o, opp: rec["orders"][opp]}}
+                return payoff(cfg, before + [r])[side]
+
+            cands = stage_candidates(cfg, w0, side, k)
+            vals = [(val(o), o) for o in cands]
+            actual = val(rec["orders"][side])
+            best_v, best_o = max(vals, key=lambda x: x[0])
+            if actual > best_v:
+                best_v, best_o = actual, rec["orders"][side]
+            worst = min([v for v, _ in vals] + [actual])
+            exp = stm.get(side, {}).get("expected_delta_pv_b")
+            realised = (proj.get(side) or {}).get("delta_pv_b")
+            rows.append({
+                "turn": k, "side": side,
+                "orders": describe_orders(cfg, side, rec["orders"][side]),
+                "myopic_value_b": round(actual, 3),
+                "best_response": describe_orders(cfg, side, best_o),
+                "best_response_value_b": round(best_v, 3),
+                "regret_b": round(best_v - actual, 3),
+                "capture": round((actual - worst) / (best_v - worst), 3) if best_v > worst else 1.0,
+                "prediction_accuracy": _prediction_score(cfg, side, stm.get(side, {}).get("prediction"), rec["orders"][opp]),
+                "expected_delta_pv_b": exp,
+                "projection_after_turn_b": realised,
+                "expectation_error_b": round(realised - exp, 3) if (exp is not None and realised is not None) else None,
+                "disclosures": len(stm.get(side, {}).get("disclose", []) or []),
+            })
+    summary = {}
+    for side in SIDES:
+        rs = [r for r in rows if r["side"] == side]
+        preds = [r["prediction_accuracy"] for r in rs if r["prediction_accuracy"] is not None]
+        errs = [abs(r["expectation_error_b"]) for r in rs if r["expectation_error_b"] is not None]
+        summary[side] = {
+            "turns": len(rs),
+            "mean_capture": round(sum(r["capture"] for r in rs) / len(rs), 3) if rs else None,
+            "total_myopic_regret_b": round(sum(r["regret_b"] for r in rs), 3),
+            "mean_prediction_accuracy": round(sum(preds) / len(preds), 3) if preds else None,
+            "mean_abs_expectation_error_b": round(sum(errs) / len(errs), 3) if errs else None,
+            "disclosures": sum(r["disclosures"] for r in rs),
+        }
+    return {"rows": rows, "summary": summary,
+            "method": ("capture and regret score each turn's orders against the rival's actual orders that turn, "
+                       "assuming no later moves (the players' stage-game view). prediction_accuracy scores the "
+                       "player's forecast of the rival's launches, cancels and flags. expectation_error = engine "
+                       "projection after adjudication minus the player's expected_delta_pv_b.")}

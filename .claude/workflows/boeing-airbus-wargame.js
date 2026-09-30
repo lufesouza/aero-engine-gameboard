@@ -1,13 +1,13 @@
 export const meta = {
   name: 'boeing-airbus-wargame',
-  description: 'Boeing vs Airbus strategy war game: agent teams issue sealed orders each turn, a market cell reacts, the wargame engine adjudicates, then a verified after-action review and report',
+  description: 'Boeing vs Airbus war game refereed by the Game Orchestrator: profile-driven players issue sealed orders and choose what to disclose, a market cell reacts, the engine adjudicates, then a verified after-action review and a referee efficiency scorecard',
   whenToUse: 'Run an AI-vs-AI Boeing vs Airbus war game on the wargame/ engine. Optional args: {turns, scenario, injects: "umpire"|"auto"|"none", games (1-4), run_id, seed, doctrine: {boeing, airbus}, fixed_orders: {boeing|airbus: {"<turn>": orders}}, verify: true|false}',
   phases: [
-    { title: 'Setup', detail: 'control cell creates the run(s)' },
+    { title: 'Setup', detail: 'the Game Orchestrator creates the run(s)' },
     { title: 'Turns', detail: 'inject, sealed Boeing and Airbus orders, market reaction, engine adjudication' },
     { title: 'After-action review', detail: 'equilibria, regret, turning points, checkable claims' },
     { title: 'Verify', detail: 'three independent checks per claim' },
-    { title: 'Report', detail: 'report.md per game, plus a cross-game synthesis' },
+    { title: 'Report', detail: 'report.md and the referee efficiency report per game, plus a cross-game synthesis' },
   ],
 }
 
@@ -56,10 +56,12 @@ const ORDERS_SCHEMA = {
       cancel: { type: 'array', items: { type: 'string', enum: ['fps', 're787'] } },
       rate_increase: { type: 'boolean' },
       public_statement: { type: 'string' },
+      disclose: { type: 'array', items: { type: 'string' } },
+      prediction: { type: 'object', properties: { launch: { type: 'array', items: { type: 'string', enum: ['ngsa', 'rea350'] } }, cancel: { type: 'array', items: { type: 'string' } }, delay_tactics: { type: 'boolean' }, poaching: { type: 'boolean' } }, required: ['launch'] },
       rationale: { type: 'string' },
       expected_delta_pv_b: { type: 'number' },
     },
-    required: ['launch', 'cancel', 'rate_increase', 'public_statement', 'rationale', 'expected_delta_pv_b'],
+    required: ['launch', 'cancel', 'rate_increase', 'public_statement', 'disclose', 'prediction', 'rationale', 'expected_delta_pv_b'],
   },
   airbus: {
     type: 'object',
@@ -69,10 +71,12 @@ const ORDERS_SCHEMA = {
       delay_tactics: { type: 'boolean' },
       poaching: { type: 'boolean' },
       public_statement: { type: 'string' },
+      disclose: { type: 'array', items: { type: 'string' } },
+      prediction: { type: 'object', properties: { launch: { type: 'array', items: { type: 'string', enum: ['fps', 're787'] } }, cancel: { type: 'array', items: { type: 'string' } }, rate_increase: { type: 'boolean' } }, required: ['launch'] },
       rationale: { type: 'string' },
       expected_delta_pv_b: { type: 'number' },
     },
-    required: ['launch', 'cancel', 'delay_tactics', 'poaching', 'public_statement', 'rationale', 'expected_delta_pv_b'],
+    required: ['launch', 'cancel', 'delay_tactics', 'poaching', 'public_statement', 'disclose', 'prediction', 'rationale', 'expected_delta_pv_b'],
   },
 }
 
@@ -292,8 +296,11 @@ function enginePayload(side, o) {
     }),
     cancel: Array.from(new Set(o.cancel || [])),
     public_statement: clean(o.public_statement),
+    disclose: (o.disclose || []).map(clean),
     rationale: clean(o.rationale),
   }
+  if (o.prediction && typeof o.prediction === 'object') p.prediction = o.prediction
+  if (typeof o.expected_delta_pv_b === 'number') p.expected_delta_pv_b = o.expected_delta_pv_b
   if (side === 'boeing') p.rate_increase = !!o.rate_increase
   else {
     p.delay_tactics = !!o.delay_tactics
@@ -303,7 +310,7 @@ function enginePayload(side, o) {
 }
 
 function publicPart(side, o) {
-  const p = { launch: o.launch || [], cancel: o.cancel || [], public_statement: o.public_statement || '' }
+  const p = { launch: o.launch || [], cancel: o.cancel || [], public_statement: o.public_statement || '', disclose: o.disclose || [] }
   if (side === 'boeing') p.rate_increase = !!o.rate_increase
   else p.poaching = !!o.poaching // Delay Tactics are covert and never shown
   return p
@@ -334,7 +341,7 @@ function setupPrompt() {
     cmds.push(`${ENGINE} new --run-id ${prefix}${suffix(i)} --scenario ${SCENARIO}${TURNS ? ' --turns ' + TURNS : ''} --seed ${SEED + i - 1}`)
   }
   return [
-    `Create ${GAMES} Boeing vs Airbus war game run(s) with the wargame engine. You are control.`,
+    `Create ${GAMES} Boeing vs Airbus war game run(s) with the wargame engine. You are the Game Orchestrator (referee).`,
     RUN_ID ? '' : 'First get a timestamp with `date +%Y%m%d-%H%M%S` and substitute it for <timestamp> below.',
     'Run:\n```bash\n' + cmds.join('\n') + '\n```',
     'If a command fails (for example the run id already exists or the scenario or turn count is invalid), stop and put the exact error in `error`.',
@@ -350,7 +357,7 @@ function controlTurnPrompt(g, t) {
         ? `Inject policy "auto": run \`${ENGINE} inject --run ${g.runId} --auto\`.`
         : `Inject policy "none": run \`${ENGINE} inject --run ${g.runId} --none\`.`
   return [
-    `War game run \`${g.runId}\`, turn ${t} of ${g.turnsTotal}. You are control.`,
+    `War game run \`${g.runId}\`, turn ${t} of ${g.turnsTotal}. You are the Game Orchestrator (referee).`,
     `1. Run \`${ENGINE} status --run ${g.runId}\` and confirm the run is on turn ${t}. If it is not, stop and report the mismatch in \`error\`.`,
     `2. ${inj}`,
     `3. Run \`${ENGINE} brief --run ${g.runId} --side market\` to get the public view.`,
@@ -368,7 +375,7 @@ function playerPrompt(g, t, side, ctl, errors) {
     `Control's public situation report:\n${ctl.situation}`,
     DOCTRINE[side] ? `Board guidance for this game. Treat it as a real constraint on your decisions: ${DOCTRINE[side]}` : '',
     errors && errors.length ? `The engine rejected your previous orders for this turn:\n- ${errors.join('\n- ')}\nFix them, re-run validate, and resubmit.` : '',
-    `Every launch entry needs program, year (${ty.first_year}-${ty.last_year}), engine and variant (${variantRule}). Put the engine numbers you relied on in the rationale. Put the engine's projected delta PV for these orders, assuming no later moves, in expected_delta_pv_b.`,
+    `Every launch entry needs program, year (${ty.first_year}-${ty.last_year}), engine and variant (${variantRule}). Put the engine numbers you relied on in the rationale. Put the engine's projected delta PV for these orders, assuming no later moves, in expected_delta_pv_b. In disclose, list anything you CHOOSE to make public; the referee passes it to the rival and the market next turn, and it may be empty. In prediction, give your private forecast of the rival's orders this turn. The referee scores it and never shares it.`,
   ]
     .filter(Boolean)
     .join('\n\n')
@@ -387,7 +394,7 @@ function marketPrompt(g, t, orders, ctl) {
 
 function adjudicatePrompt(g, t, cmd, retry) {
   return [
-    `War game run \`${g.runId}\`, turn ${t}. You are control. Adjudicate this turn by running the command below in a single Bash call, EXACTLY as written: copy it byte for byte. It is a quoted heredoc, so do not re-type, reformat or edit the JSON.`,
+    `War game run \`${g.runId}\`, turn ${t}. You are the Game Orchestrator (referee). Adjudicate this turn by running the command below in a single Bash call, EXACTLY as written: copy it byte for byte. It is a quoted heredoc, so do not re-type, reformat or edit the JSON.`,
     retry ? 'An earlier attempt failed. Run the command verbatim.' : '',
     '```bash\n' + cmd + '\n```',
     'Report from the engine output:',
@@ -397,6 +404,7 @@ function adjudicatePrompt(g, t, cmd, retry) {
     '- game_complete, and the text of this turn\'s public events.',
     '- For "invalid": the per-side error lists (boeing_errors, airbus_errors).',
     '- For "error": the exact error text, in error.',
+    'If the status is "ok", do one more thing as referee. For each side whose orders carry a non-empty "disclose" list, check it against the PUBLIC record only (`brief --side market` plus this turn\'s public events). Then run `python3 -m wargame.engine annotate --run ' + g.runId + ' --turn ' + t + ' --side <side> --note "<consistent with the public record | contradicted by the public record: ... | not publicly verifiable>"`. Never use private knowledge, such as covert orders, in a note.',
   ]
     .filter(Boolean)
     .join('\n\n')
@@ -451,6 +459,22 @@ function reportPrompt(g, aar, verified, refuted, dropped, expectations) {
   ]
     .filter(Boolean)
     .join('\n\n')
+}
+
+function refereePrompt(g) {
+  return [
+    `You are the Game Orchestrator. War game run \`${g.runId}\` is complete. Write the referee's efficiency report to \`wargame/runs/${g.runId}/referee_report.md\`, then return its path and a three-sentence summary.`,
+    `Run \`${ENGINE} scorecard --run ${g.runId} --final --format md\` and paste its tables verbatim. Use \`${ENGINE} scorecard --run ${g.runId} --final\` (JSON) and \`${ENGINE} report --run ${g.runId}\` for detail.`,
+    'Follow the end-of-game section of your role instructions. For each player, give an efficiency verdict covering:',
+    '- value capture and myopic regret;',
+    '- hindsight regret;',
+    '- prediction accuracy;',
+    '- calibration;',
+    '- information use: what it chose to disclose, and whether that was credible, strategic, or contradicted by events;',
+    '- discipline;',
+    '- doctrine fidelity: compare its orders with its profile Quick card (wargame/profiles/<side>/profile.md) and its declared doctrine premium.',
+    'Finish with a comparative ranking that separates skill from documented company doctrine. Every number must come from engine output.',
+  ].join('\n')
 }
 
 function synthesisPrompt(done, path) {
@@ -524,7 +548,7 @@ async function adjudicate(g, t, orders, market, retry) {
   const cmd =
     `${ENGINE} adjudicate --run ${g.runId} --turn ${t} --expect-digest boeing=${digests.boeing},airbus=${digests.airbus} <<'WARGAME_EOF'\n` +
     `${JSON.stringify(payload, null, 1)}\nWARGAME_EOF`
-  const r = await call('wargame-control', adjudicatePrompt(g, t, cmd, retry), {
+  const r = await call('game-orchestrator', adjudicatePrompt(g, t, cmd, retry), {
     label: `${g.tag}T${t} adjudicate${retry ? ' (retry)' : ''}`,
     phase: 'Turns',
     schema: ADJ_SCHEMA,
@@ -537,7 +561,7 @@ async function adjudicate(g, t, orders, market, retry) {
 async function playGame(g) {
   const turns = []
   for (let t = 1; t <= g.turnsTotal; t++) {
-    const ctl = await call('wargame-control', controlTurnPrompt(g, t), {
+    const ctl = await call('game-orchestrator', controlTurnPrompt(g, t), {
       label: `${g.tag}T${t} control`,
       phase: 'Turns',
       schema: CONTROL_TURN_SCHEMA,
@@ -640,8 +664,15 @@ async function playGame(g) {
     phase: 'Report',
     schema: REPORT_SCHEMA,
   })
+  const ref = await call('game-orchestrator', refereePrompt(g), {
+    label: `${g.tag}referee scorecard`,
+    phase: 'Report',
+    schema: REPORT_SCHEMA,
+  })
   return {
     run_id: g.runId,
+    referee_report_path: ref ? ref.path : null,
+    referee_summary: ref ? ref.summary : null,
     headline: aar.headline,
     final_delta_pv_b: aar.final_delta_pv_b,
     regret_b: aar.regret_b,
@@ -659,7 +690,7 @@ async function playGame(g) {
 // ---------------------------------------------------------------------------
 
 phase('Setup')
-const setup = await call('wargame-control', setupPrompt(), { label: 'setup', phase: 'Setup', schema: SETUP_SCHEMA })
+const setup = await call('game-orchestrator', setupPrompt(), { label: 'setup', phase: 'Setup', schema: SETUP_SCHEMA })
 if (!setup || setup.error || !setup.runs || !setup.runs.length) {
   throw new Error(`setup failed: ${(setup && setup.error) || 'no runs created'}`)
 }

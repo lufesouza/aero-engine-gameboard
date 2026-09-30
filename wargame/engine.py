@@ -160,6 +160,9 @@ def brief(st, viewer):
                       or (e["visibility"] == "private" and e["side"] == viewer)],
         "public_statements": [{"turn": r["turn"], "side": s, "text": r.get("statements", {}).get(s, {}).get("public_statement", "")}
                               for r in st["history"] for s in M.SIDES],
+        "disclosures": [{"turn": r["turn"], "side": s, "items": r.get("statements", {}).get(s, {}).get("disclose", []),
+                         "referee_note": r.get("referee_notes", {}).get(s, "")}
+                        for r in st["history"] for s in M.SIDES if r.get("statements", {}).get(s, {}).get("disclose")],
         "market_reports": [{"turn": r["turn"], "narrative": r.get("market_narrative", "")} for r in st["history"]],
         "projected_market_shares": proj["shares"],
         "projection_note": "Projections assume nobody makes any further move. delta_pv_b is full-game PV ($B, 2026) versus the status quo.",
@@ -379,6 +382,13 @@ def cmd_whatif(args):
 def _orders_and_text(st, side, orders):
     canon, errors, warnings = _validate_side(st, side, orders)
     text = {k: str(orders.get(k, "")) for k in M.TEXT_FIELDS} if isinstance(orders, dict) else {}
+    if isinstance(orders, dict):
+        disc = orders.get("disclose") or []
+        text["disclose"] = [str(d) for d in (disc if isinstance(disc, list) else [disc]) if str(d).strip()]
+        if isinstance(orders.get("prediction"), dict):
+            text["prediction"] = orders["prediction"]
+        if isinstance(orders.get("expected_delta_pv_b"), (int, float)):
+            text["expected_delta_pv_b"] = float(orders["expected_delta_pv_b"])
     return canon, errors, warnings, text
 
 
@@ -559,6 +569,50 @@ def report_markdown(rep, cfg):
     return "\n".join(L)
 
 
+def cmd_scorecard(args):
+    st = load_state(args.run)
+    cfg = st["config"]
+    sc = S.turn_scorecard(cfg, st["history"])
+    if args.final:
+        if st["status"] != "complete":
+            raise GameError("--final needs a completed game")
+        eq = S.plan_game(cfg, st["history"], 1, st["turns_total"], None, [], "all")
+        sc["hindsight"] = {"actual_play_b": eq.get("actual_play"), "regret_vs_actual": eq.get("regret_vs_actual"),
+                           "pure_nash": eq.get("pure_nash")}
+        for s in M.SIDES:
+            sc["summary"][s]["final_delta_pv_b"] = eq.get("actual_play", {}).get(s)
+            sc["summary"][s]["hindsight_regret_b"] = (eq.get("regret_vs_actual", {}).get(s) or {}).get("regret_b")
+    sc["run_id"] = st["run_id"]
+    sc["visibility"] = "control only: rows reveal each side's actual orders, including covert ones"
+    if args.format == "md":
+        L = [f"| Turn | Side | Orders | Value $B | Best response | Best $B | Regret $B | Capture | Prediction | Expectation error $B |",
+             "|---|---|---|---:|---|---:|---:|---:|---:|---:|"]
+        for r in sc["rows"]:
+            L.append(f"| T{r['turn']} | {r['side']} | {r['orders']} | {r['myopic_value_b']:+.2f} | {r['best_response']} | "
+                     f"{r['best_response_value_b']:+.2f} | {r['regret_b']:.2f} | {r['capture']:.0%} | "
+                     f"{'-' if r['prediction_accuracy'] is None else format(r['prediction_accuracy'], '.0%')} | "
+                     f"{'-' if r['expectation_error_b'] is None else format(r['expectation_error_b'], '+.2f')} |")
+        L += ["", "| Side | Mean capture | Total myopic regret $B | Prediction accuracy | Mean abs expectation error $B | Final delta PV $B | Hindsight regret $B |",
+              "|---|---:|---:|---:|---:|---:|---:|"]
+        for s, v in sc["summary"].items():
+            f = lambda x, fmt: "-" if x is None else format(x, fmt)
+            L.append(f"| {s} | {f(v['mean_capture'], '.0%')} | {v['total_myopic_regret_b']:.2f} | {f(v['mean_prediction_accuracy'], '.0%')} | "
+                     f"{f(v['mean_abs_expectation_error_b'], '.2f')} | {f(v.get('final_delta_pv_b'), '+.2f')} | {f(v.get('hindsight_regret_b'), '.2f')} |")
+        print("\n".join(L))
+    else:
+        out(sc)
+
+
+def cmd_annotate(args):
+    st = load_state(args.run)
+    rec = next((r for r in st["history"] if r["turn"] == args.turn), None)
+    if rec is None:
+        raise GameError(f"turn {args.turn} has not been adjudicated")
+    rec.setdefault("referee_notes", {})[args.side] = args.note
+    save_state(st)
+    out({"run_id": st["run_id"], "turn": args.turn, "side": args.side, "referee_note": args.note})
+
+
 def cmd_report(args):
     st = load_state(args.run)
     rep = final_report(st)
@@ -643,6 +697,19 @@ def main(argv=None):
     p.add_argument("--segment", default="all", choices=("all", "nb", "wb"))
     p.add_argument("--side", choices=VIEWERS)
     p.set_defaults(fn=cmd_equilibria)
+
+    p = sub.add_parser("scorecard", help="referee's efficiency scorecard per player (control only)")
+    p.add_argument("--run", required=True)
+    p.add_argument("--final", action="store_true", help="add hindsight regret from the plan game (~15 s)")
+    p.add_argument("--format", default="json", choices=("json", "md"))
+    p.set_defaults(fn=cmd_scorecard)
+
+    p = sub.add_parser("annotate", help="attach the referee's public note to a side's disclosures (control)")
+    p.add_argument("--run", required=True)
+    p.add_argument("--turn", type=int, required=True)
+    p.add_argument("--side", required=True, choices=M.SIDES)
+    p.add_argument("--note", required=True)
+    p.set_defaults(fn=cmd_annotate)
 
     p = sub.add_parser("report", help="full results (control/analyst)")
     p.add_argument("--run", required=True)

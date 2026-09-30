@@ -512,6 +512,11 @@ def strip_exact(result):
 # ---------------------------------------------------------------------------
 
 TEXT_FIELDS = ("public_statement", "rationale")
+# Optional player fields kept with the turn record (not mechanical):
+#   disclose: statements the player chooses to make public (relayed to the rival and market);
+#   prediction: the player's forecast of the rival's orders this turn (scored for awareness);
+#   expected_delta_pv_b: the player's own projected payoff when ordering (scored for calibration).
+META_FIELDS = ("disclose", "prediction", "expected_delta_pv_b")
 
 
 def validate_orders(cfg, history, turn, side, orders):
@@ -528,7 +533,7 @@ def validate_orders(cfg, history, turn, side, orders):
     a, b = turn_years(cfg, turn)
     w = build_world(cfg, history)
     canon = empty_orders(side)
-    allowed = set(canon) | set(TEXT_FIELDS) | {"side"}
+    allowed = set(canon) | set(TEXT_FIELDS) | set(META_FIELDS) | {"side"}
     for k in orders:
         if k not in allowed:
             warnings.append(f"ignored unknown field '{k}'")

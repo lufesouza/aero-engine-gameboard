@@ -1,0 +1,363 @@
+[
+ {
+  "trigger": "Rival launches a new narrowbody (fps), any timing",
+  "response": "Airbus moves on its own clock. It launched the A320neo first (Dec 2010) and kept a head start, answered the MAX at the top of the market (A321neo) rather than with a clean sheet, and in 2025 dated NGSA EIS around 2037 while Boeing declined to set a date. No evidence of Airbus pulling a clean sheet forward in reaction to Boeing.",
+  "lag": "0 turns: no acceleration of NGSA; NGSA follows the technology gates",
+  "strength": "moderate",
+  "war_game_translation": "Launch NGSA at the first year whose EIS reaches the technology-ready year (2028 at base), never earlier; if already launched, keep it. Poaching on while NGSA is in development. Consider one turn of Delay Tactics per the Delay Tactics row.",
+  "evidence": [
+   "A-0246",
+   "A-0032",
+   "A-0110",
+   "A-0084",
+   "A-0095",
+   "A-0124",
+   "A-0182",
+   "A-0224",
+   "A-0409",
+   "A-0824"
+  ]
+ },
+ {
+  "trigger": "Boeing launches fps early (2026-28), EIS ahead of NGSA",
+  "response": "No case of Airbus launching immature technology to match a rival's early timing: it pushed hydrogen EIS beyond 2035 when the ecosystem lagged, it requires the NGSA wing to prove rate producibility first, and its open-rotor wing demonstrator is only built from 2027. Against the 787 it bridged with the older A330 on price, and later with the cheap A330neo (A330 vs 787).",
+  "lag": "same turn",
+  "strength": "moderate",
+  "war_game_translation": "NGSA 2028 (EIS 2035), not 2026-27. If fps is in development and whatif shows at least $1B more, use Delay Tactics for ONE turn (never the second, exposing turn). Poaching on once NGSA is in development.",
+  "evidence": [
+   "A-0003",
+   "A-0091",
+   "A-0413",
+   "A-0441",
+   "A-0444"
+  ]
+ },
+ {
+  "trigger": "Boeing launches fps late (2032 or after), or not at all by T2",
+  "response": "Airbus launched the neo without waiting for Boeing and took the lead; it treats a late rival as a share opportunity.",
+  "lag": "none: Airbus does not wait for Boeing",
+  "strength": "moderate",
+  "war_game_translation": "Keep NGSA at 2028 (or no later than 2030) to win the share-capture race; no Delay Tactics unless fps is actually in development and whatif shows at least $1B more.",
+  "evidence": [
+   "A-0246",
+   "A-0084",
+   "A-0095",
+   "A-0110",
+   "A-0224"
+  ]
+ },
+ {
+  "trigger": "Boeing chooses Joint Venture (Embraer) vs Solo for fps",
+  "response": "Airbus uses Joint Ventures itself (ATR, Airbus Canada, Aerostack) and treats them as normal scale tools; it watched the Boeing-Embraer tie-up collapse in 2020.",
+  "lag": "same turn",
+  "strength": "weak",
+  "war_game_translation": "Same NGSA response for Solo and Joint Venture. Because a Joint Venture halves Boeing's strain and cuts its capex by 35%, expect Boeing to be able to add a 787 Re-engine; run the A350 Re-engine pre-emption test one turn earlier (inference).",
+  "evidence": [
+   "A-0371",
+   "A-0372",
+   "A-0267",
+   "A-0265",
+   "A-0206",
+   "A-0640",
+   "A-0534"
+  ]
+ },
+ {
+  "trigger": "Boeing launches the 787 Re-engine",
+  "response": "When Boeing held the widebody technology lead (787), Airbus priced the older A330 aggressively as a bridge, later re-engined the A330 cheaply instead of building the A350-800, and competed on price and availability. That precedent is itself a cheap re-engine, so staying out of the A350 Re-engine rests on the game's Chicken structure (inference), not on history.",
+  "lag": "1 turn historically; in game the decision is immediate",
+  "strength": "moderate",
+  "war_game_translation": "A350 Re-engine: Do Nothing (the widebody sub-game is Chicken; inference). Accept up to a $3B doctrine premium to stay out. If A350 Re-engine is already launched and the 787 Re-engine enters service first, cancel only if whatif shows remaining spend losing at least $1B.",
+  "evidence": [
+   "A-0003",
+   "A-0091",
+   "A-0094",
+   "A-0090",
+   "A-0092"
+  ]
+ },
+ {
+  "trigger": "Rival launches a new widebody (787) or re-wings/re-engines one (777X)",
+  "response": "The A350 was relaunched in 2006 as a new design against the 787 and the low end of the 777, with the older A330 priced aggressively as a bridge; the A350-1000 was redesigned with a new wing and engine (2011) against the 777; the A330neo (2014) replaced a planned A350-800.",
+  "lag": "about 1 turn",
+  "strength": "moderate",
+  "war_game_translation": "If Boeing has not launched a 787 Re-engine by T3, consider the A350 Re-engine in 2033-35 (overlap with NGSA of 2 years or less, at least $1B more in whatif). Pre-empt in T2 only if the options table shows 787 Re-engine as Boeing's best response and pre-emption beats Do Nothing by at least $1B against all plausible Boeing orders.",
+  "evidence": [
+   "A-0001",
+   "A-0005",
+   "A-0003",
+   "A-0036",
+   "A-0040",
+   "A-0070",
+   "A-0090",
+   "A-0092",
+   "A-0302"
+  ]
+ },
+ {
+  "trigger": "Rival re-engines a narrowbody (737 MAX, 2011)",
+  "response": "Airbus had already re-engined; it priced the neo aggressively at launch (at or below ceo prices), broke into Boeing accounts, and extended at the top with the A321neo; the neo out-sold the MAX.",
+  "lag": "0-1 turns",
+  "strength": "strong",
+  "war_game_translation": "Do Nothing on the current family; no NGSA acceleration. Public statement stresses neo/A321 backlog and commonality.",
+  "evidence": [
+   "A-0110",
+   "A-0050",
+   "A-0054",
+   "A-0064",
+   "A-0066",
+   "A-0045",
+   "A-0084",
+   "A-0095",
+   "A-0124"
+  ]
+ },
+ {
+  "trigger": "Rival stretches or adds a variant (MAX 9 / MAX 10 against the A321)",
+  "response": "Airbus kept a seat advantage at the top of the market and pushed the A321 further in range (A321LR, then A321XLR), a niche Boeing conceded it could not match.",
+  "lag": "same turn",
+  "strength": "strong",
+  "war_game_translation": "No lever needed; hold Do Nothing on the narrowbody until the NGSA window. Do not bring NGSA forward.",
+  "evidence": [
+   "A-0123",
+   "A-0124",
+   "A-0153",
+   "A-0154",
+   "A-0162",
+   "A-0245"
+  ]
+ },
+ {
+  "trigger": "Rival raises production rates (Boeing 737 Rate Increase) / rate competition",
+  "response": "Airbus ramped ahead of Boeing on its own path, held back by engine supply rather than by Boeing's rates: high-30s in 2008, above 60 in 2015, 70-75 in 2018, 64 to 75 in 2021, and 75 by 2027 in 2025 (engine-gated). Boeing never matched and accepted planning below Airbus's rates. Airbus used slot scarcity to raise prices.",
+  "lag": "none",
+  "strength": "strong",
+  "war_game_translation": "No programme change and no NGSA acceleration. Delay Tactics does not target a rate increase. Poaching only if an Airbus programme is in development. Public statement: disciplined, controlled ramp to rate 75.",
+  "evidence": [
+   "A-0019",
+   "A-0105",
+   "A-0138",
+   "A-0159",
+   "A-0167",
+   "A-0218",
+   "A-0136",
+   "A-0555",
+   "A-0562"
+  ]
+ },
+ {
+  "trigger": "Rival price aggression or loss of order campaigns",
+  "response": "Airbus used launch pricing, its balance sheet and leasing (American 2011), early delivery slots (Lion Air 2013) and financing creativity to break Boeing accounts; it won JAL in 2013 with the A350.",
+  "lag": "same campaign",
+  "strength": "strong",
+  "war_game_translation": "No price lever in the game; the market cell sets capture. Public statement emphasises availability, commonality and backlog depth.",
+  "evidence": [
+   "A-0038",
+   "A-0045",
+   "A-0046",
+   "A-0080",
+   "A-0082",
+   "A-0086"
+  ]
+ },
+ {
+  "trigger": "Rival or a third party opens an acquisition/partnership opportunity (Bombardier CSeries)",
+  "response": "Airbus used the neo to fend off the CSeries (2011), then took majority control of the programme (2018) to enter the 100-150 seat market, adding a Mobile A220 line.",
+  "lag": "about 2 turns from threat to takeover",
+  "strength": "strong",
+  "war_game_translation": "No direct lever. Read a Boeing Joint Venture as normal industry practice; keep NGSA plan unchanged.",
+  "evidence": [
+   "A-0034",
+   "A-0126",
+   "A-0141",
+   "A-0151",
+   "A-0240",
+   "A-0265"
+  ]
+ },
+ {
+  "trigger": "Rival moves on a shared supplier (Boeing acquires Spirit AeroSystems, 2024)",
+  "response": "Airbus negotiated to take Spirit's Airbus work packages concurrently with Boeing's deal (binding term sheet alongside Boeing's mid-2024 deal, disclosed in Boeing's FY2024 10-K; closed Dec 2025), accepting EUR 326m of capex and EUR 188m of adjustments for supply security.",
+  "lag": "0-1 turns (term sheet concurrent with Boeing's 2024 deal; close about 18 months later)",
+  "strength": "strong",
+  "war_game_translation": "Supplier control is Airbus's documented supply-chain instinct and the only evidence-based analogue for Delay Tactics (inference): Airbus secures scarce capacity first. Never implies more than one turn of Delay Tactics.",
+  "evidence": [
+   "A-0181",
+   "A-0219",
+   "A-0317",
+   "A-0416",
+   "A-0490",
+   "A-0397",
+   "A-0693",
+   "A-0700"
+  ]
+ },
+ {
+  "trigger": "Rival stumbles: 2013 787 battery grounding",
+  "response": "Airbus switched the A350 to nickel-cadmium batteries as a hedge, its sales chief publicly questioned 787 reliability, and it won JAL, a Boeing stronghold.",
+  "lag": "0 turns",
+  "strength": "strong",
+  "war_game_translation": "Opportunistic public messaging on reliability and delivery record; no change to programme timing.",
+  "evidence": [
+   "A-0076",
+   "A-0077",
+   "A-0083",
+   "A-0086"
+  ]
+ },
+ {
+  "trigger": "Rival stumbles: 737 MAX grounding (2019-21)",
+  "response": "Airbus kept delivering neos from a big backlog, held its customers to contract while Boeing's deferred and cancelled, won some 737 customers, and signalled a long-range ramp (64, then 75).",
+  "lag": "0-1 turns",
+  "strength": "strong",
+  "war_game_translation": "Hold NGSA timing; take share through deliveries (no lever needed). Poaching on if an Airbus programme is in development. Check with whatif whether Delay Tactics adds anything when a Boeing slip is already imposed.",
+  "evidence": [
+   "A-0150",
+   "A-0158",
+   "A-0163",
+   "A-0165",
+   "A-0159"
+  ]
+ },
+ {
+  "trigger": "Rival stumbles: 2024 quality crisis and FAA rate cap (in game: boeing_quality_escape or certification_scrutiny inject)",
+  "response": "Airbus kept its rate-75 goal (re-timed only for engines), claimed about 60% of the single-aisle backlog against the MAX, opened new A320 lines in Tianjin and Mobile, and put safety and quality first in its own 2026 objectives.",
+  "lag": "0 turns",
+  "strength": "moderate",
+  "war_game_translation": "Hold the NGSA schedule; do not accelerate. Delay Tactics only per its row (one turn, whatif at least $1B). Public statement contrasts our delivery reliability, but safety-first in tone.",
+  "evidence": [
+   "A-0218",
+   "A-0431",
+   "A-0263",
+   "A-0331",
+   "A-0612",
+   "A-0745",
+   "A-0865"
+  ]
+ },
+ {
+  "trigger": "Demand shock or downturn (nb_demand_shock inject)",
+  "response": "In 2009-10 Airbus leaned on export credit (expected on 45% of 2010 deliveries), kept production steady rather than swinging, and hedged; its COVID-era plans were beaten by a faster recovery.",
+  "lag": "same turn",
+  "strength": "moderate",
+  "war_game_translation": "No cancellations. Keep NGSA if EIS stays in 2035-2037. Do not launch the A350 Re-engine in the shock turn.",
+  "evidence": [
+   "A-0026",
+   "A-0039",
+   "A-0042",
+   "A-0101",
+   "A-0338",
+   "A-0230"
+  ]
+ },
+ {
+  "trigger": "Engine or supply-chain problems (engine_maturity_slip or supply_chain_crunch inject)",
+  "response": "Neo engine problems in 2017; in 2025 an engine supplier's shortfall reset the A320 target to 70-75 by end-2027 and supply problems cut delivery guidance. Airbus answered with vertical integration (Spirit, Airbus Atlantic, Aubert & Duval), additive manufacturing and alternative sources, and delayed hydrogen rather than launch it immature.",
+  "lag": "same turn",
+  "strength": "strong",
+  "war_game_translation": "Engine slip: re-time the NGSA launch so that EIS is at or after the new technology-ready year (launch = tech-ready year minus 7); prefer an engine with no eis_add. Supply crunch: no concurrent NGSA and A350 Re-engine development; push the A350 Re-engine later.",
+  "evidence": [
+   "A-0125",
+   "A-0171",
+   "A-0218",
+   "A-0185",
+   "A-0219",
+   "A-0268",
+   "A-0457",
+   "A-0455",
+   "A-0360",
+   "A-0413"
+  ]
+ },
+ {
+  "trigger": "Regulatory or trade action (WTO launch-aid case, US tariffs; trade_dispute inject)",
+  "response": "Airbus absorbed Boeing's WTO and tanker challenges, kept refundable advances as a funding source, built a US final assembly line at Mobile, and in 2025 won a zero-for-zero EU-US tariff accord through industry advocacy and used its footprint to keep Mobile viable.",
+  "lag": "0 turns (lobbying) to 1 turn (footprint)",
+  "strength": "strong",
+  "war_game_translation": "Programmes unchanged. Public statement: level playing field, global rules, US footprint.",
+  "evidence": [
+   "A-0021",
+   "A-0025",
+   "A-0155",
+   "A-0071",
+   "A-0301",
+   "A-0322",
+   "A-0324",
+   "A-0348",
+   "A-0451"
+  ]
+ },
+ {
+  "trigger": "Rival slips a widebody programme (777X delays, 787 Re-engine slip)",
+  "response": "Airbus entered Boeing's large-freighter stronghold with the A350F (now in its industrial phase, 27 orders in 2025) while the 777-8F slipped to 2028. No item ties the timing to Boeing's slips; treating a slip as an opening is inference.",
+  "lag": "1 turn",
+  "strength": "moderate (inference)",
+  "war_game_translation": "If the 787 Re-engine slips or is cancelled, the A350 Re-engine window reopens: re-run whatif and apply the A350 Re-engine test (at least $1B more, overlap of 2 years or less).",
+  "evidence": [
+   "A-0160",
+   "A-0255",
+   "A-0327",
+   "A-0752",
+   "A-0861"
+  ]
+ },
+ {
+  "trigger": "Rival says it will not launch a new airplane",
+  "response": "In April-May 2011 Boeing planned only incremental 737 upgrades and said no customer was switching to the neo; American split its order within about three months, and by September Boeing was pitching the MAX against the neo.",
+  "lag": "n/a",
+  "strength": "moderate",
+  "war_game_translation": "Ignore such statements for NGSA timing; treat a sudden fps launch as plausible and check the options table for Boeing's best response.",
+  "evidence": [
+   "A-0032",
+   "A-0035",
+   "A-0041",
+   "A-0061",
+   "A-0053",
+   "A-0822",
+   "A-0824",
+   "A-0825"
+  ]
+ },
+ {
+  "trigger": "Rival cancels fps",
+  "response": "No precedent in the evidence.",
+  "lag": "n/a",
+  "strength": "weak",
+  "war_game_translation": "Continue NGSA (the share race is uncontested); stop Delay Tactics; keep Poaching only while NGSA is in development.",
+  "evidence": [
+   "A-0364"
+  ]
+ },
+ {
+  "trigger": "Delay Tactics stance (Airbus covert lever; no literal precedent)",
+  "response": "Inference only. Airbus's documented conduct is to secure shared suppliers and scarce capacity (Spirit packages, Aubert & Duval, long-range rate signals), but it has a closed DPA, a compliance-first 2026 objective and a Board threshold for abnormal risk.",
+  "lag": "n/a",
+  "strength": "weak",
+  "war_game_translation": "Default off. One turn only, when fps is in development and whatif shows at least $1B; never the second, exposing turn; record the Board approval in the private rationale; never mention it publicly.",
+  "evidence": [
+   "A-0181",
+   "A-0317",
+   "A-0457",
+   "A-0159",
+   "A-0474",
+   "A-0331",
+   "A-0298",
+   "A-0299"
+  ]
+ },
+ {
+  "trigger": "Poaching stance (Airbus public lever; no literal precedent)",
+  "response": "Inference only. Airbus treats skills as binding on ramp and new programmes, competes with US firms (including Boeing) for talent, and has US engineering and industrial sites.",
+  "lag": "n/a",
+  "strength": "weak",
+  "war_game_translation": "On in every turn in which NGSA or the A350 Re-engine is in development; off otherwise.",
+  "evidence": [
+   "A-0366",
+   "A-0485",
+   "A-0423",
+   "A-0339",
+   "A-0240",
+   "A-0293"
+  ]
+ }
+]

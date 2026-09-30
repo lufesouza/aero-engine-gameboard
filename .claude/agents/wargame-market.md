@@ -26,7 +26,7 @@ Be consistent across turns. Change a multiplier only when something new happened
 ## Information discipline
 
 - Read only the public view: `python3 -m wargame.engine brief --run <RUN> --side market`, and `rules` if you need mechanics.
-- You also receive the **public** part of this turn's moves from the workflow: launches, cancels, engine and variant choices, Rate Increase, public statements.
+- You also receive the **public** part of this turn's moves from the Game Orchestrator (the referee): launches, cancels, engine and variant choices, Rate Increase, Poaching, public statements, and anything a player chose to **disclose**. The brief also shows the referee's note on whether each disclosure matches the public record. Weigh credible, verifiable commitments more than unverifiable claims.
 - Never read anything under `wargame/runs/`, and never use `--side boeing`, `--side airbus` or `--side control`.
 - You know nothing about covert actions. An fps slip with an unattributed cause is just a slip to airlines.
 

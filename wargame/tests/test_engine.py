@@ -248,6 +248,45 @@ class CliTests(unittest.TestCase):
         _, bb = self.run_cli("brief", "--run", "g", "--side", "boeing")
         self.assertTrue(bb["delay_tactics_exposed"])
 
+    def test_referee_disclosure_relay_and_scorecard(self):
+        self.run_cli("new", "--run-id", "ref", "--turns", "2")
+        self.run_cli("inject", "--run", "ref", "--none")
+        orders = {
+            "boeing": {"launch": [], "rate_increase": True, "public_statement": "Stability first.",
+                       "disclose": ["We will not launch a new airplane before 2029."],
+                       "prediction": {"launch": ["ngsa"], "delay_tactics": False, "poaching": True},
+                       "rationale": "BOEING-PRIVATE", "expected_delta_pv_b": 1.5},
+            "airbus": {"launch": [{"program": "ngsa", "year": 2028, "engine": "pw_gtf2"}], "delay_tactics": True,
+                       "poaching": True, "disclose": ["NGSA enters service in 2035."],
+                       "prediction": {"launch": [], "rate_increase": True},
+                       "rationale": "AIRBUS-PRIVATE", "expected_delta_pv_b": 20.0},
+        }
+        _, res = self.run_cli("adjudicate", "--run", "ref", "--turn", "1", stdin=orders)
+        self.assertEqual(res["status"], "ok")
+        self.run_cli("annotate", "--run", "ref", "--turn", "1", "--side", "airbus", "--note", "consistent with the public record")
+        _, bb = self.run_cli("brief", "--run", "ref", "--side", "boeing")
+        text = json.dumps(bb)
+        self.assertIn("NGSA enters service in 2035.", text)          # rival disclosure relayed
+        self.assertIn("consistent with the public record", text)     # with the referee note
+        for secret in ("AIRBUS-PRIVATE", "Delay Tactics", '"prediction"', '"expected_delta_pv_b"'):
+            self.assertNotIn(secret, text)  # no rival rationale, covert move, prediction or expectation
+        _, ba = self.run_cli("brief", "--run", "ref", "--side", "airbus")
+        self.assertIn("We will not launch a new airplane before 2029.", json.dumps(ba))
+        self.assertNotIn("BOEING-PRIVATE", json.dumps(ba))
+        _, sc = self.run_cli("scorecard", "--run", "ref")
+        rows = {r["side"]: r for r in sc["rows"]}
+        self.assertEqual(rows["boeing"]["prediction_accuracy"], 0.833)  # 5 of 6: missed the covert Delay Tactics
+        self.assertEqual(rows["airbus"]["prediction_accuracy"], 1.0)
+        for side in ("boeing", "airbus"):
+            r = rows[side]
+            self.assertGreaterEqual(r["best_response_value_b"], r["myopic_value_b"])
+            self.assertTrue(0.0 <= r["capture"] <= 1.0)
+            self.assertAlmostEqual(r["regret_b"], r["best_response_value_b"] - r["myopic_value_b"], places=2)
+        self.assertAlmostEqual(rows["airbus"]["expectation_error_b"],
+                               res["projection"]["airbus"]["delta_pv_b"] - 20.0, places=2)
+        code, _ = self.run_cli("scorecard", "--run", "ref", "--final", ok=False)
+        self.assertEqual(code, 1)  # game not complete yet
+
     def test_auto_inject_is_deterministic(self):
         picks = []
         for rid in ("x", "x"):

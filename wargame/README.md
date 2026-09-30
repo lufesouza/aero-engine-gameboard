@@ -1,11 +1,15 @@
 # Boeing vs Airbus war game
 
-A multi-turn strategy war game. Claude agents play **Boeing** and **Airbus**, a **market** cell reacts, and a neutral **control** cell runs the turns. A deterministic Python engine adjudicates every move, so no payoff is ever an agent's guess. After the last turn an **analyst** reviews the game against its game-theoretic benchmark. Every claim in that review is checked by three independent agents before it reaches the report.
+A multi-turn strategy war game. Three agents sit at the table:
+- **Boeing** and **Airbus** are independent players, each built from its company's documented record;
+- the **Game Orchestrator** is the referee. It gives each player its task, relays only what a player chooses to make public, and measures each player's efficiency.
+
+A **market** cell reacts to public moves. A deterministic Python engine adjudicates every move, so no payoff is ever an agent's guess. After the last turn an **analyst** reviews the game against its game-theoretic benchmark. Every claim in that review is checked by three independent agents before it reaches the report.
 
 ```
                  ┌──────────── each turn (sealed, simultaneous) ────────────┐
- control ──inject──► boeing-strategist ─┐                                    │
-   (White)          airbus-strategist ──┼─► wargame-market ──► control runs  │
+ game-orchestrator ─task─► boeing-strategist ─┐                             │
+   (referee)      ─task─► airbus-strategist ──┼─► wargame-market ──► referee │
                                         │   (public moves only)  `adjudicate`│
                                         └────────── wargame engine ◄─────────┘
  after the last turn:  wargame-analyst (AAR) ──► 3 checkers per claim ──► report.md
@@ -23,7 +27,7 @@ Arguments are all optional. Pass them in the request, e.g. *"run the boeing-airb
 |---|---|---|
 | `turns` | 4 | 1-4 turns (2026-28, 2029-31, 2032-34, 2035-37) |
 | `scenario` | `base` | `base`, `fps-slip`, `supply-crunch` (see `scenarios/`) |
-| `injects` | `umpire` | `umpire` (control picks shocks), `auto` (deterministic from `seed`), `none` |
+| `injects` | `umpire` | `umpire` (the referee picks shocks), `auto` (deterministic from `seed`), `none` |
 | `games` | 1 | 1-4 independent plays in parallel, plus a cross-game synthesis |
 | `seed` | 0 | seed for `auto` injects (game *i* uses `seed + i - 1`) |
 | `run_id` | `wg-<timestamp>` | run name (`-g<i>` appended when `games` > 1) |
@@ -33,7 +37,11 @@ Arguments are all optional. Pass them in the request, e.g. *"run the boeing-airb
 
 Output: `wargame/runs/<run_id>/report.md`, plus `state.json` and `turns/T<k>.json`. A 4-turn game spawns roughly 45 agents, most of them in the verification stage. `verify: false` makes it cheaper.
 
-**2. Play a side yourself.** Type `/wargame` (or say *"I want to play Boeing in the war game"*). Claude acts as control. You get Boeing's brief each turn and give orders in plain language. The `airbus-strategist` agent plays Airbus without seeing your orders.
+**2. Refereed game, or play a side yourself.** Type `/wargame`.
+- Say *"run a refereed game"* and the Game Orchestrator runs Boeing against Airbus.
+- Say *"I want to play Boeing"* and Claude referees while you play. You get Boeing's brief each turn and give orders in plain language. The `airbus-strategist` agent plays Airbus without seeing your orders.
+
+You are scored like any player.
 
 **3. Drive the engine directly.** Everything is `python3 -m wargame.engine <command>`, with JSON output and no dependencies beyond Python 3.10+.
 
@@ -59,7 +67,7 @@ Defined in `.claude/agents/`. Each is a Claude Code subagent you can also call o
 | `boeing-strategist` | Blue: fps (Solo / Joint Venture), 787 Re-engine, 737 Rate Increase, cancellations, engine choice. Plays from `wargame/profiles/boeing/` | public view + Boeing's own numbers + Boeing's profile |
 | `airbus-strategist` | Red: NGSA, A350 Re-engine, Delay Tactics (covert), Poaching, cancellations, engine choice. Plays from `wargame/profiles/airbus/` | public view + Airbus's own numbers + Airbus's profile |
 | `wargame-market` | Green: airlines, lessors, engine OEMs (CFM/GE, PW, RR) set bounded capture multipliers | public view only |
-| `wargame-control` | White: creates runs, applies injects, runs adjudication verbatim | everything; never computes payoffs |
+| `game-orchestrator` | Referee (White): creates runs, applies injects, gives both players equal sealed tasks, relays public statements and **disclosures** with a public-record note, adjudicates verbatim, and scores efficiency | everything; never computes payoffs, and never leaks private information |
 | `wargame-analyst` | after-action review and report | everything |
 
 The orchestration is `.claude/workflows/boeing-airbus-wargame.js`. The interactive mode is `.claude/skills/wargame/SKILL.md`.
@@ -96,12 +104,35 @@ When history leads it away from the PV-best option, it reports the **doctrine pr
 - The Boeing agent's view of Airbus is what Boeing has said about Airbus.
 - The PreToolUse hook `.claude/hooks/wargame_isolation.py` enforces this at runtime. Boeing's agent cannot read Airbus's profile or role card, and Airbus's cannot read Boeing's. Neither player, nor the market cell, can read run state, where sealed orders live.
 
+## The referee: information sharing and efficiency scoring
+
+**Sharing.** Orders are sealed. Two things are public automatically: moves the engine makes public (launches, cancellations, Rate Increase, Poaching, slips with their public cause, exposures), and each player's `public_statement`. On top of that, a player can **choose** to make things public through `disclose`: commitments, planned entry-into-service dates, warnings. The Game Orchestrator relays disclosures verbatim to the rival and the market at the start of the next turn, since moves are simultaneous. It adds a note, checked **only against the public record**:
+- "consistent with the public record";
+- "contradicted by the public record";
+- "not publicly verifiable".
+
+The referee never uses private knowledge, so a player can bluff about covert moves without the referee exposing it.
+
+**Scoring.** Run `python3 -m wargame.engine scorecard --run <RUN> [--final] [--format md]`. The scorecard is referee-only until the game ends. The engine computes every metric:
+
+| Metric | Meaning |
+|---|---|
+| capture / myopic regret | each turn: the value of the player's orders against the rival's **actual** orders, versus the best and worst available responses |
+| hindsight regret (`--final`) | the best full plan against the rival's actual play, minus what the player got |
+| prediction accuracy | the share of the rival's launches, cancellations and flags the player forecast correctly (from its private `prediction`) |
+| calibration | the engine's projection after the turn, minus the player's `expected_delta_pv_b` |
+| disclosures | how much the player chose to reveal |
+
+In `wargame/runs/<RUN>/referee_report.md` the referee adds verdicts on information use, discipline and **doctrine fidelity**: whether each player's moves matched its own profile. It separates skill from documented company behaviour, so a declared doctrine premium counts as faithful play, not a blunder.
+
+*Limitation:* the plan-game solver (`equilibria`, hindsight regret) only tries launches in the first year of each turn. The per-turn scorecard always includes the player's actual orders, whatever the launch year.
+
 ## How a turn works
 
-1. **Control** applies at most one inject from the deck (demand shock, engine maturity slip, supply crunch, FAA scrutiny, fuel spike, quality escape, trade dispute, or a quiet turn). It then writes a public situation report.
+1. **The Game Orchestrator** (referee) applies at most one inject from the deck (demand shock, engine maturity slip, supply crunch, FAA scrutiny, fuel spike, quality escape, trade dispute, or a quiet turn). It then writes a public situation report, and includes the rival's disclosures from the previous turn with its public-record notes.
 2. **Boeing and Airbus** order in parallel and cannot see each other. Each runs `brief`, `options` (this turn's stage game), `whatif` counterfactuals and `validate` before returning sealed orders, a public statement and a private rationale.
 3. **Market** sees only the public half of both sides' orders and sets capture multipliers (0.75-1.25) for launched programs.
-4. **Control** runs `adjudicate` with the exact JSON the workflow built. The workflow stamps each side's orders with an FNV-1a fingerprint. The engine refuses to adjudicate if the orders arrive changed, so an agent retyping JSON cannot corrupt a game. Rejected orders go back to the player with the engine's errors, once.
+4. **The referee** runs `adjudicate` with the exact JSON the workflow built. The workflow stamps each side's orders with an FNV-1a fingerprint. The engine refuses to adjudicate if the orders arrive changed, so an agent retyping JSON cannot corrupt a game. Rejected orders go back to the player with the engine's errors, once. The referee then annotates each side's disclosures against the public record.
 
 ## Rules of the engine
 
