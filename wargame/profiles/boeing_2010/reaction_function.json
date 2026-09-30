@@ -1,0 +1,130 @@
+[
+  {
+    "trigger": "Airbus announces a re-engined narrowbody (the scenario's a320neo)",
+    "response": "No same-turn product launch. Set and keep a public decision date (re-engine vs new airplane within about a year). Defend the 737NG meanwhile with incremental fuel-burn and interior upgrades, rate increases and pricing room. The direction follows the 10-15 year rule: a new airplane around 2020 makes a re-engine a wasteful second development.",
+    "lag": "decision promised within about 8 months (April to end-2010); no launch in the announcement turn",
+    "strength": "strong",
+    "war_game_translation": "Turn 1: no b737next launch; take rate_increase; the public statement names the decision timetable. Turn 2: launch b737next (default cleansheet, year 2011, engine cfm_leap) unless a profile §6 flip test fires.",
+    "evidence": ["B-0261", "B-0266", "B-0285", "B-0286", "B-0282", "B-0276", "B-0289", "B-0273"]
+  },
+  {
+    "trigger": "Rival launches or relaunches an airplane aimed at our product line",
+    "response": "Hold the product plan unchanged, relying on existing products either side of it. Answer later, when timing and customers are right, with a derivative (stretch or modification), not a clean sheet.",
+    "lag": "same month for the hold; years for the derivative answer",
+    "strength": "strong",
+    "war_game_translation": "Do not treat an Airbus launch as a reason to launch in the same turn. If a response is needed, the reflex is the cheaper variant; override it only through the profile §6 tests.",
+    "evidence": ["B-0010", "B-0011", "B-2359", "B-0013", "B-0014", "B-0030", "B-0043"]
+  },
+  {
+    "trigger": "Rival stretches or adds a variant (A350-1000 against the 777)",
+    "response": "Wait until the variant's performance firms up. Plan a derivative (technology insertion, refresh or renovation). No urgency while the rival's entry into service is years away and our own orders stay strong.",
+    "lag": "years; 'plenty of time' with rival entry into service 7-9 years out",
+    "strength": "strong",
+    "war_game_translation": "With the a320neo about 5 years from service, waiting beyond Turn 2 is outside our precedent range. Use the wait only for Turn 1.",
+    "evidence": ["B-0043", "B-0067", "B-0078", "B-0096", "B-0107", "B-0279", "B-0221"]
+  },
+  {
+    "trigger": "Rival makes performance claims that have not been demonstrated",
+    "response": "Discount the claims. Make our response depend on demonstrated performance, not the rival's design goals, and say so publicly.",
+    "lag": "until performance is shown; about a year expected in 2010",
+    "strength": "strong",
+    "war_game_translation": "Treat Airbus disclosures of EIS dates or fuel-burn gains as unverified. They do not by themselves move b737next earlier. Question them in the public_statement.",
+    "evidence": ["B-0068", "B-0279", "B-2381", "B-2355", "B-2364"]
+  },
+  {
+    "trigger": "Rival raises narrowbody production rates faster than we do",
+    "response": "Do not match. Apply our own tests (customer demand, business case, supplier readiness), keep the overbooking cushion, and watch for competition for shared suppliers.",
+    "lag": "none; our rate decisions run on their own schedule, announced 18-30 months ahead",
+    "strength": "strong",
+    "war_game_translation": "An Airbus rate move never triggers rate_increase on its own. Take rate_increase only on demand visibility and supplier readiness (Turn 1 default).",
+    "evidence": ["B-0070", "B-2363", "B-0186", "B-2373", "B-2374", "B-0274", "B-0124"]
+  },
+  {
+    "trigger": "Rival price aggression, including bridge pricing of older technology, and order-campaign losses",
+    "response": "Hold value pricing ('no fire sales') and avoid bad deals, but keep room to be competitive. Answer structurally with cost reduction and the support network. When our own new product is coming, we have used aggressive bridge pricing on the current product, accepting lower margins 2-3 years later.",
+    "lag": "pricing response is immediate; the margin cost arrives 2-3 years later",
+    "strength": "moderate",
+    "war_game_translation": "No lever. Address it in the public_statement, and hold the Turn 1 plan. Do not launch a program just to answer price.",
+    "evidence": ["B-0003", "B-0033", "B-0039", "B-0083", "B-2356", "B-2357", "B-0162", "B-0246", "B-0273", "B-0226", "B-0204"]
+  },
+  {
+    "trigger": "Customers defect to the rival or press for an earlier airplane (for example, the major_order_split inject or market multipliers that favour the a320neo)",
+    "response": "Treat customers as the arbiter: a product decision 'starts and ends' with them. Bring the decision forward and commit within the period. Customer preference, which in 2010 leaned to a newer airplane with a pro-re-engine camp, decides between re-engine and new.",
+    "lag": "within the period (inference); the documented decision window is under a year",
+    "strength": "moderate",
+    "war_game_translation": "Commit b737next in the turn this happens. Flip from cleansheet to reengine if customers are defecting and reengine leads cleansheet by more than $1B of delta PV (profile §6, test b).",
+    "evidence": ["B-0004", "B-0234", "B-0277", "B-0285", "B-2362"]
+  },
+  {
+    "trigger": "High fuel prices (oil above $100) raise the value of fuel efficiency",
+    "response": "Read it as support for replacement demand and for a more efficient narrowbody. It strengthens the case to decide, and lowers the risk of 737NG deferrals in the meantime.",
+    "lag": "within the year",
+    "strength": "moderate",
+    "war_game_translation": "The fuel_price_spike inject reinforces a Turn 2 commitment and the rate_increase. It does not change the variant by itself.",
+    "evidence": ["B-0134", "B-0062", "B-0234"]
+  },
+  {
+    "trigger": "Rival stumbles (development delays, quality or wiring problems)",
+    "response": "Press existing low-cost derivatives and highlight the contrast with our product. No new program is launched just to exploit the stumble. Expect the rival to meet 787-type supply-chain problems of its own.",
+    "lag": "none; uses programs already under way",
+    "strength": "moderate",
+    "war_game_translation": "An Airbus slip is not a reason to accelerate b737next or change the variant. Keep the plan, and mention the contrast in the public_statement.",
+    "evidence": ["B-0025", "B-2361", "B-2368", "B-2367"]
+  },
+  {
+    "trigger": "Rival partners, or new entrants move up (Embraer and Bombardier upsizing; Chinese, Russian and Japanese entrants)",
+    "response": "Watch. Stay open to partnering with potential competitors. Use trade rules to set precedents that also bind new entrants.",
+    "lag": "open-ended",
+    "strength": "weak",
+    "war_game_translation": "No lever in this scenario. Mention it in the public_statement at most.",
+    "evidence": ["B-0037", "B-2371", "B-2377", "B-0271"]
+  },
+  {
+    "trigger": "Demand shock or downturn (deferrals, credit crisis, traffic decline)",
+    "response": "Hold the 737 rate on overbooking and re-slotting. Cut widebody rates with about a year's notice. Protect the balance sheet: cut capex and buybacks, keep the dividend, borrow if needed, and use Boeing Capital as a financing backstop. No price cuts to fill slots.",
+    "lag": "within a quarter for cash measures; rate cuts announced about 14 months before they take effect",
+    "strength": "strong",
+    "war_game_translation": "eurozone_downturn inject: skip rate_increase if not yet used. Keep any launched b737next. Postpone an uncommitted launch only if the delta PV of committing now turns negative.",
+    "evidence": ["B-0151", "B-0156", "B-0188", "B-0199", "B-0187", "B-0250", "B-0226", "B-0115", "B-0150", "B-0176", "B-0201", "B-0116", "B-0196"]
+  },
+  {
+    "trigger": "Demand recovery or order boom led by single-aisle, emerging-market and low-cost carriers",
+    "response": "Raise 737 rates in measured steps once demand is visible and suppliers are ready. Bring forward planned widebody increases. We made three 737 rate increases in 2010.",
+    "lag": "increases announced 18-30 months before they take effect; at least 10 months' notice",
+    "strength": "strong",
+    "war_game_translation": "Take rate_increase (one use) in Turn 1. The order_boom inject confirms it.",
+    "evidence": ["B-0262", "B-0264", "B-0269", "B-0270", "B-0284", "B-0268", "B-0191", "B-0163"]
+  },
+  {
+    "trigger": "Our own development program slips or overruns (787, 747-8)",
+    "response": "Spend more to protect the schedule. Re-baseline with schedule margin and a slower ramp. Change program leadership, embed staff with partners, and keep the partners. Never cancel. Hold further development until engineering capacity frees up.",
+    "lag": "same quarter for the re-plan; the next program waits",
+    "strength": "strong",
+    "war_game_translation": "boeing_787_setbacks inject: do not launch b737next in that turn; delay one turn. Never cancel an already-launched b737next because of it.",
+    "evidence": ["B-0040", "B-0048", "B-0049", "B-0079", "B-0073", "B-0074", "B-0091", "B-0216", "B-0248", "B-0130"]
+  },
+  {
+    "trigger": "A launched program suffers cost growth or weak orders",
+    "response": "Take the charge and keep going. Cancel only if expected revenues no longer outweigh remaining costs and the airplane has lost its competitive edge. Non-core ventures (Connexion) are restructured, terminated or partnered.",
+    "lag": "none; no exit plans are prepared",
+    "strength": "strong",
+    "war_game_translation": "Cancel is almost never used on b737next. Use it only if the engine shows remaining-life PV of continuing below zero and the program has lost its competitive edge.",
+    "evidence": ["B-0072", "B-0133", "B-0141", "B-0153", "B-0192", "B-0016", "B-0021"]
+  },
+  {
+    "trigger": "Supply-chain or engine problems",
+    "response": "Embed Boeing staff at the supplier, insource work, or buy the failing supplier. Rely on the engine maker's fix rather than switching. Rate changes wait for supplier readiness. Qualifying a new source takes a year or more.",
+    "lag": "one to two quarters",
+    "strength": "moderate",
+    "war_game_translation": "A supply or engine inject: hold rate_increase if not yet used. Prefer the lower-integration-risk engine (cfm_leap default); switch to pw_gtf only if it adds more than $0.5B of delta PV (inference).",
+    "evidence": ["B-0073", "B-0112", "B-0253", "B-0211", "B-0288", "B-0184", "B-0268", "B-0130"]
+  },
+  {
+    "trigger": "Rival gains through subsidy or procurement (launch aid, a tanker award), or a trade ruling",
+    "response": "Fight through formal channels: the WTO case against launch aid, a GAO protest within 11 days, and pressure through the US government and legislature. Then re-compete aggressively.",
+    "lag": "11 days for the GAO protest; multi-year WTO process",
+    "strength": "strong",
+    "war_game_translation": "No lever. Use the public_statement to contest subsidised pricing or launch aid for the a320neo. Program choices do not change.",
+    "evidence": ["B-0077", "B-0174", "B-0128", "B-0017", "B-2358", "B-2360", "B-2375", "B-2379", "B-0271"]
+  }
+]
