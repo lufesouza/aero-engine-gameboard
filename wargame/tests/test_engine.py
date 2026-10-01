@@ -406,7 +406,8 @@ class RollsRoyceTests(unittest.TestCase):
         self.assertGreater(r["components_pv_b"]["nb_engines"], 0)
         self.assertLess(r["components_pv_b"]["capex"], 0)
         self.assertAlmostEqual(sum(r["components_pv_b"].values()), r["delta_pv_b"], places=2)
-        self.assertAlmostEqual(r["undiscounted_b"]["capex"], -8.0 * 1.25, places=6)
+        rr = c["suppliers"]["rolls_royce"]
+        self.assertAlmostEqual(r["undiscounted_b"]["capex"], -rr["programs"]["uf_nb"]["capex_b"] * (1 + rr["alpha"]), places=2)
         self.assertEqual(r["programs"][0]["selected_by"], ["airbus:ngsa"])
 
     def test_airframe_waits_for_late_engine(self):
@@ -444,7 +445,8 @@ class RollsRoyceTests(unittest.TestCase):
         r = self.ev([rr_rec(1, rr=rr_orders(t1000=True))])["rolls_royce"]
         self.assertGreater(r["components_pv_b"]["wb_engines"], 0)
         self.assertGreater(r["components_pv_b"]["installed_base"], 0)
-        self.assertAlmostEqual(r["undiscounted_b"]["capex"], -2.0 * 1.25, places=6)
+        rr = self.cfg["suppliers"]["rolls_royce"]
+        self.assertAlmostEqual(r["undiscounted_b"]["capex"], -rr["upgrade"]["capex_b"] * (1 + rr["alpha"]), places=2)
 
     def test_validation_and_digest(self):
         c = self.cfg
@@ -524,8 +526,9 @@ class PrattWhitneyTests(unittest.TestCase):
         w = M.build_world(c, both)
         self.assertEqual(w.sup_programs["uf_nb"].partner, "pratt_whitney")
         r = M.evaluate(c, w)
-        for sup in ("rolls_royce", "pratt_whitney"):  # each pays half the $8B, loaded by its own alpha
-            self.assertAlmostEqual(r[sup]["undiscounted_b"]["capex"], -4.0 * (1 + c["suppliers"][sup]["alpha"]), places=6)
+        half = c["suppliers"]["rolls_royce"]["programs"]["uf_nb"]["capex_b"] / 2
+        for sup in ("rolls_royce", "pratt_whitney"):  # each pays half the capex, loaded by its own alpha
+            self.assertAlmostEqual(r[sup]["undiscounted_b"]["capex"], -half * (1 + c["suppliers"][sup]["alpha"]), places=2)
         self.assertGreater(r["pratt_whitney"]["components_pv_b"]["nb_engines"], -3.0)  # JV value offsets part of the lost share
         solo = [self.rec4(a=self.ngsa("rr_ultrafan_nb"), rr=orders("rolls_royce", [{"program": "uf_nb", "year": 2026, "variant": "solo"}]))]
         self.assertLess(M.evaluate(c, M.build_world(c, solo))["pratt_whitney"]["components_pv_b"]["nb_engines"],
@@ -547,6 +550,14 @@ class PrattWhitneyTests(unittest.TestCase):
         self.assertGreater(r["components_pv_b"]["nb_engines"], 0)
         self.assertGreater(r["components_pv_b"]["installed_base"], 0)
         self.assertEqual(r["upgrade_year"], 2026)
+
+    def test_aggressive_terms_are_a_concession_even_on_a_negative_ramp(self):
+        c = self.cfg
+        self.assertLess(c["suppliers"]["pratt_whitney"]["ramp"]["start_frac"], 0)
+        def pw_value(terms):
+            pw = self.pw([{"program": "gtf_next", "year": 2026, "terms": terms}])
+            return M.evaluate(c, M.build_world(c, [self.rec4(a=self.ngsa("pw_gtf2"), pw=pw)]))["pratt_whitney"]["undiscounted_b"]["nb_engines"]
+        self.assertLess(pw_value("aggressive"), pw_value("standard"))
 
     def test_pw_stage(self):
         rep = S.supplier_stage(self.cfg, [], 1, [], "pratt_whitney")

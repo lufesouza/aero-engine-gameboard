@@ -741,13 +741,13 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
     the airframer's new program enters service; then 1 minus any partner share if the
     program flies the supplier's engine, else 0). Each engine is booked at delivery at its
     lifecycle value (OE margin plus PV of aftermarket profit, $M): the incumbent value,
-    or for a new engine its value x terms multiplier x a maturity ramp after EIS.
+    or for a new engine its mature value x a maturity ramp after EIS, less the terms'
+    price concession per engine. A Joint Venture partner uses the owner's engine values.
     """
     scfg = cfg["suppliers"][sup]
     y_start, y_end, pv_base = cfg["years"]["start"], cfg["years"]["end"], cfg["years"]["pv_base"]
     wacc, alpha = scfg["wacc"], scfg["alpha"]
     epa = scfg["engines_per_aircraft"]
-    ramp = scfg["ramp"]
     t1 = scfg.get("upgrade")
     t1_year = world.upgrade_years.get(sup)
 
@@ -773,8 +773,12 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
             partner_share = sparam(cfg, sp.owner, sp.pid, sp.variant, "value_share_partner", 0.0)
             share = partner_share if sup == sp.partner else 1.0 - partner_share
             age = y - p.eis
-            r = min(1.0, ramp["start_frac"] + (1.0 - ramp["start_frac"]) * age / max(1, ramp["years"]))
-            v = sparam(cfg, sp.owner, sp.pid, sp.variant, "value_m_per_engine") * ocfg["terms"][sp.terms]["value_mult"] * r
+            # Maturity ramp (start_frac may be negative: a new engine can destroy value at first);
+            # terms are a fixed price concession per engine of (1 - value_mult) x the mature value.
+            oramp = ocfg["ramp"]
+            r = min(1.0, oramp["start_frac"] + (1.0 - oramp["start_frac"]) * age / max(1, oramp["years"]))
+            base = sparam(cfg, sp.owner, sp.pid, sp.variant, "value_m_per_engine")
+            v = base * r - base * (1.0 - ocfg["terms"][sp.terms]["value_mult"])
             return share, v * vmult("new", y)
         fit = scfg["incumbent_fit"][side][seg]
         if t1 and t1_year is not None and side == t1["fit_side"] and seg == t1["segment"] \

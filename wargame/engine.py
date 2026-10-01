@@ -340,8 +340,9 @@ def supplier_rules(cfg):
             "value_rule": ("Engines delivered per year = segment units x airframer share x engines_per_aircraft x fit. Fit is "
                            "incumbent_fit until that airframer's new program in the segment enters service, then 1 minus any "
                            "Joint Venture partner share if it flies the supplier's engine, else 0. Each engine is booked at "
-                           "delivery at its lifecycle value ($M): the incumbent value, or the new engine's value x the terms' "
-                           "value_mult x a maturity ramp from ramp.start_frac at EIS to 1 after ramp.years."),
+                           "delivery at its lifecycle value ($M): the incumbent value, or the new engine's mature value x a maturity "
+                           "ramp (ramp.start_frac at EIS, which can be negative, rising to 1 after ramp.years), less the "
+                           "terms' price concession of (1 - value_mult) x the mature value per engine."),
             "upgrade_rule": (f"{scfg['upgrade']['label']} (flag '{scfg['upgrade']['flag']}', one-time): capex_b over capex_years; from "
                              "lag_years later, fit_pp more of fit_side's segment deliveries until that airframer's new program in "
                              "the segment enters service; installed_base_saving_b_per_year for saving_years."
