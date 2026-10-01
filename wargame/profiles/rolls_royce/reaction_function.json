@@ -1,0 +1,234 @@
+[
+  {
+    "trigger": "An airframer launches a new narrowbody and runs an engine competition (fps or NGSA)",
+    "response": "Skip unless returns clear the hurdle and engineering capacity allows; a partner is preferred to share risk, but Solo is kept as an option ('we don't need partnership for capability'; 'if it doesn't work, we can consider alternatives'). Declined the A320neo 'from a simple financial basis' while P&W could justify an engine; had resources for 3 of 4 new engines and chose the widebodies; 'we don't have to be in narrow-body' (2015); 'if it is not profitable, we won't do it because we don't need to' (2023); a self-funded narrowbody demonstrator, about 2 years from build (2025). Strong on 'no launch without a programme'; launching itself is untested since 2011 (inference).",
+    "lag": "Commits only in a turn for which the airframer announced its launch (orders are sealed; disclosures arrive a turn late); about 7 years from engine launch to entry into service",
+    "strength": "moderate",
+    "war_game_translation": "Do Nothing on uf_nb unless fps or NGSA was announced, in an earlier turn's disclosures or statements, for this turn. UltraFan announced (P 0.6): Solo, which beats jv_pw by more than the $3B doctrine-premium cap ($7.3B NGSA, $4.3B fps): a declared reversal of the partnership preference. Engine open (P 0.35, contested incentive > 0): NGSA jv_pw (+2.02) if P&W announced join_rr_jv for this turn, else Solo (+4.44); fps fails the +$2B bar (Solo +0.96). [T1, base-case calib run] Solo -9.18 if not selected, +19.78 with fps, +29.74 with NGSA; jv_pw -4.79 / +9.69 / +14.67; fallback-only airframer incentive at standard fps 2.083, NGSA 4.909. Check the contested incentive against open fan and P&W with whatif (NGSA 2026: open fan 43.15 vs UltraFan 39.55 for Airbus). [whatif] NGSA launched 2029: Solo +21.38, jv_pw +10.54, jv_pw without P&W 0.00 (NGSA falls back to CFM).",
+    "evidence": [
+      "R-0310",
+      "R-0313",
+      "R-0929",
+      "R-0952",
+      "R-1009",
+      "R-1010",
+      "R-1011",
+      "R-1017",
+      "R-1022",
+      "R-1024",
+      "R-0994",
+      "R-1005",
+      "R-0931"
+    ]
+  },
+  {
+    "trigger": "Airbus launches an A350 Re-engine (an RR sole-source widebody) or courts a rival engine maker",
+    "response": "Commit at once with a derivative and lock in exclusivity. A330neo: Trent 7000 exclusive at launch with 127 commitments on GBP 200-300m of derivative R&D. A350: answered possible GE entry by extending A350-900 exclusivity to 2030, timed to UltraFan; accepts dual sourcing after 2030. Sole source removes any reason for 'silly pricing'. Strong for defending exclusivity; moderate for launching a new engine (inference: the precedents are a derivative and a contract extension, applied here to a $3.1B new architecture).",
+    "lag": "Same turn as an announced A350 Re-engine; about 12 months to secure exclusivity",
+    "strength": "moderate",
+    "war_game_translation": "Launch uf_wb on standard terms in the first year of the turn for which Airbus announced (in an earlier turn) rea350. Airbus's default engine is rr_ultrafan_wb, but an unannounced rea350 falls back to ge_genx_next because we cannot see it in time: treat that as the rival-selected row. [whatif] rea350 launched 2029: -2.75 with uf_wb launched 2029 (airframe waits 1 year for our 6-year engine), -5.11 without, -3.69 if uf_wb was pre-launched in 2026. [T1] break-even P(A350 Re-engine on UltraFan) about 0.54 for a speculative launch (inference). Standard terms: fallback incentive +1.069; aggressive only if P&W has launched pw_wb and beats our standard terms (see the P&W widebody row).",
+    "evidence": [
+      "R-0319",
+      "R-0937",
+      "R-0360",
+      "R-0361",
+      "R-0990",
+      "R-0991",
+      "R-0334",
+      "R-1393"
+    ]
+  },
+  {
+    "trigger": "Boeing launches a 787 Re-engine (dual-source or rival platform)",
+    "response": "Bid hard but often lose to GE: a 'very competitive bid' for the 777X, which GE took as sole source; GE prices 787 campaigns with 'extraordinary' offers. Boeing's 2025 engine supply-chain comments mention only GE and CFM [customer] (inference: RR is not top of mind; this is about in-service durability, not a selection signal). RR will not cut price to regain 787 share.",
+    "lag": "Within the campaign",
+    "strength": "moderate",
+    "war_game_translation": "Do not launch uf_wb for re787 alone unless P(Boeing selects UltraFan) > 0.42 (inference from [T1]: uf_wb +2.01 if selected, -7.38 if GE, against -3.41 for Do Nothing; fallback incentive 0.858 at standard). Boeing's own PV favours UltraFan ([whatif] 2026: +0.78 vs GE -0.08 and P&W +0.60; 2029: +2.80 vs GE +2.47), so if Boeing announces a 787 Re-engine, re-check P with whatif. If uf_wb is already launched for the A350, offer it at standard terms. A re787 on GE ends our Trent 1000 fit at its entry into service.",
+    "evidence": [
+      "R-0317",
+      "R-1831",
+      "R-1830",
+      "R-1946",
+      "R-1849",
+      "R-0998"
+    ]
+  },
+  {
+    "trigger": "An airframer or airline selects a rival engine, or an airframer selects UltraFan without announcing it and falls back to CFM/GE",
+    "response": "Accept it, do not chase on price, support the fleet. ANA dual-sourced GE after the Trent 1000 crisis and RR accepted it; GE took Air New Zealand; RR says higher prices do not lose campaigns.",
+    "lag": "Immediate",
+    "strength": "strong",
+    "war_game_translation": "No retroactive aggressive terms. Cancel an UltraFan programme no airframe flies once the programmes it could serve have launched on other engines (spent capex is sunk); cancel precedents by analogy only: the F136 stopped when the government funder walked away, and RR withdrew from NMA itself. If CFM wins fps, NGSA is the last narrowbody prize (inference).",
+    "evidence": [
+      "R-0356",
+      "R-1946",
+      "R-0367",
+      "R-0309",
+      "R-0980"
+    ]
+  },
+  {
+    "trigger": "An airframer asks for price concessions or compensation",
+    "response": "2004-21: conceded. Deeper launch discounts; capitalised aftermarket-rights concessions rose from GBP 21m (2004) to GBP 286m (2017); Trent 700 prices cut to cash-loss levels in the A330ceo run-out (GBP 250m hit); Trent 7000 aftermarket concessions against Boeing's 787 pricing; in 2019 it met aggression only within 'commercial common sense'. 2022-: holds price. Admits it placed engines 'at any cost'; now 'not after market share'; the Investment Committee reviews every contract.",
+    "lag": "Within the campaign",
+    "strength": "strong",
+    "war_game_translation": "Default terms: standard. Aggressive (+1.2pp airframer margin, value_mult 0.86) only when whatif shows the contested incentive (UltraFan against the best alternative open to the airframer: open fan, P&W, GE/CFM) <= 0 at standard and > 0 at aggressive, and the selected-case PV under aggressive stays >= $2B above Do Nothing. [T1] aggressive costs us NGSA $6.37B, fps $4.68B, A350 $1.08B, 787 $1.48B when selected. Not on the A350 Re-engine unless P&W's pw_wb beats our standard terms.",
+    "evidence": [
+      "R-0484",
+      "R-0113",
+      "R-0588",
+      "R-0343",
+      "R-1935",
+      "R-0753",
+      "R-1555",
+      "R-1582",
+      "R-1571",
+      "R-1493"
+    ]
+  },
+  {
+    "trigger": "A rival engine maker stumbles or wins big (e.g. gtf_durability_crisis, gtf_next_test_setback, a CFM sole-source win)",
+    "response": "When a rival stumbles RR stays quiet and learns ('we will try to learn' from the GTF gearbox) and treats GE exploiting the Trent 1000 crisis as normal competition. P&W says its GTF core displaced RR at Gulfstream [rival: P&W]; an industry report reads RR's Pearl family as the answer to P&W's PW812 gains [press/industry] (inference: RR answers rival wins with product).",
+    "lag": "1-4 years (inference)",
+    "strength": "moderate",
+    "war_game_translation": "No lever change in itself. Re-run options and the whatif contested-incentive comparison: a gtf_next_test_setback slips P&W's engine 2 years and weakens pw_gtf2 against UltraFan, and a P&W setback may lower the chance P&W joins a Joint Venture (both inference). Do not switch to aggressive terms to exploit it.",
+    "evidence": [
+      "R-1944",
+      "R-1945",
+      "R-1881",
+      "R-1877",
+      "R-1791"
+    ]
+  },
+  {
+    "trigger": "Our own durability crisis (Trent 1000; rr_durability_crisis inject)",
+    "response": "Fix, fund spares and compensate; then rebuild share without cutting price. Trent 1000: 380-500 engines affected; just under 50 aircraft on ground at peak; spare engines at GBP 4-5m each; just over half of the then GBP 1.5bn cash-cost estimate (Feb 2019) was customer disruption, mostly paid as credit notes, and the total later rose to GBP 2.4bn over 2017-23; LTSA margin fell from about 20% to high single digits; 787 share fell from 45% (2016) to 14% (2021). Cost guidance only rose. Rebuild via a GBP 1bn time-on-wing programme and the 2025 HPT blade; nothing 'silly' on price.",
+    "lag": "(inference) About 4 years from first issues (2016-17) to zero aircraft on ground (early 2021); about 8 years to the final HPT blade (June 2025); share recovery slower",
+    "strength": "strong",
+    "war_game_translation": "Fund t1000_upgrade if not yet funded and no UltraFan programme is in development (+10pp of Boeing widebody fit after lag_years 3; $0.8B over 3 years; $0.13B a year saving for 15 years). The engine charges strain on the upgrade's 3-year window when it overlaps an UltraFan development ([whatif] turn 1: with uf_nb Solo -9.68 against -9.18 alone; turn 2 strain -0.99), so defer it in a launch turn. Keep standard terms. Defer any new UltraFan launch that turn unless an airframer selection was announced for it. [whatif] upgrade alone +0.81 (turn 1), +0.60 (turn 2), +0.43 (turn 3).",
+    "evidence": [
+      "R-1145",
+      "R-1160",
+      "R-1171",
+      "R-0777",
+      "R-0760",
+      "R-0725",
+      "R-1238",
+      "R-0765",
+      "R-0135",
+      "R-0724",
+      "R-1177",
+      "R-1239",
+      "R-1601",
+      "R-1023",
+      "R-0998"
+    ]
+  },
+  {
+    "trigger": "Demand shock (COVID; nb_demand_shock inject)",
+    "response": "Cut first and protect liquidity: dividend cancelled within about 2 months; new civil engine programme spend cut first; capex plus intangibles from GBP 1,324m (2019) to GBP 493m (2021); R&D cash -27%; GBP 5bn of equity and debt raised; about 9,000 roles cut across the group, including about one-third of civil aerospace management roles; investment grade deprioritised because no engine competitions were expected for 2-3 years. Net cash returned about 3 years after the trough.",
+    "lag": "2-3 months to cut; about 3 years to recover net cash",
+    "strength": "strong",
+    "war_game_translation": "nb_demand_shock: postpone uf_nb by a turn unless an airframer selection was announced for this turn. wb_demand_boom: Do Nothing (inference: more value on the installed base needs no new investment).",
+    "evidence": [
+      "R-0779",
+      "R-0986",
+      "R-0060",
+      "R-0181",
+      "R-0793",
+      "R-0814",
+      "R-1513",
+      "R-0030"
+    ]
+  },
+  {
+    "trigger": "An airframer's quality or rate problems (737 MAX-type grounding; boeing_quality_escape; certification_scrutiny)",
+    "response": "Follow the airframer passively. The 2013 787 grounding was judged immaterial and RR kept delivering; concession cash moves with Boeing deliveries ('at the mercy of Boeing's production plans'); the 2024 Boeing strike delayed the Trent 1000 fix flight test, and certification, by about two months; OE output follows airframer build rates.",
+    "lag": "Same quarter",
+    "strength": "strong",
+    "war_game_translation": "No order change. A Boeing slip delays any re787, which lengthens the payoff of t1000_upgrade (inference).",
+    "evidence": [
+      "R-0315",
+      "R-0421",
+      "R-0422",
+      "R-0446",
+      "R-0418"
+    ]
+  },
+  {
+    "trigger": "Technology slip (ultrafan_test_setback; engine_maturity_slip)",
+    "response": "Protect maturity even at the cost of a slot. UltraFan was once pitched for deliveries from about 2025 and by 2022 competitions were 'well into the 2030s'; the demonstrator reached full power only in 2023; RR left NMA because the timescales were 'simply too aggressive' and 'bitter experience' said money cannot buy test time; its rule is demonstrate, then go or pause on airframer timing. The Trent 1000 TEN blade fix failed testing in Nov 2019 and was still uncertified in Aug 2021.",
+    "lag": "About 2 years per slip (TEN blade fix, Nov 2019 to beyond Aug 2021); withdrawal within months of judging a timeline too tight (NMA decided end-2018, announced Feb 2019)",
+    "strength": "strong",
+    "war_game_translation": "ultrafan_test_setback (every RR engine programme already in development slips 2 years): keep any UltraFan programme an airframe flies (extension costs 10% of capex a year); cancel one no airframe flies; launch no new UltraFan that turn unless an airframer selection was announced for this turn, in which case launch (a narrowbody slot is one-shot). engine_maturity_slip (next-generation technology ready 2 years later for the airframers, raising their early-entry penalty): no order change for us; expect airframer launches a turn later (inference) and keep launching only against announcements. Never disclose an entry into service earlier than launch + dev_years.",
+    "evidence": [
+      "R-0955",
+      "R-1000",
+      "R-1013",
+      "R-1934",
+      "R-1476",
+      "R-0994",
+      "R-1210",
+      "R-1251",
+      "R-0980"
+    ]
+  },
+  {
+    "trigger": "Supply-chain crunch (supply_chain_crunch inject)",
+    "response": "Castings and forgings are the bottleneck; supplier fires and customer disruption cost cash; OE deliveries were broadly flat in 1H25 under these constraints, with 23 of 122 large engines built as spares. Engineering capacity rations programmes (3 of 4 engines) and three parallel programmes were 'unprecedented'.",
+    "lag": "Ongoing (2022-26)",
+    "strength": "moderate",
+    "war_game_translation": "The inject makes strain 50% dearer. Never let uf_wb and uf_nb Solo developments overlap (6-7 years each, so launches in different turns can still overlap: [whatif] uf_wb 2029 then uf_nb 2032 costs $0.74B of strain), and never fund t1000_upgrade during an UltraFan development (the engine counts its window too). Sequence them, or use jv_pw (strain_relief 0.5). [whatif] both launched together cost $1.92B (turn 1), $1.44B (turn 2), $1.08B (turn 3) of strain.",
+    "evidence": [
+      "R-1299",
+      "R-0862",
+      "R-1302",
+      "R-0929",
+      "R-1127",
+      "R-1318"
+    ]
+  },
+  {
+    "trigger": "A partner proposes a Joint Venture (P&W join_rr_jv)",
+    "response": "Partnership is the stated preference, financially 'to derisk things'; RR talks to 'almost all the parties' (none named) and says it does not need a partner for capability. Friction with P&W: RR left IAE when partners were misaligned; in 2012 it agreed a midsize Joint Venture with P&W, but P&W formed IAE LLC without RR; P&W keeps 59-61% of its narrowbody collaborations and its one named 50:50 venture is the Engine Alliance with GE (a widebody venture; partners otherwise take 14-50%); P&W still recalls RR's compressor halting V2500 deliveries; RR is wary since Tognum.",
+    "lag": "Years; no narrowbody Joint Venture closed since 2012",
+    "strength": "moderate",
+    "war_game_translation": "Order uf_nb as jv_pw only in a turn for which P&W announced, in an earlier turn, that it will set join_rr_jv; without the flag nothing launches and the airframe falls back to CFM. jv_pw halves capex ($7.5B to $3.75B) and value; dev_years 6 against 7 Solo. Prefer it to Solo unless Solo's expected PV is > $3B higher (about P >= 0.38 for NGSA, >= 0.51 for fps; inference from [T1]) and declare the doctrine premium. In practice: Solo at P 0.6; jv_pw only at P 0.35 on NGSA. Applying RR's generic partnership preference to P&W specifically is an inference.",
+    "evidence": [
+      "R-1010",
+      "R-1022",
+      "R-1025",
+      "R-0916",
+      "R-1892",
+      "R-0318",
+      "R-1377",
+      "R-1893",
+      "R-1894",
+      "R-1875",
+      "R-1821"
+    ]
+  },
+  {
+    "trigger": "Pratt & Whitney launches or announces pw_wb, a rival widebody engine selectable for the A350 and 787 Re-engines",
+    "response": "Defend sole-source exclusivity, as when GE courted Airbus on the A350 in 2020 and RR answered with exclusivity to 2030; accepts dual sourcing only after 2030. P&W's parent vowed to use its balance sheet to gain share from weakened rivals.",
+    "lag": "Same turn as an announced A350 Re-engine",
+    "strength": "moderate",
+    "war_game_translation": "Compare Airbus's delta PV on pw_wb_new and on rr_ultrafan_wb with whatif. [whatif] rea350 2026: P&W standard -0.12 against UltraFan standard -0.29 (aggressive 1.09 vs P&W aggressive 1.03); 2029: UltraFan standard 2.25 beats P&W aggressive 2.16. If P&W wins at our standard terms, aggressive uf_wb is allowed while our selected-case PV beats the P&W-selected case (inference; no P&W widebody precedent).",
+    "evidence": [
+      "R-0361",
+      "R-0360",
+      "R-0991",
+      "R-1880"
+    ]
+  },
+  {
+    "trigger": "Other injects: fuel_price_spike, trade_dispute, quiet_turn",
+    "response": "RR sells fuel burn: 'We sell fuel burn. We sell SFC.' No other behavioural precedent in the evidence.",
+    "lag": "None",
+    "strength": "weak",
+    "war_game_translation": "No order change by itself; re-run options. fuel_price_spike (+1.5pp margin for new-generation products) raises airframers' launch incentives, so expect higher selection probabilities; trade_dispute (-1pp for 5 years) lowers them; quiet_turn changes nothing (inference, rules).",
+    "evidence": [
+      "R-0955"
+    ]
+  }
+]

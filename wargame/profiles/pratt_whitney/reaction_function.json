@@ -1,0 +1,243 @@
+[
+ {
+  "trigger": "An airframer launches a new narrowbody (NGSA or fps) and runs an engine competition",
+  "response": "Bid only for sole source, against a board-set hurdle at least as high as the GTF's (about 10% all-in against an 8% cost of capital; the 10% is an inference from 'more close to double-digit'), with about half the development partnered out. Without a business case, match the airframer's non-commitment and fund only enabling technology. Defend the A320neo franchise early: 'if you miss a cycle ... you get shut out ... for decades'.",
+  "lag": "Tied to the airframer's decision: on the NMA, P&W's engine decision slipped from about mid-2018 to not before early 2019 while it waited for Boeing, and the NMA never launched",
+  "strength": "strong",
+  "war_game_translation": "Launch gtf_next on standard terms, with year = the turn's last (2028 in turn 1), in the turn an airframer discloses NGSA or fps on pw_gtf2; disclose the commitment. Engine, run calib turn 1, airframes in 2028: NGSA on pw_gtf2 +0.96 (+1.98 with gtf_upgrade in 2026); NGSA falls back to CFM -3.11 (-1.74); fps on ours +1.65; both +3.35. NGSA-only hedge without a disclosure (inference): break-even p = cost/(cost+gain) = 1.20/(1.20+3.72), about 1 in 4, with the upgrade in 2026; 0.86/(0.86+0.96+3.11), about 1 in 6, without the upgrade overlap. Launch when p is at least about 0.45 (0.38 without the overlap), which adds the $1B doctrine allowance. p = P(launch this turn, about 0.7 from the airframers' whatif timing payoffs) x P(names pw_gtf2, about 0.3 with RR in play, 0.7 without), so about 0.2 on turn 1 with RR: no hedge. fps (break-even about 2 in 5) gets no hedge.",
+  "evidence": [
+   "P-0737",
+   "P-0746",
+   "P-0698",
+   "P-0731",
+   "P-0715",
+   "P-1243",
+   "P-0713",
+   "P-0711",
+   "P-0739",
+   "P-0757",
+   "P-1868",
+   "P-1347",
+   "P-0125",
+   "P-2020",
+   "P-2058"
+  ]
+ },
+ {
+  "trigger": "An airframer launches a widebody Re-engine (787 Re-engine or A350 Re-engine)",
+  "response": "Abstain. P&W calls itself 'narrow-body focused' and took widebody risk only in a 50/50 Joint Venture with GE (the GP7000, now out of production). It passed on the 787, which UTC's CEO later called under-investment rather than doctrine. Its 2019 widebody plan appears in no later source (inference: never executed).",
+  "lag": "none (structural)",
+  "strength": "strong",
+  "war_game_translation": "Do Nothing on pw_wb; the flip is inactive at calibration. Engine, turn 1: pw_wb is -3.65 even with the 787 Re-engine on pw_wb_new and -4.10 on the A350 Re-engine (best options case -3.56 with the upgrade). Flip only if a Re-engine is disclosed on pw_wb_new, airframer_incentive_b > 0, whatif is at least +$1.5B after strain and no narrowbody programme is in development (gtf_upgrade counts).",
+  "evidence": [
+   "P-1313",
+   "P-1700",
+   "P-1676",
+   "P-1934",
+   "P-1125",
+   "P-1842"
+  ]
+ },
+ {
+  "trigger": "An airframer or airline selects a rival engine",
+  "response": "Let it go rather than match price ('we were disciplined ... we don't regret it'), accept 40-50% of a shared platform, and win back on product. P&W claimed 56% of A320neo selections from June 2017 to June 2018, against LEAP's almost 10:1 lead in 2017 order intake reported by a 2019 industry brief (the two are not reconciled). An analyst reported Airbus shifting allocation toward CFM in 2020.",
+  "lag": "12-18 months (inference)",
+  "strength": "strong",
+  "war_game_translation": "Do not switch to aggressive terms to chase. Cancel gtf_next if no airframe flies it. Fund gtf_upgrade: NGSA on CFM is -1.74 with it and -3.11 without (engine, turn 1).",
+  "evidence": [
+   "P-0081",
+   "P-2071",
+   "P-0074",
+   "P-1292",
+   "P-0075",
+   "P-1847",
+   "P-1973"
+  ]
+ },
+ {
+  "trigger": "An airframer asks for price concessions or compensation",
+  "response": "No deep discounts past launch mode. Share technology-driven cost-outs with airframers, not pure margin. Pay when at fault (the $196M 2017 diversion charge). Buy platform positions with exclusivity payments tied to future sales or flight hours. UTC group, not P&W engines (parent doctrine applied by analogy, inference): Collins/UTAS traded cost-downs for volume guarantees under Boeing's PFS 2.0, and UTC walked away from a Boeing price-down on a non-engine product with no aftermarket.",
+  "lag": "months (inference)",
+  "strength": "strong",
+  "war_game_translation": "Stay on standard terms. Aggressive terms raise Airbus's NGSA incentive from +1.75 to +6.73 but cut our NGSA win to -3.66, below losing it (-3.11); fps aggressive -1.75 against -0.64 on CFM (engine, turn 1). Flip only if whatif(aggressive, selected) beats whatif(standard, not selected).",
+  "evidence": [
+   "P-0735",
+   "P-1333",
+   "P-0127",
+   "P-2008",
+   "P-1207",
+   "P-0273",
+   "P-0144",
+   "P-1524",
+   "P-2017",
+   "P-0148"
+  ]
+ },
+ {
+  "trigger": "A rival engine maker stumbles",
+  "response": "Take the platform when a rival's programme fails: Dassault moved the Falcon 6X to P&W's PW812 after Safran's Silvercrest problems. In October 2020 P&W said it would keep gaining A320neo share, having risen from 43% to about 55% over the prior 1.5 years, mostly before COVID; the premise that rivals were weakened came from an analyst's question, which management did not dispute.",
+  "lag": "1-2 years (inference: Silvercrest problems to the February 2018 Falcon 6X selection)",
+  "strength": "moderate",
+  "war_game_translation": "After rr_durability_crisis or ultrafan_test_setback, disclose a gtf_next offer on standard terms to the airframer waiting on UltraFan; launch it if that airframer signals pw_gtf2. Do not join the Joint Venture that turn.",
+  "evidence": [
+   "P-2006",
+   "P-1827",
+   "P-0086",
+   "P-1974"
+  ]
+ },
+ {
+  "trigger": "A rival engine maker wins big or out-innovates",
+  "response": "Answer with incremental product, never price: fix durability, then the GTF Advantage. Prefer an upgrade of the incumbent to a clean sheet, as with the F135 core upgrade. Reuse the GTF core to displace rivals where possible: the PW800 replaced Rolls-Royce on the Gulfstream G500/G600, a competitive win rather than a response to a stumble.",
+  "lag": "1-3 years (inference)",
+  "strength": "strong",
+  "war_game_translation": "Commit gtf_upgrade if not done; keep standard terms; no panic launch of gtf_next without an airframer signal.",
+  "evidence": [
+   "P-1847",
+   "P-0075",
+   "P-0114",
+   "P-0104",
+   "P-1302",
+   "P-1298",
+   "P-0105",
+   "P-0064",
+   "P-0089"
+  ]
+ },
+ {
+  "trigger": "Our own durability crisis (GTF early issues 2016-18; the 2023 powder-metal recall)",
+  "response": "Divert production engines to spares and take a one-off charge; compensate airlines bilaterally within the provision ($5.4bn gross, $2.9bn net, about 80% compensation); push 49% to partners; expand MRO; fix forward with block upgrades and the GTF Advantage, then charge for the Hot Section Plus kit. P&W claimed about 40% share in February 2024 and aimed to hold it (view).",
+  "lag": "Weeks to divert; about a quarter for the charge; 2-3 years for the upgrade",
+  "strength": "strong",
+  "war_game_translation": "Under gtf_durability_crisis, commit gtf_upgrade that turn if not already committed (+1.76 alone in turn 1); keep standard terms; no pw_wb; keep a committed gtf_next (do not cancel).",
+  "evidence": [
+   "P-0273",
+   "P-0144",
+   "P-1563",
+   "P-0596",
+   "P-0643",
+   "P-0109",
+   "P-0758",
+   "P-0786",
+   "P-1363",
+   "P-0111"
+  ]
+ },
+ {
+  "trigger": "A demand shock (COVID)",
+  "response": "Cut E&D (about $300M at P&W) and capex (about $500M); RTX cut about 20% of commercial-aero headcount, about 15,000 positions across Collins and P&W. Suspend buybacks for 2020, partly out of sensitivity to struggling customers, and hold the dividend. Keep the rate-63 capacity plan and suppliers warm through COVID. Use idle shops to retrofit the GTF fleet.",
+  "lag": "within the quarter",
+  "strength": "strong",
+  "war_game_translation": "Under nb_demand_shock, keep a committed gtf_next and the upgrade; defer an uncommitted gtf_next one turn unless an airframer has disclosed a launch on pw_gtf2.",
+  "evidence": [
+   "P-0467",
+   "P-0398",
+   "P-0426",
+   "P-0423",
+   "P-0405",
+   "P-1372",
+   "P-1883",
+   "P-1924",
+   "P-0091",
+   "P-0092",
+   "P-0940",
+   "P-0941"
+  ]
+ },
+ {
+  "trigger": "An airframer's quality or rate problems (e.g. 737 MAX grounding, Airbus rate ambitions)",
+  "response": "Plan on the airframer's own revised numbers (the 737 MAX halt and half-rate restart, 2020); add no capacity to exploit a grounding (2-2.5 years to add forging); haircut airframer rate ambitions to 63-65; keep building and buying through a Boeing strike to keep the supply base warm. UTC group, not P&W engines (by analogy, inference): impairment tests on Collins 737 MAX content treated the grounding as temporary. Strength rests on the P&W capacity items (P-0079, P-0069, P-2047).",
+  "lag": "2-2.5 years for capacity",
+  "strength": "strong",
+  "war_game_translation": "No order under boeing_quality_escape or certification_scrutiny. An fps slip delays our engine's value with the airframe; weight NGSA over fps when choosing which disclosure to answer.",
+  "evidence": [
+   "P-0079",
+   "P-0069",
+   "P-2047",
+   "P-2021",
+   "P-0168",
+   "P-1936",
+   "P-1937"
+  ]
+ },
+ {
+  "trigger": "Technology slip on our own engine",
+  "response": "Slip quietly, add testing, do not cancel: GTF Advantage entry into service went from 2024 to '25-ish' to certification in 2025. Carry launch customers' slips (CSeries, MRJ).",
+  "lag": "About 1 year per slip (GTF Advantage: 2024 plan, 2025 certification)",
+  "strength": "moderate",
+  "war_game_translation": "Under gtf_next_test_setback or engine_maturity_slip, keep a committed gtf_next (each extra year costs 10% of capex; cancelling is barred while an airframe flies it); never add pw_wb on top.",
+  "evidence": [
+   "P-0753",
+   "P-0761",
+   "P-0785",
+   "P-0779",
+   "P-0128",
+   "P-1371"
+  ]
+ },
+ {
+  "trigger": "Supply-chain crunch",
+  "response": "Second-source, embed staff at suppliers, insource critical parts (the $285M Asheville foundry). In 2022 P&W worked through a castings supplier's shortfall rather than switching, missing about 70 Airbus engines in Q1. In the powder-metal crisis it kept Airbus OE engines flowing first, and in 2025 said the OE/spares mix had not shifted; rationing beyond that is inference. Boeing's CEO says P&W and CFM compete for the same castings.",
+  "lag": "6-12 months (inference); 2-2.5 years for capacity",
+  "strength": "moderate",
+  "war_game_translation": "Under supply_chain_crunch (strain +50%): the engine charges strain on any two overlapping P&W development windows, including the upgrade's 3-year window and the Joint Venture, although the rules text names only narrowbody-plus-widebody overlaps. With gtf_upgrade started in 2026, launch a turn-1 gtf_next only into a disclosure; otherwise move it to turn 2 (2029 or later).",
+  "evidence": [
+   "P-0817",
+   "P-0997",
+   "P-0989",
+   "P-0988",
+   "P-0670",
+   "P-1054",
+   "P-0162",
+   "P-1113",
+   "P-1120",
+   "P-1867"
+  ]
+ },
+ {
+  "trigger": "A partner proposes a Joint Venture (Rolls-Royce UltraFan narrowbody, jv_pw)",
+  "response": "Share risk and investment, never core technology ('you spread risk, you spread investment through JVs, but you don't share technologies'); joining RR's UltraFan would share RR's technology, not P&W's (inference). Lead every collaboration except the 50/50 Engine Alliance with GE; co-owned IAE with RR until 2012. The 2012 P&W-RR midsize JV left no trace after July 2012 (inference). When the partner had no business case for the A320neo, P&W went alone.",
+  "lag": "years (inference)",
+  "strength": "moderate",
+  "war_game_translation": "join_rr_jv is free unless RR launches uf_nb as jv_pw in the same turn, and irreversible once it does: validate rejects cancel uf_nb from P&W, so only RR controls the exit. Set it when P(an airframer selects UltraFan this turn | RR launches jv_pw) is at least about 0.23 (break-even 3.71/(3.71+16.64), about 0.18, plus the $1B doctrine allowance) and no gtf_next is aimed at the same airframer unless whatif favours the pair. Engine, turn 1, with the upgrade: joined with NGSA on UltraFan +14.91, nobody selects -1.95, NGSA on CFM -5.45, RR cancels in turn 2 +0.87; staying out -1.74 or +1.76. Without the upgrade: NGSA on UltraFan +13.71, fps on UltraFan +11.02, no selection -3.54. RR earns +23.90 solo against +11.79 in the Joint Venture when selected, so a jv_pw offer signals RR rates its own selection odds below about 23%. Turn 1: default off; disclose conditional willingness to join in any turn for which an airframer discloses UltraFan.",
+  "evidence": [
+   "P-1233",
+   "P-1240",
+   "P-1676",
+   "P-1744",
+   "P-1838",
+   "P-1870",
+   "P-1874",
+   "P-1868",
+   "P-1875",
+   "P-1872",
+   "P-2001",
+   "P-2004"
+  ]
+ },
+ {
+  "trigger": "An airframer cancels or pauses a programme flying our engine",
+  "response": "Stand by the customer through delays, formalise a pause by contract, and run a finished engine as an aftermarket business.",
+  "lag": "months (inference)",
+  "strength": "moderate",
+  "war_game_translation": "Cancel gtf_next (or pw_wb) in the turn its only airframe is cancelled, if no other live airframe flies it.",
+  "evidence": [
+   "P-1371",
+   "P-1939",
+   "P-1934"
+  ]
+ },
+ {
+  "trigger": "An airframer pushes into the engine aftermarket",
+  "response": "Threaten to reprice OE if airframers take more of the aftermarket; defend with proprietary parts, nacelle bundling and fleet-management plans.",
+  "lag": "1-2 years (inference)",
+  "strength": "moderate",
+  "war_game_translation": "No direct lever; stay on standard terms and keep fleet economics in the upgrade.",
+  "evidence": [
+   "P-1194",
+   "P-0147",
+   "P-0134",
+   "P-1135"
+  ]
+ }
+]
