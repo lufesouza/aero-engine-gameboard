@@ -78,19 +78,36 @@ The orchestration is `.claude/workflows/boeing-airbus-wargame.js`. The interacti
 
 ## Behavioural agents
 
-The two strategists are **independent agents built from each company's record**, not generic optimisers. Each plays from its own folder:
+The strategists are **independent agents built from each company's record**, not generic optimisers. Each plays from its own folder:
 
 | File | What it holds |
 |---|---|
 | `profile.md` | A Quick card (ranked objectives, hard rules, default plan, top triggers, biases), then 10 sections: objectives, financial behaviour, operational behaviour and slip priors, product doctrine, **reaction function**, lever-by-lever playbook, how it reads the rival, biases and failure modes, a turn-by-turn decision procedure, and confidence and gaps |
 | `reaction_function.json` | "If the rival does X → we historically did Y", with lag, strength, the war-game translation and evidence ids |
 | `financials.md` | Decision-relevant financial history and the analysts' forward view |
-| `evidence.jsonl` | Every cited statement (B-#### / A-####): verbatim quote, source, page, date, speaker, finding. Each quote was machine-checked against its source page |
+| `evidence.jsonl` | Every cited item (B-#### / A-#### / R-#### / P-####). Text items carry a verbatim quote, source, page, date, speaker and finding, and each quote was machine-checked against its page. Spreadsheet items cite workbook cells, and each value was checked against the workbook |
+| `calibration.md` | Engine makers only: the derivation of every game parameter from the evidence |
 | `citation_audit.md` | An independent audit of every load-bearing claim against its cited evidence |
 
 **Where the evidence comes from.** These are the files uploaded to the repository root.
 - **Boeing:** 151 earnings calls, conferences and investor days from 2006-2025; 16 10-Ks; the Goldman Sachs and Morgan Stanley models; Capital IQ history.
 - **Airbus:** its FY2025 Board Report (OCR'd). Its 2006-2025 behaviour also appears as observed in Boeing's calls and 10-Ks, and every such item is tagged as an outside view.
+- **Rolls-Royce:**
+  - 54 of its own earnings calls and investor events, 2010-2025;
+  - the Morgan Stanley RR model (Jan 2026);
+  - Capital IQ consensus, guidance, surprise and segment histories;
+  - Boeing's and Airbus's comments on RR;
+  - the 2019 engine-makers strategy brief.
+
+  That is 1,951 verified items (R-####).
+- **Pratt & Whitney:**
+  - 58 UTC/RTX calls and investor events, 2015-2025;
+  - the UTC/RTX 10-Ks, FY2016-FY2024;
+  - the Goldman Sachs RTX model with its GTF analysis (Oct 2025);
+  - FlightGlobal on GTF durability (Nov 2025);
+  - the 2019 strategy brief.
+
+  That is 2,072 verified items (P-####).
 
 The Airbus record is thinner. Airbus earnings-call transcripts or older annual reports would improve it most. `wargame/profiles/build/README.md` explains how to rebuild.
 
@@ -210,6 +227,25 @@ The engine borrows its widebody economics and structural rules from the Boeing/A
 | Capex: fps $30B, NGSA $25B, each Re-engine $4.2B | | PLACEHOLDER (Re-engine sized to the ≈$11B loaded two-ticket landmark) |
 | Tech-ready year 2035, early-entry penalties, Joint Venture terms, engine options, 10% extension capex | | PLACEHOLDER |
 | Rate Increase, Delay Tactics, Poaching effects, inject deck, 2026-2060 horizon | | PLACEHOLDER |
+
+**Engine makers** (`suppliers.*`; derivations with evidence ids in `profiles/<company>/calibration.md`):
+
+| Parameter | Rolls-Royce | Pratt & Whitney | Source |
+|---|---|---|---|
+| WACC / alpha | 10% / 0.6 (alpha reproduces RR's 15% hurdle) | 8.5% / 0.35 | CALIBRATED |
+| Incumbent fit | Airbus widebody 1.0 (A350, A330neo sole source); Boeing widebody 0.22 (Trent 1000 share of 787) | Airbus narrowbody 0.40 (GTF share of A320neo) | CALIBRATED |
+| Lifecycle value per incumbent engine | $7.4M (widebody, incl. spares) | $0.6M (GTF, after OE losses and durability costs) | CALIBRATED |
+| New engines: capex / development years / mature value per engine | UltraFan widebody $3.1B / 6 / $8.0M; UltraFan narrowbody $7.5B / 7 / $3.1M | next GTF $4.5B / 6 / $1.05M; widebody engine $6.0B / 7 / $2.9M | CALIBRATED (UltraFan narrowbody industrialisation ±$2B) |
+| New-engine ramp (value at EIS → mature after) | 45% → 6 years | -35% → 10 years (GTF-like early losses) | CALIBRATED |
+| Aggressive terms (airframer margin / value kept) | +1.2pp / 0.86 | +1.1pp / 0.71 | CALIBRATED |
+| One-time upgrade | Trent 1000: +10pp of 787 deliveries, $0.8B over 3 years, saves $0.13B a year for 15 years | GTF durability: +5pp of A320neo deliveries, $1.0B over 3 years, saves $0.45B a year for 9 years | CALIBRATED |
+| Joint Venture split; strain | 50/50; $1.5B full overlap over 5 years | same | Joint Venture CALIBRATED (P&W precedent); strain PLACEHOLDER |
+
+The game's aircraft volumes are stylised: 170 widebodies and 2,000 narrowbodies a year. The engine makers' absolute payoffs are therefore off-scale:
+- RR's widebody engine flow is about 55-85% of the real one;
+- P&W's A320neo flow is about 2x the real one.
+
+Per-engine values were not distorted to compensate, so the incentives are realistic even where the totals are not.
 
 **Landmark check** (`tests/test_engine.py::test_widebody_chicken_landmark`): at the base parameters the widebody sub-game is **Chicken**, as on the calibrated board.
 - Both lone Re-engine cells are pure Nash.

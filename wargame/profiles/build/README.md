@@ -31,3 +31,36 @@ Working files go to `wargame/profiles/build/work/` (git-ignored), or to `$WARGAM
 ## Rebuilding
 
 Add sources to the repository root, for example Airbus earnings-call transcripts, which would most improve the Airbus agent. Extend `extract_text.py` and re-run the steps. Readers and synthesisers are Claude Code agents: ask Claude to "rebuild the war-game profiles following wargame/profiles/build/README.md".
+
+
+## The engine-maker profiles (Rolls-Royce, Pratt & Whitney)
+
+These come from the files uploaded to `main` on 30 Sep 2026:
+- `Transcript Digest 2010-26.pdf`: Rolls-Royce earnings calls;
+- `Transcript Digest 15-25.pdf`: UTC/RTX calls;
+- `Filings.pdf`: UTC/RTX 10-Ks, FY2016-FY2024;
+- `Durability news 11-19-25.pdf`;
+- `Global Strategy Brief-2019-...pdf`;
+- the RR workbooks: the Morgan Stanley model and two Capital IQ reports;
+- `GoldmanSachs_RTX102125_Oct_22_2025.xlsx`. `GoldmanSachs_GTF_Oct_22_2025.xlsx` holds identical values.
+
+`SEC Fillings.pdf` is RR's ADR deposit agreement: legal boilerplate with no behavioural content, so it is not used.
+
+1. **Text:** `python3 extract_text_engines.py` (pymupdf). It writes per-page text and event indexes for the transcript digests and the 10-K bundle.
+2. **Cells:** `python3 cells_dump.py rr . <out>` and `python3 cells_dump.py pw . <out>` (openpyxl, xlrd). Every non-empty cell is written with its A1 reference, row label and period header.
+3. **Readers.** 30 agents (`ENGINE_READER_BRIEF.md` for text, `RR_READER_BRIEF.md` for cells) covered:
+   - **RR:** its transcripts in 7 era slices, 7 spreadsheet readers, RR as seen by Boeing and Airbus, and the industry sources;
+   - **P&W:** the RTX transcripts in 9 yearly slices, the 10-Ks in 3 groups, 2 readers for the GS model, and the industry sources;
+   - one completeness critic and one gap-filler per company.
+4. **Verify:**
+   - `verify_quotes.py` checks text items (±1 page);
+   - `verify_cells.py` (with `RR_CELLS_DIR`) checks spreadsheet items, with numbers within 0.5%;
+   - a second independent pass re-checked all 3,385 quotes and 639 cells.
+5. **Merge:** `engine_merge_evidence.py rolls_royce|pratt_whitney <dir> <out>` assigns R-#### or P-####.
+6. **Calibrate.** For each company, two independent calibrations (bottom-up unit economics; top-down segment reconciliation) and a reconciler. The output is `calibration.md` and the `suppliers.*` values in `config/default.json`.
+7. **Synthesise and audit.** Following `ENGINE_SYNTH_BRIEF.md`, each company gets:
+   - theme drafters, then an integrator;
+   - three independent audits: citations (`cite_check.py --show`), numbers, and a playability red team that plays turn 1;
+   - a fix pass, which writes `citation_audit.md`.
+
+   The two companies' builders never saw each other's material.
