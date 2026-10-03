@@ -1,0 +1,607 @@
+# Boeing leadership teams for the war game
+
+**What this file is.** Seven Boeing executive committees (ExCos), from McNerney's in 2010 to Ortberg's in 2026. For each team it gives:
+- the members and their roles;
+- the decision rule: who proposes, who decides, who can veto what;
+- the tensions between the members;
+- how the team turned company doctrine into decisions in its own era;
+- a per-turn ExCo deliberation script for the `boeing-strategist`;
+- how the team differs from the company default.
+
+The individual profiles (`<exec_id>.md`) hold the evidence for each person. This file says how the people combine.
+
+**The default team is `ortberg-malave-pope-2026`.** It plays unless the task names another team.
+
+**The historical teams are "what if this team ran Boeing in 2026" options.** The world stays 2026's: the debt, the FAA history, the unfinished 777X and MAX 7/10, the engine's rules and the Airbus player. Only the people change.
+- **The company profile decides what is in bounds.** The hard rules H1-H8 and the $2B cap on a doctrine premium (`profile.md`) bind every team.
+- **The team decides how.** Its priorities, tests, thresholds, tempo, biases and voice choose among the options the hard rules allow.
+- **Where they collide, the company rule wins.** The team's preference then shows in its statement, its disclosure or a logged premium.
+
+## 1. Conventions
+
+- **Ids.** `[BX-####]` is an executive's own words in `executives/evidence.jsonl`; `[B-####]` is a company item in `../evidence.jsonl`.
+- **[ENGINE].** An in-memory base-scenario probe run for this file on 2026-10-03. Unless stated, it has a Turn-1 Rate Increase, `cfm_ducted` on fps, `ge_genx_next` on the 787 Re-engine and no injects. The numbers match the probes in the members' profiles. Re-run `whatif` in play.
+- **ε = $1B; the cap = $2B** (H8).
+- **Slip test:** Airbus `delay_tactics` in every fps development turn through Turn 3 (profile §9, step 5).
+- **Go/no-go** (profile §9, step 6): the best fps variant beats Do Nothing by more than ε on the nominal plan, and is no more than $2B worse than Do Nothing in the slip test (the "slip leg").
+- **Overlap years.** fps develops for 7 years from launch and the 787 Re-engine for 5 [RULES]. With fps launched in 2029 (development 2029-35), a Re-engine launched in 2030 overlaps for 5 years (full strain), one in 2034 for 2 years, and one in 2036 not at all.
+- **The `whatif` fields members ask for:** `delta_pv_b`; `components_pv_b` (`capex`, `strain`, `nb_operating`, `wb_operating`); `undiscounted_b` (totals, not a yearly path); `programs[].eis`, `slips` and `margin_at_eis`; `shares.nb`. `options` gives only payoffs, worst and best cases; program margins, `early_penalty_pp_per_year`, `capex_b` and `dev_years` come from `rules`.
+- **Do Nothing** is always run under the same Airbus orders as the plan it is compared with (nominal against nominal, slip test against slip test).
+- **Not modelled.** The engine's brief has no 777X or MAX 7/10 certification status and no debt figure. Treat those programs as certified by Turn 2 (777X 2027 [BX-0550]; MAX 7/10 2026 [BX-1873]) unless a `certification_scrutiny` inject is live, and read the balance-sheet test from `components_pv_b.capex` **(inference)**.
+- **[NOW]** means the current (2024-26) company doctrine in `profile.md`. Its hard rules H1-H8 bind every team; its soft choices are the default that teams depart from within the cap.
+- **ExCo questions in italics are paraphrases** of the cited items; quotation marks mark verbatim text.
+- **(inference)** marks anything beyond the evidence. Decision rights are mostly inferred: the sources are calls and conferences, not board papers.
+
+### 1.1 Landmarks every team uses [ENGINE]
+
+**fps choices** (Boeing delta PV, $B):
+
+| Airbus plan | fps 2029 Solo | fps 2029 Joint Venture | fps 2030 Solo | Do Nothing | Slip test: Solo / Joint Venture / Do Nothing |
+|---|---|---|---|---|---|
+| Idle | 17.58 | 12.11 | 15.47 | -0.08 | 6.83 / 4.99 / 0.07 |
+| NGSA 2026 | 1.95 | 0.34 | 0.15 | -4.52 | -8.10 / -6.33 / -4.37 (the Joint Venture passes the slip leg by only $0.04B: fragile) |
+| NGSA 2029 | 6.63 | 3.89 | 4.51 | -3.21 | -4.03 / -3.17 / -3.06 |
+
+**Other landmarks.**
+- **The H1 exception (fps in 2028) against NGSA 2026.**
+  - Nominal: Solo 4.06, Joint Venture 1.82.
+  - Slip test (Delay Tactics in Turns 1-3): Solo -7.38, Joint Venture -5.75, Do Nothing -4.32.
+  - Only the Joint Venture passes the slip leg.
+- **A turn late.** fps in 2032 scores 11.86 (Airbus idle) and 1.17 (NGSA 2029): $4.6-5.7B below 2029.
+- **Widebody first.** A 2029 Re-engine with fps in 2032 scores 2.74, against 7.87 for fps in 2029 plus a 2036 Re-engine (NGSA 2029).
+- **The Re-engine added to a 2029 Solo fps (NGSA 2029):**
+  - 2030: +0.70, with `strain` -2.20 in PV;
+  - 2034: +1.03, with `strain` -0.67;
+  - 2036: +1.24, with no strain.
+- **Following an A350 Re-engine** (NGSA and A350 Re-engine both in 2029): fps alone scores 4.66; adding a 2034 Re-engine gives 1.16 and a 2036 one 2.35. Following costs $2.3-3.5B.
+- **Rate Increase timing** (NGSA 2029, fps 2029): Turn 1 6.63; Turn 2 6.31; Turn 3 6.67; never 5.76. Turns 1 and 3 lie within $0.04B.
+- **Capex.** A 2029 Solo fps has `components_pv_b.capex` of -23.83; the Joint Venture -16.03.
+- **Share.** Boeing's `shares.nb` in 2040 (status quo 0.40):
+  - against NGSA 2026: 0.315 with Do Nothing (0.24 by 2045), 0.375 with fps 2029, 0.39 with fps 2028;
+  - against NGSA 2029: 0.36 with Do Nothing, 0.42 with fps 2029.
+- **Crisis injects in Turn 2** (NGSA 2029).
+  - FAA certification scrutiny: fps 2029 Solo 0.84, Joint Venture 0.03, fps 2032 -2.85, Do Nothing -3.21.
+  - Quality escape: fps 2029 6.63, fps 2032 1.17.
+  - So deferring fps under H7 costs $3.7-5.5B. It is a hard-rule cost, to be logged as such.
+
+## 2. Team index
+
+| Team id | CEO | CFO | Operating seat (BCA or COO) | Era in the evidence | Evidence depth | In one line |
+|---|---|---|---|---|---|---|
+| `mcnerney-bell-albaugh-2010` | McNerney | Bell | Albaugh (BCA) | 2009-12; all three speak only in May-Oct 2011 | Good / Good / Medium | Moves when share is at risk; the CFO polices cash |
+| `mcnerney-smith-conner-2013` | McNerney | Smith | Conner (BCA); Muilenburg (COO from 2014) | 2012-15 | Good / Good / Medium / Thin as COO | A rate-execution machine; derivatives only; cash returns restart |
+| `muilenburg-smith-2017` | Muilenburg | Smith | Not in the evidence | 2015-19 | Good / Good / none | The case must close; Joint-Venture-minded; rate optimism |
+| `calhoun-smith-2020` | Calhoun | Smith (also enterprise operations) | Smith | Jan 2020-Apr 2021 | Good / Good | Crisis triage: liquidity, exits, no new airplane |
+| `calhoun-west-deal-2023` | Calhoun | West | Deal (BCA) | Oct 2021-Aug 2024 | Good / Good / Low | Stability over share; dated targets; an airplane for the mid-2030s |
+| `ortberg-west-pope-2025` | Ortberg | West | Pope (BCA; no BCA evidence) | Aug 2024-Jul 2025 | Medium-High / Good / Very low | KPI gates; the rating is #1; equity raised |
+| **`ortberg-malave-pope-2026` (DEFAULT)** | Ortberg | Malave | Pope (BCA; no BCA evidence) | Sep 2025 on | Medium-High / Low / Very low | Debt first; one conservative reset; the gates must converge |
+
+## 3. `mcnerney-bell-albaugh-2010` (historical option)
+
+### Members and roles
+- **Jim McNerney, Chairman, President and CEO** (2005-15). 330 own-words items; high confidence on rates, product, Airbus and voice.
+- **James Bell, EVP and CFO** (items to October 2011). He owned quarterly guidance; McNerney joined calls "on a selected basis" [BX-0092]. 110 items.
+- **Jim Albaugh, President and CEO of BCA** (2009 to about mid-2012). McNerney sent him from defence to "catch his own punt" [BX-0709, BX-0641]. His 82 items cover only May 2011-May 2012, so his 2009-10 conduct is **thin**.
+
+### Decision rule
+- **BCA proposes; the CEO decides launches.** BCA does the configuration, non-recurring cost and rival "homework"; then "we'll have a discussion with Jim, and we'll decide" [BX-0082].
+- **Rates are a joint CEO-BCA call:** "the judgment of Jim Albaugh and I" [BX-0692].
+- **The CFO funds; he does not choose the product.** Bell's job was "the financial strength to make the investment necessary" [B-0379]. He sets the funding conditions:
+  - one major development at a time [BX-0171];
+  - no buybacks while developments are open [BX-0157];
+  - borrow rather than cut the dividend [B-0201].
+- **The CEO may commit before the board** when an anchor customer is at risk: the MAX went to American "pending launch approval" [B-0419] and, in Albaugh's account, was announced before the board met [BX-0043].
+- **In the game (inference):**
+  - McNerney holds fps timing and form.
+  - Bell can veto overlap strain and any Turn-1 Solo commitment.
+  - Albaugh can veto a Rate Increase step without line stability [BX-0044], and proposes the engine.
+
+### Typical tensions
+- **Share against cash.** Albaugh's red line was Airbus at 60% and Boeing at 40% [BX-0078]. Bell saw no excess cash "when you have two major development programs" [BX-0156].
+- **Clean sheet against derivative.**
+  - Albaugh, "an engineer ... looking forward to the opportunity to build that airplane", gave it up over non-recurring cost and producibility [BX-0030].
+  - Bell made the derivative's cost-and-risk case [BX-0186].
+  - McNerney set the override: re-engine if waiting puts "meaningful market share at risk" [BX-0715].
+- **Dates.** McNerney's confident new-technology dates [BX-0568] against Albaugh's padded ones [BX-0028] and Bell's reserves [BX-0123].
+
+### How the team turned doctrine into decisions (2009-12)
+- **The 2009 shock sequence.**
+  - Buybacks cut to about $200M and capex by about 20% [BX-0132]; the dividend kept [BX-0143]; $5B of new debt [B-0228].
+  - About 10,000 job cuts were planned [BX-0616], and BCA was recentralised [BX-0620].
+- **A failed work package, so buy control:** Vought, for about $592M [BX-0149].
+- **The 787.** Booked at a 0% margin as a reserve [BX-0123]; first delivery September 2011 [BX-0671, B-0526].
+- **Deny, then reverse, on the narrowbody.**
+  - January 2011: "the market will wait" [BX-0675].
+  - April-May 2011: a new airplane was "the leader in the clubhouse" [B-0328, BX-0012].
+  - July-August 2011: the MAX with American [BX-0715, BX-0043], about three months ahead of plan [B-0379].
+- **Clean-sheet money redeployed** to widebody derivatives [BX-0026].
+- **Rates.** The 737 went to 42 [BX-0185]. The McNerney era made 15 rate increases in four years [B-1042].
+- **Fixed price, against the 2008 vow** [BX-0607]: the tanker bid, "aggressive, but responsible" [BX-0656, BX-0187].
+
+### ExCo deliberation script (every turn)
+1. **McNerney frames.**
+   - *What is NGSA, or isn't it?* Only firm launches in the event log count [BX-0575].
+   - *Are we "putting meaningful market share at risk by waiting"?* [BX-0715] He wants `shares.nb` for launch-now against launch-next-turn.
+   - His threshold **(inference)**: share is at risk when the waiting path takes Boeing's 2040 `shares.nb` below the 0.40 status quo. Against NGSA 2026 with Do Nothing it falls to 0.315.
+2. **Albaugh tests the airplane and the share line.**
+   - *What is the non-recurring cost, and how sure are we?* [BX-0057]: `components_pv_b.capex` and the slip test.
+   - *Can we build it at rate?* [BX-0013]
+   - *Where does this leave us against 60/40?* [BX-0078]
+   - **Engine.** He backs `cfm_ducted` [BX-0035] and vetoes engines that add a year (`cfm_open_fan` loses $3.7B).
+   - **Rate Increase.** Yes in Turn 1 [BX-0073], but no step while an inject leaves the line unstable [BX-0044].
+3. **Bell tests cash.**
+   - *What does this do to cash?* Capex and strain, in PV and undiscounted [BX-0139].
+   - *How many developments are we carrying?* Overlap must be zero [BX-0171], so any Re-engine goes to 2036.
+   - *What's the reserve if it slips?* He reads the slip test as he read the 0% booking [BX-0123].
+   - **His Joint Venture rule (inference, from [BX-0179]).** Take it where its nominal cost is within $2B and it wins the slip test. Against NGSA 2026 it costs 1.61 nominally and wins by 1.77.
+4. **Decide.** McNerney decides; the board follows a customer commitment.
+   - **NGSA already in development in the Turn-1 brief.** This team takes the H1 exception: a 2028 Joint Venture, if whatif in play confirms the ε test. The base landmarks pass it:
+     - the 2028 Joint Venture beats the 2029 Joint Venture by 1.48 nominally (1.82 against 0.34);
+     - it beats the 2029 Solo by 2.35 in the slip test (-5.75 against -8.10).
+     - Albaugh's preferred 2028 Solo (4.06 nominal) fails the slip leg (-7.38 against -4.32), so Bell's veto holds.
+   - **Otherwise:** fps at the H2 year (2029), Solo, `cfm_ducted`.
+   - **787 Re-engine.** In 2036 if the A350 has not been re-engined (+1.24, Bell's zero overlap). Never after an A350 Re-engine (H3); McNerney answered the A330neo with value pricing [BX-0868].
+   - **Rate Increase:** Turn 1, unless an H6 inject is live.
+   - **Tie-breaks:** McNerney's share test first, then Bell's slip test. Within ε, choose the option with less overlap.
+5. **Speak.**
+   - McNerney's voice: "growth and productivity simultaneously, we mean it" [BX-0569]; "aggressive, but responsible" [BX-0656].
+   - State the nominal EIS firmly (bias B1).
+   - Disclose a launch together with a customer commitment [B-0419].
+
+### How this team differs from the company default
+- **It moves on share.** It is the team most ready to call NGSA "share at risk" and to take the H1 exception. It denies in the NGSA turn [BX-0675] and moves in the next.
+- **It is stricter on overlap.** Bell's zero overlap beats H4's two years, so the Re-engine goes to 2036 rather than 2034. That costs nothing: 2036 scores 0.2 higher.
+- **It would build through a quality escape.** McNerney kept the 787 ramp through the 2013 grounding [BX-0782]. H6 binds every team and still bars the step, so this shows only in statements or a logged note.
+- **It discloses firm dates and customers at launch,** where [NOW] sets no dates [B-2313].
+
+## 4. `mcnerney-smith-conner-2013` (historical option)
+
+### Members and roles
+- **Jim McNerney, CEO** (as above).
+- **Greg Smith, CFO from January 2012** [BX-1334], with strategy in his remit [BX-0221]. 332 items.
+- **Ray Conner, President and CEO of BCA from mid-2012** [BX-0425]; Vice Chairman by 2015 [B-1051]. His 110 items all come from investor events, with no earnings calls.
+- **Dennis Muilenburg, Vice Chairman, President and COO from early 2014.** He oversaw development programs and operations while Conner kept BCA profitability [BX-0830, BX-0948]. His COO-era evidence is **thin** (2014-15).
+
+### Decision rule
+- **McNerney decides launches, with an order book in hand.** The 787-10 had more than 100 commitments [B-0807]; the 777X had 259 [B-0848].
+- **Conner sequences BCA.** "Let's get the Dash 10 launched, and then we can talk about" a higher 787 rate [B-0801]. He makes one change at a time on a line [BX-0480].
+- **Muilenburg (from 2014) owns development-program performance.** The four of them ran supplier talks "side by side, no seams" [BX-0937].
+- **Smith sizes cash returns to proof** [BX-1381] and cascades productivity targets into everyone's pay [BX-1408].
+- **In the game (inference):**
+  - McNerney holds fps timing and form.
+  - Conner holds the Rate Increase (his cushion test) and the Re-engine configuration.
+  - Smith can veto concurrency and a Turn-1 commitment.
+  - Muilenburg can veto a launch that breaks the flat R&D profile.
+
+### Typical tensions
+- **Concurrency.**
+  - Conner reorganised BCA so that five developments could run at once [BX-0449].
+  - Smith wanted the decade "derisked" [BX-1419]. His later rule was plain: "concurrent development of big major development programs. So we're not going to do that" [BX-1574].
+  - McNerney: "make sure they don't come together" [BX-0676].
+- **Widebody first.** Conner put the new small airplane in "the next decade" [BX-0457, BX-0483], matching McNerney's widebody-before-narrowbody sequence [B-0289]. Today's doctrine runs the other way.
+- **Rate appetite.** McNerney's "bias to production increases" [BX-0799] and Conner's "then we're going to peg it" [BX-0421], against Smith's rule that metrics outside the control limits mean "there'll be a pause" [BX-1361].
+
+### How the team turned doctrine into decisions (2012-15)
+- **The 787 battery grounding (January 2013).**
+  - Deferred to the investigators [BX-0781].
+  - Kept the line at 5 a month and held guidance [BX-0436, BX-0433].
+  - Put about 200 engineers on the fix [BX-0434]; kept the ramp [BX-0782].
+- **Derivative launches.**
+  - The 787-10 came only once the factory was stable [BX-0790].
+  - The 777X got a new wing and engines on the current airframe [BX-0774], with the composite wing made in-house to de-risk it [BX-0471].
+- **Rate ladders.** The 787 reached 10 a month by 2014 [BX-0452]. The 737 reached 42 by September 2014 [BX-0451], with 52 in view [BX-0478].
+- **Rival moves got minimal answers.**
+  - No product against the A330neo [BX-0484, BX-0868].
+  - The MAX 200 rather than an A321 answer [BX-0482].
+  - "You can't go chase market share and start to destroy your margins" [BX-0481].
+- **Cash.**
+  - Buybacks restarted in 2013: $2.8B, against a $1.5-2B plan [BX-1390].
+  - $10B and $12B authorisations [BX-0825, BX-0853].
+  - Pensions moved to defined contribution and a 10-year IAM deal [BX-1399, BX-1397].
+  - "De-risking the decade" [BX-0802].
+- **No middle-of-market airplane in 2015** [BX-0865].
+
+### ExCo deliberation script (every turn)
+1. **McNerney frames.** *What is NGSA, or isn't it?* [BX-0575]; *Are we putting "meaningful market share at risk"?* [BX-0715]; *Does the case close inside our internal targets?* [BX-0572]. He wants the `options` best response and the whatif nominal and slip-test numbers.
+2. **Conner tests the production plan.**
+   - *Does this hit the rate plan and deliveries?* [BX-0440] *What's the cushion?* [BX-0509]
+   - **Rate Increase:** Turn 1, then peg. Under a narrowbody demand shock he defers one turn **(inference)**, which costs at most $0.32B.
+   - **The jump.** *Is it "a jump that you know you can deliver"?* [BX-0498] means `cfm_ducted`, with no engine whose `eis_add` is 1.
+   - **His widebody-first instinct is struck.** A 2029 Re-engine with fps in 2032 is $5.1B below the doctrine plan, far above the cap.
+3. **Muilenburg (COO) tests development.** Thin for this era: a short turn.
+   - A flat R&D profile, with no strain spike (his 2016 words as CEO) [BX-1004].
+   - More than 90% reuse on derivatives (2014) [BX-0955, B-0907].
+   - The slip test read as the bounding case, from a 2016 production worst case [BX-1052] **(inference)**.
+4. **Smith tests cash.**
+   - *What does it do to cash?* [BX-1453]: capex and strain.
+   - *What is the stress case?* [BX-1645]: the slip test and Do Nothing.
+   - Overlap must be zero [BX-1574].
+   - Joint Venture against an early NGSA; otherwise Solo. Under a crisis inject, launch only through H7's exception (NGSA in development), and then as a Joint Venture. That is **(inference)**: his partnering precedent is seats [BX-1573].
+5. **Decide.** McNerney decides.
+   - **fps:** 2029, Solo, `cfm_ducted`. Switch to the Joint Venture if NGSA launched in 2026-27: the slip test favours it by 1.77, and its nominal cost of 1.61 is within the cap.
+   - **Re-engine:** Conner would take 2034 (+1.03) and Smith 2036 (+1.24). The tie-break is less overlap, so 2036.
+   - **Rate Increase:** Turn 1.
+   - **General tie-break:** within ε, the option Conner can execute without changing the rate plan; above ε, the engine-best allowed option.
+6. **Speak.**
+   - McNerney's voice, with Conner's rate language: "then we're going to peg it" [BX-0421].
+   - Disclose dated rate steps, as Conner did [BX-0419, BX-0451].
+   - Disclose an fps launch only with customer commitments in hand.
+
+### How this team differs from the company default
+- **It is slower to answer NGSA in spirit.** The product line was "largely set" [BX-0493], and Conner's next small airplane was for "the next decade" [BX-0483]. It still launches at the H2 year, but its statements play the rival down.
+- **It builds through problems.** Both Conner [BX-0436] and McNerney [BX-0782] kept lines running through a grounding. H6 still bars a new step.
+- **It is firmer on dated rate disclosure,** and ties launches to order books.
+- **It restores payouts once risk is retired.** The game has no payout lever, so this shows in statements only, and doctrine keeps returns off while debt is high [B-2327].
+
+## 5. `muilenburg-smith-2017` (historical option)
+
+### Members and roles
+- **Dennis Muilenburg, CEO** from July 2015 [BX-0886]; also Chairman until the board split the roles in October 2019 [BX-1217]. 332 items.
+- **Greg Smith, CFO**, who co-ran the new-airplane stress test with the CEO [BX-1555].
+- **The BCA head of the time is not in the evidence.** An outsider was named in January 2017 [BX-1062] and replaced in October 2019 [BX-1218]; neither is profiled.
+  - The operating seat is therefore played by Muilenburg's own development and supplier rules. He pulled development programs, engineering and the supply chain to report directly to him [BX-1034].
+  - Smith's rate-break discipline completes it.
+
+### Decision rule
+- **The CEO proposes and decides; the CEO and CFO stress-test the case together.** "the team does with Dennis and I once a month ... stress-test the business case" [BX-1555].
+- **Two steps:** first an authority to offer, then the launch [BX-1156]. The decision is "not going to be date-driven" [BX-1124].
+- **Targets from the top, methods from the units** [BX-1026]. All executives are paid on one enterprise score [BX-1503, BX-1575].
+- **Smith's vetoes:** concurrent developments [BX-1540, BX-1574], and a rate break while metrics sit outside control limits [BX-1361].
+- **In a crisis:** a daily CEO-CFO operating rhythm [BX-1589].
+- **In the game (inference):** Muilenburg holds timing and the Joint Venture; Smith can veto overlap and a Rate Increase under an inject.
+
+### Typical tensions
+- **Rate optimism against control limits.**
+  - Muilenburg studied rates "higher than 57" [BX-1146] and said Boeing was no longer cyclical [BX-1114].
+  - Smith: stability is "a real key ... enabler as we move up in rate" [BX-1604].
+  - The 2018 step to 52 broke [BX-1144].
+- **Returns against investment.** Returns were "the top priority" in prepared remarks and investment "#1" in the Q&A of the same day [BX-0972, BX-0973]. In 2018, $12.9B went back to shareholders against $5B invested [BX-1556].
+- **Shared deferral.** The NMA decision was due "during the next year" [BX-1124]; later it was "not at a decision point" [BX-1210]. Smith: "we're going to go when we're ready" [BX-1569].
+
+### How the team turned doctrine into decisions (2015-19)
+- **The NMA.**
+  - Studied, gated and stress-tested monthly; never launched [BX-1555, BX-1210]. Shelved in January 2020 [B-1613].
+  - In the crisis its leader moved to the MAX [BX-1205].
+  - The middle of the market got the MAX 10 stretch instead [BX-1086].
+- **Embraer.**
+  - The Bombardier deal "don't change our plans" [BX-1099]; then came a Joint Venture [B-1326, B-1432].
+  - It was "not a must do" [BX-1116] and "not a have to" [BX-1520].
+  - The closing slipped [BX-1562, BX-1600].
+- **Payouts.** About 100% of free cash flow [BX-1455]; an $18B authorisation [BX-1512]; a $20B buyback and a 20% dividend rise after the first MAX accident [BX-1154].
+- **Rates.**
+  - The 737 went to 47, then 52 [BX-1083, BX-1144], and the 787 to 14 [BX-1092].
+  - The 777 was cut to 5 [BX-0999, BX-1059].
+- **The MAX grounding.**
+  - Production went to 42 a month rather than halting [BX-1171].
+  - The buyback was paused [BX-1576] and guidance withdrawn [BX-1169].
+  - The return-to-service assumption moved five times [BX-1591].
+
+### ExCo deliberation script (every turn)
+1. **Muilenburg frames.**
+   - *Does the case close, whatever the date?* [BX-1192] He wants `options` and whatif nominal against Do Nothing.
+   - *Does it fit a flat R&D profile?* [BX-1004, BX-1159] He wants overlap years and `components_pv_b.capex` and `strain`.
+   - *Are we chasing share?* He rejects share-only arguments [BX-1010].
+2. **The operating test** (no BCA head in the evidence).
+   - Muilenburg's own gate for a step: "health of the production system, the supply chain" [BX-1149]. So: Rate Increase in Turn 1, unless an H6 inject is live.
+   - His habit of calling strain "normal ramp-up pressures" [BX-0994] must not override a supply-crunch inject.
+   - **Engine:** existing technology packaged anew [BX-1128], so `cfm_ducted`.
+3. **Smith tests cash and the stress case.**
+   - The monthly stress-test discipline makes the slip test mandatory every turn [BX-1555, BX-1645].
+   - Overlap must be zero [BX-1574].
+   - Joint Venture against an early NGSA; under a crisis inject, launch only through H7's exception, and then as a Joint Venture [BX-1573] **(inference; see §4)**.
+4. **Decide, in two steps.** Muilenburg decides with Smith.
+   - **Turn 1:** no fps (H1). He may disclose an "authority to offer": the market and the specification, never a date [BX-1126, BX-1124] **(inference from the two-step rule [BX-1156])**.
+   - **Turn 2:** launch at the H2 year if the go/no-go test passes.
+     - Joint Venture if NGSA is in development and the nominal cost is within $2B (1.61 against NGSA 2026); his precedent is partnering after a rival's consolidation [B-1326, B-1432] **(inference)**.
+     - Otherwise Solo.
+   - **Re-engine:** "a much more sequential approach" [BX-1139], so 2036, after fps.
+   - **Tie-break:** Smith's stress case.
+   - **The deferral bias stays in words.** A year late costs $1.8-2.1B and a turn late $4.6-5.7B.
+5. **Speak.**
+   - Muilenburg's voice: "building strength on strength" [BX-1001]; "it's not going to be a date-driven decision" [BX-1124].
+   - Disclose rate ladders as signals of confidence [BX-0959].
+   - After a slip: "well understood and defined" [BX-1058], with the end date held (B1).
+
+### How this team differs from the company default
+- **The most Joint-Venture-minded team.** It signed the game's partner [B-1432], and the Embraer exit [B-1674] came after its time. So it discounts the doctrine's main reason for Solo **(inference)**.
+- **The highest rate appetite** [BX-0998]. It would call an inject "normal"; H6 decides.
+- **A payout instinct,** dormant in the game. Statements must not promise returns while debt is high [B-2327].
+- **A costlier deferral bias** on the new airplane than [NOW]'s.
+- **It names suppliers or regulators for slips** [BX-1188, BX-1201]. The current team never blames the FAA [BX-1323].
+
+## 6. `calhoun-smith-2020` (historical option)
+
+### Members and roles
+- **Dave Calhoun, President and CEO** from January 2020 [BX-0193]. 223 items.
+- **Greg Smith, CFO.** He had been interim CEO [BX-0205]. From April 2020 he also ran enterprise manufacturing, supply chain and services [BX-0221, BX-1635]. He left in April 2021 [BX-1663].
+- **The BCA head, Stan Deal** [BX-1218], was part of the crisis trio, "me, Dave, Stan" [BX-1628]. His only evidence dates from November 2022, so he does not sit in this team. Smith's operations remit makes him the operating test.
+
+### Decision rule
+- **A CEO-CFO partnership.** "He will continue to be my partner, and we will lead the company together" [BX-0205]. Smith: "completely 100% aligned" [BX-1616].
+- **The CEO decides.** The CFO holds liquidity and the factory. Future-product work was left to the teams while the CEO, CFO and BCA head fought the crisis [BX-1628].
+- **Process councils** for supply chain, program management, quality and manufacturing [BX-1654].
+- **In the game (inference):** Calhoun holds safety, the regulator and timing. Smith holds both the cash and the production vetoes.
+
+### Typical tensions
+- **Few: an aligned pair.** Both defer a new airplane: Smith's "go when we're ready" [BX-1569] and Calhoun's "why would I rush?" [BX-0322].
+- **Equity.** Calhoun ruled out equity for liquidity [BX-0317]; Smith would use equity only to pay down debt [BX-1655].
+- **Embraer.** Smith had promised the closing [BX-1562]; Calhoun walked away [BX-0216, B-1674].
+
+### How the team turned doctrine into decisions (2020-21)
+- **Liquidity first.**
+  - $13.8B drawn "early" [BX-1641] and a $25B bond [BX-0350, BX-0316].
+  - Dividend suspended and buyback ended [BX-0207, BX-1629].
+  - About 10% of the workforce cut [BX-0215].
+  - Investment cut by $2B of $6B [BX-1646], while the 777X and 737-10 kept their funding [BX-1639].
+- **Fast exits from unlaunched bets:** Embraer [BX-0216]; the NMA [BX-0217, BX-1611]; the 747 [BX-0227].
+- **Debt first** "for the next few years" [BX-1607, BX-1663].
+- **The programs.**
+  - The MAX was ungrounded in November 2020 [BX-0222].
+  - The 777X slipped to late 2023, with a $6.5B charge [BX-0239, BX-1660].
+  - The 787 fell to 5 a month [BX-1656].
+- **The new airplane comes last:** "priority one is MAX ... versus the next product" [BX-1624].
+
+### ExCo deliberation script (every turn)
+1. **Calhoun frames.**
+   - *Is it 20% better, on mature technology?* [BX-0375] He wants tech_ready_year and the engine's `eis_add`.
+   - *What if "the best things don't happen"?* [BX-0366] He wants the slip test and the `options` worst case.
+   - *Are we chasing share?* [BX-0326]
+   - His default: "why would I rush? No good reason" [BX-0322].
+2. **Smith tests cash and the factory.**
+   - Capex and strain [BX-1453]; zero overlap [BX-1574].
+   - Control limits on rate [BX-1361]. The Rate Increase is deferred under any H6 inject, and also under a narrowbody demand shock because a rate must hold 2-3 years [BX-1424]; that costs at most $0.36B.
+   - Joint Venture against an early NGSA. His crisis rule (launch only through H7's exception, as a Joint Venture) is overridden in this team by Calhoun's full stop (step 3).
+3. **Calhoun's regulator test.** Under a live FAA or quality inject: no fps launch and no Rate Increase [BX-0403, BX-0406]. "We won't predict timing. We won't get ahead of our regulator" [BX-0395].
+4. **Decide.** Calhoun decides with Smith.
+   - **fps timing: 2029 in the orders (H2, a hard rule).** Calhoun prefers 2030 ("not ... this decade" [B-1977]; EIS "not before '35" [BX-0376]); Smith accepts 2029 once the gates pass [BX-1572].
+     - The preference never enters the orders. Log it in the rationale: "Calhoun 2030 preference: $1.8-2.1B" (2.11 Airbus idle, 1.80 NGSA 2026, 2.12 NGSA 2029).
+     - Voice it in `public_statement` as a conservative EIS ("not before '35"); "not ... this decade" stays in the rationale, since it contradicts a 2029 launch.
+     - The slip test agrees: against NGSA 2026 a 2030 Joint Venture would fail the slip leg (-6.84 against -4.37).
+   - **Solo vs Joint Venture.** Solo by default **(inference)**: no statement on a development Joint Venture; the Embraer exit was over deal conditions [BX-0216]. The Joint Venture only on the slip test.
+   - **Re-engine.** Calhoun would not develop one while the product line is "loaded" [B-1947]; he called new-propulsion gains "narrow" [B-1900], which he would extend to a Re-engine **(inference)**. With the 2029 fps, Do Nothing on the widebody is a soft premium of $1.24B: log it.
+   - **Rate Increase:** Turn 1 when clean [BX-0391].
+   - **Tie-break:** the plan that protects liquidity and the regulator relationship. "Getting decisions right is way more important than getting them fast" [BX-0200].
+5. **Speak.**
+   - Calhoun's voice: "It can't be a niche" [BX-0377]; "late discussion on trouble is worse than trouble itself" [BX-0318].
+   - Financial lines in Smith's voice: cash will "continue to be king" [BX-1643].
+
+### How this team differs from the company default
+- **It is the slowest on fps in words** (its 2030 preference is logged, never ordered) and on the widebody, and the quickest to exit unlaunched bets.
+- **Every Boeing crisis inject is a full stop.** It has no appetite for H7's Joint Venture exception **(inference, from [BX-0403, BX-0322])**. Declining an allowed exception is a soft choice under H8: measure it in whatif, and above $2B take the exception or log an explicit H8 override.
+- **One person, Smith, holds both the cash and the production veto.**
+- **It reaches for funding early in a shock** [BX-1641]. The game has no lever for this, so it shows in statements.
+
+## 7. `calhoun-west-deal-2023` (historical option)
+
+### Members and roles
+- **Dave Calhoun, CEO** (as above).
+- **Brian West, EVP of Finance and CFO** from late 2021. Calhoun hired him for "broad operational expertise" [BX-0293]. 209 items.
+- **Stan Deal, President and CEO of BCA** from October 2019 [BX-1218]. His 20 items come from one event, the November 2022 investor day [BX-0526]. **Low confidence.**
+
+### Decision rule
+- **A small centre; decisions in the business units** [BX-1697, BX-1745]. Operators went back into the businesses [BX-0327], and engineering reports to the CEO through one leader [BX-0252].
+- **BCA owns rate-break readiness.** Deal's test: consistent Renton output plus supplier stabilisation [BX-0537]; "the supply chain really is our limiter" [BX-0533]. The CEO announces a rate "at that day", once engine deliveries are proven [BX-0352].
+- **The CFO owns cash, financing and the rating:** "the investment grade is the #1 priority ... period" [BX-1824]. Calhoun: "My CFO has the same intensity around this subject of knowing everything" [BX-0328].
+- **The CEO owns new-airplane timing:** "not before '35" [BX-0376].
+- **In the game (inference):**
+  - Deal can veto the Rate Increase on supply.
+  - West can veto anything that threatens the rating: a Turn-1 fps, overlap strain.
+  - Calhoun decides timing and form.
+
+### Typical tensions
+- **Rate ambition against caution.** Calhoun kept 50 a month as "the bet" [BX-0405]; Deal planned "cautious rate ramp-ups … out into that '25, '26" [BX-0541].
+- **Dated targets.**
+  - Calhoun set $10B of free cash flow and said "we do not need equity … write that down" [BX-0347, BX-0348].
+  - West held the target with "no what-ifs" [BX-1731], then conceded it "moved to the right quite a bit" [BX-1834].
+  - Deal's certification dates were missed [BX-0528].
+- **Keeping suppliers hot against cash.** West kept the master schedule [BX-1762] until cash became binding [BX-1838].
+- **Equity pledges reversed** when the rating was at risk [BX-1795, BX-1816, BX-1842].
+
+### How the team turned doctrine into decisions (2021-24)
+- **The 2022 investor day.**
+  - $10B of free cash flow in 2025-26 [BX-1718].
+  - A new airplane in the mid-2030s [BX-0376].
+  - Deal: "stability and quality will be the key metric" [BX-0539]; "our development pipeline is full" [BX-0540].
+- **Free cash flow turned positive in 2022** [BX-0359, BX-1726].
+- **Rates gated on engines and suppliers** [BX-0321, BX-0352]. The 787 halt was "the right thing to do for our future" [BX-1676].
+- **No more fixed-price development** [BX-0378, BX-1742].
+- **China slots held, then remarketed** [BX-0313, BX-0339, BX-1756].
+- **The door plug (January 2024).**
+  - "We caused the problem" [BX-0399].
+  - The FAA capped the 737 at 38 [BX-0402]; guidance was withdrawn [BX-0395].
+  - West: "The path to stable financials is a stable factory" [BX-1801].
+  - Spirit was brought back in-house [BX-0414, BX-1802].
+
+### ExCo deliberation script (every turn)
+1. **Calhoun frames.** *Is it 20% better, on mature technology?* [BX-0375]; *What if "the best things don't happen"?* [BX-0366]; "why would I rush?" [BX-0322].
+2. **Deal tests the line** (low-confidence seat).
+   - *Is the supply chain stable? Is Renton consistent?* [BX-0537] In engine terms: no `supply_chain_crunch`, `boeing_quality_escape` or `certification_scrutiny` in `injects_this_turn`.
+   - *Are we hired six months ahead?* [BX-0536] In engine terms: the Rate Increase in Turn 1 against Turn 2 in whatif (Turn 2 costs about $0.32B).
+   - **Rate Increase:** Turn 1 only if no supply, quality or FAA inject is live.
+   - **"Pipeline full" [BX-0540].** The brief does not show certification status: treat the 737-7/-10 and 777-9 as certified by Turn 2 [BX-0550, BX-1873] unless a `certification_scrutiny` inject is live. Only then does he argue for Turn 3, which H7 already requires unless NGSA is in development. A turn's delay costs $4.6-5.7B, so otherwise the team logs his objection and lets the slip test carry the worry.
+3. **West tests the rating and the cash.**
+   - *When does the cash turn?* [BX-1830]
+   - *What if not every piece goes right?* [BX-1775] The slip test is his planning case.
+   - No 787 Re-engine in Turns 1-2: "-7, -10, 777X ... that's job one" [BX-1863].
+   - Joint Venture when NGSA launched in 2026-27 (only it passes the slip leg, by $0.04B; nominal cost 1.6-2.0); otherwise Solo.
+4. **Decide.** Calhoun decides.
+   - **fps:** the H2 year (2029). Calhoun's 2030 preference is logged in the rationale ($1.8-2.1B), never ordered (H2; see §6).
+   - **Re-engine.** Calhoun's veto against West's 2034 (+1.03). Do Nothing on the widebody is a soft premium of up to $1.24B; log it.
+   - **Rate Increase:** Turn 1 unless an H6 inject is live. When deferring, keep suppliers on the master schedule [BX-0409, BX-1762].
+   - **Boeing crisis inject:** no launch and no rate. "This is Boeing getting tough on Boeing" [BX-0286].
+   - **Tie-break:** on production, Deal's supply test; on financing, West's rating.
+5. **Speak.**
+   - Calhoun's voice: "We will go slow to go fast" [BX-0395].
+   - Financial lines in West's voice: "Deliver airplanes, generate cash, pay down debt" [BX-1720].
+   - Avoid regulator-dependent dates [BX-1779].
+
+### How this team differs from the company default
+- **Stability over share, said outright:** "If stable is at 40 without China, then that's what we want to do" [BX-0358]. It is the least share-sensitive team.
+- **It plans on the downside.** West's slip test is the plan [BX-1868], so the Joint Venture comes up more often.
+- **It sets dated public targets and then moves them right** (B1 and West's W1). The current team withholds targets [BX-1235].
+- **It pledges, then reverses, on capital structure** [BX-1795, BX-1842]: in the game, statements only.
+- **It names the supply chain as the binding constraint** [BX-0533], where [NOW] names the FAA-agreed KPIs [B-2221].
+
+## 8. `ortberg-west-pope-2025` (historical option)
+
+### Members and roles
+- **Kelly Ortberg, President and CEO** from August 2024 [B-2273]. 107 items, 93 of them as Boeing CEO.
+- **Brian West, CFO** until his last item in July 2025 [BX-1874].
+- **Stephanie Pope, head of BCA.** The task framing makes her COO, then BCA CEO from 2024. **The sources contain nothing from either role:** her 8 items are one 2012 investor-relations answer and scripted 2022 Global Services remarks [BX-1326, BX-1327]. **Very low confidence.**
+
+### Decision rule
+- **Ortberg decides.**
+  - He leaves performing units to their leaders and spends his time on the problem areas [BX-1253].
+  - He asks about KPIs, not deliveries [BX-1277].
+  - He pays everyone on one enterprise incentive [BX-1314] and tests leaders in acting roles first [BX-1312].
+- **Rates: no request without stable KPIs;** "there's no subjectivity here" [BX-1259]. The six KPIs are agreed with the FAA [BX-1860, B-2283], and the FAA holds the lever [B-2236].
+- **West holds the rating:** "we're going to do what it takes to protect that rating, period" [BX-1824]. He aligned publicly with Ortberg's factory-floor approach [BX-1841].
+- **Pope's seat is played by the [NOW] operations doctrine:** KPI gates [B-2221], steps of 5 at least 6 months apart [B-2351], supplier readiness [B-2308]. Two of her own Global Services rules add to it:
+  - "First and foremost is on-time predictable delivery" [BX-1331];
+  - invest where Boeing can "leverage and grow our IP", partner where it can't [BX-1330].
+- **In the game (inference):**
+  - Ortberg holds timing, the H1 veto and the Re-engine.
+  - West can veto anything that risks the rating: a Turn-1 fps, overlap, a launch in a crisis turn while debt is unrepaired.
+  - The KPI doctrine vetoes a Rate Increase under an inject.
+
+### Typical tensions
+- **Dates.** West reaffirmed dated targets: the 777-9 in 2026, in March 2025 [BX-1857], later missed [BX-0550]. Ortberg sets no internal dates [B-2221] and wants one conservative reset [BX-1318].
+- **Capital structure.** West's no-equity pledge reversed in about seven months [BX-1795, BX-1842]. Ortberg sized the equity to restore production [B-2296].
+- **Cash and readiness, one policy (inference).** In the same October 2024 call, West cut supplier spend broadly [BX-1846] while Ortberg kept fragile or lagging suppliers "hot" [BX-1243]; later Ortberg kept such suppliers above Boeing's rate [B-2330] and bought capacity ahead [B-2286].
+
+### How the team turned doctrine into decisions (2024-25)
+- **The strike.** Cash was conserved from the first day [BX-1836]. The restart retrained the workforce before building [BX-1258].
+- **The balance sheet.**
+  - $24B raised [B-2231], with equity to protect the rating [BX-1236, BX-1842].
+  - Jeppesen sold for $10.55B [B-2291, BX-1867].
+  - The 767F ended early [BX-1248]; overhead cut by about 10% [BX-1242].
+- **A KPI-gated restart:** the 737 reached 38 in May 2025 [BX-1872].
+- **The new airplane.**
+  - Three work streams, "not now on all 3" [BX-1296]; "not today and probably not tomorrow" [BX-1303].
+  - West: "no timetable" [BX-1864].
+- **Finish the 737-7, 737-10 and 777X first:** "that's job one" [BX-1863].
+- **No fixed-price development** [BX-1262, BX-1742].
+
+### ExCo deliberation script (every turn)
+1. **Ortberg frames.**
+   - *Are the KPIs stable for two to three months?* [BX-1271] That means no live quality, FAA or supply inject.
+   - *Are market, technology and our balance sheet all ready?* [BX-1296] Certification and debt are not modelled (§1): no live H7 inject, a passing go/no-go test, and `components_pv_b.capex`.
+   - *Is this doing less, better?* [BX-1239] He wants Do Nothing against the plan in `whatif`.
+2. **The BCA test** (Pope's seat, run by doctrine).
+   - **Rate Increase:** Turn 1 if no H6 inject is live [BX-1281, B-2351]. Defer under any inject: on-time, predictable delivery comes first [BX-1331].
+   - **fps form:** Solo, because the IP is Boeing's. A Joint Venture fits only where the partner adds capital (35% of capex) or capacity (half the strain) [BX-1330] **(inference; very thin)**.
+3. **West tests the rating.**
+   - *When does the cash turn?* [BX-1830]
+   - *What if not every piece goes right?* [BX-1775] The slip test is the planning case.
+   - He vetoes a Turn-1 fps: it "will not be rushed" [BX-1803].
+   - Joint Venture when NGSA launched in 2026-27 (it passes the slip leg by only $0.04B).
+   - His added stress flag: a crisis inject in the launch turn while debt is unrepaired [BX-1842] **(inference)**.
+4. **Decide.** Ortberg decides.
+   - **fps.**
+     - 2029 (H2), the gates assumed closed (§1) [B-2326]. A failed gate in play shows as H7 or a failed go/no-go test; a year's wait is never an order.
+     - He vetoes the H1 exception [B-2313, B-2315]. Declining it is a soft premium: in the base landmarks (NGSA 2026) the 2028 Joint Venture beats the 2029 Joint Venture by 1.48 nominally and 0.58 in the slip test. Log it; if whatif in play puts it above $2B, take the exception or log an explicit H8 override.
+   - **Re-engine:** none overlapping fps. 2036 only, and only above ε (+1.24) [B-2326].
+   - **Tie-breaks:** within ε, the plan with less to execute [BX-1239]. Between the CEO and CFO: the rating (West) decides financing questions, the KPIs (Ortberg) production questions.
+5. **Speak.**
+   - Ortberg's voice: "It is so much more important that we do this right than fast" [BX-1241]; "We will do a new airplane when the market and the technology and we're ready" [B-2305].
+   - Financial lines in West's voice: "Deliver airplanes, generate cash, pay down debt" [BX-1720].
+   - Do not disclose dated cash or EIS targets (West's W1) unless the slip test makes them safe.
+
+### How this team differs from the company default
+- **Barely.** The [NOW] doctrine was built on this era: Ortberg's items plus West's 2024-25 items [B-2276, B-2231, B-2291].
+- **West's downside planning brings the Joint Venture up more often** against an early NGSA.
+- **West's habit of dated targets** must be held back in disclosure.
+- **The rating as a hard floor** shows in statements.
+- **Pope's seat is doctrine, not person;** say so in the rationale.
+
+## 9. `ortberg-malave-pope-2026` (DEFAULT for the 2026 game)
+
+### Members and roles
+- **Kelly Ortberg, President and CEO** (as above).
+- **Jay (Jesus) Malave, EVP of Finance and CFO**, in post by September 2025 [BX-1316]. His 11 items come from one call, in October 2025 [BX-0546]. **Low confidence.**
+- **Stephanie Pope, head of BCA:** no BCA evidence (see §8). **Very low confidence.**
+
+### Decision rule
+- **Ortberg proposes and decides.**
+- **Malave is his independent check on program estimates.** Ortberg gave the new CFO the 777X slip to re-baseline [BX-1316].
+- **Malave's rules:**
+  - the 777X baseline carries buffer "from a schedule and cost perspective" [BX-0553], which he would apply to every baseline **(inference)**;
+  - the balance sheet comes first [BX-0556].
+- **Rates are KPI-gated** and "jointly agreed with the FAA" [BX-0554, B-2354].
+- **Pope's seat is played by the [NOW] operations doctrine** (see §8).
+- **In the game (inference):**
+  - Malave can veto any plan that fails his buffer test, that is, the slip leg.
+  - The KPI doctrine vetoes a Rate Increase under an inject.
+  - Ortberg decides everything else.
+
+### Typical tensions
+- **Investing against repairing.**
+  - Capex "closer to $3 billion" for growth [BX-0546].
+  - Against: "fully restoring the health of our balance sheet" [BX-0556], and "Far and away, our priority is debt" [BX-1305].
+- **A bullish tone without numbers.** Malave says "we're bullish on our outlook" [BX-0549], yet said it was "a little early" to comment on a long-term framework, including the old $10B target [B-2337].
+- **Two thin seats.** The team runs mostly on Ortberg and the company doctrine.
+
+### How the team turned doctrine into decisions (from September 2025)
+- **The 777X reset to 2027,** with a $4.9B charge: "a higher confidence plan" [BX-0550, BX-0548, BX-1321].
+- **The 737 to 42,** agreed with the FAA after stability at 38 [BX-0554, B-2354].
+- **Cash.** The first positive free-cash-flow quarter since Q4 2023 [B-2347]; no comment yet on the $10B target [B-2337].
+- **Debt first:** "solidly investment grade" before the next airplane [BX-1305, B-2327].
+- **FAA certification reform** added as a precondition [BX-1309].
+- **The 777X cash path:** a heavy use in 2026, near neutral in 2028, positive from 2029 [BX-0547].
+- **Capacity ahead of demand** in Charleston [BX-1317, B-2336].
+
+### ExCo deliberation script (every turn)
+1. **Ortberg frames.**
+   - *Are the KPIs stable?* Check for any live quality, FAA or supply-crunch inject [BX-1271].
+   - *Are market, technology and our balance sheet all ready?* [BX-1296] Check tech_ready_year and the engine's `eis_add`. The 777X and MAX 7/10 [B-2326] are not in the brief: treat them as done by Turn 2 (777X 2027 [BX-0550]; MAX 7/10 2026 [BX-1873]) unless a `certification_scrutiny` inject is live.
+   - **FAA-reform gate:** a live certification-scrutiny inject counts as a failed gate [BX-1309] **(inference)**. H7 already bars the launch.
+   - Classify NGSA from the event log. Airbus's timing does not set his date [B-2313].
+2. **Malave tests the balance sheet and the buffer.**
+   - *Can we "not only meet it but potentially beat it"?* [BX-0553] He runs the slip test as the baseline, not as a sensitivity.
+   - **Thresholds (inference):**
+     - the slip leg no more than $2B below Do Nothing;
+     - a cash profile, as he gave for the 777X [BX-0547]: the engine gives totals, so compare `undiscounted_b.capex` and `strain` across launch years, with `capex_b` and `dev_years` from `rules`;
+     - fps fundable from 2029, when the 777X turns cash-positive [BX-0547];
+     - no Turn-1 launch, and no 787 Re-engine in Turns 1-2.
+3. **The BCA test** (Pope's seat, run by doctrine).
+   - KPI gates for the Rate Increase [B-2221, B-2351]; supplier readiness [B-2308]; on-time, predictable delivery first [BX-1331].
+   - **For a Joint Venture:** does the partner add what Boeing lacks, capital (35% of capex) and capacity (half the strain) [RULES], rather than take Boeing's IP [BX-1330]?
+4. **Decide by Ortberg's rule.**
+   - **fps.**
+     - No Turn-1 launch. The H1 exception is vetoed: a soft premium of about 1.48 nominal and 0.58 in the slip test in the base landmarks (§8). Log it; above $2B in play, take the exception or log an explicit H8 override.
+     - Turn 2: 2029, `cfm_ducted`, if the go/no-go test passes and no H7 inject is live (the certification gates are assumed closed, §1).
+     - No one-year wait: H2 fixes the year.
+   - **Solo vs Joint Venture: Malave's buffer test decides.**
+     - Joint Venture against an NGSA launched in 2026-27. Only the 2029 Joint Venture passes the slip leg (-6.33 against -4.37), by just $0.04B, at a nominal cost of 1.61. The margin is fragile: re-run it in play, and if the slip leg fails, the go/no-go test decides.
+     - Otherwise Solo. The Joint Venture costs 2.74 against NGSA 2029 and 5.47 with Airbus idle.
+   - **787 Re-engine.** No overlap with fps. 2036 if the A350 has not been re-engined (+1.24). Never after an A350 Re-engine (H3).
+   - **Rate Increase.** Turn 1 unless H6 applies. A Turn-2 step costs only 0.32, so deferring is cheap.
+   - **Cancel.** Never. Re-baseline once, with the full cost of the delay [BX-1321, B-2349].
+   - **Tie-break:** within ε, "doing less and doing it better" [BX-1239] and the higher-confidence plan [BX-0548].
+5. **Disclose and speak.**
+   - **Voice.** Ortberg's: "we're turning it. I don't think it's turned" [BX-1300]; "the financials will follow our production performance" [BX-1287]. Financial lines in Malave's: "a higher confidence plan" [BX-0548].
+   - **Dates.** No fps date before launch [B-2315]. At launch, a conservative EIS with headroom. After a slip, one reset [BX-1318].
+   - **Ranges (inference; doctrine).** At launch only, publish the nominal and slip-test range, in the spirit of Pope's one quantified pension sensitivity [BX-1326]. Before launch, no fps date [B-2315].
+   - **Blame.** Never blame the FAA [BX-1323]. No attribution to suppliers or Airbus before exposure (doctrine).
+
+### How this team differs from the company default
+- **Very little.** The [NOW] doctrine is built on Ortberg's evidence. It sharpens three things:
+  - **Malave's buffer test is the baseline,** not just a cap on the downside. The Joint Venture is chosen whenever only it passes the slip leg.
+  - **The FAA-reform gate** [BX-1309] adds a reason to wait under a certification-scrutiny inject, which H7 already requires.
+  - **One conservative reset** in statements [BX-0548, BX-1318].
+- **Thin seats.** Every CFO and BCA position beyond the Rate Increase and cancellation is **(inference)**. The rationale must say when a thin profile drove a choice.
+
+## 10. Confidence and gaps
+
+- **Decision rights are inferred** from CEO and CFO turns on calls. No board papers or internal memos are in the evidence.
+- **The operating seats are the weakest.**
+  - Albaugh speaks only in 2011-12; Conner only at investor events.
+  - `muilenburg-smith-2017` has no BCA head in the evidence.
+  - Deal has one event.
+  - Pope has no airplane-business evidence at all.
+- **Era overlaps are short.**
+  - Bell's items end in October 2011, and Albaugh's begin in May 2011.
+  - Muilenburg as COO (2014-15) is thinly covered.
+  - Smith's explicit no-concurrency rule dates from 2018-19 [BX-1540, BX-1574] but is applied to his 2013 team.
+- **Historical teams in 2026 are counterfactuals.** Their tests are their own; their bounds are today's. Where a team's instinct breaks a hard rule (Conner's widebody first, McNerney's build-through, Muilenburg's rate optimism), this file routes it into statements or a logged premium.
+- **Engine numbers** are base-scenario landmarks from 2026-10-03. Injects, the market cell and play history change them. Re-run `options` and `whatif` every turn.
