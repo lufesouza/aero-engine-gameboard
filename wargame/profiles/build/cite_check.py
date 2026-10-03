@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check a profile's citations against its evidence file.
 
-Usage: cite_check.py <profile.md | reaction_function.json | financials.md> <evidence.jsonl> [--show]
+Usage: cite_check.py <profile.md | reaction_function.json | financials.md> <evidence.jsonl> [<more evidence.jsonl> ...] [--show]
 
 Lists cited ids that do not exist, counts distinct ids cited, and with --show
 prints, for every paragraph or table row that cites ids, the finding (and the
@@ -11,15 +11,17 @@ import json
 import re
 import sys
 
-path, ev = sys.argv[1], sys.argv[2]
+args = [a for a in sys.argv[1:] if a != "--show"]
+path, evs = args[0], args[1:]
 show = "--show" in sys.argv
 items = {}
-for line in open(ev):
-    if line.strip():
-        it = json.loads(line)
-        items[it["id"]] = it
+for ev in evs:
+    for line in open(ev):
+        if line.strip():
+            it = json.loads(line)
+            items[it["id"]] = it
 text = open(path).read()
-pat = re.compile(r"\b([RPAB])-(\d{4})\b")
+pat = re.compile(r"\b(BX|AX|[RPAB])-(\d{4})\b")
 cited = [m.group(0) for m in pat.finditer(text)]
 missing = sorted({c for c in cited if c not in items})
 print(f"{path}: {len(cited)} citations, {len(set(cited))} distinct ids, {len(missing)} missing")
