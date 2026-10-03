@@ -32,6 +32,7 @@ Arguments are all optional. Pass them in the request, e.g. *"run the boeing-airb
 | `games` | 1 | 1-4 independent plays in parallel, plus a cross-game synthesis |
 | `seed` | 0 | seed for `auto` injects (game *i* uses `seed + i - 1`) |
 | `run_id` | `wg-<timestamp>` | run name (`-g<i>` appended when `games` > 1) |
+| `leadership` | today's teams | executive team per airframer, e.g. `{"boeing": "muilenburg-smith-2017"}`; ids in `profiles/<side>/executives/teams.md` |
 | `doctrine` | none | board guidance per side, e.g. `{"boeing": "balance sheet cannot fund two programs at once"}` |
 | `fixed_orders` | none | script one side, e.g. `{"boeing": {"1": {"launch": [{"program": "fps", "engine": "cfm_ducted", "variant": "jv"}]}}}` |
 | `suppliers` | none | engine makers who play: `["rolls_royce"]`, `["pratt_whitney"]` or both |
@@ -124,6 +125,25 @@ When history leads it away from the PV-best option, it reports the **doctrine pr
 - The Airbus agent's view of Boeing is limited to Boeing's 2023-25 public statements.
 - The Boeing agent's view of Airbus is what Boeing has said about Airbus.
 - The PreToolUse hook `.claude/hooks/wargame_isolation.py` enforces this at runtime. Boeing's agent cannot read Airbus's profile or role card, and Airbus's cannot read Boeing's. Neither player, nor the market cell, can read run state, where sealed orders live.
+
+## Leadership teams (executive profiles)
+
+Boeing and Airbus each decide as a **named executive team**: a CEO, a CFO and the head of commercial aircraft. Each person is profiled from their own words. The files are in `wargame/profiles/<side>/executives/`:
+- one profile per executive: Quick card, commitment track record, sections by dimension, and "in the game";
+- `teams.md`: the teams by era, each with its decision rule, tensions and a per-turn ExCo deliberation script;
+- `evidence.jsonl`: verified quotes, BX-#### for Boeing and AX-#### for Airbus;
+- `citation_audit.md`.
+
+**Boeing** draws on the executives' own turns on calls and investor days, 2006-2025 (1,874 items). It covers:
+- CEOs: McNerney, Muilenburg, Calhoun and Ortberg (Ortberg including his Collins years);
+- CFOs: Bell, Smith, West and Malave;
+- heads of Commercial Airplanes: Albaugh, Conner, Deal and Pope.
+
+The teams run from `mcnerney-bell-albaugh-2010` to today's **`ortberg-malave-pope-2026`**, the default. A historical team plays "that team running Boeing in 2026".
+
+**Airbus** draws only on the FY2025 Board Report (the CEO's objectives and pay weights, and the executive team) and on mentions by Boeing and RTX executives (109 items). The default team is `faury-toepfer-wagner-2026`, and it is low-confidence. Airbus earnings-call transcripts would make it comparable to Boeing's.
+
+**Use.** Choose the teams with the workflow's `leadership` argument, e.g. `{"boeing": "muilenburg-smith-2017"}`, or tell the referee. Each turn, the strategist runs its team's ExCo deliberation and records it in its rationale. The referee scores leadership fidelity. The isolation hook keeps each company's executive files private, and the period-locked 2010 players cannot read them.
 
 ## The referee: information sharing and efficiency scoring
 

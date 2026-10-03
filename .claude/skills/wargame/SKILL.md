@@ -27,6 +27,7 @@ Spawn the referee with the Agent tool: `subagent_type: game-orchestrator`. Give 
 - the number of turns (default 4);
 - the inject policy (`umpire` by default, or `auto` or `none`);
 - which engine makers play (`--suppliers rolls_royce,pratt_whitney`);
+- which leadership team runs each airframer: the default is today's team (`ortberg-malave-pope-2026`, `faury-toepfer-wagner-2026`), or a historical Boeing team from `wargame/profiles/boeing/executives/teams.md`, for example `muilenburg-smith-2017` ("what if that team ran Boeing in 2026");
 - whether you want the after-action review.
 
 It dispatches every player each turn, relays disclosures, adjudicates, and writes `wargame/runs/<RUN>/referee_report.md` with the efficiency scorecard. When it's done, show the user the scorecard and the verdicts.

@@ -1,7 +1,7 @@
 export const meta = {
   name: 'boeing-airbus-wargame',
   description: 'Boeing vs Airbus war game refereed by the Game Orchestrator: profile-driven players issue sealed orders and choose what to disclose, a market cell reacts, the engine adjudicates, then a verified after-action review and a referee efficiency scorecard',
-  whenToUse: 'Run an AI-vs-AI Boeing vs Airbus war game on the wargame/ engine, optionally with the engine makers Rolls-Royce and Pratt & Whitney as supplier players. Optional args: {turns, scenario, injects: "umpire"|"auto"|"none", games (1-4), run_id, seed, suppliers: ["rolls_royce", "pratt_whitney"], doctrine: {boeing, airbus, rolls_royce, pratt_whitney}, fixed_orders: {boeing|airbus|rolls_royce|pratt_whitney: {"<turn>": orders}}, verify: true|false}',
+  whenToUse: 'Run an AI-vs-AI Boeing vs Airbus war game on the wargame/ engine, optionally with the engine makers Rolls-Royce and Pratt & Whitney as supplier players. Optional args: {turns, scenario, injects: "umpire"|"auto"|"none", games (1-4), run_id, seed, suppliers: ["rolls_royce", "pratt_whitney"], leadership: {boeing: "<team id>", airbus: "<team id>"}, doctrine: {boeing, airbus, rolls_royce, pratt_whitney}, fixed_orders: {boeing|airbus|rolls_royce|pratt_whitney: {"<turn>": orders}}, verify: true|false}',
   phases: [
     { title: 'Setup', detail: 'the Game Orchestrator creates the run(s)' },
     { title: 'Turns', detail: 'inject, sealed Boeing and Airbus (and engine-maker) orders, market reaction, engine adjudication' },
@@ -24,6 +24,14 @@ const GAMES = Number.isInteger(A.games) ? Math.max(1, Math.min(4, A.games)) : 1
 const SEED = Number.isInteger(A.seed) ? A.seed : 0
 const RUN_ID = typeof A.run_id === 'string' && /^[A-Za-z0-9_-]+$/.test(A.run_id) ? A.run_id : null
 const DOCTRINE = A.doctrine && typeof A.doctrine === 'object' ? A.doctrine : {}
+// Named executive teams (wargame/profiles/<side>/executives/teams.md); default: today's team.
+const LEADERSHIP_DEFAULT = { boeing: 'ortberg-malave-pope-2026', airbus: 'faury-toepfer-wagner-2026' }
+const LEADERSHIP = {}
+for (const s of ['boeing', 'airbus']) {
+  const v = A.leadership && typeof A.leadership === 'object' ? A.leadership[s] : null
+  LEADERSHIP[s] = typeof v === 'string' && /^[a-z0-9-]+$/.test(v) ? v : LEADERSHIP_DEFAULT[s]
+  if (v && v !== LEADERSHIP[s]) log(`ignored invalid leadership id for ${s}: ${JSON.stringify(v)}`)
+}
 const FIXED = A.fixed_orders && typeof A.fixed_orders === 'object' ? A.fixed_orders : {}
 const VERIFY = A.verify !== false
 const MAX_CLAIMS = 8
@@ -452,6 +460,7 @@ function playerPrompt(g, t, side, ctl, errors) {
     `Control's public situation report:\n${ctl.situation}`,
     DOCTRINE[side] ? `Board guidance for this game. Treat it as a real constraint on your decisions: ${DOCTRINE[side]}` : '',
     supplierNote,
+    LEADERSHIP[side] ? `Your leadership team for this game: \`${LEADERSHIP[side]}\` (see wargame/profiles/${side}/executives/teams.md). Run its ExCo deliberation before deciding and record it in the rationale; speak in its CEO's voice.` : '',
     errors && errors.length ? `The engine rejected your previous orders for this turn:\n- ${errors.join('\n- ')}\nFix them, re-run validate, and resubmit.` : '',
     `${launchRule} Put the engine numbers you relied on in the rationale. Put the engine's projected delta PV for these orders, assuming no later moves, in expected_delta_pv_b. In disclose, list anything you CHOOSE to make public; the referee passes it to the other players and the market next turn, and it may be empty. ${predictionRule}`,
   ]
@@ -521,7 +530,7 @@ function reportPrompt(g, aar, verified, refuted, dropped, expectations) {
     `Write the report for completed war game run \`${g.runId}\` to \`wargame/runs/${g.runId}/report.md\` (Markdown), then return its path and a three-sentence summary.`,
     'Structure:',
     '1. Title and a short headline paragraph. Use only verified facts.',
-    `2. Setup: scenario ${SCENARIO}, ${g.turnsTotal} turns, inject policy ${INJECTS}${Object.keys(DOCTRINE).length ? ', board guidance ' + JSON.stringify(DOCTRINE) : ''}.`,
+    `2. Setup: scenario ${SCENARIO}, ${g.turnsTotal} turns, inject policy ${INJECTS}, leadership teams ${JSON.stringify(LEADERSHIP)}${Object.keys(DOCTRINE).length ? ', board guidance ' + JSON.stringify(DOCTRINE) : ''}.`,
     `3. Engine tables: paste the output of \`${ENGINE} report --run ${g.runId} --format md\` verbatim. Do not retype the numbers.`,
     `4. Turn-by-turn narrative from \`${ENGINE} report --run ${g.runId}\`: the inject, what each side did and why (from their rationales), the market reaction, and the projection change.`,
     '5. Equilibrium benchmark and regret.',
@@ -552,6 +561,7 @@ function refereePrompt(g) {
     '- information use: what it chose to disclose, and whether that was credible, strategic, or contradicted by events;',
     '- discipline;',
     '- doctrine fidelity: compare its orders with its profile Quick card (wargame/profiles/<side>/profile.md, where <side> is boeing, airbus, rolls_royce or pratt_whitney) and its declared doctrine premium.',
+    `- leadership fidelity (Boeing and Airbus): did the rationale run the ExCo deliberation of its team (${JSON.stringify(LEADERSHIP)}, see wargame/profiles/<side>/executives/teams.md), and did the orders and statements match that team's rules and voice?`,
     'Finish with a comparative ranking that separates skill from documented company doctrine. Every number must come from engine output.',
   ].join('\n')
 }
@@ -817,6 +827,7 @@ return {
   scenario: SCENARIO,
   inject_policy: INJECTS,
   players: PLAYERS,
+  leadership: LEADERSHIP,
   games: results,
   synthesis: synthesis ? synthesis.path : null,
 }

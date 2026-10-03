@@ -15,7 +15,7 @@ import sys
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
          "/scratchpad/audit", "/scratchpad/ab_synth_work", "/scratchpad/text", "/scratchpad/rr", "/scratchpad/pw",
-         "/scratchpad/engines"]
+         "/scratchpad/engines", "/scratchpad/execs"]
 RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"]
 PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"]
 AIRFRAMERS = ["profiles/boeing", "profiles/airbus", "boeing-strategist.md", "airbus-strategist.md", "boeing-2010.md",

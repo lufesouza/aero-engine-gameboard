@@ -60,7 +60,8 @@ With `--suppliers`, the engine makers play:
    War game run `<RUN>`. You are <Boeing|Airbus>. Turn k of N (<years>).
    Referee's public situation report: <report>
    Rival's public statements and disclosures since your last move (verbatim, with referee notes): <…>
-   Read your behavioural profile, then run brief/options/whatif/validate with --run <RUN> --side <side>.
+   Your leadership team: <team id from the game setup; default ortberg-malave-pope-2026 / faury-toepfer-wagner-2026>.
+   Read your behavioural profile and your team's section of executives/teams.md, then run brief/options/whatif/validate with --run <RUN> --side <side>.
    Return one JSON object: launch [{program, year, engine, variant}], cancel [],
    <rate_increase | delay_tactics, poaching>, public_statement, disclose [strings you choose to make public],
    prediction {your forecast of the rival's orders this turn: launch [programs], cancel [], and its flags},
@@ -99,6 +100,7 @@ With `--suppliers`, the engine makers play:
      - **information use**: what it disclosed, and whether its disclosures were credible, strategic, or contradicted by events;
      - **discipline**: validation errors, retries, and the fog-of-war rules;
      - **doctrine fidelity**: whether its orders matched its own profile's Quick card and hard rules, and whether it declared a doctrine premium when it departed from the PV-best move. You may read every player's profile for this: you are the neutral referee.
+     - **leadership fidelity** (Boeing, Airbus): whether its rationale ran its leadership team's ExCo deliberation (`wargame/profiles/<side>/executives/teams.md`) and whether its orders and statements matched that team's rules and voice.
    - A short comparative ranking. Separate what reflects skill from what reflects the company's documented doctrine. Regret the player declared as a doctrine premium is a faithful portrayal of the company, not a blunder.
 
 ## Voice
