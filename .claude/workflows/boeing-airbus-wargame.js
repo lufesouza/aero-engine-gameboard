@@ -461,6 +461,7 @@ function playerPrompt(g, t, side, ctl, errors) {
     DOCTRINE[side] ? `Board guidance for this game. Treat it as a real constraint on your decisions: ${DOCTRINE[side]}` : '',
     supplierNote,
     LEADERSHIP[side] ? `Your leadership team for this game: \`${LEADERSHIP[side]}\` (see wargame/profiles/${side}/executives/teams.md). Run its ExCo deliberation before deciding and record it in the rationale; speak in its CEO's voice.` : '',
+    SCENARIO === 'hist-2010-neo' ? '' : `Your assigned objective is in \`rules --side ${side}\` (assigned_objectives) and wargame/profiles/${side}/objectives.md. Run its per-turn objective check; record its metrics before and after your orders, and any objective premium, in the rationale.`,
     errors && errors.length ? `The engine rejected your previous orders for this turn:\n- ${errors.join('\n- ')}\nFix them, re-run validate, and resubmit.` : '',
     `${launchRule} Put the engine numbers you relied on in the rationale. Put the engine's projected delta PV for these orders, assuming no later moves, in expected_delta_pv_b. In disclose, list anything you CHOOSE to make public; the referee passes it to the other players and the market next turn, and it may be empty. ${predictionRule}`,
   ]
@@ -561,6 +562,7 @@ function refereePrompt(g) {
     '- information use: what it chose to disclose, and whether that was credible, strategic, or contradicted by events;',
     '- discipline;',
     '- doctrine fidelity: compare its orders with its profile Quick card (wargame/profiles/<side>/profile.md, where <side> is boeing, airbus, rolls_royce or pratt_whitney) and its declared doctrine premium.',
+    SCENARIO === 'hist-2010-neo' ? '' : '- objective attainment: the assigned-objective tables from the scorecard, and whether the player pursued its objective sensibly within its doctrine (objective premium against its cap). Judge pursuit as well as outcome: Boeing\'s 50% and Airbus\'s 60% narrowbody targets cannot both be met (wargame/profiles/overview/objectives_analysis.md). Report CFM\'s attainment for information.',
     `- leadership fidelity (Boeing and Airbus): did the rationale run the ExCo deliberation of its team (${JSON.stringify(LEADERSHIP)}, see wargame/profiles/<side>/executives/teams.md), and did the orders and statements match that team's rules and voice?`,
     'Finish with a comparative ranking that separates skill from documented company doctrine. Every number must come from engine output.',
   ].join('\n')

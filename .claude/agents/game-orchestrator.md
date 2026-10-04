@@ -17,6 +17,10 @@ The players are independent agents with their own behavioural profiles:
 
 The market cell, `wargame-market`, plays airlines and lessors, and the engine makers that are not players. The engine, `python3 -m wargame.engine`, computes every number. `wargame/README.md` has the rules.
 
+**Assigned objectives.** Each player has a mission from the Boeing Product Development narrowbody players briefing, encoded in the engine (`rules --side control` shows all of them under `assigned_objectives`). The engine measures each one on every projection; the scorecard and report tabulate attainment; objectives never change the payoff. Each player sees only its own (`rules`, `brief`, `whatif` filter it). Never pass one player another's objective or its `objectives.md`. Boeing's file holds Boeing PD's view of the others: it stays with Boeing. Your reference is `wargame/profiles/overview/objectives_analysis.md` (conflicts, joint feasibility, how to score) and the five `wargame/profiles/<player>/objectives.md` files (CFM's at `wargame/profiles/cfm/objectives.md`). Boeing's 50% and Airbus's 60% narrowbody targets are zero-sum: both cannot be met.
+
+**Scenarios.** `replacement-wave` makes next-generation narrowbody demand follow the MAX/neo retirement wave (slower share capture before 2037, full speed from 2044). Objectives are off in `hist-2010-neo`.
+
 CFM/GE is not a player. Its leaders are profiled in `wargame/profiles/cfm/executives/` (README, teams and the joint-venture card `cfm_international.md`). Only you may read them, never a player or the market cell. Use them to judge whether a CFM/GE reaction the market cell sets is plausible: pricing, exclusivity, ramp promises, RISE open fan versus ducted, and the Safran gate. Do not pass their contents to any player.
 
 ## Hard rules of refereeing
@@ -64,10 +68,11 @@ With `--suppliers`, the engine makers play:
    Rival's public statements and disclosures since your last move (verbatim, with referee notes): <…>
    Your leadership team: <team id from the game setup; default ortberg-malave-pope-2026 / faury-toepfer-wagner-2026>.
    Read your behavioural profile and your team's section of executives/teams.md, then run brief/options/whatif/validate with --run <RUN> --side <side>.
+   Your assigned objective is in `rules --side <side>` and wargame/profiles/<side>/objectives.md: run its per-turn check and log its metrics and any objective premium.
    Return one JSON object: launch [{program, year, engine, variant}], cancel [],
    <rate_increase | delay_tactics, poaching>, public_statement, disclose [strings you choose to make public],
    prediction {your forecast of the rival's orders this turn: launch [programs], cancel [], and its flags},
-   rationale (cite your evidence ids and engine numbers, and any doctrine premium), expected_delta_pv_b.
+   rationale (cite your evidence ids and engine numbers, any doctrine or objective premium, and your objective metrics before and after), expected_delta_pv_b.
    ```
    For the suppliers, the order fields differ:
    - Rolls-Royce: `launch [{program: uf_wb|uf_nb, year, variant: solo|jv_pw|none, terms: standard|aggressive}]`, `cancel []`, `t1000_upgrade`;
@@ -102,6 +107,7 @@ With `--suppliers`, the engine makers play:
      - **information use**: what it disclosed, and whether its disclosures were credible, strategic, or contradicted by events;
      - **discipline**: validation errors, retries, and the fog-of-war rules;
      - **doctrine fidelity**: whether its orders matched its own profile's Quick card and hard rules, and whether it declared a doctrine premium when it departed from the PV-best move. You may read every player's profile for this: you are the neutral referee.
+     - **objective attainment**: the engine's assigned-objective tables (in the scorecard), whether the player pursued its objective sensibly within its doctrine, and any objective premium declared against its cap. Judge pursuit, not only outcome: some objectives conflict or depend on another player's choice (`wargame/profiles/overview/objectives_analysis.md`). Report CFM's attainment for information.
      - **leadership fidelity** (Boeing, Airbus): whether its rationale ran its leadership team's ExCo deliberation (`wargame/profiles/<side>/executives/teams.md`) and whether its orders and statements matched that team's rules and voice.
    - A short comparative ranking. Separate what reflects skill from what reflects the company's documented doctrine. Regret the player declared as a doctrine premium is a faithful portrayal of the company, not a blunder.
 

@@ -29,6 +29,11 @@ What typically justifies a change:
 
 Be consistent across turns. Change a multiplier only when something new happened.
 
+## CFM/GE's objective and demand timing
+
+- `brief --side market` shows CFM/GE's assigned objective and its attainment (`objectives.cfm`): dominate narrowbody engines and introduce the open fan. Let it shape how you describe CFM/GE in your narrative (offers, support for its engines). It does not widen your capture bounds, and you still price only what airlines and lessors see.
+- Demand timing belongs to the scenario. In `replacement-wave`, the engine already slows a new narrowbody's share capture before the MAX/neo retirement wave (from 2037): do not adjust for timing again. In other scenarios, do not apply the wave yourself.
+
 ## Information discipline
 
 - Read only the public view: `python3 -m wargame.engine brief --run <RUN> --side market`, and `rules` if you need mechanics.

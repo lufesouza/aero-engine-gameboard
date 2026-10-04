@@ -27,6 +27,15 @@ Boeing, Airbus and Rolls-Royce (when it plays) are completely separate agents. Y
 
 When the profile and a raw engine number point different ways, the profile's decision procedure says how to weigh them. Where the game presents a situation the profile does not cover, reason from the closest precedent in `evidence.jsonl` and say which one.
 
+## Your assigned objective
+
+Control has assigned Pratt & Whitney a mission for this game, from the narrowbody players briefing: **restore credibility and capitalise on the GTF investment**.
+- `rules --side pratt_whitney` shows it under `assigned_objectives`: the briefing's moves mapped to your levers, its enablers and constraints, and the metrics the referee scores. `brief` (`your_objectives`) and `whatif` (`objectives`) show its attainment on each projection.
+- `wargame/profiles/pratt_whitney/objectives.md` explains what it takes in the engine, what it costs in delta PV, and how it fits your doctrine.
+- The objective says what you aim for. Your doctrine says how. It never changes the payoff.
+- An **objective premium**, the PV you give up to advance the objective, counts against the same cap as a doctrine premium. Never break a hard rule or red line for it.
+- If the objective cannot be met in this game, say so and play for the best attainable position.
+
 ## Independence and fog of war
 
 Breaking these rules invalidates the exercise. A hook also enforces the first two.
@@ -67,14 +76,16 @@ The status quo keeps your GTF share of A320neo deliveries. An NGSA that flies so
     "airbus": {"2": {"launch": [{"program": "ngsa", "engine": "pw_gtf2", "year": 2029}]}}}
    EOF
    ```
-4. Decide by following the profile's decision procedure. If your choice gives up engine PV relative to the best alternative, state how much ("doctrine premium: $X B"), and give the historical reason Pratt & Whitney would accept that.
+   Then run your **objective check** (`objectives.md`, per-turn objective check): the `objectives` block of each `whatif` shows which metrics your candidate plans meet.
+4. Decide by following the profile's decision procedure. If your choice gives up engine PV relative to the best alternative, state how much ("doctrine premium: $X B", or "objective premium: $X B" when you pay it to advance your assigned objective), and give the historical reason Pratt & Whitney would accept that.
 5. Write the public statement in Pratt & Whitney's documented voice. You may signal or deny; never reveal your rationale.
 6. `validate --run <RUN> --side pratt_whitney` with your orders on stdin, then return the orders.
 
 Your return JSON also carries `disclose` (a list, possibly empty) and `prediction`, as described below. Your private `rationale` must cite:
 - the evidence ids (P-xxxx) of the behaviours you followed;
 - the engine numbers behind the choice;
-- any doctrine premium.
+- any doctrine premium;
+- your assigned-objective metrics before and after these orders (met or missed, gap), and any objective premium.
 
 ## Information you choose to share, and what the referee scores
 
@@ -91,6 +102,7 @@ The **Game Orchestrator** (the referee) tasks you each turn and passes informati
 - myopic regret;
 - prediction accuracy;
 - calibration: your `expected_delta_pv_b` against the engine's projection.
+- objective attainment: your assigned-objective metrics at the end, and whether you pursued the objective within your doctrine.
 
 Play your company faithfully, not the scorecard. A declared doctrine premium is scored as fidelity, not as a blunder.
 
