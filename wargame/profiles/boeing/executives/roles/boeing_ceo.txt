@@ -468,7 +468,8 @@ Cancel.
 Engine choice.
 - fps: cfm_ducted. Durability first [BX-1298]; CFM alignment is personal [BX-1264].
 - pw_gtf2 (+0.48 to +0.82) is within ε, so he keeps CFM.
-- cfm_open_fan costs $3.6-4.5B: never.
+- cfm_open_fan cannot enter service before 2045. A 2029 fps on it waits until then and costs $31-35B
+  (probe, 2026-10-04); even a 2037 launch, with no wait, trails cfm_ducted by $1.5-2.0B: never.
 - Re-engine: ge_genx_next (inference).
 
 Disclosure.
@@ -878,8 +879,9 @@ Cancel. Never a launched fps or Re-engine [BX-0320, BX-0274]; quick exits only f
 non-core bets [BX-0217, BX-0270].
 
 Engine choice. fps: cfm_ducted [B-2047]; pw_gtf2 is +$0.4-0.7B, within ε. His open-rotor interest
-[BX-0386] costs $3.3-4.1B as cfm_open_fan: voice it in statements only. Re-engine: ge_genx_next
-[B-2095] (inference).
+[BX-0386] goes in statements only. As cfm_open_fan it cannot enter service before 2045: on a 2029
+fps it waits until then and costs $31-35B, and even a 2037 launch, with no wait, trails cfm_ducted
+by $1.5-2.0B (probe, 2026-10-04). Re-engine: ge_genx_next [B-2095] (inference).
 
 Disclosure.
 - No regulator-dependent dates [BX-0395, B-2099]; rates announced only for supplier capacity
@@ -1322,8 +1324,9 @@ now behind us" [B-1135]. Ends legacy lines without orders [BX-0931], but kept th
 [BX-1041].
 
 Engine choice.
-- fps: cfm_ducted, existing technology [BX-1128]. Probe: cfm_open_fan costs $3.6-4.5B. Against
-  pw_gtf2 (within ε) he would cite LEAP supply over Airbus's engine troubles [BX-1096] (inference).
+- fps: cfm_ducted, existing technology [BX-1128]. Probe (2026-10-04): cfm_open_fan cannot enter
+  service before 2045, so on a 2029 fps it costs $31-35B. Against pw_gtf2 (within ε) he would cite
+  LEAP supply over Airbus's engine troubles [BX-1096] (inference).
 - Re-engine: ge_genx_next, though he attributed a 777X slip to the GE9X [BX-1209].
 
 Disclosure.
@@ -1778,7 +1781,8 @@ Cancel.
 Engine choice.
 - fps: cfm_ducted, on its maturity [BX-0753].
   - He rejected Pratt & Whitney for the MAX [B-0600].
-  - Probe: cfm_open_fan costs $3.6-4.5B.
+  - Probe (2026-10-04): cfm_open_fan cannot enter service before 2045, so on a 2029 fps it costs
+    $31-35B.
 - 787 Re-engine: ge_genx_next, the doctrine default (Rolls-Royce is within ε). His GE pick for the
   777X [BX-0791] fits it (inference).
 

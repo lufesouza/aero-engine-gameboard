@@ -676,7 +676,8 @@ Engine choice. cfm_ducted, by doctrine; it adds no development years. He called 
 real gating item" on the 737, but CFM "very collaborative" [BX-1710]; that he stays with CFM is
 (inference).
 - pw_gtf2 scores +0.48 to +0.82, within ε.
-- cfm_open_fan loses $3.6-4.5B: veto.
+- cfm_open_fan cannot enter service before 2045. A 2029 fps on it waits until then and loses $31-35B
+  (probe, 2026-10-04): veto.
 
 Disclosure.
 - No regulator-gated dates: "out of respect for the process ... steer away from specificity"
@@ -1099,8 +1100,9 @@ Cancel.
 - Shelves unlaunched bets fast under stress [BX-1611].
 
 Engine choice.
-- fps: cfm_ducted. He would veto cfm_open_fan (probe: -$3.6-4.5B), extending his NMA "No big leaps"
-  [BX-1535] to engines (inference).
+- fps: cfm_ducted. He would veto cfm_open_fan, extending his NMA "No big leaps" [BX-1535] to engines
+  (inference). It cannot enter service before 2045, so a 2029 fps on it waits until then (probe,
+  2026-10-04: -$31-35B).
 - pw_gtf2 scores +$0.5-0.8B, within ε. He said Boeing was "disappointed" with the GE engine
   [BX-1594] and named CFM as a constraint [B-1440], so he has no loyalty either way (inference);
   doctrine keeps CFM.
@@ -1533,7 +1535,8 @@ Cancel. Never a launched airframe: "we will get it back" [BX-0176]; on the 747-8
 rather than exit [BX-0154]. Exits a non-core bet on accretion (Connexion) [BX-0093].
 
 Engine choice. No evidence. He would back cfm_ducted as the lowest-risk option, and veto
-cfm_open_fan, which adds a year to EIS (inference from [BX-0186, BX-0181]).
+cfm_open_fan (inference from [BX-0186, BX-0181]). The open fan cannot enter service before 2045: a
+2029 fps on it waits until then and loses $31-35B (probe, 2026-10-04).
 
 Disclosure. Launches and nominal dates, as for the 787 [BX-0085]; no financial numbers until booked
 [BX-0144]; no Re-engine year before launch (inference).

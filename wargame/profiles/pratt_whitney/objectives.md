@@ -63,9 +63,11 @@ Each lever checked against `rules --side pratt_whitney`.
 | fps 2028 names `pw_gtf2`, NGSA 2028 on CFM | `gtf_next` 2028 | -2.05 / -2.05 | no launch (fps falls back to CFM) | -1.74 / -1.74 | 0.31 / 0.31 |
 | fps 2032 names `pw_gtf2`, NGSA 2029 on CFM | `gtf_next` 2034 | -1.96 / -1.79 | no launch | -1.42 / -1.42 | 0.54 / 0.37 |
 | NGSA on CFM or Solo UltraFan, any year 2026-2035 | none | | upgrade only | -1.74 / -1.74 (2028) | unreachable |
-| fps alone on CFM, any year 2026-2035 | none | | upgrade only | +1.04 / +1.25 (2028) | unreachable |
+| fps alone on `cfm_ducted`, any year 2026-2035 | none | | upgrade only | +1.04 / +1.25 (2028) | unreachable |
 
 The last two rows are the trap. Every NGSA launch I ran (2026-2035) on a rival engine leaves us zero engines from its entry into service (NGSA 2035 on CFM: 1,080 / 0 / 0). fps alone on CFM erodes Airbus share: 2050 engines are 621 (fps 2026) to 864 (fps 2035) in the base, 742 to 867 in the wave. All 180 base and wave pairs in the three sweeps agree on met or missed. The wave lowers our payoff from a selected engine (NGSA 2028 ours: +1.62 against +1.98) but changes no verdict.
+
+CFM in these runs is `cfm_ducted`. CFM's open fan (`cfm_open_fan`) cannot enter service before 2045, which flips one verdict: fps alone on it, launched in any year 2026-2037, meets `gtf_base` with the upgrade alone (1,080 / 1,080 / 965, ΔPV +1.60, base and wave). NGSA on it still leaves us 1,080 / 0 / 0. Neither airframer prefers it to `cfm_ducted` in any launch year 2026-2037 (2028: Boeing -21.48 against +19.09, Airbus -7.67 against +46.47).
 
 **The decision we actually face.** Orders are simultaneous, so `gtf_base` stays reachable only if `gtf_next` is live when the airframer chooses. The real objective premium is the cost of a hedge nobody selects. Turn 1, NGSA, upgrade 2026, `gtf_next` 2028, cancelled in turn 2 if unselected:
 
@@ -98,7 +100,7 @@ Broader cover costs too much. Joining and launching `gtf_next` together meets `g
 **Where it pulls against it.**
 - We wait for a committed airframe and sole source [P-0711][P-0739][P-0737][P-0746]. The objective wants a hedge at odds down to about 0.05 (§5), not only above the profile's 0.45.
 - Our plan holds no new centreline engine [P-0745]. Yet every NGSA we ran on a rival engine fails `gtf_base`.
-- fps alone on CFM fails `gtf_base`, which pulls toward an fps hedge. We do not launch for "bragging rights" [P-0702], and a launch without a committed airframer breaks our red line.
+- fps alone on `cfm_ducted` fails `gtf_base`, which pulls toward an fps hedge (on the open fan it meets it, §5). We do not launch for "bragging rights" [P-0702], and a launch without a committed airframer breaks our red line.
 - Winning a selection on price would meet `gtf_base`, against our no-deep-discount rule [P-0735][P-1333].
 - Meeting it through UltraFan scores RR's engine as ours. That pulls against evolving inside the geared architecture [P-0772] and integrated teams [P-1240]. RR's own view is that a Joint Venture holds only while both partners are on the same new engine [P-1875].
 
