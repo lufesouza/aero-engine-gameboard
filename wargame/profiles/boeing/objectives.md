@@ -12,19 +12,19 @@ Enablers:       Existing 737 customer base | trained workforce | government ince
 Constraints:    High debt load | ramp-up speed | engineering capacity | supply-chain bottlenecks
 ```
 
-Source: Boeing Product Development, "Players - narrowbody market: Who plays, what they want, and what they can do", Aerospace Game-Theory Briefing (Boeing Strategy), slide 4. BOEING PROPRIETARY.
+Source: Boeing Product Development, 'Players - narrowbody market: Who plays, what they want, and what they can do', Aerospace Game-Theory Briefing (Boeing Strategy), slide 4. BOEING PROPRIETARY.
 
 ## 2. Moves to levers
 
-All levers checked against `rules --side boeing`.
+All levers checked against `rules --side control` (base and replacement-wave) and `rules --run <id> --side boeing` (`assigned_objectives`).
 
 | Briefing move | Game lever and order | Modelled | Notes |
 |---|---|---|---|
 | fps, 7-year ramp-up | `launch` fps, `"variant": "solo"`, year Y | partly | 7 development years, $30B. Capture after EIS is fixed: 1.5 pp a year x engine and market multipliers |
-| fps, 10-year ramp-up | none; nearest is a launch 3 years later | partly | Base, Airbus idle, with the Rate Increase: fps 2032 gives +11.86 (43.5% in 2040); fps 2029 gives +17.58 (48.0%) |
-| fps via Embraer | `"variant": "jv"` | yes | Embraer pays 35% of capex, takes 25% of margin. Shares match Solo, so it changes PV, not the metrics |
-| 737 rate by 2030 | `"rate_increase": true` | yes | +2 pp two years after commitment; $1.2B; +0.05 alpha for 6 years. Only Turn 1 lands by 2030 |
-| Do Nothing | no orders | yes | 40% share every year; delta PV 0.00 |
+| fps, 10-year ramp-up | `launch` fps, Solo; no slower-ramp variant | partly | Nearest proxies: a later launch, slips, or a market capture multiplier below 1. Base, Airbus idle, Turn-1 Rate Increase: fps 2029 gives +17.58 (48.0% in 2040); fps 2032 gives +11.86 (43.5%); fps 2029 at the market floor of 0.75 gives +14.85 (46.5%) |
+| fps via Embraer | `"variant": "jv"` | yes | Embraer pays 35% of capex, takes 25% of margin, relieves half the strain. Shares match Solo in every run, so it changes PV, not the metrics |
+| 737 rate by 2030 | `"rate_increase": true` | yes | +2 pp two years after commitment; $1.2B; +0.05 alpha for 6 years. Only Turn 1 lands by 2030 (42% in 2030; Turn 2 gives 40%) |
+| Do Nothing | no orders | yes | With Airbus idle: 40% share every year; delta PV 0.00 |
 
 ## 3. Enablers and constraints
 
@@ -32,7 +32,7 @@ All levers checked against `rules --side boeing`.
 |---|---|---|
 | 737 customer base | `sq_share` 0.40; 737 MAX margin 8% | 40% was the red line [B-0638]. The backlog means "no hurry" [B-2305] |
 | Trained workforce | not modelled; nearest is Poaching ($0.75B a turn) | 15,000 hired in 2022 [B-2035]; in 2011 half could retire within five years [B-0390] |
-| Government incentives | not modelled | Only export credit [B-1077]; no launch aid on record |
+| Government incentives | not modelled | Ex-Im export credit [B-1077]; a Washington tax incentive, since repealed after the WTO case [B-1761]; support "on market terms" [B-1825] |
 | Cash from 787 | widebody 58.8% share, 20% margin; no funding test | Margins to beat 2018 at target rates [B-2198]; near break-even in 2022 [B-2024] |
 | High debt load | alpha 0.30; WACC 10.5%; no debt figure | "Far and away, our priority is debt" [B-2327, BX-1305]. Protect the rating [B-2186] |
 | Ramp-up speed | capture 1.5 pp a year; market 0.75-1.25; Rate Increase lag 2 years | KPIs, not dates [B-2221]. Steps of 5 a month, 6+ months apart [B-2351] |
@@ -46,41 +46,42 @@ All levers checked against `rules --side boeing`.
 | `nb_share_50` | Boeing narrowbody share in the worst listed year | ≥ 50% in 2040, 2045, 2050 | 40%: not met, gap -10.0 pp |
 | `defend_incumbency` | Boeing share minus the status-quo path (40%, moved only by injects) | ≥ 0 in 2030, 2035, 2040, 2045, 2050 | met, gap 0.0 pp |
 
-2040 binds `nb_share_50` in every run.
+2040 binds `nb_share_50` in 279 of the 375 runs per scenario. A later year binds only when NGSA enters service first and fps is not in service by 2040 (no fps, or a launch in 2034 or later).
 
 ## 5. What it takes
 
-**Method.** 375 plans per scenario: Airbus idle or NGSA in 2026, 2029, 2032 or 2035, against Boeing fps none or 2026-2037, Solo or Joint Venture, with the Rate Increase none, Turn 1 or Turn 2. The **doctrine plan** is a Turn-1 Rate Increase plus fps Solo in 2029. **Objective premium** = best PV minus the best PV that meets the metric.
+**Method.** 375 plans per scenario: Airbus idle or NGSA in 2026, 2029, 2032 or 2035, against Boeing fps none or 2026-2037, Solo or Joint Venture, with the Rate Increase none, Turn 1 or Turn 2. The **doctrine plan** is a Turn-1 Rate Increase plus fps Solo in 2029. Under the default team, the plan against an NGSA launched in 2026-27 is the Joint Venture (`teams.md` §9). Its shares are the same; its PV against NGSA 2026 is +0.34 (base) and +2.47 (wave). **Objective premium** = best PV minus the best PV that meets the metric. Within H1 the doctrine plan is the best-PV plan against every Airbus timing in both scenarios.
 
 **Base scenario** (Boeing $B; Boeing share in 2040)
 
-| Airbus | Best PV (any) | Doctrine plan | Cheapest plan meeting `nb_share_50` | `defend_incumbency` |
+| Airbus | Best PV (any) | Doctrine plan | Best plan meeting `nb_share_50` | `defend_incumbency` |
 |---|---|---|---|---|
 | Idle | fps 2028 + Rate T1: +19.94 (49.5%) | +17.58 (48.0%) | fps 2027 + Rate T2: +17.51 (51.0%); premium 2.42 | doctrine plan; premium 0 |
-| NGSA 2026 | +4.06 (39.0%) | +1.95 (37.5%) | none (best 42.0%) | only fps 2026-27 + Rate; best fps 2027 + Rate T2: +2.76, premium 1.30. Allowed: gap -2.5 |
+| NGSA 2026 | +4.06 (39.0%) | +1.95 (37.5%) | none (best 42.0%) | only fps 2026 (with or without Rate) or fps 2027 + Rate; best fps 2027 + Rate T2: +2.76, premium 1.30. Best allowed: doctrine plan, gap -2.5 |
 | NGSA 2029 | +8.98 (43.5%) | +6.63 (42.0%) | none (best 46.5%) | doctrine plan; premium 0 |
 | NGSA 2032 | +12.62 (48.0%) | +10.27 (46.5%) | fps 2026 + Rate T2: +8.18 (51.0%); premium 4.44 | doctrine plan; premium 0 |
 | NGSA 2035 | +15.21 (49.5%) | +12.86 (48.0%) | fps 2027 + Rate T2: +13.16 (51.0%); premium 2.05 | doctrine plan; premium 0 |
 
 **Replacement-wave scenario.**
-- **`nb_share_50`:** no plan meets it. The closest is fps 2026 + Rate, at 47.0% in 2040 (gap -3.03).
+- **`nb_share_50`:** no plan meets it. The closest is fps 2026 + Rate, at 47.0% in 2040 (gap -3.03), with Airbus idle or NGSA 2035.
 - **`defend_incumbency`:** the doctrine plan meets it against every timing, at zero premium. Against NGSA 2026 the margin is thin: 40.2%. Without the Rate Increase it falls to 38.2%.
 - **PV:** the doctrine plan gives +14.73 (idle), +4.75, +6.63, +8.39 and +10.09 (NGSA 2026 to 2035). The best plan, fps 2028 + Rate T1, is $1.36-1.45B higher.
 
 **What it means.**
-- **`nb_share_50` breaks the hard rules.** It needs fps in 2026-27, which breaks H1 (no Turn-1 fps) and H2 (EIS before the 2035 tech-ready year). fps 2027 carries a 2 pp early-entry penalty (margin at EIS 23.64%).
-- **`defend_incumbency` is nearly free.** The doctrine plan meets it except against NGSA 2026 (base), where even the H1 exception (fps 2028 Joint Venture + Rate) reaches only 39.0%.
+- **`nb_share_50` breaks the hard rules.** It needs fps in 2026-27, which breaks H1 (no Turn-1 fps) and H2 (EIS before the 2035 tech-ready year). The early-entry penalty is 2 pp a year: margin at EIS is 23.64% for fps 2027 and 21.64% for fps 2026, against 25.64% from 2028.
+- **`defend_incumbency` is nearly free.** The doctrine plan meets it except against NGSA 2026 (base). There even the H1 exception (fps 2028 Joint Venture + Rate T1) reaches only 39.0% (+1.82), and the default team vetoes that exception (`teams.md` §9).
 
 **Rival timing** (base, Rate Increase in Turn 1).
 - **`nb_share_50` needs Airbus to wait.**
   - fps 2026 needs NGSA in 2032 or later; 2031 misses by 0.5 pp.
   - fps 2027 needs NGSA in 2033 or later.
   - fps 2028 misses by at least 0.5 pp whatever Airbus does.
-- **Airbus gains by not waiting:** against fps 2027, NGSA 2030 is worth +11.96 to it, NGSA 2033 only +1.65. We expect NGSA in Turn 1 or 2 [B-2536].
-- **`defend_incumbency` lets fps trail NGSA by one year;** about two in the wave (fps 2031 against NGSA 2029 holds 40.7%).
+- **Airbus gains by not waiting:** against fps 2027, NGSA 2030 is worth +11.96 to it, NGSA 2033 only +1.65. An analyst expected Airbus to fix the NGSA architecture around 2027 [B-2536], so we expect NGSA in Turn 1 or 2 **(inference)**.
+- **`defend_incumbency` lets fps trail NGSA by one year** (Solo, Turn-1 Rate Increase; NGSA 2026-35). In the wave the allowance is wider: three years for NGSA by 2028, two for NGSA 2029-33 (fps 2031 against NGSA 2029 holds 40.66%), one for NGSA 2034-35.
 - **Slip test** (Airbus Delay Tactics in Turns 2-3; fps EIS 2038):
   - against NGSA 2029, the doctrine plan drops to 39.0% (PV -4.03) in the base scenario but holds 40.66% (PV -2.67) in the wave;
-  - against NGSA 2026 it fails in both.
+  - against NGSA 2026 it fails in both (34.5% base, 38.86% wave);
+  - against NGSA 2032 it holds in both (42.0%).
 - **The market cell can tip `nb_share_50`.** At the maximum fps capture multiplier of 1.25 with Airbus idle:
   - fps 2028 + Rate reaches 51.38% (+22.78);
   - the doctrine plan misses by 0.5 pp (+20.15).
@@ -90,17 +91,17 @@ All levers checked against `rules --side boeing`.
 **Agrees.**
 - **Share has mattered.** "We do not want them to get to 60% and us, 40%" [B-0602, B-0638]. Albaugh aimed at about half the market [BX-0001].
 - **Boeing moves when "meaningful market share" is at risk** [B-0422], as in the MAX reversal [B-0413].
-- **Lateness cost money:** a year late meant more aggressive pricing [B-0733, B-0804].
+- **Lateness cost money:** the MAX came 1-1.5 years behind the NEO [B-0733, B-0804], and being a year late meant more aggressive pricing [B-0733].
 - **Boeing benchmarks deliveries against Airbus** [B-2324, B-2537], and the 737 rate drives cash [B-2298].
 
 **Pulls against.**
 - **50/50 was dropped:** "not an objective of ours" [B-1936]. Chasing tier rank "gets you in trouble" [B-1980].
-- **Boeing prices for scarcity, not share** [B-2331].
+- **Boeing prices for supply scarcity** [B-2331]; that it puts margin ahead of share is **(inference)**.
 - **The gates forbid an early fps:** current programs first [B-2276], debt first [B-2327], no dates [B-2313, B-2316], "not before '35" [B-2061], "will not be rushed" [B-2164].
 - **One development at a time** [B-0341]; "no hurry" [B-2305].
 
-**Weighing rule.**
-1. **The objective sets the aim.** Play for `defend_incumbency`. Track `nb_share_50` but do not chase it: it needs a Turn-1 fps and an Airbus that waits to 2032-33.
+**Weighing rule (inference: built from Section 5 and the doctrine).**
+1. **The objective sets the aim.** Play for `defend_incumbency`. Track `nb_share_50` but do not chase it: it needs a Turn-1 fps and an Airbus that waits until 2032 or later.
 2. **The doctrine sets how.** Timing, variant, engine and Re-engine follow `profile.md` §6 and §9 and Malave's buffer test (`teams.md` §9).
 3. **Tie-breaks.** Within ε, the objective breaks ties toward a Turn-1 Rate Increase and toward `cfm_ducted` (capture 1.0 against 0.95 for `pw_gtf2`).
 4. **The premium cap.** An objective premium counts against the H8 cap of $2B for soft choices (profile H8), shared with any doctrine premium **(inference)**.
@@ -139,12 +140,14 @@ Rolls-Royce   | Primary goal: Enter narrowbody market; Keep Widebody dominance
               | Constraints: Engineering resources shared with widebody | no NB MR&O scale | gearbox sizing
 ```
 
-- **Airbus.** Its 60% and our 50% are zero-sum. An NGSA by 2031 ends our 50%; Delay Tactics break `defend_incumbency` in the base scenario, so keep the slip test as the baseline. The engine prices NGSA at $25B.
-- **CFM.** The RISE open fan adds a year to EIS and cuts capture to 0.85: bad for share. Keep `cfm_ducted`; open rotor is long-run for us [B-2065, B-2078].
-- **Pratt & Whitney.** GTF2 exists only if P&W plays and launches it; capture 0.95. We share the durability worry [B-2304].
-- **Rolls-Royce.** The UltraFan narrowbody adds a year to EIS. Its widebody engine is the A350 Re-engine default, an H3 trigger.
+- **Airbus.** Its 60% and our 50% are zero-sum. An NGSA by 2031 ends our 50%. Delay Tactics with an NGSA in 2029 break `defend_incumbency` in the base scenario, so keep the slip test as the baseline. The engine prices NGSA at $25B.
+- **CFM.** The RISE open fan adds a year to EIS and cuts capture to 0.85: bad for share. Keep `cfm_ducted`; Boeing sees an open-rotor engine as a long-run option [B-2065, B-2078].
+- **Pratt & Whitney.** In the two-player game GTF2 is always on offer, with capture 0.95: the doctrine plan on GTF2 gives +18.06 and 47.7% in 2040, against +17.58 and 48.0% on `cfm_ducted`. When P&W plays, fps gets GTF2 only if P&W launches it by the end of that turn; otherwise fps falls back to `cfm_ducted`. Boeing is wary of new-engine durability [B-2304].
+- **Rolls-Royce.** In the two-player game the UltraFan narrowbody adds a year to EIS. Its widebody engine is the default for the A350 Re-engine, whose launch triggers H3.
 
 ## 9. The replacement wave and fps timing
+
+Source: Boeing Product Development, draft slide 7 on the drivers of a late-2030s entry into service (BOEING PROPRIETARY). Paraphrased below; the digitised curve is in `rules --scenario replacement-wave` (`segments.nb.replacement_wave`).
 
 **Slide 7's four drivers.**
 1. **Retirement timing:** MAX and neo fleets age out in the mid-2030s, and orders need 5+ years of lead time.
@@ -154,7 +157,7 @@ Rolls-Royce   | Primary goal: Enter narrowbody market; Keep Widebody dominance
 
 Replacements: about 38 in 2037, 334 in 2040, 825 in 2044; about 27% are 737 MAX.
 
-**What the scenario does.** It scales a leading product's yearly capture by 0.4 + 0.6 x min(1, replacements/807): 0.4 before 2037, 0.648 in 2040, 1.0 from 2044. The base scenario is unchanged.
+**What the scenario does.** It scales a leading product's yearly capture by 0.4 + 0.6 x min(1, replacements/807): 0.4 before 2037, 0.648 in 2040, 1.0 in 2044, 0.981 in 2045, then 1.0 from 2046. The base scenario is unchanged.
 
 **What the grid shows** (reproduced; Solo, no Rate Increase).
 - **The best launch year does not move.**
@@ -167,7 +170,7 @@ Replacements: about 38 in 2037, 334 in 2040, 825 in 2044; about 27% are 737 MAX.
   - Entering service in the same year is unchanged: +5.76 in both.
 - **Net:** the wave helps `defend_incumbency` and rules out `nb_share_50`.
 
-**Driver 3 is not modelled.** Under Do Nothing the engine holds the 737 MAX at 40% and an 8% margin in both scenarios. The slide expects erosion, so Do Nothing is flattered in both (inference, unmodelled). The record shows the late MAX 10 weakening the top of the line [B-2249] while Boeing calls the family competitive [B-2033].
+**Driver 3 is not modelled.** Under Do Nothing, with Airbus idle, the engine holds the 737 MAX at 40% and an 8% margin in both scenarios. The slide expects erosion, so Do Nothing is flattered in both (inference, unmodelled). The record shows the late MAX 10 weakening the top of the line [B-2249] while Boeing calls the family competitive [B-2033].
 
 ## 10. Gaps and modelling limits
 
@@ -176,24 +179,50 @@ Replacements: about 38 in 2037, 334 in 2040, 825 in 2044; about 27% are 737 MAX.
 - **Not modelled:** debt (only alpha), workforce, incentives, the A220-500, COMAC, MAX erosion.
 - **Fixed NGSA dates;** no injects or widebody moves.
 - **The wave** is digitised to ±20 aircraft a year, and its 0.4 floor is assumed.
-- **README discrepancy:** `wargame/README.md` (Customising) puts the best base launch at 2026 (+$13.5B); the grid gives 2029 (+16.72).
+- **Supplier players** are not in these runs. With Rolls-Royce or Pratt & Whitney playing, their engines depend on their launches.
 
 <details>
 <summary>Commands</summary>
 
 ```bash
-cd /home/user/aero-engine-gameboard; export WARGAME_RUNS_DIR=<scratchpad>/objectives/runs_boeing
-python3 -m wargame.engine new --run-id ob-base --scenario base   # and ob-wave --scenario replacement-wave
-python3 -m wargame.engine rules --run ob-base --side boeing     # and ob-wave
-# Sweep (scripted loop, Section 5), e.g. the doctrine plan against NGSA 2029:
+cd /home/user/aero-engine-gameboard
+export WARGAME_RUNS_DIR=<scratchpad>/objectives/runs_boeing_verify
+python3 -m wargame.engine rules --scenario base --side control                # levers, parameters, metrics (Sections 2-4)
+python3 -m wargame.engine rules --scenario replacement-wave --side control    # capture weights, replacement curve (Section 9)
+python3 -m wargame.engine new --run-id v-base --scenario base
+python3 -m wargame.engine new --run-id v-wave --scenario replacement-wave
+python3 -m wargame.engine rules --run v-base --side boeing                    # assigned_objectives
+# Template (doctrine plan against NGSA 2029; Section 5):
 echo '{"boeing": {"1": {"rate_increase": true}, "2": {"launch": [{"program": "fps", "variant": "solo", "engine": "cfm_ducted", "year": 2029}]}},
- "airbus": {"2": {"launch": [{"program": "ngsa", "engine": "cfm_ducted", "year": 2029}]}}}' | python3 -m wargame.engine whatif --run ob-base --side control
-# Same template: rival timing (NGSA 2030-37); slip test (Airbus "delay_tactics": true in turns 2, 3).
-# Same template: fps 2027 margin check. Market test below; ob-mkt29 likewise (Rate T1, fps 2029 in T2):
-python3 -m wargame.engine new --run-id ob-mkt28 --scenario base
+ "airbus": {"2": {"launch": [{"program": "ngsa", "engine": "cfm_ducted", "year": 2029}]}}}' | python3 -m wargame.engine whatif --run v-base --side control
+# Sweep, 375 plans per run (Sections 4, 5, 9 and the grid): the template looped over Airbus idle / NGSA 2026, 2029, 2032, 2035,
+#   fps none / 2026-2037 x solo, jv, Rate none / T1 / T2; launch in the turn holding the year. Script: <scratchpad>/objectives/sweep_boeing.py
+python3 <scratchpad>/objectives/sweep_boeing.py v-base vsweep_base.jsonl; python3 <scratchpad>/objectives/sweep_boeing.py v-wave vsweep_wave.jsonl
+python3 <scratchpad>/objectives/analyse_sweep.py vsweep_base.jsonl vsweep_wave.jsonl
+# Same template, looped on v-base and v-wave:
+#   rival timing: fps 2026, 2027, 2028 Solo + Rate T1 against Airbus idle and NGSA 2026-2037;
+#   lag test: Rate T1 + fps Solo in NGSA year + 0..3, NGSA 2026-2035;
+#   slip test: Rate T1 + fps 2029 Solo or jv, Airbus idle / NGSA 2026, 2029, 2032, plus "delay_tactics": true in turns "2" and "3".
+# Margin at EIS (boeing.programs[].margin_at_eis), Do Nothing, Rate Increase timing:
+echo '{"boeing": {"1": {"launch": [{"program": "fps", "variant": "solo", "engine": "cfm_ducted", "year": 2027}]}}, "airbus": {}}' | python3 -m wargame.engine whatif --run v-base --side control   # and 2026, 2028
+echo '{"boeing": {}, "airbus": {}}' | python3 -m wargame.engine whatif --run v-base --side control
+echo '{"boeing": {"1": {"rate_increase": true}}, "airbus": {}}' | python3 -m wargame.engine whatif --run v-base --side control   # and "2", "3"
+# Market cell (Sections 2 and 5): v-mkt28 at 1.25; v-mkt29 at 1.25 and v-mkt29lo at 0.75 (Rate in T1, fps 2029 + market in T2)
+python3 -m wargame.engine new --run-id v-mkt28 --scenario base
 echo '{"boeing": {"launch": [{"program": "fps", "variant": "solo", "engine": "cfm_ducted", "year": 2028}], "rate_increase": true},
- "airbus": {}, "market": {"capture_mult": {"fps": 1.25}}}' | python3 -m wargame.engine adjudicate --run ob-mkt28 --turn 1
-echo '{"boeing": {}, "airbus": {}}' | python3 -m wargame.engine whatif --run ob-mkt28 --side control
+ "airbus": {}, "market": {"capture_mult": {"fps": 1.25}}}' | python3 -m wargame.engine adjudicate --run v-mkt28 --turn 1
+echo '{"boeing": {}, "airbus": {}}' | python3 -m wargame.engine whatif --run v-mkt28 --side control
+python3 -m wargame.engine new --run-id v-mkt29 --scenario base
+echo '{"boeing": {"rate_increase": true}, "airbus": {}}' | python3 -m wargame.engine adjudicate --run v-mkt29 --turn 1
+echo '{"boeing": {"launch": [{"program": "fps", "variant": "solo", "engine": "cfm_ducted", "year": 2029}]}, "airbus": {},
+ "market": {"capture_mult": {"fps": 1.25}}}' | python3 -m wargame.engine adjudicate --run v-mkt29 --turn 2
+echo '{"boeing": {}, "airbus": {}}' | python3 -m wargame.engine whatif --run v-mkt29 --side control
+# GTF2 (Section 8): the doctrine plan with "engine": "pw_gtf2" on v-base and on a run with P&W playing
+python3 -m wargame.engine new --run-id v-pw --scenario base --suppliers pratt_whitney
+echo '{"boeing": {"1": {"rate_increase": true}, "2": {"launch": [{"program": "fps", "variant": "solo", "engine": "pw_gtf2", "year": 2029}]}},
+ "airbus": {}}' | python3 -m wargame.engine whatif --run v-pw --side control   # and --run v-base
+# Citations
+python3 wargame/profiles/build/cite_check.py wargame/profiles/boeing/objectives.md wargame/profiles/boeing/evidence.jsonl wargame/profiles/boeing/executives/evidence.jsonl --show
 ```
 
 </details>
