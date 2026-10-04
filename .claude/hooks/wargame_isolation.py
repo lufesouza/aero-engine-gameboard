@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """PreToolUse hook: keep the war-game agents independent.
 
-Each strategist (Boeing, Airbus, and the optional Rolls-Royce and Pratt & Whitney suppliers) may not
+Each strategist (Boeing, Airbus, and the optional Rolls-Royce, Pratt & Whitney and CFM/GE suppliers) may not
 touch another player's profile, role card or private scratch folder, nor the
 build-time work areas that hold every side's material.
 No player or market agent may read run state (sealed orders live there) or run
-engine commands other than read-only ones from its own side's view. The Game
+engine commands other than read-only ones from its own side's view; only the Game
+Orchestrator sees the full game-theory board (players may not run `equilibria`). The Game
 Orchestrator (referee), the analyst and the main session are not restricted.
 """
 import json
@@ -15,12 +16,14 @@ import sys
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
          "/scratchpad/audit", "/scratchpad/ab_synth_work", "/scratchpad/text", "/scratchpad/rr", "/scratchpad/pw",
-         "/scratchpad/engines", "/scratchpad/execs", "/scratchpad/cfm"]
+         "/scratchpad/engines", "/scratchpad/execs", "/scratchpad/cfm", "/scratchpad/rrx", "/scratchpad/pwx"]
 RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"]
 PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"]
-# CFM International's leaders (GE side): not a player yet; no player reads them. The cross-player
-# overview page summarises every side, so no player reads it either.
-CFM = ["profiles/cfm", "profiles/overview", "wargame/config"]  # the config holds every player's assigned objective
+CFMP = ["profiles/cfm", "cfm-strategist.md", "wargame-cfm"]
+# The cross-player overview page summarises every side, the config holds every player's assigned objective,
+# and the root gameboard.py holds every engine maker's move table: no player reads them.
+SHARED = ["profiles/overview", "wargame/config", "gameboard.py"]
+CFM = CFMP + SHARED
 AIRFRAMERS = ["profiles/boeing", "profiles/airbus", "boeing-strategist.md", "airbus-strategist.md", "boeing-2010.md",
               "airbus-2010.md", "wargame-boeing", "wargame-airbus"]
 # Raw uploads contain every year; the period-locked 2010 players may not read them.
@@ -39,15 +42,17 @@ BLOCK = {
     "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + RR + PW + CFM + BUILD,
     "rolls-royce-strategist": AIRFRAMERS + PW + CFM + ["wargame/runs"] + BUILD,
     "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + ["wargame/runs"] + BUILD,
-    "wargame-market": ["profiles/", "wargame/runs", "wargame/config", "wargame-boeing", "wargame-airbus", "wargame-rolls_royce",
-                       "wargame-pratt_whitney"] + BUILD,
+    "cfm-strategist": AIRFRAMERS + RR + PW + SHARED + ["wargame/runs"] + BUILD,
+    "wargame-market": ["profiles/", "wargame/runs", "wargame/config", "gameboard.py", "wargame-boeing", "wargame-airbus",
+                       "wargame-rolls_royce", "wargame-pratt_whitney", "wargame-cfm"] + BUILD,
 }
 
 
 PLAYER_SIDE = {"boeing-strategist": "boeing", "airbus-strategist": "airbus", "wargame-market": "market",
                "boeing-2010": "boeing", "airbus-2010": "airbus", "rolls-royce-strategist": "rolls_royce",
-               "pratt-whitney-strategist": "pratt_whitney"}
-READ_ONLY = {"brief", "rules", "options", "whatif", "validate", "equilibria", "scenarios", "status"}
+               "pratt-whitney-strategist": "pratt_whitney", "cfm-strategist": "cfm"}
+# `equilibria` (the game-theory board) is for the Game Orchestrator only.
+READ_ONLY = {"brief", "rules", "options", "whatif", "validate", "scenarios", "status"}
 
 
 def engine_violation(agent, command):
@@ -62,7 +67,7 @@ def engine_violation(agent, command):
         allowed = {own, "market"} if own != "market" else {"market"}
         if any(x.strip("'\"") not in allowed for x in sides):
             return f"engine view --side {sides[0]}"
-        if sub in ("options", "whatif", "equilibria", "brief", "rules") and not sides:
+        if sub in ("options", "whatif", "brief", "rules") and not sides:
             return f"engine '{sub}' without --side {own}"
     return None
 

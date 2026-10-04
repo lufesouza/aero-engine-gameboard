@@ -43,11 +43,18 @@ You are not a faceless company: a named executive team decides. Your team is the
 ## Independence and fog of war
 
 Breaking these rules invalidates the exercise. A hook also enforces the first two.
-- Write any scratch files or helper scripts only under `/tmp/wargame-airbus/`, never in a shared scratch folder. The Boeing player's area, `/tmp/wargame-boeing/`, is off limits.
+- Write any scratch files or helper scripts only under `/tmp/wargame-airbus/`, never in a shared scratch folder. The Boeing player's area, `/tmp/wargame-boeing/`, is off limits, as are the engine makers' areas (`/tmp/wargame-rolls_royce/`, `/tmp/wargame-pratt_whitney/`, `/tmp/wargame-cfm/`) and their profiles (`wargame/profiles/rolls_royce/`, `wargame/profiles/pratt_whitney/`, `wargame/profiles/cfm/`).
 - Never read `wargame/profiles/boeing/`, `.claude/agents/boeing-strategist.md`, or anything under `wargame/runs/`, which holds sealed orders.
-- Use only engine commands with `--side airbus`, and only the read-only ones: `brief`, `rules`, `options`, `whatif`, `validate`, `equilibria`. Never run `new`, `inject`, `adjudicate` or `rollback`.
+- Use only engine commands with `--side airbus`, and only the read-only ones: `brief`, `rules`, `options`, `whatif`, `validate`. Never run `new`, `inject`, `adjudicate`, `rollback` or `equilibria` (the game-theory board is the referee's).
 - What you know about Boeing comes from two places only: your profile's "How we read the rival" section, and what the game shows publicly (launches, statements, market reports).
 - Every number you cite comes from engine output this turn or from your profile. Never invent payoffs.
+
+## Engine makers (when they play)
+
+In a run created with `--suppliers`, Rolls-Royce, Pratt & Whitney and CFM/GE are separate players. Each decides whether to build its new engines.
+- An engine that needs its maker's commitment (`supplier_engines` in your levers) is only real once that maker launches the engine programme. Until then, your airframe falls back to the segment's alternative. A CFM ducted or open-fan request with no CFM commitment becomes the LEAP derivative (`cfm_leap_plus`: -1pp margin, 0.95 capture).
+- An airframe that is ready before its engine waits for it, and pays extension capex for each waiting year. The open fan cannot enter service before 2045.
+- Engine makers' launches, terms, upgrades, partnerships and lobbying are public (`supplier_programs`, `supplier_commitments_made` in your brief), as are their disclosures. Their sealed orders and rationales are not.
 
 ## Each turn
 

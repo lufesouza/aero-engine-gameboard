@@ -297,8 +297,8 @@
       "boeing": {
         "primary_goal": "Hold the 50/50 narrowbody market split; defend incumbency",
         "moves": [
-          {"move": "Launch fps with a 7-year ramp-up", "lever": "launch fps (Solo)", "modelled": "partly", "note": "fps development is 7 years in the engine; ramp-up speed after EIS is not a choice (capture 1.5pp a year x engine and market multipliers)"},
-          {"move": "Launch fps with a 10-year ramp-up", "lever": "launch fps (Solo)", "modelled": "partly", "note": "no slower-ramp variant; nearest are a later launch, slips, or a market capture multiplier below 1"},
+          {"move": "Launch fps with a 7-year ramp-up", "lever": "launch fps (ramp 7y, the default)", "modelled": "yes", "note": "fps development is 7 years; after entry into service share capture runs at the full calibrated speed (ramp_options 7y: capture x1.0, capex x1.0)"},
+          {"move": "Launch fps with a 10-year ramp-up", "lever": "launch fps with \"ramp\": \"10y\"", "modelled": "yes", "note": "slower ramp-up: share capture x0.7, program capex x0.9 (PLACEHOLDER multipliers)"},
           {"move": "Launch fps via Embraer", "lever": "launch fps, variant jv (Joint Venture with Embraer)", "modelled": "yes", "note": "partner pays 35% of capex, takes 25% of margin, relieves half the strain"},
           {"move": "Increase 737 production rate by 2030", "lever": "rate_increase", "modelled": "yes", "note": "+2pp narrowbody share after a 2-year lag, $1.2B capex; committing in Turn 1 lands the gain by 2030"},
           {"move": "Do Nothing (keep the 737 MAX program)", "lever": "no orders", "modelled": "yes", "note": "the status quo: 40% narrowbody share"}
@@ -359,16 +359,16 @@
         "label": "CFM International (GE side)",
         "primary_goal": "Dominate narrowbody engines; introduce the open fan",
         "moves": [
-          {"move": "Open fan only", "lever": "airframer engine choice cfm_open_fan", "modelled": "partly", "note": "CFM is not a player; each airframer picks the engine; available for entry into service from 2045"},
-          {"move": "Ducted only", "lever": "airframer engine choice cfm_ducted", "modelled": "partly", "note": "the default engine for fps and NGSA"},
-          {"move": "Open + ducted (both)", "lever": "both engine options offered", "modelled": "partly", "note": "both are always on offer to the airframers"},
-          {"move": "Partner with Embraer", "lever": "none", "modelled": "no", "note": "the fps Joint Venture is Boeing-Embraer; there is no CFM-Embraer move"},
-          {"move": "Lobby governments on emissions", "lever": "none", "modelled": "no", "note": "nearest effects are tech_ready_year and the fuel-price inject"}
+          {"move": "Open fan only", "lever": "launch open_fan (not ducted)", "modelled": "yes", "note": "when CFM/GE plays (--suppliers cfm); RISE cannot enter service before 2045 and an airframer must still pick cfm_open_fan. When CFM/GE does not play, the airframers pick the engine and both are always on offer"},
+          {"move": "Ducted only", "lever": "launch ducted (not open_fan)", "modelled": "yes", "note": "cfm_ducted is the default engine for fps and NGSA; with CFM/GE playing and no CFM commitment they fly the LEAP derivative"},
+          {"move": "Open + ducted (both)", "lever": "launch ducted and open_fan", "modelled": "yes", "note": "both programs' capex, and strain while they overlap"},
+          {"move": "Partner with Embraer", "lever": "embraer_partner", "modelled": "yes", "note": "when CFM/GE plays: one-time capex, then engines for Embraer's next aircraft after a lag"},
+          {"move": "Lobby governments on emissions", "lever": "lobby_emissions", "modelled": "yes", "note": "when CFM/GE plays: a cost over three years; airframes flying the open fan get extra margin and capture"}
         ],
         "enablers": ["Existing maintenance and overhaul base", "Cash", "Sustainable aviation fuel capability"],
         "constraints": ["Open fan certification risk", "Airframer reluctance", "Raw materials"],
         "metrics": [
-          {"id": "nb_dominance", "label": "Dominate narrowbody engines: CFM share of narrowbody engines at or above the status quo", "kind": "maker_nb_share", "engines": ["cfm_ducted", "cfm_open_fan"], "others": ["rolls_royce", "pratt_whitney"], "years": [2040, 2045, 2050]},
+          {"id": "nb_dominance", "label": "Dominate narrowbody engines: CFM share of narrowbody engines (LEAP derivative included) at or above the status quo", "kind": "maker_nb_share", "maker": "cfm", "years": [2040, 2045, 2050]},
           {"id": "open_fan", "label": "Introduce the open fan: an airframer flies the RISE open fan by 2045", "kind": "engine_in_service", "engines": ["cfm_open_fan"], "by_year": 2045}
         ]
       }

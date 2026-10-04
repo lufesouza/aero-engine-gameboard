@@ -796,6 +796,143 @@ def final_report(st):
     }
 
 
+AIRFRAMER_FIN = ("nb_revenue_b", "wb_revenue_b", "nb_op_profit_b", "wb_op_profit_b", "capex_b", "strain_b", "tactics_b")
+SUPPLIER_FIN = ("nb_engines", "wb_engines", "partner_engines", "nb_engine_value_b", "wb_engine_value_b", "partner_engine_value_b",
+                "installed_base_b", "capex_b", "strain_b", "lobby_b")
+
+
+def _sum_series(series, keys, y0, y1):
+    tot = {k: 0.0 for k in keys}
+    for y in range(y0, y1 + 1):
+        row = series.get(str(y)) or {}
+        for k in keys:
+            tot[k] += row.get(k, 0.0)
+    return tot
+
+
+def _maker_shares(cfg, ev, seg, y):
+    """Share of the segment's new engines by maker in year y (players only; the rest is 'other makers')."""
+    eng = {sup: (ev[sup].get("series", {}).get(str(y), {}) or {}).get(f"{seg}_engines", 0.0) for sup in M.active_suppliers(cfg)}
+    units = sum((ev[s]["series"].get(str(y), {}) or {}).get(f"{seg}_aircraft", 0.0) for s in M.SIDES)
+    epa = max(cfg["suppliers"][x]["engines_per_aircraft"][seg] for x in M.active_suppliers(cfg))
+    denom = units * epa or 1.0
+    out_ = {sup: round(v / denom, 4) for sup, v in eng.items()}
+    out_["other_makers"] = round(max(0.0, 1.0 - sum(out_.values())), 4)
+    return out_
+
+
+def round_reports(st):
+    """One report per adjudicated round: shares, dates and financials as of the round's last year (control/analyst)."""
+    cfg = st["config"]
+    hist = st["history"]
+    reps = []
+    prev = None
+    for i, rec in enumerate(hist):
+        a, b = M.turn_years(cfg, rec["turn"])
+        w = M.build_world(cfg, hist[:i + 1])
+        ev = M.evaluate(cfg, w, with_series=True)
+        y_start = cfg["years"]["start"]
+        shares = {}
+        for seg in M.SEGMENTS:
+            sh = {}
+            for y in sorted({b} | {y for y in M.KEY_YEARS if y >= b and y <= cfg["years"]["end"]}):
+                row = ev["boeing"]["series"][str(y)], ev["airbus"]["series"][str(y)]
+                tot = row[0][f"{seg}_aircraft"] + row[1][f"{seg}_aircraft"]
+                tot_sq = row[0][f"{seg}_aircraft_sq"] + row[1][f"{seg}_aircraft_sq"]
+                sh[str(y)] = {"boeing": round(row[0][f"{seg}_aircraft"] / tot, 4), "airbus": round(row[1][f"{seg}_aircraft"] / tot, 4),
+                              "status_quo_boeing": round(row[0][f"{seg}_aircraft_sq"] / tot_sq, 4),
+                              "aircraft_per_year": round(tot, 1)}
+                if M.active_suppliers(cfg):
+                    sh[str(y)]["engine_makers"] = _maker_shares(cfg, ev, seg, y)
+            shares[seg] = sh
+        fin = {}
+        for s in M.players(cfg):
+            keys = AIRFRAMER_FIN if s in M.SIDES else SUPPLIER_FIN
+            ser = ev[s]["series"]
+            fin[s] = {
+                "delta_pv_b": ev[s]["delta_pv_b"], "components_pv_b": ev[s]["components_pv_b"],
+                "change_in_delta_pv_this_round_b": None if prev is None else round(ev[s]["delta_pv_b"] - prev[s]["delta_pv_b"], 3),
+                "round_window": {k: round(v, 3) for k, v in _sum_series(ser, keys, a, b).items()},
+                "cumulative_to_round_end": {k: round(v, 3) for k, v in _sum_series(ser, keys, y_start, b).items()},
+                "in_round_end_year": {k: round((ser.get(str(b)) or {}).get(k, 0.0), 3) for k in keys},
+            }
+            if s in M.SIDES:
+                for blk in ("round_window", "cumulative_to_round_end", "in_round_end_year"):
+                    f = fin[s][blk]
+                    f["op_profit_b"] = round(f["nb_op_profit_b"] + f["wb_op_profit_b"], 3)
+                    f["revenue_b"] = round(f["nb_revenue_b"] + f["wb_revenue_b"], 3)
+                    f["cash_after_capex_b"] = round(f["op_profit_b"] - f["capex_b"] - f["strain_b"] - f["tactics_b"], 3)
+                sq = _sum_series(ser, ("nb_revenue_sq_b", "wb_revenue_sq_b", "nb_op_profit_sq_b", "wb_op_profit_sq_b"), a, b)
+                fin[s]["round_window_status_quo"] = {"revenue_b": round(sq["nb_revenue_sq_b"] + sq["wb_revenue_sq_b"], 3),
+                                                     "op_profit_b": round(sq["nb_op_profit_sq_b"] + sq["wb_op_profit_sq_b"], 3)}
+            else:
+                for blk in ("round_window", "cumulative_to_round_end", "in_round_end_year"):
+                    f = fin[s][blk]
+                    f["engine_value_b"] = round(f["nb_engine_value_b"] + f["wb_engine_value_b"] + f["partner_engine_value_b"], 3)
+                sq = _sum_series(ser, ("nb_engines_sq", "wb_engines_sq", "nb_engine_value_sq_b", "wb_engine_value_sq_b"), a, b)
+                fin[s]["round_window_status_quo"] = {"engines": round(sq["nb_engines_sq"] + sq["wb_engines_sq"], 1),
+                                                     "engine_value_b": round(sq["nb_engine_value_sq_b"] + sq["wb_engine_value_sq_b"], 3)}
+        reps.append({
+            "round": rec["turn"], "years": [a, b], "as_of": b,
+            "label": next((t.get("label") for t in cfg["turns"] if t["turn"] == rec["turn"]), ""),
+            "injects": [cfg["injects"]["deck"][x]["title"] for x in rec.get("injects", [])],
+            "orders": {s: S.describe_orders(cfg, s, o) for s, o in rec["orders"].items()},
+            "orders_raw": rec["orders"],
+            "statements": rec.get("statements", {}),
+            "market": rec.get("market", {}), "market_narrative": rec.get("market_narrative", ""),
+            "events": [e for e in w.events if e["turn"] == rec["turn"]],
+            "programs": [dict(p, owner=s, status=w.programs[p["program"]].status(b)) for s in M.SIDES for p in ev[s]["programs"]],
+            **({"supplier_programs": public_supplier_programs(cfg, w), "supplier_commitments": supplier_commitments_public(cfg, w)}
+               if M.active_suppliers(cfg) else {}),
+            "shares": shares,
+            "financials": fin,
+            "objectives": {h: [{k: r.get(k) for k in ("id", "label", "met", "gap_pp", "values", "status_quo", "target", "unit", "note")
+                                if r.get(k) is not None} for r in rows] for h, rows in ev.get("objectives", {}).items()},
+        })
+        prev = ev
+    return reps
+
+
+def rounds_markdown(reps, cfg):
+    L = []
+    sups = list(M.active_suppliers(cfg))
+    for r in reps:
+        L += [f"## {r['label'] or 'Round ' + str(r['round'])} ({r['years'][0]}-{r['years'][1]})", ""]
+        if r["injects"]:
+            L += [f"Inject: {', '.join(r['injects'])}.", ""]
+        for s, o in r["orders"].items():
+            L.append(f"- **{M.player_label(cfg, s)}**: {o}")
+        L.append("")
+        L += [f"**Market shares in {r['as_of']}** (projection beyond):", "",
+              "| Segment | Year | Boeing | Airbus | Status quo Boeing |" + "".join(f" {cfg['suppliers'][x]['label']} |" for x in sups),
+              "|---|---|---:|---:|---:|" + "---:|" * len(sups)]
+        for seg in M.SEGMENTS:
+            for y, v in r["shares"][seg].items():
+                em = v.get("engine_makers", {})
+                L.append(f"| {seg.upper()} | {y} | {v['boeing']:.1%} | {v['airbus']:.1%} | {v['status_quo_boeing']:.1%} |"
+                         + "".join(f" {em.get(x, 0):.1%} |" for x in sups))
+        L += ["", "**Programmes**", "", "| Owner | Programme | Launch | EIS / ready | Engine | Status |", "|---|---|---:|---:|---|---|"]
+        for p in r["programs"]:
+            L.append(f"| {M.player_label(cfg, p['owner'])} | {p['label']} | "
+                     f"{p['launch_year']} | {p['eis'] or '-'} | {p['engine_label']} | {p['status']} |")
+        for sp in r.get("supplier_programs", []):
+            L.append(f"| {cfg['suppliers'][sp['supplier']]['label']} | {sp['label']} | {sp['launch_year']} | {sp['ready'] or '-'} | "
+                     f"{sp['terms']} terms | flown by {', '.join(sp['selected_by']) or 'none yet'} |")
+        L += ["", "**Financials** ($B; delta PV is full-game PV 2026 versus the status quo; window figures are undiscounted)", "",
+              "| Player | Delta PV | Change this round | Window revenue / engine value | Window op. profit | Window capex | Engines in window |",
+              "|---|---:|---:|---:|---:|---:|---:|"]
+        for s, f in r["financials"].items():
+            w = f["round_window"]
+            ch = "-" if f["change_in_delta_pv_this_round_b"] is None else f"{f['change_in_delta_pv_this_round_b']:+.2f}"
+            if s in M.SIDES:
+                L.append(f"| {M.player_label(cfg, s)} | {f['delta_pv_b']:+.2f} | {ch} | {w['revenue_b']:.1f} | {w['op_profit_b']:.1f} | {w['capex_b']:.1f} | - |")
+            else:
+                L.append(f"| {M.player_label(cfg, s)} | {f['delta_pv_b']:+.2f} | {ch} | {w['engine_value_b']:.1f} | - | {w['capex_b']:.1f} | "
+                         f"{w['nb_engines'] + w['wb_engines'] + w['partner_engines']:,.0f} |")
+        L.append("")
+    return "\n".join(L)
+
+
 def report_markdown(rep, cfg):
     L = []
     fin = rep["final"]
@@ -977,6 +1114,15 @@ def cmd_annotate(args):
     out({"run_id": st["run_id"], "turn": args.turn, "side": args.side, "referee_note": args.note})
 
 
+def cmd_rounds(args):
+    st = load_state(args.run)
+    reps = round_reports(st)
+    if args.format == "md":
+        print(rounds_markdown(reps, st["config"]))
+    else:
+        out({"run_id": st["run_id"], "visibility": "control/analyst: includes every player's orders", "rounds": reps})
+
+
 def cmd_report(args):
     st = load_state(args.run)
     rep = final_report(st)
@@ -1077,6 +1223,11 @@ def main(argv=None):
     p.add_argument("--side", required=True, choices=ORDER_SIDES)
     p.add_argument("--note", required=True)
     p.set_defaults(fn=cmd_annotate)
+
+    p = sub.add_parser("rounds", help="round-by-round reports: shares, dates and financials as of each round's end (control/analyst)")
+    p.add_argument("--run", required=True)
+    p.add_argument("--format", default="json", choices=("json", "md"))
+    p.set_defaults(fn=cmd_rounds)
 
     p = sub.add_parser("report", help="full results (control/analyst)")
     p.add_argument("--run", required=True)

@@ -966,3 +966,10 @@ class CfmCliTests(CliBase):
         self.assertEqual(rep["supplier_commitments"]["cfm"]["embraer_partner"]["year"], 2026)
         _, md = self.run_cli("report", "--run", "g5", "--format", "md")
         self.assertIn("CFM/GE", md)
+        _, rd = self.run_cli("rounds", "--run", "g5")
+        r1 = rd["rounds"][0]
+        self.assertEqual((r1["as_of"], r1["years"]), (2030, [2026, 2030]))
+        em = r1["shares"]["nb"]["2030"]["engine_makers"]
+        self.assertAlmostEqual(sum(em.values()), 1.0, places=3)
+        self.assertGreater(r1["financials"]["boeing"]["round_window"]["capex_b"], 0)
+        self.assertIn("embraer_partner", r1["supplier_commitments"]["cfm"])
