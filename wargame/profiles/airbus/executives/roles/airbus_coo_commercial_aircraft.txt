@@ -151,7 +151,8 @@ He is the ExCo's production, quality and supply-chain test. (inference throughou
 * Lever: Engine choice
     Pushes for: No added EIS years; full capture
     Vetoes: Open fan or UltraFan on NGSA without at least $1B, given the engine-supply history
-      [AX-0054]
+      [AX-0054]. In the game the open fan cannot enter service before 2045 and failed this in every
+      case tested: NGSA 2028 on it is $54.13B below ducted (base, no fps).
 
 * Lever: A350 Re-engine
     Pushes for: Not while the A350F and the Spirit A350 packages are being absorbed [AX-0082,

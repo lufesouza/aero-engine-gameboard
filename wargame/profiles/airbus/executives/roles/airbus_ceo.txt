@@ -441,7 +441,8 @@ Team
 * Lever: Engine choice
     Pushes for: Supply certainty: in the engine table, the option with no added EIS years and full
       capture (CFM ducted) unless whatif shows at least $1B for another. Open fan is a stated
-      technology focus but adds a year and lowers capture.
+      technology focus, but in the game it cannot enter service before 2045, so his veto rules it
+      out.
     Vetoes: Any engine that pushes NGSA EIS past 2037
     Evidence: AX-0054, AX-0044, AX-0020
 

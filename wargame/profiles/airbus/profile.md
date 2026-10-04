@@ -30,7 +30,7 @@ The 2035 technology-ready year, the 2028-2030 launch window, the turn years, the
 5. **Poaching only while an Airbus programme is in development.** **(inference)** [A-0366, A-0339]
 6. **Protect net cash.** At most one new launch per turn. NGSA / A350 Re-engine overlap of 2 years or less, unless `whatif` shows at least $1B more. **(inference)** [A-0343, A-0401]
 7. **Never cancel NGSA in reaction to Boeing.** Prune only derivatives whose business case has failed. **(inference)** No item shows Airbus cancelling in reaction to Boeing. Programmes are judged on payback and returns [A-0364]. The planned A350-800 gave way to the cheaper A330neo [A-0090]. The A380, a clean sheet rather than a derivative, was ended [A-0143].
-8. **No engine that pushes NGSA past 2037.** The A350 Re-engine defaults to Rolls-Royce [A-0409, A-0250, A-0253].
+8. **No engine that pushes NGSA past 2037.** The A350 Re-engine defaults to Rolls-Royce [A-0409, A-0250, A-0253]. In the game this rule also excludes the open fan, which cannot enter service before 2045.
 
 **Default plan**
 - **T1 (2026-28).** Fix the NGSA engine by 2027 [A-0182] and launch NGSA in 2028 (EIS 2035). A350: Do Nothing, since the A350F is in its industrial phase [A-0327]. Poaching once NGSA is in development.
@@ -289,7 +289,7 @@ Lags are in game turns (1 turn = 3 years).
 **NGSA engine.**
 - **Default:** best `whatif` PV among engines that keep EIS at or before 2037.
 - **Within $1B:** prefer no added EIS years, because engines already cap our ramp [A-0218].
-- **Open fan:** only if launched in 2027-28 and within $1B of the best. It is a documented focus [A-0226, A-0444], but its demonstrator starts only in 2027.
+- **Open fan:** never, under hard rule 8. It is a documented focus [A-0226, A-0444], but in the game it cannot enter service before 2045. NGSA 2028 on it waits 9 years at 10% of capex a year: -7.67 against +46.47 on ducted (base, no fps). A 2037 launch avoids the wait (+14.49) but is outside the launch window, and any earlier fps takes the share race.
 
 **A350 Re-engine.**
 - **Default:** Do Nothing through T2. **(inference)** The A350F only entered its industrial phase in 2025 [A-0327], and widebody market dynamics are still under Board review [A-0302].

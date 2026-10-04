@@ -108,7 +108,11 @@ An fps Joint Venture gives the same Airbus result as Solo (tested for 2026).
 ### 5.4 NGSA engine
 
 - **GTF2** (no added EIS years, capture 0.95) is worth +$1.75B (base) and +$1.74B (wave) over CFM ducted. It met wherever ducted met in every case tested: each fps year in §5.1, a turn-1 Rate Increase, and fps 2027 with Delay Tactics (+29.88, met in both).
-- **CFM RISE open fan and UltraFan** add one year each. Against fps 2028 they turn a tie into a miss (-1.5 base, -0.6 wave) and cost $3.13B or $4.84B (base) and $1.66B or $3.40B (wave).
+- **UltraFan** adds one year. Against fps 2028 it turns a tie into a miss (-1.5 base, -0.6 wave) and costs $4.84B (base) or $3.40B (wave).
+- **CFM RISE open fan** cannot enter service before 2045. NGSA 2028 on it would be ready in 2036 and waits 9 years, each costing 10% of capex.
+  - Alone it scores -7.67 in both scenarios, $54.13B (base) and $49.74B (wave) below ducted. Both metrics hold only at a zero gap.
+  - Against fps 2028 it turns a tie into a miss (-15.0 base, -10.08 wave), fails `protect_a320` (-7.5, -3.77) and costs $54.22B (base) or $49.46B (wave).
+  - NGSA 2037 on it enters service in 2045 without waiting: +14.49 alone in both scenarios, still $31.98B (base) and $27.59B (wave) below NGSA 2028 on ducted, and outside the 2028-2030 window.
 
 ### 5.5 NGSA at the briefing's $20B
 
@@ -118,7 +122,8 @@ Separate runs set NGSA capex to $20B. NGSA 2028 gains $4.48B in both scenarios (
 
 The deciding variable is fps EIS against our 2035.
 - **fps EIS 2035 or later** (an fps launched in 2028 or later on a ducted engine): the reference plan meets both metrics at zero premium.
-- **fps EIS 2034** (fps 2027, or fps 2026 on an open fan): one Delay Tactics turn ties it (+27.95, met in both).
+- **An fps on the open fan** cannot enter service before 2045, whatever its launch year. The reference plan meets both metrics with the full no-fps margin (+7.5 base, +3.77 wave) at +43.96 (base) and +37.94 (wave). Delay Tactics only costs money there.
+- **fps EIS 2034** (fps 2027, or fps 2026 on UltraFan): one Delay Tactics turn ties it (+27.95, met in both).
 - **fps EIS 2033:** nothing inside the red lines closes it.
 - **The wave** cuts gaps by 50-60% (60% where capture falls before 2037, at weight 0.4). Within the red lines it changes which plans meet only under a Rate Increase (inference from the share rule): turn-1 Rate Increase, fps 2029 and Delay Tactics meet in base (+1.0 pp), not in the wave (-0.76 pp). It pushes Delay Tactics below $1B and makes an early NGSA dearer.
 
@@ -136,7 +141,7 @@ Our prior is an fps no earlier than turn 2 (profile §7) and an early Rate Incre
 - Pay rests on EBIT, FCF and EPS, not share [A-0310, A-0334, A-0311]. Any objective premium comes out of what management is paid on.
 - Technology gates set our timing [A-0225, A-0441], and we wait when the ecosystem is not ready [A-0413, AX-0006]. The objective rewards matching Boeing's EIS, which hard rule 1 and hard rule 2 (itself inference) forbid.
 - Integrity comes first [AX-0073] (see §3). With NGSA EIS 2035, the objective rewards a second Delay Tactics turn, because the exposure penalty misses every counted year.
-- The open fan is a documented focus [A-0226, A-0444], but its extra EIS year can lose a tie.
+- The open fan is a documented focus [A-0226, A-0444], but in the game it cannot enter service before 2045. That breaks hard rule 8 (no NGSA EIS after 2037) and hands the race to any earlier fps (§5.4).
 - We hold about 60% of the backlog [AX-0025] and are ramping to rate 75 [A-0431]; that we defend share by ramping rather than launching is inference. The engine has no Airbus rate lever.
 
 **Weighing rule**
@@ -155,7 +160,7 @@ Insert between profile §9 step 5 (pick the highest-PV survivor) and step 6 (doc
 3. **Repair within the red lines.** If a metric fails, try:
    - NGSA 2028, if not yet launched;
    - one Delay Tactics turn, once the fps is public and in development, if it gains at least $1B and (default team) changes who enters service first;
-   - a ducted or GTF2 engine while fps EIS could be 2035, or later under a turn-1 Rate Increase (then an open fan missed where ducted met: fps 2030 base, fps 2032 wave).
+   - a ducted or GTF2 engine, never the open fan. With no entry before 2045, the open fan missed `nb_share_60` in every case tested against a ducted fps (2028-2035) or a turn-1 Rate Increase, including the Rate Increase alone (-2.0 pp) and fps 2032 under it (-11.0 base, -9.28 wave), where ducted met.
 
    Objective premium = PV of the best survivor minus PV of the best survivor that meets.
 4. **Weigh.** Pay the premium only if it plus any doctrine premium is $3B or less. Otherwise accept the miss.
@@ -176,7 +181,8 @@ Insert between profile §9 step 5 (pick the highest-PV survivor) and step 6 (doc
 
 ```bash
 cd /home/user/aero-engine-gameboard
-export WARGAME_RUNS_DIR=/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/objectives/runs_airbus_verify
+# runs snapshot their config at `new`; the open fan numbers (5.4, 5.6, 6, 7) come from runs created after its 2045 date
+export WARGAME_RUNS_DIR=/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/of_update/airbus
 mkdir -p $WARGAME_RUNS_DIR
 python3 -m wargame.engine new --run-id ab-base --scenario base
 python3 -m wargame.engine new --run-id ab-wave --scenario replacement-wave
@@ -234,6 +240,12 @@ for e in cfm_ducted pw_gtf2 cfm_open_fan; do
   wi "$W" "{\"boeing\":{\"1\":{\"rate_increase\":true}},\"airbus\":{\"1\":{\"launch\":[{\"program\":\"ngsa\",\"engine\":\"$e\",\"year\":2028}]}}}"
   for f in 2030:2 2032:3; do wi "$W" "{\"boeing\":{\"1\":{\"rate_increase\":true},\"${f#*:}\":{\"launch\":[{\"program\":\"fps\",\"engine\":\"cfm_ducted\",\"variant\":\"solo\",\"year\":${f%:*}}]}},\"airbus\":{\"1\":{\"launch\":[{\"program\":\"ngsa\",\"engine\":\"$e\",\"year\":2028}]}}}"; done
 done
+# added for the open fan's 2045 date: the open fan alone, at 2028 and 2037, against later ducted fps years; an fps on the open fan or UltraFan (5.4, 5.6)
+for e in cfm_ducted pw_gtf2 cfm_open_fan rr_ultrafan_nb; do wi "$W" "{\"airbus\":{\"1\":{\"launch\":[{\"program\":\"ngsa\",\"engine\":\"$e\",\"year\":2028}]}}}"; done
+wi "$W" '{"airbus":{"4":{"launch":[{"program":"ngsa","engine":"cfm_open_fan","year":2037}]}}}'
+for f in 2029:2 2032:3 2035:4; do for n in 1:2028 4:2037; do wi "$W" "{\"boeing\":{\"${f#*:}\":{\"launch\":[{\"program\":\"fps\",\"engine\":\"cfm_ducted\",\"variant\":\"solo\",\"year\":${f%:*}}]}},\"airbus\":{\"${n%:*}\":{\"launch\":[{\"program\":\"ngsa\",\"engine\":\"cfm_open_fan\",\"year\":${n#*:}}]}}}"; done; done
+wi "$W" '{"boeing":{"1":{"launch":[{"program":"fps","engine":"cfm_open_fan","variant":"solo","year":2026}]}},"airbus":{"1":{"launch":[{"program":"ngsa","engine":"cfm_ducted","year":2028}]}}}'
+wi "$W" '{"boeing":{"1":{"launch":[{"program":"fps","engine":"rr_ultrafan_nb","variant":"solo","year":2026}]}},"airbus":{"1":{"launch":[{"program":"ngsa","engine":"cfm_ducted","year":2028}]},"3":{"delay_tactics":true}}}'
 ```
 
 </details>

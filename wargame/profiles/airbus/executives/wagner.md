@@ -63,7 +63,7 @@ He is the ExCo's **production, quality and supply-chain test**. **(inference thr
 | Lever | Pushes for | Vetoes |
 |---|---|---|
 | NGSA launch | Launch only once the production system and the rate-capable wing are on track [A-0441, A-0225]. Game proxy: no NGSA launch before 2028, the company default. | A launch in 2026-27 that competes with the end-2027 ramp for engineering talent and suppliers, unless `whatif` shows at least $1B. An NGSA launch in 2028 passes. |
-| Engine choice | No added EIS years; full capture | Open fan or UltraFan on NGSA without at least $1B, given the engine-supply history [AX-0054] |
+| Engine choice | No added EIS years; full capture | Open fan or UltraFan on NGSA without at least $1B, given the engine-supply history [AX-0054]. In the game the open fan cannot enter service before 2045 and failed this in every case tested: NGSA 2028 on it is $54.13B below ducted (base, no fps). |
 | A350 Re-engine | Not while the A350F and the Spirit A350 packages are being absorbed [AX-0082, AX-0060]. Game proxy: no A350 Re-engine before turn 3 (the `../profile.md` default plan). | Concurrency with NGSA under a supply-crunch inject |
 | Rate (Boeing's Rate Increase) | Our own ramp: "disciplined and controlled" [AX-0010] | Reacting to Boeing's rate |
 | Poaching | On while a programme is in development: talent binds both the ramp and new programmes [A-0366] | n/a |
