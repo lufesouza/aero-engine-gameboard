@@ -15,26 +15,29 @@ import sys
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
          "/scratchpad/audit", "/scratchpad/ab_synth_work", "/scratchpad/text", "/scratchpad/rr", "/scratchpad/pw",
-         "/scratchpad/engines", "/scratchpad/execs"]
+         "/scratchpad/engines", "/scratchpad/execs", "/scratchpad/cfm"]
 RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"]
 PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"]
+# CFM International's leaders (GE side): not a player yet; no player reads them.
+CFM = ["profiles/cfm"]
 AIRFRAMERS = ["profiles/boeing", "profiles/airbus", "boeing-strategist.md", "airbus-strategist.md", "boeing-2010.md",
               "airbus-2010.md", "wargame-boeing", "wargame-airbus"]
 # Raw uploads contain every year; the period-locked 2010 players may not read them.
 RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "Morgan Stanley", "NYSE BA Financials",
        "Rolls-Royce Holdings plc", "Transcript Digest", "Filings.pdf", "SEC Fillings", "Durability news", "Global Strategy Brief",
+       "Company Profile.pdf", "SAF.PA", "Embraer",
        "wargame/scenarios", "referee_only", "wargame/README.md", "profiles/build"]
 BLOCK = {
     "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-2010.md", "airbus-strategist.md", "boeing-strategist.md",
                     "wargame/runs",
-                    "wargame-airbus"] + RR + PW + BUILD + RAW,
+                    "wargame-airbus"] + RR + PW + CFM + BUILD + RAW,
     "airbus-2010": ["profiles/boeing", "profiles/airbus/", "boeing-2010.md", "boeing-strategist.md", "airbus-strategist.md",
                     "wargame/runs",
-                    "wargame-boeing"] + RR + PW + BUILD + RAW,
-    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + RR + PW + BUILD,
-    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + RR + PW + BUILD,
-    "rolls-royce-strategist": AIRFRAMERS + PW + ["wargame/runs"] + BUILD,
-    "pratt-whitney-strategist": AIRFRAMERS + RR + ["wargame/runs"] + BUILD,
+                    "wargame-boeing"] + RR + PW + CFM + BUILD + RAW,
+    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + RR + PW + CFM + BUILD,
+    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + RR + PW + CFM + BUILD,
+    "rolls-royce-strategist": AIRFRAMERS + PW + CFM + ["wargame/runs"] + BUILD,
+    "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + ["wargame/runs"] + BUILD,
     "wargame-market": ["profiles/", "wargame/runs", "wargame-boeing", "wargame-airbus", "wargame-rolls_royce",
                        "wargame-pratt_whitney"] + BUILD,
 }

@@ -99,9 +99,56 @@ ROLES = {
     ],
 }
 
-HIST_KEYS = {"enders": "Tom Enders", "leahy": "John Leahy", "scherer": "Christian Scherer"}
-ID_PREFIX = {"boeing": ("BX", "B"), "airbus": ("AX", "A")}
-DEFAULT_TEAM = {"boeing": "ortberg-malave-pope-2026", "airbus": "faury-toepfer-wagner-2026"}
+ROLES["cfm"] = [
+    {
+        "file": "cfm_ceo.txt",
+        "title": "CFM INTERNATIONAL: CHIEF EXECUTIVE (GE-SIDE CEO SEAT)",
+        "label": "Chief Executive (the GE CEO who decides GE's half of CFM)",
+        "seat": "ceo",
+        "people": ["culp", "flannery", "immelt"],
+        "notes": [
+            "CFM International is a 50/50 joint venture of GE and Safran Aircraft Engines. Its own officers "
+            "do not speak in the sources; Capital IQ (November 2025) lists Gaël Méheust as CFM's Chief "
+            "Executive Officer and President. The strategic calls on CFM (engines to launch, pricing, "
+            "capacity, durability fixes) are made by the two parents, so this file profiles the GE CEOs, "
+            "who speak for CFM on GE's calls. Safran's leaders are not in the sources. See "
+            "cfm_international.txt for the joint venture itself.",
+        ],
+    },
+    {
+        "file": "cfm_cfo.txt",
+        "title": "CFM INTERNATIONAL: CHIEF FINANCIAL OFFICER (GE-SIDE CFO SEAT)",
+        "label": "Chief Financial Officer (GE's CFO, who funds and reports GE's half of CFM)",
+        "seat": "cfo",
+        "people": ["ghai", "dybeck_happe", "miller", "bornstein"],
+        "notes": [
+            "No CFM International CFO appears in the sources. GE's CFO funds GE's share of CFM programmes "
+            "and reports LEAP and CFM56 economics inside GE's results; Safran's CFO is not in the sources. "
+            "See cfm_international.txt.",
+        ],
+    },
+    {
+        "file": "cfm_coo_operations.txt",
+        "title": "CFM INTERNATIONAL: OPERATING SEAT (GE AEROSPACE OPERATIONS / COMMERCIAL ENGINES)",
+        "label": "Operating seat (GE's operating heads for commercial engines and CFM)",
+        "seat": "ops",
+        "people": ["ali", "stokes", "joyce", "historical:slattery", "historical:fitzgerald",
+                   "historical:mcallister"],
+        "notes": [
+            "The operating seat is GE's: the head of technology and operations (engineering, supply chain, "
+            "LEAP durability) and the head of the commercial engines business. Capital IQ (November 2025) "
+            "lists CFM International's own Executive VP and GM of the CFM programme and three other EVPs; "
+            "they do not speak in the sources. See cfm_international.txt.",
+        ],
+    },
+]
+EXTRAS = {"cfm": [("cfm_international.md", "cfm_international.txt",
+                   "CFM INTERNATIONAL: THE JOINT VENTURE AND ITS GOVERNANCE")]}
+HIST_FILE = {"airbus": "historical.md", "cfm": "historical_ops.md"}
+HIST_KEYS = {"enders": "Tom Enders", "leahy": "John Leahy", "scherer": "Christian Scherer",
+             "slattery": "John Slattery", "fitzgerald": "Bill Fitzgerald", "mcallister": "Kevin McAllister"}
+ID_PREFIX = {"boeing": ("BX", "B"), "airbus": ("AX", "A"), "cfm": ("CX", None)}
+DEFAULT_TEAM = {"boeing": "ortberg-malave-pope-2026", "airbus": "faury-toepfer-wagner-2026", "cfm": "culp-ghai-ali-2026"}
 
 
 # --------------------------------------------------------------------------- Markdown to text
@@ -213,7 +260,7 @@ def readme_rows(company):
             header = c
             continue
         rec = dict(zip(header, c))
-        if company == "boeing" and "Executive (file)" in rec:
+        if company in ("boeing", "cfm") and "Executive (file)" in rec:
             m = re.search(r"\((\w+)\.md\)", rec["Executive (file)"])
             if m:
                 rec["Name"] = re.sub(r"\s*\(\w+\.md\)$", "", rec["Executive (file)"])
@@ -222,9 +269,11 @@ def readme_rows(company):
             rows[rec["exec_id"]] = rec
         elif "Team id" in rec:
             rows.setdefault("_teams", []).append(rec["Team id"])
+            if any("DEFAULT" in v for v in rec.values()):
+                DEFAULT_TEAM[company] = rec["Team id"]
     teams = rows.pop("_teams", [])
     for key, rec in rows.items():
-        if company == "boeing":
+        if company in ("boeing", "cfm"):
             years = {t.rsplit("-", 1)[1]: t for t in teams}
             rec["Teams"] = re.sub(r"\b(20\d\d)\b", lambda m: years.get(m.group(1), m.group(1)), rec.get("Teams", ""))
         elif key in DEFAULT_TEAM["airbus"].split("-"):
@@ -235,7 +284,7 @@ def readme_rows(company):
 
 
 def historical_parts(company):
-    md = (ROOT / company / "executives" / "historical.md").read_text()
+    md = (ROOT / company / "executives" / HIST_FILE[company]).read_text()
     parts = re.split(r"\n(?=## )", md)
     preface = parts[0].split("\n", 1)[1].strip()
     preface = re.sub(r"\n-{3,}\s*$", "", preface).strip()
@@ -244,7 +293,7 @@ def historical_parts(company):
         title = p.split("\n", 1)[0][3:]
         body = re.sub(r"\n-{3,}\s*$", "", p).strip()
         for key, name in HIST_KEYS.items():
-            if title.startswith(name):
+            if name.split()[-1] in title.split(":")[0]:
                 sections[key] = (title, body)
         if title.startswith("Gaps common"):
             sections["gaps"] = (title, body)
@@ -257,10 +306,12 @@ def person_block(company, person, idx, total, current, team_rows):
         key = person.split(":")[1]
         preface, sections = historical_parts(company)
         title, body = sections[key]
-        label = f"PROFILE {idx} OF {total}: {inline(title).upper()} (HISTORICAL, OUTSIDE VIEW)"
-        md = ("### About the historical cards\n\n" + preface + "\n\n" + body.split("\n", 1)[1]
-              + "\n\n" + sections["gaps"][1].replace("## ", "### ", 1))
-        src = f"historical.md, section \"{inline(title)}\""
+        kind = "OUTSIDE VIEW" if company == "airbus" else "THIN EVIDENCE"
+        label = f"PROFILE {idx} OF {total}: {inline(title).upper()} (HISTORICAL, {kind})"
+        md = "### About the historical cards\n\n" + preface + "\n\n" + body.split("\n", 1)[1]
+        if "gaps" in sections:
+            md += "\n\n" + sections["gaps"][1].replace("## ", "### ", 1)
+        src = f"{HIST_FILE[company]}, section \"{inline(title)}\""
         text = md_to_text(md)
     else:
         md = (ROOT / company / "executives" / f"{person}.md").read_text()
@@ -282,7 +333,7 @@ def roster(company, people, team_rows):
         key = p.split(":")[-1]
         r = team_rows.get(key, {})
         name = r.get("Name") or HIST_KEYS.get(key, key)
-        if company == "boeing":
+        if company in ("boeing", "cfm"):
             fields = [("Role(s) and dates", "Role(s) and dates"), ("Own-words items", "Own words (ids)"),
                       ("Company items", "Company items"), ("Events", "Events"),
                       ("Confidence", "Confidence"), ("Teams", "Teams")]
@@ -305,8 +356,10 @@ def role_file(company, role, team_rows, today):
     lines += wrap(
         f"Plain-text copy of the executive profiles in wargame/profiles/{company}/executives/, built "
         f"{today} by wargame/profiles/build/make_role_txt.py. The Markdown files are the source of "
-        f"truth. Bracketed ids ([{own}-0123], [{co}-0456]) point to verified evidence in "
-        f"wargame/profiles/{company}/executives/evidence.jsonl and wargame/profiles/{company}/evidence.jsonl. "
+        + (f"truth. Bracketed ids ([{own}-0123], [{co}-0456]) point to verified evidence in "
+           f"wargame/profiles/{company}/executives/evidence.jsonl and wargame/profiles/{company}/evidence.jsonl. "
+           if co else f"truth. Bracketed ids ([{own}-0123]) point to verified evidence in "
+           f"wargame/profiles/{company}/executives/evidence.jsonl. ") +
         "Section numbers (§) and file names inside a profile refer to that person's Markdown profile; the "
         "same sections appear below under the person's name.", "", "")
     lines.append("")
@@ -347,6 +400,8 @@ def readme(company, roles, rows, today):
                       f"Holders, current first: {names}.", "", "  ")
     lines += wrap(f"- {company}_leadership_teams.txt: the leadership teams, their decision rules and the "
                   "per-turn ExCo deliberation scripts.", "", "  ")
+    for md_name, txt_name, title in EXTRAS.get(company, []):
+        lines += wrap(f"- {txt_name}: {title.split(': ', 1)[1].capitalize()}.", "", "  ")
     return "\n".join(lines) + "\n"
 
 
@@ -360,6 +415,12 @@ def main():
         for role in roles:
             (outdir / role["file"]).write_text(role_file(company, role, rows, today).rstrip() + "\n")
         (outdir / f"{company}_leadership_teams.txt").write_text(teams_file(company, today))
+        for md_name, txt_name, title in EXTRAS.get(company, []):
+            md = (ROOT / company / "executives" / md_name).read_text()
+            head = ["=" * WIDTH, title, "=" * WIDTH, ""]
+            head += wrap(f"Plain-text copy of wargame/profiles/{company}/executives/{md_name}, built {today} by "
+                         "wargame/profiles/build/make_role_txt.py. The Markdown file is the source of truth.", "", "")
+            (outdir / txt_name).write_text("\n".join(head) + "\n\n" + md_to_text(md.split("\n", 1)[1]) + "\n")
         (outdir / "README.txt").write_text(readme(company, roles, rows, today))
         print(company, sorted(p.name for p in outdir.iterdir()))
 
