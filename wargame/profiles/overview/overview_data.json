@@ -5,17 +5,17 @@
    "name": "Boeing",
    "game_role": "Airframer player (Blue)",
    "tagline": "Stability-first incumbent repairing its balance sheet; launches fps in 2029 on its own gates, never on Airbus's clock.",
-   "summary": "Boeing plays as Ortberg's 2026 leadership. KPI-gated production comes first, then debt repair to solidly investment grade, then the 737-7, 737-10 and 777X, and only then a new single-aisle. Hard rules bar an fps order in Turn 1, any EIS before the technology is ready, overlapping developments and cancelling launched programs. Default plan: Rate Increase in Turn 1; fps in 2029 with cfm_ducted, Solo unless the slip test favours a Joint Venture; a late 787 Re-engine, never after an A350 Re-engine. Engine PV decides within a $2B doctrine cap.",
+   "summary": "Boeing plays as Ortberg's 2026 leadership. KPI-gated production comes first, then debt repair to solidly investment grade, then the 737-7, 737-10 and 777X, and only then a new single-aisle. Hard rules bar an fps order in Turn 1, any EIS before the technology is ready, more than one major development at once and cancelling launched programs. Default plan: Rate Increase in Turn 1; fps in 2029 with cfm_ducted, Solo unless the slip test or a stress flag favours a Joint Venture; a late 787 Re-engine, never after an A350 Re-engine.",
    "evidence": {
     "items": 4411,
-    "sources": "2,537 verified company items (B-) and 1,874 executive own-words items (BX-) from earnings calls, investor days and conferences, 2006-2025; Capital IQ, Goldman Sachs and Morgan Stanley models for financials.",
-    "confidence": "High on rates, new-airplane gates, crisis history and voice; Medium on capital thresholds; Low on Joint Ventures, Airbus intent, Delay Tactics and Poaching. The current era spans only October 2024 to October 2025."
+    "sources": "2,537 verified company items (B-) and 1,874 executive own-words items (BX-) from earnings calls, investor days, conferences and 10-K filings, 2006-2025; Capital IQ, Goldman Sachs and Morgan Stanley models for financials.",
+    "confidence": "High on rates, new-airplane gates, crisis history and voice; Medium on capital thresholds; Low on Joint Ventures, Airbus intent, Delay Tactics and Poaching. The $2B cap and slip test are design choices, not revealed behaviour. The current era spans only October 2024 to October 2025."
    },
    "risk_ratings": [
     {
      "dimension": "technology",
      "rating": "Low",
-     "note": "Pre-launch technology stays 'well within the envelope'. Wary of engine durability, so no engine that adds a year; new engines alone give about 10%. Ortberg rates it Low.",
+     "note": "Pre-launch technology is funded 'well within the envelope'. Wary of engine durability; new engines alone give about 10% or less. Ortberg rates it Low.",
      "ids": [
       "B-2279",
       "B-2304",
@@ -39,7 +39,7 @@
     {
      "dimension": "balance_sheet",
      "rating": "Low",
-     "note": "Debt first; investment grade (Baa3) is fixed; equity raised in 2024 to protect the rating; minimum cash about $10B plus revolver. Capex still rose to about $3B in 2025.",
+     "note": "Debt first; investment grade (Baa3 at Moody's) is fixed; the 2024 equity raise was sized to restore production; minimum cash about $10B plus revolver. Capex still rose to about $3B in 2025.",
      "ids": [
       "B-2327",
       "B-2186",
@@ -65,8 +65,8 @@
    "topics": [
     {
      "key": "objectives",
-     "headline": "Stable production first, then debt, cash, and fps last",
-     "text": "Ranked today: safe, KPI-gated production under FAA oversight; debt paid down to 'solidly investment grade'; free cash flow from the 737 rate; finish the 737-7, 737-10 and 777X; hold the narrowbody franchise but price for scarcity, not share; fps once market, money and technology converge. Shareholder returns are off. Winning means a new single-aisle in service in the mid-2030s, with no new equity.",
+     "headline": "Stable production first, then debt and cash; fps waits; returns off",
+     "text": "Ranked today: safe, KPI-gated production under FAA oversight; debt paid down to 'solidly investment grade'; free cash flow from the 737 rate; finish the 737-7, 737-10 and 777X; hold the narrowbody franchise but price for scarcity, not share; fps once market, money and technology converge. Shareholder returns are off. Winning means a new single-aisle in service in the mid-2030s, launched without new equity.",
      "ids": [
       "B-2221",
       "B-2236",
@@ -83,7 +83,7 @@
     {
      "key": "capital",
      "headline": "Debt first, investment grade fixed, returns off, capex protected",
-     "text": "'Far and away, our priority is debt.' Debt was $53.4B against $23B of cash in Q3 2025; the target is close to the 2017-18 posture. Capex rose through the 2024 crisis to about $3B in 2025. Shock sequence: buybacks cut in weeks, discretionary R&D and capex down about a third, dividend last, equity as last resort. fps ($30B over 7 years) is fundable from Turn 2, not Turn 1.",
+     "text": "'Far and away, our priority is debt.' Debt was $53.4B against $23B of cash in Q3 2025; the target is near the 2017-18 posture. Capex rose through the 2024 crisis to about $3B in 2025. Shock sequence: buybacks cut in weeks, discretionary R&D and capex down about a third, dividend last, equity a last resort. fps ($30B over 7 years in the engine) is fundable only from Turn 2.",
      "ids": [
       "B-2327",
       "B-2345",
@@ -101,7 +101,7 @@
     {
      "key": "product",
      "headline": "Derivatives by habit; fps only when three gates converge",
-     "text": "After the 787, 'no moonshots': only derivatives were launched in 2011-17. A new airplane must be 20-30% better and not a niche; engines alone give about 10%. EIS 'not before '35'. Gates: market, Boeing's finances and capacity, technology, plus a finished 737-7/-10 and 777X and FAA reform. Engine: CFM sole source. Partnering pendulum points inward (Spirit bought back), so Solo by default.",
+     "text": "After the 787, no moonshots: only derivatives were launched in 2011-17. A new airplane must be 20-30% better and not a niche; engines alone give about 10% or less. EIS 'not before '35'. Gates: market, Boeing's finances and capacity, technology, plus a finished 737-7/-10 and 777X and FAA reform. Engines: sole source, CFM chosen for maturity. Partnering pendulum points inward (Spirit bought back), so Solo by default.",
      "ids": [
       "B-0901",
       "B-1368",
@@ -121,7 +121,7 @@
     {
      "key": "risk",
      "headline": "Low appetite on technology, balance sheet and fixed price",
-     "text": "Technology stays 'well within the envelope', with engine durability a concern. Investment grade: 'do what it takes'. Fixed-price development is renounced. One major development at a time, with no 'concurrent risk on top of risk'. Schedule is the weak spot: plans now carry headroom, but certification dates keep slipping, and the 777X was reset again in October 2025.",
+     "text": "Pre-launch technology is funded 'well within the envelope', and engine durability is a concern. Investment grade: 'do what it takes'. Fixed-price development is renounced. One major development at a time, with no 'concurrent risk on top of risk'. Schedule is the weak spot: plans now carry headroom, but certification dates keep slipping, and the 777X was reset again in October 2025.",
      "ids": [
       "B-2279",
       "B-2304",
@@ -129,6 +129,8 @@
       "B-2318",
       "B-0341",
       "B-1446",
+      "BX-1275",
+      "B-2353",
       "B-2215",
       "B-2349"
      ]
@@ -136,7 +138,7 @@
     {
      "key": "operations",
      "headline": "KPIs, not dates, set rates; supply chain binds beyond 47",
-     "text": "Six FAA-agreed KPIs; 2-3 stable months, then FAA review; steps of +5 a month at least 6 months apart. The ladder is 38-42-47-52; beyond 47 the supply chain binds, and supplier readiness is a hard gate. Ramp record is poor: 787-8 slipped from 2008 to 2011, 777X from 2020 to 2027. Bottleneck answers: embed staff, buffers, requalify, fund, acquire. Never matches Airbus rates.",
+     "text": "Six FAA-agreed KPIs; 2-3 stable months, then FAA review; steps of +5 a month at least 6 months apart. The ladder is 38-42-47-52; beyond 47 the supply chain binds, and supplier readiness is a hard gate. Development record is poor: 787-8 slipped from 2008 to 2011, 777X from 2020 to 2027. Bottleneck answers: embed staff, buffers, requalify, fund, acquire. Never matches Airbus rates.",
      "ids": [
       "B-2283",
       "B-2274",
@@ -159,7 +161,7 @@
     {
      "key": "rivals",
      "headline": "Airbus plays for share; discount its claims until firm",
-     "text": "Airbus is read as a share player that ramps harder, talks rates up and re-engines cheaply. Its moves count only with firm orders or a launch. NGSA architecture is expected around 2027, so NGSA in Turn 1 or 2 (inference). Boeing never blames Airbus for a supplier problem before exposure. Ortberg sees Airbus as a delivery scorecard, a fellow tariff victim and a rival for CFM capacity.",
+     "text": "Airbus is read as a share player that ramps harder, talks rates up and re-engines cheaply. Its moves count only with firm orders or a launch. NGSA architecture is expected around 2027, so NGSA in Turn 1 or 2 (inference). Boeing has never blamed Airbus for a supplier problem. Ortberg sees Airbus as a delivery scorecard, a fellow tariff victim and a rival for CFM capacity.",
      "ids": [
       "B-2419",
       "B-2373",
@@ -176,8 +178,8 @@
     },
     {
      "key": "credibility",
-     "headline": "Serial resets in history; now no dates and one reset",
-     "text": "History: schedules reaffirmed just before they slipped; seven 777X dates; charges came in low (MAX compensation went from $1B to $5.6B in a quarter). Ortberg sets no internal rate dates, withholds targets until stable and promised to 'stop this quarterly drumbeat' of cost growth. Yet the 777X was reset again in October 2025 with a $4.9B charge. He never blames the FAA.",
+     "headline": "Serial resets in history; now no dates and one reset intended",
+     "text": "History: schedules reaffirmed just before they slipped; seven 777X dates; low first charges (a $1B MAX charge in Q1 2019 assumed no customer remedies; $5.6B of concessions followed next quarter). Ortberg sets no internal rate dates, withholds targets until stable and promised to 'stop this quarterly drumbeat' of cost growth. Yet the 777X was reset again in October 2025, with a $4.9B charge. He never blames the FAA.",
      "ids": [
       "B-0041",
       "B-1718",
@@ -199,7 +201,7 @@
     {
      "key": "crisis",
      "headline": "Freeze rate, protect cash, keep launched programs, drop unlaunched bets",
-     "text": "In its own crises (MAX 2019, Alaska 1282) Boeing froze the rate, launched nothing and ceded timing to the FAA. In cash shocks (2009, 2020) buybacks went within weeks, discretionary spend fell about a third, and the dividend went last; equity came in 2024 despite denials. Launched programs were never cancelled; the NMA and Embraer were dropped fast. Through the 2025 China tariff shock the 737 ladder held.",
+     "text": "In its own crises (MAX 2019, Alaska 1282) Boeing cut or froze the rate, launched nothing and ceded timing to the FAA. In cash shocks (2009, 2019-20) buybacks went within weeks, discretionary spend fell about a third, and the dividend went last; equity came in 2024 despite denials. Launched programs were never cancelled; the NMA and Embraer were dropped fast. Through the 2025 China tariff shock the 737 ladder held.",
      "ids": [
       "B-2133",
       "B-2148",
@@ -221,7 +223,7 @@
     {
      "key": "game",
      "headline": "No fps in Turn 1; fps 2029 Solo; late, staggered Re-engine",
-     "text": "T1: Rate Increase unless a quality, FAA or supply inject is live; no fps, no 787 Re-engine. T2: fps 2029, cfm_ducted, Solo; a Joint Venture if the slip test or a stress flag favours it. T3-T4: continue through slips; Re-engine in 2034-36 only if the A350 is not re-engined. NGSA in development means fps by next turn. An A350 Re-engine means no 787 Re-engine (inference).",
+     "text": "T1: Rate Increase unless a quality, FAA or supply-crunch inject is live; no fps, no 787 Re-engine. T2: fps 2029, cfm_ducted, Solo, if it passes go/no-go; a Joint Venture if the slip test or a stress flag favours it. T3-T4: continue through slips; Re-engine in 2034-36 only if it gains over $1B and the A350 is not re-engined (inference). NGSA in development means fps by next turn.",
      "ids": [
       "B-2276",
       "B-2313",
@@ -275,7 +277,7 @@
     },
     {
      "lever": "Engine choice",
-     "stance": "fps: cfm_ducted (pw_gtf2 is within $1B, so CFM stays). Re-engine: ge_genx_next. Open fan and UltraFan lose $3.5-4.5B: veto."
+     "stance": "fps: cfm_ducted (pw_gtf2 is within $1B, so CFM stays). Re-engine: ge_genx_next. Open fan and UltraFan lose $3.5-4.5B: only if whatif shows a gain above $1B."
     },
     {
      "lever": "Disclosure",
@@ -325,7 +327,7 @@
       },
       {
        "key": "product",
-       "text": "Derivatives first; clean sheet 'at the right time'. Adds a fourth fps gate: FAA certification reform. fps engine cfm_ducted, for durability. No Joint Venture evidence; Solo by default (inference).",
+       "text": "Derivatives first; clean sheet 'at the right time'. Adds a fourth fps gate: FAA certification reform. In the game: cfm_ducted, for durability. No Joint Venture evidence; Solo by default (inference).",
        "ids": [
         "BX-1247",
         "BX-1309",
@@ -368,7 +370,7 @@
       },
       {
        "key": "credibility",
-       "text": "No internal rate dates; withholds targets until stable; warns a turn ahead, then resets once. Never blames the FAA. Met cash and rating targets; missed certification dates.",
+       "text": "No internal rate dates; withholds targets until stable; warned of the 777X slip a quarter ahead, then reset once. Never blames the FAA. Met cash and rating targets; missed certification dates.",
        "ids": [
         "B-2221",
         "BX-1235",
@@ -479,7 +481,7 @@
       },
       {
        "key": "game",
-       "text": "Runs the slip test as the baseline. Vetoes a Turn-1 launch and a Re-engine in Turns 1-2 (inference). Joint Venture against NGSA launched 2026-27, else Solo.",
+       "text": "All inference: runs the slip test as the baseline; vetoes a Turn-1 launch and a Re-engine in Turns 1-2; Joint Venture against NGSA launched 2026-27, else Solo.",
        "ids": [
         "BX-0553",
         "BX-0547",
@@ -498,7 +500,7 @@
      "status": "current",
      "title_dates": "Investor relations, 2012; President and CEO of Global Services, 2022; COO and BCA CEO from 2024 per the task framing, not in the sources",
      "confidence": "Very low: thin profile, 8 items from 2 events; no airplane-business evidence. Her seat is played by company doctrine.",
-     "tagline": "BCA head with no airplane evidence; Global Services rules: on-time delivery first, partner only where Boeing lacks IP.",
+     "tagline": "BCA head per the task framing, no airplane evidence; Global Services rules: on-time delivery first, partner where Boeing lacks IP.",
      "voice": [
       {
        "quote": "First and foremost is on-time predictable delivery",
@@ -529,7 +531,7 @@
       },
       {
        "key": "operations",
-       "text": "Capacity follows visible demand (inference, one remark). Defers a Rate Increase under any quality, FAA or supply inject, as H6 does.",
+       "text": "All inference: capacity follows visible demand (one remark); defers a Rate Increase under any quality, FAA or supply inject, as H6 does.",
        "ids": [
         "BX-1329",
         "BX-1331"
@@ -537,7 +539,7 @@
       },
       {
        "key": "credibility",
-       "text": "Prefers quantified sensitivities to adjectives (one 2012 pension answer). In the game: publish the slip-test range with the nominal EIS, at launch only.",
+       "text": "Prefers quantified sensitivities to adjectives (one 2012 pension answer). In the game (inference): publish the slip-test range with the nominal EIS, at launch only.",
        "ids": [
         "BX-1326",
         "B-2315"
@@ -641,20 +643,20 @@
       },
       {
        "key": "credibility",
-       "text": "No regulator-dependent dates, but optimistic delivery dates; recasts setbacks as strength. Set a $10B FCF target and said 'we do not need equity'; the target drifted and equity came in 2024.",
+       "text": "No regulator-dependent dates, but optimistic delivery dates; recasts setbacks as strength. Set a $10B FCF target and said 'we do not need equity'; the target slipped, and equity came in 2024 under his successor.",
        "ids": [
         "BX-0395",
         "BX-0263",
         "BX-0311",
         "BX-0347",
         "BX-0348",
-        "BX-1834",
+        "B-2155",
         "B-2231"
        ]
       },
       {
        "key": "crisis",
-       "text": "April 2020: Embraer exit and about 10% of jobs cut; NMA and 747 ended. After Alaska 1282: 'This is Boeing getting tough on Boeing.' Never abandons a launched airplane.",
+       "text": "2020: exited Embraer, cut about 10% of jobs, dropped the NMA, ended the 747. On 787 quality (2021): 'This is Boeing getting tough on Boeing.' Never abandons a launched airplane.",
        "ids": [
         "BX-0216",
         "BX-0215",
@@ -733,13 +735,14 @@
       },
       {
        "key": "product",
-       "text": "One development at a time inside 3.7-3.8% R&D; existing engine technology packaged anew; over 90% reuse. Signed the Embraer Joint Venture: the most Joint-Venture-minded CEO.",
+       "text": "One development at a time inside 3.7-3.8% R&D; existing engine technology packaged anew; over 90% reuse. Signed the Embraer Joint Venture, yet called it 'not a must do'.",
        "ids": [
         "BX-1004",
         "BX-1159",
         "BX-1128",
         "BX-0955",
-        "B-1432"
+        "B-1432",
+        "BX-1116"
        ]
       },
       {
@@ -774,7 +777,7 @@
       },
       {
        "key": "credibility",
-       "text": "Holds end dates while milestones slip, then re-dates without saying 'slip'. Names GE or regulators for slips. Discloses rate ladders years ahead as confidence signals.",
+       "text": "Holds end dates while milestones slip, then re-dates without calling it a slip. Names GE or regulators for slips. Discloses rate ladders years ahead as confidence signals.",
        "ids": [
         "BX-0978",
         "BX-1063",
@@ -805,7 +808,7 @@
       },
       {
        "key": "biases",
-       "text": "Firm dates with small resets; normalising strain as 'normal ramp-up pressures'; 'not cyclical' optimism; repeated NMA deferral, May 2018 to October 2019.",
+       "text": "Firm dates with small resets; normalising strain as 'normal ramp-up pressures'; no-longer-cyclical optimism; repeated NMA deferral, May 2018 to October 2019.",
        "ids": [
         "BX-0978",
         "BX-0994",
@@ -851,12 +854,12 @@
       },
       {
        "key": "capital",
-       "text": "Returns about 80% of FCF once earned; buybacks are 'lagging indicators'; Boeing Capital kept as a backstop; borrowed rather than cut the dividend.",
+       "text": "Returns about 80% of FCF once earned; buybacks are 'lagging indicators', yet $7B was authorised in 2008 with the 787 late; Boeing Capital kept as a backstop.",
        "ids": [
         "BX-0857",
         "BX-0835",
-        "BX-0805",
-        "B-0201"
+        "BX-0591",
+        "BX-0805"
        ]
       },
       {
@@ -916,18 +919,18 @@
       },
       {
        "key": "crisis",
-       "text": "2009: cut weak lines early, about 10,000 job cuts planned, borrowed to keep the dividend. 2013 battery grounding: deferred to investigators and kept the 787 ramp.",
+       "text": "2009: cut widebody rates early, planned about 10,000 job cuts and protected the balance sheet. 2013 battery grounding: deferred to investigators and kept the 787 ramp.",
        "ids": [
         "BX-0621",
         "BX-0616",
-        "B-0201",
+        "BX-0609",
         "BX-0781",
         "BX-0782"
        ]
       },
       {
        "key": "game",
-       "text": "Reads NGSA in development as share at risk: deny that turn, launch the next (inference). With Bell, takes the H1 exception as a Joint Venture. Re-engine after fps.",
+       "text": "Reads NGSA in development as share at risk: deny that turn, launch the next (inference). With Bell, takes the H1 exception as a Joint Venture if NGSA is already in development. Re-engine after fps.",
        "ids": [
         "BX-0715",
         "BX-0675",
@@ -1056,7 +1059,7 @@
       },
       {
        "key": "game",
-       "text": "Slip test as the planning case: Joint Venture against NGSA launched 2026-27, else Solo. Vetoes a Turn-1 fps and a Re-engine in Turns 1-2. Rate Increase in Turn 1.",
+       "text": "Slip test as the planning case (inference): Joint Venture against NGSA launched 2026-27, else Solo. Vetoes a Turn-1 fps and a Re-engine in Turns 1-2. Rate Increase in Turn 1.",
        "ids": [
         "BX-1803",
         "BX-1863",
@@ -1309,7 +1312,7 @@
       },
       {
        "key": "game",
-       "text": "Zero overlap, so Re-engine 2036. Joint Venture against NGSA 2026, where it wins the slip test. May take the Rate Increase in Turn 2. Must not delay fps to 2030.",
+       "text": "Zero overlap, so Re-engine 2036. Joint Venture against NGSA 2026, where it wins the slip test (inference). May take the Rate Increase in Turn 2. Must not delay fps to 2030.",
        "ids": [
         "BX-0171",
         "BX-0179",
@@ -1338,7 +1341,7 @@
      "seat": "COO",
      "status": "historical",
      "title_dates": "EVP; President and CEO of BCA from October 2019; departure not in the sources",
-     "confidence": "Low: thin profile, 20 items from one event (November 2022 investor day).",
+     "confidence": "Low: thin profile, 20 own-words items from one event (November 2022 investor day).",
      "tagline": "Supply-limited BCA head: stability and quality first, pipeline full, cautious ramps; dated certification calls that slipped.",
      "voice": [
       {
@@ -1371,7 +1374,7 @@
       },
       {
        "key": "credibility",
-       "text": "Missed all three testable dated forecasts: MAX 7 and MAX 10 certification, 777-9 first delivery. Guidance carries a low floor with upbeat words.",
+       "text": "Missed all three testable dated forecasts (MAX 7 and MAX 10 certification, 777-9 first delivery), though regulators set those dates. Guidance carries a low floor with upbeat words.",
        "ids": [
         "BX-0528",
         "BX-0529",
@@ -1548,7 +1551,7 @@
       },
       {
        "key": "capital",
-       "text": "'Tens of millions' is a quick yes; more needs years of demand confidence. Critical work kept in-house behind 'very high walls'; never pay partners for IP they then own.",
+       "text": "'Tens of millions' is a quick yes; more needs years of demand confidence. Critical work kept in-house behind 'very high walls'; beware paying partners for IP they then own.",
        "ids": [
         "BX-0027",
         "BX-0050",
@@ -1676,20 +1679,38 @@
      "one_line": "Default. Debt first; Malave's buffer test (the slip leg) is the baseline; one conservative reset."
     }
    ],
-   "verifier_notes": [],
-   "status": "draft",
+   "verifier_notes": [
+    "Summary: 'overlapping developments' became 'more than one major development at once' (H4 allows limited overlap); added 'or a stress flag'; cut 'Engine PV decides within a $2B doctrine cap', which misstated H8 (ties within $1B go to doctrine; a premium of up to $2B is allowed).",
+    "Evidence: sources now include 10-K filings (456 of the B- items); confidence adds profile section 10: the $2B cap and slip test are design choices.",
+    "Risk/technology and topic risk: B-2279 is West on pre-launch technology spending 'well within the envelope', not on technology risk; reworded. Cut the unsupported 'so no engine that adds a year'. 'about 10%' became 'about 10% or less' (B-1975).",
+    "Risk/balance_sheet: B-2296 says the 2024 equity raise was sized to restore production, not to protect the rating; corrected.",
+    "Topic objectives: headline 'fps last' was wrong (returns are objective 7, fps is 6); 'with no new equity' became 'launched without new equity' (B-1893).",
+    "Topic capital: the $30B over 7 years is an engine-rules figure, now labelled 'in the engine'; trimmed to 70 words.",
+    "Topic product: 'no moonshots' is not verbatim in B-0901, so the quote marks were removed; 'CFM sole source' became 'sole source, CFM chosen for maturity' (B-0613 concerns the MAX).",
+    "Topic risk: added BX-1275 and B-2353 to support 'plans carry headroom' and 'certification dates keep slipping'.",
+    "Topic operations: 'Ramp record' became 'Development record'. The 787-8 2008-2011 and 777X 2020-2027 figures are delivery-date slips, not ramps.",
+    "Topic rivals: 'never blames Airbus ... before exposure' became 'has never blamed Airbus for a supplier problem' (B-1923). 'Before exposure' is a game rule, not evidence.",
+    "Topic credibility: 'MAX compensation went from $1B to $5.6B' misread B-1554: the Q1 2019 $1B was a 737 charge that assumed no customer remedies. Rewritten. Headline 'one reset' became 'one reset intended' (two 777X resets came in the Ortberg era).",
+    "Topic crisis: MAX 2019 production went from 52 to 42 a month, so 'froze' became 'cut or froze'. The cash shock was '2019-20', not '2020' (buybacks were paused in April 2019, B-1547).",
+    "Topic game: added the go/no-go test and the gain-over-$1B condition from the Quick card; 'supply' became 'supply-crunch'; the A350 rule kept as (inference); trimmed to 70 words.",
+    "Lever engine choice: 'veto' overstated the profile, which allows open fan and UltraFan only if whatif shows a gain above $1B; reworded.",
+    "Calhoun credibility: BX-1834 is West's item (wrong executive), replaced with B-2155. Equity came in 2024 under his successor, now stated.",
+    "Calhoun crisis: 'This is Boeing getting tough on Boeing' (BX-0286) is from July 2021 on 787 quality, not after Alaska 1282. The 747 end came in July 2020, not April. Rewritten.",
+    "McNerney capital and crisis: B-0201 is Bell's company item, and borrowing to keep the dividend is not in McNerney's profile. Replaced with his own items: BX-0591 ($7B buyback in 2008 with the 787 late) and BX-0609 (protected the balance sheet); 'weak lines' became 'widebody rates' (BX-0621).",
+    "McNerney game: the H1 exception applies only if NGSA is already in development (teams.md section 3); qualifier added.",
+    "Muilenburg: 'the most Joint-Venture-minded CEO' is a team-level inference in teams.md, so it was replaced with his own 'not a must do' (BX-1116 added). Quote marks around 'slip' and 'not cyclical' were removed because neither is verbatim in the cited items.",
+    "Ortberg: 'warns a turn ahead' became 'warned of the 777X slip a quarter ahead' (BX-1306); cfm_ducted marked as a game mapping, since his engine-choice confidence is Low.",
+    "Inference labels widened to cover the whole inferred rule: Malave game, West game (slip test as planning case), Bell game (Joint Venture), Pope operations and credibility.",
+    "Pope tagline: 'BCA head' marked as the task framing; it is not in the sources.",
+    "Deal: added the profile's counter-evidence that regulators set the three missed dates; confidence now says '20 own-words items' (the event also yields 11 company items).",
+    "Albaugh capital: 'never pay partners' became 'beware paying partners', the profile's wording (BX-0015).",
+    "checked: 681 claims (203 text fields, 460 unique cited ids, all present in Boeing's evidence files; 24 voice quotes verbatim with matching speaker), changed: 36"
+   ],
+   "status": "checked",
    "id_check": {
-    "cited": 614,
-    "distinct": 463,
-    "unknown": [
-     "calhoun-smith-2020",
-     "calhoun-west-deal-2023",
-     "mcnerney-bell-albaugh-2010",
-     "mcnerney-smith-conner-2013",
-     "muilenburg-smith-2017",
-     "ortberg-malave-pope-2026",
-     "ortberg-west-pope-2025"
-    ]
+    "cited": 610,
+    "distinct": 460,
+    "unknown": []
    }
   },
   {
@@ -1697,17 +1718,17 @@
    "name": "Airbus",
    "game_role": "Airframer player (Red)",
    "tagline": "Cash-disciplined single-aisle leader: defends share with derivatives, launches NGSA only when technology and production are ready.",
-   "summary": "Airbus leads the single-aisle market, with about 60% of the backlog, and pays its managers on EBIT, FCF and EPS. It follows the engine's PV and uses doctrine as a filter and tie-breaker. It refines the current family and launches NGSA in 2028 for EIS 2035, gated on engine, wing and production readiness. It protects €12.2bn of net cash. Its inferred red lines: one launch per turn, no A350 Re-engine after a 787 Re-engine. Its own voice is one document, the FY2025 Board Report.",
+   "summary": "Airbus leads the single-aisle market with about 60% of the backlog against the 737 MAX, and pays managers on EBIT, FCF and EPS. In the game it follows engine PV; doctrine filters and breaks ties. It refines the current family; its default launches NGSA in 2028 for EIS 2035 (Airbus says 'around 2037'), gated on engine, wing and production readiness. It protects €12.2bn net cash. Inferred red lines: one launch per turn, no A350 Re-engine after a 787 Re-engine. Its own voice is one document, the FY2025 Board Report.",
    "evidence": {
     "items": 976,
     "sources": "867 company items (310 FY2025 Board Report, 183 Boeing and analyst views of Airbus 2006-2025, 374 on Boeing) plus 109 executive items (92 Board Report, 16 outside remarks, 1 own words).",
-    "confidence": "Medium for company doctrine: Airbus's own voice covers one year and the 20-year record is Boeing's view. Low for executives: no Airbus call transcripts."
+    "confidence": "Company: no overall rating in the profile; Airbus's own voice covers one year and the 2006-2025 record is Boeing's and analysts' view. Executives: Faury's incentives High, his style Low; others Low to Minimal; no Airbus call transcripts."
    },
    "risk_ratings": [
     {
      "dimension": "technology",
      "rating": "Low",
-     "note": "Hydrogen aircraft re-dated past 2035; NGSA technologies matured before any launch; no radical technology before its ecosystem is ready.",
+     "note": "Hydrogen aircraft re-dated past 2035; NGSA technologies being matured, with no launch yet; no radical technology before its ecosystem is ready.",
      "ids": [
       "AX-0006",
       "AX-0020",
@@ -1718,7 +1739,7 @@
     {
      "dimension": "schedule",
      "rating": "High",
-     "note": "On signalled rate targets: rate 75 slipped from 2025 to end-2027. Programme EIS appetite is Low (inference): NGSA kept 'around 2037'.",
+     "note": "On signalled rate targets: rate 75 slipped from 2025 to end-2027. Programme EIS appetite is Low (inference): NGSA EIS dated only 'around 2037'.",
      "ids": [
       "AX-0042",
       "AX-0044",
@@ -1730,18 +1751,18 @@
     {
      "dimension": "balance_sheet",
      "rating": "Low",
-     "note": "'Prudent risk approach'; net cash €12.2bn held after Spirit and a higher dividend; US$54.2bn hedge book.",
+     "note": "'Prudent risk approach'; net cash rose to €12.2bn at end-2025 despite the Spirit deal; US$54.2bn hedge book.",
      "ids": [
       "AX-0022",
       "AX-0102",
-      "AX-0001",
+      "AX-0060",
       "A-0353"
      ]
     },
     {
      "dimension": "pricing",
      "rating": "Low-Medium",
-     "note": "Fixed-price risk rated Low-Medium (inference): Defence and Space moved to production, A400M charges adjusted out. Record also shows aggressive launch pricing.",
+     "note": "Fixed-price and development risk Low-Medium (inference): Defence and Space moved to production; A400M charges still adjusted out. Boeing and analysts also record aggressive launch pricing.",
      "ids": [
       "AX-0058",
       "AX-0103",
@@ -1754,7 +1775,7 @@
     {
      "key": "objectives",
      "headline": "Profit and cash first, then hold the single-aisle lead",
-     "text": "Ranked: (1) profit and cash: EBIT and FCF drive about 5,200 managers' bonuses, and in 2025 FCF scored 157% of target against EBIT's 115%; (2) hold the single-aisle lead with the current family until NGSA; (3) deliver the ramp, safety first; (4) prepare the 'Airbus of the 30s'; (5) net cash. Winning means delta PV, the proxy for pay. The worst outcome is an uncontested fps.",
+     "text": "Ranked: (1) profit and cash: EBIT and FCF drive about 5,200 managers' bonuses; in 2025 FCF scored 157% of target, EBIT 115%; (2) hold the single-aisle lead with the current family until NGSA; (3) deliver the ramp, safety first; (4) prepare the 'Airbus of the 30s'; (5) financial resilience: net cash and hedging. Winning means delta PV, the proxy for pay. The worst outcome is an uncontested fps.",
      "ids": [
       "A-0310",
       "A-0312",
@@ -1769,7 +1790,7 @@
     {
      "key": "capital",
      "headline": "Net cash, heavy hedging, 48% payout; NGSA fits inside FCF",
-     "text": "A 'prudent risk approach': net cash €12.2bn and a US$54.2bn hedge book in 2025, plus a solid credit rating. FCF €4.75bn, R&D €3.15bn (down from €3.25bn), capex €3.96bn. Dividend €3.20, a 48% payout; buybacks only cover share plans. Refundable advances lower launch cost. NGSA at about $3.6B a year fits inside FCF; adding an A350 Re-engine and Delay Tactics takes a year's FCF (inference).",
+     "text": "A 'prudent risk approach': net cash €12.2bn and a US$54.2bn hedge book at end-2025, plus a solid credit rating. FCF €4.75bn, R&D €3.15bn (from €3.25bn), capex €3.96bn. Dividend €3.20, 48% payout; buybacks only cover share plans. Refundable advances and risk-sharing lower launch cost. NGSA at about $3.6B a year fits inside FCF; adding a concurrent A350 Re-engine and Delay Tactics would take roughly a year's FCF at peak (inference).",
      "ids": [
       "A-0343",
       "A-0402",
@@ -1785,8 +1806,8 @@
     },
     {
      "key": "product",
-     "headline": "Derivatives first; NGSA launched on technology and rate-producibility gates",
-     "text": "Airbus refines what it has: the A320neo kept over 95% airframe commonality, the A321 stretched to LR and XLR, the A330neo was a cheap re-engine. NGSA is the 'core' of product strategy, EIS 'around 2037', betting on open fan, a longer thinner wing and a wing buildable at rate. Game default: launch 2028, latest 2030. Joint Ventures are normal practice (ATR 50/50).",
+     "headline": "Derivatives first; NGSA waits on technology and rate-producibility gates",
+     "text": "Airbus refines what it has: the A320neo kept over 95% airframe commonality, the A321 stretched to LR and XLR, and the A330neo re-engined an older airframe (Boeing: 'old technology for new'). NGSA is the 'core' of product strategy, EIS 'around 2037', betting on open fan, a longer thinner wing and a wing buildable at rate. Game default: launch 2028, latest 2030. Joint Ventures are explicit strategy (ATR 50/50).",
      "ids": [
       "A-0244",
       "A-0245",
@@ -1804,7 +1825,7 @@
     {
      "key": "risk",
      "headline": "Low technology and balance-sheet risk; optimistic on rate targets",
-     "text": "Technology risk is low: hydrogen moved past 2035 and NGSA waits for mature technology. Balance-sheet risk is low: minimal leverage, net cash, heavy hedging. Schedule appetite splits: rate targets run high and slip (rate 75 moved from 2025 to end-2027) while NGSA EIS sits in a late window. Pricing: stated cash sales, but aggressive launch pricing on record. The Board approves anything over €300m.",
+     "text": "Technology risk is low: hydrogen moved past 2035 and NGSA waits for mature technology. Balance-sheet risk is low: minimal leverage, net cash, heavy hedging. Schedule appetite splits: rate targets run high and slip (rate 75 moved from 2025 to end-2027), while NGSA EIS is given only as 'around 2037'. Pricing: cash sales stated, but Boeing and analysts record aggressive launch pricing. The Board approves commitments over €300m.",
      "ids": [
       "A-0413",
       "A-0228",
@@ -1824,7 +1845,7 @@
     {
      "key": "operations",
      "headline": "Ramps ahead of Boeing and holds rate; engines and suppliers bind",
-     "text": "Airbus ramps harder and earlier than Boeing: high-30s a month in 2008-09, past 60 in 2015, 70-75 targets from 2018. It holds rate steady rather than swinging. Rate 75 slipped about 2 years to end-2027 on engine supply; 2025 deliveries of 793 came in 3% under first guidance. It secures supply by owning it: Spirit packages, Aubert & Duval, assembly on four continents.",
+     "text": "Airbus ramps harder and earlier than Boeing: high-30s a month in 2008-09, plans past 60 in 2015, 70-75 talk from 2018. It holds rate steady, not swinging (Boeing's view). Rate 75 slipped about 2 years to end-2027 on engine supply; 2025 deliveries of 793 came in 3% under initial projection. It secures supply by owning it: Spirit packages, Aubert & Duval, final assembly in Europe, the US, China and Canada.",
      "ids": [
       "A-0019",
       "A-0105",
@@ -1836,13 +1857,14 @@
       "A-0315",
       "A-0317",
       "A-0457",
-      "A-0419"
+      "A-0419",
+      "A-0263"
      ]
     },
     {
      "key": "rivals",
-     "headline": "Measures Boeing by backlog share, discounts its statements, partners readily",
-     "text": "Boeing is the duopoly counterpart: the A320neo family holds about 60% of the single-aisle backlog against the MAX. Airbus discounts Boeing's statements because schedules slip (777X from 2020 to 2027) and positions reverse. It reads a Boeing Joint Venture as normal practice (inference). Engines: dual-source on the A320neo (Pratt & Whitney, CFM), Rolls-Royce only on widebodies. On tariffs it lobbied for zero-for-zero.",
+     "headline": "Measures Boeing by backlog share and discounts its statements",
+     "text": "Boeing is the historical duopoly counterpart: the A320neo family holds about 60% of the single-aisle backlog against the MAX. The doctrine discounts Boeing's statements (inference): schedules slip (777X from 2020 to 2027) and positions reverse. It reads a Boeing Joint Venture as normal practice (inference). Engines: dual-source on the A320neo (Pratt & Whitney, CFM), Rolls-Royce only on widebodies. On tariffs it lobbied for zero-for-zero.",
      "ids": [
       "A-0864",
       "A-0865",
@@ -1853,6 +1875,7 @@
       "A-0371",
       "A-0243",
       "A-0047",
+      "A-0250",
       "A-0253",
       "A-0322"
      ]
@@ -1871,13 +1894,14 @@
       "A-0185",
       "A-0215",
       "AX-0005",
-      "A-0409"
+      "A-0409",
+      "A-0224"
      ]
     },
     {
      "key": "crisis",
      "headline": "Steady producer in shocks; presses advantage when Boeing stumbles",
-     "text": "In 2009-10 Airbus leaned on export credit and hedging and held production steady. After COVID it recovered faster than plan (the 2020 plan vested at 150%). During the MAX grounding it gained deliveries and held customers to contract. After the 2013 787 battery grounding it switched the A350 battery and won JAL. On its own late-2025 technical issues it acted at once with root-cause reviews.",
+     "text": "In 2009-10 Airbus leaned on export credit (45% of 2010 deliveries) and held production steady; unhedged in 2008-09, it later built a heavy hedge book. After COVID it recovered faster than plan (2020 plan vested at 150%). During the MAX grounding it gained deliveries and held customers to contract. After the 787's 2013 battery grounding it switched A350 batteries, then won JAL. On late-2025 technical issues it acted at once.",
      "ids": [
       "A-0026",
       "A-0101",
@@ -1893,8 +1917,8 @@
     },
     {
      "key": "game",
-     "headline": "NGSA 2028, A350 Do Nothing, Poaching on, Delay Tactics rarely",
-     "text": "T1: fix the NGSA engine, launch NGSA in 2028 (EIS 2035), A350 Do Nothing. T2: launch NGSA by 2030 if not yet; Poaching on. T3: A350 Re-engine in 2033-34 only if Boeing has no 787 Re-engine and it gains at least $1B. T4: NGSA in service. Triggers: fps launched, hold date and consider one Delay Tactics turn; 787 Re-engine, compete on price (inference).",
+     "headline": "NGSA 2028, A350 Do Nothing, Poaching on, Delay Tactics default off",
+     "text": "T1: fix the NGSA engine by 2027, launch NGSA in 2028 (EIS 2035), A350 Do Nothing. T2: launch NGSA by 2030 if not yet; Poaching on. T3: A350 Re-engine in 2033-34 only if Boeing has no 787 Re-engine and it gains at least $1B. T4: NGSA in service. Triggers: fps launched, hold the date and consider one Delay Tactics turn; 787 Re-engine, A350 Do Nothing and compete on price (inference).",
      "ids": [
       "A-0182",
       "A-0409",
@@ -1935,31 +1959,31 @@
    "levers": [
     {
      "lever": "NGSA launch",
-     "stance": "Launch 2028 for EIS 2035, the technology-ready year; latest 2030 (EIS 2037). Never earlier, and not re-timed because Boeing launched the fps."
+     "stance": "Launch 2028 for EIS 2035, the technology-ready year; latest 2030 (EIS 2037). Never earlier; not re-timed for Boeing's fps (inference)."
     },
     {
      "lever": "A350 Re-engine",
-     "stance": "Do Nothing through T2. Launch 2033-35 with Rolls-Royce UltraFan only if no 787 Re-engine, at least $1B gain, overlap of 2 years or less."
+     "stance": "Do Nothing through T2 (inference). Launch 2033-35 with Rolls-Royce UltraFan only if no 787 Re-engine, at least $1B gain, overlap of 2 years or less."
     },
     {
      "lever": "Delay Tactics",
-     "stance": "Default off. At most one turn, only against an fps in development, if worth at least $1B; a Board item. Never the exposing second turn."
+     "stance": "Default off (inference). At most one turn, against an fps in development, if worth at least $1B; a Board item. Never a second turn."
     },
     {
      "lever": "Poaching",
-     "stance": "On while NGSA or an A350 Re-engine is in development ($0.4B saving for $0.25B cost); off otherwise. Presented as recruiting for the 2030s."
+     "stance": "On while NGSA or an A350 Re-engine is in development ($0.4B saving for $0.25B cost); off otherwise (inference). Presented as recruiting for the 2030s."
     },
     {
      "lever": "Cancel",
-     "stance": "Never cancel NGSA. Cancel the A350 Re-engine only if a 787 Re-engine enters service first and remaining spend loses at least $1B."
+     "stance": "Never cancel NGSA (inference). Cancel the A350 Re-engine only if a 787 Re-engine enters service first and remaining spend loses at least $1B."
     },
     {
      "lever": "Engine choice",
-     "stance": "Best PV that keeps NGSA EIS by 2037; within $1B prefer no added EIS years (CFM ducted). Open fan only within $1B. A350: UltraFan."
+     "stance": "Best PV keeping NGSA EIS by 2037; within $1B, no added EIS years (CFM ducted). Open fan only if launched 2027-28 and within $1B."
     },
     {
      "lever": "Disclosure",
-     "stance": "Windows, not dates, for EIS and rate; operating guidance may be a number. Themes: safety, disciplined ramp, level playing field. Never disclose Delay Tactics."
+     "stance": "Windows for EIS and rate (inference); operating guidance can be numeric. Never long-term plan targets or Delay Tactics. Themes: safety, disciplined ramp, level playing field."
     }
    ],
    "people": [
@@ -1970,7 +1994,7 @@
      "status": "current",
      "title_dates": "CEO and Board member; CEO by 2020 (holds the 2020 plan); Board term to 2028; evidence 2021-2026",
      "confidence": "Incentives High; 2025 actions Medium; style and voice Low. One own-words line; the rest is Board Report and outside views.",
-     "tagline": "Board-centred CEO paid on cash, safety and preparing the 2030s; re-times on technology, not on Boeing (inference).",
+     "tagline": "Board-centred CEO paid on profit, cash, safety and preparing the 2030s; re-times on technology, not Boeing (inference).",
      "voice": [
       {
        "quote": "Our core principles of safety, quality, integrity, compliance and security will remain at the heart of all we do.",
@@ -1984,7 +2008,7 @@
      "topics": [
       {
        "key": "objectives",
-       "text": "Ranked by 2026 pay: EBIT and FCF 40% of bonus; five pillars the first CEO priority; ramp weight up to about 7.5%. Paid to prepare, not launch, the next aircraft (inference).",
+       "text": "Ranked by pay: EBIT and FCF 40% of bonus (2025 weights, assumed for 2026); five pillars the first 2026 priority; ramp about 7.5%, up from 5%. Paid to prepare, not launch, the next aircraft (inference).",
        "ids": [
         "AX-0067",
         "AX-0073",
@@ -2005,7 +2029,7 @@
       },
       {
        "key": "risk",
-       "text": "Low on technology and balance sheet; High on signalled rate targets (rate 75 for 2025, now end-2027). No radical technology before its ecosystem is ready (hydrogen past 2035).",
+       "text": "Low on technology and balance sheet; High on signalled rate targets (rate 75 for 2025, now end-2027). No radical technology before its ecosystem is ready (inference; hydrogen past 2035).",
        "ids": [
         "AX-0006",
         "AX-0020",
@@ -2016,7 +2040,7 @@
       },
       {
        "key": "rivals",
-       "text": "Measures Boeing by backlog share (about 60% of single-aisle) and allies with it on tariffs. Says the duopoly 'has ended' but COMAC's progress will be 'measured'.",
+       "text": "Measures Boeing by backlog share (about 60% of single-aisle) and allies with it on tariffs. Company line: the duopoly 'has ended', but COMAC's progress will be 'measured'.",
        "ids": [
         "AX-0025",
         "AX-0046",
@@ -2026,7 +2050,7 @@
       },
       {
        "key": "credibility",
-       "text": "Financial plans credible: two of three at or above target. Rate and date signals optimistic. Bad news formal and late: 2025 delivery guidance reset on 3 December, then met.",
+       "text": "Financial plans credible: two of three at or above target, one missed on EPS. Rate and date signals optimistic (inference). Bad news formal and late: 2025 delivery guidance reset on 3 December, then met.",
        "ids": [
         "AX-0051",
         "AX-0055",
@@ -2046,7 +2070,7 @@
       },
       {
        "key": "game",
-       "text": "Asks: does it protect the five pillars, secure the ramp, prepare the 30s, and can I take it to the Board? Delay Tactics default off; one turn at most.",
+       "text": "Asks (inference): does it protect the five pillars, secure the ramp, prepare the 30s, and can I take it to the Board? Delay Tactics default off; one turn at most.",
        "ids": [
         "AX-0073",
         "AX-0081",
@@ -2102,7 +2126,7 @@
       },
       {
        "key": "capital",
-       "text": "Peak annual programme spend no higher than one year's FCF, about €4.75bn ($5.2B); NGSA alone at $3.6B a year passes. Buybacks only for share plans. Guardrail is inference.",
+       "text": "Peak annual programme spend no higher than one year's FCF, about €4.75bn ($5.2B at an assumed $1.10/€); NGSA alone at $3.6B a year passes. Buybacks only for share plans. Guardrail is inference.",
        "ids": [
         "AX-0104",
         "AX-0101",
@@ -2111,15 +2135,15 @@
       },
       {
        "key": "risk",
-       "text": "Balance-sheet risk Low: net cash held at €12.2bn after Spirit and a higher dividend. No evidence on technology, schedule or fixed-price risk.",
+       "text": "Balance-sheet risk Low: net cash rose to €12.2bn at end-2025 despite the Spirit deal. No evidence on technology, schedule or fixed-price risk.",
        "ids": [
         "AX-0102",
-        "AX-0002"
+        "AX-0060"
        ]
       },
       {
        "key": "credibility",
-       "text": "No guidance of his own on record. Keeps long-term plan targets confidential; leads with EBIT Adjusted but shows reported EBIT (€7,128m vs €6,082m).",
+       "text": "No guidance of his own on record. Company practice he voices (inference): long-term plan targets kept confidential; EBIT Adjusted shown with reported EBIT (€7,128m vs €6,082m).",
        "ids": [
         "AX-0005",
         "AX-0103"
@@ -2127,7 +2151,7 @@
       },
       {
        "key": "game",
-       "text": "Soft veto on overlap beyond 2 years, a concurrent launch under a supply crunch, or a second Delay Tactics turn; overridden only with at least $1B (inference).",
+       "text": "Soft veto (inference) on peak spend above a year's FCF, overlap beyond 2 years, or concurrency under a supply crunch; CEO override needs at least $1B. A second Delay Tactics turn: never.",
        "ids": [
         "AX-0026",
         "AX-0104"
@@ -2151,17 +2175,13 @@
      "name": "Lars Wagner",
      "seat": "COO",
      "status": "current",
-     "title_dates": "CEO Commercial Aircraft from 1 January 2026; joined in November (year cut off)",
+     "title_dates": "CEO Commercial Aircraft from 1 January 2026 (COO seat on this page; Airbus has no group COO); joined in November (year cut off)",
      "confidence": "Very low: role-derived. Two items plus handover mentions; no statements or decisions of his own.",
      "tagline": "New operating head guarding the end-2027 rate commitment, quality and engine supply (role-derived inference).",
      "voice": [
       {
        "quote": "disciplined and controlled production ramp-up",
        "id": "AX-0010"
-      },
-      {
-       "quote": "Deliver on & secure ramp-up",
-       "id": "AX-0073"
       }
      ],
      "topics": [
@@ -2223,21 +2243,12 @@
      "status": "historical",
      "title_dates": "CEO, as named in October 2017 and January 2019 remarks; tenure dates not in the sources",
      "confidence": "Very low, outside view: 3 items (2 from Pratt & Whitney's parent, 1 Board Report).",
-     "tagline": "Dealmaker who took the CSeries, now the A220, and made suppliers prove themselves (outside view).",
-     "voice": [
-      {
-       "quote": "Airbus has high confidence or they wouldn't have done this deal",
-       "id": "AX-0036"
-      },
-      {
-       "quote": "a little bit of show-me",
-       "id": "AX-0037"
-      }
-     ],
+     "tagline": "CEO who took the CSeries, now the A220, and pushed back on supplier consolidation (outside view).",
+     "voice": [],
      "topics": [
       {
        "key": "product",
-       "text": "Used acquisition to enter a segment: the October 2017 CSeries deal, now the A220, with 482 delivered and 467 in backlog by end-2025.",
+       "text": "Took the CSeries in the October 2017 deal, now the A220: 482 delivered and 467 in backlog by end-2025. Acquisition as a route into a segment (inference).",
        "ids": [
         "AX-0036",
         "AX-0038",
@@ -2245,8 +2256,8 @@
        ]
       },
       {
-       "key": "rivals",
-       "text": "Wary of supplier consolidation: pushed back on UTC buying Rockwell Collins, making suppliers prove themselves (UTC's words: 'show-me').",
+       "key": "operations",
+       "text": "Wary of supplier consolidation: pushed back on UTC buying Rockwell Collins. UTC called the relationship 'a little bit of show-me'.",
        "ids": [
         "AX-0037"
        ]
@@ -2267,19 +2278,14 @@
      "name": "Christian Scherer",
      "seat": "COO",
      "status": "historical",
-     "title_dates": "Former CEO Commercial Aircraft; handed over to Wagner by 1 January 2026; tenure dates not in the sources",
+     "title_dates": "Former CEO Commercial Aircraft (COO seat on this page); handed over to Wagner by 1 January 2026; tenure dates not in the sources",
      "confidence": "Minimal: one Board Report item names him.",
-     "tagline": "Outgoing Commercial Aircraft head whose orderly handover defines what Wagner inherited (Board view).",
-     "voice": [
-      {
-       "quote": "a comprehensive transfer of institutional knowledge, ongoing projects, and stakeholder relationships",
-       "id": "AX-0100"
-      }
-     ],
+     "tagline": "Former Commercial Aircraft head with an orderly handover; his card explains what Wagner inherited (Board view).",
+     "voice": [],
      "topics": [
       {
        "key": "operations",
-       "text": "Last year in charge (inference): 2025 deliveries 793 against 766, 3% below first projection; 3 December guidance reset; rate 70-75 re-dated to end-2027.",
+       "text": "Last year in charge (inference): 2025 deliveries 793, up from 766 but 3% below the initial projection; 3 December guidance reset; rate 70-75 re-dated to end-2027.",
        "ids": [
         "AX-0052",
         "AX-0053",
@@ -2296,7 +2302,7 @@
       },
       {
        "key": "game",
-       "text": "Not a decision-maker in the game. His card only explains Wagner's inheritance; the Board calls the handover 'seamless'.",
+       "text": "Not a decision-maker in the game. His card only explains Wagner's inheritance; the Board calls the transition 'seamless'.",
        "ids": [
         "AX-0100",
         "AX-0093"
@@ -2312,21 +2318,17 @@
      "status": "historical",
      "title_dates": "Chief commercial officer (sales chief), as described 2011-2018; retired 2018. Placed in the COO seat for this page.",
      "confidence": "Low, outside view: 6 items, all Boeing executives or journalists on Boeing calls.",
-     "tagline": "Aggressive, solo sales chief who called market cycles and attacked a rival product in public (Boeing's view).",
+     "tagline": "Superb but solo sales chief (Boeing's view) who publicly questioned the 787's reliability and reportedly called a 2012 order peak.",
      "voice": [
       {
        "quote": "it's pretty obvious this airplane is not reliable and does not have mature systems",
        "id": "AX-0097"
-      },
-      {
-       "quote": "was a superb sales leader, but he did a lot of it on his own",
-       "id": "AX-0099"
       }
      ],
      "topics": [
       {
        "key": "rivals",
-       "text": "Questioned the 787's reliability in public after the July 2013 Heathrow fire (one instance). Boeing's main sparring partner on MAX vs neo fuel-burn claims.",
+       "text": "Questioned the 787's reliability in public after the July 2013 Heathrow fire (one instance). Sparred with Boeing in 2014 over MAX vs neo fuel-burn claims.",
        "ids": [
         "AX-0097",
         "AX-0096",
@@ -2351,7 +2353,7 @@
       },
       {
        "key": "biases",
-       "text": "Era context, not attributed to him: neo launch pricing Boeing called predatory, American and Lion Air wins. Boeing expected Airbus 'more disciplined' after he left.",
+       "text": "Company conduct in his era, not attributed to him: neo launch pricing Boeing called predatory; American and Lion Air wins. No item names him as decision-maker. Boeing expected a 'more disciplined' Airbus after him.",
        "ids": [
         "A-0064",
         "A-0066",
@@ -2369,17 +2371,41 @@
      "id": "faury-toepfer-wagner-2026",
      "members": "Guillaume Faury (CEO), Thomas Toepfer (CFO), Lars Wagner (CEO Commercial Aircraft)",
      "is_default": true,
-     "one_line": "CEO decides; CFO cash test and CA CEO production test are soft vetoes, overridable only with at least $1B more; the Board approves big bets."
+     "one_line": "CEO decides; CFO cash test and CA CEO production test are soft vetoes (inference), overridable only with at least $1B more; Board approves big bets."
     }
    ],
-   "verifier_notes": [],
-   "status": "draft",
+   "verifier_notes": [
+    "Summary: 'launches NGSA in 2028 for EIS 2035' relabelled as the game default (2035 is a game parameter, not evidence) and Airbus's own 'around 2037' added [A-0409]; trimmed to 89 words.",
+    "Evidence confidence: the profile gives no overall company rating, so 'Medium' was removed; the 2006-2025 record is Boeing's and analysts' view; executive ratings restated per README (Faury incentives High, others Low to Minimal).",
+    "Risk technology: 'NGSA technologies matured' changed to 'being matured, with no launch yet' [AX-0020]. Risk schedule: 'NGSA kept around 2037' changed to 'dated', the wording the citation audit retired.",
+    "Balance sheet (risk rating and Toepfer risk): 'net cash held after a higher dividend' was wrong on timing; the EUR 3.20 dividend is paid 23 April 2026, after the end-2025 figure [AX-0002, AX-0102]. Now 'rose to EUR 12.2bn despite the Spirit deal'; AX-0001 swapped for AX-0060.",
+    "Pricing rating and risk topic: aggressive launch pricing attributed to Boeing and analysts [A-0064, A-0066 are outside views]; 'anything over EUR 300m' narrowed to 'commitments over EUR 300m' [A-0298].",
+    "Objectives: '(5) net cash' restored to the profile's objective 5, 'financial resilience: net cash and hedging' [A-0343, A-0402].",
+    "Capital: Delay Tactics funding claim restored to the profile's wording, 'would take roughly a year's FCF at peak' (inference); risk-sharing added beside refundable advances [A-0348].",
+    "Product: headline 'NGSA launched on' changed, since NGSA is not launched; 'A330neo was a cheap re-engine' attributed to Boeing ('old technology for new', A-0090); Joint Ventures 'explicit strategy' per A-0371.",
+    "Risk topic: 'NGSA EIS sits in a late window' changed to 'given only as around 2037' [A-0409].",
+    "Operations: 'past 60 in 2015' was a plan, not an achieved rate [A-0105]; 'four continents' unsupported, since A-0419 and A-0263 list Toulouse, Hamburg, Tianjin, Mirabel and Mobile (three continents), so sites now named; 'no swing' tagged Boeing's view [A-0039].",
+    "Rivals: headline 'partners readily' dropped (no Boeing partnership shown); Boeing is the 'historical' duopoly counterpart [A-0864]; 'Airbus discounts Boeing's statements' relabelled as doctrine (inference, profile section 7); A-0250 added for Rolls-Royce on the A330neo.",
+    "Credibility: A-0224 added to support 'EIS given as windows' ('second half of the next decade').",
+    "Crisis: 'in 2009-10 leaned on export credit and hedging' was wrong; A-0101 says Airbus was 'naked' on currency in 2008-09 and built its hedge book afterwards. Rewritten; JAL win placed after the battery switch.",
+    "Game: headline 'Delay Tactics rarely' changed to 'default off' (profile section 6); T1 engine fix dated 'by 2027' [A-0182]; 787 Re-engine trigger now includes A350 Do Nothing (Quick card).",
+    "Levers: (inference) labels added to NGSA not re-timed for Boeing, A350 Do Nothing through T2, Delay Tactics, Poaching and never-cancel NGSA (profile hard rules 2-7 and section 6).",
+    "Engine choice lever: open-fan condition restored ('only if launched 2027-28 and within $1B', section 6); duplicate 'A350: UltraFan' dropped to fit 25 words. Disclosure lever: 'never long-term plan targets' added [AX-0005]; window preference labelled inference (README).",
+    "Faury: objectives now flag EBIT and FCF (20% + 20%) as 2025 weights assumed for 2026 [AX-0067]; ecosystem rule, rate-signal read-across and ExCo 'Asks' labelled (inference) per faury.md; tagline adds profit.",
+    "Faury rivals: 'Says the duopoly has ended' was misattributed; AX-0024 is Board Report text, now 'Company line'.",
+    "Toepfer credibility: confidential long-term plan targets and EBIT Adjusted framing are company practice, not his (executive audit fairness item 11); capital: $5.2B labelled at an assumed $1.10 per euro.",
+    "Toepfer game: a second Delay Tactics turn is a red line (hard rule 4), not overridable with $1B, so split out as 'never'; his main peak-spend veto added.",
+    "Voice quotes cut as misattributed: Enders AX-0036 and AX-0037 (UTC CEO's words), Scherer AX-0100 (Board's words), Leahy AX-0099 (Boeing's Tinseth), Wagner AX-0073 (CEO objective; wagner.md designates only AX-0010).",
+    "Enders: tagline 'Dealmaker' is not in the profile, rewritten; 'used acquisition to enter a segment' labelled inference (historical.md); supplier-consolidation item moved from rivals to operations (UTC is a supplier).",
+    "Leahy: 'Aggressive' and 'attacked' are not the profile's words (audit re-headed it as 'questioned'); 'called market cycles' narrowed to one reported 2012 call; 'Boeing's main sparring partner' overstated; biases reframed as company conduct with no item naming him.",
+    "Scherer: tagline 'defines what Wagner inherited' rewritten; 'seamless' refers to the 'transition' [AX-0093]. Wagner and Scherer title_dates note the COO seat (no group COO, AX-0031). Team one_line: soft vetoes labelled (inference) per teams.md rule 2.",
+    "checked: 245 claims, changed: 64"
+   ],
+   "status": "checked",
    "id_check": {
-    "cited": 231,
-    "distinct": 135,
-    "unknown": [
-     "faury-toepfer-wagner-2026"
-    ]
+    "cited": 228,
+    "distinct": 136,
+    "unknown": []
    }
   },
   {
@@ -2387,7 +2413,7 @@
    "name": "Rolls-Royce",
    "game_role": "Engine-supplier player (optional)",
    "tagline": "Cash-first widebody incumbent: launches UltraFan only behind an announced airframe, at standard terms, never early.",
-   "summary": "Rolls-Royce is sole source on the A350 and A330neo [R-1862, R-1860]. Since 2023 it puts quality of profit and cash ahead of share [R-1582], turned net debt of £5,157m (2021) into net cash of £1,972m (2025) [R-0027, R-0032] and restored payouts [R-0075]. It decides on a mid-to-high-teens hurdle and engineering capacity, not cash [R-1579, R-0929]. UltraFan is an option: no launch without an airframe, no compressed maturity, standard pricing [R-0994, R-1476, R-0334].",
+   "summary": "Rolls-Royce is sole source on the A350 and A330neo [R-1862, R-1860]. Since 2023 it has put profit and cash ahead of market share [R-1561, R-1582]. Net debt of £5,157m (2021) became net cash of £1,972m (2025) [R-0027, R-0032], and the dividend returned for 2024 [R-0075]. A mid-to-high-teens hurdle and engineering capacity, not cash, ration launches (inference) [R-1579, R-0929]. UltraFan is an option: no launch without an airframe, no compressed maturity, standard terms by default [R-0994, R-1476, R-1582, R-0367].",
    "evidence": {
     "items": 1951,
     "sources": "Company evidence.jsonl only: RR call transcripts (1,335), Morgan Stanley model (389), Capital IQ (97), 2019 engine brief (62), Boeing, RTX and Airbus texts (68).",
@@ -2397,7 +2423,7 @@
     {
      "dimension": "technology",
      "rating": "Low-Medium",
-     "note": "(inference; profile gives no rating) Protects technology spend in crises but launches only demonstrated engines; Trent 1000 once chased performance past durability limits.",
+     "note": "(inference; profile gives no rating) Cuts technology spend least in crises and launches only demonstrated engines, but the Trent 1000 chased performance past durability limits.",
      "ids": [
       "R-0181",
       "R-0994",
@@ -2407,12 +2433,14 @@
     },
     {
      "dimension": "schedule",
-     "rating": "Low",
-     "note": "(inference) Never compresses maturity: left NMA as \"simply too aggressive\" and withdraws early rather than miss a date.",
+     "rating": "Low-Medium",
+     "note": "(inference) Refuses compressed schedules: left NMA because its timescales \"would simply be too aggressive\"; withdraws early rather than miss. Yet the 2018 delivery ramp and the TEN blade fix slipped.",
      "ids": [
       "R-1934",
       "R-0970",
-      "R-1476"
+      "R-1476",
+      "R-1182",
+      "R-1210"
      ]
     },
     {
@@ -2429,7 +2457,7 @@
     {
      "dimension": "pricing",
      "rating": "Low",
-     "note": "(inference) OE terms standard by default: \"not after market share\"; every contract reviewed. Pre-2018 concessions (CARs £286m, 2017) now suppressed.",
+     "note": "(inference) Standard terms by default: \"not after market share\"; every contract reviewed; no \"silly pricing\" as sole source. Share-buying concessions (CARs £286m in 2017) are now suppressed.",
      "ids": [
       "R-1582",
       "R-1571",
@@ -2441,14 +2469,17 @@
    "topics": [
     {
      "key": "objectives",
-     "headline": "Profit and cash first, widebody franchise second, narrowbody last",
-     "text": "Ranked (2023-25): quality of profit and cash, \"not after market share\" [R-1582]; balance sheet repaired from operating cash to investment grade and net cash [R-0865, R-0888]; defend the A350 and A330neo sole-source base and regain Trent 1000 share [R-0360, R-1601]; 30-40% payout plus buybacks [R-0909]; UltraFan only on an airframe [R-0994]; narrowbody re-entry last, ideally with a partner [R-1011, R-1010].",
+     "headline": "Profit and cash first, balance sheet next, narrowbody last",
+     "text": "Ranked (2023-25): quality of profit and cash, \"not after market share\" [R-1582]; balance sheet repaired from operating cash to investment grade and net cash [R-0865, R-0874, R-0888]; defend the A350 and A330neo sole-source base and regain Trent 1000 share [R-0360, R-0319, R-1601, R-1015]; 30-40% payout plus buybacks [R-0909]; UltraFan only on an airframe [R-0994]; narrowbody re-entry last, ideally with a partner [R-1011, R-1010].",
      "ids": [
       "R-1582",
       "R-0865",
+      "R-0874",
       "R-0888",
       "R-0360",
+      "R-0319",
       "R-1601",
+      "R-1015",
       "R-0909",
       "R-0994",
       "R-1011",
@@ -2458,7 +2489,7 @@
     {
      "key": "capital",
      "headline": "Balance sheet first; engineers, not cash, ration programmes",
-     "text": "Net debt of £5,157m (2021) became net cash of £1,972m (2025) [R-0027, R-0032]. Stated order: balance sheet, growing dividends, disciplined investment, extra distributions; no leverage for buybacks [R-0900, R-0902]. Hurdle mid-to-high teens, CEO and CFO sign-off above £25m [R-1579]. Constant engineering pool; three of four engines chosen [R-1318, R-0929]. Capex lands below consensus [R-1723]. Game: WACC 10%, alpha 0.6 [R-1459].",
+     "text": "Net debt of £5,157m (2021) became net cash of £1,972m (2025) [R-0027, R-0032]. Stated order (2025): balance sheet, growing dividends, disciplined investment and extra distributions; no leverage for buybacks [R-0900, R-0902]. Hurdle mid-to-high teens; CEO and CFO sign off above £25m [R-1579]. Constant engineering pool; chose three of four engines, skipping the A320neo [R-1318, R-0929]. Capex below consensus in 2021-22 and 2024-25 [R-1723]. Game: WACC 10%, alpha 0.6 [R-1459].",
      "ids": [
       "R-0027",
       "R-0032",
@@ -2474,7 +2505,7 @@
     {
      "key": "product",
      "headline": "UltraFan is an option, launched only behind an announced airframe",
-     "text": "Go-ahead depends \"on the timing of new aircraft programs\" [R-0994]. Widebody is the franchise; narrowbody optional: \"if it is not profitable, we won't do it\" [R-1574, R-1011]. Prefers sole-source positions [R-1393]. UltraFan demonstrator ran at full power in 2023, about 10% better than Trent XWB [R-1013, R-0974]. New engine about 7 years to service [R-0931]. Narrowbody partner preferred to derisk, not for capability [R-1010, R-1022].",
+     "text": "Go-ahead \"will depend on the timing of new aircraft programs\" [R-0994]. Widebody is the franchise; narrowbody optional: \"if it is not profitable, we won't do it\" [R-1574, R-1011]. Prefers sole-source positions [R-1393]. UltraFan's demonstrator hit full power in 2023; the target is 10% better efficiency than Trent XWB [R-1013, R-0974]. New engines take about 7 years to service [R-0931]. Narrowbody partner preferred to derisk, not for capability [R-1010, R-1022].",
      "ids": [
       "R-0994",
       "R-1574",
@@ -2490,7 +2521,7 @@
     {
      "key": "risk",
      "headline": "Low appetite: maturity over timing, net cash, no price war",
-     "text": "Technology: demonstrate first; RR admits the Trent 1000 chased performance past durability limits [R-0994, R-1436]. Schedule: left NMA as \"simply too aggressive\" and withdraws early rather than miss [R-1934, R-0970]. Balance sheet: prefers net cash to tolerated 1-1.5x leverage [R-0888, R-0902]. Pricing: every contract reviewed, no \"silly pricing\" as sole source [R-1571, R-0334]. Concurrency avoided: three parallel programmes were \"unprecedented\" [R-1127].",
+     "text": "Technology: demonstrate first; RR admits the Trent 1000 chased performance past durability limits [R-0994, R-1436]. Schedule: left NMA because its timescales \"would simply be too aggressive\"; withdraws early rather than miss [R-1934, R-0970]. Balance sheet: prefers net cash to the 1-1.5x leverage it tolerates [R-0888, R-0902]. Pricing: every contract reviewed; no \"silly pricing\" as sole source [R-1571, R-0334]. Concurrency rationed: three parallel programmes (2016-17) were \"unprecedented\" [R-1127, R-0929].",
      "ids": [
       "R-0994",
       "R-1436",
@@ -2500,36 +2531,39 @@
       "R-0902",
       "R-1571",
       "R-0334",
-      "R-1127"
+      "R-1127",
+      "R-0929"
      ]
     },
     {
      "key": "operations",
      "headline": "Aftermarket pays; ramps slip; durability fixes cost more than first estimated",
-     "text": "Large-engine deliveries 510 (2019 peak), 190 (2022), 278 (2024) [R-0226, R-0245]. The 2018 ramp missed: about 550 guided, 480 delivered [R-1153, R-1183]. OE loses about £1.0m per widebody engine (2024); aftermarket gross profit £2,206m against OE £443m [R-0132, R-0119]. Trent 1000: just under 50 aircraft on ground (2018); cost estimate rose from £1.5bn to £2.4bn [R-1171, R-0724, R-0760]. Supply limits keep output flat [R-1299].",
+     "text": "Large-engine deliveries: 510 (2019 peak), 190 (2022), 278 (2024) [R-0226, R-0245]. The 2018 ramp missed: about 550 guided, 480 delivered [R-1153, R-1182]. On-wing loss about £1.0m per widebody engine (2024); 2024 gross profit: aftermarket £2,206m, OE £443m [R-0132, R-0119]. Trent 1000: just under 50 aircraft on ground (2018); cost estimate rose from £1.5bn to £2.4bn (2019) [R-1171, R-0724, R-0760]. Casting and forging limits kept 1H25 deliveries broadly flat [R-1299, R-1302].",
      "ids": [
       "R-0226",
       "R-0245",
       "R-1153",
-      "R-1183",
+      "R-1182",
       "R-0132",
       "R-0119",
       "R-1171",
       "R-0724",
       "R-0760",
-      "R-1299"
+      "R-1299",
+      "R-1302"
      ]
     },
     {
      "key": "rivals",
-     "headline": "Airbus is patron, Boeing buys GE, P&W a wary partner",
-     "text": "Airbus: XWB has 100% of A350 and Trent 7000 100% of A330neo deliveries, yet Airbus talked to GE and names open fan for NGSA [R-0134, R-0361, R-1867]. Boeing: one engine per narrowbody, GE alone on the 777X [R-1830, R-1831]. GE discounts when RR is weak [R-1946]. P&W formed IAE LLC without RR and keeps 59-61% of narrowbody collaborations; expect it to seek Joint Venture control (inference) [R-1892, R-1893].",
+     "headline": "Airbus is patron, Boeing buys GE, P&W is rival and possible partner",
+     "text": "Airbus: RR engines power 100% of A350 and A330neo deliveries, yet Airbus talked to GE on the A350 and names open fan for NGSA [R-0134, R-0361, R-1867]. Boeing: one engine per narrowbody, GE alone on the 777X [R-1830, R-1831]. GE discounts when RR is weak [R-1945, R-1946]. P&W formed IAE LLC without RR and keeps 59-61% of narrowbody collaborations; expect it to seek Joint Venture control (inference) [R-1892, R-1893].",
      "ids": [
       "R-0134",
       "R-0361",
       "R-1867",
       "R-1830",
       "R-1831",
+      "R-1945",
       "R-1946",
       "R-1892",
       "R-1893"
@@ -2538,12 +2572,12 @@
     {
      "key": "credibility",
      "headline": "Guides low and beats; crisis costs arrive in rising steps",
-     "text": "Since 2016 RR guides low and beats: EBIT £1,590m, £2,464m and £3,462m (2023-25), each above the top of guidance [R-0219]; 2027 targets met two years early [R-0893]. Beats against consensus are shrinking: +15%, +8%, +6% [R-1758]. Capex guidance acts as a ceiling [R-1723]. Bad news comes in steps: Trent 1000 £350m to £450m (2018), then £1.5bn and £2.4bn (2019) [R-0697, R-0724, R-0760].",
+     "text": "Since 2016 RR guides low and beats: EBIT £915m against £650m guided (2016) [R-0214]; £1,590m, £2,464m and £3,462m (2023-25), each above the top of guidance [R-0219]. 2027 targets met two years early [R-0893]. EBIT beats against consensus are shrinking: +15%, +8%, +6% (2023-25) [R-1758]. Bad news comes in steps: Trent 1000 2018 cash cost £350m, then £450m; total £1.5bn (February 2019), then £2.4bn (November 2019) [R-0697, R-0724, R-0760].",
      "ids": [
+      "R-0214",
       "R-0219",
       "R-0893",
       "R-1758",
-      "R-1723",
       "R-0697",
       "R-0724",
       "R-0760"
@@ -2552,12 +2586,14 @@
     {
      "key": "crisis",
      "headline": "Cut payouts fast, protect technology and liquidity, keep fleets flying",
-     "text": "2014-16: buyback halted, dividend halved, R&D protected [R-0547, R-0597]. Trent 1000: fixed with spares, credit notes and retrofit at overhaul, not recall; LTSA margin fell from about 20% to high single digits [R-0777, R-1238, R-0765]. COVID: dividend cut within about 2 months, 9,000 roles, Civil capex -75%, £2bn rights issue [R-0779, R-0814, R-0053, R-0049]. Net cash returns about 3 years after the trough [R-0030].",
+     "text": "2014-16: buyback halted, dividend halved, new-product R&D protected [R-0547, R-0597, R-0570]. Trent 1000: fixed with spares, credit notes and retrofit at overhaul, not recall; LTSA margin fell from about 20% to high single digits [R-0777, R-1238, R-1212, R-0765]. COVID: dividend cut within about 2 months, about 9,000 roles cut, Civil capex -75% (2019-21), £2bn rights issue [R-0779, R-0814, R-0053, R-0049]. Net cash returned about 3 years after the trough [R-0030].",
      "ids": [
       "R-0547",
       "R-0597",
+      "R-0570",
       "R-0777",
       "R-1238",
+      "R-1212",
       "R-0765",
       "R-0779",
       "R-0814",
@@ -2569,7 +2605,7 @@
     {
      "key": "game",
      "headline": "Turn 1 Trent 1000 upgrade; UltraFan only against announcements",
-     "text": "Turn 1: fund t1000_upgrade (+$0.81B), no UltraFan, disclose conditional commitments. Later: uf_wb in the turn Airbus announced an A350 Re-engine; uf_nb only for an announced fps or NGSA with expected PV of at least +$2B; jv_pw only if P&W announced its join. Standard terms; cancel unselected programmes. Triggers: Re-engine or fps/NGSA announcements, durability crisis, UltraFan test setback, demand shock [R-0994, R-1005, R-0319, R-0361].",
+     "text": "Turn 1: fund t1000_upgrade (+$0.81B), no UltraFan, disclose conditional commitments. Later: uf_wb in the turn for which Airbus announced an A350 Re-engine; uf_nb only for an announced fps or NGSA with expected PV of at least +$2B; jv_pw only if P&W announced its join for that turn. Standard terms; cancel unselected programmes. Triggers: Re-engine or fps/NGSA announcements, durability crisis, UltraFan test setback, demand shock [R-0994, R-1005, R-0319, R-0361, R-1010, R-1601].",
      "ids": [
       "R-0994",
       "R-1005",
@@ -2582,7 +2618,7 @@
     {
      "key": "biases",
      "headline": "Durability optimism, maturity over timing, narrowbody oscillation, post-shock caution",
-     "text": "Durability optimism: Trent 1000 \"solved\" in February 2019, then the blade failed testing [R-1186, R-1210]. Maturity over timing: missed the neo/MAX round, left NMA [R-1812, R-0980]. Narrowbody oscillation: \"unfinished business\", then \"we don't have to\" (2015) [R-0942, R-0952]. Caution after shocks: capex below consensus despite net cash [R-1723, R-0032]. Concurrency aversion; airframer forecasts taken at face value [R-0929, R-0377].",
+     "text": "Durability optimism: Trent 1000 \"solved\" in February 2019, then the blade failed testing in November [R-1186, R-1210]. Maturity over timing: missed the neo/MAX round, left NMA [R-1812, R-0980]. Narrowbody oscillation: \"unfinished business\", then \"we don't have to\" (2015) [R-0942, R-0952]. Share-buying concessions now suppressed [R-0113, R-1582]. Caution after shocks: capex below consensus despite net cash [R-1723, R-0032]. Concurrency aversion; airframer forecasts taken at face value [R-0929, R-0377].",
      "ids": [
       "R-1186",
       "R-1210",
@@ -2590,6 +2626,8 @@
       "R-0980",
       "R-0942",
       "R-0952",
+      "R-0113",
+      "R-1582",
       "R-1723",
       "R-0032",
       "R-0929",
@@ -2600,7 +2638,7 @@
    "levers": [
     {
      "lever": "uf_wb: UltraFan widebody launch",
-     "stance": "Do Nothing by default. Launch at standard terms in the turn Airbus announced an A350 Re-engine; 787 Re-engine only if P(UltraFan) > 0.42 (inference)."
+     "stance": "Default Do Nothing. Launch at standard terms in the turn for which Airbus announced an A350 Re-engine; 787 Re-engine only if P(UltraFan) > 0.42 (inference)."
     },
     {
      "lever": "uf_nb Solo: UltraFan narrowbody launch",
@@ -2612,7 +2650,7 @@
     },
     {
      "lever": "terms: standard or aggressive",
-     "stance": "Standard by default. Aggressive only if a rival engine beats standard terms in whatif and selected PV stays $2B above Do Nothing."
+     "stance": "Standard by default. Aggressive only if a rival beats standard but not aggressive terms in whatif, and selected PV stays $2B above Do Nothing."
     },
     {
      "lever": "t1000_upgrade: Trent 1000 durability upgrade",
@@ -2633,24 +2671,2444 @@
    ],
    "people": [],
    "teams": [],
-   "verifier_notes": [],
-   "status": "draft",
+   "verifier_notes": [
+    "Summary: split the 'since 2023' sentence (net debt fell from 2022), added R-1561, labelled 'not cash' as (inference) per profile section 2.",
+    "Summary: 'standard pricing' re-cited from R-0334 (XWB aftermarket) to R-1582, R-0367 as 'standard terms by default' (profile section 6).",
+    "Risk technology: 'protects technology spend' changed to 'cuts technology spend least'; R&D cash fell 27% in 2019-21 [R-0181].",
+    "Risk schedule: rating Low to Low-Medium; profile section 3 sets a +1-year slip prior and records the 2018 ramp miss and TEN blade slip [R-1182, R-1210].",
+    "Risk schedule note and risk topic: NMA quote was not verbatim; now 'would simply be too aggressive' [R-1934].",
+    "Risk pricing: 'Pre-2018 concessions' misdated (profile section 5 row 5: conceding ran 2004-21); now 'share-buying concessions (CARs £286m in 2017) now suppressed'.",
+    "Objectives headline: widebody base ranks third, after the balance sheet, in the Quick card; now 'Profit and cash first, balance sheet next, narrowbody last'.",
+    "Objectives: added R-0874 (repair from operating cash), R-0319 (A330neo sole source), R-1015 (regain 787 share); cited ids did not support these.",
+    "Capital: dated capex below consensus (2021-22, 2024-25) [R-1723] and gave the three-of-four context (A320neo skipped) [R-0929].",
+    "Product: 'about 10% better than Trent XWB' read as a test result; R-0974 is a 2019 target, now 'target 10% better efficiency'.",
+    "Risk topic: 'Concurrency avoided' contradicted R-1127 (three programmes ran in parallel in 2016-17); now 'rationed', R-0929 added.",
+    "Operations: '480 delivered' re-cited from R-1183 (Trent 7000 test yield) to R-1182, which holds the 480 figure.",
+    "Operations: 'supply limits keep output flat' re-cited to R-1302 and dated 1H25; R-1299 only names castings and forgings.",
+    "Operations: 'OE loses about £1.0m per widebody engine' clarified as on-wing loss [R-0132], since 2024 OE gross profit was +£443m [R-0119]; cost rise dated 2019.",
+    "Rivals headline: P&W is not a current partner; 'wary partner' changed to 'rival and possible partner' (profile section 7).",
+    "Rivals: added R-1945 for 'GE discounts when RR is weak'; R-1946 alone is the Air New Zealand offer.",
+    "Credibility: 'Since 2016' rested only on 2023-25 data; added 2016 EBIT £915m vs £650m guided [R-0214].",
+    "Credibility: cut 'capex guidance acts as a ceiling [R-1723]'; R-1723 compares capex with consensus, not guidance (kept in capital and biases).",
+    "Credibility: consensus beats labelled EBIT (2023-25); Trent 1000 steps split into the 2018 annual cost and the Feb and Nov 2019 totals.",
+    "Crisis: 'R&D protected' re-cited to R-0570 and 'retrofit at overhaul, not recall' to R-1212 (not in cited ids); 'about 9,000 roles' per R-0814; capex cut dated 2019-21.",
+    "Game topic and uf_wb lever: 'in the turn Airbus announced' changed to 'in the turn for which Airbus announced' (Quick card timing rule); R-1010, R-1601 cited inline.",
+    "Terms lever: added the section 6 condition that aggressive terms must win where standard terms lose to a rival.",
+    "Biases: blade failure dated November 2019; added the Quick card's price-discipline bias [R-0113, R-1582].",
+    "People and teams left empty: wargame/profiles/rolls_royce/ holds no executive or team files, so no person traits can be sourced.",
+    "checked: 152 claims, changed: 35"
+   ],
+   "status": "checked",
    "id_check": {
-    "cited": 102,
-    "distinct": 74,
+    "cited": 114,
+    "distinct": 81,
+    "unknown": []
+   }
+  },
+  {
+   "player_id": "pratt_whitney",
+   "name": "Pratt & Whitney",
+   "game_role": "Engine-supplier player (optional, inside RTX)",
+   "tagline": "RTX's narrowbody engine maker: defends the A320neo GTF franchise; on offence, launches new engines only as sole source.",
+   "summary": "Pratt & Whitney is RTX's engine segment, funded and judged by the parent on long-run value. It sells GTF engines at a loss and earns its money in a 20-30 year aftermarket. It claims about 40% of A320neo selections (2024) and means to keep them. A new engine must clear the GTF's board-set bar, about 10% all-in (inference), and, on offence, win sole source. It prefers upgrades and avoids widebody. In the game it upgrades in 2026 and launches gtf_next only into a disclosure or a strong NGSA hedge.",
+   "evidence": {
+    "items": 2072,
+    "sources": "1,413 UTC/RTX call and investor-meeting items (2015-25), 413 from UTC/RTX 10-Ks (FY2016-24), 153 from the Goldman Sachs RTX model (Oct 2025), 64 from a 2019 industry brief, 29 from Rolls-Royce and Boeing calls and 2025 trade press.",
+    "confidence": "Strong on pricing discipline, sole source, crisis handling, capital allocation and GTF unit economics. Thin on the RR Joint Venture, selection odds, widebody, the post-2019 hurdle and per-engine aftermarket margin; strain is a placeholder. No executive profiles yet."
+   },
+   "risk_ratings": [
+    {
+     "dimension": "technology",
+     "rating": "Low-Medium",
+     "note": "Evolves inside the geared architecture: composite fan, CMC hot section, new gear. The open fan is \"a long time from now\". Durability comes before fuel burn. The original GTF was a bolder bet (inference).",
+     "ids": [
+      "P-0772",
+      "P-0790",
+      "P-0104",
+      "P-1344",
+      "P-1348",
+      "P-1828",
+      "P-1602",
+      "P-1868",
+      "P-1126"
+     ]
+    },
+    {
+     "dimension": "schedule",
+     "rating": "Low",
+     "note": "Will not race to an entry into service before 2035 and waits for the airframer to commit (inference). Its dates still slip: the GTF Advantage, planned to enter service in 2024, was certified in 2025.",
+     "ids": [
+      "P-1312",
+      "P-2058",
+      "P-0711",
+      "P-0753",
+      "P-0761",
+      "P-0785",
+      "P-1817"
+     ]
+    },
+    {
+     "dimension": "balance_sheet",
+     "rating": "Medium",
+     "note": "UTC said in 2017 it was \"not capital-constrained\". In 2023 RTX bought back $12.87bn and issued $12.34bn of net debt; after an August cut to BBB+, both agencies moved to negative outlook. Development is cut first in a downturn.",
+     "ids": [
+      "P-1164",
+      "P-1138",
+      "P-1884",
+      "P-1554",
+      "P-1878",
+      "P-0602",
+      "P-0467",
+      "P-0398",
+      "P-1372",
+      "P-0423",
+      "P-1887",
+      "P-1964"
+     ]
+    },
+    {
+     "dimension": "pricing",
+     "rating": "Low",
+     "note": "Standard terms and no deep discounts past launch; it wants the loss-making OE model revisited. Aggressive terms lose value in the calibrated engine. Exposure remains: OE engines sell below cost and never break even.",
+     "ids": [
+      "P-0735",
+      "P-1333",
+      "P-0081",
+      "P-2071",
+      "P-1308",
+      "P-0774",
+      "P-1143",
+      "P-1296",
+      "P-1210",
+      "P-0707"
+     ]
+    }
+   ],
+   "topics": [
+    {
+     "key": "objectives",
+     "headline": "Defend the A320neo GTF franchise; return to Boeing only sole source",
+     "text": "First, keep the GTF on the A320neo, about 40% of selections (2024 claim), and its 20-30 year aftermarket. Second, clear the GTF's board-set bar: about 10% all-in against an 8% cost of capital (inference). Third, protect the dividend and repair the rating after shocks. Fourth, profitable share, not maximum: 40-50% is fine. Fifth, return to Boeing only as sole source. Winning means lifecycle value, not segment margin.",
+     "ids": [
+      "P-0111",
+      "P-0295",
+      "P-1143",
+      "P-1296",
+      "P-1243",
+      "P-1163",
+      "P-0731",
+      "P-0715",
+      "P-0566",
+      "P-0423",
+      "P-1362",
+      "P-1887",
+      "P-1292",
+      "P-0706",
+      "P-0737",
+      "P-0697"
+     ]
+    },
+    {
+     "key": "capital",
+     "headline": "Programme spend and dividend protected; buybacks flex; rating repaired later",
+     "text": "Protection order: committed programme spend, then the dividend (held at $1.90 in 2020, raised yearly to $2.48 by 2024). Buybacks are the swing item: $47M (2020), $12.87bn (2023). The rating is sacrificed (cut to BBB+, August 2023), then repaired by deleveraging. Discretionary development is cut first. Cash is not the constraint (view): Goldman Sachs forecasts RTX free cash flow of $8.1-9.8bn a year (2026-28). Hurdle: 8%-plus, or \"buy stock back\".",
+     "ids": [
+      "P-0867",
+      "P-1887",
+      "P-1888",
+      "P-0423",
+      "P-0566",
+      "P-1883",
+      "P-1884",
+      "P-1554",
+      "P-1878",
+      "P-1362",
+      "P-0467",
+      "P-0398",
+      "P-1372",
+      "P-1964",
+      "P-1164",
+      "P-1165"
+     ]
+    },
+    {
+     "key": "product",
+     "headline": "Upgrade over clean sheet; on offence, sole source or no engine",
+     "text": "Four launch tests: development cost, aircraft volume, number of engine suppliers, aftermarket profile. On offence, sole source is a condition: \"We will not compete if it's a 2-engine competition.\" It commits only when the airframer commits. Defending the A320neo franchise is the exception: it committed early and accepted dual source. Technology evolves inside the geared architecture, durability first. No widebody: \"narrow-body focused\". Joint Ventures share risk, never core technology.",
+     "ids": [
+      "P-0703",
+      "P-0714",
+      "P-0737",
+      "P-0698",
+      "P-0746",
+      "P-0711",
+      "P-1868",
+      "P-1347",
+      "P-1993",
+      "P-0707",
+      "P-1298",
+      "P-0772",
+      "P-0790",
+      "P-1344",
+      "P-1348",
+      "P-1313",
+      "P-1233"
+     ]
+    },
+    {
+     "key": "risk",
+     "headline": "Low appetite for new-engine risk; carries fixed-price aftermarket risk",
+     "text": "Technology: incremental; a 2019 industry-brief plan for a 20-25% fuel-efficiency gain became the GTF Advantage, about 1% better. Schedule: will not race to entry into service before 2035; its plans slip a step at a time. Balance sheet: the parent absorbs shocks, such as the $2.9bn net powder-metal charge. Pricing: no deep discounts past launch, yet about 80% of GTFs carry fixed-price fleet plans and their time-on-wing risk.",
+     "ids": [
+      "P-1828",
+      "P-1602",
+      "P-1312",
+      "P-0425",
+      "P-0506",
+      "P-1563",
+      "P-1138",
+      "P-0735",
+      "P-1333",
+      "P-1121",
+      "P-0295"
+     ]
+    },
+    {
+     "key": "operations",
+     "headline": "Ramps deliver 60-70% of plan; every durability crisis fixed forward",
+     "text": "GTF deliveries ran 60-70% of plan in years 1-2: 138 against \"just over 200\" (2016), 375 against 600 (2017). Capacity is sized for A320neo rate 65, committed to 63, never for spikes. Bottlenecks get embedded staff and second sources. Durability crises recur, peaking with powder metal ($5.4bn gross; a forecast 350 aircraft grounded on average over 2024-26). The answer is always an upgrade: GTF Advantage, Hot Section Plus.",
+     "ids": [
+      "P-0809",
+      "P-0833",
+      "P-0795",
+      "P-0887",
+      "P-0918",
+      "P-0069",
+      "P-0079",
+      "P-0854",
+      "P-0997",
+      "P-0273",
+      "P-0279",
+      "P-1563",
+      "P-1039",
+      "P-0758",
+      "P-0785",
+      "P-0786"
+     ]
+    },
+    {
+     "key": "rivals",
+     "headline": "Airbus is the franchise, Boeing the prize, CFM the default rival",
+     "text": "Airbus, 30-48% of P&W sales (2016-24), asks for rates above what P&W funds and presses cost-downs. Boeing buys no P&W commercial engines and is hard on price; treat its launch hints as negotiation (inference). CFM is sole source on the 737 MAX and every game narrowbody's fallback. Rolls-Royce is ex-partner, would-be partner and rival; a Joint Venture offer from RR signals it rates its own odds low (inference).",
+     "ids": [
+      "P-1927",
+      "P-1380",
+      "P-1386",
+      "P-1392",
+      "P-2047",
+      "P-0092",
+      "P-2008",
+      "P-0697",
+      "P-2020",
+      "P-0125",
+      "P-2017",
+      "P-1994",
+      "P-2000",
+      "P-1868",
+      "P-2001",
+      "P-2004"
+     ]
+    },
+    {
+     "key": "credibility",
+     "headline": "Beats segment-profit guides; programme dates and costs slip stepwise",
+     "text": "Segment-profit guides start low and are beaten (2022: guided up $500-600M; up $763M on Goldman Sachs adjusted figures). Programme numbers start optimistic and slip a step at a time: GTF cash breakeven moved from \"mid-2020s\" to about 2027. Under stress it reaffirms, then cuts: \"There's not a surprise coming\" (June 2023); powder-metal cash then rose from $0.5bn (July) to about $3bn (September). The per-engine loss is not disclosed.",
+     "ids": [
+      "P-0503",
+      "P-0040",
+      "P-0042",
+      "P-0425",
+      "P-0506",
+      "P-0582",
+      "P-1563",
+      "P-0588",
+      "P-0594",
+      "P-0584"
+     ]
+    },
+    {
+     "key": "crisis",
+     "headline": "Cut development and buybacks, hold the dividend, fix forward",
+     "text": "GTF teething (2016-19): charges of about $100M (2016) and $196M (2017); ramp and dividend kept. COVID (2020): development and capex cut, buybacks suspended, dividend held, rate-63 capacity kept. Powder metal (2023-26): $2.9bn P&W-net charge, partners bore 49%, airlines partly compensated, then a $10bn buyback. Pattern (inference): accrue the charge at once, pay slowly, fix forward. No capacity added to exploit the MAX grounding.",
+     "ids": [
+      "P-0279",
+      "P-0273",
+      "P-0144",
+      "P-0867",
+      "P-0467",
+      "P-0398",
+      "P-1372",
+      "P-1883",
+      "P-0423",
+      "P-1887",
+      "P-0091",
+      "P-1563",
+      "P-0591",
+      "P-0110",
+      "P-0602",
+      "P-0616",
+      "P-0652",
+      "P-0657",
+      "P-0079"
+     ]
+    },
+    {
+     "key": "game",
+     "headline": "Upgrade in 2026; launch gtf_next into disclosures or a strong NGSA hedge",
+     "text": "Default plan (inference). Turn 1: commit gtf_upgrade (+$1.76B); no gtf_next unless an airframer discloses NGSA or fps on pw_gtf2, or NGSA odds reach about 0.45; disclose a conditional offer. Turn 2: cancel a gtf_next no airframe flies; launch into any disclosure. Turns 3-4: launch only into disclosures, else Do Nothing. Avoids aggressive terms and pw_wb. Triggers: NGSA or fps disclosure, durability crisis, RR jv_pw signal, widebody Re-engine (abstain).",
+     "ids": [
+      "P-0711",
+      "P-0737",
+      "P-1347",
+      "P-0735",
+      "P-1333",
+      "P-1313",
+      "P-1233",
+      "P-0786",
+      "P-1355",
+      "P-1371",
+      "P-0757",
+      "P-0702"
+     ]
+    },
+    {
+     "key": "biases",
+     "headline": "Durability optimism, reaffirm-then-cut, incumbent protection, capacity conservatism",
+     "text": "Durability optimism: \"behind us\" (2016) and \"a thing of the past\" (2017) each preceded new problems. Reaffirm, then cut: 2016 deliveries went from 200 to about 150. Incumbent protection: upgrade over clean sheet, a late NGSA welcomed; the 2000s harvest meant passing on the 787. Capacity conservatism: no capacity for spikes, then short of Airbus's needs. Technology possessiveness may refuse a Joint Venture the payoff favours (inference).",
+     "ids": [
+      "P-0810",
+      "P-0812",
+      "P-0814",
+      "P-0878",
+      "P-0582",
+      "P-1563",
+      "P-1298",
+      "P-1302",
+      "P-0745",
+      "P-1312",
+      "P-1125",
+      "P-1139",
+      "P-0069",
+      "P-0079",
+      "P-0165",
+      "P-1233",
+      "P-1240"
+     ]
+    }
+   ],
+   "levers": [
+    {
+     "lever": "gtf_upgrade (GTF durability upgrade)",
+     "stance": "Default ON: commit in 2026. Worth +$1.76B in turn 1 and positive in every turn-1 case; P&W's answer to every durability problem."
+    },
+    {
+     "lever": "gtf_next (next-generation GTF, narrowbody)",
+     "stance": "Default OFF. Launch, standard terms, in the turn an airframer discloses NGSA or fps on pw_gtf2. NGSA hedge only if odds reach about 0.45."
+    },
+    {
+     "lever": "terms (standard or aggressive)",
+     "stance": "Standard. Aggressive terms never pay at calibration: winning NGSA on them scores -$3.66B, losing it -$3.11B. No deep discounts past launch."
+    },
+    {
+     "lever": "join_rr_jv (UltraFan narrowbody Joint Venture)",
+     "stance": "Default OFF; free unless RR launches jv_pw, then irreversible. Join only if UltraFan selection odds reach about 0.23. Shares RR's technology, not P&W's (inference)."
+    },
+    {
+     "lever": "pw_wb (new widebody engine)",
+     "stance": "Never at calibration: -$3.65B on the 787 Re-engine, -$4.10B on the A350 Re-engine. P&W is \"narrow-body focused\"."
+    },
+    {
+     "lever": "cancel / Do Nothing",
+     "stance": "Cancel gtf_next at the first turn no airframe flies or has disclosed it; holding costs about $0.75B a year. Do Nothing in quiet turns."
+    },
+    {
+     "lever": "disclose",
+     "stance": "Disclose a standing offer: gtf_next, sole source, standard terms, for any airframer disclosing NGSA or fps on pw_gtf2; and a conditional Joint Venture offer."
+    }
+   ],
+   "people": [],
+   "teams": [],
+   "verifier_notes": [
+    "tagline: added \"on offence\"; P&W accepted dual source on the A320neo (P-1993, P-0707), so \"only as sole source\" overstated.",
+    "summary: added the NGSA hedge exception (odds about 0.45) to the game plan; \"stays out of\" shortened to \"avoids\" widebody.",
+    "evidence.confidence: added per-engine aftermarket margin to the thin list (profile section 10, largest payoff uncertainty).",
+    "risk technology: removed \"Inference:\" from own-words claims (P-0772, P-0790, P-0104, P-1348); kept (inference) on the bolder-bet judgement.",
+    "risk schedule: GTF Advantage was planned for 2024 entry into service (P-0753), not certification; re-worded and added P-0785.",
+    "risk balance_sheet: \"not capital-constrained\" is a 2017 UTC CEO quote (P-1164), not an inference; relabelled.",
+    "risk balance_sheet: \"issued net debt for buybacks\" restated as the two P-1884 figures; rating sequence per P-1554 (BBB+ in August, negative outlooks in October).",
+    "risk balance_sheet: unsupported \"engines get no such stretch\" cut; development-cut claim re-cited with P-1372.",
+    "risk pricing: removed \"Inference:\" label from own-words claims (P-0735, P-1333, P-1308); engine result flagged as calibrated engine.",
+    "objectives headline: \"new engines only sole source\" changed to \"return to Boeing only sole source\" (objective 5; A320neo is dual source).",
+    "capital: \"repaired (BBB+, August 2023)\" was wrong: BBB+ was the downgrade (P-1554); now \"cut to BBB+, then repaired by deleveraging\" (P-1362).",
+    "capital: \"programme spend protected\" vs \"development cut first\" read as a contradiction; now \"committed programme spend\" and \"discretionary development\".",
+    "capital: added $1.90 held dividend (P-1887); GS FCF labelled (view); added P-1372 for buyback suspension.",
+    "product: headline and text now say sole source applies on offence; A320neo defence committed early and accepted dual source (added P-1993, P-0707).",
+    "risk topic: the 20-25% plan is from the 2019 industry brief (P-1828), not P&W; source named.",
+    "credibility: \"unit loss never quantified\" softened to \"not disclosed\"; P-0308 implies about $1.5M per engine in 2018, P-0584 declines a figure.",
+    "crisis: added years to the $100M (2016) and $196M (2017) charges (P-0279, P-0273).",
+    "crisis: \"airlines compensated\" changed to \"partly compensated\" and P-0110 added; \"partners paid\" changed to \"bore\" (49% of the charge, P-1563).",
+    "game headline: added the NGSA hedge so the headline matches the text and section 6 (odds about 0.45).",
+    "Verified unchanged: evidence counts (1,413 + 413 + 153 + 64 + 29 = 2,072), Airbus 30-48% (2016-24), deliveries 138/200 and 375/600, $5.4bn/$2.9bn/49%, 350 AOG, $763M, cash $0.5bn to $3bn.",
+    "Verified unchanged: all lever payoffs (+1.76, -3.66/-3.11, 0.23, -3.65/-4.10, $0.75B a year, 0.45) match profile section 6 engine tables.",
+    "Verified quotes verbatim: \"We will not compete if it's a 2-engine competition\" (P-0737), \"narrow-body focused\" (P-1313), \"a long time from now\" (P-0104), \"buy stock back\" (P-1165), \"behind us\" (P-0810), \"a thing of the past\" (P-0878), \"There's not a surprise coming\" (P-0582).",
+    "All 123 distinct cited ids exist in evidence.jsonl and appear in profile.md; P-2000/P-2001/P-2004/P-2071 are RR or CFM subject items held in the P&W file, kept.",
+    "checked: 132 claims, changed: 23"
+   ],
+   "status": "checked",
+   "id_check": {
+    "cited": 188,
+    "distinct": 123,
+    "unknown": []
+   }
+  },
+  {
+   "player_id": "cfm",
+   "name": "CFM International (GE side)",
+   "game_role": "Engine maker, not a player: its engines are airframer options and the market cell sets its reactions",
+   "tagline": "GE's half of a 50/50 Joint Venture with Safran: serves both airframers, prices for return, lets airframers set launch dates.",
+   "summary": "This view is GE's side of CFM International, a 50/50 Joint Venture with Safran. CFM's own officers never speak in the sources and Safran's CEO speaks once, so GE executives stand in. CFM is not a player today: airframers pick cfm_ducted, cfm_open_fan (RISE) or GE's own ge_genx_next, and the market cell sets reactions. In the default team Culp decides after Ghai tests money and Ali tests dates. Narrowbody price, capacity and RISE need Safran's consent; the sources never show a veto.",
+   "evidence": {
+    "items": 1300,
+    "sources": "GE earnings calls, investor days and conferences, December 2015 to November 2025, plus 10 Capital IQ records (November 2025); 110 items concern CFM itself. Safran's CEO speaks once.",
+    "confidence": "High on GE's guidance, capital and operations; Medium on engine launches, since RISE is not yet a product; Low on Safran's side, where consent is assumed."
+   },
+   "risk_ratings": [
+    {
+     "dimension": "technology",
+     "rating": "High",
+     "note": "Culp and Ali rate it High: 'all in' on the open fan, earliest-ever dust testing, a composite fan blade certified after two failures. Ghai rates it Medium.",
+     "ids": [
+      "CX-0214",
+      "CX-0222",
+      "CX-0002",
+      "CX-0011",
+      "CX-0918"
+     ]
+    },
+    {
+     "dimension": "schedule",
+     "rating": "Low-Medium",
+     "note": "Culp rates it Low to Medium: dates are the airframer's call, but his 2023-24 LEAP ramp forecasts proved optimistic. Ghai and Ali rate it Medium.",
+     "ids": [
+      "CX-0205",
+      "CX-0592",
+      "CX-0619",
+      "CX-0926",
+      "CX-0211"
+     ]
+    },
+    {
+     "dimension": "balance_sheet",
+     "rating": "Low",
+     "note": "Culp and Ghai both rate it Low: A-rating target, leverage below 2.5x, investment grade first, capex capped at 2-3% of revenue.",
+     "ids": [
+      "CX-0252",
+      "CX-0471",
+      "CX-0914",
+      "CX-0922"
+     ]
+    },
+    {
+     "dimension": "pricing",
+     "rating": "Medium",
+     "note": "Culp's contract and price rating: accepts loss-making LEAP OE and priced early-life service risk, but not unpaid risk; launch-era pricing has ended. Ghai rates service risk Medium-High.",
+     "ids": [
+      "CX-0557",
+      "CX-0207",
+      "CX-0569",
+      "CX-0930",
+      "CX-0979"
+     ]
+    }
+   ],
+   "topics": [
+    {
+     "key": "objectives",
+     "headline": "Serve both airframers, protect safety, grow the installed base",
+     "text": "The player view is GE's half of a 50/50 Joint Venture with Safran. Culp's ranking: safety and quality; delivery to airframers and airlines; the installed-base annuity; next-generation technology; then the balance sheet and 70-75% of free cash flow to shareholders. Winning means being on all critical platforms with both airframers and earning decades of service. Share for its own sake is not a goal.",
+     "ids": [
+      "CX-0231",
+      "CX-0227",
+      "CX-0166",
+      "CX-0658",
+      "CX-0552",
+      "CX-0422",
+      "CX-0256",
+      "CX-0595",
+      "CX-0587",
+      "CX-0313",
+      "CX-0493"
+     ]
+    },
+    {
+     "key": "capital",
+     "headline": "Investment grade first, R&D protected, capex capped, cash returned",
+     "text": "Investment grade and leverage below 2.5x come first. Capex stays at 2-3% of revenue, avoiding overcapitalization. R&D holds at 6-8% of revenue with no 'program dividend', protected in COVID and through the 2025 tariffs. 70-75% of free cash flow goes to shareholders; more than 100% of 2024 free cash flow was returned. A GE-side player books half of CFM's narrowbody value and capex (inference).",
+     "ids": [
+      "CX-0914",
+      "CX-0471",
+      "CX-0922",
+      "CX-0174",
+      "CX-0398",
+      "CX-0962",
+      "CX-0595",
+      "CX-0953",
+      "CX-0166"
+     ]
+    },
+    {
+     "key": "product",
+     "headline": "All in on the open fan; the airframer sets the date",
+     "text": "RISE is a 50/50 technology programme launched with Safran in 2021, to become product when airframers choose. GE is 'all in' on the open fan: a ducted engine gets less than half the fuel-burn gain. A next engine needs at least 20% better fuel burn without trading durability, and could be available by the middle of the next decade. LEAP gets derivative durability upgrades now.",
+     "ids": [
+      "CX-0147",
+      "CX-0166",
+      "CX-0205",
+      "CX-0214",
+      "CX-0183",
+      "CX-0217",
+      "CX-0208",
+      "CX-0189",
+      "CX-0162"
+     ]
+    },
+    {
+     "key": "risk",
+     "headline": "High technology conviction, low balance-sheet risk, priced service risk",
+     "text": "High on technology, low on balance sheet: 'all in' on the open fan, yet investment grade and below 2.5x. Schedule appetite is Low to Medium because dates are the airframer's call. It took early LEAP OE losses and priced service risk to win share, but refuses unmodelled risk. The CFO calls the GE9X ramp 'the single biggest thing' to manage and expects its losses to more than double in 2026.",
+     "ids": [
+      "CX-0214",
+      "CX-0252",
+      "CX-0471",
+      "CX-0205",
+      "CX-0557",
+      "CX-0207",
+      "CX-0440",
+      "CX-0933",
+      "CX-0995"
+     ]
+    },
+    {
+     "key": "operations",
+     "headline": "Supply binds, not demand; durability fixed at root cause",
+     "text": "LEAP is sold out through the decade, but supply binds: in 2024, 80% of shortages came from 9 suppliers. In 2025 supply, engineering and quality moved under Ali. The LEAP-1A durability hardware was certified in December 2024, and new -1A engines matched CFM56 levels by November 2025; -1B kit certification is due in 1H 2026. About 70% of LEAP shop visits by 2030 go to CFM, split equally with Safran.",
+     "ids": [
+      "CX-0221",
+      "CX-0613",
+      "CX-0633",
+      "CX-0225",
+      "CX-0996",
+      "CX-0210",
+      "CX-0219"
+     ]
+    },
+    {
+     "key": "rivals",
+     "headline": "Serve both airframers; never name rival engine makers",
+     "text": "Boeing: sole source on the MAX, 'a backlog that we share'. Airbus: LEAP holds about 55-60% of the A320neo, with a win rate above 70% on the A320 family since 2023, credited to durability. Rival engine makers are never named, and price is not cut to match them. Safran is partner and shop competitor. Refusing or locking out an airframer is implausible (inference).",
+     "ids": [
+      "CX-0182",
+      "CX-0197",
+      "CX-0168",
+      "CX-0218",
+      "CX-0580",
+      "CX-0609",
+      "CX-0145",
+      "CX-0185",
+      "CX-0587"
+     ]
+    },
+    {
+     "key": "credibility",
+     "headline": "Money targets mostly met; LEAP volume promises ran late in 2023-24",
+     "text": "Most profit, cash and margin targets were met or beaten, 2022 aside; the 2028 profit target was raised three years early. LEAP unit promises missed: the joint 2023 promise of +50% delivered +38% or +25%, and 2024 fell 10% against +20-25%. Since 2025 LEAP is guided low and raised. Rule (inference): haircut a 2023-24-style ramp promise by a quarter to a half of its growth.",
+     "ids": [
+      "CX-0324",
+      "CX-0531",
+      "CX-0597",
+      "CX-0646",
+      "CX-0160",
+      "CX-0590",
+      "CX-0176",
+      "CX-0954",
+      "CX-0592",
+      "CX-0654"
+     ]
+    },
+    {
+     "key": "crisis",
+     "headline": "Absorb and share the loss; fix at root cause; never blame",
+     "text": "In the MAX grounding GE planned 2020 LEAP-1B shipments at about half the 2019 rate, agreed payment terms rather than halting deliveries, and put its exposure in the same range as Safran's EUR 200 million (inference: an even split). In COVID it cut capex about 25% but protected technology. It avoids finger pointing, and named a Safran labour disruption while holding guidance.",
+     "ids": [
+      "CX-0333",
+      "CX-0142",
+      "CX-0136",
+      "CX-0389",
+      "CX-0398",
+      "CX-0158",
+      "CX-0625",
+      "CX-0220"
+     ]
+    },
+    {
+     "key": "game",
+     "headline": "Referee test: open fan from 2035, ducted before, no price war",
+     "text": "Not a player: airframers pick its engines and the market cell sets reactions. Each turn Culp frames, Ghai tests money, Ali tests dates, Safran's consent is assumed, Culp decides. fps or NGSA: cfm_open_fan for entry into service from 2035, else cfm_ducted (inference). Back a 737 Rate Increase. 787 Re-engine: ge_genx_next (inference). Rival engine launch: no price cut, RISE funded. An fps slip blamed on suppliers: no finger pointing (inference).",
+     "ids": [
+      "CX-0467",
+      "CX-0929",
+      "CX-0009",
+      "CX-0184",
+      "CX-0608",
+      "CX-0205",
+      "CX-0206",
+      "CX-0615",
+      "CX-0580",
+      "CX-0609",
+      "CX-0553",
+      "CX-0625"
+     ]
+    },
+    {
+     "key": "biases",
+     "headline": "Optimistic ramps, conservative money, deference to airframers",
+     "text": "Display when the situation matches. Ramp promises outrun suppliers, as in 2023-24. Money guidance starts low and is raised. Dates and rates are deferred to airframers. Open-fan conviction runs ahead of the calendar: the RISE fly demo slipped from mid-decade to this decade. Lean comes before capital. Bad news arrives paired with an offset.",
+     "ids": [
+      "CX-0590",
+      "CX-0176",
+      "CX-0619",
+      "CX-0270",
+      "CX-0324",
+      "CX-0654",
+      "CX-0452",
+      "CX-0151",
+      "CX-0211",
+      "CX-0540",
+      "CX-0939"
+     ]
+    }
+   ],
+   "levers": [
+    {
+     "lever": "cfm_ducted (engine option today)",
+     "stance": "Narrowbody default for fps and NGSA: no margin bonus, no delay, full capture. GE's offer for entry into service before 2035 (inference)."
+    },
+    {
+     "lever": "cfm_open_fan, RISE (engine option today)",
+     "stance": "Adds 1.5pp airframer margin and 1 year to entry into service; 0.85x share capture. GE backs it from 2035 entry, once an airframer commits (inference)."
+    },
+    {
+     "lever": "ge_genx_next (engine option today, GE alone)",
+     "stance": "787 Re-engine default, no Safran gate. GE would offer it to defend a 70% life-of-programme 787 win rate (inference)."
+    },
+    {
+     "lever": "Launch RISE or an advanced ducted engine (proposed)",
+     "stance": "Launch only with a committed airframe and Safran's consent. Ducted is the fallback, with less than half the fuel-burn gain."
+    },
+    {
+     "lever": "Widebody offer: GEnx-next or GE9X derivative (proposed)",
+     "stance": "GEnx-next by default, GE alone (inference). The CFO would warn against a second new-engine ramp while GE9X losses more than double in 2026 (inference)."
+    },
+    {
+     "lever": "Terms: standard or aggressive (proposed)",
+     "stance": "Standard: a fair risk-adjusted return, whatever competitors do. Aggressive only to win sole source with a long aftermarket tail (inference)."
+    },
+    {
+     "lever": "One-time LEAP durability upgrade (proposed)",
+     "stance": "Yes, already under way: -1A kit certified December 2024, -1B due 1H 2026. Targets 8,000 cycles harsh, 17,000 neutral."
+    },
+    {
+     "lever": "Cancel (proposed)",
+     "stance": "No. R&D holds at 6-8% with no 'program dividend'. If no airframer launches, slow spending rather than cancel (inference)."
+    }
+   ],
+   "people": [
+    {
+     "exec_id": "culp",
+     "name": "Larry Culp",
+     "seat": "CEO",
+     "status": "current",
+     "title_dates": "GE Chairman & CEO from October 2018; also ran GE Aerospace directly from July 2022; GE Aerospace Chairman & CEO per Capital IQ, November 2025",
+     "confidence": "High on guidance, operations, capital allocation and crises; Medium on engine launch behaviour; Low on how he bargains with Safran",
+     "tagline": "Decider of the default team: safety before delivery, installed base over share, no public blame, airframers set dates.",
+     "voice": [
+      {
+       "quote": "safety, quality, delivery and cost, always in that order",
+       "id": "CX-0658"
+      },
+      {
+       "quote": "We don't have a birthright on that next order.",
+       "id": "CX-0564"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Ranks safety and quality, then delivery, then the installed-base annuity, then technology, then returns. Rejects share for its own sake: 'we are not the low bid'.",
+       "ids": [
+        "CX-0658",
+        "CX-0552",
+        "CX-0422",
+        "CX-0256",
+        "CX-0595",
+        "CX-0493",
+        "CX-0250"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Balance sheet first, then 70-75% of free cash flow to shareholders. In COVID he cut capex about 25% but protected technology bets. Bolt-ons only; vertical integration only without an alternative.",
+       "ids": [
+        "CX-0595",
+        "CX-0389",
+        "CX-0398",
+        "CX-0428",
+        "CX-0596"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "'All in' on the open fan, but demands at least 20% better fuel burn without trading durability. Leaves entry into service to airframers; new platforms only if additive to GE.",
+       "ids": [
+        "CX-0214",
+        "CX-0217",
+        "CX-0208",
+        "CX-0205",
+        "CX-0301"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Rates technology High, schedule Low to Medium, balance sheet Low, contract and price Medium. LEAP OE losses are 'the price of admission'; unmodelled risk is refused.",
+       "ids": [
+        "CX-0214",
+        "CX-0205",
+        "CX-0252",
+        "CX-0207",
+        "CX-0557",
+        "CX-0440"
+       ]
+      },
+      {
+       "key": "operations",
+       "text": "Runs supply hands-on: engineers and kaizens on supplier floors, buffer stock rather than throttling good suppliers. Gave supply to Ali in 2025; calls the delay his main 2024 mistake.",
+       "ids": [
+        "CX-0526",
+        "CX-0657",
+        "CX-0556",
+        "CX-0612",
+        "CX-0629",
+        "CX-0638"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Never names rival engine makers and welcomes GTF operators. Scores win rates, not relative share. Checks his outlook against Safran's and calls CFM probably the most successful transatlantic Joint Venture.",
+       "ids": [
+        "CX-0580",
+        "CX-0581",
+        "CX-0322",
+        "CX-0218",
+        "CX-0600",
+        "CX-0199",
+        "CX-0198"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Met or beat most cash, margin and deleveraging targets but missed in 2022; raised the 2028 profit target three years early. LEAP ramps missed in 2023-24. Reversed a categorical denial (GECAS).",
+       "ids": [
+        "CX-0324",
+        "CX-0606",
+        "CX-0479",
+        "CX-0531",
+        "CX-0597",
+        "CX-0646",
+        "CX-0590",
+        "CX-0592",
+        "CX-0243",
+        "CX-0434"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "MAX: condolences first, never ahead of Boeing or the FAA, exposure shared with Safran. COVID: 'an axe', then 'the scalpel'. Publicly a problem solver, not a finger pointer.",
+       "ids": [
+        "CX-0278",
+        "CX-0307",
+        "CX-0279",
+        "CX-0397",
+        "CX-0625"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Proposes and decides. cfm_ducted before about 2035, cfm_open_fan after (inference); standard terms; no RISE cancellation; ge_genx_next for a 787 Re-engine (inference). Moved by floor data and firm launches.",
+       "ids": [
+        "CX-0608",
+        "CX-0214",
+        "CX-0609",
+        "CX-0174",
+        "CX-0398",
+        "CX-0615",
+        "CX-0259"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Over-optimistic LEAP ramps in 2023-24: haircut a quarter to a half (inference). Money guidance conservative, then raised. Installed-base lens on OE losses. Deference to airframers. Lean before capital. Plans on the low case.",
+       "ids": [
+        "CX-0590",
+        "CX-0176",
+        "CX-0270",
+        "CX-0324",
+        "CX-0555",
+        "CX-0452",
+        "CX-0540",
+        "CX-0536"
+       ]
+      }
+     ],
+     "teams": [
+      "culp-miller-joyce-2019",
+      "culp-dybeckhappe-slattery-2021",
+      "culp-dybeckhappe-stokes-2023",
+      "culp-ghai-stokes-2024",
+      "culp-ghai-ali-2026"
+     ]
+    },
+    {
+     "exec_id": "flannery",
+     "name": "John Flannery",
+     "seat": "CEO",
+     "status": "historical",
+     "title_dates": "GE Healthcare CEO at 2016-17 events; GE CEO-elect June 2017; Chairman & CEO from his first call as CEO, October 2017, to about October 2018",
+     "confidence": "Medium on capital, guidance and portfolio; Low to medium on CFM-specific conduct",
+     "tagline": "Cash-reset CEO: stage-gates spending, delegates Aviation to Joyce, never mentions Safran.",
+     "voice": [
+      {
+       "quote": "it's show-me time",
+       "id": "CX-0803"
+      },
+      {
+       "quote": "Capital allocation is a contact sport",
+       "id": "CX-0799"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Cash and the balance sheet first: 'an obsession with cash generation and capital allocation'. Then execution and a high say-do ratio. Aviation is a premier asset to keep investing in.",
+       "ids": [
+        "CX-0843",
+        "CX-0838",
+        "CX-0821",
+        "CX-0868"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Targets below 2.5x net debt/EBITDA by 2020 and $15B+ of cash. Halved the dividend. Capex back to a 1.0 reinvestment rate as LEAP matures; R&D and launches protected.",
+       "ids": [
+        "CX-0867",
+        "CX-0838",
+        "CX-0818",
+        "CX-0802",
+        "CX-0859"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Credits CMCs and additive parts for LEAP's edge. Would offer cfm_ducted and hold the open fan until tests are in, more cautious than today's 'all in' (inference, from a Healthcare stage-gate rule).",
+       "ids": [
+        "CX-0857",
+        "CX-0873",
+        "CX-0783",
+        "CX-0787",
+        "CX-0214"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Schedule risk Low: blames H-turbine penalties on aggressive launch delivery promises. Balance sheet Low, with shock scenarios run first. Would refuse an aggressive entry-into-service date (inference).",
+       "ids": [
+        "CX-0830",
+        "CX-0838",
+        "CX-0865"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Resets fast and in full: cut 2017 EPS guidance from $1.60 to $1.05-1.10 on his first call. Said 'The dividend is a priority' 24 days before halving it.",
+       "ids": [
+        "CX-0794",
+        "CX-0793",
+        "CX-0818"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "Names causes bluntly: 'too optimistic for too long', 'we underappreciated the risk'. Surfaces problems early, because hidden ones 'metastasize'.",
+       "ids": [
+        "CX-0822",
+        "CX-0834",
+        "CX-0814"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Decides on cash and defers Aviation detail to Joyce. Asks for cash and leverage under shocks, the payback and the competitor's view. Tie-break: the lower-cash option (inference).",
+       "ids": [
+        "CX-0815",
+        "CX-0865",
+        "CX-0779",
+        "CX-0832"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Cash first. Market conservatism: price pressure and troughs persist. Treats Aviation as the easy business. Reassurance before review.",
+       "ids": [
+        "CX-0865",
+        "CX-0788",
+        "CX-0887",
+        "CX-0824",
+        "CX-0793"
+       ]
+      }
+     ],
+     "teams": [
+      "flannery-miller-joyce-2018"
+     ]
+    },
+    {
+     "exec_id": "immelt",
+     "name": "Jeff Immelt",
+     "seat": "CEO",
+     "status": "historical",
+     "title_dates": "GE Chairman & CEO, evidence December 2015 to July 2017; handover targeted for summer 2017",
+     "confidence": "Medium: rich on aviation economics, but only his last 20 months",
+     "tagline": "Installed-base CEO who chose LEAP at the 2009 trough: big technology bets, sole source, no share at lousy margins.",
+     "voice": [
+      {
+       "quote": "Having control of your installed base, that's the game.",
+       "id": "CX-1094"
+      },
+      {
+       "quote": "there's no reason to do that at lousy margins, right guys? None.",
+       "id": "CX-1099"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "The installed base and services first, at returns 'in excess of 30%'. Then launch execution and product cost: lifting GE-wide equipment margins from 1% to 5% was 'job one'.",
+       "ids": [
+        "CX-1094",
+        "CX-1093",
+        "CX-1067",
+        "CX-1082"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Bedrock first: safety, dividend, new products and pension take about half the cash; the rest goes to the best returns. Capex back toward 1:1 after the LEAP launches.",
+       "ids": [
+        "CX-1076",
+        "CX-0999",
+        "CX-1074",
+        "CX-1075"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Likes hard launches that build moats, like LEAP. Would back the open fan once an airframer commits, as the bigger technology bet (inference). Favours Joint Ventures and supplier buys.",
+       "ids": [
+        "CX-1059",
+        "CX-1096",
+        "CX-1060",
+        "CX-1017"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Technology High and fixed-price High: service contracts where GE bore engine risk. Balance sheet Medium-high: promised bolt-ons, then put $7.4B of cash into Baker Hughes.",
+       "ids": [
+        "CX-1096",
+        "CX-1034",
+        "CX-1079",
+        "CX-1002"
+       ]
+      },
+      {
+       "key": "operations",
+       "text": "Builds capacity ahead: $125M at Asheville; his era ran the LEAP supply chain 6-8 months ahead. Accepted LEAP inventory builds in the ramp; once share is won, focus moves to cost.",
+       "ids": [
+        "CX-1073",
+        "CX-0125",
+        "CX-1037",
+        "CX-1090"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Sees airframers as tables to sweep: '100% at Boeing; 100%, COMAC; 55% at Airbus'. Scores share as a multiple of the nearest competitor; never names rivals.",
+       "ids": [
+        "CX-1098",
+        "CX-1107",
+        "CX-1108"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Holds targets past the evidence and recasts rather than withdraws them: the $2 EPS bridge became 'the high end of the range'. Still states misses plainly.",
+       "ids": [
+        "CX-1080",
+        "CX-1085",
+        "CX-1084",
+        "CX-1069",
+        "CX-1021"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Applying his rules (inference): bid for sole source on fps and NGSA; accept dilutive OE for the annuity, but never 'lousy margins'; aggressive terms only at launch. Offer ge_genx_next as a derivative. Cancel rarely.",
+       "ids": [
+        "CX-1098",
+        "CX-1106",
+        "CX-1099",
+        "CX-1116",
+        "CX-1018",
+        "CX-1007"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Holds targets past the evidence. Counters gloom with his own data. Treats misses as one-offs. Uses share as the scorecard.",
+       "ids": [
+        "CX-1080",
+        "CX-1023",
+        "CX-1069",
+        "CX-1107"
+       ]
+      }
+     ],
+     "teams": [
+      "immelt-bornstein-joyce-2016"
+     ]
+    },
+    {
+     "exec_id": "ghai",
+     "name": "Rahul Ghai",
+     "seat": "CFO",
+     "status": "current",
+     "title_dates": "GE Aerospace business CFO from August 2022; GE Senior VP & CFO from September 2023; the same title per Capital IQ, November 2025",
+     "confidence": "High on guidance, capital and aftermarket pricing; Medium on CFM governance; Low on rivals and RISE",
+     "tagline": "Current CFO: installed base first, price/cost positive, capex at 2-3% of revenue, guide low and raise.",
+     "voice": [
+      {
+       "quote": "it is important to keep this flywheel going over the longer term",
+       "id": "CX-0949"
+      },
+      {
+       "quote": "We're not expecting that this magically gets better.",
+       "id": "CX-0975"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Ranks the installed base and services first, then cost, then deliveries over working capital, then price above cost, then a strong balance sheet with high cash returns.",
+       "ids": [
+        "CX-0994",
+        "CX-0928",
+        "CX-0958",
+        "CX-0929",
+        "CX-0914",
+        "CX-0923"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Investment grade first; capex within 2-3% of revenue, avoiding overcapitalization; over 70% of deployable cash to shareholders, more than 100% of 2024 free cash flow. R&D held through tariffs.",
+       "ids": [
+        "CX-0914",
+        "CX-0922",
+        "CX-0923",
+        "CX-0953",
+        "CX-0962"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Razor-razorblade model unchanged; runs the GEnx margin playbook on LEAP. Silent on the open fan; leans cfm_ducted (inference), having called the GE9X ramp 'the single biggest thing' to manage.",
+       "ids": [
+        "CX-0966",
+        "CX-0903",
+        "CX-0933"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Rates fixed-price and service risk Medium-High, technology and schedule Medium, balance sheet Low. Books durability reserves in the quarter found; accepts GE9X losses more than doubling in 2026.",
+       "ids": [
+        "CX-0979",
+        "CX-0936",
+        "CX-0918",
+        "CX-0926",
+        "CX-0914",
+        "CX-0905",
+        "CX-0995"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Never names Pratt & Whitney or Rolls-Royce. Measures the GTF contest by share of Airbus deliveries (55-60%) and win ratio (about 70%). Builds airframers' rate goals into plans.",
+       "ids": [
+        "CX-0906",
+        "CX-0981",
+        "CX-0982"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Profit, cash and margin commitments met or beaten. Supplier-dependent volumes slipped: 2,000 LEAPs promised for 2024 are now guided for 2026, after three cuts to the 2024 plan.",
+       "ids": [
+        "CX-0920",
+        "CX-0984",
+        "CX-0910",
+        "CX-0987",
+        "CX-0937",
+        "CX-0940",
+        "CX-0945"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "Tariffs in 2025: operational actions, then SG&A and price, a temporary surcharge, R&D held. A year after the 2024 supplier breakdown he owned GE's part.",
+       "ids": [
+        "CX-0962",
+        "CX-0964",
+        "CX-0990"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Tests each option: price/cost positive, capex inside 2-3%, a dated profit sequence, no number before airframer volumes. Treats narrowbody price as 'a joint decision' with Safran.",
+       "ids": [
+        "CX-0929",
+        "CX-0922",
+        "CX-0911",
+        "CX-0944",
+        "CX-0184"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Guides low and raises later. Optimistic on supplier-dependent volumes. Plays down costs as immaterial. Delivers bad news with an offset.",
+       "ids": [
+        "CX-0920",
+        "CX-0984",
+        "CX-0910",
+        "CX-0943",
+        "CX-0939"
+       ]
+      }
+     ],
+     "teams": [
+      "culp-ghai-stokes-2024",
+      "culp-ghai-ali-2026"
+     ]
+    },
+    {
+     "exec_id": "dybeck_happe",
+     "name": "Carolina Dybeck Happe",
+     "seat": "CFO",
+     "status": "historical",
+     "title_dates": "GE Senior VP & CFO, introduced February 2020; first call April 2020, last July 2023",
+     "confidence": "High on balance sheet and cash; Medium on aviation economics; Low on CFM governance, pricing, launches and rivals",
+     "tagline": "COVID-era CFO: liquidity first, fast cost cuts, escalators in contracts, no blame on the partner.",
+     "voice": [
+      {
+       "quote": "you know me, always talk about cash",
+       "id": "CX-0760"
+      },
+      {
+       "quote": "Good companies act fast, right?",
+       "id": "CX-0701"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Balance-sheet safety first, with liquidity above leverage; then cash quality and lean cost-out. From 2022 she shifted capital towards growth.",
+       "ids": [
+        "CX-0665",
+        "CX-0666",
+        "CX-0760",
+        "CX-0674",
+        "CX-0730"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Net debt/EBITDA below 2.5x, a single-A rating, 12 months of maturities covered. Aviation R&D held at 7-8% of sales through COVID.",
+       "ids": [
+        "CX-0659",
+        "CX-0667",
+        "CX-0698"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Accepts LEAP OE dilution with a dated breakeven. Sells engine, spares and service as one bundle, as in IndiGo's 620 LEAP-1A engines with a multiyear service agreement.",
+       "ids": [
+        "CX-0765",
+        "CX-0735",
+        "CX-0703"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Balance sheet and fixed-price risk Low: cut turnkey exposure in GE Power and put inflation escalators into service contracts. Technology Medium. No direct evidence on schedule.",
+       "ids": [
+        "CX-0659",
+        "CX-0721",
+        "CX-0745",
+        "CX-0698"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Never names Pratt & Whitney or Rolls-Royce. Would not 'speak for' Safran; reconciled the partners' narrowbody assumptions in public rather than contest them.",
+       "ids": [
+        "CX-0754",
+        "CX-0157",
+        "CX-0691",
+        "CX-0144"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Sets conservative floors, then beats them: Q4 2020 cash of at least $2.5B came in at $4.4B. Optimistic on supply-chain recovery timing, which missed.",
+       "ids": [
+        "CX-0676",
+        "CX-0417",
+        "CX-0738",
+        "CX-0749"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "Fast on cost: Aviation headcount fell 11% in one quarter. A large up-front service-contract charge, then smaller true-ups. Cancellations given 'for context' against the backlog.",
+       "ids": [
+        "CX-0673",
+        "CX-0701",
+        "CX-0672",
+        "CX-0714",
+        "CX-0671"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Asks what an option does to leverage and liquidity, where the cash comes from and whether escalators are in. Would launch only with a firm airframer and leverage on target (inference).",
+       "ids": [
+        "CX-0659",
+        "CX-0667",
+        "CX-0760",
+        "CX-0744",
+        "CX-0707"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Liquidity first in any shock. Conservative floors, then beat. 'For context' framing of bad news. No blame on the partner.",
+       "ids": [
+        "CX-0666",
+        "CX-0683",
+        "CX-0676",
+        "CX-0671",
+        "CX-0754"
+       ]
+      }
+     ],
+     "teams": [
+      "culp-dybeckhappe-slattery-2021",
+      "culp-dybeckhappe-stokes-2023"
+     ]
+    },
+    {
+     "exec_id": "miller",
+     "name": "Jamie Miller",
+     "seat": "CFO",
+     "status": "historical",
+     "title_dates": "GE Transportation CEO (2016-17 events); GE Senior VP & CFO from October 2017 to January 2020",
+     "confidence": "Medium-high on cash, leverage and guidance; Medium on aviation economics; Low on CFM governance and rivals",
+     "tagline": "Deleveraging CFO under Flannery and Culp: single-A, below 2.5x, cash and cost over EPS, Aviation protected.",
+     "voice": [
+      {
+       "quote": "We just need to go be boring for a while.",
+       "id": "CX-1166"
+      },
+      {
+       "quote": "It's just a delay in cash timing.",
+       "id": "CX-1234"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "The balance sheet first: single-A, below 2.5x, a high cash balance. Cash and cost, not EPS. Aviation is the protected franchise; LEAP must move down the cost curve.",
+       "ids": [
+        "CX-1198",
+        "CX-1201",
+        "CX-1225",
+        "CX-1193"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Deleverages through disposals and dividend cuts, not equity. Judges engine capex over the life cycle; capex falls to a 0.9x reinvestment rate as launches roll off.",
+       "ids": [
+        "CX-1202",
+        "CX-1190",
+        "CX-1167",
+        "CX-1153",
+        "CX-1149"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Says campaigns are won with discounts on engines and services; would price inside a risk-adjusted strike zone (inference, from a GE Power rule). Prefers cfm_ducted as lower cash risk (inference).",
+       "ids": [
+        "CX-1216",
+        "CX-1217",
+        "CX-1165",
+        "CX-1153"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Balance sheet Low; technology Medium by delegation; schedule Medium, as dated LEAP recovery promises slipped; fixed-price Medium, calling service agreements high-margin, high-return.",
+       "ids": [
+        "CX-1198",
+        "CX-1212",
+        "CX-1172",
+        "CX-1180",
+        "CX-1195",
+        "CX-1152"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Respectful: as Transportation CEO she called Caterpillar 'a great competitor'. Never names engine rivals; scores LEAP on a 58% A320neo win rate and sole source on the MAX and C919.",
+       "ids": [
+        "CX-1143",
+        "CX-1197"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Guides below internal stretch, then raises at the half: the 2019 cash guide of -$2B to 0 closed at +$2.3B. Two 2018 promises, the dividend and the rating, slipped.",
+       "ids": [
+        "CX-1200",
+        "CX-1233",
+        "CX-1199",
+        "CX-0324",
+        "CX-1177",
+        "CX-1178",
+        "CX-1194"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "MAX: kept shipping engines, quantified the hit per quarter ($300M, then $400M) and framed it as cash timing. Would not forecast beyond the current year.",
+       "ids": [
+        "CX-1207",
+        "CX-1235",
+        "CX-1236",
+        "CX-1234",
+        "CX-1242"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Asks about leverage and rating, the multi-year cash profile, self-help against market bets, and contingency. Defers big calls to the CEO.",
+       "ids": [
+        "CX-1198",
+        "CX-1165",
+        "CX-1206",
+        "CX-1223",
+        "CX-1185"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Frames a customer's crisis as cash timing. Conservative external guide. Dated balance-sheet promises slip under pressure. The CEO decides the big calls.",
+       "ids": [
+        "CX-1234",
+        "CX-1200",
+        "CX-1178",
+        "CX-1185"
+       ]
+      }
+     ],
+     "teams": [
+      "flannery-miller-joyce-2018",
+      "culp-miller-joyce-2019"
+     ]
+    },
+    {
+     "exec_id": "bornstein",
+     "name": "Jeff Bornstein",
+     "seat": "CFO",
+     "status": "historical",
+     "title_dates": "GE CFO at the first item, December 2015; Vice Chairman & CFO from June 2017; handed over in October 2017",
+     "confidence": "Medium-high on capital allocation and underwriting; Medium on LEAP economics; Low on CFM and Safran",
+     "tagline": "LEAP-launch CFO: win the installed base early, ship OE at a loss, demand 15%+ returns, own critical technology.",
+     "voice": [
+      {
+       "quote": "it's all about the installed base, and it's all about services",
+       "id": "CX-0035"
+      },
+      {
+       "quote": "the buck stops with me",
+       "id": "CX-0117"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Cost and margin first, then cash conversion, on-time launches and the installed base: 'winning these deals early is critically important'.",
+       "ids": [
+        "CX-0043",
+        "CX-0082",
+        "CX-0033",
+        "CX-0032",
+        "CX-0035"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Dividend first. Acquisitions need 15%+ returns and must beat the cost of capital in about three years. Borrowed $5B for a buyback; kept R&D rising in a downturn.",
+       "ids": [
+        "CX-0100",
+        "CX-0066",
+        "CX-0015",
+        "CX-0053",
+        "CX-0029"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "LEAP ships at a loss while spares are 'wildly profitable'; services fund the launch. Wants critical technology owned, not partnered: an awkward fit with a 50/50 engine (inference).",
+       "ids": [
+        "CX-0088",
+        "CX-0025",
+        "CX-0049"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Technology High: doubled LEAP and GE9X investment in a downturn. Schedule and balance sheet Medium. Fixed-price Medium-high, with a service book 'many times bigger than anybody else'.",
+       "ids": [
+        "CX-0038",
+        "CX-0030",
+        "CX-0073",
+        "CX-0053",
+        "CX-0086"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Never names rival engine makers. Claims 75-78% share in large commercial engines and moves first, since the world 'settles on 2 or 3 solutions'.",
+       "ids": [
+        "CX-0038",
+        "CX-0037"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Holds the range after an early miss and calls it timing; resets fully only when forced. His 2016 LEAP plan of about 100 delivered 77.",
+       "ids": [
+        "CX-0054",
+        "CX-0091",
+        "CX-0115",
+        "CX-0073"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "2017 Power collapse: back to basics, more cost-out, management changes. Admitted overoptimistic planning, then stepped down as CFO.",
+       "ids": [
+        "CX-0118",
+        "CX-0116",
+        "CX-0117"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Applying his rules (inference): aggressive terms and an early launch to win the installed base, unlike today's standard terms; concessions recovered through service escalation and attach rates. Asks for the IRR and a flat-market downside.",
+       "ids": [
+        "CX-0034",
+        "CX-0035",
+        "CX-0037",
+        "CX-0098",
+        "CX-0097",
+        "CX-0609",
+        "CX-0015",
+        "CX-0068"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Launch-year delivery optimism. Misses called timing. Flat answers under challenge. Land-grab on the installed base.",
+       "ids": [
+        "CX-0073",
+        "CX-0054",
+        "CX-0113",
+        "CX-0035",
+        "CX-0088"
+       ]
+      }
+     ],
+     "teams": [
+      "immelt-bornstein-joyce-2016"
+     ]
+    },
+    {
+     "exec_id": "ali",
+     "name": "Mohamed Ali",
+     "seat": "COO",
+     "status": "current",
+     "title_dates": "VP of Engineering, GE Aviation and GE Aerospace, March 2022 to March 2024; heads the technology and operations organisation from early 2025; Senior VP and Chief Technology & Operations Officer per Capital IQ, November 2025",
+     "confidence": "Medium on engineering doctrine; Low on pricing, capital, capacity and Safran. A thin profile",
+     "tagline": "Default team's engineer: believes only tested fixes, argues the open fan on physics, owns supply since 2025.",
+     "voice": [
+      {
+       "quote": "if it's not turn on and turn off, I will not believe the outcomes",
+       "id": "CX-0009"
+      },
+      {
+       "quote": "No single person can make a safety decision.",
+       "id": "CX-0012"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Institutional safety, then LEAP time on wing, then RISE, then RISE technology into LEAP now (inference: the order comes from his March 2024 presentation).",
+       "ids": [
+        "CX-0012",
+        "CX-0010",
+        "CX-0008",
+        "CX-0011",
+        "CX-0162"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Supplies the physics behind the open-fan doctrine: 20% is 'practically impossible' without it; ducted gets less than half. Next narrowbody: an open fan with Safran. Hot-section experience is a moat.",
+       "ids": [
+        "CX-0011",
+        "CX-0013",
+        "CX-0180",
+        "CX-0183",
+        "CX-0169"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Technology High: 'We failed twice. We got it done'. Schedule Medium: test-backed fixes met, demonstration dates slipped. No evidence on balance sheet or commercial risk.",
+       "ids": [
+        "CX-0002",
+        "CX-0007",
+        "CX-0225",
+        "CX-0210",
+        "CX-0211"
+       ]
+      },
+      {
+       "key": "operations",
+       "text": "Root cause first, then inspection and fixes the airframer and regulator accept. Admits gaps in precise numbers. Runs supply since 2025, with no own words yet on how.",
+       "ids": [
+        "CX-0003",
+        "CX-0010",
+        "CX-0006",
+        "CX-0633"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Tests dates: no date without 'turn on and turn off' test evidence (inference). Backs cfm_open_fan and accepts +1 year (inference). Strongest yes on the LEAP upgrade; would veto cancelling RISE (inference).",
+       "ids": [
+        "CX-0009",
+        "CX-0008",
+        "CX-0180",
+        "CX-0007",
+        "CX-0002"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Physics conviction ahead of the calendar: the RISE fly demo slipped from mid-decade to this decade. Test-gating holds dates (inference). The CFM56 is his yardstick.",
+       "ids": [
+        "CX-0151",
+        "CX-0211",
+        "CX-0008",
+        "CX-0006"
+       ]
+      }
+     ],
+     "teams": [
+      "culp-ghai-ali-2026"
+     ]
+    },
+    {
+     "exec_id": "stokes",
+     "name": "Russell Stokes",
+     "seat": "COO",
+     "status": "historical",
+     "title_dates": "GE Power roles 2015-20 (style only); CEO of GE Aviation Services from October 2020; President & CEO of Commercial Engines & Services from July 2022 to at least March 2024",
+     "confidence": "High on the LEAP aftermarket, durability and operating style; Medium on pricing; Low on launches and Safran",
+     "tagline": "Aftermarket operator: durability first, lean before capex, no launch pricing, optimistic ramps, worked CFM pricing with Safran.",
+     "voice": [
+      {
+       "quote": "durability has to be our absolute #1 focus",
+       "id": "CX-1285"
+      },
+      {
+       "quote": "get me to the action plan",
+       "id": "CX-1284"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Safety and quality, then LEAP durability as the 'absolute #1 focus', then keeping customers flying, the ramp, a services flywheel worth 3.5x the engine sale, and funding the future.",
+       "ids": [
+        "CX-1297",
+        "CX-1285",
+        "CX-1278",
+        "CX-1298",
+        "CX-1292"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Lean before capex: squeeze the existing footprint before new sites. Capital-light MRO, with third parties investing in LEAP shop capacity. Keeps funding GE9X and RISE through the ramp.",
+       "ids": [
+        "CX-1280",
+        "CX-1279",
+        "CX-1292"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Ended launch pricing on new service contracts; prices for investment, risk and value. Fixes LEAP with targeted component upgrades and expects the service-contract share to fall below 60%.",
+       "ids": [
+        "CX-1287",
+        "CX-1299",
+        "CX-1290",
+        "CX-1286"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Schedule High (optimistic); technology Medium; balance sheet Low; service-contract risk Medium, carried internally. Accepts GE9X losses into the early 2030s.",
+       "ids": [
+        "CX-1275",
+        "CX-0590",
+        "CX-1292",
+        "CX-1279",
+        "CX-0163",
+        "CX-1291"
+       ]
+      },
+      {
+       "key": "operations",
+       "text": "Supply is the binding constraint, traced to skilled labour: welders, NDT experts, X-ray technicians. Checks rate readiness with critical suppliers; runs weekly action plans.",
+       "ids": [
+        "CX-1294",
+        "CX-1295",
+        "CX-1296",
+        "CX-1284"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Fights campaign by campaign on time on wing: 'game on'. Cites a 60% life-of-programme win rate on the A320; price did not drive GEnx wins.",
+       "ids": [
+        "CX-1288",
+        "CX-1300",
+        "CX-1299"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Met profit sequences and the LEAP-1A fix. Missed unit ramps: +50% for 2023 delivered +38% or +25%; +20-25% for 2024 ended down.",
+       "ids": [
+        "CX-1276",
+        "CX-0194",
+        "CX-0225",
+        "CX-1275",
+        "CX-0590",
+        "CX-0176",
+        "CX-1294",
+        "CX-0619"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "The one GE leader shown working CFM pricing with Safran, 'a joint decision'. Standard terms; durability upgrade yes; RISE funded, launched only with a committed airframer (inference).",
+       "ids": [
+        "CX-0184",
+        "CX-1289",
+        "CX-1287",
+        "CX-1283",
+        "CX-1292"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Optimistic unit ramps: haircut by a quarter to a half (inference). Under-buys capacity. Frames durability favourably against the CFM56 while saying he is not satisfied.",
+       "ids": [
+        "CX-0590",
+        "CX-0176",
+        "CX-1280",
+        "CX-1290",
+        "CX-1285"
+       ]
+      }
+     ],
+     "teams": [
+      "culp-dybeckhappe-stokes-2023",
+      "culp-ghai-stokes-2024"
+     ]
+    },
+    {
+     "exec_id": "joyce",
+     "name": "David Joyce",
+     "seat": "COO",
+     "status": "historical",
+     "title_dates": "President & CEO of GE Aviation and GE Vice Chairman, July 2016 to March 2020; succeeded by Slattery",
+     "confidence": "High on LEAP ramp operations and product picking; Medium on risk and pricing; Low on Safran and COVID",
+     "tagline": "LEAP-ramp chief: derivative engines, business case before engineering, candid about delinquency, safety first in the MAX crisis.",
+     "voice": [
+      {
+       "quote": "every time we trade a CFM for a LEAP, it's a negative. Let's just be honest about it",
+       "id": "CX-1111"
+      },
+      {
+       "quote": "3 is completely out of the question",
+       "id": "CX-1127"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Secure the CFM56-to-LEAP transition; hold the margin rate flat through the ramp; let the CFM56 and services pay for LEAP dilution; safety of flight first in a crisis.",
+       "ids": [
+        "CX-0133",
+        "CX-1124",
+        "CX-1111",
+        "CX-1132"
+       ]
+      },
+      {
+       "key": "capital",
+       "text": "Acquisitions need a stand-alone return above 20%. Reuses technology to cut engineering cost; cuts capex in step with the airframer's rate.",
+       "ids": [
+        "CX-1110",
+        "CX-1114",
+        "CX-0141"
+       ]
+      },
+      {
+       "key": "product",
+       "text": "Derivative first, unlike today's open-fan bet: a LEAP-based 'half generation' for Boeing's NMA, and no geared product. Clean sheets only when the market is liked; product picking is the key skill.",
+       "ids": [
+        "CX-1126",
+        "CX-1128",
+        "CX-1121",
+        "CX-1125",
+        "CX-0214"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Technology High in components, Low in architecture. Schedule High (optimistic). No three-supplier airframe; two only on a big market.",
+       "ids": [
+        "CX-1114",
+        "CX-1126",
+        "CX-1109",
+        "CX-1118",
+        "CX-1127"
+       ]
+      },
+      {
+       "key": "operations",
+       "text": "Ramp resilience: 90% of hardware dual-sourced, suppliers able to run at 2x, new rates run six months early. On a quality escape, shut the supplier and surge the second source.",
+       "ids": [
+        "CX-1113",
+        "CX-1123"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "Fights Pratt & Whitney on utilisation: 95%, 8.4 points better than the competition. Cites a 58% neo win rate and sole source on the MAX and C919.",
+       "ids": [
+        "CX-1133",
+        "CX-0134"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Forecasts ran optimistic, but he discloses misses himself, in numbers: 'about 6 weeks delinquent'. Hit his 2017 range of 450-500 LEAPs with 459.",
+       "ids": [
+        "CX-1109",
+        "CX-1112",
+        "CX-1118",
+        "CX-1115",
+        "CX-1168"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "MAX: four days after the Ethiopian crash, condolences, then root cause and corrective action first. Cut 2020 LEAP capacity to 1,400 but kept means to support Boeing; agreed payment terms rather than halting deliveries.",
+       "ids": [
+        "CX-1132",
+        "CX-1136",
+        "CX-0142"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Business case first: units under wing, market size, competitor response. Offers a LEAP-derivative cfm_ducted (inference) and recovers launch concessions later. Would quit a three-supplier tender (inference, from his NMA rule).",
+       "ids": [
+        "CX-1122",
+        "CX-1126",
+        "CX-1116",
+        "CX-1127"
+       ]
+      },
+      {
+       "key": "biases",
+       "text": "Ramp optimism, then candour. Derivative bias. Margin-rate discipline. Scepticism of engineers' excitement over a new airplane.",
+       "ids": [
+        "CX-1109",
+        "CX-1118",
+        "CX-1126",
+        "CX-1124",
+        "CX-1122"
+       ]
+      }
+     ],
+     "teams": [
+      "immelt-bornstein-joyce-2016",
+      "flannery-miller-joyce-2018",
+      "culp-miller-joyce-2019"
+     ]
+    },
+    {
+     "exec_id": "slattery",
+     "name": "John Slattery",
+     "seat": "COO",
+     "status": "historical",
+     "title_dates": "President & CEO of GE Aviation from July 2020; named Chief Commercial Officer in July 2022",
+     "confidence": "Low to medium. A short card",
+     "tagline": "RISE-launch chief: safety, quality, delivery and cost in that order; R&D at 6-8%; co-led the 2050 Safran extension.",
+     "voice": [
+      {
+       "quote": "Safety, quality, delivery and cost. In that order",
+       "id": "CX-1260"
+      },
+      {
+       "quote": "rest assured, we're prepared for the inevitable uptick in demand",
+       "id": "CX-1253"
+      }
+     ],
+     "topics": [
+      {
+       "key": "product",
+       "text": "Next narrowbody needs more than 20% better fuel burn than LEAP: cfm_open_fan for entry into service from 2035, ducted earlier (inference). R&D at 6-8% of revenue, half customer-funded.",
+       "ids": [
+        "CX-1251",
+        "CX-1255"
+       ]
+      },
+      {
+       "key": "credibility",
+       "text": "Targeted 2,000 LEAPs for 2023, matched by Safran's CEO the same day; it became a 1,700 target and 1,570 delivered. Haircut his ramp targets (inference).",
+       "ids": [
+        "CX-1257",
+        "CX-0149",
+        "CX-0172",
+        "CX-0590"
+       ]
+      },
+      {
+       "key": "crisis",
+       "text": "Takes 'swift and difficult actions' but stays ready for the uptick. Held R&D at $1.8B through COVID; quantified Russian titanium exposure and buffers.",
+       "ids": [
+        "CX-1253",
+        "CX-1251",
+        "CX-1258"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Safran consent comes easily (inference): he co-announced RISE and the CFM extension to 2050. Launch inside the R&D envelope; cancel: no.",
+       "ids": [
+        "CX-0147",
+        "CX-0153",
+        "CX-1255",
+        "CX-1251"
+       ]
+      }
+     ],
+     "teams": [
+      "culp-dybeckhappe-slattery-2021"
+     ]
+    },
+    {
+     "exec_id": "fitzgerald",
+     "name": "Bill Fitzgerald",
+     "seat": "COO",
+     "status": "historical",
+     "title_dates": "VP & GM, Commercial Engines Operation, GE Aviation, February 2017",
+     "confidence": "Low. A short card; colour for the Joyce-era teams",
+     "tagline": "Joyce-era commercial engines head, no seat: supply chain run ahead, real dual sourcing, talks to Safran several days a week.",
+     "voice": [
+      {
+       "quote": "Safran is a terrific partner.",
+       "id": "CX-0778"
+      },
+      {
+       "quote": "They ought to help us get this thing down the cost curve.",
+       "id": "CX-0124"
+      }
+     ],
+     "topics": [
+      {
+       "key": "risk",
+       "text": "Accepts launch pricing and a LEAP service attach of about two-thirds, signed with an 'eyes-wide-open' expectation. Expects price once performance is proven in service.",
+       "ids": [
+        "CX-0774",
+        "CX-0775"
+       ]
+      },
+      {
+       "key": "operations",
+       "text": "Runs the supply chain 6 to 8 months ahead and accepts the working-capital cost. Dual sources for real, at 40-60 or 45-55, not a token 92-8 split.",
+       "ids": [
+        "CX-0771",
+        "CX-0125",
+        "CX-0772"
+       ]
+      },
+      {
+       "key": "rivals",
+       "text": "A321neo share of 47% against Pratt & Whitney's 53%; argues LEAP is better the longer the flight leg.",
+       "ids": [
+        "CX-0776"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Decisions are worked counterpart to counterpart: he talks to his Safran counterpart '3 or 4 days a week'. Aggressive terms at launch (inference).",
+       "ids": [
+        "CX-0128",
+        "CX-0127",
+        "CX-0774"
+       ]
+      }
+     ],
+     "teams": []
+    },
+    {
+     "exec_id": "mcallister",
+     "name": "Kevin McAllister",
+     "seat": "COO",
+     "status": "historical",
+     "title_dates": "President & CEO, GE Aviation Services, June 2016",
+     "confidence": "Low. A short card; colour for the Joyce-era teams",
+     "tagline": "Joyce-era services chief, no seat: manage by airline and engine, not averages; retrofit technology into the installed base.",
+     "voice": [
+      {
+       "quote": "managing averages does nothing for you",
+       "id": "CX-1138"
+      },
+      {
+       "quote": "move technology back into the installed base",
+       "id": "CX-1139"
+      }
+     ],
+     "topics": [
+      {
+       "key": "objectives",
+       "text": "Move technology back into the installed base for longer time on wing and better fuel efficiency.",
+       "ids": [
+        "CX-1139"
+       ]
+      },
+      {
+       "key": "risk",
+       "text": "Signs flight-hour agreements of 12 to 20 years, betting on improving time on wing and shop-visit cost.",
+       "ids": [
+        "CX-1140"
+       ]
+      },
+      {
+       "key": "operations",
+       "text": "Acts by airline and by engine. Engineers and data scientists isolated a fault to one carrier, avoiding pulling 100-plus engines from an 18,000-engine fleet.",
+       "ids": [
+        "CX-1138",
+        "CX-1137"
+       ]
+      },
+      {
+       "key": "game",
+       "text": "Durability inject: targeted action by airline and engine, not a fleet-wide pull. LEAP durability upgrade: yes, by retrofit (inference).",
+       "ids": [
+        "CX-1137",
+        "CX-1138",
+        "CX-1139"
+       ]
+      }
+     ],
+     "teams": []
+    }
+   ],
+   "teams": [
+    {
+     "id": "culp-ghai-ali-2026",
+     "members": "Larry Culp (CEO), Rahul Ghai (CFO), Mohamed Ali (technology and operations)",
+     "is_default": true,
+     "one_line": "Default. Culp decides after Ghai tests money and Ali tests dates; public open-fan choice; capital returns compete with launch capex; supply under one owner."
+    },
+    {
+     "id": "immelt-bornstein-joyce-2016",
+     "members": "Jeff Immelt (CEO), Jeff Bornstein (CFO), David Joyce (GE Aviation)",
+     "is_default": false,
+     "one_line": "LEAP-launch team. More aggressive on share and launch concessions than the baseline; builds capacity ahead of demand; holds targets longer before resetting."
+    },
+    {
+     "id": "flannery-miller-joyce-2018",
+     "members": "John Flannery (CEO), Jamie Miller (CFO), David Joyce (GE Aviation)",
+     "is_default": false,
+     "one_line": "Cash-reset team. The most cash-constrained and stage-gated, with the least appetite for a new launch and no visible partner diplomacy at the top."
+    },
+    {
+     "id": "culp-miller-joyce-2019",
+     "members": "Larry Culp (CEO), Jamie Miller (CFO), David Joyce (GE Aviation)",
+     "is_default": false,
+     "one_line": "MAX-crisis team. Defined absorb-and-share: losses shared with Safran, payment terms for Boeing. More deferential to Boeing and balance-sheet-bound than the default."
+    },
+    {
+     "id": "culp-dybeckhappe-slattery-2021",
+     "members": "Larry Culp (CEO), Carolina Dybeck Happe (CFO), John Slattery (GE Aviation)",
+     "is_default": false,
+     "one_line": "COVID and RISE-launch team. Clearest joint action with Safran: RISE, the CFM extension to 2050, joint ramp promises. Liquidity first in a shock."
+    },
+    {
+     "id": "culp-dybeckhappe-stokes-2023",
+     "members": "Larry Culp (CEO), Carolina Dybeck Happe (CFO), Russell Stokes (Commercial Engines & Services)",
+     "is_default": false,
+     "one_line": "First GE Aerospace team. Ended launch pricing and put durability first, but promised +50% LEAP output for 2023 and delivered +38% or +25%."
+    },
+    {
+     "id": "culp-ghai-stokes-2024",
+     "members": "Larry Culp (CEO), Rahul Ghai (CFO), Russell Stokes (Commercial Engines & Services)",
+     "is_default": false,
+     "one_line": "Spin-year team. Clearest Safran gate on price and highest price discipline; its 2024 LEAP guide of +20-25% ended down 10%."
+    }
+   ],
+   "verifier_notes": [
+    "objectives: the ranking is now labelled as Culp's. It is the order on his Quick card, not a ranking stated for the company.",
+    "risk: 'new-engine ramps worry the CFO most' narrowed to Ghai's own words on the GE9X ramp (CX-0933). The GE9X loss doubling is now stated as his expectation (CX-0995).",
+    "operations: CX-0225 certified the LEAP-1A HPT hardware, and CX-0996 covers only newly shipped -1A engines. CX-0210 is a -1B certification target. Wording fixed to match.",
+    "credibility: 'joint' now applies only to the 2023 +50% promise (CX-0160). The sources do not show the 2024 +20-25% guide (CX-0592) as joint.",
+    "game: 'Delay Tactics slip' replaced by 'fps slip blamed on suppliers'. The profiles list Delay Tactics as not addressed and treat the supplier-bottleneck inject as a separate case.",
+    "miller rivals: 'They're a great competitor' (CX-1143) was said of Caterpillar while she ran GE Transportation. Context added; the engine-rival claim now rests on CX-1197.",
+    "miller capital: 'never equity' softened to 'not equity'. CX-1167 shows no equity raise only through January 2020.",
+    "joyce crisis: 'root cause within four days' misread CX-1132. Four days after ET302 he put root cause first; he did not find the cause then.",
+    "ali game: the date veto is now labelled (inference). CX-0009 is his standard for believing fix results, and teams.md marks the date veto as inference.",
+    "ali risk: quote punctuation aligned with CX-0002, where 'We got it done' continues with 'because...'.",
+    "fitzgerald tagline: 'near-daily' overstated CX-0128 ('3 or 4 days a week, sometimes 7'). Now reads 'several days a week'.",
+    "bornstein title_dates: 'CFO from December 2015' implied a start date. CX-0014 is only his first item in the evidence.",
+    "ghai product: 'new-engine ramps as the biggest risk' narrowed to his GE9X ramp quote (CX-0933).",
+    "stokes product: 'wants' the service-contract share below 60% changed to 'expects', per CX-1286.",
+    "All 369 cited ids exist in the CFM evidence file, and none comes from another company. All 26 voice quotes were checked word for word against their ids and speakers.",
+    "All length limits re-checked after the edits. All ten player topics and the structure are unchanged.",
+    "checked: 481 claims, changed: 14"
+   ],
+   "status": "checked",
+   "id_check": {
+    "cited": 578,
+    "distinct": 369,
     "unknown": []
    }
   }
  ],
- "compare": null,
- "pending": [
-  "pratt_whitney",
-  "cfm"
- ],
- "provisional_caveats": [
-  "This early version shows Boeing, Airbus and Rolls-Royce. Pratt & Whitney and CFM, the independent fact-check and the cross-player comparison follow.",
-  "Airbus's executive profiles rest on the FY2025 Board Report and outside views. No Airbus call transcripts were available, so its leaders are thinly evidenced.",
-  "Rolls-Royce and Pratt & Whitney are profiled as companies. There are no executive profiles for them yet.",
-  "CFM's seats are held by GE executives. Safran's half of the joint venture is not in the sources."
- ]
+ "compare": {
+  "headline": "Boeing repairs, Airbus defends share from net cash, engine makers wait for airframes.",
+  "summary": "Boeing optimises stability: KPI-gated rates and debt repair to 'solidly investment grade' come before fps in 2029 [B-2283, B-2327]. Airbus optimises profit and cash, which set about 5,200 managers' bonuses, and defends about 60% of the single-aisle backlog with derivatives [A-0310, A-0864]. Since 2023 Rolls-Royce has put profit and cash ahead of share [R-1582]. Pratt & Whitney defends its A320neo GTF franchise and the aftermarket behind it [P-0111]. CFM, seen from GE's side, serves both airframers and lets them set dates [CX-0205]. Decision styles differ. Boeing works through hard rules and gates. Faury decides with soft cash and production vetoes (inference), and the Board approves big bets. At Rolls-Royce the CEO and CFO sign off anything above £25m [R-1579]. Pratt & Whitney answers to RTX. At CFM, Culp decides after Ghai tests money and Ali tests dates.",
+  "per_topic": [
+   {
+    "key": "objectives",
+    "comparison": "Boeing ranks safe, KPI-gated production first, then debt repair to 'solidly investment grade'. Shareholder returns are off [B-2221, B-2327]. Airbus ranks profit and cash first: EBIT and FCF drive about 5,200 managers' bonuses [A-0310]. Rolls-Royce puts profit and cash ahead of share [R-1582]. Pratt & Whitney's first aim is defending the A320neo GTF franchise, about 40% of selections in 2024 [P-0111]. Culp ranks safety, delivery and the installed base above returns [CX-0658]. Boeing alone ranks repair above growth (inference).",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "The only player with shareholder returns off; debt is 'far and away' the priority [B-2327]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "EBIT and FCF drive about 5,200 managers' bonuses; FCF scored 157% in 2025 [A-0310]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "'Not after market share': profit and cash first since 2023 [R-1582]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "Sells GTFs below cost; earns its money over a 20-30 year aftermarket [P-1143]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "Rejects share for its own sake; aims for all critical platforms with both airframers [CX-0587]."
+     }
+    ]
+   },
+   {
+    "key": "capital",
+    "comparison": "Balance sheets split the field. Boeing carried $53.4B of debt against $23B of cash in Q3 2025, and returns are off [B-2345]. Airbus ended 2025 with €12.2bn of net cash, and Rolls-Royce reported £1,972m of net cash for 2025 [AX-0102, R-0032]. Pratt & Whitney's parent let buybacks swing to $12.87bn in 2023 and was cut to BBB+ [P-1884, P-1554]. GE caps capex at 2-3% of revenue and returns 70-75% of free cash flow [CX-0922, CX-0595]. At Rolls-Royce, engineers, not cash, ration launches (inference) [R-0929].",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "Debt $53.4B against $23B cash in Q3 2025; shareholder returns off [B-2345]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "€12.2bn net cash and a US$54.2bn hedge book at end-2025 [A-0353]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "£5,157m net debt (2021) became £1,972m net cash (2025) [R-0027, R-0032]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "Buybacks swing: $47M in 2020, $12.87bn in 2023 [P-1883, P-1884]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "Capex capped at 2-3% of revenue; R&D held at 6-8% [CX-0922, CX-0174]."
+     }
+    ]
+   },
+   {
+    "key": "product",
+    "comparison": "Boeing, Airbus and Pratt & Whitney favour derivatives and upgrades. Boeing wants a new airplane 20-30% better and notes that engines alone give about 10% or less [B-1938, B-1975]. Airbus readies NGSA for EIS 'around 2037' on open fan and a rate-capable wing [A-0409, A-0225]. Pratt & Whitney demands sole source on offence [P-0737]. Rolls-Royce launches UltraFan only behind an announced airframe [R-0994]. GE is 'all in' on the open fan, yet leaves dates to airframers [CX-0214, CX-0205]. Boeing's game pick is cfm_ducted, not open fan.",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "Solo by default; the partnering pendulum points inward after Spirit was bought back [B-2195]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Joint Ventures are explicit strategy (ATR 50/50); A320neo kept over 95% commonality [A-0371, A-0244]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "'We will not compete if it's a 2-engine competition' [P-0737]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "Widebody is the franchise; narrowbody only if profitable [R-1574, R-1011]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "'All in' on the open fan; a ducted engine gets less than half the gain [CX-0214]."
+     }
+    ]
+   },
+   {
+    "key": "risk",
+    "comparison": "Most ratings are Low or Low-Medium, and three stand out. GE alone has a High technology rating: it is 'all in' on the open fan [CX-0214]. Airbus alone has a High schedule rating, on rate targets: rate 75 slipped from 2025 to end-2027 [AX-0042, AX-0054]. Pratt & Whitney alone has a Medium balance-sheet rating, after its parent's 2023 buybacks and a cut to BBB+ [P-1884, P-1554]. Boeing renounced fixed-price development: 'We're not going to do that anymore' [B-2318]. Rolls-Royce's ratings are all inferences.",
+    "standouts": [
+     {
+      "player_id": "cfm",
+      "note": "The only High technology rating: 'all in' on the open fan [CX-0214]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Schedule High on rate targets: rate 75 slipped from 2025 to end-2027 [AX-0042]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "Balance sheet Medium: parent cut to BBB+ in August 2023 [P-1554]."
+     },
+     {
+      "player_id": "boeing",
+      "note": "One major development at a time; no 'concurrent risk on top of risk' [B-0341]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "Refuses compressed schedules: left the NMA as 'too aggressive' [R-1934]."
+     }
+    ]
+   },
+   {
+    "key": "operations",
+    "comparison": "Supply limits every player (inference). Boeing raises rates in steps of 5 a month, at least 6 months apart, gated on six FAA-agreed KPIs. Beyond 47 a month the supply chain binds [B-2283, B-2351]. Airbus ramps harder, but rate 75 slipped about 2 years to end-2027 on engine supply [A-0159, A-0218]. GE traced 80% of its 2024 shortages to 9 suppliers [CX-0613]. Pratt & Whitney's GTF ramps delivered 60-70% of plan in years 1-2 [P-0809]. Rolls-Royce's 1H25 deliveries stayed broadly flat on casting and forging limits [R-1299, R-1302].",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "Rates set by six FAA-agreed KPIs, never to match Airbus [B-2283]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Integrates vertically when a supplier wobbles, as with Spirit [AX-0060]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "Aftermarket pays: 2024 gross profit £2,206m, against £443m from OE [R-0119]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "Powder metal: $5.4bn gross; fixed forward with upgrades such as GTF Advantage [P-1563]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "Supply moved under one owner, Ali, in 2025 [CX-0633]."
+     }
+    ]
+   },
+   {
+    "key": "rivals",
+    "comparison": "The airframers discount each other. Boeing counts an Airbus move only once it has firm orders or a launch [B-2419, B-2373]. Airbus measures Boeing by backlog share, about 60% of the single-aisle backlog, and discounts Boeing's statements (inference) [A-0864]. The engine makers map their rivals onto airframes. Rolls-Royce engines power 100% of A350 and A330neo deliveries [R-0134]. Airbus provided 30-48% of Pratt & Whitney's sales in 2016-24 [P-1927]. GE serves both airframers and never names rival engine makers [CX-0580].",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "Has never blamed Airbus for a supplier problem [B-1923]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Holds about 60% of the single-aisle backlog against the MAX [A-0864]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "Airbus is patron: RR engines on 100% of A350 and A330neo deliveries [R-0134]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "Airbus is the franchise, Boeing the prize, CFM the default rival [P-1927]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "Never names rival engine makers and will not cut price to match [CX-0580]."
+     }
+    ]
+   },
+   {
+    "key": "credibility",
+    "comparison": "One pattern repeats (inference): money targets are met, while operating dates and volumes slip. Rolls-Royce beat the top of its EBIT guidance each year in 2023-25 [R-0219]. Airbus beat all three cumulative FCF plans, yet rate 75 slipped about 2 years [A-0336, A-0159]. Pratt & Whitney beats its segment-profit guides while programme dates slip stepwise [P-0503, P-0425]. GE promised +50% LEAP output for 2023 and delivered +38% or +25% [CX-0160, CX-0590]. Boeing's record is the weakest (inference): seven 777X dates, and another reset in October 2025 with a $4.9B charge [B-2352, B-2342].",
+    "standouts": [
+     {
+      "player_id": "rolls_royce",
+      "note": "Guides low and beats; 2027 targets met two years early [R-0893]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "'There's not a surprise coming' (June 2023); powder-metal cash then rose to about $3bn [P-0582]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Financial plans land; operating signals run hot and are reset late [A-0336, A-0383]."
+     },
+     {
+      "player_id": "boeing",
+      "note": "Seven 777X dates; Ortberg now sets no internal rate dates [B-2352, BX-1235]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "Promised +50% LEAP output for 2023; delivered +38% or +25% [CX-0160, CX-0590]."
+     }
+    ]
+   },
+   {
+    "key": "crisis",
+    "comparison": "Shocks show what each player protects. Boeing drops buybacks within weeks, cuts the dividend last and never cancels a launched program [B-1547, B-0192]. Rolls-Royce protects liquidity: it cut its dividend within about 2 months of COVID and raised £2bn in a rights issue [R-0779, R-0049]. Pratt & Whitney holds the dividend and cuts development and buybacks [P-0867, P-1372]. GE cut capex about 25% in COVID but protected technology [CX-0398]. Airbus holds production steady and presses its advantage when Boeing stumbles [A-0039, A-0158].",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "In its own crises: cut or freeze the rate, launch nothing, cede timing to the FAA [B-2148]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Gained deliveries in the MAX grounding; won JAL after the 787 battery grounding [A-0158, A-0086]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "COVID: about 9,000 roles cut, Civil capex down 75% over 2019-21 [R-0814, R-0053]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "Powder metal: $2.9bn net charge; partners bore 49%; then a $10bn buyback [P-1563]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "MAX grounding: payment terms for Boeing rather than halting deliveries; exposure shared with Safran [CX-0142]."
+     }
+    ]
+   },
+   {
+    "key": "game",
+    "comparison": "In Turn 1 Boeing takes a Rate Increase and holds fps to 2029 [B-2276, B-2313]. Airbus fixes its NGSA engine by 2027 and launches NGSA in 2028 [A-0182, A-0409]. Neither re-engines its widebody after the other has (inference). Rolls-Royce and Pratt & Whitney open with durability upgrades, Trent 1000 (+$0.81B) and GTF (+$1.76B). They launch new engines almost only when an airframer announces a programme [R-1005, P-0786]. CFM is not a player; the market cell sets its reactions [CX-0467].",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "Hard rule: no fps order in Turn 1; Solo by default [B-2316]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Game default: NGSA launch 2028, EIS 2035; Delay Tactics off (inference) [A-0409]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "Turn 1 funds the Trent 1000 upgrade (+$0.81B); UltraFan only against announcements [R-0994]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "gtf_upgrade in 2026 (+$1.76B); aggressive terms never pay at calibration [P-0786]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "Not a player: open fan for EIS from 2035, else ducted (inference) [CX-0467]."
+     }
+    ]
+   },
+   {
+    "key": "biases",
+    "comparison": "Optimism about dates and volumes runs through all five (inference). Boeing quotes the nominal EIS and privately budgets 2 more years [B-0041]. Airbus sets rate targets too high and resets them late [A-0159, A-0218]. GE's LEAP ramp promises outran its suppliers in 2023-24 [CX-0590]. Both engine-supplier players show durability optimism. Rolls-Royce called the Trent 1000 'solved' in February 2019, and a blade then failed testing in November [R-1186, R-1210]. Pratt & Whitney's 'behind us' (2016) preceded new problems [P-0810]. Airbus's list also includes opportunism when Boeing stumbles [A-0083].",
+    "standouts": [
+     {
+      "player_id": "boeing",
+      "note": "'The market will wait' became the MAX in about 6 months [B-0291, B-0413]."
+     },
+     {
+      "player_id": "airbus",
+      "note": "Rate targets set too high, reset late, and blamed on engines and suppliers [A-0159, A-0185]."
+     },
+     {
+      "player_id": "rolls_royce",
+      "note": "Narrowbody oscillation: 'unfinished business', then 'we don't have to' (2015) [R-0942, R-0952]."
+     },
+     {
+      "player_id": "pratt_whitney",
+      "note": "'Behind us' (2016) and 'a thing of the past' (2017) preceded new problems [P-0810, P-0878]."
+     },
+     {
+      "player_id": "cfm",
+      "note": "Open-fan conviction outruns the calendar: the RISE fly demo slipped [CX-0151, CX-0211]."
+     }
+    ]
+   }
+  ],
+  "contrasts": [
+   {
+    "title": "Cash first versus share first",
+    "text": "Since 2023 Rolls-Royce has put profit and cash ahead of share and stopped share-buying concessions such as £286m of CARs in 2017 [R-1582, R-0113]. Airbus also ranks profit and cash first [A-0310]. Boeing reads it as a share player, and Boeing and analysts record aggressive launch pricing [B-2419, A-0064].",
+    "players": [
+     "rolls_royce",
+     "airbus",
+     "boeing"
+    ]
+   },
+   {
+    "title": "Derivative habit versus open-fan conviction",
+    "text": "Boeing launched only derivatives in 2011-17, and Pratt & Whitney prefers upgrades to clean sheets [B-0901, P-1298]. GE is 'all in' on the open fan and says a ducted engine gets less than half its fuel-burn gain [CX-0214, CX-0183]. Yet Boeing's game pick for fps is cfm_ducted, for durability.",
+    "players": [
+     "boeing",
+     "pratt_whitney",
+     "cfm"
+    ]
+   },
+   {
+    "title": "Aftermarket models: where the money is made",
+    "text": "Engine makers earn mainly in service. Rolls-Royce made £2,206m of aftermarket gross profit against £443m from OE in 2024 [R-0119]. Pratt & Whitney sells GTFs below cost and carries fixed-price plans on about 80% of them [P-1143, P-1121]. Culp calls LEAP OE losses 'the price of admission' [CX-0557].",
+    "players": [
+     "rolls_royce",
+     "pratt_whitney",
+     "cfm"
+    ]
+   },
+   {
+    "title": "Guide low and beat, or reset late",
+    "text": "Rolls-Royce guides low and beats; it met its 2027 targets two years early [R-0893]. GE starts money guidance low and raises it [CX-0324]. Boeing has a history of serial resets; Ortberg now sets no internal rate dates and intends one reset [BX-1235]. Airbus resets formally and late, blaming engines and suppliers [A-0383].",
+    "players": [
+     "rolls_royce",
+     "cfm",
+     "boeing",
+     "airbus"
+    ]
+   },
+   {
+    "title": "Sole source, Solo or Joint Venture",
+    "text": "CFM is a 50/50 Joint Venture with Safran, so narrowbody price is 'a joint decision' [CX-0184]. Joint Ventures are explicit Airbus strategy [A-0371]. Boeing goes Solo by default as its pendulum points inward [B-2195]. Pratt & Whitney demands sole source on offence [P-0737]. Rolls-Royce wants a narrowbody partner [R-1010].",
+    "players": [
+     "cfm",
+     "airbus",
+     "boeing",
+     "pratt_whitney",
+     "rolls_royce"
+    ]
+   },
+   {
+    "title": "Who sets the clock",
+    "text": "Boeing launches fps on its own gates, never on Airbus's clock [B-2313], and Airbus does not re-time NGSA for fps (inference). The engine makers follow the airframers: Rolls-Royce, Pratt & Whitney and GE largely commit to new engines only behind an airframer [R-0994, P-0711, CX-0205].",
+    "players": [
+     "boeing",
+     "airbus",
+     "rolls_royce",
+     "pratt_whitney",
+     "cfm"
+    ]
+   }
+  ],
+  "seats": [
+   {
+    "seat": "CEO",
+    "comparison": "The current three are cautious (inference). Ortberg puts KPI gates and debt first [BX-1259, BX-1305]. Faury is paid on profit, cash and safety, and to prepare, not launch, the next aircraft (inference) [AX-0067]. Culp ranks safety before delivery and leaves dates to airframers [CX-0658, CX-0205]. Three predecessors were bolder (inference). Muilenburg returned about 100% of FCF and studied rates above 57 [BX-1112, BX-1146]. McNerney re-engined fast when share was at risk [BX-0715]. Immelt backed hard launches and sole source [CX-1059, CX-1098]. Calhoun and Flannery ran crises on cash [BX-0334, CX-0843]. Enders, seen only from outside, took the CSeries in 2017 [AX-0036]."
+   },
+   {
+    "seat": "CFO",
+    "comparison": "Boeing's Malave and West put debt and the rating first [BX-0556, BX-1824]. Earlier, Smith raised payouts to about 100% of FCF, and Bell protected the dividend and kept buybacks last [BX-1379, BX-0157]. Airbus's Toepfer is the ExCo's cash test, capping peak spend at one year's FCF (inference) [AX-0104]. GE's Ghai and Dybeck Happe set guidance low and beat it: Q4 2020 cash of at least $2.5B came in at $4.4B [CX-0920, CX-0676]. West's targets moved 'to the right', and equity followed his March 2024 no-equity pledge [BX-1834, BX-1795]. Miller deleveraged through disposals, not equity [CX-1202]. Bornstein shipped LEAP at a loss to win the installed base [CX-0088]."
+   },
+   {
+    "seat": "COO",
+    "comparison": "Pope has 8 items, none on airplanes, and they put on-time delivery first [BX-1331]. Wagner's card is role-derived [AX-0010]. GE's Ali believes only tested fixes and argues for the open fan on physics [CX-0009, CX-0011]. Among past holders, Conner stepped and pegged rates and kept the 787 line at 5 a month through the 2013 grounding [BX-0421, BX-0436]. Deal called the supply chain 'our limiter' [BX-0533]. Albaugh saw Airbus at 60% and Boeing at 40% as a red line [BX-0078]. Stokes put durability first and ended launch pricing [CX-1285, CX-1287]. Joyce favoured derivative engines [CX-1126]. Leahy, seen through Boeing calls, publicly questioned the 787's reliability [AX-0097]."
+   }
+  ],
+  "caveats": [
+   "Airbus executive evidence is thin: Faury has one own-words line, Toepfer and Wagner are role-derived, and there are no Airbus call transcripts.",
+   "Airbus's 2006-2025 record comes from Boeing and analysts; its own voice is one document, the FY2025 Board Report.",
+   "Rolls-Royce and Pratt & Whitney have no executive or team profiles, so the seat comparisons cover Boeing, Airbus and CFM only. Rolls-Royce's risk ratings are all inferences.",
+   "CFM is seen from GE's side only. Safran's CEO speaks once, and Safran's consent is assumed; the sources never show a veto.",
+   "CFM is not a player. Beyond its three engine options, its game levers are proposed, and many of its stances are inferences.",
+   "Boeing's current era spans only October 2024 to October 2025, and Malave (18 items) and Pope (8 items) are thin. The $2B cap and the slip test are design choices, not revealed behaviour."
+  ]
+ },
+ "pending": []
 }
