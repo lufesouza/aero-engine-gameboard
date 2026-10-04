@@ -2,7 +2,7 @@
 
 ## Header
 
-**Role.** CEO & Executive Director (title as printed on calls), in post from January 2023; his first results call in the evidence is 23 Feb 2023 [RX-0038]. CFO alongside him: Panos Kakoullis on the Feb and Aug 2023 calls, Helen McCabe from the Nov 2023 Capital Markets Day (CMD). Civil Aerospace President: Rob Watson from the CMD. Teams: `erginbilgic-kakoullis-cholerton-2023`, `erginbilgic-mccabe-watson-2026` (default).
+**Role.** CEO & Executive Director from January 2023; first results call in the evidence 23 Feb 2023 [RX-0038]. CFO alongside him: Panos Kakoullis on the Feb and Aug 2023 calls, Helen McCabe from the Nov 2023 Capital Markets Day (CMD). Civil Aerospace President: Rob Watson from the CMD. Teams: `erginbilgic-kakoullis-cholerton-2023`, `erginbilgic-mccabe-watson-2026` (default).
 
 **What he inherited.**
 - A five-year TSR of -67%, "unsatisfactory" cash and "debt ... still too high" [RX-0038].
@@ -19,14 +19,10 @@ The move from market share to profitability had begun in 2022, before him [R-155
 - Against that: the Trent 1000 blade was certified about 18 months after the first target [RX-0129]; the supply-chain horizon was extended three times [RX-0052, RX-0067, RX-0093]; an analyst reported airline and lessor complaints that Rolls-Royce (RR) had become less accommodating [RX-0133].
 
 **Evidence base.**
-- 110 own-words items, RX-0030 to RX-0139, from seven events between Feb 2023 and Jul 2025: six results calls and the CMD.
-- 132 company items with him as speaker, largely the same turns.
-- Nothing after Jul 2025.
+- 110 own-words items (RX-0030 to RX-0139) from seven events, Feb 2023 to Jul 2025: six results calls and the CMD.
+- 132 company items with him as speaker, largely the same turns. Nothing after Jul 2025.
 
-**Confidence.**
-- High on capital allocation, pricing and guidance.
-- Medium on UltraFan and narrowbody: he has spoken, but taken no launch decision.
-- Low on Joint Venture terms and on CFM/GE moves, because he names no rival engine maker.
+**Confidence.** High on capital allocation, pricing and guidance; medium on UltraFan and narrowbody (words, no launch decision); low on Joint Venture terms and CFM/GE moves (he names no rival engine maker).
 
 ## Quick card
 
@@ -41,7 +37,7 @@ The move from market share to profitability had begun in 2022, before him [R-155
    - Then narrowbody, SMRs and AMRs [R-1598].
 
 **Decision rules and red lines**
-- He invests in new technology only where RR is differentiated, the market is large, the business model is viable and there are synergies [RX-0030].
+- New technology only where RR is differentiated, the market large, the business model viable and synergistic [RX-0030].
 - No next-generation engine until an airframer launches: "we need airframers ... to go there first"; "We won't do anything not profitable" [RX-0058].
 - Narrowbody is optional: "if it is not profitable, we won't do it because we don't need to do it" [RX-0075].
 - Every new or renewing contract goes to the Investment Committee [RX-0055]. The CEO and CFO sign off investments over £25m against mid-to-high-teens hurdles [R-1579].
@@ -58,13 +54,9 @@ The move from market share to profitability had begun in 2022, before him [R-155
 | Fixed-price service contracts | Medium | Works "if you price the risk well" [RX-0073]; contingencies built in [RX-0119]. |
 
 **Tempo**
-- He moves first on what he controls:
-  - repricing in his first half-year [RX-0056];
-  - a demonstrator because "we don't want to wait" [RX-0094];
-  - exits [RX-0103];
-  - tariffs [RX-0134].
+- He moves first on what he controls: repricing in his first half-year [RX-0056], a demonstrator because "we don't want to wait" [RX-0094], exits [RX-0103], tariffs [RX-0134].
 - He waits for airframers on engine launches [RX-0058].
-- No deny-then-reverse on strategy ("There's no change of strategy" [RX-0098]). On dates he extends rather than denies [RX-0093].
+- No deny-then-reverse on strategy ("There's no change of strategy" [RX-0098]); on dates he extends rather than denies [RX-0093].
 
 **Capital allocation.** "Cash as an input, not as an outcome" [RX-0042]. Capital is allocated centrally, and low-return projects go unfunded [RX-0031]. Fast-payback durability spending ranks above long-dated programmes [RX-0123].
 
@@ -79,7 +71,6 @@ The move from market share to profitability had begun in 2022, before him [R-155
 - The narrowbody "duopoly" is profitable, and "we are the probably only one who can go in" [RX-0076].
 
 **Voice**
-- "Quality of earnings and cash, not market share" [RX-0054].
 - "A milestone on our journey, not our final destination" [RX-0062].
 - "Actually, I've seen this movie before" [RX-0087].
 - "There is lots of rigor, there is lots of challenge, but there is never hold back" [RX-0105].
@@ -108,11 +99,9 @@ The move from market share to profitability had begun in 2022, before him [R-155
 | Nov 2023 | SMR stake below 50% | Still above 50% in Jul 2025 | RX-0066 |
 | Feb 2024 and 2025 | 2024 guidance £1.7-2.0bn; 2025 guidance £2.7-2.9bn | Raised to £2.1-2.3bn and £3.1-3.2bn; actual £2,464m and £3,462m. Beats against consensus are shrinking (+15%, +8%, +6%) | RX-0092, RX-0127, R-0219, R-1758 |
 | Feb 2025 | Trent XWB installed engine deliveries at breakeven by the mid-term | "On track" in Jul 2025; open | R-0895, RX-0128 |
-| Jul 2025 | Trent 1000 BoM C by end-2025; XWB-97 harsh-environment fix "not ... before 2027" | Not in the evidence | RX-0131, RX-0132 |
+| Jul 2025 | Trent 1000 BoM C by end-2025; XWB-97 harsh-environment fix "won't be completed before 2027" | Not in the evidence | RX-0131, RX-0132 |
 
-**Pattern.**
-- Financial targets: under-promise and over-deliver.
-- Engineering and supply dates: they slipped, and each slip was admitted.
+**Pattern.** Financial targets under-promised and beaten; engineering and supply dates slipped, and each slip was admitted.
 
 ## By dimension
 
@@ -124,7 +113,7 @@ The move from market share to profitability had begun in 2022, before him [R-155
 | 2024 | Time on wing, suppliers, dividend | RX-0085, RX-0095 |
 | 2025 | Buyback, return on capital, growth beyond the mid-term | RX-0102, RX-0104, R-1598 |
 
-- Constant across all three years: "improving the business every day", not "a bunch of budget numbers" [RX-0136].
+- Constant: "improving the business every day", not "a bunch of budget numbers" [RX-0136].
 - Widebody share at 2022 margins would add only "a small fraction" [RX-0068].
 - Supply, not demand, binds [RX-0096].
 
@@ -138,7 +127,6 @@ The move from market share to profitability had begun in 2022, before him [R-155
 
 **Risk.**
 - He reads risk through operating leverage: an ordinary recession would have pushed the old RR negative [RX-0074].
-- He reads it through pricing too: risk is acceptable only if priced [RX-0073].
 - Contingency is booked against technical risk and released on delivery [RX-0119].
 - RR sets tighter limits on life-limited parts than competitors and raises them only with data [RX-0121].
 
@@ -184,8 +172,7 @@ The move from market share to profitability had begun in 2022, before him [R-155
 
 **Team.**
 - His turnaround playbook is shared reality, a clear cascaded strategy and then performance management [RX-0041].
-- He sets the tone so negotiators know "he is going to defend me" [RX-0060].
-- Questions on capital structure went to the CFO, and the GTF question to Watson (reader summary; no id).
+- He sets the tone so negotiators know "he is going to defend me" [RX-0060]. Capital-structure questions go to the CFO.
 
 ## In the game: if Erginbilgic is in the room
 
@@ -197,44 +184,34 @@ The move from market share to profitability had begun in 2022, before him [R-155
 | `uf_nb` Solo / `jv_pw` | **Do Nothing** until fps or NGSA is announced for this round [RX-0058, RX-0075] | Launch customer names UltraFan: **Solo** [RX-0118]. Engine open: `jv_pw` if P&W announced `join_rr_jv` [RX-0072] | Round 2 (2031): Solo +16.50 on NGSA, +10.29 on fps, -5.70 unselected. `jv_pw` NGSA +8.13, unselected -2.98 [whatif]. Break-even P for Solo: NGSA 0.26, fps 0.36 (inference). Capex $7.5B ≈ £5.5bn at 1.36 $/£, against FY25 FCF of £3,270m [R-0220] | A speculative launch: 2026 for an NGSA in 2031 gives +13.02 against +16.50 [whatif]. fps with the engine open (P 0.35: about -0.1). (inference) A Joint Venture that does not credit RR's technology [RX-0072] |
 | `uf_wb` | **Do Nothing**; widebody is the franchise to protect [R-1574] | A350 Re-engine announced: launch that round. 787 Re-engine naming UltraFan: launch | A350 Re-engine 2031: -2.31 with `uf_wb` against -4.15 without (the airframe waits one year). 787 Re-engine on UltraFan +1.05; on GE -1.98 [whatif]. Unselected -3.96 [T1]; capex $3.1B ≈ £2.3bn | Overlapping `uf_wb` and `uf_nb` unless both are selected: both selected in 2031 gives +13.01 against +16.50 for NGSA alone (inference: about $1.2B of strain) [whatif] |
 | Terms | **standard**: "the right reward for the risks we take" [R-1564]; Investment Committee gate [RX-0055] | A rival's aggressive offer beats UltraFan standard while RR's aggressive selected PV stays well above Do Nothing | NGSA 2031 Airbus PV: UltraFan standard 38.88, aggressive 42.91; GTF2 standard 37.20, aggressive 40.90; CFM ducted 35.90. Aggressive costs RR 3.67 [whatif] | (inference) Aggressive on the A350 Re-engine, where RR is sole source and "aligned" with Airbus on price [RX-0084]; aggressive against CFM ducted alone, which standard already beats |
-| `cancel` | Cancel an unselected UltraFan once its target airframes fly other engines: "that activity is gone" [RX-0051] | - | Solo 2031 cancelled in round 3: -4.44 against -5.70 if kept [whatif] | Keeping a programme alive as a hedge [RX-0036] |
-| Disclosure | Conditional, few, binding. Say "we launch when an airframer launches on UltraFan"; give no early EIS [RX-0124, RX-0108] | - | - | Dates he is not sure of; naming a partner before P&W announces its join |
+| `cancel` | Cancel an unselected UltraFan once its target airframes fly other engines: "that activity is gone" [R-1573] | - | Solo 2031 cancelled in round 3: -4.44 against -5.70 if kept [whatif] | Keeping a programme alive as a hedge [RX-0036] |
+| Disclosure | Conditional, few, binding, e.g. (script) we launch when an airframer launches on UltraFan; no early EIS [RX-0124, RX-0108] | - | - | Dates he is not sure of; naming a partner before P&W announces its join |
 
 **When CFM/GE launches a ducted engine or the RISE open fan.**
-- Against CFM ducted, UltraFan at standard terms still wins: Airbus 38.88 against 35.90 [whatif].
-- He holds price and sells efficiency: 10% at the engine [RX-0069], 15% at the aircraft [RX-0099].
-- The open fan cannot enter service before 2045. NGSA 2037 on the open fan gives Airbus 13.28; on UltraFan, 20.48 (RR +7.90) [whatif].
-- He pitches UltraFan's geared design as superior to both incumbents' routes [RX-0120].
-- Airbus names open fan [R-1867]. He treats that as a signal, not a selection, and does not launch early to pre-empt it (no airframe, no engine [RX-0058]).
+- Against CFM ducted, UltraFan at standard terms still wins (Airbus 38.88 against 35.90 [whatif]). He holds price and sells efficiency: 10% at the engine [RX-0069], 15% at the aircraft [RX-0099].
+- The open fan cannot enter service before 2045: NGSA 2037 on it gives Airbus 13.28, on UltraFan 20.48 (RR +7.90) [whatif]. He pitches UltraFan's geared design as superior to both incumbents' routes [RX-0120].
+- Airbus names open fan [R-1867]: a signal, not a selection. He does not launch early to pre-empt it (no airframe, no engine [RX-0058]).
 
-**When CFM/GE takes share through LEAP or GEnx upgrades.**
-- GEnx moves Boeing widebody share off RR. His answer is the Trent 1000 upgrade, not price [RX-0097, RX-0101].
-- LEAP takes A320neo share from P&W, not from RR.
-- (inference) Either way he still waits for an airframer launch. He may find P&W more willing to join a Joint Venture on RR's terms.
+**When CFM/GE takes share through LEAP or GEnx upgrades.** GEnx moves Boeing widebody share off RR; his answer is the Trent 1000 upgrade, not price [RX-0097, RX-0101]. LEAP takes A320neo share from P&W, not RR. (inference) Either way he waits for an airframer launch, and may find P&W readier to join a Joint Venture on RR's terms.
 
 **When an airframer asks for aggressive terms.**
 - First answer: "win-win", with value remunerated [RX-0081].
 - He frames the request as a partnership test [RX-0050].
-- He concedes only when `whatif` shows the contest is lost at standard terms (GTF2 aggressive) and the deal still clears the hurdle.
+- (inference) He concedes only when `whatif` shows the contest is lost at standard terms (GTF2 aggressive) and the deal still clears the hurdle.
 
 **How he argues in the ExCo** (inference: the order is ours, each question his).
 1. He frames the question in cash and quality of earnings [RX-0054].
 2. He asks whether an airframer has announced a programme naming UltraFan for this round, and whether it passes the four-part gate [RX-0030].
-3. He wants selected and unselected PV, break-even P and the unselected downside as a cash input [RX-0042]. He tests them against the mid-to-high-teens hurdle [R-1579] and 18-21% return on capital [RX-0104].
+3. He wants selected and unselected PV, break-even P and the downside as a cash input [RX-0042], tested against the mid-to-high-teens hurdle [R-1579] and 18-21% return on capital [RX-0104].
 4. He asks the CFO whether the balance sheet and distributions are intact [RX-0032].
 5. He asks Civil for engineering load, supply chain and strain [RX-0095].
-6. He asks: "Can we commit and be sure?" [RX-0124]. Then he decides; the centre allocates [RX-0031].
+6. He asks whether RR can commit and be sure of delivering [RX-0124]. Then he decides; the centre allocates [RX-0031].
 
-**What changes his mind.**
-- An airframer announcement.
-- Technology risk retired [RX-0108].
-- A partner that accepts RR brings the technology [RX-0072].
-- Proof that a rival wins at standard terms.
-- Evidence that a target can go higher. He doubled time on wing once he was sure [RX-0110].
+**What changes his mind:** an airframer announcement; technology risk retired [RX-0108]; a partner that accepts RR brings the technology [RX-0072]; proof that a rival wins at standard terms; evidence that a target can go higher (he doubled time on wing once sure [RX-0110]).
 
 ## Confidence and gaps
 
-- **Strong:** capital sequence, pricing discipline, guidance behaviour, centralised style. Each has several events and outcomes.
-- **Thin:** narrowbody launch behaviour. It is all words, and no launch decision exists. No payback period, partner, Joint Venture terms or UltraFan hurdle in the evidence [RX-0058].
+- **Strong:** capital sequence, pricing discipline, guidance behaviour, centralised style (several events, with outcomes).
+- **Thin:** narrowbody launch behaviour: all words, no launch decision. No payback period, partner, Joint Venture terms or UltraFan hurdle in the evidence [RX-0058].
 - **Missing:** he never names GE, CFM or Pratt & Whitney (the GTF went to Watson); no gearing figure from him; nothing after Jul 2025, so the BoM C outcome [RX-0131] is unknown; "burning platform" does not appear on these calls.
 - **Engine figures** come from a scratch run, not evidence; derived thresholds are labelled inference.

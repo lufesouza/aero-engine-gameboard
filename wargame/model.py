@@ -969,6 +969,17 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult, fits=No
             amt = c / base if i < base else c * cfg["extension_capex_frac_per_year"]
             capex[y] = capex.get(y, 0.0) + amt
         windows.append((sp.launch_year, sp.dev_end, sparam(cfg, sp.owner, sp.pid, sp.variant, "strain_relief", 0.0), False))
+    # A derivative of this maker's current engine on a new airframe (no new engine program) still costs it
+    # development capex, spread over the airframe's development years.
+    for p in world.programs.values():
+        if p.supplier_program or engine_maker(cfg, p.segment, p.engine) != sup:
+            continue
+        dc = (scfg.get("derivative_capex_b") or {}).get(p.segment, 0.0)
+        n = max(1, p.base_dev_years)
+        for y in range(p.launch_year, p.launch_year + n):
+            if p.cancelled_year is not None and y >= p.cancelled_year:
+                break
+            capex[y] = capex.get(y, 0.0) + dc / n
     lobby = {}
     for c, yr in commits:
         if c["kind"] in ("upgrade", "partner_volume"):

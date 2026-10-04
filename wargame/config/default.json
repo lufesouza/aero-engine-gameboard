@@ -94,7 +94,7 @@
   "engine_options": {
     "nb": {
       "cfm_ducted": {"label": "CFM advanced ducted turbofan", "maker": "cfm", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
-      "cfm_leap_plus": {"label": "CFM LEAP derivative (no new engine)", "maker": "cfm", "margin_pp": -1.0, "eis_add": 0, "capture_mult": 0.95, "_about": "What a new airframe flies when CFM/GE plays and has not committed a new narrowbody engine. PLACEHOLDER until calibrated."},
+      "cfm_leap_plus": {"label": "CFM LEAP derivative (no new engine)", "maker": "cfm", "margin_pp": -1.0, "eis_add": 0, "capture_mult": 0.92, "_about": "What a new airframe flies when CFM/GE plays and has not committed a new narrowbody engine (wargame/profiles/cfm/calibration.md; capture PLACEHOLDER)."},
       "cfm_open_fan": {"label": "CFM RISE open fan", "maker": "cfm", "margin_pp": 1.5, "eis_add": 1, "capture_mult": 0.85, "available_eis": 2045, "_about": "available_eis: the open fan cannot enter service before 2045; an airframe that would be ready earlier waits for it, paying extension capex for each waiting year. Launch in 2037 to enter service in 2045 without waiting."},
       "pw_gtf2": {"label": "Pratt & Whitney GTF2", "maker": "pratt_whitney", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 0.95},
       "rr_ultrafan_nb": {"label": "Rolls-Royce UltraFan (narrowbody)", "maker": "rolls_royce", "margin_pp": 1.0, "eis_add": 1, "capture_mult": 0.95}
@@ -265,28 +265,29 @@
       "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
     },
     "cfm": {
-      "label": "CFM/GE", "active": false, "_status": "PLACEHOLDER values until wargame/profiles/cfm/calibration.md is reconciled",
-      "wacc": 0.09, "alpha": 0.4,
+      "label": "CFM/GE", "active": false, "_status": "Reconciled from two independent calibrations (wargame/profiles/cfm/calibration.md). CALIBRATED: wacc, fits, LEAP/GEnx values, ducted capex, ramp, terms, leap_upgrade. PLACEHOLDER: alpha (hurdle not disclosed), open-fan capex and value, genx_upgrade, embraer_partner, lobby_emissions, strain, derivative capex.",
+      "wacc": 0.08, "alpha": 0.45,
       "engines_per_aircraft": {"nb": 2, "wb": 2},
       "incumbent_fit": {"boeing": {"nb": 1.0, "wb": 0.78}, "airbus": {"nb": 0.6, "wb": 0.0}},
-      "incumbent_value_m_per_engine": {"nb": 3.0, "wb": 6.0},
+      "incumbent_value_m_per_engine": {"nb": 3.0, "wb": 5.0},
       "fallback_engine": {"nb": "cfm_leap_plus", "wb": "ge_genx_next"},
+      "derivative_capex_b": {"nb": 1.0, "wb": 0.5, "_about": "Capex (both partners) when an airframe flies a derivative of CFM/GE's current engine (LEAP derivative, GEnx upgrade), spread over the airframe's development years. PLACEHOLDER."},
       "programs": {
-        "ducted": {"label": "advanced ducted narrowbody engine", "segment": "nb", "engine_option": "cfm_ducted", "dev_years": 6, "capex_b": 5.0, "value_m_per_engine": 3.5},
-        "open_fan": {"label": "RISE open fan", "segment": "nb", "engine_option": "cfm_open_fan", "dev_years": 9, "capex_b": 8.0, "value_m_per_engine": 4.0}
+        "ducted": {"label": "advanced ducted narrowbody engine", "segment": "nb", "engine_option": "cfm_ducted", "dev_years": 7, "capex_b": 7.0, "value_m_per_engine": 3.4},
+        "open_fan": {"label": "RISE open fan", "segment": "nb", "engine_option": "cfm_open_fan", "dev_years": 9, "capex_b": 10.0, "value_m_per_engine": 3.9}
       },
-      "ramp": {"start_frac": 0.0, "years": 8},
+      "ramp": {"start_frac": -0.3, "years": 10},
       "terms": {
         "standard": {"label": "standard terms", "airframer_margin_pp": 0.0, "value_mult": 1.0},
-        "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.0, "value_mult": 0.8}
+        "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.4, "value_mult": 0.88}
       },
       "upgrades": [
-        {"flag": "leap_upgrade", "label": "LEAP durability upgrade", "segment": "nb", "fit_side": "airbus", "fit_pp": 5.0, "from": "pratt_whitney", "lag_years": 2, "capex_b": 1.0, "capex_years": 3, "installed_base_saving_b_per_year": 0.5, "saving_years": 10},
-        {"flag": "genx_upgrade", "label": "GEnx improvement package", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "from": "rolls_royce", "lag_years": 3, "capex_b": 0.8, "capex_years": 3, "installed_base_saving_b_per_year": 0.1, "saving_years": 10}
+        {"flag": "leap_upgrade", "label": "LEAP durability upgrade", "segment": "nb", "fit_side": "airbus", "fit_pp": 5.0, "from": "pratt_whitney", "lag_years": 3, "capex_b": 0.75, "capex_years": 3, "installed_base_saving_b_per_year": 0.42, "saving_years": 10},
+        {"flag": "genx_upgrade", "label": "GEnx improvement package", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "from": "rolls_royce", "lag_years": 3, "capex_b": 0.45, "capex_years": 3, "installed_base_saving_b_per_year": 0.12, "saving_years": 12}
       ],
-      "partner_volume": {"flag": "embraer_partner", "label": "Embraer partnership (engines for Embraer's next aircraft)", "capex_b": 0.5, "capex_years": 2, "lag_years": 6, "engines_per_year": 160, "value_m_per_engine": 1.5},
-      "lobby": {"flag": "lobby_emissions", "label": "lobbying governments on emissions", "cost_b": 0.3, "cost_years": 3, "lag_years": 2, "engine": "cfm_open_fan", "margin_pp": 0.5, "capture_mult": 1.05},
-      "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
+      "partner_volume": {"flag": "embraer_partner", "label": "Embraer partnership (engines for Embraer's next aircraft)", "capex_b": 1.2, "capex_years": 4, "lag_years": 8, "engines_per_year": 190, "value_m_per_engine": 1.2},
+      "lobby": {"flag": "lobby_emissions", "label": "lobbying governments on emissions", "cost_b": 0.15, "cost_years": 3, "lag_years": 3, "engine": "cfm_open_fan", "margin_pp": 0.5, "capture_mult": 1.05},
+      "strain": {"full_overlap_b": 1.75, "norm_years": 5, "background": []}
     }
   },
   "objectives": {
@@ -313,7 +314,7 @@
       "airbus": {
         "primary_goal": "Defend the 60/40 edge; protect the A320 family",
         "moves": [
-          {"move": "Launch NGSA ($20B)", "lever": "launch ngsa", "modelled": "yes", "note": "the engine's NGSA capex is $25B, not $20B"},
+          {"move": "Launch NGSA ($20B)", "lever": "launch ngsa", "modelled": "yes", "note": "$20B in the five-player-2045 scenario, as in the briefing; $25B in the other scenarios"},
           {"move": "Do Nothing (keep the A320neo family)", "lever": "no orders", "modelled": "yes", "note": "the status quo: 60% narrowbody share"},
           {"move": "Delay fps (supply-chain bottleneck)", "lever": "delay_tactics", "modelled": "yes", "note": "1 year of fps slip a turn, at most 2; $0.5B a turn; exposed after 2 turns"},
           {"move": "Delay fps (talent poaching)", "lever": "poaching", "modelled": "yes", "note": "costs Boeing $0.75B a turn and Airbus $0.25B, saving Airbus $0.4B; it does not slip fps"}

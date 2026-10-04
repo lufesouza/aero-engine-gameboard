@@ -848,6 +848,7 @@ class CfmPlayerTests(unittest.TestCase):
         self.assertGreater(r["cfm"]["components_pv_b"]["nb_engines"], 0.0)
         self.assertEqual(r["cfm"]["engines_delivered"]["2045"]["nb"]["engines"],
                          round(sum(2000 * r["shares"]["nb"]["2045"][s] * 2 * f for s, f in (("boeing", 1.0), ("airbus", 0.6))), 1))
+        self.assertLess(r["cfm"]["components_pv_b"]["capex"], 0)  # the derivative still costs CFM development capex
         w2 = M.build_world(c, [self.rec5(b=fps, cfm=self.cfm([{"program": "ducted", "year": 2026, "terms": "standard"}]))])
         self.assertEqual((w2.programs["fps"].engine, w2.programs["fps"].supplier), ("cfm_ducted", "cfm"))
 
