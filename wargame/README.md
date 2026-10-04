@@ -71,6 +71,7 @@ Defined in `.claude/agents/`. Each is a Claude Code subagent you can also call o
 | `airbus-strategist` | Red: NGSA, A350 Re-engine, Delay Tactics (covert), Poaching, cancellations, engine choice. Plays from `wargame/profiles/airbus/` | public view + Airbus's own numbers + Airbus's profile |
 | `rolls-royce-strategist` | Engine supplier (optional): UltraFan widebody, UltraFan narrowbody (Solo / Joint Venture with P&W), terms, Trent 1000 upgrade, cancellations. Plays from `wargame/profiles/rolls_royce/` | public view + RR's own numbers + RR's profile |
 | `pratt-whitney-strategist` | Engine supplier (optional): next-generation GTF, a widebody engine, terms, GTF durability upgrade, joining RR's Joint Venture, cancellations. Plays from `wargame/profiles/pratt_whitney/` | public view + P&W's own numbers + P&W's profile |
+| `cfm-strategist` | Engine supplier (optional): CFM's ducted engine, the RISE open fan, terms, LEAP and GEnx upgrades, an Embraer partnership, emissions lobbying, cancellations. Plays from `wargame/profiles/cfm/` with the Safran gate | public view + CFM/GE's own numbers + CFM/GE's profile |
 | `wargame-market` | Green: airlines, lessors, and the engine OEMs that are not players (CFM/GE, and RR/PW unless they play) set bounded capture multipliers | public view only |
 | `game-orchestrator` | Referee (White): creates runs, applies injects, gives both players equal sealed tasks, relays public statements and **disclosures** with a public-record note, adjudicates verbatim, and scores efficiency | everything; never computes payoffs, and never leaks private information |
 | `wargame-analyst` | after-action review and report | everything |
@@ -128,7 +129,7 @@ When history leads it away from the PV-best option, it reports the **doctrine pr
 
 ## Leadership teams (executive profiles)
 
-Boeing and Airbus each decide as a **named executive team**: a CEO, a CFO and the head of commercial aircraft. Each person is profiled from their own words. The files are in `wargame/profiles/<side>/executives/`:
+Every player decides as a **named executive team**: a CEO, a CFO and the operating head (commercial aircraft for the airframers; civil engines for the engine makers). Each person is profiled from their own words. The files are in `wargame/profiles/<side>/executives/`:
 - one profile per executive: Quick card, commitment track record, sections by dimension, and "in the game";
 - `teams.md`: the teams by era, each with its decision rule, tensions and a per-turn ExCo deliberation script;
 - `evidence.jsonl`: verified quotes, BX-#### for Boeing and AX-#### for Airbus;
@@ -142,6 +143,13 @@ Boeing and Airbus each decide as a **named executive team**: a CEO, a CFO and th
 The teams run from `mcnerney-bell-albaugh-2010` to today's **`ortberg-malave-pope-2026`**, the default. A historical team plays "that team running Boeing in 2026".
 
 **Airbus** draws only on the FY2025 Board Report (the CEO's objectives and pay weights, and the executive team) and on mentions by Boeing and RTX executives (109 items). The default team is `faury-toepfer-wagner-2026`, and it is low-confidence. Airbus earnings-call transcripts would make it comparable to Boeing's.
+
+**The engine makers.**
+- **Rolls-Royce** (RX-####): Erginbilgic, McCabe, Kakoullis, and the Civil Aerospace presidents (Cholerton, Watson, Schulz), from Rolls-Royce's own calls.
+- **Pratt & Whitney** (PX-####): Calio, Mitchill, and the Pratt & Whitney presidents (Leduc, Eddy), from RTX calls.
+- **CFM/GE** (CX-####): GE's leaders who decide GE's half of CFM, from GE transcripts. Each CFM team card carries the Safran gate.
+
+Default teams: `erginbilgic-mccabe-watson-2026`, `calio-mitchill-eddy-2026` and `culp-ghai-ali-2026`.
 
 **Use.** Choose the teams with the workflow's `leadership` argument, e.g. `{"boeing": "muilenburg-smith-2017"}`, or tell the referee. Each turn, the strategist runs its team's ExCo deliberation and records it in its rationale. The referee scores leadership fidelity. The isolation hook keeps each company's executive files private, and the period-locked 2010 players cannot read them.
 
@@ -219,27 +227,48 @@ Money is $B in constant 2026 dollars. A side's score is **delta PV**: the presen
 
 ### Engine makers (optional supplier players)
 
-Create a run with `--suppliers rolls_royce`, `--suppliers pratt_whitney` or `--suppliers rolls_royce,pratt_whitney`. Without it the game is exactly the two-player game.
+Create a run with `--suppliers` and any of `rolls_royce`, `pratt_whitney` and `cfm` (CFM/GE). Without it the game is exactly the two-player game. The five-player game is `new --scenario five-player-2045 --suppliers rolls_royce,pratt_whitney,cfm`. It has three rounds (2026-2030, 2031-2035 and 2036-2045), the replacement-wave demand timing and NGSA at $20B.
 
-- **Engine commitments.** Supplier orders apply first in each turn. An airframer may select an engine maker's new engine (`rr_ultrafan_nb`, `rr_ultrafan_wb`, `pw_gtf2`, `pw_wb_new`) only if its maker has launched that engine program by adjudication. Otherwise the airframe falls back to CFM (narrowbody) or GE (widebody), and the event is public. A committed engine is ready at launch + development years (+ slips). The airframe enters service at the later of its own date and the engine's ready year. The maker's terms add `airframer_margin_pp` to the airframe's margin.
+- **Engine commitments.** Supplier orders apply first in each turn. An airframer may select an engine maker's new engine (`rr_ultrafan_nb`, `rr_ultrafan_wb`, `pw_gtf2`, `pw_wb_new`, and when CFM/GE plays `cfm_ducted` and `cfm_open_fan`) only if its maker has launched that engine program by adjudication. Otherwise the airframe falls back down a chain, and the event is public:
+  - a Rolls-Royce or Pratt & Whitney narrowbody engine falls back to CFM's ducted engine;
+  - CFM's ducted engine needs CFM/GE's commitment when it plays; without one the airframe gets the **LEAP derivative** (`cfm_leap_plus`: -1pp margin, 0.95 capture);
+  - a widebody engine falls back to the GEnx upgrade. A committed engine is ready at launch + development years (+ slips). The airframe enters service at the later of its own date and the engine's ready year. The maker's terms add `airframer_margin_pp` to the airframe's margin.
 - **Supplier payoff.** Lifecycle value of the engines it delivers, versus the status quo:
   - engines delivered = segment units × airframer share × engines per aircraft × the maker's fit on that airframe;
-  - fit is its incumbent share until that airframer's new program in the segment enters service, then 1 (sole source; a Joint Venture splits it) if the program flies its engine, else 0;
+  - fit is its incumbent share until that airframer's new program in the segment enters service. After that it is:
+    - 1 (sole source; a Joint Venture splits it) if the program flies its new engine;
+    - 1 at the incumbent value if the program flies a derivative of its current engine (an engine option of that maker with no new engine program, i.e. the LEAP derivative or the GEnx upgrade for CFM/GE);
+    - else 0.
+  - Upgrades move incumbent fit between makers: each says which maker it takes share from;
   - each engine is booked at delivery at its lifecycle value, meaning OE margin plus PV of aftermarket profit. A new engine starts at `ramp.start_frac` of its value and matures over `ramp.years`.
 
   Minus the maker's own alpha-loaded engine capex and strain, at its own WACC.
 - **What each stands to lose.**
   - Rolls-Royce's status quo is the A350 and A330neo (sole source) and a Trent 1000 share of the 787. An A350 Re-engine on another engine takes the Airbus widebody franchise away.
   - Pratt & Whitney's status quo is its GTF share of A320neo deliveries. An NGSA on another engine takes it away.
+  - CFM/GE's status quo is LEAP on every 737 MAX and 60% of A320neo deliveries, and GEnx on 78% of 787s. An airframe on a rival's engine takes that away.
 - **Levers.**
   - Rolls-Royce: `uf_wb`; `uf_nb` Solo or `jv_pw`; standard or aggressive terms; `t1000_upgrade`; cancel.
   - Pratt & Whitney: `gtf_next`; `pw_wb`; terms; `gtf_upgrade`; `join_rr_jv`; cancel.
-  - Each one-time upgrade adds fit on the incumbent airframe and saves installed-base cost.
+  - CFM/GE:
+    - `ducted` and `open_fan` (RISE; entry into service only from 2045); terms; cancel;
+    - one-time `leap_upgrade` (A320neo share from Pratt & Whitney) and `genx_upgrade` (787 share from Rolls-Royce);
+    - `embraer_partner`: engines for Embraer's next aircraft after a lag;
+    - `lobby_emissions`: a cost over three years; airframes flying the open fan get `margin_pp` and `capture_mult`.
+
+    Its values are in `suppliers.cfm` and are derived in `wargame/profiles/cfm/calibration.md`.
+  - Each one-time upgrade adds fit on the incumbent airframe, taken from the maker it names, and saves installed-base cost.
+- **fps ramp-up.** Boeing's fps launch takes `"ramp": "7y"` (the default) or `"10y"`, which captures share 30% more slowly and needs 10% less programme capex. These are the briefing's "Launch fps with a 7-year / 10-year ramp-up"; the multipliers are placeholders.
 - **The Joint Venture.** When both play, RR's `uf_nb` as `jv_pw` launches only if P&W sets `join_rr_jv` in the same turn. Each then pays half the capex and earns half the value. When P&W does not play, the Joint Venture is with an outside partner and always launches.
 - **Tools.**
   - `options --side <supplier>` ranks the maker's options against airframer engine-selection scenarios, and shows each airframer's incentive to choose its engine.
   - The scorecard scores suppliers on capture, myopic regret, prediction of airframer engine choices and calibration.
   - Plan-game equilibria and hindsight regret cover the airframers, with supplier orders held as played.
+  - `rounds --run <RUN> [--format md]` (control/analyst) reports each round as of its last year:
+    - market shares, for airframers and engine makers;
+    - programme launch, entry-into-service and engine-ready dates;
+    - each player's financials: delta PV and its change in the round, and the round's revenue or engine value, operating profit, capex and engines.
+  - Only the referee runs `equilibria`: the isolation hook keeps the full game-theory board from the players.
 - **Injects.** Four injects apply only when their maker plays: an RR durability crisis, an UltraFan test setback, a GTF durability crisis and a next-generation GTF test setback.
 
 ### Game-theory tools
