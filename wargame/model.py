@@ -27,10 +27,12 @@ from dataclasses import dataclass, field
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SIDES = ("boeing", "airbus")
-SUPPLIERS = ("rolls_royce", "pratt_whitney")
-# One-turn boolean levers of each supplier: its one-time upgrade and, for Pratt & Whitney,
-# joining Rolls-Royce's UltraFan narrowbody Joint Venture.
-SUPPLIER_FLAGS = {"rolls_royce": ("t1000_upgrade",), "pratt_whitney": ("gtf_upgrade", "join_rr_jv")}
+SUPPLIERS = ("rolls_royce", "pratt_whitney", "cfm")
+# One-turn boolean levers of each supplier: its one-time commitments (upgrades, CFM/GE's Embraer
+# partnership and emissions lobbying) and, for Pratt & Whitney, joining Rolls-Royce's UltraFan
+# narrowbody Joint Venture.
+SUPPLIER_FLAGS = {"rolls_royce": ("t1000_upgrade",), "pratt_whitney": ("gtf_upgrade", "join_rr_jv"),
+                  "cfm": ("leap_upgrade", "genx_upgrade", "embraer_partner", "lobby_emissions")}
 SEGMENTS = ("nb", "wb")
 NEVER = 10**6  # EIS of a program that does not exist
 KEY_YEARS = (2030, 2035, 2040, 2045, 2050, 2060)
@@ -70,6 +72,61 @@ def sparam(cfg, sup, spid, variant, key, default=None):
     if variant and key in spc.get("variants", {}).get(variant, {}):
         return spc["variants"][variant][key]
     return spc.get(key, default)
+
+
+def supplier_commitments(cfg, sup):
+    """A supplier's one-time commitment levers, each a dict with 'flag' and 'kind' (upgrade, partner_volume, lobby)."""
+    scfg = cfg.get("suppliers", {}).get(sup) or {}
+    out = []
+    if scfg.get("upgrade"):
+        out.append(dict(scfg["upgrade"], kind="upgrade"))
+    out += [dict(u, kind="upgrade") for u in scfg.get("upgrades", [])]
+    if scfg.get("partner_volume"):
+        out.append(dict(scfg["partner_volume"], kind="partner_volume"))
+    if scfg.get("lobby"):
+        out.append(dict(scfg["lobby"], kind="lobby"))
+    return out
+
+
+def engine_maker(cfg, seg, engine):
+    return cfg["engine_options"][seg][engine].get("maker")
+
+
+def incumbent_fits(cfg, world, y):
+    """Each engine maker's fit on each airframer's incumbent fleet in year y: {maker: {(side, seg): fit}}.
+
+    Starts from suppliers.<maker>.incumbent_fit; every committed upgrade of an active supplier then moves
+    fit_pp of its fleet from the maker named in 'from' to its owner, from commitment + lag_years."""
+    sups = {s: c for s, c in cfg.get("suppliers", {}).items() if isinstance(c, dict) and "incumbent_fit" in c}
+    fits = {s: {(side, seg): c["incumbent_fit"][side][seg] for side in SIDES for seg in SEGMENTS} for s, c in sups.items()}
+    for s in active_suppliers(cfg):
+        for c in supplier_commitments(cfg, s):
+            if c["kind"] != "upgrade":
+                continue
+            yr = world.commit_years.get((s, c["flag"]))
+            if yr is None or y < yr + c["lag_years"]:
+                continue
+            key = (c["fit_side"], c["segment"])
+            pp = c["fit_pp"] / 100.0
+            src = c.get("from")
+            if src in fits:
+                pp = min(pp, fits[src][key])
+                fits[src][key] -= pp
+            fits[s][key] = min(1.0, fits[s][key] + pp)
+    return fits
+
+
+def lobby_effect(cfg, world, engine, y=None):
+    """(margin_pp, capture_mult) a supplier's emissions lobbying gives airframes flying `engine`."""
+    pp, mult = 0.0, 1.0
+    for s in active_suppliers(cfg):
+        lb = cfg["suppliers"][s].get("lobby")
+        yr = world.commit_years.get((s, lb["flag"])) if lb else None
+        if lb and yr is not None and lb["engine"] == engine:
+            mult *= lb.get("capture_mult", 1.0)
+            if y is None or y >= yr + lb.get("lag_years", 0):
+                pp += lb.get("margin_pp", 0.0)
+    return pp, mult
 
 
 def deep_merge(base, over):
@@ -190,6 +247,7 @@ class Program:
     engine_requested: str | None = None  # set when the requested engine was not available
     engine_wait: int = 0  # years the airframe waits for its engine to be ready
     engine_ready_year: int | None = None  # earliest entry into service the engine option allows (available_eis)
+    ramp: str | None = None  # production ramp option (e.g. fps "7y" / "10y")
 
     @property
     def eis(self):
@@ -264,7 +322,8 @@ class World:
     dev_years_add: dict = field(default_factory=lambda: {"boeing": 0, "airbus": 0})
     events: list = field(default_factory=list)  # adjudication log with visibility
     sup_programs: dict = field(default_factory=dict)  # supplier engine programs by id
-    upgrade_years: dict = field(default_factory=dict)  # supplier -> year of its one-time upgrade
+    upgrade_years: dict = field(default_factory=dict)  # supplier -> year of its first one-time upgrade
+    commit_years: dict = field(default_factory=dict)  # (supplier, flag) -> year of a one-time commitment
     supplier_value_mults: list = field(default_factory=list)  # (supplier, kind, y0, y1, mult)
 
     def prog(self, side, seg):
@@ -489,11 +548,18 @@ def _apply_supplier_orders(w, k, a, sup, o, all_orders):
         vtxt = f" ({spc['variants'][variant]['label']})" if variant else ""
         w.event(k, f"{lab} launches the {spc['label']}{vtxt} in {sp.launch_year} on {scfg['terms'][sp.terms]['label']}; "
                    f"engine ready for service in {sp.ready}.")
-    up = scfg.get("upgrade")
-    if up and o.get(up["flag"]) and sup not in w.upgrade_years:
-        w.upgrade_years[sup] = a
-        w.event(k, f"{lab} commits to the {up['label']} from {a} (more share of {up['segment'].upper()} deliveries at "
-                   f"{player_label(cfg, up['fit_side'])} from {a + up['lag_years']}).")
+    for c in supplier_commitments(cfg, sup):
+        if not o.get(c["flag"]) or (sup, c["flag"]) in w.commit_years:
+            continue
+        w.commit_years[(sup, c["flag"])] = a
+        if c["kind"] == "upgrade":
+            w.upgrade_years.setdefault(sup, a)
+            w.event(k, f"{lab} commits to the {c['label']} from {a} (more share of {c['segment'].upper()} deliveries at "
+                       f"{player_label(cfg, c['fit_side'])} from {a + c['lag_years']}).")
+        elif c["kind"] == "partner_volume":
+            w.event(k, f"{lab} commits to the {c['label']} from {a} (engines from {a + c['lag_years']}).")
+        else:
+            w.event(k, f"{lab} starts {c['label']} in {a}.")
     jv = scfg.get("jv")
     if jv and o.get(jv["flag"]):
         owner = jv["partner_of"]

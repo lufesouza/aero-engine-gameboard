@@ -47,6 +47,18 @@ EXECS = {
     "stokes": ["Russell T. Stokes", "Russell Stokes"],
     "ali": ["Mohamed Ali"],
     "fitzgerald": ["William A. Fitzgerald", "Bill Fitzgerald"],
+    # Rolls-Royce (source rr_transcripts)
+    "erginbilgic": ["M. Tufan Erginbilgic", "Tufan Erginbilgic"],
+    "mccabe": ["Helen McCabe"],
+    "kakoullis": ["Panos Kakoullis"],
+    "cholerton": ["Chris Cholerton"],
+    "rwatson": ["Robert Watson"],
+    "eschulz": ["Eric Schulz"],
+    # RTX / Pratt & Whitney (source rtx_transcripts)
+    "calio": ["Christopher T. Calio", "Chris Calio"],
+    "mitchill": ["Neil G. Mitchill", "Neil Mitchill"],
+    "eddy": ["Shane G. Eddy", "Shane Eddy"],
+    "leduc": ["Robert F. Leduc", "Bob Leduc"],
 }
 VARIANT = {v: k for k, vs in EXECS.items() for v in vs}
 S = os.environ.get("WARGAME_BUILD_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "work"))

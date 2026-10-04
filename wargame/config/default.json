@@ -57,7 +57,13 @@
         "solo": {"label": "Solo", "capex_share_partner": 0.0, "margin_share_partner": 0.0, "strain_relief": 0.0},
         "jv": {"label": "Joint Venture (Embraer)", "partner": "Embraer", "capex_share_partner": 0.35, "margin_share_partner": 0.25, "strain_relief": 0.5}
       },
-      "default_variant": "solo"
+      "default_variant": "solo",
+      "ramp_options": {
+        "_about": "The briefing's 'Launch fps with 7-year / 10-year ramp-up': how fast production ramps after entry into service. A slower ramp captures share more slowly but needs less capacity capex. PLACEHOLDER.",
+        "7y": {"label": "7-year ramp-up", "capture_mult": 1.0, "capex_mult": 1.0},
+        "10y": {"label": "10-year ramp-up", "capture_mult": 0.7, "capex_mult": 0.9}
+      },
+      "default_ramp": "7y"
     },
     "re787": {
       "owner": "boeing", "segment": "wb",
@@ -87,15 +93,16 @@
 
   "engine_options": {
     "nb": {
-      "cfm_ducted": {"label": "CFM advanced ducted turbofan", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
-      "cfm_open_fan": {"label": "CFM RISE open fan", "margin_pp": 1.5, "eis_add": 1, "capture_mult": 0.85, "available_eis": 2045, "_about": "available_eis: the open fan cannot enter service before 2045; an airframe that would be ready earlier waits for it, paying extension capex for each waiting year. Launch in 2037 to enter service in 2045 without waiting."},
-      "pw_gtf2": {"label": "Pratt & Whitney GTF2", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 0.95},
-      "rr_ultrafan_nb": {"label": "Rolls-Royce UltraFan (narrowbody)", "margin_pp": 1.0, "eis_add": 1, "capture_mult": 0.95}
+      "cfm_ducted": {"label": "CFM advanced ducted turbofan", "maker": "cfm", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
+      "cfm_leap_plus": {"label": "CFM LEAP derivative (no new engine)", "maker": "cfm", "margin_pp": -1.0, "eis_add": 0, "capture_mult": 0.95, "_about": "What a new airframe flies when CFM/GE plays and has not committed a new narrowbody engine. PLACEHOLDER until calibrated."},
+      "cfm_open_fan": {"label": "CFM RISE open fan", "maker": "cfm", "margin_pp": 1.5, "eis_add": 1, "capture_mult": 0.85, "available_eis": 2045, "_about": "available_eis: the open fan cannot enter service before 2045; an airframe that would be ready earlier waits for it, paying extension capex for each waiting year. Launch in 2037 to enter service in 2045 without waiting."},
+      "pw_gtf2": {"label": "Pratt & Whitney GTF2", "maker": "pratt_whitney", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 0.95},
+      "rr_ultrafan_nb": {"label": "Rolls-Royce UltraFan (narrowbody)", "maker": "rolls_royce", "margin_pp": 1.0, "eis_add": 1, "capture_mult": 0.95}
     },
     "wb": {
-      "ge_genx_next": {"label": "GE GEnx upgrade", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
-      "rr_ultrafan_wb": {"label": "Rolls-Royce UltraFan (widebody)", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 1.0},
-      "pw_wb_new": {"label": "Pratt & Whitney new widebody engine", "margin_pp": 0.5, "eis_add": 1, "capture_mult": 0.9}
+      "ge_genx_next": {"label": "GE GEnx upgrade", "maker": "cfm", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
+      "rr_ultrafan_wb": {"label": "Rolls-Royce UltraFan (widebody)", "maker": "rolls_royce", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 1.0},
+      "pw_wb_new": {"label": "Pratt & Whitney new widebody engine", "maker": "pratt_whitney", "margin_pp": 0.5, "eis_add": 1, "capture_mult": 0.9}
     }
   },
 
@@ -232,7 +239,7 @@
         "standard": {"label": "standard terms", "airframer_margin_pp": 0.0, "value_mult": 1.0},
         "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.2, "value_mult": 0.86}
       },
-      "upgrade": {"flag": "t1000_upgrade", "label": "Trent 1000 upgrade", "segment": "wb", "fit_side": "boeing", "fit_pp": 10.0, "lag_years": 3, "capex_b": 0.8, "capex_years": 3, "installed_base_saving_b_per_year": 0.13, "saving_years": 15},
+      "upgrade": {"flag": "t1000_upgrade", "label": "Trent 1000 upgrade", "segment": "wb", "fit_side": "boeing", "fit_pp": 10.0, "from": "cfm", "lag_years": 3, "capex_b": 0.8, "capex_years": 3, "installed_base_saving_b_per_year": 0.13, "saving_years": 15},
       "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
     },
     "pratt_whitney": {
@@ -253,8 +260,32 @@
         "standard": {"label": "standard terms", "airframer_margin_pp": 0.0, "value_mult": 1.0},
         "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.1, "value_mult": 0.71}
       },
-      "upgrade": {"flag": "gtf_upgrade", "label": "GTF durability upgrade", "segment": "nb", "fit_side": "airbus", "fit_pp": 5.0, "lag_years": 3, "capex_b": 1.0, "capex_years": 3, "installed_base_saving_b_per_year": 0.45, "saving_years": 9},
+      "upgrade": {"flag": "gtf_upgrade", "label": "GTF durability upgrade", "segment": "nb", "fit_side": "airbus", "fit_pp": 5.0, "from": "cfm", "lag_years": 3, "capex_b": 1.0, "capex_years": 3, "installed_base_saving_b_per_year": 0.45, "saving_years": 9},
       "jv": {"flag": "join_rr_jv", "partner_of": "rolls_royce", "program": "uf_nb", "variant": "jv_pw"},
+      "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
+    },
+    "cfm": {
+      "label": "CFM/GE", "active": false, "_status": "PLACEHOLDER values until wargame/profiles/cfm/calibration.md is reconciled",
+      "wacc": 0.09, "alpha": 0.4,
+      "engines_per_aircraft": {"nb": 2, "wb": 2},
+      "incumbent_fit": {"boeing": {"nb": 1.0, "wb": 0.78}, "airbus": {"nb": 0.6, "wb": 0.0}},
+      "incumbent_value_m_per_engine": {"nb": 3.0, "wb": 6.0},
+      "fallback_engine": {"nb": "cfm_leap_plus", "wb": "ge_genx_next"},
+      "programs": {
+        "ducted": {"label": "advanced ducted narrowbody engine", "segment": "nb", "engine_option": "cfm_ducted", "dev_years": 6, "capex_b": 5.0, "value_m_per_engine": 3.5},
+        "open_fan": {"label": "RISE open fan", "segment": "nb", "engine_option": "cfm_open_fan", "dev_years": 9, "capex_b": 8.0, "value_m_per_engine": 4.0}
+      },
+      "ramp": {"start_frac": 0.0, "years": 8},
+      "terms": {
+        "standard": {"label": "standard terms", "airframer_margin_pp": 0.0, "value_mult": 1.0},
+        "aggressive": {"label": "aggressive terms (price concessions)", "airframer_margin_pp": 1.0, "value_mult": 0.8}
+      },
+      "upgrades": [
+        {"flag": "leap_upgrade", "label": "LEAP durability upgrade", "segment": "nb", "fit_side": "airbus", "fit_pp": 5.0, "from": "pratt_whitney", "lag_years": 2, "capex_b": 1.0, "capex_years": 3, "installed_base_saving_b_per_year": 0.5, "saving_years": 10},
+        {"flag": "genx_upgrade", "label": "GEnx improvement package", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "from": "rolls_royce", "lag_years": 3, "capex_b": 0.8, "capex_years": 3, "installed_base_saving_b_per_year": 0.1, "saving_years": 10}
+      ],
+      "partner_volume": {"flag": "embraer_partner", "label": "Embraer partnership (engines for Embraer's next aircraft)", "capex_b": 0.5, "capex_years": 2, "lag_years": 6, "engines_per_year": 160, "value_m_per_engine": 1.5},
+      "lobby": {"flag": "lobby_emissions", "label": "lobbying governments on emissions", "cost_b": 0.3, "cost_years": 3, "lag_years": 2, "engine": "cfm_open_fan", "margin_pp": 0.5, "capture_mult": 1.05},
       "strain": {"full_overlap_b": 1.5, "norm_years": 5, "background": []}
     }
   },

@@ -1,6 +1,6 @@
 """Dump every non-empty cell of the engine makers' workbooks for citation.
 
-Usage: cells_dump.py <rr|pw> <folder holding the workbooks, normally the repo root> <output folder>
+Usage: cells_dump.py <rr|pw|cfm> <folder holding the workbooks, normally the repo root> <output folder>
 
 One file per sheet, <source>__<sheet>.tsv, with lines: ref <TAB> value <TAB> row label
 <TAB> nearest period header above. Also writes index.json and cells_cache.json, which
@@ -11,6 +11,8 @@ Source ids:
   estimates report), ciq_segments (Capital IQ segments, FY2015-FY2025);
 - pw: gs_rtx (Goldman Sachs RTX model, 21 Oct 2025, including its GTF Analysis sheet).
   GoldmanSachs_GTF_Oct_22_2025.xlsx holds the same values cell for cell, so it is not dumped twice.
+- cfm: gs_cfm (Goldman Sachs CFM model, 22 Sep 2025), ms_cfm (Morgan Stanley CFM DCF), gs_saf
+  (Goldman Sachs Safran model, 10 Nov 2025; the Sep 2025 Safran model is an earlier version).
 """
 import datetime, json, os, re, sys
 import openpyxl, xlrd
@@ -20,6 +22,9 @@ SETS = {
            "ciq_estimates": "Rolls-Royce Holdings plc LSE RR Estimates Report.xls",
            "ciq_segments": "Rolls-Royce Holdings plc LSE RR Financials Segments.xls"},
     "pw": {"gs_rtx": "GoldmanSachs_RTX102125_Oct_22_2025.xlsx"},
+    "cfm": {"gs_cfm": "GoldmanSachs_CFM_Model_Sep_22_2025.xlsx",
+            "ms_cfm": "Morgan Stanley DCF - CFM.xlsm",
+            "gs_saf": "GoldmanSachs_SAFPACompanyModel_Nov_10_2025.xlsx"},
 }
 FILES = SETS[sys.argv[1]]
 RAW = sys.argv[2]; OUT = sys.argv[3]
@@ -68,7 +73,19 @@ for src, fn in FILES.items():
     path = os.path.join(RAW, fn)
     index[src] = {}; allcache[src] = {}
     if fn.lower().endswith((".xlsm", ".xlsx")):
-        wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        try:
+            wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        except ValueError:
+            # Some broker models carry defined names openpyxl cannot parse: load a copy without them.
+            import tempfile, zipfile
+            tmp = os.path.join(tempfile.mkdtemp(), "clean.xlsx")
+            with zipfile.ZipFile(path) as zin, zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as zout:
+                for item in zin.infolist():
+                    data = zin.read(item.filename)
+                    if item.filename == "xl/workbook.xml":
+                        data = re.sub(rb"<definedNames>.*?</definedNames>", b"", data, flags=re.S)
+                    zout.writestr(item, data)
+            wb = openpyxl.load_workbook(tmp, read_only=True, data_only=True)
         for ws in wb.worksheets:
             if ws.title.startswith("__"):
                 continue

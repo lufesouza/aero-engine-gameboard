@@ -33,7 +33,7 @@ for it in items:
     if k not in seen:
         seen.add(k)
         uniq.append(it)
-for co, prefix in (("boeing", "BX"), ("airbus", "AX"), ("cfm", "CX")):
+for co, prefix in (("boeing", "BX"), ("airbus", "AX"), ("cfm", "CX"), ("rolls_royce", "RX"), ("pratt_whitney", "PX")):
     rows = sorted([i for i in uniq if i.get("company") == co],
                   key=lambda i: (i.get("exec_id", ""), i.get("date", ""), i.get("dimension", "")))
     if not rows:  # never overwrite a company's evidence from a run that did not cover it
