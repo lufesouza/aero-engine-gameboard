@@ -1,0 +1,246 @@
+====================================================================================================
+CFM INTERNATIONAL: THE JOINT VENTURE AND ITS GOVERNANCE
+====================================================================================================
+
+Plain-text copy of wargame/profiles/cfm/executives/cfm_international.md, built 2026-10-04 by
+wargame/profiles/build/make_role_txt.py. The Markdown file is the source of truth.
+
+What this file is. The institution behind the GE executive profiles here; not an Output 1 profile,
+since CFM's own officers never speak in the sources.
+
+Evidence. 110 cfm_jv items (100 from GE calls, 2017-2025; 10 from Capital IQ, November 2025), plus a
+few GE executive items. One Safran executive speaks: CEO Olivier Andries, on GE's stage in March
+2022 [CX-0153].
+
+Confidence. High on structure and GE's public account; low on how decisions are reached with Safran.
+
+1. WHAT CFM IS
+--------------
+
+- Owners. A Joint Venture of Engine Investments Holding Company, a GE subsidiary, and Safran
+  Aircraft Engines [CX-0227] [CX-0231]. Culp: "our 50-50 JV with Safran" [CX-0166].
+- A thin entity. Founded 1974, 64 employees per Capital IQ [CX-0228]. Engineering, production and
+  most shop work sit in the parents, so the parents decide (inference, from the headcount and the
+  joint work GE describes [CX-0186] [CX-0219]). It holds subsidiaries such as Shannon Engine Support
+  Limited [CX-0224].
+- Term. Extended to 2050, announced by Andries "together with my partner John Slattery" [CX-0153].
+- Framing. Andries: "a unique partnership" that brought the "disruptive" CFM56 to market [CX-0154].
+  Culp: "probably the most successful transatlantic joint venture in history" [CX-0198].
+
+2. GOVERNANCE AND THE SAFRAN GATE
+---------------------------------
+
+What the parents share.
+- Pricing. Narrowbody price increases are "a joint decision", worked by GE's commercial engines head
+  "with his partners at CFM" (Ghai, March 2024) [CX-0184]. A mid-single-digit gross rise nets to
+  "low single-digit ... given the revenue-sharing agreement" [CX-0184]; spares rises are diluted the
+  same way [CX-0201]. Whether the caps sit with Safran, revenue-sharing suppliers or both is not
+  stated.
+- Delivery promises. In March 2022 Andries committed to more than 2,000 LEAPs in 2023 [CX-0149], as
+  did Slattery on the same day [CX-0148]. By February 2023 the joint commitment was +50%: "Both GE
+  and Safran ... are committed", "and we've set as much to both our major airframer customers"
+  [CX-0160]. In July 2023 the target was 1,700 [CX-0172].
+- Losses. For the MAX grounding Safran cited "a EUR 200 million exposure in the second quarter", and
+  GE had "something in that same range" (Culp, April 2019) [CX-0136]. That suggests an even split of
+  the loss (inference).
+- Shop visits. About 70% of LEAP shop visits by 2030 to be done by CFM, "split equally between our
+  JV partner, Safran and us" (July 2025), up from a 60/40 plan in 2024 [CX-0219] [CX-0187].
+  Customers choose "GE Safran or third party" [CX-0145]: the parents share and compete.
+- Working level. Joint supply-chain reviews (2017) [CX-0127]; GE's Bill Fitzgerald spoke to his
+  Safran counterpart "3 or 4 days a week ... sometimes 7" [CX-0128]; a "joint GE Aerospace and
+  Safran team" cut LEAP test-cell hours by 30% (2024) [CX-0186]. Tom Levin, who "runs CFM programs"
+  for GE, "facilitates the signing" of the MRO partner deals [CX-0170] (the transcript credits the
+  answer to Culp; the speaker is uncertain).
+
+What each keeps. Separate technology lines: Safran has "their own technology development" [CX-0129].
+Tariffs go to fixed-price suppliers, but with Safran "it's a different dynamic" [CX-0202]. GE does
+not comment on Safran's own results or its share of supply constraints: "we'll leave their reports
+to them" [CX-0146]; "everyone is in this together" (Dybeck Happe) [CX-0157]. But GE does state joint
+commitments [CX-0160] and has named a Safran labour disruption [CX-0220].
+
+Public reconciliation. Narrowbody assumptions "pretty aligned" [CX-0144]; the CFM56 outlook "echoed"
+by Safran [CX-0199]; a 2028 target of 2,500 LEAPs that an analyst said "your partners put out there"
+[CX-0195], adopted by Culp in July 2025 [CX-0213].
+
+The Safran gate (rule for the game). A CFM programme, pricing or capacity decision needs both
+parents. The evidence shows joint pricing [CX-0184], rate commitments [CX-0160] and RISE launch
+[CX-0147], but never a disagreement, vote or deadlock. Treat the gate as consent with no observed
+veto (inference). GE's widebody engines (GEnx, GE9X) sit outside CFM and pass no gate.
+
+3. PROGRAMMES AS THE EVIDENCE SHOWS THEM
+----------------------------------------
+
+CFM56: the cash engine. A franchise that "fuels our investments in the rest of this business"
+[CX-0130]; production ran past 2019 as LEAP ramped slowly [CX-0131]. Licensed third parties do about
+70% of its shop visits [CX-0165]. The fade keeps moving out: a peak "2025-ish" in March 2024
+[CX-0177]; a plateau "in that 2,300 range" in May 2025, "and we've been wrong" [CX-0204].
+
+LEAP. Three engines: -1A (Airbus), -1B (Boeing), -1C (COMAC C919) [CX-0168]. The -1A and -1B share
+only about 10% of their roughly 2,500 parts, so two ramps run in parallel [CX-0159].
+
+* Date: Mar 2019
+    Commitment: About 2,200 LEAPs in 2020
+    Outcome: Capacity cut to 1,400 for 2020 after the MAX grounding (March 2020); the 2020 actual is
+      not in the evidence; 845 in 2021 (MAX grounding, COVID)
+    Ids: [CX-0132] [CX-1136] [CX-0148]
+
+* Date: Apr 2019
+    Commitment: OE breakeven in 2021
+    Outcome: 2025 (2022 view); OE profit 2026 (2025 view)
+    Ids: [CX-0135] [CX-0150] [CX-0194]
+
+* Date: Mar 2022
+    Commitment: 2,000 LEAPs in 2023 (GE and Safran)
+    Outcome: Target cut to 1,700 by July 2023. 2023 closed at 1,570 engines, +38% (Culp, January
+      2024), or +25% (Culp, March 2024); the two records conflict
+    Ids: [CX-0148] [CX-0149] [CX-0172] [CX-0590] [CX-0176]
+
+* Date: Mar 2024
+    Commitment: Deliveries +20-25% in 2024
+    Outcome: "didn't ship as many leaps ... as we had intended"
+    Ids: [CX-0179] [CX-0196]
+
+* Date: Mar 2024
+    Commitment: -1A kit into production 2024; -1B 2025
+    Outcome: -1A certified 6 Dec 2024; -1B certification 1H 2026
+    Ids: [CX-0178] [CX-0225] [CX-0210]
+
+* Date: Jul 2025
+    Commitment: 2,500 LEAPs in 2028; profit parity with CFM56 by ~2030
+    Outcome: Open
+    Ids: [CX-0213] [CX-0212]
+
+Durability is the central story: a time-on-wing shortfall "particularly in the Middle East and
+India" [CX-0161], which the -1A kit aims to fix "more than twofold" [CX-0209]. Early-life risk sat
+with the parents through service agreements GE tends "to underwrite internally" [CX-0163], priced
+"accordingly" to win share [CX-0207]; later contracts are re-priced up [CX-0215].
+
+RISE.
+- Launch. Launched in 2021 "in concert with our partners at Safran" as a technology programme, to
+  become product "as our airframer and airline customers deem appropriate" [CX-0147]. Andries set
+  the aim: a disruptive engine "by 2035" with 20% better fuel burn [CX-0152].
+- GE's markers. A ducted engine gets "less than half the fuel burn improvements" [CX-0183]
+  [CX-0180]. "We're all in, Ron, on open fan" [CX-0214]; customers need "at least a 20% reduction in
+  fuel burn" [CX-0217]; the next CFM engine "could be available by the middle of the next decade"
+  [CX-0189].
+- Joint work. Over 200 wind-tunnel hours "with our partner, Safran" [CX-0191]; 350-plus programme
+  tests by July 2025 [CX-0216]. GE's workshare: Avio Aero's gearbox and low-pressure turbine
+  [CX-0181].
+- Slip. A fly demo "by the middle of this decade" (2022) [CX-0151] became flight test "this decade"
+  with Airbus [CX-0211].
+- LEAP lessons. Earliest-ever dust testing on RISE HPT blades [CX-0222]; a Chief Mechanic and
+  Architect for open-fan durability [CX-0223]; RISE technology feeds LEAP upgrades [CX-0162].
+
+4. CUSTOMERS AND RIVALS AS GE DESCRIBES THEM
+--------------------------------------------
+
+- Boeing. Sole source on the MAX [CX-0182], "a backlog that we share" [CX-0197]. GE paces -1B
+  shipments to Boeing's actual rate and engine inventory [CX-0206]. In the grounding it cut LEAP MRO
+  capex to match [CX-0141]. On the NMA, talks stayed "between partners and between the customer",
+  judged on "the long-term economics for GE" [CX-0139].
+- Airbus. About 55-60% of the A320neo [CX-0168] [CX-0182]; over 70% of A320 family wins since 2023,
+  credited to durability [CX-0218]. On rate 75, "there is no daylight there" (the transcript renders
+  the Airbus CEO as "[ Gilman ]") [CX-0200]. On an A220-500 second engine: "we'll keep our comments
+  private" [CX-0171].
+- COMAC. LEAP-1C sole source on the C919 [CX-0134]; nothing more.
+- Demand. Recent orders span both airframers: Riyadh Air and Avolon (-1A), Ryanair (-1B spares)
+  [CX-0226]. LEAP is "sold out in effect ... through the rest of this decade" [CX-0221].
+- Rivals. Against the GTF, utilisation "8.4 points better" (2019) [CX-0134]. Ali: rivals that "need
+  to redesign a large portion of the engine" should worry customers [CX-0164]; a hot-section moat
+  makes it "nearly impossible for anybody to come from behind" [CX-0169]. Culp will not "speak to
+  competition" [CX-0580] and welcomes GTF operators [CX-0581].
+
+5. CFM'S OWN OFFICERS
+---------------------
+
+Capital IQ (November 2025), titles only:
+- Gaël Méheust, Chief Executive Officer and President [CX-0229];
+- Sébastien Imbourg (printed "Sbastien"), Executive VP & GM of CFM Program [CX-0230];
+- Jerome Morhet, Olivier Savin and Karl Sheldon, Executive Vice Presidents [CX-0230].
+
+None speaks in any source; their parent of origin, remit and conduct are unknown, so none is
+profiled. GE's decision makers for its half are Culp, Ghai and Ali [CX-0232]. Former Airbus CEO Tom
+Enders sits on GE Aerospace's board [CX-0233].
+
+6. WHAT THIS MEANS IN THE GAME
+------------------------------
+
+Today CFM/GE is not a player. cfm_ducted is the narrowbody default for fps and NGSA; cfm_open_fan is
+RISE (+1.5pp margin, +1 year to EIS, 0.85 capture); ge_genx_next is GE alone and the 787 Re-engine
+default. Airframes fall back to CFM or GE when a rival maker has not launched. The referee can test
+the market cell's CFM/GE reactions against these rules:
+1. Serve both airframers. Culp aligns RISE with both airframers' road maps [CX-0185]; GE wants "to
+   be on all the critical platforms" [CX-0171] and works the open fan with Airbus and Boeing
+   [CX-0193]. Refusing fps or NGSA, or locking one airframer out, is implausible (inference).
+2. The airframer sets the launch date. "It's really not for us to say when" RISE enters service
+   [CX-0205]. CFM does not force cfm_open_fan.
+3. Ramp promises are joint, and in 2023-24 they ran late. Both parents commit [CX-0160]. 2023
+   delivered +38% (January 2024) or +25% (March 2024) against +50% [CX-0590] [CX-0176]; 2024 ended
+   down 10% against +20-25% [CX-0954] [CX-0196]. The 2025 guide of +15-20% was raised in October
+   2025 to above 20% [CX-0654]; the full-year outcome is outside the evidence. For a promise made in
+   the 2023-24 style, expect a shortfall of a quarter to a half of the promised growth, and allow
+   for a 2024-type reversal when suppliers fail; a low 2025-style guide needs no haircut
+   (inference).
+4. Price for return, not to match rivals. "A fair risk-adjusted return ... regardless of what our
+   competitors may do" [CX-0188]; launch-era pricing, "those days are behind us" [CX-0930]. Yet GE
+   took early-life risk to win share [CX-0207]. Narrowbody price moves need Safran [CX-0184].
+5. In a crisis, absorb and share; don't blame. Payment terms rather than halted deliveries
+   [CX-0142]; GE put its MAX exposure in the same range as Safran's [CX-0136] (inference: an even
+   split); "avoid the finger pointing" [CX-0158]; a Safran disruption named but guidance held
+   [CX-0220].
+6. Widebody tenders are GE alone, with no Safran gate. GE claims a 70% 787 life-of-programme win
+   rate [CX-0615], not won "because of price" [CX-0599].
+
+As a future supplier player (proposed levers, not in the engine).
+
+* Lever (proposed): Launch cfm_open_fan (RISE)
+    Safran gate: Yes: RISE is joint [CX-0147] [CX-0166]
+    Default from the evidence: Launched when an airframer commits [CX-0205], for at least 20% better
+      fuel burn [CX-0217]
+
+* Lever (proposed): Launch advanced cfm_ducted
+    Safran gate: Yes (inference)
+    Default from the evidence: GE says it gives less than half the gain [CX-0183]: a fallback
+
+* Lever (proposed): Widebody offer (GEnx-next, GE9X derivative)
+    Safran gate: No
+    Default from the evidence: GE alone
+
+* Lever (proposed): Aggressive terms
+    Safran gate: Yes on narrowbody [CX-0184]
+    Default from the evidence: Only to win share at launch, re-priced later [CX-0207] [CX-0215]
+
+* Lever (proposed): One-time LEAP durability upgrade
+    Safran gate: Yes (inference): joint GE-Safran teams exist [CX-0186]; certification is with the
+      airframer [CX-0210]
+    Default from the evidence: Under way: -1A done [CX-0225], -1B 1H 2026
+
+* Lever (proposed): Cancel RISE
+    Safran gate: Yes
+    Default from the evidence: Unlikely: R&D held at 6-8% with no "program dividend" [CX-0174];
+      future bets protected in 2020 [CX-0143]
+
+A GE-side player would book half of CFM's narrowbody value and capex, and all of the widebody
+(inference from the 50/50 structure [CX-0166]; no CFM financial model exists yet). It would ask
+whatif for cfm_open_fan against cfm_ducted on fps and NGSA, and options --side boeing / --side
+airbus for each airframer's incentive to pick CFM (the engine has no --side cfm today).
+
+7. GAPS
+-------
+
+- Safran's side. Its leaders speak once, at GE's 2022 investor day [CX-0149] [CX-0152] [CX-0153].
+  Its pricing, capacity, workshare, view of GE and internal disagreements cannot be known. Its
+  labour disruption [CX-0220], sole-source suppliers [CX-0126] (analyst question) and MAX exposure
+  [CX-0136] come second-hand.
+- Governance mechanics. Board, voting, deadlock rules and the revenue-sharing formula are not
+  disclosed. No source names GE's representatives on CFM's governance; EIHC lists no officers
+  [CX-0231].
+- CFM's officers. Names and titles only [CX-0229] [CX-0230].
+- Financials. No CFM-level P&L, cash flow or concession data; all LEAP economics are GE's half. Culp
+  said LEAP aftermarket margins stay "below the 56" [CX-0175]; "about half" is an analyst's reading.
+- RISE. Investment and partner split unknown; Safran's share appears only as joint wind-tunnel
+  testing [CX-0191].
+- Customers. Nothing on C919 volumes or China risk; the A220-500 and NMA talks were kept private
+  [CX-0171] [CX-0139].
+- Attribution. Some 2023 answers credited to Culp read like Stokes's [CX-0170]. 2018 has one item
+  [CX-0131].

@@ -17,6 +17,8 @@ The players are independent agents with their own behavioural profiles:
 
 The market cell, `wargame-market`, plays airlines and lessors, and the engine makers that are not players. The engine, `python3 -m wargame.engine`, computes every number. `wargame/README.md` has the rules.
 
+CFM/GE is not a player. Its leaders are profiled in `wargame/profiles/cfm/executives/` (README, teams and the joint-venture card `cfm_international.md`). Only you may read them, never a player or the market cell. Use them to judge whether a CFM/GE reaction the market cell sets is plausible: pricing, exclusivity, ramp promises, RISE open fan versus ducted, and the Safran gate. Do not pass their contents to any player.
+
 ## Hard rules of refereeing
 
 1. **Equal treatment.** Every player gets the same public information, at the same time, in the same task format. Dispatch all players in **one message, in parallel**, so none moves with knowledge of another's current orders.

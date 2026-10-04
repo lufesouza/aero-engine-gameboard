@@ -1,0 +1,1200 @@
+====================================================================================================
+CFM INTERNATIONAL: CHIEF EXECUTIVE (GE-SIDE CEO SEAT)
+Role profile for the Boeing vs Airbus war game
+====================================================================================================
+
+Plain-text copy of the executive profiles in wargame/profiles/cfm/executives/, built 2026-10-04 by
+wargame/profiles/build/make_role_txt.py. The Markdown files are the source of truth. Bracketed ids
+([CX-0123]) point to verified evidence in wargame/profiles/cfm/executives/evidence.jsonl. Section
+numbers (§) and file names inside a profile refer to that person's Markdown profile; the same
+sections appear below under the person's name.
+
+Scope: professional conduct only, from the executives' own words and the company record. Inferences
+are labelled (inference).
+
+THE SEAT IN THE EXCO
+--------------------
+The CEO frames the turn: is the company ready (stability, balance sheet, technology), what has the
+rival done, which levers are in play. The CEO proposes and, under every team's decision rule, takes
+the final call; the CEO's Voice lines are used for public statements and disclosure.
+
+HOLDERS (3, current first)
+--------------------------
+- Larry Culp
+    Role(s) and dates: GE Chairman & CEO from October 2018 [CX-0235]; also ran GE Aerospace directly
+      from July 2022 [CX-0530]; GE Aerospace Chairman & CEO per Capital IQ, November 2025 [CX-0232]
+    Own-words items: 474: 423 culp + 51 cfm_jv, October 2018 to October 2025
+    Events: 60
+    Confidence: High on guidance, operations, capital and crises; Medium on engine launches; Low on
+      bargaining with Safran
+    Teams: culp-miller-joyce-2019, culp-dybeckhappe-slattery-2021, culp-dybeckhappe-stokes-2023,
+      culp-ghai-stokes-2024, culp-ghai-ali-2026 (DEFAULT)
+
+- John Flannery
+    Role(s) and dates: GE Healthcare CEO (2016-17 events); GE CEO-elect June 2017 [CX-0789];
+      Chairman & CEO from his first call as CEO, October 2017 [CX-0792], to about October 2018
+      [CX-0235]
+    Own-words items: 111 flannery (plus 1 shareholder question), November 2016 to July 2018
+    Events: 13
+    Confidence: Medium on capital, guidance and portfolio; Low to medium on CFM
+    Teams: flannery-miller-joyce-2018
+
+- Jeff Immelt
+    Role(s) and dates: GE Chairman & CEO, evidence December 2015 to July 2017; handover targeted for
+      summer 2017 [CX-1101]
+    Own-words items: 110 immelt, December 2015 to July 2017
+    Events: 16
+    Confidence: Medium: rich on aviation economics, but only his last 20 months
+    Teams: immelt-bornstein-joyce-2016
+
+Note: CFM International is a 50/50 joint venture of GE and Safran Aircraft Engines. Its own officers
+      do not speak in the sources; Capital IQ (November 2025) lists Gaël Méheust as CFM's Chief
+      Executive Officer and President. The strategic calls on CFM (engines to launch, pricing,
+      capacity, durability fixes) are made by the two parents, so this file profiles the GE CEOs,
+      who speak for CFM on GE's calls. Safran's leaders are not in the sources. See
+      cfm_international.txt for the joint venture itself.
+
+
+####################################################################################################
+PROFILE 1 OF 3: H. LAWRENCE (LARRY) CULP: CEO SEAT, GE'S HALF OF CFM (CURRENT HOLDER)
+Source: wargame/profiles/cfm/executives/culp.md
+Teams (see cfm_leadership_teams.txt): culp-miller-joyce-2019, culp-dybeckhappe-slattery-2021,
+  culp-dybeckhappe-stokes-2023, culp-ghai-stokes-2024, culp-ghai-ali-2026 (DEFAULT)
+####################################################################################################
+
+1. HEADER
+---------
+
+Role(s) and dates.
+- Chairman & CEO of GE from October 2018. Within 30 days he cut the dividend from $0.12 to $0.01
+  [CX-0234].
+- From July 2022 he also ran GE Aerospace directly [CX-0530].
+- After the HealthCare spin (3 January 2023) [CX-0475] and the 2024 spin-off, he led the
+  aviation-only company, as planned in 2021 [CX-0477]. Capital IQ lists him as GE Aerospace Chairman
+  & CEO in November 2025 [CX-0232].
+
+CFM. GE holds 50% of CFM International through Engine Investments Holding Company [CX-0231]. Safran
+Aircraft Engines holds the other half [CX-0227]. Culp speaks only for GE's half, and Safran's
+leaders are not in the sources. Safran's CEO speaks once, on GE's stage [CX-0153].
+
+Era. Industrial net debt/EBITDA was 4.8x at end-2018 [CX-0360]. On his watch:
+- the 737 MAX grounding [CX-0274] and COVID [CX-0363];
+- GECAS-AerCap [CX-0506] and more than $100bn of debt reduction [CX-0606];
+- the break-up [CX-0470];
+- a supplier-throttled LEAP ramp [CX-0613];
+- LEAP durability kits [CX-0607] and RISE [CX-0476];
+- 2025 tariffs [CX-0635] and the Air India 171 crash [CX-0648].
+
+Evidence base. 425 culp items, October 2018 to October 2025: 423 in his own words and 2 analyst
+questions. 113 of them are tied to a trigger event. Another 51 cfm_jv items are in his own words.
+
+Confidence.
+- High on guidance, operations, capital allocation and crises.
+- Medium on engine launch behaviour: RISE has never reached a product launch.
+- Low on how he bargains with Safran.
+
+2. QUICK CARD
+-------------
+
+Objective function, ranked in his own terms.
+1. Safety and quality: "safety, quality, delivery and cost, always in that order" [CX-0658]
+   [CX-0441]. They are not traded for the ramp [CX-0603].
+2. Delivery to airframers and airlines, in a "today, tomorrow and the future" order [CX-0552]:
+   - predictability [CX-0542];
+   - spares never crowding out OE engines [CX-0529].
+3. The installed-base annuity:
+   - the economics "happen in and around the first and second" shop visits [CX-0422];
+   - "We get paid in dollars, not in percentages" [CX-0630].
+4. Next-generation technology: "the seed corn of our future" [CX-0256], with no "program dividend"
+   [CX-0174].
+5. The balance sheet first, then shareholder returns of 70-75% of free cash flow [CX-0595], and at
+   least 70% after 2026 [CX-0645].
+
+Not an objective: share for its own sake. "we're not going for share" [CX-0493]; "we are not the low
+bid" [CX-0250].
+
+Decision rules and red lines.
+- A next narrowbody engine needs at least 20% better fuel burn [CX-0217]. Durability is not traded
+  for fuel burn [CX-0208].
+- Entry into service is the airframer's call: "really not for us to say" [CX-0205] [CX-0469].
+- New platforms are pursued with Safran, and only if "additive" to GE's economics [CX-0301].
+- Price for "a fair risk-adjusted return ... regardless of what our competitors may do" [CX-0609].
+  Orders must be accretive on price, terms and scope [CX-0339]. Terms are risk "that isn't
+  necessarily modeled" [CX-0440].
+- No public blame [CX-0295] [CX-0158]. He leaves Safran's results to Safran [CX-0146] and does not
+  comment on rivals by name [CX-0580]. But he does state joint ramp commitments for both parents
+  [CX-0558] and has named Safran as a delivery dependency [CX-0647] [CX-0652].
+- No vertical integration unless there is no alternative: "strategy first, operational value second
+  and then the financial thresholds last" [CX-0596].
+- He would not raise a long-term aspiration because investors asked (the 2021 free-cash-flow margin
+  aspiration: "we're not going to raise it until we do it") [CX-0444]. He does raise guidance and
+  targets once results run ahead: 2019 cash twice [CX-0317], the 2028 profit target in July 2025,
+  three years early [CX-0597] [CX-0646], and the 2025 LEAP outlook [CX-0654].
+
+Risk appetite.
+
+* Kind of risk: Technology
+    Rating: High
+    Evidence: "all in ... on open fan" [CX-0214]; earliest-ever dust testing [CX-0222]
+
+* Kind of risk: Schedule
+    Rating: Low to Medium
+    Evidence: Defers to airframers [CX-0205], but his LEAP ramp forecasts proved optimistic
+      [CX-0592] [CX-0619]
+
+* Kind of risk: Balance sheet
+    Rating: Low
+    Evidence: A-rating target [CX-0252]; cash cushion [CX-0264]; below 2.5x [CX-0471]
+
+* Kind of risk: Contract and price
+    Rating: Medium
+    Evidence: Takes on early-life service-contract risk: "We've priced that accordingly" [CX-0207]
+      and accepts loss-making LEAP OE [CX-0557], but avoids business that "didn't get paid for the
+      risks" [CX-0569]
+
+Tempo.
+- Fast on controllables: "We don't want to be rash, but we need to get after this straight away"
+  [CX-0237]. COVID cost actions were raised within weeks [CX-0366].
+- Patient on structural moves. He needs three gates: foundation, partner and market [CX-0433].
+  Platform talks stay private [CX-0586].
+- Staged resets, but reversals happen. He prefers pre-announced charges [CX-0391] and staged resets
+  [CX-0523] [CX-0531]. He has reversed a categorical denial when the cycle changed: "To be clear, we
+  have no plans to sell GECAS" (January 2019) [CX-0243], then GECAS combined with AerCap in 2021
+  [CX-0434]. He also walked back the more-than-$7bn 2023 cash commitment without a new number
+  [CX-0524]. A referee should not rule a Culp reversal implausible.
+
+Capital allocation.
+- R&D "program by program" [CX-0255].
+- Technology protected while capex falls about 25% [CX-0389] [CX-0398].
+- Bolt-ons only [CX-0428].
+- A capital-light MRO network [CX-0203].
+
+Product stance.
+- Invest in technology, win platforms, then earn "decades" of service [CX-0313].
+- Retrofit the installed product [CX-0649]. Go clean-sheet only for a generational step [CX-0217].
+- RISE is 50-50 with Safran [CX-0166], offered to both airframers [CX-0193].
+- He wants "to be on all the critical platforms" [CX-0587].
+
+How he reads the airframers and rivals.
+- Airbus: "no daylight" on rate 75 [CX-0200]; "work to do with our friends at Airbus" [CX-0340].
+- Boeing: "a backlog that we share" [CX-0197]. Delivery volatility is cash timing [CX-0497].
+- Rival engine makers: never named. The scoreboard is win rates [CX-0322] [CX-0218], and "we do not
+  judge ourselves on a relative basis" [CX-0600].
+
+Voice.
+- "safety, quality, delivery and cost, always in that order" [CX-0658]
+- "We don't have a birthright on that next order." [CX-0564]
+- "you're not going to see us as the finger pointers. You're going to see us as the problem solvers"
+  [CX-0625]
+- "the genius of the AND" [CX-0208]
+- "It's that simple, ain't that hard." [CX-0653]
+- "tell you what we know, tell you what we don't" [CX-0436]
+
+Biases to display.
+- Financial guidance: conservative, then raised [CX-0270] [CX-0324].
+- LEAP unit ramps: over-optimistic in 2023-24. 2023 came in at +38% (his January 2024 figure) or
+  +25% (March 2024) against +50% [CX-0590] [CX-0176]; 2024 ended down against +20-25% [CX-0592]
+  [CX-0619]. Since 2025 he guides low and raises [CX-0654]. Haircut a promise made in the 2023-24
+  style by a quarter to a half of the promised growth (inference).
+- Installed-base lens: OE losses are "seeding the next 20, the next 30 years" [CX-0555].
+- Deference to airframers on rates and dates [CX-0452] [CX-0327].
+- Lean before capital [CX-0540] [CX-0653].
+- Plans on the low case, with tailwinds as upside [CX-0536] [CX-0458].
+
+3. COMMITMENT TRACK RECORD
+--------------------------
+
+* Date: 2019-01
+    Commitment or forecast: "no plans to sell GECAS"
+    Outcome: Combined with AerCap in 2021 for more than $30bn, keeping 46%
+    Ids: CX-0243, CX-0434, CX-0506
+
+* Date: 2019-01
+    Commitment or forecast: Industrial leverage below 2.5x
+    Outcome: 4.2x at end-2019; the date slipped with COVID; more than $100bn of debt cut
+    Ids: CX-0242, CX-0326, CX-0383, CX-0606
+
+* Date: 2019-03
+    Commitment or forecast: 2019 FCF of breakeven to -$2bn
+    Outcome: Raised twice; +$2.3bn
+    Ids: CX-0270, CX-0317, CX-0324
+
+* Date: 2019-05
+    Commitment or forecast: About 20% Aviation margin through the LEAP ramp
+    Outcome: Above 20%
+    Ids: CX-0296, CX-0325
+
+* Date: 2019-05
+    Commitment or forecast: GE9X first flight 2019, service 2020 ("knock-wood")
+    Outcome: GE's own part: a GE9X certification delay added cost in July 2019 (Miller). 30 test
+      flights by May 2020; the first-flight date is not in the evidence. Entry into service restated
+      to 2021 (Joyce, March 2020), then assumed May 2025; the 777X "late" in October 2024
+    Ids: CX-0297, CX-1237, CX-0386, CX-1135, CX-0593, CX-0621
+
+* Date: 2020-05
+    Commitment or forecast: A negative 2020 FCF year
+    Outcome: +$0.6bn
+    Ids: CX-0393, CX-0417
+
+* Date: 2021-11
+    Commitment or forecast: More than $7bn FCF in 2023
+    Outcome: Walked back in July 2022
+    Ids: CX-0473, CX-0524
+
+* Date: 2022-01
+    Commitment or forecast: 2022 EPS of $2.80-3.50 and FCF of $5.5-6.5bn
+    Outcome: Cut to $2.40-2.80 and about $4.5bn
+    Ids: CX-0479, CX-0531
+
+* Date: 2022-02
+    Commitment or forecast: LEAP OE breakeven around 2025
+    Outcome: Restated as aftermarket 2024, programme 2025, OE 2026
+    Ids: CX-0487, CX-0627
+
+* Date: 2023-02
+    Commitment or forecast: LEAP deliveries up 50%, a joint commitment with Safran
+    Outcome: 1,570 engines, called +38% in January 2024 and +25% in March 2024
+    Ids: CX-0558, CX-0590, CX-0176
+
+* Date: 2023-03
+    Commitment or forecast: 20% Aerospace margin by 2025
+    Outcome: 23.1% in Q2 2024
+    Ids: CX-0562
+
+* Date: 2023-05
+    Commitment or forecast: Supply normal by late 2024
+    Outcome: Constrained in 2025
+    Ids: CX-0573, CX-0639
+
+* Date: 2024-01
+    Commitment or forecast: 2024 LEAP deliveries up 20-25%
+    Outcome: Cut to flat to +5%; ended down year on year
+    Ids: CX-0592, CX-0611, CX-0619
+
+* Date: 2024-05
+    Commitment or forecast: LEAP-1A kit in 2024; LEAP-1B kit in 2025
+    Outcome: 1A certified December 2024; 1B moved to 1H 2026
+    Ids: CX-0607, CX-0225, CX-0656
+
+* Date: 2022-06
+    Commitment or forecast: RISE demonstrations by mid-decade
+    Outcome: Now "this decade"
+    Ids: CX-0519, CX-0211
+
+* Date: 2025-01
+    Commitment or forecast: LEAP deliveries up 15-20% in 2025
+    Outcome: Raised to above 20%
+    Ids: CX-0622, CX-0654
+
+* Date: 2024-03
+    Commitment or forecast: $10bn operating profit in 2028
+    Outcome: Raised to about $11.5bn in July 2025, three years early
+    Ids: CX-0597, CX-0646
+
+The pattern. He met or beat most cash, margin and deleveraging targets, but missed in 2022. LEAP
+unit and supply forecasts missed for two years. Since then he has guided LEAP low and raised
+mid-year [CX-0654].
+
+4. SECTIONS BY DIMENSION
+------------------------
+
+Era timeline.
+- 2018-20, the reset. Aviation is "no better business in all of GE" [CX-0284], under a "First, do no
+  harm" pledge [CX-0304].
+- 2020-21, COVID. "embrace reality, redefine winning and execute the plan" [CX-0370].
+- 2022-23, the break-up and the ramp. He took over Aerospace [CX-0530].
+- 2024-25, standalone GE Aerospace. "playing more offense" [CX-0589], with supply as the constraint
+  [CX-0613].
+
+Priorities. Aviation was "job 1" during the reset [CX-0353]. In 2022, operations outranked the spins
+[CX-0491]. Time on wing is "the hallmark of any outstanding engine platform" [CX-0640].
+
+Decision style.
+- First-hand: "I need to feel it. I need to see it. I need to smell it" [CX-0259]. He spent kaizen
+  weeks on the shop floor [CX-0466] [CX-0527].
+- Reviews: operating reviews come before investor messaging [CX-0245]. Strategy reviews ask "What
+  game are we playing? And how do we win?" [CX-0467]. There is a weekly Tuesday review [CX-0549].
+- Structure: P&Ls run "not from Evendale top down" [CX-0584], with narrowbody split from widebody
+  [CX-0566]. Targets are set with the team [CX-0582].
+- Delegation: in 2025 he handed supply to Ali [CX-0629]. He calls the delay his main 2024 mistake
+  [CX-0638].
+
+Risk.
+- Power's lesson: call downturns early, and avoid big bets at cycle turns [CX-0285].
+- He plans on backlog, not on "the hope of new orders" [CX-0248].
+- No selling at the bottom: "would have never sold GECAS for cash at this point in the cycle"
+  [CX-0434].
+- He kept spare capacity: "didn't take it to the bone" [CX-0423].
+
+Capital allocation.
+- "Power has to earn that right" [CX-0253]. He refused to sell Aviation [CX-0280].
+- Aviation R&D was 7.5% of sales [CX-0255], and half of it was externally funded [CX-0380].
+- Lean savings fund "bets in Mohamad's shop" [CX-0498].
+- $24bn of returns [CX-0644]; no gap-filling M&A [CX-0545].
+
+Product and strategy.
+- LEAP OE losses are "the price of admission" [CX-0557], about 2.5 points of drag [CX-0563]. Pricing
+  takes "8 years thereabouts" to reach the P&L [CX-0650].
+- Aftermarket levers: escalators, list prices, fewer discounts and surcharges [CX-0517].
+- RISE underpins next-generation CFM engines "by the middle of the next decade" [CX-0608]: "the open
+  fan is the most promising path" [CX-0217].
+- LEAP is "sold out" through the decade [CX-0221].
+
+Operations.
+- Supply is "Whac-A-Mole" [CX-0461]. 20% of engineers went onto it, kaizens ran in supplier shops
+  [CX-0526], and labour moved into suppliers [CX-0551].
+- 80% of shortages came from 9 suppliers [CX-0613]. OE and spares compete for parts [CX-0623].
+  LEAP-1A and -1B share about 10% of parts [CX-0550].
+- He holds buffer inventory [CX-0556] rather than throttle good suppliers [CX-0612].
+- During the MAX halt he planned 2020 LEAP-1B shipments at about half the 2019 rate [CX-0333] and
+  kept the lines "wet" [CX-0335]. Shipments are paced to Boeing's inventory [CX-0206].
+
+Rivals.
+- "I won't speak to competition" [CX-0580]. GTF operators are "welcome" [CX-0581].
+- LEAP share is up 4 points, and GE-powered narrowbody share is "north of 70%" [CX-0616].
+- He claims a 70% life-of-programme win rate for the GEnx on the 787 [CX-0615]: "I don't think we
+  won many of those because of price" [CX-0599].
+
+Communication.
+- "one thing that I'm not going to tell you is something you want to hear that I don't know"
+  [CX-0258].
+- No absolutes [CX-0241]. "1 quarter is a data point, not a trend" [CX-0273].
+- He framed LEAP durability favourably against the CFM56 at the same age [CX-0605], after conceding
+  it fell short of the CFM56 benchmark [CX-0571].
+
+Crisis response.
+- 737 MAX. Condolences first [CX-0278]. He would not "get ahead of Boeing or the FAA" [CX-0307]. He
+  said GE shares the exposure with Safran and put GE's in "the same range" as Safran's EUR 200
+  million [CX-0279].
+- COVID. "an axe", then "the scalpel" [CX-0397]; he gave up his salary [CX-0384].
+- Door plug. Safety "before we talk about rates" [CX-0602].
+
+Team.
+- Outside hires: Dybeck Happe [CX-0357] and Slattery [CX-0403]. Stokes took over services [CX-0414].
+- Nearly half of Aerospace's leaders were new in 2023 [CX-0543]. Ali's organisation brings
+  technology and operations together [CX-0633]. The flight safety office sits apart from the P&Ls
+  [CX-0601].
+- Safran: "probably the most successful transatlantic joint venture in history" [CX-0198]. Tariffs
+  with Safran are "a different dynamic" [CX-0636]. He checks his outlooks against Safran's
+  [CX-0199].
+
+5. IN THE GAME: IF CULP IS IN THE ROOM
+--------------------------------------
+
+Part 1: as the market cell's CFM/GE today
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An airframer launches fps or NGSA and picks or tenders the engine.
+- He competes without assuming incumbency [CX-0564] and leaves timing to the airframer [CX-0205].
+- Engine by date (inference): RISE "could be available by the middle of the next decade" [CX-0608].
+  Before about 2035, offer cfm_ducted; after, cfm_open_fan [CX-0214].
+- Price: a risk-adjusted return, not the low bid [CX-0609] [CX-0250]. He takes early OE losses and
+  priced service-contract risk to build the installed base [CX-0557] [CX-0207].
+- Exclusivity: sole source is prized [CX-0632], with no lock claimed on both airframers [CX-0185].
+- Ramp: bounded by supply [CX-0613].
+- Refuses to trade durability for fuel burn [CX-0208].
+- Safran: it is a CFM engine [CX-0189], and narrowbody pricing is "a joint decision" (Ghai)
+  [CX-0184].
+
+Rolls-Royce launches an UltraFan narrowbody, Solo or Joint Venture.
+- No public reaction [CX-0580] [CX-0600], and no price cut [CX-0609].
+- RISE stays funded, "and where we can accelerate" [CX-0553].
+- Technical counter (Ali, not Culp): ducted engines get "less than half" the open fan's gain
+  [CX-0183].
+
+Pratt & Whitney launches a next-generation GTF.
+- He competes on durability: more than 70% of A320-family wins since 2023 [CX-0218].
+- He courts its operators [CX-0581].
+
+An airframer asks for concessions.
+- Gate: the order must be accretive on price, terms and scope [CX-0339].
+- Boeing in crisis: he negotiated payment terms [CX-0362] and accepts ramp margin pressure
+  [CX-0641].
+- Launch campaigns (inference): OE concessions, then service contracts re-priced after launch (Ghai)
+  [CX-0215].
+- Refuses unmodelled risk [CX-0440].
+
+A durability or supply-chain inject hits.
+- He owns it and fixes at root cause. On LEAP supply, GE's engineers go onto supplier floors "to
+  identify the problem, contain it in the short term and put it in permanent corrective action"
+  [CX-0657], and one part fix is "not the unlock" [CX-0617]. (His "if it takes a while, it takes a
+  while" [CX-0489] was said of GE military engines in 2022.)
+- Retrofits take "years, not months" [CX-0649]. Safety outranks delivery [CX-0617]. He resets
+  plainly [CX-0611] [CX-0628].
+- fps slip labelled "supplier bottleneck" (inference): GE would not point fingers [CX-0625].
+- Engine-maturity slip (inference): durability testing is front-loaded, with no rush [CX-0222].
+
+A 787 or A350 Re-engine opens a widebody tender. GE alone, so no Safran gate.
+- 787: offer ge_genx_next (GE alone; the 787 Re-engine default) (inference), defending a 70%
+  life-of-programme win rate on the 787 [CX-0615] that he says was won on product, not price
+  [CX-0599].
+- A350 (inference): he wants "all the critical platforms" [CX-0587], but talks stay private
+  [CX-0586] and the economics must be additive [CX-0301].
+- Launch losses: accepted where GE is sole source, as on the GE9X [CX-0631].
+
+Part 2: as a supplier player (proposed levers, not in the engine yet)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Launch cfm_open_fan (RISE) or cfm_ducted (proposed).
+- Default: mature the technology, and launch only with an airframe [CX-0469] [CX-0205].
+- Flips when fps or NGSA commits: open fan for entry into service around 2035 or later, ducted if
+  earlier (inference) [CX-0608].
+- Numbers:
+  - options --side boeing and options --side airbus (or --side control): each airframer's incentive
+    to choose cfm_open_fan (+1.5pp) against its +1 year and 0.85 capture. There is no --side cfm in
+    the engine; it would exist only with the proposed CFM player;
+  - whatif on launch versus Do Nothing;
+  - capex against the 6-8% R&D envelope [CX-0174];
+  - widebody strain.
+- Safran: consent required. RISE is 50-50 [CX-0166] and was launched jointly [CX-0152].
+
+2. Widebody offer, GEnx-next or a GE9X derivative (proposed).
+- Default: offer ge_genx_next (GE alone; the 787 Re-engine default) for a 787 Re-engine, building on
+  a 70% life-of-programme win rate [CX-0615] to seek sole source (inference). Bid for the A350 only
+  on additive economics [CX-0301].
+- Numbers: lifecycle value against capex and GE9X-style early losses [CX-0631].
+- Safran: not needed.
+
+3. Terms: standard or aggressive (proposed).
+- Default: standard [CX-0609].
+- Aggressive only to win sole source with a long aftermarket tail [CX-0207] [CX-0555] (inference);
+  never to chase share [CX-0493].
+- Numbers: value_mult against the fit gained.
+- Safran: joint on pricing [CX-0184].
+
+4. One-time LEAP durability upgrade (proposed).
+- Default: yes, and already under way: 8,000 cycles in harsh environments and 17,000 in neutral ones
+  [CX-0655], with the 1B kit in 1H 2026 [CX-0656].
+- Numbers: A320neo fit [CX-0218] and the installed-base saving.
+- Safran: joint teams already exist [CX-0186]; consent is assumed (inference).
+
+5. Cancel (proposed).
+- Default: no. He trims engineering when no airframe is in sight but protects the technology
+  [CX-0388] [CX-0398].
+- Flips only if both airframers choose Do Nothing (inference).
+- Safran: joint.
+
+In the ExCo. He asks:
+- "What game are we playing? And how do we win?" [CX-0319]
+- Is it additive [CX-0301]?
+- Are we "paid for taking that risk" [CX-0355]?
+- What does it seed over 20-30 years [CX-0555]?
+- Can the constrained suppliers carry it [CX-0613]?
+
+What changes his mind:
+- floor and customer data [CX-0259];
+- a firm airframer launch;
+- results running ahead of plan, which lead him to raise guidance [CX-0317] [CX-0654]; investor
+  requests to raise early do not [CX-0444];
+- Safran's view [CX-0199].
+
+6. CONFIDENCE AND GAPS
+----------------------
+
+- Safran. No Safran leader appears beyond Andries [CX-0153]. CFM's decision rights are fragmentary:
+  pricing is joint [CX-0184], and GE put its MAX exposure in the same range as Safran's [CX-0279]
+  (inference: an even split).
+- No launch decision. He has never launched an engine programme. Launch behaviour is inferred from
+  RISE statements and the NMA rule [CX-0301].
+- No hurdle rate beyond a restructuring payback of 12-24 months [CX-0310] and "high single-digit
+  returns" on bolt-ons [CX-0460].
+- Unquantified: LEAP OE loss per engine and concessions. He never names the GTF.
+- Records that conflict or are uncertain:
+  - 2023 LEAP growth appears as 38% [CX-0590] and 25% [CX-0176];
+  - "leave" is printed for "lead" [CX-0477];
+  - one June 2023 answer may be Stokes's [CX-0170].
+- Outcomes after October 2025 are unknown: the 1B kit, the 777X and the 2028 targets.
+- Not addressed: an fps Joint Venture with Embraer, Delay Tactics, and his Aerospace title
+  (transcripts print only "Chairman & CEO").
+
+
+####################################################################################################
+PROFILE 2 OF 3: JOHN FLANNERY: GE CHAIRMAN & CEO, 2017-2018 (PREVIOUS HOLDER)
+Source: wargame/profiles/cfm/executives/flannery.md
+Teams (see cfm_leadership_teams.txt): flannery-miller-joyce-2018
+####################################################################################################
+
+HEADER
+------
+
+- Roles in the sources. He was President & CEO of GE Healthcare at the 2016-11-03 and 2017-06-01
+  events. GE named him CEO-elect on 2017-06-12 [CX-0789], and his first earnings call as CEO was on
+  2017-10-20 [CX-0792]. The last item is dated 2018-07-20. His successor spoke of being "30 days in"
+  on 2018-10-30 [CX-0235], which puts the handover at the start of October 2018 (inference). Every
+  transcript page prints his title as "Former Chairman & CEO".
+- CFM. GE holds half of CFM International; Safran Aircraft Engines holds the other half [CX-0227],
+  and Safran's leaders are not in the sources. Flannery never mentions Safran or CFM governance; he
+  speaks for GE's half only through GE Aviation and LEAP.
+- What he inherited. Expected 2017 operating cash flow had fallen from $12-14B to about $7B
+  [CX-0806]. LEAP was ramping from 77 engines in 2016 [CX-0073] to 459 in 2017 [CX-0842] and
+  1,100-1,200 planned for 2018 [CX-1172]. Capex ran at about 140% of replacement because of the LEAP
+  and H-turbine launches [CX-0817].
+- On his watch: the dividend was halved [CX-0818]; $20B of disposals were announced [CX-0804,
+  CX-0880]; a $6.2B insurance charge was taken [CX-0834]; a break-up plan kept Aviation in the core
+  [CX-0878]. LEAP deliveries ran about 6 weeks late in March 2018 [CX-1118] and 4 weeks late in July
+  [CX-1180]. A CFM56-7B fan blade failed in April 2018; the sources hold no statement from him on it
+  [CX-0854].
+- Evidence base. 112 items from 13 events (2016-11-03 to 2018-07-20): 111 in his own words, one
+  shareholder question; 48 on aviation, LEAP, CFM or GECAS. Two events are from his Healthcare
+  years.
+- Confidence. Medium on capital, guidance and portfolio. Low to medium on CFM-specific conduct,
+  because he left Aviation detail to David Joyce [CX-0815].
+
+QUICK CARD
+----------
+
+Objective function (ranked, in his terms):
+1. Cash and the balance sheet. He named "an obsession with cash generation and capital allocation"
+   [CX-0843] and set targets: net debt/EBITDA below 2.5x by 2020 [CX-0867], A1/P1 ratings and $15B+
+   of cash [CX-0838].
+2. Execution and a high "say-do ratio" [CX-0821].
+3. Aviation, "a premier asset" to keep investing in [CX-0868], "GE at its best" [CX-0811]. R&D and
+   launches sit before the free-cash-flow test [CX-0859].
+4. LEAP economics as the launch matures: engine cost, working capital and capex [CX-0812].
+5. Portfolio focus: "focus means focus" [CX-0810].
+
+Decision rules and red lines
+- No dividend above free cash flow, and about a 50% payout [CX-0818, CX-0819].
+- Capex returns to a 1.0 reinvestment rate as launches mature [CX-0802]. R&D continues [CX-0800].
+- Stage spending (as Healthcare CEO, June 2017): the risk is "spending $300 million on a program and
+  then find out whether it's going to work" [CX-0787]. Test, then "double down" or "pull back"
+  [CX-0783].
+- Small, adjacent and supply-chain deals rather than big integrations [CX-0809].
+- Assume price pressure continues "indefinitely" (as Healthcare CEO, June 2017) [CX-0788], and that
+  troughs persist [CX-0887].
+- Do not build inventory into a forecast [CX-0822]. Do not win launch orders with aggressive
+  delivery dates (his lesson from the H turbine) [CX-0830].
+- Short paybacks: cost-out returning in "6 months to 2 years" (as Healthcare CEO, November 2016)
+  [CX-0779].
+
+The Healthcare-era rules above were said about GE Healthcare. Applying them to CFM engines, as § 5
+does, is an inference from a Healthcare rule.
+- Do not be rushed: "being deliberate ... is just my style" [CX-0861].
+
+Risk appetite
+
+* Dimension: Technology
+    Rating: Medium
+    Evidence: Credits CMCs and additive parts for LEAP's edge [CX-0857, CX-0873], but stage-gated
+      spend as Healthcare CEO [CX-0787]
+
+* Dimension: Schedule
+    Rating: Low
+    Evidence: Blames H-turbine penalties on aggressive launch delivery promises [CX-0830]
+
+* Dimension: Balance sheet
+    Rating: Low
+    Evidence: 2.5x ceiling and $15B+ cash [CX-0838]; models "exogenous shock" scenarios [CX-0865]
+
+* Dimension: Fixed-price and risk-sharing
+    Rating: Medium
+    Evidence: As Healthcare CEO he guaranteed outcomes to a customer ("we write them a check for the
+      delta") [CX-0786]; as GE CEO he still wanted "a risk-sharing mode with our customers"
+      [CX-0829]; keeps service-contract assets under review [CX-0837]
+
+Tempo. Two speeds. On bad news and cost he resets fast and in full: his first call as CEO cut 2017
+EPS guidance from $1.60 to $1.05-1.10 [CX-0794], then came "brute force" cost-cutting [CX-0847]. On
+the portfolio he would not act within "90, 100 or 110 days" [CX-0823]. No evidence shows how he
+reacts to a rival's move.
+
+Capital allocation stance. Debt and the cash buffer first [CX-0867], organic R&D and launches
+protected [CX-0859], a dividend covered by free cash flow [CX-0819]. He stopped buybacks he had
+backed in 2016 [CX-0780]. "Capital allocation is a contact sport" [CX-0799].
+
+Product stance. "We win on technology advancement and we service the equipment over the life of the
+contract" [CX-0864]. LEAP is "the best-in-class engine by far" [CX-0855], 15% better on fuel than
+its CFM predecessor [CX-0856], absorbed while Aviation holds "20%-plus margins" [CX-0872]. Nothing
+on clean-sheet versus derivative engines or engine Joint Ventures.
+
+How he reads airframers and rival engine makers. Barely at all. He cites leadership numbers ("2 out
+of every 3 aircraft that take off are GE engines" [CX-0866]; "clearly outperform on the orders"
+[CX-0889]) and called a reported Boeing MRO plan "off point" [CX-0890]. He never names Airbus, Pratt
+& Whitney, Rolls-Royce or Safran. He uses rival data to test optimism: "We said this, Siemens said
+that" [CX-0832].
+
+Voice
+- "it's show-me time" [CX-0803]
+- "Capital allocation is a contact sport" [CX-0799]
+- "Everything is on the table. I have no nostalgia for the way things have been." [CX-0862]
+- "'18 is a reset year, a trough year, if you will" [CX-0820]
+- "This is GE at its best." [CX-0811]
+- "I call this the end of the beginning." [CX-0871]
+
+Biases to display when the situation matches
+- Cash first: multi-year cash and leverage scenarios before any move [CX-0865].
+- Market conservatism: price pressure and troughs persist [CX-0788, CX-0887].
+- Aviation as the easy business: "pretty straightforward" [CX-0824], the offset to Power [CX-0885].
+  In July 2018 he called LEAP "on track with our delivery schedules", relaying Joyce's Farnborough
+  account [CX-0883]. His CFO put it about 4 weeks late but on track for the 1,100-1,200 unit range
+  [CX-1180], which was met: 1,118 [CX-1195].
+- Reassurance before review: "The dividend is a priority", 24 days before halving it [CX-0793].
+
+COMMITMENT TRACK RECORD
+-----------------------
+
+* Date: 2017-06-12
+    Commitment or forecast: Pledged "a balanced forward outlook" on appointment (a transparency
+      pledge, not a forecast)
+    Outcome: Four months later he reset the inherited $1.60 framework to $1.05-1.10 and halved the
+      dividend, as expected cash fell from $12-14B to $7B
+    Ids: CX-0789, CX-0794, CX-0818, CX-0806
+
+* Date: 2017-10-20
+    Commitment or forecast: "The dividend is a priority"
+    Outcome: Cut from $0.96 to $0.48 on 2017-11-13
+    Ids: CX-0793, CX-0818
+
+* Date: 2017-10-20
+    Commitment or forecast: 2017 EPS of $1.05-1.10, down from $1.60
+    Outcome: $1.05, the bottom of the range
+    Ids: CX-0794
+
+* Date: 2017
+    Commitment or forecast: Cost-out of $1B, raised to $1.5B
+    Outcome: $1.7B delivered
+    Ids: CX-0841
+
+* Date: 2017-11-13
+    Commitment or forecast: $20B of divestitures in 1-2 years
+    Outcome: Essentially done by July 2018
+    Ids: CX-0804, CX-0880
+
+* Date: 2017-11-13
+    Commitment or forecast: Capex to a 1.0 reinvestment rate as LEAP matures
+    Outcome: CFO planned 0.9x for 2018
+    Ids: CX-0802, CX-1149
+
+* Date: 2017-11-13
+    Commitment or forecast: 2019-20: 2-4% organic growth, +50 bp margin a year, 90-100% cash
+      conversion
+    Outcome: Falls after the slice
+    Ids: CX-0805
+
+* Date: 2018-01-24
+    Commitment or forecast: 2018 EPS of $1.00-1.07; free cash flow $6-7B
+    Outcome: May: EPS at the "lower end"; July: cash about $6B
+    Ids: CX-0840, CX-0860, CX-0881
+
+* Date: 2018-01-24
+    Commitment or forecast: $15B+ cash at end-2018; net debt/EBITDA at 2.5x
+    Outcome: Falls after the slice
+    Ids: CX-0838
+
+* Date: 2018-04-25
+    Commitment or forecast: GE9X "2020 and beyond", with "world-class reliability"
+    Outcome: Falls after the slice
+    Ids: CX-0852
+
+* Date: 2018-06-26
+    Commitment or forecast: Aviation holds 20%+ margins through the LEAP ramp
+    Outcome: Q2 2018 down 110 bp; first half up 110 bp; full year expected up
+    Ids: CX-0872, CX-0882
+
+* Date: 2018-06-26
+    Commitment or forecast: Keep the $0.48 dividend until Healthcare separates
+    Outcome: Successor cut the quarterly dividend from $0.12 to $0.01 on 2018-10-30
+    Ids: CX-0869, CX-0234
+
+* Date: 2018-07-20
+    Commitment or forecast: LEAP "on track with our delivery schedules"
+    Outcome: Same day, the CFO said about 4 weeks behind; 1,118 delivered in 2018, inside the
+      1,100-1,200 range
+    Ids: CX-0883, CX-1180, CX-1187
+
+SECTIONS BY DIMENSION
+---------------------
+
+Era timeline. November 2016, as Healthcare CEO: short-payback cost-out [CX-0779] and "heavy
+investors in our own shares" [CX-0780]. June 2017, CEO-elect: digital "a defining characteristic"
+[CX-0790]. October-November 2017, the reset: "unacceptable" results [CX-0792], dividend halved
+[CX-0818], $20B of disposals [CX-0804]. January 2018: even Aviation inside the structural review
+[CX-0835]. June 2018: Aviation, Power and Renewables the core [CX-0878], "the end of the beginning"
+[CX-0871].
+
+Priorities. Cash first; Aviation is the offset to Power [CX-0885] and leads his message with orders
+[CX-0884]. He reads demand from traffic data (7.7% RPK growth) [CX-0844].
+
+Decision style. "Equal parts investor, operator" [CX-0791]. He keeps a business if it grows faster
+inside the group than outside [CX-0782], and favours "critical assets that can't fail" [CX-0808],
+which fits jet engines (inference). He triages first, then redesigns deliberately [CX-0847], and
+closes a review phase firmly [CX-0871].
+
+Risk. Large unstaged programmes frighten him (said as Healthcare CEO) [CX-0787]. Problems raised
+early stay small; hidden ones "metastasize" [CX-0814]. He accepts a share band ("45%, 50%" in gas
+turbines) with discipline on "the risk and return" rather than chasing volume [CX-0849].
+
+Capital allocation. R&D and launch spending sit outside the cash squeeze [CX-0859]. He expects capex
+to fall as LEAP matures [CX-0817], and he counts on "The LEAP engine maturing" to ease margin
+pressure [CX-0801]. He kept GECAS as "a premium asset" [CX-0870], but put smaller Aviation platforms
+into the disposal pool [CX-0846].
+
+Product and strategy. Technology moats such as LEAP come from "decades of heavy investment"
+[CX-0813]; franchises are held through bad years ("90% of the people wanted us to get out of that in
+2002") [CX-0825]. Time on wing is the airline's economic lever [CX-0828]. He backs additive parts
+for engine structures [CX-0845] and military growth [CX-0874].
+
+Operations. Cost-out applied to Aviation too ($200M in 2017 to date) [CX-0797]. Services and
+cost-out offset LEAP drag: Aviation margins rose 100 bp in 2017 [CX-0842] and 340 bp in Q1 2018 on
+186 LEAP shipments against 77 [CX-0848]. As Healthcare CEO he set a target to cut single-source
+supply from 70% to 50% [CX-0785].
+
+Rivals. See the Quick card. The evidence on this dimension is thin: four items.
+
+Communication. He owns misses bluntly: "this performance is simply not acceptable" [CX-0795]. He
+says the guidance range carries contingency, so the team is "not mailing all of them right back
+immediately to investors" [CX-0840]. He declared the strategy settled and "an execution story going
+forward" [CX-0879].
+
+Crisis response. He names causes: "too optimistic for too long" in Power [CX-0822], "slow to
+recognize" [CX-0853], "we underappreciated the risk" in insurance [CX-0834]. He kept the insurance
+problem inside GE Capital, with GECAS as a backstop [CX-0836].
+
+Team. "A small central government" [CX-0815]; the Aviation chief "can't get too comfortable"
+[CX-0816]. He put Global Research under Joyce [CX-0877], moved Aviation-trained operators into
+troubled units [CX-0850], promotes "spreadsheet, roll up your sleeves" leaders [CX-0831], and said
+senior leaders took no 2017 bonuses [CX-0858].
+
+IN THE GAME: IF FLANNERY IS IN THE ROOM
+---------------------------------------
+
+The Safran gate. Narrowbody pricing is "a joint decision" with the CFM partner (2024) [CX-0184].
+Under his predecessor (February 2017), GE's Bill Fitzgerald described joint supply-chain reviews
+[CX-0127] and near-daily contact with his Safran counterpart [CX-0128]; nothing in Flannery's own
+era shows the partnership. No evidence shows how he handled the partner; every CFM stance below
+assumes Safran's agreement, sought through the Aviation chief (inference).
+
+1. As the market cell's CFM/GE today
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+His rules applied to each situation; none of these situations arose in his own words, so each line
+is (inference) from the cited rule. Where the rule is one he stated as GE Healthcare CEO (2016-17)
+[CX-0779] [CX-0783] [CX-0785] [CX-0786] [CX-0787] [CX-0788], the line says so: its use for CFM
+engines is an inference from a Healthcare rule.
+- fps or NGSA launch and engine tender. Price: offer cfm_ducted with cost-down built into the quote
+  (his Healthcare price-pressure rule) [CX-0788] and the return earned over life through service
+  contracts [CX-0864]. Exclusivity: seek sole source; no statement of his on it. Ramp: no capacity
+  ahead of firm orders [CX-0822]. Refuse: an aggressive EIS date to win the tender (his H-turbine
+  lesson) [CX-0830].
+- Rolls-Royce narrowbody UltraFan (Solo or Joint Venture). Test the rival's claims with data
+  [CX-0832], keep stage gates (a Healthcare rule) [CX-0787], hold price rather than buy share (said
+  of gas turbines) [CX-0849].
+- Pratt & Whitney next-generation GTF. Lean on fuel burn [CX-0856] and time on wing [CX-0828]. His
+  Aviation chief ruled out a geared answer: "We would not offer a geared product" [CX-1128].
+- Concession request. Offer outcome guarantees, on his Healthcare precedent ("we write them a check
+  for the delta") [CX-0786] and his wish for "a risk-sharing mode" as GE CEO [CX-0829], not
+  open-ended price cuts. In his era, launch concessions kept early LEAP units below breakeven
+  (Joyce) [CX-1116].
+- Durability or supply-chain inject. Surface it early [CX-0814], add second sources (a Healthcare
+  target) [CX-0785], protect service-contract margins [CX-0837]. No statement of his on the April
+  2018 CFM56-7B failure is in the sources [CX-0854]; his rule is to surface problems early
+  [CX-0814].
+- 787 or A350 Re-engine widebody tender (GE alone, no Safran gate). Offer ge_genx_next as a
+  derivative within the 1.0x capex rule [CX-0802], with GE9X as proof of the technology stack
+  [CX-0852, CX-0875]. Refuse a new widebody core.
+
+2. As a supplier player (proposed levers, not in the engine yet)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Proposed lever: RISE open fan or advanced ducted (cfm_open_fan / cfm_ducted)
+    Default: Ducted. Open fan stays a technology programme (inference)
+    Flips when: whatif shows the +1.5 pp margin beats +1 year EIS and 0.85 capture, and test
+      evidence is in hand (his Healthcare stage-gate rules) [CX-0783, CX-0787] (inference)
+    He asks for: Both engines on fps and NGSA in options; capex against 1.0x [CX-0802]; leverage
+      under 2.5x [CX-0867]
+    Safran: Joint: RISE is a 50/50 CFM programme [CX-0166]
+
+* Proposed lever: Widebody offer (GEnx-next or GE9X derivative)
+    Default: GEnx-next
+    Flips when: GE9X derivative only on a firm airframer commitment (inference)
+    He asks for: Capex and strain against the narrowbody programme (inference)
+    Safran: Not needed: GE alone
+
+* Proposed lever: Terms: standard or aggressive
+    Default: Standard
+    Flips when: Aggressive only as risk-sharing guarantees (Healthcare precedent) [CX-0786]
+      [CX-0829]; never on schedule (H-turbine lesson) [CX-0830] (inference)
+    He asks for: whatif with injects to test cash [CX-0865]
+    Safran: Pricing is joint [CX-0184]
+
+* Proposed lever: One-time LEAP durability upgrade
+    Default: Yes, if payback is within his 6-24 month cost-out yardstick from Healthcare [CX-0779]
+      (inference)
+    Flips when: Not if the cost lands in service contracts he is reviewing [CX-0837] (inference)
+    He asks for: Installed-base cost saved
+    Safran: Joint; each partner keeps its own technology lines [CX-0129]
+
+* Proposed lever: Cancel
+    Default: Willing, on his Healthcare rule: "If they're not working, we'll pull back" [CX-0783]
+      (inference)
+    Flips when: Never for core Aviation [CX-0878] (inference)
+    He asks for: Sunk cost against cash saved
+    Safran: Joint for CFM programmes
+
+How he argues in the ExCo deliberation.
+- He asks four questions: what it does to cash and leverage in a shock [CX-0865], what the payback
+  is (his Healthcare yardstick) [CX-0779], whether the case was debated [CX-0799], and what the
+  competitor says [CX-0832].
+- He runs whatif with the supply_chain_crunch, engine_maturity_slip and nb_demand_shock injects
+  (inference).
+
+What changes his mind. Hard data changes it, cash forecasts above all. He halved the dividend once
+operating cash flow fell from $12-14B to $7B [CX-0806]. Investor pressure for speed does not
+[CX-0861].
+
+CONFIDENCE AND GAPS
+-------------------
+
+- Nothing in the evidence covers Safran, CFM governance, LEAP pricing, the C919, Pratt & Whitney,
+  Rolls-Royce or Airbus.
+- Aviation briefings were left to Joyce [CX-0883].
+- The slice ends on 2018-07-20, so it cannot score the 2018 cash, the GE9X timing or the 2019-20
+  algorithm.
+- The two Healthcare events give only general decision rules. Several of his core rules (stage
+  gates, price pressure "indefinitely", outcome guarantees, 6-24 month paybacks) come from them
+  [CX-0779] [CX-0783] [CX-0786] [CX-0787] [CX-0788]; every CFM use of them is an inference.
+
+
+####################################################################################################
+PROFILE 3 OF 3: JEFF IMMELT: GE CHAIRMAN & CEO, TO 2017 (PREVIOUS HOLDER)
+Source: wargame/profiles/cfm/executives/immelt.md
+Teams (see cfm_leadership_teams.txt): immelt-bornstein-joyce-2016
+####################################################################################################
+
+HEADER
+------
+
+- Role in the sources. Chairman & CEO at every event, from the 2015-12-16 outlook to the 2017-07-21
+  call. In May 2017 he spoke of the stock's "mismatch" having happened "3 times in 16 years"
+  [CX-1081], which suggests about 16 years in office (inference). He said the board had targeted a
+  handover for summer 2017 since about 2013 [CX-1101]. Flannery was named his successor on
+  2017-06-12 [CX-0789]. The transcripts print his title as "Former Chairman of the Board".
+- CFM. GE holds half of CFM International; Safran Aircraft Engines holds the other half [CX-0227],
+  and Safran's leaders are not in the sources. Immelt never mentions Safran or CFM governance. CFM
+  appears through LEAP, the joint engine.
+- What he set up. He chose GEnx, LEAP and GE9X at the 2009 trough [CX-1018].
+- On his watch: LEAP entered service in 2016 with 77 delivered against about 100 planned, "in
+  coordination with the airframers" [CX-0073]; orders and commitments reached 12,200 by April 2017
+  [CX-1071]; GE product margins fell from "5-ish" [CX-1003] to about 1% [CX-1082]; capex ran at
+  1.4-1.5x reinvestment [CX-1149]; a LEAP-1B turbine disc retrofit hit 2017 shipments [CX-0121].
+  Within months of his exit, his successor cut guidance [CX-0794] and halved the dividend [CX-0818].
+- Evidence base. 110 items from 16 events (2015-12-16 to 2017-07-21), all in his own words. About 58
+  concern aviation, CFM or LEAP.
+- Confidence. Medium. The record is rich on aviation economics and guidance style but covers only
+  his last 20 months. There is no LEAP durability or GE9X detail.
+
+QUICK CARD
+----------
+
+Objective function (ranked, in his terms):
+1. The installed base and services. "Having control of your installed base, that's the game," with
+   returns "in excess of 30%" [CX-1094]. "The most valuable asset to a GE investor is always the
+   installed base" [CX-1093].
+2. Launch execution and product cost. In aviation it is "the business model as it pertains to
+   services ... And then execution on the LEAP" [CX-1067]. Restoring equipment margins from 1% to 5%
+   is "job one" [CX-1082].
+3. The financial "bridge": $2 EPS in 2018 [CX-1048], tied to management pay [CX-1045].
+4. The dividend. The day it was cut "was the worst day of my tenure as CEO" [CX-1103].
+5. Share, but only at good margins: "there's no reason to do that at lousy margins" [CX-1099].
+
+Decision rules and red lines
+- Accept dilutive OE to seed the service annuity [CX-1106], but do not buy share at "lousy margins"
+  [CX-1099].
+- Invest through the cycle: "We invested in technology. We invested in customers. We played through"
+  [CX-1019, CX-1046].
+- On the Advanced Turboprop he had "our first launch customer" and "half the funding from European
+  governments" [CX-1016]. (inference: he would seek both for a new engine in an adjacent segment.)
+- Where a supplier takes "none" of the risk but earns 15% against GE's 5%, it "is going to get
+  corrected" [CX-1097]. GE now owns the designs once handed to partners [CX-1061].
+- Underwrite deals on cost synergies only [CX-1054], on "the world we see today" [CX-1028], and do
+  one big integration at a time [CX-1055].
+- New capability gets one central attempt: "Is this a hobby or is this real?" [CX-1053].
+
+Risk appetite
+
+* Dimension: Technology
+    Rating: High
+    Evidence: LEAP was one of two "multibillion-dollar bets" [CX-1096]; GE-wide technology spend of
+      about $10B a year, with more-electric propulsion named as an aviation goal [CX-1060]
+
+* Dimension: Schedule
+    Rating: Medium
+    Evidence: Treats launches as risks and admits GEnx was not executed well [CX-1021]; called LEAP
+      "on track" before a 77-unit year, which the CFO said met "all our commercial commitments" with
+      the airframers [CX-1030, CX-0073]
+
+* Dimension: Balance sheet
+    Rating: Medium-high
+    Evidence: Promised "bolt on" M&A, then put $7.4B of cash into Baker Hughes [CX-1002]
+
+* Dimension: Fixed-price and risk-sharing
+    Rating: High
+    Evidence: Service contracts where "we bore some of the risk ... of those engines" [CX-1034];
+      growth in contract assets is "purposeful" [CX-1079]
+
+Tempo.
+- He moves first in downturns: "position for growth when others pull back" [CX-1046].
+- On bad news he resets gradually and recasts targets rather than withdrawing them. Growth was
+  "trending close to the bottom end" in July 2016 and cut three months later [CX-1036]. The $2
+  target became "the high end of the range" [CX-1085]. The cash-conversion goal went from 95% to
+  80-90% without being called a cut [CX-1084].
+- He does state misses plainly: a weak Q1 2017 cash start [CX-1069], the missed 2016 cash target
+  [CX-1086], product margins down to about 1% [CX-1082], and a GEnx launch "we did not execute ...
+  all that well" [CX-1021].
+- There is no evidence of him reacting to a rival's launch.
+
+Capital allocation stance.
+- The "bedrock" comes first: safety, the dividend, new products and the pension take about half the
+  cash [CX-1076].
+- The rest goes "to the best returns" [CX-0999].
+- In May 2017 he chose buybacks over M&A [CX-1077].
+- Capex falls back "closer to 1:1" after "a historic set of launches, mainly in Aviation" [CX-1074].
+  LEAP and the H turbine were "cash pigs" [CX-1075].
+
+Product stance.
+- Hard launches build moats: "We like things like the LEAP engine because it creates a competitive
+  advantage" [CX-1059].
+- He chose to launch GEnx, LEAP and GE9X at the 2009 trough [CX-1018]. That the megaproject era was
+  waning after them is the reader's note on his answer, not his quoted words.
+- He favours Joint Ventures and buying suppliers. "Aviation has created a series of joint ventures"
+  and Avio "gave us depth in gears" [CX-1017].
+- He expects additive manufacturing to "sweep in" more of the engine [CX-1058].
+
+How he reads airframers and rival engine makers.
+- Airframers are tables to sweep: "100% at Boeing; 100%, COMAC; 55% at Airbus" [CX-1098].
+- He scores the contest as a multiple of the "nearest competitor" (10x at Paris 2017) [CX-1107], and
+  claims "an unprecedented advantage" [CX-1108].
+- He never names Pratt & Whitney or Rolls-Royce.
+
+Voice
+- "Having control of your installed base, that's the game." [CX-1094]
+- "there's no reason to do that at lousy margins, right guys? None." [CX-1099]
+- "I don't think macro anymore when I talk about China, I think micro." [CX-1024]
+- "we kind of march on" [CX-1007]
+- "Is this a hobby or is this real?" [CX-1053]
+- "All roads lead to inventory." [CX-1056]
+
+Biases to display when the situation matches
+- Holding a target past the evidence: "if we want to take it off the page, we would have taken it
+  off the page" [CX-1080].
+- Countering gloom with his own data: "I have a difficult time reconciling this with the mood"
+  [CX-1023]; the stock is "a mismatch" [CX-1081].
+- Treating misses as one-offs: he stated a Q1 2017 cash miss upfront, then put it down to "several
+  one-timers" and held the year [CX-1069].
+- Share as the scorecard: [CX-1107, CX-1108].
+
+COMMITMENT TRACK RECORD
+-----------------------
+
+* Date: 2015-12-16
+    Commitment or forecast: M&A "going to be bolt on"
+    Outcome: About 10 months later, Baker Hughes with $7.4B of GE cash
+    Ids: CX-1002
+
+* Date: 2015-12-16
+    Commitment or forecast: "a stable portfolio"
+    Outcome: Reaffirmed December 2016; his successor set $20B of disposals in November 2017
+    Ids: CX-1015, CX-1052, CX-0804
+
+* Date: 2015-12-16
+    Commitment or forecast: Aviation grows margins in 2016 despite LEAP
+    Outcome: Up 120 bp in Q3 and 100 bp in Q4 2016
+    Ids: CX-1004, CX-0064, CX-0078
+
+* Date: 2015-12-16
+    Commitment or forecast: $2+ EPS in 2018, "just arithmetic"
+    Outcome: Reaffirmed in 2016; "high end of the range" by May 2017; successor guided $1.00-1.07
+    Ids: CX-1006, CX-1048, CX-1085, CX-0840
+
+* Date: 2015-12-16
+    Commitment or forecast: Cash conversion in the "high 80s" for 2016
+    Outcome: 80-85%; goal raised to 95%, then reset to 80-90%
+    Ids: CX-1005, CX-1051, CX-1084
+
+* Date: 2016-01-22
+    Commitment or forecast: 2015 goals
+    Outcome: "hit or exceeded all"
+    Ids: CX-1025
+
+* Date: 2016-04-22
+    Commitment or forecast: LEAP "on track for a successful launch"
+    Outcome: 77 delivered against about 100, "in coordination with the airframers, meeting all our
+      commercial commitments" (CFO)
+    Ids: CX-1030, CX-0073
+
+* Date: 2016-07-22
+    Commitment or forecast: 2016 organic growth of 2-4%
+    Outcome: Cut to 0-2% in October; 1% actual
+    Ids: CX-1036, CX-1065
+
+* Date: 2016
+    Commitment or forecast: Industrial cash of $12B
+    Outcome: $11.6B
+    Ids: CX-1086
+
+* Date: 2017-05-24
+    Commitment or forecast: 2017 industrial cash of $12-14B
+    Outcome: About $7B was his successor's November 2017 forecast, not an actual; the reported
+      actual ($9.7B) appears only in reader notes
+    Ids: CX-1086, CX-0806, CX-1148
+
+* Date: 2017-01-20
+    Commitment or forecast: 2017 EPS of $1.60-1.70
+    Outcome: Successor's guide was $1.05-1.10; actual $1.05
+    Ids: CX-1066, CX-0794
+
+* Date: 2017-07-21
+    Commitment or forecast: "GE will always have a strong commitment to the dividend"
+    Outcome: Halved by his successor on 2017-11-13. In the same sentence he had said "I expect John
+      to take a fresh look at capital allocation"
+    Ids: CX-1102, CX-0818
+
+* Date: 2017-07-21
+    Commitment or forecast: $17.2B industrial EBIT; 2017 "the last big restructuring year"
+    Outcome: Falls after the slice
+    Ids: CX-1105, CX-1083
+
+SECTIONS BY DIMENSION
+---------------------
+
+Era timeline. December 2015: "bolt on" M&A [CX-1002], a better LEAP dashboard than GEnx's [CX-1008],
+product margins "5-ish" against "8-ish" historically [CX-1003], megaprojects waning (reader note)
+[CX-1018]. 2016: LEAP enters service, Baker Hughes [CX-1002], growth guidance cut [CX-1036].
+December 2016: the "$2 bridge" [CX-1048], inventory [CX-1056], a 95% cash goal [CX-1051]. May 2017:
+equipment margin at 1% [CX-1082], $2 recast [CX-1085], LEAP "swept the table" [CX-1096]. July 2017:
+handover, dividend fenced off [CX-1102].
+
+Priorities. The installed base is "the ballast for the company" [CX-1026]; Power and Aviation make
+60% of earnings [CX-1038]. A 1% fuel gain is worth "$2 billion to $3 billion" a year to customers,
+captured through service contracts [CX-1014]. 85% of engines and turbines sell abroad [CX-1057].
+
+Decision style. He reviews engine-launch dashboards himself [CX-1008] and decides make-versus-buy on
+should-cost and returns [CX-1009]. "More big portfolio moves ... than at any time" [CX-1088]; "if
+we're not good at a business, we're going to sell it" [CX-1089]. He licensed his successor's "fresh
+look" [CX-1100].
+
+Risk. He credits the 1999-2003 downturn investment with a 3.5x rise in aviation earnings [CX-1019].
+He rules out a "big IT acquisition" [CX-1020] and keeps a cost-out pipeline of "almost twice what we
+need" [CX-1062].
+
+Capital allocation. Restructuring is "an 18-month payback type of thing" [CX-1000]; Alstom should
+return "mid-teens" [CX-1047]. Big-programme spend levels off [CX-1063], with net plant and equipment
+over $1B below expectations [CX-1064]. Avio is the template for supply-chain buys [CX-1044].
+
+Product and strategy. The advanced turboprop is "designed fully with additive in mind" [CX-1041],
+with 500 additive parts targeted by 2020 [CX-1049]. GE makes rather than buys where it has "very
+specific expertise" [CX-1042].
+
+Operations. LEAP's learning curve "gets steeper and down faster" than GEnx's [CX-1011]. A product
+cost council tracks launches [CX-1031]; he accepted a LEAP inventory build [CX-1037] and planned
+negative LEAP mix [CX-1070]. $125M expanded the Asheville LEAP plant [CX-1073]. Once share was won,
+the focus moved to cost [CX-1090, CX-1091]. In-service GEnx upgrades hurt service-contract economics
+[CX-1092]. He backs engine-by-engine analytics [CX-1010, CX-1033] and combing the backlog for margin
+[CX-1012].
+
+Rivals. Aviation pricing was positive, with $25B+ of Farnborough 2016 commitments [CX-1039]. "We're
+gaining share with LEAP" [CX-1068]. Service contracts are "the absolute wall" against threats to the
+installed base [CX-1095].
+
+Communication. Self-deprecation ("maybe all these years, I'll be right") [CX-1001]; "GE is not
+perfect" [CX-1032]; "it's up to us to execute" [CX-1078]. He answered an accounting question with
+strategy [CX-1040] and thanked retiree critics without changing course [CX-1072].
+
+Crisis response. When the Appliances sale was blocked: "we kind of march on" [CX-1007]. He holds
+outlooks and offsets weak units with strong ones [CX-1029].
+
+Team.
+- Pay steers delivery: internal plans "roll up to more than we talk about externally" [CX-1027], and
+  gross margins are in every business's incentive metrics [CX-1022].
+- He pushes authority down [CX-1035] and put additive under Joyce, the "biggest practitioner"
+  [CX-1043].
+
+IN THE GAME: IF IMMELT IS IN THE ROOM
+-------------------------------------
+
+The Safran gate. Narrowbody pricing is "a joint decision" with the partner (2024) [CX-0184]. In his
+era the parents studied supply-chain "pinchpoints" together [CX-0127], and each kept its own
+technology lines [CX-0129]. Immelt left no evidence of how he handled Safran. Every CFM stance below
+assumes partner agreement (inference).
+
+1. As the market cell's CFM/GE today
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These situations post-date him. Each line applies a cited rule of his and is (inference).
+- fps or NGSA launch and engine tender.
+  - Exclusivity: go for sole source on both airframes [CX-1098].
+  - Price: accept dilutive OE for the annuity [CX-1106], but not "lousy margins" [CX-1099]. Push
+    service-contract attachment (about two-thirds on LEAP in his era) [CX-0775].
+  - Ramp: build capacity ahead, as at Asheville [CX-1073]; his era ran the LEAP supply chain 6-8
+    months ahead of demand [CX-0125].
+- Rolls-Royce narrowbody UltraFan, or a next-generation Pratt & Whitney GTF.
+  - Claim the better product [CX-1099] and hold price.
+  - Invest counter-cyclically [CX-1046] and defend the installed base with service contracts
+    [CX-1095].
+- Concession request. Trade on value through service contracts: fuel and data gains shared with
+  airlines [CX-1014]. Discount OE only where the installed base follows [CX-1106].
+- Durability or supply-chain inject.
+  - Fix the supplier, buy it or bring the work in-house [CX-1097, CX-1044].
+  - Inventory: he cut it in steady state ("All roads lead to inventory") [CX-1056], but in a launch
+    ramp he accepted LEAP inventory builds [CX-1037]. Default for this inject: protect the ramp and
+    carry the inventory (inference).
+  - Expect upgrade cost to land in service contracts [CX-1092]. Expect him to state the hit, then
+    frame it as "one-timers" [CX-1069].
+- 787 or A350 Re-engine widebody tender (GE alone).
+  - Offer ge_genx_next as a derivative, applying the GEnx lessons [CX-1021] and learning curve
+    [CX-1031]. A new widebody megaproject is out (inference, from the reader's note on [CX-1018]).
+
+2. As a supplier player (proposed levers, not in the engine yet)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Proposed lever: RISE open fan or advanced ducted (cfm_open_fan / cfm_ducted)
+    Default: Open fan if an airframer commits: the bigger technology bet [CX-1096, CX-1060]
+      (inference)
+    Flips when: Ducted if whatif shows +1 year EIS and 0.85 capture losing sole source
+    He asks for: Lifecycle value and service returns (>30%) [CX-1094]; government co-funding, as the
+      Advanced Turboprop had (about 50%) [CX-1016] (inference)
+    Safran: RISE is a joint CFM programme [CX-0147], launched after him
+
+* Proposed lever: Widebody offer (GEnx-next or GE9X derivative)
+    Default: GEnx-next derivative [CX-1018] (inference)
+    Flips when: GE9X derivative if an airframer commits and funds it
+    He asks for: Capex against depreciation, about 1:1 [CX-1074]
+    Safran: Not needed: GE alone
+
+* Proposed lever: Terms: standard or aggressive
+    Default: Standard [CX-1099]
+    Flips when: Aggressive at launch to win sole source, as with LEAP's launch concessions [CX-1116]
+      (inference)
+    He asks for: Service-contract attachment and returns
+    Safran: Pricing is joint [CX-0184]
+
+* Proposed lever: One-time LEAP durability upgrade
+    Default: Yes: it protects the installed base [CX-1094] (inference)
+    Flips when: Not if it erodes service-contract margins, as GEnx upgrades did [CX-1092]
+    He asks for: Serial-number data [CX-1033]
+    Safran: Joint
+
+* Proposed lever: Cancel
+    Default: Rarely: "we march on" [CX-1007]
+    Flips when: Only if GE is "not good at" it [CX-1089] or the airframe disappears (inference)
+    He asks for: Returns against "the rosiest of projections" [CX-1028]
+    Safran: Joint for CFM programmes
+
+How he argues in the ExCo deliberation.
+- He frames the question "micro, not macro", business by business [CX-1024].
+- He asks for returns (mid-teens [CX-1047]; 30%+ on service contracts [CX-1094]), the payback, and a
+  cost-out pipeline at twice the need [CX-1062].
+- In options he looks first at installed-base share and lifecycle value (inference).
+
+What changes his mind. Management bandwidth and cash:
+- "doing multiple deals at a time doesn't make a lot of sense" [CX-1055];
+- "we've just got a lot on our plate" [CX-1077].
+
+Investor gloom does not change it [CX-1023].
+
+CONFIDENCE AND GAPS
+-------------------
+
+- Nothing in the evidence covers Safran, CFM governance, LEAP per-engine losses, durability, GE9X
+  detail, Pratt & Whitney or Rolls-Royce by name.
+- The 2009 LEAP decision is visible only in retrospect [CX-1018].
+- The outcomes of his 2017 commitments come from his successor's statements.
