@@ -222,6 +222,28 @@ def projection(cfg, history, mask):
     return r
 
 
+def objectives_view(cfg, objs, viewer):
+    """Each player sees only its own objectives; the market cell sees the non-players' (CFM); control sees all."""
+    objs = objs or {}
+    if viewer in ("control", "analyst"):
+        return objs
+    if viewer == "market":
+        return {k: v for k, v in objs.items() if k not in M.players(cfg)}
+    return {viewer: objs[viewer]} if viewer in objs else {}
+
+
+def objective_briefs(cfg, viewer):
+    """The assigned objective text (goal, moves mapped to levers, enablers, constraints) visible to a viewer."""
+    if not M.objectives_enabled(cfg):
+        return {}
+    o = cfg["objectives"]
+    keep = ("primary_goal", "moves", "enablers", "constraints", "metrics", "label", "non_player")
+    out_ = {k: {f: v[f] for f in keep if f in v} for k, v in o["players"].items() if k in objectives_view(cfg, {h: 1 for h in M.objective_holders(cfg)}, viewer)}
+    for k, v in out_.items():
+        v["source"] = o.get("source") if viewer in ("control", "analyst", "boeing") else "assigned by control for this scenario"
+    return out_
+
+
 def brief(st, viewer):
     if viewer not in VIEWERS:
         raise GameError(f"--side must be one of {', '.join(VIEWERS)}")
@@ -259,6 +281,10 @@ def brief(st, viewer):
                         for r in st["history"] for s in order_sides if r.get("statements", {}).get(s, {}).get("disclose")],
         "market_reports": [{"turn": r["turn"], "narrative": r.get("market_narrative", "")} for r in st["history"]],
         "projected_market_shares": proj["shares"],
+        **({"your_objectives" if viewer in M.players(cfg) else "objectives": objectives_view(cfg, proj.get("objectives"), viewer),
+            "objectives_note": ("Assigned objectives, measured on this projection (no further moves). The referee scores attainment "
+                                "alongside delta PV; objectives never change the payoff.")}
+           if M.objectives_enabled(cfg) else {}),
         "projection_note": f"Projections assume nobody makes any further move. delta_pv_b is full-game PV ($B, {cfg['years']['pv_base']}) versus the status quo.",
     }
     if M.active_suppliers(cfg):
@@ -321,6 +347,10 @@ def rules(cfg, side):
         "inject_deck": {k: {"title": v["title"], "narrative": v["narrative"]} for k, v in cfg["injects"]["deck"].items()
                         if not v.get("requires_supplier") or v["requires_supplier"] in M.active_suppliers(cfg)},
         **({"suppliers": supplier_rules(cfg)} if M.active_suppliers(cfg) else {}),
+        **({"assigned_objectives": objective_briefs(cfg, side),
+            "assigned_objectives_rule": ("Your assigned objective is a mission set by control. The referee scores its attainment "
+                                         "alongside delta PV; it does not change the payoff. Weigh it inside your doctrine.")}
+           if M.objectives_enabled(cfg) and objective_briefs(cfg, side) else {}),
     }
 
 
@@ -556,6 +586,9 @@ def cmd_whatif(args):
     base = M.strip_exact(M.evaluate(cfg, M.build_world(cfg, st["history"] + pending_record(st), mask)))
     res = {"assumption": "Turns you did not override keep their recorded orders (past) or no new moves (current/future).",
            "notes": notes, "shares": r["shares"]}
+    if M.objectives_enabled(cfg):
+        res["objectives"] = objectives_view(cfg, r.get("objectives"), args.side)
+        res["objectives_now"] = objectives_view(cfg, base.get("objectives"), args.side)
     for s in sides:
         res[s] = r[s]
         res[s]["change_vs_current_projection_b"] = round(r[s]["delta_pv_b"] - base[s]["delta_pv_b"], 3)
@@ -701,6 +734,7 @@ def final_report(st):
         "run_id": st["run_id"], "status": st["status"], "scenario": cfg["scenario"], "turns_total": st["turns_total"],
         "players": list(M.players(cfg)),
         "final": {s: ev[s] for s in M.players(cfg)}, "shares": ev["shares"],
+        "objectives": ev.get("objectives", {}),
         "trajectory": [{"turn": r["turn"], "projection": r.get("projection")} for r in st["history"]],
         "turns": [{"turn": r["turn"], "years": r.get("years"), "injects": r.get("injects", []), "orders": r["orders"],
                    "statements": r.get("statements", {}), "market": r.get("market", {}),
@@ -783,6 +817,11 @@ def report_markdown(rep, cfg):
         L.append(f"| {cfg['segments'][seg]['label']} | " + " | ".join(
             f"{rep['shares'][seg][y]['boeing'] * 100:.1f} / {rep['shares'][seg][y]['airbus'] * 100:.1f}" for y in yrs) + " |")
     L.append("")
+    if rep.get("objectives"):
+        L.append("## Assigned objectives (attainment on the final projection)")
+        L.append("")
+        L.append(objectives_markdown(rep["objectives"], cfg))
+        L.append("")
     L.append("## Orders by turn")
     L.append("")
     for t in rep["turns"]:
@@ -797,6 +836,36 @@ def report_markdown(rep, cfg):
         L.append("")
     L.append(f"Delay Tactics used in turns: {rep['delay_tactics_turns'] or 'none'}; "
              f"exposed: {rep['delay_tactics_exposed_year'] or 'no'}. Poaching used in turns: {rep['poaching_turns'] or 'none'}.")
+    return "\n".join(L)
+
+
+def _fmt_obj_values(r):
+    v = r.get("values") or {}
+    if "upgrade_year" in v:
+        return f"upgrade {v['upgrade_year'] or 'not committed'}"
+    if "first_eis" in v:
+        return f"first EIS {v['first_eis'] or 'none'}"
+    pct = str(r.get("unit", "")).startswith("share")
+    cells = []
+    for y, x in v.items():
+        if x is None:
+            continue
+        sq = (r.get("status_quo") or {}).get(y)
+        if pct:
+            cells.append(f"{y}: {x * 100:.1f}%" + (f" (sq {sq * 100:.1f}%)" if sq is not None else ""))
+        else:
+            cells.append(f"{y}: {x:,.0f}" + (f" (sq {sq:,.0f})" if sq is not None else ""))
+    return "; ".join(cells) or "-"
+
+
+def objectives_markdown(objs, cfg):
+    L = ["| Player | Objective | Measured | Met |", "|---|---|---|---|"]
+    for who, rows in objs.items():
+        name = cfg["objectives"]["players"].get(who, {}).get("label") or M.player_label(cfg, who)
+        for r in rows:
+            met = "n/a" if r.get("met") is None else ("yes" if r["met"] else "no")
+            extra = f" ({r['note']})" if r.get("note") else (f", gap {r['gap_pp']:+.1f}pp" if r.get("gap_pp") is not None and not r.get("met") else "")
+            L.append(f"| {name} | {r['label']} | {_fmt_obj_values(r)}{extra} | {met} |")
     return "\n".join(L)
 
 
@@ -815,6 +884,12 @@ def cmd_scorecard(args):
         for s in M.SIDES:
             sc["summary"][s]["final_delta_pv_b"] = eq.get("actual_play", {}).get(s)
             sc["summary"][s]["hindsight_regret_b"] = (eq.get("regret_vs_actual", {}).get(s) or {}).get("regret_b")
+    if M.objectives_enabled(cfg):
+        hist = st["history"]
+        sc["objectives"] = M.evaluate(cfg, M.build_world(cfg, hist)).get("objectives", {})
+        sc["objectives_by_turn"] = [{"turn": r["turn"], "objectives": {w: {x["id"]: x["met"] for x in rows} for w, rows in
+                                     M.evaluate(cfg, M.build_world(cfg, hist[:i + 1])).get("objectives", {}).items()}}
+                                    for i, r in enumerate(hist)]
     sc["run_id"] = st["run_id"]
     sc["visibility"] = "control only: rows reveal each side's actual orders, including covert ones"
     if args.format == "md":
@@ -831,6 +906,14 @@ def cmd_scorecard(args):
             f = lambda x, fmt: "-" if x is None else format(x, fmt)
             L.append(f"| {s} | {f(v['mean_capture'], '.0%')} | {v['total_myopic_regret_b']:.2f} | {f(v['mean_prediction_accuracy'], '.0%')} | "
                      f"{f(v['mean_abs_expectation_error_b'], '.2f')} | {f(v.get('final_delta_pv_b'), '+.2f')} | {f(v.get('hindsight_regret_b'), '.2f')} |")
+        if sc.get("objectives"):
+            L += ["", "Assigned objectives (attainment on the " + ("final" if st["status"] == "complete" else "current") + " projection):", "",
+                  objectives_markdown(sc["objectives"], cfg)]
+            if sc.get("objectives_by_turn"):
+                ids = [(w, x["id"]) for w, rows in sc["objectives"].items() for x in rows]
+                L += ["", "| Turn | " + " | ".join(f"{w}:{i}" for w, i in ids) + " |", "|---|" + "---|" * len(ids)]
+                for t in sc["objectives_by_turn"]:
+                    L.append(f"| T{t['turn']} | " + " | ".join({True: "yes", False: "no", None: "n/a"}[t["objectives"].get(w, {}).get(i)] for w, i in ids) + " |")
         print("\n".join(L))
     else:
         out(sc)

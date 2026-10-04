@@ -630,5 +630,133 @@ class RollsRoyceCliTests(CliBase):
         self.assertEqual(len(sc["rows"]), 4)
 
 
+class ObjectiveTests(unittest.TestCase):
+    """Assigned objectives (Boeing PD briefing): measured on the projection, never part of the payoff."""
+
+    def setUp(self):
+        self.cfg = M.load_config("base")
+        self.cfg4 = M.load_config("base", {"suppliers": {"rolls_royce": {"active": True}, "pratt_whitney": {"active": True}}})
+
+    def obj(self, hist, cfg=None):
+        cfg = cfg or self.cfg
+        r = M.evaluate(cfg, M.build_world(cfg, hist))
+        return {w: {x["id"]: x for x in rows} for w, rows in r["objectives"].items()}
+
+    def test_status_quo_attainment(self):
+        o = self.obj([rec(1)])
+        self.assertEqual(sorted(o), ["airbus", "boeing", "cfm"])  # suppliers inactive: not scored
+        self.assertFalse(o["boeing"]["nb_share_50"]["met"])
+        self.assertAlmostEqual(o["boeing"]["nb_share_50"]["gap_pp"], -10.0)
+        self.assertTrue(o["boeing"]["defend_incumbency"]["met"])
+        self.assertTrue(o["airbus"]["nb_share_60"]["met"] and o["airbus"]["protect_a320"]["met"])
+        self.assertAlmostEqual(o["cfm"]["nb_dominance"]["values"]["2045"], 0.76)  # 0.4 x 1.0 + 0.6 x (1 - 0.4 GTF)
+        self.assertTrue(o["cfm"]["nb_dominance"]["met"])
+        self.assertFalse(o["cfm"]["open_fan"]["met"])
+
+    def test_objectives_never_change_the_payoff(self):
+        c = self.cfg
+        hist = [rec(1, orders("boeing", [L(c, "fps", 2026)]), orders("airbus", [L(c, "ngsa", 2029)]))]
+        off = M.load_config("base", {"objectives": {"enabled": False}})
+        self.assertEqual(M.payoff(c, hist), M.payoff(off, hist))
+        self.assertEqual(M.evaluate(off, M.build_world(off, hist))["objectives"], {})
+
+    def test_share_objectives_conflict(self):
+        c = self.cfg
+        b_first = self.obj([rec(1, orders("boeing", [L(c, "fps", 2026)]))])
+        self.assertTrue(b_first["boeing"]["nb_share_50"]["met"])
+        self.assertFalse(b_first["airbus"]["nb_share_60"]["met"])
+        a_first = self.obj([rec(1, a=orders("airbus", [L(c, "ngsa", 2026)]))])
+        self.assertFalse(a_first["boeing"]["defend_incumbency"]["met"])
+        self.assertTrue(a_first["airbus"]["nb_share_60"]["met"])
+        # Protect the A320 family counts only the years before NGSA enters service (2026 + 7 = 2033).
+        self.assertEqual(a_first["airbus"]["protect_a320"]["counted_until"], 2033)
+        self.assertEqual(list(a_first["airbus"]["protect_a320"]["values"]), ["2030"])
+
+    def test_cfm_open_fan_and_engine_share(self):
+        c = self.cfg
+        of = self.obj([rec(1, orders("boeing", [L(c, "fps", 2026, engine="cfm_open_fan")]))])
+        self.assertTrue(of["cfm"]["open_fan"]["met"])
+        self.assertEqual(of["cfm"]["open_fan"]["values"]["first_eis"], 2026 + 7 + 1)
+        self.assertGreater(of["cfm"]["nb_dominance"]["values"]["2045"], 0.76)  # the 737's successor flies CFM; Boeing gains share
+        h = [rec(1, a=orders("airbus", [L(c, "ngsa", 2026, engine="pw_gtf2")]))]
+        gtf = self.obj(h)
+        boeing_2045 = M.evaluate(c, M.build_world(c, h))["shares"]["nb"]["2045"]["boeing"]
+        self.assertAlmostEqual(gtf["cfm"]["nb_dominance"]["values"]["2045"], boeing_2045)  # NGSA on the GTF2: CFM keeps only the 737
+
+    def test_supplier_objectives(self):
+        c = self.cfg4
+        rr = orders("rolls_royce", [{"program": "uf_nb", "year": 2026, "variant": "solo", "terms": "standard"}])
+        r = rec(1, a=orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")]))
+        r["orders"]["rolls_royce"] = rr
+        r["orders"]["pratt_whitney"] = orders("pratt_whitney", gtf_upgrade=True)
+        o = self.obj([r], c)
+        self.assertTrue(o["rolls_royce"]["nb_entry"]["met"])
+        self.assertTrue(o["rolls_royce"]["wb_dominance"]["met"])
+        self.assertTrue(o["pratt_whitney"]["credibility"]["met"])
+        self.assertFalse(o["pratt_whitney"]["gtf_base"]["met"])  # NGSA on UltraFan: the GTF loses the A320neo successor
+        sq = self.obj([rec(1)], c)
+        self.assertFalse(sq["rolls_royce"]["nb_entry"]["met"])
+        self.assertFalse(sq["pratt_whitney"]["credibility"]["met"])
+
+    def test_disabled_for_2010_backtest(self):
+        cfg = M.load_config("hist-2010-neo")
+        self.assertFalse(M.objectives_enabled(cfg))
+        self.assertEqual(M.evaluate(cfg, M.build_world(cfg, []))["objectives"], {})
+
+
+class ReplacementWaveTests(unittest.TestCase):
+    """Optional year-weighted share capture (the MAX/neo replacement wave)."""
+
+    def setUp(self):
+        self.base = M.load_config("base")
+        self.wave = M.load_config("replacement-wave")
+
+    def shares(self, cfg, hist):
+        return M.evaluate(cfg, M.build_world(cfg, hist))["shares"]["nb"]
+
+    def test_weights_slow_early_capture_only(self):
+        c = self.base
+        early = [rec(1, orders("boeing", [L(c, "fps", 2026)]))]  # EIS 2033, before the wave
+        b, w = self.shares(self.base, early), self.shares(self.wave, early)
+        self.assertAlmostEqual(b["2040"]["boeing"], 0.505)
+        self.assertLess(w["2040"]["boeing"], b["2040"]["boeing"])
+        # Capture weights are 0.4 before 2037 and at most 1.0, so the wave never speeds capture beyond the base rate.
+        self.assertLessEqual(w["2060"]["boeing"], b["2060"]["boeing"])
+        both = [rec(1, orders("boeing", [L(c, "fps", 2026)]), orders("airbus", [L(c, "ngsa", 2026)]))]
+        self.assertEqual(self.shares(self.wave, both), self.shares(self.base, both))  # same EIS: shares frozen either way
+
+    def test_wave_moves_boeings_best_solo_launch_later(self):
+        c = self.base
+        pay = lambda cfg, y: M.payoff(cfg, [rec(1 if y < 2029 else 2, orders("boeing", [L(c, "fps", y)]))])["boeing"]
+        self.assertGreater(pay(self.wave, 2029), pay(self.wave, 2026))
+        self.assertLess(pay(self.wave, 2026), pay(self.base, 2026))
+
+    def test_no_weights_means_base(self):
+        c = self.base
+        hist = [rec(1, orders("boeing", [L(c, "fps", 2027)]), orders("airbus", [L(c, "ngsa", 2029)]))]
+        flat = M.load_config("base", {"segments": {"nb": {"capture_weight_by_year": {"2030": 1.0}}}})
+        self.assertEqual(M.payoff(flat, hist), M.payoff(self.base, hist))
+
+
+class ObjectiveCliTests(CliBase):
+    def test_each_player_sees_only_its_own_objectives(self):
+        self.run_cli("new", "--run-id", "o", "--suppliers", "rolls_royce,pratt_whitney")
+        _, r = self.run_cli("rules", "--run", "o", "--side", "airbus")
+        self.assertEqual(list(r["assigned_objectives"]), ["airbus"])
+        self.assertNotIn("Boeing Product Development", r["assigned_objectives"]["airbus"]["source"])
+        _, rc = self.run_cli("rules", "--run", "o", "--side", "control")
+        self.assertEqual(sorted(rc["assigned_objectives"]), ["airbus", "boeing", "cfm", "pratt_whitney", "rolls_royce"])
+        _, b = self.run_cli("brief", "--run", "o", "--side", "rolls_royce")
+        self.assertEqual(list(b["your_objectives"]), ["rolls_royce"])
+        _, m = self.run_cli("brief", "--run", "o", "--side", "market")
+        self.assertEqual(list(m["objectives"]), ["cfm"])
+        _, w = self.run_cli("whatif", "--run", "o", "--side", "boeing",
+                            stdin={"boeing": {"1": {"launch": [{"program": "fps", "year": 2026}]}}})
+        self.assertEqual(list(w["objectives"]), ["boeing"])
+        self.assertTrue({x["id"]: x["met"] for x in w["objectives"]["boeing"]}["nb_share_50"])
+        _, sc = self.run_cli("scorecard", "--run", "o", "--format", "md")
+        self.assertIn("Assigned objectives", sc)
+
+
 if __name__ == "__main__":
     unittest.main()

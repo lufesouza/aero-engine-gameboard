@@ -549,6 +549,27 @@ def evaluate(cfg, world):
         vm = pparam(cfg, p.pid, p.variant, "capture_mult", 1.0) or 1.0
         return seg_cfg[p.segment]["capture_pp_per_year"] * p.capture_mult * eng["capture_mult"] * vm / 100.0
 
+    def cap_w(seg, t):
+        """Capture weight in year t: 1.0 unless the segment sets capture_weight_by_year (piecewise linear, held flat at the ends)."""
+        wy = seg_cfg[seg].get("capture_weight_by_year")
+        if not wy:
+            return 1.0
+        pts = sorted((int(k), float(v)) for k, v in wy.items() if not str(k).startswith("_"))
+        if t <= pts[0][0]:
+            return pts[0][1]
+        for (y0, v0), (y1, v1) in zip(pts, pts[1:]):
+            if t <= y1:
+                return v0 + (v1 - v0) * (t - y0) / (y1 - y0)
+        return pts[-1][1]
+
+    def cum_w(seg, a, b):
+        """Sum of capture weights over years a+1..b (zero when b <= a); equals b - a with no weights."""
+        if b <= a:
+            return 0.0
+        if not seg_cfg[seg].get("capture_weight_by_year"):
+            return float(b - a)
+        return sum(cap_w(seg, t) for t in range(a + 1, b + 1))
+
     def shares(seg, y):
         sq_b = min(1.0, max(0.0, seg_cfg[seg]["sq_share"]["boeing"] + world_shift_boeing(seg, y)))
         s_b = min(1.0, max(0.0, seg_cfg[seg]["sq_share"]["boeing"] + world_shift_boeing(seg, y, moving=True)
@@ -556,13 +577,13 @@ def evaluate(cfg, world):
         pb, pa = world.prog("boeing", seg), world.prog("airbus", seg)
         eb, ea = eis_of(pb), eis_of(pa)
         if eb < ea:
-            n = max(0, min(y, ea) - eb)
+            n = cum_w(seg, eb, min(y, ea))
             cap = seg_cfg[seg]["leader_cap"]["boeing"]
             if n and s_b < cap:
                 s_b = min(cap, s_b + capture_speed(pb) * n)
         elif ea < eb:
             s_a = 1.0 - s_b
-            n = max(0, min(y, eb) - ea)
+            n = cum_w(seg, ea, min(y, eb))
             cap = seg_cfg[seg]["leader_cap"]["airbus"]
             if n and s_a < cap:
                 s_a = min(cap, s_a + capture_speed(pa) * n)
@@ -573,7 +594,7 @@ def evaluate(cfg, world):
             tb = pparam(cfg, pb.pid, pb.variant, "tech_level", 1.0)
             ta = pparam(cfg, pa.pid, pa.variant, "tech_level", 1.0)
             if tb != ta:
-                n2 = y - max(eb, ea)
+                n2 = cum_w(seg, max(eb, ea), y)
                 gain = seg_cfg[seg]["capture_pp_per_year"] / 100.0 * abs(tb - ta) * n2
                 if tb > ta:
                     s_b = max(s_b, min(seg_cfg[seg]["leader_cap"]["boeing"], s_b + gain))
@@ -712,6 +733,7 @@ def evaluate(cfg, world):
         seg: {str(y): {s: round(share_paths[seg][y][0][s], 4) for s in SIDES} for y in KEY_YEARS if y_start <= y <= y_end}
         for seg in SEGMENTS
     }
+    out["objectives"] = objective_status(cfg, world, share_paths, out)
     return out
 
 
@@ -858,6 +880,133 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
         "engines_delivered": delivered,
         "_exact": total,
     }
+
+
+# ---------------------------------------------------------------------------
+# Assigned objectives (mission attainment; never part of the payoff)
+# ---------------------------------------------------------------------------
+
+def objectives_enabled(cfg):
+    o = cfg.get("objectives")
+    return bool(o) and o.get("enabled", True) and bool(o.get("players"))
+
+
+def objective_holders(cfg):
+    """Who has scored objectives in this run: every player with an entry, plus non-player entries (CFM)."""
+    if not objectives_enabled(cfg):
+        return []
+    ps = players(cfg)
+    return [k for k, v in cfg["objectives"]["players"].items() if k in ps or v.get("non_player")]
+
+
+def objective_status(cfg, world, share_paths, out):
+    """Attainment of each holder's assigned objectives on this projection: {holder: [metric rows]}.
+
+    Metric kinds: share (a side's segment share >= target at the listed years; with until_own_eis
+    only years before that side's new program enters service count), share_vs_sq (share never
+    below the status-quo path), supplier_engines (an active supplier's engines delivered, either
+    positive or at least the status quo), supplier_upgrade (the one-time upgrade committed by a
+    year), maker_nb_share (an engine maker's share of narrowbody engines, from the airframers'
+    engine choices and the other makers' fits, versus the status quo), engine_in_service (some
+    airframer program flies one of the engines by a year).
+    """
+    res = {}
+    for who in objective_holders(cfg):
+        res[who] = [_objective_metric(cfg, world, share_paths, out, m) for m in cfg["objectives"]["players"][who].get("metrics", [])]
+    return res
+
+
+def _objective_metric(cfg, world, share_paths, out, m):
+    y0, y1 = cfg["years"]["start"], cfg["years"]["end"]
+    years = [y for y in m.get("years", []) if y0 <= y <= y1]
+    row = {"id": m["id"], "label": m["label"], "met": None}
+    kind = m["kind"]
+    if kind in ("share", "share_vs_sq"):
+        seg, side = m["segment"], m["side"]
+        if m.get("until_own_eis"):
+            p = world.prog(side, seg)
+            if p is not None and p.cancelled_year is None and p.eis <= y1:
+                years = [y for y in years if y < p.eis]
+                row["counted_until"] = p.eis
+        vals = {str(y): round(share_paths[seg][y][0][side], 4) for y in years}
+        row["values"], row["unit"] = vals, "share"
+        if kind == "share":
+            row["target"] = m["target"]
+            if vals:
+                worst = min(vals.values())
+                row["met"] = worst >= m["target"] - 1e-9
+                row["gap_pp"] = round((worst - m["target"]) * 100, 2)
+        else:
+            sq = {str(y): round(share_paths[seg][y][1][side], 4) for y in years}
+            row["status_quo"] = sq
+            if vals:
+                gaps = [vals[y] - sq[y] for y in vals]
+                row["met"] = min(gaps) >= -1e-9
+                row["gap_pp"] = round(min(gaps) * 100, 2)
+        if not vals:
+            row["note"] = "no year left to count"
+    elif kind == "supplier_engines":
+        sup, seg = m["supplier"], m["segment"]
+        if sup not in active_suppliers(cfg) or sup not in out:
+            row["note"] = "not scored: not a player in this run"
+            return row
+        dl = out[sup].get("engines_delivered", {})
+        vals = {str(y): dl.get(str(y), {}).get(seg, {}) for y in years}
+        row["values"], row["unit"] = {y: v.get("engines") for y, v in vals.items()}, "engines a year"
+        row["status_quo"] = {y: v.get("status_quo") for y, v in vals.items()}
+        if vals:
+            if m.get("op") == "positive":
+                row["met"] = all((v.get("engines") or 0) > 0.5 for v in vals.values())
+            else:
+                row["met"] = all((v.get("engines") or 0) >= (v.get("status_quo") or 0) - 0.5 for v in vals.values())
+    elif kind == "supplier_upgrade":
+        sup = m["supplier"]
+        if sup not in active_suppliers(cfg):
+            row["note"] = "not scored: not a player in this run"
+            return row
+        yr = world.upgrade_years.get(sup)
+        row["values"] = {"upgrade_year": yr}
+        row["target"] = f"by {m['by_year']}"
+        row["met"] = yr is not None and yr <= m["by_year"]
+    elif kind == "maker_nb_share":
+        mine, others = set(m["engines"]), [o for o in m.get("others", []) if o in cfg.get("suppliers", {})]
+
+        def inc_fit(side, y, moving):
+            f = 1.0 - sum(cfg["suppliers"][o]["incumbent_fit"][side]["nb"] for o in others)
+            if moving:
+                for o in others:
+                    up = cfg["suppliers"][o].get("upgrade")
+                    yr = world.upgrade_years.get(o)
+                    if up and yr is not None and o in active_suppliers(cfg) and up["segment"] == "nb" \
+                            and up["fit_side"] == side and y >= yr + up["lag_years"]:
+                        f -= up["fit_pp"] / 100.0
+            return max(0.0, f)
+
+        vals, sq = {}, {}
+        for y in years:
+            sh, sq_sh = share_paths["nb"][y]
+            v = 0.0
+            for side in SIDES:
+                p = world.prog(side, "nb")
+                fit = (1.0 if p.engine in mine else 0.0) if (p is not None and p.in_service(y)) else inc_fit(side, y, True)
+                v += sh[side] * fit
+            vals[str(y)] = round(v, 4)
+            sq[str(y)] = round(sum(sq_sh[side] * inc_fit(side, y, False) for side in SIDES), 4)
+        row["values"], row["status_quo"], row["unit"] = vals, sq, "share of narrowbody engines"
+        if vals:
+            gaps = [vals[y] - sq[y] for y in vals]
+            row["met"] = min(gaps) >= -1e-9
+            row["gap_pp"] = round(min(gaps) * 100, 2)
+    elif kind == "engine_in_service":
+        eng = set(m["engines"])
+        eis = [p.eis for p in world.programs.values() if p.engine in eng and p.cancelled_year is None and p.eis <= y1]
+        first = min(eis) if eis else None
+        row["values"] = {"first_eis": first}
+        row["target"] = f"by {m['by_year']}"
+        row["met"] = first is not None and first <= m["by_year"]
+    else:
+        row["note"] = f"unknown metric kind {kind}"
+    return row
 
 
 def payoff(cfg, history, masked_delay_turns=frozenset()):

@@ -6,9 +6,15 @@
     "programs",
     "engine_options",
     "injects",
-    "tactics"
+    "tactics",
+    "objectives"
   ],
   "overrides": {
+    "objectives": {
+      "enabled": false,
+      "_about": "The 2026 Boeing PD briefing objectives do not apply to the 2010 backtest.",
+      "players": {}
+    },
     "years": {
       "pv_base": 2010,
       "start": 2010,
