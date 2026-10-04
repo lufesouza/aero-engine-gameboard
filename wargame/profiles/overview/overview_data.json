@@ -277,7 +277,7 @@
     },
     {
      "lever": "Engine choice",
-     "stance": "fps: cfm_ducted (pw_gtf2 is within $1B, so CFM stays). Re-engine: ge_genx_next. Open fan and UltraFan lose $3.5-4.5B: only if whatif shows a gain above $1B."
+     "stance": "fps: cfm_ducted (pw_gtf2 is within $1B, so CFM stays). Re-engine: ge_genx_next. UltraFan loses $3.5-4.5B; the open fan cannot enter service before 2045. Either only if whatif shows a gain above $1B."
     },
     {
      "lever": "Disclosure",
@@ -1979,7 +1979,7 @@
     },
     {
      "lever": "Engine choice",
-     "stance": "Best PV keeping NGSA EIS by 2037; within $1B, no added EIS years (CFM ducted). Open fan only if launched 2027-28 and within $1B."
+     "stance": "Best PV keeping NGSA EIS by 2037; within $1B, no added EIS years (CFM ducted). The open fan cannot enter service before 2045, too late for the NGSA date."
     },
     {
      "lever": "Disclosure",
@@ -3262,8 +3262,8 @@
     },
     {
      "key": "game",
-     "headline": "Referee test: open fan from 2035, ducted before, no price war",
-     "text": "Not a player: airframers pick its engines and the market cell sets reactions. Each turn Culp frames, Ghai tests money, Ali tests dates, Safran's consent is assumed, Culp decides. fps or NGSA: cfm_open_fan for entry into service from 2035, else cfm_ducted (inference). Back a 737 Rate Increase. 787 Re-engine: ge_genx_next (inference). Rival engine launch: no price cut, RISE funded. An fps slip blamed on suppliers: no finger pointing (inference).",
+     "headline": "Referee test: open fan from 2045, ducted before, no price war",
+     "text": "Not a player: airframers pick its engines and the market cell sets reactions. Each turn Culp frames, Ghai tests money, Ali tests dates, Safran's consent is assumed, Culp decides. fps or NGSA: cfm_open_fan only for entry into service from 2045, when the game makes it available, else cfm_ducted (inference). Back a 737 Rate Increase. 787 Re-engine: ge_genx_next (inference). Rival engine launch: no price cut, RISE funded. An fps slip blamed on suppliers: no finger pointing (inference).",
      "ids": [
       "CX-0467",
       "CX-0929",
@@ -3305,7 +3305,7 @@
     },
     {
      "lever": "cfm_open_fan, RISE (engine option today)",
-     "stance": "Adds 1.5pp airframer margin and 1 year to entry into service; 0.85x share capture. GE backs it from 2035 entry, once an airframer commits (inference)."
+     "stance": "Adds 1.5pp airframer margin and 1 year of development; 0.85x share capture; cannot enter service before 2045. GE backs it once an airframer commits (inference)."
     },
     {
      "lever": "ge_genx_next (engine option today, GE alone)",
@@ -3453,7 +3453,7 @@
       },
       {
        "key": "game",
-       "text": "Proposes and decides. cfm_ducted before about 2035, cfm_open_fan after (inference); standard terms; no RISE cancellation; ge_genx_next for a 787 Re-engine (inference). Moved by floor data and firm launches.",
+       "text": "Proposes and decides. cfm_ducted until the open fan is available in 2045, then cfm_open_fan (inference); standard terms; no RISE cancellation; ge_genx_next for a 787 Re-engine (inference). Moved by floor data and firm launches.",
        "ids": [
         "CX-0608",
         "CX-0214",
@@ -4250,7 +4250,7 @@
       },
       {
        "key": "game",
-       "text": "Tests dates: no date without 'turn on and turn off' test evidence (inference). Backs cfm_open_fan and accepts +1 year (inference). Strongest yes on the LEAP upgrade; would veto cancelling RISE (inference).",
+       "text": "Tests dates: no date without 'turn on and turn off' test evidence (inference). Backs cfm_open_fan, available in the game from 2045 only (inference). Strongest yes on the LEAP upgrade; would veto cancelling RISE (inference).",
        "ids": [
         "CX-0009",
         "CX-0008",
@@ -4541,7 +4541,7 @@
      "topics": [
       {
        "key": "product",
-       "text": "Next narrowbody needs more than 20% better fuel burn than LEAP: cfm_open_fan for entry into service from 2035, ducted earlier (inference). R&D at 6-8% of revenue, half customer-funded.",
+       "text": "Next narrowbody needs more than 20% better fuel burn than LEAP: cfm_open_fan for entry into service from 2045, when the game makes it available; ducted earlier (inference). R&D at 6-8% of revenue, half customer-funded.",
        "ids": [
         "CX-1251",
         "CX-1255"
@@ -4995,7 +4995,7 @@
      },
      {
       "player_id": "cfm",
-      "note": "Not a player: open fan for EIS from 2035, else ducted (inference) [CX-0467]."
+      "note": "Not a player: open fan for EIS from 2045, else ducted (inference) [CX-0467]."
      }
     ]
    },
