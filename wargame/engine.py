@@ -118,6 +118,13 @@ def public_supplier_programs(cfg, world_actual):
     return rows
 
 
+def engine_dates(cfg, seg):
+    """Engines that cannot enter service before a given year (available_eis)."""
+    return {eng: (f"cannot enter service before {o['available_eis']}; an airframe ready earlier waits for it "
+                  "(extension capex for each waiting year).")
+            for eng, o in cfg["engine_options"][seg].items() if o.get("available_eis") is not None}
+
+
 def engine_availability(cfg, world, seg):
     """For airframers: which engines need a supplier commitment, and its status."""
     out = {}
@@ -195,6 +202,9 @@ def levers(cfg, world, side, turn):
             avail = engine_availability(cfg, world, pc["segment"])
             if avail:
                 item["supplier_engines"] = avail
+            dates = engine_dates(cfg, pc["segment"])
+            if dates:
+                item["engine_dates"] = dates
             if "variants" in pc:
                 item["variants"] = list(pc["variants"])
                 item["variant_terms"] = {v: {k: x for k, x in vt.items() if k != "label"} for v, vt in pc["variants"].items()}
@@ -338,8 +348,8 @@ def rules(cfg, side):
         "strain_rule": ("Developing a narrowbody and a widebody program at the same time costs strain.full_overlap_b x "
                         "min(1, overlap_years / strain.norm_years), spread over the overlap and alpha-loaded; a Joint Venture "
                         "relieves strain_relief of it."),
-        "delay_rule": ("Extra development years (slips, engine eis_add, injects) cost extension_capex_frac_per_year of program "
-                       "capex per year."),
+        "delay_rule": ("Extra development years (slips, engine eis_add, injects, waiting for an engine's available_eis or a "
+                       "supplier's engine) cost extension_capex_frac_per_year of program capex per year."),
         "players": cfg["players"], "segments": cfg["segments"], "incumbents": cfg["incumbents"],
         "active_suppliers": list(M.active_suppliers(cfg)),
         "programs": cfg["programs"], "engine_options": cfg["engine_options"], "tactics": tac,

@@ -189,6 +189,7 @@ class Program:
     supplier_margin_pp: float = 0.0  # airframer margin from the supplier's terms
     engine_requested: str | None = None  # set when the requested engine was not available
     engine_wait: int = 0  # years the airframe waits for its engine to be ready
+    engine_ready_year: int | None = None  # earliest entry into service the engine option allows (available_eis)
 
     @property
     def eis(self):
@@ -383,6 +384,7 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
                     extra_dev_years=w.dev_years_add[side] + eis_add,
                     variant=L.get("variant"), engine=engine, supplier=sup, supplier_program=spid,
                     supplier_margin_pp=terms_pp, engine_requested=requested,
+                    engine_ready_year=eng.get("available_eis"),
                 )
                 w.programs[p.pid] = p
                 _update_engine_waits(w)
@@ -442,12 +444,16 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
 
 
 def _update_engine_waits(w):
-    """An airframe cannot enter service before its supplier's engine is ready."""
+    """An airframe cannot enter service before its engine is ready: its supplier's program, or the
+    engine option's first available year (available_eis, e.g. the open fan)."""
     for p in w.programs.values():
+        own = p.launch_year + p.base_dev_years + p.extra_dev_years + p.slip_years
+        wait = 0
         if p.supplier_program:
-            sp = w.sup_programs[p.supplier_program]
-            own = p.launch_year + p.base_dev_years + p.extra_dev_years + p.slip_years
-            p.engine_wait = max(0, sp.ready - own)
+            wait = max(0, w.sup_programs[p.supplier_program].ready - own)
+        if p.engine_ready_year is not None:
+            wait = max(wait, p.engine_ready_year - own)
+        p.engine_wait = wait
 
 
 def jv_partner_player(cfg, sup, spid, variant):
@@ -1136,6 +1142,14 @@ def validate_orders(cfg, history, turn, side, orders):
             errors.append(f"engine '{engine}' is not available for {pc['segment'].upper()} "
                           f"(options: {', '.join(cfg['engine_options'][pc['segment']])})")
             continue
+        avail = cfg["engine_options"][pc["segment"]][engine].get("available_eis")
+        if avail is not None:
+            own = (year + pparam(cfg, pid, requested_variant(pc, L), "dev_years") + w.dev_years_add[side]
+                   + cfg["engine_options"][pc["segment"]][engine]["eis_add"])
+            if own < avail:
+                warnings.append(f"'{engine}' cannot enter service before {avail}: '{pid}' would be ready in {own}, so it waits "
+                                f"{avail - own} year(s), paying {cfg['extension_capex_frac_per_year']:.0%} of program capex for each. "
+                                f"Launch in {year + avail - own} to enter service in {avail} without waiting.")
         req = supplier_requirement(cfg, pc["segment"], engine)
         if req:
             sp = w.sup_programs.get(req[1])

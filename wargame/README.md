@@ -200,6 +200,7 @@ Money is $B in constant 2026 dollars. A side's score is **delta PV**: the presen
 
 - **Programs.** Each side has one new narrowbody (fps, NGSA) and one widebody Re-engine (787, A350).
   - Each can be launched once, in any year of a turn. EIS = launch + development years (+ engine `eis_add`, injects and slips).
+  - An engine can carry `available_eis`, the first year it can enter service. The CFM RISE open fan (`cfm_open_fan`) is available from **2045** only. An airframe that would be ready earlier waits for it, and each waiting year costs 10% of capex like any other extra year. A launch in 2037 (2037 + 7 + 1) enters service in 2045 without waiting.
   - Capex is spread over the base development years. Each extra year costs 10% of capex.
   - Cancelling stops capex; what was spent is sunk.
 - **Share.** The first side to put a new product into service in a segment captures share at `capture_pp_per_year` (× engine × market multipliers). Capture starts at EIS+1, stops at the leader cap, and freezes when the follower's new product enters service.

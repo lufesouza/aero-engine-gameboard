@@ -684,8 +684,9 @@ class ObjectiveTests(unittest.TestCase):
         c = self.cfg
         of = self.obj([rec(1, orders("boeing", [L(c, "fps", 2026, engine="cfm_open_fan")]))])
         self.assertTrue(of["cfm"]["open_fan"]["met"])
-        self.assertEqual(of["cfm"]["open_fan"]["values"]["first_eis"], 2026 + 7 + 1)
-        self.assertGreater(of["cfm"]["nb_dominance"]["values"]["2045"], 0.76)  # the 737's successor flies CFM; Boeing gains share
+        self.assertEqual(of["cfm"]["open_fan"]["values"]["first_eis"], 2045)  # the open fan is available from 2045 only
+        ducted = self.obj([rec(1, orders("boeing", [L(c, "fps", 2026)]))])
+        self.assertGreater(ducted["cfm"]["nb_dominance"]["values"]["2045"], 0.76)  # the 737's successor flies CFM; Boeing gains share
         h = [rec(1, a=orders("airbus", [L(c, "ngsa", 2026, engine="pw_gtf2")]))]
         gtf = self.obj(h)
         boeing_2045 = M.evaluate(c, M.build_world(c, h))["shares"]["nb"]["2045"]["boeing"]
@@ -710,6 +711,42 @@ class ObjectiveTests(unittest.TestCase):
         cfg = M.load_config("hist-2010-neo")
         self.assertFalse(M.objectives_enabled(cfg))
         self.assertEqual(M.evaluate(cfg, M.build_world(cfg, []))["objectives"], {})
+
+
+class OpenFanAvailabilityTests(unittest.TestCase):
+    """The CFM RISE open fan cannot enter service before 2045 (engine_options.nb.cfm_open_fan.available_eis)."""
+
+    def setUp(self):
+        self.cfg = M.load_config("base")
+
+    def prog(self, hist):
+        return M.build_world(self.cfg, hist).programs
+
+    def test_early_choice_waits_and_pays_extension_capex(self):
+        c = self.cfg
+        on_time = self.prog([rec(4, orders("boeing", [L(c, "fps", 2037, engine="cfm_open_fan")]))])["fps"]
+        self.assertEqual((on_time.eis, on_time.engine_wait), (2045, 0))  # 2037 + 7 + 1
+        early = self.prog([rec(2, orders("boeing", [L(c, "fps", 2029, engine="cfm_open_fan")]))])["fps"]
+        self.assertEqual((early.eis, early.engine_wait), (2045, 8))
+        ducted = self.prog([rec(2, orders("boeing", [L(c, "fps", 2029)]))])["fps"]
+        self.assertEqual((ducted.eis, ducted.engine_wait), (2036, 0))
+        r = M.evaluate(c, M.build_world(c, [rec(2, orders("boeing", [L(c, "fps", 2029, engine="cfm_open_fan")]))]))
+        capex = c["programs"]["fps"]["capex_b"]
+        # 7 base years + 9 extra (1 eis_add + 8 waiting), each extra year at 10% of capex
+        self.assertAlmostEqual(r["boeing"]["undiscounted_b"]["capex"], -capex * (1 + 0.9) * (1 + c["players"]["boeing"]["alpha"]), places=2)
+
+    def test_slips_do_not_stack_on_a_wait(self):
+        c = self.cfg
+        hist = [rec(2, orders("boeing", [L(c, "fps", 2029, engine="cfm_open_fan")]), orders("airbus", delay_tactics=True)),
+                rec(3, a=orders("airbus", delay_tactics=True))]
+        p = self.prog(hist)["fps"]
+        self.assertEqual(p.eis, 2045)  # 2 years of Delay Tactics are absorbed by the wait
+
+    def test_validation_warns(self):
+        c = self.cfg
+        _, errs, warns = M.validate_orders(c, [], 2, "boeing", {"launch": [{"program": "fps", "year": 2029, "engine": "cfm_open_fan"}]})
+        self.assertEqual(errs, [])
+        self.assertTrue(any("cannot enter service before 2045" in w and "Launch in 2037" in w for w in warns))
 
 
 class ReplacementWaveTests(unittest.TestCase):

@@ -88,7 +88,7 @@
   "engine_options": {
     "nb": {
       "cfm_ducted": {"label": "CFM advanced ducted turbofan", "margin_pp": 0.0, "eis_add": 0, "capture_mult": 1.0},
-      "cfm_open_fan": {"label": "CFM RISE open fan", "margin_pp": 1.5, "eis_add": 1, "capture_mult": 0.85},
+      "cfm_open_fan": {"label": "CFM RISE open fan", "margin_pp": 1.5, "eis_add": 1, "capture_mult": 0.85, "available_eis": 2045, "_about": "available_eis: the open fan cannot enter service before 2045; an airframe that would be ready earlier waits for it, paying extension capex for each waiting year. Launch in 2037 to enter service in 2045 without waiting."},
       "pw_gtf2": {"label": "Pratt & Whitney GTF2", "margin_pp": 0.5, "eis_add": 0, "capture_mult": 0.95},
       "rr_ultrafan_nb": {"label": "Rolls-Royce UltraFan (narrowbody)", "margin_pp": 1.0, "eis_add": 1, "capture_mult": 0.95}
     },
@@ -328,7 +328,7 @@
         "label": "CFM International (GE side)",
         "primary_goal": "Dominate narrowbody engines; introduce the open fan",
         "moves": [
-          {"move": "Open fan only", "lever": "airframer engine choice cfm_open_fan", "modelled": "partly", "note": "CFM is not a player; each airframer picks the engine"},
+          {"move": "Open fan only", "lever": "airframer engine choice cfm_open_fan", "modelled": "partly", "note": "CFM is not a player; each airframer picks the engine; available for entry into service from 2045"},
           {"move": "Ducted only", "lever": "airframer engine choice cfm_ducted", "modelled": "partly", "note": "the default engine for fps and NGSA"},
           {"move": "Open + ducted (both)", "lever": "both engine options offered", "modelled": "partly", "note": "both are always on offer to the airframers"},
           {"move": "Partner with Embraer", "lever": "none", "modelled": "no", "note": "the fps Joint Venture is Boeing-Embraer; there is no CFM-Embraer move"},
