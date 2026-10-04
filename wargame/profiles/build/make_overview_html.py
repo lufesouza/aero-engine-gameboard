@@ -25,6 +25,8 @@ for k in ("rolls_royce", "pratt_whitney"):
 data["params"] = params
 data["built"] = datetime.date.today().isoformat()
 order = ["boeing", "airbus", "rolls_royce", "pratt_whitney", "cfm"]
+data.setdefault("pending", [])
+data.setdefault("provisional_caveats", [])
 data["players"].sort(key=lambda p: order.index(p["player_id"]) if p["player_id"] in order else 99)
 payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 
@@ -93,7 +95,7 @@ section { padding-top: 48px; display: grid; gap: 18px; scroll-margin-top: 56px; 
 .card .role { font: 500 .72rem/1.3 var(--font-mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
 .card dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 0; font-size: .82rem; }
 .card dt { color: var(--muted); }
-.card dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.card dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; min-width: 0; }
 
 /* tables */
 .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
@@ -172,6 +174,11 @@ tbody th { font: 600 .78rem/1.3 var(--font-mono); text-transform: uppercase; let
 .levers ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: .88rem; }
 .notes { display: grid; gap: 8px; font-size: .88rem; max-width: 80ch; }
 .notes ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.status { margin-top: 18px; padding: 12px 16px; border: 1px dashed var(--line); border-radius: var(--radius); background: var(--surface); display: grid; gap: 6px; font-size: .88rem; max-width: 90ch; }
+.status b { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: .03em; }
+.pill { justify-self: start; font: 500 .66rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; padding: 4px 6px; border-radius: 3px; background: var(--sunk); color: var(--muted); }
+.pill.ok { background: var(--pc); color: var(--surface); }
+.card.pending { border-style: dashed; border-top-style: solid; }
 footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: grid; gap: 6px; max-width: 90ch; }
 @media (max-width: 640px) {
   .prow, .teams li { grid-template-columns: 1fr; }
@@ -194,6 +201,7 @@ footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: 
     <h1 id="headline"></h1>
     <p class="lede" id="summary-text"></p>
     <p class="muted" id="built"></p>
+    <div class="status" id="status" hidden></div>
   </div>
   <section aria-labelledby="h-players"><h2 id="h-players" class="eyebrow">The five players</h2><div class="cards" id="player-cards"></div></section>
   <section id="matrix" aria-labelledby="h-matrix">
@@ -244,8 +252,23 @@ footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: 
   const tag = id => byId[id] ? `<span class="dot" style="${pc(id)}"></span>&nbsp;<b>${esc(short(byId[id]))}</b>` : esc(id);
   const topicOf = (obj, key) => (obj.topics || []).find(t => t.key === key);
 
-  document.getElementById('headline').textContent = D.compare.headline;
-  document.getElementById('summary-text').textContent = D.compare.summary;
+  const C = D.compare || null;
+  const NAMES = { boeing: ['Boeing', 'Airframer player (Blue)'], airbus: ['Airbus', 'Airframer player (Red)'], rolls_royce: ['Rolls-Royce', 'Engine-supplier player (optional)'], pratt_whitney: ['Pratt & Whitney', 'Engine-supplier player (optional, inside RTX)'], cfm: ['CFM International (GE side)', 'Engine maker, not a player'] };
+  document.getElementById('headline').textContent = C ? C.headline : 'How the war-game players decide';
+  document.getElementById('summary-text').textContent = C ? C.summary : 'What each player optimises and how its leaders decide, topic by topic: objectives, capital, products, risk, operations, rivals, credibility, crises, game stance and biases.';
+  const drafts = P.filter(p => p.status === 'draft'), pend = D.pending || [];
+  if (drafts.length || pend.length || !C) {
+    const st = document.getElementById('status'); st.hidden = false;
+    const cit = P.reduce((a, p) => a + (p.id_check?.cited || 0), 0);
+    const todo = [];
+    const SN = { boeing: 'Boeing', airbus: 'Airbus', rolls_royce: 'Rolls-Royce', pratt_whitney: 'Pratt & Whitney', cfm: 'CFM' };
+    if (pend.length) todo.push(pend.map(x => SN[x]).join(' and ') + (pend.length > 1 ? ' are' : ' is') + ' being extracted');
+    if (drafts.length) todo.push('the independent fact-check of ' + drafts.map(p => short(p)).join(', '));
+    if (!C) todo.push('the cross-player comparison and contrasts');
+    st.innerHTML = `<b>Early version · ${P.length} of 5 players</b>
+      <span>Still in progress: ${esc(todo.join('; '))}. This page will be updated at the same link.</span>
+      <span class="muted">Checks already run on what is shown: all <span class="mono">${cit.toLocaleString('en-US')}</span> evidence citations resolve to verified items, and every leader quote was found word for word in the sources.</span>`;
+  }
   const nItems = P.reduce((a, p) => a + (p.evidence?.items || 0), 0);
   const nPeople = P.reduce((a, p) => a + (p.people?.length || 0), 0);
   document.getElementById('built').innerHTML = `<span class="mono">${nItems.toLocaleString('en-US')}</span> verified evidence items · <span class="mono">${nPeople}</span> leaders profiled · built <span class="mono">${esc(D.built)}</span>`;
@@ -257,18 +280,22 @@ footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: 
     return `<article class="card" style="${pc(p.player_id)}">
       <div style="display:flex;gap:8px;align-items:center"><span class="dot"></span><span class="pname">${esc(p.name)}</span></div>
       <span class="role">${esc(p.game_role)}</span>
+      ${p.status === 'draft' ? '<span class="pill">Not yet fact-checked</span>' : p.status === 'checked' ? '<span class="pill ok">Fact-checked</span>' : ''}
       <p>${esc(p.tagline)}</p>
       <dl>
-        <dt>Evidence</dt><dd>${(p.evidence?.items || 0).toLocaleString('en-US')} items</dd>
-        <dt>Leaders</dt><dd>${p.people?.length || 'none profiled'}</dd>
-        ${prm ? `<dt>Game WACC</dt><dd>${(prm.wacc * 100).toFixed(1)}%</dd><dt>Capex weight α</dt><dd>${prm.alpha}</dd>` : `<dt>In game</dt><dd>not a player</dd>`}
+        <dt>Evidence items</dt><dd>${(p.evidence?.items || 0).toLocaleString('en-US')}</dd>
+        <dt>Leaders</dt><dd>${p.people?.length || 'none'}</dd>
+        ${prm ? `<dt>WACC (game)</dt><dd>${(prm.wacc * 100).toFixed(1)}%</dd><dt>Capex weight α</dt><dd>${prm.alpha}</dd>` : `<dt>In the game</dt><dd>not a player</dd>`}
         ${def ? `<dt>Default team</dt><dd>${esc(def.id)}</dd>` : ''}
       </dl>
       <details><summary class="muted" style="cursor:pointer;font-size:.82rem">Summary and confidence</summary>
         <p style="margin-top:8px;font-size:.88rem">${esc(p.summary)}</p>
         <p class="muted" style="margin-top:6px;font-size:.8rem">${esc(p.evidence?.sources)}. ${esc(p.evidence?.confidence)}</p></details>
     </article>`;
-  }).join('');
+  }).join('') + (D.pending || []).map(id => `<article class="card pending" style="${pc(id)}">
+      <div style="display:flex;gap:8px;align-items:center"><span class="dot"></span><span class="pname">${esc(NAMES[id][0])}</span></div>
+      <span class="role">${esc(NAMES[id][1])}</span><span class="pill">In progress</span>
+      <p class="muted">Being extracted from its verified profiles. It joins the comparison in the next update.</p></article>`).join('');
 
   // matrix
   const mt = document.getElementById('matrix-table');
@@ -288,8 +315,9 @@ footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: 
     }).join('')}</tr>`).join('')}</tbody>`;
 
   // contrasts
-  document.getElementById('contrast-list').innerHTML = (D.compare.contrasts || []).map(c => `<article class="contrast">
-    <h3>${esc(c.title)}</h3><div class="who">${(c.players || []).map(tag).join(' · ')}</div><p>${esc(c.text)}</p></article>`).join('');
+  document.getElementById('contrast-list').innerHTML = C ? (C.contrasts || []).map(c => `<article class="contrast">
+    <h3>${esc(c.title)}</h3><div class="who">${(c.players || []).map(tag).join(' · ')}</div><p>${esc(c.text)}</p></article>`).join('')
+    : '<p class="muted">The sharpest contrasts arrive with the cross-player comparison, once all five players are in.</p>';
 
   // topic explorer
   const tabs = document.getElementById('topic-tabs'), panel = document.getElementById('topic-panel');
@@ -311,7 +339,7 @@ footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: 
     return `<div class="group" role="group" aria-label="${esc(label)}"><span class="label">${esc(label)}</span>${opts.map(([v, l]) => `<button class="chip" data-f="${key}" data-v="${v}" aria-pressed="${state[key] === v}">${esc(l)}</button>`).join('')}</div>`;
   }
   function renderTopic() {
-    const k = state.topic, cmp = (D.compare.per_topic || []).find(t => t.key === k);
+    const k = state.topic, cmp = C ? (C.per_topic || []).find(t => t.key === k) : null;
     const ents = P.map(p => { const t = topicOf(p, k); return `<article class="entry" style="${pc(p.player_id)}${state.focus === p.player_id ? ';outline:2px solid var(--pc)' : ''}">
       <div class="head"><span class="dot"></span><span class="pname">${esc(short(p))}</span></div>
       ${t ? `<b>${esc(t.headline)}</b><p>${esc(t.text)}</p>${ids(t.ids)}` : '<p class="empty">No entry.</p>'}</article>`; }).join('');
@@ -339,7 +367,7 @@ footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: 
   selectTopic('objectives', null);
 
   // seats + directory
-  document.getElementById('seat-compare').innerHTML = (D.compare.seats || []).map(s => `<div><span class="eyebrow">${esc(s.seat)} seat compared</span><p>${esc(s.comparison)}</p></div>`).join('');
+  document.getElementById('seat-compare').innerHTML = ((C && C.seats) || []).map(s => `<div><span class="eyebrow">${esc(s.seat)} seat compared</span><p>${esc(s.comparison)}</p></div>`).join('');
   document.getElementById('directory').innerHTML = P.filter(p => (p.people || []).length).map(p => `<div class="company" style="${pc(p.player_id)}">
     <header><span class="dot"></span><h3>${esc(p.name)}</h3><span class="muted">${p.people.length} leaders</span></header>
     <div class="seats">${SEATS.map(([s, l]) => { const ps = p.people.filter(x => x.seat === s).sort((a, b) => (a.status === 'current' ? -1 : 1) - (b.status === 'current' ? -1 : 1));
@@ -363,9 +391,10 @@ footer.src { padding-top: 40px; font-size: .8rem; color: var(--muted); display: 
     <ul>${(p.levers || []).map(l => `<li><b>${esc(l.lever)}</b>: ${esc(l.stance)}</li>`).join('')}</ul></div>`).join('');
 
   // notes
-  const vcount = P.map(p => { const last = (p.verifier_notes || []).slice(-1)[0] || ''; return `${short(p)}: ${last}`; });
-  document.getElementById('notes-body').innerHTML = `<ul>${(D.compare.caveats || []).map(c => `<li>${esc(c)}</li>`).join('')}</ul>
-    <p class="muted">Every entry cites the evidence ids behind it (B-, BX-, A-, AX-, R-, P-, CX-). Each id is a verified quote or spreadsheet cell in the profile folders under <span class="mono">wargame/profiles/</span>. Each player's section was extracted from its profiles and then checked by an independent fact-checker. Fact-check results: ${vcount.map(esc).join('; ')}.</p>`;
+  const vcount = P.filter(p => p.status === 'checked').map(p => { const last = (p.verifier_notes || []).slice(-1)[0] || ''; return `${short(p)}: ${last}`; });
+  const cav = (C && C.caveats) || D.provisional_caveats || [];
+  document.getElementById('notes-body').innerHTML = `<ul>${cav.map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+    <p class="muted">Every entry cites the evidence ids behind it (B-, BX-, A-, AX-, R-, P-, CX-). Each id is a verified quote or spreadsheet cell in the profile folders under <span class="mono">wargame/profiles/</span>. Each player's section was extracted from its profiles and then checked by an independent fact-checker. ${vcount.length ? 'Fact-check results: ' + vcount.map(esc).join('; ') + '.' : 'The independent fact-check is still running.'}</p>`;
   document.getElementById('sources').innerHTML = `<span>Sources: Boeing earnings calls 2006-2025, 10-Ks and analyst models; the Airbus FY2025 Board Report and Boeing-side observations; Rolls-Royce calls 2010-2025, Morgan Stanley model and Capital IQ data; UTC/RTX calls and 10-Ks 2015-2025 and the Goldman Sachs RTX/GTF model; GE / GE Aerospace calls 2015-2025 and Capital IQ profiles. Professional conduct only.</span>
     <span>Game parameters (WACC, capex weight α) come from <span class="mono">wargame/config/default.json</span>.</span>`;
 })();
