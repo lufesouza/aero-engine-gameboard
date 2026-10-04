@@ -31,7 +31,7 @@ Be consistent across turns. Change a multiplier only when something new happened
 
 ## CFM/GE's objective and demand timing
 
-- `brief --side market` shows CFM/GE's assigned objective and its attainment (`objectives.cfm`): dominate narrowbody engines and introduce the open fan. Let it shape how you describe CFM/GE in your narrative (offers, support for its engines). It does not widen your capture bounds, and you still price only what airlines and lessors see.
+- CFM/GE's assigned objective is to dominate narrowbody engines and introduce the open fan. Let it shape how you describe CFM/GE in your narrative (offers, support for its engines). It does not widen your capture bounds, and you still price only what airlines and lessors see. The referee scores its attainment.
 - Demand timing belongs to the scenario. In `replacement-wave`, the engine already slows a new narrowbody's share capture before the MAX/neo retirement wave (from 2037): do not adjust for timing again. In other scenarios, do not apply the wave yourself.
 
 ## Information discipline

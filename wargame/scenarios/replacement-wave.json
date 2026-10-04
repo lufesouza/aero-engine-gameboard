@@ -19,7 +19,7 @@
           "2046": 1.0
         },
         "replacement_wave": {
-          "_source": "Boeing Product Development draft, 'Driver of late 2030s entry-into-service timing', slide 7: MAX/neo replacements by year (Boeing proprietary). Values read off the stacked chart, about +/-20 aircraft a year.",
+          "_source": "Scenario demand curve: 737 MAX and A320neo-family replacements by year, read off a market forecast chart (about +/-20 aircraft a year).",
           "_capture_rule": "capture weight = floor + (1 - floor) x min(1, replacements / mean replacements 2044-2046); floor 0.4 (assumption: a new airplane still wins growth orders and older-generation replacements before the wave); held at the 2046 value after 2046.",
           "floor": 0.4,
           "reference_per_year": 807.0,
@@ -102,13 +102,7 @@
             "2044": 825,
             "2045": 781,
             "2046": 815
-          },
-          "drivers": [
-            "Retirement timing: a critical mass of MAX/neos reaches retirement age in the mid-2030s; orders typically need 5+ years of lead time",
-            "Product lifecycle: limits on further MAX enhancements cap its competitiveness; key elements (engines, materials, systems) are maturing",
-            "Eroding market share and margin: continued A320-family improvements may erode MAX share; price pressure may erode margins",
-            "Competition: stay ahead of COMAC and other new competitors; risk of being leapfrogged on efficiency or capability"
-          ]
+          }
         }
       }
     }

@@ -660,6 +660,14 @@ class ObjectiveTests(unittest.TestCase):
         self.assertEqual(M.payoff(c, hist), M.payoff(off, hist))
         self.assertEqual(M.evaluate(off, M.build_world(off, hist))["objectives"], {})
 
+    def test_targets_compare_exact_shares(self):
+        c = self.cfg
+        hist = [rec(1, orders("boeing", [L(c, "fps", 2026)]), market={"capture_mult": {"fps": 0.952}})]
+        exact = M.evaluate(c, M.build_world(c, hist))
+        o = {x["id"]: x for x in exact["objectives"]["boeing"]}
+        self.assertEqual(o["nb_share_50"]["values"]["2040"], 0.5)  # rounds to 50.0%
+        self.assertFalse(o["nb_share_50"]["met"])  # but the exact share is just below 50%
+
     def test_share_objectives_conflict(self):
         c = self.cfg
         b_first = self.obj([rec(1, orders("boeing", [L(c, "fps", 2026)]))])
@@ -731,6 +739,13 @@ class ReplacementWaveTests(unittest.TestCase):
         self.assertGreater(pay(self.wave, 2029), pay(self.wave, 2026))
         self.assertLess(pay(self.wave, 2026), pay(self.base, 2026))
 
+    def test_malformed_weights_are_ignored(self):
+        c = self.base
+        hist = [rec(1, orders("boeing", [L(c, "fps", 2026)]))]
+        for wy in ({"_about": "notes only"}, {"2040.0": 1.0, "x": 2, "2045": None}):
+            cfg = M.load_config("base", {"segments": {"nb": {"capture_weight_by_year": wy}}})
+            self.assertEqual(M.payoff(cfg, hist), M.payoff(c, hist))
+
     def test_no_weights_means_base(self):
         c = self.base
         hist = [rec(1, orders("boeing", [L(c, "fps", 2027)]), orders("airbus", [L(c, "ngsa", 2029)]))]
@@ -749,7 +764,9 @@ class ObjectiveCliTests(CliBase):
         _, b = self.run_cli("brief", "--run", "o", "--side", "rolls_royce")
         self.assertEqual(list(b["your_objectives"]), ["rolls_royce"])
         _, m = self.run_cli("brief", "--run", "o", "--side", "market")
-        self.assertEqual(list(m["objectives"]), ["cfm"])
+        self.assertEqual(m["objectives"], {})  # any player may use the market view
+        _, anon = self.run_cli("rules", "--run", "o")
+        self.assertNotIn("assigned_objectives", anon)
         _, w = self.run_cli("whatif", "--run", "o", "--side", "boeing",
                             stdin={"boeing": {"1": {"launch": [{"program": "fps", "year": 2026}]}}})
         self.assertEqual(list(w["objectives"]), ["boeing"])

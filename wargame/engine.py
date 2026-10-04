@@ -223,12 +223,12 @@ def projection(cfg, history, mask):
 
 
 def objectives_view(cfg, objs, viewer):
-    """Each player sees only its own objectives; the market cell sees the non-players' (CFM); control sees all."""
+    """Each player sees only its own objectives; control and the analyst see all; the market view shows none."""
     objs = objs or {}
     if viewer in ("control", "analyst"):
         return objs
     if viewer == "market":
-        return {k: v for k, v in objs.items() if k not in M.players(cfg)}
+        return {}  # any player may use --side market, so the market view carries no objectives
     return {viewer: objs[viewer]} if viewer in objs else {}
 
 
@@ -330,7 +330,8 @@ def rules(cfg, side):
                            "discounted at your WACC; minus capex x (1 + alpha), minus strain x (1 + alpha), minus tactic costs."),
         "share_rule": ("The first side to put a new product into service in a segment captures capture_pp_per_year of share per "
                        "year from EIS+1 (times engine and market multipliers) up to its leader cap; capture freezes when the "
-                       "follower's new product enters service."),
+                       "follower's new product enters service. If the segment sets capture_weight_by_year, each year's "
+                       "capture is scaled by that year's weight (demand timing)."),
         "margin_rule": ("A new product earns margin_alone until the rival's new product is also in service, then margin_both; "
                         "minus early_penalty_pp_per_year for each year its EIS precedes tech_ready_year; plus the engine's margin_pp. "
                         "A Joint Venture gives the partner margin_share_partner of the margin and capex_share_partner of the capex."),
@@ -445,7 +446,11 @@ def cmd_rules(args):
         cfg = load_state(args.run)["config"]
     else:
         cfg = M.load_config(args.scenario)
-    out(rules(cfg, args.side))
+    r = rules(cfg, args.side or "control")
+    if not args.side:  # assigned objectives only for a named viewer
+        r.pop("assigned_objectives", None)
+        r.pop("assigned_objectives_rule", None)
+    out(r)
 
 
 def _require_open(st):
@@ -818,7 +823,7 @@ def report_markdown(rep, cfg):
             f"{rep['shares'][seg][y]['boeing'] * 100:.1f} / {rep['shares'][seg][y]['airbus'] * 100:.1f}" for y in yrs) + " |")
     L.append("")
     if rep.get("objectives"):
-        L.append("## Assigned objectives (attainment on the final projection)")
+        L.append("## Assigned objectives (attainment on the " + ("final" if rep["status"] == "complete" else "current") + " projection)")
         L.append("")
         L.append(objectives_markdown(rep["objectives"], cfg))
         L.append("")
@@ -967,7 +972,7 @@ def main(argv=None):
     p = sub.add_parser("rules", help="game mechanics and parameters")
     p.add_argument("--run")
     p.add_argument("--scenario", default="base")
-    p.add_argument("--side", default="control", choices=VIEWERS)
+    p.add_argument("--side", default=None, choices=VIEWERS)
     p.set_defaults(fn=cmd_rules)
 
     p = sub.add_parser("injects", help="list injects still available (control)")

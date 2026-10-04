@@ -170,29 +170,22 @@ In `wargame/runs/<RUN>/referee_report.md` the referee adds verdicts on informati
 
 ## Assigned objectives
 
-Each player also has a **mission**, taken from the Boeing Product Development narrowbody players briefing (slide 4, Boeing proprietary). It is encoded in `config/default.json` under `objectives`. Each mission has:
-- the primary goal;
-- the briefing's possible moves, each mapped to a game lever and marked modelled yes / partly / no;
-- the enablers and constraints;
-- the metrics the engine scores.
+Each player also has a **mission** set by control: a primary goal, the possible moves mapped to game levers (modelled yes / partly / no), its enablers and constraints, and metrics the engine scores at key years (share targets, engines delivered, upgrades, an engine in service). The missions live in `config/default.json` under `objectives`.
 
-| Player | Primary goal | Metrics (scored at key years) |
-|---|---|---|
-| Boeing | Hold the 50/50 narrowbody split; defend incumbency | narrowbody share ≥ 50% in 2040, 2045, 2050; never below the status quo |
-| Airbus | Defend the 60/40 edge; protect the A320 family | narrowbody share ≥ 60% in 2040, 2045, 2050; ≥ 60% in every key year before NGSA enters service |
-| Rolls-Royce | Enter the narrowbody market; keep widebody dominance | narrowbody engines delivered in 2045 and 2050; widebody engines at or above the status quo |
-| Pratt & Whitney | Restore credibility; capitalise on the GTF investment | narrowbody engines at or above the status quo; GTF durability upgrade by 2031 (a proxy) |
-| CFM (not a player) | Dominate narrowbody engines; introduce the open fan | CFM share of narrowbody engines at or above the status quo (76%); an airframer flying the open fan by 2045 |
+**Who sees what:**
+- A player sees only its own mission, through `rules --side <side>` (`assigned_objectives`), `brief` (`your_objectives`) and `whatif` (`objectives`).
+- Control and the analyst see every mission. The market view shows none.
+- Player agents may not read `config/` (isolation hook).
 
-**How the engine uses them:**
-- **Scoring.** The engine measures attainment on every projection. `whatif` shows it under `objectives` and `brief` under `your_objectives`; `report` and `scorecard` tabulate it, including a table by turn.
-- **Payoffs.** Objectives **never change the payoff**. A player that gives up delta PV to advance its objective declares an "objective premium", which counts against its doctrine-premium cap.
-- **Visibility.** Each player sees only its own objective. Control and the analyst see all of them, and the market cell sees CFM's.
-- **Supporting files:**
-  - each player's brief, `profiles/<player>/objectives.md`, explains what meeting its objective takes in the engine and how it fits the player's doctrine;
-  - the referee's cross-player analysis is `profiles/overview/objectives_analysis.md`.
-- **Conflict.** Boeing's 50% and Airbus's 60% narrowbody targets are zero-sum: both cannot be met.
-- **Backtest.** Objectives are off in `hist-2010-neo`.
+**Scoring:**
+- `report` and `scorecard` tabulate attainment, including a table by turn.
+- Objectives **never change the payoff**. A player that gives up delta PV to advance its mission declares an "objective premium", which counts against its doctrine-premium cap.
+
+**Further reading:**
+- Each player's brief is `profiles/<player>/objectives.md`.
+- The referee's cross-player analysis (conflicts, joint feasibility, how to score) is `profiles/overview/objectives_analysis.md`.
+
+Objectives are off in `hist-2010-neo`.
 
 ## How a turn works
 
@@ -318,10 +311,9 @@ Headline: 8 of 10 historical checkpoints match, 1 is partial and 1 misses (Boein
 
 - **Scenarios:** add `scenarios/<name>.json` with `title`, `narrative` and `overrides`. Overrides are deep-merged over `config/default.json`.
 - **Demand timing:** `segments.<seg>.capture_weight_by_year` (year → weight, piecewise linear, held flat at the ends) scales how fast a leading new product captures share each year. The default is 1.0 every year.
-  - The `replacement-wave` scenario sets it from Boeing PD's chart of 737 MAX / A320neo-family replacements by year (draft slide 7, Boeing proprietary): about 40 aircraft in 2037, 330 in 2040 and 800 a year from 2044, read off the chart to about ±20.
+  - The `replacement-wave` scenario sets it from a curve of 737 MAX and A320neo-family replacements by year: about 40 aircraft in 2037, 330 in 2040 and 800 a year from 2044.
   - The weight is 0.4 + 0.6 × min(1, replacements / 807): 0.4 before 2037 and 1.0 from 2044. The 0.4 floor is an assumption: a new airplane still wins growth orders and older-generation replacements before the wave.
   - The wave never speeds capture beyond the calibrated rate. When both sides enter service in the same year, shares are unchanged.
-  - Effect: Boeing's best Solo fps launch with no Airbus answer moves from 2026 (+$13.5B base) to 2029 (+$13.9B with the wave; 2026 falls to +$8.5B).
 - **Injects:** add entries to `injects.deck`. Supported effect types: `units_mult`, `margin_add`, `share_shift`, `tech_ready_add`, `strain_mult`, `dev_years_add`.
 - **Turns:** edit `turns` in the config. Launch years are validated against them.
 - **Personas:** edit the agent files in `.claude/agents/`, or pass `doctrine` to the workflow for a one-off constraint.

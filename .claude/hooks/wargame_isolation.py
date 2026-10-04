@@ -20,7 +20,7 @@ RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"
 PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"]
 # CFM International's leaders (GE side): not a player yet; no player reads them. The cross-player
 # overview page summarises every side, so no player reads it either.
-CFM = ["profiles/cfm", "profiles/overview"]
+CFM = ["profiles/cfm", "profiles/overview", "wargame/config"]  # the config holds every player's assigned objective
 AIRFRAMERS = ["profiles/boeing", "profiles/airbus", "boeing-strategist.md", "airbus-strategist.md", "boeing-2010.md",
               "airbus-2010.md", "wargame-boeing", "wargame-airbus"]
 # Raw uploads contain every year; the period-locked 2010 players may not read them.
@@ -39,7 +39,7 @@ BLOCK = {
     "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + RR + PW + CFM + BUILD,
     "rolls-royce-strategist": AIRFRAMERS + PW + CFM + ["wargame/runs"] + BUILD,
     "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + ["wargame/runs"] + BUILD,
-    "wargame-market": ["profiles/", "wargame/runs", "wargame-boeing", "wargame-airbus", "wargame-rolls_royce",
+    "wargame-market": ["profiles/", "wargame/runs", "wargame/config", "wargame-boeing", "wargame-airbus", "wargame-rolls_royce",
                        "wargame-pratt_whitney"] + BUILD,
 }
 
@@ -62,7 +62,7 @@ def engine_violation(agent, command):
         allowed = {own, "market"} if own != "market" else {"market"}
         if any(x.strip("'\"") not in allowed for x in sides):
             return f"engine view --side {sides[0]}"
-        if sub in ("options", "whatif", "equilibria", "brief") and not sides:
+        if sub in ("options", "whatif", "equilibria", "brief", "rules") and not sides:
             return f"engine '{sub}' without --side {own}"
     return None
 

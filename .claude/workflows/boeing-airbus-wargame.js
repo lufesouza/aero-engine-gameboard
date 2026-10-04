@@ -562,7 +562,7 @@ function refereePrompt(g) {
     '- information use: what it chose to disclose, and whether that was credible, strategic, or contradicted by events;',
     '- discipline;',
     '- doctrine fidelity: compare its orders with its profile Quick card (wargame/profiles/<side>/profile.md, where <side> is boeing, airbus, rolls_royce or pratt_whitney) and its declared doctrine premium.',
-    SCENARIO === 'hist-2010-neo' ? '' : '- objective attainment: the assigned-objective tables from the scorecard, and whether the player pursued its objective sensibly within its doctrine (objective premium against its cap). Judge pursuit as well as outcome: Boeing\'s 50% and Airbus\'s 60% narrowbody targets cannot both be met (wargame/profiles/overview/objectives_analysis.md). Report CFM\'s attainment for information.',
+    SCENARIO === 'hist-2010-neo' ? '' : '- objective attainment: the assigned-objective tables from the scorecard, and whether the player pursued its objective sensibly within its doctrine (objective premium against its cap). Judge pursuit as well as outcome: some objectives conflict (wargame/profiles/overview/objectives_analysis.md). Report CFM\'s attainment for information.',
     `- leadership fidelity (Boeing and Airbus): did the rationale run the ExCo deliberation of its team (${JSON.stringify(LEADERSHIP)}, see wargame/profiles/<side>/executives/teams.md), and did the orders and statements match that team's rules and voice?`,
     'Finish with a comparative ranking that separates skill from documented company doctrine. Every number must come from engine output.',
   ].join('\n')

@@ -505,7 +505,7 @@ def _sum_in_range(items, y):
     return sum(v for (y0, y1, v) in items if y0 <= y <= y1)
 
 
-def evaluate(cfg, world):
+def evaluate(cfg, world, with_objectives=True):
     """Return per-side payoffs, components, programs and key-year shares."""
     y_start, y_end = cfg["years"]["start"], cfg["years"]["end"]
     pv_base = cfg["years"]["pv_base"]
@@ -549,26 +549,18 @@ def evaluate(cfg, world):
         vm = pparam(cfg, p.pid, p.variant, "capture_mult", 1.0) or 1.0
         return seg_cfg[p.segment]["capture_pp_per_year"] * p.capture_mult * eng["capture_mult"] * vm / 100.0
 
-    def cap_w(seg, t):
-        """Capture weight in year t: 1.0 unless the segment sets capture_weight_by_year (piecewise linear, held flat at the ends)."""
-        wy = seg_cfg[seg].get("capture_weight_by_year")
-        if not wy:
-            return 1.0
-        pts = sorted((int(k), float(v)) for k, v in wy.items() if not str(k).startswith("_"))
-        if t <= pts[0][0]:
-            return pts[0][1]
-        for (y0, v0), (y1, v1) in zip(pts, pts[1:]):
-            if t <= y1:
-                return v0 + (v1 - v0) * (t - y0) / (y1 - y0)
-        return pts[-1][1]
+    cum_tables = {seg: capture_weight_cumsum(seg_cfg[seg].get("capture_weight_by_year"), y_start, y_end) for seg in SEGMENTS}
 
     def cum_w(seg, a, b):
         """Sum of capture weights over years a+1..b (zero when b <= a); equals b - a with no weights."""
         if b <= a:
             return 0.0
-        if not seg_cfg[seg].get("capture_weight_by_year"):
+        tab = cum_tables[seg]
+        if tab is None:
             return float(b - a)
-        return sum(cap_w(seg, t) for t in range(a + 1, b + 1))
+        y0, cum = tab
+        at = lambda t: cum[min(max(t, y0 - 1), y0 + len(cum) - 2) - y0 + 1]
+        return at(b) - at(a)
 
     def shares(seg, y):
         sq_b = min(1.0, max(0.0, seg_cfg[seg]["sq_share"]["boeing"] + world_shift_boeing(seg, y)))
@@ -733,8 +725,43 @@ def evaluate(cfg, world):
         seg: {str(y): {s: round(share_paths[seg][y][0][s], 4) for s in SIDES} for y in KEY_YEARS if y_start <= y <= y_end}
         for seg in SEGMENTS
     }
-    out["objectives"] = objective_status(cfg, world, share_paths, out)
+    out["objectives"] = objective_status(cfg, world, share_paths, out) if with_objectives else {}
     return out
+
+
+def capture_weight_points(wy):
+    """Valid (year, weight) points of a capture_weight_by_year mapping, sorted; keys that are not years are ignored."""
+    pts = []
+    for k, v in (wy or {}).items():
+        try:
+            pts.append((int(float(k)), float(v)))
+        except (TypeError, ValueError):
+            continue
+    return sorted(pts)
+
+
+def capture_weight(pts, t):
+    """Piecewise-linear weight in year t, held flat before the first and after the last point."""
+    if t <= pts[0][0]:
+        return pts[0][1]
+    for (y0, v0), (y1, v1) in zip(pts, pts[1:]):
+        if t <= y1:
+            return v0 + (v1 - v0) * (t - y0) / (y1 - y0)
+    return pts[-1][1]
+
+
+def capture_weight_cumsum(wy, y_start, y_end):
+    """(first year, running totals) for fast sums of capture weights, or None when there are no weights.
+
+    cum[i] is the sum of weights for years y0 .. y0 + i - 1, with y0 a margin before the game start."""
+    pts = capture_weight_points(wy)
+    if not pts:
+        return None
+    y0 = min(y_start, pts[0][0]) - 60
+    cum = [0.0]
+    for t in range(y0, y_end + 61):
+        cum.append(cum[-1] + capture_weight(pts, t))
+    return y0, cum
 
 
 def _strain_schedule(windows, full_overlap_b, norm_years, mult):
@@ -928,19 +955,20 @@ def _objective_metric(cfg, world, share_paths, out, m):
             if p is not None and p.cancelled_year is None and p.eis <= y1:
                 years = [y for y in years if y < p.eis]
                 row["counted_until"] = p.eis
-        vals = {str(y): round(share_paths[seg][y][0][side], 4) for y in years}
+        exact = {y: share_paths[seg][y][0][side] for y in years}
+        vals = {str(y): round(v, 4) for y, v in exact.items()}
         row["values"], row["unit"] = vals, "share"
         if kind == "share":
             row["target"] = m["target"]
-            if vals:
-                worst = min(vals.values())
+            if exact:
+                worst = min(exact.values())
                 row["met"] = worst >= m["target"] - 1e-9
                 row["gap_pp"] = round((worst - m["target"]) * 100, 2)
         else:
-            sq = {str(y): round(share_paths[seg][y][1][side], 4) for y in years}
-            row["status_quo"] = sq
-            if vals:
-                gaps = [vals[y] - sq[y] for y in vals]
+            sq_exact = {y: share_paths[seg][y][1][side] for y in years}
+            row["status_quo"] = {str(y): round(v, 4) for y, v in sq_exact.items()}
+            if exact:
+                gaps = [exact[y] - sq_exact[y] for y in exact]
                 row["met"] = min(gaps) >= -1e-9
                 row["gap_pp"] = round(min(gaps) * 100, 2)
         if not vals:
@@ -951,6 +979,10 @@ def _objective_metric(cfg, world, share_paths, out, m):
             row["note"] = "not scored: not a player in this run"
             return row
         dl = out[sup].get("engines_delivered", {})
+        off = [y for y in years if str(y) not in dl]
+        if off:
+            row["note"] = f"not scored: engines are reported only for key years {list(KEY_YEARS)}; got {off}"
+            return row
         vals = {str(y): dl.get(str(y), {}).get(seg, {}) for y in years}
         row["values"], row["unit"] = {y: v.get("engines") for y, v in vals.items()}, "engines a year"
         row["status_quo"] = {y: v.get("status_quo") for y, v in vals.items()}
@@ -982,7 +1014,7 @@ def _objective_metric(cfg, world, share_paths, out, m):
                         f -= up["fit_pp"] / 100.0
             return max(0.0, f)
 
-        vals, sq = {}, {}
+        vals, sq, gaps = {}, {}, []
         for y in years:
             sh, sq_sh = share_paths["nb"][y]
             v = 0.0
@@ -990,11 +1022,11 @@ def _objective_metric(cfg, world, share_paths, out, m):
                 p = world.prog(side, "nb")
                 fit = (1.0 if p.engine in mine else 0.0) if (p is not None and p.in_service(y)) else inc_fit(side, y, True)
                 v += sh[side] * fit
-            vals[str(y)] = round(v, 4)
-            sq[str(y)] = round(sum(sq_sh[side] * inc_fit(side, y, False) for side in SIDES), 4)
+            q = sum(sq_sh[side] * inc_fit(side, y, False) for side in SIDES)
+            vals[str(y)], sq[str(y)] = round(v, 4), round(q, 4)
+            gaps.append(v - q)
         row["values"], row["status_quo"], row["unit"] = vals, sq, "share of narrowbody engines"
         if vals:
-            gaps = [vals[y] - sq[y] for y in vals]
             row["met"] = min(gaps) >= -1e-9
             row["gap_pp"] = round(min(gaps) * 100, 2)
     elif kind == "engine_in_service":
@@ -1011,7 +1043,7 @@ def _objective_metric(cfg, world, share_paths, out, m):
 
 def payoff(cfg, history, masked_delay_turns=frozenset()):
     """Exact (unrounded) payoffs for a history: {"boeing": x, "airbus": y, [supplier: z]}."""
-    r = evaluate(cfg, build_world(cfg, history, masked_delay_turns))
+    r = evaluate(cfg, build_world(cfg, history, masked_delay_turns), with_objectives=False)
     return {s: r[s]["_exact"] for s in players(cfg)}
 
 
