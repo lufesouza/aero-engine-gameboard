@@ -420,23 +420,32 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
                 seg = pc["segment"]
                 engine = L["engine"]
                 eng = cfg["engine_options"][seg][engine]
-                req = supplier_requirement(cfg, seg, engine)
                 requested, sup, spid, terms_pp, eis_add = None, None, None, 0.0, eng["eis_add"]
-                if req:
-                    sup, spid = req
-                    sp = w.sup_programs.get(spid)
-                    scfg = cfg["suppliers"][sup]
-                    if sp is None or not sp.live():
-                        # The supplier has not committed to this engine: fall back to the segment's alternative.
-                        requested, engine = engine, scfg["fallback_engine"][seg]
-                        eng = cfg["engine_options"][seg][engine]
-                        eis_add, sup, spid = eng["eis_add"], None, None
-                        w.event(k, f"{player_label(cfg, req[0])} has not committed to the {cfg['engine_options'][seg][requested]['label']}, "
-                                   f"so {cfg['players'][side]['label']}'s {pc['label']} falls back to the {eng['label']}.")
-                    else:
+                tried = set()
+                while True:
+                    req = supplier_requirement(cfg, seg, engine)
+                    if not req:
+                        break
+                    sp = w.sup_programs.get(req[1])
+                    scfg = cfg["suppliers"][req[0]]
+                    if sp is not None and sp.live():
                         # Engine timing comes from the supplier's program, not from eis_add.
-                        eis_add = 0
+                        sup, spid, eis_add = req[0], req[1], 0
                         terms_pp = scfg["terms"][sp.terms]["airframer_margin_pp"]
+                        break
+                    # The supplier has not committed to this engine: fall back to the segment's alternative
+                    # (which may itself need another supplier's commitment, e.g. UltraFan -> CFM ducted -> LEAP derivative).
+                    tried.add(engine)
+                    fb = scfg["fallback_engine"][seg]
+                    if fb in tried:
+                        break
+                    requested = requested or engine
+                    w.event(k, f"{player_label(cfg, req[0])} has not committed to the {cfg['engine_options'][seg][engine]['label']}, "
+                               f"so {cfg['players'][side]['label']}'s {pc['label']} falls back to the "
+                               f"{cfg['engine_options'][seg][fb]['label']}.")
+                    engine = fb
+                    eng = cfg["engine_options"][seg][engine]
+                    eis_add = eng["eis_add"]
                 p = Program(
                     pid=L["program"], owner=side, segment=seg, launch_year=L["year"], launch_turn=k,
                     base_dev_years=pparam(cfg, L["program"], L.get("variant"), "dev_years"),
@@ -444,10 +453,13 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
                     variant=L.get("variant"), engine=engine, supplier=sup, supplier_program=spid,
                     supplier_margin_pp=terms_pp, engine_requested=requested,
                     engine_ready_year=eng.get("available_eis"),
+                    ramp=(L.get("ramp") or pc.get("default_ramp")) if pc.get("ramp_options") else None,
                 )
                 w.programs[p.pid] = p
                 _update_engine_waits(w)
                 vtxt = f" as a {pc['variants'][p.variant]['label']}" if p.variant else ""
+                if p.ramp and p.ramp != pc.get("default_ramp"):
+                    vtxt += f" with a {pc['ramp_options'][p.ramp]['label']}"
                 wtxt = f" (waits {p.engine_wait} year(s) for the engine)" if p.engine_wait else ""
                 w.event(k, f"{cfg['players'][side]['label']} launches {pc['label']}{vtxt} in {p.launch_year} "
                            f"with the {eng['label']}; planned entry into service {p.eis}{wtxt}.")
@@ -577,8 +589,12 @@ def _sum_in_range(items, y):
     return sum(v for (y0, y1, v) in items if y0 <= y <= y1)
 
 
-def evaluate(cfg, world, with_objectives=True):
-    """Return per-side payoffs, components, programs and key-year shares."""
+def evaluate(cfg, world, with_objectives=True, with_series=False):
+    """Return per-side payoffs, components, programs and key-year shares.
+
+    with_series adds each player's undiscounted yearly financials ("series": {year: {...}}, $B) for
+    round-by-round reporting: airframers' revenue, operating profit, capex, strain and tactics in the
+    moving world and the status quo; suppliers' engines delivered, engine value, capex and strain."""
     y_start, y_end = cfg["years"]["start"], cfg["years"]["end"]
     pv_base = cfg["years"]["pv_base"]
     years = range(y_start, y_end + 1)
@@ -616,10 +632,15 @@ def evaluate(cfg, world, with_objectives=True):
     def eis_of(p):
         return p.eis if (p is not None and p.cancelled_year is None) else NEVER
 
+    def ramp_param(p, key):
+        ro = cfg["programs"][p.pid].get("ramp_options") or {}
+        return ro.get(p.ramp, {}).get(key, 1.0) if p.ramp else 1.0
+
     def capture_speed(p):
         eng = cfg["engine_options"][p.segment][p.engine]
         vm = pparam(cfg, p.pid, p.variant, "capture_mult", 1.0) or 1.0
-        return seg_cfg[p.segment]["capture_pp_per_year"] * p.capture_mult * eng["capture_mult"] * vm / 100.0
+        return (seg_cfg[p.segment]["capture_pp_per_year"] * p.capture_mult * eng["capture_mult"] * vm
+                * ramp_param(p, "capture_mult") * lobby_effect(cfg, world, p.engine)[1] / 100.0)
 
     cum_tables = {seg: capture_weight_cumsum(seg_cfg[seg].get("capture_weight_by_year"), y_start, y_end) for seg in SEGMENTS}
 
@@ -686,6 +707,7 @@ def evaluate(cfg, world, with_objectives=True):
             m -= pparam(cfg, p.pid, p.variant, "early_penalty_pp_per_year") / 100.0 * max(0, ready - p.eis)
             m += cfg["engine_options"][seg][p.engine]["margin_pp"] / 100.0
             m += p.supplier_margin_pp / 100.0
+            m += lobby_effect(cfg, world, p.engine, y)[0] / 100.0
             m += margin_adds(side, seg, "new", y)
             m *= 1.0 - vparam(cfg, p.pid, p.variant, "margin_share_partner")
             return m, sq_m
@@ -712,7 +734,7 @@ def evaluate(cfg, world, with_objectives=True):
     strain = {s: {} for s in SIDES}
     for p in world.programs.values():
         pc = cfg["programs"][p.pid]
-        c = pparam(cfg, p.pid, p.variant, "capex_b") * (1.0 - vparam(cfg, p.pid, p.variant, "capex_share_partner"))
+        c = pparam(cfg, p.pid, p.variant, "capex_b") * (1.0 - vparam(cfg, p.pid, p.variant, "capex_share_partner")) * ramp_param(p, "capex_mult")
         for i, y in enumerate(range(p.launch_year, p.eis)):
             if p.cancelled_year is not None and y >= p.cancelled_year:
                 break
@@ -748,8 +770,10 @@ def evaluate(cfg, world, with_objectives=True):
     for side in SIDES:
         comp = {"nb_operating": 0.0, "wb_operating": 0.0, "capex": 0.0, "strain": 0.0, "tactics": 0.0}
         undiscounted = {"nb_operating": 0.0, "wb_operating": 0.0, "capex": 0.0, "strain": 0.0, "tactics": 0.0}
+        series = {}
         for y in years:
             d = df(side, y)
+            row = {}
             for seg in SEGMENTS:
                 sh, sq_sh = share_paths[seg][y]
                 m, sq_m = margin(side, seg, y)
@@ -757,6 +781,18 @@ def evaluate(cfg, world, with_objectives=True):
                 delta = rev_unit * (sh[side] * m - sq_sh[side] * sq_m)
                 comp[f"{seg}_operating"] += delta * d
                 undiscounted[f"{seg}_operating"] += delta
+                if with_series:
+                    row[f"{seg}_aircraft"] = units(seg, y) * sh[side]
+                    row[f"{seg}_aircraft_sq"] = units(seg, y) * sq_sh[side]
+                    row[f"{seg}_revenue_b"] = rev_unit * sh[side]
+                    row[f"{seg}_revenue_sq_b"] = rev_unit * sq_sh[side]
+                    row[f"{seg}_op_profit_b"] = rev_unit * sh[side] * m
+                    row[f"{seg}_op_profit_sq_b"] = rev_unit * sq_sh[side] * sq_m
+            if with_series:
+                row["capex_b"] = capex[side].get(y, 0.0)
+                row["strain_b"] = strain[side].get(y, 0.0)
+                row["tactics_b"] = sum(ev["amount_b"] for ev in world.cost_events if ev["player"] == side and ev["year"] == y)
+                series[y] = row
             ld = capex[side].get(y, 0.0) * (1.0 + alpha(side, y))
             ls = strain[side].get(y, 0.0) * (1.0 + alpha(side, y))
             comp["capex"] -= ld * d
@@ -782,7 +818,7 @@ def evaluate(cfg, world, with_objectives=True):
                 "cancelled_year": p.cancelled_year, "variant": p.variant, "engine": p.engine,
                 "engine_label": cfg["engine_options"][p.segment][p.engine]["label"],
                 "capture_mult": round(p.capture_mult, 3), "margin_at_eis": None if m_now is None else round(m_now, 4),
-                "slips": p.slips,
+                "slips": p.slips, "ramp": p.ramp, "engine_requested": p.engine_requested, "engine_wait": p.engine_wait,
             })
         out[side] = {
             "delta_pv_b": round(total, 3),
@@ -790,9 +826,13 @@ def evaluate(cfg, world, with_objectives=True):
             "undiscounted_b": {k: round(v, 3) for k, v in undiscounted.items()},
             "programs": progs,
         }
+        if with_series:
+            out[side]["series"] = {str(y): {k: round(v, 4) for k, v in r.items()} for y, r in series.items()}
         out[side]["_exact"] = total
-    for sup in active_suppliers(cfg):
-        out[sup] = _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult)
+    if active_suppliers(cfg):
+        fits = {y: incumbent_fits(cfg, world, y) for y in years}
+        for sup in active_suppliers(cfg):
+            out[sup] = _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult, fits, with_series)
     out["shares"] = {
         seg: {str(y): {s: round(share_paths[seg][y][0][s], 4) for s in SIDES} for y in KEY_YEARS if y_start <= y <= y_end}
         for seg in SEGMENTS
@@ -854,23 +894,30 @@ def _strain_schedule(windows, full_overlap_b, norm_years, mult):
     return sched
 
 
-def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
+def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult, fits=None, with_series=False):
     """A supplier's delta PV: lifecycle value of engines delivered versus the status quo.
 
     Engines delivered in a year = aircraft delivered by each airframer in the segment x
-    engines per aircraft x the supplier's fit on that airframe (its incumbent share until
-    the airframer's new program enters service; then 1 minus any partner share if the
-    program flies the supplier's engine, else 0). Each engine is booked at delivery at its
-    lifecycle value (OE margin plus PV of aftermarket profit, $M): the incumbent value,
-    or for a new engine its mature value x a maturity ramp after EIS, less the terms'
-    price concession per engine. A Joint Venture partner uses the owner's engine values.
+    engines per aircraft x the supplier's fit on that airframe. Until the airframer's new
+    program enters service the fit is the supplier's incumbent fit (moved by committed
+    upgrades: incumbent_fits). Once it is in service the fit is 1 (less any partner share)
+    if the program flies the supplier's new engine; 1 at the incumbent value if it flies a
+    derivative of the supplier's current engine (an engine option of this maker with no
+    supplier program, e.g. CFM's LEAP derivative or GE's GEnx upgrade); else 0. Each engine
+    is booked at delivery at its lifecycle value (OE margin plus PV of aftermarket profit,
+    $M): the incumbent value, or for a new engine its mature value x a maturity ramp after
+    EIS, less the terms' price concession per engine. A Joint Venture partner uses the
+    owner's engine values. One-time commitments add their own capex and value: upgrades
+    (installed-base savings), partner volume (engines for a partner's aircraft) and lobbying.
     """
     scfg = cfg["suppliers"][sup]
     y_start, y_end, pv_base = cfg["years"]["start"], cfg["years"]["end"], cfg["years"]["pv_base"]
     wacc, alpha = scfg["wacc"], scfg["alpha"]
     epa = scfg["engines_per_aircraft"]
-    t1 = scfg.get("upgrade")
-    t1_year = world.upgrade_years.get(sup)
+    commits = [(c, world.commit_years[(sup, c["flag"])]) for c in supplier_commitments(cfg, sup)
+               if (sup, c["flag"]) in world.commit_years]
+    if fits is None:
+        fits = {y: incumbent_fits(cfg, world, y) for y in range(y_start, y_end + 1)}
 
     def df(y):
         return (1.0 + wacc) ** -(y - pv_base)
@@ -887,7 +934,12 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
         p = world.prog(side, seg)
         if p is not None and p.in_service(y):
             sp = world.sup_programs.get(p.supplier_program) if p.supplier_program else None
-            if sp is None or sup not in (sp.owner, sp.partner):
+            if sp is None:
+                # A derivative of the maker's current engine: it keeps the whole airframe at incumbent value.
+                if engine_maker(cfg, seg, p.engine) == sup:
+                    return 1.0, scfg["incumbent_value_m_per_engine"][seg] * vmult("incumbent", y)
+                return 0.0, 0.0
+            if sup not in (sp.owner, sp.partner):
                 return 0.0, 0.0
             # The engine's value per engine uses its owner's parameters; a Joint Venture splits it.
             ocfg = cfg["suppliers"][sp.owner]
@@ -901,11 +953,7 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
             base = sparam(cfg, sp.owner, sp.pid, sp.variant, "value_m_per_engine")
             v = base * r - base * (1.0 - ocfg["terms"][sp.terms]["value_mult"])
             return share, v * vmult("new", y)
-        fit = scfg["incumbent_fit"][side][seg]
-        if t1 and t1_year is not None and side == t1["fit_side"] and seg == t1["segment"] \
-                and y >= t1_year + t1["lag_years"]:
-            fit = min(1.0, fit + t1["fit_pp"] / 100.0)
-        return fit, scfg["incumbent_value_m_per_engine"][seg] * vmult("incumbent", y)
+        return fits[y][sup][(side, seg)], scfg["incumbent_value_m_per_engine"][seg] * vmult("incumbent", y)
 
     capex = {}
     windows = []
@@ -921,19 +969,32 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
             amt = c / base if i < base else c * cfg["extension_capex_frac_per_year"]
             capex[y] = capex.get(y, 0.0) + amt
         windows.append((sp.launch_year, sp.dev_end, sparam(cfg, sp.owner, sp.pid, sp.variant, "strain_relief", 0.0), False))
-    if t1 and t1_year is not None:
-        for y in range(t1_year, t1_year + t1["capex_years"]):
-            capex[y] = capex.get(y, 0.0) + t1["capex_b"] / t1["capex_years"]
-        windows.append((t1_year, t1_year + t1["capex_years"], 0.0, False))
+    lobby = {}
+    for c, yr in commits:
+        if c["kind"] in ("upgrade", "partner_volume"):
+            # Engineering work: capex over capex_years, and it overlaps (strains) with other developments.
+            for y in range(yr, yr + c["capex_years"]):
+                capex[y] = capex.get(y, 0.0) + c["capex_b"] / c["capex_years"]
+            windows.append((yr, yr + c["capex_years"], 0.0, False))
+        elif c["kind"] == "lobby":
+            for y in range(yr, yr + c["cost_years"]):
+                lobby[y] = lobby.get(y, 0.0) + c["cost_b"] / c["cost_years"]
     st = scfg["strain"]
     windows += [(b["start"], b["end"], 0.0, True) for b in st.get("background", [])]
     strain = _strain_schedule(windows, st["full_overlap_b"], st["norm_years"], lambda y: strain_mult(y, sup))
 
     comp = {"nb_engines": 0.0, "wb_engines": 0.0, "installed_base": 0.0, "capex": 0.0, "strain": 0.0}
+    kinds = {c["kind"] for c in supplier_commitments(cfg, sup)}
+    if "partner_volume" in kinds:
+        comp["partner_engines"] = 0.0
+    if "lobby" in kinds:
+        comp["lobby"] = 0.0
     und = dict(comp)
     delivered = {}
+    series = {}
     for y in range(y_start, y_end + 1):
         d = df(y)
+        row = {}
         for seg in SEGMENTS:
             sh, sq_sh = share_paths[seg][y]
             u = units(seg, y)
@@ -951,15 +1012,40 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
             und[f"{seg}_engines"] += delta
             if y in KEY_YEARS:
                 delivered.setdefault(str(y), {})[seg] = {"engines": round(eng_now, 1), "status_quo": round(eng_sq, 1)}
-        if t1 and t1_year is not None:
-            y0 = t1_year + t1["lag_years"]
-            if y0 <= y < y0 + t1["saving_years"]:
-                comp["installed_base"] += t1["installed_base_saving_b_per_year"] * d
-                und["installed_base"] += t1["installed_base_saving_b_per_year"]
+            if with_series:
+                row[f"{seg}_engines"] = eng_now
+                row[f"{seg}_engines_sq"] = eng_sq
+                row[f"{seg}_engine_value_b"] = val_now / 1000.0
+                row[f"{seg}_engine_value_sq_b"] = val_sq / 1000.0
+        for c, yr in commits:
+            if c["kind"] == "upgrade":
+                y0 = yr + c["lag_years"]
+                if y0 <= y < y0 + c["saving_years"]:
+                    comp["installed_base"] += c["installed_base_saving_b_per_year"] * d
+                    und["installed_base"] += c["installed_base_saving_b_per_year"]
+            elif c["kind"] == "partner_volume" and y >= yr + c["lag_years"]:
+                v = c["engines_per_year"] * c["value_m_per_engine"] * vmult("new", y) / 1000.0
+                comp["partner_engines"] += v * d
+                und["partner_engines"] += v
+                if with_series:
+                    row["partner_engines"] = row.get("partner_engines", 0.0) + c["engines_per_year"]
+                    row["partner_engine_value_b"] = row.get("partner_engine_value_b", 0.0) + v
+                if y in KEY_YEARS:
+                    delivered.setdefault(str(y), {})["partner"] = {"engines": float(c["engines_per_year"]), "status_quo": 0.0}
         comp["capex"] -= capex.get(y, 0.0) * (1.0 + alpha) * d
         comp["strain"] -= strain.get(y, 0.0) * (1.0 + alpha) * d
         und["capex"] -= capex.get(y, 0.0) * (1.0 + alpha)
         und["strain"] -= strain.get(y, 0.0) * (1.0 + alpha)
+        if y in lobby:
+            comp["lobby"] -= lobby[y] * d
+            und["lobby"] -= lobby[y]
+        if with_series:
+            row["capex_b"] = capex.get(y, 0.0)
+            row["strain_b"] = strain.get(y, 0.0)
+            row["lobby_b"] = lobby.get(y, 0.0)
+            row["installed_base_b"] = sum(c["installed_base_saving_b_per_year"] for c, yr in commits if c["kind"] == "upgrade"
+                                          and yr + c["lag_years"] <= y < yr + c["lag_years"] + c["saving_years"])
+            series[str(y)] = {k: round(v, 4) for k, v in row.items()}
     total = sum(comp.values())
     progs = []
     for spid, sp in world.sup_programs.items():
@@ -975,8 +1061,10 @@ def _evaluate_supplier(cfg, world, sup, share_paths, units, strain_mult):
         "components_pv_b": {k: round(v, 3) for k, v in comp.items()},
         "undiscounted_b": {k: round(v, 3) for k, v in und.items()},
         "programs": progs,
-        "upgrade_year": t1_year,
+        "upgrade_year": world.upgrade_years.get(sup),
+        "commitments": {c["flag"]: world.commit_years.get((sup, c["flag"])) for c in supplier_commitments(cfg, sup)},
         "engines_delivered": delivered,
+        **({"series": series} if with_series else {}),
         "_exact": total,
     }
 
@@ -1068,33 +1156,24 @@ def _objective_metric(cfg, world, share_paths, out, m):
         if sup not in active_suppliers(cfg):
             row["note"] = "not scored: not a player in this run"
             return row
-        yr = world.upgrade_years.get(sup)
+        yr = world.commit_years.get((sup, m["flag"])) if m.get("flag") else world.upgrade_years.get(sup)
         row["values"] = {"upgrade_year": yr}
         row["target"] = f"by {m['by_year']}"
         row["met"] = yr is not None and yr <= m["by_year"]
     elif kind == "maker_nb_share":
-        mine, others = set(m["engines"]), [o for o in m.get("others", []) if o in cfg.get("suppliers", {})]
-
-        def inc_fit(side, y, moving):
-            f = 1.0 - sum(cfg["suppliers"][o]["incumbent_fit"][side]["nb"] for o in others)
-            if moving:
-                for o in others:
-                    up = cfg["suppliers"][o].get("upgrade")
-                    yr = world.upgrade_years.get(o)
-                    if up and yr is not None and o in active_suppliers(cfg) and up["segment"] == "nb" \
-                            and up["fit_side"] == side and y >= yr + up["lag_years"]:
-                        f -= up["fit_pp"] / 100.0
-            return max(0.0, f)
-
+        maker = m.get("maker", "cfm")
+        mine = set(m.get("engines") or [e for e, ec in cfg["engine_options"]["nb"].items() if ec.get("maker") == maker])
+        base = cfg["suppliers"][maker]["incumbent_fit"]
         vals, sq, gaps = {}, {}, []
         for y in years:
             sh, sq_sh = share_paths["nb"][y]
+            now = incumbent_fits(cfg, world, y)[maker]
             v = 0.0
             for side in SIDES:
                 p = world.prog(side, "nb")
-                fit = (1.0 if p.engine in mine else 0.0) if (p is not None and p.in_service(y)) else inc_fit(side, y, True)
+                fit = (1.0 if p.engine in mine else 0.0) if (p is not None and p.in_service(y)) else now[(side, "nb")]
                 v += sh[side] * fit
-            q = sum(sq_sh[side] * inc_fit(side, y, False) for side in SIDES)
+            q = sum(sq_sh[side] * base[side]["nb"] for side in SIDES)
             vals[str(y)], sq[str(y)] = round(v, 4), round(q, 4)
             gaps.append(v - q)
         row["values"], row["status_quo"], row["unit"] = vals, sq, "share of narrowbody engines"
@@ -1244,6 +1323,14 @@ def validate_orders(cfg, history, turn, side, orders):
         elif requested:
             errors.append(f"'{pid}' has no variants (use \"none\")")
             continue
+        ramp = L.get("ramp")
+        ro = {k: v for k, v in (pc.get("ramp_options") or {}).items() if not k.startswith("_")}
+        if ramp not in (None, ""):
+            if ramp not in ro:
+                errors.append(f"ramp '{ramp}' is not valid for '{pid}'" + (f" (options: {', '.join(ro)})" if ro else " (it has no ramp options)"))
+                continue
+            if ramp != pc.get("default_ramp"):
+                entry["ramp"] = ramp
         canon["launch"].append(entry)
     for pid in cancels:
         if pid not in mine:
@@ -1360,7 +1447,8 @@ def _validate_supplier_orders(cfg, history, turn, side, orders):
             errors.append(f"cannot cancel '{pid}': {', '.join(users)} flies it (contractual commitment)")
         elif pid not in canon["cancel"]:
             canon["cancel"].append(pid)
-    up, jv = scfg.get("upgrade"), scfg.get("jv")
+    jv = scfg.get("jv")
+    commits = {c["flag"]: c for c in supplier_commitments(cfg, side)}
     for flag in SUPPLIER_FLAGS[side]:
         if flag not in orders:
             continue
@@ -1370,10 +1458,10 @@ def _validate_supplier_orders(cfg, history, turn, side, orders):
             continue
         if not v:
             continue
-        if up and flag == up["flag"]:
+        if flag in commits:
             canon[flag] = True
-            if side in w.upgrade_years:
-                warnings.append(f"{up['label']} already committed in {w.upgrade_years[side]}; no additional effect")
+            if (side, flag) in w.commit_years:
+                warnings.append(f"{commits[flag]['label']} already committed in {w.commit_years[(side, flag)]}; no additional effect")
         elif jv and flag == jv["flag"]:
             owner = jv["partner_of"]
             if owner not in active_suppliers(cfg):
@@ -1408,7 +1496,7 @@ def canonical_key(side, o):
                             for L in sorted(o.get("launch", []), key=lambda e: e["program"]))
         cancels = ",".join(sorted(set(o.get("cancel", []))))
         return f"{side}|L={launches}|C={cancels}|F=" + ",".join(f"{f}:{int(bool(o.get(f)))}" for f in SUPPLIER_FLAGS[side])
-    launches = ";".join(f"{L['program']}/{L.get('variant') or '-'}/{L['engine']}/{L['year']}"
+    launches = ";".join(f"{L['program']}/{L.get('variant') or '-'}/{L['engine']}/{L['year']}" + (f"/{L['ramp']}" if L.get("ramp") else "")
                         for L in sorted(o.get("launch", []), key=lambda e: e["program"]))
     cancels = ",".join(sorted(set(o.get("cancel", []))))
     flags = ("rate_increase",) if side == "boeing" else ("delay_tactics", "poaching")

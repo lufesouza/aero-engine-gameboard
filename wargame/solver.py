@@ -10,33 +10,55 @@ from __future__ import annotations
 
 import itertools
 
-from .model import (SIDES, SUPPLIERS, active_suppliers, build_world, empty_orders, jv_partner_player, other, payoff,
-                    players, programs_of, supplier_requirement, tactic_enabled, turn_years)
+from .model import (SIDES, SUPPLIERS, active_suppliers, build_world, empty_orders, engine_maker, jv_partner_player, other,
+                    payoff, players, programs_of, supplier_commitments, supplier_requirement, tactic_enabled, turn_years)
 
 
-def _launch_entry(cfg, pid, year, variant=None):
+def _launch_entry(cfg, pid, year, variant=None, ramp=None):
     pc = cfg["programs"][pid]
     e = {"program": pid, "year": year, "engine": pc["default_engine"]}
     if "variants" in pc:
         e["variant"] = variant or pc["default_variant"]
+    if ramp and ramp != pc.get("default_ramp"):
+        e["ramp"] = ramp
     return e
+
+
+def ramp_choices(pc):
+    """A program's non-default production ramp options (e.g. fps "10y")."""
+    return [k for k in (pc.get("ramp_options") or {}) if not k.startswith("_") and k != pc.get("default_ramp")]
+
+
+def flag_label(cfg, flag):
+    for side, lab in (("rate_increase", "rate increase"), ("delay_tactics", "Delay Tactics"), ("poaching", "Poaching")):
+        if flag == side:
+            return lab
+    for sup in SUPPLIERS:
+        for c in supplier_commitments(cfg, sup):
+            if c["flag"] == flag:
+                return c.get("label", flag)
+        jv = cfg.get("suppliers", {}).get(sup, {}).get("jv")
+        if jv and jv["flag"] == flag:
+            owner = jv["partner_of"]
+            return f"join the {cfg['suppliers'][owner]['label']} {cfg['suppliers'][owner]['programs'][jv['program']]['label']} Joint Venture"
+    return flag
 
 
 def describe_orders(cfg, side, o):
     parts = []
     for L in o.get("launch", []):
         bits = [x for x in (L.get("variant"), L.get("terms") if side in SUPPLIERS else None) if x]
+        if side in SIDES and L.get("ramp"):
+            bits.append(f"{L['ramp']} ramp-up")
         eng = ""
         if side in SIDES and L.get("engine") and L["engine"] != cfg["programs"][L["program"]]["default_engine"]:
             eng = f" with {L['engine']}"
         parts.append(f"launch {L['program']}{' (' + ', '.join(bits) + ')' if bits else ''}{eng}")
     for pid in o.get("cancel", []):
         parts.append(f"cancel {pid}")
-    for flag, label in (("rate_increase", "rate increase"), ("delay_tactics", "Delay Tactics"), ("poaching", "Poaching"),
-                        ("t1000_upgrade", "Trent 1000 upgrade"), ("gtf_upgrade", "GTF durability upgrade"),
-                        ("join_rr_jv", "join the Rolls-Royce UltraFan Joint Venture")):
-        if o.get(flag):
-            parts.append(label)
+    for flag, v in o.items():
+        if flag not in ("launch", "cancel") and v is True:
+            parts.append(flag_label(cfg, flag))
     return " + ".join(parts) if parts else "no new moves"
 
 
@@ -75,10 +97,9 @@ def supplier_candidates(cfg, world, sup, turn):
                                                     for p in world.programs.values()):
             opts.append(("cancel", None, None))
         per_prog.append((spid, opts))
-    # The one-time upgrade is a candidate while unused. Joining a partner's Joint Venture is left out:
-    # alone it does nothing, so the partner's own options model it (see supplier_stage).
-    up = scfg.get("upgrade")
-    flags = [(up["flag"], [False, True])] if up and sup not in world.upgrade_years else []
+    # Each one-time commitment (upgrades, partner volume, lobbying) is a candidate while unused. Joining a
+    # partner's Joint Venture is left out: alone it does nothing, so the partner's own options model it.
+    flags = [(c["flag"], [False, True]) for c in supplier_commitments(cfg, sup) if (sup, c["flag"]) not in world.commit_years]
     cands = []
     for combo in itertools.product(*[opts for _, opts in per_prog]):
         for fl in itertools.product(*[vals for _, vals in flags]):
@@ -108,11 +129,12 @@ def stage_candidates(cfg, world, side, turn):
         pc = cfg["programs"][pid]
         opts = [None]
         if pid not in world.programs:
-            opts += [("launch", v) for v in pc["variants"]] if "variants" in pc else [("launch", None)]
+            vs = list(pc["variants"]) if "variants" in pc else [None]
+            opts += [("launch", v, None) for v in vs] + [("launch", v, r) for v in vs for r in ramp_choices(pc)]
         else:
             p = world.programs[pid]
             if p.cancelled_year is None and p.eis > a:
-                opts.append(("cancel", None))
+                opts.append(("cancel", None, None))
         per_prog.append((pid, opts))
     flags = []
     if side == "boeing":
@@ -128,7 +150,7 @@ def stage_candidates(cfg, world, side, turn):
                 if act is None:
                     continue
                 if act[0] == "launch":
-                    o["launch"].append(_launch_entry(cfg, pid, a, act[1]))
+                    o["launch"].append(_launch_entry(cfg, pid, a, act[1], act[2]))
                 else:
                     o["cancel"].append(pid)
             for (name, _), v in zip(flags, fl):
@@ -222,19 +244,28 @@ def stage_report(cfg, sg, side, compact=False):
 
 
 def _non_supplier_engine(cfg, pid, sup):
+    """The engine a program flies if it does not take this supplier's new engine: its default engine when that
+    is another maker's; otherwise the first other maker's engine option in the segment (a rival's engine)."""
     pc = cfg["programs"][pid]
     seg = pc["segment"]
     eng = pc["default_engine"]
-    req = supplier_requirement(cfg, seg, eng)
-    return cfg["suppliers"][sup]["fallback_engine"][seg] if (req and req[0] == sup) else eng
+    if engine_maker(cfg, seg, eng) != sup:
+        return eng
+    for e, ec in cfg["engine_options"][seg].items():
+        if ec.get("maker") not in (None, sup):
+            return e
+    return cfg["suppliers"][sup]["fallback_engine"][seg]
+
+
+def _supplier_engines(cfg, pid, sup):
+    """[(supplier program, engine option)] of this supplier's new engines for the program's segment."""
+    seg = cfg["programs"][pid]["segment"]
+    return [(spid, spc["engine_option"]) for spid, spc in cfg["suppliers"][sup]["programs"].items() if spc["segment"] == seg]
 
 
 def _supplier_engine(cfg, pid, sup):
-    seg = cfg["programs"][pid]["segment"]
-    for spid, spc in cfg["suppliers"][sup]["programs"].items():
-        if spc["segment"] == seg:
-            return spid, spc["engine_option"]
-    return None, None
+    es = _supplier_engines(cfg, pid, sup)
+    return es[0] if es else (None, None)
 
 
 def supplier_stage(cfg, history, turn, pending_injects, sup, viewer_mask=frozenset(), market=None):
@@ -263,7 +294,8 @@ def supplier_stage(cfg, history, turn, pending_injects, sup, viewer_mask=frozens
 
     scen = [("nobody launches", {})]
     for pid in open_progs:
-        scen.append((f"{pid} with {_supplier_engine(cfg, pid, sup)[1]}", {pid: _supplier_engine(cfg, pid, sup)[1]}))
+        for _, eng in _supplier_engines(cfg, pid, sup):
+            scen.append((f"{pid} with {eng}", {pid: eng}))
         scen.append((f"{pid} with {_non_supplier_engine(cfg, pid, sup)}", {pid: _non_supplier_engine(cfg, pid, sup)}))
     if len(open_progs) > 1:
         scen.append(("all open programs with your engines", {pid: _supplier_engine(cfg, pid, sup)[1] for pid in open_progs}))
@@ -287,13 +319,14 @@ def supplier_stage(cfg, history, turn, pending_injects, sup, viewer_mask=frozens
         vals = [payoff(cfg, hist_for(o, picks), viewer_mask)[sup] for _, picks in scen]
         incent = {}
         for pid in open_progs:
-            spid, eng = _supplier_engine(cfg, pid, sup)
-            if not any(L["program"] == spid for L in o["launch"]) and spid not in world0.sup_programs:
-                continue
             owner = cfg["programs"][pid]["owner"]
-            u_rr = payoff(cfg, hist_for(o, {pid: eng}), viewer_mask)[owner]
-            u_alt = payoff(cfg, hist_for(o, {pid: _non_supplier_engine(cfg, pid, sup)}), viewer_mask)[owner]
-            incent[pid] = round(u_rr - u_alt, 3)
+            for spid, eng in _supplier_engines(cfg, pid, sup):
+                if not any(L["program"] == spid for L in o["launch"]) and spid not in world0.sup_programs:
+                    continue
+                u_mine = payoff(cfg, hist_for(o, {pid: eng}), viewer_mask)[owner]
+                u_alt = payoff(cfg, hist_for(o, {pid: _non_supplier_engine(cfg, pid, sup)}), viewer_mask)[owner]
+                key = pid if len(_supplier_engines(cfg, pid, sup)) == 1 else f"{pid} with {eng}"
+                incent[key] = round(u_mine - u_alt, 3)
         rows.append({"id": f"R{i + 1}", "label": describe_orders(cfg, sup, o), "orders": o,
                      "by_scenario_b": {name: round(v, 3) for (name, _), v in zip(scen, vals)},
                      "worst_case": round(min(vals), 3), "best_case": round(max(vals), 3),

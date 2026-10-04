@@ -1,0 +1,143 @@
+{
+  "title": "Five players, three rounds: the narrowbody and widebody fight to 2045",
+  "narrative": "Boeing, Airbus and the three engine makers (Rolls-Royce, Pratt & Whitney and CFM/GE) play three rounds. Round 1 runs 2026-2030, round 2 2031-2035 and round 3 2036-2045. Narrowbody demand for a new generation follows the 737 MAX / A320neo replacement wave, which builds from 2037 and peaks from 2044. The open fan can enter service from 2045. NGSA costs $20B, as in the briefing. Create the run with --suppliers rolls_royce,pratt_whitney,cfm.",
+  "replace": [
+    "turns"
+  ],
+  "overrides": {
+    "turns": [
+      {
+        "turn": 1,
+        "years": [
+          2026,
+          2030
+        ],
+        "label": "Round 1 (to 2030): positioning and first commitments"
+      },
+      {
+        "turn": 2,
+        "years": [
+          2031,
+          2035
+        ],
+        "label": "Round 2 (to 2035): commitment and execution"
+      },
+      {
+        "turn": 3,
+        "years": [
+          2036,
+          2045
+        ],
+        "label": "Round 3 (to 2045): the replacement wave and the open-fan window"
+      }
+    ],
+    "segments": {
+      "nb": {
+        "capture_weight_by_year": {
+          "2036": 0.4,
+          "2037": 0.428,
+          "2038": 0.463,
+          "2039": 0.576,
+          "2040": 0.648,
+          "2041": 0.628,
+          "2042": 0.698,
+          "2043": 0.895,
+          "2044": 1.0,
+          "2045": 0.981,
+          "2046": 1.0
+        },
+        "replacement_wave": {
+          "_source": "Scenario demand curve: 737 MAX and A320neo-family replacements by year, read off a market forecast chart (about +/-20 aircraft a year).",
+          "_capture_rule": "capture weight = floor + (1 - floor) x min(1, replacements / mean replacements 2044-2046); floor 0.4 (assumption: a new airplane still wins growth orders and older-generation replacements before the wave); held at the 2046 value after 2046.",
+          "floor": 0.4,
+          "reference_per_year": 807.0,
+          "columns": [
+            "A319neo/A320neo",
+            "A321neo",
+            "A220",
+            "737 MAX"
+          ],
+          "by_year": {
+            "2037": [
+              33,
+              2,
+              1,
+              2
+            ],
+            "2038": [
+              60,
+              3,
+              5,
+              17
+            ],
+            "2039": [
+              111,
+              28,
+              8,
+              90
+            ],
+            "2040": [
+              170,
+              69,
+              18,
+              77
+            ],
+            "2041": [
+              177,
+              90,
+              18,
+              21
+            ],
+            "2042": [
+              188,
+              100,
+              28,
+              85
+            ],
+            "2043": [
+              244,
+              147,
+              36,
+              239
+            ],
+            "2044": [
+              296,
+              210,
+              54,
+              265
+            ],
+            "2045": [
+              285,
+              260,
+              57,
+              179
+            ],
+            "2046": [
+              244,
+              270,
+              64,
+              237
+            ]
+          },
+          "total_by_year": {
+            "2037": 38,
+            "2038": 85,
+            "2039": 237,
+            "2040": 334,
+            "2041": 306,
+            "2042": 401,
+            "2043": 666,
+            "2044": 825,
+            "2045": 781,
+            "2046": 815
+          }
+        }
+      }
+    },
+    "programs": {
+      "ngsa": {
+        "capex_b": 20.0
+      }
+    }
+  }
+}

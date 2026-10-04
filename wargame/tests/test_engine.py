@@ -814,3 +814,155 @@ class ObjectiveCliTests(CliBase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CfmPlayerTests(unittest.TestCase):
+    """CFM/GE as the third engine-maker player; the fps ramp-up options."""
+
+    def setUp(self):
+        self.cfg = M.load_config("base", {"suppliers": {s: {"active": True} for s in ("rolls_royce", "pratt_whitney", "cfm")}})
+
+    def rec5(self, turn=1, b=None, a=None, **sup):
+        r = rec(turn, b, a)
+        for s in ("rolls_royce", "pratt_whitney", "cfm"):
+            r["orders"][s] = sup.get(s) or M.empty_orders(s)
+        return r
+
+    def cfm(self, launch=(), **flags):
+        return orders("cfm", list(launch), **flags)
+
+    def test_five_players_and_status_quo(self):
+        self.assertEqual(M.players(self.cfg), ("boeing", "airbus", "rolls_royce", "pratt_whitney", "cfm"))
+        u = M.payoff(self.cfg, [self.rec5(), self.rec5(2)])
+        for s in M.players(self.cfg):
+            self.assertAlmostEqual(u[s], 0.0, places=9)
+
+    def test_uncommitted_ducted_falls_back_to_leap_derivative(self):
+        c = self.cfg
+        fps = orders("boeing", [L(c, "fps", 2028)])
+        w = M.build_world(c, [self.rec5(b=fps)])
+        self.assertEqual((w.programs["fps"].engine, w.programs["fps"].engine_requested), ("cfm_leap_plus", "cfm_ducted"))
+        r = M.evaluate(c, w)
+        # The LEAP derivative keeps CFM on every Boeing narrowbody at the incumbent value, so CFM gains as fps
+        # takes share from Airbus (where CFM has only part of the fleet).
+        self.assertGreater(r["cfm"]["components_pv_b"]["nb_engines"], 0.0)
+        self.assertEqual(r["cfm"]["engines_delivered"]["2045"]["nb"]["engines"],
+                         round(sum(2000 * r["shares"]["nb"]["2045"][s] * 2 * f for s, f in (("boeing", 1.0), ("airbus", 0.6))), 1))
+        w2 = M.build_world(c, [self.rec5(b=fps, cfm=self.cfm([{"program": "ducted", "year": 2026, "terms": "standard"}]))])
+        self.assertEqual((w2.programs["fps"].engine, w2.programs["fps"].supplier), ("cfm_ducted", "cfm"))
+
+    def test_fallback_chain_from_ultrafan(self):
+        c = self.cfg
+        a = orders("airbus", [L(c, "ngsa", 2028, engine="rr_ultrafan_nb")])
+        w = M.build_world(c, [self.rec5(a=a)])
+        self.assertEqual(w.programs["ngsa"].engine, "cfm_leap_plus")  # UltraFan -> CFM ducted -> LEAP derivative
+        w = M.build_world(c, [self.rec5(a=a, cfm=self.cfm([{"program": "ducted", "year": 2026, "terms": "aggressive"}]))])
+        self.assertEqual((w.programs["ngsa"].engine, w.programs["ngsa"].supplier_program), ("cfm_ducted", "ducted"))
+        self.assertGreater(w.programs["ngsa"].supplier_margin_pp, 0)
+
+    def test_ngsa_on_derivative_gives_cfm_whole_airbus_fleet(self):
+        c = self.cfg
+        a = orders("airbus", [L(c, "ngsa", 2028)])
+        r = M.evaluate(c, M.build_world(c, [self.rec5(a=a)]))
+        self.assertGreater(r["cfm"]["components_pv_b"]["nb_engines"], 0)
+        self.assertLess(r["pratt_whitney"]["components_pv_b"]["nb_engines"], 0)
+
+    def test_leap_upgrade_moves_fit_from_pw(self):
+        c = self.cfg
+        r0 = M.evaluate(c, M.build_world(c, [self.rec5()]))
+        r = M.evaluate(c, M.build_world(c, [self.rec5(cfm=self.cfm(leap_upgrade=True))]))
+        self.assertGreater(r["cfm"]["components_pv_b"]["nb_engines"], r0["cfm"]["components_pv_b"]["nb_engines"])
+        self.assertLess(r["pratt_whitney"]["components_pv_b"]["nb_engines"], 0)
+        self.assertEqual(r["cfm"]["commitments"]["leap_upgrade"], 2026)
+        fits = M.incumbent_fits(c, M.build_world(c, [self.rec5(cfm=self.cfm(leap_upgrade=True))]), 2040)
+        self.assertAlmostEqual(fits["cfm"][("airbus", "nb")] + fits["pratt_whitney"][("airbus", "nb")], 1.0)
+
+    def test_partner_and_lobby_commitments(self):
+        c = self.cfg
+        r = M.evaluate(c, M.build_world(c, [self.rec5(cfm=self.cfm(embraer_partner=True, lobby_emissions=True))]))
+        comp = r["cfm"]["components_pv_b"]
+        self.assertGreater(comp["partner_engines"], 0)
+        self.assertLess(comp["lobby"], 0)
+        # Lobbying adds margin to an airframe flying the open fan.
+        b = orders("boeing", [L(c, "fps", 2030, engine="cfm_open_fan")])
+        of = self.cfm([{"program": "open_fan", "year": 2026, "terms": "standard"}])
+        m0 = M.evaluate(c, M.build_world(c, [self.rec5(b=b, cfm=of)]))["boeing"]["programs"][0]["margin_at_eis"]
+        of_l = dict(of, lobby_emissions=True)
+        m1 = M.evaluate(c, M.build_world(c, [self.rec5(b=b, cfm=of_l)]))["boeing"]["programs"][0]["margin_at_eis"]
+        self.assertAlmostEqual(m1 - m0, c["suppliers"]["cfm"]["lobby"]["margin_pp"] / 100, places=6)
+
+    def test_validation_and_canonical_key(self):
+        c = self.cfg
+        canon, err, _ = M.validate_orders(c, [], 1, "cfm", {"launch": [{"program": "open_fan"}], "leap_upgrade": True,
+                                                            "lobby_emissions": True})
+        self.assertEqual(err, [])
+        self.assertTrue(canon["leap_upgrade"])
+        canon, _, warn = M.validate_orders(c, [], 1, "cfm", {"t1000_upgrade": True})
+        self.assertNotIn("t1000_upgrade", canon)
+        self.assertTrue(any("t1000_upgrade" in w for w in warn))
+        canon, err, _ = M.validate_orders(c, [], 1, "boeing", {"launch": [{"program": "fps", "ramp": "10y"}]})
+        self.assertEqual((err, canon["launch"][0]["ramp"]), ([], "10y"))
+        canon7, _, _ = M.validate_orders(c, [], 1, "boeing", {"launch": [{"program": "fps", "ramp": "7y"}]})
+        self.assertNotIn("ramp", canon7["launch"][0])  # the default is not part of the key
+        self.assertNotIn("7y", M.canonical_key("boeing", canon7))
+        _, err, _ = M.validate_orders(c, [], 1, "boeing", {"launch": [{"program": "fps", "ramp": "3y"}]})
+        self.assertTrue(err)
+
+    def test_slow_ramp_captures_less_and_costs_less(self):
+        c = M.load_config("base")
+        fast = M.evaluate(c, M.build_world(c, [rec(1, orders("boeing", [L(c, "fps", 2028)]))]))["boeing"]
+        slow_l = dict(L(c, "fps", 2028), ramp="10y")
+        slow = M.evaluate(c, M.build_world(c, [rec(1, orders("boeing", [slow_l]))]))["boeing"]
+        self.assertGreater(slow["components_pv_b"]["capex"], fast["components_pv_b"]["capex"])  # less negative
+        self.assertLess(slow["components_pv_b"]["nb_operating"], fast["components_pv_b"]["nb_operating"])
+
+    def test_series_and_five_player_scenario(self):
+        c = M.load_config("five-player-2045", {"suppliers": {s: {"active": True} for s in ("rolls_royce", "pratt_whitney", "cfm")}})
+        self.assertEqual([t["years"] for t in c["turns"]], [[2026, 2030], [2031, 2035], [2036, 2045]])
+        self.assertEqual(c["programs"]["ngsa"]["capex_b"], 20.0)
+        r = M.evaluate(c, M.build_world(c, [self.rec5(b=orders("boeing", [L(c, "fps", 2029)]))]), with_series=True)
+        self.assertIn("2040", r["boeing"]["series"])
+        self.assertGreater(r["boeing"]["series"]["2030"]["capex_b"], 0)
+        self.assertGreater(r["cfm"]["series"]["2030"]["nb_engines"], 0)
+
+    def test_inactive_cfm_leaves_rr_pw_unchanged(self):
+        both = {"suppliers": {"rolls_royce": {"active": True}, "pratt_whitney": {"active": True}}}
+        c4 = M.load_config("base", both)
+        c = self.cfg
+        a = orders("airbus", [L(c, "ngsa", 2028, engine="pw_gtf2")])
+        pw = orders("pratt_whitney", [{"program": "gtf_next", "year": 2026, "terms": "standard"}], gtf_upgrade=True)
+        h4 = [dict(rec(1, None, a), orders={"boeing": M.empty_orders("boeing"), "airbus": a,
+                                             "rolls_royce": orders("rolls_royce", t1000_upgrade=True), "pratt_whitney": pw})]
+        h5 = [self.rec5(a=a, rolls_royce=orders("rolls_royce", t1000_upgrade=True), pratt_whitney=pw)]
+        u4, u5 = M.payoff(c4, h4), M.payoff(c, h5)
+        for s in ("boeing", "airbus", "rolls_royce", "pratt_whitney"):
+            self.assertAlmostEqual(u4[s], u5[s], places=6)
+
+    def test_cfm_stage_options(self):
+        c = self.cfg
+        sg = S.supplier_stage(c, [], 1, [], "cfm")
+        self.assertIn("fps with cfm_open_fan", sg["scenarios"])
+        self.assertTrue(any("LEAP durability upgrade" in r["label"] for r in sg["your_options"]))
+
+
+class CfmCliTests(CliBase):
+    def test_five_player_round(self):
+        _, new = self.run_cli("new", "--run-id", "g5", "--scenario", "five-player-2045",
+                              "--suppliers", "rolls_royce,pratt_whitney,cfm")
+        self.assertEqual(new["players"], ["boeing", "airbus", "rolls_royce", "pratt_whitney", "cfm"])
+        self.run_cli("inject", "--run", "g5", "--none")
+        _, br = self.run_cli("brief", "--run", "g5", "--side", "cfm")
+        flags = [f["flag"] for f in br["your_levers_this_turn"]["flags"]]
+        self.assertEqual(flags, ["leap_upgrade", "genx_upgrade", "embraer_partner", "lobby_emissions"])
+        self.assertNotIn("boeing", json.dumps(br.get("assigned_objectives", {})))
+        _, bb = self.run_cli("brief", "--run", "g5", "--side", "boeing")
+        fps = next(x for x in bb["your_levers_this_turn"]["launch"] if x["program"] == "fps")
+        self.assertIn("10y", fps["ramp_options"])
+        o = {"boeing": {"launch": [{"program": "fps", "year": 2029, "ramp": "10y"}]}, "airbus": {},
+             "rolls_royce": {}, "pratt_whitney": {}, "cfm": {"launch": [{"program": "ducted", "year": 2027}], "embraer_partner": True}}
+        _, res = self.run_cli("adjudicate", "--run", "g5", stdin=o)
+        self.assertIn("cfm", res["projection"])
+        _, rep = self.run_cli("report", "--run", "g5")
+        self.assertEqual(rep["supplier_commitments"]["cfm"]["embraer_partner"]["year"], 2026)
+        _, md = self.run_cli("report", "--run", "g5", "--format", "md")
+        self.assertIn("CFM/GE", md)

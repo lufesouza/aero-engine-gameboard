@@ -21,7 +21,7 @@ from . import model as M
 from . import solver as S
 
 RUNS_DIR = os.environ.get("WARGAME_RUNS_DIR", os.path.join(M.HERE, "runs"))
-VIEWERS = ("boeing", "airbus", "rolls_royce", "pratt_whitney", "market", "control", "analyst")
+VIEWERS = ("boeing", "airbus", "rolls_royce", "pratt_whitney", "cfm", "market", "control", "analyst")
 ORDER_SIDES = M.SIDES + M.SUPPLIERS
 
 
@@ -144,6 +144,12 @@ def engine_availability(cfg, world, seg):
     return out
 
 
+def supplier_commitments_public(cfg, world):
+    """Each active supplier's one-time commitments (upgrades, partnerships, lobbying) and the year made; all public."""
+    return {s: {c["flag"]: {"label": c["label"], "year": world.commit_years.get((s, c["flag"]))}
+                for c in M.supplier_commitments(cfg, s)} for s in M.active_suppliers(cfg)}
+
+
 def supplier_levers(cfg, world, sup, turn):
     a, b = M.turn_years(cfg, turn)
     scfg = cfg["suppliers"][sup]
@@ -164,11 +170,11 @@ def supplier_levers(cfg, world, sup, turn):
             users = [p.pid for p in world.programs.values() if p.supplier_program == spid and p.cancelled_year is None]
             lv["cancel"].append({"program": spid, "label": spc["label"], "ready": sp.ready,
                                  "available": not users, "note": f"flown by {', '.join(users)}: cannot cancel" if users else "no airframe uses it"})
-    up = scfg.get("upgrade")
-    if up:
-        done = world.upgrade_years.get(sup)
-        lv["flags"].append({"flag": up["flag"], "label": up["label"], "available": done is None,
-                            "note": "one-time commitment" if done is None else f"already committed in {done}"})
+    for c in M.supplier_commitments(cfg, sup):
+        done = world.commit_years.get((sup, c["flag"]))
+        terms = {k: v for k, v in c.items() if k not in ("flag", "label", "kind", "_about")}
+        lv["flags"].append({"flag": c["flag"], "label": c["label"], "kind": c["kind"], "available": done is None,
+                            "note": "one-time commitment" if done is None else f"already committed in {done}", "terms": terms})
     jv = scfg.get("jv")
     if jv:
         owner = jv["partner_of"]
@@ -208,6 +214,10 @@ def levers(cfg, world, side, turn):
             if "variants" in pc:
                 item["variants"] = list(pc["variants"])
                 item["variant_terms"] = {v: {k: x for k, x in vt.items() if k != "label"} for v, vt in pc["variants"].items()}
+            ro = {k: v for k, v in (pc.get("ramp_options") or {}).items() if not k.startswith("_")}
+            if ro:
+                item["ramp_options"] = ro
+                item["default_ramp"] = pc.get("default_ramp")
             lv["launch"].append(item)
         else:
             p = world.programs[pid]
@@ -300,8 +310,7 @@ def brief(st, viewer):
     if M.active_suppliers(cfg):
         b["players"] = list(order_sides)
         b["supplier_programs"] = public_supplier_programs(cfg, w_actual)
-        b["supplier_upgrades_committed"] = {s: {"upgrade": cfg["suppliers"][s]["upgrade"]["label"], "year": w_actual.upgrade_years.get(s)}
-                                            for s in M.active_suppliers(cfg) if cfg["suppliers"][s].get("upgrade")}
+        b["supplier_commitments_made"] = supplier_commitments_public(cfg, w_actual)
     if viewer in M.SUPPLIERS:
         b["your_projection"] = proj[viewer]
         b["airframer_projection_estimates"] = {s: {"delta_pv_b": proj[s]["delta_pv_b"], "components_pv_b": proj[s]["components_pv_b"]}
@@ -383,11 +392,21 @@ def supplier_rules(cfg):
                            "Joint Venture partner share if it flies the supplier's engine, else 0. Each engine is booked at "
                            "delivery at its lifecycle value ($M): the incumbent value, or the new engine's mature value x a maturity "
                            "ramp (ramp.start_frac at EIS, which can be negative, rising to 1 after ramp.years), less the "
-                           "terms' price concession of (1 - value_mult) x the mature value per engine."),
-            "upgrade_rule": (f"{scfg['upgrade']['label']} (flag '{scfg['upgrade']['flag']}', one-time): capex_b over capex_years; from "
-                             "lag_years later, fit_pp more of fit_side's segment deliveries until that airframer's new program in "
-                             "the segment enters service; installed_base_saving_b_per_year for saving_years."
-                             if scfg.get("upgrade") else "none"),
+                           "terms' price concession of (1 - value_mult) x the mature value per engine. A new airframe that flies "
+                           "a derivative of the supplier's current engine (an engine option of this maker with no new engine "
+                           "program, e.g. the LEAP derivative or the GEnx upgrade) gives the supplier fit 1 at the incumbent value."),
+            "upgrade_rule": ("; ".join(f"{c['label']} (flag '{c['flag']}', one-time): capex_b over capex_years; from lag_years later, "
+                                       f"fit_pp of {c['fit_side']}'s {c['segment'].upper()} incumbent deliveries move to you"
+                                       + (f" from {cfg['suppliers'][c['from']]['label']}" if c.get('from') in cfg['suppliers'] else "")
+                                       + " until that airframer's new program in the segment enters service; "
+                                       "installed_base_saving_b_per_year for saving_years"
+                                       for c in M.supplier_commitments(cfg, sup) if c["kind"] == "upgrade") or "none"),
+            **({"partner_rule": f"{scfg['partner_volume']['label']} (flag '{scfg['partner_volume']['flag']}', one-time): capex_b over "
+                                "capex_years; from lag_years later, engines_per_year extra engines a year at value_m_per_engine each, "
+                                "to the end of the game."} if scfg.get("partner_volume") else {}),
+            **({"lobby_rule": f"{scfg['lobby']['label']} (flag '{scfg['lobby']['flag']}', one-time): costs cost_b over cost_years "
+                              f"(not alpha-loaded); any airframe program flying '{scfg['lobby']['engine']}' gets margin_pp more margin "
+                              "from lag_years after the commitment and capture_mult on its share capture."} if scfg.get("lobby") else {}),
             "joint_venture_rule": ("A Joint Venture variant whose partner is another supplier player (partner_player) launches only "
                                    "if that partner sets its join flag in the same turn; the partner then pays capex_share_partner "
                                    "of the capex and earns value_share_partner of the engine's value. If the partner is not a "
@@ -417,8 +436,13 @@ def cmd_new(args):
                 raise GameError(f"scenario '{args.scenario}' has no engine option '{spc['engine_option']}' for {sup} program "
                                 f"'{spid}', so {scfg['label']} cannot play it")
         for seg, eng in scfg["fallback_engine"].items():
+            seen = []
+            while eng in cfg["engine_options"].get(seg, {}) and eng not in seen and M.supplier_requirement(cfg, seg, eng):
+                seen.append(eng)
+                eng = cfg["suppliers"][M.supplier_requirement(cfg, seg, eng)[0]]["fallback_engine"][seg]
             if eng not in cfg["engine_options"].get(seg, {}) or M.supplier_requirement(cfg, seg, eng):
-                raise GameError(f"{sup} fallback engine '{eng}' for {seg} must be an engine option that needs no supplier")
+                raise GameError(f"{sup} fallback engine chain for {seg} ({' -> '.join(seen + [eng])}) must end in an engine "
+                                "option that needs no supplier")
     n_all = len(cfg["turns"])
     n = args.turns or n_all
     if not 1 <= n <= n_all:
@@ -758,7 +782,8 @@ def final_report(st):
         "delay_tactics_turns": w.delay_turns, "poaching_turns": w.poaching_turns,
         "delay_tactics_exposed_year": w.exposure_year,
         **({"supplier_programs": public_supplier_programs(cfg, w),
-            "supplier_upgrades": {s: w.upgrade_years.get(s) for s in M.active_suppliers(cfg) if cfg["suppliers"][s].get("upgrade")}}
+            "supplier_upgrades": {s: w.upgrade_years.get(s) for s in M.active_suppliers(cfg) if M.supplier_commitments(cfg, s)},
+            "supplier_commitments": supplier_commitments_public(cfg, w)}
            if M.active_suppliers(cfg) else {}),
     }
 
@@ -820,8 +845,8 @@ def report_markdown(rep, cfg):
         if not rep["supplier_programs"]:
             L.append("| - | none launched | | | | | |")
         L.append("")
-        L.append("Upgrades: " + "; ".join(f"{cfg['suppliers'][s]['label']} {cfg['suppliers'][s]['upgrade']['label']}: {y or 'not committed'}"
-                                          for s, y in rep.get("supplier_upgrades", {}).items()) + ".")
+        L.append("Commitments: " + "; ".join(f"{cfg['suppliers'][s]['label']} {c['label']}: {c['year'] or 'not committed'}"
+                                             for s, cs in rep.get("supplier_commitments", {}).items() for c in cs.values()) + ".")
         L.append("")
     L.append("## Market share (Boeing / Airbus)")
     L.append("")
@@ -964,7 +989,7 @@ def main(argv=None):
     p.add_argument("--run-id")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--override", help="JSON deep-merged over the scenario config")
-    p.add_argument("--suppliers", help="comma list of supplier players to add: rolls_royce, pratt_whitney")
+    p.add_argument("--suppliers", help="comma list of supplier players to add: rolls_royce, pratt_whitney, cfm")
     p.add_argument("--force", action="store_true")
     p.set_defaults(fn=cmd_new)
 
@@ -1008,7 +1033,7 @@ def main(argv=None):
     p.add_argument("--compact", action="store_true", help="omit the full matrix")
     p.set_defaults(fn=cmd_options)
 
-    p = sub.add_parser("whatif", help="evaluate order overrides from stdin: {\"boeing\": {\"2\": orders}, \"airbus\": {...}, \"rolls_royce\"|\"pratt_whitney\": {...}}")
+    p = sub.add_parser("whatif", help="evaluate order overrides from stdin: {\"boeing\": {\"2\": orders}, \"airbus\": {...}, \"rolls_royce\"|\"pratt_whitney\"|\"cfm\": {...}}")
     p.add_argument("--run", required=True)
     p.add_argument("--side", required=True, choices=VIEWERS)
     p.set_defaults(fn=cmd_whatif)
@@ -1016,7 +1041,7 @@ def main(argv=None):
     p = sub.add_parser("adjudicate", help="apply all players' orders and the market reaction from stdin (control)")
     p.add_argument("--run", required=True)
     p.add_argument("--turn", type=int)
-    p.add_argument("--expect-digest", help="boeing=<hex>,airbus=<hex>[,rolls_royce=<hex>][,pratt_whitney=<hex>]; refuse to adjudicate if the orders differ")
+    p.add_argument("--expect-digest", help="boeing=<hex>,airbus=<hex>[,rolls_royce=<hex>][,pratt_whitney=<hex>][,cfm=<hex>]; refuse to adjudicate if the orders differ")
     p.set_defaults(fn=cmd_adjudicate)
 
     p = sub.add_parser("rollback", help="undo turns from --to-turn onward (control)")
