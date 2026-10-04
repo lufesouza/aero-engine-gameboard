@@ -5,8 +5,10 @@ Usage: exec_merge_evidence.py <evidence dir> <repo root>
 
 Reads <dir>/*.verified.jsonl, drops duplicate quotes (same source, page and text),
 orders items by company, executive, date and dimension, and numbers them BX-####
-(Boeing, wargame/profiles/boeing/executives/evidence.jsonl) or AX-#### (Airbus,
-wargame/profiles/airbus/executives/evidence.jsonl). Prints counts per executive
+(Boeing, wargame/profiles/boeing/executives/evidence.jsonl), AX-#### (Airbus,
+wargame/profiles/airbus/executives/evidence.jsonl) or CX-#### (CFM International's
+parent-side leaders, wargame/profiles/cfm/executives/evidence.jsonl). A company with
+no items in the input is left untouched. Prints counts per executive
 and dimension.
 """
 import collections
@@ -31,9 +33,11 @@ for it in items:
     if k not in seen:
         seen.add(k)
         uniq.append(it)
-for co, prefix in (("boeing", "BX"), ("airbus", "AX")):
+for co, prefix in (("boeing", "BX"), ("airbus", "AX"), ("cfm", "CX")):
     rows = sorted([i for i in uniq if i.get("company") == co],
                   key=lambda i: (i.get("exec_id", ""), i.get("date", ""), i.get("dimension", "")))
+    if not rows:  # never overwrite a company's evidence from a run that did not cover it
+        continue
     dst = os.path.join(root, "wargame", "profiles", co, "executives", "evidence.jsonl")
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     with open(dst, "w") as out:

@@ -26,10 +26,15 @@ SOURCES = {
     "rr_sec": "SEC Fillings.pdf",                           # Rolls-Royce ADR deposit agreement (Form F-6)
     "gtf_news": "Durability news 11-19-25.pdf",             # FlightGlobal on GTF durability, Nov 2025
     "engine_brief_2019": "Global Strategy Brief-2019-Global Commercial Aircraft Engine Manufacturers.pdf",
+    "ge_transcripts": "Transcript Digest.pdf",              # GE / GE Aerospace calls and conferences (S&P), 2015-2025
+    "cfm_ciq": "CFM International, Inc. _ Private Company Profile.pdf",       # Capital IQ, Nov 2025
+    "ge_ciq": "General Electric Company (NYSE_GE) _ Public Company Profile.pdf",  # Capital IQ, Nov 2025
+    "eihc_ciq": "Engine Investments Holding Company _ Private Company Profile.pdf",  # GE's CFM holding company
 }
 COMPANY = {"rr_transcripts": r"Rolls-Royce Holdings plc LSE:RR\.?|ROLLS-ROYCE HOLDINGS PLC",
            "rtx_transcripts": r"RTX Corporation NYSE:RTX|Raytheon Technologies Corporation NYSE:RTX|United Technologies Corporation NYSE:UTX|"
-                              r"RTX CORPORATION|RAYTHEON TECHNOLOGIES CORPORATION|UNITED TECHNOLOGIES CORPORATION"}
+                              r"RTX CORPORATION|RAYTHEON TECHNOLOGIES CORPORATION|UNITED TECHNOLOGIES CORPORATION",
+           "ge_transcripts": r"General Electric Company NYSE:GE|GENERAL ELECTRIC COMPANY"}
 
 
 def extract(key, name):
@@ -52,6 +57,10 @@ def index_transcripts(key):
     docs, cur = [], None
     for n, t in pg:
         head = re.sub(r"[ \t]+", " ", t[:700])
+        cover = False
+        if key == "ge_transcripts":  # GE cover pages: two-line event titles; same-day events need splitting
+            head = re.sub(r"(Conference|Analyst) \n(Presentation|Call)", r"\1 \2", head)
+            cover = bool(re.match(r"\s*COPYRIGHT ©[^\n]*All rights reserved\n[^\n]*\n1\n", t))
         a = re.search(rf"(?:{co})\s*\n?\s*([^\n]+?)\s*\n\s*\w+day, (\w+ \d{{1,2}}, \d{{4}})", head)
         b = re.search(rf"(?:{co}) ([A-Z0-9 /&\-\.']+?)\s*\|\s*([A-Z]{{3}} \d{{1,2}}, \d{{4}})", head)
         k = None
@@ -62,7 +71,7 @@ def index_transcripts(key):
                 k = (b.group(1).strip().title(), datetime.datetime.strptime(b.group(2).title(), "%b %d, %Y").date())
         except ValueError:
             k = None
-        if k and (cur is None or k[1] != cur["date"]):
+        if k and (cur is None or k[1] != cur["date"] or (cover and n != cur["page"])):
             cur = {"event": k[0], "date": k[1], "page": n}
             docs.append(cur)
     for i, d in enumerate(docs):
@@ -89,9 +98,13 @@ def index_10k(key):
 
 
 if __name__ == "__main__":
+    import sys
     os.makedirs(TEXT, exist_ok=True)
-    for k, name in SOURCES.items():
-        extract(k, name)
-    for k in ("rr_transcripts", "rtx_transcripts"):
-        index_transcripts(k)
-    index_10k("rtx_10k")
+    keys = sys.argv[1:] or list(SOURCES)  # e.g. `extract_text_engines.py ge_transcripts cfm_ciq ge_ciq eihc_ciq`
+    for k in keys:
+        extract(k, SOURCES[k])
+    for k in ("rr_transcripts", "rtx_transcripts", "ge_transcripts"):
+        if k in keys:
+            index_transcripts(k)
+    if "rtx_10k" in keys:
+        index_10k("rtx_10k")

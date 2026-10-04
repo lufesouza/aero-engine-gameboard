@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Split S&P transcript digests into named executives' own speaking turns.
 
-Usage: exec_turns.py <source key: transcripts|rtx_transcripts|rr_transcripts> <out dir>
+Usage: exec_turns.py <source key: transcripts|rtx_transcripts|rr_transcripts|ge_transcripts> <out dir>
 
 A turn starts at a line equal to one of an executive's name variants (EXECS)
 followed by a title line (or, in pre-2010 digests, a "<strong>Name</strong>" line), and runs until the next speaker line: any line that
@@ -34,6 +34,19 @@ EXECS = {
     "mcallister": ["Kevin G. McAllister", "Kevin McAllister"],
     "deal": ["Stanley A. Deal", "Stan Deal"],
     "pope": ["Stephanie F. Pope", "Stephanie Pope"],
+    # GE / GE Aerospace, for CFM International (source ge_transcripts); a separate run, so ids do not mix
+    "culp": ["H. Lawrence Culp", "Larry Culp", "H. Lawrence Culp, Jr."],
+    "immelt": ["Jeffrey R. Immelt", "Jeff Immelt"],
+    "flannery": ["John L. Flannery", "John Flannery"],
+    "bornstein": ["Jeffrey S. Bornstein", "Jeff Bornstein"],
+    "miller": ["Jamie S. Miller", "Jamie Miller"],
+    "dybeck_happe": ["Carolina Dybeck Happe", "Carolina Dybeck Happe"],
+    "ghai": ["Rahul Ghai"],
+    "joyce": ["David Leon Joyce", "David L. Joyce", "David Joyce"],
+    "slattery": ["John Stephen Slattery", "John Slattery"],
+    "stokes": ["Russell T. Stokes", "Russell Stokes"],
+    "ali": ["Mohamed Ali"],
+    "fitzgerald": ["William A. Fitzgerald", "Bill Fitzgerald"],
 }
 VARIANT = {v: k for k, vs in EXECS.items() for v in vs}
 S = os.environ.get("WARGAME_BUILD_DIR", os.path.join(os.path.dirname(os.path.abspath(__file__)), "work"))
@@ -41,7 +54,7 @@ NAME = re.compile(r"(?:[A-Z][a-zA-Z'\-]*\.?,? ?){2,6}(?:Jr\.|Sr\.|II|III)?")
 ROLE = re.compile(r"Research|Division|LLC|Inc\b|Capital|Securities|Bank|Partners|Group|President|Officer|\bVP\b|Vice|CFO|CEO|COO|"
                   r"Analyst|Director|Treasurer|Relations|Chairman|Executive|Former|Senior|Manager|Head of|Chief|Communications")
 STRONG = re.compile(r"<strong>\s*(.+?)\s*</strong>")
-HEADER = re.compile(r"^(THE BOEING COMPANY|RTX CORPORATION|RAYTHEON TECHNOLOGIES|UNITED TECHNOLOGIES|ROLLS-ROYCE|Copyright ©|spglobal\.com)")
+HEADER = re.compile(r"^(THE BOEING COMPANY|RTX CORPORATION|RAYTHEON TECHNOLOGIES|UNITED TECHNOLOGIES|ROLLS-ROYCE|GENERAL ELECTRIC COMPANY|Copyright ©|COPYRIGHT ©|spglobal\.com)")
 
 src, out = sys.argv[1], sys.argv[2]
 os.makedirs(out, exist_ok=True)

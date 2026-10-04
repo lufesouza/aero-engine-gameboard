@@ -21,7 +21,7 @@ for ev in evs:
             it = json.loads(line)
             items[it["id"]] = it
 text = open(path).read()
-pat = re.compile(r"\b(BX|AX|[RPAB])-(\d{4})\b")
+pat = re.compile(r"\b(BX|AX|CX|[RPABC])-(\d{4})\b")
 cited = [m.group(0) for m in pat.finditer(text)]
 missing = sorted({c for c in cited if c not in items})
 print(f"{path}: {len(cited)} citations, {len(set(cited))} distinct ids, {len(missing)} missing")
