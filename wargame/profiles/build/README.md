@@ -65,11 +65,36 @@ These come from the files uploaded to `main` on 30 Sep 2026:
 
    The two companies' builders never saw each other's material.
 
+## CFM International's leaders (GE side)
+
+CFM International is a 50/50 GE-Safran joint venture whose own officers do not speak in the sources. The CFM leadership profiles (`wargame/profiles/cfm/executives/`) therefore cover the GE executives who decide GE's half of CFM and speak for it.
+
+**Sources:**
+- `Transcript Digest.pdf`: 135 GE / GE Aerospace calls, conferences and investor days, November 2015 to November 2025;
+- the Capital IQ profiles of CFM International, GE and Engine Investments Holding Company (November 2025).
+
+**Steps:**
+1. **Text:** `python3 extract_text_engines.py ge_transcripts cfm_ciq ge_ciq eihc_ciq`. This writes the text and the event index. Same-day events are split at their cover pages.
+2. **Turns:** `python3 exec_turns.py ge_transcripts <dir>` splits out each GE executive's own speaking turns. The readers worked from 11 slices of them:
+   - Culp: 4 slices;
+   - Flannery, Immelt, Bornstein, Miller, Dybeck Happe and Ghai: 1 each;
+   - one slice for the operating heads (Stokes, Joyce, Ali, Slattery, Fitzgerald, McAllister).
+3. **Readers:** each follows `EXEC_READER_BRIEF.md` plus `CFM_EXEC_ADDENDUM.md`. One more reader covered the joint venture itself (`cfm_jv`): the Safran partnership, LEAP and RISE, and CFM's officers per Capital IQ, drawn from 120 pages that mention them.
+4. **Verify and merge:**
+   - `verify_quotes.py` checked every quote, and a second independent pass re-checked all 1,322;
+   - every executive item was also checked to lie in that executive's own turns;
+   - `exec_merge_evidence.py` assigns CX-#### ids, giving 1,300 items after duplicates are removed;
+   - `exec_digests.py cfm <dir>` writes the per-executive reading digests.
+5. **Synthesise and audit.** Writers follow `EXEC_SYNTH_BRIEF.md` plus `CFM_EXEC_SYNTH_ADDENDUM.md`. Two independent citation and fairness audits follow, then a fix pass that writes `citation_audit.md`.
+
+**Not used yet:** the Goldman Sachs and Morgan Stanley CFM and Safran models. They are the inputs for a CFM company profile or a CFM supplier player.
+
 ## Plain-text role files (executives)
 
 `python3 make_role_txt.py` turns the executive profiles into one plain-text file per role in `<company>/executives/roles/`:
 - Boeing: `boeing_ceo.txt`, `boeing_cfo.txt`, `boeing_coo_bca.txt`;
 - Airbus: `airbus_ceo.txt`, `airbus_cfo.txt`, `airbus_coo_commercial_aircraft.txt`;
+- CFM: `cfm_ceo.txt`, `cfm_cfo.txt`, `cfm_coo_operations.txt`, plus `cfm_international.txt` on the joint venture;
 - each company also gets `<company>_leadership_teams.txt` and a `README.txt`.
 
 Each role file opens with the seat's job in the ExCo and the holders (from the executives `README.md` index), then carries each holder's full profile, current holder first. The text is a conversion, not a rewrite: every evidence id in the Markdown survives. The files stay inside each company's folder, so the isolation hook still keeps each player out of the other company's executives. Re-run the script after editing a profile.
