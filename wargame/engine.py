@@ -479,7 +479,15 @@ def cmd_rules(args):
     if args.run:
         cfg = load_state(args.run)["config"]
     else:
-        cfg = M.load_config(args.scenario)
+        sups = [x.strip() for x in (args.suppliers or "").split(",") if x.strip()]
+        if args.side in M.SUPPLIERS and args.side not in sups:
+            sups.append(args.side)  # a supplier asking for its own rules plays in that game
+        bad = [x for x in sups if x not in M.SUPPLIERS]
+        if bad:
+            raise GameError(f"unknown supplier(s) {', '.join(bad)} (available: {', '.join(M.SUPPLIERS)})")
+        cfg = M.load_config(args.scenario, {"suppliers": {x: {"active": True} for x in sups}} if sups else None)
+    if args.side in M.SUPPLIERS and args.side not in M.active_suppliers(cfg):
+        raise GameError(f"{args.side} is not a player in run {args.run}")
     r = rules(cfg, args.side or "control")
     if not args.side:  # assigned objectives only for a named viewer
         r.pop("assigned_objectives", None)
@@ -1007,6 +1015,7 @@ def main(argv=None):
     p = sub.add_parser("rules", help="game mechanics and parameters")
     p.add_argument("--run")
     p.add_argument("--scenario", default="base")
+    p.add_argument("--suppliers", help="comma list of supplier players to include (without --run)")
     p.add_argument("--side", default=None, choices=VIEWERS)
     p.set_defaults(fn=cmd_rules)
 
