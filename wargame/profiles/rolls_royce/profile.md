@@ -218,12 +218,14 @@ Our widebody status quo beats every Re-engine except a 787 Re-engine on UltraFan
 
 | Programme, launch year | UltraFan standard / aggressive | Best alternative |
 |---|---|---|
-| NGSA 2026 | 39.55 / 46.05 | open fan 43.15 |
-| NGSA 2029 | 45.71 / 50.66 | P&W aggressive 48.19 (open fan 39.07) |
+| NGSA 2026 | 39.55 / 46.05 | P&W aggressive 42.80 (open fan -15.04) |
+| NGSA 2029 | 45.71 / 50.66 | P&W aggressive 48.19 (open fan -4.38) |
 | fps 2026; 2029 | 15.58 / 18.89; 18.14 / 20.51 | P&W aggressive 17.24; 19.32 |
 | A350 Re-engine 2026 | -0.29 / 1.09 | P&W -0.12 (aggressive 1.03) |
 | A350 Re-engine 2029 | 2.25 / 3.30 | P&W aggressive 2.16 |
 | 787 Re-engine 2026; 2029 | 0.78; 2.80 (standard) | P&W 0.60, GE -0.08; GE 2.47 |
+
+The open fan cannot enter service before 2045; an airframe ready earlier waits and pays 10% of capex a year. It loses to our standard terms and to CFM ducted for NGSA and fps in every launch year from 2026 to 2037, both scenarios. It comes closest with a 2037 launch, which needs no wait: NGSA 14.49 against UltraFan 18.26 [whatif].
 
 ### `uf_wb`: UltraFan widebody
 - **Default:** do not launch. Break-even P(A350 Re-engine on UltraFan) ≈ 0.54 (3.96 / (3.96 + 3.35), inference).
@@ -234,7 +236,7 @@ Our widebody status quo beats every Re-engine except a 787 Re-engine on UltraFan
 - **Default:** Do Nothing until fps or NGSA is announced for this turn [own] [R-1011, R-1005].
 - **Launch** when all hold: an announcement; contested incentive > 0 at standard, unless the airframer named UltraFan (fallback incentive now fps 2.083, NGSA 4.909); expected PV ≥ +$2B (§9). Break-even P [T1] (inference): Solo NGSA 0.24, fps 0.32; Joint Venture 0.25 / 0.33.
 - **Solo or Joint Venture** (inference: RR's generic partnership preference [own] [R-1010, R-1022, R-1025] mapped onto the game's only partner variant; RR's record with P&W is friction [own] [R-0318] [rival: P&W 10-K] [R-1892, R-1893] [rival: P&W] [R-1875]). Choose `jv_pw` when P&W announced its join, unless Solo's expected PV is > $3B higher (P ≳ 0.38 NGSA, ≳ 0.51 fps). So [T1]: at P 0.6 Solo wins by $7.3B (NGSA) and $4.3B (fps): **Solo is the expected result once a launch customer announces UltraFan**, a declared reversal that RR's words allow ("we don't need partnership for capability" [own] [R-1022]). At P 0.35 the NGSA Joint Venture (+2.02, Solo +4.44) is chosen if P&W announced; fps fails the $2B bar (Solo +0.96). P&W must announce `join_rr_jv` in turn t-1 for turn t. [whatif] NGSA 2029: Solo +21.38, Joint Venture +10.54, without P&W 0.00 (slot lost to CFM); 2032 Solo +15.10, 2035 +10.38.
-- Airbus names open fan for NGSA [customer] [R-1867, R-1868], and in 2026 it beats our standard terms (table): lower P (inference).
+- Airbus names open fan for NGSA [customer] [R-1867, R-1868], but in the game it loses to our standard terms in every launch year (above): a stated preference, not a PV threat (inference).
 
 ### `terms`
 - **Default `standard`** [own] [R-1582, R-0367]: it beats the fallback everywhere [T1], not every rival (table).

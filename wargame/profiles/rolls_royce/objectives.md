@@ -31,7 +31,7 @@ All checked against `rules --run <run> --side rolls_royce` (same in both scenari
 |---|---|---|
 | Free cash from widebody | Not modelled: no cash limit; capex loaded at alpha 0.6. | FCF £3,270m (2025) [R-0220]; net cash £1,972m [R-0032]. The hurdle and engineers bind, not cash (inference). |
 | Reputation | Not modelled. Nearest: `rr_ultrafan_nb` capture_mult 0.95 (CFM ducted 1.0). | Airframers want demonstrated engines [R-0383]; Boeing chose LEAP on maturation depth [R-1837]. |
-| Airframer support for a third engine maker | Partly: `rr_ultrafan_nb` gives the airframer margin_pp 1.0 (CFM ducted 0, GTF2 0.5, RISE open fan 1.5). | RR sees itself as the only credible third entrant [R-1310]; Airbus names open fan [R-1867]; Boeing wants one engine per narrowbody [R-1830]. |
+| Airframer support for a third engine maker | Partly: `rr_ultrafan_nb` gives the airframer margin_pp 1.0 (CFM ducted 0, GTF2 0.5, RISE open fan 1.5 but not in service before 2045). | RR sees itself as the only credible third entrant [R-1310]; Airbus names open fan [R-1867]; Boeing wants one engine per narrowbody [R-1830]. |
 | Engineering shared with widebody | Strain `full_overlap_b` $1.5B for 5 or more years of overlap, pro rata below (PLACEHOLDER); `jv_pw` strain_relief 0.5. Both UltraFans launched in 2029: 1.44 of strain. | Resources for 3 of 4 engines [R-0929]; three parallel programmes "unprecedented" [R-1127]. |
 | No narrowbody MRO scale | Partly: narrowbody fit 0.0; $3.1M an engine (widebody $8.0M); ramp start 0.45. | No narrowbody since 2012 [R-0305, R-1826]; weaker buying power [R-1308]. |
 | Gearbox sizing | Partly: `uf_nb` dev_years 7 (widebody 6); `ultrafan_test_setback` slips RR programmes 2 years. | Gearbox at full power in 2023 [R-1013]; narrowbody demonstrator about 2 years from build (2025) [R-1024]. |
@@ -96,8 +96,9 @@ Break-even P: NGSA 0.24 (base) and 0.25 (wave); fps 0.33 and 0.35. Launching a t
 ### 5.4 The contest decides selection
 
 - UltraFan on standard terms beats CFM ducted in all 40 cells (airframer gain 0.53 to 4.91 base) and P&W GTF2 on standard terms (0.26 to 2.71).
-- It loses to P&W GTF2 on aggressive terms in all 40 (-0.32 to -3.25 base), and to CFM's RISE open fan in all five NGSA 2026 cells (alone: 39.55 against 43.15).
-- Aggressive UltraFan beats every alternative in all 40 (+0.32 to +3.14 base, +0.40 to +2.40 wave). It costs RR 0.92 to 6.37 (base) when selected: 4.65 on a lone NGSA 2029 (+16.73 against +21.38), 3.38 on fps 2029.
+- It loses to P&W GTF2 on aggressive terms in all 40 (-0.32 to -3.25 base).
+- It beats CFM's RISE open fan in all 40 (6.72 to 58.93 base, 7.34 to 51.13 wave). The open fan cannot enter service before 2045, and an airframe that would be ready earlier pays 10% of capex for each year it waits. The open fan loses even to CFM ducted in all 40 (NGSA 2026 alone: UltraFan 39.55, CFM ducted 34.65, open fan -15.04). Its best case is a 2037 launch, with no wait: Airbus 14.49 on it, 18.26 on UltraFan, 16.65 on CFM ducted (base).
+- Aggressive UltraFan beats every alternative in all 40 (+0.32 to +3.25 base, +0.40 to +3.10 wave); the best alternative is always GTF2 on aggressive terms. It costs RR 0.92 to 6.37 (base) when selected: 4.65 on a lone NGSA 2029 (+16.73 against +21.38), 3.38 on fps 2029.
 - P&W's PV on a lone NGSA 2029: GTF2 aggressive -3.48, GTF2 standard +0.72, joining our Joint Venture +12.38 (wave -3.61, +0.45, +11.77). On PV, P&W gains most from the Joint Venture; whether it joins is its own call (inference).
 
 ### 5.5 Rival timing
@@ -111,7 +112,7 @@ RR Solo PV when the other airframer launches on CFM:
 
 An early rival answer cuts RR's value by up to 6.7 but never breaks the metric. The wave lowers lone 2029 entries by about 1 and softens early rival answers.
 
-**Plans that pay both ways.** Each airframer gains from UltraFan over CFM in every cell, so RR must beat GTF2 and the open fan. The best joint cell is NGSA 2029 on UltraFan: Airbus's best NGSA year in both scenarios (45.71 and 42.20; 2026 gives 39.55 and 33.87) and +22.19 for RR. fps 2029 is Boeing's best year (18.14 and 15.33). NGSA 2026 pays RR most of any lone launch (+29.74, wave +27.80, `options` T1) but cannot be coordinated in turn 1, which has no announcement. `options` T1 fallback incentives at standard: fps 2.083, NGSA 4.909 (wave 2.109, 4.742).
+**Plans that pay both ways.** Each airframer gains from UltraFan over CFM ducted and the open fan in every cell, so RR must beat GTF2. The best joint cell is NGSA 2029 on UltraFan: Airbus's best NGSA year in both scenarios (45.71 and 42.20; 2026 gives 39.55 and 33.87) and +22.19 for RR. fps 2029 is Boeing's best year (18.14 and 15.33). NGSA 2026 pays RR most of any lone launch (+29.74, wave +27.80, `options` T1) but cannot be coordinated in turn 1, which has no announcement. `options` T1 fallback incentives at standard: fps 2.083, NGSA 4.909 (wave 2.109, 4.742).
 
 ## 6. Fit with our doctrine
 
@@ -157,7 +158,7 @@ An early rival answer cuts RR's value by up to 6.7 but never breaks the metric. 
 
 ```bash
 cd /home/user/aero-engine-gameboard
-export WARGAME_RUNS_DIR=/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/objectives/runs_rolls_royce_verify; mkdir -p $WARGAME_RUNS_DIR
+export WARGAME_RUNS_DIR=/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/of_update/rr; mkdir -p $WARGAME_RUNS_DIR
 python3 -m wargame.engine new --run-id rrv-base --suppliers rolls_royce,pratt_whitney
 python3 -m wargame.engine new --run-id rrv-wave --scenario replacement-wave --suppliers rolls_royce,pratt_whitney
 # RUN = rrv-base, rrv-wave:
@@ -175,7 +176,7 @@ echo '{"rolls_royce": {"2": {"launch": [{"program": "uf_nb", "variant": "solo", 
 echo '{"rolls_royce": {"1": {"t1000_upgrade": true}, "2": {"launch": [{"program": "uf_nb", "variant": "solo", "terms": "standard", "year": 2029}]}},
  "airbus": {"2": {"launch": [{"program": "ngsa", "engine": "rr_ultrafan_nb", "year": 2029}]}}}' | $W
 # Joint Venture: RR "variant": "jv_pw" plus '"pratt_whitney": {"2": {"join_rr_jv": true}}' (without it: 0.00, NGSA on CFM)
-# 2037 cases: RR Solo 2037 and NGSA or fps 2037 on rr_ultrafan_nb, both in turn "4"
+# 2037 cases: RR Solo 2037 and NGSA or fps 2037 on rr_ultrafan_nb, both in turn "4" (open fan: NGSA 2037 on cfm_open_fan, 14.49)
 # 80-cell grid: X = NGSA (airbus) or fps (boeing) launched Y in {2026, 2029, 2032, 2035}; the other airframer idle or on
 #  cfm_ducted in each of those years. Per cell: RR none, upgrade T1, Solo Y standard / aggressive, upgrade T1 + Solo Y
 #  standard / aggressive with X on rr_ultrafan_nb; then X on cfm_ducted, cfm_open_fan, and pw_gtf2 with
