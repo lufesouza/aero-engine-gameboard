@@ -64,3 +64,12 @@ These come from the files uploaded to `main` on 30 Sep 2026:
    - a fix pass, which writes `citation_audit.md`.
 
    The two companies' builders never saw each other's material.
+
+## Plain-text role files (executives)
+
+`python3 make_role_txt.py` turns the executive profiles into one plain-text file per role in `<company>/executives/roles/`:
+- Boeing: `boeing_ceo.txt`, `boeing_cfo.txt`, `boeing_coo_bca.txt`;
+- Airbus: `airbus_ceo.txt`, `airbus_cfo.txt`, `airbus_coo_commercial_aircraft.txt`;
+- each company also gets `<company>_leadership_teams.txt` and a `README.txt`.
+
+Each role file opens with the seat's job in the ExCo and the holders (from the executives `README.md` index), then carries each holder's full profile, current holder first. The text is a conversion, not a rewrite: every evidence id in the Markdown survives. The files stay inside each company's folder, so the isolation hook still keeps each player out of the other company's executives. Re-run the script after editing a profile.

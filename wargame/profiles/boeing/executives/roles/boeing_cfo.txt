@@ -1,0 +1,1570 @@
+====================================================================================================
+BOEING: CHIEF FINANCIAL OFFICER (CFO)
+Role profile for the Boeing vs Airbus war game
+====================================================================================================
+
+Plain-text copy of the executive profiles in wargame/profiles/boeing/executives/, built 2026-10-04
+by wargame/profiles/build/make_role_txt.py. The Markdown files are the source of truth. Bracketed
+ids ([BX-0123], [B-0456]) point to verified evidence in
+wargame/profiles/boeing/executives/evidence.jsonl and wargame/profiles/boeing/evidence.jsonl.
+Section numbers (§) and file names inside a profile refer to that person's Markdown profile; the
+same sections appear below under the person's name.
+
+Scope: professional conduct only, from the executives' own words and the company record. Inferences
+are labelled (inference).
+
+THE SEAT IN THE EXCO
+--------------------
+The CFO tests cash, debt, the rating and the hurdle: the slip test, capex and strain from the
+engine, and whether a plan is fundable in the years it spends. Financial commitments in public
+statements use the CFO's register.
+
+HOLDERS (4, current first)
+--------------------------
+- Jay (Jesus) Malave
+    Role(s) and dates: EVP of Finance and CFO, in post by September 2025 [BX-1316, BX-0546]
+    Own-words items: 11 (BX-0546-0556)
+    Company items: 7
+    Events: 1 (October 2025 call)
+    Confidence: Low
+    Teams: ortberg-malave-pope-2026 (DEFAULT)
+
+- Brian West
+    Role(s) and dates: EVP of Finance and CFO, October 2021-July 2025; hired July 2021 [BX-0293,
+      BX-1666, BX-1874]
+    Own-words items: 209 (BX-1666-1874)
+    Company items: 151
+    Events: 28, 2021-25
+    Confidence: High on capital, liquidity, rate gating, disclosure, track record; Medium on
+      new-airplane gates; Low on Airbus, engines, Joint Ventures
+    Teams: calhoun-west-deal-2023, ortberg-west-pope-2025
+
+- Greg Smith
+    Role(s) and dates: CFO with strategy, January 2012-April 2021; interim CEO at the turn of 2020;
+      also enterprise operations from April 2020 [BX-1334, BX-0205, BX-0221, BX-1663]
+    Own-words items: 332 (BX-1334-1665)
+    Company items: about 260
+    Events: 57, 2012-21
+    Confidence: High on cash, capital, rate gating, crisis finance; Medium on product; Low on
+      Airbus, engines, his weeks as CEO
+    Teams: mcnerney-smith-conner-2013, muilenburg-smith-2017, calhoun-smith-2020
+
+- James Bell
+    Role(s) and dates: EVP and CFO; items April 2006-October 2011, owner of guidance [BX-0092]
+    Own-words items: 110 (BX-0083-0192)
+    Company items: 123
+    Events: 23, 2006-11
+    Confidence: High on capital allocation, guidance, balance sheet, voice; Medium on rates,
+      product; Low on Airbus, engines, decision rights
+    Teams: mcnerney-bell-albaugh-2010
+
+
+####################################################################################################
+PROFILE 1 OF 4: JESUS (JAY) MALAVE: EXECUTIVE PROFILE (CURRENT HOLDER)
+Source: wargame/profiles/boeing/executives/malave.md
+Teams (see boeing_leadership_teams.txt): ortberg-malave-pope-2026 (DEFAULT)
+####################################################################################################
+
+Thin evidence: one earnings call. Read this as a sketch, and use the company doctrine wherever it is
+silent.
+
+1. HEADER
+---------
+
+Role, as shown in the sources. Executive Vice President of Finance and CFO. His own-words items
+label him "Jesus Malave, Executive VP of Finance & CFO"; the company items say "Jay Malave, CFO"
+[BX-0546, B-2337].
+- He was in the post by 2025-09-11. On that date Ortberg said he had asked his "new CFO" to look at
+  the 777X slip and its implications [BX-1316].
+- All of his own evidence comes from the FQ3 2025 call (2025-10-29).
+
+Era.
+- What he inherited from West:
+  - 2024 free cash flow of -$14.3B [B-2232];
+  - the $24B capital raise [B-2231];
+  - the 737 at 38 a month [BX-1872];
+  - a 777X still guided to 2026 [BX-1857].
+- His first quarter:
+  - the 777X reset to 2027, with a $4.9B charge [BX-0550];
+  - the first positive free-cash-flow quarter since Q4 2023 [B-2347];
+  - the 737 step to 42 agreed with the FAA [BX-0554];
+  - $53.4B of debt against $23B of cash [B-2345];
+  - a $535B backlog [B-2348].
+
+Evidence base.
+- 11 items in his own words (BX-0546 to BX-0556) and 7 company items where he is the speaker
+  (B-2337, B-2344 to B-2349).
+- All 18 come from one event.
+
+Confidence: Low.
+- He has no commitment record of his own yet.
+- There is nothing on Airbus, a new airplane, engines, crisis response or the team.
+
+2. QUICK CARD
+-------------
+
+Objective function, ranked (his own list) [BX-0556].
+1. "Fully restoring the health of our balance sheet" [BX-0556], while "supporting our
+   investment-grade rating" [B-2345].
+2. "The planned improvements of our recovery", made sustainable [BX-0556]. "Operational excellence
+   will be the key to unlocking our cash flow potential" [BX-0555].
+3. "Keeping an eye on the future" while staying focused on the short and medium term.
+
+How he differs from West and sharpens the doctrine.
+- One conservative reset, not serial ones.
+  - "The reset allows us to operate to a higher confidence plan" [BX-0548].
+  - He wants a baseline that lets Boeing "not only meet it but potentially beat it" [BX-0553].
+  - This matches Ortberg's wish that the 777X not be "a continuous quarterly issue" [B-2342]. It is
+    the opposite of West's early habit of reaffirming dated targets.
+- No inherited targets. He said it was "a little early" to comment on a long-term framework,
+  including the $10B FCF target, and gave no date [B-2337]. He deferred the 2026 numbers to the
+  planning cycle [BX-0549].
+- More bullish tone, fewer numbers: "things are trending favorably, and we're bullish on our
+  outlook" [BX-0549].
+- Invests through the recovery. Capex is "closer to $3 billion" for growth in St. Louis and
+  Charleston [BX-0546].
+
+Decision rules.
+- Rates step up only after stability, "jointly agreed with the FAA" [BX-0554].
+- The 777X baseline carries buffer "from a schedule and cost perspective" [BX-0553]. That he applies
+  this to every baseline is (inference).
+- The balance sheet comes first, with $10B of revolvers kept undrawn [B-2345].
+
+Risk appetite.
+
+* Area: Technology
+    Rating: No evidence
+    Evidence: –
+
+* Area: Schedule
+    Rating: Low
+    Evidence: A "higher confidence plan ... so that we've got ourselves protected" [BX-0553]
+
+* Area: Balance sheet
+    Rating: Low-Medium
+    Evidence: Repair comes first [BX-0556], yet capex rises while cash is still negative [BX-0546]
+
+* Area: Fixed price
+    Rating: No evidence
+    Evidence: –
+
+Tempo.
+- In his first call he reset the 777X rather than defend the old date [BX-0550].
+- He held long-term numbers back until January [BX-0549].
+
+Capital allocation and program economics.
+- The 777X cash path: "a heavy use year" in 2026, better in 2027, "closer to neutral in 2028", and
+  positive from 2029 [BX-0547].
+- A delay costs money along the whole program: concessions, rework, learning curve and carrying cost
+  [B-2349].
+
+Product stance; how he reads Airbus. No evidence. He describes the 737 and 787 as "sold firm into
+the next decade" [B-2348], so demand is not his worry (inference).
+
+Voice.
+- "a higher confidence plan" [BX-0548]
+- "not only meet it but potentially beat it" [BX-0553]
+- "operational excellence will be the key to unlocking our cash flow potential" [BX-0555]
+- "we're bullish on our outlook" [BX-0549]
+
+Biases to display.
+- Baselines he can beat (inference; untested): he aims for a baseline he can "potentially beat"
+  [BX-0553]. His first call improved an inherited guide, West's -$3B, to about -$2.5B [BX-0552];
+  that is not yet his own baseline beaten. Display it as low public numbers with upside held back.
+- Optimism without figures [BX-0549].
+
+3. COMMITMENT TRACK RECORD
+--------------------------
+
+* Date: 2025-10
+    Commitment or forecast: 2025 FCF a use of about $2.5B, "barring ... a prolonged government
+      shutdown"
+    Outcome: Not in evidence
+    Ids: BX-0552
+
+* Date: 2025-10
+    Commitment or forecast: 777X first delivery in 2027
+    Outcome: Open
+    Ids: BX-0550
+
+* Date: 2025-10
+    Commitment or forecast: 777X cash near neutral in 2028, positive from 2029
+    Outcome: Open
+    Ids: BX-0547
+
+* Date: 2025-10
+    Commitment or forecast: 737 to 42 after stabilizing at 38
+    Outcome: Agreed with the FAA in October 2025
+    Ids: BX-0554
+
+* Date: 2025-10
+    Commitment or forecast: Historical cash levels regained, with no date
+    Outcome: Open
+    Ids: BX-0555, B-2337
+
+He also reported outcomes he inherited: the shadow factory was shut in Q3 2025, about nine months
+late [BX-0551].
+
+4. SECTIONS BY DIMENSION
+------------------------
+
+- Priorities: balance sheet, recovery, future [BX-0556].
+- Decision style: conservative baselines [BX-0553].
+- Risk, capital allocation:
+  - growth capex [BX-0546];
+  - the 777X cash path [BX-0547];
+  - deleveraging [B-2345].
+- Operations: a KPI-gated rate step agreed with the FAA [BX-0554].
+- Communication:
+  - "While disappointing, the reset ..." [BX-0548];
+  - defers numbers [BX-0549].
+- Credibility: his early guidance improved on West's [BX-0552]; he reported West's 777X date as
+  missed [BX-0550].
+- Team: Ortberg uses him as an independent check on program estimates [BX-1316].
+- Product, rivals, crisis response: no evidence.
+
+5. IN THE GAME: IF MALAVE IS IN THE ROOM
+----------------------------------------
+
+Engine figures are from the same scratch probe as West's profile (2026-10-03, base scenario).
+
+- fps timing: 2029 (inference).
+  - The 777X turns cash-positive in 2029 [BX-0547], the doctrine's fps year.
+  - He would argue that fps is fundable once the 777X stops using cash, and only after balance-sheet
+    repair [BX-0556].
+  - He vetoes any Turn-1 launch.
+- Solo vs Joint Venture: no evidence.
+  - His "higher confidence plan" [BX-0553] points to deciding on the slip case (inference).
+  - That means a Joint Venture against NGSA launched in 2026-27 (it passes the slip leg by only
+    $0.04B), otherwise Solo (see West, §5).
+- 787 Re-engine: veto in Turns 1-2 (inference). His capex goes to 787 growth in Charleston
+  [BX-0546]; Ortberg gives its purpose as ramping beyond 10 a month [B-2336].
+- Rate Increase: Turn 1, yes.
+  - It follows the 38 → 42 step under the KPI gates [BX-0554].
+  - Defer it in a quality, FAA or supply-crunch turn.
+- Cancel: follow doctrine H5 (inference).
+  - He reset the 777X; cancellation was not discussed [BX-0550].
+  - He would cost any slip in full, once [B-2349] (inference).
+- Engine choice: no evidence; cfm_ducted by doctrine.
+- Disclosure:
+  - one conservative reset;
+  - conditions stated ("barring ...") [BX-0552];
+  - no long-term framework until the plan is set [BX-0549].
+- Delay Tactics and Poaching: no evidence; follow doctrine.
+
+In the ExCo:
+- he asks whether the plan can be met and beaten: he wants the slip test and the options worst case
+  [BX-0553];
+- he asks for each program's cash profile, as he gave for the 777X [BX-0547]. The engine gives
+  totals, not a yearly path: compare undiscounted_b.capex across launch years, with capex_b and
+  dev_years from rules.
+
+What changes his mind (inference): a baseline that fails the buffer test.
+
+6. CONFIDENCE AND GAPS
+----------------------
+
+- Low overall. One call, with 18 items.
+- No evidence on Airbus, new-airplane gates, Joint Ventures, engines, crisis response or team. Every
+  lever position except the Rate Increase and cancel is (inference) from his priorities.
+- No scored commitments. All of his forecasts were still open at the time of the evidence.
+- Name: the BX label says "Jesus" and the company items say "Jay"; both refer to the same CFO
+  [BX-0546, B-2337].
+
+
+####################################################################################################
+PROFILE 2 OF 4: BRIAN J. WEST: EXECUTIVE PROFILE (PREVIOUS HOLDER)
+Source: wargame/profiles/boeing/executives/west.md
+Teams (see boeing_leadership_teams.txt): calhoun-west-deal-2023, ortberg-west-pope-2025
+####################################################################################################
+
+1. HEADER
+---------
+
+Roles, as shown in the sources. Executive Vice President of Finance and CFO, in items from
+2021-10-27 to 2025-07-29 [BX-1666, BX-1874]. Calhoun hired him from outside in July 2021 for "broad
+operational expertise" [BX-0293].
+- The "2019-2025" label is not supported. Nothing in the evidence predates October 2021, and the
+  2019-21 CFO was someone else [BX-0221].
+- Jay Malave was CFO by September 2025 [BX-1316].
+
+Era.
+- What he inherited: 2021 free cash flow of -$4B, after -$20B in 2020 [BX-1726]; 787 deliveries
+  halted, with 110 aircraft in inventory [B-1855]; 335 MAX in inventory [B-1861]; $58.1B of debt
+  [B-1863].
+- Under Calhoun (to August 2024):
+  - positive free cash flow in 2022 [BX-1726];
+  - the Investor Day target of $10B FCF in 2025-26 [BX-1718];
+  - Spirit quality escapes [BX-1747, BX-1762];
+  - the Alaska 1282 door plug and the FAA cap [BX-1777].
+- Under Ortberg:
+  - the IAM strike [BX-1836];
+  - 2024 free cash flow of -$14.3B [B-2232];
+  - a $24B capital raise [B-2231];
+  - the $10.55B Digital Aviation Solutions sale [BX-1867];
+  - the 737 at 38 a month in May 2025 [BX-1872].
+
+Evidence base.
+- 209 items in his own words (BX-1666 to BX-1874), from 28 events: 16 earnings calls, 11 conferences
+  and the 2022 Investor Day.
+- 151 company items where he is the speaker.
+
+Confidence. High on capital allocation, liquidity, rate gating, disclosure and his track record.
+Medium on new-airplane gates (qualitative only). Low on Airbus, engines, Joint Ventures and decision
+rights.
+
+2. QUICK CARD
+-------------
+
+Objective function, ranked (his terms).
+1. A stable factory: "The path to stable financials is a stable factory" [BX-1801]. The productivity
+   gain is "dwarfed by the quality benefit" [BX-1788].
+2. The investment-grade rating, as a constraint and not a trade-off: "the #1 priority ... we're
+   going to do what it takes to protect that rating, period" [BX-1824].
+3. Free cash flow, "the #1 metric ... through the lens of all of our decision-making" [BX-1694].
+4. Finish development programs: "-7, -10, 777X ... that's job one" [BX-1863].
+5. Invest within the envelope: R&D rises every year [BX-1734]; capex planned to rise about $500M in
+   2025 while the company was still burning cash [BX-1847].
+6. A new airplane only as a "step function", 20-30% better [BX-1740, BX-1803].
+7. Shareholder returns: "too early ... it'll be there someday" [BX-1737].
+
+How he sharpens the company doctrine.
+- The rating is a hard floor. He will change the funding instrument to hold it [BX-1816, BX-1842].
+- He plans on the downside, where doctrine plans on nominal dates and caps the downside. He builds
+  contingency into targets [BX-1775], plans without China [BX-1763] and sets "a conservative plan"
+  [BX-1868]. In the game he would treat the slip test as the planning case (inference).
+- He reads Airbus less than doctrine does. Demand is a given; the contest is on supply [BX-1789].
+- His deny-then-reverse is on capital structure, not product [BX-1795, BX-1842].
+
+Decision rules and red lines.
+- Rates follow supply, not demand: "a function of our confidence in our supply chain, not the demand
+  signals" [BX-1690]. Proof points first [BX-1722]; then the six FAA-agreed KPIs [BX-1860, B-2283].
+- Don't rush: "We can't push the factory too hard" [BX-1820]. Boeing itself chose to stay below the
+  FAA's cap of 38 [BX-1799].
+- No traveled work: accept only fully conforming fuselages [BX-1800].
+- Keep the supply chain hot: "no intention of changing the master schedule" [BX-1762]. He reversed
+  this only when cash became binding [BX-1838].
+- No fixed-price development: "no appetite" [BX-1742]; none signed [BX-1774].
+- Liquidity: a floor of about $10B of cash plus revolvers [BX-1843]; maturities pre-funded 12, later
+  18, months ahead [BX-1808, BX-1831].
+- Growth must be "accretive to profit" and "relatively capital light" [BX-1728, BX-1793].
+- New airplane: it needs advanced engines [BX-1803], nothing niche [BX-1740], current certifications
+  finished first [BX-1863], and spending "within the envelope" [BX-1792, B-2279].
+
+Risk appetite.
+
+* Area: Technology
+    Rating: Low
+    Evidence: "Advanced engine technology" for 20-30%; "will not be rushed" [BX-1803]
+
+* Area: Schedule
+    Rating: Low in plans, High in public dates
+    Evidence: Holds rates back [BX-1799], yet the 777X date was reset twice on his watch, then again
+      by his successor (§3)
+
+* Area: Balance sheet
+    Rating: Medium
+    Evidence: "If inventory spikes ... we can handle it" [BX-1790]; the rating is the floor
+      [BX-1824]
+
+* Area: Fixed price
+    Rating: Very low
+    Evidence: Legacy programs aim only to break even [BX-1854]
+
+Tempo.
+- Does not move on rival moves. He disputes the premise [BX-1743].
+- Waits a long time, then switches. China slots were deferred "for a long time", then remarketed
+  [BX-1706, BX-1756].
+- Cuts in steps: "high conviction on the low end" [BX-1748], then "the low end" [BX-1771], then a
+  cut [BX-1767].
+- Shocks: cash conservation from the strike's first day [BX-1836].
+- Capital structure: reversed in about seven months.
+  - "we would not use equity" (March 2024) [BX-1795];
+  - "Nothing is off the table" (May) [BX-1816];
+  - an equity offering (October) [BX-1842].
+
+Capital allocation stance. Excess cash goes to debt [BX-1714]. He buys stability with working
+capital: buffers [BX-1741], $87.5B of inventory [BX-1852], cash for Spirit [BX-1747]. Returns are
+for the Board [BX-1759].
+
+Product stance.
+- Clean sheet: "next decade" (2023) [BX-1740], then "no timetable" for a 50-year product (2025)
+  [BX-1864].
+- Derivatives as cash tools: "We don't need the 10" [BX-1684]; more 8s and 9s [BX-1815]; 777Fs
+  during the 777-9 pause [BX-1685].
+- Programs are J-curves: the 777X turns cash-positive "about a year after EIS" [BX-1830].
+- Integration: rejected in 2023 [BX-1739]; adopted in 2024 to "run it as a factory" [BX-1802].
+- Engines: the LEAP was "the real gating item", and "CFM has been very collaborative" [BX-1710].
+
+How he reads Airbus. Rarely by name.
+- He disputed an analyst's premise of Airbus narrowbody ascendancy: the MAX "holds its own"
+  [BX-1743].
+- Slips across the industry help pricing, but "every campaign, we compete head to head" [BX-1751].
+- "The product line holds up really well competitively" [BX-1822].
+
+Voice.
+- "Deliver airplanes, generate cash, pay down debt." [BX-1720]
+- "The path to stable financials is a stable factory." [BX-1801]
+- "We can't rush. We can't push the factory too hard or the system too hard" [BX-1820]
+- "the investment grade is the #1 priority ... period." [BX-1824]
+
+Biases to display when the situation matches.
+- W1. Hold the target, then move it "to the right". Reaffirm it once ("no what-ifs" [BX-1731];
+  unchanged after a Spirit escape [BX-1761]), then concede that it "moved to the right quite a bit"
+  [BX-1834].
+- W2. First cost estimates come in low. The 787's abnormal costs went from $1B to $3B [BX-1668,
+  BX-1769]. Privately budget for cost growth (inference).
+- W3. Reframe in cash terms: "cash margins ... remain positive" [BX-1672]; "immaterial" [BX-1749].
+- W4. Pledge, then reverse under pressure on the rating [BX-1795, BX-1842].
+- W5. Look only at supply. Under-react to Airbus product moves in statements [BX-1789] (inference).
+- Counter-evidence:
+  - the 2022-23 cash commitments were kept [BX-1726, BX-1753];
+  - one estimate was cut [BX-1752];
+  - the conservative 2025 plan was beaten [BX-0552].
+
+3. COMMITMENT TRACK RECORD
+--------------------------
+
+* Date: 2021-10
+    Commitment or forecast: 2022 FCF positive
+    Outcome in the evidence: Kept: +$2.3B
+    Ids: BX-1669, BX-1726
+
+* Date: 2021-10
+    Commitment or forecast: 787 abnormal costs ~$1B
+    Outcome in the evidence: ~$2B (Jan 2022), $3B, "up a bit" (Oct 2023)
+    Ids: BX-1668, BX-1674, BX-1769
+
+* Date: 2021-10
+    Commitment or forecast: Most MAX inventory delivered by end-2023, assuming China resumes in Q1
+      2022
+    Outcome in the evidence: China did not resume; moved to 2024, then partly 2025
+    Ids: BX-1667, BX-1699, BX-1768
+
+* Date: 2022-01
+    Commitment or forecast: 777X first delivery late 2023
+    Outcome in the evidence: Moved to 2025 (Apr 2022), then 2026 with a $2.6B charge (Oct 2024);
+      2026 reaffirmed (Mar 2025); then 2027 with $4.9B (successor)
+    Ids: BX-1675, BX-1682, BX-1844, BX-1857, BX-0550
+
+* Date: 2022-04
+    Commitment or forecast: MAX 7 in 2022, MAX 10 in 2023
+    Outcome in the evidence: Anti-ice fix in a "9- to 12-month range" (Feb 2024) "has taken us
+      longer"; certification 2026
+    Ids: BX-1683, BX-1782, BX-1873
+
+* Date: 2022 start
+    Commitment or forecast: ~500 MAX deliveries
+    Outcome in the evidence: 387 actual: "we all learned that painfully"
+    Ids: BX-1698, BX-1721
+
+* Date: 2022-04
+    Commitment or forecast: 777-9 pause costs ~$1.5B
+    Outcome in the evidence: Cut to $1B
+    Ids: BX-1681, BX-1752
+
+* Date: 2022-05, 2022-11
+    Commitment or forecast: No new equity or debt
+    Outcome in the evidence: $10B of debt (May 2024); all-stock Spirit deal; $24B raise including
+      equity (Oct 2024)
+    Ids: BX-1688, BX-1720, B-2189, BX-1827, BX-1842
+
+* Date: 2022-11
+    Commitment or forecast: 2023 737 deliveries 400-450, floor "high confident"
+    Outcome in the evidence: Guidance cut to 375-400 (Oct 2023); actual outside the evidence
+    Ids: BX-1717, BX-1767
+
+* Date: 2022-11
+    Commitment or forecast: $10B FCF, 737 at 50, 787 at 10 in 2025-26
+    Outcome in the evidence: "No what-ifs" (2023); "moved to the right quite a bit" (Sep 2024);
+      successor declined to comment yet
+    Ids: BX-1718, BX-1731, BX-1761, BX-1834, B-2337
+
+* Date: 2023
+    Commitment or forecast: Meet maturities from cash
+    Outcome in the evidence: Kept: $5.1B
+    Ids: BX-1753
+
+* Date: 2023-03
+    Commitment or forecast: No fixed-price development
+    Outcome in the evidence: Kept
+    Ids: BX-1742, BX-1774, BX-1804
+
+* Date: 2023-07
+    Commitment or forecast: BCA margin positive by Q1 2024
+    Outcome in the evidence: "In 2024"; still negative in 2025
+    Ids: BX-1754, BX-1770, BX-1797
+
+* Date: 2024-02
+    Commitment or forecast: 737 cash margins near 2018 levels in 2025-26
+    Outcome in the evidence: Open: program margins said not to return to 2018 (Apr 2024); cash
+      margins below 2018 near term, long-run thesis kept (Sep 2024)
+    Ids: BX-1783, BX-1812, BX-1835
+
+* Date: 2024-02
+    Commitment or forecast: IAM: "fully expect" an agreement
+    Outcome in the evidence: Strike from 2024-09-13
+    Ids: BX-1784, BX-1833
+
+* Date: 2024-03
+    Commitment or forecast: 2024 FCF positive, low single-digit $B
+    Outcome in the evidence: Moved to a use, then a larger use; actual -$14.3B
+    Ids: BX-1796, BX-1819, BX-1828, B-2232
+
+* Date: 2024-07
+    Commitment or forecast: 737 at 38 by exit-2024
+    Outcome in the evidence: May 2025
+    Ids: BX-1829, BX-1872
+
+* Date: 2024-10, 2025-07
+    Commitment or forecast: 2025 FCF far better; about -$3B
+    Outcome in the evidence: About -$2.5B; Q3 positive
+    Ids: BX-1845, BX-1874, BX-0552
+
+* Date: 2025-03
+    Commitment or forecast: Spirit closes mid-2025
+    Outcome in the evidence: Slipped to late 2025
+    Ids: BX-1856
+
+Tally:
+- 5 of 19 were kept or beaten: the 2022 and 2025 cash commitments, the 2023 maturities, the 777-9
+  cost and the fixed-price ban. One (737 margins) is open.
+- Most of the 13 misses depended on regulators, labor or suppliers, and many followed outside
+  shocks: China, Spirit, the door plug and the strike [BX-1699, BX-1767, BX-1818].
+
+4. SECTIONS BY DIMENSION
+------------------------
+
+* Era: Turnaround (Calhoun)
+    Dates: Oct 2021-Dec 2023
+    Stance: Cash as the lens; dated targets; no-equity pledges
+
+* Era: Door plug (Calhoun)
+    Dates: Jan-Aug 2024
+    Stance: Stability over financials; no guidance; Spirit brought back in-house
+
+* Era: Recovery (Ortberg)
+    Dates: Sep 2024-Jul 2025
+    Stance: Cash conservation; equity; KPI gates; conservative plans
+
+Priorities.
+- 2022: three milestones: 787s, 737s including China, and cash [BX-1693]. "Return value" meant the
+  balance sheet [BX-1724].
+- September 2024: recover commercial, derisk defense, then an investment-grade capital structure
+  [BX-1839].
+
+Decision style. Milestones, not dates: "the first step is getting the first one out the door"
+[BX-1677]. One rate step at a time: "let that take care of itself" [B-2040].
+
+Risk.
+- The fixed-price lesson hardened from "took the medicine, move on" (2022) [BX-1696] to "no
+  appetite" (2023) [BX-1742].
+- He said the risk had been retired; more charges followed [BX-1733].
+
+Capital allocation. Capex of $1-1.5B (2022) [BX-1686] grew to $5B of R&D plus capex, up 20%+ (2023)
+[BX-1792]. In 2022 he held $7-9B of cash above baseline [B-1956].
+
+Product and strategy.
+- "We're going to make an airplane someday ... but it's not right now" [B-2277].
+- Slower certification is "the new reality. We are going to resource it" [B-2032].
+
+Operations.
+- Supply binds, not demand [BX-1707]. The supply chain went from "not a constraint" [BX-1678] to the
+  main explanation for misses.
+- Fixes: on-site teams and safety stock [BX-1700].
+- Cost model: parts are 60-70% of an airplane, labor under 15% [BX-1787]; the IAM settlement is
+  "less than 5%" [BX-1851].
+- China: redirect its aircraft to other customers rather than cut rates [BX-1871].
+
+Rivals. Price discipline while slots are scarce [B-2044]. C919: "not a new competitive entry ...
+Let's go compete and win" [BX-1744].
+
+Communication. "it's a turnaround, make no mistake about it" [BX-1703]; "I promise you" in place of
+numbers [BX-1673]; transparency, "sometimes it's painful" [BX-1735].
+
+Crisis response.
+- 787 halt: "the right thing to do for our future" [BX-1676]; "FAA decides" [BX-1689].
+- Door plug: "full accountability ... we welcome it" [BX-1786]; "all of that wasn't enough"
+  [BX-1798].
+- Strike: cuts to supplier spend and the workforce [BX-1846].
+
+Team.
+- He backed Calhoun's small center [BX-1697, BX-1745] and "more engineers, more mechanics"
+  [BX-1746]. Calhoun credited his CFO with "the same intensity" about "knowing everything"
+  [BX-0328].
+- He named the cultural fault: schedule had come before conformance [BX-1805].
+- He left bargaining to the teams [BX-1806] and aligned with Ortberg [BX-1841].
+
+5. IN THE GAME: IF WEST IS IN THE ROOM
+--------------------------------------
+
+Engine figures: a scratch probe, 2026-10-03, base scenario, Turn-1 Rate Increase, cfm_ducted, no
+injects. The "slip" case adds Airbus Delay Tactics in Turns 2-3. Re-run in play.
+
+fps timing.
+- Pushes for gates, not a year:
+  - the 777X delivered (2027 [BX-0550]);
+  - the MAX 7/10 certified (2026 [BX-1873]);
+  - the rating secure [BX-1824];
+  - spending "within the envelope" [BX-1792, B-2279].
+
+  The engine models none of these: treat them as closed by Turn 2 unless a certification_scrutiny
+  inject is live, so he accepts 2029 (inference).
+- "Next decade" [BX-1740] read as 2030 would cost $1.8-2.1B, and H2 keeps it out of the orders; he
+  had dropped the marker by 2025 [BX-1864].
+- Vetoes: any Turn-1 launch, H1's exception included: it "will not be rushed" [BX-1803]. Also any
+  launch in a strike or crisis turn [BX-1836] (inference).
+
+Solo vs Joint Venture.
+- His lens: with Airbus idle, the Joint Venture cuts alpha-loaded capex in PV from $23.8B to $16.0B
+  but gives away $13.3B of operating value [probe]. A CFO who protects the rating "period" sees the
+  saving first (inference).
+- The slip case decides:
+
+  * Airbus: Idle
+      Solo: 6.83
+      Joint Venture: 4.99
+      Do Nothing: 0.07
+      Result: Solo
+
+  * Airbus: NGSA 2026
+      Solo: -8.10
+      Joint Venture: -6.33
+      Do Nothing: -4.37
+      Result: Joint Venture; only it passes the $2B slip leg, by $0.04B (fragile)
+
+  * Airbus: NGSA 2029
+      Solo: -4.03
+      Joint Venture: -3.17
+      Do Nothing: -3.06
+      Result: Joint Venture by 0.86, within ε
+
+- Rule:
+  - Joint Venture when NGSA was launched in 2026-27: the nominal cost is $1.6-2.0B, within the cap.
+  - Otherwise Solo. The nominal cost of the Joint Venture is $2.74B against NGSA 2029 and $5.47B
+    against an idle Airbus.
+  - His added stress flag: a crisis inject in the launch turn while debt is unrepaired [BX-1842]
+    (inference).
+  - Counter-weight: he insourced Spirit for control [BX-1862].
+
+787 Re-engine.
+- Vetoes it in Turns 1-2. The 777X comes first [BX-1863]. The 787 is a cash engine to ramp: 10 a
+  month [BX-1809]; cash margins forecast above 2018 levels by 2025-26 [BX-1783], below them near
+  term [BX-1835].
+- Probe:
+  - 2034 adds +1.03 to a 2029 fps; 2032 adds +0.78; 2029 is a wash.
+  - Alone in 2030, it adds +2.90.
+  - Following an A350 Re-engine of 2029 costs $3.5-5.0B: never.
+- He asks when the cash turns [BX-1830].
+
+Rate Increase.
+- Turn 1, yes. 38 → 50 is the "biggest mover" toward $10B [B-2086, BX-1811].
+  - Probe: +0.86 with fps; Turn 1 beats Turn 2 by 0.31.
+- Never in response to Airbus or demand [BX-1690].
+- Defer it in a quality, FAA or supply-crunch turn [BX-1799].
+- When deferring: keep suppliers on the master schedule [BX-1773]; stop those holding safety stock
+  if cash binds [BX-1838].
+
+Cancel.
+- Never a launched program. He paused the 777-9 instead of cancelling it [BX-1681]: it is "going to
+  be on for decades" [BX-1695].
+- Probe: cancelling a slipped Solo fps in Turn 3 against NGSA 2026 scores -16.05, against -8.10 for
+  continuing.
+- He prunes only non-core assets [BX-1867].
+
+Engine choice. cfm_ducted, by doctrine; it adds no development years. He called CFM's engines "the
+real gating item" on the 737, but CFM "very collaborative" [BX-1710]; that he stays with CFM is
+(inference).
+- pw_gtf2 scores +0.48 to +0.82, within ε.
+- cfm_open_fan loses $3.6-4.5B: veto.
+
+Disclosure.
+- No regulator-gated dates: "out of respect for the process ... steer away from specificity"
+  [BX-1779].
+- Ranges with a defensible floor [BX-1715].
+- Owns harm early: "we will, at times, frustrate both our customers and our shareholders" [BX-1817].
+- At an fps launch: the 20-30% bar [BX-1803], the 50-year horizon [BX-1864] and "within the
+  envelope" [B-2279].
+- Never names Airbus [BX-1822].
+
+Delay Tactics and Poaching.
+- A "supplier bottleneck." Orders: continue fps (H5), re-baseline once, no overlapping Re-engine.
+  Rationale only: staff and fund the supplier [BX-1747]; hold the schedule [BX-1762]; carry buffers
+  [BX-1861]; insource if it recurs [BX-1802].
+- After exposure: a factual statement only (inference).
+- Poaching: no order change; in statements, hiring (15,000 people in 2022 [B-2035]).
+
+How he argues in the ExCo (paraphrased questions).
+1. When does the cash turn? He wants whatif capex and strain [BX-1694, BX-1830].
+2. Does the rating survive? No overlap strain (inference).
+3. What if not every piece goes right? He wants the slip test [BX-1775].
+4. Is the supply chain ready? He checks the injects [BX-1690].
+5. Step function or niche? He wants tech_ready_year [BX-1740].
+
+What changes his mind: a binding constraint, such as the strike's cash drain [BX-1838] or a threat
+to the rating [BX-1842]; evidence that keeps failing [BX-1706].
+
+What does not: demand signals [BX-1690], analysts' premises about Airbus [BX-1743] or upside cases
+[BX-1764].
+
+6. CONFIDENCE AND GAPS
+----------------------
+
+- Dates: the sources begin in October 2021.
+- Airbus: only 7 rival-view items; he did not name Airbus after March 2023.
+- Not in the evidence: airframe Joint Ventures, engine selection or a numeric hurdle rate. The
+  Solo/Joint Venture stance is (inference).
+- Decision rights: only his own turns are in the evidence.
+- Coding: many Q&A items lack the analyst's question.
+
+
+####################################################################################################
+PROFILE 3 OF 4: GREGORY D. (GREG) SMITH: EXECUTIVE PROFILE (PREVIOUS HOLDER)
+Source: wargame/profiles/boeing/executives/smith.md
+Teams (see boeing_leadership_teams.txt): mcnerney-smith-conner-2013, muilenburg-smith-2017,
+  calhoun-smith-2020
+####################################################################################################
+
+1. HEADER
+---------
+
+Roles, as shown in the sources.
+- CFO and Executive Vice President, with strategy in his remit, from January 2012 [BX-1334, BX-0221]
+  to April 2021 [BX-1663].
+- From April 2020 he also led enterprise manufacturing, supply chain and services ("Enterprise
+  Operations") [BX-0221, BX-1635].
+- Interim CEO for a few weeks at the turn of 2020, before Calhoun arrived [BX-0205, BX-1616]. No
+  transcript covers that period.
+
+Era.
+- Inherited: a 787 at a "low single-digit gross margin" [B-0550]; no buyback [BX-1334]; a 737 ladder
+  from 35 to 42 [B-0677].
+- On his watch: the 787 turned cash-positive in 4Q 2015 [BX-1441, BX-1008]; payout policy rose from
+  80% to about 100% of FCF [BX-1379, BX-1455], with $48B returned from end-2012 to mid-2018
+  [B-1433]; pensions moved to defined contribution and a 10-year IAM deal [BX-1399, BX-1397];
+  repeated KC-46 charges [BX-1411, BX-1437]; the NMA was studied, then shelved [BX-1611]; the MAX
+  grounding (2019 operating cash -$2.4B) [BX-1557]; COVID, with debt at $63.6B [B-1746].
+
+Evidence base. 332 items in his own words (BX-1334 to BX-1665) from 57 events, 2012-01-25 to
+2021-04-28. About 260 company items where he is the speaker.
+
+Confidence. High on cash, capital allocation, rate gating, guidance style and crisis finance. Medium
+on product strategy (a CFO's view of the NMA). Low on Airbus, engine selection, and his conduct as
+CEO.
+
+2. QUICK CARD
+-------------
+
+Objective function, ranked.
+1. Cash is the yardstick: "it's about the bottom line … how efficient you are with your cash"
+   [BX-1453]. Half of everyone's incentive pay was free cash flow [BX-1489]. In a crisis, "cash will
+   … continue to be king" [BX-1643].
+2. Execute the backlog: "executing, executing and executing" [BX-1498].
+3. Retire risk: "derisk the decade" [BX-1419]; "an imbalance between risk and reward, and we want to
+   fix that" [BX-1461].
+4. Margin through productivity: double digits, then mid-teens by 2020 [BX-1458, BX-1505];
+   productivity targets with no "cap" [BX-1561].
+5. Return cash, once risk is retired [BX-1412]. After 2019, debt repayment comes first "for the next
+   few years" [BX-1607, BX-1663].
+6. A new airplane last: "priority one is MAX … versus the next product" [BX-1624].
+- Crisis override: liquidity and leverage are "top priorities" until deliveries resume and the
+  system is stable [BX-1596]. Every decision must help survival "while also not diminishing our
+  future competitiveness" [BX-1653].
+
+Decision rules and red lines.
+- No concurrent major developments: "we're not going to do that" [BX-1574]; no "concurrent risk on
+  top of risk" [BX-1540]. New-airplane spend follows the 777X ramp-down [BX-1563]. Stricter than
+  H4's 2-year overlap.
+- Rate breaks:
+  - metrics inside control limits, "otherwise there'll be a pause" [BX-1361];
+  - a rate sustainable for 2-3 years, tested airline by airline [BX-1424], including credit and
+    financing [BX-1552];
+  - "Everything needs to work" [BX-1539]; "If we're not stable, we're not going up" [BX-1604];
+  - the next break only once the current rate is healthy [BX-1550].
+- New airplane: pass/fail gates [BX-1572]; price, value, recurring and non-recurring cost must "come
+  together" [BX-1518]; "No big leaps" [BX-1535]; "go when we're ready" [BX-1569].
+- R&D envelope: about 3.8-3.9% of revenue [BX-1542]. Projects that disappoint after about 6 months
+  are stopped [BX-1564].
+- Equity only to pay down debt [BX-1655].
+
+Risk appetite.
+
+* Area: Technology
+    Rating: Low
+    Evidence: Reuse of "hard fought technology" [BX-1385]; an "offramp" for new processes [BX-1431];
+      "No big leaps" [BX-1535]
+
+* Area: Schedule
+    Rating: Medium
+    Evidence: Builds buffer [BX-1511], but held the 777X at 2020 into mid-2019 [BX-1584] before two
+      resets [BX-1660]
+
+* Area: Balance sheet
+    Rating: High in good times, then early and defensive
+    Evidence: An $18B buyback at the 2017 peak [BX-1512]; then drew $13.8B "early" and raised $25B
+      [BX-1641]; investment grade only a preference [BX-1634]
+
+* Area: Fixed price
+    Rating: High, selective
+    Evidence: Zero-margin tanker development [BX-1411]; T-X and MQ-25 bids with charges [BX-1545];
+      "selective" [BX-1549]; later "still not where it needs to be" [BX-1626]
+
+Tempo.
+- Rival moves: no product or rate response. He answers with cost [BX-1338, BX-1406]. Airbus's talk
+  of 70 a month changed nothing [B-1442].
+- His own moves: decided at the supplier lead-time point [BX-1620]. He signalled options before
+  using them: a MAX shutdown flagged six months ahead [BX-1593]; a 787 cut flagged five weeks ahead
+  [BX-1652].
+
+Capital allocation stance.
+- Organic investment first, partnerships and M&A second [BX-1528].
+- Payouts scaled up as risk retired: $10B, then $12B, then $18B authorizations [BX-1393, BX-1417,
+  BX-1512]. In 2018, $12.9B went back to shareholders against $5B invested [BX-1556].
+- A cash floor in the "high single-digit" billions [BX-1432].
+- From 2020, debt first [BX-1617]. Investment was cut by prioritisation ($2B of $6B) [BX-1646],
+  while 777X, 737-10 and Starliner kept their funding [BX-1639].
+
+Product stance.
+- Derivatives "break the historical cost curve" [BX-1405]; commonality cuts unit cost [BX-1488].
+- An airline's case closes at "20-plus percent more efficient" [BX-1366].
+- The middle of the market was a "niche" in 2015 [BX-1443] and a 4,000-5,000-airplane gap by 2018
+  [BX-1536].
+- "Do you buy it? Do you partner it? Do you develop it?" [BX-1537]; "We chose to partner" on seats
+  [BX-1573]. Embraer was "not a have to" [BX-1520].
+- The engine was "one of" the big open pieces of the NMA [BX-1519].
+
+How he reads Airbus.
+- Never named on competition; he named it only on accounting [BX-1451].
+- "We're assuming people are going to be successful, and they want share" [BX-1484].
+- Widebody confidence: the 787 is "unmatchable" [BX-1588]; "think of a campaign where the 87 hasn't
+  won" [BX-1627].
+- In the MAX crisis he conceded narrowbody share but relied on both sides being sold out [BX-1614].
+
+Voice.
+- "If we're not stable, we're not going up." [BX-1604]
+- "we're going to go when we're ready" [BX-1569]
+- "we're clear-eyed about what we know and what we don't know" [BX-1583]
+- "doing what we said we would do" [BX-1566]
+
+Biases to display when the situation matches.
+- Absorb and isolate: holds guidance through charges [BX-1526]; "take the MAX out of the equation"
+  [BX-1590].
+- Gradual resets: "still aiming … more likely" [BX-1648]; five return-to-service assumptions
+  [BX-1591].
+- New-airplane decisions slip while gates are open: the NMA "in the next year or so" (2018), then
+  2019, then shelved in January 2020 amid the MAX crisis [B-1347, BX-1548, BX-1611].
+- Normalising problems: "blocking and tackling" [BX-1410]; "nothing more to read into this"
+  [BX-1445].
+- Reframing a missed metric: "better than what we originally projected" [BX-1388, BX-1440].
+- Dormant (no lever; statements only): payout escalation once risk feels retired [BX-1394, BX-1455].
+
+3. COMMITMENT TRACK RECORD
+--------------------------
+
+* Date: 2012-01
+    Commitment or forecast: 787 deferred peak "slightly over $20 billion"
+    Outcome in the evidence: Reaffirmed in July 2013; reset to about $25B in October 2013; $29B by
+      May 2016
+    ids: BX-1335, BX-1387, BX-1389, BX-1456
+
+* Date: 2012-07
+    Commitment or forecast: Restart buybacks in 2013
+    Outcome in the evidence: $2.8B in 2013 against a $1.5-2B plan
+    ids: BX-1350, BX-1390
+
+* Date: 2012-07
+    Commitment or forecast: Pension relief will not change funding
+    Outcome in the evidence: Discretionary funding dropped in 2015
+    ids: BX-1349, BX-1418
+
+* Date: 2013-01
+    Commitment or forecast: Battery grounding: no significant financial impact
+    Outcome in the evidence: Absorbed; cost never given
+    ids: BX-1371, BX-1373
+
+* Date: 2014-07
+    Commitment or forecast: Tanker: "not new technology … blocking and tackling"
+    Outcome in the evidence: A larger second charge ($835M) in July 2015
+    ids: BX-1410, BX-1437, B-1114
+
+* Date: 2014-10
+    Commitment or forecast: 787 cash-positive in 2015
+    Outcome in the evidence: Met (4Q 2015)
+    ids: BX-1414, BX-1441, BX-1008
+
+* Date: 2016-01
+    Commitment or forecast: 777X on schedule for 2020
+    Outcome in the evidence: Still 2020 in June 2019; then 2021; then late 2023 with a $6.5B charge
+    ids: BX-1447, BX-1584, BX-1660
+
+* Date: 2016-05
+    Commitment or forecast: About 100% of FCF returned
+    Outcome in the evidence: 2018: $12.9B returned; FCF itself not in the evidence (met, in his own
+      account); buyback paused April 2019
+    ids: BX-1455, BX-1556, BX-1546, BX-1576
+
+* Date: 2017-01
+    Commitment or forecast: 2017 operating cash of $10.75B
+    Outcome in the evidence: About $13.3-13.5B
+    ids: BX-1472
+
+* Date: 2017-02
+    Commitment or forecast: Tanker "development is behind us"; first delivery late 2017/early 2018
+    Outcome in the evidence: More cost growth in 2017-18; delivery moved to October 2018
+    ids: BX-1478, B-1310, BX-1526, BX-1527
+
+* Date: 2018-02
+    Commitment or forecast: NMA decisions "in the next year or so"
+    Outcome in the evidence: Moved to 2019; shelved January 2020
+    ids: B-1347, BX-1568, BX-1611
+
+* Date: 2018-10
+    Commitment or forecast: Finish $9.6B of buybacks in 12-18 months
+    Outcome in the evidence: Paused April 2019; authorization ended March 2020
+    ids: BX-1543, BX-1629
+
+* Date: 2019-01
+    Commitment or forecast: 737 at 57 in 2019; 2019 operating cash $17-17.5B
+    Outcome in the evidence: Cut to 42; production suspended; operating cash -$2.4B
+    ids: BX-1558, BX-1557, B-1609
+
+* Date: 2019-01
+    Commitment or forecast: Embraer to close by end-2019
+    Outcome in the evidence: Early 2020 (Nov 2019); Boeing walked away
+    ids: BX-1562, BX-1600, B-1674
+
+* Date: 2019-07
+    Commitment or forecast: MAX return to service early 4Q 2019
+    Outcome in the evidence: Five successive assumptions (four moves); deliveries resumed December
+      2020
+    ids: BX-1591
+
+* Date: 2019-10
+    Commitment or forecast: No near-term need for more liquidity levers
+    Outcome in the evidence: $12B term loan (January 2020); $13.8B drawn; $25B bond
+    ids: BX-1597, BX-1613, BX-1641
+
+* Date: 2019-11
+    Commitment or forecast: 777X first flight early 2020
+    Outcome in the evidence: Met
+    ids: BX-1601
+
+* Date: 2020-01
+    Commitment or forecast: 787 at 10, back to 12 in 2023
+    Outcome in the evidence: 5 a month by mid-2021
+    ids: BX-1608, BX-1656
+
+* Date: 2020-04
+    Commitment or forecast: Positive cash flow in 2021
+    Outcome in the evidence: Moved to 2022 (October 2020)
+    ids: BX-1631, BX-1648, BX-1661
+
+Pattern.
+- Met or beat: cash guidance in stable years; buybacks; cash milestones he controlled.
+- Missed: deferred-production peaks; fixed-price development; engine- and regulator-paced dates, via
+  quarterly resets and then one large charge.
+
+4. SECTIONS BY DIMENSION
+------------------------
+
+Era timeline.
+
+* Era: 2012-13
+    Posture: 787 learning curve and rate breaks; buybacks restart, sized to proof [BX-1341, BX-1381]
+
+* Era: 2014-15
+    Posture: "De-risk the decade": pension, IAM, derivatives; returns above 80% [BX-1404, BX-1394]
+
+* Era: 2016-18
+    Posture: About 100% of FCF; mid-teens margins; One Boeing score; NMA gates [BX-1455, BX-1503,
+      BX-1510]
+
+* Era: 2019
+    Posture: MAX: scenarios from day one, buyback paused, liquidity first [BX-1579, BX-1576,
+      BX-1596]
+
+* Era: 2020-21
+    Posture: COVID: "cash is king", early borrowing, debt first, operations remit [BX-1643, BX-1641,
+      BX-1635]
+
+Priorities. They follow the program cycle: "It's all about delivery", then cash deployment
+[BX-1365]. Productivity funds winning, investing and returns [BX-1476].
+
+Decision style.
+- Data from the floor: tail-by-tail tracking [BX-1342]; walks the line [BX-1351]; twice-weekly cash
+  calls [BX-1359]; "more operational" [BX-1360].
+- Gives each lever a named owner and accepts that some will fail [BX-1479, BX-1469]; weighs "second
+  and third order" effects [BX-1665].
+- Puts pending decisions inside the guidance range, so either outcome fits [BX-1486].
+
+Risk.
+- Plans "assuming for the worst" [BX-1348]; runs stress cases beside the baseline [BX-1645]. On
+  rates, invests ahead: toward 14 while ramping to 12 [BX-1392].
+- Spends to buy schedule safety: parallel MAX line [BX-1501], 777X labs [BX-1521], fewer 777X built
+  before certification [BX-1612].
+- Rejects the "cycle" [BX-1502] and the bubble thesis [BX-1358].
+
+Capital allocation.
+- Buybacks are the first shock absorber [BX-1577]. The dividend was kept, and raised, through 2019
+  [B-1599, B-1631], and suspended only in March 2020 [BX-1629].
+- Stock rather than cash for the pension and the 401(k) [BX-1490, BX-1647].
+- M&A must meet "financial hurdles" and the complexity of integration [BX-1516]; NPV and ROIC over
+  the whole market [BX-1541].
+
+Product and strategy. A CFO's gatekeeper: capability, capacity, affordability [BX-1493]. He deferred
+the weaker 777-8 [BX-1587] and backed services and verticals for life-cycle value [BX-1481,
+BX-1499].
+
+Operations.
+- Suppliers are "an extension of our factories" [BX-1363, BX-1642]. He imposed double-digit
+  cost-downs [BX-1382], and invested to create competition [BX-1496].
+- After 2018: "a day matters" at 52 [BX-1531], so more buffer [BX-1622].
+- Kept the workforce through the MAX suspension (about $5B of abnormal cost) [BX-1610] and built
+  ahead of demand for supply-chain order [BX-1637].
+
+Rivals. He counters price pressure with supplier savings [BX-1406] and passes part of a 3-4% annual
+productivity gain into price [BX-1427]. He never invokes subsidies or trade action in this evidence.
+
+Communication.
+- A scorecard style: tells investors which metrics to watch [BX-1344]; contingency in guidance,
+  released as risk is "retired" [BX-1340, BX-1353].
+- Judge cash over "an 18- to 24-month period" [BX-1423]. He steers noisy accounting back to cash
+  [BX-1525].
+- In an open-ended crisis he withdraws guidance [BX-1578]: "the regulators pace this. We don't pace
+  it" [BX-1598].
+
+Crisis response.
+1. Scenario planning "from Day 1" [BX-1579].
+2. Decisions at "waypoint milestones" [BX-1580].
+3. Pull the buyback lever first [BX-1576].
+4. Book the liability in one charge and front-load settlements [BX-1592, BX-1619].
+5. Ownership: "we own it" [BX-1602]. He rejected the suggestion that safety was traded for cost or
+   schedule: "There's no trade-offs … That's the priority" [BX-1599].
+6. Quality ahead of deliveries in the 787 inspections [BX-1659].
+
+Counter-evidence: by 2020 he planned 777X certification as "not … business as usual" [BX-1625],
+reversing early 2019 [BX-1567].
+
+Team.
+- One enterprise score for all executives [BX-1575]; held himself to his own cost target [BX-1523].
+- Co-owner of decisions: a monthly NMA stress-test with Muilenburg [BX-1555]; the daily crisis
+  rhythm [BX-1589]. Calhoun: "we will lead the company together" [BX-0205].
+- Pushed decisions down to process councils [BX-1654].
+
+5. IN THE GAME: IF SMITH IS IN THE ROOM
+---------------------------------------
+
+Engine figures: scratch probe, 2026-10-03 (base scenario, Turn-1 Rate Increase, fps cfm_ducted, no
+injects). Re-run in play.
+
+fps timing.
+- Pushes: no fps in Turn 1; H1 matches "priority one is MAX … versus the next product" [BX-1624].
+  Then the H2 year (2029) if every gate passes [BX-1572].
+- His bias is deferral [BX-1548, BX-1611]. Probe: 2030 costs $1.8-2.1B and Turn 3 (2032) $4.6-5.7B.
+  So "go when we're ready" [BX-1569] in words, 2029 in orders.
+- His best argument: the stress case [BX-1645]. Slip test against NGSA 2029: 2032 scores -2.70
+  against -4.03 for 2029. But a 2029 Joint Venture (-3.17) is within $0.11B of Do Nothing (-3.06),
+  so 2029 passes the go/no-go test.
+
+Solo vs Joint Venture.
+- His lens is capital at risk: partner where it lowers risk [BX-1573, BX-1538]. But the one deal of
+  his era never closed [B-1674].
+- Probe, slip test: the Joint Venture beats Solo by $1.77B against NGSA 2026 and $0.86B against NGSA
+  2029. Nominal: Solo leads by $1.61B, $2.74B and $5.47B (NGSA 2026, NGSA 2029, Airbus idle).
+- Rule: the Joint Venture against an early NGSA; Solo otherwise. Under a crisis inject, launch only
+  through H7's exception (NGSA in development), and then as a Joint Venture.
+- Sharpens doctrine (inference): "debt not yet repaid" counts as a stress flag, since he would not
+  add debt [BX-1663] and the partner carries 35% of capex [RULES]. Under the $2B cap this bites only
+  against an early NGSA.
+
+787 Re-engine.
+- Pushes: a 2036 Re-engine, with zero overlap [BX-1574]. Probe: +$1.24B over fps alone; $0.2B better
+  than 2034 and $0.5B better than 2030. His strict rule costs nothing.
+- His 787 confidence [BX-1588, BX-1627] makes a widebody Do Nothing comfortable.
+- Vetoes: following an A350 Re-engine. Probe (A350 Re-engine 2029): following costs $2.3-6.5B.
+
+Rate Increase.
+- Pushes: peak rate is where cash peaks [BX-1416]; about 40% of the cash arrives 18-24 months before
+  delivery [BX-1434]. Probe: +$0.87B with fps 2029.
+- Defers under a supply-chain crunch, quality escape or FAA scrutiny, as H6 does [BX-1604, BX-1539].
+- Stricter than doctrine (inference): also defers one turn under a narrowbody demand shock, because
+  the rate must hold for 2-3 years [BX-1424]. Probe: Turns 1-3 lie within $0.36B, so the gate is
+  cheap.
+- Never because of Airbus [B-1442].
+
+Cancel.
+- Vetoes cancelling a launched program: he kept the 747 after an $885M charge [BX-1450, B-1093] and
+  the KC-46 through charges, saying "We don't exclude tanker" [BX-1530]. Probe: cancelling in Turn 3
+  under the slip test costs $10.7B.
+- Shelves unlaunched bets fast under stress [BX-1611].
+
+Engine choice.
+- fps: cfm_ducted. He would veto cfm_open_fan (probe: -$3.6-4.5B), extending his NMA "No big leaps"
+  [BX-1535] to engines (inference).
+- pw_gtf2 scores +$0.5-0.8B, within ε. He said Boeing was "disappointed" with the GE engine
+  [BX-1594] and named CFM as a constraint [B-1440], so he has no loyalty either way (inference);
+  doctrine keeps CFM.
+- Re-engine: ge_genx_next.
+
+Disclosure.
+- Discloses rate ladders and cash milestones, not new-airplane dates [BX-1446, BX-1644].
+- After a slip: one reset, "still aiming … more likely" [BX-1648], with the charge taken at once
+  [BX-1660].
+- Under an open-ended inject: no dates; regulators pace it [BX-1598].
+
+Delay Tactics and Poaching.
+- Supplier bottleneck. Orders: continue fps (H5), re-baseline once, no overlapping Re-engine.
+  Rationale and statement: surge Boeing staff into the supplier [B-1440]; triage case by case
+  [BX-1582]; second sources [BX-1496]; name the supplier [BX-1594]. No attribution to Airbus before
+  exposure.
+- Exposure: no precedent; factual statements, not trade rhetoric (inference).
+- Poaching: no order change. He held headcount through downturns [BX-1581] and tied pay to one score
+  [BX-1575].
+
+How he argues in the ExCo (paraphrased questions).
+1. What does it do to cash? He wants the capex and strain components from whatif [BX-1453].
+2. What is the stress case? The slip test and Do Nothing, always [BX-1645, BX-1348].
+3. Is there "concurrent risk"? Overlap years of fps and Re-engine [BX-1540].
+4. Are we inside control limits? Live injects and supplier health [BX-1361, BX-1604].
+5. Does every gate pass? Margins and early_penalty_pp_per_year from rules; programs[].margin_at_eis
+   and capex from whatif [BX-1518].
+
+What changes his mind: a failed gate [BX-1572]; a lead-time window forcing the call [BX-1620]; the
+stress case [BX-1645]; regulators [BX-1625]. What does not: Airbus rate talk [B-1442], oil
+[BX-1429], currency [BX-1454], customers' preferred dates [BX-1569].
+
+6. CONFIDENCE AND GAPS
+----------------------
+
+- Nothing from his weeks as interim CEO; team findings come from the CFO seat and Calhoun [BX-0205].
+- Airbus is never named on competition. The rival view is inferred from campaign, FX and share
+  remarks.
+- Engines: only the NMA open item and the GE and CFM supply complaints.
+- No numeric hurdles: no IRR, debt ceiling or leverage target; investment grade is only a preference
+  [BX-1634].
+- Attribution: the 2015 middle-of-the-market answer may be a BCA voice [BX-1443].
+- Contradiction: buybacks reflected execution, not mispricing [B-0946]; a year later the stock was
+  "undervalued" [BX-1439].
+
+
+####################################################################################################
+PROFILE 4 OF 4: JAMES A. BELL: EXECUTIVE PROFILE (PREVIOUS HOLDER)
+Source: wargame/profiles/boeing/executives/bell.md
+Teams (see boeing_leadership_teams.txt): mcnerney-bell-albaugh-2010
+####################################################################################################
+
+1. HEADER
+---------
+
+Role, as shown in the sources. Executive Vice President and Chief Financial Officer, in items from
+2006-04-26 to 2011-10-26. From October 2009 the transcripts label him "Former Executive Vice
+President", a retroactive provider label: he was still presenting results as CFO [BX-0151, BX-0190].
+The roster dates his tenure to 2012; no item covers his departure. From 2006 he was on every
+quarterly call, while McNerney joined "on a selected basis", so Bell owned guidance [BX-0092].
+
+Era.
+- What he inherited: an up-cycle with 2007 slots 98% sold [B-0001]; a 787 he called "the best-run
+  development program I've ever seen" [BX-0091]; airplanes "more aggressively priced ... several
+  years ago" still delivering [B-0083].
+- What happened on his watch:
+  - 787 slips from October 2007 [BX-0111] to first deliveries in Q3 2011 [BX-0190]; 747-8 charges of
+    $685M and $1B [BX-0135, BX-0153];
+  - the 2008 strike [BX-0127] and negative book equity [BX-0133];
+  - the 2009 squeeze: $5B of new debt [B-0228], stock into the pension [BX-0151], no buybacks
+    [B-0200];
+  - Vought [B-0211], the KC-46 win [BX-0184], 737 rate 42 [BX-0185], the 737 MAX [B-0481].
+
+Evidence base. 110 items in his own words (BX-0083 to BX-0192) and 123 company items where he is the
+speaker. They come from 23 events: 22 earnings calls and the May 2011 investor conference.
+
+Confidence. High on capital allocation, guidance behaviour, balance-sheet risk and voice. Medium on
+rates and product. Low on Airbus, engines and decision rights.
+
+2. QUICK CARD
+-------------
+
+The ranking is his 2009-11 posture, closest to Boeing's 2026 position (debt to repair, programs to
+finish).
+
+Objective function, ranked.
+1. Liquidity and the credit rating. "Financial strength and solid credit ratings are priorities"
+   [B-0065]. About $2B of operating cash, plus "a safety net" while programs are uncertified
+   [BX-0139].
+2. Finish the programs in hand. "Our priority ... getting the 787 airplane ... in the hands of our
+   customers" [BX-0148]. There is no excess cash "when you have two major development programs"
+   [BX-0156].
+3. Execute the backlog profitably [BX-0117]; ramps "with excellent profitability. That's our first
+   priority" [BX-0087].
+4. Economic profit, which also sets pay [BX-0088, B-0006]; a 7% net-margin goal [BX-0178].
+5. Protect the dividend; buybacks last [BX-0143, BX-0157], returning once deliveries begin
+   [BX-0172].
+6. Value pricing: "we're not having fire sales" [BX-0084]; sustain margins [BX-0188].
+7. The next product: one at a time, on pre-funded technology [BX-0171, BX-0173].
+
+Decision rules and red lines.
+- One major development at a time [BX-0171]. He stated no overlap allowance.
+- No dividend cut; borrow and control spending instead [B-0201]. No buybacks while development
+  programs are open [BX-0157].
+- An R&D band: below the ~$4B peak, never back to $1.5B. The floor pre-funds technology [BX-0173].
+- Rates move only after a supply-chain study, and take effect later: "not something that you can
+  turn on immediately" [BX-0086]. Contracted rates are held in a downturn [BX-0137].
+- No fixed-price work without defined requirements [BX-0181].
+- Customer financing stays subordinate to the rating [BX-0130]; Boeing Capital does not go back to
+  $12B [BX-0131].
+- Guidance: suspend it rather than guess [BX-0127]; don't raise it until development deliveries are
+  in hand [BX-0169].
+
+Risk appetite.
+
+* Area: Technology
+    Rating: Medium in 2006; Low by 2011
+    Evidence: Backed the outsourced 787 on its business case [BX-0090]. By 2011: "a derivative
+      airplane is a lot less expensive, a lot less risk" [BX-0186]
+
+* Area: Schedule
+    Rating: High in public, hedged in the books
+    Evidence: Repeated the 787 dates [BX-0085, BX-0107] while booking a 0% margin as a reserve
+      [BX-0123]
+
+* Area: Balance sheet
+    Rating: Low
+    Evidence: Let debt run off [BX-0115]; rating first in financing [BX-0130]; pensions de-risked
+      before 2008 [B-0064]. Exception: buybacks stepped up in the quarter of the first 787 delay
+      [B-0050]
+
+* Area: Fixed price
+    Rating: Medium
+    Evidence: KC-46 bid at breakeven development for production profit [BX-0187], but only with
+      defined requirements [BX-0181]
+
+* Area: Production rate
+    Rating: Low-Medium
+    Evidence: Study-gated [BX-0086]; held the 747-8 at 1.5 a month rather than ramp into weak demand
+      [BX-0154]
+
+Tempo.
+- Waits for the facts: "we have time to make that call" [BX-0121]; out-year guidance delayed
+  [BX-0136].
+- Minimises, then resets. The 787 was "slightly behind" in July 2007 [BX-0104]; the first major
+  delay came three months later [BX-0111].
+- On rival moves, follows the CEO's line, then supplies the numbers (inference). In April 2011 the
+  all-new airplane was "the leader in the clubhouse" [B-0328]; in July he gave the derivative's cost
+  and risk case [BX-0186].
+
+Capital allocation stance. "Balance cash deployment" [B-0122].
+- Up-cycle: valuation-linked buybacks [BX-0083]; debt run off [BX-0115]; dividend +14% [B-0084].
+- Squeeze: capex cut about 20%, buybacks to about $200M [BX-0132]; daily cash calls [BX-0138]; stock
+  into the pension [BX-0151].
+- When a work package fails, buy control: Vought, about $592M [BX-0149].
+
+Product stance.
+- Customer-led: a product decision "is going to start and end" with customers [BX-0089].
+- Derivatives first, on cost and risk [BX-0186]. He agreed with an analyst that re-engine R&D is
+  about 10-15% of a new airplane's [B-0432]; the engine's $4.2B against $30B for fps is about 14%
+  [RULES].
+- Lead times: new-airplane R&D starts 5-6 years before first delivery, a derivative's 3-4 [BX-0180].
+- Partners: keep "risk-sharing arrangements" [BX-0179]. On the 787-9 Boeing applied "lessons
+  learned" and, per the item's finding, took back design control [BX-0168].
+- Engines: no statements in the evidence.
+
+How he reads Airbus. As a pricing variable more than a product threat (inference, from few items).
+- A380 wiring was a contrast, not a warning [BX-0099]; no "distinct" 777 response to the A350
+  [BX-0109].
+- With the NEO, Airbus "hopes to sort of close the gap" [B-2386]. He priced the pressure into the
+  737 block, to sustain margins [B-0334, BX-0188].
+
+Voice.
+- "It's prudent, not conservative." [BX-0158]
+- "we're not having fire sales" [BX-0084]
+- "executing on our record backlog is what really counts" [BX-0117]
+- "we have time to make that call" [BX-0121]
+- "we will make the cash we've invested in this program back. Probably not as soon as I'd like, but
+  we will get it back." [BX-0176]
+
+Biases to display when the situation matches.
+- Hold the headline number, move the rest: EPS held while revenue and cash were cut [BX-0111,
+  BX-0125].
+- A slip is a timing shift: the lost cash is "added to 2009" [BX-0112].
+- Soft words for bad news: "a bit over" on weight [BX-0103]; a cancellation was a "conversion"
+  [BX-0189].
+- Overstates how well profits absorb slips: "we could absorb some slips" [BX-0182].
+- Decides late where waiting looks free [BX-0121].
+
+Against the company card.
+- Sharpens: H4, to zero overlap [BX-0171]; H1, since cash is never excess while programs (in 2026,
+  the 737-7, 737-10 and 777X) are uncertified [BX-0139, BX-0156] (inference); H5 [BX-0176].
+- Departs: the Rate Increase waits for the supply-chain study, not Turn 1 by default; more open to
+  the Joint Venture, on cash (inference) (both §5); the dividend is a red line, buybacks are not
+  [BX-0143, BX-0157].
+
+3. COMMITMENT TRACK RECORD
+--------------------------
+
+* Date: 2006-04
+    Commitment or forecast: 787 flight test in 2007, entry into service in 2008
+    Outcome in the evidence: About 35 deliveries moved into 2009 (Oct 2007); first deliveries booked
+      in Q3 2011
+    ids: BX-0085, BX-0111, BX-0190
+
+* Date: 2006-10
+    Commitment or forecast: 787 and 747-8 on time
+    Outcome in the evidence: Both slipped; $685M 747-8 forward loss in Q4 2008
+    ids: BX-0097, BX-0135
+
+* Date: 2007-04
+    Commitment or forecast: BCA margin above 10% in 2007
+    Outcome in the evidence: 10.7%
+    ids: BX-0101, B-0063
+
+* Date: 2007-07
+    Commitment or forecast: 787 "profitable from the first airplane"; first delivery May 2008
+    Outcome in the evidence: 0% margin assumed (Apr 2008); $2.5B test-airplane reclassification (Q3
+      2009); low single digits on 1,100 units (Oct 2011)
+    ids: BX-0106, BX-0107, BX-0123, BX-0153, BX-0190
+
+* Date: 2007-07
+    Commitment or forecast: R&D pressure will not affect 2008 EPS
+    Outcome in the evidence: R&D raised to $3.6-3.8B; EPS $3.71 against $5.70-5.85, mainly the
+      strike
+    ids: BX-0105, B-0052, BX-0125
+
+* Date: 2007-10
+    Commitment or forecast: The 2008 cash shortfall is "added to 2009", which will be "very strong"
+    Outcome in the evidence: 2009 guidance cut to above $2.5B; actual $5.6B, alongside $5B of new
+      debt
+    ids: BX-0112, B-0228
+
+* Date: 2008-01
+    Commitment or forecast: "Very active" buybacks
+    Outcome in the evidence: $2.9B in 2008; about $200M planned for 2009; none in Q2 2009
+    ids: BX-0114, B-0149, BX-0132, B-0200
+
+* Date: 2008-04
+    Commitment or forecast: About 25 787s within 500-505 deliveries in 2009; EPS $6.80-7.00
+    Outcome in the evidence: No 787s in 2009. EPS guidance cut to $5.05-5.35 (Jan 2009), $4.70-5.00
+      (Apr 2009) [BX-0120] and $1.35-1.55 (Oct 2009) [BX-0153]; actual $1.84 after 787 and 747-8
+      charges of $2.38 and $1.20 a share [B-0227]
+    ids: BX-0119, BX-0120, BX-0153, B-0227
+
+* Date: 2009-01
+    Commitment or forecast: 2009 is the peak R&D year
+    Outcome in the evidence: R&D stayed around $4B a year through 2011
+    ids: BX-0134, BX-0173, B-0481
+
+* Date: 2009-04
+    Commitment or forecast: No 737 rate cut in 2009
+    Outcome in the evidence: Held
+    ids: BX-0142
+
+* Date: 2009-07
+    Commitment or forecast: No dividend cut
+    Outcome in the evidence: Kept: about $300M in Q2 2009
+    ids: BX-0143, B-0200
+
+* Date: 2010-01
+    Commitment or forecast: 2010 BCA margin 6.5-7.5%
+    Outcome in the evidence: 9.4%
+    ids: BX-0159, B-0299
+
+* Date: 2010-10
+    Commitment or forecast: Operating cash flow above $1.5B in 2010, above $4B in 2011
+    Outcome in the evidence: 2010: $3B. 2011 cut to above $2.5B
+    ids: BX-0165, B-0482
+
+* Date: 2011-01
+    Commitment or forecast: 25-40 787 and 747-8 deliveries in 2011
+    Outcome in the evidence: Cut to 15-20 (Oct)
+    ids: BX-0167
+
+* Date: 2011-04/05
+    Commitment or forecast: New airplane favoured; decision by year-end
+    Outcome in the evidence: 737 MAX Re-engine chosen about three months early
+    ids: BX-0170, B-0379, BX-0186
+
+* Date: 2011-05
+    Commitment or forecast: 787 stable at 10 a month in late 2013
+    Outcome in the evidence: Moved to late 2014 or early 2015 (Oct 2011)
+    ids: BX-0175, BX-0191
+
+* Date: 2011-07
+    Commitment or forecast: KC-46 "aggressive yet responsible" bid, not in a loss position
+    Outcome in the evidence: Charges in 2014-15, in McNerney's items
+    ids: BX-0184, BX-0844
+
+Pattern.
+- Met or beaten: core-business and downturn guidance, the dividend, the 737 rate.
+- Missed every time: development-linked forecasts: dates, deliveries, R&D peaks, 787 margins.
+- (inference) The cushions were his lever; the dates came from the programs.
+
+4. SECTIONS BY DIMENSION
+------------------------
+
+Era timeline.
+
+* Era: 2006-07: balanced deployment
+    Posture: Buybacks "as long as the stock is undervalued" [BX-0083]; R&D raised early against 787
+      risk [BX-0094, BX-0098]
+
+* Era: Oct 2007-2008: hold the headline
+    Posture: Revenue and cash moved, EPS held [BX-0111]; zero 787 margin [BX-0123]; buybacks through
+      the strike [B-0122]; then guidance suspended [BX-0127]
+
+* Era: 2009-10: liquidity
+    Posture: Buybacks off, dividend kept [BX-0132, BX-0143]; new debt [B-0228]; daily cash calls
+      [BX-0138]; Vought [BX-0149]
+
+* Era: 2011: lessons
+    Posture: One program at a time [BX-0171]; the R&D band [BX-0173]; returns to restart [BX-0172];
+      the derivative case [BX-0186]
+
+Priorities. The order moved with the cycle: value-based buybacks in 2006 [B-0002], the 787 above
+everything in 2009 [BX-0148], returns again once deliveries begin in 2011 [BX-0172].
+
+Decision style.
+- Accounting-led. He steered analysts from unit to program margins [BX-0095]. Block size is a tool:
+  a 1,100-unit 787 block, about 10 years of output [B-0476].
+
+Risk.
+- Reserves rather than resets: the 787 at 0% "to deal with customers issues" [BX-0123]; rework
+  reserves for airplanes built before certification [BX-0163].
+- Nets risks against opportunities to avoid a forward loss [BX-0166].
+- Misjudgement: a year before the first delay, only something "totally unexpected" could hurt the
+  787 [BX-0096]. Counter-case: pensions de-risked before the crash [B-0064].
+
+Capital allocation.
+- Buybacks followed valuation in the boom: $2.8B in 2007 [BX-0114], including $905M in the quarter
+  of the first 787 delay [B-0050]; $500M during the strike, with operating cash flow negative
+  [B-0122].
+- In the squeeze, liquidity came first; he later judged the response "reasonably well under the
+  circumstances" [BX-0177].
+- The cash model: about 60% of cash arrives at delivery [B-0311], so cash returns fast once
+  deliveries start [B-0376].
+
+Product and strategy.
+- 2010: R&D cuts that keep money for derivatives and "potential investments in the 777 and the 737"
+  [BX-0161].
+- 2011: "a much more disciplined approach" to the next program [BX-0179].
+- Old lines run while demand holds [B-0090].
+
+Operations.
+- Ramps follow the supply chain, "not sitting around just waiting for us" [B-0008]; oversold
+  skylines absorb deferrals [B-0217].
+- Suppliers: claims deferred to keep partners building [BX-0108]; liquidity only for those that
+  performed [BX-0129]; initial claims treated as opening bids [BX-0155].
+
+Rivals.
+- Disciplined pricing with headroom: "we have some room so that we can really be competitive as
+  necessary" [BX-0164].
+- Remembers the cost of a price war: the 2004-05 "bridge" pricing [B-0033] held unit margins down
+  years later [B-0083]. (inference) He will not fund a price war to answer NGSA.
+
+Communication.
+- Plain on booked facts: negative equity disclosed with its limits in the same breath [BX-0133].
+- Withholds estimates until the books force them [BX-0144]; won't quantify customer compensation
+  [BX-0118].
+- Rejects paraphrase: "I've never said we weren't concerned about it" [BX-0145].
+
+Crisis response. The playbook:
+1. Suspend or hold guidance until the facts are clear [BX-0127, BX-0147].
+2. Tie the cost response to the crisis's duration [BX-0128].
+3. Protect liquidity: capex, daily cash calls, debt, stock into the pension [BX-0132, BX-0138,
+   B-0190, BX-0151]. Keep the dividend [BX-0143].
+4. Explain charges by root cause: the 747-8's "late maturity" [BX-0135].
+
+Team.
+- With McNerney: "Jim and I are going to run this business from a conservative perspective"
+  [BX-0100].
+- BCA owns cost recovery [BX-0126]; Muilenburg's defense unit kept its R&D [BX-0183].
+- The CFO's role stops at funding: the product choice was the CEO's; his job was "the financial
+  strength to make the investment necessary" [B-0379].
+
+5. IN THE GAME: IF BELL IS IN THE ROOM
+--------------------------------------
+
+Probe set-up. Scratch probe, 2026-10-03: base scenario, Turn-1 Rate Increase, no injects, fps 2029
+cfm_ducted; Boeing delta PV in $B. Re-run in play.
+
+fps timing.
+- Pushes: 2029, the H2 year, with technology pre-funded [BX-0173] and the full R&D lead time
+  [BX-0180].
+- Vetoes: a Turn-1 launch while the 737-7, 737-10 and 777X are uncertified [BX-0139] (inference);
+  any EIS before tech_ready_year.
+- Must not display "we have time to make that call" [BX-0121] here: a 2030 launch breaks H2, and
+  would cost $1.8-2.1B for no gain.
+
+Solo vs Joint Venture.
+- His lens is cash. The Joint Venture cuts Boeing's capex by $7.8B in PV ($13.9B undiscounted). He
+  kept "risk-sharing arrangements" [BX-0179] and supplier cost-sharing [B-0119].
+- His limit is control (inference): design control stays with Boeing [BX-0168, BX-0149].
+- Probe, Solo minus Joint Venture:
+
+  Airbus plan | No slip | Delay Tactics in Turns 2-3
+  ------------+---------+---------------------------
+  Idle        | +5.5    | +1.8
+  NGSA 2026   | +1.6    | -1.8
+  NGSA 2029   | +2.7    | -0.9
+
+- He argues for the Joint Venture against NGSA 2026, where it costs $1.6B nominally, within the cap,
+  and wins the slip test. Elsewhere he accepts Solo (inference).
+
+787 Re-engine.
+- He sees it as the cheap derivative [B-0432, BX-0186]. His one-at-a-time rule [BX-0171] puts it in
+  2036, after the fps EIS, and the engine agrees. Against NGSA 2029:
+
+  Re-engine launch       | 2030  | 2034  | 2036
+  -----------------------+-------+-------+-----
+  Gain over no Re-engine | +0.7  | +1.0  | +1.2
+  Strain cost            | $2.2B | $0.7B | none
+
+- If fps slips to a 2038 EIS, a 2036 Re-engine adds only $0.7B and overlaps two years; he may skip
+  it (within ε).
+- Vetoes following an A350 Re-engine (inference); he funded no "distinct" answer to the A350
+  [BX-0109]. With both Airbus programs launched in 2029, following costs $2.3B (2036) to $3.5B
+  (2034).
+
+Rate Increase.
+- Pushes: commit once the supply chain is ready [BX-0086, BX-0087]; hold rates through a demand
+  shock [BX-0142]. He expects no margin gain [BX-0185]; the engine agrees (-0.08 alone).
+- Departs from "commit in Turn 1": under uncertainty he takes the time [BX-0121]. Turn 2 costs
+  $0.3B, within ε; skipping it costs $0.9B, which he would not do (inference).
+- Vetoes (inference): it in a supply-chain-crunch turn, from his supply-paced ramp rule [BX-0087].
+
+Cancel. Never a launched airframe: "we will get it back" [BX-0176]; on the 747-8 he slowed the rate
+rather than exit [BX-0154]. Exits a non-core bet on accretion (Connexion) [BX-0093].
+
+Engine choice. No evidence. He would back cfm_ducted as the lowest-risk option, and veto
+cfm_open_fan, which adds a year to EIS (inference from [BX-0186, BX-0181]).
+
+Disclosure. Launches and nominal dates, as for the 787 [BX-0085]; no financial numbers until booked
+[BX-0144]; no Re-engine year before launch (inference).
+
+Delay Tactics and Poaching.
+- A "supplier bottleneck": no order change beyond doctrine (continue fps, H5). In the rationale:
+  keep it building, settle later [BX-0108]; take control if the package fails [BX-0149]; re-baseline
+  with a reserve [BX-0166].
+- Blind spot: he believes profits absorb slips [BX-0182]; the probe says a two-year slip costs Solo
+  fps $10.7B (NGSA 2029).
+- Poaching: no evidence; no order change.
+
+How he argues in the ExCo (paraphrased questions).
+1. What does this do to cash? whatif's capex and strain, PV and undiscounted [BX-0139].
+2. How many developments are we carrying? The overlap years [BX-0171].
+3. What's the reserve if it slips? The slip test, read like the 0%-margin booking [BX-0123].
+4. Program, not unit. Full-game delta PV from options and whatif, not one turn [BX-0095].
+5. Do "we have time to make that call"? The cost of waiting a turn [BX-0121].
+
+What changes his mind: a completed assessment [BX-0147]; delivered airplanes [BX-0169]; customer
+data [BX-0089]. What does not: a strong quarter [BX-0169]; buyback pressure [BX-0156]; order totals
+[BX-0117].
+
+6. CONFIDENCE AND GAPS
+----------------------
+
+- The slice ends in October 2011: nothing on later crises.
+- Thin: Airbus (few, indirect items); engines (none); decision rights (inferred from the call format
+  and envelopes).
+- Attribution. The April 2011 "new airplane" remarks are attributed to Bell, but the wording
+  resembles McNerney's [BX-0170, B-0328].
+- Outcomes from item notes, not his words: the 2009-11 cash and 2011 delivery outcomes. The KC-46
+  charges come from McNerney's items [BX-0844].
+- Unclear basis: the roughly 30% pre-R&D margin [B-0123].

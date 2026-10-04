@@ -1,0 +1,307 @@
+====================================================================================================
+AIRBUS: OPERATING SEAT (CEO, COMMERCIAL AIRCRAFT)
+Role profile for the Boeing vs Airbus war game
+====================================================================================================
+
+Plain-text copy of the executive profiles in wargame/profiles/airbus/executives/, built 2026-10-04
+by wargame/profiles/build/make_role_txt.py. The Markdown files are the source of truth. Bracketed
+ids ([AX-0123], [A-0456]) point to verified evidence in
+wargame/profiles/airbus/executives/evidence.jsonl and wargame/profiles/airbus/evidence.jsonl.
+Section numbers (§) and file names inside a profile refer to that person's Markdown profile; the
+same sections appear below under the person's name.
+
+Scope: professional conduct only, from the executives' own words and the company record. Inferences
+are labelled (inference).
+
+THE SEAT IN THE EXCO
+--------------------
+The operating seat tests production, quality and the supply chain: KPI gates for rate changes,
+supplier and engine readiness, development risk and concurrency.
+
+HOLDERS (3, current first)
+--------------------------
+- Lars Wagner
+    Role: CEO Commercial Aircraft
+    Dates in the sources: Joined in November (year cut off); in role from 1 Jan 2026
+    Evidence items: 2, plus 2 naming him in the handover and 1 referring only to the role
+    Own words: none
+    Confidence: Very low (role-derived)
+
+- Christian Scherer
+    Role: Former CEO Commercial Aircraft
+    Dates in the sources: Handed over by 1 Jan 2026
+    Evidence items: 1 (Board), the only item that names him
+    Own words: none
+    Confidence: Minimal
+
+- John Leahy
+    Role: Chief commercial officer (sales chief)
+    Dates in the sources: Described 2011-2018; retired 2018
+    Evidence items: 6 (all Boeing-side)
+    Own words: none
+    Confidence: Low, outside view
+
+Note: Airbus's operating seat in the game is the CEO of Commercial Aircraft. No separate Airbus COO
+      is in the sources. John Leahy (chief commercial officer, sales) is included here as the
+      historical commercial lead.
+
+
+####################################################################################################
+PROFILE 1 OF 3: LARS WAGNER: CHIEF EXECUTIVE OFFICER, COMMERCIAL AIRCRAFT (CURRENT HOLDER)
+Source: wargame/profiles/airbus/executives/wagner.md
+Teams (see airbus_leadership_teams.txt): faury-toepfer-wagner-2026 (DEFAULT)
+####################################################################################################
+
+Thin profile. The sources give his appointment and nothing he has said or decided. The profile
+describes the role and what he inherited. Everything about how he will decide is (inference) from
+that inheritance, the business objectives that cascade to managers, and the CEO's priorities applied
+to his role.
+
+                                        * * *
+
+1. HEADER
+---------
+
+Role. CEO of the Commercial Aircraft business. He is listed on the Executive Committee directly
+after the group CEO [AX-0109].
+- He joined "the business in November" and took the role on 1 January 2026 [AX-0108, A-0493]. The
+  year of his arrival is cut off in the OCR. The handover is reported in the FY2025 report, so the
+  arrival was probably November 2025 (inference).
+- He overlapped with his predecessor, Christian Scherer, who handed over "institutional knowledge,
+  ongoing projects, and stakeholder relationships" [AX-0100]. The Board credits the CEO with the
+  "seamless transition" of the CEO of Commercial Aircraft [AX-0093]; that quote refers to the role
+  and names neither man.
+- Operating chain: there is no group COO. An EVP Operations and an EVP Programmes and Services sit
+  under the Commercial Aircraft CEO [AX-0031]. A group COO existed in May 2022 [AX-0032].
+- His prior career is not in the sources.
+
+What he inherited (end-2025):
+- Rate commitment: A320 family at "between 70 and 75 aircraft a month by the end of 2027,
+  stabilising at rate 75". The Board Report attributes the slip to an engine supplier whose name is
+  illegible [AX-0054].
+- Delivery record: 793 deliveries in 2025, up from 766 in 2024 but 3% below the initial projection,
+  after a 3 December guidance reset that the Board ties to supply-chain challenges [AX-0052,
+  AX-0053, AX-0009].
+- Quality: two technical issues at end-2025, with root-cause investigations under way [AX-0056], and
+  A320 quality reports [AX-0057].
+- Capacity: new A321 lines in China and the US, and the Spirit work packages for the A220 and A350
+  [AX-0060].
+- Programmes: the A350F in its industrial phase [AX-0082], and NGSA technologies being matured, with
+  no launch [AX-0020].
+- Market position: about 60% of the single-aisle backlog [AX-0025].
+
+Evidence base. 2 AX items [AX-0108, AX-0109], plus 2 that name him in the handover [AX-0100, A-0493]
+and 1 that refers only to the role [AX-0093]. Confidence: Very low. The profile is derived from his
+role.
+
+                                        * * *
+
+2. QUICK CARD
+-------------
+
+Objective function (inference). The business objectives cascade to all employees and managers
+[AX-0071]. Applying the CEO's own 2026 priorities [AX-0073] to Wagner is inference:
+1. The five pillars, safety and quality first, after the end-2025 technical issues [AX-0073,
+   AX-0056].
+2. "Deliver on & secure ramp-up": rate 70-75 by end-2027 [AX-0073, AX-0054].
+3. Supply-chain stability: integrate Spirit, secure engines [AX-0060, AX-0054].
+4. Production readiness for the "Airbus of the 30s" [AX-0073]. The company makes rate producibility
+   a design gate for NGSA [A-0441, A-0225].
+5. Shared EBIT and FCF targets. Managers with a company component in their bonus (about 5,200) are
+   paid on them [AX-0034].
+
+Decision rules (inference):
+- No new programme spend in 2026-27 that competes with the end-2027 rate commitment. A 2028 NGSA
+  launch, the company default, passes.
+- No new concurrency under a supply-chain crunch.
+- Prefer engines that add no EIS years, because engine supply is what slipped the ramp [AX-0054].
+
+Risk appetite. No evidence. (inference) As a new operating head inheriting a reset, he is likely to
+be conservative on schedule.
+
+Tempo. No evidence.
+
+How he reads Boeing. No evidence. Use the company and CEO view.
+
+Voice. None recorded. Use the company phrase "disciplined and controlled production ramp-up"
+[AX-0010] for operating statements.
+
+                                        * * *
+
+3. COMMITMENT TRACK RECORD
+--------------------------
+
+Date                 | Commitment                      | Outcome                        | Ids
+---------------------+---------------------------------+--------------------------------+--------
+Inherited 1 Jan 2026 | Rate 70-75 by end-2027, then 75 | Not yet visible in the sources | AX-0054
+
+                                        * * *
+
+4. IN THE GAME: IF WAGNER IS IN THE ROOM
+----------------------------------------
+
+He is the ExCo's production, quality and supply-chain test. (inference throughout)
+
+* Lever: NGSA launch
+    Pushes for: Launch only once the production system and the rate-capable wing are on track
+      [A-0441, A-0225]. Game proxy: no NGSA launch before 2028, the company default.
+    Vetoes: A launch in 2026-27 that competes with the end-2027 ramp for engineering talent and
+      suppliers, unless whatif shows at least $1B. An NGSA launch in 2028 passes.
+
+* Lever: Engine choice
+    Pushes for: No added EIS years; full capture
+    Vetoes: Open fan or UltraFan on NGSA without at least $1B, given the engine-supply history
+      [AX-0054]
+
+* Lever: A350 Re-engine
+    Pushes for: Not while the A350F and the Spirit A350 packages are being absorbed [AX-0082,
+      AX-0060]. Game proxy: no A350 Re-engine before turn 3 (the ../profile.md default plan).
+    Vetoes: Concurrency with NGSA under a supply-crunch inject
+
+* Lever: Rate (Boeing's Rate Increase)
+    Pushes for: Our own ramp: "disciplined and controlled" [AX-0010]
+    Vetoes: Reacting to Boeing's rate
+
+* Lever: Poaching
+    Pushes for: On while a programme is in development: talent binds both the ramp and new
+      programmes [A-0366]
+    Vetoes: n/a
+
+* Lever: Delay Tactics
+    Pushes for: No view in evidence. The rules come from ../profile.md hard rule 4; the quality and
+      integrity pillars apply [AX-0073].
+    Vetoes: A second turn
+
+What he asks for. The overlap years and strain dollars in whatif, the engine's eis_add, and whether
+an inject (supply crunch, engine maturity slip) changes concurrency costs.
+
+                                        * * *
+
+5. CONFIDENCE AND GAPS
+----------------------
+
+- No statements, decisions or priorities of his own.
+- His arrival year and prior role are not legible or not present.
+- Gap-filler: his first appearances (results calls, air-show briefings) are needed (see README.md).
+
+
+####################################################################################################
+PROFILE 2 OF 3: CHRISTIAN SCHERER: FORMER CEO, COMMERCIAL AIRCRAFT (HISTORICAL, OUTSIDE VIEW)
+Source: wargame/profiles/airbus/executives/historical.md, section "Christian Scherer: former CEO,
+  Commercial Aircraft"
+####################################################################################################
+
+About the historical cards
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Read this first.
+- Outside views only. Each card rests on a handful of remarks by rivals (Boeing), a supplier (the
+  CEO of Pratt & Whitney's parent) or journalists on their calls, plus a few lines from the FY2025
+  Board Report. None of these leaders' own words are in the sources.
+- Not playable teams. The evidence is too thin to build a decision rule, so no historical Airbus
+  team is offered (see teams.md). Use these cards for flavour, or as a "what if this person sat in
+  today's ExCo" modifier, and say so in the rationale.
+- Tags:
+  - [outside: Boeing]: Boeing executives, analysts or journalists on Boeing calls;
+  - [outside: P&W]: the CEO of Pratt & Whitney's parent (UTC);
+  - [Board]: the FY2025 Board Report;
+  - (inference): my derivation.
+
+Evidence. 1 AX item [Board] that names him [AX-0100], plus 2 that describe the handover without
+naming him in the quoted text: AX-0093 refers to the role, and the A-0493 quote names only Wagner.
+Confidence: Minimal.
+
+What the sources say:
+- An orderly handover. He "worked closely with Lars Wagner", ensuring "a comprehensive transfer of
+  institutional knowledge, ongoing projects, and stakeholder relationships" [AX-0100]. The Board
+  calls the transition "seamless" [AX-0093].
+- His last year at the head of Commercial Aircraft (inference from the 1 January 2026 handover; no
+  item attributes these outcomes to him personally):
+  - 2025 deliveries rose from 766 to 793 but came in 3% below the initial projection [AX-0052];
+  - the 3 December guidance reset [AX-0053];
+  - rate 70-75 re-dated to end-2027 [AX-0054];
+  - the Board attributes the slips to the supply chain and an engine supplier [AX-0009, AX-0054].
+- Not in the sources: his tenure dates, his earlier role as chief commercial officer, and his
+  reasons for leaving.
+
+In the game. Do not use him as a decision-maker. His card exists to explain what Wagner inherited
+(see wagner.md).
+
+Gaps common to all three
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- No own words. No transcripts, interviews or Airbus-side accounts of their decisions.
+- Enders: the A380 decision, A400M, the compliance overhaul and the A320neo launch are absent.
+- Leahy: nothing on deal terms, pricing discipline or his role in named campaigns.
+
+
+####################################################################################################
+PROFILE 3 OF 3: JOHN LEAHY: CHIEF COMMERCIAL OFFICER, AIRBUS'S SALES CHIEF (AS DESCRIBED 2011-2018)
+(HISTORICAL, OUTSIDE VIEW)
+Source: wargame/profiles/airbus/executives/historical.md, section "John Leahy: chief commercial
+  officer, Airbus's sales chief (as described 2011-2018)"
+####################################################################################################
+
+About the historical cards
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Read this first.
+- Outside views only. Each card rests on a handful of remarks by rivals (Boeing), a supplier (the
+  CEO of Pratt & Whitney's parent) or journalists on their calls, plus a few lines from the FY2025
+  Board Report. None of these leaders' own words are in the sources.
+- Not playable teams. The evidence is too thin to build a decision rule, so no historical Airbus
+  team is offered (see teams.md). Use these cards for flavour, or as a "what if this person sat in
+  today's ExCo" modifier, and say so in the rationale.
+- Tags:
+  - [outside: Boeing]: Boeing executives, analysts or journalists on Boeing calls;
+  - [outside: P&W]: the CEO of Pratt & Whitney's parent (UTC);
+  - [Board]: the FY2025 Board Report;
+  - (inference): my derivation.
+
+Evidence. 6 AX items, all [outside: Boeing], 2011-2018, plus company items repeating them [A-0072,
+A-0083, A-0128]. Confidence: Low. Four of the six are Boeing executives characterising a rival. The
+other two are a journalist's questions on Boeing calls.
+
+What the outside views say:
+- A public market caller. In 2011 Boeing's commercial chief said there were "a few things that John
+  and I agree on and certainly where the market is going is" (the quote is cut off) [AX-0094]. In
+  2012 a Financial Times journalist on a Boeing call said Leahy "thought the order cycle had
+  probably peaked" at Farnborough [AX-0095]; these are the journalist's words, not Leahy's. Boeing's
+  CEO's reply is summarised in the item but not quoted. The sources do not show how either call
+  turned out.
+- Publicly questioned the 787's reliability after the July 2013 Heathrow fire (as quoted by a
+  Financial Times journalist [AX-0097]): "it's pretty obvious this airplane is not reliable and does
+  not have mature systems". Boeing's CEO answered with a hedged guess: "you'd have to ask him, but
+  my guess is John would feel that he was -- got carried away with himself, which can happen, but
+  you have to ask him" [AX-0096]. This is one instance.
+- Fought on fuel-burn numbers. Boeing's commercial chief pitched the MAX as "8% better than a NEO"
+  and planned to "say that to John Leahy" [AX-0098].
+- A superb but solo dealmaker. In March 2018, discussing the change at the top of Airbus's sales
+  team, Boeing's marketing chief said he "was a superb sales leader, but he did a lot of it on his
+  own". Boeing expected Airbus to become "more disciplined" while remaining "a very aggressive
+  competitor" [AX-0099, A-0128]. No item links Leahy to any compliance matter.
+
+Context, not attributed to him. Airbus's commercial conduct in the years Boeing describes him as
+sales chief included:
+- neo pricing reported at or below A320ceo prices [A-0064];
+- launch pricing Boeing called predatory [A-0066];
+- the American Airlines breakthrough [A-0045];
+- the Lion Air win with early slots [A-0080];
+- the Japan Airlines A350 win [A-0086].
+
+No item names him as the decision-maker in these campaigns (inference: these fall in his era only).
+
+If he sat in today's ExCo (inference):
+- Public statements: willing to question a rival's product in public after an incident, as with the
+  787 in 2013 [AX-0097] (one instance).
+- Disclosure: public market-cycle calls, as at Farnborough 2012 [AX-0095].
+- Integrity limit: the 2026 integrity and compliance pillar [AX-0073] limits how far that voice
+  goes.
+- Delay Tactics: the rules come from ../profile.md; nothing in Leahy's record bears on it.
+
+Gaps common to all three
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- No own words. No transcripts, interviews or Airbus-side accounts of their decisions.
+- Enders: the A380 decision, A400M, the compliance overhaul and the A320neo launch are absent.
+- Leahy: nothing on deal terms, pricing discipline or his role in named campaigns.

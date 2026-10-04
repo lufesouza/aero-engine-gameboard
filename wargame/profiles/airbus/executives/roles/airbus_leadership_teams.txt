@@ -1,0 +1,333 @@
+====================================================================================================
+AIRBUS: LEADERSHIP TEAMS (EXCO CARDS)
+Companion to the role files in this folder
+====================================================================================================
+
+Plain-text copy of wargame/profiles/airbus/executives/teams.md, built 2026-10-04 by
+wargame/profiles/build/make_role_txt.py. The Markdown file is the source of truth.
+
+AIRBUS LEADERSHIP TEAMS
+=======================
+
+Default for the 2026 game: faury-toepfer-wagner-2026. It is the only Airbus team offered.
+
+Why there are no historical teams. A historical team would mean "this team running Airbus today".
+The Airbus evidence before 2025 on Enders and Leahy is eight outside remarks (plus one 2026 Board
+line on the A220's outcome), with nothing on their CFOs or operating heads (see historical.md). A
+team built from that would be fiction. If a historical Airbus team is requested, run the default
+team with the relevant historical.md modifier, and label it as such in the rationale.
+
+Tags:
+- [Board]: the FY2025 Board Report;
+- [outside: …]: rival or supplier remarks;
+- (inference): my derivation.
+
+The company profile (../profile.md) decides what is in bounds: hard rules, red lines and the default
+plan. This file decides how the team weighs options inside those bounds.
+
+                                        * * *
+
+FAURY-TOEPFER-WAGNER-2026 (DEFAULT)
+-----------------------------------
+
+Members and roles
+~~~~~~~~~~~~~~~~~
+
+* Member: Guillaume Faury
+    Role: CEO and Board member (term to 2028). Accountable for execution, and leads the Executive
+      Committee, which owns business strategy.
+    Evidence: AX-0029, AX-0090
+    Confidence: Medium (incentives High)
+
+* Member: Thomas Toepfer
+    Role: CFO. Chairs the Internal Control Committee and attends the Audit Committee.
+    Evidence: AX-0105, AX-0106, AX-0107
+    Confidence: Low
+
+* Member: Lars Wagner
+    Role: CEO Commercial Aircraft from 1 January 2026, the operating head for airliners
+    Evidence: AX-0108, AX-0109
+    Confidence: Very low
+
+Structure around them:
+- Under Wagner: an EVP Operations and an EVP Programmes and Services. There is no group COO
+  [AX-0031].
+- The Executive Committee: 11 members, which met formally four times in 2025 [AX-0031, AX-0033].
+- The Board: 12 directors, 11 of them independent. No director or class of directors has a veto
+  [AX-0027].
+
+Since when. The team exists in this form from 1 January 2026 [AX-0108]. Toepfer's start date is not
+in the sources.
+
+The decision rule
+~~~~~~~~~~~~~~~~~
+
+1. The CEO leads the ExCo, which prepares strategy collectively; he alone is accountable for
+   execution [AX-0029]. He also proposes the ExCo's members for Board approval [AX-0028]. In the
+   game he takes the final call (inference).
+2. The CFO and the CEO of Commercial Aircraft hold tests, not formal vetoes. No formal veto appears
+   in the evidence. (inference) In the game a failed test is a soft veto. The CEO can override it
+   only when whatif shows at least $1B more than the best option that passes, and the override is
+   recorded as a Board item.
+3. The five pillars cannot be overridden (safety, quality, integrity, compliance, security). They
+   are the first paid CEO objective for 2026 and "the baseline for every action and decision"
+   [AX-0073, AX-0081].
+4. The Board approves big orders. It decides on anything above €300m, major programmes in the yearly
+   budget, and anything with "an abnormal level of risk" [AX-0026], by simple or two-thirds majority
+   [AX-0027]. In game terms (inference):
+
+Order                          | Board item?    | Why
+-------------------------------+----------------+-------------------------------------
+NGSA launch ($25B)             | Yes            | Above €300m
+A350 Re-engine launch ($4.2B)  | Yes            | Above €300m
+Any cancellation               | Yes            | A major programme in the budget
+Delay Tactics ($0.5B per turn) | Yes            | Above €300m and "abnormal" risk
+Poaching ($0.25B per turn)     | No, ExCo level | Below €300m at recent exchange rates
+
+The Board's stance.
+- It is supportive. It paid the CEO about 125% of his bonus target in a year with a guidance cut,
+  and applied no clawback [AX-0066, AX-0035, AX-0059]. It frames the 2025 miss year as "resilience"
+  under the CEO's leadership [AX-0050] (the Board's words).
+- It wants stronger risk oversight [AX-0008].
+- (inference) Assume approval for any order that passes all three tests. Assume approval for at most
+  one override per game.
+
+Incentive map: what each member is paid to protect, in game terms
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The 2026 STI is split as follows [AX-0073, AX-0074]:
+- 50% company: EBIT 20, FCF 20, FR1 5, water 5. The EBIT and FCF weights are the 2025 ones
+  [AX-0067], assumed unchanged;
+- 10% business objectives;
+- 40% CEO priorities, with weights read in the order printed.
+
+The long-term plan:
+- 2022 design: 75% three-year average EPS and 25% cumulative FCF [AX-0048].
+- From the 2025 grant: 10% on the fleet efficiency of delivered aircraft (58.1 g/pax-km by 2028),
+  plus a Scope 1&2 metric whose weight is illegible [AX-0049].
+- Floor: 50% vests on any positive cumulative EBIT [AX-0086].
+
+The same company EBIT and FCF targets drive the bonus of about 5,200 managers [AX-0034]. (inference)
+Toepfer and Wagner are paid on the same company numbers, though their own weights are not disclosed.
+
+* Paid objective (2026): EBIT + FCF
+    Weight: 40%
+    Voice in the ExCo: Toepfer
+    Game levers it touches: Delta PV, capex timing, strain, tactic costs
+
+* Paid objective (2026): Five pillars
+    Weight: ~7.5% (+ FR1 5%)
+    Voice in the ExCo: Faury (all three)
+    Game levers it touches: Delay Tactics, disclosure, statements
+
+* Paid objective (2026): Deliver and secure ramp-up
+    Weight: ~7.5%
+    Voice in the ExCo: Wagner
+    Game levers it touches: Concurrency, engine eis_add, supply-crunch inject
+
+* Paid objective (2026): "Prepare for the Airbus of the 30s"
+    Weight: ~7.5%
+    Voice in the ExCo: Faury, with Wagner on production readiness
+    Game levers it touches: NGSA timing and engine
+
+* Paid objective (2026): Human capital
+    Weight: ~7.5%
+    Voice in the ExCo: Faury
+    Game levers it touches: Poaching
+
+* Paid objective (2026): Geopolitics, "more sovereign Europe"
+    Weight: 5%
+    Voice in the ExCo: Faury
+    Game levers it touches: Trade-dispute inject, public statement
+
+* Paid objective (2026): Defence and Space transformation
+    Weight: 5%
+    Voice in the ExCo: Faury
+    Game levers it touches: None (outside the game)
+
+* Paid objective (2026): LTI: EPS 3-year average, FCF, fleet efficiency
+    Weight: n/a
+    Voice in the ExCo: Toepfer (EPS, FCF); Wagner (fleet efficiency of delivered aircraft to 2028
+      [AX-0049]). (inference) Their own LTI terms are not in the evidence.
+    Game levers it touches: Capex timing. The CEO's 2025 grant vests in May 2029 [AX-0047]; its
+      performance period and EPS weight are not in the evidence. This is the Board's incentive
+      design; do not treat it as a motive for launch timing.
+
+Typical tensions (inference from roles and pay design)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. CEO strategy against CFO cash (inference). The Board scored Faury's Europe, geopolitics and
+   roadmap priorities at 145-150% in 2025 [AX-0072]; FCF scored higher still, at 157% [AX-0067].
+   Toepfer guards FCF and net cash of €12.2bn [AX-0102]. No item shows the two men disagreeing.
+   - Where it bites: the NGSA launch year (2028 vs 2029-30) and any A350 Re-engine overlap.
+2. The ramp against the next aircraft. Wagner inherits "70 and 75 a month by the end of 2027"
+   [AX-0054]. The company says talent binds both the ramp and new programmes [A-0366, A-0485].
+   - Where it bites: any turn-1 programme spend, and Poaching.
+3. Signal against credibility (inference). The rate-75 goal, as Pratt & Whitney's parent reported it
+   [AX-0042] [outside: P&W], was re-dated to end-2027 [AX-0054]; the 2025 delivery guidance was
+   reset late, on 3 December [AX-0053]. A new operating head needs to hit the reset number.
+   - Where it bites: disclose. The team prefers ranges and windows for EIS and rate (inference);
+     operating guidance can be a number [AX-0053].
+4. Integrity against covert levers. The five pillars [AX-0073] against Delay Tactics.
+   - Where it bites: every turn in which an fps is in development.
+5. Tenure asymmetry. A long-serving CEO with a supportive Board [AX-0059, AX-0090] and a CA chief in
+   his first year [AX-0108].
+   - (inference) Faury's framing usually carries unless Wagner cites a concrete production
+     constraint.
+
+How the team turned the company doctrine into decisions (2025 to early 2026)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The team in its 2026 form has no decisions yet on record. These are the Faury-led decisions of 2025,
+with Scherer at Commercial Aircraft and the finance function under the CFO:
+
+* Doctrine (profile): Rate harder than Boeing, but "disciplined and controlled"
+    Decision on record: Rate 75 re-dated to "between 70 and 75 by the end of 2027"; 2025 delivery
+      guidance reset on 3 December, then met
+    Ids: AX-0010, AX-0054, AX-0053
+
+* Doctrine (profile): Control the supply chain
+    Decision on record: Spirit work packages and sites in five countries; two A321 lines outside
+      Europe; titanium and rare earths de-risked
+    Ids: AX-0060, AX-0061, AX-0062, AX-0063
+
+* Doctrine (profile): Financial resilience
+    Decision on record: Net cash up to €12.2bn; dividend €3.20 (48% payout); buybacks only for share
+      plans
+    Ids: AX-0102, AX-0002, AX-0101
+
+* Doctrine (profile): Derivatives first; NGSA on technology gates
+    Decision on record: A350F into final assembly; military A320; NGSA technologies matured with no
+      launch; hydrogen re-dated past 2035
+    Ids: AX-0082, AX-0083, AX-0020, AX-0006
+
+* Doctrine (profile): Widebody question open
+    Decision on record: Board in-depth review of "widebody aircraft market dynamics"
+    Ids: AX-0019
+
+* Doctrine (profile): Trade: lobby, do not fight Boeing
+    Decision on record: Zero-for-zero EU-US accord; Mobile kept viable under tariffs
+    Ids: AX-0088, AX-0064
+
+* Doctrine (profile): Safety first
+    Decision on record: Immediate response to two technical issues; five pillars made the first 2026
+      objective
+    Ids: AX-0056, AX-0073
+
+Per-turn ExCo deliberation script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Step 0. Finance team inputs.
+- brief, then options --compact.
+- whatif for:
+  - (a) NGSA at the technology-ready launch year vs one and two years later;
+  - (b) the NGSA engines;
+  - (c) the A350 Re-engine now, later or never, with strain;
+  - (d) Delay Tactics and Poaching on and off;
+  - (e) the plan against Boeing's best response and against its worst case for us.
+
+Step 1. Faury frames.
+- The situation: Boeing's public moves (fps year, Solo or Joint Venture, engine; 787 Re-engine; Rate
+  Increase), and this turn's inject matched to profile §5.
+- The paid objectives at stake, from the incentive map.
+- The proposal: the company default plan for this turn, or the highest-PV option if it beats the
+  default by more than $1B.
+- His thresholds:
+  - NGSA EIS at or after the technology-ready year (2035 at base) [AX-0006, AX-0020];
+  - NGSA launched by 2030 at the latest;
+  - Delay Tactics at most once per game (../profile.md hard rule 4; inference, game parameter);
+  - a Boeing launch is not a reason to accelerate (profile hard rule 2).
+
+Step 2. Toepfer tests cash, the balance sheet and the hurdle.
+- Robustness: delta PV against Do Nothing is positive in the worst Boeing case.
+- Peak spend (game guardrail, inference; no evidence sets this threshold): peak annual programme
+  cash spend no higher than about one year's FCF, €4.75bn [AX-0104], about $5.2B at an assumed $1.10
+  per € (a game assumption, not evidence).
+  - Use unloaded (cash) amounts: FCF is a cash measure, and the engine's 1.30 alpha loading is
+    already in delta PV.
+  - whatif reports PV, undiscounted totals and programme dates, not annual spend. Compute each
+    year's spend from the launch years and the rules capex and dev_years: capex is capex_b /
+    dev_years in each development year; strain is $3B × min(1, overlap / 5) / overlap in each
+    overlap year ($0.6B a year for any overlap of 5 years or less, ×1.5 under a supply-chain
+    crunch); Delay Tactics is $0.5B in the first year of its turn.
+  - NGSA alone: $25B / 7 ≈ $3.6B a year ($4.6B alpha-loaded): passes.
+  - NGSA plus an overlapping A350 Re-engine: $3.6B + $0.84B + $0.6B strain ≈ $5.0B a year: passes
+    narrowly.
+  - The same under a supply-chain crunch ($0.9B strain, ≈ $5.3B), or with Delay Tactics in an
+    overlap year (≈ $5.5B): flag.
+- Overlap: 2 years or less, unless whatif shows at least $1B more.
+- Timing: no NGSA capex before 2028, the first launch year whose EIS reaches the technology-ready
+  year; a 2026-27 launch carries the early-EIS penalty and breaks ../profile.md hard rule 1. Between
+  non-default options within $1B, prefer the later capex start (inference), because capex weighs on
+  the company EBIT and FCF targets that drive the bonus of about 5,200 managers [AX-0034].
+- Tactics: Poaching only if a programme is in development (it saves $0.4B against a $0.25B cost).
+  Delay Tactics is booked as a Board item [AX-0026].
+
+Step 3. Wagner tests production, quality and the supply chain.
+- Turn 1: no programme spend in 2026-27 that competes with the end-2027 rate commitment for
+  engineers and suppliers [AX-0054]; the default NGSA launch in 2028 passes. No A350 Re-engine in
+  turn 1.
+- Engine:
+  - prefer eis_add 0 and capture_mult 1.0 (the CFM ducted engine on NGSA; Rolls-Royce UltraFan on
+    the A350 Re-engine, which adds 0 years);
+  - any other engine needs at least $1B in whatif [AX-0054].
+- Injects:
+  - supply-chain crunch: no new concurrency;
+  - engine maturity slip: re-time NGSA so EIS stays at or after the new technology-ready year;
+  - Boeing quality escape or certification scrutiny: no change to our programmes.
+- Quality: no order whose public explanation would contradict the five pillars [AX-0073].
+
+Step 4. Decide by the team rule.
+- Survivors: the options that pass the company red lines, Toepfer's test and Wagner's test.
+- Choice: the highest-PV survivor, or the company default when it is within $1B.
+- Overrides: a failed test can be overridden only with at least $1B more than the best survivor.
+  Declare the doctrine premium and mark the order as a Board item. Five-pillars failures are never
+  overridden.
+- Tie-breaks, within $1B, in this order:
+  1. no early-EIS penalty;
+  2. less concurrency and strain;
+  3. the later capex start;
+  4. NGSA EIS stays within 2035-2037 after a one-year slip;
+  5. fewer Board items.
+
+Step 5. The Board gate.
+- For each Board item, write one line covering:
+  - the five pillars;
+  - Toepfer's test;
+  - Wagner's test;
+  - the delta PV.
+- Assume approval if all three tests pass. Assume at most one override per game [AX-0008, AX-0059]
+  (inference).
+
+Step 6. Speak.
+- public_statement in Faury's register: safety and quality, a "disciplined and controlled" ramp,
+  preparing "the Airbus of the 30s" and zero-for-zero trade [AX-0081, AX-0010, AX-0073, AX-0088].
+- Financial commitments in Toepfer's register: "shareholder returns while preserving financial
+  flexibility" [AX-0001].
+- disclose: never the internal long-term-plan targets [AX-0005]. Operating guidance can be a number,
+  as with 2025 delivery guidance [AX-0053]. For EIS and rate, prefer windows and ranges [AX-0020,
+  AX-0054] (preference: inference). Never Delay Tactics.
+- Rationale: 2-4 lines per member, with ids and engine numbers. Note that Toepfer's and Wagner's
+  lines are role-derived (low confidence).
+
+How this team differs from the company default
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The same: red lines, default plan, and the $1B doctrine premium rule.
+
+Sharpened by this team (all inference from incentives and roles, not from the members' own words):
+- Two explicit soft vetoes: the CFO's cash test and the CA CEO's production test. Each can be
+  overridden only with at least $1B and a Board item.
+- A turn-1 ramp shield. No concurrent programme spend in 2026-27, because the rate-75 date falls
+  inside the turn [AX-0054].
+- Stricter Delay Tactics. On top of the company test, the move must change who enters service first,
+  since that is where its value shows in whatif PV, and it goes to the Board [AX-0026]. The
+  integrity pillar, the CEO's first paid objective [AX-0073], argues for restraint. No evidence
+  shows any member using or favouring such a lever.
+- Engine supply certainty as a tie-break [AX-0054].
+- Disclosure: ranges and windows preferred for EIS and rate [AX-0020, AX-0054] (inference); internal
+  long-term-plan targets never disclosed [AX-0005]; operating guidance may be a number [AX-0053].
+
+Thinner than the company profile. Toepfer and Wagner add no evidence of their own, so the team
+mostly ratifies the company default. If a team rule and ../profile.md conflict on what is allowed,
+the profile wins.
