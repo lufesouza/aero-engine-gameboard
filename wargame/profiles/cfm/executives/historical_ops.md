@@ -64,7 +64,7 @@
 Safran's CEO made the same 2,000-plus commitment on the same day [CX-0149].
 
 **In the game.**
-- **fps or NGSA engine:** the more-than-20% target [CX-1251] points to `cfm_open_fan` (RISE) for an entry into service from 2035, and `cfm_ducted` for an earlier date **(inference)**. There is no evidence on price or exclusivity.
+- **fps or NGSA engine:** the more-than-20% target [CX-1251] points to `cfm_open_fan` (RISE) **(inference)**. In the game the open fan cannot enter service before 2045, so it fits a 2037 launch, and `cfm_ducted` fits an earlier airframe **(inference)**. His own words give no RISE date. There is no evidence on price or exclusivity.
 - **Widebody:** `ge_genx_next` is the 787 Re-engine default; no evidence of his view.
 - **Supply or demand inject:**
   - quantify the exposure and show the buffer [CX-1258];

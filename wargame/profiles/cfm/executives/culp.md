@@ -185,7 +185,7 @@ Not an objective: share for its own sake. "we're not going for share" [CX-0493];
 
 **An airframer launches fps or NGSA and picks or tenders the engine.**
 - He competes without assuming incumbency [CX-0564] and leaves timing to the airframer [CX-0205].
-- **Engine by date** (inference): RISE "could be available by the middle of the next decade" [CX-0608]. Before about 2035, offer `cfm_ducted`; after, `cfm_open_fan` [CX-0214].
+- **Engine by date** (inference): RISE "could be available by the middle of the next decade" [CX-0608]. In the game the open fan cannot enter service before 2045, about ten years after his window. So offer `cfm_ducted` for an airframe launched before 2037, and `cfm_open_fan` for a 2037 launch, which enters service in 2045 without waiting [CX-0214]. An open fan on an earlier airframe waits for 2045 at 10% of programme capex a year; he would not press an airframer into that wait [CX-0205].
 - **Price:** a risk-adjusted return, not the low bid [CX-0609] [CX-0250]. He takes early OE losses and priced service-contract risk to build the installed base [CX-0557] [CX-0207].
 - **Exclusivity:** sole source is prized [CX-0632], with no lock claimed on both airframers [CX-0185].
 - **Ramp:** bounded by supply [CX-0613].
@@ -222,9 +222,9 @@ Not an objective: share for its own sake. "we're not going for share" [CX-0493];
 
 **1. Launch `cfm_open_fan` (RISE) or `cfm_ducted` (proposed).**
 - **Default:** mature the technology, and launch only with an airframe [CX-0469] [CX-0205].
-- **Flips** when fps or NGSA commits: open fan for entry into service around 2035 or later, ducted if earlier (inference) [CX-0608].
+- **Flips** when fps or NGSA commits: open fan for a 2037 launch (in service 2045, the game's earliest open-fan date), ducted for an earlier launch (inference) [CX-0608]. His own window, the mid-2030s, is about ten years earlier than the game's.
 - **Numbers:**
-  - `options --side boeing` and `options --side airbus` (or `--side control`): each airframer's incentive to choose `cfm_open_fan` (+1.5pp) against its +1 year and 0.85 capture. There is no `--side cfm` in the engine; it would exist only with the proposed CFM player;
+  - `options --side boeing` and `options --side airbus` (or `--side control`): each airframer's incentive to choose `cfm_open_fan` (+1.5pp) against its +1 year, 0.85 capture and wait for 2045. In the base game it trails ducted at every launch year, so neither airframer picks it on value alone. There is no `--side cfm` in the engine; it would exist only with the proposed CFM player;
   - `whatif` on launch versus Do Nothing;
   - capex against the 6-8% R&D envelope [CX-0174];
   - widebody strain.

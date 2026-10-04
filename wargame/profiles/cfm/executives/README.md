@@ -55,14 +55,14 @@ The full cards, with decision rules, Safran gates, tensions and per-turn ExCo sc
 | Engine | Segment | Use |
 |---|---|---|
 | `cfm_ducted` | narrowbody | The default for fps and NGSA |
-| `cfm_open_fan` | narrowbody | RISE: +1.5pp margin, +1 year to EIS, 0.85 capture |
+| `cfm_open_fan` | narrowbody | RISE: +1.5pp margin, +1 year to EIS, 0.85 capture; no entry into service before 2045, so an airframe launched before 2037 waits for it |
 | `ge_genx_next` | widebody | GE alone, not CFM; the default for the 787 Re-engine |
 
 **The market cell** sets CFM/GE's reactions (bounded capture multipliers) from the public record. It does not read these profiles.
 
 **The referee (game-orchestrator) uses them now** to judge whether a CFM/GE reaction is plausible:
 1. Read `teams.md`: the baseline, the Safran gate and the default team's card. Use a historical team only if the game was set up with one.
-2. Match the situation to the default card's thresholds. For example: an open fan entering service before 2035 runs ahead of GE's own words; a 2023-24-style ramp promise should be haircut by a quarter to a half of its promised growth, with room for a 2024-type reversal when suppliers fail, while a low 2025-style guide may be raised (baseline rule 3; 2023 delivered +38% or +25% against +50% [CX-0590] [CX-0176], 2024 fell 10% against +20-25% [CX-0954], the 2025 guide was raised mid-year [CX-0654]); a CFM that refuses one airframer is implausible.
+2. Match the situation to the default card's thresholds. For example: in the game no open fan enters service before 2045, about ten years after GE's own window [CX-0608]; CFM/GE pressing an airframer to launch on it early and wait is implausible **(inference)** [CX-0205]; a 2023-24-style ramp promise should be haircut by a quarter to a half of its promised growth, with room for a 2024-type reversal when suppliers fail, while a low 2025-style guide may be raised (baseline rule 3; 2023 delivered +38% or +25% against +50% [CX-0590] [CX-0176], 2024 fell 10% against +20-25% [CX-0954], the 2025 guide was raised mid-year [CX-0654]); a CFM that refuses one airframer is implausible.
 3. For detail, read the member's profile: § 2 (Quick card), § 3 (commitment track record) and § 5 (In the game, Part 1).
 
 **A future `cfm` supplier player would use them** like the Boeing and Airbus strategists use theirs:

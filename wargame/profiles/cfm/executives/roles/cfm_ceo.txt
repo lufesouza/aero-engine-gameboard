@@ -387,7 +387,10 @@ Part 1: as the market cell's CFM/GE today
 An airframer launches fps or NGSA and picks or tenders the engine.
 - He competes without assuming incumbency [CX-0564] and leaves timing to the airframer [CX-0205].
 - Engine by date (inference): RISE "could be available by the middle of the next decade" [CX-0608].
-  Before about 2035, offer cfm_ducted; after, cfm_open_fan [CX-0214].
+  In the game the open fan cannot enter service before 2045, about ten years after his window. So
+  offer cfm_ducted for an airframe launched before 2037, and cfm_open_fan for a 2037 launch, which
+  enters service in 2045 without waiting [CX-0214]. An open fan on an earlier airframe waits for
+  2045 at 10% of programme capex a year; he would not press an airframer into that wait [CX-0205].
 - Price: a risk-adjusted return, not the low bid [CX-0609] [CX-0250]. He takes early OE losses and
   priced service-contract risk to build the installed base [CX-0557] [CX-0207].
 - Exclusivity: sole source is prized [CX-0632], with no lock claimed on both airframers [CX-0185].
@@ -437,12 +440,14 @@ Part 2: as a supplier player (proposed levers, not in the engine yet)
 
 1. Launch cfm_open_fan (RISE) or cfm_ducted (proposed).
 - Default: mature the technology, and launch only with an airframe [CX-0469] [CX-0205].
-- Flips when fps or NGSA commits: open fan for entry into service around 2035 or later, ducted if
-  earlier (inference) [CX-0608].
+- Flips when fps or NGSA commits: open fan for a 2037 launch (in service 2045, the game's earliest
+  open-fan date), ducted for an earlier launch (inference) [CX-0608]. His own window, the mid-2030s,
+  is about ten years earlier than the game's.
 - Numbers:
   - options --side boeing and options --side airbus (or --side control): each airframer's incentive
-    to choose cfm_open_fan (+1.5pp) against its +1 year and 0.85 capture. There is no --side cfm in
-    the engine; it would exist only with the proposed CFM player;
+    to choose cfm_open_fan (+1.5pp) against its +1 year, 0.85 capture and wait for 2045. In the base
+    game it trails ducted at every launch year, so neither airframer picks it on value alone. There
+    is no --side cfm in the engine; it would exist only with the proposed CFM player;
   - whatif on launch versus Do Nothing;
   - capex against the 6-8% R&D envelope [CX-0174];
   - widebody strain.
@@ -797,8 +802,9 @@ engines is an inference from a Healthcare rule.
 
 * Proposed lever: RISE open fan or advanced ducted (cfm_open_fan / cfm_ducted)
     Default: Ducted. Open fan stays a technology programme (inference)
-    Flips when: whatif shows the +1.5 pp margin beats +1 year EIS and 0.85 capture, and test
-      evidence is in hand (his Healthcare stage-gate rules) [CX-0783, CX-0787] (inference)
+    Flips when: whatif shows the +1.5 pp margin beats +1 year EIS, the wait for 2045 (the game's
+      earliest open-fan entry) and 0.85 capture, and test evidence is in hand (his Healthcare
+      stage-gate rules) [CX-0783, CX-0787] (inference)
     He asks for: Both engines on fps and NGSA in options; capex against 1.0x [CX-0802]; leverage
       under 2.5x [CX-0867]
     Safran: Joint: RISE is a 50/50 CFM programme [CX-0166]
@@ -1149,7 +1155,9 @@ These situations post-date him. Each line applies a cited rule of his and is (in
 * Proposed lever: RISE open fan or advanced ducted (cfm_open_fan / cfm_ducted)
     Default: Open fan if an airframer commits: the bigger technology bet [CX-1096, CX-1060]
       (inference)
-    Flips when: Ducted if whatif shows +1 year EIS and 0.85 capture losing sole source
+    Flips when: Ducted if whatif shows +1 year EIS, the wait for 2045 and 0.85 capture losing sole
+      source. In the game the open fan cannot enter service before 2045, so it fits only a 2037
+      airframe launch (inference)
     He asks for: Lifecycle value and service returns (>30%) [CX-1094]; government co-funding, as the
       Advanced Turboprop had (about 50%) [CX-1016] (inference)
     Safran: RISE is a joint CFM programme [CX-0147], launched after him

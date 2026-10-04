@@ -141,7 +141,7 @@ The evidence is thin, so most dimensions are covered by the Quick card. This sec
 ### Part 1: as the market cell's CFM/GE today
 
 **An airframer launches fps or NGSA and picks or tenders the engine.**
-- **Architecture:** the open fan. 20% is impossible without it [CX-0180], and ducted gets "less than half" [CX-0183]. In engine terms he backs `cfm_open_fan` (+1.5pp margin) and accepts its +1 year to entry into service **(inference)**.
+- **Architecture:** the open fan. 20% is impossible without it [CX-0180], and ducted gets "less than half" [CX-0183]. In engine terms he backs `cfm_open_fan` (+1.5pp margin) and accepts its +1 year to entry into service **(inference)**. In the game it cannot enter service before 2045, so an airframe launched on it before 2037 waits, at 10% of programme capex a year.
 - **Timing is not his call.** Culp leaves entry into service to the airframers [CX-0205].
 - **Dates:** he offers none he cannot test to "turn on and turn off" [CX-0009]. His 2022 fly-demo date slipped [CX-0211], so the referee should treat his schedules as optimistic **(inference)**.
 - **Price and exclusivity:** no evidence. Defer to Culp and Ghai. Narrowbody pricing is "a joint decision" with Safran [CX-0184].
@@ -175,11 +175,11 @@ The evidence is thin, so most dimensions are covered by the Quick card. This sec
 
 **1. Launch `cfm_open_fan` (RISE) or `cfm_ducted` (proposed).**
 - **Default:** offer the open fan once an airframer is ready. He argues against ducted as the next step [CX-0011].
-- **Flips to ducted** only if the airframer will not accept +1 year **(inference)**. His own words give no support for a ducted next generation beyond LEAP upgrades [CX-0162].
+- **Flips to ducted** only if the airframer will not accept +1 year and entry into service in 2045 **(inference)**. In the game that date makes the open fan cost the airframer more than ducted at every launch year (base, rival at Do Nothing: 1.9 on fps and 2.2 on NGSA for a 2037 launch, far more for an earlier launch that waits). His own words give no support for a ducted next generation beyond LEAP upgrades [CX-0162].
 - **Numbers:**
   - durability test status, which Culp reports as test counts [CX-0216];
   - `whatif` on `cfm_open_fan` against `cfm_ducted` for each airframer, with 0.85 capture;
-  - sensitivity to `engine_maturity_slip`.
+  - sensitivity to `engine_maturity_slip`. It moves technology-ready to 2037, which does not reach a 2045 entry, so it leaves the open fan's value unchanged.
 - **Safran:** consent required. RISE is joint [CX-0013] [CX-0166].
 
 **2. Widebody offer, GEnx-next or a GE9X derivative (proposed).**
@@ -205,7 +205,7 @@ The evidence is thin, so most dimensions are covered by the Quick card. This sec
 - Is the safety call cross-functional [CX-0012]?
 - Does the fix go to everybody, or is it targeted [CX-0004]?
 
-From `whatif` he wants the cost of +1 year (`eis_add`) and of `engine_maturity_slip`.
+From `whatif` he wants the cost of +1 year (`eis_add`), of the wait for 2045 (`available_eis`) and of `engine_maturity_slip`.
 
 **What changes his mind:** test and field data [CX-0006] [CX-0009]. Analysis alone does not [CX-0008].
 

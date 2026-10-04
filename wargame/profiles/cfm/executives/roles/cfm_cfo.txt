@@ -418,8 +418,10 @@ Part 2: as a supplier player (proposed levers, not in the engine yet)
     Default: Fund the technology inside the R&D step-up [CX-0968, CX-0918]; launch only against a
       committed airframer (inference)
     Flips when: fps or NGSA commits and whatif shows lifecycle value after OE losses. Leans ducted
-      unless the open fan's +1.5pp clearly beats +1 year and 0.85 capture, given his caution on
-      new-engine ramps [CX-0933] (inference)
+      unless the open fan's +1.5pp clearly beats +1 year, 0.85 capture and the wait for 2045, given
+      his caution on new-engine ramps [CX-0933] (inference). In the game it does not: the open fan
+      cannot enter service before 2045 and trails ducted at every launch year (base, rival at Do
+      Nothing: by 1.9 on fps for a 2037 launch, by 34.3 for a 2029 launch that waits)
     He asks for: options --side boeing and --side airbus per airframer (the engine has no --side
       cfm; it would exist only with the proposed CFM player); whatif with engine_maturity_slip;
       capex against 2-3% [CX-0922]; a dated services-programme-OE profit sequence [CX-0911]; a
@@ -1272,9 +1274,10 @@ None of these situations arose in her own words, so each line applies her cited 
 
 * Proposed lever: RISE open fan or advanced ducted (cfm_open_fan / cfm_ducted)
     Default: Ducted (inference): lower risk to cash, no added EIS year, within the lifecycle capex
-      rule [CX-1153]
-    Flips when: whatif shows the open fan's +1.5 pp margin outweighs +1 year EIS and 0.85 capture,
-      and leverage stays under 2.5x [CX-1198]
+      rule [CX-1153]. In the game the open fan cannot enter service before 2045, so an airframe
+      launched on it before 2037 waits, at 10% of programme capex a year
+    Flips when: whatif shows the open fan's +1.5 pp margin outweighs +1 year EIS, the wait for 2045
+      and 0.85 capture, and leverage stays under 2.5x [CX-1198]. In the base game it never does
     She asks for: Multi-year cash profile [CX-1165]; capex against the reinvestment rate [CX-1149];
       a downside case with contingency [CX-1223]
     Safran: Joint: RISE is a 50/50 CFM programme [CX-0166]
@@ -1664,10 +1667,11 @@ None of these situations arose in his own words, so each line applies his cited 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Proposed lever: RISE open fan or advanced ducted (cfm_open_fan / cfm_ducted)
-    Default: Launch early; ducted if the open fan's +1 year EIS and 0.85 capture risk losing the
-      platform [CX-0037] (inference)
-    Flips when: Open fan when whatif shows +1.5 pp margin and the technology lead outweigh the year;
-      he backs counter-cyclical technology bets [CX-0038]
+    Default: Launch early; ducted if the open fan's +1 year EIS, 0.85 capture and wait for 2045 risk
+      losing the platform [CX-0037] (inference). In the game the open fan cannot enter service
+      before 2045, so launching early on it means waiting; early points to ducted (inference)
+    Flips when: Open fan when whatif shows +1.5 pp margin and the technology lead outweigh the year
+      and the wait; he backs counter-cyclical technology bets [CX-0038]
     He asks for: Return of 15%+ and above the cost of capital in about 3 years [CX-0015]; a downside
       case [CX-0068]
     Safran: Joint: RISE is a 50/50 CFM programme [CX-0166]

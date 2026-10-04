@@ -23,11 +23,11 @@ HOW TO READ THIS FILE
   this team ran GE's half of CFM today" options. Each would face the 2026 board with its own rules
   and its own record.
 - Who uses it. CFM/GE is not a player in the engine today. Its engines are options the airframers
-  choose: cfm_ducted (the narrowbody default for fps and NGSA), cfm_open_fan (RISE) and ge_genx_next
-  (GE alone; the 787 Re-engine default). The market cell sets CFM/GE's reactions without reading
-  profiles. The referee may use these cards to judge whether a CFM/GE reaction is plausible. A
-  future cfm supplier player would run the ExCo scripts below; its levers are proposed, not in the
-  engine.
+  choose: cfm_ducted (the narrowbody default for fps and NGSA), cfm_open_fan (RISE; no entry into
+  service before 2045) and ge_genx_next (GE alone; the 787 Re-engine default). The market cell sets
+  CFM/GE's reactions without reading profiles. The referee may use these cards to judge whether a
+  CFM/GE reaction is plausible. A future cfm supplier player would run the ExCo scripts below; its
+  levers are proposed, not in the engine.
 - Rules. Every behavioural or numerical claim carries a CX-#### id from evidence.jsonl. (inference)
   marks a step beyond the words. Engine numbers come from python3 -m wargame.engine rules --scenario
   base --side control and are marked (rules). There is no CFM company profile, so each card compares
@@ -177,30 +177,56 @@ ENGINE TERMS THE SCRIPTS USE
 
 Narrowbody: cfm_ducted against cfm_open_fan on fps or NGSA (rules). Development takes 7 years,
 technology is ready in 2035, and each year of entry into service before 2035 costs the airframer 2pp
-of margin. The open fan adds +1.5pp of margin, one extra development year (which costs 10% of
-programme capex: $3.0B on fps, $2.5B on NGSA, before any partner share) and a 0.85 capture
-multiplier.
+of margin. The open fan adds +1.5pp of margin, one extra development year and a 0.85 capture
+multiplier. It also cannot enter service before 2045 (available_eis): an airframe that would be
+ready earlier waits for it. Each extra or waiting year costs 10% of programme capex: $3.0B on fps,
+$2.5B on NGSA, before any partner share.
 
 * Airframe launch year: 2026
     cfm_ducted: EIS, early penalty: 2033, -4pp
-    cfm_open_fan: EIS, penalty + engine margin: 2034, -2pp + 1.5pp = -0.5pp
-    Open fan's margin edge: +3.5pp
+    cfm_open_fan: EIS, wait, extra capex: 2045, 11 years, +120%
+    Open fan minus ducted, airframer PV in $B, rival at Do Nothing (whatif, base): fps -44.01; NGSA
+      -49.69
 
 * Airframe launch year: 2027
     cfm_ducted: EIS, early penalty: 2034, -2pp
-    cfm_open_fan: EIS, penalty + engine margin: 2035, 0 + 1.5pp = +1.5pp
-    Open fan's margin edge: +3.5pp
+    cfm_open_fan: EIS, wait, extra capex: 2045, 10 years, +110%
+    Open fan minus ducted, airframer PV in $B, rival at Do Nothing (whatif, base): fps -42.50; NGSA
+      -52.50
 
-* Airframe launch year: 2028 or later
-    cfm_ducted: EIS, early penalty: 2035 or later, 0
-    cfm_open_fan: EIS, penalty + engine margin: 2036 or later, +1.5pp
-    Open fan's margin edge: +1.5pp
+* Airframe launch year: 2029
+    cfm_ducted: EIS, early penalty: 2036, 0
+    cfm_open_fan: EIS, wait, extra capex: 2045, 8 years, +90%
+    Open fan minus ducted, airframer PV in $B, rival at Do Nothing (whatif, base): fps -34.31; NGSA
+      -46.43
 
+* Airframe launch year: 2032
+    cfm_ducted: EIS, early penalty: 2039, 0
+    cfm_open_fan: EIS, wait, extra capex: 2045, 5 years, +60%
+    Open fan minus ducted, airframer PV in $B, rival at Do Nothing (whatif, base): fps -18.97; NGSA
+      -26.58
+
+* Airframe launch year: 2035
+    cfm_ducted: EIS, early penalty: 2042, 0
+    cfm_open_fan: EIS, wait, extra capex: 2045, 2 years, +30%
+    Open fan minus ducted, airframer PV in $B, rival at Do Nothing (whatif, base): fps -7.71; NGSA
+      -10.82
+
+* Airframe launch year: 2037
+    cfm_ducted: EIS, early penalty: 2044, 0
+    cfm_open_fan: EIS, wait, extra capex: 2045, none, +10%
+    Open fan minus ducted, airframer PV in $B, rival at Do Nothing (whatif, base): fps -1.93; NGSA
+      -2.16
+
+- In 2045 the open fan carries no early penalty, so its margin is +1.5pp over a ducted engine at
+  maturity. The cost is the wait: later entry, later share capture and more capex. Only a 2037
+  launch, in the game's last turn, avoids the wait. The open fan is never an airframer's best reply
+  in the base or replacement-wave pair grids (whatif).
 - The engine_maturity_slip inject moves the technology-ready year to 2037 in both segments (rules).
-  The open fan's +3.5pp edge then holds for launches up to 2029.
-- Against GE's words: RISE engines "could be available by the middle of the next decade" [CX-0608].
-  An open fan entering service in 2034 (a 2026 launch) runs ahead of that (inference). An open fan
-  in service from 2035 (a 2027 launch or later) is consistent with it.
+  That does not reach a 2045 entry, so it lowers only ducted plans that enter service before 2037.
+- Against GE's words: RISE engines "could be available by the middle of the next decade" [CX-0608],
+  and Safran's CEO aimed for "by 2035" [CX-0152]. The game's 2045 is about ten years later, and no
+  leader in the evidence names it. In the game no open fan runs ahead of GE's words.
 
 Widebody (rules). A Re-engine takes 5 years, with technology ready in 2035 and a 1pp margin penalty
 per early year. ge_genx_next (margin +0pp) is the 787 Re-engine default; the A350 Re-engine default
@@ -307,9 +333,12 @@ Per-turn ExCo script.
    competition" [CX-0580]; "tell you what we know, tell you what we don't" [CX-0436].
 
 Thresholds in engine terms.
-- fps or NGSA on CFM. Offer cfm_open_fan when the airframe would enter service in 2035 or later (a
-  2027 launch or later) and the airframer accepts +1 year; otherwise cfm_ducted (inference)
-  [CX-0608] [CX-0205]. A CFM/GE that refuses an airframer, or forces the open fan on it, is
+- fps or NGSA on CFM. Offer both engines. Expect cfm_open_fan only on a 2037 launch, the one that
+  enters service in 2045 without waiting, and only if the airframer accepts +1 year and that date;
+  otherwise cfm_ducted (inference) [CX-0608] [CX-0205]. Culp's own window was the mid-2030s
+  [CX-0608]; the game's 2045 is about ten years later. An open fan on an earlier airframe waits for
+  2045 at 10% of programme capex a year, and CFM/GE would not press an airframer into that wait
+  (inference) [CX-0205]. A CFM/GE that refuses an airframer, or forces the open fan on it, is
   implausible (inference) [CX-0185].
 - Rolls-Royce UltraFan narrowbody or a next-generation GTF. No public reaction [CX-0580] and no
   price cut [CX-0609]; RISE stays funded [CX-0553]; compete on durability (a win rate above 70% on
@@ -651,8 +680,8 @@ Per-turn ExCo script.
 5. Decide. Culp decides. Tie-break: protect the future bets [CX-0398].
 
 Thresholds in engine terms.
-- fps or NGSA. The 20% bar [CX-1251] points to cfm_open_fan for entry into service from 2035
-  (inference); ducted otherwise.
+- fps or NGSA. The 20% bar [CX-1251] points to cfm_open_fan (inference). In the game it cannot enter
+  service before 2045, so it fits a 2037 launch; ducted for an earlier airframe (inference).
 - nb_demand_shock. Cut costs within a quarter [CX-0673] but keep capacity [CX-0423]; liquidity first
   [CX-0666].
 - Ramp. Haircut the targets by baseline rule 3 [CX-0172] (inference).
@@ -726,9 +755,10 @@ Per-turn ExCo script.
 5. Decide. Culp decides. Tie-break: durability over volume [CX-1285].
 
 Thresholds in engine terms.
-- fps or NGSA. cfm_ducted by default; cfm_open_fan if the airframe enters service in 2035 or later
-  and the airframer accepts +1 year (inference, from Culp's RISE timing [CX-0608] [CX-0205]).
-  Compete on time on wing [CX-1299]; sole source prized [CX-1300].
+- fps or NGSA. cfm_ducted by default; cfm_open_fan on a 2037 launch, which enters service in 2045
+  without waiting, if the airframer accepts +1 year and that date (inference, from Culp's RISE
+  timing [CX-0608] [CX-0205]; the game's 2045 is about ten years after that timing). Compete on time
+  on wing [CX-1299]; sole source prized [CX-1300].
 - Ramp. Haircut the promised growth by a quarter to a half (baseline rule 3).
 - Durability inject. Dated fixes [CX-1283] and owned warranty cost [CX-1281].
 
@@ -796,8 +826,9 @@ Per-turn ExCo script.
 5. Decide. Culp decides. Tie-break: profit over volume [CX-0940] (inference).
 
 Thresholds in engine terms.
-- fps or NGSA. cfm_ducted by default; cfm_open_fan for entry into service from 2035 (inference)
-  [CX-0608]. Standard terms [CX-0930]; sole source valued [CX-1300].
+- fps or NGSA. cfm_ducted by default; cfm_open_fan on a 2037 launch, in service in 2045, the game's
+  earliest open-fan date (inference) [CX-0608]. Standard terms [CX-0930]; sole source valued
+  [CX-1300].
 - Ramp. Expect a guide cut in steps [CX-0937].
 - Next-generation GTF. Fight campaign by campaign: "game on" (the GTF context came from the
   analyst's question) [CX-1288].
@@ -815,7 +846,8 @@ CROSS-TEAM COMPARISON (PROPOSED LEVERS AND SAFRAN HANDLING)
 -----------------------------------------------------------
 
 * Team: culp-ghai-ali-2026 (DEFAULT)
-    fps or NGSA engine: cfm_open_fan if EIS 2035+, else cfm_ducted (inference) [CX-0608]
+    fps or NGSA engine: cfm_open_fan on a 2037 launch (EIS 2045, no wait), else cfm_ducted
+      (inference) [CX-0608]
     Terms: Standard [CX-0609]
     LEAP durability upgrade: Yes, under way [CX-0655]
     Widebody: ge_genx_next (inference) [CX-0615]
@@ -850,7 +882,8 @@ CROSS-TEAM COMPARISON (PROPOSED LEVERS AND SAFRAN HANDLING)
     Safran handling in the evidence: Shared losses; joint NMA stance [CX-0136] [CX-0301]
 
 * Team: culp-dybeckhappe-slattery-2021
-    fps or NGSA engine: cfm_open_fan for EIS 2035+, else cfm_ducted (inference) [CX-1251]
+    fps or NGSA engine: cfm_open_fan on a 2037 launch (EIS 2045, no wait), else cfm_ducted
+      (inference) [CX-1251]
     Terms: Standard with escalators [CX-0745]
     LEAP durability upgrade: No evidence
     Widebody: ge_genx_next (the default; no evidence of the team's view)
@@ -859,8 +892,8 @@ CROSS-TEAM COMPARISON (PROPOSED LEVERS AND SAFRAN HANDLING)
       [CX-0149]
 
 * Team: culp-dybeckhappe-stokes-2023
-    fps or NGSA engine: cfm_ducted; cfm_open_fan if EIS 2035+ (inference) [CX-0608]; sold on time on
-      wing [CX-1299]
+    fps or NGSA engine: cfm_ducted; cfm_open_fan on a 2037 launch (EIS 2045) (inference) [CX-0608];
+      sold on time on wing [CX-1299]
     Terms: Standard; launch pricing ended [CX-1287]
     LEAP durability upgrade: Yes [CX-1283]
     Widebody: ge_genx_next (inference)
@@ -868,8 +901,8 @@ CROSS-TEAM COMPARISON (PROPOSED LEVERS AND SAFRAN HANDLING)
     Safran handling in the evidence: Joint ramp; no blame [CX-0160] [CX-0158]
 
 * Team: culp-ghai-stokes-2024
-    fps or NGSA engine: cfm_ducted; cfm_open_fan if EIS 2035+ (inference) [CX-0608]; sold on time on
-      wing [CX-1299]
+    fps or NGSA engine: cfm_ducted; cfm_open_fan on a 2037 launch (EIS 2045) (inference) [CX-0608];
+      sold on time on wing [CX-1299]
     Terms: Standard [CX-0930]
     LEAP durability upgrade: Yes [CX-1290]
     Widebody: ge_genx_next (inference)

@@ -166,14 +166,18 @@ Enders sits on GE Aerospace's board [CX-0233].
 ------------------------------
 
 Today CFM/GE is not a player. cfm_ducted is the narrowbody default for fps and NGSA; cfm_open_fan is
-RISE (+1.5pp margin, +1 year to EIS, 0.85 capture); ge_genx_next is GE alone and the 787 Re-engine
-default. Airframes fall back to CFM or GE when a rival maker has not launched. The referee can test
-the market cell's CFM/GE reactions against these rules:
+RISE (+1.5pp margin, +1 year to EIS, 0.85 capture, and no entry into service before 2045);
+ge_genx_next is GE alone and the 787 Re-engine default. Airframes fall back to CFM or GE when a
+rival maker has not launched. The referee can test the market cell's CFM/GE reactions against these
+rules:
 1. Serve both airframers. Culp aligns RISE with both airframers' road maps [CX-0185]; GE wants "to
    be on all the critical platforms" [CX-0171] and works the open fan with Airbus and Boeing
    [CX-0193]. Refusing fps or NGSA, or locking one airframer out, is implausible (inference).
 2. The airframer sets the launch date. "It's really not for us to say when" RISE enters service
-   [CX-0205]. CFM does not force cfm_open_fan.
+   [CX-0205]. CFM does not force cfm_open_fan. In the game the open fan cannot enter service before
+   2045, about ten years after GE's and Safran's own window [CX-0189] [CX-0152]. An airframe
+   launched on it before 2037 waits, at 10% of programme capex a year; CFM pressing an airframer
+   into that wait is implausible (inference).
 3. Ramp promises are joint, and in 2023-24 they ran late. Both parents commit [CX-0160]. 2023
    delivered +38% (January 2024) or +25% (March 2024) against +50% [CX-0590] [CX-0176]; 2024 ended
    down 10% against +20-25% [CX-0954] [CX-0196]. The 2025 guide of +15-20% was raised in October
@@ -222,8 +226,10 @@ As a future supplier player (proposed levers, not in the engine).
 
 A GE-side player would book half of CFM's narrowbody value and capex, and all of the widebody
 (inference from the 50/50 structure [CX-0166]; no CFM financial model exists yet). It would ask
-whatif for cfm_open_fan against cfm_ducted on fps and NGSA, and options --side boeing / --side
-airbus for each airframer's incentive to pick CFM (the engine has no --side cfm today).
+whatif for cfm_open_fan against cfm_ducted on fps and NGSA (in the base game, with the rival at Do
+Nothing, the open fan trails ducted at every launch year: by 1.9 on fps and 2.2 on NGSA for a 2037
+launch, and by 4.7 to 54.1 for earlier launches, which wait for 2045), and options --side boeing /
+--side airbus for each airframer's incentive to pick CFM (the engine has no --side cfm today).
 
 7. GAPS
 -------
