@@ -18,8 +18,9 @@ BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", 
          "/scratchpad/engines", "/scratchpad/execs", "/scratchpad/cfm"]
 RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"]
 PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"]
-# CFM International's leaders (GE side): not a player yet; no player reads them.
-CFM = ["profiles/cfm"]
+# CFM International's leaders (GE side): not a player yet; no player reads them. The cross-player
+# overview page summarises every side, so no player reads it either.
+CFM = ["profiles/cfm", "profiles/overview"]
 AIRFRAMERS = ["profiles/boeing", "profiles/airbus", "boeing-strategist.md", "airbus-strategist.md", "boeing-2010.md",
               "airbus-2010.md", "wargame-boeing", "wargame-airbus"]
 # Raw uploads contain every year; the period-locked 2010 players may not read them.
