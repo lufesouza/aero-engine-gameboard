@@ -409,6 +409,9 @@ def main():
     import datetime
     today = datetime.date.today().isoformat()
     for company, roles in ROLES.items():
+        if not (ROOT / company / "executives" / "README.md").exists():
+            print(company, "skipped: no executive profiles yet")
+            continue
         rows = readme_rows(company)
         outdir = ROOT / company / "executives" / "roles"
         outdir.mkdir(exist_ok=True)
