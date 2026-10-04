@@ -157,7 +157,7 @@ He sits in the 2022 and 2023 teams. Read him as "this CFO running the 2026 board
 | `cancel` | Cancel an orphan programme: in-flight reviews, projects that "didn't make the grade" [RX-0188]; a 2026 Solo cancelled in 2031 is -7.15 against -9.18 kept [5p] | An airframe still flies it (rules) | Sunk against remaining capex | - |
 | Disclosure | Conservative; no dates or forecasts on things he cannot control [RX-0157, RX-0175] | - | - | Promising an entry into service |
 
-**When CFM/GE launches a ducted engine or the RISE open fan.** He would scenario-plan rather than react [RX-0189]. An open-fan NGSA in 2031 gives Airbus +6.48 against +38.88 on UltraFan [5p]. A ducted NGSA leaves RR at 0.00 [5p]. Neither changes RR's cash, so neither changes his orders (inference).
+**When CFM/GE launches a ducted engine or the RISE open fan.** He would scenario-plan rather than react [RX-0189]. An NGSA on the open fan in 2031 gives Airbus +6.48 against +38.88 on UltraFan [5p]. A ducted NGSA leaves RR at 0.00 [5p]. Neither changes RR's cash, so neither changes his orders (inference).
 
 **When CFM/GE takes share through upgrades.** He answers with durability spend [RX-0155]. The GEnx package alone costs RR -0.58; with RR's own upgrade the net is +0.23 [5p].
 

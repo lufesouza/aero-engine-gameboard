@@ -2,7 +2,7 @@
 
 **Role and dates.** Chief Financial Officer and Director of Rolls-Royce from about November 2023. Her first evidenced appearance is the Capital Markets Day of 28 November 2023 [RX-0211]; the last is the H1 2025 results call of 31 July 2025 [RX-0263].
 
-**Era.** She arrived ten months into Tufan Erginbilgic's transformation, which put profit and cash ahead of share [R-1561], as his former transformation partner [RX-0232]. What she inherited:
+**Era.** She arrived late in the first year of Tufan Erginbilgic's transformation (CEO from January 2023), which put profit and cash ahead of share [R-1561]. She came as his former transformation partner [RX-0232]. What she inherited:
 - a Civil margin of 2.5% in 2022 [R-0295];
 - net debt of £1,952m at end-2023 [R-0027];
 - no dividend since 2019 [R-0075];

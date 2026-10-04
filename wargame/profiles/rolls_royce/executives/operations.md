@@ -5,7 +5,7 @@ The President of Civil Aerospace runs production, durability, services cost and 
 - Rob Watson, in the default 2026 team;
 - Eric Schulz, as historical reference only.
 
-**Evidence.** 70 own-words items (RX) from three Civil events (November 2016, May 2022 and November 2023), plus Cholerton's 2016 Defence turn and Watson's 2021 Electrical turn.
+**Evidence.** 70 own-words items (RX). 66 come from three Civil events (November 2016, May 2022 and November 2023); the other 4 are Cholerton's 2016 Defence turn (3) and Watson's 2021 Electrical turn (1).
 - **Attribution.** Twelve items come from transcript turns labelled "Unknown Executive" and are marked here:
   - **(attr.)**: the speaker refers back to his own presentation, or the CEO hands the question to him by name;
   - **(prob.)**: probable only.
@@ -128,7 +128,7 @@ The President of Civil Aerospace runs production, durability, services cost and 
 | Lever | Default | Flips or vetoes |
 |---|---|---|
 | `uf_nb` | Do Nothing; architecture "scalable" [RX-0294] | Flips on an announced fps or NGSA. Vetoes any disclosed entry into service earlier than launch plus development years (attr.) [RX-0296] |
-| Solo against Joint Venture | No evidence. Leans to partnership (inference from the Singapore MRO joint venture [RX-0287]) | Solo PV beats the Joint Venture once selection is announced: NGSA 2031 +16.50 against +8.13 [5p] |
+| Solo against Joint Venture | No evidence. Leans to partnership (inference from the Singapore MRO Joint Venture [RX-0287]) | Solo PV beats the Joint Venture once selection is announced: NGSA 2031 +16.50 against +8.13 [5p] |
 | `uf_wb` | Launch in the turn an A350 Re-engine is announced (inference): Trent XWB will be about 60% of the large fleet in 2027 [R-1279] | Vetoes pre-launch; an unselected launch costs -2.46 [5p] |
 | Terms | Standard; trades coverage for better terms [RX-0290, RX-0291] | Vetoes concessions on new contracts |
 | `t1000_upgrade` | Strongly for: HP turbine blades on the Trent 1000 and 7000, longer-life parts [RX-0285]; +0.81 [5p] | Defer if it overlaps an UltraFan development |
