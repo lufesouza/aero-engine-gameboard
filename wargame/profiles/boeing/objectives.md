@@ -141,7 +141,7 @@ Rolls-Royce   | Primary goal: Enter narrowbody market; Keep Widebody dominance
 ```
 
 - **Airbus.** Its 60% and our 50% are zero-sum. An NGSA by 2031 ends our 50%. Delay Tactics with an NGSA in 2029 break `defend_incumbency` in the base scenario, so keep the slip test as the baseline. The engine prices NGSA at $25B.
-- **CFM.** The RISE open fan adds a year to EIS and cuts capture to 0.85: bad for share. Keep `cfm_ducted`; Boeing sees an open-rotor engine as a long-run option [B-2065, B-2078].
+- **CFM.** The RISE open fan cannot enter service before 2045. It also adds a year and cuts capture to 0.85. The doctrine plan on it waits until 2045: -17.58 and 42.0% in 2040, against +17.58 and 48.0% on `cfm_ducted`. Against NGSA 2029 it breaks `defend_incumbency` (36.0% in 2040, 28.5% in 2045). A 2037 launch enters service in 2045 without waiting, but still scores $1.95B below a 2037 launch on `cfm_ducted` (Airbus idle). Keep `cfm_ducted`; Boeing sees an open-rotor engine as a long-run option [B-2065, B-2078].
 - **Pratt & Whitney.** In the two-player game GTF2 is always on offer, with capture 0.95: the doctrine plan on GTF2 gives +18.06 and 47.7% in 2040, against +17.58 and 48.0% on `cfm_ducted`. When P&W plays, fps gets GTF2 only if P&W launches it by the end of that turn; otherwise fps falls back to `cfm_ducted`. Boeing is wary of new-engine durability [B-2304].
 - **Rolls-Royce.** In the two-player game the UltraFan narrowbody adds a year to EIS. Its widebody engine is the default for the A350 Re-engine, whose launch triggers H3.
 
@@ -221,6 +221,9 @@ echo '{"boeing": {}, "airbus": {}}' | python3 -m wargame.engine whatif --run v-m
 python3 -m wargame.engine new --run-id v-pw --scenario base --suppliers pratt_whitney
 echo '{"boeing": {"1": {"rate_increase": true}, "2": {"launch": [{"program": "fps", "variant": "solo", "engine": "pw_gtf2", "year": 2029}]}},
  "airbus": {}}' | python3 -m wargame.engine whatif --run v-pw --side control   # and --run v-base
+# Open fan (Section 8): the doctrine plan with "engine": "cfm_open_fan" (Airbus idle and NGSA 2029), then fps 2037 in turn "4" on each engine
+echo '{"boeing": {"1": {"rate_increase": true}, "4": {"launch": [{"program": "fps", "variant": "solo", "engine": "cfm_open_fan", "year": 2037}]}},
+ "airbus": {}}' | python3 -m wargame.engine whatif --run v-base --side control   # and "engine": "cfm_ducted"
 # Citations
 python3 wargame/profiles/build/cite_check.py wargame/profiles/boeing/objectives.md wargame/profiles/boeing/evidence.jsonl wargame/profiles/boeing/executives/evidence.jsonl --show
 ```

@@ -211,7 +211,7 @@ Engine figures: scratch probe, 2026-10-03; base scenario, Turn-1 Rate Increase, 
 
 **Engine choice.**
 - **fps:** `cfm_ducted`. Fan-size skepticism [BX-0035] and the GE/CFM sole source [B-0501].
-  - He vetoes `cfm_open_fan` (probe: -$3.7B) and `rr_ultrafan_nb` (-$4.4B).
+  - He vetoes `cfm_open_fan` and `rr_ultrafan_nb`. The open fan cannot enter service before 2045, so a 2029 fps on it waits until then (probe, 2026-10-04: -$32.9B). The UltraFan adds a year (-$4.4B).
   - `pw_gtf2` (+$0.82B) is within ε, so he stays with CFM **(inference)**.
 - **Re-engine:** `ge_genx_next`.
 

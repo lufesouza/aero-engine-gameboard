@@ -127,7 +127,7 @@ The individual profiles (`<exec_id>.md`) hold the evidence for each person. This
    - *What is the non-recurring cost, and how sure are we?* [BX-0057]: `components_pv_b.capex` and the slip test.
    - *Can we build it at rate?* [BX-0013]
    - *Where does this leave us against 60/40?* [BX-0078]
-   - **Engine.** He backs `cfm_ducted` [BX-0035] and vetoes engines that add a year (`cfm_open_fan` loses $3.7B).
+   - **Engine.** He backs `cfm_ducted` [BX-0035] and vetoes engines that add a year or more. `cfm_open_fan` cannot enter service before 2045, so a 2029 fps on it waits until then and loses $32.9B (probe, 2026-10-04).
    - **Rate Increase.** Yes in Turn 1 [BX-0073], but no step while an inject leaves the line unstable [BX-0044].
 3. **Bell tests cash.**
    - *What does this do to cash?* Capex and strain, in PV and undiscounted [BX-0139].

@@ -228,7 +228,7 @@ Engine figures: a scratch probe, 2026-10-03, base scenario, Turn-1 Rate Increase
 
 **Engine choice.** `cfm_ducted`, by doctrine; it adds no development years. He called CFM's engines "the real gating item" on the 737, but CFM "very collaborative" [BX-1710]; that he stays with CFM is **(inference)**.
 - `pw_gtf2` scores +0.48 to +0.82, within ε.
-- `cfm_open_fan` loses $3.6-4.5B: veto.
+- `cfm_open_fan` cannot enter service before 2045. A 2029 fps on it waits until then and loses $31-35B (probe, 2026-10-04): veto.
 
 **Disclosure.**
 - **No regulator-gated dates:** "out of respect for the process ... steer away from specificity" [BX-1779].

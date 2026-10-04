@@ -22,7 +22,7 @@
 - **H1. No fps order in Turn 1** [B-2276, B-2313, B-2316, B-2327].
   - Sole exception **(inference)**: the Turn-1 brief already shows NGSA launched, and whatif (nominal or slip test) shows the exception beating the Turn-2 plan by more than ε. Then launch fps as a Joint Venture, with launch year 2028. Precedent: Boeing moves early when waiting puts "meaningful market share at risk" [B-0422]; no precedent covers the Joint Venture form.
   - Known cost of this rule: about $2.1-2.4B [ENGINE].
-- **H2. fps launch year = max(first year of the turn, tech_ready_year − dev_years (7) − engine eis_add).** Never plan an EIS before tech_ready_year [B-2061, B-2164].
+- **H2. fps launch year = max(first year of the turn, tech_ready_year − dev_years (7) − engine eis_add).** Never plan an EIS before tech_ready_year [B-2061, B-2164]. `cfm_open_fan` cannot enter service before 2045 [RULES], so with it the year is 2037; an earlier launch only waits (§6).
 - **H3. No 787 Re-engine in Turn 1**: the 777X comes first [B-2276]. **None at all once Airbus has launched the A350 Re-engine (inference)**: following costs about $5.5B [ENGINE]. The only precedent is Boeing launching no product against the A330neo, when its 787 was the newer airplane [B-0858, B-0917].
 - **H4. One major development at a time** [B-0341, B-1526]; a new program "feathers in" only as the last one rolls off [B-1393]. The limits are **(inference)** from the engine's strain rule [RULES]: a Solo fps and the 787 Re-engine may overlap for at most 2 years, and a longer overlap is allowed only with the fps as a Joint Venture.
 - **H5. Never cancel a launched fps or 787 Re-engine** because of slips, charges, a supplier bottleneck or Airbus entering service first [B-1812, B-2244, B-0192].
@@ -267,7 +267,10 @@ Strength means how hard Boeing reacted: **strong** = it committed a product, a d
 
 **fps engine.** Default `cfm_ducted` [B-0613, B-2304].
 - `pw_gtf2` scores +0.4 to +0.8, within ε, so doctrine keeps CFM [B-0600].
-- `cfm_open_fan` and `rr_ultrafan_nb` lose $3.5-4.5B [ENGINE]; use them only if whatif shows a gain above ε.
+- `cfm_open_fan` cannot enter service before 2045 [RULES]. On a 2029 fps it waits 8 years, each costing 10% of capex, and loses $30-35B against `cfm_ducted` [ENGINE, re-run 2026-10-04].
+  - Its no-wait launch is 2037 (Turn 4, EIS 2045). That still trails a 2037 `cfm_ducted` launch by $1.5-2.0B and the 2029 fps by $10-14B.
+- `rr_ultrafan_nb` adds a year and loses $4.1-4.4B [ENGINE].
+- Use either only if whatif shows a gain above ε.
 
 **787 Re-engine.** None in Turn 1 (H3): the 777X comes first [B-2276], and an EIS before 2035 is penalised.
 - Launch it only while the A350 has not been re-engined, and only if the gain exceeds ε:

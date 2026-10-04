@@ -200,7 +200,7 @@ Engine figures: scratch probe, 2026-10-03 (base scenario, Turn-1 Rate Increase, 
 - Shelves unlaunched bets fast under stress [BX-1611].
 
 **Engine choice.**
-- **fps:** `cfm_ducted`. He would veto `cfm_open_fan` (probe: -$3.6-4.5B), extending his NMA "No big leaps" [BX-1535] to engines **(inference)**.
+- **fps:** `cfm_ducted`. He would veto `cfm_open_fan`, extending his NMA "No big leaps" [BX-1535] to engines **(inference)**. It cannot enter service before 2045, so a 2029 fps on it waits until then (probe, 2026-10-04: -$31-35B).
 - `pw_gtf2` scores +$0.5-0.8B, within ε. He said Boeing was "disappointed" with the GE engine [BX-1594] and named CFM as a constraint [B-1440], so he has no loyalty either way **(inference)**; doctrine keeps CFM.
 - **Re-engine:** `ge_genx_next`.
 

@@ -209,7 +209,7 @@ The ranking is his 2009-11 posture, closest to Boeing's 2026 position (debt to r
 
 **Cancel.** Never a launched airframe: "we will get it back" [BX-0176]; on the 747-8 he slowed the rate rather than exit [BX-0154]. Exits a non-core bet on accretion (Connexion) [BX-0093].
 
-**Engine choice.** No evidence. He would back `cfm_ducted` as the lowest-risk option, and veto `cfm_open_fan`, which adds a year to EIS **(inference from [BX-0186, BX-0181])**.
+**Engine choice.** No evidence. He would back `cfm_ducted` as the lowest-risk option, and veto `cfm_open_fan` **(inference from [BX-0186, BX-0181])**. The open fan cannot enter service before 2045: a 2029 fps on it waits until then and loses $31-35B (probe, 2026-10-04).
 
 **Disclosure.** Launches and nominal dates, as for the 787 [BX-0085]; no financial numbers until booked [BX-0144]; no Re-engine year before launch **(inference)**.
 

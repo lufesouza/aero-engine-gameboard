@@ -214,7 +214,7 @@ Engine figures: scratch probe, 2026-10-03 (base scenario, Turn-1 Rate Increase, 
 **Cancel.** Vetoes cancelling a launched fps or Re-engine: a "franchise" [BX-1033]; "investment that's now behind us" [B-1135]. Ends legacy lines without orders [BX-0931], but kept the 747 as a niche [BX-1041].
 
 **Engine choice.**
-- **fps:** `cfm_ducted`, existing technology [BX-1128]. Probe: `cfm_open_fan` costs $3.6-4.5B. Against `pw_gtf2` (within ε) he would cite LEAP supply over Airbus's engine troubles [BX-1096] **(inference)**.
+- **fps:** `cfm_ducted`, existing technology [BX-1128]. Probe (2026-10-04): `cfm_open_fan` cannot enter service before 2045, so on a 2029 fps it costs $31-35B. Against `pw_gtf2` (within ε) he would cite LEAP supply over Airbus's engine troubles [BX-1096] **(inference)**.
 - **Re-engine:** `ge_genx_next`, though he attributed a 777X slip to the GE9X [BX-1209].
 
 **Disclosure.**

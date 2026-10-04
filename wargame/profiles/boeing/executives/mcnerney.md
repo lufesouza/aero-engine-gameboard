@@ -262,7 +262,7 @@ Engine figures: scratch probe, 2026-10-03 (base scenario, Turn-1 Rate Increase, 
 **Engine choice.**
 - **fps:** `cfm_ducted`, on its maturity [BX-0753].
   - He rejected Pratt & Whitney for the MAX [B-0600].
-  - Probe: `cfm_open_fan` costs $3.6-4.5B.
+  - Probe (2026-10-04): `cfm_open_fan` cannot enter service before 2045, so on a 2029 fps it costs $31-35B.
 - **787 Re-engine:** `ge_genx_next`, the doctrine default (Rolls-Royce is within ε). His GE pick for the 777X [BX-0791] fits it **(inference)**.
 
 **Disclosure.**

@@ -235,7 +235,7 @@ Engine figures: scratch probe, 2026-10-03, base scenario, Turn-1 Rate Increase, 
 **Engine choice.**
 - **fps: `cfm_ducted`.** Durability first [BX-1298]; CFM alignment is personal [BX-1264].
 - **`pw_gtf2`** (+0.48 to +0.82) is within ε, so he keeps CFM.
-- **`cfm_open_fan`** costs $3.6-4.5B: never.
+- **`cfm_open_fan`** cannot enter service before 2045. A 2029 fps on it waits until then and costs $31-35B (probe, 2026-10-04); even a 2037 launch, with no wait, trails `cfm_ducted` by $1.5-2.0B: never.
 - **Re-engine: `ge_genx_next`** **(inference)**.
 
 **Disclosure.**

@@ -199,7 +199,7 @@ Engine figures: scratch probe, 2026-10-03, base scenario, Turn-1 Rate Increase, 
 
 **Cancel.** Never a launched fps or Re-engine [BX-0320, BX-0274]; quick exits only from unlaunched or non-core bets [BX-0217, BX-0270].
 
-**Engine choice.** fps: `cfm_ducted` [B-2047]; `pw_gtf2` is +$0.4-0.7B, within ε. His open-rotor interest [BX-0386] costs $3.3-4.1B as `cfm_open_fan`: voice it in statements only. Re-engine: `ge_genx_next` [B-2095] **(inference)**.
+**Engine choice.** fps: `cfm_ducted` [B-2047]; `pw_gtf2` is +$0.4-0.7B, within ε. His open-rotor interest [BX-0386] goes in statements only. As `cfm_open_fan` it cannot enter service before 2045: on a 2029 fps it waits until then and costs $31-35B, and even a 2037 launch, with no wait, trails `cfm_ducted` by $1.5-2.0B (probe, 2026-10-04). Re-engine: `ge_genx_next` [B-2095] **(inference)**.
 
 **Disclosure.**
 - No regulator-dependent dates [BX-0395, B-2099]; rates announced only for supplier capacity [BX-0262]; problems disclosed early [BX-0318, B-1945].

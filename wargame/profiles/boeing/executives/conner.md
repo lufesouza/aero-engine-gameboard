@@ -230,7 +230,7 @@ Engine figures come from a scratch probe on 2026-10-03: base scenario, Turn-1 Ra
 - **Ends products** only when demand cannot hold a profitable floor **(inference)** [BX-0489].
 
 **Engine choice.**
-- **fps:** `cfm_ducted`. Sole-source optimisation [BX-0442]. He builds margin for engine development [BX-0497] and so avoids engines that add a year: `cfm_open_fan` -$3.7B, `rr_ultrafan_nb` -$4.4B.
+- **fps:** `cfm_ducted`. Sole-source optimisation [BX-0442]. He builds margin for engine development [BX-0497] and so avoids engines that add years. `cfm_open_fan` cannot enter service before 2045, so a 2029 fps on it waits until then: -$32.9B (probe, 2026-10-04). `rr_ultrafan_nb` adds a year: -$4.4B.
 - `pw_gtf2` (+$0.82B) is within ε; he stays with CFM, whose MAX engine was "optimized for the 737" [B-0736] **(inference)**.
 - **Re-engine:** `ge_genx_next`.
 
