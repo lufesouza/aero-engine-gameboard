@@ -405,4 +405,4 @@ The company profile's procedure (§9) was written from this team's evidence, so 
 - **How decisions are split.** No evidence shows how Kakoullis divided decisions with either CEO; the joint £25m sign-off is shown only for Erginbilgic and McCabe [RX-0213].
 - **Rivals.** No member names CFM/GE or P&W as a rival engine maker in these turns. Reactions to the ducted engine, the open fan and the upgrades are inference from engine numbers and general stances.
 - **Engine numbers** come from a scratch run, not evidence. Strain and `jv_pw` parameters are placeholders (rules).
-- **Files still using the old id.** `erginbilgic.md` (header) and `operations.md` (Cholerton "in the 2022 and 2023 teams") still name `erginbilgic-kakoullis-cholerton-2023`, and so does `ENGINE_EXEC_SYNTH_ADDENDUM.md`.
+- **Files still on the old membership.** `erginbilgic.md` (header) and `ENGINE_EXEC_SYNTH_ADDENDUM.md` still name `erginbilgic-kakoullis-cholerton-2023`. `operations.md` still places Cholerton "in the 2022 and 2023 teams"; he is now in the 2022 team only.

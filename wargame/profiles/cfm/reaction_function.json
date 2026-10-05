@@ -76,7 +76,7 @@
     "response": "Offer the GEnx derivative; the 787 was won on product",
     "lag": "same turn",
     "strength": "moderate",
-    "war_game_translation": "No lever needed: ge_genx_next is the default and needs no commitment. Snapshot: CFM/GE +2.25 (2027 launch) or +1.50 (2031); keep genx_upgrade (+0.16 to +0.28 even on a re-engined 787). On a rival engine the Re-engine costs -5.92 (UltraFan) or -5.43 (Pratt & Whitney)",
+    "war_game_translation": "No lever needed: ge_genx_next is the default and needs no commitment. Snapshot: CFM/GE +2.25 (2027 launch) or +1.50 (2031); keep genx_upgrade (+0.16 to +0.28 even alongside a 787 Re-engine). On a rival engine the Re-engine costs -5.92 (UltraFan) or -5.43 (Pratt & Whitney)",
     "evidence": ["CX-0615", "CX-0599", "CX-1018"]
   },
   {

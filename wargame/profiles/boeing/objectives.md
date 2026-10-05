@@ -172,6 +172,10 @@ Rolls-Royce   | Primary goal: Enter narrowbody market; Keep Widebody dominance
 - **CFM (four-turn game).** The RISE open fan cannot enter service before 2045. It also adds a year and cuts capture to 0.85. The doctrine plan on it waits until 2045: -17.58 and 42.0% in 2040, against +17.58 and 48.0% on `cfm_ducted`. Against NGSA 2029 it breaks `defend_incumbency` (36.0% in 2040, 28.5% in 2045). A 2037 launch enters service in 2045 without waiting, but still scores $1.95B below a 2037 launch on `cfm_ducted` (Airbus idle). Keep `cfm_ducted`; Boeing sees an open-rotor engine as a long-run option [B-2065, B-2078].
 - **Pratt & Whitney.** In the two-player game GTF2 is always on offer, with capture 0.95: the doctrine plan on GTF2 gives +18.06 and 47.7% in 2040, against +17.58 and 48.0% on `cfm_ducted`. When P&W plays, fps gets GTF2 only if P&W launches it by the end of that turn; otherwise fps falls back to `cfm_ducted`. Boeing is wary of new-engine durability [B-2304].
 - **Rolls-Royce.** In the two-player game the UltraFan narrowbody adds a year to EIS. Its widebody engine is the default for the A350 Re-engine, whose launch triggers H3.
+- **Five-player game.** All three engine makers play, and every new fps engine needs its maker's commitment. Without one, a Rolls-Royce or P&W choice falls back to `cfm_ducted`, and `cfm_ducted` falls back to the LEAP derivative. NGSA costs $20B.
+  - The engine moves PV, not share. On the doctrine plan every engine gives 43.2-43.3% in 2040 (Section 11).
+  - The open fan still waits for 2045. A 2037 launch scores $1.6B below a 2037 `cfm_ducted` (`profile.md` §11.2).
+  - How to read the makers' moves is in `profile.md` §11.3.
 
 ## 9. The replacement wave and fps timing
 
@@ -202,7 +206,7 @@ Replacements: about 38 in 2037, 334 in 2040, 825 in 2044; about 27% are 737 MAX.
 
 ## 10. Gaps and modelling limits
 
-- **No ramp-up lever** for the 7-year and 10-year moves.
+- **No ramp-up lever** for the 7-year and 10-year moves (four-turn game). In five-player-2045 the ramp is a lever, but its multipliers (capture x0.7, capex x0.9) are placeholders.
 - **Market multipliers** decide `nb_share_50` at the margin; Boeing does not set them.
 - **Not modelled:** debt (only alpha), workforce, incentives, the A220-500, COMAC, MAX erosion.
 - **Fixed NGSA dates;** no injects or widebody moves.

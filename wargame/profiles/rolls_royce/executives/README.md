@@ -50,4 +50,4 @@ The referee reads the same files to score leadership fidelity: did the orders, t
 - **No narrowbody launch decision.** No team has launched or named a partner. Solo against the Joint Venture, the narrowbody hurdle and the reactions to CFM/GE and P&W moves are words plus inference.
 - **Seats after the evidence.** The default team's seats after mid-2025 (Watson's after November 2023) are assumed. Kakoullis's exact departure date and the February-August 2023 Civil president are not in the evidence.
 - **Warren East is not profiled.** The 2022 team plays his seat from his company-level statements only.
-- **Stale id elsewhere.** `erginbilgic.md` (header), `operations.md` (the Cholerton intro) and `../../build/ENGINE_EXEC_SYNTH_ADDENDUM.md` still name `erginbilgic-kakoullis-cholerton-2023`.
+- **Old membership elsewhere.** `erginbilgic.md` (header) and `../../build/ENGINE_EXEC_SYNTH_ADDENDUM.md` still name `erginbilgic-kakoullis-cholerton-2023`. `operations.md` still places Cholerton in the 2023 team.

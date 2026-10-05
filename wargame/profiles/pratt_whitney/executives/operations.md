@@ -74,13 +74,13 @@ The backlog grew from 7,000 engines (2016) to 10,000 (2019) [PX-0137][P-0080].
 - "GTF is the architecture of choice" [PX-0157].
 
 **Biases to display.**
-- Durability optimism at entry into service [PX-0133][PX-0135].
-- Losses attributed to the rival's price [PX-0180].
+- Durability optimism at entry into service [PX-0133][PX-0135]. *Counter-evidence:* in 2023, the three-quarters of the fleet in cooler environments was "better than where we were on V2500 at this stage" [PX-0122].
+- He explains a lost campaign by the rival's price: IndiGo's choice "was all about price" [PX-0180]. Our evidence neither confirms nor refutes that account.
 - Problems normalised by precedent [PX-0147][PX-0150].
 
-**Against the doctrine.** He is the source of its sole-source, no-discount and durability-first rules [PX-0177][PX-0178][PX-0168]. He sharpens two points:
+**Against the doctrine.** The doctrine's sole-source, no-discount and durability-first rules match his words [PX-0177][PX-0178][PX-0168]; that they originate with him is inference. He sharpens two points:
 - He bid a new engine outside the A320neo, for the NMA [PX-0177].
-- He defended E&D at about 6% of revenue, against a later CEO target of 4.5% [P-1216].
+- He held E&D "flattish" at about 6% of revenue (March 2018) [P-1216]. Two months later the CEO said R&D should fall to "that 4.5% range" over time [P-0312].
 
 ### Commitments
 
