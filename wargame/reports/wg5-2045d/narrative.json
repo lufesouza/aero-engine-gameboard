@@ -92,5 +92,40 @@
     "CFM/GE's parameters were reconciled from two independent calibrations. Several remain placeholders: alpha, open-fan capex and value, Embraer partnership, lobbying, strain, derivative capex, and the fps ramp-up multipliers.",
     "The assigned objectives come from the Boeing Product Development briefing (Boeing proprietary). The referee scores them, but they never change payoffs.",
     "This was one game with one seed, against one first game. The comparison shows how these agents responded to the delay, not a distribution of outcomes."
-  ]
+  ],
+  "why": {
+    "title": "Why the delay matters",
+    "side": "boeing",
+    "program": "fps",
+    "decision": [
+      "So when Boeing's leadership team ran its go/no-go test in round 2, every fps variant scored below doing nothing. The best (Joint Venture, GTF2, 10-year ramp-up, with the rate step) was -$3.1B, against -$2.4B for doing nothing and +$1.3B for a 787 Re-engine. Its rules do not allow a launch on those numbers, and in round 3 an fps launch would have entered service in 2046 or later."
+    ],
+    "knock_on": {
+      "boeing": {
+        "changed": "Launched a 787 Re-engine (2031, in service 2036) and no fps. Widebody share 68% in 2045; narrowbody share 32% in 2045 and 20% by 2060.",
+        "why": "Engineering and cash were free, and its doctrine is 'derivatives first' and one development at a time. The 787 Re-engine was its best move (+$1.3B). The loss is small because it saves about $23B of fps capex to 2045."
+      },
+      "airbus": {
+        "changed": "NGSA ran unopposed through the replacement wave. It shelved the A350 Re-engine.",
+        "why": "With no fps, its narrowbody share runs to 75% by 2050. Widebody is a game of Chicken: Boeing's 787 Re-engine moved first, so an A350 Re-engine lowered Airbus's PV in every variant it could count on."
+      },
+      "rolls_royce": {
+        "changed": "No narrowbody engine. The A350 kept its sole-source Trent XWB, but it committed the UltraFan widebody to an A350 Re-engine that was withdrawn.",
+        "why": "Boeing's engine statement this time ('committed by 2034, ready by 2041') read as a policy, not an announcement, so it waited. It honoured its promise not to make an airframe wait, and Airbus pulled out in the same sealed round."
+      },
+      "pratt_whitney": {
+        "changed": "Nothing: the same moves as in the first game.",
+        "why": "Its result was settled in round 1, when NGSA locked onto the LEAP derivative."
+      },
+      "cfm": {
+        "changed": "Still 100% of narrowbody engines. Its widebody mix moves from the A350 Re-engine to the 787 Re-engine.",
+        "why": "Every airframe falls back to its existing engines either way. Part of the small change is a correction to the GEnx upgrade's calibration made between the two games."
+      }
+    },
+    "unchanged": [
+      "Round 1 was identical. The delay does not touch Airbus's 2028 NGSA decision, and the engine makers' 'no airframe, no engine' rules produce the same fallback to the LEAP derivative.",
+      "The open fan is out of reach in both games. NGSA committed in 2028, and a late fps cannot enter service before 2046.",
+      "Engine coordination failures persist under sealed moves. In the first game an engine maker cancelled the engine an airframer named; here an engine maker committed to an airframe that was then withdrawn."
+    ]
+  }
 }

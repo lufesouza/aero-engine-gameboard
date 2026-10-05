@@ -13,6 +13,7 @@ final report and the referee scorecard. The optional narrative JSON adds the ref
 The page holds every player's orders and private rationale: it is a referee's document.
 """
 import argparse
+import copy
 import html
 import json
 import re
@@ -226,6 +227,10 @@ tbody td:first-child { white-space: nowrap; }
 .fig figcaption { font: 600 1rem/1.2 var(--font-display); margin-bottom: 6px; }
 .chart { width: 100%; height: auto; display: block; }
 .chart .grid { stroke: var(--line); stroke-width: 1; } .chart .zero { stroke: var(--muted); stroke-width: 1; }
+.chart.bridge { max-width: 480px; }
+.chart .blab { fill: var(--fg); font: 500 13px var(--font-body); }
+.chart .bval { fill: var(--fg); font: 500 12.5px var(--font-mono); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.chart .conn { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
 .chart .mark { stroke: var(--muted); stroke-dasharray: 2 3; }
 .chart .tick { fill: var(--muted); font: 10px var(--font-mono); }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .78rem; color: var(--muted); margin-top: 4px; }
@@ -293,6 +298,187 @@ def objectives_table(cfg, objs, only=None):
         return ""
     return ('<div class="scroll"><table><thead><tr><th>Player</th><th>Objective</th><th>Measured</th><th class="n">Gap</th><th>Status</th></tr></thead>'
             f'<tbody>{"".join(rows)}</tbody></table></div>')
+
+
+def bridge_chart(steps, title, legend=("Total", "Change"), w=400, h=None):
+    """Horizontal bridge (waterfall): steps are (label, value, kind) with kind 'total' or 'delta', in $B.
+    Totals start at zero in the side's colour; deltas float from the running total in a neutral ink."""
+    pl, pr, row, pt = 124, 40, 38, 8
+    h = h or pt + row * len(steps) + 26
+    W = w - pl - pr
+    run, spans = 0.0, []
+    for lab, v, kind in steps:
+        a, b = (0.0, v) if kind == "total" else (run, run + v)
+        run = b
+        spans.append((lab, v, kind, min(a, b), max(a, b), b))
+    lo = min(0.0, min(x[3] for x in spans))
+    hi = max(0.0, max(x[4] for x in spans))
+    rng = (hi - lo) or 1
+    lo, hi = lo - rng * (.24 if lo < 0 else .04), hi + rng * .14  # room for value labels beside the bars
+    sx = lambda v: pl + (v - lo) / (hi - lo) * W
+    out = [f'<svg viewBox="0 0 {w} {h}" role="img" aria-label="{esc(title)}" class="chart bridge">']
+    step = 2 if hi - lo <= 16 else 4
+    t = int(lo // step) * step
+    while t <= hi:
+        if t >= lo:
+            out.append(f'<line x1="{sx(t):.1f}" x2="{sx(t):.1f}" y1="{pt}" y2="{h - 22}" class="grid"/>'
+                       f'<text x="{sx(t):.1f}" y="{h - 6}" text-anchor="middle" class="tick">{t:+d}</text>')
+        t += step
+    out.append(f'<line x1="{sx(0):.1f}" x2="{sx(0):.1f}" y1="{pt}" y2="{h - 22}" class="zero"/>')
+    for i, (lab, v, kind, a, b, end) in enumerate(spans):
+        y = pt + i * row + 8
+        bh = row - 16
+        fill = "var(--boeing)" if kind == "total" else "var(--faint)"
+        out.append(f'<text x="{pl - 10}" y="{y + bh / 2 + 4:.1f}" text-anchor="end" class="blab">{esc(lab)}</text>'
+                   f'<rect x="{sx(a):.1f}" y="{y}" width="{max(2.0, sx(b) - sx(a)):.1f}" height="{bh}" rx="3" fill="{fill}">'
+                   f'<title>{esc(lab)}: {v:+.1f} $B</title></rect>'
+                   f'<text x="{sx(b) + 6 if v >= 0 else sx(a) - 6:.1f}" y="{y + bh / 2 + 4:.1f}" '
+                   f'text-anchor="{"start" if v >= 0 else "end"}" class="bval">{v:+.1f}</text>')
+        if i + 1 < len(spans):
+            out.append(f'<line x1="{sx(end):.1f}" x2="{sx(end):.1f}" y1="{y + bh}" y2="{y + row}" class="conn"/>')
+    out.append("</svg>")
+    leg = (f'<span class="lg"><i style="background:var(--boeing)"></i>{esc(legend[0])}</span>'
+           f'<span class="lg"><i style="background:var(--faint)"></i>{esc(legend[1])}</span>')
+    return f'<figure class="fig"><figcaption>{esc(title)}</figcaption>{"".join(out)}<div class="legend">{leg}</div></figure>'
+
+
+def why_section(cfg, ev, base_id, nv):
+    """Why a programme assumption matters: the baseline run's own moves replayed with only that programme's
+    parameters taken from this run, the change in its value split by cause, then each player's response."""
+    wy = nv["why"]
+    side, prog = wy.get("side", "boeing"), wy.get("program", "fps")
+    rival = M.other(side)
+    bst = E.load_state(base_id)
+    bcfg, bhist = bst["config"], bst["history"]
+    rcfg = copy.deepcopy(bcfg)
+    rcfg["programs"][prog] = copy.deepcopy(cfg["programs"][prog])
+    nohist = copy.deepcopy(bhist)
+    for r in nohist:
+        o = r["orders"].get(side, {})
+        o["launch"] = [x for x in o.get("launch", []) if x.get("program") != prog]
+
+    def evals(c, h):
+        e = M.evaluate(c, M.build_world(c, h), with_objectives=False, with_series=True)
+        return e
+
+    e0, e1 = evals(bcfg, bhist), evals(rcfg, bhist)
+    n0, n1 = evals(bcfg, nohist), evals(rcfg, nohist)
+    seg = cfg["programs"][prog]["segment"]
+    z0, z1 = copy.deepcopy(bcfg), copy.deepcopy(rcfg)
+    for c in (z0, z1):
+        c["segments"][seg]["capture_pp_per_year"] = 0.0
+    nz0, nz1 = evals(z0, bhist), evals(z1, bhist)
+    val0 = e0[side]["delta_pv_b"] - n0[side]["delta_pv_b"]
+    val1 = e1[side]["delta_pv_b"] - n1[side]["delta_pv_b"]
+    c0, c1 = e0[side]["components_pv_b"], e1[side]["components_pv_b"]
+    op = f"{seg}_operating"
+    timing = nz1[side]["components_pv_b"][op] - nz0[side]["components_pv_b"][op]
+    share = (c1[op] - c0[op]) - timing
+    capex = c1["capex"] - c0["capex"]
+    other = (val1 - val0) - timing - share - capex
+
+    def prog_of(e, sd, pid=None):
+        for pr_ in e[sd]["programs"]:
+            if pr_["program"] == pid or (pid is None and pr_["segment"] == seg and pr_["cancelled_year"] is None):
+                return pr_
+        return None
+    pb0, pb1 = prog_of(e0, side, prog), prog_of(e1, side, prog)
+    pa = prog_of(e0, rival)
+    eis0, eis1 = pb0["eis"], pb1["eis"]
+    eisr = pa["eis"] if pa else None
+    d = (eis1 or 0) - (eis0 or 0)
+    wacc = bcfg["players"][side]["wacc"]
+    pc = cfg["programs"][prog]
+    delay = int(pc.get("delay_years", 0))
+    extra = delay * cfg["extension_capex_frac_per_year"] * pc["capex_b"]
+    sc = cfg["segments"][seg]
+    tab = capture_weight_cumsum_ratio(sc.get("capture_weight_by_year"), eisr, eis0, eis1) if eisr else None
+
+    def sh(e, y):
+        b = e["boeing"]["series"][str(y)][f"{seg}_aircraft"]
+        a = e["airbus"]["series"][str(y)][f"{seg}_aircraft"]
+        v = b / (a + b) if a + b else 0
+        return v if side == "boeing" else 1 - v
+    yfz = max(eis1, eis0) + 4
+    pname = esc(pb0["label"].split(" (")[0])
+    rname = esc(pa["label"].split(" (")[0]) if pa else "the rival"
+    sname = esc(label(cfg, side))
+
+    out = ['<section id="why"><span class="eyebrow">Why</span>'
+           f'<h2>{esc(wy.get("title") or "Why the delay matters")}</h2>'
+           f'<div class="prose"><p>To isolate the assumption, the first game\'s own moves are replayed with only {pname}\'s '
+           f'development time changed, from {eis0 - pb0["launch_year"]} to {eis1 - pb1["launch_year"]} years. Every other order, inject '
+           f'and market reaction is held fixed, and the value of launching {pname} is {sname}\'s delta PV with it minus without it.</p></div>']
+    rows = [
+        (f"{sname} delta PV with {pname}", e0[side]["delta_pv_b"], e1[side]["delta_pv_b"], True),
+        (f"{sname} delta PV without {pname}", n0[side]["delta_pv_b"], n1[side]["delta_pv_b"], True),
+        (f"<b>Value of launching {pname}</b>", val0, val1, True),
+        (f"{sname} narrowbody share in {yfz}", sh(e0, yfz), sh(e1, yfz), False),
+        (f"{esc(label(cfg, rival))} delta PV (same moves)", e0[rival]["delta_pv_b"], e1[rival]["delta_pv_b"], True),
+    ]
+    tr = "".join(f'<tr><td>{lab}</td><td class="n" data-l="{eis0 - pb0["launch_year"]}-year">{fmt_b(a) if money else pct(a)}</td>'
+                 f'<td class="n" data-l="{eis1 - pb1["launch_year"]}-year">{fmt_b(b) if money else pct(b)}</td></tr>' for lab, a, b, money in rows)
+    out.append(f'<div class="scroll"><table class="stackl"><thead><tr><th>Same moves as the first game</th>'
+               f'<th class="n">{eis0 - pb0["launch_year"]}-year {pname} (in service {eis0})</th>'
+               f'<th class="n">{eis1 - pb1["launch_year"]}-year {pname} (in service {eis1})</th></tr></thead><tbody>{tr}</tbody></table></div>')
+
+    reasons = [
+        ("Margins arrive later", timing,
+         f"The new airplane's better economics (including the fuel-spike premium) start in {eis1} instead of {eis0}. "
+         f"At {sname}'s {wacc:.1%} cost of capital, money {d} years later is worth {1 - (1 + wacc) ** -d:.0%} less."),
+        ("Higher development cost", capex,
+         f"Each delay year adds {cfg['extension_capex_frac_per_year']:.0%} of {pname} capex: +${extra:.0f}B nominal on ${pc['capex_b']:.0f}B."),
+        (f"{esc(label(cfg, rival))}'s head start grows", share,
+         f"{rname} enters service in {eisr}. The leader takes share only until the follower enters service, then shares freeze. "
+         f"A {eis1 - eisr}-year gap instead of {eis0 - eisr}, during the replacement wave, gives {esc(label(cfg, rival))} "
+         f"{tab:.1f} times more share capture; {sname}'s share freezes at {pct(sh(e1, yfz))} instead of {pct(sh(e0, yfz))}." if eisr and tab else ""),
+    ]
+    if abs(other) >= 0.05:
+        reasons.append(("Other effects", other, "Tactics and other components that move with the programme's dates."))
+    short = {"Margins arrive later": "Later margins", "Higher development cost": "Higher capex", "Other effects": "Other"}
+    steps = [(f"{pname} value, {eis0 - pb0['launch_year']}-yr", val0, "total")] + \
+            [(short.get(r[0], f"{label(cfg, rival)} head start"), r[1], "delta") for r in reasons] + \
+            [(f"{pname} value, {eis1 - pb1['launch_year']}-yr", val1, "total")]
+    out.append('<div class="grid2">' + bridge_chart(steps, f"Value of launching {pname} to {sname} ($B PV): what the delay takes away",
+                                                legend=(f"Value of launching {pname}", "Change from the delay")))
+    rr = "".join(f'<tr><td>{esc(a)}</td><td class="n {"pos" if b >= 0 else "neg"}" data-l="PV $B">{fmt_b(b)}</td><td class="small" data-l="Why">{esc(c)}</td></tr>'
+                 for a, b, c in reasons)
+    out.append(f'<div class="scroll"><table class="stackl"><thead><tr><th>Cause</th><th class="n">PV $B</th><th>Why</th></tr></thead><tbody>{rr}'
+               f'<tr><td><b>Total change</b></td><td class="n {"pos" if val1 - val0 >= 0 else "neg"}" data-l="PV $B"><b>{fmt_b(val1 - val0)}</b></td><td class="small"></td></tr>'
+               '</tbody></table></div></div>')
+    if wy.get("decision"):
+        out.append('<div class="prose">' + "".join(rich(x) for x in wy["decision"]) + "</div>")
+
+    ko = wy.get("knock_on") or {}
+    if ko:
+        bev = e0  # first game as played
+        krows = []
+        for p_ in M.players(cfg):
+            k = ko.get(p_)
+            if not k:
+                continue
+            a, b = bev[p_]["delta_pv_b"], ev[p_]["delta_pv_b"]
+            krows.append(f'<tr><td><span class="dot" style="--pc:{COLORS[p_]}"></span>{esc(label(cfg, p_))}</td>'
+                         f'<td class="n" data-l="Delta PV $B">{fmt_b(a)} → {fmt_b(b)}</td>'
+                         f'<td class="small" data-l="What changed">{esc(k.get("changed", ""))}</td><td class="small" data-l="Why">{esc(k.get("why", ""))}</td></tr>')
+        out.append('<h3>The knock-on effects (as played)</h3><div class="scroll"><table class="stackl"><thead><tr><th>Player</th>'
+                   '<th class="n">Delta PV $B, first game → fps late</th><th>What changed</th><th>Why</th></tr></thead>'
+                   f'<tbody>{"".join(krows)}</tbody></table></div>')
+    if wy.get("unchanged"):
+        out.append('<h3>What does not change</h3><div class="prose"><ul>' + "".join(f"<li>{rich(x)[3:-4]}</li>" for x in wy["unchanged"]) + "</ul></div>")
+    out.append(f'<div class="callout"><h4>A known delay is not a surprise slip</h4><p>In this game the delay was public from round 1, so {sname} never launched. '
+               f'Had {sname} launched in {pb0["launch_year"]} expecting {eis0} and then slipped to {eis1}, the first game\'s path would end at '
+               f'<b>{fmt_b(e1[side]["delta_pv_b"])}</b> instead of {fmt_b(e0[side]["delta_pv_b"])}: worse than never launching '
+               f'({fmt_b(n1[side]["delta_pv_b"])}), because by then the capex is committed.</p></div></section>')
+    return "".join(out)
+
+
+def capture_weight_cumsum_ratio(wy, lead_eis, f0, f1):
+    """How many times more capture-weighted years the leader gets before the follower's entry in service f1 than f0."""
+    pts = M.capture_weight_points(wy) if wy else None
+    w = (lambda t: M.capture_weight(pts, t)) if pts else (lambda t: 1.0)
+    n = lambda f: sum(w(t) for t in range(lead_eis + 1, f + 1))
+    return n(f1) / n(f0) if n(f0) else None
 
 
 def compare_section(cfg, ev, final, base_id, nv):
@@ -377,7 +563,7 @@ def build(run_id, narrative, compare=None):
     title = nv.get("title") or f"War game {run_id}"
     P = []
     P.append(f'<header class="bar"><div class="wrap"><span class="brand">{esc(title)}</span><nav>'
-             '<a href="#summary">Summary</a>' + ('<a href="#compare">Compared</a>' if compare else '') + '<a href="#rounds">Rounds</a><a href="#players">Players</a>'
+             '<a href="#summary">Summary</a>' + ('<a href="#compare">Compared</a>' if compare else '') + ('<a href="#why">Why</a>' if compare and nv.get('why') else '') + '<a href="#rounds">Rounds</a><a href="#players">Players</a>'
              '<a href="#dates">Dates</a><a href="#method">Method</a></nav></div></header>')
     P.append('<main class="wrap">')
     turns_txt = ", ".join(f"{t['years'][0]}–{t['years'][1]}" for t in cfg["turns"][:st["turns_total"]])
@@ -463,6 +649,8 @@ def build(run_id, narrative, compare=None):
 
     if compare:
         P.append(compare_section(cfg, ev, final, compare, nv))
+        if nv.get("why"):
+            P.append(why_section(cfg, ev, compare, nv))
 
     # Rounds
     P.append('<section id="rounds"><span class="eyebrow">Round by round</span><h2>Rounds, as of each round\'s last year</h2>'
