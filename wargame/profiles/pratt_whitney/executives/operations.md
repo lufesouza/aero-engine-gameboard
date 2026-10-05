@@ -184,23 +184,23 @@ His one event came five weeks before the powder-metal disclosure [PX-0290].
 | Jun 2023 | GTF Advantage certified mid-2024 | Certified in 2025 | PX-0128, P-0785, P-1817 |
 | Jun 2023 | 90% of the fleet in the latest configuration within 2-3 years | Not in the evidence | PX-0116 |
 | Jun 2023 | Escape recovered in Q3 | A quarter recovered by June; no final outcome | PX-0121, PX-0287 |
-| Jun 2023 | Aftermarket profit +50% or "doubling", 2022-25 | Two figures for one target; no outcome | PX-0118, P-0583 |
+| Jun 2023 | Aftermarket profit +50% or "doubling", 2022-25 | Two figures given (+50% in his remarks, "doubling" in Q&A); our evidence does not show whether they share a scope; no outcome | PX-0118, P-0583 |
 
 ### In the game
 
 | Lever | Stance | Flips when | Asks for | Vetoes |
 |---|---|---|---|---|
 | `gtf_upgrade` | ON: his core agenda. Block D doubled the removal interval [PX-0116] | Never | +1.76 in round 1, +1.15 in round 2 [engine] | |
-| `gtf_next` | OFF early: next gen is "moving significantly to the right, this program is going to be much larger" [PX-0129] | A disclosed NGSA or fps on `pw_gtf2` | NGSA 2035 ours +1.21 against CFM's -0.01; NGSA 2037 ours +0.99 [engine] | Entry into service before durability is proven [PX-0128] |
-| Terms | Standard: pricing offsets inflation across the long-term agreements [PX-0117] | None found | Aggressive -1.97 [engine] | Aggressive (inference) |
+| `gtf_next` | OFF early. Relaying Hayes, next gen is "moving significantly to the right", so "this program is going to be much larger" [PX-0129] | A disclosed NGSA or fps on `pw_gtf2` | NGSA 2035 ours +1.21 against CFM's -0.01; NGSA 2037 ours +0.99 [engine] | Entry into service before durability is proven [PX-0128] |
+| Terms | Standard (inference for OE terms): in the aftermarket, price is adjusted to offset inflation across the long-term agreements [PX-0117] | None found | Aggressive -1.97 [engine] | Aggressive (inference) |
 | `join_rr_jv` | No evidence; relies on a partner MRO network [PX-0118] | | +12.14 / -1.25 [engine] | |
 | `pw_wb` | Never: "single aisle focused" [PX-0127] | | -1.43 [engine] | `pw_wb` |
 | Cancel | No evidence | | | |
 
 **Reactions.**
-- *CFM launches a ducted engine or the open fan:* he defends the architecture [PX-0111] and extends the GTF [PX-0129]. An open-fan NGSA cannot fly before 2045, so we keep our base until then: +0.62 [engine].
+- *CFM launches a ducted engine or the open fan:* he defends the architecture [PX-0111] and extends the GTF [PX-0129]. An open-fan NGSA cannot fly before 2045, so we keep our base until then: +0.48 if NGSA is launched in 2028-2033, +0.62 if in 2037 [engine].
 - *CFM gains share with a LEAP upgrade:* answer with the upgrade and track fleet configuration [PX-0116] (inference).
-- *An airframer asks for aggressive terms:* offer pass-through pricing, not discounts [PX-0117].
+- *An airframer asks for aggressive terms:* offer pass-through pricing, not discounts (inference from his aftermarket pricing [PX-0117]).
 - *Disclosure:* fleet statistics, yes; NEM and compensation, no [PX-0113][PX-0112].
 
 **In the ExCo.** He brings the 30 pacing parts, configuration percentages and AOG counts, reviewed on a weekly drumbeat [PX-0123][PX-0116][PX-0131]. Severe-environment test data would change his mind (inference from [PX-0128]).

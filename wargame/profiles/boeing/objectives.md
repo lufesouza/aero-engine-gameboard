@@ -346,4 +346,23 @@ echo '{"boeing": {"1": {"rate_increase": true}, "4": {"launch": [{"program": "fp
 python3 wargame/profiles/build/cite_check.py wargame/profiles/boeing/objectives.md wargame/profiles/boeing/evidence.jsonl wargame/profiles/boeing/executives/evidence.jsonl --show
 ```
 
+Five-player game (Section 11 and `profile.md` §11; snapshots of 2026-10-05; the scratch run was deleted afterwards):
+
+```bash
+python3 -m wargame.engine rules --scenario five-player-2045 --suppliers rolls_royce,pratt_whitney,cfm --side boeing
+python3 -m wargame.engine new --scenario five-player-2045 --suppliers rolls_royce,pratt_whitney,cfm --run-id boeing-5p-scratch --force
+python3 -m wargame.engine inject --run boeing-5p-scratch --none
+python3 -m wargame.engine options --run boeing-5p-scratch --side boeing --compact
+# Template (doctrine plan against NGSA 2030, CFM ducted committed in 2026); keys are round numbers:
+echo '{"boeing": {"1": {"rate_increase": true}, "2": {"launch": [{"program": "fps", "variant": "solo", "engine": "cfm_ducted", "year": 2031, "ramp": "10y"}]}},
+ "airbus": {"1": {"launch": [{"program": "ngsa", "engine": "cfm_ducted", "year": 2030}]}},
+ "cfm": {"1": {"launch": [{"program": "ducted", "year": 2026}]}}}' | python3 -m wargame.engine whatif --run boeing-5p-scratch --side boeing
+# Sweep, 3,416 plans: the template looped over Airbus idle / NGSA 2026-2036, 2038, 2040 x fps none / 2026-2040 x solo, jv x 7y, 10y x Rate none / R1 / R2 / R3
+# Variants: no "cfm" key (LEAP derivative); "cfm" ducted in 2030 or 2032 (engine wait); "terms": "aggressive" on the maker's launch;
+#   "pw_gtf2" with "pratt_whitney": {"1": {"launch": [{"program": "gtf_next", "year": 2026}]}}; "rr_ultrafan_nb" with "rolls_royce" "uf_nb";
+#   slip test: "airbus" "delay_tactics": true in rounds "2" and "3"; re787 2030-2040 against "rea350" none / 2026 / 2031 / 2036;
+#   open fan: fps 2037 "cfm_open_fan" with "cfm" "open_fan" in 2036.
+# Market cell: adjudicate Round 1 (and 2) with "market": {"capture_mult": {"fps": 1.25}}, read whatif, then rollback --to-turn 1.
+```
+
 </details>
