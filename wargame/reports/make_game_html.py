@@ -30,6 +30,23 @@ COLORS = {"boeing": "var(--boeing)", "airbus": "var(--airbus)", "rolls_royce": "
           "pratt_whitney": "var(--pratt_whitney)", "cfm": "var(--cfm)", "other_makers": "var(--faint)"}
 
 
+def rich(text):
+    """Paragraph text where lines starting with '- ' become a bullet list."""
+    out, items = [], []
+    for line in str(text).split("\n"):
+        if line.startswith("- "):
+            items.append(f"<li>{esc(line[2:])}</li>")
+            continue
+        if items:
+            out.append(f"<ul>{''.join(items)}</ul>")
+            items = []
+        if line.strip():
+            out.append(f"<p>{esc(line)}</p>")
+    if items:
+        out.append(f"<ul>{''.join(items)}</ul>")
+    return "".join(out)
+
+
 def comp_text(comp):
     return "; ".join(k.replace("_", " ") + f" {v:+.1f}" for k, v in comp.items() if abs(v) >= 0.05)
 
@@ -217,6 +234,7 @@ tbody td:first-child { white-space: nowrap; }
 .round { display: none; gap: 16px; } .round.on { display: grid; }
 .callout { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 12px 16px; display: grid; gap: 8px; }
 .callout ul { margin: 0; padding-left: 18px; }
+.prose { display: grid; gap: 10px; } .prose ul, details ul { margin: 0; padding-left: 20px; }
 details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; }
 details > summary { cursor: pointer; font: 600 1.02rem/1.3 var(--font-display); }
 details[open] > summary { margin-bottom: 8px; }
@@ -226,7 +244,12 @@ details[open] > summary { margin-bottom: 8px; }
 .pill.no { background: color-mix(in srgb, var(--bad) 20%, transparent); color: var(--bad); }
 .small { font-size: .82rem; }
 pre.rat { white-space: pre-wrap; font: .8rem/1.5 var(--font-mono); margin: 0; color: var(--muted); max-height: 420px; overflow: auto; }
-@media (max-width: 600px) { th, td { padding: 7px 8px; } h2 { font-size: 1.6rem; } }
+@media (max-width: 600px) { th, td { padding: 7px 8px; } h2 { font-size: 1.6rem; }
+  table.stack thead { display: none; }
+  table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; width: 100%; }
+  table.stack tr { border-bottom: 1px solid var(--line); padding: 6px 0; }
+  table.stack td { border: 0; padding: 3px 10px; white-space: normal; }
+  table.stack td.n { text-align: left; } }
 """
 
 JS = """
@@ -295,7 +318,7 @@ def build(run_id, narrative):
     # Summary
     P.append('<section id="summary"><span class="eyebrow">Summary</span><h2>How the fight ended</h2>')
     if nv.get("summary"):
-        P.append("".join(f"<p>{esc(x)}</p>" for x in nv["summary"]))
+        P.append('<div class="prose">' + "".join(rich(x) for x in nv["summary"]) + "</div>")
     if nv.get("findings"):
         P.append('<div class="callout"><h4>Key findings</h4><ul>' + "".join(f"<li>{esc(x)}</li>" for x in nv["findings"]) + "</ul></div>")
     cards = []
@@ -311,6 +334,20 @@ def build(run_id, narrative):
                      f'<span class="muted small">delta PV $B · objectives met {met}/{len(objs)}</span>'
                      f'<ul>{"".join(f"<li>{esc(m)}</li>" for m in moves)}</ul></div>')
     P.append(f'<div class="cards">{"".join(cards)}</div>')
+    # one row per round: shares at the round's last year and every player's delta PV after it
+    snap = []
+    for r in reps:
+        y = str(r["as_of"])
+        nb, wb = r["shares"]["nb"][y], r["shares"]["wb"][y]
+        mk = lambda v: " · ".join(f"{label(cfg, s_)} {pct(v.get('engine_makers', {}).get(s_))}" for s_ in sups) if sups else "–"
+        snap.append(f'<tr><td>Round {r["round"]} · {y}</td><td class="n">{pct(nb["boeing"])} / {pct(nb["airbus"])}</td>'
+                    f'<td class="n">{pct(wb["boeing"])} / {pct(wb["airbus"])}</td><td class="small">{esc(mk(nb))}</td><td class="small">{esc(mk(wb))}</td>'
+                    + "".join(f'<td class="n">{fmt_b(r["financials"][p]["delta_pv_b"])}</td>' for p in pls) + "</tr>")
+    P.append('<h3>Round snapshots</h3><div class="scroll"><table><thead><tr><th>As of</th><th class="n">NB Boeing / Airbus</th><th class="n">WB Boeing / Airbus</th>'
+             '<th>NB engines by maker</th><th>WB engines by maker</th>'
+             + "".join(f'<th class="n">{esc(label(cfg, p))} ΔPV $B</th>' for p in pls)
+             + f'</tr></thead><tbody>{"".join(snap)}</tbody></table></div>'
+             '<p class="muted small">Shares of deliveries in the round\'s last year. ΔPV is each player\'s full-game projection after the round, assuming no further moves.</p>')
 
     # charts
     def path(seg, side, key="aircraft"):
@@ -363,7 +400,7 @@ def build(run_id, narrative):
         P.append(f'<div class="round{" on" if i == 0 else ""}" id="round{r["round"]}">')
         P.append(f'<h3>{esc(r["label"])} <span class="muted">({r["years"][0]}–{r["years"][1]})</span></h3>')
         if nv.get("rounds", {}).get(str(r["round"])):
-            P.append(f'<div class="callout"><p>{esc(nv["rounds"][str(r["round"])])}</p></div>')
+            P.append(f'<div class="callout">{rich(nv["rounds"][str(r["round"])])}</div>')
         if r["injects"]:
             P.append(f'<p><strong>Inject:</strong> {esc(", ".join(r["injects"]))}</p>')
         # moves
@@ -374,7 +411,7 @@ def build(run_id, narrative):
             mv.append(f'<tr><td><span class="dot" style="--pc:{COLORS[p]}"></span>{esc(label(cfg, p))}</td><td>{esc(r["orders"].get(p, "no new moves"))}</td>'
                       f'<td class="small"><span class="quote">{esc(stt.get("public_statement", ""))}</span>'
                       f'{"<br><strong>Disclosed:</strong> " + esc(" · ".join(disc)) if disc else ""}</td></tr>')
-        P.append('<h4>Moves</h4><div class="scroll"><table><thead><tr><th>Player</th><th>Orders</th><th>Public statement and disclosures</th></tr></thead>'
+        P.append('<h4>Moves</h4><div class="scroll"><table class="stack"><thead><tr><th>Player</th><th>Orders</th><th>Public statement and disclosures</th></tr></thead>'
                  f'<tbody>{"".join(mv)}</tbody></table></div>')
         if r.get("market_narrative"):
             mm = r.get("market", {}).get("capture_mult") or {}
@@ -453,7 +490,7 @@ def build(run_id, narrative):
         P.append(f'<details{" open" if p == pls[0] else ""} style="border-top:4px solid {COLORS[p]}"><summary>{esc(label(cfg, p))}: delta PV {fmt_b(f["delta_pv_b"])} $B'
                  f'{" · team " + esc(lead[p]) if lead.get(p) else ""}</summary><div style="display:grid;gap:12px">')
         if pv.get("verdict"):
-            P.append(f"<p>{esc(pv['verdict'])}</p>")
+            P.append(rich(pv["verdict"]))
         if pv.get("highlights"):
             P.append("<ul>" + "".join(f"<li>{esc(x)}</li>" for x in pv["highlights"]) + "</ul>")
         s_ = summ.get(p, {})
@@ -467,7 +504,7 @@ def build(run_id, narrative):
             fr_ = r["financials"][p]
             rows.append(f'<tr><td>R{r["round"]} ({r["years"][0]}–{r["years"][1]})</td><td>{esc(r["orders"].get(p, "no new moves"))}</td>'
                         f'<td class="n">{fmt_b(fr_["delta_pv_b"])}</td><td class="small quote">{esc(r["statements"].get(p, {}).get("public_statement", ""))}</td></tr>')
-        P.append('<div class="scroll"><table><thead><tr><th>Round</th><th>Orders</th><th class="n">Delta PV after</th><th>Public statement</th></tr></thead>'
+        P.append('<div class="scroll"><table class="stack"><thead><tr><th>Round</th><th>Orders</th><th class="n">Delta PV after</th><th>Public statement</th></tr></thead>'
                  f'<tbody>{"".join(rows)}</tbody></table></div>')
         P.append('<div class="scroll"><table><thead><tr><th>Component</th><th class="n">PV $B</th><th class="n">Undiscounted $B</th></tr></thead><tbody>'
                  + "".join(f'<tr><td>{esc(k.replace("_", " "))}</td><td class="n">{v:+,.2f}</td><td class="n">{f["undiscounted_b"].get(k, 0):+,.1f}</td></tr>'
