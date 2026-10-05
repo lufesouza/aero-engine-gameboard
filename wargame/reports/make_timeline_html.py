@@ -2,7 +2,7 @@
 """Build a timeline page of a five-player war-game run: every launch, entry into service, engine
 fallback, cancellation, commitment, tactic, inject and market reaction, by player and year.
 
-Usage: python3 wargame/reports/make_timeline_html.py <run id> <out.html>
+Usage: python3 wargame/reports/make_timeline_html.py <run id> <out.html> [--title "<page title>"]
 
 Years and programmes come from the engine's replay of the run, so the page matches the adjudicated
 record. It carries public moves only: no private rationales and no assigned objectives.
@@ -170,7 +170,7 @@ def build_data(run_id):
             "lanes": [{"id": l, "label": n} for l, n in LANES], "events": ev, "spans": spans, "totals": totals}
 
 
-PAGE = r"""<title>War Game 2045 Timeline</title>
+PAGE = r"""<title>__TITLE__</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -263,7 +263,7 @@ p { margin: 0; max-width: 72ch; }
 <div class="wrap">
   <header class="head">
     <span class="eyebrow" id="eyebrow"></span>
-    <h1>War Game 2045 Timeline</h1>
+    <h1>__TITLE__</h1>
     <p class="muted">Every public move and its consequence in the five-player game, 2026–2045, with the projection to 2050. Each round's orders were sealed and simultaneous, and engine makers' orders applied first, so an airframe that named an uncommitted engine fell back down the chain in the same year.</p>
     <div class="scores" id="scores" aria-label="Final delta PV by player"></div>
   </header>
@@ -457,8 +457,10 @@ drawFilters(); drawBoard(); drawLog();
 
 def main():
     run_id, out = sys.argv[1], sys.argv[2]
+    title = sys.argv[sys.argv.index("--title") + 1] if "--title" in sys.argv else "War Game 2045 Timeline"
     data = build_data(run_id)
-    page = PAGE.replace("__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
+    page = PAGE.replace("__TITLE__", html.escape(title)).replace(
+        "__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
     with open(out, "w") as f:
         f.write(page)
     print(out, len(page), len(data["events"]), "events", len(data["spans"]), "spans")
