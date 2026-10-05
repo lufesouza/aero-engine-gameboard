@@ -15,7 +15,7 @@ The company doctrine and hard rules are in `wargame/profiles/rolls_royce/profile
 - **[5p]**: `options` or `whatif --side control` on a fresh `five-player-2045` run with Rolls-Royce, Pratt & Whitney (P&W) and CFM/GE playing. Values are $B of full-game delta PV for RR unless an airframer is named. Turn keys 1, 2 and 3 are the rounds 2026-2030, 2031-2035 and 2036-2045; launches are in the round's first year unless a year is given. These are snapshots, not evidence: re-run them every turn.
 - **P**: the probability that the airframer selects UltraFan (profile §9 step 4). It is 0.6 when an announcement names UltraFan for this round, and 0.35 when the announcement leaves the engine open.
 - **Expected PV** = P × selected + (1 − P) × unselected.
-- **(inference)** marks our reading, not the evidence.
+- **(inference)** marks our reading, not the evidence. **(attr.)** and **(prob.)** mark Civil turns labelled "Unknown Executive" in the transcript and attributed or probably attributed to the president (`operations.md`).
 
 ## Team index and membership check
 
