@@ -136,7 +136,7 @@ What moved is the third slot. Buybacks ran at $2.5-3B a year in 2022 [PX-0231]. 
 - He back-end-loads discretionary spending to keep the option to cut [PX-0217].
 - He targets low and beats: "We stopped counting at about $600 million" of synergies [PX-0220].
 - He acted early on Russian titanium [PX-0235].
-- When material was scarce he gave GTF recall overhauls priority over more profitable V2500 visits [PX-0320].
+- When material was scarce, P&W gave GTF recall overhauls priority over more profitable V2500 visits, as he reported [PX-0320].
 
 **Risk.**
 - In 2021 he played down inflation because 90% of Pratt purchases were under long-term agreements [PX-0219]. A year later his aftermarket price rises were "significantly larger than our historical pricing increases" [PX-0251].
@@ -149,7 +149,7 @@ What moved is the third slot. Buybacks ran at $2.5-3B a year in 2022 [PX-0231]. 
 - *Next engine.* "We lose a fair amount of money on each of the engines ... we'll cross that bridge when we get to it" [PX-0276].
 
 **Operations.**
-- He kept capacity for rate 63 through COVID: "demand will come back" [PX-0209]. He kept the Asheville plant on schedule [PX-0222].
+- He reported keeping capacity for rate 63 through COVID, "because we knew that demand will come back" [PX-0209], and the Asheville plant on schedule [PX-0222].
 - He costs each ramp step: about 200 more engines for $100-150M of NEM (2022) [PX-0225]; +20% for about $125M (2024), "much better absorption" [PX-0307].
 - He names the gating constraints: castings [PX-0314], then inspection and machining rather than forging [PX-0316]. He commits MRO capacity of 16 to 19 shops [PX-0317].
 
@@ -167,7 +167,7 @@ What moved is the third slot. Buybacks ran at $2.5-3B a year in 2022 [PX-0231]. 
 - *Russia.* The $750M sales hit was taken at once and EPS held [PX-0230].
 - *Powder metal.* He gave no number until the scope was known [PX-0288]. The charge was booked outside adjusted EPS [PX-0294] and Pratt's adjusted guide was raised that same quarter [PX-0302]. Cash follows signed agreements and AOG days [PX-0324][PX-0329]; "Could that go out a little bit further? Perhaps" [PX-0338].
 
-**Team.** He and Calio sit in monthly cost-reduction summits where each business defends its pipeline [PX-0249]. He eased partners' 90-day cash settlements: "The GTF program has decades to go" [PX-0301]. In the `hayes-mitchill-leduc-2019` team he was Pratt's CFO under Leduc, not RTX's [PX-0181].
+**Team.** He and Calio join the monthly cost-reduction summits, where each business defends its pipeline, "on a quarterly basis, at least" [PX-0249]. He committed to accommodate partners' 90-day cash settlements: "The GTF program has decades to go" [PX-0301]. In the `hayes-mitchill-leduc-2019` team he was Pratt's CFO under Leduc, not RTX's [PX-0181].
 
 ## In the game: if Mitchill is in the room
 

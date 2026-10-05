@@ -317,7 +317,7 @@ The company doctrine and hard rules are in `wargame/profiles/rolls_royce/profile
    - He reads `brief`: last round's disclosures naming fps, NGSA, an A350 Re-engine or a 787 Re-engine for this round, plus CFM/GE's and P&W's moves.
    - Round 1 has no announcement, so there is no UltraFan question: the turn is the upgrade and the disclosures.
 2. **The CFO tests** (McCabe).
-   - She asks for selected, unselected and expected PV from `options` and `whatif`, against the hurdle (alpha 0.6 [RX-0213]).
+   - She asks for selected, unselected and expected PV from `options` and `whatif`, against the mid-to-high-teens hurdle [RX-0213], which the engine loads as alpha 0.6 on capex (rules).
    - She asks for capex a year in £. A `uf_nb` Solo is $7.5B, about £5.5bn over 7 years at 1.36 $/£, against FY2026 FCF guidance of £3.6-3.8bn [R-0222]; a Joint Venture halves it (inference).
    - Bars: expected PV of at least +$2B for a `uf_nb` launch in rounds 1-2, and above 0 in round 3 (see step 4); the unselected loss stated every time.
 3. **Civil tests** (Watson).
