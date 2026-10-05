@@ -1,6 +1,6 @@
 # Airbus: assigned objectives
 
-This brief covers Airbus's assigned mission, how the engine scores it and what it costs. The referee scores attainment alongside delta PV; it never enters the payoff. Engine numbers come from the commands at the end (control-side `whatif`, no suppliers or injects, market multipliers 1.0), in $B of Airbus delta PV. Those numbers, in §2-§8, are the two-player, four-turn game (four-turn game). §9 gives the five-player game (`five-player-2045`: three rounds, three engine makers, NGSA at $20B), from Airbus-side `whatif`. Its three-round check is in §7 and its commands are in the second block.
+This brief covers Airbus's assigned mission, how the engine scores it and what it costs. The referee scores attainment alongside delta PV; it never enters the payoff. Engine numbers come from the commands at the end (control-side `whatif`, no suppliers or injects, market multipliers 1.0), in $B of Airbus delta PV. Those numbers (§2-§8) come from the two-player, four-turn game (four-turn game). §9 gives the five-player game (`five-player-2045`: three rounds, three engine makers, NGSA at $20B), from Airbus-side `whatif`. Its three-round check is in §7 and its commands are in the second block.
 
 ## 1. Assigned objective
 
@@ -174,7 +174,7 @@ Our prior is an fps no earlier than turn 2 (profile §7) and an early Rate Incre
 2. **After, plus the threat case.** Run the chosen orders twice: once with your NGSA engine committed, once with it fallen back to the LEAP derivative. Then add the round's threat case:
    - **Round 1:** fps 2026 with a 7-year and a 10-year ramp-up, plus a round-1 Rate Increase. Snapshot for NGSA 2028: -1.10 and -0.77, and -3.10 and -2.77 with the Rate Increase, which also fails `protect_a320` by 2.0.
    - **Round 2:** the earliest fps still open (2031, EIS 2038), plus any uncommitted Rate Increase. Snapshot: met at +1.78 to +1.84 alone, -0.16 to -0.22 with a Rate Increase.
-   - **Round 3:** fps 2036 (EIS 2043), plus any uncommitted Rate Increase. Both are met. With NGSA EIS 2035, `protect_a320` is settled after round 1 because only 2030 counts, so only `nb_share_60` can still move.
+   - **Round 3:** fps 2036 (EIS 2043), plus any uncommitted Rate Increase. Both are met: +1.47 (LEAP) or +1.58 (UltraFan) with the Rate Increase. With NGSA EIS 2035, `protect_a320` is settled after round 1 because only 2030 counts, unless a late engine pushes EIS past 2035. Only `nb_share_60` can still move.
 3. **Repair within the red lines.**
    - **Round 1:** NGSA 2028, requesting the best-PV engine whose maker can commit in time (UltraFan by 2028, GTF2 by 2029), never the open fan. No Delay Tactics: the order is blind.
    - **Rounds 2 and 3:** one Delay Tactics round against a public fps in development, if it gains at least $1B and (default team) changes who enters service first. No case tested reached $1B (§9.4), so expect to log the miss.
@@ -187,7 +187,7 @@ Our prior is an fps no earlier than turn 2 (profile §7) and an early Rate Incre
 ## 8. Gaps and modelling limits
 
 - **A220-500, incentives, ramp.** Not modelled (§3, §6). With no Airbus rate lever, `protect_a320` turns on Boeing's Rate Increase timing.
-- **"Fines".** A share penalty, not money. From turns 2 and 3 it falls in 2035-2039, which no counted year sees when NGSA EIS is 2035.
+- **"Fines".** A share penalty, not money. From turns 2 and 3 it falls in 2035-2039, which no counted year sees when NGSA EIS is 2035 (four-turn game). In `five-player-2045` it falls in 2036-2040 or 2046-2050, which 2040 or 2050 sees (§9.4).
 - **NGSA capex.** $25B is a placeholder (base narrative); §5.5 tests $20B (four-turn game). `five-player-2045` uses the briefing's $20B.
 - **Replacement wave.** It applies one capture weight to both sides. The slide's mix (about 73% Airbus types) is not modelled.
 - **Five-year marks.** Dips between counted years are invisible.
@@ -295,8 +295,8 @@ Gain from one round of Delay Tactics over NGSA 2028 alone:
 - **Round 3.** Both metrics are met (+1.47 LEAP, +1.58 UltraFan).
 - **A Rate Increase plus an fps:**
   - **fps 2029 with a round-1 Rate Increase:** -1.45 (LEAP), -1.43 (UltraFan). Delay Tactics in round 2 leaves -0.86 and -0.82.
-  - **fps 2031 with a Rate Increase in round 1 or 2:** -0.22 (LEAP), -0.16 (UltraFan). One Delay Tactics round, in round 2 or 3, meets the metric on UltraFan (+0.66) but adds only $0.65-0.76B.
-  - **fps 2032 or 2033 with a round-1 Rate Increase:** met (fps 2032: +0.66 on UltraFan; fps 2033: +1.47 LEAP, +1.58 UltraFan).
+  - **fps 2031 with a Rate Increase in round 1 or 2:** -0.22 (LEAP), -0.16 (UltraFan). One Delay Tactics round, in round 2 or 3, meets the metric (+0.58 LEAP, +0.66 UltraFan) but adds only $0.55-0.76B.
+  - **fps 2032, 2033 or 2036 with a Rate Increase:** met (fps 2032: +0.58 LEAP, +0.66 UltraFan; fps 2033 and 2036: +1.47 LEAP, +1.58 UltraFan).
 - **Boeing's round-1 best response in `options`** is fps 2026 Solo with a 10-year ramp-up, plus a Rate Increase.
   - NGSA 2028 scores +22.96 (LEAP) or +30.32 (UltraFan), with `nb_share_60` at -2.77 and `protect_a320` at -2.0.
   - Delay Tactics in round 2 leaves -2.39 (+0.36).

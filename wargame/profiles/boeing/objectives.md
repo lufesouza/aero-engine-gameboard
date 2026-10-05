@@ -211,7 +211,93 @@ Replacements: about 38 in 2037, 334 in 2040, 825 in 2044; about 27% are 737 MAX.
 - **Not modelled:** debt (only alpha), workforce, incentives, the A220-500, COMAC, MAX erosion.
 - **Fixed NGSA dates;** no injects or widebody moves.
 - **The wave** is digitised to ±20 aircraft a year, and its 0.4 floor is assumed.
-- **Supplier players** are not in these runs. With Rolls-Royce or Pratt & Whitney playing, their engines depend on their launches.
+- **Supplier players** are not in these runs (four-turn game). With Rolls-Royce or Pratt & Whitney playing, their engines depend on their launches.
+- **Five-player runs (Section 11)** fix the engine makers' moves; they are not played. The sweep assumes CFM commits its ducted engine in 2026 on standard terms, and a separate test covers no commitment. The makers' real choices, test-setback injects and the market cell move the numbers.
+
+## 11. What it takes in five-player-2045
+
+**Method.** The sweep tests 3,416 plans against 14 Airbus timings: idle, or NGSA in 2026-36, 2038 or 2040. Boeing's plans cover:
+- fps none or 2026-2040;
+- Solo or Joint Venture;
+- the 7-year or 10-year ramp;
+- the Rate Increase none, or in Round 1, 2 or 3.
+
+CFM's ducted engine is committed in 2026 on standard terms, so both airframes can fly it. The runs are `whatif` snapshots of 2026-10-05 on a five-player scratch run, with no injects and neutral markets. The **doctrine plan** is the Rate Increase in Round 1 plus fps 2031 Solo on the 10-year ramp (`profile.md` §11.2). "Allowed" means within H1: no Round-1 fps. Shares are Boeing's 2040 narrowbody share.
+
+| Airbus | Best PV (any) | Doctrine plan | `nb_share_50`: best worst-year share | `defend_incumbency` |
+|---|---|---|---|---|
+| Idle | fps 2028 Solo 7y + Rate R3: +16.38 (45.8%) | +11.85 (43.3%) | 46.97% | Doctrine plan, premium 0. The 7-year ramp is $0.28B higher, within ε |
+| NGSA 2026 | fps 2028 Solo 10y + Rate R2: +8.74 (40.8%) | +4.25 (38.9%) | 42.0% | No allowed plan; gap -1.14 pp. Needs fps by 2029 |
+| NGSA 2027 | same plan: +9.43 (41.4%) | +4.81 (39.5%) | 42.6% | No allowed plan; gap -0.54 pp. Needs fps by 2030 |
+| NGSA 2028 | same: +10.10 (42.0%) | +5.35 (40.1%) | 43.2% | Doctrine plan, by +0.06 pp; premium 0 |
+| NGSA 2030 | same: +10.93 (42.9%) | +6.41 (41.3%) | 44.4% | Doctrine plan; premium 0 |
+| NGSA 2033 | same: +12.19 (44.6%) | +7.84 (43.3%) | 46.97% | Doctrine plan; premium 0 |
+| NGSA 2036 | same: +13.37 (44.6%) | +9.02 (43.3%) | 46.97% | Doctrine plan; premium 0 |
+
+**`nb_share_50`.**
+- **No plan meets it, whatever the hard rules.** The closest is fps 2026 Solo 7y + Rate R1, at 46.97% (gap -3.03 pp), with Airbus idle or NGSA in 2033 or later.
+- **2040 binds.** The wave weight is only 0.65 that year.
+- **The market cell cannot tip it.** At the maximum capture multiplier of 1.25, that plan reaches 48.2% (gap -1.78 pp) and the doctrine plan 43.6%.
+
+**`defend_incumbency`.**
+- **The doctrine plan is the best allowed plan** against every NGSA timing from 2026 to 2040, and it meets the metric whenever NGSA launches in 2028 or later. The objective premium is therefore zero wherever the metric is attainable. Where it is not (NGSA 2026-27), H1 blocks it.
+- **Lag allowance.** On Solo, the 10-year ramp and a Round-1 Rate Increase, fps may trail NGSA by:
+
+  | NGSA launch | Years fps may trail |
+  |---|---|
+  | 2026-28 | 3 |
+  | 2029-33 | 2 |
+  | 2034-38 | 1 |
+  | 2040 | 0 |
+
+  A late NGSA meets the full wave weight, so the allowance shrinks.
+- **Slip test** (Airbus Delay Tactics in Rounds 2-3; fps EIS 2040):
+
+  | Airbus | Doctrine plan PV | 2040 share | `defend_incumbency` |
+  |---|---|---|---|
+  | NGSA 2026 | -3.15 | 37.0% | fails |
+  | NGSA 2028 | -2.18 | 38.2% | fails |
+  | NGSA 2030 | -1.26 | 39.5% | fails |
+  | NGSA 2033 | +0.42 | 42.0% | holds |
+  | Idle | +4.43 | 42.0% | holds |
+
+  The go/no-go test still passes: at worst fps is $0.11B below Do Nothing (NGSA 2026).
+
+**H1 premium.**
+- $4.3-4.8B against the best plan, fps 2028.
+- $2.7-2.9B against fps 2029 ordered in Round 1 on a committed engine.
+- Only $0.4B if CFM would not have committed in Round 1, and -$2.0B if CFM commits in 2030 and fps waits (`profile.md` §11.1).
+
+**Engines** (doctrine plan).
+- **No CFM commitment** (both airframes on the LEAP derivative):
+
+  | Airbus | PV | `defend_incumbency` gap |
+  |---|---|---|
+  | Idle | +9.96 | +2.0 pp |
+  | NGSA 2026 | +3.23 | -0.89 pp |
+  | NGSA 2028 | +4.22 | +0.22 pp |
+  | NGSA 2030 | +5.16 | +1.36 pp |
+  | NGSA 2033 | +6.42 | +2.0 pp |
+
+- **A commitment one year late** (fps waits): +7.89.
+- **Committed alternatives** (Airbus idle): `pw_gtf2` +12.35, `rr_ultrafan_nb` +13.10; CFM on aggressive terms +13.96.
+- **Shares barely move:** 43.2-43.3% in 2040 across engines. The engine is a PV choice, not an objective one.
+
+**Rate Increase and ramp** (doctrine plan).
+- **Rate Increase.** Round 1 gives +11.85, Round 2 +11.42, Round 3 +11.85 and none +10.94. Only Round 1 lifts 2030 (42% against 40%).
+- **10-year against 7-year ramp.** Gain by Airbus timing:
+
+  | Airbus | Idle | NGSA 2026 | NGSA 2028 | NGSA 2030 | NGSA 2033 | NGSA 2036 |
+  |---|---|---|---|---|---|---|
+  | 10-year minus 7-year ($B) | -0.28 | +1.81 | +1.80 | +1.80 | +1.43 | +0.92 |
+
+- **The ramp's effect on share.** Shares are identical when NGSA enters service no later than fps. When fps leads, the 10-year ramp costs share: 43.3% against 43.8% in 2040 (NGSA 2033); 47.7% against 50.1% in 2045 (Airbus idle). Neither changes whether a metric is met.
+
+**What it means.**
+1. **Play for `defend_incumbency`.** It costs nothing where attainable. Log `nb_share_50` each round as unattainable and pay nothing toward it.
+2. **The tie-breaks hold:** a Round-1 Rate Increase, and `cfm_ducted` among committed engines.
+3. **The 7-year ramp is not worth it.** With Airbus idle it is within ε and gives more share, but no metric turns on it. Doctrine keeps the 10-year ramp.
+4. **The binding risk is Delay Tactics, not timing.** Against NGSA 2026-30 they break `defend_incumbency`, so keep the slip test as the baseline (Section 8).
 
 <details>
 <summary>Commands</summary>

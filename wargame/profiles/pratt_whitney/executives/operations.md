@@ -87,31 +87,31 @@ The backlog grew from 7,000 engines (2016) to 10,000 (2019) [PX-0137][P-0080].
 | Date | Commitment | Outcome | ids |
 |---|---|---|---|
 | Mar 2016 | 200 GTFs in 2016, "high, high confidence" | Cut to about 150 (Sep 2016); 138 delivered | PX-0134, P-0814, P-0833 |
-| Mar 2016 | Time on wing meets the models, "probably ... upside" | Hot and sandy fleets short (2023); about half the V2500's (Feb 2023) | PX-0135, PX-0122, P-1014 |
+| Mar 2016 | Time on wing meets the models, "probably ... upside" | Mixed. In 2023 hot and sandy fleets were short, while the cooler-environment three-quarters of the fleet was "better than where we were on V2500 at this stage"; fleet time on wing was about half the mature V2500's (Hayes, Feb 2023) | PX-0135, PX-0122, P-1014 |
 | Jun 2017 | 350-400 GTFs in 2017 | 375 | PX-0148, PX-0161 |
-| Jun 2017 | Fixes in place by end-2017 | Knife-edge seal escape, Feb 2018 | PX-0147, PX-0164 |
-| Jun 2017 | NEM peaks in 2018 | About $1.2B against $1.1B; no further headwind seen in 2019 | PX-0149, PX-0159 |
+| Jun 2017 | Fixes in place by end-2017 | Production engines had "the 2 big fixes" by Jan 2018 (Hayes); a new knife-edge seal design escape was reported in Mar 2018; warranty upgrade visits were expected until about 2023 (Jun 2019) | PX-0147, P-0881, PX-0164, PX-0172 |
+| Jun 2017 | NEM peaks in 2018 | About $1.2B in 2018 against $1.1B guided; "no more negative engine headwind" (Jun 2019) | PX-0149, PX-0159, P-1238 |
 | Jun 2017 | E&D eases after development | Reversed: flat at about 6% | PX-0144, PX-0158 |
 | Mar 2018 | Indian fleet flying by end-April | Not in the evidence | PX-0160 |
-| Mar 2018 | Over 2,500 GTFs in 2018-20 | 750 in 2018; about 30% more planned for 2019 | PX-0162, PX-0174 |
+| Mar 2018 | Over 2,500 GTFs in 2018-20 | 750 in 2018; about 30% more planned for 2019; the 2019-20 outturn is outside our evidence | PX-0162, PX-0174 |
 | Jun 2019 | No warranty work by about 2023 | June 2023: 60% of the fleet in the latest configuration | PX-0172, PX-0116 |
-| Jun 2019 | About 10% cash growth a year; mid-teens margins by 2025 | After his tenure; Pratt "low to mid-teens" long term (2025) | PX-0173, PX-0351 |
+| Jun 2019 | About 10% cash growth a year; mid-teens margins by 2025 | Outturn outside our evidence and after his tenure; Pratt "low to mid-teens" long term (CFO, Jul 2025) | PX-0173, PX-0351 |
 
-**The record.** Volume commitments were met once the supply chain was buffered: no contract date missed in 15 months to June 2019 [PX-0171]. Durability promises slipped.
+**The record.** Volume commitments were missed in 2016 and met from 2017: 375 GTFs [PX-0161], and no contract date missed in the 15 months to June 2019 [PX-0171]. Durability promises slipped.
 
 ### In the game
 
 | Lever | Stance | Flips when | Asks for | Vetoes |
 |---|---|---|---|---|
 | `gtf_upgrade` | ON. Fewer removals pay on power-by-the-hour fleets: 10% fewer V2500 removals is worth $150M [PX-0167] | Never | +1.76 in round 1 [engine] | |
-| `gtf_next` | Conditional. Evolve the GTF [PX-0166], sole source and accretive [PX-0155][PX-0177] | A disclosed NGSA or fps on `pw_gtf2` | NGSA 2030 ours +1.75 against CFM's -1.14 [engine]; durability testing done within the 6 years [PX-0168] | A dual-source competition [PX-0177]; compressing testing (inference) |
+| `gtf_next` | Conditional. Evolve the GTF [PX-0166], sole source and accretive [PX-0155][PX-0177] | A disclosed NGSA or fps on `pw_gtf2` | NGSA 2030 ours +1.75 against CFM's -1.14 [engine]; durability testing done within the 6 years [PX-0168] | A dual-source competition [PX-0177] (his NMA condition; in the engine each airframer names one engine, so it does not bind); compressing testing (inference) |
 | Terms | Standard [PX-0178] | Whole-deal accretion (inference) | Aggressive on a selected NGSA -1.97 [engine] | Launch-style discounts |
-| `join_rr_jv` | Sceptical (inference): the Rolls-Royce compressor precedent [PX-0150] | An airframer discloses UltraFan (inference) | +12.14 selected / -1.25 not [engine] | |
+| `join_rr_jv` | No evidence; OFF by default (inference). The IAE history cuts both ways: RR's compressor held up V2500 deliveries [PX-0150], and buying RR out taught Pratt fleet-hour modelling [PX-0143] | An airframer discloses UltraFan (inference) | +12.14 selected / -1.25 not [engine] | |
 | `pw_wb` | Only sole source and accretive, as on the NMA [PX-0177] | Boeing discloses `pw_wb_new` and `whatif` is above 0 (inference) | 787 Re-engine -1.43 [engine] | A two-engine competition |
 | Cancel | No evidence | | | |
 
 **Reactions.**
-- *CFM launches a ducted engine:* he argues the GTF's fewer-parts cost edge [PX-0142] and offers `gtf_next` sole source. No evidence on the open fan.
+- *CFM launches a ducted engine:* he argues the GTF's fewer-parts cost edge [PX-0142] and offers `gtf_next` sole source (inference). No evidence on the open fan.
 - *CFM gains share with a LEAP upgrade:* do not chase on price, as with IndiGo [PX-0180]. Answer with the upgrade, which restores our 960 engines a year [engine], and win back later, as with Delta [PX-0169].
 - *An airframer asks for aggressive terms:* refuse [PX-0178].
 - *Disclosure:* withhold whatever reveals the economics per engine [PX-0162].
@@ -123,11 +123,11 @@ The backlog grew from 7,000 engines (2016) to 10,000 (2019) [PX-0137][P-0080].
 
 **What changes his mind.** Teardown and dispatch data [PX-0163][PX-0136]; a failed change is reverted at once [PX-0164].
 
-## Shane G. Eddy: President of Pratt & Whitney (evidence 19 June 2023; the seat from 2023)
+## Shane G. Eddy: President of Pratt & Whitney (evidence 19 June 2023; in the seat by then)
 
 **Era.**
 - 10% of the GTF fleet was grounded awaiting engines [PX-0120].
-- A supplier batch had skipped a heat-treat step [PX-0121].
+- A supplier batch had skipped a heat-treat step [P-1022][PX-0121].
 - Block D was being retrofitted [PX-0116] and the GTF Advantage was in testing [PX-0128].
 
 His one event came five weeks before the powder-metal disclosure [PX-0290].
@@ -147,7 +147,7 @@ His one event came five weeks before the powder-metal disclosure [PX-0290].
 - Contain first: he paused production to purge suspect material [PX-0121].
 - When parts are scarce, choose daily between OE and the shops, to "bring lift back into the fleet" [PX-0123]. Shops are short of parts, not capacity [PX-0124].
 - Prove durability before entry into service, with full-life parts at entry into service [PX-0128].
-- Derivatives over clean sheets [P-1318][P-1319].
+- Derivatives over clean sheets, as with the F135 core upgrade and at Pratt Canada [P-1318][P-1319]. For large commercial engines this is inference: he extends the GTF rather than replacing it [PX-0129].
 - Fix costs are rolled into the long-term agreement cost base [PX-0130][P-0581]. NEM and compensation terms stay private [PX-0113][PX-0112].
 
 **Risk appetite.**
@@ -159,7 +159,7 @@ His one event came five weeks before the powder-metal disclosure [PX-0290].
 | Balance sheet | Not his seat | Decided at RTX level |
 | Contract | High, accepted | 85% of the fleet on long-term agreements that are under 5% complete [PX-0130] |
 
-**Tempo.** He gives the bad number first, with a dated recovery: 10% AOG, recovery in Q3 [PX-0120][PX-0121]. Progress is reported in steps: castings +40% [PX-0125].
+**Tempo.** He gives the bad number first, with a dated recovery. The fleet was 10% AOG, "trending down through the end of the year" [PX-0120][PX-0115]; the supplier escape's shipments would recover "in third quarter" [PX-0121]. Progress is reported in steps: castings +40% [PX-0125].
 
 **How he reads Airbus.** Pratt has "over 50% delivery share" to date [PX-0127]. Its OE needs are weighed daily against the fleet [PX-0123].
 
@@ -169,18 +169,18 @@ His one event came five weeks before the powder-metal disclosure [PX-0290].
 - "Earn the dependable engine reputation every day" [PX-0126].
 - "We are single aisle focused going forward" [PX-0127].
 
-**Biases.** Assurance ahead of the facts: "there's not a surprise here coming" [PX-0112], weeks before a $5.4B charge [PX-0303]. Counter-evidence: the recall arose from the production ramp, not the design [P-1040], which fits his framing that the fault was industrial, not the engine [PX-0120].
+**Biases.** Reassurance on open exposures. Of customer support for the 10% AOG fleet he said "I think there's not a surprise here coming" [PX-0112]; of fix costs rolled into the contracts, "There's not a surprise coming there" [P-0582]. Five weeks later RTX disclosed the powder-metal recall [PX-0290]. In October it booked a $5.4B sales charge [PX-0303], about 80% of it customer support [PX-0300]. *Counter-evidence:* our evidence does not show what was known in June, and the defect's cause was established only after a records review [PX-0039]. The recall arose from the production ramp, not the design [P-1040], which fits his framing that the fault was industrial, not the engine [PX-0120].
 
-**Against the doctrine.** He sharpens durability-first and narrowbody-only. He leans to fleet lift [PX-0123]; in September 2023 RTX instead kept Airbus deliveries on plan [P-0159][P-0162]. In the ExCo he is the voice for spares and MRO (inference).
+**Against the doctrine.** He sharpens durability-first and narrowbody-only. He leans to fleet lift [PX-0123]. After the recall, RTX kept its Airbus delivery commitments (September 2023) [P-0159] and supplied Airbus first, spares next (February 2024) [P-0162]. In the ExCo he is the voice for spares and MRO (inference).
 
 ### Commitments
 
 | Date | Commitment | Outcome | ids |
 |---|---|---|---|
-| Jun 2023 | 780bp ROS expansion by 2025, "confident" | Jan 2025: Pratt margins "not too far off" plan, held back by GTF mix | PX-0114, PX-0337 |
-| Jun 2023 | AOG "trending down through the end of the year" | Powder-metal disclosure Jul 2023; about 350 AOG on average projected through 2026 | PX-0115, PX-0290, PX-0300 |
-| Jun 2023 | "There's not a surprise here coming" | $5.4B sales charge, $2.9B Pratt share | PX-0112, PX-0303 |
-| Jun 2023 | Teens GTF aftermarket ROS in 2025 | "Near double digits" (Jan 2025) | PX-0117, PX-0335 |
+| Jun 2023 | 780bp ROS expansion by 2025, "confident" | Jan 2025: Pratt margins "not too far off" plan, held back by GTF mix; 2025 outturn outside our evidence | PX-0114, PX-0337 |
+| Jun 2023 | AOG "trending down through the end of the year" | Overtaken by the powder-metal disclosure in Jul 2023; about 350 AOG on average projected through 2026 | PX-0115, PX-0290, PX-0300 |
+| Jun 2023 | On AOG customer support: "I think there's not a surprise here coming" | Powder-metal recall disclosed five weeks later; $5.4B sales charge, $2.9B Pratt share, about 80% of it customer support. What was known in June is not in our evidence | PX-0112, PX-0290, PX-0303, PX-0300 |
+| Jun 2023 | Teens GTF aftermarket ROS in 2025 | 2025 outturn outside our evidence; "near double digits" in 2024 (CFO, Jan 2025) | PX-0117, PX-0335 |
 | Jun 2023 | GTF Advantage certified mid-2024 | Certified in 2025 | PX-0128, P-0785, P-1817 |
 | Jun 2023 | 90% of the fleet in the latest configuration within 2-3 years | Not in the evidence | PX-0116 |
 | Jun 2023 | Escape recovered in Q3 | A quarter recovered by June; no final outcome | PX-0121, PX-0287 |

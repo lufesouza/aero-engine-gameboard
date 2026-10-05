@@ -51,7 +51,7 @@ Then cover:
 - `operations.md`: the Civil Aerospace presidents. One "## <Full name>: <role and dates>" section each for Chris Cholerton, Robert (Rob) Watson and Eric Schulz, then "## What the seat stands for" and "## Gaps";
 - `teams.md`, with these teams (check membership dates against the evidence, and change the id where the evidence disagrees):
   - `east-kakoullis-cholerton-2022`: Warren East (CEO to end-2022) is not profiled. Label him context only and build the card from Kakoullis and Cholerton;
-  - `erginbilgic-kakoullis-cholerton-2023`;
+  - `erginbilgic-kakoullis-watson-2023`;
   - `erginbilgic-mccabe-watson-2026` (**DEFAULT**).
 - `README.md`.
 
