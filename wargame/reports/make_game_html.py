@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build a self-contained HTML report of a finished (or running) war-game run.
 
-Usage: python3 wargame/reports/make_game_html.py <run id> <out.html> [--narrative <narrative.json>]
+Usage: python3 wargame/reports/make_game_html.py <run id> <out.html> [--narrative <narrative.json>] [--compare <baseline run id>]
 
 Everything numeric comes from the engine: the run state, the round reports (engine `rounds`), the
 final report and the referee scorecard. The optional narrative JSON adds the referee's words:
@@ -287,7 +287,68 @@ def objectives_table(cfg, objs, only=None):
             f'<tbody>{"".join(rows)}</tbody></table></div>')
 
 
-def build(run_id, narrative):
+def compare_section(cfg, ev, final, base_id, nv):
+    """A side-by-side of this run against a baseline run: delta PV, shares and programme dates."""
+    bst = E.load_state(base_id)
+    bcfg = bst["config"]
+    bev = M.evaluate(bcfg, M.build_world(bcfg, bst["history"]), with_series=True)
+    bfinal = E.final_report(bst)
+    pls = list(M.players(cfg))
+    sups = list(M.active_suppliers(cfg))
+    bname = nv.get("compare_label") or base_id
+    tname = nv.get("this_label") or "This game"
+    out = ['<section id="compare"><span class="eyebrow">Compared</span>'
+           f'<h2>{esc(nv.get("compare_title") or "Compared with the baseline game")}</h2>']
+    if nv.get("comparison"):
+        out.append('<div class="prose">' + "".join(rich(x) for x in nv["comparison"]) + "</div>")
+    rows = []
+    for p in pls:
+        a, b = bev[p]["delta_pv_b"], ev[p]["delta_pv_b"]
+        rows.append(f'<tr><td><span class="dot" style="--pc:{COLORS[p]}"></span>{esc(label(cfg, p))}</td><td class="n">{fmt_b(a)}</td>'
+                    f'<td class="n">{fmt_b(b)}</td><td class="n {"pos" if b - a >= 0 else "neg"}">{fmt_b(b - a)}</td></tr>')
+    out.append(f'<h3>Full-game delta PV ($B)</h3><div class="scroll"><table><thead><tr><th>Player</th><th class="n">{esc(bname)}</th>'
+               f'<th class="n">{esc(tname)}</th><th class="n">Change</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
+
+    def share(e, seg, y, side="boeing", key="aircraft"):
+        rb, ra = e["boeing"]["series"][str(y)], e["airbus"]["series"][str(y)]
+        tot = rb[f"{seg}_{key}"] + ra[f"{seg}_{key}"]
+        return ((rb if side == "boeing" else ra)[f"{seg}_{key}"] / tot) if tot else None
+
+    def maker(e, seg, y, sup):
+        tot = sum(e[s]["series"][str(y)][f"{seg}_aircraft"] for s in M.SIDES) * 2
+        return e[sup]["series"][str(y)][f"{seg}_engines"] / tot if tot else None
+
+    yrs = [y for y in (2035, 2040, 2045, 2050) if str(y) in ev["boeing"]["series"]]
+    srows = []
+    for seg, nm in (("nb", "Narrowbody"), ("wb", "Widebody")):
+        for who in ("boeing", "airbus"):
+            cells = "".join(f'<td class="n">{pct(share(bev, seg, y, who))}</td><td class="n">{pct(share(ev, seg, y, who))}</td>' for y in yrs)
+            srows.append(f'<tr><td>{nm}: {esc(label(cfg, who))}</td>{cells}</tr>')
+        for sup in sups:
+            cells = "".join(f'<td class="n">{pct(maker(bev, seg, y, sup))}</td><td class="n">{pct(maker(ev, seg, y, sup))}</td>' for y in yrs)
+            srows.append(f'<tr><td class="small">{nm} engines: {esc(label(cfg, sup))}</td>{cells}</tr>')
+    head = "".join(f'<th class="n" colspan="2">{y}</th>' for y in yrs)
+    sub = "".join(f'<th class="n small">{esc(bname)}</th><th class="n small">{esc(tname)}</th>' for _ in yrs)
+    out.append(f'<h3>Shares of deliveries</h3><div class="scroll"><table><thead><tr><th>Share</th>{head}</tr><tr><th></th>{sub}</tr></thead>'
+               f'<tbody>{"".join(srows)}</tbody></table></div>')
+
+    def progs(e, fin):
+        d = {}
+        for p in M.SIDES:
+            for pr_ in e[p]["programs"]:
+                d[pr_["label"]] = f'{pr_["launch_year"]} → {pr_["eis"] or "cancelled"} · {pr_["engine_label"]}'
+        for sp in fin.get("supplier_programs", []):
+            d[sp["label"]] = f'{sp["launch_year"]} → {"ready " + str(sp["ready"]) if sp["ready"] else "cancelled"}'
+        return d
+    pa, pb = progs(bev, bfinal), progs(ev, final)
+    prow = [f'<tr><td>{esc(k)}</td><td class="small">{esc(pa.get(k, "not launched"))}</td><td class="small">{esc(pb.get(k, "not launched"))}</td></tr>'
+            for k in list(dict.fromkeys(list(pa) + list(pb)))]
+    out.append(f'<h3>Programmes (launch → entry into service or ready)</h3><div class="scroll"><table><thead><tr><th>Programme</th><th>{esc(bname)}</th>'
+               f'<th>{esc(tname)}</th></tr></thead><tbody>{"".join(prow)}</tbody></table></div></section>')
+    return "".join(out)
+
+
+def build(run_id, narrative, compare=None):
     st = E.load_state(run_id)
     cfg = st["config"]
     hist = st["history"]
@@ -305,7 +366,7 @@ def build(run_id, narrative):
     title = nv.get("title") or f"War game {run_id}"
     P = []
     P.append(f'<header class="bar"><div class="wrap"><span class="brand">{esc(title)}</span><nav>'
-             '<a href="#summary">Summary</a><a href="#rounds">Rounds</a><a href="#players">Players</a>'
+             '<a href="#summary">Summary</a>' + ('<a href="#compare">Compared</a>' if compare else '') + '<a href="#rounds">Rounds</a><a href="#players">Players</a>'
              '<a href="#dates">Dates</a><a href="#method">Method</a></nav></div></header>')
     P.append('<main class="wrap">')
     turns_txt = ", ".join(f"{t['years'][0]}–{t['years'][1]}" for t in cfg["turns"][:st["turns_total"]])
@@ -388,6 +449,9 @@ def build(run_id, narrative):
     if ev.get("objectives"):
         P.append("<h3>Assigned objectives at the end</h3>" + objectives_table(cfg, ev["objectives"]))
     P.append("</section>")
+
+    if compare:
+        P.append(compare_section(cfg, ev, final, compare, nv))
 
     # Rounds
     P.append('<section id="rounds"><span class="eyebrow">Round by round</span><h2>Rounds, as of each round\'s last year</h2>'
@@ -558,9 +622,10 @@ def main():
     ap.add_argument("run")
     ap.add_argument("out")
     ap.add_argument("--narrative")
+    ap.add_argument("--compare", help="baseline run id for a side-by-side section")
     a = ap.parse_args()
     nv = json.load(open(a.narrative)) if a.narrative else None
-    page = build(a.run, nv)
+    page = build(a.run, nv, a.compare)
     with open(a.out, "w") as f:
         f.write(page)
     print(a.out, len(page))
