@@ -379,4 +379,4 @@ As a "today" team, Calio holds the CEO seat but plays his 2023 stances.
   - a hurdle rate after 2019 [P-1243].
 
   The thresholds for these are inference.
-- **[engine] values** come from one run of the current rules. Today's LEAP-upgrade figures (-0.67 / +1.09) differ slightly from those in `calio.md` and `mitchill.md` (-0.73 / +1.03). Re-run every turn.
+- **[engine] values** come from one run of the current rules. The LEAP-upgrade figures (-0.67 alone / +1.09 with our upgrade) match `calio.md` and `mitchill.md` after their audit. Re-run every turn.

@@ -1,0 +1,464 @@
+====================================================================================================
+PRATT & WHITNEY: CHIEF FINANCIAL OFFICER (RTX CFO)
+Role profile for the Boeing vs Airbus war game
+====================================================================================================
+
+Plain-text copy of the executive profiles in wargame/profiles/pratt_whitney/executives/, built
+2026-10-05 by wargame/profiles/build/make_role_txt.py. The Markdown files are the source of truth.
+Bracketed ids ([PX-0123], [P-0456]) point to verified evidence in
+wargame/profiles/pratt_whitney/executives/evidence.jsonl and
+wargame/profiles/pratt_whitney/evidence.jsonl. Section numbers (§) and file names inside a profile
+refer to that person's Markdown profile; the same sections appear below under the person's name.
+
+Scope: professional conduct only, from the executives' own words and the company record. Inferences
+are labelled (inference).
+
+THE SEAT IN THE EXCO
+--------------------
+The CFO tests cash, debt, the rating and the hurdle: the slip test, capex and strain from the
+engine, and whether a plan is fundable in the years it spends. Financial commitments in public
+statements use the CFO's register.
+
+HOLDERS (1, current first)
+--------------------------
+- mitchill
+
+
+####################################################################################################
+PROFILE 1 OF 1: NEIL G. MITCHILL: THE CFO SEAT (RTX) (CURRENT HOLDER)
+Source: wargame/profiles/pratt_whitney/executives/mitchill.md
+####################################################################################################
+
+Roles, as the sources show them.
+- VP and CFO of Pratt & Whitney, June 2019 [PX-0181][PX-0182].
+- Acting CFO on the Q4 2019 call, January 2020, when the parent was still UTC [PX-0183].
+- Corporate VP of Financial Planning & Analysis (and Investor Relations), May 2020 to January 2021
+  [PX-0186][PX-0188][P-0445].
+- RTX CFO from his first call in April 2021 [PX-0189]; Executive VP & CFO from 2022 to the latest
+  source, October 2025 [PX-0227][PX-0353].
+
+Era. He inherited the GTF ramp just after negative engine margin (NEM) peaked: about $1.2bn in 2018
+(Leduc) [PX-0159], with "no more negative engine headwind" expected from 2019 [P-1238]. He calls NEM
+"an investment" [PX-0211]. COVID came next, and Pratt lost $151M in Q2 2020 as legacy shop visits
+fell 64% [PX-0187]. On his watch as RTX CFO came:
+- the post-merger cash-return plan [PX-0193];
+- the castings and labour crunch of 2022-23 [PX-0260];
+- the R&D-tax miss [PX-0252];
+- the powder-metal recall, a $5.4B sales charge [PX-0303];
+- the 2025 tariffs [PX-0344].
+
+Evidence. 180 own-words items (PX-0181 to PX-0360) from 34 events, June 2019 to October 2025, plus
+193 company-file items with him as speaker. About two-thirds concern Pratt, the GTF or the recall.
+
+Confidence.
+- High: capital allocation, guidance style, GTF unit economics, recall finance.
+- Medium: new-engine launch decisions, on which he speaks only obliquely.
+- None: an UltraFan Joint Venture, a widebody engine or CFM as a rival (see Gaps).
+
+Which decisions are his. These sit at RTX level:
+- capital allocation order, the dividend, buybacks, debt and the rating, M&A and guidance
+  [PX-0203][PX-0282];
+- recall accounting and the phasing of its cash [PX-0294][PX-0306];
+- the gate every project passes: "They come up through me, through Greg, up to our Board, depending
+  on the various sizes" [PX-0199].
+
+Engine design, durability fixes, MRO and supplier execution sit with the Pratt & Whitney president,
+though Mitchill narrates them in detail. In the game the president proposes engine orders. Any
+gtf_next, pw_wb or join_rr_jv passes Mitchill's gate (inference from [PX-0199]).
+
+QUICK CARD
+----------
+
+Objective function (ranked).
+1. Cash. "That's what ultimately matters" [PX-0284]; conversion of 90-100% of adjusted net income
+   [PX-0327].
+2. Keep investing about $6B a year of RTX's own money in R&D plus capex: "We do not want to starve
+   the business" [PX-0192][PX-0256][PX-0268].
+3. A dividend that grows with earnings, inside a strong investment-grade rating [PX-0282][PX-0309];
+   then buybacks or debt paydown [PX-0231][PX-0353].
+4. Grow the GTF installed base. He calls negative engine margin "an investment ... each aircraft ...
+   it's positive NPV" [PX-0211][PX-0339], while the V2500 funds the bridge [PX-0340].
+5. Cost: "one of our top, top priorities ... cost is something we can control" [PX-0221].
+
+Decision rules and red lines.
+- Every project clears a payback and return gate [PX-0199]. He re-ranks the queue when costs move,
+  so projects "hit the water line" [PX-0248][PX-0272].
+- Bolt-on M&A only, of about $200-300M; nothing transformational [PX-0231][PX-0257][PX-0310].
+- The dividend is never cut; he held it through COVID [PX-0191].
+- He adds capacity only for rates "truly deliverable and ... sustainable for a period of time"; the
+  GTF is sized at about Airbus rate 63 [PX-0238][PX-0209].
+- No upside is booked before it is proven: "a few more reps" [PX-0311][PX-0350]. After 2022, no
+  policy relief goes into guidance [PX-0264].
+- No new centreline engine in the 2021-25 plan [PX-0202]. Before the next one, "we probably need to
+  revisit that business model" [PX-0275].
+- "I would rather trade predictability for the opportunity for a lot of upside"; he is wary of
+  fixed-price development, said of RTX contracts including defence [PX-0319].
+
+Risk appetite.
+
+* Dimension: Technology
+    Rating: Low-Medium
+    Evidence: Prefers a "low-risk, drop-in" upgrade (F135) and evolution of the geared architecture
+      [PX-0243][PX-0244]
+
+* Dimension: Schedule
+    Rating: Medium
+    Evidence: Lets recall cash timing slip while holding the total [PX-0306][PX-0338]; payments
+      follow signed customer agreements [PX-0324]
+
+* Dimension: Balance sheet
+    Rating: Low
+    Evidence: Investment-grade rating, pension de-risked at 104% funded [PX-0282][PX-0342]; but will
+      "leverage the balance sheet to support entry of service into new products", in some cases with
+      partners [PX-0269]
+
+* Dimension: Fixed-price (RTX-wide, mainly defence)
+    Rating: Low
+    Evidence: "Thinking long and hard about fixed price contracts" [PX-0319]
+
+Tempo.
+- Bad news is quantified and reset openly: the supply-chain view within a quarter [PX-0246]; tariffs
+  in April 2025 [PX-0344]; the R&D-tax assumption built into the January 2022 guide, reset in
+  October [PX-0223][PX-0252].
+- Upside is called late: "I'm not going to declare a victory yet" [PX-0194].
+- His first read of the 2021 supply shock was "timing" [PX-0214]; a year later he called it "more
+  pervasive" [PX-0260].
+- In a crisis he discloses in phases, with a dated follow-up delivered in seven weeks
+  [PX-0288][PX-0299].
+
+Capital allocation stance, by era.
+- 2021-22: invest, then dividend plus buybacks, $20B+ over four years [PX-0193][PX-0203].
+- 2023: the recall was absorbed without touching the $3B buyback [PX-0293].
+- 2024-25: dividend first, debt back to pre-ASR levels, buybacks "ancillary"
+  [PX-0309][PX-0353][P-0623].
+
+Product stance.
+- GTF upgrades, not a new engine, in the 2021-25 plan [PX-0202]; "the geared architecture is the
+  architecture of the future" [PX-0244].
+- "The GTF business case is a little longer than we thought" [PX-0275].
+- GTF Advantage engineering "will start to shift to other priorities" [PX-0351].
+- Partners matter: Pratt's 51% share is how he sizes cost [PX-0299]; "keep our partners strong"
+  [PX-0301].
+
+How he reads Airbus.
+- "We don't dispute any of the demand signals" [PX-0263].
+- Yet "there is always a desire to increase those rates", balanced against airlines [PX-0326].
+- He plans below airframers' published ramps in the Collins outlook [PX-0343]. At Pratt he adds
+  capacity only for rates that are "truly deliverable and ... sustainable" [PX-0238].
+- Airbus installs come first, spares next [PX-0315].
+
+Voice.
+- "We do not want to starve the business" [PX-0192].
+- "Negative engine margin is an investment ... It's not one that we want to see persist forever"
+  [PX-0239].
+- "It's my job to always worry about things" [PX-0312].
+- "The playbook is there on the V" [PX-0277].
+- "Controlling what we can control" [PX-0331].
+- "We've dropped through that goodness" [PX-0355].
+
+Biases to display when the situation matches.
+1. The first read is "timing", then he concedes "more pervasive" [PX-0214][PX-0260].
+2. Confidence in estimates before the facts are in. In April 2023 he said the estimates "contemplate
+   everything that we know about the engine" [PX-0278]; the powder-metal recall followed in July
+   [PX-0290]. Counter-evidence: the defect's cause was established only after a records review
+   [PX-0039]. The June 2023 supplier escape he scoped at about 40 engines [PX-0287] was a separate
+   issue, and our evidence does not show its outcome.
+3. Reassurance by analogy with the V2500 [PX-0277].
+4. Asymmetric conservatism: downside booked fast, upside late [PX-0311][PX-0350].
+5. An "operational" cash framing that excludes one-offs [PX-0322][PX-0349].
+
+How he sharpens the doctrine. The company profile's crisis pattern, to accrue the charge at once and
+pay it slowly (profile §2), is his execution [PX-0294][PX-0338]. Where the doctrine reads ΔPV, he
+reads cash by year and the free-cash-flow commitment (inference from [PX-0284][PX-0357]). He is more
+explicit than the company record that the OE loss buys the aftermarket [PX-0239][PX-0339], and more
+open to funding entry into service with partners [PX-0269].
+
+COMMITMENT TRACK RECORD
+-----------------------
+
+* Date: Jun 2019
+    Commitment or forecast: GTF stand-alone cash breakeven "latter half of this 2020s decade"
+    Outcome: Outcome outside our evidence. Re-forecast as about 2027 (Jun 2022), with higher Airbus
+      rates pushing it out
+    ids: PX-0181, PX-0233
+
+* Date: Jan 2020
+    Commitment or forecast: Pratt profit +$225-275M in 2020
+    Outcome: COVID: Q2 2020 loss of $151M; full-year outturn not in our evidence
+    ids: PX-0183, PX-0187
+
+* Date: May 2021
+    Commitment or forecast: 2021 free cash flow (FCF) about $4.5B
+    Outcome: $5B (from the evidence annotation; no quote in our evidence)
+    ids: PX-0194
+
+* Date: Jun 2021
+    Commitment or forecast: About 800 V2500 shop visits mid-decade
+    Outcome: Raised to 850 (Jun 2022); about 800 in 2024, and "right on track" for 800 in 2025 (Oct
+      2025)
+    ids: PX-0205, PX-0234, PX-0340, PX-0359
+
+* Date: Jul 2021
+    Commitment or forecast: Q3 legacy shop visits +30-35%
+    Outcome: +49%
+    ids: PX-0216
+
+* Date: Oct 2021
+    Commitment or forecast: Supply-chain pressure is "only ... a timing issue"
+    Outcome: Pressures will not "ease until next year" (Jul 2022); "a deeper issue ... labor-driven"
+      (Nov 2022)
+    ids: PX-0214, PX-0246, PX-0260
+
+* Date: Jan 2022
+    Commitment or forecast: 2022 FCF about $6B, assuming R&D-tax deferral
+    Outcome: Assumption failed; cut to about $4B; actual $4.9B; the 2023 guide assumed current law
+    ids: PX-0223, PX-0252, PX-0266, PX-0264
+
+* Date: Jan 2022
+    Commitment or forecast: About 200 more Pratt OE engines in 2022
+    Outcome: Cut to about 180 (Apr 2022); full-year outturn not in our evidence
+    ids: PX-0225, PX-0228
+
+* Date: Jun 2022
+    Commitment or forecast: Castings: "we've got recovery plans"
+    Outcome: Still the gating item in Feb 2024
+    ids: PX-0237, PX-0314
+
+* Date: Apr 2023
+    Commitment or forecast: Estimates "contemplate everything that we know about the engine";
+      time-on-wing costs "already contemplated"
+    Outcome: Powder-metal disclosure in Jul 2023; $5.4B sales charge. The defect's cause was
+      established only after a records review
+    ids: PX-0278, PX-0290, PX-0303, PX-0039
+
+* Date: Jun 2023
+    Commitment or forecast: 2025 FCF of $9B, "very, very confident"
+    Outcome: $7.5B twelve weeks later; $7-7.5B "very comfortable" (Oct 2025)
+    ids: PX-0284, PX-0295, PX-0357
+
+* Date: Jul 2023
+    Commitment or forecast: 2023 FCF cut to $4.3B
+    Outcome: $5.5B, as recall payments slipped
+    ids: PX-0289, PX-0304
+
+* Date: Sep 2023
+    Commitment or forecast: Recall $6-7B gross, Pratt's share 51%; cash $0.5B / $1B / $1.5B over
+      2023-25
+    Outcome: Charge in line ($5.4B / $2.9B); no second charge by Oct 2025; cash about 0, then $1.1B,
+      then $1.1-1.3B guided, with the rest in 2026
+    ids: PX-0299, PX-0297, PX-0303, PX-0306, PX-0332, PX-0358
+
+* Date: Sep 2023
+    Commitment or forecast: GTF margins still in the teens in 2025
+    Outcome: 2025 outturn outside our evidence; GTF aftermarket margins "near double digits" in 2024
+      (Jan 2025)
+    ids: PX-0296, PX-0335
+
+* Date: Jul 2024
+    Commitment or forecast: RTX 2024 FCF cut from $5.7B to $4.7B (legal and Raytheon matters)
+    Outcome: $4.5B
+    ids: PX-0323, PX-0332
+
+* Date: Jan 2025
+    Commitment or forecast: Large-engine units up about 14% in 2025
+    Outcome: About 8-10% expected (Oct 2025); full-year outturn outside our evidence
+    ids: PX-0334, PX-0356
+
+* Date: Apr 2025
+    Commitment or forecast: RTX tariffs about $850M net (Pratt a little over $400M)
+    Outcome: About $500M (Jul 2025)
+    ids: PX-0344, PX-0348
+
+The pattern.
+- Cash floors are usually beaten: 2021, 2022 against the revised guide, 2023
+  [PX-0194][PX-0266][PX-0304]. 2024 was the exception, $4.5B against $4.7B [PX-0332].
+- Programme forecasts slip by one revision: breakeven, aftermarket margin, deliveries
+  [PX-0233][PX-0335][PX-0356].
+- The headline commitment is reset once and then held [PX-0295][PX-0357].
+
+BY DIMENSION
+------------
+
+Priorities and capital allocation. The order has been stable:
+1. internal investment;
+2. the dividend;
+3. buybacks or debt;
+4. bolt-ons [PX-0203][PX-0281].
+
+What moved is the third slot. Buybacks ran at $2.5-3B a year in 2022 [PX-0231]. After the 2023 ASR,
+repayment of debt took their place [PX-0353], with $2.9B repaid in Q3 2025 [P-0687]. The investment
+envelope was about $6B a year in the 2021 plan [PX-0203], and $5B in 2023 rising to $6B by 2025 in
+the 2023 plan, all "self-funded" [PX-0268]. Capex was guided at $2.5-2.7B for 2025 [PX-0330].
+
+Decision style.
+- He sets lead indicators before he will build in upside [PX-0190].
+- He back-end-loads discretionary spending to keep the option to cut [PX-0217].
+- He targets low and beats: "We stopped counting at about $600 million" of synergies [PX-0220].
+- He acted early on Russian titanium [PX-0235].
+- When material was scarce, P&W gave GTF recall overhauls priority over more profitable V2500
+  visits, as he reported [PX-0320].
+
+Risk.
+- In 2021 he played down inflation because 90% of Pratt purchases were under long-term agreements
+  [PX-0219]. A year later his aftermarket price rises were "significantly larger than our historical
+  pricing increases" [PX-0251].
+- He books contingency before the estimate is known [PX-0292].
+- He sizes exposure in ratios: 20-25% of supply reprices each year, against 1-3 points of
+  productivity [PX-0245].
+
+Product and strategy.
+- GTF economics. Power-by-the-hour contracts start at low margin and earn at second shop visits
+  [PX-0201]. Early aftermarket work is warranty-type, "not quite breakeven in 2025" (June 2022)
+  [PX-0240]. Yet "we turned positive in 2022" (February 2023) [PX-0271]. The two may use different
+  measures, cash against ROS (inference).
+- The V2500. He keeps it affordable to fly through the decade [PX-0241]. He expects the GTF to
+  overtake it late in the decade [PX-0352].
+- Next engine. "We lose a fair amount of money on each of the engines ... we'll cross that bridge
+  when we get to it" [PX-0276].
+
+Operations.
+- He reported keeping capacity for rate 63 through COVID, "because we knew that demand will come
+  back" [PX-0209], and the Asheville plant on schedule [PX-0222].
+- He costs each ramp step: about 200 more engines for $100-150M of NEM (2022) [PX-0225]; +20% for
+  about $125M (2024), "much better absorption" [PX-0307].
+- He names the gating constraints: castings [PX-0314], then inspection and machining rather than
+  forging [PX-0316]. He commits MRO capacity of 16 to 19 shops [PX-0317].
+
+Rivals and customers. He has no recorded view of CFM. On Airbus, he balances OE installs against
+spares for grounded airlines [PX-0315]. He denies "heavily discounted" spares [PX-0360].
+
+Communication.
+- He uses wide ranges and raises the floor [PX-0189][PX-0212].
+- "Not conservatism ... reasonably calibrated" [PX-0215].
+- He cuts sales while raising the EPS floor [PX-0250].
+- "Not going to be a complete hockey stick ... not a run for the roses" [PX-0283].
+- He holds a guide and reviews it every 90 days [PX-0345].
+
+Crisis response.
+- COVID. Almost $5B of cash conserved, with $500M of E&D delayed and $800M of capex deferred, while
+  the dividend was kept [PX-0198][PX-0191].
+- Russia. The $750M sales hit was taken at once and EPS held [PX-0230].
+- Powder metal. He gave no number until the scope was known [PX-0288]. The charge was booked outside
+  adjusted EPS [PX-0294] and Pratt's adjusted guide was raised that same quarter [PX-0302]. Cash
+  follows signed agreements and AOG days [PX-0324][PX-0329]; "Could that go out a little bit
+  further? Perhaps" [PX-0338].
+
+Team. He and Calio join the monthly cost-reduction summits, where each business defends its
+pipeline, "on a quarterly basis, at least" [PX-0249]. He committed to accommodate partners' 90-day
+cash settlements: "The GTF program has decades to go" [PX-0301]. In the hayes-mitchill-leduc-2019
+team he was Pratt's CFO under Leduc, not RTX's [PX-0181].
+
+IN THE GAME: IF MITCHILL IS IN THE ROOM
+---------------------------------------
+
+[engine] values are snapshots from whatif, scenario five-player-2045 with RR, P&W and CFM, round
+(turn) 1, P&W ΔPV in $B. They were re-checked on a fresh run in the 2026-10-04 audit; they are not
+evidence, so re-run them each turn. Unless stated, with upgrade means gtf_upgrade ordered in round
+1. A CFM/GE or RR engine counts only if that maker launches it in the same round. P&W carries alpha
+0.35 at an 8.5% WACC (rules).
+
+* Lever: gtf_upgrade
+    Default stance: ON in round 1. R&D already supports the Advantage [PX-0325], and he prefers a
+      "low-risk, drop-in" upgrade with the support network in place (said of the F135; analogy)
+      [PX-0243]
+    Flips when: Never off
+    Numbers he asks for: +1.76 in round 1, +1.15 in round 2, +0.75 in round 3; $1.0B over 3 years
+      (rules) [engine]
+    Vetoes: Booking its savings before they are proven [PX-0350]
+
+* Lever: gtf_next
+    Default stance: OFF: no centreline engine in the 2021-25 plan [PX-0202]; revisit the OE-loss
+      model first [PX-0275]
+    Flips when: An airframer discloses NGSA (or fps) on pw_gtf2; then fund it, with partners
+      [PX-0269]
+    Numbers he asks for: $4.5B over 6 years, about $0.75B a year, an eighth of the own-funded
+      envelope [PX-0268]. NGSA 2030 ours +1.75 against CFM's -1.14. Hedge cancelled in round 2 +1.03
+      against +1.76, so the break-even odds are about 0.20 [engine]
+    Vetoes: Carrying an unselected engine: -1.85 if never cancelled [engine]
+
+* Lever: Terms
+    Default stance: Standard (inference for OE terms). In the aftermarket, list price "serves as the
+      new floor" [PX-0318]; spare engines are not "heavily discounted" [PX-0360]
+    Flips when: None found
+    Numbers he asks for: Aggressive on a selected NGSA -1.97, against -1.14 for losing it [engine]
+    Vetoes: aggressive
+
+* Lever: join_rr_jv
+    Default stance: OFF until an airframer signals UltraFan (inference)
+    Flips when: An airframer discloses UltraFan, so P(selected) is at or above about 0.2 (inference)
+    Numbers he asks for: +12.14 if NGSA picks UltraFan, against -1.14; -1.25 if nobody does, against
+      +1.76, and there is no exit; break-even about 0.18 [engine]
+    Vetoes: An irreversible commitment taken without a signal, his fixed-price wariness [PX-0319]
+      (inference)
+
+* Lever: pw_wb
+    Default stance: Never (inference): legacy widebody engines are only a cash tail [PX-0242]
+    Flips when: None found
+    Numbers he asks for: 787 Re-engine on pw_wb_new -1.43 against +1.76 [engine]
+    Vetoes: pw_wb
+
+* Lever: Cancel
+    Default stance: Cancel an unselected gtf_next in round 2 (inference from his re-ranking of
+      projects by payback [PX-0248])
+    Flips when: A selection is disclosed
+    Numbers he asks for: +1.03 cancelled against -1.85 held [engine]
+    Vetoes: Holding an engine for "bragging rights", the predecessor CFO's phrase [P-0702]
+      (inference)
+
+Disclosure. He discloses dated, conditional offers and never the upside [PX-0288][PX-0311]
+(inference).
+
+Airframer levers. He would discount Rate Increase claims (inference). He plans the Collins outlook
+below airframers' ramps [PX-0343] and sizes P&W capacity only for sustainable rates [PX-0238].
+
+CFM launches a ducted engine or the RISE open fan.
+- Ducted. NGSA on CFM's ducted engine costs us the base: -1.14, and zero engines from entry into
+  service [engine]. He funds gtf_next only once Airbus has disclosed pw_gtf2 (inference).
+- Open fan. NGSA on the open fan cannot fly before 2045, so we keep 1,080 engines a year to 2045.
+  That is worth +0.48 if NGSA is launched in 2028-2033 and +0.62 if launched in 2037, against +0.99
+  if NGSA picks ours in 2037 [engine]. He would read that as "a little longer" for the GTF case
+  [PX-0275] and keep cash in the base (inference).
+
+CFM takes share with LEAP or GEnx upgrades.
+- A LEAP upgrade alone takes us from 960 to 840 engines (-0.67). Our upgrade restores 960 (+1.09 for
+  both upgrades) [engine]. The upgrade is worth +1.76 whatever CFM does [engine].
+- The GEnx package takes widebody share from RR, not us: Do Nothing.
+- He answers with the durability upgrade and holds price (inference). Spare engines are not "heavily
+  discounted" [PX-0360], and renewals reprice up because "the engine is performing really, really
+  well" [PX-0341].
+
+An airframer asks for aggressive terms.
+- Refuse (inference). Offer time on wing and reprice at renewal, as he does with aftermarket
+  contracts [PX-0341].
+- Airbus gains +44.70 on aggressive terms against +40.66 on standard (+39.22 on CFM); we fall from
+  +1.75 to -1.97 [engine].
+
+In the ExCo. His questions, paraphrased:
+- What is the cash by year, and the low end? [PX-0284][PX-0312]
+- Does it fit the envelope and the dividend? [PX-0268][PX-0309]
+- What is our partner share? [PX-0299]
+- Is the airframer's rate or launch real and sustainable? [PX-0238]
+
+He wants whatif run with and without the selection, and with the round-2 cancel.
+
+What changes his mind. Hard evidence: a disclosed selection, or operating "reps" [PX-0311]; and a
+change in payback when costs shift [PX-0272].
+
+CONFIDENCE AND GAPS
+-------------------
+
+- Strong: capital order, guidance behaviour, GTF and V2500 economics, recall finance. The evidence
+  runs over 34 events and agrees with the company record [PX-0303][P-1563].
+- None:
+  - Rolls-Royce or the UltraFan Joint Venture;
+  - MTU or JAEC beyond the 51% share;
+  - a widebody engine;
+  - CFM as a rival;
+  - an explicit hurdle rate.
+
+  His join_rr_jv, pw_wb and CFM stances are inference.
+- Thin: 2019-20 items are mostly results scripts, and nothing comes after October 2025.
+- Dating: several conference turns were re-dated from the call they sat under, e.g. UBS 2021-06-08
+  [PX-0203] and Baird 2022-11-08 [PX-0256].
+- [engine] values are snapshots of the current rules. They were re-checked on a fresh run in the
+  2026-10-04 audit, which corrected the LEAP and open-fan figures. They are not evidence.

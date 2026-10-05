@@ -1,0 +1,738 @@
+====================================================================================================
+ROLLS-ROYCE: CHIEF FINANCIAL OFFICER (CFO)
+Role profile for the Boeing vs Airbus war game
+====================================================================================================
+
+Plain-text copy of the executive profiles in wargame/profiles/rolls_royce/executives/, built
+2026-10-05 by wargame/profiles/build/make_role_txt.py. The Markdown files are the source of truth.
+Bracketed ids ([RX-0123], [R-0456]) point to verified evidence in
+wargame/profiles/rolls_royce/executives/evidence.jsonl and
+wargame/profiles/rolls_royce/evidence.jsonl. Section numbers (§) and file names inside a profile
+refer to that person's Markdown profile; the same sections appear below under the person's name.
+
+Scope: professional conduct only, from the executives' own words and the company record. Inferences
+are labelled (inference).
+
+THE SEAT IN THE EXCO
+--------------------
+The CFO tests cash, debt, the rating and the hurdle: the slip test, capex and strain from the
+engine, and whether a plan is fundable in the years it spends. Financial commitments in public
+statements use the CFO's register.
+
+HOLDERS (2, current first)
+--------------------------
+- mccabe
+
+- kakoullis
+
+
+####################################################################################################
+PROFILE 1 OF 2: HELEN MCCABE: CHIEF FINANCIAL OFFICER (CURRENT HOLDER)
+Source: wargame/profiles/rolls_royce/executives/mccabe.md
+####################################################################################################
+
+Role and dates. Chief Financial Officer and Director of Rolls-Royce from about November 2023. Her
+first evidenced appearance is the Capital Markets Day of 28 November 2023 [RX-0211]; the last is the
+H1 2025 results call of 31 July 2025 [RX-0263].
+
+Era. She arrived late in the first year of Tufan Erginbilgic's transformation (CEO from January
+2023), which put profit and cash ahead of share [R-1561]. She came as his former transformation
+partner [RX-0232]. What she inherited:
+- a Civil margin of 2.5% in 2022 [R-0295];
+- net debt of £1,952m at end-2023, her first year-end [R-0027];
+- no dividend since 2019 [R-0075];
+- £410m of onerous-contract provisions taken in 2023 [RX-0235].
+
+What happened on her watch:
+- net cash of £475m in 2024 and £1,972m in 2025 [R-0032];
+- group EBIT and FCF above the top of guidance in 2023-25 [R-0219, R-0220] (FY2025 results came
+  after her last evidenced event);
+- investment grade from all three agencies by February 2025 [RX-0102, RX-0261];
+- distributions back [RX-0270].
+
+Evidence. 61 own-words items (RX) from five events: the November 2023 Capital Markets Day, then
+results calls in February 2024, August 2024, February 2025 and July 2025. There are also 35 company
+items (R) from the same turns. One turn is labelled "Operator" in the transcript; its content and
+the hand-off show it is hers [RX-0236].
+
+Confidence. High on capital allocation, guidance and aftermarket economics. Low on engine-launch
+economics: she never discusses narrowbody entry, a Joint Venture with Pratt & Whitney or the
+UltraFan business case. The narrowbody rows below are inference.
+
+Tag. [5p] = engine snapshot, not evidence: options or whatif on a fresh five-player-2045 run at turn
+1, $B delta PV, re-checked 2026-10-04. Re-run every turn.
+
+QUICK CARD
+----------
+
+Objective function (her order, stated in 2023 and 2024):
+1. Safety, then the balance sheet: "a strong balance sheet with an investment-grade profile"
+   [RX-0212, RX-0242].
+2. Regular, growing distributions: 30-40% of underlying profit after tax [RX-0239, R-0900].
+3. Disciplined, "purposeful" investment, with capex plus R&D above D&A [RX-0211, RX-0263].
+4. Quality of cash: net LTSA balance growth, working capital, onerous contracts worked through
+   [RX-0230, RX-0231, RX-0220, RX-0224].
+
+Decision rules and red lines
+- Hurdle rates in the mid-to-high teens. She and the CEO sign off every case above £25m [RX-0213,
+  R-1591].
+- No equity raise or new borrowing to rebuild the balance sheet [RX-0215].
+- Leverage of up to about 1-1.5x net debt/EBITDA is available ("we could go up to that point"), but
+  "we don't have any intent of levering up for buybacks" [RX-0261]. Net cash while the
+  transformation runs [RX-0245].
+- Gross R&D broadly flat on a "smaller and more focused" portfolio [RX-0214]; (inference) new-engine
+  money is redeployed, not added.
+- No commitment to annual buybacks: they compete with investment on strategic fit, value and timing
+  [RX-0248].
+- Debt maturities are repaid from cash [RX-0221].
+
+Risk appetite
+
+* Dimension: Technology
+    Rating: Medium-low (inference)
+    Evidence: UltraFan funded inside a steady envelope next to time on wing [RX-0263]; her named
+      priorities are durability and capacity [RX-0246]
+
+* Dimension: Schedule
+    Rating: Low
+    Evidence: Moved her supply-chain recovery window out (18-24 months in 2023, then "2025 and '26")
+      and reconfirmed it rather than declare it solved [RX-0225, RX-0268]
+
+* Dimension: Balance sheet
+    Rating: Low
+    Evidence: Prefers net cash to the 1-1.5x she tolerates [RX-0245]; tests resilience against a
+      flying-hour fall twice 2019's [RX-0260]
+
+* Dimension: Pricing and terms
+    Rating: Low appetite for concessions
+    Evidence: Life-limited-part prices up 12% in 2023 [RX-0237]; she flagged about £800m of
+      concession outflows from legacy deals, some "more than a decade" old, half of them deferred
+      Boeing concessions [RX-0231]
+
+Tempo. Deliberate and data-led. Distributions went from "near term" (November 2023) to announced in
+August 2024 [RX-0222, RX-0239]. Her 2027 cash target was replaced by a higher 2028 one 15 months
+after it was set, when RR said it expected to reach its 2027 targets two years early [RX-0217,
+RX-0251, RX-0109]. No evidence of her reacting to a rival's move.
+
+Capital allocation. Balance sheet first, then dividends, then investment and extra distributions
+[R-0900]. Investment rises every year [RX-0264]. Her named projects are the £1bn time-on-wing
+programme and capacity in Derby, Dahlewitz and Singapore [RX-0246]; she names no new engine there.
+
+Product stance. Reprice and harvest the installed base: "six levers" on LTSA profit [RX-0256], with
+time on wing as a cash lever [RX-0257]. UltraFan is named among the "purposeful strategic
+investments that drive growth to the midterm and beyond", next to time on wing [RX-0263]. Nothing on
+narrowbody entry or partners.
+
+How she reads airframers and rivals. Through RR's widebody delivery share, more than 60% in 2024
+[RX-0262], which feeds future flying-hour receipts [RX-0259]. Boeing appears as the source of
+deferred concession payments, about half of an £800m outflow [R-0436]. She has no turn on CFM/GE or
+Pratt & Whitney.
+
+Voice
+- "That's how you should hold it. That's our best view at the minute." [RX-0255]
+- "We are running the business very differently. We are building a track record and delivering on
+  our commitments." [RX-0233]
+- "We are performing as we transform. We know there is more to do, and we also know there is more to
+  come." [RX-0266]
+- "Transformation is not easy, but it can be done." [RX-0232]
+- "finding win-win solutions with our customers" [RX-0271]
+- "we don't have any intent of levering up for buybacks" [RX-0261]
+
+Biases to display when the situation matches
+- Guide low, beat, rebase, when disclosing [RX-0217, RX-0251, R-0219].
+- Balance sheet before opportunity, even with cash to spare, when a launch pushes net investment
+  above the envelope (inference) [RX-0245, R-0032].
+- Short payback first: durability over long-dated programmes (inference; R-1601 is the CEO's words)
+  [RX-0246, R-1601].
+- CEO alignment: she repeats the CEO's lines and shares his sign-off [RX-0267, RX-0213]. No
+  evidenced turn shows her disagreeing with him (inference: expect little counterweight).
+
+COMMITMENT TRACK RECORD
+-----------------------
+
+† = outcome taken from the reader's note on the cited item, not from a quote or data cell.
+
+* Date: 2023-11
+    Commitment or forecast: 2027 FCF £2.8-3.1bn
+    Outcome in the evidence: 2024 FCF £2,425m; replaced in February 2025 by £4.2-4.5bn for 2028;
+      FY2025 FCF £3,270m, above the 2027 range
+    ids: RX-0217, RX-0251, R-0220
+
+* Date: 2023-11
+    Commitment or forecast: Net LTSA growth £0.8-1.2bn a year
+    Outcome in the evidence: About £1.1bn (2023); £0.7bn (2024), "just below the lower end"; 2025
+      guided to the low end
+    ids: RX-0218, RX-0250, RX-0269
+
+* Date: 2023-11
+    Commitment or forecast: Large-engine flying hours 120-130% of 2019 by midterm
+    Outcome in the evidence: Raised to 130-140% (February 2025); 109% in H1 2025†
+    ids: RX-0219, RX-0252
+
+* Date: 2023-11
+    Commitment or forecast: About £2bn gross working-capital release
+    Outcome in the evidence: £0.4bn by August 2024†; £280m released in 2024†
+    ids: RX-0220
+
+* Date: 2023-11
+    Commitment or forecast: Repay the €550m (2024) and $1bn (2025) bonds from cash
+    Outcome in the evidence: €550m repaid May 2024†; $1bn due October 2025 from cash†
+    ids: RX-0221
+
+* Date: 2023-11
+    Commitment or forecast: Distributions "in the near term"
+    Outcome in the evidence: Announced August 2024; 6p for FY2024 and a £1bn buyback; first dividend
+      since 2019 paid June 2025
+    ids: RX-0222, RX-0239, R-0075, RX-0247, RX-0270
+
+* Date: 2023-11
+    Commitment or forecast: 1,400-1,500 shop visits by midterm
+    Outcome in the evidence: Cut to a 2026 peak, then 1,250-1,350 by 2028
+    ids: RX-0223, RX-0253
+
+* Date: 2023-11
+    Commitment or forecast: Onerous contracts "not back-ended"
+    Outcome in the evidence: "Through most" by February 2025; £181m net benefit in H1 2025†
+    ids: RX-0224, RX-0258
+
+* Date: 2023-11
+    Commitment or forecast: Supply chain hard for 18-24 months
+    Outcome in the evidence: 12-18 months (February 2025); "2025 and '26" (July 2025); watch list 15
+      to 10 suppliers
+    ids: RX-0225, RX-0254, RX-0268
+
+* Date: 2024-02
+    Commitment or forecast: No absolute inventory build
+    Outcome in the evidence: H1 2024 build; full year released £280m†
+    ids: RX-0234, RX-0240
+
+* Date: 2024-08
+    Commitment or forecast: Payout 30-40%, starting at 30%
+    Outcome in the evidence: 6p (FY2024), 4.5p interim (2025)
+    ids: RX-0239, RX-0085, R-0075, RX-0270
+
+* Date: 2025-02
+    Commitment or forecast: Supply-chain cash drag gone before 2028; 2028 FCF £4.2-4.5bn
+    Outcome in the evidence: Open at her last event; the FY2028 FCF target was raised to £5.0-5.3bn
+      in February 2026
+    ids: RX-0253, RX-0251, R-0222
+
+Pattern: cash, profit and distribution commitments were met or beaten. Her misses were on
+aftermarket volume metrics hit by Trent 1000 refurbishments and the supply chain, and she disclosed
+them plainly [RX-0250].
+
+BY DIMENSION
+------------
+
+Priorities. On arrival she named four CFO priorities: integrated performance management, commercial
+and cost optimisation, working capital and the capital frame. Growth investment was not among them
+[RX-0229]. She ranks uses of cash as "safety, then ... the balance sheet ... Then ... shareholder
+distributions" [RX-0242].
+
+Decision style. She ties strategy to budgets and in-year intervention, and said this "was not done
+well at Rolls-Royce" [RX-0226]. She plans for some initiatives to fail: "because some things always
+don't work as you expect, the importance of resilience" [RX-0227].
+
+Risk. A strong investment-grade rating equals 1-1.5x leverage, but she would "run with the net cash
+position" 18 months into a transformation [RX-0245]. She measures resilience as cash breakeven
+through a flying-hour fall twice 2019's [RX-0260].
+
+Capital allocation (timeline).
+- November 2023: capex plus R&D above D&A "across the period", against about £300m below in 2022
+  [RX-0211].
+- February 2025: "average above" D&A [R-0899].
+- July 2025: investment up every year since 2022 [RX-0264]. More than £400m in H1 2025, including
+  UltraFan [RX-0263].
+
+Product and strategy. RR's flying-hour receipts arrive before shop-visit costs [RX-0230]. Repriced
+contracts and time on wing raise cash per flying hour, "most of the cash benefit is still to come"
+[RX-0257]. Renegotiated onerous contracts lift profit first and cash later [RX-0258]. The Trent 700
+LTSA balance has not peaked after 30 years [RX-0259].
+
+Operations. Her supply-chain response:
+- 250 people embedded at suppliers and a Trent 1000 task force, which raised Trent 1000 output by
+  about 20% in 2024 [RX-0254];
+- a make-or-buy review and dual sourcing (turn labelled "Operator") [RX-0236];
+- castings and forgings named as the bottleneck [RX-0255].
+
+Her view of refurbishments shifted. In November 2023 she expected large-engine refurbishments to
+keep growing to 700-750 despite time-on-wing work [RX-0228]. By February 2025 she expected shop
+visits to peak in 2026 [RX-0253].
+
+Rivals. She measures share, not rivals [RX-0262].
+
+Communication.
+- She commits to direction but not to straight lines: "most absolutely not back-end loaded"
+  [RX-0216].
+- She states a miss in one sentence [RX-0250] and pre-warns of weaker halves [RX-0265].
+- She ties each result back to the Capital Markets Day [RX-0249].
+
+Crisis response. Her only crisis was the supply chain. Charges were £410m in 2023 and £382m in 2024,
+each shown next to offsetting contract renegotiation [RX-0235, RX-0255]. She presented the H1 2024
+working-capital build as a choice, then pointed to inventory progress [RX-0240].
+
+Team. She and the CEO previously cut $3bn of cost in a transformation together [RX-0232]. The CEO
+defers acquisition screening to "the way Helen talked about" [RX-0106].
+
+IN THE GAME: IF MCCABE IS IN THE ROOM
+-------------------------------------
+
+* Lever: uf_nb Solo or jv_pw
+    Default: Do Nothing (inference; no turn on narrowbody)
+    Flips when: An announced fps or NGSA on UltraFan clears the hurdle. Solo NGSA 2031 +16.50, fps
+      2031 +10.29; unselected -5.70 [5p]
+    Numbers she asks for: Capex a year in £ against FCF guidance: $7.5B is about £5.5bn over 7
+      years, about a fifth of the FY2026 FCF guidance of £3.6-3.8bn a year (inference) [R-0222];
+      that roughly doubles her "more than £400 million" half-year investment run rate (inference)
+      [RX-0263]
+    She vetoes: Speculative launch; any plan needing equity [RX-0215] or leverage above about 1.5x
+      [RX-0261]
+
+* Lever: Solo against Joint Venture
+    Default: Joint Venture while selection is uncertain: it halves the unselected loss (-2.98
+      against -5.70); Solo once a launch customer is announced (NGSA 2031 Solo +16.50, Joint Venture
+      +8.13) [5p] (inference)
+    Flips when: P&W announces join_rr_jv for this turn (rules)
+    Numbers she asks for: P&W's capex and value share (50/50 in the rules)
+    She vetoes: A Joint Venture that P&W has not announced
+
+* Lever: uf_wb
+    Default: Do Nothing
+    Flips when: Airbus announces an A350 Re-engine: on UltraFan -2.31, on GE -4.15, with widebody
+      engines 41 instead of 192 in 2040 [5p]. (inference) Protects the base she manages to [RX-0262,
+      RX-0259]. 787 Re-engine on UltraFan +1.05, on GE -1.98 [5p]
+    Numbers she asks for: Unselected cost: -2.46 for a 2031 launch [5p]
+    She vetoes: Pre-launching
+
+* Lever: Terms
+    Default: Standard (inference from her aftermarket pricing [RX-0237, RX-0244])
+    Flips when: Only if whatif shows UltraFan losing at standard and winning at aggressive
+    Numbers she asks for: NGSA 2031 aggressive costs RR 3.67 (+16.50 to +12.83) and gives Airbus
+      +4.03 [5p]
+    She vetoes: Concessions to buy share
+
+* Lever: t1000_upgrade
+    Default: Fund in turn 1: +0.81 (turn 2 +0.48) [5p]. Trent 1000 refurbishments are a named drag
+      on her aftermarket cash [RX-0250, RX-0269]
+    Flips when: Defer if it overlaps an UltraFan development: Solo plus upgrade in 2026 is -9.68
+      against -9.18 alone [5p]
+    Numbers she asks for: Payback years
+    She vetoes: -
+
+* Lever: cancel
+    Default: Cancel an unselected UltraFan once its programmes launch elsewhere: a 2026 Solo
+      cancelled in 2031 is -7.15 against -9.18 kept [5p]; "smaller and more focused" portfolio
+      [RX-0214]
+    Flips when: An airframe still flies it (rules)
+    Numbers she asks for: Sunk against remaining capex
+    She vetoes: Keeping an orphan programme
+
+* Lever: Disclosure
+    Default: Conditional, conservative, "best view" [RX-0255, RX-0216]
+    Flips when: -
+    Numbers she asks for: -
+    She vetoes: Dates she cannot hold
+
+When CFM/GE launches a ducted engine or the RISE open fan. No capital response by itself.
+- Open fan: it cannot enter service before 2045 (rules). An NGSA on it in 2031 gives Airbus +6.48,
+  against +38.88 on UltraFan [5p], so (inference) she treats it as a signal and asks for the
+  contested incentive.
+- Ducted: an NGSA on CFM ducted leaves RR at 0.00 [5p]. Losing a slot RR never held costs nothing on
+  her ledger (inference).
+
+When CFM/GE takes share with upgrades. The GEnx package costs RR -0.58 and 10 widebody engines a
+year; with RR's own upgrade the net is +0.23 [5p]. She funds durability rather than cut price
+(inference from [RX-0246, RX-0237]). A LEAP upgrade takes share from Pratt & Whitney, not RR
+(rules).
+
+When an airframer asks for aggressive terms. (inference) She holds standard terms. Her word for
+contract talks is "win-win", with catch-ups from life-cycle cost reductions and price escalation
+[RX-0244]. She has called old concession deals a legacy that dates back "more than a decade"
+[RX-0231].
+
+How she argues in the executive committee.
+- Does it clear the mid-to-high-teens hurdle [RX-0213]? The engine has no hurdle input; the nearest
+  proxies are RR's 10% WACC and the 0.6 alpha loading on capex and strain (rules; inference).
+- What is the capex a year in £, and does it fit inside flat gross R&D [RX-0214]?
+- What happens to net cash and leverage against the 1-1.5x ceiling [RX-0261]?
+- What is the unselected downside in whatif?
+- What does it do to the net LTSA balance and the widebody installed base [RX-0259]?
+
+What changes her mind. Delivered numbers and an announced customer. She rebased her own flying-hour
+and shop-visit assumptions once the data moved [RX-0252, RX-0253].
+
+CONFIDENCE AND GAPS
+-------------------
+
+- High: capital frame, guidance, LTSA and supply-chain economics.
+- None on:
+  - narrowbody entry, Solo against Joint Venture, the UltraFan business case or engine-launch
+    economics; UltraFan appears only as a budget line [RX-0263];
+  - CFM/GE, Pratt & Whitney or airframer pricing pressure;
+  - Trent 1000 durability beyond refurbishment volumes and cash [RX-0269].
+- Derived figures:
+  - the 2023 LTSA balance (about £1.1bn) is worked out from year-on-year differences [RX-0218];
+  - the capex-to-FCF ratios above are inference.
+- Dates: her evidence ends in July 2025. Whether she is still CFO in 2026 is not in the evidence.
+
+
+####################################################################################################
+PROFILE 2 OF 2: PANOS KAKOULLIS: CHIEF FINANCIAL OFFICER (PREVIOUS HOLDER)
+Source: wargame/profiles/rolls_royce/executives/kakoullis.md
+####################################################################################################
+
+Role and dates. Chief Financial Officer of Rolls-Royce from about 2021 to 2023. He was printed as
+"CFO & Executive Director" from his first evidenced call on 5 August 2021 [RX-0164]; in August 2022
+he recalled the priorities he set "when I started this role" [RX-0182]. He was printed as "CFO &
+Director" at his last call, on 3 August 2023 [RX-0206]. He served under Warren East, CEO to the end
+of 2022 (context only, not profiled), then under Tufan Erginbilgic, CEO on the February 2023 call
+[R-1561].
+
+Era. He took over in the COVID recovery. What he inherited:
+- net debt of about £3bn, which he called "too high" [RX-0169]; £5,157m (3.7x EBITDA) at end-2021 on
+  the broader measure [R-0027];
+- LTSA flying hours at 43% of 2019 [R-1246];
+- a Civil cost base being cut by about a third [RX-0163];
+- an over-hedged currency book, "much larger than our peers" [RX-0198] (the £1.7bn cost is in the
+  reader's note only);
+- a disposal programme of at least £2bn [RX-0159].
+
+What happened on his watch:
+- FCF went from -£1,442m (2021) to +£491m (2022) [R-0217, R-0057];
+- disposals were completed and £2bn of debt repaid [R-0855];
+- net debt fell to £3.3bn at end-2022 [R-0855] and £1,952m at end-2023 [R-0027];
+- Civil returned to a £143m profit in 2022 [R-0853].
+
+The 2023 guide (operating profit £0.8-1.0bn) was presented by both him and the new CEO in February
+2023 [RX-0202, RX-0034]. It was raised in August 2023, while he was still CFO, and beaten: £1,590m
+[RX-0047, R-0219].
+
+Evidence. 57 own-words items (RX) from six events: H1 2021, the December 2021 trading statement,
+FY2021, H1 2022, FY2022 and H1 2023. There are also 40 company items (R) from the same turns.
+
+Confidence. High on balance-sheet repair, guidance and LTSA contract mechanics. None on engine
+launches, UltraFan, narrowbody entry, partners or the change of CEO. All launch rows below are
+inference.
+
+Tag. [5p] = engine snapshot, not evidence: options or whatif on a fresh five-player-2045 run at turn
+1, $B delta PV, re-checked 2026-10-04. Re-run every turn.
+
+QUICK CARD
+----------
+
+Objective function (his "three clear priorities" plus the balance sheet):
+1. "Deliver on our commitments" [RX-0182]. He built it from what investors told him: "set achievable
+   targets ... and then achieve them or even beat them" (their words, as he relayed them) [RX-0165].
+2. Repair the balance sheet: an investment-grade profile and net cash in the medium term [RX-0171,
+   RX-0154].
+3. A "balanced, profitable and cash-generative" group, with Civil one of three earnings engines
+   [RX-0164, RX-0166] and the future "cash engine" [RX-0192].
+4. "Invest wisely": near-term returns from durability and efficiency [RX-0155]; 75% of R&D on
+   lower-carbon technologies [RX-0180].
+5. "Simplify how we report" [RX-0182], rebuilt "ground up" [RX-0173].
+
+Decision rules and red lines
+- No further "nonorganic" balance-sheet measures: liquidity, disposals and organic cash suffice
+  [RX-0156].
+- Disposals "in a measured way", with "no near-term pressures" [RX-0159].
+- Every investment over £5m goes to a monthly group committee with "a very high bar" [RX-0188].
+- IRR is estimated "in a range of scenarios", with the Trent 700 time-on-wing work as his example of
+  a near-term return [RX-0181]. That long-dated bets need a higher risk-adjusted IRR is in the
+  reader's note on RX-0181, not the quote.
+- The pace of deleveraging is balanced against investment opportunities [RX-0171].
+- Savings are booked only once "we are sure of them" [RX-0158].
+- No credit for uncontrollables, in either direction [RX-0175, RX-0177].
+
+Risk appetite
+
+* Dimension: Technology
+    Rating: Low (inference)
+    Evidence: Civil is to "exit ... a period of intense product development" [RX-0194]; investment
+      tilted away from Civil [RX-0172]
+
+* Dimension: Schedule
+    Rating: Low
+    Evidence: Conservative cash guides, beaten [RX-0160, RX-0175, RX-0176, R-0217]
+
+* Dimension: Balance sheet
+    Rating: Low
+    Evidence: Net debt "too high" [RX-0169]; liquidity strong enough that concession timing does not
+      matter [RX-0162]; £7.5bn of it (Warren East's figure) [R-0815]
+
+* Dimension: Currency
+    Rating: Medium
+    Evidence: After the over-hedge, cut cover to a declining 5-year book, accepting earlier exposure
+      [RX-0198]
+
+* Dimension: Pricing and terms
+    Rating: Low appetite for concessions
+    Evidence: Indexation enforced [RX-0195]; minimum-utilisation clauses billed [RX-0210]; "rewarded
+      for the value that we bring" [RX-0168]
+
+Tempo. Plans ahead and acts on what he controls. On China he said "we're not just going to wait to
+react" [RX-0189]. He flagged the 2023 Boeing concession headwind a year early [RX-0187]. On traffic
+he deferred to industry forecasts rather than publish his own [RX-0157]. No evidence of reactions to
+a rival's move.
+
+Capital allocation.
+- Deleverage at a pace balanced against investment [RX-0171].
+- Investment pivoted "a little bit away from civil" towards Defence and other growth areas
+  [RX-0172].
+- 80% of capex and R&D in the established businesses [RX-0180].
+- Durability spend protected [RX-0155].
+- The spare-engine pool built to 23% of OE deliveries [RX-0203].
+
+Product stance. (inference) Civil was in harvest mode. His five value drivers were service receipts,
+service costs, OE margins, business aviation, and benefiting from "a favorable point in the
+investment cycle" [RX-0194]. The LTSA is "a smart business model" [RX-0167]; young programmes hold
+margin still to come [RX-0179]. Nothing on UltraFan or narrowbody.
+
+How he reads airframers and rivals.
+- Boeing is a timing risk: 787 delivery delays moved Trent 1000 concession payments [RX-0177,
+  RX-0187].
+- Chinese airlines' share of RR flying hours fell from 17% in 2019 to 11% [R-0427].
+- He has no turn on CFM/GE or Pratt & Whitney.
+
+Voice
+- "deliver on our commitments, simplify how we report and invest wisely for the future" [RX-0182]
+- "That is too high. We will reduce it over the coming years." [RX-0169]
+- "I'm not going to claim any credit for that. That's not controllable." [RX-0175]
+- "It's a smart business model." [RX-0167]
+- "It's not a cap, it's a color" (the transcript's spelling of "collar") [RX-0197]
+- "Works both ways. So we need to be balanced around that." [RX-0183]
+
+Biases to display when the situation matches
+- Guide low on cash, beat, and strip out luck, when disclosing [RX-0160, RX-0175].
+- Portfolio before Civil growth: he under-weights new Civil programmes (inference) [RX-0172,
+  RX-0194].
+- Enforce contracts rather than concede, when an airline asks for relief [RX-0195, RX-0205,
+  RX-0210]; (inference) the same with an airframer.
+- External anchoring on traffic [RX-0157]: (inference) slow to bank upside. The 2023 profit guide he
+  and the CEO gave was beaten by about £600m [RX-0202, RX-0034, R-0219].
+
+COMMITMENT TRACK RECORD
+-----------------------
+
+† = outcome taken from the reader's note on the cited item, not from a quote or data cell.
+
+* Date: 2021-08
+    Commitment or forecast: At least £2bn of disposals, not a forced seller
+    Outcome in the evidence: Completed 2022; £2bn of debt repaid
+    ids: RX-0159, R-0855
+
+* Date: 2021-08
+    Commitment or forecast: 2021 FCF about -£2bn
+    Outcome in the evidence: -£1,442m; he refused credit for the £300m from concession timing
+    ids: RX-0160, RX-0175, R-0217
+
+* Date: 2021-08
+    Commitment or forecast: FCF of at least £750m once flying hours pass 80% of 2019; unlikely in
+      2022
+    Outcome in the evidence: 2022 (flying hours 65%): £491m; 2023 (88%): £1,285m
+    ids: RX-0161, R-0088, R-0217, R-0878, R-0220
+
+* Date: 2021-08
+    Commitment or forecast: Net debt "too high"; net cash in the medium term
+    Outcome in the evidence: £5.2bn (2021), £3.3bn (2022), £2.0bn (2023); net cash £475m at end-2024
+      under his successor
+    ids: RX-0169, RX-0154, R-0855, R-0027
+
+* Date: 2022-02
+    Commitment or forecast: Investment-grade profile in the medium term
+    Outcome in the evidence: Two agencies by August 2024†; all three by February 2025
+    ids: RX-0171, RX-0102
+
+* Date: 2022-02
+    Commitment or forecast: 2022 FCF "modestly positive"
+    Outcome in the evidence: £491m against a £0 guided floor
+    ids: RX-0176, R-0217
+
+* Date: 2022-08
+    Commitment or forecast: Civil: high single-digit margin, flying hours back to 2019 by about 2024
+    Outcome in the evidence: Margin 11.6% (2023), 16.6% (2024); large-engine flying hours 15.8m in
+      2024 against 15.3m in 2019; targets superseded November 2023
+    ids: RX-0184, R-0295, R-0245
+
+* Date: 2022-08
+    Commitment or forecast: LTSA marker about £500m; "meaningfully more" in 2022
+    Outcome in the evidence: £792m in 2022
+    ids: RX-0185, R-0090
+
+* Date: 2022-08
+    Commitment or forecast: 2022 shop visits 1,100-1,200
+    Outcome in the evidence: 1,044† (missed)
+    ids: RX-0186
+
+* Date: 2022-08
+    Commitment or forecast: Larger 787 concession headwind in 2023
+    Outcome in the evidence: 2023 cash carried £200m of legacy Boeing concession outflows
+    ids: RX-0187, R-0862
+
+* Date: 2023-02
+    Commitment or forecast: 2023 flying hours 80-90% of 2019; shop visits 1,200-1,300
+    Outcome in the evidence: 88%; 1,227
+    ids: RX-0199, RX-0200, R-0878, R-1281
+
+* Date: 2023-02
+    Commitment or forecast: 2023 LTSA growth £500-700m; catch-ups £100-200m
+    Outcome in the evidence: About £1.1bn (derived from the 2024 figure); catch-ups a £29m charge†
+      once supply-chain costs were booked under his successor
+    ids: RX-0201, RX-0250
+
+* Date: 2023-02
+    Commitment or forecast: 2023 operating profit £0.8-1.0bn, given with the CEO
+    Outcome in the evidence: Raised to £1.2-1.4bn in August 2023, while he was CFO; actual £1,590m
+    ids: RX-0202, RX-0034, RX-0047, R-0219
+
+* Date: 2023-08
+    Commitment or forecast: Repay the €550m 2024 bond from cash; Civil H2 "broadly similar" to H1
+    Outcome in the evidence: Repaid May 2024†; H1 £405m†, full year £850m
+    ids: RX-0206, RX-0207, R-0879
+
+Pattern: cash and balance-sheet commitments were met or beaten, and his traffic and volume calls for
+2023 were accurate. His misses were 2022 shop visits and 2023 catch-ups. Actual 2023 operating
+profit came in about £600m above the top of the February range he and the CEO gave [RX-0202,
+RX-0034, R-0219].
+
+BY DIMENSION
+------------
+
+Priorities. He built his priorities from investor feedback after years of misses: "deliver on the
+near-term commitments", "simplify financial reporting" and "set achievable targets" [RX-0165]. He
+took a portfolio view: "I don't just look at civil" [RX-0166].
+
+Decision style.
+- A centralised monthly investment gate at £5m. He attended every meeting and many projects "didn't
+  make the grade" [RX-0188].
+- Scenario IRR across a near-, medium- and long-term mix [RX-0181].
+- Pre-emptive scenario planning at executive and board level [RX-0189].
+- Reporting rebuilt "ground up", not as "a sort of veneer" [RX-0173].
+
+Risk. He treated the analyst's rule of thumb of about £30m of cash per 1% of flying hours as "an
+okay approximation" [RX-0170], noting that lower flying also pushes shop-visit costs out [R-0827].
+
+Capital allocation (timeline).
+- August 2021: no stop to current-product investment [RX-0155].
+- February 2022: the pivot away from Civil [RX-0172].
+- August 2022: 75% of R&D on lower carbon, 80% in established businesses [RX-0180].
+- August 2023: a surplus £1bn bank facility cancelled [RX-0206].
+
+Product and strategy (LTSA mechanics).
+- Indexation passes inflation through, absorbs a 2-3 point band, then passes it through again above
+  a hyperinflation threshold [RX-0197]; the cash lags the profit [RX-0196].
+- Positive catch-ups signal higher lifetime margins [RX-0193].
+- Contracts run 8-9 years on average, and he was "much tougher" on enforcing them [RX-0205].
+- Risk-and-revenue-sharing partners take part of the receipts: about £500m of £727m was retained in
+  H1 2023 [RX-0208].
+
+Operations.
+- Restructuring gave about 30% more Civil load for about 6% more operating cash cost [RX-0178].
+- After the invasion of Ukraine: a consolidated supplier base and a US titanium source [RX-0190].
+- A 10% part-price cut on the Pearl 10X [RX-0191].
+- Spare engines built above the usual 10-15% of OE deliveries ahead of the shop-visit surge
+  [RX-0203].
+
+Rivals. No turn. His external lens was the customer's delivery schedule [RX-0162].
+
+Communication.
+- He refused to give his own flying-hour forecast [RX-0157].
+- He broadened guidance from cash to revenue and margin [RX-0174].
+- He taught investors that catch-ups work "both ways" [RX-0183].
+
+Crisis response. Liquidity absorbed the 787 concession slips [RX-0162]. The hedge book was rebuilt
+after the £1.7bn over-hedge [RX-0198]. Titanium was re-sourced after Russia's invasion [RX-0190].
+
+Team. He ran the East-era plan that tilted investment away from Civil [RX-0172], then gave the
+FY2022 and H1 2023 numbers under the new CEO [RX-0202, RX-0206]. No turn shows how he and either CEO
+divided decisions.
+
+IN THE GAME: IF KAKOULLIS IS IN THE ROOM
+----------------------------------------
+
+He sits in the 2022 and 2023 teams. Read him as "this CFO running the 2026 board".
+
+* Lever: uf_nb
+    Default: Do Nothing: harvest era, investment away from Civil (inference) [RX-0194, RX-0172]
+    Flips when: An announced fps or NGSA on UltraFan, and the return holds across scenarios
+      [RX-0181]: Solo NGSA 2031 +16.50, unselected -5.70; engine ready 2038 [5p]
+    Numbers he asks for: Expected PV at several selection probabilities [RX-0181]; (inference) a
+      higher hurdle for a payoff beginning in 2038
+    He vetoes: A launch without a customer; anything that reverses the deleveraging path [RX-0169]
+
+* Lever: Solo against Joint Venture
+    Default: Joint Venture (inference: scenario-tested IRR [RX-0181]; the Civil president's
+      "capital-light" partnering in the same era [RX-0004])
+    Flips when: Solo only once selection is announced and Solo beats the Joint Venture clearly (NGSA
+      2031: +16.50 against +8.13) [5p]
+    Numbers he asks for: P&W's capex and value share (50/50 in the rules)
+    He vetoes: Solo while selection is uncertain (unselected -5.70 Solo, -2.98 Joint Venture) [5p]
+
+* Lever: uf_wb
+    Default: Do Nothing until Airbus announces an A350 Re-engine, then launch: the LTSA annuity
+      rests on "sticky" customers (inference) [RX-0167]
+    Flips when: Announced A350 Re-engine: -2.31 on UltraFan against -4.15 on GE [5p]
+    Numbers he asks for: Unselected cost: -2.46 for a 2031 launch [5p]
+    He vetoes: Pre-launching
+
+* Lever: Terms
+    Default: Standard; indexation and enforcement [RX-0195, RX-0197]
+    Flips when: Only if whatif shows the contest lost at standard and won at aggressive
+    Numbers he asks for: NGSA 2031 aggressive costs RR 3.67 [5p]
+    He vetoes: Concessions as a cash drain: the 2021 working-capital outflow of £800m was mostly
+      concession payments [R-0830]
+
+* Lever: t1000_upgrade
+    Default: Fund: "good near-term returns available from increasing durability" [RX-0155]; the
+      Trent 700 time-on-wing work is his model near-term return [RX-0181]; +0.81 in turn 1 [5p]
+    Flips when: Defer if it overlaps an UltraFan development (strain) [5p]
+    Numbers he asks for: Payback years
+    He vetoes: -
+
+* Lever: cancel
+    Default: Cancel an orphan programme: projects that "didn't make the grade" [RX-0188]; a 2026
+      Solo cancelled in 2031 is -7.15 against -9.18 kept [5p]
+    Flips when: An airframe still flies it (rules)
+    Numbers he asks for: Sunk against remaining capex
+    He vetoes: -
+
+* Lever: Disclosure
+    Default: Conservative; no dates or forecasts on things he cannot control [RX-0157, RX-0175]
+    Flips when: -
+    Numbers he asks for: -
+    He vetoes: Promising an entry into service
+
+When CFM/GE launches a ducted engine or the RISE open fan. He would scenario-plan rather than react
+[RX-0189]. An NGSA on the open fan in 2031 gives Airbus +6.48 against +38.88 on UltraFan [5p]. A
+ducted NGSA leaves RR at 0.00 [5p]. Neither changes RR's cash, so neither changes his orders
+(inference).
+
+When CFM/GE takes share through upgrades. (inference) He answers with durability spend [RX-0155].
+The GEnx package alone costs RR -0.58; with RR's own upgrade the net is +0.23 [5p].
+
+When an airframer asks for aggressive terms. He holds price and points to indexation and contract
+terms [RX-0195, RX-0205]. He watched concession payments drain cash [R-0830].
+
+How he argues in the executive committee.
+- What is the IRR in each scenario [RX-0181]? (inference) Is the long-dated case risk-adjusted?
+- Which drivers are controllable [RX-0175]?
+- Does liquidity cover the downside [RX-0156]?
+- Does the deleveraging path hold [RX-0171]?
+- How sensitive is the answer to flying hours [RX-0170]?
+
+What changes his mind. Cash that has actually arrived. He tied his £750m cash floor to a flying-hour
+threshold, not a date [RX-0161]. He also needs a scenario set in which the investment clears every
+case.
+
+CONFIDENCE AND GAPS
+-------------------
+
+- High: balance sheet, guidance, LTSA terms, supply-chain inflation (six events, 2021-23).
+- None on:
+  - UltraFan, narrowbody entry, Joint Ventures or engine-launch economics; his only investment rules
+    are generic [RX-0181, RX-0188];
+  - CFM/GE or Pratt & Whitney;
+  - the change of CEO, or how he and either CEO split decisions.
+- Derived: the 2023 LTSA outcome and the H2 2023 Civil profit come from differences [RX-0201,
+  RX-0207].
+- Dates: his exact departure date is not in the evidence. His last turn is August 2023, and McCabe
+  speaks as CFO from November 2023 [RX-0211].

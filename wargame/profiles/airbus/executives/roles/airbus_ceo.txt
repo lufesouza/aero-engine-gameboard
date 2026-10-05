@@ -3,7 +3,7 @@ AIRBUS: CHIEF EXECUTIVE OFFICER (CEO)
 Role profile for the Boeing vs Airbus war game
 ====================================================================================================
 
-Plain-text copy of the executive profiles in wargame/profiles/airbus/executives/, built 2026-10-04
+Plain-text copy of the executive profiles in wargame/profiles/airbus/executives/, built 2026-10-05
 by wargame/profiles/build/make_role_txt.py. The Markdown files are the source of truth. Bracketed
 ids ([AX-0123], [A-0456]) point to verified evidence in
 wargame/profiles/airbus/executives/evidence.jsonl and wargame/profiles/airbus/evidence.jsonl.

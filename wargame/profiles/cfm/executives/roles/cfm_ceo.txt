@@ -3,7 +3,7 @@ CFM INTERNATIONAL: CHIEF EXECUTIVE (GE-SIDE CEO SEAT)
 Role profile for the Boeing vs Airbus war game
 ====================================================================================================
 
-Plain-text copy of the executive profiles in wargame/profiles/cfm/executives/, built 2026-10-04 by
+Plain-text copy of the executive profiles in wargame/profiles/cfm/executives/, built 2026-10-05 by
 wargame/profiles/build/make_role_txt.py. The Markdown files are the source of truth. Bracketed ids
 ([CX-0123]) point to verified evidence in wargame/profiles/cfm/executives/evidence.jsonl. Section
 numbers (§) and file names inside a profile refer to that person's Markdown profile; the same

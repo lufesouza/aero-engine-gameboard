@@ -3,7 +3,7 @@ BOEING: LEADERSHIP TEAMS (EXCO CARDS)
 Companion to the role files in this folder
 ====================================================================================================
 
-Plain-text copy of wargame/profiles/boeing/executives/teams.md, built 2026-10-04 by
+Plain-text copy of wargame/profiles/boeing/executives/teams.md, built 2026-10-05 by
 wargame/profiles/build/make_role_txt.py. The Markdown file is the source of truth.
 
 BOEING LEADERSHIP TEAMS FOR THE WAR GAME

@@ -1,7 +1,7 @@
 CFM EXECUTIVE ROLE PROFILES (PLAIN TEXT)
 ========================================
 
-Built 2026-10-04 from the Markdown profiles in wargame/profiles/cfm/executives/ by
+Built 2026-10-05 from the Markdown profiles in wargame/profiles/cfm/executives/ by
 wargame/profiles/build/make_role_txt.py. Re-run it after editing the profiles.
 
 Files:

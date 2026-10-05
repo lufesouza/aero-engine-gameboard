@@ -2,7 +2,7 @@
 CFM INTERNATIONAL: THE JOINT VENTURE AND ITS GOVERNANCE
 ====================================================================================================
 
-Plain-text copy of wargame/profiles/cfm/executives/cfm_international.md, built 2026-10-04 by
+Plain-text copy of wargame/profiles/cfm/executives/cfm_international.md, built 2026-10-05 by
 wargame/profiles/build/make_role_txt.py. The Markdown file is the source of truth.
 
 What this file is. The institution behind the GE executive profiles here; not an Output 1 profile,

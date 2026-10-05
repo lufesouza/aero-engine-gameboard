@@ -332,14 +332,14 @@ The company doctrine and hard rules are in `wargame/profiles/rolls_royce/profile
    - The A350 Re-engine has its own rule (table).
 6. **Disclose and predict.**
    - Few, conditional and binding statements, made only "when we are sure" [RX-0124].
-   - Round-1 script (inference): "Rolls-Royce will launch UltraFan in round 2 for any airframer that announces a round-2 fps or NGSA on UltraFan in round 1. We go Solo when named, and the Joint Venture is open to Pratt & Whitney. We launch the widebody UltraFan in the round Airbus launches an A350 Re-engine. No entry into service earlier than launch plus seven years."
+   - Round-1 script (inference): "Rolls-Royce will launch UltraFan in round 2 for any airframer that announces a round-2 fps or NGSA on UltraFan in round 1. Our preference is a partner: the Joint Venture is open to Pratt & Whitney, and we go Solo if no partner joins. We launch the widebody UltraFan in the round Airbus launches an A350 Re-engine. No entry into service earlier than launch plus seven years."
    - Predict airframer launches from `whatif`.
    - Rationale line: "ExCo (erginbilgic-mccabe-watson-2026): CEO …; CFO …; Civil …; decided …; doctrine premium $X B; ids."
 
 | Lever | Default | Flips | Engine terms [5p] |
 |---|---|---|---|
 | `t1000_upgrade` | Fund in round 1: "regain market share? Absolutely" [RX-0101]; 787 share "Why not?" [RX-0117] | If not funded in round 1, fund in the first round with no UltraFan in development | +0.81 in round 1; +0.23 net even if CFM funds `genx_upgrade`; +0.48 in round 2, +0.28 in round 3 |
-| `uf_nb`, UltraFan named (P 0.6) | **Solo** [RX-0118] | None in rounds 2-3: Solo clears the bar in every case. Round-3 fps (+1.89) is below +$2B but above 0. The team launches because it is the last slot that delivers by 2045 and the CEO lists narrowbody as growth [R-1598] (inference) | Round 2: NGSA +7.62, fps +3.89. Round 3: NGSA +4.03, fps +1.89 |
+| `uf_nb`, UltraFan named (P 0.6) | **Partner first:** `jv_pw` if P&W announced `join_rr_jv` ("our preference is partnership" [RX-0118]); otherwise **Solo** ("we can consider alternatives" [RX-0072]) | Without P&W's announcement Solo clears the bar in every case in rounds 2-3. Round-3 fps (+1.89) is below +$2B but above 0. The team launches because it is the last slot that delivers by 2045 and the CEO lists narrowbody as growth [R-1598] (inference) | Round 2: NGSA +7.62, fps +3.89. Round 3: NGSA +4.03, fps +1.89 |
 | `uf_nb`, engine open (P 0.35) | `jv_pw` if P&W announced and above 0: "partnership ... to derisk" [RX-0072]; the CFO's downside | Without P&W: Solo if ≥ +$2B (round 3: above 0); fps never clears | Round 2 NGSA: Joint Venture +0.91 (doctrine premium against Solo 1.16), without P&W Solo +2.07. Round 3 NGSA: +0.36, without P&W Solo +0.87 |
 | Speculative `uf_nb` | Never | - | Costs 3.48 (2026 for 2031) and 2.15 (2031 for 2036) |
 | `uf_wb` | Launch in the round Airbus announces an A350 Re-engine; widebody is the core [R-1574] | 787 Re-engine: only if Boeing named UltraFan (P 0.6 is above break-even 0.45-0.49). Both NGSA and the A350 Re-engine named: launch both | A350: -2.31 against -4.14 (round 2), -1.50 against -2.40 (round 3). Both: +13.01 against +12.36 |
@@ -371,7 +371,7 @@ The company doctrine and hard rules are in `wargame/profiles/rolls_royce/profile
 
 ### How this team differs from the company default
 The company profile's procedure (§9) was written from this team's evidence, so the team mostly applies it. It sharpens it in four ways:
-- **Solo first once an airframer names UltraFan**; the Joint Venture is for an open engine [RX-0118, RX-0072].
+- **Partner first, Solo as the fallback.** With P&W's announced join the team proposes the Joint Venture, even when an airframer names UltraFan; Solo when no partner has announced [RX-0118, RX-0072]. The engine prices Solo at about twice the Joint Venture once selected, so the CEO presses the partner to credit RR's technology (inference).
 - **Round 3 relaxes the narrowbody bar to above 0.** The CEO's growth stance [R-1598] meets the last slot that can deliver by 2045 (inference).
 - **The A350 Re-engine goes to aggressive terms when Airbus leaves it open or names a rival.** From round 2 GE beats UltraFan's standard terms, and the profile's "only if P&W's `pw_wb`" condition is widened to GE (inference).
 - **CEO-centred.** The CFO and Civil president rarely overrule him; their checks are the downside and maturity.
@@ -384,10 +384,10 @@ The company profile's procedure (§9) was written from this team's evidence, so 
 |---|---|---|---|
 | Round 1 | Upgrade; no UltraFan | Same | Same |
 | Round 2, NGSA named on UltraFan | Solo (the cap forces it over the Joint Venture) | Solo | Solo |
-| Round 2, fps named, P&W announced | Joint Venture (+1.82) | Solo (+3.89) | Solo (+3.89) |
+| Round 2, fps named, P&W announced | Joint Venture (+1.82) | Solo (+3.89) | Joint Venture (+1.82), partner first |
 | Round 2, NGSA open, no P&W | Do Nothing | Do Nothing | Solo (+2.07) |
 | Round 2, NGSA open, P&W announced | Joint Venture (+0.91) | Joint Venture | Joint Venture |
-| Round 3, NGSA named, P&W announced | Joint Venture (+1.94) | Solo (+4.03) | Solo (+4.03) |
+| Round 3, NGSA named, P&W announced | Joint Venture (+1.94) | Solo (+4.03) | Joint Venture (+1.94), partner first |
 | Round 3, fps named | Joint Venture if P&W (+0.87), else Do Nothing | Same | Solo (+1.89) |
 | Round 3, NGSA open, no P&W | Do Nothing | Do Nothing | Solo (+0.87) |
 | A350 Re-engine announced | `uf_wb`, standard | `uf_wb`, standard | `uf_wb`; aggressive if the engine is left open or a rival is named |
