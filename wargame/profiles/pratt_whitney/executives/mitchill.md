@@ -171,32 +171,32 @@ What moved is the third slot. Buybacks ran at $2.5-3B a year in 2022 [PX-0231]. 
 
 ## In the game: if Mitchill is in the room
 
-**[engine]** values are from `whatif`, scenario five-player-2045 with RR, P&W and CFM, turn 1, P&W ΔPV in $B; re-run them each turn. Unless stated, *with upgrade* means `gtf_upgrade` ordered in round 1. P&W carries alpha 0.35 at an 8.5% WACC (rules).
+**[engine]** values are snapshots from `whatif`, scenario five-player-2045 with RR, P&W and CFM, round (turn) 1, P&W ΔPV in $B. They were re-checked on a fresh run in the 2026-10-04 audit; they are not evidence, so re-run them each turn. Unless stated, *with upgrade* means `gtf_upgrade` ordered in round 1. A CFM/GE or RR engine counts only if that maker launches it in the same round. P&W carries alpha 0.35 at an 8.5% WACC (rules).
 
 | Lever | Default stance | Flips when | Numbers he asks for | Vetoes |
 |---|---|---|---|---|
-| `gtf_upgrade` | ON in round 1: a drop-in fix with the support network in place [PX-0243][PX-0325] | Never off | +1.76 in round 1, +1.15 in round 2, +0.75 in round 3; $1.0B over 3 years (rules) [engine] | Booking its savings before they are proven [PX-0350] |
-| `gtf_next` | OFF: no centreline engine in plan [PX-0202]; revisit the OE-loss model first [PX-0275] | An airframer discloses NGSA (or fps) on `pw_gtf2`; then fund it, with partners [PX-0269] | $4.5B over 6 years, about $0.75B a year, an eighth of the own-funded envelope [PX-0268]. NGSA 2030 ours +1.75 against CFM's -1.14. Hedge cancelled in round 2 +1.03 against +1.76, so the break-even odds are about 0.20 [engine] | Carrying an unselected engine: -1.85 if never cancelled [engine] |
-| Terms | Standard: list price "serves as the new floor" [PX-0318]; no heavy discounts [PX-0360] | None found | Aggressive on a selected NGSA -1.97, against -1.14 for losing it [engine] | `aggressive` |
+| `gtf_upgrade` | ON in round 1. R&D already supports the Advantage [PX-0325], and he prefers a "low-risk, drop-in" upgrade with the support network in place (said of the F135; analogy) [PX-0243] | Never off | +1.76 in round 1, +1.15 in round 2, +0.75 in round 3; $1.0B over 3 years (rules) [engine] | Booking its savings before they are proven [PX-0350] |
+| `gtf_next` | OFF: no centreline engine in the 2021-25 plan [PX-0202]; revisit the OE-loss model first [PX-0275] | An airframer discloses NGSA (or fps) on `pw_gtf2`; then fund it, with partners [PX-0269] | $4.5B over 6 years, about $0.75B a year, an eighth of the own-funded envelope [PX-0268]. NGSA 2030 ours +1.75 against CFM's -1.14. Hedge cancelled in round 2 +1.03 against +1.76, so the break-even odds are about 0.20 [engine] | Carrying an unselected engine: -1.85 if never cancelled [engine] |
+| Terms | Standard (inference for OE terms). In the aftermarket, list price "serves as the new floor" [PX-0318]; spare engines are not "heavily discounted" [PX-0360] | None found | Aggressive on a selected NGSA -1.97, against -1.14 for losing it [engine] | `aggressive` |
 | `join_rr_jv` | OFF until an airframer signals UltraFan (inference) | An airframer discloses UltraFan, so P(selected) is at or above about 0.2 (inference) | +12.14 if NGSA picks UltraFan, against -1.14; -1.25 if nobody does, against +1.76, and there is no exit; break-even about 0.18 [engine] | An irreversible commitment taken without a signal, his fixed-price wariness [PX-0319] (inference) |
-| `pw_wb` | Never: legacy widebody engines are only a cash tail [PX-0242] | None found | 787 Re-engine on `pw_wb_new` -1.43 against +1.76 [engine] | `pw_wb` |
-| Cancel | Cancel an unselected `gtf_next` in round 2: re-rank by payback [PX-0248] | A selection is disclosed | +1.03 cancelled against -1.85 held [engine] | Holding an engine for "bragging rights", the predecessor CFO's phrase [P-0702] (inference) |
+| `pw_wb` | Never (inference): legacy widebody engines are only a cash tail [PX-0242] | None found | 787 Re-engine on `pw_wb_new` -1.43 against +1.76 [engine] | `pw_wb` |
+| Cancel | Cancel an unselected `gtf_next` in round 2 (inference from his re-ranking of projects by payback [PX-0248]) | A selection is disclosed | +1.03 cancelled against -1.85 held [engine] | Holding an engine for "bragging rights", the predecessor CFO's phrase [P-0702] (inference) |
 
 **Disclosure.** He discloses dated, conditional offers and never the upside [PX-0288][PX-0311] (inference).
 
-**Airframer levers.** He discounts Rate Increase claims and airframer rate ramps [PX-0343].
+**Airframer levers.** He would discount Rate Increase claims (inference). He plans the Collins outlook below airframers' ramps [PX-0343] and sizes P&W capacity only for sustainable rates [PX-0238].
 
 **CFM launches a ducted engine or the RISE open fan.**
 - *Ducted.* NGSA on CFM's ducted engine costs us the base: -1.14, and zero engines from entry into service [engine]. He funds `gtf_next` only once Airbus has disclosed `pw_gtf2` (inference).
-- *Open fan.* NGSA on the open fan cannot fly before 2045. We keep 1,080 engines a year to 2045 for +0.62, against +0.99 if NGSA picks ours in 2037 [engine]. He would read that as "a little longer" for the GTF case [PX-0275] and keep cash in the base (inference).
+- *Open fan.* NGSA on the open fan cannot fly before 2045, so we keep 1,080 engines a year to 2045. That is worth +0.48 if NGSA is launched in 2028-2033 and +0.62 if launched in 2037, against +0.99 if NGSA picks ours in 2037 [engine]. He would read that as "a little longer" for the GTF case [PX-0275] and keep cash in the base (inference).
 
 **CFM takes share with LEAP or GEnx upgrades.**
-- A LEAP upgrade alone takes us from 960 to 840 engines (-0.73). Our upgrade restores 960 (+1.03 for both upgrades) [engine]. The upgrade is worth +1.76 whatever CFM does [engine].
+- A LEAP upgrade alone takes us from 960 to 840 engines (-0.67). Our upgrade restores 960 (+1.09 for both upgrades) [engine]. The upgrade is worth +1.76 whatever CFM does [engine].
 - The GEnx package takes widebody share from RR, not us: Do Nothing.
-- He answers with durability, not price [PX-0277][PX-0341].
+- He answers with the durability upgrade and holds price (inference). Spare engines are not "heavily discounted" [PX-0360], and renewals reprice up because "the engine is performing really, really well" [PX-0341].
 
 **An airframer asks for aggressive terms.**
-- Refuse. Offer time on wing and reprice at renewal [PX-0341].
+- Refuse (inference). Offer time on wing and reprice at renewal, as he does with aftermarket contracts [PX-0341].
 - Airbus gains +44.70 on aggressive terms against +40.66 on standard (+39.22 on CFM); we fall from +1.75 to -1.97 [engine].
 
 **In the ExCo.** His questions, paraphrased:
@@ -222,4 +222,4 @@ He wants `whatif` run with and without the selection, and with the round-2 cance
   His `join_rr_jv`, `pw_wb` and CFM stances are inference.
 - **Thin:** 2019-20 items are mostly results scripts, and nothing comes after October 2025.
 - **Dating:** several conference turns were re-dated from the call they sat under, e.g. UBS 2021-06-08 [PX-0203] and Baird 2022-11-08 [PX-0256].
-- **[engine]** values come from one scratch run of the current rules. They are not evidence.
+- **[engine]** values are snapshots of the current rules. They were re-checked on a fresh run in the 2026-10-04 audit, which corrected the LEAP and open-fan figures. They are not evidence.

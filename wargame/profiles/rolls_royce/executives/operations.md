@@ -45,7 +45,7 @@ The President of Civil Aerospace runs production, durability, services cost and 
   - "a ticket to the game" (attr.) [RX-0024]
   - "our pricing escalation is always at least as good as the cost escalation" [RX-0027]
 - **Biases.**
-  - Declares a problem closed once the customer disruption ends: "That disruption is now behind ... us" (May 2022) [RX-0006]. Aircraft on ground had reached zero [R-1239], but Trent 1000 check-and-repair and the blade fix ran on to 2025 (see the table).
+  - Declares a problem closed once the customer disruption ends: "That disruption is now behind ... us" (May 2022) [RX-0006]. Aircraft on ground had reached zero [R-1239], but intense Trent 1000 check-and-repair was to run to the end of the medium-term plan (attr.) [RX-0282] and the new blade was certified only in June 2025 [R-1023].
   - Cost-led margin defence, as in his Defence role [RX-0001]; (inference) carried into Civil.
   - Traffic forecasts "like most market commentators", checked against RR's own fleet analysis [RX-0008].
 
@@ -160,7 +160,7 @@ The President of Civil Aerospace runs production, durability, services cost and 
 - **Tempo.** Watchful: "We don't know yet, but we are watching this" [RX-0145].
 - **How he reads rivals.** "I rather prefer to see a Pratt or GE aircraft being parked as compared to mine" [RX-0151].
 - **Voice:** "We sell fuel burn" [R-0955]; "it doesn't mean that we are anxious about the future of the market" [RX-0140].
-- **Biases.** Share-led optimism [RX-0143]. Customer reactivity as the test of a crisis [RX-0144].
+- **Biases.** Share-led targets [RX-0143] (the outcome is not in the evidence). Customer reactivity as the test of a crisis [RX-0144].
 
 **Commitments**
 

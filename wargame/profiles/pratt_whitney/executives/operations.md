@@ -13,16 +13,16 @@ Capital allocation, the dividend, buybacks, the balance sheet and guidance sit a
 - *Leduc:* 49 own-words items plus 105 company-file items, from four investor events (March 2016, June 2017, March 2018, June 2019).
 - *Eddy:* 21 own-words items plus 20 company-file items, from one event (19 June 2023).
 
-**[engine]** values are from `whatif`, scenario five-player-2045 with RR, P&W and CFM, turn 1, P&W ΔPV in $B, with `gtf_upgrade` in round 1 unless stated. They come from a scratch run, are not evidence, and should be re-run each turn.
+**[engine]** values are from `whatif`, scenario five-player-2045 with RR, P&W and CFM, turn 1, P&W ΔPV in $B, with `gtf_upgrade` in round 1 unless stated. They are snapshots, re-checked on a fresh run in the 2026-10-04 audit. They are not evidence and should be re-run each turn. A CFM/GE or RR engine counts only if that maker launches it in the same round.
 
 ## Robert F. (Bob) Leduc: President of Pratt & Whitney (evidence March 2016 to June 2019; in the seat to about 2019)
 
-**Era.** The GTF entered service on the A320neo in January 2016, and Leduc met the press doubts with data [PX-0136]. He took the ramp toward 100 engines a month on $1B of infrastructure and $22B of supplier agreements [PX-0138]. Then came, in turn:
-- the #3 seal and combustor problems [PX-0150];
+**Era.** The GTF entered service on the A320neo in January 2016 [P-1677], and Leduc met the press doubts with data [PX-0136]. He took the ramp toward 100 engines a month on $1B of infrastructure and $22B of supplier agreements [PX-0138]. Then came, in turn:
+- the #3 seal and combustor problems, with about 150 engines to upgrade [P-0247];
 - a supplier escape in 2017 [PX-0152];
 - the knife-edge seal escape and the Indian groundings of 2018 [PX-0164][PX-0160].
 
-The backlog grew from 7,000 engines (2016) to 10,000 (2019) [PX-0137][PX-0178].
+The backlog grew from 7,000 engines (2016) to 10,000 (2019) [PX-0137][P-0080].
 
 **Confidence.** Medium-high on the ramp, supply chain, crisis handling and pricing. Low on new-engine launches, where the only case is the NMA bid. **Team:** `hayes-mitchill-leduc-2019`.
 
@@ -37,7 +37,7 @@ The backlog grew from 7,000 engines (2016) to 10,000 (2019) [PX-0137][PX-0178].
 
 **Rules and red lines.**
 - Supplier buffers stay until rate is demonstrated: "until they do, I don't trust them" [PX-0139]. He put 300 staff into the supply base [PX-0154].
-- Sole source or no bid: "We will not compete if it's a 2-engine competition" [PX-0177].
+- On a new-airframe bid, sole source or no bid. Of the Boeing NMA: "We will not compete if it's a 2-engine competition" [PX-0177]. It is not a general rule: the GTF competes with CFM on the A320neo [PX-0180][PX-0127].
 - Launch-mode pricing is over: "we don't feel the need to do those kind of deals anymore" [PX-0178]. Campaigns are priced on whole-deal economics: "I get to be pretty selective" [PX-0137].
 - Derivative or new centreline, "accretive to the shareholder agenda ... and only there" [PX-0155].
 - The two golden rules: finish durability testing before service, and instrument new technology "and instrument it some more" [PX-0168].
