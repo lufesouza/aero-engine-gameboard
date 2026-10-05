@@ -283,7 +283,7 @@
       },
       "upgrades": [
         {"flag": "leap_upgrade", "label": "LEAP durability upgrade", "segment": "nb", "fit_side": "airbus", "fit_pp": 5.0, "from": "pratt_whitney", "lag_years": 3, "capex_b": 0.75, "capex_years": 3, "installed_base_saving_b_per_year": 0.42, "saving_years": 10},
-        {"flag": "genx_upgrade", "label": "GEnx improvement package", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "from": "rolls_royce", "lag_years": 3, "capex_b": 0.45, "capex_years": 3, "installed_base_saving_b_per_year": 0.12, "saving_years": 12}
+        {"flag": "genx_upgrade", "label": "GEnx improvement package", "segment": "wb", "fit_side": "boeing", "fit_pp": 5.0, "from": "rolls_royce", "lag_years": 3, "capex_b": 0.45, "capex_years": 3, "installed_base_saving_b_per_year": 0.14, "saving_years": 12}
       ],
       "partner_volume": {"flag": "embraer_partner", "label": "Embraer partnership (engines for Embraer's next aircraft)", "capex_b": 1.2, "capex_years": 4, "lag_years": 8, "engines_per_year": 190, "value_m_per_engine": 1.2},
       "lobby": {"flag": "lobby_emissions", "label": "lobbying governments on emissions", "cost_b": 0.15, "cost_years": 3, "lag_years": 3, "engine": "cfm_open_fan", "margin_pp": 0.5, "capture_mult": 1.05},

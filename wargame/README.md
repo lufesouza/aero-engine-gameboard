@@ -231,7 +231,7 @@ Create a run with `--suppliers` and any of `rolls_royce`, `pratt_whitney` and `c
 
 - **Engine commitments.** Supplier orders apply first in each turn. An airframer may select an engine maker's new engine (`rr_ultrafan_nb`, `rr_ultrafan_wb`, `pw_gtf2`, `pw_wb_new`, and when CFM/GE plays `cfm_ducted` and `cfm_open_fan`) only if its maker has launched that engine program by adjudication. Otherwise the airframe falls back down a chain, and the event is public:
   - a Rolls-Royce or Pratt & Whitney narrowbody engine falls back to CFM's ducted engine;
-  - CFM's ducted engine needs CFM/GE's commitment when it plays; without one the airframe gets the **LEAP derivative** (`cfm_leap_plus`: -1pp margin, 0.95 capture);
+  - CFM's ducted engine needs CFM/GE's commitment when it plays; without one the airframe gets the **LEAP derivative** (`cfm_leap_plus`: -1pp margin, 0.92 capture);
   - a widebody engine falls back to the GEnx upgrade. A committed engine is ready at launch + development years (+ slips). The airframe enters service at the later of its own date and the engine's ready year. The maker's terms add `airframer_margin_pp` to the airframe's margin.
 - **Supplier payoff.** Lifecycle value of the engines it delivers, versus the status quo:
   - engines delivered = segment units × airframer share × engines per aircraft × the maker's fit on that airframe;

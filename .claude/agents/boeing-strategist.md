@@ -53,7 +53,7 @@ Breaking these rules invalidates the exercise. A hook also enforces the first tw
 ## Engine makers (when they play)
 
 In a run created with `--suppliers`, Rolls-Royce, Pratt & Whitney and CFM/GE are separate players. Each decides whether to build its new engines.
-- An engine that needs its maker's commitment (`supplier_engines` in your levers) is only real once that maker launches the engine programme. Until then, your airframe falls back to the segment's alternative. A CFM ducted or open-fan request with no CFM commitment becomes the LEAP derivative (`cfm_leap_plus`: -1pp margin, 0.95 capture).
+- An engine that needs its maker's commitment (`supplier_engines` in your levers) is only real once that maker launches the engine programme. Until then, your airframe falls back to the segment's alternative. A CFM ducted or open-fan request with no CFM commitment becomes the LEAP derivative (`cfm_leap_plus`: -1pp margin, 0.92 capture).
 - An airframe that is ready before its engine waits for it, and pays extension capex for each waiting year. The open fan cannot enter service before 2045.
 - Engine makers' launches, terms, upgrades, partnerships and lobbying are public (`supplier_programs`, `supplier_commitments_made` in your brief), as are their disclosures. Their sealed orders and rationales are not.
 - **fps ramp-up.** `launch` takes `"ramp": "7y"` (the default) or `"10y"` (slower share capture, less capacity capex). This is the briefing's "Launch fps with a 7-year / 10-year ramp-up". Test both with `whatif`.
