@@ -10,7 +10,7 @@
 - **[analyst]**: Goldman Sachs or Morgan Stanley estimates and model cells. None is in `evidence.jsonl`; they feed `calibration.md` only. Inside the evidence, an analyst's question is flagged where it carries the claim [CX-0195].
 - **(inference)**: a step beyond the evidence.
 - **(view)**: this profile's judgement.
-- **(snapshot)**: an engine number from `whatif` or `options` on a fresh run (`five-player-2045`, suppliers `rolls_royce,pratt_whitney,cfm`, turn 1, no inject, config of commit 46efb42 with the reconciled CFM calibration). Re-run before relying on it.
+- **(snapshot)**: an engine number from `whatif` or `options` on a fresh run (`five-player-2045`, suppliers `rolls_royce,pratt_whitney,cfm`, turn 1, no inject, the reconciled CFM calibration as configured on 2026-10-05). Re-run it.
 - **(provisional)**: a CFM/GE engine parameter. Values are provisional while `calibration.md` is reconciled; cite the parameter name, re-read `rules --side cfm`.
 
 **Money conventions.**
@@ -57,7 +57,7 @@
 | **2 (2031-2035)** | `genx_upgrade` (not in round 1: strain with the LEAP upgrade). No RISE launch yet. Disclose RISE readiness for a 2045 entry | Same defensive `ducted` trigger; `leap_upgrade` now if skipped and Pratt & Whitney has ordered `gtf_upgrade` |
 | **3 (2036-2045)** | If an airframer is committed to a 2036-2037 launch on `cfm_open_fan`: `open_fan` in **2036**, standard terms, plus `lobby_emissions`. Otherwise Do Nothing (LEAP derivative). Cancel any defensive engine no airframe flies | Defensive `ducted` as above; `open_fan` aggressive only if the airframer's incentive is short and the premium fits |
 
-Default value (both upgrades): +5.37 if nobody launches; +16.98 with an NGSA and an fps on the LEAP derivative in 2029 (snapshot).
+Default value (both upgrades): +5.46 if nobody launches; +17.07 with an NGSA and an fps on the LEAP derivative in 2029 (snapshot).
 
 **Top reaction triggers.**
 
@@ -224,15 +224,15 @@ Lags are in rounds. "Same turn" means CFM must anticipate: orders are simultaneo
 | **Rolls-Royce and Pratt & Whitney launch an UltraFan Joint Venture** | As above. Joyce rejected three-supplier airframes and a geared product | Next turn | Moderate | `ducted` aggressive. NGSA: Joint Venture +46.35 against CFM aggressive +48.40 for Airbus (snapshot) | [CX-1127] [CX-1128] [CX-0580] |
 | **Pratt & Whitney launches a next-generation GTF** | Durability as the weapon; win-rate scoreboard; welcome its operators | Next turn | Moderate | `ducted` aggressive. NGSA: GTF2 +44.35 against CFM aggressive +48.40 (Pratt & Whitney aggressive +48.75 still wins). fps: GTF2 +14.39 against +16.50 (snapshot) | [CX-0218] [CX-0581] [CX-0906] [CX-0164] |
 | **Pratt & Whitney orders `gtf_upgrade`** | Durability fixes dated and delivered; A320neo share defended | Same or next turn | Strong | `leap_upgrade`. GTF upgrade alone: CFM -3.53 and `nb_dominance` 73% (miss). Both in round 1: CFM +1.41 and 76% (met) (snapshot) | [CX-0209] [CX-0996] [CX-0218] |
-| **Rolls-Royce orders `t1000_upgrade`** | Defend the 787 on product, not price | Next turn | Moderate | `genx_upgrade` in round 2. The Trent 1000 upgrade costs CFM -0.98; `genx_upgrade` adds +0.43 (+0.66 in round 1) either way, offsetting about half (snapshot) | [CX-0615] [CX-0599] |
-| **A 787 Re-engine** opens | Offer the GEnx derivative; won on product | Same turn | Moderate | No lever needed: GEnx-next is the default. Keep `genx_upgrade` (adds +0.16 to +0.28 even alongside a 787 Re-engine; snapshot) | [CX-0615] [CX-1018] |
+| **Rolls-Royce orders `t1000_upgrade`** | Defend the 787 on product, not price | Next turn | Moderate | `genx_upgrade` in round 2. The Trent 1000 upgrade costs CFM -0.98; `genx_upgrade` adds +0.52 in round 2 (+0.79 in round 1) either way, offsetting half to most of it (snapshot) | [CX-0615] [CX-0599] |
+| **A 787 Re-engine** opens | Offer the GEnx derivative; won on product | Same turn | Moderate | No lever needed: GEnx-next is the default. Keep `genx_upgrade` (adds +0.25 to +0.41 even alongside a 787 Re-engine; snapshot) | [CX-0615] [CX-1018] |
 | **An A350 Re-engine** opens | Want "all the critical platforms"; talks private; additive only | Same turn | Weak | No lever. If Rolls-Royce has not launched `uf_wb`, it falls back to GEnx-next (+4.98; snapshot). Say nothing that presses Airbus | [CX-0587] [CX-0586] [CX-0301] |
 | **A rival widebody engine launch** (`uf_wb`, `pw_wb`) | No comment on competition; compete on product | Next turn | Weak | `genx_upgrade` if not done; nothing else. A 787 Re-engine on UltraFan costs -5.92, on Pratt & Whitney's engine -5.43 (snapshot) | [CX-0580] [CX-0600] [CX-0599] |
 | An airframer **demands aggressive terms** | Accretive on price, terms and scope; no unmodelled risk; no launch pricing | Same turn | Strong | Standard, unless a launched rival would otherwise win. Aggressive terms reach every airframe on the engine (NGSA and fps both on aggressive ducted: CFM -25.54; snapshot) | [CX-0339] [CX-0440] [CX-0930] [CX-0207] |
 | **Durability inject on us** (`engine_maturity_slip`) | Admit the gap in numbers; root cause; retrofit at shop visits | Same turn | Strong | No new launch. CFM's PV is unchanged; airframes lose (NGSA 2029 ducted: Airbus 42.77 to 34.73; snapshot) | [CX-0006] [CX-0003] [CX-0649] [CX-0009] |
 | **Rival durability crisis** (`gtf_durability_crisis`, `rr_durability_crisis`) | No gloating; no near-term share grab while supply binds | Same turn | Strong | Nothing new. `leap_upgrade` if not done; disclose durability facts only | [CX-0580] [CX-0913] [CX-0604] [CX-0777] |
 | **Rival test setback** (`gtf_next_test_setback`, `ultrafan_test_setback`) | Same; let durability speak | Next turn | Moderate | Keep `ducted` only if an open airframe could still move to it **(inference)** | [CX-1288] [CX-0164] |
-| **Supply-chain crunch** | Own it; engineers to suppliers; buffer stock; no blame | Same turn | Strong | Strain is 1.5x: never stack two commitments in a turn (LEAP plus GEnx in round 1: +4.18 to +3.48; snapshot) | [CX-0526] [CX-0556] [CX-0625] [CX-0613] |
+| **Supply-chain crunch** | Own it; engineers to suppliers; buffer stock; no blame | Same turn | Strong | Strain is 1.5x: never stack two commitments in a turn (LEAP plus GEnx in round 1: +4.31 to +3.61; snapshot) | [CX-0526] [CX-0556] [CX-0625] [CX-0613] |
 | **Fuel-price spike** | Sustainability as the next basis of competition; SAF-ready fleet | Next turn | Weak | No lever change: +1.5pp to every new airframe, whatever the engine. Use it in RISE disclosures **(view)** | [CX-0451] [CX-0508] |
 | **FAA scrutiny or a Boeing quality escape** | Support Boeing; no date ahead of Boeing or the FAA; pace to its real rate | Same turn | Strong | No order change. For a 2037 RISE fps, FAA scrutiny plus Delay Tactics pushes entry to 2046 (objective missed); a 2036 airframe launch absorbs both | [CX-0307] [CX-0206] [CX-0333] |
 | **Demand shock** | Cut cost and capex fast, keep capacity, protect technology | Same turn | Strong | No launch; no cancel of RISE technology. CFM's delta PV is unchanged in the snapshot | [CX-0397] [CX-0423] [CX-0398] |
@@ -294,7 +294,7 @@ Lags are in rounds. "Same turn" means CFM must anticipate: orders are simultaneo
 - **Safran:** joint teams exist [CX-0186]; assume consent **(inference)**.
 
 ### `genx_upgrade`
-- **Default:** yes, in round 2: +0.43 alone; +5.37 with `leap_upgrade` in round 1, against +4.18 if both go in round 1 (snapshot). It defends the 787 against `t1000_upgrade` [CX-0615].
+- **Default:** yes, in round 2: +0.52 alone; +5.46 with `leap_upgrade` in round 1, against +4.31 if both go in round 1 (snapshot). It defends the 787 against `t1000_upgrade` [CX-0615].
 - **Flips:** skip if a 787 Re-engine on a rival engine is already launched and its entry is near, since the fit gain ends at the Re-engine's entry. A placeholder value; test it.
 - **Safran:** none (GE alone).
 

@@ -1,8 +1,8 @@
 # The operating seat: Presidents of Civil Aerospace
 
 The President of Civil Aerospace runs production, durability, services cost and the airline and airframer relationship. In the executive committee this seat tests production, quality and the supply chain. Three holders are profiled:
-- Chris Cholerton, in the 2022 and 2023 teams;
-- Rob Watson, in the default 2026 team;
+- Chris Cholerton, in the 2022 team (`east-kakoullis-cholerton-2022`) only;
+- Rob Watson, in the 2023 team (`erginbilgic-kakoullis-watson-2023`) and the default 2026 team;
 - Eric Schulz, as historical reference only.
 
 **Evidence.** 70 own-words items (RX). 66 come from three Civil events (November 2016, May 2022 and November 2023); the other 4 are Cholerton's 2016 Defence turn (3) and Watson's 2021 Electrical turn (1).
@@ -15,7 +15,7 @@ The President of Civil Aerospace runs production, durability, services cost and 
 
 **Tag.** [5p] = engine snapshot, not evidence: `options` or `whatif` on a fresh `five-player-2045` run at turn 1, $B delta PV, re-checked 2026-10-04. Re-run every turn. In the commitment tables, † marks an outcome taken from the reader's note or numbers field of the cited item, not from its quote.
 
-## Chris Cholerton: President, Civil Aerospace, 2018 to about 2023 (President, Defence Aerospace, in 2016)
+## Chris Cholerton: President, Civil Aerospace, 2018 to at least May 2022 (President, Defence Aerospace, in 2016)
 
 **Era and evidence.** He took the Civil seat "at the start of 2018" and ran the widebody ramp and a productivity drive together [RX-0015]. That was during the Trent 1000 crisis, whose issues surfaced in late 2016-17 [R-1177] and grounded just under 50 aircraft at the peak in mid-2018 [R-1171]. COVID followed. He has 29 items: 3 from his 2016 Defence turn and 26 from the May 2022 Civil investor event. Eight of the 26 are (attr.) or (prob.).
 
@@ -78,7 +78,7 @@ The President of Civil Aerospace runs production, durability, services cost and 
 
 ## Robert (Rob) Watson: President, Civil Aerospace, from 2023 (Director, Rolls-Royce Electrical, in 2021)
 
-**Era and evidence.** He was Civil president by the November 2023 Capital Markets Day, presenting the CEO's plan to take Civil from a 2.5% margin [RX-0277]. He sits in the default 2026 team. He has 27 items: 1 from June 2021, when he led Electrical, and 26 from 28 November 2023. Four of the 26 are (attr.): the CEO handed those questions to "Rob" [RX-0282, RX-0283, RX-0284, RX-0296].
+**Era and evidence.** He was Civil president by the November 2023 Capital Markets Day, presenting the CEO's plan to take Civil from a 2.5% margin [RX-0277]. He sits in the 2023 team and the default 2026 team. He has 27 items: 1 from June 2021, when he led Electrical, and 26 from 28 November 2023. Four of the 26 are (attr.): the CEO handed those questions to "Rob" [RX-0282, RX-0283, RX-0284, RX-0296].
 
 **Quick card**
 - **Objective function:**
@@ -214,4 +214,4 @@ The 2017 ramp was real (+35%) [R-0226]. The Trent 1000 durability problems surfa
   - the time-on-wing and XWB shop-visit targets [RX-0280, RX-0281];
   - Schulz's "beat GE" [RX-0143].
 - **Definitions.** At the same 2023 event, Watson gave total shop visits of 1,100-1,200 [RX-0279] and McCabe 1,400-1,500 [RX-0223]. The definitions are not reconciled in the evidence.
-- **Tenure.** Exact dates are not in the evidence. Watson's evidence ends in November 2023; the 2026 default team assumes he still holds the seat.
+- **Tenure.** Exact dates are not in the evidence. Cholerton's last item is 13 May 2022 [RX-0004]; Watson is first printed as Civil president on 28 November 2023 [RX-0277]. Who held the seat between those dates is not in the evidence: the 2023 team assumes Watson, and the 2026 default team assumes he still holds the seat.

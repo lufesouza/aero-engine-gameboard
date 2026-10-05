@@ -4,7 +4,7 @@
 
 **Conventions.**
 - Ids are `CX-####` from `executives/evidence.jsonl`.
-- Engine numbers are $B of delta PV (CFM/GE at `wacc` 0.08), labelled **(snapshot)**. They come from `whatif --side cfm` on a fresh `five-player-2045` run (suppliers `rolls_royce,pratt_whitney,cfm`), turn 1, no inject, config of commit 46efb42.
+- Engine numbers are $B of delta PV (CFM/GE at `wacc` 0.08), labelled **(snapshot)**. They come from `whatif --side cfm` on a fresh `five-player-2045` run (suppliers `rolls_royce,pratt_whitney,cfm`), turn 1, no inject, reconciled CFM calibration as configured on 2026-10-05.
 - Parameter values are **(provisional)** while `calibration.md` is reconciled. Cite the parameter names and re-run before relying on a number.
 - The doctrine is in `profile.md`. This file says what the objective takes and what it costs.
 
@@ -46,7 +46,7 @@ All five moves are modelled when CFM/GE plays.
 | Sustainable aviation fuel capability | Not modelled; `lobby_emissions` is the nearest lever | Every GE and CFM engine in service runs on approved sustainable aviation fuel [CX-0508]; RISE is fuel-ready and hydrogen-capable [CX-0001] |
 | Open fan certification risk | `cfm_open_fan` `eis_add` 1 and `available_eis` 2045; `open_fan` `dev_years` 9; `ramp` from -30% of value over 10 years. `engine_maturity_slip` moves airframe tech-ready to 2037, which leaves every RISE value unchanged. There is no RISE test-setback inject | The fly demo slipped from "by the middle of this decade" to "this decade" [CX-0151] [CX-0211]; earliest-ever dust testing [CX-0222]; an open-fan durability owner [CX-0223]. GE's own window was the mid-2030s [CX-0608] [CX-0152], about ten years earlier than the game's 2045 |
 | Airframer reluctance | `capture_mult` 0.85; market multipliers 0.75-1.25; the airframer still chooses the engine | Entry into service is "really not for us to say" [CX-0205]; products follow "as our airframer and airline customers deem appropriate" [CX-0469] |
-| Raw materials | `supply_chain_crunch`: strain x1.5 for every player, CFM/GE included (`strain` $1.75B; snapshot: LEAP and GEnx upgrades in the same round fall from +4.18 to +3.48) | 80% of shortages from 9 suppliers [CX-0613]; GE engineers inside suppliers [CX-0993] [CX-0526] |
+| Raw materials | `supply_chain_crunch`: strain x1.5 for every player, CFM/GE included (`strain` $1.75B; snapshot: LEAP and GEnx upgrades in the same round fall from +4.31 to +3.61) | 80% of shortages from 9 suppliers [CX-0613]; GE engineers inside suppliers [CX-0993] [CX-0526] |
 
 ## 4. How attainment is measured
 
@@ -65,17 +65,17 @@ All runs use the default upgrades (`leap_upgrade` round 1, `genx_upgrade` round 
 
 | Situation | CFM plan | CFM / Boeing / Airbus | `nb_dominance` 2040/45/50 |
 |---|---|---|---|
-| Nobody launches | Default | +5.37 / 0 / 0 | 79/79/79%: met |
-| fps and NGSA 2029, no rival engine | Default (LEAP derivative on both) | +16.98 / +4.20 / +26.21 | 100%: met |
-| Same | Ducted standard 2027 | -18.41 / +5.76 / +29.73 | 100%: met |
-| Pratt & Whitney launches `gtf_next` and Airbus picks it **in the same round** (NGSA 2029) | Default | -24.86 / -2.24 / +44.35 | 37/31/24%: missed (-52pp) |
-| Pratt & Whitney launched in round 1; Airbus launches NGSA 2031 in round 2 | Default; Airbus on GTF2 | -20.08 / -1.94 / +37.20 | missed (-51pp) |
-| Same | `ducted` standard 2031 | -4.55 / -2.02 / +35.90 (Airbus prefers GTF2) | met if Airbus took it |
-| Same | `ducted` **aggressive** 2031 | -9.56 / -2.02 / **+40.63** (Airbus prefers CFM) | 100%: met |
-| Rolls-Royce `uf_nb` Solo in round 1; Boeing fps 2031 in round 2 | Default; Boeing on UltraFan | -19.21 / +12.40 / -5.99 | missed (-47pp) |
-| Same | `ducted` aggressive 2031 | -12.67 / **+13.38** / -6.31 | met |
-| Pratt & Whitney `gtf_upgrade` in round 1 | Default | +1.84 | 76%: met |
-| Same | `genx_upgrade` only | -3.10 | 73%: missed (-3pp) |
+| Nobody launches | Default | +5.46 / 0 / 0 | 79/79/79%: met |
+| fps and NGSA 2029, no rival engine | Default (LEAP derivative on both) | +17.07 / +4.20 / +26.21 | 100%: met |
+| Same | Ducted standard 2027 | -18.33 / +5.76 / +29.73 | 100%: met |
+| Pratt & Whitney launches `gtf_next` and Airbus picks it **in the same round** (NGSA 2029) | Default | -24.77 / -2.24 / +44.35 | 37/31/24%: missed (-52pp) |
+| Pratt & Whitney launched in round 1; Airbus launches NGSA 2031 in round 2 | Default; Airbus on GTF2 | -19.99 / -1.94 / +37.20 | missed (-51pp) |
+| Same | `ducted` standard 2031 | -4.46 / -2.02 / +35.90 (Airbus prefers GTF2) | met if Airbus took it |
+| Same | `ducted` **aggressive** 2031 | -9.47 / -2.02 / **+40.63** (Airbus prefers CFM) | 100%: met |
+| Rolls-Royce `uf_nb` Solo in round 1; Boeing fps 2031 in round 2 | Default; Boeing on UltraFan | -19.12 / +12.40 / -5.99 | missed (-47pp) |
+| Same | `ducted` aggressive 2031 | -12.58 / **+13.38** / -6.31 | met |
+| Pratt & Whitney `gtf_upgrade` in round 1 | Default | +1.93 | 76%: met |
+| Same | `genx_upgrade` only | -3.01 | 73%: missed (-3pp) |
 
 **Reading.**
 - With no rival engine, dominance is free: the LEAP derivative keeps it, and is CFM's PV-best plan.
@@ -87,17 +87,17 @@ All runs use the default upgrades (`leap_upgrade` round 1, `genx_upgrade` round 
 
 | Situation | CFM plan | CFM / Boeing / Airbus | `open_fan` |
 |---|---|---|---|
-| NGSA 2029 on the LEAP derivative; fps 2037 asks for RISE | Default, no RISE (fps gets the LEAP derivative) | +17.40 / -2.66 / +33.11 | missed |
-| Same | + `open_fan` 2036 standard + `lobby_emissions` | +8.77 / -3.46 / +33.95 | **met (2045)** |
-| Same | + `open_fan` 2036 aggressive + lobbying | +7.47 / -2.85 / +33.95 | met |
-| Same, fps asks ducted | + `ducted` 2036 | +9.00 / -2.15 / +33.11 | missed |
-| fps 2029 on the LEAP derivative; NGSA 2037 asks for RISE | Default, no RISE | +10.44 / +8.33 / +4.78 | missed |
-| Same | + `open_fan` 2036 standard + lobbying | -1.33 / +8.79 / +5.29 | **met (2045)** |
-| Same | + `open_fan` 2036 aggressive + lobbying | -3.45 / +8.79 / +7.04 | met |
-| Same, NGSA asks ducted | + `ducted` 2036 | -1.10 / +8.33 / +6.21 | missed |
+| NGSA 2029 on the LEAP derivative; fps 2037 asks for RISE | Default, no RISE (fps gets the LEAP derivative) | +17.49 / -2.66 / +33.11 | missed |
+| Same | + `open_fan` 2036 standard + `lobby_emissions` | +8.86 / -3.46 / +33.95 | **met (2045)** |
+| Same | + `open_fan` 2036 aggressive + lobbying | +7.56 / -2.85 / +33.95 | met |
+| Same, fps asks ducted | + `ducted` 2036 | +9.09 / -2.15 / +33.11 | missed |
+| fps 2029 on the LEAP derivative; NGSA 2037 asks for RISE | Default, no RISE | +10.53 / +8.33 / +4.78 | missed |
+| Same | + `open_fan` 2036 standard + lobbying | -1.24 / +8.79 / +5.29 | **met (2045)** |
+| Same | + `open_fan` 2036 aggressive + lobbying | -3.37 / +8.79 / +7.04 | met |
+| Same, NGSA asks ducted | + `ducted` 2036 | -1.02 / +8.33 / +6.21 | missed |
 
 **Reading.**
-- **Objective premium for RISE:** 8.63 (fps case) and 11.77 (NGSA case) against the LEAP derivative; only 0.23 against a ducted twin. RISE costs CFM about what any new engine costs. What is expensive is leaving the LEAP derivative.
+- **Objective premium for RISE:** 8.63 (fps case) and 11.77 (NGSA case) against the LEAP derivative; only 0.22-0.23 against a ducted twin. RISE costs CFM about what any new engine costs. What is expensive is leaving the LEAP derivative.
 - **Will the airframer pick it?**
   - Airbus on an NGSA 2037 prefers RISE with lobbying (+5.29) to the LEAP derivative (+4.78), but not to a ducted engine (+6.21) unless RISE is aggressive (+7.04).
   - Boeing on an fps 2037 prefers the LEAP derivative (-2.66) to RISE with lobbying (-3.46), even aggressive (-2.85).
@@ -163,7 +163,7 @@ Run each turn, before deciding, and report it in the rationale.
 
 ## 8. A plan that meets both metrics, and what it needs from others
 
-The cheapest plan that meets both, in the snapshot, is "NGSA 2029 on the LEAP derivative, fps 2037 on RISE". It costs CFM 8.63 against the default (+8.77 against +17.40), and Boeing 0.80 (-3.46 against -2.66) unless CFM goes aggressive.
+The cheapest plan that meets both, in the snapshot, is "NGSA 2029 on the LEAP derivative, fps 2037 on RISE". It costs CFM 8.63 against the default (+8.86 against +17.49), and Boeing 0.80 (-3.46 against -2.66) unless CFM goes aggressive.
 
 With "fps 2029, NGSA 2037 on RISE" Airbus gains (+5.29 against +4.78), but CFM pays 11.77.
 
