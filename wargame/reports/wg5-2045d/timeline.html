@@ -1,0 +1,282 @@
+<title>War Game 2045 Timeline: fps Late</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a flight-strip board. One swimlane per player on a shared year axis, the three sealed
+   rounds as bands, then the same events as a chronological log that the player filters drive. */
+:root {
+  --bg: #f4f6f9; --surface: #ffffff; --sunk: #e9edf3; --line: #d5dce6; --grid: #e3e8ef;
+  --fg: #141c28; --muted: #556275; --faint: #8a95a5;
+  --band: #eef2f7; --band-alt: #f8fafc;
+  --boeing: #2a78d6; --airbus: #e34948; --pratt_whitney: #4a3aa7; --rolls_royce: #eda100; --cfm: #008300; --world: #556275;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d; --band: #19212d; --band-alt: #131a24;
+  --boeing: #3987e5; --airbus: #e66767; --pratt_whitney: #9085e9; --rolls_royce: #c98500; --cfm: #008300; --world: #a3aebe;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d; --band: #19212d; --band-alt: #131a24;
+  --boeing: #3987e5; --airbus: #e66767; --pratt_whitney: #9085e9; --rolls_royce: #c98500; --cfm: #008300; --world: #a3aebe;
+  color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font-body); }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 16px; padding-block: 28px 64px; display: grid; gap: 28px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.08; letter-spacing: .01em; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 700; }
+h2 { font-size: 1.7rem; }
+p { margin: 0; max-width: 72ch; }
+.eyebrow { font: 500 .72rem/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); } .small { font-size: .84rem; }
+.head { display: grid; gap: 10px; }
+.rounds { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.rcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; display: grid; gap: 4px; min-width: 0; }
+.rcard b { font: 600 1.15rem/1.1 var(--font-display); letter-spacing: .02em; }
+.rcard span { font-size: .85rem; color: var(--muted); }
+.scores { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .9rem; }
+.score { display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+.score .v { font: 500 .9rem var(--font-mono); font-variant-numeric: tabular-nums; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--pc); display: inline-block; flex: none; align-self: center; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .8rem; color: var(--muted); align-items: center; }
+.legend svg { vertical-align: middle; margin-right: 5px; }
+.board { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow-x: auto; }
+.board svg { display: block; min-width: 860px; width: 100%; height: auto; }
+.board .tick { fill: var(--muted); font: 11px var(--font-mono); }
+.board .lane-label { fill: var(--fg); font: 600 15px var(--font-display); letter-spacing: .02em; }
+.board .band-label { fill: var(--muted); font: 500 10.5px var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.board .mark { cursor: pointer; }
+.board .mark:focus { outline: none; }
+.board .mark:focus-visible .hit, .board .mark:hover .hit { stroke: var(--fg); stroke-width: 1.5; }
+.board .dim { opacity: .18; }
+.board .span-label { fill: var(--fg); font: 500 11px var(--font-body); pointer-events: none; }
+.tip { position: fixed; z-index: 20; max-width: 320px; background: var(--fg); color: var(--bg); border-radius: var(--r); padding: 9px 11px;
+       font-size: .82rem; line-height: 1.45; pointer-events: none; box-shadow: 0 6px 22px rgb(0 0 0 / .22); }
+.tip b { display: block; font-weight: 600; margin-bottom: 2px; }
+.tip .y { font: 500 .72rem var(--font-mono); opacity: .75; letter-spacing: .06em; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { display: inline-flex; align-items: center; gap: 7px; font: 500 .85rem var(--font-body); padding: 7px 12px; border-radius: 999px;
+        border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.chip[aria-pressed="false"] { color: var(--faint); background: transparent; }
+.chip[aria-pressed="false"] .dot { background: var(--line); }
+.chip:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; color: var(--muted); margin-left: auto; }
+.log { display: grid; gap: 22px; }
+.round-block { display: grid; gap: 8px; }
+.round-block h3 { font-size: 1.3rem; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.round-block h3 small { font: 500 .78rem var(--font-mono); color: var(--muted); letter-spacing: .06em; }
+.ev { display: grid; grid-template-columns: 52px 150px minmax(0, 1fr); gap: 4px 14px; padding: 10px 14px; background: var(--surface);
+      border: 1px solid var(--line); border-radius: var(--r); align-items: baseline; }
+.ev .yr { font: 500 .95rem var(--font-mono); font-variant-numeric: tabular-nums; }
+.ev .who { display: inline-flex; gap: 7px; align-items: baseline; font-weight: 500; font-size: .9rem; min-width: 0; }
+.ev .what { min-width: 0; display: grid; gap: 2px; }
+.ev .what b { font-weight: 600; }
+.ev .what span { color: var(--muted); font-size: .88rem; }
+.kind { font: 500 .66rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+        border: 1px solid var(--line); border-radius: 3px; padding: 3px 5px; margin-right: 6px; white-space: nowrap; }
+.ev.disclose { background: transparent; border-style: dashed; }
+.foot { font-size: .82rem; color: var(--muted); display: grid; gap: 6px; }
+@media (max-width: 640px) {
+  .ev { grid-template-columns: 46px minmax(0, 1fr); }
+  .ev .what { grid-column: 1 / -1; }
+  .toggle { margin-left: 0; }
+}
+@media (prefers-reduced-motion: no-preference) { .tip { transition: opacity .12s; } }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <span class="eyebrow" id="eyebrow"></span>
+    <h1>War Game 2045 Timeline: fps Late</h1>
+    <p class="muted">Every public move and its consequence in the five-player game, 2026–2045, with the projection to 2050. Each round's orders were sealed and simultaneous, and engine makers' orders applied first, so an airframe that named an uncommitted engine fell back down the chain in the same year.</p>
+    <div class="scores" id="scores" aria-label="Final delta PV by player"></div>
+  </header>
+
+  <section class="rounds" id="rounds" aria-label="Rounds"></section>
+
+  <section style="display:grid;gap:10px" aria-label="Swimlane timeline">
+    <h2>By player</h2>
+    <div class="legend" id="legend"></div>
+    <div class="board" id="board"></div>
+    <p class="small muted">Hover or tab to a mark for details. Shaded bands are the three rounds; years after 2045 are the engine's projection with no further moves.</p>
+  </section>
+
+  <section style="display:grid;gap:14px" aria-label="Chronological log">
+    <h2>Chronological log</h2>
+    <div class="filters" id="filters">
+      <label class="toggle"><input type="checkbox" id="showDisc"> Show disclosures</label>
+    </div>
+    <div class="log" id="log"></div>
+  </section>
+
+  <footer class="foot">
+    <p>Source: the war-game engine's replay of run <span id="runid"></span>. Years, engines and fallbacks are the adjudicated record. Values are full-game delta PV in $B, at each player's own cost of capital, against a status quo in which nobody moves; volumes are stylised.</p>
+  </footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA = {"run": "wg5-2045d", "scenario": "Five players, three rounds, fps three years late", "years": [2026, 2050], "rounds": [{"round": 1, "from": 2026, "to": 2030, "inject": "Supply-chain crunch"}, {"round": 2, "from": 2031, "to": 2035, "inject": "Fuel price spike"}, {"round": 3, "from": 2036, "to": 2045, "inject": "Widebody demand boom"}], "lanes": [{"id": "world", "label": "Shocks and market"}, {"id": "boeing", "label": "Boeing"}, {"id": "airbus", "label": "Airbus"}, {"id": "pratt_whitney", "label": "Pratt & Whitney"}, {"id": "rolls_royce", "label": "Rolls-Royce"}, {"id": "cfm", "label": "CFM/GE"}], "events": [{"year": 2026, "lane": "world", "kind": "inject", "title": "Supply-chain crunch", "detail": "Castings, forgings and labour shortages make running concurrent programs 50% more expensive from now on.", "round": 1}, {"year": 2026, "lane": "world", "kind": "market", "title": "Market reaction", "detail": "Airline and lessor demand multipliers: NGSA ×1.03. Airbus launched NGSA in 2028 as promised, cash-funded for 2035 service. A320-family operators like the fleet and LEAP-1A commonality, but no launch customer is named yet. Lessors stay cautious: the UltraFan request found no committed engine, so NGSA flies a LEAP derivative, and buyers want to know whether GTF2 (ready 2036) or another new engine follows. Boeing chose Do Nothing. With fps no earlier than 2041 under the public delay, 737 customers protect their MAX slots and wait. Airbus hiring Boeing engineers signals intent. CFM, Pratt & Whitney and Rolls-Royce durability upgrades reassure LEAP, GTF and Trent 1000 operators. The supply-chain crunch keeps early slots tight on both sides.", "round": 1}, {"year": 2026, "lane": "boeing", "kind": "disclose", "title": "Disclosed", "detail": "Engine policy for any future Boeing single-aisle: we will consider only an engine whose maker has formally committed the programme no later than 2034 and which will be mature, durable and ready for entry into service by 2041. We will choose among committed engines on value and durability. A promised engine that has not been committed will not be considered.", "round": 1, "public": true}, {"year": 2026, "lane": "airbus", "kind": "tactic", "title": "Poaching (public)", "detail": "Airbus recruits Boeing engineers. Boeing has nothing in development to disrupt.", "round": 1}, {"year": 2026, "lane": "airbus", "kind": "disclose", "title": "Disclosed", "detail": "Airbus will launch its next-generation single-aisle (NGSA) programme in 2028, with entry into service planned in the 2035-2037 window, gated on technology and production-system maturity. · NGSA development will be funded from operating cash flow; Airbus maintains its net cash position and its commitment to shareholder returns while preserving financial flexibility. · Airbus is recruiting engineering talent in Europe and the United States to staff its next-generation single-aisle programme.", "round": 1, "public": true}, {"year": 2026, "lane": "pratt_whitney", "kind": "commit", "title": "GTF durability upgrade", "detail": "$1.00B over 3 years; 5 points of A320neo deliveries move to it from CFM/GE from 2029.", "round": 1}, {"year": 2026, "lane": "pratt_whitney", "kind": "disclose", "title": "Disclosed", "detail": "Pratt & Whitney has committed the GTF durability upgrade from 2026. Roughly 90-95% of the GTF Advantage hot-section durability improvements are kitted into the installed fleet at shop visits, priced customer by customer. · Pratt & Whitney launched its next-generation GTF (gtf_next / pw_gtf2) in 2030: sole source, standard terms, a six-year development with full durability testing. The engine is ready in 2036, so it can enter service on NGSA or fps from 2036. Any fps launched to 2030 waits for nothing. · Pratt & Whitney will keep gtf_next in development for any airframer that names pw_gtf2 by the end of the next round. · Pratt & Whitney would join a 50/50 Rolls-Royce UltraFan narrowbody Joint Venture in any round for which an airframer has disclosed that it will fly UltraFan. We would share risk and investment, not core technology.", "round": 1, "public": true}, {"year": 2026, "lane": "rolls_royce", "kind": "commit", "title": "Trent 1000 upgrade", "detail": "$0.80B over 3 years; 10 points of 787 deliveries move to it from CFM/GE from 2029.", "round": 1}, {"year": 2026, "lane": "rolls_royce", "kind": "disclose", "title": "Disclosed", "detail": "Rolls-Royce has not launched UltraFan this round and will not launch it without a launch customer. If an airframer announces this round an NGSA or fps launch on UltraFan for a named year in 2031-2035, Rolls-Royce will launch the UltraFan narrowbody engine in round 2. For NGSA we launch in the announced year. For fps we launch within the same round, timed so that the engine is ready by the aircraft's own entry into service. The NGSA offer also stands in round 3, for launches up to 2038. · If an airframer announces an A350 Re-engine or a 787 Re-engine on UltraFan for a named year, Rolls-Royce will launch the UltraFan widebody engine one year ahead of that year for 2032 or later, so the aircraft does not wait for us. For a 2031 launch we launch in the same year, and the engine is ready six years after launch. · No UltraFan entry into service earlier than launch plus seven years for the narrowbody engine alone, or six years for the widebody engine or a narrowbody Joint Venture. We do not compress maturity. · Partnership is our preference, not a need. Pratt & Whitney is welcome as a Joint Venture partner on the UltraFan narrowbody. A partner must announce in one round that it will join in the next. Without one, we launch alone. · From the CFO: any UltraFan launch will be funded from operating cash, within our capital allocation framework and against our mid-to-high-teens hurdle rates. We don't have any intent of levering up for it. That's our best view at the minute.", "round": 1, "public": true}, {"year": 2026, "lane": "cfm", "kind": "commit", "title": "LEAP durability upgrade", "detail": "$0.75B over 3 years; 5 points of A320neo deliveries move to it from Pratt & Whitney from 2029.", "round": 1}, {"year": 2026, "lane": "cfm", "kind": "disclose", "title": "Disclosed", "detail": "CFM has committed the LEAP durability upgrade. LEAP-1A durability hardware was certified by the FAA and EASA in December 2024, and new LEAP-1A engines now match CFM56 time on wing. The LEAP-1B kit is in certification. Fixes reach the fleet at shop visits. · CFM will not launch a new narrowbody engine without a committed airframe. Any new single-aisle that chooses CFM can fly a LEAP derivative on the airframer's own schedule, and CFM will make both airframers a competitive new-engine proposal for their next single-aisle. · RISE open fan: more than 350 tests completed, with an early focus on durability. CFM and Safran are maturing it for entry into service from 2045, not earlier. With nine years of engine development, CFM would launch RISE by 2036, alongside an airframer that commits to it. The airframer's own launch year follows from its development time.", "round": 1, "public": true}, {"year": 2028, "lane": "airbus", "kind": "launch", "title": "NGSA launched", "detail": "Asked for the Rolls-Royce UltraFan (narrowbody); flies the CFM LEAP derivative (no new engine). Planned entry into service 2035.", "round": 1, "program": "ngsa"}, {"year": 2028, "lane": "airbus", "kind": "fallback", "title": "NGSA: engine fell back", "detail": "Rolls-Royce UltraFan (narrowbody) was not committed by its maker in time, so NGSA flies the CFM LEAP derivative (no new engine).", "round": 1, "program": "ngsa"}, {"year": 2028, "lane": "pratt_whitney", "kind": "loss", "title": "Loses the A320neo position", "detail": "NGSA flies another maker's engine, so its 40% share of A320neo deliveries goes to zero from 2035.", "round": 1, "program": "ngsa"}, {"year": 2028, "lane": "rolls_royce", "kind": "missed", "title": "NGSA asked for its engine", "detail": "Airbus named the Rolls-Royce UltraFan (narrowbody), but it had not launched that engine, so NGSA went to the CFM LEAP derivative (no new engine).", "round": 1, "program": "ngsa"}, {"year": 2028, "lane": "cfm", "kind": "win", "title": "Wins NGSA", "detail": "NGSA flies the CFM LEAP derivative (no new engine): every engine on it, with no new engine programme.", "round": 1, "program": "ngsa"}, {"year": 2030, "lane": "pratt_whitney", "kind": "launch", "title": "Next-generation geared turbofan (narrowbody) launched", "detail": "Standard terms; engine ready 2036.", "round": 1, "program": "gtf_next"}, {"year": 2031, "lane": "world", "kind": "inject", "title": "Fuel price spike", "detail": "Jet fuel prices spike and stay high; airlines pay 1.5 pp more margin for new-generation efficiency.", "round": 2}, {"year": 2031, "lane": "world", "kind": "market", "title": "Market reaction", "detail": "Airline and lessor demand multipliers: NGSA ×1.03, re787 ×1.04. Fuel at spike levels pushes airlines toward the most efficient lift on offer. NGSA heads into its 2035 service entry on schedule with no slips, and A320neo operators value its LEAP-1A commonality, though no launch customer is yet named. Pratt & Whitney's GTF2 cancellation leaves no new narrowbody engine committed by any maker, so lessors price NGSA as a LEAP-only airframe for now. Boeing launched the 787 Re-engine on GE's upgraded GEnx for 2036; 787 operators like the airframe commonality and the committed GEnx improvement package, while Trent 1000 fleets note the GE-only offer. The 737 Rate Increase helps MAX customers hold slots. Airbus's stated 2037 A350 Re-engine on UltraFan gives some widebody buyers a reason to wait.", "round": 2}, {"year": 2031, "lane": "boeing", "kind": "launch", "title": "787 Re-engine launched", "detail": "Flies the GE GEnx upgrade. Planned entry into service 2036.", "round": 2, "program": "re787"}, {"year": 2031, "lane": "boeing", "kind": "commit", "title": "737 rate step committed", "detail": "+2 points of narrowbody share from 2033; $1.2B capex.", "round": 2}, {"year": 2031, "lane": "boeing", "kind": "disclose", "title": "Disclosed", "detail": "Boeing has launched the 787 Re-engine in 2031 on an upgraded GE GEnx engine, with entry into service planned for 2036. It is funded from operating cash flow within our capital allocation framework, to a higher confidence plan with schedule and cost buffer, and it does not change our priority of a solidly investment-grade balance sheet. · To our 737 MAX customers: we are taking the next 737 production rate step, agreed with the FAA after sustained stability on our production KPIs and gated on supplier readiness. The 737 MAX family remains our single-aisle product and we are protecting your delivery slots. · Engine policy for any future Boeing single-aisle, unchanged in substance: we will consider only an engine whose maker has formally committed the programme before we commit the airplane, and which will be mature and durable at the airplane's entry into service. On that test the Pratt & Whitney next-generation GTF (committed 2030, ready 2036) qualifies today; other makers' engines will qualify once formally committed. No engine has been selected and no launch date has been set.", "round": 2, "public": true}, {"year": 2031, "lane": "airbus", "kind": "tactic", "title": "Poaching (public)", "detail": "Airbus recruits Boeing engineers. Boeing's fps development costs $0.75B more.", "round": 2}, {"year": 2031, "lane": "airbus", "kind": "disclose", "title": "Disclosed", "detail": "NGSA is in full development and on track for entry into service in 2035, within our 2035-2037 window. It flies a CFM LEAP derivative with LEAP-1A commonality for A320neo-family operators. · Airbus intends to launch an A350 Re-engine on the Rolls-Royce UltraFan widebody engine in 2037, for entry into service in the early 2040s, subject to Board approval and market conditions. We name the year now so that the engine can be committed one year ahead of the airframe and be mature at entry into service. · NGSA and any A350 Re-engine are funded from operating cash flow. Airbus keeps its net cash position and its commitment to shareholder returns while preserving financial flexibility. · Airbus continues to recruit engineering talent in Europe and the United States for its development programmes.", "round": 2, "public": true}, {"year": 2031, "lane": "pratt_whitney", "kind": "cancel", "title": "Next-generation geared turbofan (narrowbody) cancelled", "detail": "No airframe selected it; development spend is sunk.", "round": 2, "program": "gtf_next"}, {"year": 2031, "lane": "pratt_whitney", "kind": "disclose", "title": "Disclosed", "detail": "Pratt & Whitney stopped development of its next-generation GTF (gtf_next / pw_gtf2) in 2031. No airframe had selected it. From the CFO: stopping now avoids roughly $3.5-4B of remaining development spend. The RTX dividend and our deleveraging path are unchanged. · The GTF durability upgrade committed in 2026 continues across the installed fleet. Pratt & Whitney supports GTF-powered A320neo-family deliveries and the GTF aftermarket for the life of the fleet. · Pratt & Whitney will join a 50/50 Rolls-Royce UltraFan narrowbody Joint Venture in round 3 if, by then, an airframer has disclosed a launch on UltraFan for a named year. We would share risk and investment, not core technology. · Geared-architecture enabling technology (composite fan, CMC hot section, next-generation gear) continues to mature outside any programme, with no launch commitment.", "round": 2, "public": true}, {"year": 2031, "lane": "rolls_royce", "kind": "loss", "title": "Loses the 787 position", "detail": "787 Re-engine flies another maker's engine, so its 22% share of 787 deliveries goes to zero from 2036.", "round": 2, "program": "re787"}, {"year": 2031, "lane": "rolls_royce", "kind": "disclose", "title": "Disclosed", "detail": "Rolls-Royce did not launch UltraFan in 2031-2035, because no airframer launched or announced an aircraft on it. We do not commit a new engine ahead of a launch customer. We commit in the same round as the airframer that names UltraFan, and a same-round commitment is a formal, binding commitment. · To Boeing: if Boeing launches fps on UltraFan in round 3, Rolls-Royce will formally commit the UltraFan narrowbody engine in that same round, so that it is committed when the selection is made, and timed so the engine is ready for the aircraft's entry into service. Entry into service will be no earlier than launch plus seven years. · If Airbus announces an A350 Re-engine on UltraFan, or Boeing a 787 Re-engine on UltraFan, for a named year from 2036, Rolls-Royce will launch the UltraFan widebody engine in round 3. For a 2037 or later launch, we launch one year ahead, so the aircraft does not wait. For a 2036 launch, we launch in 2036 on terms that leave the aircraft at least as well off as with its alternative engine. · Partnership remains our preference, not a need. Pratt & Whitney's offer to join an UltraFan narrowbody Joint Venture is noted. It applies in any round for which an airframer has disclosed that it will fly UltraFan. · From the CFO: no new engine programme was launched this period, so our capital frame is unchanged: the balance sheet first, then distributions, then disciplined investment against mid-to-high-teens hurdle rates. Any UltraFan launch in the next period will be funded from operating cash. We don't have any intent of levering up for it. That's our best view at the minute.", "round": 2, "public": true}, {"year": 2031, "lane": "cfm", "kind": "win", "title": "Wins 787 Re-engine", "detail": "787 Re-engine flies the GE GEnx upgrade: every engine on it, with no new engine programme.", "round": 2, "program": "re787"}, {"year": 2031, "lane": "cfm", "kind": "commit", "title": "GEnx improvement package", "detail": "$0.45B over 3 years; 5 points of 787 deliveries move to it from Rolls-Royce from 2034.", "round": 2}, {"year": 2031, "lane": "cfm", "kind": "disclose", "title": "Disclosed", "detail": "GE has committed the GEnx improvement package for the 787 fleet. A GEnx-based 787 Re-engine remains available on Boeing's schedule. · CFM's offer to any new single-aisle stands: a LEAP derivative on the airframer's own schedule, with no wait for the engine. CFM will not commit capital to a new narrowbody engine ahead of an airframe commitment. · RISE open fan: CFM and Safran are maturing it for entry into service from 2045, not earlier. With nine years of engine development, CFM will launch RISE alongside an airframer that commits to it, in time for that airframe's entry into service. An airframe launched in 2036 would not wait for the engine. · The LEAP durability upgrade committed in 2026 is going into the fleet at shop visits.", "round": 2, "public": true}, {"year": 2035, "lane": "airbus", "kind": "eis", "title": "NGSA enters service", "detail": "On the CFM LEAP derivative (no new engine).", "round": 2, "program": "ngsa"}, {"year": 2036, "lane": "world", "kind": "inject", "title": "Widebody demand boom", "detail": "Long-haul traffic recovers faster than forecast; widebody demand rises 15% for the rest of the game.", "round": 3}, {"year": 2036, "lane": "world", "kind": "market", "title": "Market reaction", "detail": "Airline and lessor demand multipliers: NGSA ×1.05, re787 ×1.07. Long-haul traffic is running ahead of forecast, and widebody buyers want lift they can take now. Boeing's 787 Re-engine entered service in 2036 on schedule on GE's upgraded GEnx. Airbus's Board has shelved the A350 Re-engine it had signalled for 2037, so buyers no longer have a reason to wait: 787 operators and lessors add orders, while A350 customers stay on the Trent XWB. Rolls-Royce launched its UltraFan widebody in 2036, but no airframe has selected it, so airlines treat it as technology, not product. NGSA has been in service since 2035 with no slips and offers LEAP-1A commonality, so A320neo operators line it up for the replacement wave. Boeing chose Do Nothing on a new single-aisle, so MAX customers hold their slots on the rate ladder.", "round": 3}, {"year": 2036, "lane": "boeing", "kind": "eis", "title": "787 Re-engine enters service", "detail": "On the GE GEnx upgrade.", "round": 3, "program": "re787"}, {"year": 2036, "lane": "boeing", "kind": "disclose", "title": "Disclosed", "detail": "Boeing has not launched a new single-aisle airplane in this period, and no launch date is set. The 737 MAX family remains our single-aisle product: the 737 rate stays on its KPI-gated ladder agreed with the FAA, and we are protecting our customers' delivery slots through the replacement cycle. · The 787 Re-engine entered service in 2036 as planned, on the upgraded GE GEnx engine, funded from operating cash flow. From the CFO: our priority remains fully restoring the health of our balance sheet and a solidly investment-grade rating; every program runs to a higher confidence plan. · Correction to our 2031 engine statement: Pratt & Whitney stopped its next-generation GTF in 2031, so no new narrowbody engine is committed by any maker today. Our engine policy is unchanged: a future Boeing single-aisle will fly only an engine whose maker has formally committed the programme and which will be mature and durable at entry into service.", "round": 3, "public": true}, {"year": 2036, "lane": "airbus", "kind": "disclose", "title": "Disclosed", "detail": "Airbus's Board has reviewed the A350 Re-engine on Rolls-Royce UltraFan that Airbus indicated in 2031-35 for a 2037 launch, subject to Board approval and market conditions. After reviewing widebody market conditions, the Board has decided not to launch an A350 Re-engine in 2036-2045. The A350 family continues in production with the Rolls-Royce Trent XWB. · NGSA has been in service since 2035, on the schedule we set at launch. It flies a CFM LEAP derivative with LEAP-1A commonality for A320neo-family operators, and its production ramps through the replacement wave in a disciplined and controlled way. · Airbus launches no new major development programme in 2036-2045. We keep our net cash position and our commitment to shareholder returns while preserving financial flexibility.", "round": 3, "public": true}, {"year": 2036, "lane": "pratt_whitney", "kind": "disclose", "title": "Disclosed", "detail": "Pratt & Whitney launched no new engine programme in 2036-2045. The next-generation GTF stopped in 2031 is not being restarted. Geared-architecture enabling technology (composite fan, CMC hot section, next-generation gear) continues to mature outside any programme. · Our round-2 offer to join a Rolls-Royce UltraFan narrowbody Joint Venture depended on an airframer disclosing a narrowbody launch on UltraFan for a named year. No airframer did, so Pratt & Whitney is not joining an UltraFan narrowbody Joint Venture this round. · Pratt & Whitney is single-aisle focused and is not committing to a widebody engine for any 787 Re-engine or A350 Re-engine. · The GTF durability upgrade committed in 2026 is in the installed fleet. Pratt & Whitney supports GTF-powered A320neo-family operators and the GTF aftermarket for the life of the fleet. · From the CFO: no new development capital was committed this period. The dividend comes first, and debt continues back toward pre-ASR levels before any step-up in buybacks.", "round": 3, "public": true}, {"year": 2036, "lane": "rolls_royce", "kind": "launch", "title": "UltraFan widebody engine launched", "detail": "Standard terms; engine ready 2042.", "round": 3, "program": "uf_wb"}, {"year": 2036, "lane": "rolls_royce", "kind": "disclose", "title": "Disclosed", "detail": "Rolls-Royce formally committed the UltraFan widebody engine in 2036, on standard terms, one year ahead of Airbus's stated 2037 A350 Re-engine. The engine is ready in 2042, six years after launch, so an A350 Re-engine launched in 2037 enters service in 2042 without waiting for us. We do not compress maturity. · Rolls-Royce has not launched the UltraFan narrowbody engine. No airframer has launched or announced a single-aisle on UltraFan, and we do not commit a new engine ahead of a launch customer. · From the CFO: the UltraFan widebody programme is funded from operating cash, within our capital allocation framework and against our mid-to-high-teens hurdle rates. We don't have any intent of levering up for it. That's our best view at the minute.", "round": 3, "public": true}, {"year": 2036, "lane": "cfm", "kind": "disclose", "title": "Disclosed", "detail": "CFM committed no new narrowbody engine in 2036, because no airframer has committed an aircraft to one. The offer stands for both airframers: any new single-aisle that chooses CFM flies a LEAP derivative on the airframer's own schedule, with no wait for the engine. · RISE open fan: CFM and Safran continue to fund and test the technology. CFM will launch it as a product alongside the first airframer that commits an aircraft to it. Entry into service no earlier than 2045, and for an aircraft launched from 2036, no earlier than that aircraft's own entry into service. · GE: the GEnx improvement package is in the 787 fleet and the GEnx-powered 787 Re-engine enters service in 2036. GE will pace GEnx and GE9X output to supply-base readiness through the widebody upturn. · From the CFO: no new engine programme was committed this period, so the capital frame is unchanged: investment grade first, R&D protected, and at least 70% of free cash flow returned to shareholders.", "round": 3, "public": true}, {"year": 2045, "lane": "world", "kind": "milestone", "title": "Open fan could enter service", "detail": "The first year the RISE open fan can enter service. No airframe flies it: both new single-aisles were committed to the LEAP derivative by 2031.", "round": 3}], "spans": [{"lane": "world", "key": "wave", "start": 2037, "end": 2044, "kind": "wave", "label": "Replacement wave builds", "detail": "737 MAX and A320neo replacements rise from about 40 aircraft in 2037 to about 800 a year from 2044."}, {"lane": "airbus", "key": "ngsa", "start": 2028, "end": 2035, "kind": "dev", "label": "NGSA development", "detail": "2028–2035, on the CFM LEAP derivative (no new engine)"}, {"lane": "airbus", "key": "ngsa", "start": 2035, "end": 2060, "kind": "service", "label": "NGSA in service", "detail": "From 2035"}, {"lane": "cfm", "key": "ngsa", "start": 2035, "end": 2060, "kind": "service", "label": "Engines for NGSA", "detail": "CFM LEAP derivative (no new engine), from 2035"}, {"lane": "boeing", "key": "re787", "start": 2031, "end": 2036, "kind": "dev", "label": "787 Re-engine development", "detail": "2031–2036, on the GE GEnx upgrade"}, {"lane": "boeing", "key": "re787", "start": 2036, "end": 2060, "kind": "service", "label": "787 Re-engine in service", "detail": "From 2036"}, {"lane": "cfm", "key": "re787", "start": 2036, "end": 2060, "kind": "service", "label": "Engines for 787 Re-engine", "detail": "GE GEnx upgrade, from 2036"}, {"lane": "pratt_whitney", "key": "gtf_next", "start": 2030, "end": 2031, "kind": "dev-cancel", "label": "next-generation geared turbofan (narrowbody)", "detail": "2030–2031, cancelled"}, {"lane": "rolls_royce", "key": "uf_wb", "start": 2036, "end": 2042, "kind": "dev", "label": "UltraFan widebody engine", "detail": "2036–2042"}, {"lane": "rolls_royce", "key": "t1000_upgrade", "start": 2026, "end": 2029, "kind": "commit", "label": "Trent 1000 upgrade", "detail": "Work 2026–2029; share effect from 2029"}, {"lane": "pratt_whitney", "key": "gtf_upgrade", "start": 2026, "end": 2029, "kind": "commit", "label": "GTF durability upgrade", "detail": "Work 2026–2029; share effect from 2029"}, {"lane": "cfm", "key": "leap_upgrade", "start": 2026, "end": 2029, "kind": "commit", "label": "LEAP durability upgrade", "detail": "Work 2026–2029; share effect from 2029"}, {"lane": "cfm", "key": "genx_upgrade", "start": 2031, "end": 2034, "kind": "commit", "label": "GEnx improvement package", "detail": "Work 2031–2034; share effect from 2034"}], "totals": {"boeing": 1.7, "airbus": 44.5, "rolls_royce": -3.7, "pratt_whitney": -2.8, "cfm": 19.0}};
+const LANE = Object.fromEntries(DATA.lanes.map(l => [l.id, l]));
+const KIND = { inject: "Shock", market: "Market", launch: "Launch", fallback: "Engine fallback", win: "Engine win", missed: "Engine not committed", loss: "Fleet lost", commit: "Commitment",
+               tactic: "Tactic", cancel: "Cancelled", eis: "Entry into service", milestone: "Milestone", disclose: "Disclosure" };
+const col = id => `var(--${id})`;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+let active = new Set(DATA.lanes.map(l => l.id));
+let showDisc = false;
+try { const s = JSON.parse(localStorage.getItem("wg-timeline") || "null"); if (s) { active = new Set(s.active); showDisc = !!s.showDisc; } } catch (e) {}
+const save = () => { try { localStorage.setItem("wg-timeline", JSON.stringify({ active: [...active], showDisc })); } catch (e) {} };
+
+$("#eyebrow").textContent = `Run ${DATA.run} · five players · three sealed rounds`;
+$("#runid").textContent = DATA.run;
+$("#scores").innerHTML = DATA.lanes.filter(l => l.id in DATA.totals).map(l =>
+  `<span class="score"><span class="dot" style="--pc:${col(l.id)}"></span>${esc(l.label)} <span class="v">${DATA.totals[l.id] >= 0 ? "+" : ""}${DATA.totals[l.id].toFixed(1)}</span></span>`).join("")
+  + `<span class="score muted small">final delta PV, $B</span>`;
+$("#rounds").innerHTML = DATA.rounds.map(r => `<div class="rcard"><span class="eyebrow">Round ${r.round}</span><b>${r.from}–${r.to}</b><span>Shock: ${esc(r.inject)}</span></div>`).join("");
+
+// ---- swimlane board -------------------------------------------------------
+const W = 1180, LW = 178, PADR = 18, TOP = 34, BOT = 28;
+const ROWS = {}; DATA.spans.forEach(s => { const r = ROWS[s.lane] = ROWS[s.lane] || []; if (!r.includes(s.key)) r.push(s.key); });
+const laneH = id => Math.max(60, 46 + 11 * (ROWS[id] || []).length);
+const LANE_TOP = {}; { let y = TOP; DATA.lanes.forEach(l => { LANE_TOP[l.id] = y; y += laneH(l.id); }); }
+const LANES_H = DATA.lanes.reduce((a, l) => a + laneH(l.id), 0);
+const rowY = s => laneY(s.lane) + 36 + ROWS[s.lane].indexOf(s.key) * 11;
+const [Y0, Y1] = DATA.years;
+const H = TOP + LANES_H + BOT;
+const sx = y => LW + (y - Y0) / (Y1 + 1 - Y0) * (W - LW - PADR);
+const laneY = id => LANE_TOP[id];
+
+function shape(kind, x, y, c) {
+  const s = 7;
+  switch (kind) {
+    case "launch": return `<circle class="hit" cx="${x}" cy="${y}" r="${s}" fill="${c}"/>`;
+    case "eis": return `<path class="hit" d="M${x} ${y - s - 2}L${x + s + 2} ${y}L${x} ${y + s + 2}L${x - s - 2} ${y}Z" fill="${c}"/>`;
+    case "cancel": return `<g class="hit" stroke="${c}" stroke-width="3" stroke-linecap="round"><path d="M${x - s} ${y - s}L${x + s} ${y + s}M${x + s} ${y - s}L${x - s} ${y + s}"/></g><circle class="hit" cx="${x}" cy="${y}" r="${s + 3}" fill="transparent"/>`;
+    case "fallback": return `<path class="hit" d="M${x} ${y + s + 1}L${x + s + 1} ${y - s}L${x - s - 1} ${y - s}Z" fill="var(--surface)" stroke="${c}" stroke-width="2.2"/>`;
+    case "win": return `<path class="hit" d="M${x} ${y - s - 1}L${x + s + 1} ${y + s}L${x - s - 1} ${y + s}Z" fill="${c}"/>`;
+    case "commit": return `<rect class="hit" x="${x - 3}" y="${y - s - 2}" width="6" height="${2 * s + 4}" rx="2" fill="${c}"/>`;
+    case "tactic": return `<rect class="hit" x="${x - s + 1}" y="${y - s + 1}" width="${2 * s - 2}" height="${2 * s - 2}" rx="2" fill="var(--surface)" stroke="${c}" stroke-width="2.2" transform="rotate(45 ${x} ${y})"/>`;
+    case "missed": return `<path class="hit" d="M${x} ${y + s + 1}L${x + s + 1} ${y - s}L${x - s - 1} ${y - s}Z" fill="var(--surface)" stroke="${c}" stroke-width="2.2" stroke-dasharray="3 2"/>`;
+    case "loss": return `<circle class="hit" cx="${x}" cy="${y}" r="${s}" fill="var(--surface)" stroke="${c}" stroke-width="2.2"/><path d="M${x - 4} ${y}L${x + 4} ${y}" stroke="${c}" stroke-width="2.2" stroke-linecap="round"/>`;
+    case "market": return `<rect class="hit" x="${x - s + 1}" y="${y - s + 1}" width="${2 * s - 2}" height="${2 * s - 2}" rx="3" fill="var(--surface)" stroke="${c}" stroke-width="2.2"/>`;
+    case "inject": return `<circle class="hit" cx="${x}" cy="${y}" r="${s}" fill="${c}"/><path d="M${x + 1} ${y - 5}L${x - 3} ${y + 1}L${x + 1} ${y + 1}L${x - 1} ${y + 5}" stroke="var(--surface)" stroke-width="1.6" fill="none" stroke-linejoin="round"/>`;
+    case "milestone": return `<circle class="hit" cx="${x}" cy="${y}" r="${s}" fill="var(--surface)" stroke="${c}" stroke-width="2.2" stroke-dasharray="3 2"/>`;
+    default: return `<circle class="hit" cx="${x}" cy="${y}" r="${s - 1}" fill="var(--surface)" stroke="${c}" stroke-width="2.2"/>`;
+  }
+}
+
+function drawBoard() {
+  const g = [];
+  // round bands
+  DATA.rounds.forEach((r, i) => {
+    g.push(`<rect x="${sx(r.from)}" y="${TOP - 8}" width="${sx(r.to + 1) - sx(r.from)}" height="${LANES_H + 8}" fill="${i % 2 ? "var(--band-alt)" : "var(--band)"}"/>`);
+    g.push(`<text class="band-label" x="${sx(r.from) + 6}" y="${TOP - 14}">Round ${r.round} · ${r.from}–${r.to}</text>`);
+  });
+  const last = DATA.rounds[DATA.rounds.length - 1].to + 1;
+  g.push(`<text class="band-label" x="${sx(last) + 6}" y="${TOP - 14}">Projection</text>`);
+  // grid + axis
+  for (let y = Y0; y <= Y1; y++) {
+    const x = sx(y), major = y % 5 === 0 || y === Y0;
+    g.push(`<line x1="${x}" x2="${x}" y1="${TOP - 8}" y2="${H - BOT}" stroke="var(--grid)" stroke-width="${major ? 1 : 0.5}"/>`);
+    if (major) g.push(`<text class="tick" x="${x + 3}" y="${H - 10}">${y}</text>`);
+  }
+  // lanes
+  DATA.lanes.forEach((l, i) => {
+    const y = laneY(l.id), h = laneH(l.id), dim = active.has(l.id) ? "" : "dim";
+    g.push(`<line x1="0" x2="${W}" y1="${y + h}" y2="${y + h}" stroke="var(--line)" stroke-width="1"/>`);
+    g.push(`<g class="${dim}"><rect x="12" y="${y + 9}" width="5" height="18" rx="2" fill="${col(l.id)}"/>`
+         + `<text class="lane-label" x="24" y="${y + 23}">${esc(l.label)}</text></g>`);
+  });
+  // spans
+  const tips = [];
+  DATA.spans.forEach((s, i) => {
+    const y = rowY(s), c = col(s.lane), dim = active.has(s.lane) ? "" : "dim";
+    const x0 = sx(s.start), x1 = Math.max(sx(Math.min(s.end, Y1 + 1)), x0 + 4);
+    let el;
+    if (s.kind === "dev" || s.kind === "dev-cancel")
+      el = `<rect class="hit" x="${x0}" y="${y}" width="${x1 - x0}" height="8" rx="4" fill="${c}" opacity="${s.kind === "dev" ? 0.95 : 0.5}"/>`
+         + (s.kind === "dev-cancel" ? `<path d="M${x1 - 1} ${y - 2}L${x1 - 1} ${y + 10}" stroke="${c}" stroke-width="2"/>` : "");
+    else if (s.kind === "service")
+      el = `<rect class="hit" x="${x0}" y="${y + 1}" width="${x1 - x0}" height="6" rx="3" fill="${c}" opacity=".42"/>`;
+    else if (s.kind === "commit")
+      el = `<rect class="hit" x="${x0}" y="${y + 2}" width="${x1 - x0}" height="4" rx="2" fill="${c}" opacity=".6"/>`;
+    else
+      el = `<rect class="hit" x="${x0}" y="${y - 6}" width="${x1 - x0}" height="18" rx="4" fill="var(--sunk)" stroke="var(--line)"/>`
+         + `<text class="span-label" x="${x0 + 6}" y="${y + 7}">${esc(s.label)}</text>`;
+    tips.push({ title: s.label, detail: s.detail, year: s.kind === "service" ? `from ${s.start}` : `${s.start}–${s.end}` });
+    g.push(`<g class="mark ${dim}" tabindex="0" data-tip="s${i}" aria-label="${esc(s.label)}: ${esc(s.detail)}">${el}</g>`);
+  });
+  // events (stack marks sharing a lane and year)
+  const count = {}, seen = {};
+  DATA.events.forEach(e => { if (e.kind !== "disclose") count[e.lane + e.year] = (count[e.lane + e.year] || 0) + 1; });
+  const cell = sx(Y0 + 1) - sx(Y0);
+  DATA.events.forEach((e, i) => {
+    if (e.kind === "disclose") return;
+    const key = e.lane + e.year, n = (seen[key] = (seen[key] || 0) + 1) - 1, k = count[key];
+    const step = Math.min(15, (cell - 4) / Math.max(1, k - 1));
+    const x = sx(e.year) + cell / 2 + (n - (k - 1) / 2) * (k > 1 ? step : 0), y = laneY(e.lane) + 18;
+    const dim = active.has(e.lane) ? "" : "dim";
+    g.push(`<g class="mark ${dim}" tabindex="0" data-tip="e${i}" aria-label="${e.year} ${esc(LANE[e.lane].label)}: ${esc(e.title)}">${shape(e.kind, x, y, col(e.lane))}</g>`);
+  });
+  $("#board").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Swimlane timeline of the war game by player, ${Y0} to ${Y1}">${g.join("")}</svg>`;
+  window.__spanTips = tips;
+}
+
+// legend
+const LEG = [["launch", "Launch"], ["fallback", "Engine fell back"], ["missed", "Asked-for engine not committed"], ["win", "Engine maker wins an airframe"],
+             ["loss", "Engine maker loses a fleet"], ["eis", "Entry into service"],
+             ["cancel", "Cancelled"], ["commit", "One-time commitment"], ["tactic", "Poaching"], ["inject", "Shock"], ["market", "Market reaction"], ["milestone", "Milestone"]];
+$("#legend").innerHTML = LEG.map(([k, t]) => `<span><svg width="20" height="20" viewBox="-10 -10 20 20" aria-hidden="true">${shape(k, 0, 0, "var(--muted)")}</svg>${t}</span>`).join("")
+  + `<span><svg width="28" height="12" aria-hidden="true"><rect x="1" y="1" width="26" height="10" rx="3" fill="var(--muted)" opacity=".9"/></svg>Development</span>`
+  + `<span><svg width="28" height="12" aria-hidden="true"><rect x="1" y="3" width="26" height="6" rx="3" fill="var(--muted)" opacity=".32"/></svg>In service</span>`;
+
+// tooltip
+const tip = $("#tip");
+function showTip(el, cx, cy) {
+  const id = el.dataset.tip;
+  const d = id[0] === "e" ? DATA.events[+id.slice(1)] : window.__spanTips[+id.slice(1)];
+  const year = id[0] === "e" ? d.year : d.year;
+  tip.innerHTML = `<span class="y">${year}${id[0] === "e" ? " · " + esc(LANE[d.lane].label) + " · " + esc(KIND[d.kind] || d.kind) : ""}</span><b>${esc(d.title)}</b>${esc(d.detail || "")}`;
+  tip.hidden = false;
+  const r = tip.getBoundingClientRect();
+  let x = cx + 14, y = cy + 14;
+  if (x + r.width > innerWidth - 8) x = cx - r.width - 14;
+  if (y + r.height > innerHeight - 8) y = cy - r.height - 14;
+  tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
+}
+$("#board").addEventListener("mousemove", ev => { const m = ev.target.closest(".mark"); if (m) showTip(m, ev.clientX, ev.clientY); else tip.hidden = true; });
+$("#board").addEventListener("mouseleave", () => tip.hidden = true);
+$("#board").addEventListener("focusin", ev => { const m = ev.target.closest(".mark"); if (m) { const r = m.getBoundingClientRect(); showTip(m, r.right, r.top); } });
+$("#board").addEventListener("focusout", () => tip.hidden = true);
+
+// filters + log
+function drawFilters() {
+  const chips = DATA.lanes.map(l => `<button class="chip" type="button" id="f-${l.id}" aria-pressed="${active.has(l.id)}" data-lane="${l.id}"><span class="dot" style="--pc:${col(l.id)}"></span>${esc(l.label)}</button>`).join("");
+  const tog = $("#filters .toggle");
+  $("#filters").innerHTML = chips;
+  $("#filters").appendChild(tog);
+  $("#showDisc").checked = showDisc;
+}
+function drawLog() {
+  $("#log").innerHTML = DATA.rounds.map(r => {
+    const items = DATA.events.filter(e => e.round === r.round && active.has(e.lane) && (showDisc || e.kind !== "disclose"));
+    const rows = items.map(e => `<div class="ev ${e.kind}"><span class="yr">${e.year}</span>`
+      + `<span class="who"><span class="dot" style="--pc:${col(e.lane)}"></span>${esc(LANE[e.lane].label)}</span>`
+      + `<span class="what"><b><span class="kind">${esc(KIND[e.kind] || e.kind)}</span>${esc(e.title)}</b>${e.detail ? `<span>${esc(e.detail)}</span>` : ""}</span></div>`).join("");
+    return `<div class="round-block"><h3>Round ${r.round} <small>${r.from}–${r.to} · ${esc(r.inject)}</small></h3>${rows || '<p class="muted small">No events for the selected players.</p>'}</div>`;
+  }).join("");
+}
+$("#filters").addEventListener("click", ev => {
+  const b = ev.target.closest(".chip"); if (!b) return;
+  const id = b.dataset.lane;
+  if (active.has(id) && active.size > 1) active.delete(id); else active.add(id);
+  save(); drawFilters(); drawBoard(); drawLog();
+});
+$("#filters").addEventListener("change", ev => { if (ev.target.id === "showDisc") { showDisc = ev.target.checked; save(); drawLog(); } });
+drawFilters(); drawBoard(); drawLog();
+</script>

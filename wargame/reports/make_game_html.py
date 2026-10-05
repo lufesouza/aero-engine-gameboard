@@ -15,6 +15,7 @@ The page holds every player's orders and private rationale: it is a referee's do
 import argparse
 import html
 import json
+import re
 import os
 import sys
 
@@ -31,17 +32,18 @@ COLORS = {"boeing": "var(--boeing)", "airbus": "var(--airbus)", "rolls_royce": "
 
 
 def rich(text):
-    """Paragraph text where lines starting with '- ' become a bullet list."""
+    """Paragraph text where lines starting with '- ' become a bullet list and **x** is bold."""
+    b = lambda t: re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", esc(t))
     out, items = [], []
     for line in str(text).split("\n"):
         if line.startswith("- "):
-            items.append(f"<li>{esc(line[2:])}</li>")
+            items.append(f"<li>{b(line[2:])}</li>")
             continue
         if items:
             out.append(f"<ul>{''.join(items)}</ul>")
             items = []
         if line.strip():
-            out.append(f"<p>{esc(line)}</p>")
+            out.append(f"<p>{b(line)}</p>")
     if items:
         out.append(f"<ul>{''.join(items)}</ul>")
     return "".join(out)
@@ -249,7 +251,13 @@ pre.rat { white-space: pre-wrap; font: .8rem/1.5 var(--font-mono); margin: 0; co
   table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; width: 100%; }
   table.stack tr { border-bottom: 1px solid var(--line); padding: 6px 0; }
   table.stack td { border: 0; padding: 3px 10px; white-space: normal; }
-  table.stack td.n { text-align: left; } }
+  table.stack td.n { text-align: left; }
+  table.stackl thead { display: none; }
+  table.stackl, table.stackl tbody, table.stackl tr { display: block; width: 100%; }
+  table.stackl tr { border-bottom: 1px solid var(--line); padding: 6px 0; }
+  table.stackl td { display: flex; justify-content: space-between; gap: 12px; border: 0; padding: 3px 10px; white-space: normal; }
+  table.stackl td:first-child { display: block; font-weight: 600; }
+  table.stackl td[data-l]::before { content: attr(data-l); color: var(--muted); font: .78rem/1.6 var(--font-mono); text-align: left; } }
 """
 
 JS = """
@@ -304,9 +312,9 @@ def compare_section(cfg, ev, final, base_id, nv):
     rows = []
     for p in pls:
         a, b = bev[p]["delta_pv_b"], ev[p]["delta_pv_b"]
-        rows.append(f'<tr><td><span class="dot" style="--pc:{COLORS[p]}"></span>{esc(label(cfg, p))}</td><td class="n">{fmt_b(a)}</td>'
-                    f'<td class="n">{fmt_b(b)}</td><td class="n {"pos" if b - a >= 0 else "neg"}">{fmt_b(b - a)}</td></tr>')
-    out.append(f'<h3>Full-game delta PV ($B)</h3><div class="scroll"><table><thead><tr><th>Player</th><th class="n">{esc(bname)}</th>'
+        rows.append(f'<tr><td><span class="dot" style="--pc:{COLORS[p]}"></span>{esc(label(cfg, p))}</td><td class="n" data-l="{esc(bname)}">{fmt_b(a)}</td>'
+                    f'<td class="n" data-l="{esc(tname)}">{fmt_b(b)}</td><td class="n {"pos" if b - a >= 0 else "neg"}" data-l="Change">{fmt_b(b - a)}</td></tr>')
+    out.append(f'<h3>Full-game delta PV ($B)</h3><div class="scroll"><table class="stackl"><thead><tr><th>Player</th><th class="n">{esc(bname)}</th>'
                f'<th class="n">{esc(tname)}</th><th class="n">Change</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
 
     def share(e, seg, y, side="boeing", key="aircraft"):
@@ -322,14 +330,16 @@ def compare_section(cfg, ev, final, base_id, nv):
     srows = []
     for seg, nm in (("nb", "Narrowbody"), ("wb", "Widebody")):
         for who in ("boeing", "airbus"):
-            cells = "".join(f'<td class="n">{pct(share(bev, seg, y, who))}</td><td class="n">{pct(share(ev, seg, y, who))}</td>' for y in yrs)
+            cells = "".join(f'<td class="n" data-l="{y} {esc(bname)}">{pct(share(bev, seg, y, who))}</td>'
+                            f'<td class="n" data-l="{y} {esc(tname)}">{pct(share(ev, seg, y, who))}</td>' for y in yrs)
             srows.append(f'<tr><td>{nm}: {esc(label(cfg, who))}</td>{cells}</tr>')
         for sup in sups:
-            cells = "".join(f'<td class="n">{pct(maker(bev, seg, y, sup))}</td><td class="n">{pct(maker(ev, seg, y, sup))}</td>' for y in yrs)
+            cells = "".join(f'<td class="n" data-l="{y} {esc(bname)}">{pct(maker(bev, seg, y, sup))}</td>'
+                            f'<td class="n" data-l="{y} {esc(tname)}">{pct(maker(ev, seg, y, sup))}</td>' for y in yrs)
             srows.append(f'<tr><td class="small">{nm} engines: {esc(label(cfg, sup))}</td>{cells}</tr>')
     head = "".join(f'<th class="n" colspan="2">{y}</th>' for y in yrs)
     sub = "".join(f'<th class="n small">{esc(bname)}</th><th class="n small">{esc(tname)}</th>' for _ in yrs)
-    out.append(f'<h3>Shares of deliveries</h3><div class="scroll"><table><thead><tr><th>Share</th>{head}</tr><tr><th></th>{sub}</tr></thead>'
+    out.append(f'<h3>Shares of deliveries</h3><div class="scroll"><table class="stackl"><thead><tr><th>Share</th>{head}</tr><tr><th></th>{sub}</tr></thead>'
                f'<tbody>{"".join(srows)}</tbody></table></div>')
 
     def progs(e, fin):
@@ -341,9 +351,10 @@ def compare_section(cfg, ev, final, base_id, nv):
             d[sp["label"]] = f'{sp["launch_year"]} → {"ready " + str(sp["ready"]) if sp["ready"] else "cancelled"}'
         return d
     pa, pb = progs(bev, bfinal), progs(ev, final)
-    prow = [f'<tr><td>{esc(k)}</td><td class="small">{esc(pa.get(k, "not launched"))}</td><td class="small">{esc(pb.get(k, "not launched"))}</td></tr>'
+    prow = [f'<tr><td>{esc(k)}</td><td class="small" data-l="{esc(bname)}">{esc(pa.get(k, "not launched"))}</td>'
+            f'<td class="small" data-l="{esc(tname)}">{esc(pb.get(k, "not launched"))}</td></tr>'
             for k in list(dict.fromkeys(list(pa) + list(pb)))]
-    out.append(f'<h3>Programmes (launch → entry into service or ready)</h3><div class="scroll"><table><thead><tr><th>Programme</th><th>{esc(bname)}</th>'
+    out.append(f'<h3>Programmes (launch → entry into service or ready)</h3><div class="scroll"><table class="stackl"><thead><tr><th>Programme</th><th>{esc(bname)}</th>'
                f'<th>{esc(tname)}</th></tr></thead><tbody>{"".join(prow)}</tbody></table></div></section>')
     return "".join(out)
 

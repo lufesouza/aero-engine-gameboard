@@ -1,0 +1,96 @@
+{
+  "title": "Narrowbody and widebody war game, 2026-2045: fps three years late",
+  "short_title": "War Game 2045: fps Late",
+  "lede": "A rerun of the five-player war game with one public assumption changed: Boeing's fps takes 10 years from launch to entry into service instead of 7, so a 2031 launch would enter service in 2041, and each extra year costs 10% of fps capex. Boeing, Airbus, Rolls-Royce, Pratt & Whitney and CFM/GE played the same three sealed rounds (to 2030, 2035 and 2045), with the same injects, profiles and leadership teams. Each was an independent agent; only the game master held the full game-theory board.",
+  "summary": [
+    "Boeing never launched fps. With a 10-year development, every fps it tested lost value against doing nothing:\n- round 2: best fps (Joint Venture, GTF2, 10-year ramp-up, with the rate step) -$3.1B, against -$2.4B for Do Nothing and +$1.3B for a 787 Re-engine;\n- round 3: any fps would enter service in 2046 or later, and the best one was still $1.4-2.5B below Do Nothing.\nIn the first game, fps 2031 entered service in 2038, and launching it with the rate step took Boeing's projection from -$2.3B to +$4.3B.",
+    "Boeing turned to the widebody instead. In round 2 it launched a 787 Re-engine on GE's GEnx upgrade (2031, in service 2036) and took the 737 rate step. Airbus then decided not to launch the A350 Re-engine it had signalled for 2037. Boeing's widebody share rises from 58.8% to 68.4% in 2045 and 73.8% in 2050; in the first game it fell to 53.8% and 48.8%.",
+    "Airbus took the narrowbody market. NGSA (2028, in service 2035 on the CFM LEAP derivative) ran unopposed through the replacement wave, and Boeing's narrowbody share falls from 42% in 2035 to 32.3% in 2045, 25.0% in 2050 and 20% by 2060. Airbus ends at +$44.5B (first game +$36.5B) and Boeing at +$1.7B (first game +$3.9B).",
+    "Two coordination failures again, one of them new:\n- NGSA asked for UltraFan in round 1; Rolls-Royce was waiting for an announcement, so NGSA fell back to the LEAP derivative (as in the first game).\n- Round 3: Rolls-Royce committed the UltraFan widebody in 2036 on Airbus's stated 2037 A350 Re-engine. In the same sealed round Airbus's Board shelved it. The engine has no airframe and, in the final round, cannot be cancelled.\nPratt & Whitney's 2030 GTF2 hedge was cancelled in 2031 with no airframe, as in the first game, so its result is identical (-$2.8B).",
+    "Four of the ten assigned objectives were met, as in the first game, but a different four:\n- Airbus: both met (60/40 edge, by 1.6pp in 2040; A320 protected);\n- Pratt & Whitney: credibility;\n- CFM/GE: narrowbody dominance (100% of narrowbody engines from 2035).\nBoeing met neither: without fps its narrowbody share falls below the 40% status quo from 2040, so incumbency is lost as well as 50/50. Rolls-Royce met neither, and the open fan never flew: no airframe could enter service on it by 2045."
+  ],
+  "findings": [
+    "Three years of delay removes the fps business case. On Boeing's own go/no-go test the fps failed both the nominal and the slip legs in rounds 2 and 3. Boeing's ExCo chose 'derivatives first' and redeployed into the 787.",
+    "The delay moves the contest from narrowbody to widebody. Boeing gives up narrowbody share (32% in 2045, 20% by 2060) and gains widebody share (68% in 2045). Its total delta PV falls by only $2.2B, because it saves about $23B of fps capex to 2045.",
+    "Moving first in the widebody Chicken game paid. Boeing's 2031 787 Re-engine turned Airbus's A350 Re-engine negative (-$0.3B to -$0.5B on standard terms or the GEnx fallback; +$0.1B at best, only on aggressive Rolls-Royce terms), and Airbus's Board dropped it. In the first game Airbus moved first (2035) and Boeing declined the 787 Re-engine.",
+    "A conditional disclosure was read as a commitment. Airbus's 'subject to Board approval' A350 plan led Rolls-Royce to commit $3.1B of capex one year early under its own 'do not make the aircraft wait' rule. This is the mirror of the first game, where Pratt & Whitney cancelled the engine Boeing then named.",
+    "CFM/GE won again by not moving. Every airframe ended on its existing engines (LEAP derivative and GEnx upgrade), and it ends at +$19.0B with no new-engine capex. Rolls-Royce did better than in the first game (-$3.7B against -$7.0B) because it launched no narrowbody engine and there was no A350 Re-engine to take its sole-source position.",
+    "The open fan is out of reach in both games. NGSA committed to the LEAP derivative in 2028, and a late fps cannot enter service before 2046, so no airframe could fly RISE by 2045."
+  ],
+  "compare_title": "Compared with the first game (fps in service 2038)",
+  "compare_label": "First game",
+  "this_label": "fps late",
+  "comparison": [
+    "Same round 1, different game. All five players gave the same round-1 orders as in the first game, and the market reacted slightly better to NGSA (x1.03 against x0.97). The games split in round 2, where Boeing launched fps in the first game and a 787 Re-engine here.",
+    "**Delta PV ($B):**\n- Boeing +3.9 → +1.7;\n- Airbus +36.5 → +44.5;\n- Rolls-Royce -7.0 → -3.7;\n- Pratt & Whitney -2.8 → -2.8;\n- CFM/GE +18.8 → +19.0.\nAirbus gains the most (+$8.0B), from an uncontested narrowbody wave and no A350 Re-engine capex.",
+    "**Boeing's cash, 2026-2045, undiscounted:** capex $5.4B against $28.2B, and operating profit $164.5B against $211.7B. Cash after capex is $158.4B against $182.0B. The fps money is saved, but the narrowbody profit it would have earned from 2038 is lost too.",
+    "**Narrowbody (Boeing share):** 40.2% from 2040 in the first game, against 38.4% (2040), 32.3% (2045) and 25.0% (2050) here. **Widebody (Boeing share):** 53.8% (2045) and 48.8% (2050) in the first game, against 68.4% and 73.8% here.",
+    "**Engine makers:** CFM/GE has 100% of narrowbody engines in both games. In widebody, GE's share in 2045 is 68% here against 85% in the first game, and Rolls-Royce's is 32% against 15%, because the A350 keeps the Trent XWB."
+  ],
+  "rounds": {
+    "1": "Supply-chain crunch: running development programmes concurrently costs 50% more from now on. The orders were the same as in the first game:\n- Airbus launched NGSA in 2028 and asked for UltraFan.\n- Rolls-Royce waited for an airframe announcement, and CFM/GE preferred its LEAP derivative, so NGSA flies the LEAP derivative (in service 2035).\n- Boeing did nothing, and published an engine policy: an engine committed by 2034 and ready by 2041.\n- Pratt & Whitney hedged with a next-generation GTF launched in 2030.\n- All three engine makers funded durability upgrades.\nThe market priced NGSA at x1.03.",
+    "2": "Fuel price spike: new-generation products earn 1.5pp more margin.\n- Boeing ran the fps numbers under the delay: every variant lost value against Do Nothing. It launched a 787 Re-engine on GE's GEnx upgrade (2031, in service 2036) and took the deferred 737 rate step.\n- Pratt & Whitney cancelled the GTF2: no airframe had selected it.\n- Airbus deferred its A350 Re-engine and said it intended to launch on UltraFan in 2037, subject to Board approval.\n- CFM/GE committed the GEnx improvement package.\n- Rolls-Royce did nothing: no airframe had named UltraFan.\nThe market priced the 787 Re-engine at x1.04.",
+    "3": "Widebody demand boom: widebody demand rises 15% for the rest of the game.\n- Boeing again declined fps: it would enter service in 2046 or later and fails its go/no-go test.\n- Airbus's Board shelved the A350 Re-engine: against the 787 Re-engine already in service it lowered Airbus's PV in every variant.\n- In the same sealed round Rolls-Royce committed the UltraFan widebody (2036, ready 2042) for that A350 Re-engine, so the engine has no airframe.\n- Pratt & Whitney and CFM/GE did nothing.\nThe market raised the 787 Re-engine to x1.07 and NGSA to x1.05."
+  },
+  "players": {
+    "boeing": {
+      "verdict": "Disciplined, and it pivoted. Its gates ruled out an fps that the delay had made value-destroying, and it took the widebody instead: a 2031 787 Re-engine that deterred Airbus's A350 Re-engine and lifted its widebody share to 68% in 2045. It gave up the narrowbody fight (32% in 2045, 20% by 2060), so it misses both share objectives, incumbency included. Myopic regret is only $0.24B (the rate step).",
+      "highlights": [
+        "Round 1: Do Nothing; disclosed an engine policy (committed by 2034, ready by 2041).",
+        "Round 2: 787 Re-engine 2031 on the GEnx upgrade, plus the rate step; no fps (best fps -$3.1B against -$2.4B for Do Nothing).",
+        "Round 3: Do Nothing; corrected its round-2 engine statement after Pratt & Whitney's cancellation.",
+        "Final: +$1.7B; narrowbody 32.3% in 2045; widebody 68.4% in 2045."
+      ]
+    },
+    "airbus": {
+      "verdict": "Best result again. Its round-1 NGSA on its own clock won the narrowbody race outright, because Boeing never answered it. It deferred the A350 Re-engine in round 2, then shelved it in round 3 once the 787 Re-engine made it value-negative. Zero myopic regret, and hindsight regret of -$11.0B: it beat every plan in the benchmark.",
+      "highlights": [
+        "Round 1: NGSA 2028 (asked for UltraFan, flies the LEAP derivative), plus Poaching.",
+        "Round 2: Poaching; A350 Re-engine signalled for 2037 on UltraFan, subject to Board approval.",
+        "Round 3: no A350 Re-engine; no Poaching and no Delay Tactics.",
+        "Final: +$44.5B; 60/40 edge met; A320 protected."
+      ]
+    },
+    "rolls_royce": {
+      "verdict": "Better than in the first game, still worst. 'No airframe, no engine' cost it NGSA again ($20.3B round-1 regret). It honoured its one-year-ahead promise and committed the UltraFan widebody for Airbus's stated A350 Re-engine, which Airbus shelved in the same round. It keeps its A350 sole-source position (Trent XWB), but the 787 Re-engine on GE cuts its widebody engines.",
+      "highlights": [
+        "Round 1: Trent 1000 upgrade; conditional disclosures, no UltraFan.",
+        "Round 2: Do Nothing; no announcement had named UltraFan.",
+        "Round 3: UltraFan widebody 2036 (standard terms, ready 2042); no airframe selected it.",
+        "Final: -$3.7B; narrowbody entry and widebody dominance both missed."
+      ]
+    },
+    "pratt_whitney": {
+      "verdict": "The same game as before. Its 2030 GTF2 hedge went unselected when NGSA locked onto the LEAP derivative, and it cancelled in round 2, breaking its round-1 promise to keep the engine to the end of that round. In this game no airframer named the engine before the cancellation. It met its credibility objective with the 2026 GTF durability upgrade.",
+      "highlights": [
+        "Round 1: GTF durability upgrade, plus next-generation GTF launched 2030 as a hedge.",
+        "Round 2: cancelled the next-generation GTF; conditional Joint Venture offer.",
+        "Round 3: Do Nothing; single-aisle focus.",
+        "Final: -$2.8B; GTF base lost from 2035."
+      ]
+    },
+    "cfm": {
+      "verdict": "Won by not moving, again. Every airframe flies its existing engines (the LEAP derivative on NGSA, the GEnx upgrade on the 787 Re-engine). It tested a defensive ducted engine and rejected it: under the 10-year fps the defence lost value even when it won. It ends with every narrowbody engine and the open fan unattainable.",
+      "highlights": [
+        "Round 1: LEAP durability upgrade; LEAP derivative offered to both airframers.",
+        "Round 2: GEnx improvement package; no defensive ducted engine.",
+        "Round 3: Do Nothing; open fan declared unattainable.",
+        "Final: +$19.0B; 100% of narrowbody engines from 2035; 68% of widebody engines in 2045."
+      ]
+    }
+  },
+  "leadership": {
+    "boeing": "ortberg-malave-pope-2026",
+    "airbus": "faury-toepfer-wagner-2026",
+    "rolls_royce": "erginbilgic-mccabe-watson-2026",
+    "pratt_whitney": "calio-mitchill-eddy-2026",
+    "cfm": "culp-ghai-ali-2026"
+  },
+  "caveats": [
+    "The fps delay is a known, public scenario assumption (scenario five-player-2045-fps-delay), not an inject: fps entry into service is launch + 10 years, and each of the three extra years costs 10% of fps capex.",
+    "Volumes are stylised: 2,000 narrowbodies and 170 widebodies a year, PV to 2026 at each player's own WACC. Per-unit values come from the calibrations.",
+    "CFM/GE's parameters were reconciled from two independent calibrations. Several remain placeholders: alpha, open-fan capex and value, Embraer partnership, lobbying, strain, derivative capex, and the fps ramp-up multipliers.",
+    "The assigned objectives come from the Boeing Product Development briefing (Boeing proprietary). The referee scores them, but they never change payoffs.",
+    "This was one game with one seed, against one first game. The comparison shows how these agents responded to the delay, not a distribution of outcomes."
+  ]
+}
