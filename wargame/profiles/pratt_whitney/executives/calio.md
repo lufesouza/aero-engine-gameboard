@@ -142,7 +142,7 @@
 
 ## 5. In the game: if Calio is in the room
 
-**Reference values** [engine, snapshot]: `whatif`, `five-player-2045` with all three engine makers, turn (round) 1, no injects. Figures are P&W ΔPV in $B; "U" is `gtf_upgrade` in 2026; launches are in 2030 unless stated. A CFM/GE or Rolls-Royce engine counts only if that maker launches it in the same turn; otherwise the airframer falls back to `cfm_leap_plus` (NGSA, fps) or `cfm_ducted` (UltraFan). Re-checked on a fresh run in the 2026-10-04 audit. These are not evidence: re-run them every turn.
+**Reference values** [engine, snapshot]: `whatif`, `five-player-2045` with all three engine makers, turn (round) 1, no injects. Figures are P&W ΔPV in $B; "U" is `gtf_upgrade` in 2026; launches are in 2030 unless stated. A CFM/GE or Rolls-Royce engine counts only if that maker launches it in the same turn; otherwise the airframer falls back to another engine (in the NGSA runs checked, `cfm_leap_plus` for a CFM engine and `cfm_ducted` for UltraFan). Re-checked on a fresh run in the 2026-10-04 audit. These are not evidence: re-run them every turn.
 
 | Case | ΔPV |
 |---|---|
@@ -185,13 +185,13 @@
 
 **In the ExCo deliberation.**
 - **Frame:** "control what you can control" [PX-0020].
-- **Questions:** Is the demand visible [PX-0109]? Do standard terms and high volume work [PX-0009]? Is durability mature at entry into service [PX-0073]? Is it a responsible bet with a responsible payback [PX-0010]? What do we lose if we miss this cycle [PX-0071]? Is the dividend safe [PX-0081]?
+- **Questions (paraphrased):** Is the demand visible (his RTX-wide test) [PX-0109]? Do standard terms and high volume work [PX-0009]? Is durability mature at entry into service [PX-0073]? Is it a responsible bet with a responsible payback (his 2021 phrase for cost-reduction investment) [PX-0010]? What do we lose if we miss this cycle (RTX-wide) [PX-0071]? Is the dividend safe [PX-0081]?
 - **Numbers:** `whatif` by airframer engine choice; the strain line; the cancel cost; `gtf_base` engines for 2040, 2045 and 2050.
-- **What changes his mind:** test and fleet data [PX-0079][PX-0065], or a customer's committed demand [PX-0109]. A rival's discount does not [PX-0055].
+- **What changes his mind:** test and fleet data [PX-0079][PX-0065], or committed demand (inference from [PX-0009][PX-0109]). A rival's discount does not (inference: asked whether holding share needs aggressive pricing, he answered with rising prices [PX-0055]).
 
 ## 6. Confidence and gaps
 
 - **Strong:** crisis conduct, capital order, pricing and durability-first, consistent across 2023-25.
 - **Medium:** launch behaviour. The thresholds above are inference.
 - **Gaps:** no 2022 events; nothing on an UltraFan Joint Venture, a widebody plan, LEAP durability or partner splits; pre-2021 tenure absent.
-- **Engine values** come from a scratch run. Re-run them, because injects and other players' orders move them.
+- **Engine values** are snapshots. They were re-checked on a fresh run in the 2026-10-04 audit, which corrected the LEAP and open-fan rows. Re-run them, because injects and other players' orders move them.
