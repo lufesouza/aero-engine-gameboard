@@ -55,7 +55,7 @@ The 2023 guide (operating profit £0.8-1.0bn) was presented by both him and the 
 
 **Capital allocation.**
 - Deleverage at a pace balanced against investment [RX-0171].
-- Investment pivoted "a little bit away from civil" towards Defence, Power Systems and New Markets [RX-0172].
+- Investment pivoted "a little bit away from civil" towards Defence and other growth areas [RX-0172].
 - 80% of capex and R&D in the established businesses [RX-0180].
 - Durability spend protected [RX-0155].
 - The spare-engine pool built to 23% of OE deliveries [RX-0203].
@@ -83,24 +83,26 @@ The 2023 guide (operating profit £0.8-1.0bn) was presented by both him and the 
 
 ## Commitment track record
 
+† = outcome taken from the reader's note on the cited item, not from a quote or data cell.
+
 | Date | Commitment or forecast | Outcome in the evidence | ids |
 |---|---|---|---|
 | 2021-08 | At least £2bn of disposals, not a forced seller | Completed 2022; £2bn of debt repaid | RX-0159, R-0855 |
-| 2021-08 | 2021 FCF about -£2bn | -£1.5bn; he refused credit for the £300m from concession timing | RX-0160, RX-0175 |
-| 2021-08 | FCF of at least £750m once flying hours pass 80% of 2019; unlikely in 2022 | 2022 (65%): £505m; 2023 (88%): £1.3bn | RX-0161 |
-| 2021-08 | Net debt "too high"; net cash in the medium term | £5.2bn (2021), £3.3bn (2022), £2.0bn (2023); net cash £475m at end-2024 under his successor | RX-0169, RX-0154, R-0027 |
-| 2022-02 | Investment-grade profile in the medium term | Two agencies by August 2024; all three by February 2025 | RX-0171 |
-| 2022-02 | 2022 FCF "modestly positive" | £505m | RX-0176 |
-| 2022-08 | Civil: high single-digit margin, flying hours back to 2019 by about 2024 | Margin 11.6% (2023), 16.6% (2024); flying hours 101% in H1 2024; targets superseded November 2023 | RX-0184 |
-| 2022-08 | LTSA marker about £500m; "meaningfully more" in 2022 | £792m in 2022 | RX-0185 |
-| 2022-08 | 2022 shop visits 1,100-1,200 | 1,044 (missed) | RX-0186 |
-| 2022-08 | Larger 787 concession headwind in 2023 | 2023 guide carried a £200m Boeing concession outflow | RX-0187 |
-| 2023-02 | 2023 flying hours 80-90% of 2019; shop visits 1,200-1,300 | 88%; 1,227 | RX-0199, RX-0200 |
-| 2023-02 | 2023 LTSA growth £500-700m; catch-ups £100-200m | About £1.1bn; catch-ups a £29m charge once supply-chain costs were booked under his successor | RX-0201 |
-| 2023-02 | 2023 operating profit £0.8-1.0bn | £1,590m; guidance in force at year-end was £1.2-1.4bn | RX-0202, R-0219 |
-| 2023-08 | Repay the €550m 2024 bond from cash; Civil H2 "broadly similar" to H1 | Repaid May 2024; H1 £405m, full year £850m | RX-0206, RX-0207 |
+| 2021-08 | 2021 FCF about -£2bn | -£1,442m; he refused credit for the £300m from concession timing | RX-0160, RX-0175, R-0217 |
+| 2021-08 | FCF of at least £750m once flying hours pass 80% of 2019; unlikely in 2022 | 2022 (flying hours 65%): £491m; 2023 (88%): £1,285m | RX-0161, R-0088, R-0217, R-0878, R-0220 |
+| 2021-08 | Net debt "too high"; net cash in the medium term | £5.2bn (2021), £3.3bn (2022), £2.0bn (2023); net cash £475m at end-2024 under his successor | RX-0169, RX-0154, R-0855, R-0027 |
+| 2022-02 | Investment-grade profile in the medium term | Two agencies by August 2024†; all three by February 2025 | RX-0171, RX-0102 |
+| 2022-02 | 2022 FCF "modestly positive" | £491m against a £0 guided floor | RX-0176, R-0217 |
+| 2022-08 | Civil: high single-digit margin, flying hours back to 2019 by about 2024 | Margin 11.6% (2023), 16.6% (2024); large-engine flying hours 15.8m in 2024 against 15.3m in 2019; targets superseded November 2023 | RX-0184, R-0295, R-0245 |
+| 2022-08 | LTSA marker about £500m; "meaningfully more" in 2022 | £792m in 2022 | RX-0185, R-0090 |
+| 2022-08 | 2022 shop visits 1,100-1,200 | 1,044† (missed) | RX-0186 |
+| 2022-08 | Larger 787 concession headwind in 2023 | 2023 cash carried £200m of legacy Boeing concession outflows | RX-0187, R-0862 |
+| 2023-02 | 2023 flying hours 80-90% of 2019; shop visits 1,200-1,300 | 88%; 1,227 | RX-0199, RX-0200, R-0878, R-1281 |
+| 2023-02 | 2023 LTSA growth £500-700m; catch-ups £100-200m | About £1.1bn (derived from the 2024 figure); catch-ups a £29m charge† once supply-chain costs were booked under his successor | RX-0201, RX-0250 |
+| 2023-02 | 2023 operating profit £0.8-1.0bn, given with the CEO | Raised to £1.2-1.4bn in August 2023, while he was CFO; actual £1,590m | RX-0202, RX-0034, RX-0047, R-0219 |
+| 2023-08 | Repay the €550m 2024 bond from cash; Civil H2 "broadly similar" to H1 | Repaid May 2024†; H1 £405m†, full year £850m | RX-0206, RX-0207, R-0879 |
 
-Pattern: cash and balance-sheet commitments were met or beaten, and his traffic and volume calls for 2023 were accurate. His misses were 2022 shop visits and 2023 catch-ups. Actual 2023 operating profit came in about £600m above the top of his February range [RX-0202, R-0219].
+Pattern: cash and balance-sheet commitments were met or beaten, and his traffic and volume calls for 2023 were accurate. His misses were 2022 shop visits and 2023 catch-ups. Actual 2023 operating profit came in about £600m above the top of the February range he and the CEO gave [RX-0202, RX-0034, R-0219].
 
 ## By dimension
 
@@ -149,22 +151,22 @@ He sits in the 2022 and 2023 teams. Read him as "this CFO running the 2026 board
 
 | Lever | Default | Flips when | Numbers he asks for | He vetoes |
 |---|---|---|---|---|
-| `uf_nb` | Do Nothing: harvest era, investment away from Civil (inference) [RX-0194, RX-0172] | An announced fps or NGSA on UltraFan, and the return holds across scenarios [RX-0181]: Solo NGSA 2031 +16.50, unselected -5.70; engine ready 2038 [5p] | Expected PV at several selection probabilities; a higher hurdle for a payoff beginning in 2038 [RX-0181] | A launch without a customer; anything that reverses the deleveraging path [RX-0169] |
-| Solo against Joint Venture | Joint Venture (inference: risk-adjusted IRR on long-dated bets [RX-0181]; the Civil president's "capital-light" partnering in the same era [RX-0004]) | Solo only once selection is announced and Solo beats the Joint Venture clearly (NGSA 2031: +16.50 against +8.13) [5p] | P&W's capex and value share (50/50 in the rules) | Solo while selection is uncertain (unselected -5.70 Solo, -2.98 Joint Venture) [5p] |
-| `uf_wb` | Do Nothing until Airbus announces an A350 Re-engine, then launch: the LTSA annuity rests on "sticky" customers (inference) [RX-0167] | Announced A350 Re-engine: -2.31 on UltraFan against -4.14 on GE [5p] | Unselected cost -2.46 [5p] | Pre-launching |
+| `uf_nb` | Do Nothing: harvest era, investment away from Civil (inference) [RX-0194, RX-0172] | An announced fps or NGSA on UltraFan, and the return holds across scenarios [RX-0181]: Solo NGSA 2031 +16.50, unselected -5.70; engine ready 2038 [5p] | Expected PV at several selection probabilities [RX-0181]; (inference) a higher hurdle for a payoff beginning in 2038 | A launch without a customer; anything that reverses the deleveraging path [RX-0169] |
+| Solo against Joint Venture | Joint Venture (inference: scenario-tested IRR [RX-0181]; the Civil president's "capital-light" partnering in the same era [RX-0004]) | Solo only once selection is announced and Solo beats the Joint Venture clearly (NGSA 2031: +16.50 against +8.13) [5p] | P&W's capex and value share (50/50 in the rules) | Solo while selection is uncertain (unselected -5.70 Solo, -2.98 Joint Venture) [5p] |
+| `uf_wb` | Do Nothing until Airbus announces an A350 Re-engine, then launch: the LTSA annuity rests on "sticky" customers (inference) [RX-0167] | Announced A350 Re-engine: -2.31 on UltraFan against -4.15 on GE [5p] | Unselected cost: -2.46 for a 2031 launch [5p] | Pre-launching |
 | Terms | Standard; indexation and enforcement [RX-0195, RX-0197] | Only if `whatif` shows the contest lost at standard and won at aggressive | NGSA 2031 aggressive costs RR 3.67 [5p] | Concessions as a cash drain: the 2021 working-capital outflow of £800m was mostly concession payments [R-0830] |
 | `t1000_upgrade` | Fund: "good near-term returns available from increasing durability" [RX-0155]; the Trent 700 time-on-wing work is his model near-term return [RX-0181]; +0.81 in turn 1 [5p] | Defer if it overlaps an UltraFan development (strain) [5p] | Payback years | - |
-| `cancel` | Cancel an orphan programme: in-flight reviews, projects that "didn't make the grade" [RX-0188]; a 2026 Solo cancelled in 2031 is -7.15 against -9.18 kept [5p] | An airframe still flies it (rules) | Sunk against remaining capex | - |
+| `cancel` | Cancel an orphan programme: projects that "didn't make the grade" [RX-0188]; a 2026 Solo cancelled in 2031 is -7.15 against -9.18 kept [5p] | An airframe still flies it (rules) | Sunk against remaining capex | - |
 | Disclosure | Conservative; no dates or forecasts on things he cannot control [RX-0157, RX-0175] | - | - | Promising an entry into service |
 
 **When CFM/GE launches a ducted engine or the RISE open fan.** He would scenario-plan rather than react [RX-0189]. An NGSA on the open fan in 2031 gives Airbus +6.48 against +38.88 on UltraFan [5p]. A ducted NGSA leaves RR at 0.00 [5p]. Neither changes RR's cash, so neither changes his orders (inference).
 
-**When CFM/GE takes share through upgrades.** He answers with durability spend [RX-0155]. The GEnx package alone costs RR -0.58; with RR's own upgrade the net is +0.23 [5p].
+**When CFM/GE takes share through upgrades.** (inference) He answers with durability spend [RX-0155]. The GEnx package alone costs RR -0.58; with RR's own upgrade the net is +0.23 [5p].
 
 **When an airframer asks for aggressive terms.** He holds price and points to indexation and contract terms [RX-0195, RX-0205]. He watched concession payments drain cash [R-0830].
 
 **How he argues in the executive committee.**
-- What is the IRR in each scenario, and the risk-adjusted IRR for the long-dated case [RX-0181]?
+- What is the IRR in each scenario [RX-0181]? (inference) Is the long-dated case risk-adjusted?
 - Which drivers are controllable [RX-0175]?
 - Does liquidity cover the downside [RX-0156]?
 - Does the deleveraging path hold [RX-0171]?

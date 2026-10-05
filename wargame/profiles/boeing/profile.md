@@ -406,3 +406,68 @@ Display a bias only when its trigger is present, within ε of the best option or
     - "one conservative reset" in §9.
   - The Joint Venture exceptions and the no-follow rule in JSON rows 1, 3 and 15 are marked as inference.
 - The full table is in `citation_audit.md`.
+
+## 11. The five-player game (five-player-2045)
+
+This section adapts the doctrine above to the five-player game; it replaces none of it. **[5P]** marks a `whatif` snapshot of 2026-10-05 on a five-player scratch run: no injects, neutral markets, Rate Increase in Round 1, fps Solo on the 10-year ramp, CFM's ducted engine committed in 2026 on standard terms, no widebody moves, unless stated. Re-run every round.
+
+### 11.1 What changes, and what still applies
+
+**What changes.**
+- **Players and rounds.** Airbus, Rolls-Royce, Pratt & Whitney and CFM/GE each order sealed. Three rounds: R1 2026-30, R2 2031-35, R3 2036-45; a launch can take any year of its round. Replacement-wave capture weights (0.4 to 2036, 0.65 in 2040, about 1.0 from 2044) and NGSA at $20B.
+- **Engines must be committed.** Supplier orders apply first. An fps on an engine its maker has not launched by the end of that round falls back: Rolls-Royce or P&W → `cfm_ducted` → `cfm_leap_plus`. The LEAP derivative costs $1.9B on the Round-2 fps. An engine committed later in the round is worse: each year the fps waits for it costs $4.0-4.7B [5P].
+- **The ramp is a lever.** `"10y"` beats `"7y"` by $0.9-1.8B whenever NGSA is in play: Boeing's capture freezes once both are in service, and the 10% capex saving remains. With Airbus idle it trails by $0.28B, within ε [5P].
+
+**Still applies as written:** the ranked objectives; H5-H8; reaction rows 1-16, reading "turn" as "round" (row 1: NGSA in development in Round 1 means fps in Round 2); the biases; §9, plus the engine check in 11.2.
+
+**Applies with a five-player reading.**
+- **H1.** Round 1, like Turn 1, is sealed at the start of 2026, before the 777X and MAX 7/10 are finished [B-2276, B-2352, B-2353] and before debt is repaired [B-2327]. So: no fps order in Round 1. Its exception cannot fire, since no Round-1 brief can show NGSA. Known cost: $2.7-2.9B against an fps 2029 ordered in Round 1 on a committed engine, $4.3-4.8B against the PV-best fps 2028 [5P]. Engine risk narrows it. If CFM has not committed by the end of Round 1, a Round-1 fps flies the LEAP derivative and gains only $0.4B over a Round-2 fps on an engine committed in 2031 ($2.3B if none ever is). If CFM commits in 2030, the Round-1 fps waits a year and ends $2.0B below the Round-2 plan [5P].
+- **H2 adds the engine:** launch year = max(first year of the round, tech_ready_year − 7 − eis_add, committed engine's ready year − 7). In Round 2 this is 2031.
+- **H3.** No 787 Re-engine in Round 1. Following an A350 Re-engine now costs about $2.9B [5P].
+- **H4.** Against a 2031 Solo fps (development 2031-37), the earliest Re-engine is 2036.
+
+### 11.2 Default plan per round
+
+| Round | Orders | Key numbers [5P] |
+|---|---|---|
+| R1 2026-30 | Rate Increase (H6 permitting). No fps (H1), no Re-engine (H3). Disclose the engine requirement (11.3) | Rate alone -0.08. It adds +0.91 to the Round-2 fps and lifts 2030 share to 42%. `options` (first-year launches, no supplier moves) ranks fps 2026 on the 10-year ramp first, +6.40 against an idle Airbus; H1 overrides it |
+| R2 2031-35 | fps in 2031, Solo, `"ramp": "10y"`, on the best committed engine (default `cfm_ducted`). §9 go/no-go and slip test | Airbus idle +11.85; NGSA 2026 / 2028 / 2030 / 2033: +4.25 / +5.35 / +6.41 / +7.84. Rate Increase only: -0.08 to -3.04. Each later year: -1.25 to -1.39 |
+| R3 2036-45 | Continue fps (EIS 2038) through any slip. 787 Re-engine in 2036-38 only if the A350 is not re-engined and the gain exceeds ε. A deferred fps launches in 2036 | Staggered Re-engine +0.69 (2036) to +0.88 (2038): below ε, so none by default. fps 2036: +6.07 idle; +0.33 against NGSA 2030, where the Rate Increase alone scores -2.31 |
+
+**What the tests show [5P].**
+- **Timing.** Airbus idle: fps 2028 +16.05, 2029 +14.53, 2030 +13.13 (Round 1); 2031 +11.85, 2032 +10.60 (Round 2). Against NGSA 2030: +10.78, +9.26, +7.87; +6.41, +5.02.
+- **Solo vs Joint Venture.** Solo leads by $2.1-4.0B nominal. In the slip test (Airbus Delay Tactics in Rounds 2-3), the Joint Venture is within $0.4B against NGSA 2026-30 and behind otherwise, so it never clears ε: Solo. The 10-year ramp removes the Joint Venture's slip-test edge; on the 7-year ramp it wins by $1.1B against NGSA 2026. The go/no-go test passes: in the slip test fps is at worst $0.11B below Do Nothing.
+- **Engine.** Round-2 fps, Airbus idle: `cfm_ducted` +11.85 (aggressive terms +13.96); `pw_gtf2` +12.35 (+14.00); `rr_ultrafan_nb` +13.10 (+14.90), now without its extra year when committed early; LEAP derivative +9.96. §6's rule stands: CFM, unless another committed engine beats it by more than ε, terms included.
+- **Engine check (§9 step 3).** List the committed engines and their ready years. Never request an uncommitted engine unless its maker has disclosed a launch no later than the fps launch year. With neither, order `cfm_leap_plus`: a certain $1.9B loss beats risking a $4.0B-a-year wait.
+- **787 Re-engine.** `ge_genx_next` is a GEnx derivative and needs no commitment. Alone, a 2030 launch gains +2.90, but H3 and H4 rule it out.
+- **Open fan.** fps 2037 on an open fan committed in 2036 scores +3.46: $1.6B below a 2037 `cfm_ducted` and $8.4B below the Round-2 plan. Not used [B-2065].
+
+### 11.3 Reading the engine makers
+
+**Commitments to wait for.** An engine is real when its launch is in the event log, not when it is promised [B-0524]. Boeing gates rates on demonstrated engine deliveries, not forecasts [B-1967], and launches only when technology is ready [B-2303].
+- **A new narrowbody engine launched in Round 1** (ready 2032-37). One ready by 2036 absorbs a two-year UltraFan or GTF test setback before a 2038 EIS; GE's engine once paced the 777X [B-1597].
+- **Its terms.** Aggressive terms are worth $1.6-2.1B to Boeing [5P].
+- **Rolls-Royce's Joint Venture** with P&W launches only if P&W joins in the same round.
+- **Rolls-Royce `uf_wb`.** An A350 Re-engine on UltraFan fires H3.
+
+**What the makers want (inference, from Boeing's estimates).** CFM loses about $16B building its ducted engine for fps alone, gains $1.6B if fps flies the LEAP derivative, and loses $23.5B if fps flies a rival engine [5P]. So CFM commits when a rival commits or when NGSA takes the ducted engine too. Engine makers want margin before they invest [BX-0335], and Boeing accepts higher prices for capacity [B-1983].
+- **CFM's `leap_upgrade`, `genx_upgrade`, or the open fan with emissions lobbying:** CFM is milking or waiting for 2045. Expect no ducted engine.
+- **P&W's `gtf_next` or Rolls-Royce's `uf_nb`:** a real alternative, and leverage on CFM.
+
+**Disclosures.**
+- **Offer in Round 1:** "any engine we select must be launched by 2031 and ready by 2038; we will choose among committed engines on value". This states the engine choice Boeing deliberately deferred [B-2078] and its durability caution [B-2304]. It is not a launch date [B-2313].
+- **Seek:** each maker's launch year and terms, P&W's Joint Venture intent, and Airbus's NGSA engine.
+- **Never blame Airbus** for a maker's fallback or slip (row 12) [B-1923].
+
+### 11.4 Briefing enablers and constraints
+
+| Item | Existing doctrine | Evidence | In this game |
+|---|---|---|---|
+| 737 customer base | 40% is the floor; the backlog means no hurry; the 737 rate drives cash | B-0638, B-2305, B-2298 | `sq_share` 0.40; Rate Increase in Round 1; stress 737 commonality at launch (§9) |
+| Trained workforce | Answer scarcity with hiring, transfers and retention | B-1941, B-0729, B-1835 | Poaching costs $0.75B a round, Solo or Joint Venture alike (§6, tension 5) |
+| Government incentives | Lobbies, but [NOW] shares Airbus's interest in tariff-free trade; trade action as statements | B-2290, B-1339, B-2509 | Not modelled; row 13; never in the business case |
+| Cash from the 787 | The 787 stays the most efficient in its segment | B-0634, B-0934, B-2336 | Keep it a cash source: no Re-engine before 2036, and none below ε |
+| High debt load | Debt first, investment grade fixed | B-2327, B-2186, B-2069, B-1893 | H1; Solo spend from 2031, when the MS path has net cash [FIN §8a] |
+| Ramp-up speed | KPIs, not dates; steps of +5 a month | B-2221, B-2351, B-2339, B-2309 | The 10-year ramp; H6 |
+| Engineering capacity | One major development at a time | B-0341, B-1526, B-1593 | H4: Re-engine from 2036; the Joint Venture halves strain |
+| Supply-chain bottlenecks | Embed staff, buffers, a supplier-readiness gate; engines bind the 737 | B-2097, B-2043, B-2308, B-1449 | Slip test; a committed engine with a buffer; Rate deferral under a crunch |

@@ -1,0 +1,194 @@
+[
+  {
+    "trigger": "An airframer launches fps or NGSA and asks for a CFM engine, with no rival narrowbody engine launched or signalled",
+    "response": "Compete without assuming incumbency; offer the derivative before a clean sheet; pursue a new platform with Safran only if additive",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "Do Nothing on engines: the airframe flies the LEAP derivative (cfm_leap_plus). Snapshot: NGSA 2029 gives CFM +14.46 (ducted standard -8.90); fps 2029 gives +1.28 (ducted -16.25). Disclose that CFM commits a new engine against a committed airframe. Safran gate: consent assumed (joint practice)",
+    "evidence": ["CX-0564", "CX-1126", "CX-0162", "CX-0301", "CX-0139"]
+  },
+  {
+    "trigger": "An airframer is about to launch fps or NGSA while a rival narrowbody engine (gtf_next, uf_nb Solo or Joint Venture) is launched or credibly signalled",
+    "response": "Fight campaign by campaign on durability; take early-life risk priced to win; no price war for share's sake",
+    "lag": "same turn if signalled; otherwise the next turn, before that airframer launches",
+    "strength": "moderate",
+    "war_game_translation": "launch ducted with aggressive terms, launch year at or before the airframer's (7 development years). Standard terms never beat a launched rival in the snapshot. Snapshot value of defending against losing: NGSA -14.87 against -28.30; fps -20.55 against -29.04. Run whatif with the rival's launch included; options assumes rivals do nothing",
+    "evidence": ["CX-1288", "CX-0207", "CX-0609", "CX-0218", "CX-0555"]
+  },
+  {
+    "trigger": "An airframer commits (disclosed, or predicted at about 0.7 or more) to an fps or NGSA launch in 2036-2037 on the RISE open fan",
+    "response": "Turn the technology into a product when the airframer and airlines are ready; hold the 20% fuel-burn bar",
+    "lag": "same turn (round 3)",
+    "strength": "moderate",
+    "war_game_translation": "open_fan launched in 2036 (9 years; ready 2045), standard terms, plus lobby_emissions. Gates G1-G5 in profile section 6. Declare the RISE premium against the LEAP derivative (snapshot 8.63-13.14) within the one-off RISE allowance of $15B. NGSA 2037 on RISE with lobbying: Airbus +17.97 against +16.59 on the LEAP derivative",
+    "evidence": ["CX-0205", "CX-0469", "CX-0214", "CX-0217", "CX-0147"]
+  },
+  {
+    "trigger": "An airframer asks for RISE on an airframe launched before 2036",
+    "response": "Leave the entry date to the airframer; never press it into a wait; GE's own window was the mid-2030s",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "No early open_fan launch; disclose that RISE enters service in 2045. Snapshot: NGSA 2029 on RISE leaves Airbus +1.79 against +38.09 on the LEAP derivative, and an early CFM launch only adds capex (fps 2037 on RISE: CFM -15.31 if launched 2026, -9.47 if 2036)",
+    "evidence": ["CX-0205", "CX-0608", "CX-0152"]
+  },
+  {
+    "trigger": "Rolls-Royce launches an UltraFan narrowbody, Solo",
+    "response": "No public reaction and no price cut; RISE stays funded; the technical counter is physics (ducted engines get less than half the open fan's gain)",
+    "lag": "next turn, before the next open airframe launches",
+    "strength": "moderate",
+    "war_game_translation": "ducted with aggressive terms. Snapshot fps 2029: Boeing +15.33 on UltraFan standard against +16.50 on CFM aggressive; Rolls-Royce aggressive (+17.57) still wins, in which case hold and declare the loss",
+    "evidence": ["CX-0580", "CX-0609", "CX-0553", "CX-0183"]
+  },
+  {
+    "trigger": "Rolls-Royce and Pratt & Whitney launch the UltraFan narrowbody as a Joint Venture",
+    "response": "As for a Solo launch; GE leaders rejected three-supplier airframes and a geared product for a new narrowbody",
+    "lag": "next turn",
+    "strength": "moderate",
+    "war_game_translation": "ducted with aggressive terms. Snapshot NGSA 2029: Joint Venture UltraFan +46.35 for Airbus against +48.40 on CFM aggressive; the Joint Venture is worth +10.86 to Pratt & Whitney and +8.87 to Rolls-Royce if Airbus picks it, so treat it as a live threat",
+    "evidence": ["CX-1127", "CX-1128", "CX-0580"]
+  },
+  {
+    "trigger": "Pratt & Whitney launches a next-generation GTF",
+    "response": "Durability as the weapon; score by win rate; welcome GTF operators; do not name the rival",
+    "lag": "next turn",
+    "strength": "moderate",
+    "war_game_translation": "ducted with aggressive terms. Snapshot: NGSA 2029 GTF2 +44.35 for Airbus against +48.40 on CFM aggressive (Pratt & Whitney aggressive, +48.75, still wins); fps 2029 GTF2 +14.39 against +16.50",
+    "evidence": ["CX-0218", "CX-0581", "CX-0906", "CX-0164", "CX-0580"]
+  },
+  {
+    "trigger": "Pratt & Whitney orders its GTF durability upgrade (gtf_upgrade)",
+    "response": "Answer with dated, delivered durability fixes; defend A320neo share on time on wing",
+    "lag": "same or next turn",
+    "strength": "strong",
+    "war_game_translation": "leap_upgrade, alone in its turn. Snapshot: gtf_upgrade alone costs CFM -3.53 and drops nb_dominance to 73% (missed); with leap_upgrade in the same round CFM is +1.41 and nb_dominance 76% (met)",
+    "evidence": ["CX-0209", "CX-0996", "CX-0218", "CX-1285"]
+  },
+  {
+    "trigger": "Rolls-Royce orders its Trent 1000 upgrade (t1000_upgrade)",
+    "response": "Defend the 787 on fuel burn and time on wing, not price",
+    "lag": "next turn",
+    "strength": "moderate",
+    "war_game_translation": "genx_upgrade in round 2 (GE alone, no Safran gate). Snapshot: the Trent 1000 upgrade costs CFM -0.98; genx_upgrade adds +0.43 in round 2 (+0.66 in round 1) either way",
+    "evidence": ["CX-0615", "CX-0599"]
+  },
+  {
+    "trigger": "Boeing launches a 787 Re-engine",
+    "response": "Offer the GEnx derivative; the 787 was won on product",
+    "lag": "same turn",
+    "strength": "moderate",
+    "war_game_translation": "No lever needed: ge_genx_next is the default and needs no commitment. Snapshot: CFM/GE +2.25 (2027 launch) or +1.50 (2031); keep genx_upgrade (+0.16 to +0.28 even on a re-engined 787). On a rival engine the Re-engine costs -5.92 (UltraFan) or -5.43 (Pratt & Whitney)",
+    "evidence": ["CX-0615", "CX-0599", "CX-1018"]
+  },
+  {
+    "trigger": "Airbus launches an A350 Re-engine",
+    "response": "Want all the critical platforms; keep talks private; only on additive economics",
+    "lag": "same turn",
+    "strength": "weak",
+    "war_game_translation": "No lever. If Rolls-Royce has not launched uf_wb, the Re-engine falls back to GEnx-next (snapshot +4.98 to CFM/GE). Say nothing that presses Airbus",
+    "evidence": ["CX-0587", "CX-0586", "CX-0301", "CX-0171"]
+  },
+  {
+    "trigger": "A rival launches a new widebody engine (uf_wb, pw_wb)",
+    "response": "No comment on competition; compete on product",
+    "lag": "next turn",
+    "strength": "weak",
+    "war_game_translation": "genx_upgrade if not done; nothing else",
+    "evidence": ["CX-0580", "CX-0600", "CX-0599"]
+  },
+  {
+    "trigger": "An airframer demands aggressive terms or concessions",
+    "response": "Every order accretive on price, terms and scope; no unmodelled risk; no launch-era pricing; early-life risk only when priced",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "standard terms unless a launched rival would otherwise win the airframe. Aggressive terms (+1.4pp airframer margin, value_mult 0.88; provisional) reach every airframe on that engine: snapshot NGSA and fps both on aggressive ducted leaves CFM -25.54. Safran gate: pricing is joint",
+    "evidence": ["CX-0339", "CX-0440", "CX-0930", "CX-0207", "CX-0184"]
+  },
+  {
+    "trigger": "Engine maturity slip (engine_maturity_slip) or a durability problem on our engines",
+    "response": "Admit the gap with numbers; root cause and corrective action; retrofit at natural shop visits; no date without turn-on/turn-off testing",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "No new launch to fix it; leap_upgrade if not done. Snapshot: CFM's PV unchanged; airframes lose (NGSA 2029 ducted: Airbus 42.77 to 34.73); open-fan values are unaffected",
+    "evidence": ["CX-0006", "CX-0003", "CX-0649", "CX-0009", "CX-0905"]
+  },
+  {
+    "trigger": "A rival durability crisis (gtf_durability_crisis, rr_durability_crisis)",
+    "response": "No gloating and no public claim on switching customers; expect no near-term share gain while supply binds",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "Nothing new; leap_upgrade if not done; disclose durability facts only",
+    "evidence": ["CX-0580", "CX-0913", "CX-0604", "CX-0777"]
+  },
+  {
+    "trigger": "A rival engine test setback (gtf_next_test_setback, ultrafan_test_setback)",
+    "response": "Let durability speak; compete campaign by campaign",
+    "lag": "next turn",
+    "strength": "moderate",
+    "war_game_translation": "Keep or launch ducted only if an unlaunched airframe could still move to it; otherwise no move (inference)",
+    "evidence": ["CX-1288", "CX-0164"]
+  },
+  {
+    "trigger": "Supply-chain crunch (supply_chain_crunch)",
+    "response": "Own the problem; engineers and kaizens in supplier plants; buffer inventory; no public blame of suppliers or Safran",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "Strain rises 1.5x: never stack two commitments in a turn (snapshot: leap_upgrade plus genx_upgrade in round 1 falls from +4.18 to +3.48); no new launch unless defensive",
+    "evidence": ["CX-0526", "CX-0556", "CX-0625", "CX-0613", "CX-0158"]
+  },
+  {
+    "trigger": "Fuel-price spike (fuel_price_spike)",
+    "response": "Sustainability and fuel burn as the next basis of competition; the fleet already runs on approved sustainable aviation fuel",
+    "lag": "next turn",
+    "strength": "weak",
+    "war_game_translation": "No lever change: the spike adds 1.5pp to every new airframe whatever the engine. Use it in RISE disclosures (view)",
+    "evidence": ["CX-0451", "CX-0508"]
+  },
+  {
+    "trigger": "FAA certification scrutiny on Boeing or a Boeing quality escape",
+    "response": "Support Boeing publicly; no date ahead of Boeing or the FAA; pace shipments to its real rate; payment terms rather than halted deliveries",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "No order change. For a 2037 RISE fps, FAA scrutiny plus Delay Tactics push entry to 2046 and miss the open_fan metric; a 2036 airframe launch absorbs both",
+    "evidence": ["CX-0307", "CX-0206", "CX-0333", "CX-0142"]
+  },
+  {
+    "trigger": "Narrowbody demand shock (nb_demand_shock)",
+    "response": "Cut cost and capex fast, keep enough capacity for the recovery, protect next-generation technology",
+    "lag": "same turn",
+    "strength": "strong",
+    "war_game_translation": "No launch, no RISE cancellation. Snapshot: CFM's delta PV unchanged",
+    "evidence": ["CX-0397", "CX-0423", "CX-0398", "CX-0389"]
+  },
+  {
+    "trigger": "The replacement wave from 2037 (demand weights rising to a 2044-2046 peak)",
+    "response": "Plan on the base case and treat tailwinds as upside; RISE was meant for the mid-2030s",
+    "lag": "round 3",
+    "strength": "moderate",
+    "war_game_translation": "The round-3 RISE window: a 2036-2037 airframe enters service into the peak. Earlier launches on CFM engines pay CFM more: an NGSA on the LEAP derivative is worth +18.89 launched in 2026 and +6.60 in 2037 (snapshot)",
+    "evidence": ["CX-0536", "CX-0458", "CX-0608"]
+  },
+  {
+    "trigger": "An airframer launches on cfm_ducted before CFM has committed the engine",
+    "response": "Follow the airframer's real programme; do not spend ahead of a launch",
+    "lag": "next turn",
+    "strength": "moderate",
+    "war_game_translation": "The airframe is already on the LEAP derivative; do not launch ducted afterwards (snapshot: a 2031 ducted after an NGSA 2029 on the LEAP derivative only adds -5.55 of capex)",
+    "evidence": ["CX-0246", "CX-0388", "CX-0141"]
+  },
+  {
+    "trigger": "A launched CFM engine has no airframe (the threat passed or the airframe went elsewhere)",
+    "response": "Cut engineering when no airframe is in sight, but protect the underlying technology",
+    "lag": "next turn",
+    "strength": "moderate",
+    "war_game_translation": "cancel it, if no live airframe flies it. Snapshot: a 2027 ducted with no airframe is -7.55 kept, -4.80 if cancelled in round 2. Never cancel open_fan while an airframer may still launch on it",
+    "evidence": ["CX-0388", "CX-0398", "CX-0174"]
+  },
+  {
+    "trigger": "Boeing launches fps as a Joint Venture with Embraer, or Embraer seeks an engine partner",
+    "response": "No evidence of a GE stance on Embraer",
+    "lag": "none",
+    "strength": "weak",
+    "war_game_translation": "The fps Joint Venture leaves the engine choice to Boeing. embraer_partner stays off: snapshot PV is negative in every round (-0.10, -0.14, -0.16) (inference)",
+    "evidence": ["CX-0587"]
+  }
+]

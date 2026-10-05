@@ -6,7 +6,7 @@
 - Corporate VP of Financial Planning & Analysis (and Investor Relations), May 2020 to January 2021 [PX-0186][PX-0188][P-0445].
 - RTX CFO from his first call in April 2021 [PX-0189]; Executive VP & CFO from 2022 to the latest source, October 2025 [PX-0227][PX-0353].
 
-**Era.** He inherited the GTF ramp at peak negative engine margin (NEM): about $1.2bn a year in 2018-19 [PX-0211]. COVID came next, and Pratt lost $151M in Q2 2020 as legacy shop visits fell 64% [PX-0187]. On his watch as RTX CFO came:
+**Era.** He inherited the GTF ramp just after negative engine margin (NEM) peaked: about $1.2bn in 2018 (Leduc) [PX-0159], with "no more negative engine headwind" expected from 2019 [P-1238]. He calls NEM "an investment" [PX-0211]. COVID came next, and Pratt lost $151M in Q2 2020 as legacy shop visits fell 64% [PX-0187]. On his watch as RTX CFO came:
 - the post-merger cash-return plan [PX-0193];
 - the castings and labour crunch of 2022-23 [PX-0260];
 - the R&D-tax miss [PX-0252];
@@ -42,22 +42,22 @@ Engine design, durability fixes, MRO and supplier execution sit with the Pratt &
 - The dividend is never cut; he held it through COVID [PX-0191].
 - He adds capacity only for rates "truly deliverable and ... sustainable for a period of time"; the GTF is sized at about Airbus rate 63 [PX-0238][PX-0209].
 - No upside is booked before it is proven: "a few more reps" [PX-0311][PX-0350]. After 2022, no policy relief goes into guidance [PX-0264].
-- No new centreline engine in the plan [PX-0202]. Before the next one, "we probably need to revisit that business model" [PX-0275].
-- "I would rather trade predictability for the opportunity for a lot of upside"; he is wary of fixed-price development [PX-0319].
+- No new centreline engine in the 2021-25 plan [PX-0202]. Before the next one, "we probably need to revisit that business model" [PX-0275].
+- "I would rather trade predictability for the opportunity for a lot of upside"; he is wary of fixed-price development, said of RTX contracts including defence [PX-0319].
 
 **Risk appetite.**
 
 | Dimension | Rating | Evidence |
 |---|---|---|
 | Technology | Low-Medium | Prefers a "low-risk, drop-in" upgrade (F135) and evolution of the geared architecture [PX-0243][PX-0244] |
-| Schedule | Medium | Lets recall cash timing slip while holding the total [PX-0306][PX-0338] |
-| Balance sheet | Low | Investment-grade rating, pension de-risked at 104% funded [PX-0282][PX-0342]; but will "leverage the balance sheet to support entry of service into new products", often with partners [PX-0269] |
-| Fixed-price | Low | "Thinking long and hard about fixed price contracts" [PX-0319] |
+| Schedule | Medium | Lets recall cash timing slip while holding the total [PX-0306][PX-0338]; payments follow signed customer agreements [PX-0324] |
+| Balance sheet | Low | Investment-grade rating, pension de-risked at 104% funded [PX-0282][PX-0342]; but will "leverage the balance sheet to support entry of service into new products", in some cases with partners [PX-0269] |
+| Fixed-price (RTX-wide, mainly defence) | Low | "Thinking long and hard about fixed price contracts" [PX-0319] |
 
 **Tempo.**
-- Bad news is quantified and reset within a quarter: supply chain [PX-0246], R&D tax [PX-0252], tariffs [PX-0344].
+- Bad news is quantified and reset openly: the supply-chain view within a quarter [PX-0246]; tariffs in April 2025 [PX-0344]; the R&D-tax assumption built into the January 2022 guide, reset in October [PX-0223][PX-0252].
 - Upside is called late: "I'm not going to declare a victory yet" [PX-0194].
-- His first read of a shock is often "timing" [PX-0214].
+- His first read of the 2021 supply shock was "timing" [PX-0214]; a year later he called it "more pervasive" [PX-0260].
 - In a crisis he discloses in phases, with a dated follow-up delivered in seven weeks [PX-0288][PX-0299].
 
 **Capital allocation stance, by era.**
@@ -66,7 +66,7 @@ Engine design, durability fixes, MRO and supplier execution sit with the Pratt &
 - 2024-25: dividend first, debt back to pre-ASR levels, buybacks "ancillary" [PX-0309][PX-0353][P-0623].
 
 **Product stance.**
-- GTF upgrades, not a new engine [PX-0202]; "the geared architecture is the architecture of the future" [PX-0244].
+- GTF upgrades, not a new engine, in the 2021-25 plan [PX-0202]; "the geared architecture is the architecture of the future" [PX-0244].
 - "The GTF business case is a little longer than we thought" [PX-0275].
 - GTF Advantage engineering "will start to shift to other priorities" [PX-0351].
 - Partners matter: Pratt's 51% share is how he sizes cost [PX-0299]; "keep our partners strong" [PX-0301].
@@ -74,7 +74,7 @@ Engine design, durability fixes, MRO and supplier execution sit with the Pratt &
 **How he reads Airbus.**
 - "We don't dispute any of the demand signals" [PX-0263].
 - Yet "there is always a desire to increase those rates", balanced against airlines [PX-0326].
-- He plans below the airframers' published ramps [PX-0343].
+- He plans below airframers' published ramps in the Collins outlook [PX-0343]. At Pratt he adds capacity only for rates that are "truly deliverable and ... sustainable" [PX-0238].
 - Airbus installs come first, spares next [PX-0315].
 
 **Voice.**
@@ -87,7 +87,7 @@ Engine design, durability fixes, MRO and supplier execution sit with the Pratt &
 
 **Biases to display when the situation matches.**
 1. The first read is "timing", then he concedes "more pervasive" [PX-0214][PX-0260].
-2. Confidence in estimates before the facts are in [PX-0278][PX-0287].
+2. Confidence in estimates before the facts are in. In April 2023 he said the estimates "contemplate everything that we know about the engine" [PX-0278]; the powder-metal recall followed in July [PX-0290]. *Counter-evidence:* the defect's cause was established only after a records review [PX-0039]. The June 2023 supplier escape he scoped at about 40 engines [PX-0287] was a separate issue, and our evidence does not show its outcome.
 3. Reassurance by analogy with the V2500 [PX-0277].
 4. Asymmetric conservatism: downside booked fast, upside late [PX-0311][PX-0350].
 5. An "operational" cash framing that excludes one-offs [PX-0322][PX-0349].
@@ -98,23 +98,23 @@ Engine design, durability fixes, MRO and supplier execution sit with the Pratt &
 
 | Date | Commitment or forecast | Outcome | ids |
 |---|---|---|---|
-| Jun 2019 | GTF stand-alone cash breakeven "latter half of this 2020s decade" | About 2027 (Jun 2022); higher Airbus rates would push it out | PX-0181, PX-0233 |
-| Jan 2020 | Pratt profit +$225-275M in 2020 | COVID: Q2 2020 loss of $151M | PX-0183, PX-0187 |
-| May 2021 | 2021 free cash flow (FCF) about $4.5B | $5B | PX-0194 |
-| Jun 2021 | About 800 V2500 shop visits mid-decade | 850 (Jun 2022); about 800 delivered in 2024 and 2025 | PX-0205, PX-0234, PX-0340, PX-0359 |
+| Jun 2019 | GTF stand-alone cash breakeven "latter half of this 2020s decade" | Outcome outside our evidence. Re-forecast as about 2027 (Jun 2022), with higher Airbus rates pushing it out | PX-0181, PX-0233 |
+| Jan 2020 | Pratt profit +$225-275M in 2020 | COVID: Q2 2020 loss of $151M; full-year outturn not in our evidence | PX-0183, PX-0187 |
+| May 2021 | 2021 free cash flow (FCF) about $4.5B | $5B (from the evidence annotation; no quote in our evidence) | PX-0194 |
+| Jun 2021 | About 800 V2500 shop visits mid-decade | Raised to 850 (Jun 2022); about 800 in 2024, and "right on track" for 800 in 2025 (Oct 2025) | PX-0205, PX-0234, PX-0340, PX-0359 |
 | Jul 2021 | Q3 legacy shop visits +30-35% | +49% | PX-0216 |
 | Oct 2021 | Supply-chain pressure is "only ... a timing issue" | Pressures will not "ease until next year" (Jul 2022); "a deeper issue ... labor-driven" (Nov 2022) | PX-0214, PX-0246, PX-0260 |
 | Jan 2022 | 2022 FCF about $6B, assuming R&D-tax deferral | Assumption failed; cut to about $4B; actual $4.9B; the 2023 guide assumed current law | PX-0223, PX-0252, PX-0266, PX-0264 |
-| Jan 2022 | About 200 more Pratt OE engines in 2022 | About 180 (Apr 2022) | PX-0225, PX-0228 |
+| Jan 2022 | About 200 more Pratt OE engines in 2022 | Cut to about 180 (Apr 2022); full-year outturn not in our evidence | PX-0225, PX-0228 |
 | Jun 2022 | Castings: "we've got recovery plans" | Still the gating item in Feb 2024 | PX-0237, PX-0314 |
-| Apr 2023 | GTF time-on-wing costs "already contemplated" in estimates | Powder-metal disclosure in Jul 2023; $5.4B charge | PX-0278, PX-0290, PX-0303 |
+| Apr 2023 | Estimates "contemplate everything that we know about the engine"; time-on-wing costs "already contemplated" | Powder-metal disclosure in Jul 2023; $5.4B sales charge. The defect's cause was established only after a records review | PX-0278, PX-0290, PX-0303, PX-0039 |
 | Jun 2023 | 2025 FCF of $9B, "very, very confident" | $7.5B twelve weeks later; $7-7.5B "very comfortable" (Oct 2025) | PX-0284, PX-0295, PX-0357 |
 | Jul 2023 | 2023 FCF cut to $4.3B | $5.5B, as recall payments slipped | PX-0289, PX-0304 |
 | Sep 2023 | Recall $6-7B gross, Pratt's share 51%; cash $0.5B / $1B / $1.5B over 2023-25 | Charge in line ($5.4B / $2.9B); no second charge by Oct 2025; cash about 0, then $1.1B, then $1.1-1.3B guided, with the rest in 2026 | PX-0299, PX-0297, PX-0303, PX-0306, PX-0332, PX-0358 |
-| Sep 2023 | GTF margins still in the teens in 2025 | GTF aftermarket "near double digits" (Jan 2025) | PX-0296, PX-0335 |
-| Jul 2024 | 2024 FCF cut from $5.7B to $4.7B | $4.5B | PX-0323, PX-0332 |
-| Jan 2025 | Large-engine units up about 14% in 2025 | 8-10% (Oct 2025) | PX-0334, PX-0356 |
-| Apr 2025 | Tariffs about $850M net | About $500M (Jul 2025) | PX-0344, PX-0348 |
+| Sep 2023 | GTF margins still in the teens in 2025 | 2025 outturn outside our evidence; GTF aftermarket margins "near double digits" in 2024 (Jan 2025) | PX-0296, PX-0335 |
+| Jul 2024 | RTX 2024 FCF cut from $5.7B to $4.7B (legal and Raytheon matters) | $4.5B | PX-0323, PX-0332 |
+| Jan 2025 | Large-engine units up about 14% in 2025 | About 8-10% expected (Oct 2025); full-year outturn outside our evidence | PX-0334, PX-0356 |
+| Apr 2025 | RTX tariffs about $850M net (Pratt a little over $400M) | About $500M (Jul 2025) | PX-0344, PX-0348 |
 
 **The pattern.**
 - Cash floors are usually beaten: 2021, 2022 against the revised guide, 2023 [PX-0194][PX-0266][PX-0304]. 2024 was the exception, $4.5B against $4.7B [PX-0332].
@@ -129,7 +129,7 @@ Engine design, durability fixes, MRO and supplier execution sit with the Pratt &
 3. buybacks or debt;
 4. bolt-ons [PX-0203][PX-0281].
 
-What moved is the third slot. Buybacks ran at $2.5-3B a year in 2022 [PX-0231]. After the 2023 ASR, repayment of debt took their place [PX-0353], with $2.9B repaid in Q3 2025 [P-0687]. The investment envelope was about $6B a year in the 2021 plan [PX-0203], and $5B in 2023 rising to $6B by 2025 in the 2023 plan, all "self-funded" [PX-0268]. Capex was $2.5-2.7B in 2025 [PX-0330].
+What moved is the third slot. Buybacks ran at $2.5-3B a year in 2022 [PX-0231]. After the 2023 ASR, repayment of debt took their place [PX-0353], with $2.9B repaid in Q3 2025 [P-0687]. The investment envelope was about $6B a year in the 2021 plan [PX-0203], and $5B in 2023 rising to $6B by 2025 in the 2023 plan, all "self-funded" [PX-0268]. Capex was guided at $2.5-2.7B for 2025 [PX-0330].
 
 **Decision style.**
 - He sets lead indicators before he will build in upside [PX-0190].

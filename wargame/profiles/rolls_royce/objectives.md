@@ -190,3 +190,113 @@ echo '{"rolls_royce": {"2": {"launch": [{"program": "uf_nb", "variant": "solo", 
 python3 wargame/profiles/build/cite_check.py wargame/profiles/rolls_royce/objectives.md wargame/profiles/rolls_royce/evidence.jsonl --show
 ```
 </details>
+
+## 9. Five-player game (five-player-2045)
+
+Numbers are $B of full-game delta PV for RR from `whatif --side rolls_royce` on a five-player-2045 scratch run (RR, P&W and CFM/GE playing, no inject), round 1. They are snapshots: re-run them each round. Turn keys: 1 = 2026-30, 2 = 2031-35, 3 = 2036-45. Doctrine and reaction rows: profile §11. The metrics are unchanged (`nb_entry` above 0.5 in 2045 and 2050; `wb_dominance` at or above 184.1 in 2040, 2045, 2050).
+
+### 9.1 What it takes
+
+**Narrowbody entry: an airframer on UltraFan, launched by 2038.** `uf_nb` takes 7 years, so a launch after 2038 delivers nothing in 2045 (NGSA 2040: 0). With `ultrafan_test_setback` (+2 years) only launches by 2036 are safe. Round 1 has no announcements, so the hard rule [R-0994, R-1005] leaves rounds 2 and 3.
+
+Plans that meet both metrics (standard terms; round-1 `t1000_upgrade` in each):
+
+| Airframer plan | RR orders | RR delta PV | Airframer on UltraFan (CFM ducted / LEAP derivative) | RR narrowbody engines 2045 |
+|---|---|---|---|---|
+| NGSA 2031 on UltraFan | Solo 2031 | +17.32 | Airbus 38.88 (35.90 / 31.93) | 2,709 |
+| fps 2031 on UltraFan | Solo 2031 | +11.11 | Boeing 12.40 (11.24 / 9.17) | 1,909 |
+| Both 2031 on UltraFan | Solo 2031 | +27.17 | Airbus 27.30, Boeing 5.53 | 4,000 |
+| NGSA 2031, P&W joins | `jv_pw` 2031 | +8.94 | Airbus 38.88 | 1,355 |
+| NGSA and A350 Re-engine 2033 on UltraFan | Solo 2033, `uf_wb` 2032 (strain 1.03) | +10.77 | Airbus 32.05 | 2,640 |
+| NGSA 2036 on UltraFan | Solo 2036 | +9.89 | Airbus 23.24 (21.44 / 18.91) | 2,513 |
+| NGSA 2038 on UltraFan | Solo 2038 | +7.64 | Airbus 17.94 (16.51 / 14.46) | 2,400 |
+| fps 2038 on UltraFan | Solo 2038 | +4.83 | Boeing 4.30 (3.79 / 2.90) | 1,600 |
+
+CFM/GE's GEnx package in 2026 takes 0.58 off each plan and leaves `wb_dominance` met at 194.1 (NGSA 2031: +16.74).
+
+**Rival timing.** RR's Solo value when the other airframer launches on CFM ducted:
+
+| Other airframer on CFM ducted | none | 2028 | 2031 | 2033 | 2036 |
+|---|---|---|---|---|---|
+| NGSA 2031 on UltraFan | +16.50 | +12.91 | +13.53 | +14.04 | +14.80 |
+| fps 2031 on UltraFan | +10.29 | +6.50 | +7.12 | +7.63 | +8.39 |
+| NGSA 2036 on UltraFan | +9.07 | +6.02 | +6.37 | - | +7.30 |
+
+An early rival answer cuts our value by up to 3.8 and never breaks the metric.
+
+**Widebody dominance is defensive** (2040 / 2045 / 2050 engines):
+
+| Move | RR orders | RR delta PV | RR widebody engines | Met |
+|---|---|---|---|---|
+| none | upgrade 2026 | +0.81 | 204.1 each | yes |
+| GEnx package 2026 | none | -0.58 | 174.1 each | no |
+| GEnx package 2026 | upgrade 2026 | +0.23 | 194.1 each | yes |
+| A350 Re-engine 2033 on UltraFan | `uf_wb` 2032 | -2.11 | 189.4 / 202.6 / 215.9 | yes |
+| A350 Re-engine 2033 on GE (we did not launch, or Airbus preferred GE) | none (upgrade) | -3.35 (-2.59) | 42.5 / 38.7 / 35.0 (61.8 / 56.4 / 50.9) | no |
+| A350 Re-engine 2031 on UltraFan | `uf_wb` 2031 aggressive | -2.94 | 192.0 / 205.3 / 218.5 | yes |
+| 787 Re-engine 2031 on GE | none | -1.98 | 126.5 / 109.5 / 92.5 | no |
+| 787 Re-engine 2033 on UltraFan | `uf_wb` 2032 | +0.91 | 340 each | yes |
+| 787 Re-engine 2036 on GE | none | -1.10 | 184.1 / 126.5 / 109.5 | no |
+
+GE's GEnx fallback needs no wait; our 6-year engine makes a 5-year Re-engine wait a year unless `uf_wb` launches a year before the airframer. A same-year launch from 2030 loses the contest at standard terms (A350 2031: Airbus 1.74 on us, 2.11 on GE; A350 2036: 0.76 against 1.04), so the year-early launch, or aggressive terms when the announced year opens a round, is what keeps the A350.
+
+### 9.2 Objective premium and the contest
+
+Expected PV of a Solo launch at the profile's selection probabilities (selected / unselected: NGSA 2031 +16.50 / -5.70, fps 2031 +10.29 / -5.70, NGSA 2036 +9.07 / -3.54, fps 2036 +5.51 / -3.54, NGSA 2038 +6.83 / -2.92):
+
+| P(selected) | NGSA 2031 | fps 2031 | NGSA 2036 | fps 2036 | NGSA 2038 | Premium against Do Nothing |
+|---|---|---|---|---|---|---|
+| 0.6 (announced on UltraFan) | +7.62 | +3.89 | +4.03 | +1.89 | +2.93 | 0 |
+| 0.35 (announced, engine open) | +2.07 | -0.10 | +0.87 | -0.37 | +0.49 | 0; fps 0.10 and 0.37 |
+| 0.2 (signal only) | -1.26 | -2.50 | -1.02 | -1.73 | -0.97 | 0.97 to 2.50 |
+
+- Break-even P: NGSA 0.26 (2031) to 0.30 (2038); fps 0.36 to 0.42. Joint Venture at P 0.6: NGSA 2031 +3.69, 2036 +1.94; Solo leads by 3.93 and 2.09.
+- Round 1: a speculative Solo 2028 pays +22.65 (NGSA) or +14.08 (fps) if selected and -7.59 if not; at P 0.1 it is -4.56 and -5.42. The premium of holding the hard rule is 0 at that P. The risk is structural: both airframers' PV peaks at a 2028 launch (NGSA 50.47 on UltraFan, 46.55 CFM ducted, 41.48 LEAP derivative; fps 16.97 / 15.34 / 12.58), so a round-1 launch on CFM can close `nb_entry` before we may act (inference).
+- The fallback chain: an airframer naming UltraFan when we have not launched gets CFM ducted if CFM committed, else the LEAP derivative. Naming us therefore costs it nothing (inference).
+- Contest (airframer gain from UltraFan standard): against CFM ducted standard NGSA +4.74 (2026) to +1.11 (2040), fps +2.11 to +0.40; against GTF2 standard NGSA +2.58 to +0.65. UltraFan standard loses to CFM ducted aggressive (2031: NGSA -1.75, fps -0.98) and GTF2 aggressive (NGSA -2.02, fps -0.91). Aggressive UltraFan beats all of them (2031: NGSA +2.01, fps +0.84; 2036: +1.25, +0.48) and costs RR 3.67 (NGSA) and 2.62 (fps) in 2031, 2.11 and 1.51 in 2036.
+- The open fan loses everywhere: NGSA 2036 on it 15.47, lobbied 16.55, lobbied and aggressive 18.87, against UltraFan 23.24.
+- P&W gains most from our Joint Venture: NGSA 2031 +9.71 (+9.34 after CFM's LEAP upgrade) against GTF2 standard +0.17 and aggressive -3.21 (inference: whether it joins is its own call).
+
+### 9.3 Three-round objective check (add after profile §9 step 11)
+
+**Every round.** Read `your_objectives` in `brief`; record `nb_entry` (2045 and 2050 engines) and `wb_dominance` (2040-2050 against 184.1). `whatif` the chosen orders and the PV-best alternative, with the airframer selecting UltraFan and not, and read `objectives.rolls_royce`. Objective premium = PV-best expected PV minus chosen expected PV; with any doctrine premium it stays within $3B per round. Rationale line: "Objectives: nb_entry before X, after Y (P = p); wb_dominance before X, after Y; objective premium $Z B; ids."
+
+**Round 1 (2026-30).**
+1. No announcements, so no UltraFan (premium 0 at P 0.1; speculative Solo 2028 -4.56).
+2. Fund `t1000_upgrade` (+0.81): it keeps `wb_dominance` even if CFM/GE funds the GEnx package (194.1 against 174.1).
+3. Disclose year-specific conditions: we launch `uf_nb` in the year an airframer announces on UltraFan, and `uf_wb` a year before an announced Re-engine year. A round-2 announcement is the only route to `nb_entry` (inference).
+4. Record whether NGSA or fps launched on CFM in round 1. If both did, `nb_entry` is out of reach; score PV only.
+
+**Round 2 (2031-35).**
+1. For each round-1 announcement, `whatif` our launch in the announced year (narrowbody) or a year earlier (widebody).
+2. Set P from the profile §9 step 4. Check the contest against CFM ducted if CFM committed one (else the LEAP derivative), GTF2 and the open fan, at both terms.
+3. Launch Solo at P 0.6. Choose `jv_pw` only if P&W announced its join and Solo leads by $3B or less (NGSA 2035: 2.41). At P 0.35, NGSA 2031 Solo (+2.07) clears the +$2B bar; later NGSA launches are positive but below it (+1.54 in 2033), and fps costs a premium of 0.10 to 0.31 (2031-35). Under §6 item 2 launch while the premium fits the cap.
+4. A350 Re-engine announced for 2031: standard loses to GE, so aggressive (-2.94 against -4.14 on GE; `wb_dominance` met). For a later year: `uf_wb` a year earlier, standard.
+5. GEnx package announced and our upgrade unfunded: fund it only if no UltraFan development overlaps (+0.48); otherwise the red line holds.
+
+**Round 3 (2036-45).**
+1. If `nb_entry` is unmet, this is the last window: `uf_nb` by 2038 (2036 to stay safe against a setback). At P 0.6, NGSA Solo +4.03 (2036) to +2.93 (2038) and fps +1.89 to +1.24 are positive, so launch; the objective replaces the +$2B bar (§6).
+2. After 2038 `nb_entry` cannot be met; PV only.
+3. A350 Re-engine announced for 2036: aggressive `uf_wb` 2036 (-1.87 against -2.40 on GE). For a later year: a year earlier, standard (2037: -1.50 against -2.15).
+4. Upgrade, if still unfunded and no overlap: +0.28.
+
+<details>
+<summary>Commands (five-player-2045)</summary>
+
+```bash
+cd /home/user/aero-engine-gameboard
+python3 -m wargame.engine new --scenario five-player-2045 --suppliers rolls_royce,pratt_whitney,cfm --run-id rr-5p-scratch --force
+python3 -m wargame.engine inject --run rr-5p-scratch --none
+python3 -m wargame.engine options --run rr-5p-scratch --side rolls_royce   # fallback incentives fps 5.317, NGSA 10.593
+W="python3 -m wargame.engine whatif --run rr-5p-scratch --side rolls_royce"  # turn keys 1 = 2026-30, 2 = 2031-35, 3 = 2036-45
+# Narrowbody grid, Y in 2026, 2028, 2030, 2031, 2033, 2035-2038, 2040 (turn T): RR Solo / jv_pw (+ '"pratt_whitney": {"T": {"join_rr_jv": true}}')
+#  in Y with ngsa (airbus) or fps (boeing) on rr_ultrafan_nb; unselected; the airframer on cfm_ducted
+#  ('"cfm": {"T": {"launch": [{"program": "ducted", "terms": "standard|aggressive", "year": Y}]}}'), cfm_leap_plus, pw_gtf2
+#  (P&W gtf_next standard|aggressive), cfm_open_fan (CFM open_fan, with or without '"cfm": {"1": {"lobby_emissions": true}}').
+echo '{"rolls_royce": {"1": {"t1000_upgrade": true}, "2": {"launch": [{"program": "uf_nb", "variant": "solo", "terms": "standard", "year": 2031}]}},
+ "airbus": {"2": {"launch": [{"program": "ngsa", "engine": "rr_ultrafan_nb", "year": 2031}]}}}' | $W     # +17.32
+# Widebody: rea350 / re787 in year Y on rr_ultrafan_wb with uf_wb in Y or Y-1 (standard|aggressive), or on ge_genx_next.
+# Upgrade: '"rolls_royce": {"T": {"t1000_upgrade": true}}' with and without '"cfm": {"T": {"genx_upgrade": true}}'.
+rm -rf wargame/runs/rr-5p-scratch
+```
+</details>
