@@ -32,7 +32,7 @@ The 2035 technology-ready year, the 2028-2030 launch window, the turn years, the
 7. **Never cancel NGSA in reaction to Boeing.** Prune only derivatives whose business case has failed. **(inference)** No item shows Airbus cancelling in reaction to Boeing. Programmes are judged on payback and returns [A-0364]. The planned A350-800 gave way to the cheaper A330neo [A-0090]. The A380, a clean sheet rather than a derivative, was ended [A-0143].
 8. **No engine that pushes NGSA past 2037.** The A350 Re-engine defaults to Rolls-Royce [A-0409, A-0250, A-0253]. In the game this rule also excludes the open fan, which cannot enter service before 2045.
 
-**Default plan**
+**Default plan (four-turn game; for `five-player-2045` see §11.2)**
 - **T1 (2026-28).** Fix the NGSA engine by 2027 [A-0182] and launch NGSA in 2028 (EIS 2035). A350: Do Nothing, since the A350F is in its industrial phase [A-0327]. Poaching once NGSA is in development.
 - **T2 (2029-31).** Launch NGSA by 2030 if it has not launched yet. Poaching on. Run the A350 pre-emption test (§9).
 - **T3 (2032-34).** Execute NGSA. Launch the A350 Re-engine in 2033-34 only if Boeing has no 787 Re-engine and it gains at least $1B.
@@ -456,3 +456,95 @@ Display these when the situation matches:
   - The FY2024 short-term debt is labelled computed.
   - The uncited helicopter-deliveries row was removed, and book-to-bill now cites A-0406 and A-0389.
 - **Unchanged checks.** In-scope perspective tags all match, and no rival-intelligence id appears outside §5 and §7. The game parameters match `wargame.engine rules`.
+
+---
+
+## 11. The five-player game (five-player-2045)
+
+Use this section when `rules` shows three rounds and the engine makers as players. All numbers are **snapshots**: Airbus-side `whatif` on a scratch run (2026-10-05; three engine makers, no injects), in $B of Airbus delta PV. Rerun them before you rely on them. Unless a case says otherwise, Boeing makes no move.
+
+### 11.1 What changes, and what still applies
+
+**What changes**
+- **Three rounds:** 2026-2030, 2031-2035 and 2036-2045, with a launch in any year of a round. Round 1 holds the whole 2028-2030 launch window. Read "turn" in §1-§10 as "round", so a one-turn lag in §5 means the next round.
+- **NGSA costs $20B.** Capture follows the replacement wave: weight 0.4 until 2036, 1.0 from 2044.
+- **Engines are other players' decisions.**
+  - If an engine's maker has not launched it by the end of the round, our request falls back: UltraFan or GTF2 → CFM ducted → LEAP derivative (`cfm_leap_plus`: -1 pp margin, 0.92 capture). A CFM request with no CFM commitment goes straight to the LEAP derivative.
+  - Fallbacks are public.
+  - A committed engine is ready in its maker's launch year plus 7 years (CFM ducted, UltraFan) or 6 (GTF2, the UltraFan Joint Venture, the UltraFan widebody). NGSA enters service at the later of its own date and that year.
+  - Aggressive terms add 1.1-1.4 pp to our margin.
+- **Delay Tactics are exposed after two rounds of use.** The penalty now lands in a counted year: 2040 after rounds 1 and 2, or 2050 after rounds 2 and 3.
+- **The briefing's enablers and constraints** are in `assigned_objectives` (see §11.4).
+
+**What still applies as written**
+- **Hard rules 1-8.**
+  - Rule 4 means one round, and rule 6 means one launch per round.
+  - Rule 8 still excludes the open fan: NGSA 2028 on it waits until 2045 and scores -0.83.
+  - UltraFan adds no EIS year here if Rolls-Royce commits by 2028.
+- **Reaction rows 1-16**, with lags counted in rounds. Row 12 also covers an engine fallback or a late commitment: never cancel NGSA over it.
+- **The §6 tests and the §9 procedure.** Step 3 adds the engine makers' orders to `whatif`. `options` launches only in a round's first year with no supplier moves, so its NGSA rows are NGSA 2026 on the LEAP derivative. Test 2028 and engine commitments in `whatif`.
+- **The Quick card default plan** is the four-turn plan. §11.2 replaces it in this game.
+
+### 11.2 Default plan per round
+
+**Round 1 (2026-2030): launch NGSA in 2028 (EIS 2035).** This replaces T1, and T2's "by 2030".
+- **Timing** (CFM ducted committed / LEAP fallback):
+
+  | NGSA launch | 2026 | 2027 | **2028** | 2029 | 2030 | 2031 |
+  |---|---|---|---|---|---|---|
+  | ΔPV | +34.35 / +28.50 | +41.12 / +35.67 | **+46.55 / +41.48** | +42.77 / +38.09 | +39.22 / +34.91 | +35.90 / +31.93 |
+
+  2026 and 2027 break rule 1; 2031 enters service in 2038 and breaks rule 8.
+- **Engine: request UltraFan**, by the §6 rule (best PV with EIS by 2037) applied to committed values:
+
+  | Request | Committed on time (standard / aggressive) | Late commitment | No commitment |
+  |---|---|---|---|
+  | UltraFan | +50.47 / +55.71 | 2029: +43.72; 2030: +37.44 | CFM ducted +46.55, else LEAP +41.48 |
+  | GTF2 | +48.29 / +53.09 | 2030: +41.72 | same chain |
+  | CFM ducted | +46.55 / +52.69 | 2029: +40.15; 2030: +34.16 | LEAP +41.48 |
+
+  Every request ends on the same fallback, so an UltraFan or GTF2 request weakly dominates a CFM one. UltraFan beats ducted by $3.92B, which clears the $1B test.
+- **A350:** Do Nothing. The A350F is in its industrial phase [A-0327], and a 2028 launch would cost $1.22-1.49B.
+- **Tactics:** Poaching on (+0.15). Delay Tactics off: a round-1 order is blind, and against no fps it wastes $0.50B and still counts toward exposure.
+
+**Round 2 (2031-2035): execute NGSA and run the A350 test.** This replaces T2-T3.
+- **No NGSA launch** unless an inject moved the technology-ready year (§6).
+- **A350 Re-engine in 2035 on UltraFan**, if Boeing has no 787 Re-engine, Rolls-Royce committed `uf_wb` by 2034 and the gain is at least $1B.
+  - It adds +1.49 (+2.15 on aggressive terms), with no NGSA overlap. 2033 adds +1.08 (strain -0.88), 2034 +1.30.
+  - If Rolls-Royce commits in our launch year we wait a year (+0.92, which fails). With no commitment we get the GEnx upgrade (+1.22). If `uf_wb` is not public by round 2, defer to round 3.
+  - After a 787 Re-engine, an A350 Re-engine lost $0.81-2.17B: stay out (rule 3).
+- **Tactics:** Poaching on (+0.10). Delay Tactics off (below).
+
+**Round 3 (2036-2045): NGSA in service, the wave runs.** This replaces T4.
+- **Last A350 window, 2036-2037:** +1.28 and +1.09 with UltraFan committed earlier, +1.04 and +0.87 on GEnx. 2038 adds only +0.71.
+- **Poaching** only while the A350 Re-engine is in development: +0.07 if it is, about -0.1 if not.
+- **No cancellations and no open fan.**
+- **Whole plan:** +52.22, or +42.95 if both engine requests fall back.
+
+**Delay Tactics and Poaching across rounds.** NGSA 2028 against a Boeing fps on the LEAP derivative: fps 2026 +27.05 (-1.10 pp), 2027 +27.99 (-0.55 pp), 2028 a tie, 2029 or later we lead. One round of Delay Tactics gained $0.29-0.82B in every case tested (fps 2026-2036, with and without a Rate Increase), so the $1B test keeps it off. A second round exposes the tactic and costs share: against fps 2026, rounds 1 and 2 leave -1.00 pp, against -0.55 for one round. Poaching is worth $0.25B over rounds 1-2.
+
+### 11.3 Reading the engine makers' public moves
+
+- **The launch year is the signal.** For NGSA's 2035 EIS, CFM ducted and solo UltraFan must launch by 2028, and GTF2 or the UltraFan Joint Venture by 2029. The UltraFan widebody must come a year before our A350 launch. A later launch makes us wait, at 10% of capex a year.
+- **Their incentives**, as our `whatif` estimates them (NGSA 2028):
+  - **Rolls-Royce:** +22.65 for committing UltraFan, best in 2028.
+  - **Pratt & Whitney:** +0.93 at most for GTF2, against -3.10 for losing its A320neo share. Joining Rolls-Royce's Joint Venture gives it +13.19.
+  - **CFM/GE:** -8.11 for committing ducted, against +15.82 if NGSA flies its LEAP derivative.
+
+  So expect Rolls-Royce to commit, Pratt & Whitney to join the Joint Venture, and CFM to hold back. A CFM ducted launch is a bid for Boeing's fps. On the A350, Rolls-Royce gains most by committing in our launch year, which is the year that makes us wait.
+- **Aggressive terms are a price cut to whoever flies the engine.** On ours they are worth $4.8-6.1B. On Boeing's fps they left our PV unchanged in the ties tested, but they raise the fps's value to Boeing, so expect an earlier fps.
+- **An open-fan launch or emissions lobbying.** An fps on the open fan enters service in 2045, so we lead: against fps 2026 on it we score +37.45 and meet both metrics. It is no reason to move NGSA.
+- **No reaction needed:** the upgrades (GTF, LEAP, Trent 1000, GEnx), the Embraer partnership and emissions lobbying move engine share between makers and left our PV unchanged. A Boeing fps on the LEAP derivative captures at 0.92.
+- **Commitments bind:** a maker cannot cancel an engine that a live airframe flies.
+- **Statements are a prior, as with Boeing (§7).** An engine supplier already failed to commit engines we ordered [A-0218], so count a commitment only once it is public.
+
+### 11.4 The briefing's enablers and constraints
+
+| Briefing item | Doctrine | Evidence | Game reading |
+|---|---|---|---|
+| Existing A320 customer base | Objective 2; reaction rows 4, 6, 7 | A-0241, A-0389, A-0242, AX-0025 | 60% status-quo share. NGSA 2028 keeps `protect_a320`, which counts only 2030. |
+| Government incentives | §2, programme funding | A-0348, A-0368, A-0445 | Not modelled. $20B is now the scenario value, so cut nothing further and launch no earlier (rule 1). |
+| Cash | Rule 6; §2 guardrails | A-0402, A-0404, A-0343, A-0401 | About $2.9B a year over 7 years, below 2025 FCF. One launch per round. |
+| A220-500 closing the seat-size gap | §4, derivative before clean sheet | A-0200, A-0265, A-0239, A-0240 | Not modelled: one narrowbody segment and no lever. Leave it out of `whatif`. |
+| Engineering capacity (NGSA and A350 share teams) | Rule 6; §3 talent; Poaching | A-0366, A-0485, A-0423 | Strain is $3B × overlap / 5: -2.88 for an A350 Re-engine in 2028, -0.88 in 2033, 0 in 2035. |
+| Fines if Delay Tactics are detected | Rule 4; §6 | A-0474, A-0478, A-0331, A-0298, A-0299, AX-0073 | A share penalty, not a fine. It hits 2040 or 2050, so a second round now fails the objective too. |

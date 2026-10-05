@@ -1,6 +1,6 @@
 # Rolls-Royce: assigned objectives brief (supplier `rolls_royce`)
 
-Numbers are $B of full-game delta PV for Rolls-Royce (RR) unless named, from `whatif --side control` on runs `rrv-base` and `rrv-wave` (replacement-wave), both engine makers playing. Engine values print to 3 decimals and are rounded half up. "Selected" means an airframer picks our engine and RR launched it by the end of that turn.
+Numbers are $B of full-game delta PV for Rolls-Royce (RR) unless named, from `whatif --side control` on runs `rrv-base` and `rrv-wave` (replacement-wave), both engine makers playing. Engine values print to 3 decimals and are rounded half up. "Selected" means an airframer picks our engine and RR launched it by the end of that turn. §2-§8 were written for the four-turn game (four-turn game: turns 2026-28 … 2035-37, P&W the only other engine maker); §9 covers the five-player game (five-player-2045).
 
 ## 1. Assigned objective
 
@@ -32,7 +32,7 @@ All checked against `rules --run <run> --side rolls_royce` (same in both scenari
 | Free cash from widebody | Not modelled: no cash limit; capex loaded at alpha 0.6. | FCF £3,270m (2025) [R-0220]; net cash £1,972m [R-0032]. The hurdle and engineers bind, not cash (inference). |
 | Reputation | Not modelled. Nearest: `rr_ultrafan_nb` capture_mult 0.95 (CFM ducted 1.0). | Airframers want demonstrated engines [R-0383]; Boeing chose LEAP on maturation depth [R-1837]. |
 | Airframer support for a third engine maker | Partly: `rr_ultrafan_nb` gives the airframer margin_pp 1.0 (CFM ducted 0, GTF2 0.5, RISE open fan 1.5 but not in service before 2045). | RR sees itself as the only credible third entrant [R-1310]; Airbus names open fan [R-1867]; Boeing wants one engine per narrowbody [R-1830]. |
-| Engineering shared with widebody | Strain `full_overlap_b` $1.5B for 5 or more years of overlap, pro rata below (PLACEHOLDER); `jv_pw` strain_relief 0.5. Both UltraFans launched in 2029: 1.44 of strain. | Resources for 3 of 4 engines [R-0929]; three parallel programmes "unprecedented" [R-1127]. |
+| Engineering shared with widebody | Strain `full_overlap_b` $1.5B for 5 or more years of overlap, pro rata below (PLACEHOLDER); `jv_pw` strain_relief 0.5. Both UltraFans launched in 2029: 1.44 of strain (four-turn game; five-player, both 2031: 1.19). | Resources for 3 of 4 engines [R-0929]; three parallel programmes "unprecedented" [R-1127]. |
 | No narrowbody MRO scale | Partly: narrowbody fit 0.0; $3.1M an engine (widebody $8.0M); ramp start 0.45. | No narrowbody since 2012 [R-0305, R-1826]; weaker buying power [R-1308]. |
 | Gearbox sizing | Partly: `uf_nb` dev_years 7 (widebody 6); `ultrafan_test_setback` slips RR programmes 2 years. | Gearbox at full power in 2023 [R-1013]; narrowbody demonstrator about 2 years from build (2025) [R-1024]. |
 
@@ -45,7 +45,7 @@ All checked against `rules --run <run> --side rolls_royce` (same in both scenari
 
 Both are engine counts, so `whatif` gives values and status quo but no `gap_pp`.
 
-## 5. What it takes
+## 5. What it takes (four-turn game)
 
 ### 5.1 Narrowbody entry needs an airframer
 
@@ -132,10 +132,10 @@ An early rival answer cuts RR's value by up to 6.7 but never breaks the metric. 
 **Weighing rule.** The objective sets what we aim for; the doctrine sets how. Any objective premium counts against the existing doctrine-premium cap of $3B per turn (profile §9 step 11; RR reverses when the business case moves [R-0959, R-1561]). Hard rules still bind: no UltraFan launch without an announcement [R-0994, R-1005]; never compress maturity [R-1476, R-0970]; `jv_pw` only if P&W announced its join; no overlapping `uf_wb` and `uf_nb` Solo developments unless both are selected. In practice (inference):
 1. Turn 1 is unchanged: upgrade, no UltraFan.
 2. Against an announced fps or NGSA with the engine open, launch Solo if the premium (Do Nothing minus expected PV) fits the cap; this replaces the +$2B bar.
-3. Against an announced 787 Re-engine, `uf_wb` may be offered below P 0.42. The premium is 0.59 at P 0.35 and 1.61 at P 0.2 (2029: +1.38 selected, -5.45 unselected, -2.47 Do Nothing). On these 2029 numbers break-even P is 0.44, so even P 0.42 carries a premium of 0.11.
+3. (four-turn game) Against an announced 787 Re-engine, `uf_wb` may be offered below P 0.42. The premium is 0.59 at P 0.35 and 1.61 at P 0.2 (2029: +1.38 selected, -5.45 unselected, -2.47 Do Nothing). On these 2029 numbers break-even P is 0.44, so even P 0.42 carries a premium of 0.11.
 4. Aggressive terms only by profile §6's test: they are then PV-best, not a premium. A signal without an announcement never justifies a launch.
 
-## 7. Per-turn objective check (add after §9 step 11)
+## 7. Per-turn objective check (four-turn game; add after §9 step 11; five-player: §9.3)
 
 1. Read `your_objectives` in `brief`. Record `nb_entry` (2045 and 2050 engines) and `wb_dominance` (2040-2050 against 184.1).
 2. `whatif` the chosen orders and the PV-best alternative, with the airframer selecting UltraFan and not. Read `objectives.rolls_royce` in each.

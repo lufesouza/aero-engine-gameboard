@@ -23,7 +23,7 @@ Each lever checked against `rules --side pratt_whitney`.
 
 | Briefing move | Game lever and how to order it | Modelled | Notes |
 |---|---|---|---|
-| Next-generation GTF, Solo | `"launch": [{"program": "gtf_next", "year": Y, "terms": "standard"}]`; Y = 2028 in turn 1, the airframer's year later (§5) | yes | 6 years, $4.5B P&W-net, $1.05M per engine mature, ramp from -0.35 over 10 years. Earns only if fps or NGSA names `pw_gtf2` while it is live. One launch per game: a cancelled one cannot be relaunched. A missing `year` books 2026 (+0.45 against +1.98). |
+| Next-generation GTF, Solo | `"launch": [{"program": "gtf_next", "year": Y, "terms": "standard"}]`; Y = 2028 in turn 1, the airframer's year later (§5) (four-turn game; five-player game: the selecting airframe's launch year + 1, 2029 at the earliest after a 2026 upgrade, §9) | yes | 6 years, $4.5B P&W-net, $1.05M per engine mature, ramp from -0.35 over 10 years. Earns only if fps or NGSA names `pw_gtf2` while it is live. One launch per game: a cancelled one cannot be relaunched. A missing `year` books 2026 (+0.45 against +1.98; five-player game, NGSA 2028: +0.09 against +2.30). |
 | Joint Venture with Rolls-Royce | `"join_rr_jv": true` in the turn RR launches `uf_nb` as `jv_pw` | partly | `rules` marks it yes. But it is RR's UltraFan narrowbody (`rr_ultrafan_nb`), **not a GTF-based Joint Venture**; no lever pairs RR with our GTF. RR chooses the variant. We pay 50% of $7.5B, earn 50% of RR's $3.1M per engine on RR's ramp, and cannot leave once it launches. |
 | Do Nothing (continue GTF) | no orders | yes | Keeps 40% of A320neo engines: 960 a year. |
 | Not on the slide: GTF durability upgrade | `"gtf_upgrade": true` | yes | The `credibility` proxy. $1.0B over 3 years; +5pp of A320neo deliveries from 3 years later until NGSA enters service; saves $0.45B a year for 9 years. Books in the first year of the turn ordered. |
@@ -48,7 +48,7 @@ Each lever checked against `rules --side pratt_whitney`.
 
 `whatif` shows `gtf_base` as values against `status_quo`, with no `gap_pp`. From the `rules` values: with the upgrade our A320neo engines are 1,800 x Airbus share, so `gtf_base` holds only while Airbus keeps 53.3% (60% without it). A new airframe flying our engine needs only 24% share; a Joint Venture airframe needs 48%. A new airframe on another engine sets our fit on it to zero.
 
-## 5. What it takes
+## 5. What it takes (four-turn game)
 
 **`credibility`** (base and replacement-wave identical): order `gtf_upgrade` in turn 1 (books 2026, +1.76) or turn 2 (2029, +1.36). Ordered in turn 3 it books 2032 (+1.06) and misses. The PV-best plan already meets it: **objective premium 0**.
 
@@ -107,10 +107,10 @@ Broader cover costs too much. Joining and launching `gtf_next` together meets `g
 **Weighing rule (inference).** The objective sets what we aim for: be on whichever new narrowbody enters service, and book the upgrade by turn 2. The doctrine sets how.
 1. Red lines first, never traded for the objective (profile Quick card, §9 step 8): no `gtf_next` aimed at fps without a disclosure; no aggressive terms unless the §6 test holds; no `pw_wb`; no dividend cut; never share our core technology.
 2. One cap. The profile keeps a doctrine-favoured order only while it trails the best expected PV by $1B or less (§9 step 8). An objective premium counts against that same $1B in the same turn. Doctrine premium plus objective premium never exceeds $1B.
-3. Inside the cap, where the doctrine-favoured order (wait, stay out) and the objective-favoured order (hedge, join) differ, take the objective's. The doctrine then sets the form: NGSA only (the franchise exception [P-1347]); standard terms; 2028 in turn 1 and the airframer's year afterwards; disclose the commitment; cancel in the next turn if unselected; never carry a hedge.
-4. Effective thresholds (inference, rounded up to cover both scenarios): hedge NGSA at p ≥ 0.05, in the turn Airbus is likeliest to launch (profile: 0.45); join at P(UltraFan selected | `jv_pw`) ≥ 0.14 (profile: 0.23); fps only on a disclosure.
+3. Inside the cap, where the doctrine-favoured order (wait, stay out) and the objective-favoured order (hedge, join) differ, take the objective's. The doctrine then sets the form: NGSA only (the franchise exception [P-1347]); standard terms; 2028 in turn 1 and the airframer's year afterwards (four-turn game; five-player game: §9); disclose the commitment; cancel in the next turn if unselected; never carry a hedge (four-turn game; five-player game: carry only on the §9 test).
+4. Effective thresholds (four-turn game; inference, rounded up to cover both scenarios): hedge NGSA at p ≥ 0.05, in the turn Airbus is likeliest to launch (profile: 0.45); join at P(UltraFan selected | `jv_pw`) ≥ 0.14 (profile: 0.23); fps only on a disclosure. Five-player thresholds are in §9.
 
-## 7. Per-turn objective check
+## 7. Per-turn objective check (four-turn game)
 
 Add after §9 step 7 of the decision procedure.
 1. **Status now.** Read `your_objectives` in `brief`, or run `whatif` with this turn empty. Log `gtf_base` engines for 2040 / 2045 / 2050 against 960, and the booked upgrade year.
@@ -130,7 +130,7 @@ Add after §9 step 7 of the decision procedure.
 - **Not run:** market multipliers, Delay Tactics, slips and other injects.
 
 <details>
-<summary>Commands</summary>
+<summary>Commands (four-turn game)</summary>
 
 From `/home/user/aero-engine-gameboard`, with `WARGAME_RUNS_DIR=/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/objectives/runs_pratt_whitney`:
 
@@ -156,5 +156,76 @@ Stdin per case (U = `"gtf_upgrade": true`; G(y) = `"launch": [{"program": "gtf_n
 Generated by `pw_sweep.py`, `pw_sweep2.py`, `pw_sweep3.py` in the runs directory; results in `sweep1.jsonl` (236 cases), `sweep2.jsonl` (165), `sweep3.jsonl` (14). The sweeps hold 180 base and wave pairs (118, 55 and 7); the other 55 rows are `pw-crisis`.
 
 Fact-check re-run: the same `new` and `inject` commands as runs `v-base`, `v-wave` and `v-crisis` in `WARGAME_RUNS_DIR=/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/objectives/runs_pratt_whitney_verify`. Copies of the three sweeps (`rep_pw_sweep*.py` in `.../scratchpad/objectives/pwv/`) reproduce all 415 rows exactly. Targeted checks `c1.py` to `c5.py` in the same folder re-run every number in §2-§8, including NGSA and fps on CFM for each launch year 2026-2035 and Solo UltraFan for each NGSA year.
+
+</details>
+
+## 9. What it takes in the five-player game (five-player-2045)
+
+Snapshot numbers: run `pw-5p-scratch` (`new --scenario five-player-2045 --suppliers rolls_royce,pratt_whitney,cfm`, no inject), round 1, `whatif --side pratt_whitney`. P&W orders the upgrade in round 1 unless stated. The scenario already carries the replacement-wave timing, so there is no base/wave split. CFM/GE is a player: an airframe that names `pw_gtf2` without our launch falls back to `cfm_ducted`, and to the LEAP derivative (`cfm_leap_plus`) unless CFM/GE commits. Profile §11 has the levers and reaction rows.
+
+**`credibility`.** The upgrade ordered in round 1 books 2026 (+1.76); in round 2 it books 2031 (+1.15). Both meet the target. Ordered in round 3 it books 2036 (+0.75) and misses. CFM/GE's `leap_upgrade` changes none of this: our upgrade is still worth +1.76 on top of it (+1.09 with both, against -0.67 for theirs alone). Objective premium 0.
+
+**`gtf_base`, by airframer outcome.**
+
+| Airframer outcome | Plan that meets `gtf_base` | ΔPV | Best-PV P&W plan | ΔPV | Premium |
+|---|---|---|---|---|---|
+| No new narrowbody to 2045 | upgrade (Do Nothing also meets: 960) | +1.76 | same | same | 0 |
+| Same, CFM/GE orders `leap_upgrade` | upgrade (960; Do Nothing falls to 840 and misses) | +1.09 | same | same | 0 |
+| NGSA 2028 names `pw_gtf2` | `gtf_next` 2029 | +2.30 | same | same | 0 |
+| NGSA 2031 names `pw_gtf2` | `gtf_next` 2032 | +1.90 | same | same | 0 |
+| NGSA 2036 names `pw_gtf2` | `gtf_next` 2037 | +1.27 | same | same | 0 |
+| NGSA 2028 on UltraFan `jv_pw` | `join_rr_jv` in round 1 | +14.11 | same | same | 0 |
+| fps 2028 names `pw_gtf2` | `gtf_next` 2029 | +3.32 | same | same | 0 |
+| fps 2028 names `pw_gtf2`, NGSA 2028 on CFM | `gtf_next` 2029 (1,600 engines) | -1.37 | same (no launch: -1.74) | | 0 (four-turn game: 0.31) |
+| NGSA on CFM (ducted or derivative), Solo UltraFan or the open fan, any launch year 2026-2040 | none | | upgrade only | -1.74 (2028) | unreachable |
+| fps alone on CFM, launched 2026-2038 | none | | upgrade only | +1.25 (2028) | unreachable |
+
+- **NGSA on a rival engine.** It misses in every launch year we ran. Launches to 2033 leave 0 / 0 / 0 engines in 2040 / 2045 / 2050; 2034-2038 leave 1,080 / 0 / 0; 2040 leaves 1,080 / 1,080 / 0. On the open fan, NGSA 2036 leaves 1,080 / 0 / 0, and NGSA 2037 (in service 2046) leaves 1,080 / 1,080 / 0.
+- **fps alone on CFM.** It erodes Airbus's share. A 2028 launch leaves 1,012 / 899 / 764 on the ducted engine and 1,018 / 913 / 789 on the derivative; a 2038 launch leaves 1,080 / 1,080 / 945. It meets from a 2039 launch (981 in 2050) and on the open fan (2028: 1,080 / 1,080 / 965). With CFM/GE's `leap_upgrade` both of these miss (fps 2040: 960 / 960 / 894; the open fan, 2028: 858 in 2050).
+- **CFM/GE's upgrade tightens the margin.** With both upgrades our A320neo engines are 1,600 x Airbus share, so `gtf_base` needs Airbus to keep all of its 60% (53.3% with ours alone).
+
+**The decision we actually face, by round.** Gain = selected minus lost; cost = unselected minus no order.
+
+| | Round 1 NGSA hedge (`gtf_next` 2029) | Round 2: keep the 2029 launch | Round 2 fresh (`gtf_next` 2032) | Round 3 (`gtf_next` 2037) | `join_rr_jv` (`jv_pw` 2028) |
+|---|---|---|---|---|---|
+| Gain if selected | 4.04 (+2.30 against -1.74) | 3.45 (+1.05 against -2.40) | 2.77 (+1.90 against -0.87) | 1.10 (+1.27 against +0.17) | 15.85 (+14.11 against -1.74) |
+| Cost if not | 1.53 (cancelled 2031) | 2.39 (never cancelled) | 2.21 (cancelled 2036) | 2.04 (cannot be cancelled) | 3.71 (-1.95 against +1.76) |
+| PV break-even p* | 0.27 | 0.41 | 0.44 | 0.65 | 0.19 |
+| Odds at which the premium reaches $1B | 0.10 | 0.24 | 0.24 | 0.33 | 0.14 |
+| Profile flip (break-even plus the $1B allowance) | 0.45 | 0.58 | 0.64 | 0.97 | 0.24 |
+
+- **Round 1 decides.** Every NGSA payoff for Airbus peaks at a 2028 launch: +41.48 on the derivative, +46.55 on the ducted engine, +48.29 on ours, +50.47 on UltraFan. In 2031 the range is +31.93 to +38.88; in 2036, +18.91 to +23.24 (+15.47 on the open fan). Boeing's fps also peaks in 2028.
+- **The hedge now pays on PV.** At the profile's round-1 odds (p ≈ 0.75 × 0.4 ≈ 0.3), the expected premium is 0.7 × 1.53 - 0.3 × 4.04 ≈ -0.14: the 2029 hedge leads on expected PV, and only the doctrine's 0.45 flip holds it back. The weighing rule (§6) takes it.
+- **Timing is part of the offer.** `gtf_next` goes in the selecting airframe's launch year + 1, so the engine is ready at its entry into service (2029 at the earliest after a 2026 upgrade; earlier launches add strain of 1.12 / 0.72 / 0.34). Launching later costs the selection: NGSA 2028 with a 2030 engine leaves Airbus at +41.72, level with the derivative; NGSA 2031 with a 2035 engine leaves it at +21.93, below the derivative (+31.93).
+- **A cancel is final.** Cancelling the 2029 launch in round 2 ends GTF2 for the game (`validate` refuses a relaunch). That is why the round-2 keep test is separate.
+- **Red lines still bind.** CFM/GE's ducted engine on aggressive terms (+52.69 for Airbus) beats ours (+48.29). Our own aggressive terms would win NGSA back for a premium of only 0.40 (-2.14 against -1.74), but they stay barred. Joining and launching together costs 4.4-4.6, against either lever alone.
+
+## 10. Per-round objective check (three rounds)
+
+Use this in place of §7 in `five-player-2045`, after profile §9 step 7.
+1. **Status now.** Read `your_objectives` in `brief`, or run `whatif` with this round empty. Log `gtf_base` for 2040 / 2045 / 2050 against 960 and the booked upgrade year. Note whether CFM/GE has ordered `leap_upgrade` (Do Nothing then reads 840) or committed `ducted` (our NGSA edge falls from +6.81 to +1.74).
+2. **Round 1 (2026-30).** Order `gtf_upgrade`. For NGSA 2028 run `whatif` on the CFM chain (with and without CFM/GE's `ducted`), on `pw_gtf2` with `gtf_next` 2029, and on UltraFan (Solo, and `jv_pw` with our join); repeat for fps; add the case where nobody launches. Hedge NGSA with `gtf_next` 2029 at p ≥ 0.10. Join at P(UltraFan | `jv_pw`) ≥ 0.14. fps only on a disclosure.
+3. **Round 2 (2031-35).** This is the last round that books the upgrade by 2031: order it now if it is missing. An unselected 2029 launch: keep it at p ≥ 0.24 that a round-2 NGSA names us, otherwise cancel (GTF2 then ends). A fresh launch goes into a disclosure, in NGSA's year + 1, or as a hedge at p ≥ 0.24.
+4. **Round 3 (2036-45).** If NGSA is in development on a rival engine, `gtf_base` is unreachable: log it and play for PV. Otherwise a disclosure on `pw_gtf2` is the only route, since any rival NGSA up to 2040 misses. Launch in NGSA's year + 1, or hedge at p ≥ 0.33 (it cannot be cancelled). A pending fps alone on CFM meets from a 2039 launch, unless CFM/GE has upgraded.
+5. **Premium.** Objective premium plus doctrine premium stays at or under $1B each round, and red lines come first (§6).
+6. **Log in the rationale:** both metrics before and after the chosen orders, P(met), the premium paid, the lever that carries it, and which CFM/GE move (if any) changed the numbers.
+
+<details>
+<summary>Commands (five-player game)</summary>
+
+From `/home/user/aero-engine-gameboard` (scratch run, deleted after use):
+
+```
+python3 -m wargame.engine new --scenario five-player-2045 --suppliers rolls_royce,pratt_whitney,cfm --run-id pw-5p-scratch --force
+python3 -m wargame.engine inject --run pw-5p-scratch --none
+python3 -m wargame.engine options --run pw-5p-scratch --side pratt_whitney
+echo '<stdin>' | python3 -m wargame.engine whatif --run pw-5p-scratch --side pratt_whitney
+```
+
+Stdin keys are rounds "1"-"3" (2026-30, 2031-35, 2036-45). U = `"gtf_upgrade": true`; G(y) = `"launch": [{"program": "gtf_next", "year": y, "terms": "standard"}]`.
+- NGSA: `"airbus": {"<round>": {"launch": [{"program": "ngsa", "engine": E, "year": Y}]}}`, with E in `cfm_ducted`, `pw_gtf2`, `rr_ultrafan_nb` and `cfm_open_fan`, and Y from 2026 to 2040. The CFM chain was run with and without `"cfm": {"<round>": {"launch": [{"program": "ducted", "year": Y, "terms": "standard"}]}}`. UltraFan was run with `"rolls_royce"` `uf_nb` Solo or `jv_pw` (plus `"join_rr_jv": true`). The open fan was run with CFM/GE `open_fan` and `lobby_emissions`.
+- fps: the same, with `"boeing"`, `"program": "fps"` and `"variant": "solo"` (or `"jv"`).
+- P&W: U in "1" (or "2", "3"); G(y) for each y in NGSA's or fps's round; cancel `gtf_next` in the next round; `"terms": "aggressive"`; `pw_wb` with `re787` or `rea350` on `pw_wb_new`.
+- CFM/GE: `"leap_upgrade": true`, `embraer_partner`, `genx_upgrade` and `ducted` on aggressive terms.
 
 </details>

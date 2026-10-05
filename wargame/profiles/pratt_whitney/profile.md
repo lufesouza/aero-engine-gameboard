@@ -284,3 +284,62 @@ Flip only if a Re-engine is launched or disclosed on `pw_wb_new`, `airframer_inc
   - **Strain.** PLACEHOLDER: no evidence isolates overlap cost [P-0279][P-1234].
 - **Dated:** the 2019 industry brief, and NMA-era (2016-19) launch doctrine applied to a 2026+ NGSA.
 - **Scale:** the game's A320neo engine flow is about 2x real installs, so absolute payoffs are about 1.7-2x evidence scale (calibration memo) [P-1771].
+
+## 11. The five-player game (five-player-2045)
+
+Numbers are snapshots [engine]: run `pw-5p-scratch`, round 1, no inject, `whatif`, P&W ΔPV in $B, upgrade in 2026 unless stated; re-run each round. In §1-§10 "turn" now means "round".
+
+### 11a. What changes, and what still applies
+
+- **Rounds.** 2026-30, 2031-35, 2036-45; a launch takes any year in its round. This replaces the turn's-last-year rule (Quick card, §5a row 1, §6): launch `gtf_next` the year after the selecting airframe (6 development years against its 7), so the engine is ready at its entry into service. Never later; after a 2026 upgrade, ideally not before 2029, as strain still applies to any two overlapping P&W windows: 1.12 / 0.72 / 0.34 / 0 for `gtf_next` in 2026 / 2027 / 2028 / 2029. NGSA 2028 on `pw_gtf2` pays us +2.30 with a 2029 launch, +1.62 with 2028 and +2.17 with 2030. A 2030 launch also makes Airbus wait a year, cutting it from +48.29 to +41.72, level with the LEAP derivative.
+- **CFM/GE plays, and the fallback chain.** `pw_gtf2` falls back to `cfm_ducted`, which falls back to `cfm_leap_plus` unless CFM/GE commits. A fallback costs the airframer nothing beyond the engine it lands on (NGSA 2030: +39.22 either way), so naming us weakly dominates naming CFM: the contest is us against UltraFan (inference). CFM/GE prefers the derivative (NGSA 2028: +14.39 for it, against -9.53 on its ducted engine), leaving Airbus +41.48 against +48.29 on ours. `options` scores `airframer_incentive_b` against the derivative (NGSA +8.01, fps +4.05), overstating our edge once CFM/GE commits (NGSA 2028: +1.74).
+- **Timing.** NGSA and fps payoffs all peak at a 2028 launch: Airbus +41.48 / +46.55 / +48.29 / +50.47 on the derivative / ducted / ours / UltraFan; Boeing +12.58 / +15.34 / +15.93 / +16.97. They fall in round 2 (NGSA 2031: +31.93 to +38.88), so round 1 decides (inference).
+- **Open fan.** It cannot enter service before 2045, so CFM/GE must launch it by 2036 (9 development years). It is Airbus's best engine in no year we ran (NGSA 2036: +15.47, +18.87 with aggressive terms and lobbying; ours +22.20).
+- **Still apply.** Every Quick-card red line; §5 rows 1-14 and 5a, with the year rule above; the §6 tests; §9, each round. A programme launches once: `validate` refuses a relaunch after a cancel. An engine can be cancelled only before it is ready, so a 2029 launch must be cancelled in round 2 and a round-3 launch never. A missing `year` still books 2026 (NGSA 2028 on ours: +0.09, not +2.30).
+
+### 11b. Default plan by round
+
+**Round 1 (2026-30).**
+- **`gtf_upgrade` ON.** +1.76 alone, and +1.76 on top of CFM/GE's `leap_upgrade` (the LEAP upgrade alone leaves us at -0.67; with both, +1.09). Against the LEAP upgrade it holds our 960 engines a year; without it they fall to 840.
+- **`gtf_next` into a disclosure.** Launch in 2029 on standard terms into an NGSA or fps disclosed on `pw_gtf2`: NGSA 2028 pays +2.30, against -1.74 lost; fps 2028 pays +3.32, against +1.25. For an NGSA in 2029 or 2030, launch in 2030. For a disclosed fps in 2026-27, launch the next year despite strain: a 2029 engine would cut Boeing's fps 2026 from +9.38 to +6.90.
+- **The NGSA hedge (§6 franchise exception).** A 2029 launch cancelled in 2031 if unselected costs 1.53; a selection gains 4.04. p* = 1.53 / 5.57 ≈ 0.27; the flip, with the $1B allowance, is 0.45. Odds (inference): 0.75 (NGSA in round 1) × 0.4 (Airbus names us, RR in play, no disclosures) ≈ 0.3, below the flip, so disclose the conditional offer instead. Without RR, 0.75 × 0.7 ≈ 0.5: hedge. fps gets no hedge (p* 0.42).
+- **Otherwise** no `join_rr_jv` unless RR discloses `jv_pw`; no `pw_wb`; standard terms.
+
+**Round 2 (2031-35).**
+- **Missed upgrade.** Fund it: it books 2031, +1.15, and meets `credibility`. Overlapping a 2032 `gtf_next`, it adds 0.48 of strain.
+- **A 2029 launch nobody flies.** Keep it only if the odds that a round-2 NGSA names us reach 0.41. Selected in 2031: +1.05 kept, -2.40 cancelled; never selected: -2.16 against +0.23. Cancelling ends GTF2 for the game.
+- **Fresh launch.** Only into a disclosure, the year after NGSA's (NGSA 2031 with 2032: +1.90, against -0.87 lost); 2035 would cut Airbus from +37.20 to +21.93 and lose it. Hedge p* 0.44.
+
+**Round 3 (2036-45).** Launch only into a disclosure (NGSA 2036 with 2037: +1.27, against +0.17 lost). It cannot be cancelled: unselected, -0.28 (p* 0.65). Otherwise Do Nothing.
+
+**Every round.**
+- **`join_rr_jv`, given RR's `jv_pw` in 2028.** +14.11 if NGSA picks UltraFan, against -1.74 out; -1.95 if nobody does, against +1.76 (-0.40 if RR cancels in round 2). p* = 3.71 / 19.56 ≈ 0.19; flip at 0.24. RR offers `jv_pw` only when it rates its own odds below about 0.24 (solo +22.65 / -7.59; Joint Venture +11.16 / -3.96). Joining plus `gtf_next` costs 4.4-4.6. Round 2 (2031): +11.18 selected, -1.01 not; p* 0.19.
+- **`terms` standard.** Aggressive raises Airbus to +53.09 but leaves us at -2.14, below losing NGSA (-1.74); on fps, +0.14 against +1.25.
+- **`pw_wb` never.** Even with the 787 Re-engine on `pw_wb_new` it trails the upgrade alone by 5.32 (2026), 4.00 (2028), 2.99 (2031) and 2.17 (2036).
+
+### 11c. Reaction rows for CFM/GE
+
+| # | If … | We historically… | Typical lag | Strength | Analogues | Evidence ids |
+|---|---|---|---|---|---|---|
+| 15 | CFM/GE commits its ducted engine, or prices it aggressively | Let it go rather than match price; accept 40-50%; win back on product | 12-18 months (inference) | strong | LEAP 2016-17; IndiGo 2019 | P-2071, P-1949, P-0081, P-1292, P-1993, P-0735 |
+| 16 | CFM/GE orders `leap_upgrade` | Answer with a durability upgrade, charged for; durability doubts cost campaigns | 2-3 years for the upgrade | strong | LEAP 2017; Block D; Hot Section Plus | P-1847, P-0074, P-0075, P-0758, P-0786, P-1363, P-1355 |
+| 17 | CFM/GE commits the RISE open fan, or lobbies on emissions | "A long time from now"; answer inside the geared architecture | none (inference) | moderate | RISE; 2019 GTF plan | P-0104, P-1828, P-0772, P-0790, P-1298 |
+| 18 | CFM/GE partners with Embraer (or upgrades the GEnx) | No precedent; Embraer's GTF aircraft was in our 2017 certification plan; we stand by regional customers | none | weak | E2 2017; MRJ | P-0217, P-0128, P-1371 |
+| 19 | An airframer launches while CFM/GE has committed no new engine | Defend the franchise early; bid where we have a technology lead | Tied to the airframer's | strong | A320neo 2010-12 | P-1347, P-1868, P-1196, P-0737, P-0711 |
+
+**11c orders** [engine].
+15. Standard terms; launch only into a disclosure. CFM/GE's commitment cuts our NGSA 2028 edge for Airbus from +6.81 to +1.74; on aggressive terms its engine (+52.69) beats ours (+48.29). Matching costs 0.40 (-2.14 against -1.74): do not. Airbus now names us over UltraFan only at 2.25 times RR's launch odds (1.32 over the derivative): halve the round-1 naming odds (inference).
+16. Commit `gtf_upgrade` if not booked: +1.76 either way; it restores 960 engines (840 without). The LEAP upgrade costs us 0.67, or 0.28 if NGSA enters service in 2035. No terms response.
+17. No order; never pull `gtf_next` forward. NGSA on the open fan leaves us 1,080 engines to 2044, then none (+0.48); lobbying alone moves nothing. If an airframer discloses the open fan, disclose a `gtf_next` offer ready at its entry into service (row 5).
+18. No lever: we stay at +1.76; Boeing's Embraer fps on our engine still pays +3.32.
+19. Disclose a sole-source, standard-terms `gtf_next` ready at the airframe's entry into service: against the derivative, ours adds +6.81 for Airbus (NGSA 2028) and +3.35 for Boeing (fps 2028). Launch per §6.
+
+### 11d. Briefing enablers and constraints
+
+| Item | In the engine | Doctrine | Evidence |
+|---|---|---|---|
+| Mature gearbox technology | 6 development years (airframes and Solo UltraFan 7, open fan 9): we launch a year after the airframe without delaying it | §4 technology gates: evolve inside the geared architecture | P-0772, P-0790, P-0745, P-2004 |
+| RTX leverage | No funding limit; alpha 0.35 (CFM/GE 0.45, RR 0.6) | §1 the parent is the banker; §2 return, not cash, constrains | P-1138, P-0330, P-0378, P-1164, P-1964 |
+| Cash from the GTF base | 960 engines a year at $0.6M; the upgrade adds 120 and saves $0.45B a year; CFM/GE's upgrade takes 120 | §2 hierarchy; §3 aftermarket annuity; Quick card objective 1 | P-1143, P-1296, P-1771, P-0111, P-1782 |
+| GTF reputation issues | No selection parameter. Nearest: the -0.35 ramp, capture 0.95, `gtf_durability_crisis`, CFM/GE's `leap_upgrade` | §3 durability record; row 7; §8 bias 1 | P-1014, P-1563, P-0074, P-1847, P-0582 |
+| Engineering resources | Strain on overlapping P&W windows; 1.65 for `pw_wb` with `gtf_next` and the upgrade; 0.17 in the Joint Venture | §4: what makes it wait; harvest phase; development cut first | P-1234, P-0467, P-1269, P-0377 |

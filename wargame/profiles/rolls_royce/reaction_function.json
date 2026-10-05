@@ -230,5 +230,84 @@
     "evidence": [
       "R-0955"
     ]
+  },
+  {
+    "trigger": "CFM/GE launches or announces its advanced ducted narrowbody engine (ducted), on any terms (five-player game)",
+    "response": "GE prices hard when RR is weak: 'very aggressive sales campaigns' during the Trent 1000 crisis and an 'extraordinary' Air New Zealand offer. CFM is every narrowbody's default: the CFM56 held about 80% of short- and medium-haul engines and LEAP is sole source on the 737 MAX [press/industry]. RR says its pricing does not lose campaigns and does not chase share.",
+    "lag": "Same round as the airframer's engine choice",
+    "strength": "moderate",
+    "war_game_translation": "Launch rules unchanged. A committed ducted engine replaces the LEAP derivative as the airframer's fallback, so re-run the contested incentive against it: [5P] 2031 NGSA +2.98, fps +1.16 at our standard terms (against the LEAP derivative +6.95 and +3.23). If CFM is on aggressive terms our standard loses (2031: NGSA -1.75, fps -0.98) and aggressive passes the terms test (UltraFan aggressive beats CFM aggressive by +2.28 NGSA, +0.84 fps; costs us 3.67 and 2.62 when selected). Ducted on the other airframe cuts our selected value by about 3 (NGSA 2031 +16.50 to +13.53 with fps 2031 on CFM; +12.91 with fps 2028) but never below the bar: no change. [5P] = whatif on a five-player-2045 scratch run, round 1 (snapshot; re-run each round).",
+    "evidence": [
+      "R-1945",
+      "R-1946",
+      "R-1918",
+      "R-1916",
+      "R-0367",
+      "R-1582"
+    ]
+  },
+  {
+    "trigger": "CFM/GE launches or announces the RISE open fan (open_fan) (five-player game)",
+    "response": "No direct precedent. RR sells fuel burn and a scalable UltraFan (+10% on the Trent XWB) and says airframers now demand demonstrated technology. Airbus names open fan for NGSA, with an open-rotor wing demonstrator from 2027 [customer].",
+    "lag": "None",
+    "strength": "moderate",
+    "war_game_translation": "No order change and no price cut. The open fan enters service only from 2045 (CFM's 9-year development: launched by 2036); an airframe ready earlier waits and pays 10% of capex a year. [5P] it loses to UltraFan standard in every launch year, even with lobbying and aggressive terms (NGSA 2036: 18.87 against 23.24; 2037: 16.29 against 20.48). An airframe announced on it is lost to us, so the other airframe is the last narrowbody prize; our value barely moves (NGSA 2031 on UltraFan with fps 2037 on the open fan: +15.54 against +16.50). (inference) [5P] = whatif on a five-player-2045 scratch run, round 1 (snapshot; re-run each round).",
+    "evidence": [
+      "R-1867",
+      "R-1868",
+      "R-0955",
+      "R-0974",
+      "R-0383"
+    ]
+  },
+  {
+    "trigger": "CFM/GE funds the GEnx improvement package (genx_upgrade: 5pp of Boeing 787 deliveries from Rolls-Royce after 3 years) (five-player game)",
+    "response": "GE used the Trent 1000 crisis with very aggressive campaigns; ANA dual-sourced and RR accepted it. RR answered with durability, not price: GBP 1bn of time-on-wing spend over four years, durability 'the only thing holding us back', 787 share back from 14% (2021) to 27% (2024), nothing 'silly' on pricing.",
+    "lag": "3 years (the package's lag)",
+    "strength": "strong",
+    "war_game_translation": "Fund t1000_upgrade if unfunded and its 3-year window overlaps no UltraFan development. [5P] the package costs us 0.58 / 0.35 / 0.21 (rounds 1/2/3) and alone breaks wb_dominance (174.1 widebody engines against 184.1); our upgrade's value is unchanged by it (+0.81 / +0.48 / +0.28) and restores 194.1 (upgrade 2026 with package 2026: +0.23). With an UltraFan in development the red line holds: strain 0.81 makes the upgrade -0.33 (Solo 2031). Keep standard terms. [5P] = whatif on a five-player-2045 scratch run, round 1 (snapshot; re-run each round).",
+    "evidence": [
+      "R-1945",
+      "R-0356",
+      "R-1601",
+      "R-1015",
+      "R-0135",
+      "R-0998"
+    ]
+  },
+  {
+    "trigger": "CFM/GE funds the LEAP durability upgrade (leap_upgrade: A320neo share from Pratt & Whitney) (five-player game)",
+    "response": "No RR precedent. P&W's parent vowed to use its balance sheet to keep gaining share, and P&W keeps 59-61% of its narrowbody collaborations [rival: P&W]. RR prefers a partner for narrowbody risk.",
+    "lag": "None for us",
+    "strength": "weak",
+    "war_game_translation": "No order change: [5P] us 0.00, P&W -0.67. Joining our NGSA Joint Venture still pays P&W +9.34 (2031, with the LEAP upgrade; +9.71 without) against GTF2 standard +0.17 or aggressive -3.21, so the jv_pw rule is unchanged: only against P&W's announced join (inference). [5P] = whatif on a five-player-2045 scratch run, round 1 (snapshot; re-run each round).",
+    "evidence": [
+      "R-1880",
+      "R-1893",
+      "R-1010",
+      "R-1022"
+    ]
+  },
+  {
+    "trigger": "CFM/GE partners with Embraer (embraer_partner: engines for Embraer's next aircraft) (five-player game)",
+    "response": "No RR precedent with Embraer in our evidence. RR avoids 'custom engines for every airplane' and joins a programme only with a business case.",
+    "lag": "None",
+    "strength": "weak",
+    "war_game_translation": "No order change: [5P] us 0.00 (CFM/GE -0.10). Not a programme UltraFan can serve in the game (inference). [5P] = whatif on a five-player-2045 scratch run, round 1 (snapshot; re-run each round).",
+    "evidence": [
+      "R-1396",
+      "R-0943"
+    ]
+  },
+  {
+    "trigger": "CFM/GE lobbies governments on emissions (lobby_emissions: +0.5pp margin and 1.05 capture for airframes on the open fan) (five-player game)",
+    "response": "RR sells fuel burn ('We sell fuel burn. We sell SFC.'); Airbus's own open-fan focus is a stated preference [customer].",
+    "lag": "3 years (the lobbying lag)",
+    "strength": "weak",
+    "war_game_translation": "No order change: [5P] us 0.00; the lobbied open fan still loses to UltraFan standard in every year (see the open-fan row: NGSA 2036 lobbied 16.55, lobbied and aggressive 18.87, UltraFan 23.24). Treat Airbus's open-fan statements as a preference, not a PV threat (inference). [5P] = whatif on a five-player-2045 scratch run, round 1 (snapshot; re-run each round).",
+    "evidence": [
+      "R-0955",
+      "R-1867"
+    ]
   }
 ]

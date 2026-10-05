@@ -1,42 +1,42 @@
 # Panos Kakoullis: Chief Financial Officer
 
-**Role and dates.** Chief Financial Officer of Rolls-Royce from about 2021 to 2023. He was printed as "CFO & Executive Director" from his first evidenced call on 5 August 2021, where he set out "when I started this role" priorities [RX-0164, RX-0182], and as "CFO & Director" at his last on 3 August 2023 [RX-0206]. He served under Warren East, CEO to the end of 2022 (context only, not profiled), then under Tufan Erginbilgic from January 2023 [R-1561].
+**Role and dates.** Chief Financial Officer of Rolls-Royce from about 2021 to 2023. He was printed as "CFO & Executive Director" from his first evidenced call on 5 August 2021 [RX-0164]; in August 2022 he recalled the priorities he set "when I started this role" [RX-0182]. He was printed as "CFO & Director" at his last call, on 3 August 2023 [RX-0206]. He served under Warren East, CEO to the end of 2022 (context only, not profiled), then under Tufan Erginbilgic, CEO on the February 2023 call [R-1561].
 
 **Era.** He took over in the COVID recovery. What he inherited:
-- net debt of about £3bn excluding leases, which he called "too high" [RX-0169]; £5,157m (3.7x EBITDA) at end-2021 on the broader measure [R-0027];
+- net debt of about £3bn, which he called "too high" [RX-0169]; £5,157m (3.7x EBITDA) at end-2021 on the broader measure [R-0027];
 - LTSA flying hours at 43% of 2019 [R-1246];
 - a Civil cost base being cut by about a third [RX-0163];
-- a £1.7bn loss from closing out over-hedged currency cover [RX-0198];
+- an over-hedged currency book, "much larger than our peers" [RX-0198] (the £1.7bn cost is in the reader's note only);
 - a disposal programme of at least £2bn [RX-0159].
 
 What happened on his watch:
-- FCF went from -£1.5bn (2021) to +£505m (2022) [RX-0160, RX-0176];
+- FCF went from -£1,442m (2021) to +£491m (2022) [R-0217, R-0057];
 - disposals were completed and £2bn of debt repaid [R-0855];
-- net debt fell to £3.3bn at end-2022 and £2.0bn at end-2023 [RX-0169];
+- net debt fell to £3.3bn at end-2022 [R-0855] and £1,952m at end-2023 [R-0027];
 - Civil returned to a £143m profit in 2022 [R-0853].
 
-His last annual guide, for 2023, was overtaken once the new CEO's transformation took hold [RX-0202, R-0219].
+The 2023 guide (operating profit £0.8-1.0bn) was presented by both him and the new CEO in February 2023 [RX-0202, RX-0034]. It was raised in August 2023, while he was still CFO, and beaten: £1,590m [RX-0047, R-0219].
 
 **Evidence.** 57 own-words items (RX) from six events: H1 2021, the December 2021 trading statement, FY2021, H1 2022, FY2022 and H1 2023. There are also 40 company items (R) from the same turns.
 
 **Confidence.** High on balance-sheet repair, guidance and LTSA contract mechanics. None on engine launches, UltraFan, narrowbody entry, partners or the change of CEO. All launch rows below are inference.
 
-**Tag.** [5p] = `options` or `whatif` on a fresh `five-player-2045` run, turn-1 snapshot, $B delta PV. Re-run every turn.
+**Tag.** [5p] = engine snapshot, not evidence: `options` or `whatif` on a fresh `five-player-2045` run at turn 1, $B delta PV, re-checked 2026-10-04. Re-run every turn.
 
 ## Quick card
 
 **Objective function** (his "three clear priorities" plus the balance sheet):
-1. "Deliver on our commitments": set achievable targets, "then achieve them or even beat them" [RX-0165, RX-0182].
+1. "Deliver on our commitments" [RX-0182]. He built it from what investors told him: "set achievable targets ... and then achieve them or even beat them" (their words, as he relayed them) [RX-0165].
 2. Repair the balance sheet: an investment-grade profile and net cash in the medium term [RX-0171, RX-0154].
 3. A "balanced, profitable and cash-generative" group, with Civil one of three earnings engines [RX-0164, RX-0166] and the future "cash engine" [RX-0192].
 4. "Invest wisely": near-term returns from durability and efficiency [RX-0155]; 75% of R&D on lower-carbon technologies [RX-0180].
-5. "Simplify how we report" [RX-0173].
+5. "Simplify how we report" [RX-0182], rebuilt "ground up" [RX-0173].
 
 **Decision rules and red lines**
 - No further "nonorganic" balance-sheet measures: liquidity, disposals and organic cash suffice [RX-0156].
-- Disposals measured, never forced [RX-0159].
+- Disposals "in a measured way", with "no near-term pressures" [RX-0159].
 - Every investment over £5m goes to a monthly group committee with "a very high bar" [RX-0188].
-- IRR is estimated "in a range of scenarios". Long-dated bets need a higher risk-adjusted IRR [RX-0181].
+- IRR is estimated "in a range of scenarios", with the Trent 700 time-on-wing work as his example of a near-term return [RX-0181]. That long-dated bets need a higher risk-adjusted IRR is in the reader's note on RX-0181, not the quote.
 - The pace of deleveraging is balanced against investment opportunities [RX-0171].
 - Savings are booked only once "we are sure of them" [RX-0158].
 - No credit for uncontrollables, in either direction [RX-0175, RX-0177].
@@ -46,8 +46,8 @@ His last annual guide, for 2023, was overtaken once the new CEO's transformation
 | Dimension | Rating | Evidence |
 |---|---|---|
 | Technology | Low (inference) | Civil is to "exit ... a period of intense product development" [RX-0194]; investment tilted away from Civil [RX-0172] |
-| Schedule | Low | Conservative guides, beaten [RX-0160, RX-0176, RX-0202] |
-| Balance sheet | Low | Net debt "too high" [RX-0169]; £7.5bn of liquidity held so concession timing does not matter [RX-0162] |
+| Schedule | Low | Conservative cash guides, beaten [RX-0160, RX-0175, RX-0176, R-0217] |
+| Balance sheet | Low | Net debt "too high" [RX-0169]; liquidity strong enough that concession timing does not matter [RX-0162]; £7.5bn of it (Warren East's figure) [R-0815] |
 | Currency | Medium | After the over-hedge, cut cover to a declining 5-year book, accepting earlier exposure [RX-0198] |
 | Pricing and terms | Low appetite for concessions | Indexation enforced [RX-0195]; minimum-utilisation clauses billed [RX-0210]; "rewarded for the value that we bring" [RX-0168] |
 
@@ -60,7 +60,7 @@ His last annual guide, for 2023, was overtaken once the new CEO's transformation
 - Durability spend protected [RX-0155].
 - The spare-engine pool built to 23% of OE deliveries [RX-0203].
 
-**Product stance.** Civil was in harvest mode. His five value drivers were service receipts, service costs, OE margins, business aviation, and benefiting from "a favorable point in the investment cycle" [RX-0194]. The LTSA is "a smart business model" [RX-0167]; young programmes hold margin still to come [RX-0179]. Nothing on UltraFan or narrowbody.
+**Product stance.** (inference) Civil was in harvest mode. His five value drivers were service receipts, service costs, OE margins, business aviation, and benefiting from "a favorable point in the investment cycle" [RX-0194]. The LTSA is "a smart business model" [RX-0167]; young programmes hold margin still to come [RX-0179]. Nothing on UltraFan or narrowbody.
 
 **How he reads airframers and rivals.**
 - Boeing is a timing risk: 787 delivery delays moved Trent 1000 concession payments [RX-0177, RX-0187].
@@ -76,10 +76,10 @@ His last annual guide, for 2023, was overtaken once the new CEO's transformation
 - "Works both ways. So we need to be balanced around that." [RX-0183]
 
 **Biases to display when the situation matches**
-- **Guide low, beat, and strip out luck**, when disclosing [RX-0160, RX-0175, RX-0202].
+- **Guide low on cash, beat, and strip out luck**, when disclosing [RX-0160, RX-0175].
 - **Portfolio before Civil growth**: he under-weights new Civil programmes (inference) [RX-0172, RX-0194].
-- **Enforce contracts rather than concede**, when an airframer or airline asks for relief [RX-0195, RX-0205, RX-0210].
-- **External anchoring on traffic** [RX-0157]: slow to bank upside (inference; his 2023 profit guide proved far too low [RX-0202]).
+- **Enforce contracts rather than concede**, when an airline asks for relief [RX-0195, RX-0205, RX-0210]; (inference) the same with an airframer.
+- **External anchoring on traffic** [RX-0157]: (inference) slow to bank upside. The 2023 profit guide he and the CEO gave was beaten by about £600m [RX-0202, RX-0034, R-0219].
 
 ## Commitment track record
 

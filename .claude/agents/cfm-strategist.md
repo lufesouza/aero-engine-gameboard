@@ -79,7 +79,7 @@ Breaking these rules invalidates the exercise. A hook also enforces the first tw
   - **`embraer_partner`**: an Embraer partnership. Engines for Embraer's next aircraft after a lag.
   - **`lobby_emissions`**: lobbying governments on emissions. A cost; any airframe flying the open fan gets extra margin and capture.
 - **`cancel`**: only an engine programme that no live airframe flies. The capex is sunk.
-- **Do Nothing.** Without your commitment, an airframe that asks for a CFM engine flies the **LEAP derivative** (`cfm_leap_plus`: -1pp airframer margin, 0.95 capture). You keep that airframe at today's LEAP value, but the airframer is worse off, and a rival engine maker may win it instead.
+- **Do Nothing.** Without your commitment, an airframe that asks for a CFM engine flies the **LEAP derivative** (`cfm_leap_plus`: -1pp airframer margin, 0.92 capture). You keep that airframe at today's LEAP value, but the airframer is worse off, and a rival engine maker may win it instead.
 
 An airframer that picks a rival's engine before that rival commits gets its fallback. For Rolls-Royce and Pratt & Whitney narrowbody engines, the fallback is your ducted engine if you have launched it, and the LEAP derivative if you have not.
 

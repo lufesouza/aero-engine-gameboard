@@ -239,5 +239,76 @@
    "P-0134",
    "P-1135"
   ]
+ },
+ {
+  "trigger": "CFM/GE commits its advanced ducted narrowbody engine (cfm_ducted), or offers it on aggressive terms (five-player game)",
+  "response": "Let a rival's price win go rather than match it ('we were disciplined ... we don't regret it'), accept 40-50% of a shared platform, and win back on product. No deep discounts past launch mode; competitors that offer big discounts and guarantees are a known risk in our filings. LEAP took 54% of A320neo orders against the GTF's 46% by 2016.",
+  "lag": "12-18 months (inference)",
+  "strength": "strong",
+  "war_game_translation": "Snapshot, run pw-5p-scratch, round 1, upgrade in 2026: stay on standard terms and launch gtf_next only into a disclosure. CFM/GE's ducted commitment raises Airbus's fallback from the LEAP derivative (+41.48, NGSA 2028) to +46.55, cutting our edge (ours +48.29) from +6.81 to +1.74. On aggressive terms CFM/GE's engine pays Airbus +52.69, above ours; matching with aggressive terms gives Airbus +53.09 but leaves us at -2.14, below losing NGSA (-1.74): do not match. Airbus now names us over UltraFan only if it rates our launch 2.25 times as likely as RR's (1.32 times against the derivative), so halve the round-1 naming odds behind the NGSA hedge (inference).",
+  "evidence": [
+   "P-2071",
+   "P-1949",
+   "P-0081",
+   "P-1292",
+   "P-1993",
+   "P-0735"
+  ]
+ },
+ {
+  "trigger": "CFM/GE orders its LEAP durability upgrade (leap_upgrade: 5pp of A320neo deliveries from P&W)",
+  "response": "Answer with incremental durability product, not price: Block D, the GTF Advantage and the Hot Section Plus kit, charged for case by case. LEAP's almost 10:1 order lead in 2017 followed doubts about GTF durability, which cost campaigns we chose not to buy on price; 'time on wing ... is the name of the game'.",
+  "lag": "2-3 years for the upgrade",
+  "strength": "strong",
+  "war_game_translation": "Snapshot, run pw-5p-scratch: commit gtf_upgrade if it is not booked. Its value is +1.76 (round 1) whether or not CFM/GE upgrades; CFM/GE's upgrade alone costs us 0.67 (0.28 if NGSA enters service in 2035) and cuts our A320neo engines from 960 to 840 a year, missing gtf_base; with both upgrades we hold 960 (+1.09). A round-2 gtf_upgrade (books 2031) is still worth +1.15 and still meets credibility. No terms response.",
+  "evidence": [
+   "P-1847",
+   "P-0074",
+   "P-0075",
+   "P-0758",
+   "P-0786",
+   "P-1363",
+   "P-1355"
+  ]
+ },
+ {
+  "trigger": "CFM/GE commits the RISE open fan (cfm_open_fan, entry into service from 2045) or lobbies governments on emissions",
+  "response": "Treat the open fan as 'a long time from now' and answer inside the geared architecture: composite fan, CMC hot section, new gear. A 2019 industry brief reported a planned next-generation GTF aimed at CFM's open rotor; we prefer enhanced packages to clean sheets.",
+  "lag": "none (inference)",
+  "strength": "moderate",
+  "war_game_translation": "Snapshot, run pw-5p-scratch: no order, and never pull gtf_next forward. The open fan needs 9 development years, so CFM/GE must launch it by 2036 for 2045. In no NGSA launch year we ran is it Airbus's best engine (NGSA 2036: +15.47, +18.87 with aggressive terms and lobbying, against +22.20 on ours and +21.44 on the ducted engine). NGSA on the open fan leaves us 1,080 engines a year to 2044 and none after (+0.48); lobbying alone changes nothing for us. If an airframer discloses the open fan, disclose a gtf_next offer ready at its entry into service (row 5).",
+  "evidence": [
+   "P-0104",
+   "P-1828",
+   "P-0772",
+   "P-0790",
+   "P-1298"
+  ]
+ },
+ {
+  "trigger": "CFM/GE partners with Embraer (embraer_partner) or upgrades the GEnx (genx_upgrade)",
+  "response": "No precedent in our evidence. Embraer's GTF aircraft was in our 2017 certification plan, and we stand by regional customers through delays (MRJ, CSeries, SpaceJet).",
+  "lag": "none",
+  "strength": "weak",
+  "war_game_translation": "Snapshot, run pw-5p-scratch: no lever and no order. Neither move changes our payoff (+1.76 with the upgrade); Boeing's fps Joint Venture with Embraer on pw_gtf2 still pays us +3.32 (fps 2028, gtf_next 2029).",
+  "evidence": [
+   "P-0217",
+   "P-0128",
+   "P-1371"
+  ]
+ },
+ {
+  "trigger": "An airframer launches a new narrowbody while CFM/GE has committed no new engine (the LEAP derivative, cfm_leap_plus, is the fallback)",
+  "response": "Defend the A320neo franchise early ('if you miss a cycle ... you get shut out ... for decades'); bid where we have a clear technology lead; sole source only, and match the airframer's commitment.",
+  "lag": "Tied to the airframer's decision",
+  "strength": "strong",
+  "war_game_translation": "Snapshot, run pw-5p-scratch: disclose a sole-source, standard-terms gtf_next ready at the airframe's entry into service (launch in the airframe's launch year + 1, not before 2029 after a 2026 upgrade). Against the derivative ours adds +6.81 for Airbus (NGSA 2028: +48.29 against +41.48) and +3.35 for Boeing (fps 2028: +15.93 against +12.58); naming pw_gtf2 costs an airframer nothing, since it falls back down the same CFM chain (inference). Launch on the profile \u00a76 tests: NGSA 2028 with gtf_next 2029 pays +2.30 against -1.74 lost; a hedge cancelled in 2031 costs 1.53, break-even about 0.27, flip at 0.45.",
+  "evidence": [
+   "P-1347",
+   "P-1868",
+   "P-1196",
+   "P-0737",
+   "P-0711"
+  ]
  }
 ]

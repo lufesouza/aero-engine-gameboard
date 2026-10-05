@@ -31,7 +31,7 @@
 - No `t1000_upgrade` while an UltraFan is in development: its 3-year window draws strain too ($1.31B in turn 1, $0.99B in turn 2) [whatif].
 - `cancel` only a programme no live airframe flies (rules).
 
-**Default plan**
+**Default plan (four-turn game; five-player-2045: §11)**
 - **Turn 1 (2026-28):** `t1000_upgrade` (+$0.81B [T1]); no UltraFan; disclose conditional commitments (§9); predict no airframer launch (each pays its airframer more in 2029 [whatif]).
 - **Turn 2 (2029-31):** (inference) the likely NGSA window: entry into service targeted for the second half of the 2030s [customer] [R-1867], about 7 years after launch. Launch only against turn-1 announcements.
 - **Turn 3 (2032-34):** launch only against an announcement (NGSA on UltraFan 2032 still +$15.1B [whatif]); cancel unselected programmes.
@@ -330,3 +330,64 @@ Scratch files go only under `/tmp/wargame-rolls_royce/`.
 - **No airframer text on fps, NGSA engines or either Re-engine** beyond Airbus's open-fan focus [customer] [R-1867]; selection probabilities in §9 are doctrine, not evidence.
 - **Engine mechanics we play around** (for the engine owner): strain counts the upgrade's window, unlike the rules text; `airframer_incentive_b` ignores open fan and P&W engines; `validate` skips `disclose` and `prediction`.
 - **PLACEHOLDER parameters:** `jv_pw` dev_years and strain_relief; `strain.full_overlap_b` and `norm_years` (financials.md § Game calibration).
+
+---
+
+## 11. The five-player game (five-player-2045)
+
+**[5P]** = `options` and `whatif --side rolls_royce` on a scratch run (five-player-2045, all three engine makers, no inject), round 1; $B of full-game delta PV. Snapshots: re-run every round. Turn keys: 1 = 2026-30, 2 = 2031-35, 3 = 2036-45.
+
+### What changes
+
+- **Launch year inside the round.** `uf_nb`: launch in the airframer's announced year. A year early costs 0.29-0.47 (2033-38) and gives the airframer nothing; later makes it wait (NGSA 2031 with our engine from 2033: Airbus 38.88 → 28.04). If only the round is announced, launch in its first year (inference). `uf_wb`: launch one year before the announced Re-engine year (6-year engine, 5-year airframe). From 2030 a same-year launch makes the airframer wait, and GE's GEnx fallback wins: A350 Re-engine 2031, Airbus 1.74 on us, 2.11 on GE; 787 Re-engine 2031, Boeing 2.12 against 2.59.
+- **The fallback chain.** An airframer that names UltraFan when we have not launched gets CFM's ducted engine if CFM committed one, else the LEAP derivative (-1pp margin, 0.92 capture). `options`' fallback incentive (fps 5.317, NGSA 10.593) is against the LEAP derivative; against a committed ducted engine it is NGSA +2.98, fps +1.16 (2031). (inference) Naming us costs an airframer nothing, so an announcement on UltraFan is cheap talk: keep P at 0.6, no higher.
+- **The clock.** Airframers' PV peaks at a 2028 launch (entry 2035, the tech-ready year), inside round 1: NGSA 50.47 on UltraFan, 46.55 on CFM ducted, 41.48 on the LEAP derivative; fps 16.97 / 15.34 / 12.58. NGSA 2031 on UltraFan pays Airbus 38.88.
+- **Demand.** The replacement wave lowers our narrowbody values: NGSA 2026 selected +27.80 (four-turn +29.74), fps +17.25 (+19.78). Unselected Solo costs -9.18 (2026) to -2.42 (2040).
+- **`nb_entry` deadline:** `uf_nb` by 2038 (entry 2045: NGSA 2,400 engines, fps 1,600); a 2040 launch delivers none in 2045.
+
+**Still applies.** Every hard rule and red line (Quick card), §5 rows 1-14 with [5P] numbers, §8, and §9 with "turn" read as round, including the $3B doctrine-premium cap per round. So: no UltraFan in round 1, which has no announcements [own] [R-0994, R-1005]; `jv_pw` only against P&W's announced join; no overlapping developments (strain: `uf_wb` and Solo both 2031, 1.19; upgrade 2031 with Solo 2031, 0.81; upgrade 2026 with Solo 2031, 0); standard terms by default [own] [R-1582]. **Replaced (four-turn game):** the Quick card default plan, §6's [T1] and [whatif] numbers, §9 step 13's prediction. New break-even P: NGSA 0.26 (2031) to 0.30 (2038), fps 0.36 to 0.42; 787 Re-engine 0.45 (2031) to 0.49 (2036).
+
+### Default plan by round [5P]
+
+| Round | Default | Key numbers |
+|---|---|---|
+| 1 (2026-30) | `t1000_upgrade`; no UltraFan; disclose; predict | Upgrade +0.81. Speculative Solo 2028: +22.65 (NGSA) or +14.08 (fps) if selected, -7.59 if not; break-even P 0.25 / 0.35; at P 0.1, -4.56 (NGSA): the red line holds. Predict NGSA and fps in 2028 on CFM (PV-best year for both). If both launch then, `nb_entry` is lost (§8 bias 4) [press/industry] [R-1812]. |
+| 2 (2031-35) | Launch only against round-1 announcements, in the announced year | NGSA on UltraFan (P 0.6): Solo 2031 +7.62 (+16.50 selected, -5.70 not), Joint Venture +3.69: Solo (gap 3.93 > $3B); 2035 Solo +4.65, Joint Venture +2.24: Joint Venture if P&W announced its join. fps (P 0.6): Solo 2031 +3.89; Joint Venture +1.82 fails the $2B bar. Engine open (P 0.35): only NGSA 2031 Solo passes (+2.07). A350 Re-engine for 2033: `uf_wb` 2032, -2.11 against -3.35 on GE; for 2031: standard loses to GE, aggressive (-2.94) beats losing (-4.14). Upgrade, if unfunded and no overlap: +0.48. |
+| 3 (2036-45) | Last `nb_entry` window: `uf_nb` by 2038 | NGSA (P 0.6): Solo 2036 +4.03, 2038 +2.93 (Joint Venture +1.94, +1.40: below the bar). fps (P 0.6): +1.89 to +1.24, below the bar but positive (objectives.md §6). A350 2036: aggressive same-year -1.87 against -2.40 on GE; 2037: `uf_wb` 2036, -1.50 against -2.15. Upgrade +0.28. `ultrafan_test_setback` makes a 2037-38 launch miss 2045. |
+
+**Both.** NGSA and fps on UltraFan in 2031: +26.36, 4,000 engines in 2045. NGSA plus A350 Re-engine 2031: +13.01 with `uf_wb` (strain 1.19), +12.36 with the A350 on GE.
+
+**Terms.** UltraFan standard beats CFM ducted and GTF2 at standard in every launch year (against ducted: NGSA +4.74 in 2026 to +1.11 in 2040; fps +2.11 to +0.40). It loses to either on aggressive terms (2031: NGSA -1.75 against CFM, -2.02 against P&W; fps -0.98). Aggressive UltraFan beats every alternative (2031: NGSA +2.01, fps +0.84) and costs us, when selected, NGSA 3.67 and fps 2.62 (2031), 2.11 and 1.51 (2036). §6's test applies: aggressive only against a rival known to be on aggressive terms.
+
+**Upgrade with and without `genx_upgrade`** (our delta PV; widebody engines a year):
+
+| Our upgrade | No GEnx package | GEnx package 2026 |
+|---|---|---|
+| none | 0.00; 184.1 | -0.58; 174.1 (`wb_dominance` lost) |
+| 2026 | +0.81; 204.1 | +0.23; 194.1 |
+| 2031 | +0.48 | -0.10 |
+| 2036 | +0.28 | -0.30 |
+
+The package leaves the upgrade's value unchanged; the upgrade is what keeps `wb_dominance`.
+
+### New reaction rows (CFM/GE)
+
+| # | If … | We historically… | Strength | War-game orders [5P] | Evidence ids |
+|---|---|---|---|---|---|
+| 15 | CFM/GE launches or announces its ducted engine | GE prices hard when we are weak [own]; CFM is every narrowbody's default [press/industry] | Moderate | Launch rules unchanged; contested incentive against ducted (2031: NGSA +2.98, fps +1.16). CFM on aggressive terms: `aggressive` passes §6's test. On the other airframe it cuts our selected value about 3 (NGSA 2031 +16.50 → +13.53) | R-1945, R-1946, R-1918, R-1916, R-0367 |
+| 16 | CFM/GE launches or announces the RISE open fan | None; we sell fuel burn and maturity [own] | Moderate (inference) | No change, no price cut. Entry 2045 at the earliest; it loses to our standard terms in every year, even lobbied and aggressive (NGSA 2036: 18.87 against 23.24). An airframe on it is lost to us; the other is the last prize (our NGSA 2031 with fps on the open fan: +15.54 against +16.50) | R-1867, R-1868, R-0955, R-0974, R-0383 |
+| 17 | `genx_upgrade` (787 share from us) | GE exploited the Trent 1000 crisis; we answered with time on wing, not price [own] | Strong | Fund `t1000_upgrade` if unfunded and no UltraFan is in development (keeps `wb_dominance`); the package costs us 0.58 / 0.35 / 0.21 by round. With an UltraFan in development the red line holds (strain 0.81 makes the upgrade -0.33). Standard terms | R-1945, R-0356, R-1601, R-1015, R-0135, R-0998 |
+| 18 | `leap_upgrade` (A320neo share from P&W) | P&W fights for share [rival: P&W] | Weak (inference) | No change (us 0.00). P&W loses 0.67, yet joining our NGSA Joint Venture still pays it +9.34 (2031) against GTF2 standard +0.17 | R-1880, R-1893, R-1010 |
+| 19 | `embraer_partner` | No custom engines for every airplane [own] | Weak (inference) | No change (us 0.00) | R-1396, R-0943 |
+| 20 | `lobby_emissions` | "We sell fuel burn" [own] | Weak (inference) | No change: the open fan still loses (row 16); Airbus's open-fan statements are a preference, not a PV threat | R-0955, R-1867 |
+
+### Briefing enablers and constraints
+
+| Item | Doctrine | Evidence | In the game |
+|---|---|---|---|
+| Free cash from widebody | §2: the hurdle and engineers bind, not cash | [record] [R-0220, R-0032]; [own] [R-0898, R-1579] | No cash limit; capex at alpha 0.6 |
+| Reputation | §4 rule 3 (maturity); §3 durability | [own] [R-0383, R-1601, R-1476]; [customer] [R-1837] | Capture 0.95; never compress maturity |
+| Airframer support for a third engine maker | §4 rule 2; §7 | [own] [R-1310, R-1009, R-1022]; [customer] [R-1830, R-1867] | +1.0pp airframer margin; naming us is free under the chain |
+| Engineering shared with widebody | §2 rationing; red line on overlap; bias 8 | [own] [R-0929, R-1318, R-1127] | Strain 1.19 and 0.81 (above) |
+| No narrowbody MRO scale | §3 aftermarket; §4 segments | [record] [R-0305]; [press/industry] [R-1826]; [own] [R-1308] | $3.1M an engine; ramp from 0.45 |
+| Gearbox sizing | §4 technology gates; §3 slip priors | [own] [R-1013, R-1007, R-1024] | `uf_nb` 7 years; a setback adds 2, so 2036 is the safe last launch for 2045 |
