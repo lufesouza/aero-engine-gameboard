@@ -449,7 +449,7 @@ def build_world(cfg, history, masked_delay_turns=frozenset()):
                 p = Program(
                     pid=L["program"], owner=side, segment=seg, launch_year=L["year"], launch_turn=k,
                     base_dev_years=pparam(cfg, L["program"], L.get("variant"), "dev_years"),
-                    extra_dev_years=w.dev_years_add[side] + eis_add,
+                    extra_dev_years=w.dev_years_add[side] + eis_add + int(pc.get("delay_years", 0)),
                     variant=L.get("variant"), engine=engine, supplier=sup, supplier_program=spid,
                     supplier_margin_pp=terms_pp, engine_requested=requested,
                     engine_ready_year=eng.get("available_eis"),
@@ -1300,7 +1300,7 @@ def validate_orders(cfg, history, turn, side, orders):
             continue
         avail = cfg["engine_options"][pc["segment"]][engine].get("available_eis")
         if avail is not None:
-            own = (year + pparam(cfg, pid, requested_variant(pc, L), "dev_years") + w.dev_years_add[side]
+            own = (year + pparam(cfg, pid, requested_variant(pc, L), "dev_years") + w.dev_years_add[side] + int(pc.get("delay_years", 0))
                    + cfg["engine_options"][pc["segment"]][engine]["eis_add"])
             if own < avail:
                 warnings.append(f"'{engine}' cannot enter service before {avail}: '{pid}' would be ready in {own}, so it waits "
@@ -1328,7 +1328,7 @@ def validate_orders(cfg, history, turn, side, orders):
                                 + (f" (and, if that engine's maker has not committed either, on to {' -> '.join(chain[1:])})" if len(chain) > 1 else "")
                                 + ".")
             else:
-                own = year + pparam(cfg, pid, requested_variant(pc, L), "dev_years") + w.dev_years_add[side]
+                own = year + pparam(cfg, pid, requested_variant(pc, L), "dev_years") + w.dev_years_add[side] + int(pc.get("delay_years", 0))
                 wait = max(0, sp.ready - own)
                 warnings.append(f"'{engine}': {scfg['label']} committed in {sp.launch_year} on {sp.terms} terms "
                                 f"({scfg['terms'][sp.terms]['airframer_margin_pp']:+.1f} pp margin to you); engine ready {sp.ready}"

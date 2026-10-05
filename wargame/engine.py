@@ -204,6 +204,9 @@ def levers(cfg, world, side, turn):
         pc = cfg["programs"][pid]
         if pid not in world.programs:
             item = {"program": pid, "label": pc["label"], "years": [a, b], "dev_years": pc.get("dev_years", 0) + world.dev_years_add[side],
+                    **({"known_delay_years": pc["delay_years"], "delay_note": f"{pc['label']} runs {pc['delay_years']} year(s) late: entry into service is launch + "
+                        f"{pc.get('dev_years', 0) + world.dev_years_add[side] + pc['delay_years']} years, and each delay year costs "
+                        f"{cfg['extension_capex_frac_per_year']:.0%} of programme capex."} if pc.get("delay_years") else {}),
                     "engines": list(cfg["engine_options"][pc["segment"]]), "default_engine": pc["default_engine"]}
             avail = engine_availability(cfg, world, pc["segment"])
             if avail:
@@ -357,8 +360,8 @@ def rules(cfg, side):
         "strain_rule": ("Developing a narrowbody and a widebody program at the same time costs strain.full_overlap_b x "
                         "min(1, overlap_years / strain.norm_years), spread over the overlap and alpha-loaded; a Joint Venture "
                         "relieves strain_relief of it."),
-        "delay_rule": ("Extra development years (slips, engine eis_add, injects, waiting for an engine's available_eis or a "
-                       "supplier's engine) cost extension_capex_frac_per_year of program capex per year."),
+        "delay_rule": ("Extra development years (slips, a program's known delay_years, engine eis_add, injects, waiting for an "
+                       "engine's available_eis or a supplier's engine) cost extension_capex_frac_per_year of program capex per year."),
         "players": cfg["players"], "segments": cfg["segments"], "incumbents": cfg["incumbents"],
         "active_suppliers": list(M.active_suppliers(cfg)),
         "programs": cfg["programs"], "engine_options": cfg["engine_options"], "tactics": tac,

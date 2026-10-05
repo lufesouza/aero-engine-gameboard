@@ -974,3 +974,14 @@ class CfmCliTests(CliBase):
         self.assertAlmostEqual(sum(em.values()), 1.0, places=3)
         self.assertGreater(r1["financials"]["boeing"]["round_window"]["capex_b"], 0)
         self.assertIn("embraer_partner", r1["supplier_commitments"]["cfm"])
+
+
+class KnownDelayTests(unittest.TestCase):
+    def test_fps_three_years_late(self):
+        c = M.load_config("five-player-2045-fps-delay")
+        o = orders("boeing", [dict(L(c, "fps", 2031), ramp="10y")])
+        w = M.build_world(c, [rec(1), rec(2, o)])
+        self.assertEqual(w.programs["fps"].eis, 2041)
+        cap = M.evaluate(c, w, with_series=True)["boeing"]["series"]
+        self.assertAlmostEqual(cap["2039"]["capex_b"], 0.1 * 30.0 * 0.9, places=6)  # each delay year costs 10% of capex
+        self.assertEqual(M.load_config("five-player-2045")["programs"]["fps"].get("delay_years", 0), 0)
