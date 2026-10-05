@@ -1312,9 +1312,21 @@ def validate_orders(cfg, history, turn, side, orders):
             scfg = cfg["suppliers"][req[0]]
             fb = scfg["fallback_engine"][pc["segment"]]
             if sp is None or not sp.live():
+                chain, e2 = [fb], fb
+                while True:
+                    r2 = supplier_requirement(cfg, pc["segment"], e2)
+                    s2 = w.sup_programs.get(r2[1]) if r2 else None
+                    if not r2 or (s2 is not None and s2.live()) or len(chain) > 4:
+                        break
+                    e2 = cfg["suppliers"][r2[0]]["fallback_engine"][pc["segment"]]
+                    if e2 in chain:
+                        break
+                    chain.append(e2)
                 warnings.append(f"'{engine}' needs {scfg['label']} to launch its {scfg['programs'][req[1]]['label']} ({req[1]}); "
                                 f"it has not{' (it was cancelled)' if sp else ''}. If {scfg['label']} does not launch it this turn, "
-                                f"'{pid}' falls back to '{fb}'.")
+                                f"'{pid}' falls back to '{fb}'"
+                                + (f" (and, if that engine's maker has not committed either, on to {' -> '.join(chain[1:])})" if len(chain) > 1 else "")
+                                + ".")
             else:
                 own = year + pparam(cfg, pid, requested_variant(pc, L), "dev_years") + w.dev_years_add[side]
                 wait = max(0, sp.ready - own)
