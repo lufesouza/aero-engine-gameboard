@@ -209,15 +209,15 @@ His one event came five weeks before the powder-metal disclosure [PX-0290].
 
 **Continuities across both presidents.**
 1. **Defend the architecture, fix the parts.** "The fan-drive gear system has been flawless" [P-0852]; "not something related to the architecture" [PX-0111].
-2. **Durability before entry into service, learned the hard way.** The golden rules [PX-0168] lead to the Advantage's severe-environment testing [PX-0128].
+2. **Durability before entry into service, learned the hard way.** The golden rules [PX-0168] are echoed in the Advantage's severe-environment testing [PX-0128] (the link is inference).
 3. **Partners carry MRO capital** [PX-0170][PX-0118], **and long-term agreements carry the technical risk** [PX-0151][PX-0130].
 4. **Keep the loss per engine private** [PX-0162][PX-0113].
-5. **Narrowbody first; the next engine is an evolved GTF, without hurry** [PX-0177][PX-0127][PX-0166][PX-0129].
-6. **Assurance before the facts.** "We will get these fixes in place by the end of this year" [PX-0147]; "not a surprise" [PX-0112]. This is the doctrine's durability-optimism bias, and it lives in this seat.
+5. **Narrowbody first; the next engine is an evolved GTF, without hurry** [PX-0127][PX-0166][PX-0129]. The exception was Leduc's sole-source bid for Boeing's NMA [PX-0177].
+6. **Reassurance before the facts are in.** "We will get these fixes in place by the end of this year" (June 2017) [PX-0147] was followed by a new seal escape [PX-0164]. "Not a surprise" on AOG support (June 2023) [PX-0112] was followed by the recall [PX-0290]. This matches the doctrine's durability-optimism bias. *Counter-evidence:* production engines carried the two main fixes by January 2018 [P-0881], and the powder-metal cause was established only after a records review [PX-0039].
 
 **The difference.** Leduc ran launch and ramp: growth, capacity discipline, selective pricing. Eddy runs recovery: reputation and fleet lift.
 
-**In the game.** The seat proposes `gtf_upgrade` in round 1, holds `gtf_next` until an airframer discloses, keeps standard terms and refuses `pw_wb`. Its vetoes are technical: testing complete, parts and capacity in place [PX-0168][PX-0179][PX-0123]. It has no say on the dividend or buybacks.
+**In the game.** The seat proposes `gtf_upgrade` in round 1, holds `gtf_next` until an airframer discloses, and keeps standard terms. It refuses `pw_wb` (Eddy [PX-0127]); Leduc would bid only sole source and accretive [PX-0177]. Its vetoes are technical: testing complete, parts and capacity in place [PX-0168][PX-0179][PX-0123]. It has no say on the dividend or buybacks.
 
 ## Gaps
 
@@ -236,4 +236,4 @@ His one event came five weeks before the powder-metal disclosure [PX-0290].
 - **Not profiled here:**
   - Calio's years in this seat (see `calio.md`);
   - Rick Deurloo, President of Commercial Engines, who appears in 2025 press [P-1817].
-- **[engine]** values come from one scratch run.
+- **[engine]** values are snapshots. They were re-checked on a fresh run in the 2026-10-04 audit, which qualified the open-fan figure by launch year.
