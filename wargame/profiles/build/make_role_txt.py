@@ -142,13 +142,45 @@ ROLES["cfm"] = [
         ],
     },
 ]
+ROLES["rolls_royce"] = [
+    {"file": "rolls_royce_ceo.txt", "title": "ROLLS-ROYCE: CHIEF EXECUTIVE OFFICER (CEO)", "label": "Chief Executive Officer (CEO)",
+     "seat": "ceo", "people": ["erginbilgic"],
+     "notes": ["Warren East (CEO to the end of 2022) is not profiled: the executive evidence starts with his CFO and "
+               "Civil Aerospace presidents. Erginbilgic took over in January 2023."]},
+    {"file": "rolls_royce_cfo.txt", "title": "ROLLS-ROYCE: CHIEF FINANCIAL OFFICER (CFO)", "label": "Chief Financial Officer (CFO)",
+     "seat": "cfo", "people": ["mccabe", "kakoullis"], "notes": []},
+    {"file": "rolls_royce_coo_civil.txt", "title": "ROLLS-ROYCE: OPERATING SEAT (PRESIDENT, CIVIL AEROSPACE)",
+     "label": "Operating seat (President, Civil Aerospace)", "seat": "ops",
+     "people": ["historical:rwatson", "historical:cholerton", "historical:eschulz"],
+     "notes": ["The three presidents are profiled together in operations.md, one card each, with what the seat stands for."]},
+]
+ROLES["pratt_whitney"] = [
+    {"file": "pratt_whitney_ceo.txt", "title": "PRATT & WHITNEY: CEO SEAT (RTX CEO; EARLIER PRESIDENT OF PRATT & WHITNEY)",
+     "label": "CEO seat (Christopher Calio: President of Pratt & Whitney, then RTX President & COO, then RTX CEO)", "seat": "ceo",
+     "people": ["calio"],
+     "notes": ["Pratt & Whitney is a business of RTX. Capital allocation, the balance sheet and returns to shareholders are "
+               "decided at RTX level; engine programmes, pricing and the GTF fleet plan are run by Pratt & Whitney under RTX."]},
+    {"file": "pratt_whitney_cfo.txt", "title": "PRATT & WHITNEY: CHIEF FINANCIAL OFFICER (RTX CFO)",
+     "label": "Chief Financial Officer (Neil Mitchill: RTX CFO from 2021; earlier Pratt & Whitney CFO)", "seat": "cfo",
+     "people": ["mitchill"], "notes": []},
+    {"file": "pratt_whitney_coo_president.txt", "title": "PRATT & WHITNEY: OPERATING SEAT (PRESIDENT, PRATT & WHITNEY)",
+     "label": "Operating seat (President, Pratt & Whitney)", "seat": "ops",
+     "people": ["historical:eddy", "historical:leduc"],
+     "notes": ["The presidents are profiled together in operations.md, one card each, with what the seat stands for."]},
+]
 EXTRAS = {"cfm": [("cfm_international.md", "cfm_international.txt",
                    "CFM INTERNATIONAL: THE JOINT VENTURE AND ITS GOVERNANCE")]}
-HIST_FILE = {"airbus": "historical.md", "cfm": "historical_ops.md"}
+HIST_FILE = {"airbus": "historical.md", "cfm": "historical_ops.md", "rolls_royce": "operations.md", "pratt_whitney": "operations.md"}
 HIST_KEYS = {"enders": "Tom Enders", "leahy": "John Leahy", "scherer": "Christian Scherer",
-             "slattery": "John Slattery", "fitzgerald": "Bill Fitzgerald", "mcallister": "Kevin McAllister"}
-ID_PREFIX = {"boeing": ("BX", "B"), "airbus": ("AX", "A"), "cfm": ("CX", None)}
-DEFAULT_TEAM = {"boeing": "ortberg-malave-pope-2026", "airbus": "faury-toepfer-wagner-2026", "cfm": "culp-ghai-ali-2026"}
+             "slattery": "John Slattery", "fitzgerald": "Bill Fitzgerald", "mcallister": "Kevin McAllister",
+             "cholerton": "Chris Cholerton", "rwatson": "Robert Watson", "eschulz": "Eric Schulz",
+             "leduc": "Bob Leduc", "eddy": "Shane Eddy"}
+ID_PREFIX = {"boeing": ("BX", "B"), "airbus": ("AX", "A"), "cfm": ("CX", None), "rolls_royce": ("RX", "R"),
+             "pratt_whitney": ("PX", "P")}
+DEFAULT_TEAM = {"boeing": "ortberg-malave-pope-2026", "airbus": "faury-toepfer-wagner-2026", "cfm": "culp-ghai-ali-2026",
+                "rolls_royce": "erginbilgic-mccabe-watson-2026", "pratt_whitney": "calio-mitchill-eddy-2026"}
+# Operating-seat card files: every card is one person in a shared file, not a historical outside view.
+SEAT_CARD_FILES = {"rolls_royce", "pratt_whitney"}
 
 
 # --------------------------------------------------------------------------- Markdown to text
@@ -295,8 +327,10 @@ def historical_parts(company):
         for key, name in HIST_KEYS.items():
             if name.split()[-1] in title.split(":")[0]:
                 sections[key] = (title, body)
-        if title.startswith("Gaps common"):
+        if title.startswith("Gaps common") or title.strip() == "Gaps":
             sections["gaps"] = (title, body)
+        if title.startswith("What the seat stands for"):
+            sections["seat"] = (title, body)
     return preface, sections
 
 
@@ -307,8 +341,14 @@ def person_block(company, person, idx, total, current, team_rows):
         preface, sections = historical_parts(company)
         title, body = sections[key]
         kind = "OUTSIDE VIEW" if company == "airbus" else "THIN EVIDENCE"
-        label = f"PROFILE {idx} OF {total}: {inline(title).upper()} (HISTORICAL, {kind})"
-        md = "### About the historical cards\n\n" + preface + "\n\n" + body.split("\n", 1)[1]
+        if company in SEAT_CARD_FILES:
+            label = f"PROFILE {idx} OF {total}: {inline(title).upper()} (OPERATING-SEAT CARD)"
+            md = "### About the operating seat\n\n" + preface + "\n\n" + body.split("\n", 1)[1]
+            if "seat" in sections:
+                md += "\n\n" + sections["seat"][1].replace("## ", "### ", 1)
+        else:
+            label = f"PROFILE {idx} OF {total}: {inline(title).upper()} (HISTORICAL, {kind})"
+            md = "### About the historical cards\n\n" + preface + "\n\n" + body.split("\n", 1)[1]
         if "gaps" in sections:
             md += "\n\n" + sections["gaps"][1].replace("## ", "### ", 1)
         src = f"{HIST_FILE[company]}, section \"{inline(title)}\""

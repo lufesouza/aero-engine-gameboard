@@ -201,6 +201,7 @@ th, td { text-align: left; vertical-align: top; padding: 8px 11px; border-bottom
 thead th { font: 600 .92rem/1.2 var(--font-display); letter-spacing: .03em; background: var(--sunk); white-space: nowrap; }
 td.n, th.n { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
 tbody tr:last-child td { border-bottom: 0; }
+tbody td:first-child { white-space: nowrap; }
 .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 14px; }
 .fig { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; min-width: 0; }
 .fig figcaption { font: 600 1rem/1.2 var(--font-display); margin-bottom: 6px; }
