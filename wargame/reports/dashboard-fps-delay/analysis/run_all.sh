@@ -4,4 +4,4 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 PY=${PYTHON:-python3}
-for s in check_snapshot delay analysis2 vacuum engines engines_all recovery_threshold robustness; do echo "== $s"; $PY -I $s.py; done
+for s in check_snapshot delay analysis2 vacuum engines engines_all recovery_threshold robustness page_data; do echo "== $s"; $PY -I $s.py; done
