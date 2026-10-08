@@ -1,0 +1,410 @@
+{
+ "key": "embraer",
+ "analysis": {
+  "headline": "The 3-year fps delay roughly doubles the odds that Embraer becomes an independent third single-aisle player, from about 6% (range 2-13%) with fps in 2041 to about 11% (range 4-24%) with fps in 2044. It is still a long shot. The delay opens a real gap. The board's unserved demand rises from 1,920 to 5,040 aircraft, and an entrant timed to Embraer's realistic schedule moves from clearly negative to about break-even (judgement). The binding constraint is still money: a 150-210 seat clean sheet would cost $15-25B, against a market cap of about $13B. Two other things hold the odds down. Embraer has a habit of waiting for Boeing to move first. And the delay makes a Boeing\u2013Embraer Joint Venture more attractive. That Joint Venture is about as likely as independent entry (about 10% rising to 12%), and it would not create a third player.",
+  "capability_facts": [
+   {
+    "fact": "Scale: FY2025 revenue was $7.58B. FY2026 guidance is $8.2-8.5B, and consensus for 2030E is $10.77B.",
+    "source": "EmbraerSABOVESPAEMBJ3EstimatesReport.xls, Guidance sheet, row 41 (FY2025 actual 7,578) and row 29 (FY2026 guidance); Consensus sheet, row 102 (2030E 10,765)"
+   },
+   {
+    "fact": "Profitability: 2025 adjusted EBIT was $657M (8.7% margin) and adjusted EBITDA $889M. Consensus EBIT for 2030E is $1.13B.",
+    "source": "Embraer Transcripts PDF p42 (FQ4 2025 call, 6 Mar 2026); Estimates report, Consensus sheet, row 124"
+   },
+   {
+    "fact": "The Commercial Aviation segment is the weak link. In 2025 it had R$13.03B revenue and R$336M operating profit (2.6% margin). Executive Aviation had R$12.17B revenue and R$1.47B operating profit.",
+    "source": "Embraer S A BOVESPA EMBJ3 Financials Segments.xls, rows 16-17 and 32-33, column Dec-31-2025"
+   },
+   {
+    "fact": "Balance sheet: Embraer stand-alone ended 2025 with $109M net cash, and 96% of its debt is long term. At Q2 2026, stand-alone net debt was $214.5M, cash $2.34B and the undrawn revolver $1B. Capital IQ at Dec-2025 shows total debt R$15.27B, cash and short-term investments R$14.45B, and net debt R$0.82B.",
+    "source": "Transcripts PDF p43 (6 Mar 2026); Q2 2026 results coverage, 10 Aug 2026: https://aviacionaldia.com/en/2026/08/embraer-reports-record-second-quarter-with-2-2-billion-in-revenue-and-raises-full-year-2026-guidance.html and https://leehamnews.com/2026/08/10/embraer-posts-record-q2-revenue-as-deliveries-hit-16-year-high/; Financials (1).xls, Balance Sheet rows 20, 85, 86"
+   },
+   {
+    "fact": "Consensus free cash flow for 2026E-2030E is $353M, $446M, $578M, $776M and $620M, a sum of $2.77B. Consensus has net cash of $2.2B by 2030E.",
+    "source": "Estimates report, Consensus sheet, rows 210 and 176 (2030E net debt -2,205)"
+   },
+   {
+    "fact": "Market value: about $13.2B ($72.99 per EMBJ share on 7 Aug 2026). Capital IQ Key Stats gives R$59.7B (R$83.86 x 711.8M shares). Consensus enterprise value for 2025 is $12.6B.",
+    "source": "https://www.marketbeat.com/stocks/NYSE/EMBJ/chart/ (7 Aug 2026); Financials (1).xls, Key Stats rows 44-47; Consensus sheet, row 253"
+   },
+   {
+    "fact": "Current investment level: stand-alone investment was $383M in 2025 (versus $428M in 2024), with capex running at close to $400M a year. Q1 2026 investment was $99M, of which $11M was research. Capital IQ shows R&D expense of R$413M in 2025.",
+    "source": "Transcripts PDF p42 (6 Mar 2026) and p5 (8 May 2026); Financials (1).xls, Income Statement row 110"
+   },
+   {
+    "fact": "The last development cycle: the E2 cost $1.7B over about 4 years (about $400M a year) and was described as 'ahead of schedule... under budget'. In 2015 total investment peaked at $650M ($50M research, $300M development, $300M capex). Commercial Aviation capex peaked at R$1.22B in 2016.",
+    "source": "Transcripts PDF p723 (29 Jul 2016), p895 (26 Feb 2014), p813 (5 Mar 2015); Segments.xls row 51"
+   },
+   {
+    "fact": "Cost benchmarks for a clean sheet. A competitive single-aisle costs $10-15B before overruns. ANSA puts it at about $10B, and the WSJ at 'tens of billions'. The CSeries grew from $2.1B (2005) to $5.4B at certification (Dec 2015). The board's fps 10-year bill is $55.25B and NGSA's is $30.07B. The war game uses $30B of fps development capex.",
+    "source": "https://www.avianticslabs.com/p/embraers-narrow-body-logic-is-sound (search summary; page blocked); https://www.ice.it/it/news/notizie-dal-mondo/307214; WSJ reprint, May 2024: https://tovima.com/wsj/brazils-embraer-plots-a-new-737-sized-jet-to-rival-boeing; snapshot Game.txt / dash/harness.py snapshot values; wargame/reports/wg5-2045d/drivers.md \u00a72 driver table"
+   },
+   {
+    "fact": "My sizing (calculation from the rows above). A $15B programme is 1.1x market cap, 2.0x 2025 revenue, 17x 2025 adjusted EBITDA, 5.4x consensus 2026-30 free cash flow and 8.8x the E2. Spread over 8 years it is about 4.9x the 2025 investment level. At $10B and $25B the ratio to market cap is 0.8x and 1.9x. Judgement: Embraer can fund about $4-5B itself by 2035 (consensus net cash of $2.2B in 2030 plus about five years of roughly $0.6B free cash flow). Partners would therefore have to fund about 65-80% of a $15-25B programme.",
+    "source": "Computed from the rows above; the self-funding estimate is my judgement"
+   },
+   {
+    "fact": "Under the board's own leverage-penalty rule (alpha 0.30), a $15B programme entering service in 2042 costs Embraer $2.31B of present value if Embraer debt-funds it alone. The penalty falls to $0.15B if partners fund 70%.",
+    "source": "My solve: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/entrant2.json (EV $12.6B; debt about $2.8B = R$15.27B at an FX rate I assumed)"
+   },
+   {
+    "fact": "Engineering bench: Embraer has one central engineering team, and many staff have been through 2-3 full development cycles. A supplier on the investor-day panel said of recent commercial developments that 'none has gone as flawlessly as the E2'.",
+    "source": "Transcripts PDF p175 and p170 (Investor Day, 18 Nov 2024)"
+   },
+   {
+    "fact": "Volume track record: Embraer delivered 78 commercial jets in 2025, 44 of them E2s. Guidance is 80-85 commercial jets in 2026, and the capacity target is 120-130 commercial jets a year by 2030. The E2 first delivered in 2018, so it reached 44 a year 7 years later.",
+    "source": "https://www.airdatanews.com/embraer-ends-2025-with-78-commercial-jets-delivered/; Q2 2026 coverage (aviacionaldia URL above); evidence A-0141 (Boeing 10-K FY2018 p2504)"
+   },
+   {
+    "fact": "Engines. P&W is sole source on the E2 (PW1900G). In the war-game config, CFM's 'Embraer partnership' lever costs $1.2B over 4 years and yields 190 engines a year from 8 years later at $1.2M each (all placeholders). Its PV is -0.10, -0.14 and -0.16, and CFM never used it in either game. Rolls-Royce is seeking up to \u00a3200M of UK aid to return to narrowbody engines. Asked about Rolls-Royce, Embraer's CEO said 'we talk to all of them'.",
+    "source": "evidence P-0963, P-1043 (pratt_whitney/evidence.jsonl); wargame/config/default.json line 288; cfm/profile.md line 302; wg5-2045d/final_report.md line 71; https://centreforaviation.com/news/rolls-royce-progressing-with-uk-government-talks-on-subsidies-for-narrowbody-engine-programme-1367014; Transcripts PDF p13 (8 May 2026)"
+   },
+   {
+    "fact": "The board prices 'fps via Embraer' as a $100B Boeing investment. The slider runs 20-100 and sits at its maximum. Share follows the 10-year path, and Boeing keeps the full fps margin. Against Do Nothing it scores -17.05 with fps in 2041 and -15.95 in 2044. Break-even is about $52.9B.",
+    "source": "board.py line 843 (slider 'fps via Emb Tot Invest'); Game.txt line 59; BRIEF.md business-case table"
+   },
+   {
+    "fact": "War-game Joint Venture terms: the partner pays 35% of capex, takes 25% of margin and relieves half the strain. In the delayed war game the Joint Venture was Boeing's best fps form, at -0.73 against Do Nothing (it needed more than +1.00). It would have been a Go only if the partner paid more than 47.9% of capex or took less than 9.4% of margin.",
+    "source": "wargame/config/default.json line 58; wargame/reports/wg5-2045d/drivers.md, top table and \u00a72 driver table"
+   },
+   {
+    "fact": "My board solve on the war-game Joint Venture terms (Boeing pays 65% of the $55.25B bill and keeps 75% of the fps margin). Against Do Nothing: +2.21 with fps in 2041 (Solo is +1.06) and -0.83 in 2044 (Solo is -2.53). Against Airbus Delay Tactics: +1.23 and -1.55. The capex Boeing could pay and still break even: $43.2B (2041) and $32.1B (2044).",
+    "source": "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/emb_jv.json"
+   }
+  ],
+  "current_status_facts": [
+   {
+    "fact": "As of Oct 2026 Embraer has not launched or committed to a single-aisle to rival the A320neo and 737 MAX.",
+    "source": "Leeham, 4 Sep 2026: https://leehamnews.com/2026/09/04/will-embraer-go-big-by-developing-a-large-narrowbody-jet/ (paywalled; headline and summary only)"
+   },
+   {
+    "fact": "On 8 May 2026 the CEO said Embraer is 'making studies for a new cycle of products... either a commercial jet or a business jet... we talk to all of them' (asked about Rolls-Royce). He added that it is investing in 'aerostructures, wings, cockpits... to be ready to develop a new airplane'.",
+    "source": "Transcripts PDF p13 and p15 (FQ1 2026 call)"
+   },
+   {
+    "fact": "On 4 Nov 2025 the CEO said new products 'could refer to Commercial Aviation, meaning larger planes than E195-E2. It could be larger or smaller', and that 'we don't have a time line definition'. In Nov 2025 he told Forbes Brasil there is 'no deadline'.",
+    "source": "Transcripts PDF p70-71 (FQ3 2025 call); https://forbes.com.br/forbes-money/2025/11/embraer-estuda-novos-produtos-mas-enfatiza-a-disciplina-financeira/"
+   },
+   {
+    "fact": "On 27 Feb 2025 the CEO said the plan to 2030 is 'to make sure we will have a very healthy cash generation to support a potential next move', with revenue 'beyond $10 billion' by the end of the decade excluding Eve. On 7 May 2024 he said there were no plans 'to develop or launch a narrowbody... in the next few years'.",
+    "source": "Transcripts PDF p128 (FQ4 2024 call) and p230 (FQ1 2024 call)"
+   },
+   {
+    "fact": "Embraer's own stated decision rule, 31 Oct 2016: 'I don't think that we'll launch any new aircraft that will be larger than the E2, if Boeing and Airbus are still in this segment... if they decide to move upwards... and give up a little bit of this market... we will look again.' In Mar 2011 Embraer waited for Boeing's choice before deciding whether to go larger, then chose the E2.",
+    "source": "Transcripts PDF p694-695 (FQ3 2016 call) and p1089 (FQ4 2010 call, 25 Mar 2011)"
+   },
+   {
+    "fact": "Leeham reported on 12 Jan 2026 that Embraer is exploring a 180-240 seat design but is unlikely to confirm it in 2026. On 12 Jun 2026 Embraer's R&T director said 'We do have a single aisle aircraft as one of our potential products for the future.'",
+    "source": "https://leehamnews.com/2026/01/12/outlook-2026-embraer-well-positioned-but-new-airplane-launch-fraught-with-risk/; https://backend.ainonline.com/aviation-news/aerospace/2026-01-12/embraer-prioritizes-e2-sales-boost-over-new-airliner-plan; https://centreforaviation.com/news/embraer-exploring-new-executive-and-commercial-jets-supersonic-a-possibility-head-of-rt-1362926"
+   },
+   {
+    "fact": "Partner search. In May 2024 the WSJ reported that Embraer had sounded out Saudi Arabia's PIF and manufacturers in Turkey, India and South Korea. The Air Current reports talks with Japan. In Jul 2026 Seoul said it is weighing a development-stage role in 'Embraer's planned next-generation airliner' but that talks are at 'a very early stage' with no terms set. KAI and Embraer signed a structures MoU on 28 Jul 2026, Turkish Aerospace signed an E2-production MoU on 1 Apr 2025, and Mubadala signed a framework in Jul 2026. No sovereign equity commitment has been confirmed.",
+    "source": "https://tovima.com/wsj/brazils-embraer-plots-a-new-737-sized-jet-to-rival-boeing; https://theaircurrent.com/industry-strategy/japan-embraer-partners-list-new-airplane/; https://www.koreaherald.com/article/10823634; https://www.airframer.com/news/story/kai-partners-with-embraer-on-structures; https://quwa.org/turkey/turkish-defence-news/turkish-aerospace-and-embraer-sign-mou-to-explore-e2-production-collaboration-04-03-2025; https://www.agbi.com/aviation/2026/07/mubadala-and-embraer-tie-up-to-drive-uaes-aerospace-sector/"
+   },
+   {
+    "fact": "Brazil's state backing is export credit and small R&D money, not launch aid. BNDES lent about R$28.8B to Embraer in 2023-25, mostly for exports. In Apr 2026 it approved R$279M for innovation. There is no development loan for a new programme.",
+    "source": "https://www.intellinews.com/brazil-s-bndes-steps-up-backing-for-embraer-422994/; https://agenciainfra.com/blog/bndes-aprova-r-279-milhoes-para-inovacao-da-embraer/"
+   },
+   {
+    "fact": "Airbus CEO Faury said in late Jun 2026 that Embraer should 'think twice' about entering the market against Airbus, Boeing 'and now COMAC'. Airbus targets an NGSA launch around 2030, with entry into service in the second half of the 2030s.",
+    "source": "https://www.airdatanews.com/airbus-ceo-says-embraer-should-think-twice-before-entering-narrowbody-market/"
+   },
+   {
+    "fact": "Boeing\u2013Embraer history. Boeing terminated the $4.2B deal for 80% of Embraer's commercial arm on 25 Apr 2020, and Embraer called the termination wrongful. The arbitration ended on 16 Sep 2024 with Boeing paying $150M under a collar agreement, against roughly $300M of costs Embraer had estimated. Boeing had first sought Embraer about 3 months after Airbus took the CSeries, for its engineering talent and capacity, and called the deal 'not a must do'.",
+    "source": "Transcripts PDF p483 (27 Apr 2020) and p188/p190 (FQ3 2024 call); Embraer 20-F FY2024: https://www.sec.gov/Archives/edgar/data/1355444/000119312525069283/d914513d20f.htm; https://www.tipranks.com/news/the-fly/embraer-award-from-boeing-disappointing-but-reaction-overdone-says-bofa; evidence B-1326, B-1420, B-1567, B-1382, B-1674, B-2131 (boeing/evidence.jsonl)"
+   },
+   {
+    "fact": "E2 momentum. Embraer sold 'almost 200 E2s' in 2025 and has 24 E2 operators. In Q2 2026 its backlog reached a record $34.5B. In Mar 2026 Finnair ordered E2s (134 seats) and said neither incumbent has MAX or neo slots until 2032-2033.",
+    "source": "Transcripts PDF p15 (8 May 2026) and p31 (Finnair call, 23 Mar 2026); Q2 2026 coverage (Leeham URL above)"
+   },
+   {
+    "fact": "Competition for the same overflow. Boeing's 737 line is cleared to 47 a month (May-Jun 2026) and targets 52 a month in early 2027. COMAC delivered about 15 C919s in 2025, has no EASA certification, and targets 150 a year by 2028 and 200 by 2029.",
+    "source": "https://qz.com/boeing-737-max-production-rate-47-month-060526; https://www.insideflyer.com/posts/boeing-targets-52-monthly-737-max-jets-by-2027/; https://www.airdatanews.com/comac-fails-to-increase-c919-deliveries-in-2025/"
+   }
+  ],
+  "entry_paths": [
+   {
+    "path": "Independent (counts as a third player): an Embraer-led clean-sheet 180-210 seat family, funded with sovereign or industrial partners (PIF, Korea, Japan, Turkey, India) and powered by a new-generation engine.",
+    "p_fps_2041": "4% (range 1-9%)",
+    "p_fps_2044": "8% (range 3-17%)",
+    "why_delay_changes_it": "Fact: the delay grows the board's unserved demand at an Airbus capacity of 1,200 a year from 1,920 to 5,040 aircraft over 2037-56. In 2045 the gap is 360 a year instead of 140, and it is still 160 a year in 2055 instead of zero (vacuum.json; wf/entrant2.json). For an entrant on Embraer's realistic timing (entry into service 2042, $15B), board-convention NPV improves from -2.44 to -0.49, or from -1.51 to +0.43 if it also wins a 5% slice of the whole market. Both board equilibria at 2044 have Boeing on Do Nothing for the narrowbody, and the war game also said no-go. Judgement: this is the nearest the market gets to Embraer's own 2016 trigger ('give up a little bit of this market'). Against that, Boeing's fps decision moves to about 2037, after the 2035 cutoff, so Embraer would have to move first, which it has never done against Boeing.",
+    "binding_constraints": [
+     "Financing: $15-25B all-in against a market cap of about $13.2B. Embraer can fund about $4-5B itself by 2035 (judgement), so partners must cover 65-80%, and none has committed.",
+     "Embraer's habit of waiting for Boeing (2011) and its 2016 rule, plus management's 'no deadline' financial discipline.",
+     "Accessible demand is smaller than the board shows: the 737 line at 47-52 a month and COMAC take part of the overflow, and Airbus can add capacity.",
+     "Incumbent response: Faury's 'think twice' warning, and the CSeries precedent, which ended in a trade case and Bombardier's exit.",
+     "Engineering bandwidth may go first to a large business jet: Executive Aviation earned R$1.47B in 2025 against R$336M for Commercial.",
+     "Volume: the E2 reached 44 a year 7 years after first delivery, so 100 a year by 2045 needs a launch by about 2032."
+    ]
+   },
+   {
+    "path": "Independent, smaller step (counts only if 150+ seats): a new roughly 150-170 seat aircraft above the E195-E2. It is cheaper, roughly $8-12B (judgement).",
+    "p_fps_2041": "2% (range 1-4%)",
+    "p_fps_2044": "3% (range 1-7%)",
+    "why_delay_changes_it": "Judgement: it gains less from the delay. The board's vacuum sits in Airbus's core 170-200+ seat volume, while a 150-170 seater meets the A220-300 and A320neo and competes with Embraer's own E195-E2. Its lower cost means it relies less on sovereign money, so the delay helps only a little.",
+    "binding_constraints": [
+     "Cannibalises the E195-E2, which tops out at 132-136 seats typically and 146 at most, against rivals' 170-180.",
+     "Airbus can answer cheaply at the bottom of the band (judgement).",
+     "Still needs a new engine at about 25-30k lbf of thrust (judgement); P&W is the natural fit."
+    ]
+   },
+   {
+    "path": "Boeing's partner (does NOT count as a third player): the board's 'fps via Embraer' Joint Venture, or Boeing buying back Embraer's commercial arm. Embraer's engineering goes into Boeing's product, and the independent entrant disappears.",
+    "p_fps_2041": "10% (range 4-18%)",
+    "p_fps_2044": "12% (range 5-22%)",
+    "why_delay_changes_it": "Fact: on war-game Joint Venture terms the board gives +2.21 (2041) and -0.83 (2044) against Do Nothing, versus Solo at +1.06 and -2.53. In the delayed war game the Joint Venture was Boeing's best fps form (-0.73). So the delay makes the Joint Venture the preferred form if Boeing launches at all. It also makes a launch less likely: no pure equilibrium includes fps from 2043, and the war game said no-go. Judgement: P(launch) of about 0.7 times P(Joint Venture given launch) of about 0.15 at 2041 gives about 10%. About 0.35 times 0.35 at 2044 gives about 12%. The board's $100B price (-17.05 / -15.95) is not credible. It is 1.8x the Solo bill and about 7.6x Embraer's market cap; Boeing could buy all of Embraer and still fund Solo for less.",
+    "binding_constraints": [
+     "Embraer cannot pay 35% of $55.25B ($19.3B, 1.5x its market cap) without its own sovereign co-investors. A war-game Go needs it to pay more than 47.9%.",
+     "Trust after the 2020 termination and the arbitration settled in 2024; Brazil's government stance (judgement).",
+     "Boeing's own launch economics at 2044: the break-even capex Boeing could pay is $32.1B on Joint Venture terms, against a $35.9B share."
+    ]
+   },
+   {
+    "path": "No entry (baseline): Embraer stays below 150 seats with the E2 and spends its next cycle on a larger business jet or defence.",
+    "p_fps_2041": "84%",
+    "p_fps_2044": "77%",
+    "why_delay_changes_it": "Judgement: this is the residual. The delay pulls about 7 points out of this baseline, about 5 into independent entry and about 2 into the Joint Venture.",
+    "binding_constraints": [
+     "Embraer's profit is in Executive Aviation, Services and Defence, not Commercial Aviation (Segments.xls 2025).",
+     "Management is weighing buybacks and pays out 25% of net income (transcripts p64 and p5), which signals no big programme yet.",
+     "Engine and technology maturity: Embraer has shelved a turboprop before for lack of engine gains."
+    ]
+   }
+  ],
+  "overall": {
+   "definition": "A third player is a company other than Boeing or Airbus that either (a) delivers a 150-210 seat single-aisle by 2045 at 100 or more a year (5% or more of the board's 2,000 a year) to customers outside its home country, or (b) has committed funding to such a programme by 2035. Embraer counts only as an independent competitor, including one with sovereign or industrial co-investors. Entering as Boeing's partner through the board's 'fps via Embraer' Joint Venture does not count. A clean sheet takes 8-10 years to reach service, and the E2 needed 7 years after first delivery to reach 44 a year. Leg (a) therefore cannot be met without a launch by about 2032-33, so P(third player) is essentially P(independent launch by 2035).",
+   "p_fps_2041": "6% (range 2-13%)",
+   "p_fps_2044": "11% (range 4-24%)",
+   "method": "The method is a four-stage chain for an independent launch by 2035. All stage probabilities are my judgement, anchored on the facts cited. The ranges come from multiplying the stage ranges, so they are deliberately wide.\n\nThe chain is Opportunity x Financing x Engine supply x Commitment by 2035 without being pre-empted.\n- fps in 2041: 0.30 x 0.35 x 0.85 x 0.65 = 5.8%, about 6% (range 0.20-0.40 x 0.25-0.50 x 0.80-0.90 x 0.50-0.75 = 2-13%).\n- fps in 2044: 0.55 x 0.40 x 0.90 x 0.55 = 10.9%, about 11% (range 0.40-0.70 x 0.30-0.55 x 0.85-0.95 x 0.40-0.65 = 4-24%).\n\n1) Opportunity: 0.30 \u2192 0.55.\n- Board facts: unserved demand rises from 1,920 aircraft (peak 240 a year) to 5,040 (peak 400 a year) at an Airbus capacity of 1,200 a year; with Boeing on Do Nothing it is 6,860 (vacuum.json). The brief's entrant (entry into service 2038, $15B) goes from -2.78 to -0.51, and with $20B and a 10% slice from -1.35 to +0.92.\n- My runs on Embraer's realistic timing (wf/entrant2.json): entry into service 2042 at $15B gives -2.44 \u2192 -0.49, and with a 5% slice -1.51 \u2192 +0.43. Entry into service 2043 gives -2.35 \u2192 -0.63, and -1.53 \u2192 +0.18.\n- The board credits Airbus with NGSA margin on aircraft above its 1,200 a year capacity worth $7.95B PV with fps in 2041 and $16.82B with fps in 2044 ($2.15B and $8.81B at 1,320 a year; wf/airbus_overflow.json). That is the prize an entrant would contest.\n- The delay leaves Boeing on Do Nothing in both 2044 equilibria, with share pinned at 20% from 2043. That is close to Embraer's 2016 trigger.\n\nWhere I disagree with the board's vacuum and entrant numbers (judgement unless cited):\n(i) The vacuum comes from the share rule, not from a lack of aircraft. Boeing's existing 737 line, at 47 a month (about 564 a year) and aiming for 52 (about 624), can already build 164-224 a year more than the board's 20% Boeing share of 400 a year. That covers about 40-55% of the 400 a year peak gap with an available product.\n(ii) COMAC is chasing China's slice of the gap (targets of 150-200 a year by 2028-29, though it delivered about 15 in 2025).\n(iii) The vacuum depends heavily on Airbus capacity. At 1,320 a year the fps-2044 vacuum nearly halves to 2,700 (vacuum.json), and Airbus has every reason to build into it.\n(iv) The entrant model is too generous. It assumes a flat 12% margin, no learning-curve losses and no price response from the incumbents, and its 3-year ramp reaches 100 a year in year 1-2, against the E2's 44 a year after 7 years. It also ignores Embraer's balance sheet: the board's own leverage penalty adds $2.31B if Embraer self-funds.\n(v) Where the board understates: sovereign partners may accept returns below the cost of capital for industrial-policy reasons. That is why the odds are not near zero.\n\n2) Financing: 0.35 \u2192 0.40. A $15-25B all-in programme is 1.1-1.9x Embraer's roughly $13.2B market cap, against an estimated $4-5B of self-funding capacity by 2035. Talks exist (PIF, Korea, Japan, Turkey, India) but nothing is committed, and BNDES offers export credit, not launch aid. A visibly weaker Boeing makes the sovereign pitch a little stronger.\n\n3) Engine supply: 0.85 \u2192 0.90. Engines are not the binding constraint. P&W is sole source on the E2, is locked out of fps in our war game and cancelled GTF2 in the delayed game, so it has the most to gain. Rolls-Royce wants a route back into narrowbodies. CFM has a placeholder Embraer lever that is PV-negative. The engine board is unchanged by the delay (narrowbody engine entry into service = min(fps, NGSA) = 2037). My judgement of the likely supplier: P&W about 50%, Rolls-Royce about 30%, CFM about 20%.\n\n4) Commitment by 2035 without pre-emption: 0.65 \u2192 0.55. At 2044 Boeing decides around 2037, so Embraer would have to break its wait-for-Boeing pattern. The Joint Venture also becomes Boeing's best fps form, which raises the chance that Boeing absorbs Embraer.\n\nStrict volume reading: P(100 or more a year exported by 2045 given a launch by 2035) is about 0.2 (judgement, based on the E2 ramp). That gives about 1% (2041) and about 2% (2044)."
+  },
+  "leading_indicators": [
+   "Embraer's choice of 'next move': if a large business jet is launched first (2027-30), a commercial launch probably slips past 2035. Watch the investor day and Q4 calls.",
+   "A signed funding agreement with money attached (equity, launch aid or risk-sharing amounts) from PIF, the Korean government, Korean Air or KAI, Japan's METI programme, Turkish Aerospace or India. MoUs on structures or E2 production do not count.",
+   "An engine MoU or selection for a 25-35k lbf engine with P&W, Rolls-Royce or CFM, and whether the UK funds Rolls-Royce's narrowbody return.",
+   "A step-up in Embraer's investment above the current run rate of about $400M a year (2025: $383M), versus a share buyback. A buyback would signal no big programme.",
+   "Boeing's narrowbody timing: whether fps or an equivalent is launched around 2034 or slips to about 2037, the 737 rate path (47 \u2192 52 \u2192 63 a month), and any renewed Boeing approach to Embraer.",
+   "Airbus capacity beyond 75 a month and the NGSA launch around 2030. Higher Airbus capacity shrinks the vacuum and the entrant's case.",
+   "Launch-customer signals for a 180-210 seater from lessors or US and Asian majors, and E195-E2 order strength as a proxy for demand at 150 seats.",
+   "COMAC C919 EASA certification (estimated 2028-31) and production reaching 150-200 a year. Either would take part of the same gap and strengthen Airbus's 'now COMAC' deterrent.",
+   "New Embraer final-assembly or hub investments abroad (Saudi Arabia, India, Turkey) tied to a new commercial programme."
+  ],
+  "impact_on_game": "Fact (board and war game): the delay turns fps from a knife-edge Go into a No-Go. fps 10-year minus Do Nothing goes from +1.06 to -2.53, Boeing is pinned at 20% narrowbody share from 2043, and the war game failed Boeing's go/no-go test. That is what creates the opening for a third player.\n\nJudgement on what this means for the game:\n\n(1) Treat an independent Embraer as a tail risk of about 6% rising to about 11%. It should not drive Boeing's fps decision. Even if Embraer enters, a 100-a-year programme arriving in 2042-45 would mostly fill share the board credits to Airbus but Airbus cannot build ($16.82B PV of NGSA margin above a 1,200-a-year capacity at fps 2044). So a third player is mainly an Airbus risk and a check on Airbus's +$47.6-50.1B delay-world payoff. It does not rescue fps.\n\n(2) Airbus's best response in the delay world is to add capacity, not to use Delay Tactics. Boeing does not launch, so Delay Tactics would only expose Airbus to the $48.32B naked fine. The 400-a-year overflow is the entrant's whole business case.\n\n(3) Re-price 'fps via Embraer' on explicit Joint Venture terms instead of the $100B lump. On the war-game terms it scores +2.21 (2041) and -0.83 (2044). At 2044 that makes it Boeing's best fps form, but it still falls short. A Go needs the partner to carry more than 48% of capex, which Embraer can only do with sovereign co-investors. The board should also add the Joint Venture's denial value: it removes the only plausible non-Chinese entrant.\n\n(4) The engine board cannot value CFM's 'Embraer partnership'. The move exists in code but is never among the 16 CFM moves evaluated. P&W is the engine maker most exposed to, and most likely to back, an independent Embraer.\n\n(5) For the war game, add an Embraer inject. Condition: Boeing has not launched fps by round 3 and Airbus's share is above 70%. Then Embraer launches independently with probability about 0.1, or otherwise offers Boeing a Joint Venture.",
+  "caveats": [
+   "All stage probabilities are my judgement. The ranges multiply the stage ranges, so they are wide on purpose. The point estimates matter less than the ratio: the delay roughly doubles the odds.",
+   "The egress proxy blocked most news pages, including SEC, Leeham, Simple Flying and avianticslabs. Web facts come from search-result summaries with the URLs shown. Leeham and The Air Current pieces are paywalled, so only headlines and summaries were seen. The Korea Herald date is inferred as Jul 2026 from President Lee's Brazil visit.",
+   "The 'Embraer Transcripts 2010-2020 (1).pdf' file actually runs to the FQ1 2026 call (8 May 2026). Page numbers cited are PDF pages. The extracted text cache is at /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/emb_transcripts.jsonl.",
+   "Capital IQ figures in the Financials files are in BRL. The USD figures come from the Estimates report and from Embraer's calls. The about $2.8B of debt used in the leverage-penalty calculation converts BRL at an FX rate I assumed.",
+   "Net debt definitions differ. Embraer stand-alone had $109M net cash at end-2025 (call). Consensus shows $762M net debt for 2025, probably including Eve. Capital IQ shows R$0.82B.",
+   "The new solves use the user's board with the overlap-aware strain patch and the entrant conventions of dash/vacuum.py (2,000 a year; $48M; 12%; 10% WACC; capex paid as a lump at entry into service; 3-year ramp). Scripts and outputs are in /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/: emb_jv.py/.json, entrant2.py/.json, airbus_overflow.py/.json.",
+   "The Joint Venture re-pricing applies the war-game terms (35% capex, 25% margin) to the board's 'fps via Embraer' move by changing its capex and fps margin. The board has no separate partner-margin parameter, so this is an approximation.",
+   "The war-game Joint Venture terms, CFM's Embraer lever and fps capex are all labelled placeholders in the config and drivers report.",
+   "COMAC is not estimated here. It competes for the same overflow and is part of Airbus's deterrent.",
+   "The $8-12B cost for a 150-170 seat aircraft and the engine split (P&W about 50%, Rolls-Royce about 30%, CFM about 20%) are judgements without a direct source."
+  ]
+ },
+ "check": {
+  "claims": [
+   {
+    "claim": "FY2025 revenue $7.58B, FY2026 guidance $8.2-8.5B, 'consensus' 2030E revenue $10.77B",
+    "verdict": "corrected",
+    "detail": "FACT: Guidance sheet row 41 shows FY2025 actual 7,577.5 and row 29/38 shows FY2026 guidance 8,200-8,500. Guidance was left unchanged on 10 Aug 2026 (aviationnews.eu, Aug 2026). The 2030E figure of 10,764.8 matches Consensus row 102, but row 108 shows 1/1 estimates for 2030E and 2/2 for 2029E. It is one broker's number, not a consensus."
+   },
+   {
+    "claim": "2025 adjusted EBIT $657M (8.7%), adjusted EBITDA $889M; consensus 2030E EBIT $1.13B",
+    "verdict": "corrected",
+    "detail": "FACT: Transcripts PDF p42 (6 Mar 2026) gives $657M at 8.7% and $889M at 11.7%. Consensus row 124 shows 2030E EBIT of 1,126.2, but row 130 shows 1/1 estimates, so this is also a single-broker figure."
+   },
+   {
+    "claim": "Commercial Aviation 2025: R$13.03B revenue, R$336M operating profit (2.6%); Executive Aviation R$12.17B and R$1.47B",
+    "verdict": "confirmed",
+    "detail": "FACT: Segments.xls, column Dec-31-2025: row 16 = 13,025.7, row 32 = 335.6, row 17 = 12,171.7, row 33 = 1,467.4."
+   },
+   {
+    "claim": "Balance sheet: $109M stand-alone net cash and 96% long-term debt at end-2025; Q2 2026 stand-alone net debt $214.5M, cash $2.34B, undrawn revolver $1B; Capital IQ debt R$15.27B, cash R$14.45B, net debt R$0.82B",
+    "verdict": "confirmed",
+    "detail": "FACT: p43 confirms $109M and 96%. Financials (1).xls Balance Sheet, column 31-Dec-2025: row 85 = 15,268.8, row 20 = 14,449.0, row 86 = 819.8. Q2 2026: the $2.34B and the $1B revolver are confirmed in search summaries of the Q2 coverage. Nuance: the $2.34B is consolidated cash and includes Eve's ~$403M (Eve Q2 2026 results). Ex-Eve net debt of ~R$1.11B is about $215M (Brazilian coverage, 10 Aug 2026). Fitch's dollar figures imply about $0.5B (acessa.com, Sep 2026). The definition matters."
+   },
+   {
+    "claim": "Consensus FCF 2026E-2030E of $353M, $446M, $578M, $776M and $620M (sum $2.77B); net cash $2.2B by 2030E",
+    "verdict": "corrected",
+    "detail": "FACT: Values match Consensus row 210 (352.55, 445.85, 577.65, 776.3, 619.9; sum 2,772) and row 176 (2030E -2,205). Two caveats. First, 2029E-2030E rest on 1-2 brokers (row 216: 2/2 and 1/1; row 182: net debt 2030E 1/1). Second, the data are stale: on 10 Aug 2026 Embraer raised 2026 adjusted FCF guidance ex-Eve to at least $400M, from at least $200M (aviationnews.eu and airdatanews, Aug 2026), which is above the $353M consensus."
+   },
+   {
+    "claim": "Market value about $13.2B ($72.99 per EMBJ on 7 Aug 2026); Capital IQ R$59.7B; consensus 2025 EV $12.6B",
+    "verdict": "confirmed",
+    "detail": "FACT: MarketBeat search summary gives $13.19B at $72.99 at the 7 Aug 2026 close. Key Stats rows 44/45/47 give R$83.86, 711.83M shares and R$59,694M. Consensus row 253 gives TEV 2025 = 12,598.6."
+   },
+   {
+    "claim": "Investment $383M in 2025 vs $428M in 2024, capex about $400M a year, Q1 2026 $99M incl. $11M research, R&D R$413M",
+    "verdict": "confirmed",
+    "detail": "FACT: p42 and p5 of the transcripts; Income Statement row 110 (2025 = 412.6)."
+   },
+   {
+    "claim": "E2 cost $1.7B over about 4 years, 'ahead of schedule... under budget'; 2015 total investment peaked at $650M ($50M/$300M/$300M); Commercial Aviation capex peaked at R$1.22B in 2016",
+    "verdict": "corrected",
+    "detail": "FACT: The E2 quote is confirmed (p723) and CA capex is confirmed (Segments row 51, 2016 = -1,223.9). However, $650M was the 2015 OUTLOOK (p813, 5 Mar 2015). Actual 2015 investment was $518M ($42M research, $288M development, $188M capex; p746, 3 Mar 2016). The actual peak was 2016 at $630M ($48M/$381M/$201M; p672, 9 Mar 2017). Other years: 2014 $430M (p812), 2017 $610M (p613)."
+   },
+   {
+    "claim": "Cost benchmarks: CSeries grew from $2.1B (2005) to $5.4B; WSJ 'tens of billions'; board fps $55.25B and NGSA $30.07B; war-game fps capex $30B",
+    "verdict": "corrected",
+    "detail": "FACT: The WSJ 'tens of billions' wording and partner list are confirmed (search summary of the tovima reprint, May 2024). Game.txt lines 57-60 and config ('capex_b': 30.0) are confirmed. The $5.4B at certification (Dec 2015) is confirmed (heraldnet, 18 Dec 2015). But the CSeries launch baseline was $3.4B in 2008 ($3.9B with capitalised interest). About $2B was a pre-launch concept estimate. Measured from launch the overrun is about +59%, not 2.6x. The avianticslabs and ANSA figures are unverifiable (pages blocked). Extra support for the top of the range: a McKinsey/Aviation Week supplier survey puts NGSA development cost at up to $25B."
+   },
+   {
+    "claim": "Sizing: a $15B programme is 1.1x market cap, 2.0x revenue, 17x EBITDA, 5.4x 2026-30 FCF, 8.8x the E2, 4.9x the 2025 investment rate over 8 years; partners must fund 65-80%",
+    "verdict": "corrected",
+    "detail": "Arithmetic confirmed: 15/13.2=1.14, 15/7.58=1.98, 15/0.889=16.9, 15/2.77=5.4, 15/1.7=8.8, 1.875/0.383=4.9. Minor: self-funding of $4-5B against $15-25B implies partners fund 67-84%, not 65-80%. The self-funding estimate itself is built on the single-broker 2030E net cash."
+   },
+   {
+    "claim": "Board leverage penalty: $2.31B if Embraer self-funds $15B at EIS 2042; $0.15B with 70% partner funding",
+    "verdict": "confirmed",
+    "detail": "FACT: The formula matches board.py calculate_tc (alpha x D x (D/EV)^2, PV-factored). wf/entrant2.json gives 2.31 and 0.15 (EV 12.6, debt 2.8). It inherits the board's lump-capex-at-EIS discounting, which understates the PV."
+   },
+   {
+    "claim": "Engineering bench: one central engineering team, staff with 2-3 development cycles; supplier said none 'has gone as flawlessly as the E2'",
+    "verdict": "confirmed",
+    "detail": "FACT: p175 and p170 (Investor Day, 18 Nov 2024)."
+   },
+   {
+    "claim": "78 commercial jets in 2025 (44 E2); 2026 guidance 80-85; capacity target 120-130 commercial jets a year by 2030",
+    "verdict": "corrected",
+    "detail": "FACT: 78/44 is confirmed (Aviation Week and airdatanews search summaries) and 80-85 is confirmed. The 120-130 figure was said by the CEO on the 10 Aug 2026 call, but a Reuters-syndicated report and the 24 Jul 2026 ICE summary give 110-120, and Bloomberg L\u00ednea says 'up to 120'. Cite it as 110-130."
+   },
+   {
+    "claim": "Engines: P&W sole source on the E2; CFM 'Embraer partnership' lever ($1.2B, 190 engines/yr, $1.2M each) PV -0.10/-0.14/-0.16 and never used; RR seeking up to \u00a3200M; CEO 'we talk to all of them'",
+    "verdict": "confirmed",
+    "detail": "FACT: Evidence P-0963 and P-1043; config default.json line 288; cfm/profile.md line 302; 'not committed' in wg5-2045d final_report line 71 and wg5-2045 line 72. The RR \u00a3200M request was still pending (CAPA; txfnews, 2026). The CEO quote is on p13 (8 May 2026)."
+   },
+   {
+    "claim": "Board prices 'fps via Embraer' at $100B (slider 20-100 at max), 10-year path, full fps margin; -17.05 (2041) / -15.95 (2044); break-even about $52.9B",
+    "verdict": "confirmed",
+    "detail": "FACT: board.py line 843 and Game.txt line 59. In the evaluation, is_7yr applies only to the 7yr Solo move, and the via-Embraer move takes v_margin_fps and the $100B capex. The -17.05/-15.95 values and the $52.9B break-even (at fps 2044) come from BRIEF.md."
+   },
+   {
+    "claim": "War-game JV terms (partner 35% capex, 25% margin, half strain); delayed-game JV best fps at -0.73; Go needs >47.9% capex or <9.4% margin",
+    "verdict": "confirmed",
+    "detail": "FACT: config line 58; wg5-2045d/drivers.md lines 18 and 109-110. Clarification: the war game's delayed fps was launched in 2031 and entered service in 2041 (drivers.md lines 3 and 81). The war game's 'late' date is therefore the board's snapshot date, not 2044."
+   },
+   {
+    "claim": "Board solve on war-game JV terms: +2.21 (2041) and -0.83 (2044) vs Do Nothing; Solo +1.06 / -2.53; vs Delay Tactics +1.23 / -1.55; break-even capex $43.2B / $32.1B",
+    "verdict": "confirmed",
+    "detail": "SOLVE: I re-solved independently (wf/adv/jvcheck.py) and got JV +2.21 / -0.83 and Solo +1.06 / -2.53. wf/emb_jv.json matches on the Delay Tactics figures and the break-evens (43.2, 32.12)."
+   },
+   {
+    "claim": "The delay makes the Joint Venture Boeing's preferred fps form (basis for P(JV | launch) rising from 0.15 to 0.35)",
+    "verdict": "corrected",
+    "detail": "SOLVE: On the board, the war-game JV terms already beat Solo at 2041 (+2.21 vs +1.06, a lead of +1.15). At 2044 the lead is +1.70. At the war game's $30B fps capex, Solo beats the JV at both dates (2041: +9.03 vs +6.92; 2044: +3.38 vs +2.66; wf/adv/jvcheck.py). The board's JV preference therefore comes from the $55.25B capex level, not the delay. Only the war game shows a switch (Solo on time, JV when late). P(JV | launch) = 0.15 at 2041 also sits uneasily with the analyst's own board result. Judgement: the 0.15 -> 0.35 step is weakly grounded."
+   },
+   {
+    "claim": "As of Oct 2026 Embraer has not launched a single-aisle; CEO quotes from May 2026, Nov 2025, Feb 2025 and May 2024",
+    "verdict": "confirmed",
+    "detail": "FACT: No launch found (Leeham, 4 Sep 2026, summary; searches on 8 Oct 2026). Quotes confirmed at p13, p15, p70-71 and p128. Nuance: the May 2024 transcript (p230) reads 'we don't have a [indiscernible] to develop or launch a narrowbody', so 'plans' is inferred. Reuters (1 May 2024) has 'We don't have any plan for a sizeable cycle of capex at this time.'"
+   },
+   {
+    "claim": "Embraer's 2016 decision rule ('give up a little bit of this market') is the trigger the delay world approaches; Embraer waited for Boeing in 2011",
+    "verdict": "corrected",
+    "detail": "FACT: The quote is verbatim (p694-695), but the full sentence is 'if they decide to move upwards to grow their aircraft into the 104- to 150-seater jets and give up a little bit of this market'. The trigger is the incumbents vacating the segment just above the E2. It bears on a ~130-150 seat step, not a 180-210 seat clean sheet. In the delay world Boeing keeps the 737 in that segment, so the trigger is not met. If anything it supports the smaller-step path. The 2011 wait is confirmed (p1089), and the 'larger aircraft' then was '130 seats or so'."
+   },
+   {
+    "claim": "Leeham 12 Jan 2026 (180-240 seat study); R&T director 12 Jun 2026 'single aisle... potential products'",
+    "verdict": "confirmed",
+    "detail": "FACT: airdatanews summary of the Leeham outlook; CAPA item 1362926, dated 12 Jun 2026 (quoting Aviation Week)."
+   },
+   {
+    "claim": "Partner search: WSJ (PIF, Turkey, India, Korea); Korea 'very early stage' (Jul 2026); KAI MoU 28 Jul 2026; TUSA\u015e MoU 1 Apr 2025; Mubadala framework Jul 2026; no sovereign equity",
+    "verdict": "confirmed",
+    "detail": "FACT: Korea Herald (late Jul 2026, Lee's Brazil visit); Airframer (28 Jul 2026); TUSA\u015e MoU signed 1 Apr 2025 at LAAD; Mubadala Strategic Framework Agreement signed 21 Jul 2026 at Farnborough (WAM; Mubadala), with no financial terms disclosed."
+   },
+   {
+    "claim": "BNDES lent about R$28.8B in 2023-25, mostly for exports; R$279M innovation in Apr 2026; no launch aid",
+    "verdict": "confirmed",
+    "detail": "FACT: Ag\u00eancia iNFRA (29 Jan 2026) gives R$28.8B approved since Jan 2023, of which R$27.13B is export credit. Nuance: it also lists R$1.68B for innovation and R$405.3M of BNDESPar equity, largely Eve."
+   },
+   {
+    "claim": "Faury 'think twice' (late Jun 2026); Airbus NGSA launch around 2030, EIS second half of the 2030s",
+    "verdict": "confirmed",
+    "detail": "FACT: airdatanews (26 Jun 2026, via search summary); Aviation Week / boltflight (Jun-Jul 2026)."
+   },
+   {
+    "claim": "Boeing terminated the $4.2B deal on 25 Apr 2020; arbitration ended 16 Sep 2024 with $150M under a collar, against about $300M of costs Embraer had estimated",
+    "verdict": "confirmed",
+    "detail": "FACT: p483; Embraer 20-F FY2024 (16 Sep 2024, $150.0M gross, collar). The $300M is BofA's account of management's cost estimate and the amount sought (TipRanks via search). BTG and others put actual separation costs at about $241M."
+   },
+   {
+    "claim": "E2 momentum: almost 200 E2s sold in 2025, 24 operators, backlog $34.5B (Q2 2026), Finnair E2 order (134 seats) and no MAX/neo slots until 2032-33",
+    "verdict": "confirmed",
+    "detail": "FACT: p15 and p31; pulse2 and aircargoweek (Jul 2026) for the backlog; Finnair release of 23 Mar 2026 (18 firm + 16 options + 12 rights, 134 seats)."
+   },
+   {
+    "claim": "737 cleared to 47 a month, targeting 52 in early 2027; COMAC about 15 C919s in 2025, targets 150 and 200 a year by 2028-29",
+    "verdict": "confirmed",
+    "detail": "FACT: Quartz (May-Jun 2026) and InsideFlyer. Aviation Week counts 15 C919 deliveries in 2025 and Fliegerfaust about 16. The capacity targets come from the cited airdatanews piece and were not re-verified."
+   },
+   {
+    "claim": "Headline: 'The board's unserved demand rises from 1,920 to 5,040 aircraft'; gap 140 -> 360 a year in 2045 and 0 -> 160 in 2055",
+    "verdict": "corrected",
+    "detail": "SOLVE: Numbers match vacuum.json and entrant2.json. But they are not board outputs. They depend on an assumed Airbus capacity of 1,200 a year: at 1,320 a year they are 480 -> 2,700, and at 900 a year 7,720 -> 11,040 (vacuum.json). The headline must state the assumption."
+   },
+   {
+    "claim": "An entrant on Embraer's timing (EIS 2042, $15B) moves from clearly negative to about break-even: -2.44 -> -0.49, or -1.51 -> +0.43 with a 5% slice",
+    "verdict": "corrected",
+    "detail": "SOLVE: The numbers reproduce (entrant2.json), but 'about break-even' is an artefact of the board's lump-capex-at-EIS convention. Spreading $15B evenly over 2034-2041 raises PV capex from $3.26B to $5.13B. The entrant then goes -4.31 -> -2.36 (no slice) and -3.38 -> -1.44 (5% slice). Even with Boeing on Do Nothing it is -1.44 / -0.51 (wf/adv/entrant_spread.json). Extending the horizon to 2061 adds only +0.10 to +0.23. The delay's improvement of about +1.9 is unchanged, but the entrant stays clearly negative."
+   },
+   {
+    "claim": "Board credits Airbus with NGSA margin above a 1,200/yr capacity worth $7.95B (fps 2041) and $16.82B (fps 2044); $2.15B and $8.81B at 1,320/yr",
+    "verdict": "confirmed",
+    "detail": "SOLVE: wf/airbus_overflow.json."
+   },
+   {
+    "claim": "At 2044 Boeing's fps decision moves to about 2037, after the 2035 cutoff, so Embraer would have to move first (basis for commitment stage 0.65 -> 0.55)",
+    "verdict": "refuted",
+    "detail": "FACT: Neither the board nor the brief gives a launch year. The war game treats the delay as a 3-year slip after a 2031 decision: drivers.md line 3 ('Boeing's round-2 choice in 2031, with fps three years late') and line 81 ('launched in 2031 and enters service in 2041'). Under that premise Boeing's no-go is visible by about 2031, before Embraer's 2035 window, which is the kind of signal Embraer waited for in 2011. Real world: Boeing CEO Ortberg said in 2026 that the next narrowbody is 'moving to the right' (Aviation Week; compositesworld). One outlet suggests a launch around 2029-30 and EIS around 2037. Judgement: this argues against cutting stage 4 at 2044."
+   },
+   {
+    "claim": "Engine-supply stage rises 0.85 -> 0.90 because P&W 'cancelled GTF2 in the delayed game, so it has the most to gain'",
+    "verdict": "corrected",
+    "detail": "FACT: P&W cancelled its next-generation geared turbofan in 2031 in BOTH war games (wg5-2045/final_report.md programme table; wg5-2045d/final_report.md line 68). The engine board is unchanged by the delay (BRIEF). Nothing supports a delay-driven rise. Judgement: a cancelled GTF2 means less engine on offer, not more. Keep the stage flat."
+   },
+   {
+    "claim": "Management pays out 25% of net income, which signals no big programme",
+    "verdict": "corrected",
+    "detail": "FACT: 25% is the minimum required by Brazilian corporate law (p63, 4 Nov 2025). Only the buyback being 'on the table' (p64) is a signal."
+   },
+   {
+    "claim": "Probability arithmetic: 0.30x0.35x0.85x0.65 = 5.8%; 0.55x0.40x0.90x0.55 = 10.9%; ranges 2-13% and 4-24%; paths sum to 100%; JV 0.7x0.15 and 0.35x0.35",
+    "verdict": "confirmed",
+    "detail": "Recomputed: 5.80%, 10.89%, 2.0-13.5%, 4.1-23.8%. Paths 4+2+10+84 = 100 and 8+3+12+77 = 100. JV 10.5% and 12.25%. The baseline shift (-7 points: +5 independent, +2 JV) is consistent."
+   },
+   {
+    "claim": "Headline: the delay 'roughly doubles' the odds, from about 6% to about 11%",
+    "verdict": "corrected",
+    "detail": "JUDGEMENT: The direction (up) is supported, but the size is fragile. Stage 1 nearly doubles (0.30 -> 0.55) on an entrant case that is break-even only under lump capex. Stage 3's rise is unsupported, and stage 4's cut rests on the unsupported 2037 timing. Re-weighting: stage 1 0.30 -> 0.45 with stages 3 (0.85) and 4 (0.65) held flat gives 5.8% -> 9.9% (about 1.7x). Keeping stage 1 at 0.55 with the same flat stages gives 12.2% (about 2.1x). A defensible reading is about 6% -> about 10-12%, roughly 1.7-2x. 'Roughly doubles' is the upper end."
+   },
+   {
+    "claim": "Evidence base is complete for the question",
+    "verdict": "corrected",
+    "detail": "FACT, missed items: (1) Ortberg 2026, Boeing's next narrowbody 'moving to the right' (Aviation Week; compositesworld). This is real-world corroboration of a Boeing slip and the public signal Embraer historically waits for. (2) CEO in the FT, Oct 2025: the narrowbody market could sustain 'three or four' manufacturers (InfoMoney; Aircraft Value News, 3 Nov 2025). Air Data News adds that any move is unlikely before the next decade. (3) Fitch upgraded Embraer to BBB in Sep 2026 (acessa.com), adding debt capacity. (4) 2026 FCF guidance raised to at least $400M (10 Aug 2026). (5) Leeham, Nov 2025: a 180-240 seat project must compete internally with a larger business jet, a smaller commercial jet, Energia and Eve. (6) AerCap's CEO (May 2024): 'I doubt we'll see anything in material numbers before the end of the 2030s', which supports the strict volume reading of about 1-2%. (7) Reuters, 1 May 2024: 'no plan for a sizeable cycle of capex'."
+   }
+  ],
+  "corrections": [
+   "Headline and entry-path text: say the 1,920 -> 5,040 unserved-demand figures assume an Airbus capacity of 1,200 a year. They are not board outputs. At 1,320 a year they are 480 -> 2,700, and at 900 a year 7,720 -> 11,040 (dash/vacuum.json).",
+   "Replace 'an entrant timed to Embraer's realistic schedule moves from clearly negative to about break-even' with: under the board's lump-capex-at-EIS convention -2.44 -> -0.49 (or -1.51 -> +0.43 with a 5% slice). With $15B spread over 2034-41 it is -4.31 -> -2.36 (or -3.38 -> -1.44), and still -1.44 / -0.51 with Boeing on Do Nothing (wf/adv/entrant_spread.json). The delay improves the case by about $1.9B, but it stays clearly negative.",
+   "Delete or relabel as unsupported judgement: 'Boeing's fps decision moves to about 2037, after the 2035 cutoff, so Embraer would have to move first'. The war game models the delay as a slip after a 2031 decision (wg5-2045d/drivers.md lines 3 and 81), so Boeing's no-go would be visible before 2035. Revisit the stage-4 cut (0.65 -> 0.55).",
+   "Remove the engine-stage rise (0.85 -> 0.90). P&W cancelled its next-generation GTF in 2031 in both war games (wg5-2045 and wg5-2045d final_report programme tables), and the engine board is unchanged by the delay.",
+   "Re-state the delay effect on the Joint Venture. On the board, war-game JV terms beat Solo at 2041 too (+2.21 vs +1.06), and at the war game's $30B capex Solo beats the JV at both dates (+9.03 vs +6.92; +3.38 vs +2.66; wf/adv/jvcheck.py). Only the war game shows a delay-driven switch. Temper the P(JV | launch) step from 0.15 to 0.35, or justify it on war-game evidence alone.",
+   "Correct the reading of the 2016 trigger. The full quote is about Boeing and Airbus moving up and vacating the 104-150 seat segment (p695). It bears on a ~130-150 seat step, not a 180-210 seat clean sheet, and Boeing doing nothing keeps the 737 in that segment. Drop it as support for the independent 180-210 seat path.",
+   "Correct 'In 2015 total investment peaked at $650M ($50M/$300M/$300M)'. That was the 2015 outlook (p813). Actual 2015 was $518M ($42M/$288M/$188M; p746), and the actual peak was 2016 at $630M ($48M/$381M/$201M; p672).",
+   "Label 2029E-2030E figures (revenue $10.77B, EBIT $1.13B, FCF $776M/$620M, net cash $2.2B) as single-broker or two-broker estimates (Consensus rows 108, 130, 182, 216), not consensus. Note that 2026 FCF guidance was raised to at least $400M on 10 Aug 2026.",
+   "Correct the payout signal. 25% of net income is the Brazilian legal minimum (p63). Only the buyback discussion (p64) signals capital allocation.",
+   "CSeries benchmark: the launch baseline was $3.4B in 2008 (about +59% overrun to $5.4B at certification). The ~$2B figure was a pre-launch concept estimate.",
+   "Capacity target: cite 110-130 commercial jets a year by 2030 (CEO 120-130 on 10 Aug 2026; Reuters and the 24 Jul 2026 reports 110-120).",
+   "Q2 2026 balance sheet: say the $2.34B is consolidated cash including Eve (~$403M). Ex-Eve net debt is about R$1.11B (~$215M) on Embraer's definition, and Fitch's figures imply about $0.5B.",
+   "Partner-funding share: with $4-5B of self-funding against $15-25B, partners fund 67-84%, not 65-80%.",
+   "Arbitration: note that the ~$300M is BofA's account of management's estimate and the amount sought. Actual separation costs were about $241M (BTG).",
+   "May 2024 quote: the transcript word before 'to develop or launch a narrowbody' is [indiscernible] (p230). Quote Reuters (1 May 2024, 'no plan for a sizeable cycle of capex') instead.",
+   "Headline odds: keep the direction but soften the size. Defensible is about 6% -> about 10-12% (about 1.7-2x; judgement). Re-weighted chain: 0.30x0.35x0.85x0.65 = 5.8% -> 0.45-0.55 x 0.40 x 0.85 x 0.65 = 9.9-12.2%.",
+   "Add the missed evidence: Ortberg 2026 'moving to the right' (Aviation Week); CEO 'three or four' manufacturers (FT, Oct 2025); Fitch BBB upgrade (Sep 2026); AerCap 'nothing in material numbers before the end of the 2030s' (May 2024); Leeham Nov 2025 on internal competition for funding (business jet, smaller jet, Energia, Eve).",
+   "Clarify that the war game's 'fps 3 years late' entered service in 2041 (launched 2031), not 2044. War-game no-go evidence is therefore the same 3-year delay on a different calibration, not a solve at the board's 2044 date."
+  ],
+  "overall": "FACT BASE: The great majority of factual claims hold. Excel values, transcript quotes, board and war-game parameters and 2024-26 web facts were checked against the files, a re-run of the solve and web searches, and the analyst's solves reproduce exactly (JV +2.21/-0.83, Solo +1.06/-2.53; entrant NPVs; leverage penalty). Errors in the fact base are mostly minor:\n- the 2015 investment 'peak' was guidance, not the actual figure;\n- single-broker 2030E figures are called consensus;\n- the CSeries baseline is wrong;\n- the 25% payout is the legal minimum, not a signal;\n- the capacity target is stated as one figure where reports give a range.\n\nREASONING: Four inferences are material and need correction.\n(1) 'About break-even' for an Embraer entrant comes from the board's convention of paying capex as one lump at entry into service. With realistic spending before EIS, the entrant stays clearly negative (-2.36, or -1.44 with a 5% slice) even after the delay.\n(2) 'Boeing decides about 2037, so Embraer must move first' has no source. The war game keeps Boeing's decision in 2031 with a development slip, which would give Embraer the signal it waits for.\n(3) 'The delay makes the Joint Venture the preferred form' is not a delay effect on the board. The JV beats Solo at 2041 too, and Solo beats the JV at the war game's $30B capex.\n(4) The 2016 'give up a little bit of this market' trigger is about the 104-150 seat segment. It does not support a 180-210 seat clean sheet.\nThe engine-stage increase is also unsupported, because P&W cancelled GTF2 in both war games.\n\nPROBABILITIES (judgement): The arithmetic and the path totals are internally consistent. The direction (the delay raises the odds) is robust. The size is fragile: the stage changes rest partly on the points above, and they push in opposite directions. A defensible restatement is about 6% (2041) rising to about 10-12% (2044), roughly 1.7-2x; 'roughly doubles' is the upper end. The JV path's rise from 10% to 12% is weakly grounded. The central conclusions survive: an independent Embraer is a long shot, money is the binding constraint, and a Boeing\u2013Embraer JV would remove rather than create a third player.\n\nMISSED EVIDENCE: Boeing's CEO said in 2026 that the next narrowbody is 'moving to the right'. Embraer's CEO said in Oct 2025 that the market has room for 'three or four' manufacturers. Fitch upgraded Embraer to BBB (Sep 2026), and Embraer raised its 2026 FCF guidance (Aug 2026).\n\nMy scripts and outputs are in /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/adv/: jvcheck.py, entrant_spread.py, entrant_spread.json, xl.py, tq.py."
+ }
+}

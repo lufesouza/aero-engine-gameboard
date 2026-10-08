@@ -1,0 +1,409 @@
+{
+ "key": "comac",
+ "analysis": {
+  "headline": "The 3-year fps delay (EIS 2041 to 2044) makes COMAC only slightly more likely to become a material third player outside China. My estimate for at least 100 C919-class exports a year by 2045 rises from about 7% to about 9% (+2 pp). If the definition's \"funded programme by 2035\" prong is read as an export-oriented new single-aisle, the odds go from about 17% to about 23% (+6 pp). Read literally, that prong is already met by the C919 (launched 2008, 158-192 seats), so the definition cannot tell the two worlds apart. These are judgements. The binding constraints are not the size of the board's vacuum. They are COMAC's ramp (15 deliveries in 2025, 3 in Q1 2026, none in September 2026), US-controlled parts (LEAP-1C licences suspended in 2025; COMAC parts licences capped from October 2026) and EASA validation (no earlier than 2028-31). The much likelier effect is COMAC taking over Boeing's China share: I estimate about 45% rising to about 52% that COMAC supplies at least 40% of China's single-aisle deliveries by 2045. That does not count as a third player, but on the board it is the bigger threat. Removing just 6.2% of the 2,000/yr market from Boeing and Airbus erases the snapshot's +1.06 fps case at 2041.",
+  "capability_facts": [
+   {
+    "source": "wargame/profiles/cfm/executives/evidence.jsonl line 168 (CX-0168, Stokes, 2023-06-20); line 1098 (CX-1098, Immelt, 2017-05-24); line 1197 (CX-1197, Miller, 2019-01-31)",
+    "fact": "CFM's LEAP-1C is the sole-source engine on the C919. Immelt: LEAP is \"100% at Boeing; 100%, COMAC; 55% at Airbus\". Miller: an 81% narrowbody win rate when the 737 MAX and C919 are included."
+   },
+   {
+    "source": "Hong Kong CAD https://www.cad.gov.hk/english/comac.html ; CGTN 2022-09-30 https://news.cgtn.com/news/2022-09-30/C919-gets-airworthiness-permit-first-jet-to-be-delivered-by-end-2022-1dKLBicCvXG/share_amp.html ; https://en.wikipedia.org/wiki/Comac_C919",
+    "fact": "The C919 seats 158-192 (158 mixed-class up to 192 high-density). The programme was launched in 2008, got its CAAC type certificate on 29 Sep 2022, made its first delivery on 9 Dec 2022 and entered service on 28 May 2023. It is already a launched 150-210-seat single-aisle programme."
+   },
+   {
+    "source": "AP via Boston Globe, 2025-10-27 https://www.bostonglobe.com/2025/10/27/world/chinas-c919-jet-faces-turbulent-skies-amid-us-china-trade-tensions",
+    "fact": "Bank of America counted 48 major US suppliers on the C919 (including GE, Honeywell and Collins), 26 European and 14 Chinese. Engines, avionics and many systems are Western, mostly US."
+   },
+   {
+    "source": "Straits Times analysis via Asia News Network, Jan 2026 https://asianews.network/why-china-is-racing-to-develop-its-own-commercial-jet-engine",
+    "fact": "The domestic CJ-1000A is said to be close to CAAC airworthiness certification after 2+ years of flight trials. OAG (Mayur Patel) expects domestic certification and first deliveries in 2027-28 and mass production around 2030, with international certification years away."
+   },
+   {
+    "source": "Bloomberg 2025-12-23 https://www.bloomberg.com/news/articles/2025-12-23/china-s-comac-on-track-to-miss-c919-delivery-target-by-half (as summarised in search results)",
+    "fact": "COMAC's March 2025 supplier-conference plan was output of 100 C919s in 2026, 150 in each of 2027 and 2028, and 200 a year by 2029. State shareholders put in 44bn yuan (~$6.3bn) in Nov 2025."
+   },
+   {
+    "source": "Leeham News 2026-09-01 https://leehamnews.com/2026/09/01/boosting-c919-production-rates-remains-comacs-real-test/ (only the excerpt was reachable; egress blocked)",
+    "fact": "IBA forecasts C919 deliveries of about 28 (2026), 59 (2028) and 93 (2030), more cautious than the capacity COMAC is building."
+   },
+   {
+    "source": "ePlaneAI, Paris Air Show reporting, June 2025 https://www.eplaneai.com/en/news/chinas-c929-widebody-jet-expected-to-make-first-commercial-flight-by-2035",
+    "fact": "C929 widebody: COMAC targets a CAAC type certificate by 2032 and first commercial flight by 2035. Its engineering and capital compete with any next-generation single-aisle before 2035."
+   },
+   {
+    "source": "Snapshot Game.txt sections 1-2 and 4-5; board.py line 633",
+    "fact": "The board has two airframers in a 2,000 NB/yr market. NGSA engines come from PW and CFM; fps engines from RR, PW and CFM; derived NB engine shares are CFM 42%, PW 42%, RR 17%. 737 MAX $48M at 8% margin; fps/NGSA $55M at 25.64%/26.28%. There is no COMAC or third-party share anywhere in the board."
+   },
+   {
+    "source": "Solve: scratchpad/wf/comac/board_comac.json (board share rule, overlap strain)",
+    "fact": "Boeing's 2045 NB share is 33% with fps in 2041, 22% with fps in 2044 and 20% under Do Nothing. Airbus overflow above its capacity in 2045: at 1,200/yr it is 140 (fps 2041), 360 (fps 2044) and 400 (Do Nothing); at 900/yr it is 440, 660 and 700. The delay adds 220 aircraft in 2045 (176 outside China at an 80% ex-China share) and 2,000 aircraft over 2041-2050 at either capacity."
+   },
+   {
+    "source": "BRIEF.md / scratchpad/dash/vacuum.json entrant rows",
+    "fact": "Board-convention entrant NPV ($48M price, 12% margin, 10% WACC, EIS 2038, $15B lump capex, fills only unserved demand at Airbus capacity 1,200/yr): -2.78 (fps 2041), -0.51 (fps 2044), +0.42 (Boeing Do Nothing). With $20B capex plus a fixed 10% market slice: -1.35 rising to +0.92."
+   },
+   {
+    "source": "Solve: scratchpad/wf/comac/board_comac.json (pv_per_pp_share_2041_2056)",
+    "fact": "PV-2026 of 1 pp of global NB share over 2041-2056 at board prices, margins and WACCs: Airbus NGSA $0.87B, Boeing fps $0.53B, A320neo $0.41B, Boeing 737 $0.14B."
+   },
+   {
+    "source": "wargame/profiles/boeing/executives/evidence.jsonl line 380 (BX-0380, Calhoun, 2023-06-02); line 280 (BX-0280, 2021-06-03)",
+    "fact": "Calhoun: \"even in an optimistic case, maybe in 2050, they get to be a 10% player\". He also said the duopoly would last \"for quite some time\" before China is \"accepted in the world\"."
+   },
+   {
+    "source": "wargame/profiles/airbus/executives/evidence.jsonl line 24 (AX-0024, Airbus FY2025 Board Report, issued 2026-02-18); wargame/profiles/airbus/evidence.jsonl line 865 (A-0865)",
+    "fact": "Airbus says the duopoly \"has ended\" but expects COMAC's progress to be \"measured, determined, and paced by their industrial ramp-up, certification and the time needed to build a reputation\". It names the C919 as a competitor and claims about 60% of the single-aisle backlog."
+   },
+   {
+    "source": "wargame/profiles/boeing/executives/evidence.jsonl lines 22, 62 (BX-0022, BX-0062, Albaugh 2011-12); line 657 (BX-0657, McNerney 2010); boeing/evidence.jsonl line 1302 (B-1302, Muilenburg 2017); pratt_whitney/evidence.jsonl line 1287 (P-1287, Hayes 2021)",
+    "fact": "Albaugh (2011) expected COMAC to gain share abroad \"as the Chinese government calls in some of the IOUs\". In 2012 he forecast China's small-aircraft market split three ways within about 10 years, which had not happened by 2022. McNerney used the WTO launch-aid ruling against subsidised entrants, China included. Muilenburg called COMAC both competitor and supply partner. RTX keeps P&W's brand separate so it can keep selling to COMAC and AVIC."
+   }
+  ],
+  "current_status_facts": [
+   {
+    "source": "Bloomberg 2025-09-24 https://www.bloomberg.com/news/articles/2025-09-24/china-s-comac-said-to-slash-delivery-targets-for-its-c919-jet ; Bloomberg 2025-12-23 (URL above); SCMP 2026 https://www.scmp.com/economy/china-economy/article/3369588/chinas-c919-jet-faces-further-delivery-delays-amid-us-export-chill-analysts",
+    "fact": "C919 deliveries were 13 in 2024 (Cirium/Planespotters) and 15 in 2025 (some sources say about 16). The original 2025 target of 75 was cut to 25 and still missed by almost half."
+   },
+   {
+    "source": "SCMP Apr 2026 https://www.scmp.com/economy/china-economy/article/3349112/chinas-c919-sees-delivery-delays-2026-3-units-shipped-3-months ; Forecast International 2026-10-05 https://flightplan.forecastinternational.com/2026/10/05/september-2026-commercial-aircraft-manufacturing-intelligence-production-trends-delivery-outlook/ ; Aviation Week https://aviationweek.com/air-transport/aircraft-propulsion/chinas-airlines-expect-33-comac-c919-deliveries-2026",
+    "fact": "2026: 3 deliveries in Q1, 35 cumulative since Dec 2022, and none in September 2026. Analysts describe about six months of near-zero deliveries. COMAC's 2026 plan is about 28, IBA forecasts 25, and the big-three airlines expected 33. Some finished aircraft were reported waiting for LEAP engines."
+   },
+   {
+    "source": "SCMP Oct 2026 (URL above); Reuters via airportspotting/jstream summaries; Air Data News https://www.airdatanews.com/despite-limited-production-comac-seeks-customers-for-the-c919-outside-china/",
+    "fact": "The order book is more than 1,000 C919s, essentially all from Chinese airlines and lessors and mostly unconfirmed (an early-2025 tally was 1,005 orders plus 120 options). The only non-Chinese C919 order is GallopAir (Brunei): a 2023 letter of intent for 15 C919s and 15 ARJ21s. GallopAir was still at stage 1 of its operator certification in 2024 (ch-aviation https://www.ch-aviation.com/news/134222-bruneis-gallop-air-talks-down-chances-of-a-2h24-launch)."
+   },
+   {
+    "source": "CAPA 2026-07 https://centreforaviation.com/news/air-cambodia-firms-order-for-20-comac-c909-aircraft-1366586 ; AeroRoutes 2026-07-20 https://www.aeroroutes.com/eng/260720-ca3q26919",
+    "fact": "COMAC's real exports so far are the C909 regional jet (TransNusa in Indonesia with 5, Lao Airlines with 2, and Air Cambodia's 10 firm + 10 option order of July 2026), not the C919. The C919 is flown only by Chinese carriers. Air China's Beijing-Ulaanbaatar service from Aug 2026 is its first scheduled international route."
+   },
+   {
+    "source": "AviTrader 2025-04-29 https://avitrader.com/2025/04/29/easa-comacs-c919-certification-could-take-up-to-six-years/ ; Air Journal 2026-04-13 https://www.air-journal.fr/?p=274548 ; Reuters as cited by Travel Radar, May 2026 https://travelradar.aero/china-reportedly-delays-airbus-deliveries-amid-push-for-comac-certification/",
+    "fact": "EASA (Guillermet, April 2025) put C919 validation at 3-6 years, i.e. 2028-2031. EASA flew validation flights in Shanghai in January 2026 and in May 2026 would not give a completion date. I found no FAA validation activity, which is an absence of evidence rather than a confirmed fact."
+   },
+   {
+    "source": "Free Malaysia Today/NYT 2025-05-29 https://www.freemalaysiatoday.com/category/business/2025/05/29/us-suspends-engine-sales-to-chinese-planemaker-comac ; Reuters via Yahoo, July 2025 https://www.yahoo.com/news/exclusive-us-lifts-license-suspensions-211349357.html",
+    "fact": "In late May 2025 the US suspended export licences for LEAP-1C (and CF34) shipments to COMAC; Honeywell and Collins clearances were reportedly also held. GE was allowed to resume LEAP-1C and CF34 shipments in early July 2025, after China's concessions on rare earths."
+   },
+   {
+    "source": "Reuters 2026-10-01 via Virginia Business https://virginiabusiness.com/us-slows-aircraft-part-exports-to-china-trade-talks/",
+    "fact": "Commerce has slowed export licensing of aircraft parts to China in recent weeks. It is limiting the number of parts licensed to COMAC to prevent stockpiling and is weighing a rule to restrict landing gear and other items. Separately, the US has declined firm spare-part guarantees for the 200 Boeing jets China agreed to buy. All of this rests on unnamed sources."
+   },
+   {
+    "source": "Air Data News, May 2026 https://www.airdatanews.com/china-confirms-boeing-order-for-200-aircraft-after-trump-xi-summit/ ; AP/AJC May 2026 https://feeds.ajc.com/news/2026/05/trump-says-china-agreed-to-buy-200-boeing-planes-and-signaled-interest-in-as-many-as-750/",
+    "fact": "China confirmed a commitment to 200 Boeing aircraft after the May 2026 Trump-Xi summit, its first major Boeing order since 2017. Trump cited up to 750. China's Ministry of Commerce said the US pledged \"strict supply guarantees\" on engine parts and components."
+   },
+   {
+    "source": "Travel Radar / Bloomberg, May 2026 (URL above); Airbus press release 2026-09 https://www.airbus.com/en/newsroom/press-releases/2026-09-airbus-delivers-first-aircraft-from-its-second-fal-in-china",
+    "fact": "Bloomberg reported that the CAAC slowed approvals of about 20 Airbus aircraft in early 2026 to press Europe on C919 certification; Airbus called it an \"administrative topic\", since resolved. Airbus delivered the first A320neo from its second Tianjin assembly line on 16 Sep 2026."
+   },
+   {
+    "source": "Boeing press release 2024-08-26 https://boeing.mediaroom.com/2024-08-26-Boeing-China-Commercial-Fleet-to-More-than-Double-by-2043-for-Growth-and-Modernization ; Boeing CMO 2024/2026 via afm.aero https://afm.aero/boeing-forecasts-43625-commercial-aircraft-deliveries-through-2045 ; Airbus GMF 2025 via afrviator https://afrviator.org/aerospace/airbus-projects-global-demand-for-43420-aircraft-by-2044",
+    "fact": "Boeing forecasts 6,720 single-aisle deliveries to China in 2024-2043 against 33,380 globally (2024 CMO), so China is about 20% of single-aisle demand (my calculation). Boeing's 2026 CMO has 33,545 single-aisle deliveries for 2026-2045 (about 1,677/yr); Airbus's 2025 GMF has 34,250 for 2025-2044."
+   },
+   {
+    "source": "Aviation News EU 2026-01 https://aviationnews.eu/news/2026/01/boeing-delivers-600-aircraft-in-2025-marking-strongest-output-since-2018/",
+    "fact": "Boeing delivered 447 737s in 2025 (600 aircraft in total). That is already above the 400/yr the board's 20% Boeing share implies."
+   },
+   {
+    "source": "grep of wargame/reports/wg5-2045/, wg5-2045d/, player_behaviour.md, config/default.json",
+    "fact": "There are zero COMAC or C919 mentions in the war-game reports and config. Neither war game had a third airframer, so the war-game numbers say nothing directly about COMAC."
+   }
+  ],
+  "entry_paths": [
+   {
+    "path": "Independent: an EASA-validated C919 (LEAP-1C) exported at scale to mainstream airlines and lessors, partly financed by Chinese lessors and policy banks. This is the main route to the definition's export prong.",
+    "p_fps_2041": "~5.5% (about 80% of the export-prong chain)",
+    "p_fps_2044": "~7.5%",
+    "why_delay_changes_it": "Board fact: Boeing's 2045 share is 33% with fps in 2041 and 22% with fps in 2044. Airbus overflow above 1,200/yr in 2045 is 140 vs 360, so the delay adds 176 aircraft a year outside China. Judgement: the C919 is a LEAP-generation aircraft, on a par with the 737 MAX and a generation behind NGSA and fps. With no new Boeing aircraft until 2044, or ever (fps drops out of every equilibrium from 2043), the C919's only same-generation rival is a 737 with no successor, and airlines facing an Airbus near-monopoly want a second source. I put the probability of at least 100 exports a year, given capacity, supply and certification, at 0.40 in the 2041 world and 0.52 in the 2044 world. Not higher, because China's own airlines will also want more C919s once Boeing weakens, which competes with exports for COMAC's output.",
+    "binding_constraints": [
+     "Production: COMAC needs about 250-300/yr by 2045 (its domestic share plus 100 exports) against 15 in 2025 and near zero since spring 2026. I put this at 0.37 / 0.39.",
+     "US-controlled parts and engines: LEAP-1C licences were suspended May-July 2025 and COMAC parts licences have been capped since October 2026. I put no multi-year cap on the ramp at 0.65 / 0.63.",
+     "EASA validation by about 2038: EASA's own window is 2028-31, and lessors' residual values depend on it. 0.72 / 0.74.",
+     "Product support, MRO network and residual-value acceptance outside China, where COMAC has no record for the C919."
+    ]
+   },
+   {
+    "path": "Independent: export to politically aligned or CAAC-accepting markets without EASA validation (the C909 pattern: Laos, Cambodia, Brunei, Indonesia), with a CJ-1000A version for sanctioned markets",
+    "p_fps_2041": "~1.3%",
+    "p_fps_2044": "~1.7%",
+    "why_delay_changes_it": "Judgement: these markets are small and mostly served by lessors that need EASA or FAA paper. The C909's total foreign fleet is single digits after 10 years (5 TransNusa, 2 Lao, 20 Air Cambodia on order). A weaker Boeing adds a little political room, since fewer Boeing-for-trade deals compete in these markets. Reaching 100/yr without EASA stays a long shot in both worlds.",
+    "binding_constraints": [
+     "Market size: aligned or CAAC-accepting carriers take far fewer than 100 single-aisles a year from any one supplier.",
+     "The CJ-1000A is not in mass production until about 2030 (OAG) and has no foreign certification.",
+     "Lessor financing and remarketing need EASA or FAA validation."
+    ]
+   },
+   {
+    "path": "Independent: funded launch by 2035 of a new export-oriented 150-210-seat single-aisle (a C919 successor or major derivative with a Western certification basis). This is the definition's second prong under my substantive reading.",
+    "p_fps_2041": "~13% (range 5-22%)",
+    "p_fps_2044": "~18% (range 8-28%)",
+    "why_delay_changes_it": "Judgement: the launch window closes in 2035. A Boeing new aircraft for 2041 would be launched around 2033-34; one for 2044 around 2036-37 or never. So in the 2041 world COMAC decides after Boeing has committed and faces two new-generation incumbents. In the 2044 world it decides while Boeing has nothing new, which makes a next-generation 'second source to NGSA' more attractive to Beijing. Limits: COMAC is also funding the C919 ramp and the C929 (CAAC type certificate goal 2032, service by 2035), and an export-grade next-generation engine is unlikely to be licensed from the West.",
+    "binding_constraints": [
+     "Engineering bandwidth shared with the C919 ramp and C929 development",
+     "A next-generation engine: the CJ-1000A is LEAP-generation, and the US is unlikely to license newer engine technology",
+     "Political willingness to commit state funds before the C919 has proved itself abroad"
+    ]
+   },
+   {
+    "path": "COMAC takes over Boeing's China share (domestic only), defined as at least 40% of China's single-aisle deliveries by 2045 (about 160/yr). This is part (a) and does NOT meet the definition.",
+    "p_fps_2041": "~45% (range 30-60%)",
+    "p_fps_2044": "~52% (range 35-65%)",
+    "why_delay_changes_it": "Facts: China is about 20% of single-aisle demand. China's Boeing orders are visibly a trade-deal currency: 200 aircraft confirmed after the May 2026 summit, up to 750 cited, with spare parts used as US leverage in October 2026. Judgement: with Boeing at 20-22% globally and no new aircraft, the commercial case for 737s in China weakens. Beijing keeps buying politically negotiated Boeing tranches but steers organic growth to COMAC and to Airbus Tianjin, whose second line delivered first on 16 Sep 2026. This happens largely regardless of fps timing. It mainly gives COMAC scale, which feeds the export paths.",
+    "binding_constraints": [
+     "The same production and US-parts constraints as the export paths, with a lower bar",
+     "Chinese airlines' 2025-26 experience of C919 delays (they expected 33 in 2026)",
+     "US-China trade deals that tie Boeing purchases to tariff and export-control relief"
+    ]
+   },
+   {
+    "path": "Partnership routes that create no third player: Boeing + Embraer (the board's fps via Embraer Joint Venture) or any Boeing-COMAC cooperation",
+    "p_fps_2041": "<1% for a Boeing-COMAC Joint Venture; the Embraer Joint Venture is dominated on the board",
+    "p_fps_2044": "<1%; Embraer Joint Venture still dominated",
+    "why_delay_changes_it": "Board fact: fps via Embraer ($100B) minus Do Nothing is -17.05 at 2041 and -15.95 at 2044, never chosen, with break-even capex of $52.9B. Even if chosen, it is Boeing's product and adds no third player. Judgement: a Boeing-COMAC Joint Venture is politically ruled out (COMAC has been on a DoD Chinese-military-company list since Jan 2021, plus US export controls), and Boeing executives have long warned against trading IP for access (BX-0678).",
+    "binding_constraints": [
+     "US export controls and national-security politics",
+     "The board's Joint Venture economics (via Embraer capex $100B vs break-even $52.9B)"
+    ]
+   }
+  ],
+  "overall": {
+   "definition": "Third player = a company other than Boeing or Airbus (here COMAC) that, by 2045, delivers at least 100 single-aisles of 150-210 seats a year (5% of the board's 2,000/yr) to customers outside mainland China (Hong Kong and Macau count as home), OR has committed funding by 2035 to such a programme. Read literally, the second prong is already met by the C919 (launched 2008, 158-192 seats), which gives about 100% in both worlds and a zero delay effect; that reading cannot discriminate. I therefore score the second prong as a funded, export-oriented NEW or substantially re-engineered single-aisle launched by 2035. Core metric (export prong only): about 7% (2041) vs about 9% (2044). Lenient reading (at least 100/yr in total with some exports): judgement about 45% vs about 48%.",
+   "p_fps_2041": "~17% (judgemental range 9-28%). Export prong alone ~7% (3-15%).",
+   "p_fps_2044": "~23% (judgemental range 13-35%). Export prong alone ~9% (4-18%). Delay effect +6 pp (range +2 to +10); export prong alone +2.3 pp (range +1 to +5).",
+   "method": "(1) Opportunity, from the board's own share rule (my solve, scratchpad/wf/comac/board_comac.json). Airbus overflow above 1,200/yr in 2045 is 140 (fps 2041) vs 360 (fps 2044); the delay adds 220/yr in 2045 (176 outside China) and 2,000 aircraft over 2041-2050. On board conventions an entrant's NPV moves from -2.78 to -0.51. Where I disagree (judgement): (a) the overflow is not COMAC's to take. The board lets Boeing deliver only 20-22% (400-440/yr), yet Boeing built 447 737s in 2025, so the 737 absorbs most overflow, with Airbus capacity growth and life extensions taking the rest. I treat about a quarter to a third of the ex-China overflow as contestable by a validated C919. (b) About 20% of the board's market is China, which COMAC fills first. (c) The NPV gate does not bind COMAC: its development cost is sunk and it is state-funded (44bn yuan in Nov 2025). Its binding constraints are production, parts politics, certification and acceptance. (d) 2,000/yr is above the 2026-2045 average in Boeing's and Airbus's forecasts (about 1,680-1,710/yr), though plausible for the 2040s. (2) Export-prong chain, as triangular (low, mode, high) for 2041 / 2044. L1 production of about 250-300/yr by 2045: 0.22, 0.37, 0.52 / 0.24, 0.39, 0.54. L2 Western parts and engine supply not capped for years, or domestic substitutes ready: 0.45, 0.65, 0.80 / 0.43, 0.63, 0.78 (a weaker Boeing makes Washington more protective). L3 EASA validation and market access by about 2038: 0.55, 0.72, 0.85 / 0.57, 0.74, 0.86. L4 commercial pull plus allocating at least 100/yr to exports: 0.25, 0.40, 0.55 / 0.35, 0.52, 0.68. The product of the modes is 0.069 / 0.095. (3) Second prong (substantive): 0.05, 0.12, 0.22 / 0.08, 0.17, 0.28. Union = P1 + P2 - P(P2|P1) x P1, with P(P2|P1) 0.30, 0.45, 0.60. (4) Monte Carlo with 200k draws and the same random numbers in both worlds (scratchpad/wf/comac/chain_mc.py, chain_mc.json). Means and p10-p90: export prong 6.6% (4.5-9.0) vs 8.9% (6.2-12.0); union 16.6% (11.9-21.7) vs 22.6% (16.9-28.4); delay effect +2.3 pp (export prong) and +5.9 pp (union). A correlated version with link correlation 0.6 widens the export prong to 3.5-11.2% vs 4.9-14.7% (chain_mc_corr.json). The ranges quoted above are widened further for model uncertainty. Every link value is judgement anchored on the facts listed; nothing here is a board output."
+  },
+  "leading_indicators": [
+   "C919 deliveries: 2026 against COMAC's plan of about 28 and IBA's 25 (only 3 by Q1, none in Sep 2026). Raise the odds if deliveries exceed 60 in 2028 and 100 in 2030 (IBA has 59 and 93); cut them if 2027-28 stays under 40.",
+   "EASA validation: completion inside EASA's 2028-31 window, then any FAA validation activity. No EASA validation by 2032 roughly halves the export prong.",
+   "US export licensing: whether the October 2026 cap on COMAC parts licences becomes a formal rule (landing gear and similar), and how the US-China tariff truce due in November 2026 ends. A renewed LEAP-1C suspension like May-July 2025 would be a strong negative.",
+   "CJ-1000A: its CAAC type certificate (OAG expects 2027-28), the first C919 delivered with it, and whether export C919s stay on LEAP-1C. That decides CFM's share of COMAC's growth.",
+   "First firm C919 orders from non-Chinese airlines beyond GallopAir's 2023 letter of intent, especially Southeast Asian low-cost carriers, Middle East or African carriers, or Chinese lessors (BOC Aviation, CDB Aviation, ICBC Leasing) placing C919s with foreign operators.",
+   "Boeing's fps launch decision: a launch around 2033-34 for 2041 versus silence. Also Boeing's 737 rate (447 delivered in 2025) as the overflow absorber the board ignores.",
+   "Airbus capacity: A320-family rate beyond 75/month and the backlog length in years, which together size the real overflow.",
+   "China's procurement split: whether the Boeing 200 (up to 750) tranches firm up, the C919 share of Chinese single-aisle deliveries, and further CAAC actions on Airbus approvals tied to C919 certification.",
+   "Further state capital for COMAC (after 44bn yuan in Nov 2025), new C919 assembly capacity (plan 150/yr by 2028), and any announcement of a next-generation single-aisle programme or a C919 stretch or re-wing."
+  ],
+  "impact_on_game": "1) Part (a), COMAC taking China, is the bigger lever on the board, and it is largely independent of the delay. Board solve (scratchpad/wf/comac/board_comac.json): I shrank the 2,000/yr market seen by Boeing and Airbus by x and re-solved with overlap strain. In the modal context (Airbus NGSA + Re-engine A350, Boeing Do Nothing 787), fps 10-yr minus Do Nothing at 2041 goes +1.06 (x=0), +0.21 (5%), +0.01 (6.2%, break-even), -0.64 (10%), -1.50 (15%), -2.35 (20%), about -0.17 per point. Against Airbus Delay Tactics it is already -0.24 at x=0 and -1.82 at 10%. Equilibria at 2041: 0 pure / 17 near-Nash at x=0. At 5%: 1 pure + 10 near, fps 10-yr in 6. At 10%: 2 pure + 3 near, fps in 1. At 15% or more, fps is in none. At 2044 fps is already out of every equilibrium; fps minus Do Nothing goes -2.53, -2.99 (5%), -3.46 (10%), -4.39 (20%). China is about 20% of single-aisle demand, so COMAC winning 30-50% of China (x of about 6-10%) is enough on its own to turn the snapshot's fps case negative. This takes the duopoly's market proportionally, which is a simplification. A C919 is a 737-generation rival, so in reality it erodes the Do Nothing 737 more than fps, which would partly offset this; the 737 is worth only $0.14B per point of share vs $0.53B for fps. 2) Airbus: its payoff vs Boeing Do Nothing falls from +50.12 to +43.96 at x=10% and +37.80 at 20%. The board charges Airbus about $0.87B per point of NGSA share, but if Airbus is capacity-bound (about 900/yr per its FY2025 report vs the board's 1,600/yr), COMAC exports mostly fill overflow Airbus could not build, so the real cost is smaller. Judgement: in the delay world Europe has less reason to slow-walk C919 validation, and China already pressures Airbus approvals to that end. 3) Procurement politics (judgement): a weaker Boeing (20-22% from 2043) turns Boeing orders in China into pure trade-deal currency (200 confirmed, up to 750 cited, spare parts used as US leverage in October 2026). Organic Chinese growth then goes to COMAC and Airbus Tianjin. That raises COMAC's domestic scale, a modest plus for exports, but also absorbs C919 output that could have been exported. It also raises the US incentive to choke COMAC's US content to protect Boeing, as the October 2026 parts caps show. Net: export odds are only slightly higher. 4) CFM (facts: LEAP-1C sole source on the C919; CFM on both NGSA and fps; engine board unchanged by the delay because engine NB EIS = min(fps, NGSA) = 2037; war-game CFM +18.99 delayed vs +18.75 on time). Judgement: CFM gains from COMAC as an exporter, because export C919s will carry LEAP-1C and every overflow aircraft filled by a C919 is 2 CFM engines rather than an old aircraft kept flying. It is neutral against a 737 sale (LEAP-1B is also 100% CFM). It loses from COMAC as a domestic substitute once the CJ-1000A arrives (about 2030): each Chinese 737 (100% CFM) or neo replaced by a CJ-1000A C919 is lost. The delay shifts about 11 points of 2045 share away from Boeing; if China's roughly 20% of that (about 44 aircraft a year) goes to CJ-1000A C919s, CFM loses about 88 engines a year, roughly 2% of NB engines. CFM is also the US's chosen chokepoint (licences suspended in 2025, allocation squeezed in 2026), so its COMAC revenue is hostage to policy. Net: slightly negative for CFM after about 2035 in the delay world, unless COMAC exports at scale on LEAP-1C. The board cannot value any of this because it has no COMAC. 5) Modelling fix suggested: add an Airbus capacity cap and a non-strategic COMAC fringe share (China share s_CN(t) plus a slice of ex-China overflow), and let the 737 absorb overflow. Without this, the board overstates both the vacuum and Airbus's capturable gain.",
+  "caveats": [
+   "Every probability is a judgement. The board has no third player and the war games never modelled COMAC (zero mentions). The Monte Carlo ranges reflect only my link ranges, so I widened the reported ranges for model uncertainty.",
+   "Definition ambiguity: read literally, the 'launched by 2035' prong is already met by the C919, giving about 100% in both worlds. My headline uses a substantive reading (a new export-oriented programme). The export prong alone (about 7% vs 9%) is the cleanest measure of a material third player outside China.",
+   "Several key sources (Leeham, SCMP, Bloomberg, Aviation Week, Reuters originals) were reachable only as search snippets or syndicated copies; egress blocked direct fetches. Counts conflict: 2025 deliveries 15 vs 16; cumulative 32, 35 or 37. The October 2026 Reuters story on capped COMAC parts licences rests on unnamed sources.",
+   "The board's 2,000/yr NB market and its share rule overstate the vacuum available to COMAC. Boeing is held to 400-440/yr when it built 447 737s in 2025, and Airbus's implied 1,600/yr is beyond its stated 75/month (about 900/yr). My adjustment of a quarter to a third of the ex-China overflow being contestable is a judgement.",
+   "The third-player sensitivity takes x% of the market from the duopoly uniformly in all years and proportionally across programmes. A real C919 would ramp over time and hit the 737 harder than fps or NGSA.",
+   "Treating Hong Kong and Macau as home market; C919s placed abroad by Chinese lessors count as exports.",
+   "The board's 'Boeing at 20% from 2043' holds when Boeing does not launch fps (the equilibrium at 2044). If Boeing does launch in 2044, the 2045 share is 22% (my solve), which leaves the conclusions unchanged.",
+   "Scratch files: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/comac/board_comac.py, board_comac.json, chain_mc.py, chain_mc.json, chain_mc_corr.py, chain_mc_corr.json. The repo was not modified."
+  ]
+ },
+ "check": {
+  "claims": [
+   {
+    "claim": "Board: Boeing 2045 NB share is 33% (fps 2041), 22% (fps 2044) and 20% (Do Nothing). Airbus overflow in 2045 is 140/360/400 at 1,200/yr and 440/660/700 at 900/yr.",
+    "verdict": "confirmed",
+    "detail": "I re-ran the analyst's solve unchanged (wf/adv_comac/rerun.py) and the output is byte-identical to wf/comac/board_comac.json (boeing_share_2045, airbus_overflow)."
+   },
+   {
+    "claim": "The delay adds 220 aircraft in 2045 (176 outside China) and 2,000 over 2041-2050 at either capacity.",
+    "verdict": "corrected",
+    "detail": "The arithmetic is right for fps 2044 with fps launched vs fps 2041 (board_comac.json delay_incremental_overflow_*). But the analyst's own text says fps drops out of every equilibrium from 2043 (BRIEF), so the delay world is Boeing Do Nothing. That comparison gives 400-140 = +260/yr in 2045 (208 outside China) and 3,860-1,300 = 6,860-4,300 = +2,560 over 2041-2050 at both capacities (same JSON). The analyst understates the vacuum effect by about 18-28%."
+   },
+   {
+    "claim": "Market-shrink sensitivity at 2041: fps10 minus Do Nothing is +1.06 / +0.21 / +0.01 / -0.64 / -1.50 / -2.35 at x = 0/5/6.2/10/15/20%. At 2044: -2.53 / -2.99 / -3.46 / -4.39. Against Delay Tactics: -0.24 and -1.82. Airbus is 50.12 / 43.96 / 37.80. Equilibrium counts are 0+17, 1+10 (fps10 in 6), 2+3 (fps10 in 1), and none at 15% or more.",
+    "verdict": "confirmed",
+    "detail": "The rerun JSON is identical, and my wf/adv_comac/eqcheck.py reproduces the equilibrium counts: at x=0, fps10 appears in 13 of 17 near-Nash, which matches the snapshot's 13 'Launch fps 10yr' lines. The BRIEF's '12 of 17' is off by one, but the analyst does not use it. Break-even x is 1.06/17.06 = 6.2%, consistent with linear scaling of the NB profit increment."
+   },
+   {
+    "claim": "COMAC winning 30-50% of China (x of about 6-10%) is enough on its own to turn the snapshot's fps case negative.",
+    "verdict": "corrected",
+    "detail": "With China at about 20%, 30% of China is x = 6.0%, which is still at or just above break-even (+0.01 at 6.2%, board_comac.json). The case turns negative only above about 31% of China, and reaches -0.64 at 50%. The 2,000/yr board market may or may not already net out COMAC, so this is also a possible double count."
+   },
+   {
+    "claim": "Entrant NPV on board conventions: -2.78 / -0.51 / +0.42. With $20B capex plus a 10% slice: -1.35 rising to +0.92.",
+    "verdict": "confirmed",
+    "detail": "dash/vacuum.json entrant_unserved_only (EIS 2038, $15B) and entrant_with_slice (fps 2041 -1.35, fps 2044 +0.92)."
+   },
+   {
+    "claim": "PV per point of NB share 2041-2056: NGSA $0.87B, fps $0.53B, A320neo $0.41B, 737 $0.14B.",
+    "verdict": "confirmed",
+    "detail": "board_comac.json pv_per_pp_share_2041_2056 (0.871/0.529/0.412/0.144). The inputs match Game.txt section 4 ($48M/$52M/$55M/$55M) and section 5 (8.00/13.14/25.64/26.28%), and board.py WACC 10.5%/8%."
+   },
+   {
+    "claim": "Snapshot facts: two airframers in a 2,000 NB/yr market; NGSA engines from PW and CFM; fps engines from all three; derived NB engine shares CFM 42 / PW 42 / RR 17; no COMAC.",
+    "verdict": "confirmed",
+    "detail": "Game.txt lines 17-26 and board.py line 633 (NB_PER_YR = 2000)."
+   },
+   {
+    "claim": "CFM's LEAP-1C is sole source on the C919 (Stokes, Immelt '100% at Boeing; 100%, COMAC; 55% at Airbus', Miller 81% win rate).",
+    "verdict": "confirmed",
+    "detail": "cfm/executives/evidence.jsonl lines 168, 1098 and 1197 match the quotes and dates."
+   },
+   {
+    "claim": "Calhoun: 'even in an optimistic case, maybe in 2050, they get to be a 10% player'; the duopoly will last 'for quite some time'.",
+    "verdict": "confirmed",
+    "detail": "boeing/executives/evidence.jsonl lines 380 and 280. BX-0280 also says 'there's plenty of growth in the markets to support 3 players', which the analyst omitted. Note that 40% of China (about 8% of the global market) is close to Calhoun's 'optimistic' 10%, yet the analyst gives it 45-52%."
+   },
+   {
+    "claim": "Airbus FY2025 report: the duopoly 'has ended'; COMAC's progress will be 'measured' and paced by ramp-up and certification; the C919 is named as a competitor; Airbus holds about 60% of the single-aisle backlog.",
+    "verdict": "confirmed",
+    "detail": "airbus/executives/evidence.jsonl line 24 (AX-0024, 2026-02-18) and airbus/evidence.jsonl line 865 (A-0865)."
+   },
+   {
+    "claim": "Albaugh 2011-12 IOUs and three-way split, McNerney WTO launch-aid ruling, Muilenburg competitor and partner, Hayes keeping P&W's brand separate.",
+    "verdict": "confirmed",
+    "detail": "BX-0022 (dated 2011-05-24), BX-0062 (2012-03-14), BX-0657 (2010-07-28), B-1302 (2017-09-13) and P-1287 (2021-05-18) all match."
+   },
+   {
+    "claim": "Boeing executives have long warned against trading IP for access (BX-0678).",
+    "verdict": "corrected",
+    "detail": "BX-0678 is a single McNerney quote from 2011-01-26 about the GE-AVIC avionics Joint Venture ('you cannot give up your ability to innovate just on an expedient short-term basis'). It supports the point, but 'long warned' overstates one quote."
+   },
+   {
+    "claim": "There are zero COMAC or C919 mentions in the war-game reports and config, so the war games say nothing directly about COMAC.",
+    "verdict": "confirmed",
+    "detail": "grep -ril comac|c919 over wg5-2045/, wg5-2045d/, player_behaviour.md and config/default.json returns nothing. However, the analyst missed relevant war-game evidence on the size of the vacuum (see corrections)."
+   },
+   {
+    "claim": "C919 deliveries were 13 in 2024 (Cirium/Planespotters) and 15 in 2025.",
+    "verdict": "corrected",
+    "detail": "Sources conflict on 2024. Bloomberg 2025-12-23 (https://www.bloomberg.com/news/articles/2025-12-23/china-s-comac-on-track-to-miss-c919-delivery-target-by-half) says 13. Aerotelegraph (https://www.aerotelegraph.com/ticker/comac-lieferte-2024-zehn-c919-aus/6msyhl7) and Air Data News (https://airdatanews.com/comac-delivers-10th-c919-aircraft-of-the-year) say 10, with 3 delivered before 2024. The 13 Cirium figure in that Bloomberg piece is the 2025 count through Dec 22. The 2025 total of 15 is confirmed (Aviation Week https://aviationweek.com/air-transport/aircraft-propulsion/chinas-airlines-expect-33-comac-c919-deliveries-2026)."
+   },
+   {
+    "claim": "The 2025 target of 75 was cut to 25 and still missed by almost half. The March 2025 plan was 100 (2026), 150 (2027 and 2028) and 200/yr by 2029. State shareholders put in 44bn yuan in Nov 2025.",
+    "verdict": "confirmed",
+    "detail": "Bloomberg 2025-09-24 and 2025-12-23 summaries, and Gulf Times syndication (https://www.gulf-times.com/article/717477/business/chinas-comac-on-track-to-miss-c919-delivery-target-by-half/amp). With the final 15 against 25 the miss is 40%, not 'almost half'. The March 2025 plan comes from an unofficial WeChat account, and versions differ (150/yr by 2030 per Aviacionline)."
+   },
+   {
+    "claim": "2026: 3 deliveries in Q1 and 35 cumulative; COMAC's 2026 plan is about 28, IBA 25 and the big three airlines 33; aircraft are waiting for LEAP engines.",
+    "verdict": "confirmed",
+    "detail": "SCMP via aggregator (https://newsar.codejungle.org/articles/70840), Aviation Week (above), ITHome citing SCMP for a target of 28 or more. AirInsight's April 2026 forecast puts IBA at 25 for 2026 and 45 for 2027, and its cumulative count is 32. But this conflicts with the analyst's own capability fact citing Leeham 2026-09-01, where IBA is about 28 for 2026. Both IBA vintages exist and should be reconciled and dated."
+   },
+   {
+    "claim": "None delivered in September 2026; about six months of near-zero deliveries.",
+    "verdict": "unverifiable",
+    "detail": "Forecast International (flightplan.forecastinternational.com) is blocked by egress, and searches found no corroboration of zero in September or of a six-month stall. CAPA lists Air China C919 deliveries on 27 Mar and 17 Apr 2026 (https://centreforaviation.com/news/air-china-deploys-c919-on-first-international-route-1369461). This claim appears in the headline and should be marked single-source or removed."
+   },
+   {
+    "claim": "IBA forecasts C919 deliveries of about 28 (2026), 59 (2028) and 93 (2030) (Leeham 2026-09-01).",
+    "verdict": "confirmed",
+    "detail": "Search summary of https://leehamnews.com/2026/09/01/boosting-c919-production-rates-remains-comacs-real-test/. Aircraft Interiors International (19 Aug 2026) also cites IBA at 93 by 2030."
+   },
+   {
+    "claim": "Bank of America counts 48 US, 26 European and 14 Chinese suppliers on the C919.",
+    "verdict": "confirmed",
+    "detail": "Corroborated by ch-aviation (https://www.ch-aviation.com/news/158797-comac-trims-c919-deliveries-in-2025-report)."
+   },
+   {
+    "claim": "CJ-1000A: OAG (Mayur Patel) expects domestic certification and first deliveries in 2027-28 and mass production around 2030.",
+    "verdict": "unverifiable",
+    "detail": "asianews.network is blocked and the Straits Times piece was not found. A Chinese-language report cited in searches says delivery around 2027 and mass production perhaps around 2030, which is directionally consistent, but the attribution to OAG could not be checked."
+   },
+   {
+    "claim": "C929: CAAC type certificate targeted for 2032 and first commercial flight by 2035.",
+    "verdict": "confirmed",
+    "detail": "SCMP and ePlaneAI, June 2025 (https://www.scmp.com/economy/china-economy/article/3315051/chinas-c929-widebody-passenger-jet-make-maiden-commercial-flight-2035-source). The 2035 date rests on an anonymous source. A later SCMP piece says the C929 could arrive early (https://scmp.com/economy/china-economy/article/3342069/chinas-widebody-c929-could-arrive-early-revved-development-plan-sources)."
+   },
+   {
+    "claim": "The only non-Chinese C919 order is GallopAir's 2023 letter of intent (15 C919 + 15 ARJ21).",
+    "verdict": "confirmed",
+    "detail": "The LOI was signed in Sep 2023 and is non-binding (https://aviationnews.eu/news/2023/09/bruneis-gallop-air-places-2-bln-order-for-china-made-c919-arj21-jets/). The analyst missed that Capital A/AirAsia confirmed active talks to buy C919s in Sep 2025, and that COMAC had made it an offer (https://www.scmp.com/economy/china-economy/article/3325061/china-eyes-c919-jet-breakthrough-malaysian-airline-confirms-talks-buy-aircraft ; https://www.airdatanews.com/airasia-comac-c919-potential-order/). It also missed that Malaysia Airlines keeps the C919 under evaluation pending EASA approval (https://www.airdatanews.com/malaysia-airlines-keeps-c919-under-evaluation-but-awaits-easa-approval/)."
+   },
+   {
+    "claim": "COMAC's real exports are C909s: TransNusa 5, Lao 2, and Air Cambodia's 10 firm + 10 option order of July 2026. The C909's foreign fleet is in single digits.",
+    "verdict": "corrected",
+    "detail": "The July 2026 Air Cambodia deal is 20 aircraft, described by CAPA as 'firms order for 20' (https://centreforaviation.com/news/air-cambodia-firms-order-for-20-comac-c909-aircraft-1366586 ; The Star 2026-07-19). The 10 firm + 10 option structure was the Sept 2025 MoU. TransNusa operated 3 in early 2025, with 30 firm + 30 options leased via CALC (ch-aviation). The analyst also writes '20 Air Cambodia on order' elsewhere, which is internally inconsistent."
+   },
+   {
+    "claim": "Air China's Beijing-Ulaanbaatar service from Aug 2026 is the C919's first scheduled international route.",
+    "verdict": "confirmed",
+    "detail": "First flight 12 Aug 2026, 7 flights a week (Caixin 2026-08-14 https://www.caixinglobal.com/2026-08-14/chinas-c919-completes-first-scheduled-international-commercial-flight-102473917.html ; Leeham 2026-09-01)."
+   },
+   {
+    "claim": "EASA (Guillermet, Apr 2025) gives 3-6 years; validation flights in Shanghai in Jan 2026; no completion date as of May 2026; no FAA activity found.",
+    "verdict": "confirmed",
+    "detail": "AviTrader 2025-04-29, Air Journal 2026-04-13, and Reuters as summarised by AeroTime (May 2026). The analyst missed later evidence: SCMP in July 2026 reported that EASA test pilots found 'no major hardware risks' and that flight testing is wrapping up, though certification is still months to years away (https://www.scmp.com/economy/china-economy/article/3361170/eu-test-pilots-find-no-major-hardware-risks-chinas-c919-jet-sources). SCMP also dates some EASA flights to Nov 2025."
+   },
+   {
+    "claim": "The US suspended LEAP-1C and CF34 licences for COMAC in late May 2025 and restored them in early July 2025.",
+    "verdict": "confirmed",
+    "detail": "NYT via Yahoo (https://www.yahoo.com/news/us-suspends-sales-us-technologies-005016815.html) and Air Data News (https://www.airdatanews.com/ge-engines-for-chinese-jets-from-comac-are-once-again-authorized-for-export-by-the-us/)."
+   },
+   {
+    "claim": "Reuters, 1 Oct 2026: Commerce slowed aircraft-part licences to China, is capping COMAC parts licences against stockpiling, and is weighing a rule on landing gear; no firm spare-parts guarantees for the Boeing 200.",
+    "verdict": "confirmed",
+    "detail": "AJOT syndication of the Reuters exclusive by Freifeld and Lampert (https://www.ajot.com/news/exclusive-us-slows-aircraft-part-exports-to-china-as-trump-seeks-leverage-in-trade-negotiations-sources-say) and SCMP. All of it rests on unnamed sources, as the analyst says. A draft also adds a licence requirement for aviation hydraulic fluid. 1 Oct 2026 is a Thursday, which matches 'Reuters reported on Thursday'."
+   },
+   {
+    "claim": "China confirmed 200 Boeing aircraft after the May 2026 summit, with up to 750 cited and 'strict supply guarantees' pledged.",
+    "verdict": "confirmed",
+    "detail": "AeroTime and Asian Aviation (MOFCOM statement of 20 May 2026). The analyst omitted that the deal is unresolved: the White House disputes that after-sale support was included, it has not been fully firmed, and reports say it could shrink to about 150 (https://www.insideflyer.com/posts/boeings-200-jet-china-deal-at-risk-over-engine-parts ; https://boltflight.com/boeings-hopes-for-a-new-china-mega-order-fade-as-200-jet-deal-remains-uncertain/)."
+   },
+   {
+    "claim": "The CAAC slowed about 20 Airbus approvals in early 2026 to press on C919 certification; Airbus called it administrative and resolved.",
+    "verdict": "confirmed",
+    "detail": "Bloomberg 26 May 2026 via AeroTime (https://www.aerotime.aero/articles/china-airbus-approvals-comac-c919-certification/amp). Faury said 'administrative delay' on 28 Apr."
+   },
+   {
+    "claim": "Airbus delivered the first A320neo from the second Tianjin assembly line on 16 Sep 2026.",
+    "verdict": "confirmed",
+    "detail": "Delivered to China Eastern (ECNS 2026-09-16 https://www.ecns.cn/cns-wire/2026-09-16/detail-ihfkhtke4049695.shtml ; Aviation News EU)."
+   },
+   {
+    "claim": "Boeing 2024 CMO: China 6,720 single-aisle out of 33,380 globally (about 20%). 2026 CMO: 33,545 single-aisle 2026-2045. Airbus GMF 2025: 34,250 for 2025-2044.",
+    "verdict": "confirmed",
+    "detail": "Boeing press release of 26 Aug 2024 (China 8,830 total, 6,720 single-aisle); Boeing 2026 CMO press release of 18 Jul 2026 (33,545 of 43,625); Airbus GMF 2025 (34,250 of 43,420). The averages are 1,677/yr and 1,712/yr."
+   },
+   {
+    "claim": "Boeing delivered 447 737s in 2025 (600 in total).",
+    "verdict": "confirmed",
+    "detail": "Boeing's year-end release of 13 Jan 2026 as reported by AeroTime and travelextra: 447 737s, 88 787s, 35 777s and 30 767s."
+   },
+   {
+    "claim": "COMAC has been on a DoD Chinese-military-company list since Jan 2021.",
+    "verdict": "corrected",
+    "detail": "COMAC was named on 14 Jan 2021 (Reuters, cited in Wikipedia https://en.wikipedia.org/wiki/Comac), the restriction was later removed under the Biden administration, and COMAC was added to the Section 1260H list in Jan 2025. The conclusion that a Boeing-COMAC Joint Venture is politically ruled out still stands."
+   },
+   {
+    "claim": "Probability arithmetic: export prong 6.6% \u2192 8.9% (+2.3 pp); union 16.6% \u2192 22.6% (+5.9 pp); path 1 (5.5/7.5) plus path 2 (1.3/1.7) adds up to the export prong.",
+    "verdict": "confirmed",
+    "detail": "Means of the triangular links multiply to 0.370 \u00d7 0.633 \u00d7 0.707 \u00d7 0.40 = 0.066, and the union equals P1(1 - 0.45) + P2 (chain_mc.json). The path sums are 6.8% and 9.2%, which match. However, 4.7 of the 5.9 pp union effect comes from the prong-2 judgement (12% \u2192 17%), the link with the least factual anchoring, and the headline does not say this."
+   },
+   {
+    "claim": "The non-EASA export path (about 1.3% / 1.7%) is part of the export-prong chain.",
+    "verdict": "corrected",
+    "detail": "Chain link L3 is defined as 'EASA validation and market access by about 2038' (chain_mc.py, method step 2), so the product 0.069 / 0.095 already requires EASA. Giving 20% of it to a path without EASA is internally inconsistent. Either L3 means any export market access, or path 2 must be added on top of the chain."
+   },
+   {
+    "claim": "COMAC taking 40% or more of China's single-aisle deliveries is about 45% \u2192 52%, and happens 'largely regardless of fps timing'.",
+    "verdict": "corrected",
+    "detail": "A +7 pp delay effect is larger than the export prong's +2.3 pp, which contradicts 'largely regardless'. The level is also hard to reconcile with the analyst's own links: about 160/yr to China requires P(production of 160/yr or more AND parts available) \u2265 0.45, while L1 (250-300/yr) is 0.37 and L2 is 0.65. The level is plausible as judgement but sits at the optimistic end compared with Calhoun's 'optimistic' 10% global by 2050 (BX-0380). Air China's 2026-28 plan of 35 C919s against 121 A320neo-family and 737 MAX aircraft (search summary of the carriers' filings) puts the C919 at about 22% of one carrier's intake."
+   },
+   {
+    "claim": "CFM loses about 88 engines a year (about 2% of NB engines) if China's share of the delay-shifted aircraft goes to CJ-1000A C919s.",
+    "verdict": "corrected",
+    "detail": "Those 44 aircraft a year would otherwise be fps (RR, PW or CFM) or NGSA (PW or CFM), not 100% CFM aircraft, so CFM loses only its share of them: about 42-50% (Game.txt line 26). That is about 37-44 engines a year, roughly 1% of NB engines, not 88."
+   }
+  ],
+  "corrections": [
+   "Vacuum comparison: in the delay world the board's equilibrium is Boeing Do Nothing, not fps launched in 2044. State the delay effect as +260 aircraft in 2045 (208 outside China) and +2,560 over 2041-2050, at both 900/yr and 1,200/yr (board_comac.json: Do Nothing 400/700 vs fps-2041 140/440; cumulative 3,860/6,860 vs 1,300/4,300). Keep 220/176/2,000 only as the 'Boeing still launches fps in 2044' case.",
+   "Change '30-50% of China (x of about 6-10%) turns fps negative' to: 30% of China (x = 6%) is about break-even (+0.01 at 6.2%), and the case goes negative only above about 31%, reaching -0.64 at 50% (board_comac.json third_player_sensitivity).",
+   "Air Cambodia: the July 2026 deal is a 20-aircraft C909 order (CAPA 'firms order for 20'). The 10 firm + 10 option structure was the Sept 2025 MoU. TransNusa operated 3 C909s in early 2025 with 30 firm + 30 options via CALC, not '5'. Make the C909 text consistent ('20 on order').",
+   "C919 2024 deliveries: write '10-13 depending on source' (10 per Aerotelegraph and Air Data News, 13 per Bloomberg/Cirium), not '13 (Cirium/Planespotters)'. The 2025 miss against 25 is 40% (15 delivered), not 'almost half'.",
+   "Reconcile the IBA 2026 forecast: 25 (AirInsight, early 2026) vs about 28 (Leeham, 1 Sep 2026). The analysis currently uses both as if each were the current figure.",
+   "Mark 'none delivered in September 2026' and 'about six months of near-zero deliveries' as unverified single-source claims (Forecast International is unreachable; no corroboration found; CAPA shows Air China deliveries on 27 Mar and 17 Apr 2026), and remove the first from the headline or qualify it.",
+   "DoD list: COMAC was named in Jan 2021, removed later in 2021 under the Biden administration, and re-listed on the Section 1260H list in Jan 2025. It is not 'on the list since Jan 2021'.",
+   "BX-0678 is a single McNerney quote from 2011 on the GE-AVIC Joint Venture. Replace 'Boeing executives have long warned' with 'McNerney warned (2011)'.",
+   "Path 4 (COMAC taking 40% or more of China): remove 'largely regardless of fps timing' or justify the +7 pp delay effect, which is three times the export-prong effect. Also show that 45-52% is consistent with L1 (0.37 for 250-300/yr) and L2 (0.65).",
+   "Path split: chain link L3 requires EASA, so the non-EASA path (about 1.3% / 1.7%) cannot be carved out of the chain product. Either redefine L3 as 'any export market access' or add path 2 on top of the chain.",
+   "State whether L1 (production of 250-300/yr) is conditional on L2 (parts supply). If L1 is unconditional, multiplying by L2 double-counts US-parts risk, and the export prong becomes about 0.37 \u00d7 0.72 \u00d7 0.40 \u2248 10.7% (2041) vs 0.39 \u00d7 0.74 \u00d7 0.52 \u2248 15.0% (2044), a delay effect of about +4 pp, not about 7% vs 9%.",
+   "Disclose that 4.7 of the 5.9 pp union delay effect comes from the prong-2 judgement (a funded new export single-aisle, mode 12% \u2192 17%), which has no factual anchor beyond assumed Boeing launch timing.",
+   "CFM impact: the delay-shifted aircraft in China would otherwise carry fps or NGSA engines (CFM about 42-50%), so CFM's loss is about 37-44 engines a year (about 1% of NB engines), not 88 (about 2%).",
+   "Add the missed war-game evidence: in wg5-2045d (fps 3 years late) Boeing's NB share is 32.3% in 2045 and 25.0% in 2050, vs 40.2% on time (wargame/reports/wg5-2045d/final_report.md lines 84-85; wg5-2045/final_report.md line 86). The war-game engine shows a much smaller 2045 vacuum than the board's 20-22%, though a similar delay delta (-8 pp vs -11 pp).",
+   "Add missed market evidence: Capital A/AirAsia confirmed active C919 purchase talks in Sep 2025 after a COMAC offer (SCMP 3325061; Air Data News), and Malaysia Airlines is evaluating the C919 pending EASA approval. These are the most relevant potential mainstream non-Chinese customers and bear on L4.",
+   "Add missed certification evidence: SCMP in July 2026 reports that EASA test pilots found no major hardware risks and that the flight-test campaign is wrapping up (article 3361170). This is a modest positive for L3, which the analyst's latest EASA data point (May 2026) does not reflect.",
+   "Add that the Boeing 200-aircraft China commitment is unresolved. It has not been fully firmed, the White House disputes the after-sale support terms, and reports say it may shrink to about 150. This bears on the China-share path.",
+   "Reconcile L4 with the analyst's own overflow numbers: at 1,200/yr Airbus capacity and 'a quarter to a third contestable', contestable overflow outside China in 2045 is only about 28-37/yr in the 2041 world and about 72-107/yr in the 2044 or Do Nothing world. L4 = 0.40 in the 2041 world therefore implies head-to-head share wins, not overflow capture, and this should be stated."
+  ],
+  "overall": "The analysis mostly holds up but needs material corrections. Facts first. I re-ran every board number (wf/adv_comac/rerun.py gives output byte-identical to wf/comac/board_comac.json; eqcheck.py reproduces the equilibrium counts). The vacuum.json entrant NPVs, the PV per point of share, the snapshot inputs and every repo evidence citation (CX-0168/1098/1197, BX-0380/0280/0022/0062/0657/0678, B-1302, P-1287, AX-0024, A-0865) are accurate. Most web facts are confirmed with dated sources: the LEAP-1C suspension May-July 2025, the 1 Oct 2026 Reuters story on capped COMAC parts licences and the possible landing-gear rule, the 200-aircraft Boeing commitment, the CAAC holding about 20 Airbus approvals, the Tianjin second-line delivery on 16 Sep 2026, Boeing's 447 737s in 2025, the CMO/GMF figures with China at about 20%, EASA's 3-6 years, the C929 dates, and the Ulaanbaatar route.\n\nFactual errors to fix:\n- The Air Cambodia order is 20 C909s, not 10+10, and TransNusa operates 3 C909s, not 5.\n- 2024 C919 deliveries were 10-13 depending on source.\n- COMAC was not continuously on a DoD list from Jan 2021; it was delisted and then re-listed in Jan 2025.\n- The analysis quotes two different IBA 2026 forecasts (25 and 28).\n- 'None in September 2026', which is in the headline, could not be verified.\n\nFraming and judgement problems:\n1. The vacuum comparison uses fps launched in 2044, although the analyst's own equilibrium logic says Boeing does Do Nothing. This understates the delay effect: +260/yr (not +220) and +2,560 cumulative (not +2,000).\n2. 'x = 6-10% turns fps negative' is wrong at the low end, where 6% is break-even.\n3. There are internal inconsistencies. Path 2 is carved out of a chain whose L3 requires EASA. Path 4 is called 'largely regardless of fps timing' but moves +7 pp. The CFM loss assumes 100% CFM content.\n4. The chain's conditioning is unstated. If L1 is unconditional on parts, the export prong is about 11% \u2192 15%, not 7% \u2192 9%.\n5. Most of the +6 pp union effect comes from the least-evidenced judgement (prong 2).\n\nMissed evidence:\n- Our own war game puts Boeing at 32% in 2045 in the delay case, not 20-22%, so the vacuum is smaller.\n- AirAsia's confirmed C919 talks and Malaysia Airlines' evaluation.\n- The July 2026 report that EASA flight tests are wrapping up with no major hardware risks.\n- The fragility of the Boeing 200 deal.\n\nJudgement on the conclusions: the qualitative conclusions survive. The delay is a small positive for COMAC as an exporter; the binding constraints are ramp-up, US parts and EASA; and COMAC taking China's share is the bigger lever on the board's fps case. The point estimates are defensible as judgement but more fragile than presented: the export-prong level depends on chain conditioning, and the China-share probability is at the optimistic end. Scratch files: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/adv_comac/rerun.py, board_comac_rerun.json, eqcheck.py. The repo was not modified."
+ }
+}

@@ -1,0 +1,236 @@
+{
+ "pure_equilibrium_levers_2044": {
+  "fps margin %": {
+   "31.3": {
+    "pure": 1,
+    "near": 13,
+    "fps_in_pure": 0,
+    "fps_in_near": 10,
+    "pure_cells": [
+     "Launch NGSA + Do Nothing A350 || Do Nothing (737 MAX) + Re-engine 787"
+    ]
+   },
+   "33.5": {
+    "pure": 0,
+    "near": 23,
+    "fps_in_pure": 0,
+    "fps_in_near": 20,
+    "pure_cells": []
+   },
+   "34.0": {
+    "pure": 0,
+    "near": 28,
+    "fps_in_pure": 0,
+    "fps_in_near": 26,
+    "pure_cells": []
+   },
+   "34.1": {
+    "pure": 2,
+    "near": 25,
+    "fps_in_pure": 2,
+    "fps_in_near": 24,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   },
+   "35.0": {
+    "pure": 2,
+    "near": 28,
+    "fps_in_pure": 2,
+    "fps_in_near": 27,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   }
+  },
+  "fps 10yr bill $B": {
+   "45.0": {
+    "pure": 2,
+    "near": 9,
+    "fps_in_pure": 0,
+    "fps_in_near": 7,
+    "pure_cells": [
+     "Launch NGSA + Re-engine A350 || Do Nothing (737 MAX) + Do Nothing 787",
+     "Launch NGSA + Do Nothing A350 || Do Nothing (737 MAX) + Re-engine 787"
+    ]
+   },
+   "41.0": {
+    "pure": 0,
+    "near": 19,
+    "fps_in_pure": 0,
+    "fps_in_near": 16,
+    "pure_cells": []
+   },
+   "40.9": {
+    "pure": 0,
+    "near": 19,
+    "fps_in_pure": 0,
+    "fps_in_near": 16,
+    "pure_cells": []
+   },
+   "40.7": {
+    "pure": 2,
+    "near": 16,
+    "fps_in_pure": 2,
+    "fps_in_near": 14,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   },
+   "38.0": {
+    "pure": 4,
+    "near": 13,
+    "fps_in_pure": 4,
+    "fps_in_near": 12,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Bottleneck + Do Nothing A350 || fps 10yr Solo + Re-engine 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Do Nothing A350 || fps 10yr Solo + Re-engine 787"
+    ]
+   }
+  },
+  "fps price $M": {
+   "67.0": {
+    "pure": 1,
+    "near": 12,
+    "fps_in_pure": 0,
+    "fps_in_near": 9,
+    "pure_cells": [
+     "Launch NGSA + Do Nothing A350 || Do Nothing (737 MAX) + Re-engine 787"
+    ]
+   },
+   "71.7": {
+    "pure": 0,
+    "near": 23,
+    "fps_in_pure": 0,
+    "fps_in_near": 20,
+    "pure_cells": []
+   },
+   "73.0": {
+    "pure": 2,
+    "near": 26,
+    "fps_in_pure": 2,
+    "fps_in_near": 24,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   },
+   "73.1": {
+    "pure": 2,
+    "near": 25,
+    "fps_in_pure": 2,
+    "fps_in_near": 24,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   },
+   "75.0": {
+    "pure": 2,
+    "near": 28,
+    "fps_in_pure": 2,
+    "fps_in_near": 27,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   }
+  },
+  "Boeing recovery pp/yr": {
+   "1.9": {
+    "pure": 1,
+    "near": 10,
+    "fps_in_pure": 0,
+    "fps_in_near": 7,
+    "pure_cells": [
+     "Launch NGSA + Do Nothing A350 || Do Nothing (737 MAX) + Re-engine 787"
+    ]
+   },
+   "2.25": {
+    "pure": 0,
+    "near": 16,
+    "fps_in_pure": 0,
+    "fps_in_near": 13,
+    "pure_cells": []
+   },
+   "2.3": {
+    "pure": 2,
+    "near": 14,
+    "fps_in_pure": 2,
+    "fps_in_near": 11,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   },
+   "2.5": {
+    "pure": 2,
+    "near": 15,
+    "fps_in_pure": 2,
+    "fps_in_near": 14,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787"
+    ]
+   },
+   "3.0": {
+    "pure": 4,
+    "near": 12,
+    "fps_in_pure": 4,
+    "fps_in_near": 12,
+    "pure_cells": [
+     "Launch NGSA + Delay fps Bottleneck + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Bottleneck + Do Nothing A350 || fps 10yr Solo + Re-engine 787",
+     "Launch NGSA + Delay fps Poaching + Re-engine A350 || fps 10yr Solo + Do Nothing 787",
+     "Launch NGSA + Delay fps Poaching + Do Nothing A350 || fps 10yr Solo + Re-engine 787"
+    ]
+   }
+  }
+ },
+ "bill_timing": {
+  "board_lump": {
+   "2041": 1.063,
+   "2041_vs_delay_tactics": -0.242,
+   "2044": -2.527,
+   "2044_vs_delay_tactics": -3.494
+  },
+  "lump_at_2041": {
+   "2044": -6.667,
+   "2044_vs_delay_tactics": -7.634
+  },
+  "spread9": {
+   "2041": -10.177,
+   "2041_vs_delay_tactics": -11.482,
+   "2044": -10.858,
+   "2044_vs_delay_tactics": -11.825
+  },
+  "spread6": {
+   "2041": -5.959,
+   "2041_vs_delay_tactics": -7.263,
+   "2044": -7.732,
+   "2044_vs_delay_tactics": -8.698
+  },
+  "slip_spread9": {
+   "2044": -17.907,
+   "2044_vs_delay_tactics": -18.874
+  },
+  "lump_at_2041_plus_30pct_at_2044": {
+   "2044": -11.388
+  }
+ },
+ "with_787_reengine": {
+  "2041": {
+   "vs_A350_reengine": 0.245,
+   "vs_A350_do_nothing": 0.245
+  },
+  "2044": {
+   "vs_A350_reengine": -3.131,
+   "vs_A350_do_nothing": -3.131
+  }
+ }
+}

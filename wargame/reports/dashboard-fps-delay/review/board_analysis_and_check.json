@@ -1,0 +1,222 @@
+{
+ "key": "board",
+ "analysis": {
+  "claims": [
+   {
+    "claim": "(1) The snapshot reproduces exactly only with overlap-aware strain (0 pure / 17 near-Nash, all 17 cells, every rounded yield). Flat strain gives 1 pure / 13 near and misses 4 cells.",
+    "verdict": "corrected",
+    "detail": "FACT: I rewrote the board's formulas from scratch in wf/verify/indep.py, without running board.py. Across all 256 cells it matches the board harness to within 3e-14 $B, for fps EIS 2037, 2041, 2044 and 2047, with NGSA at 2044/2041, under both strain rules (check1.py). Overlap strain gives 0 pure / 17 near, all 17 snapshot cells present, no rounding mismatches. Flat strain gives 1 pure, (NGSA + Do Nothing A350 | Do Nothing 737 + Re-engine 787) at 131.79/99.74, plus 13 near; 4 cells are missing, all fps 10yr + Re-engine 787 rows (check1.py). CORRECTION: 'only with overlap' is too strong. A flat build reproduces the snapshot exactly for ANY Boeing strain from $0 to about $1.55B (check_strain_id.py). Overlap gives $3B x 0.2 = $0.6B, which falls in that range. The test therefore pins down an effective Boeing strain of $1.55B or less, not the rule itself. JUDGEMENT: overlap is still the most plausible explanation, because the snapshot states $3.00B and the skill's model_map.md documents this exact formula. It also does not matter for the delay: the 2044 equilibria are identical under flat and overlap strain (2 pure, both Boeing Do Nothing), and the modal fps10-vs-Do Nothing comparison (Do Nothing 787) carries no strain at all."
+   },
+   {
+    "claim": "(2) fps10 minus Do Nothing = +1.06 at 2041 and -2.53 at 2044. With Airbus Delay Tactics: -0.24 / -3.49. Also fps7 -0.11/-3.40, via Embraer -17.05/-15.95, +30% overrun -7.00/-7.97.",
+    "verdict": "confirmed",
+    "detail": "FACT (independent model and hand formula, check2.py): +1.063 / -2.527 in the modal context (NGSA + Re-engine A350, Boeing Do Nothing 787). With Delay Tactics (Bottleneck, or Bottleneck + Poaching, which give the same result): -0.242 / -3.494. fps7: -0.111 / -3.397. via Embraer: -17.049 / -15.951. 30% overrun: -7.003 / -7.970 (the 2041 overrun case is -4.976). A standalone hand calculation (lump capex at EIS, alpha cubic penalty, share paths written out) gives the same 1.063 / -2.527 / -0.242 / -3.494."
+   },
+   {
+    "claim": "(3) Decomposition 2041 to 2044: NB +17.06 to +9.33 (-7.73 = -4.42 timing, -3.32 share); capex PV 12.36 to 9.16 and alpha 3.64 to 2.70 (+4.14). Whole-project split: pure timing -0.28, share -3.32.",
+    "verdict": "confirmed",
+    "detail": "FACT (hand formula, check2.py): NB 17.057 to 9.327 (-7.730). Timing (2041 stream shifted 3 years) -4.415, share -3.315. Capex PV 12.357 to 9.158, alpha 3.638 to 2.696, so +4.141 saved. Project split: -0.275 timing, -3.315 share. Before EIS the fps-minus-Do Nothing stream is exactly zero, so the shift method is exact. WORDING NIT: 28% and 20% are Boeing's Phase-1-final shares. In the EIS year itself the share is 29% (2041) vs 21% (2044), because the board adds the first +1pp in the EIS year. 48% by 2060 and 40% by 2063 are confirmed."
+   },
+   {
+    "claim": "(4) 2044 equilibria: 2 pure Nash, both Boeing Do Nothing on narrowbody (WB Chicken): 133.41/95.34 (+50.12/-6.05) and 131.79/99.64 (+47.68/-0.47), plus 2 near-Nash with 737 Rate Increase. fps drops out of every equilibrium from 2043.",
+    "verdict": "confirmed",
+    "detail": "FACT (independent solver, check3.py): the 2044 cells are exactly as stated, and the 2 near-Nash are the same pairs with 737 Rate Increase (132.17/94.77 and 130.55/99.07). Count of fps cells in equilibrium by EIS: 2042 = 3; 2043 through 2047 = 0. Sweep values confirmed: 2037 +9.684, 2038 +7.291, 2039 +5.016, 2040 +2.926, 2041 +1.063, 2042 -0.521, 2043 -1.853, 2044 -2.527, 2045 -2.287, 2046 -2.070, 2047 -1.873."
+   },
+   {
+    "claim": "Late-years uptick in the sweep (2045-2047) is a board artifact: the evaluation window extends with EIS.",
+    "verdict": "corrected",
+    "detail": "FACT: NGSA Phase-1 capture reaches its 80% cap in 2043. For any fps EIS from 2044 on, the fps-minus-Do Nothing stream is therefore identical relative to EIS (re-entry at 20%, Do Nothing at 20%), so value(EIS) = value(2044) / 1.105^(EIS-2044). That gives -2.287, -2.070 and -1.873, exactly the sweep. JUDGEMENT: the uptick is plain discounting of a negative-NPV project that is the same project, just later. It comes from the EIS-relative window plus the capped share loss. It is not a reason to prefer a later EIS: Do Nothing still dominates."
+   },
+   {
+    "claim": "Snapshot 2041: 0 pure / 17 near (fps 10yr in 12 of 17).",
+    "verdict": "refuted",
+    "detail": "FACT: fps 10yr appears in 13 of the 17 snapshot near-Nash cells (#1-9, #11, #12, #14, #15). Another 1 is fps 7yr (#10) and 3 are Do Nothing (#13, #16, #17). Sources: parsed Game.txt (check_misc.py) and the analyst's own delay.json (13 fps10, 1 fps7)."
+   },
+   {
+    "claim": "Airbus best response to fps10 (2041 and 2044) is NGSA + Delay Tactics + Re-engine A350: +39.21 to +47.60; vs Boeing Do Nothing +50.12 in both years; Delay Tactics worth +1.45 to +1.16.",
+    "verdict": "confirmed",
+    "detail": "FACT (check3.py): +39.21 (2041) and +47.60 (2044); +50.12 vs Do Nothing in both years; Delay Tactics worth +1.452 and +1.156. NOTE: Bottleneck and Poaching tie exactly, because the board's shift is flat and does not stack. Using both is $0.40B worse (+38.69 / +47.20) because of the second $1B fee. 'Bottleneck' is one of two equal best responses."
+   },
+   {
+    "claim": "In equilibrium after the delay Airbus would face the $48.32B naked fine if it used Delay Tactics.",
+    "verdict": "corrected",
+    "detail": "FACT (board.py ~line 1041): the board discounts the fine to the fps EIS year at 8%, even when Boeing does not launch. The fine is $48.32B nominal, but $15.23B PV at 2041 and $12.09B PV at 2044. Airbus's net loss from Delay Tactics against a non-launching Boeing is -15.75 (2041) and -12.50 (2044). The delay itself therefore makes the board's fine smaller (another EIS-slider coupling)."
+   },
+   {
+    "claim": "(5) NGSA timing (fps 2044): Airbus vs fps10 by NGSA EIS 2035 +56.2 ... 2041 +27.7; slipping NGSA costs ~$4-5B/yr; fps re-enters Boeing's equilibrium only if NGSA's lead is 3 years or less; the snapshot's 4-year lead is the knife edge.",
+    "verdict": "corrected",
+    "detail": "FACT (check3.py): the payoffs are confirmed: 56.20, 51.75, 47.60, 42.70, 37.40, 32.39, 27.66 (with Delay Tactics), giving annual steps of $4.2-5.3B. CORRECTION: the 3-year statement holds only for PURE Nash. With fps at 2044: NGSA 2039 (5-yr lead) already puts fps in near-Nash (2 pure / 6 near). NGSA 2040 (4-yr lead) makes fps10 beat Do Nothing pairwise (+0.79) and gives 0 pure / 21 near. Only from NGSA 2041 (3-yr lead, fps10-DN +1.96) does fps enter pure Nash (4 pure / 20 near). The same thresholds (pure at 3 years or less, near at 5 or less) hold with fps at 2041. Snapshot: 4-yr lead gives 0 pure / 17 near, so 'knife edge' is fair."
+   },
+   {
+    "claim": "(6) Restoration thresholds at 2044: margin break-even 31.2% (hurdle 33.4%, vs Delay Tactics 34.0%); capex ~$45B (hurdle ~$41B); price $66.9M; recovery 1.5 -0.96, 2.0 +0.37, 3.0 +2.14, 4.0 +3.23; balance share irrelevant at 1pp/yr.",
+    "verdict": "corrected",
+    "detail": "FACT (exact bisection on the independent model, check3.py): margin 31.205% / hurdle 33.408% / Delay Tactics 34.031%. Capex 44.96 (the analyst's linear estimate was 45.15); hurdle 40.69 (analyst 41.15); Delay Tactics break-even 40.83. Price $66.94M, hurdle $71.66M. Recovery: -2.527, -0.958, +0.369, +1.368 (2.5), +2.140, +3.234; break-even 1.85pp/yr. Balance share has no effect at 1pp/yr (confirmed). CORRECTION: these thresholds restore only the PAIRWISE fps-vs-Do Nothing case in the modal context, NOT an equilibrium. At 31.2% margin, $45B capex or $66.9M price the board still has the same 2 pure Nash with Boeing Do Nothing; fps appears only in near-Nash. At 2pp/yr there is 1 pure (Boeing Do Nothing + Re-engine 787). fps reaches pure Nash only at about 3pp/yr (4 pure, fps10 vs Airbus Delay Tactics), or at 33.4%+ margin / $41B capex, where 0 pure remain."
+   },
+   {
+    "claim": "via Embraer break-even capex $52.9B (vs $100B).",
+    "verdict": "refuted",
+    "detail": "FACT: the correct figure is $44.96B. The board treats via Embraer exactly like 10yr Solo (same share ramp, price and margin) except for capex, so its break-even equals fps10's. Board harness check: via Embraer minus Do Nothing = +0.001 at $44.96B and -1.942 at $52.93B (check_misc.py). The analyst extrapolated a line through $100B and $90B, but the alpha penalty is cubic in debt, so the slope there is too steep."
+   },
+   {
+    "claim": "(7) Engine board is unchanged by the delay (1 pure: CFM Ducted Only + Do Nothing GEnx; PW GTF2 Solo locked; RR UltraFan NB Solo + Do Nothing Trent; 19 near). CFM's 4-Partner Embraer move exists in code but is never among the 16 CFM moves evaluated.",
+    "verdict": "confirmed",
+    "detail": "FACT (check_engine.py): the engine matrix is byte-identical at fps 2037, 2041, 2044 and 2047 (1 pure (8,3) = 2-Ducted Only / 2-Ultrafan NB Solo; 19 near; PW locked to GTF2 Solo). NB_EIS_T = min(fps, NGSA) - 2026 (board.py line 2476), and 2474 is the engine board's only fps-EIS reference. The 16 CFM moves are the first 4 itertools combos per base move (lines 2420-2434); Partner Embraer is the 2nd group, so it never reaches the first 4. Its effect is +5pp CFM NB share and +1 project (lines 2700-2702). FLAG (fact): the engine board never reads Boeing's launch decision. It assumes fps with all three suppliers and a 50/50 NB split (lines 2268-2293) even where the airframer equilibrium at 2044 is Boeing Do Nothing. 'Unchanged' reflects this decoupling, not evidence that engine makers are unaffected. Moving NGSA to 2041 does change the engine board (1 pure / 31 near)."
+   },
+   {
+    "claim": "(8a) Vacuum: Airbus builds 2000 x 80% = 1,600 NB/yr from 2043 if fps is 2044 (vs ~1,380-1,440 if fps 2041); unserved 2037-2056 at 1,200/yr capacity 1,920 (peak 240) / 5,040 (peak 400) / Do Nothing 6,860; at 900/yr 7,720 / 11,040 / 12,860.",
+    "verdict": "corrected",
+    "detail": "FACT (hand recomputation, check_vacuum.py): every unserved total and peak is confirmed. CORRECTION: with fps 2044, Airbus is at 1,600 only in 2043. It then falls 20/yr (1,580 in 2044, 1,460 in 2050, 1,340 in 2056). Only the Do Nothing case holds 1,600 from 2043 on. With fps 2041 the peak is 1,440 (2040), and 1,380-1,440 covers only 2040-2043, falling to 1,120 by 2056. 'Peak 1,600 vs peak 1,440' is the accurate comparison. vacuum.py logic is sound: the Do Nothing path is the board's NGSA-only path (Airbus +3pp/yr to the 80% cap, held); no modifiers; 3-year linear ramp (1/3, 2/3, full)."
+   },
+   {
+    "claim": "Airbus FY2025: A320 rate 70-75/month by end-2027, stabilising at 75 (~900/yr).",
+    "verdict": "confirmed",
+    "detail": "FACT: Airbus's FY2025 results (published Feb 2026) say it expects 'between 70 and 75 aircraft a month by the end of 2027, stabilising at rate 75 thereafter', citing Pratt & Whitney engine supply (https://www.airbus.com/en/annual-press-conference-2026; https://www.globalair.com/articles/airbus-reports-2025-financial-results-a320-production-target-revised/11971). 75 x 12 = 900/yr covers the A320 family only; the A220 targets 13/month in 2028 (same sources)."
+   },
+   {
+    "claim": "(8b) Entrant NPV (EIS 2038, $15B, price $48M, margin 12%, WACC 10%, unserved demand only, Airbus capacity 1,200/yr): fps 2041 -2.78, fps 2044 -0.51, Boeing Do Nothing +0.42; $20B + 10% slice: -1.35 to +0.92.",
+    "verdict": "corrected",
+    "detail": "FACT: -2.78 / -0.51 / +0.42 and -1.35 / +0.92 reproduce by hand (check_vacuum.py). LOGIC ISSUES: (a) The slice is added on top of unserved demand that is still computed on Airbus's full share, so total deliveries exceed the board's fixed 2,000/yr. If the slice instead comes pro rata from the incumbents before Airbus's shortfall is computed, the result is fps 2041 -2.90, fps 2044 -1.31 (not +0.92), Do Nothing -0.48. Additive is consistent only if the slice comes entirely from Boeing, and then Boeing's payoffs should fall too. (b) vacuum.py's docstring mentions an alpha penalty, but it is never applied (alpha_pen = 0). (c) At Airbus's stated 900/yr capacity the entrant is positive in all three cases (+1.68 / +4.03 / +4.95). The capacity assumption moves the entrant more than the delay does. Entrant break-even capex at 1,200/yr: $6.3B / $13.4B / $16.3B."
+   },
+   {
+    "claim": "(9) Does the Do Nothing payoff move with the fps EIS slider (window artifact), and by how much?",
+    "verdict": "confirmed",
+    "detail": "FACT (board harness and independent model): yes. The board sets Boeing's NB window (scenario AND baseline) to 2026..fps EIS+19 even when Boeing does not launch (board.py line 997 and the evaluate_scenario window). Boeing Do Nothing (modal context) is -5.925 (yield 95.44) at 2041 and -6.052 (95.34) at 2044, so \u0394 = -0.127 $B. Across the full slider it runs from -5.684 (2037) to -6.146 (2047). The baseline rises 31.348 to 31.602 and the scenario 27.708 to 27.835. Airbus vs Do Nothing is constant at +50.115. Net effect on the delay: with a common Boeing window ending 2060, fps 2044 = -3.31 (delay cost -4.37, vs the board's -3.59). With a common end of 2063: 2041 +2.09, 2044 -2.53 (delay cost -4.62). The EIS-relative window therefore understates the delay cost by about $0.8-1.0B. fps 2044 breaks even only if the horizon runs to about 2089."
+   },
+   {
+    "claim": "Mechanic flag: lump capex at EIS makes the delay cheaper.",
+    "verdict": "confirmed",
+    "detail": "FACT: the board books all NB capex as one lump at EIS (lines 1056-1059), so a later EIS cuts capex PV and alpha (the +4.14 credit). The UI text is inconsistent: line 881 says '9 yrs ending the year before EIS', line 871 says WB capex is 'spread over 6 years', while lines 905/2179 say lump. Recomputation (check_misc.py): if fps capex is spread evenly over the 9 years before EIS, fps10-DN is -10.18 at 2041 and -10.86 at 2044, i.e. negative even on time. If the slip is discovered after spending on the 2041 plan (no capex deferral), fps10-DN at 2044 is -17.9, or -24.1 with a +30% overrun over the slip years. JUDGEMENT: the +1.06 on-time case and the +4.14 delay credit both depend on the lump-at-EIS convention. A reader should treat -3.59 as a lower bound on the delay damage. Under any 'slip after spending' reading the damage is about the NB loss (-7.73) or more."
+   },
+   {
+    "claim": "Mechanic flag: \u03b5 band and rounding.",
+    "verdict": "confirmed",
+    "detail": "FACT: equilibria use yields rounded to 2 dp, with \u03b5 = 1.0 yield point = $1.3B for Boeing and $1.5B for Airbus. The +1.06 fps advantage at 2041 is inside Boeing's \u03b5 band, which is why the snapshot lists both fps and Do Nothing as near-Nash and has no pure equilibrium. JUDGEMENT: describe 2041 as indifferent within the board's tolerance, not as a 'go'."
+   }
+  ],
+  "corrections": [
+   "Snapshot near-Nash count: fps 10yr appears in 13 of 17 cells, not 12 (plus 1 fps 7yr and 3 Do Nothing). Source: Game.txt parsed; analyst's delay.json agrees.",
+   "via Embraer capex break-even at 2044 is $44.96B, not $52.9B. The board treats via Embraer like 10yr Solo apart from capex. Board check: +0.001 at $44.96B, -1.94 at $52.93B. The $52.9B came from a linear extrapolation of a cubic alpha penalty.",
+   "'Reproduces exactly ONLY with overlap-aware strain' is too strong. Any flat Boeing strain from $0 to about $1.55B also reproduces the snapshot. Overlap ($3B x 0.2 = $0.6B) is consistent and documented, but not uniquely identified. The 2044 equilibria are the same under both rules.",
+   "NGSA-timing claim: fps enters a PURE equilibrium only when NGSA's lead is 3 years or less. It beats Do Nothing pairwise at a 4-year lead (+0.79 at fps 2044 / NGSA 2040) and appears in near-Nash at a 5-year lead (NGSA 2039).",
+   "Restoration thresholds (31.2% margin, ~$45B capex, $66.9M price, 2pp/yr) restore only the pairwise fps-vs-Do Nothing case. The equilibrium stays Boeing Do Nothing (2 pure Nash) at each. fps reaches pure Nash only at about 3pp/yr recovery, or at 33.4%+ margin / $41B capex. Exact break-evens: capex hurdle $40.7B (not ~41), recovery 1.85pp/yr, price hurdle $71.7M.",
+   "Naked fine: $48.32B is nominal. The board discounts it to fps EIS at 8%: $15.23B PV at 2041 and $12.09B at 2044. Airbus's net cost of naked Delay Tactics is -12.50 at 2044.",
+   "Vacuum: with fps 2044, Airbus is at 1,600/yr only in 2043, then falls 20/yr to 1,340 by 2056. Only the Do Nothing case holds 1,600. With fps 2041 the peak is 1,440 (2040).",
+   "Entrant with a 10% slice double-counts. The slice is added on top of unserved demand computed on Airbus's full share, so deliveries exceed the board's 2,000/yr. Taking the slice pro rata first turns fps 2044 from +0.92 into -1.31. Also, vacuum.py never applies the alpha penalty its docstring mentions, and at Airbus's stated 900/yr capacity the entrant is positive in every case (+1.68 / +4.03 / +4.95).",
+   "The late-sweep uptick (2045-2047) is pure discounting of an EIS-invariant negative NPV, because NGSA capture saturates at 80% by 2043: value = -2.527/1.105^(EIS-2044). It is not mainly a window artifact.",
+   "Wording: EIS-year Boeing shares are 29% (2041) vs 21% (2044); 28% and 20% are the Phase-1-final shares.",
+   "Add reader warnings. (a) The +4.14 capex/alpha delay credit exists only under the board's lump-at-EIS rule and a delay planned from the start. With capex spread before EIS, fps10-DN is -10.18 on time; after a late slip it is about -17.9. (b) The EIS-relative 20-yr window moves Boeing's Do Nothing payoff by -0.127 between 2041 and 2044 and understates the delay cost by about $0.8-1.0B (common-window delay cost -4.37 to -4.62 vs -3.59). (c) The engine board ignores Boeing's launch decision; it assumes fps with all 3 suppliers at 50/50."
+  ],
+  "overall": "Most of the brief's board numbers hold up. I rewrote the board's math without running board.py (/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/verify/indep.py). It matches the board harness to within 3e-14 $B on all 256 cells, across several fps and NGSA settings and both strain rules. A separate hand formula reproduces fps10 minus Do Nothing: +1.063 at 2041 and -2.527 at 2044 (Delay Tactics: -0.242 / -3.494). The decomposition also checks out: NB -7.730 = -4.415 timing - 3.315 share; capex/alpha +4.141. So do the 2044 equilibria (2 pure, both Boeing Do Nothing), the EIS sweep, Airbus's best responses, the NGSA-timing payoffs, the margin, price and recovery thresholds, the unserved-demand totals and the entrant NPVs. The engine board is byte-identical across fps EIS 2037-2047, and the Partner Embraer move never appears among CFM's 16 moves (confirmed).\n\nErrors to fix:\n- via Embraer break-even is $45.0B, not $52.9B.\n- fps 10yr is in 13 of the 17 snapshot cells, not 12.\n- 'Only overlap strain reproduces the snapshot' is too strong: any flat Boeing strain up to about $1.55B also does.\n- The NGSA-lead rule (3 years or less) applies to pure Nash only (pairwise 4 years, near-Nash 5).\n- The restoration thresholds restore the pairwise case, not an equilibrium.\n- The $48.32B fine is about $12.1B in PV at 2044.\n- '1,600/yr from 2043' is a one-year peak.\n- The 10% entrant slice double-counts deliveries.\n\nJUDGEMENT on board mechanics a reader could misread:\n1. Lump capex at EIS. This rule produces both the +1.06 on-time case and the +4.14 delay credit. With capex spread before EIS, fps is about -10 even on time. If the 3-year delay is a late slip, the damage is about -7.7 or worse, not -3.6.\n2. The EIS-relative 20-year window. It moves Boeing's Do Nothing payoff (-0.127 between 2041 and 2044) and makes the delay look about $0.8-1.0B cheaper than a common window would.\n3. The engine board ignores whether Boeing launches.\n\nThe qualitative conclusion holds under every variant I tried: the delay pushes Boeing to Do Nothing on narrowbody, and the contest moves to the widebody Chicken. The magnitudes in the brief are likely conservative.\n\nScripts and outputs are in /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/verify/: indep.py, check1.py/.json, check2.py/.json, check3.py/.json, check_engine.py/.json, check_vacuum.py/.json, check_misc.py/.json, check_strain_id.py."
+ },
+ "check": {
+  "claims": [
+   {
+    "claim": "(1) Snapshot reproduction: the verifier corrected 'only with overlap-aware strain' to 'any flat Boeing strain from $0 to about $1.55B also reproduces it'.",
+    "verdict": "corrected",
+    "detail": "FACT (board harness, wf/adv2/a1.py, a1.json): overlap strain gives 0 pure / 17 near, nothing missing, no rounding mismatches. Flat strain at $3B gives 1 pure / 13 near / 4 missing. Flat strain from 0.00 to 1.55 (in 0.05 steps) reproduces the snapshot exactly. The 2044 equilibria are identical under flat and overlap strain. So every number the verifier gives is right. JUDGEMENT: its 'correction' goes too far. Game.txt section 9 prints 'Boeing Two-Front Strain : $3.00B'. With the inputs the snapshot actually prints, only the overlap rule reproduces it; a flat build needs a strain value that contradicts the snapshot. The brief's claim is defensible and needs at most a wording note, not a mandatory fix."
+   },
+   {
+    "claim": "(2) fps10 minus Do Nothing: +1.063 / -2.527; with Delay Tactics -0.242 / -3.494; fps7 -0.111 / -3.397; via Embraer -17.05 / -15.95; +30% overrun -7.00 / -7.97 (2041 overrun -4.98).",
+    "verdict": "confirmed",
+    "detail": "FACT: the board harness, run independently of indep.py, gives +1.063 / -2.527 and -0.242 / -3.494. Bottleneck alone and Bottleneck + Poaching give the same values (a1.json). With capex at 55.25 x 1.3: 2044 gives -7.002 / -7.969 and 2041 gives -4.974 (a5.json). The small differences from -7.003 / -4.976 come from the verifier rounding capex to 71.83."
+   },
+   {
+    "claim": "(3) Decomposition: NB 17.057 to 9.327 (timing -4.415, share -3.315); capex 12.357 to 9.158; alpha 3.638 to 2.696; project split -0.275 / -3.315; EIS-year shares 29% / 21%.",
+    "verdict": "confirmed",
+    "detail": "FACT: a separate hand formula (wf/adv2/a4.py) gives board-window values of 1.063 and -2.527. The share rule puts Boeing at bp1 = 0.28 / 0.20 at the end of Phase 1, then +1pp in the EIS year: 0.29 / 0.21. Shares of 48% in 2060 and 40% in 2063 are correct."
+   },
+   {
+    "claim": "(4) 2044: 2 pure Nash, both Boeing Do Nothing (133.41/95.34 at +50.12/-6.05; 131.79/99.64 at +47.68/-0.47), plus 2 near-Nash with 737 Rate Increase. fps cells in equilibrium: 3 at 2042, 0 from 2043. The sweep values hold.",
+    "verdict": "confirmed",
+    "detail": "FACT (board harness, a1.json and a5.json): identical pure and near-Nash lists at 2044. 2042: 2 pure / 5 near with 3 fps cells. 2043: 2 pure / 2 near with 0 fps cells. Sweep: 2037 +9.684 ... 2041 +1.063, 2042 -0.521, 2043 -1.853, 2044 -2.527, 2045 -2.287, 2046 -2.070, 2047 -1.873."
+   },
+   {
+    "claim": "Late-sweep uptick (2045-2047) is pure discounting of an EIS-invariant negative NPV and 'not mainly a window artifact'.",
+    "verdict": "refuted",
+    "detail": "FACT: the formula value(EIS) = -2.527/1.105^(EIS-2044) is correct. But the project only stays the same as EIS moves because the board's NB window is EIS-relative: line 1165 sets the window end to b_eis_nb_t + 19. I re-ran the hand model with a fixed calendar window (a4.json). From 2044 to 2047 the uptick is +0.654 under the board's window, but only +0.145 with a window ending 2060 (-3.308 to -3.163), +0.075 ending 2063 (-2.527 to -2.452) and +0.023 ending 2066. About 80-95% of the uptick disappears with a fixed window. So the brief's explanation ('the evaluation window extends with EIS') is substantially right. The verifier's own detail sentence also says this, which contradicts its correction."
+   },
+   {
+    "claim": "Snapshot 2041 near-Nash: fps 10yr appears in 13 of 17 cells, not 12.",
+    "verdict": "confirmed",
+    "detail": "FACT: Game.txt lists fps 10yr Solo at near-Nash #1-9, #11, #12, #14 and #15 (13 cells), fps 7yr at #10, and Do Nothing (shown as 'Milk 737MAX') at #13, #16 and #17."
+   },
+   {
+    "claim": "Airbus best response to fps10: NGSA + Delay Tactics + Re-engine A350, +39.21 (2041) / +47.60 (2044); +50.12 against Do Nothing; Delay Tactics worth +1.452 / +1.156; using both Delay Tactics moves is '$0.40B worse (+38.69 / +47.20)'.",
+    "verdict": "corrected",
+    "detail": "FACT (board harness, a2.json): 39.208 and 47.603, with Bottleneck and Poaching tied; 50.115 against Do Nothing in both years. Using both moves costs 47.603 - 47.198 = 0.405 at 2044 but 39.208 - 38.693 = 0.515 at 2041. The '$0.40B' figure is right only for 2044. The difference is the second $1B fee spread over the 9 years before fps EIS at 8%, which falls in PV as EIS moves later."
+   },
+   {
+    "claim": "Naked fine is discounted to fps EIS at 8%: $15.23B PV (2041) and $12.09B (2044); Airbus's net cost of naked Delay Tactics is -15.75 / -12.50.",
+    "verdict": "confirmed",
+    "detail": "FACT: board.py lines 1036-1041 apply v_naked_sabotage_fine / (1 + WACC_A)^(fps_eis - 2026) whenever Boeing does not launch. The harness charges 15.232 and 12.092 (a2.json). Airbus payoffs against Boeing Do Nothing: 50.115 vs 34.37 (2041) and 37.619 (2044)."
+   },
+   {
+    "claim": "(5) NGSA timing: fps enters pure Nash only at a lead of 3 years or less. At a 4-year lead fps10 beats Do Nothing pairwise (+0.79 at fps 2044 / NGSA 2040; 0 pure / 21 near). At a 5-year lead fps appears in near-Nash. Payoffs 56.20 ... 27.66.",
+    "verdict": "confirmed",
+    "detail": "FACT (board harness, a2.json). fps 2044: NGSA 2039 gives 2 pure / 6 near (4 fps near); NGSA 2040 gives 0 pure / 21 near with fps10-DN +0.788; NGSA 2041 gives 4 pure, all fps, with +1.963. fps 2041: NGSA 2036 gives 2 pure / 3 near (1 fps near); NGSA 2038 gives 4 pure fps. Airbus payoff vs fps10 with Delay Tactics: 51.75 / 47.60 / 42.70 / 37.40 / 32.39 / 27.66."
+   },
+   {
+    "claim": "(6) Restoration thresholds: the break-evens, plus the verifier's correction that they restore only the pairwise case and that 'fps reaches pure Nash only at about 3pp/yr, or at 33.4%+ margin / $41B capex, where 0 pure remain'.",
+    "verdict": "corrected",
+    "detail": "FACT (board harness bisection, a2.json and a3.json). Break-evens confirmed: margin 31.205 / 33.408 (hurdle) / 34.031 (vs Delay Tactics); capex 44.963 / 40.687 / 40.831; price 66.938 / 71.662 / 73.0; recovery 1.846pp/yr (2.283 vs Delay Tactics). At 31.2% margin, $45B capex and $66.9M price the board keeps 2 pure Boeing Do Nothing; at 2pp/yr it has 1 pure. Up to that point the verifier is right. ERROR: its statement of where fps enters pure Nash is wrong. At 33.4% margin, $41B capex and $71.7M price there are 0 pure Nash; that is a best-response cycle zone and fps is in no pure equilibrium. fps enters pure Nash once it beats Do Nothing even against Airbus Delay Tactics: margin of at least about 34.03% (34.1% gives 2 pure, fps10 + Do Nothing 787 vs NGSA + Delay Tactics + Re-engine A350); capex of at most about $40.83B (40.8 gives 2 pure fps); price of at least about $73.0M; recovery of at least about 2.28pp/yr (2.25 gives 0 pure, 2.3 gives 2 pure fps, 2.5 gives 2, 3.0 gives 4). The '3pp/yr' figure is wrong: the threshold is about 2.3."
+   },
+   {
+    "claim": "via Embraer break-even capex is $44.96B, not $52.9B.",
+    "verdict": "confirmed",
+    "detail": "FACT: harness bisection gives 44.963, the same as fps10 (a2.json). The verifier's board check gives +0.001 at $44.96B and -1.942 at $52.93B (check_misc.json)."
+   },
+   {
+    "claim": "(7) The engine board is identical across fps EIS 2037-2047. CFM's Partner Embraer move is never among its 16 moves. The engine board ignores Boeing's launch decision.",
+    "verdict": "confirmed",
+    "detail": "FACT (board.py): line 2476 sets NB_EIS_T = min(fps, NGSA) - 2026, and line 2474 is the only fps-EIS read in that block. Lines 2416-2434 use itertools.product(a_A, a_B, a_C, a_D) and keep the first 4 combos per base move. Because a_B (Partner Embraer) is the second factor, all first-4 combos have a_B = ''. Lines 2697-2699 give Partner Embraer +1 project and +0.05 NB share. Lines 2267-2293 use only the supplier choice and _boeing_share_both (50), never Boeing's fps or Do Nothing decision. check_engine.json shows the matrix is byte-identical."
+   },
+   {
+    "claim": "(8a) Vacuum: with fps 2044 Airbus is at 1,600/yr only in 2043, then falls 20/yr to 1,340 by 2056; peak 1,440 with fps 2041; the unserved totals are confirmed.",
+    "verdict": "confirmed",
+    "detail": "FACT: the board share rule gives Airbus 80% in 2043 and 79% in 2044 (Boeing re-entry at 20% + 1pp). vacuum.json, using the board's own _compute_nb_share_unified, shows the same shares (2044: 0.79; 2056: 0.67). Unserved totals 1,920 / 5,040 / 6,860 at 1,200/yr capacity and 7,720 / 11,040 / 12,860 at 900/yr match. JUDGEMENT: the brief's '1,600 from 2043' is accurate for the 2044 equilibrium outcome (Boeing Do Nothing), just not under the brief's 'if fps is 2044' wording."
+   },
+   {
+    "claim": "Airbus FY2025: rate 70-75/month by end-2027, stabilising at 75 (~900/yr, A320 family only); A220 13/month in 2028.",
+    "verdict": "confirmed",
+    "detail": "FACT: the network proxy blocks the cited airbus.com and globalair.com pages here, so I could not open them directly. Web search confirms the wording from the FY2025 release of 19 Feb 2026 (https://www.afraa.org/7972-2/). Airbus repeated it in its H1 2026 results on 29 Jul 2026: 'continues to expect to reach a rate of between 70 and 75 aircraft a month by the end of 2027, stabilising at rate 75 thereafter' and 'continues to target a monthly production rate of 13 aircraft in 2028' for the A220 (https://www.airbus.com/en/newsroom/press-releases/2026-07-airbus-reports-half-year-h1-2026-results). The H1 2026 release should be cited as the latest guidance."
+   },
+   {
+    "claim": "(8b) Entrant: -2.78 / -0.51 / +0.42 confirmed; the 10% slice double-counts (pro-rata: -2.90 / -1.31 / -0.48); vacuum.py never applies alpha; at 900/yr capacity +1.68 / +4.03 / +4.95.",
+    "verdict": "confirmed",
+    "detail": "FACT: vacuum.py's entrant() adds the alpha penalty only when ev and debt are passed, and no call passes them. entrant_slice adds 2000 x slice on top of the full-share overflow. The numbers reproduce. MISSED EVIDENCE (fact plus judgement): neither the brief nor the verifier lets Boeing's 737 line absorb Airbus overflow. The FAA backed 737 MAX rate 47/month on about 27 May 2026, which is 564/yr (https://centreforaviation.com/news/boeing-testing-production-rate-of-47-aircraft-per-month-cautious-of-increasing-to-52-ceo-1360867), against board Boeing Do Nothing demand of 400/yr. With 564/yr of Boeing capacity soaking up overflow, the entrant moves from +0.42 to -1.35 (Do Nothing) and from -0.51 to -1.45 (fps 2044); at 624/yr (rate 52) it is -2.15 / -2.17 (wf/adv2/a4.json). Counting the A220 in Airbus capacity (75 + 13 = 88/month, about 1,056/yr) with Boeing at 564 gives -0.68 / +0.72 / +0.83."
+   },
+   {
+    "claim": "(9) The Do Nothing payoff moves with the fps slider (-5.925 to -6.052); a common window gives a delay cost of -4.37 (2060) / -4.62 (2063) vs the board's -3.59, understating it by about $0.8-1.0B; break-even horizon about 2089.",
+    "verdict": "confirmed",
+    "detail": "FACT: board.py lines 997 and 1165 set the Boeing NB window to fps EIS + 19 in both baseline and scenario, even without a launch. Harness values are in check_misc.json. Hand check (a4.json): common end 2060 gives 1.063 to -3.308; 2063 gives 2.093 to -2.527. CAVEAT: how much is understated depends on the horizon chosen: 0.29 with a 2056 end (-3.885), about 1.25 for horizons of 2080 or later (-4.845). '0.8-1.0' holds only for 2060-2063 ends."
+   },
+   {
+    "claim": "Lump capex flag: spread-9 capex gives -10.18 / -10.86; a late slip gives -17.9 (-24.1 with overrun); 'a reader should treat -3.59 as a lower bound on the delay damage'.",
+    "verdict": "corrected",
+    "detail": "FACT: the arithmetic reproduces (a4.json: spread9 -10.177 / -10.858; late slip -17.907). Lines 1056-1059 and 2176-2179 say lump; the line 879-882 caption ('9 yrs ending the year before EIS') is stale. ERROR in the judgement: under spread-9 capex a planned delay moves fps10-DN by only -0.68 (-10.18 to -10.86). Boeing is at Do Nothing in both years, so the delay costs less, not more. '-3.59 is a lower bound' holds only for the slip-after-spending reading and for common windows ending 2060 or later. Also, spread capex cannot be the user's build: at -10.18 fps would be far outside the \u03b5 band at 2041, yet the snapshot has fps in 14 of 17 near-Nash cells."
+   },
+   {
+    "claim": "\u03b5 band: yields rounded to 2 dp, \u03b5 = 1.0 point = $1.3B (Boeing) / $1.5B (Airbus); '+1.06 is inside Boeing's \u03b5 band, which is why the snapshot ... has no pure equilibrium'.",
+    "verdict": "corrected",
+    "detail": "FACT: line 1318 rounds yields to 2 dp; lines 1355-1366 apply the tolerance to those rounded yields; EVs are $130B and $150B. But the \u03b5 band does not explain the missing pure equilibrium. A best-response cycle does (harness, a3.json). Boeing's best response to NGSA + Re-engine A350 is fps10 + Do Nothing 787 (96.26). Airbus's best response to that adds Delay Tactics (126.14). Boeing's best response to Delay Tactics is Do Nothing (95.44). Airbus's best response to Do Nothing drops Delay Tactics (133.41). Then Boeing returns to fps. The same cycle runs on the Re-engine 787 side (99.93, 124.52, 99.74, 131.79). The \u03b5 band only explains why those cycle cells show up as near-Nash."
+   },
+   {
+    "claim": "Overall: 'the qualitative conclusion holds under every variant I tried ... the magnitudes in the brief are likely conservative'.",
+    "verdict": "corrected",
+    "detail": "JUDGEMENT backed by facts (a4.json): under spread-capex the delay does not 'push' Boeing to Do Nothing, because Boeing is already there on time (-10.18), and the delay's increment is only -0.68. With a common 2056 window the delay cost is -3.885, close to the board's -3.59. 'Conservative' fits the late-slip reading and common windows ending 2060 or later, not every variant. The core statement (at 2044 on the board as built, Boeing plays Do Nothing on NB and the contest moves to the widebody Chicken) holds under both strain rules. No probabilities appear in this board analysis, so there was nothing to test for internal consistency."
+   }
+  ],
+  "corrections": [
+   "Late-sweep uptick: drop the verifier's 'not mainly a window artifact'. Under a fixed calendar window the 2044-2047 uptick shrinks from +0.65 to +0.02-0.15 (ends 2060/2063/2066; wf/adv2/a4.json). Keep the brief's window explanation and add the mechanism: an EIS-relative window makes a later fps the same negative-NPV project, discounted further (-2.527/1.105^k).",
+   "Where fps re-enters PURE Nash at 2044 (replacing 'about 3pp/yr, or 33.4%+ margin / $41B capex'): at the break-evens against Delay Tactics. Margin of at least about 34.03%, capex of at most about $40.83B, price of at least about $73.0M, recovery of at least about 2.28pp/yr (2.3pp/yr already gives 2 pure fps). At 33.4% margin, $41B capex and $71.7M price there are 0 pure Nash (cycle zone). Source: board harness, a2.json and a3.json.",
+   "No pure Nash at 2041 is caused by a best-response cycle (fps, then Airbus Delay Tactics, then Boeing Do Nothing, then Airbus drops Delay Tactics, then fps), not by the \u03b5 band. \u03b5 only explains why the cycle cells are listed as near-Nash (a3.json).",
+   "Using both Delay Tactics moves costs $0.52B at 2041 (39.208 vs 38.693) and $0.40B at 2044 (47.603 vs 47.198); '$0.40B' alone is wrong for 2041.",
+   "Remove '-3.59 is a lower bound on the delay damage' as a general statement. Under spread-9 capex a planned delay costs only -0.68 (-10.18 to -10.86) and Boeing is at Do Nothing either way. The bound holds for the slip-after-spending reading (-17.9) and for common windows ending 2060 or later.",
+   "Downgrade the strain-identification 'correction' to a wording note. Game.txt prints Boeing strain $3.00B, so with the printed inputs only the overlap rule reproduces the snapshot. Flat strain at $1.55B or less does too, but contradicts the printed value.",
+   "Window understatement of the delay cost depends on the horizon: $0.29B (common end 2056) to $1.25B (2080 or later); '$0.8-1.0B' is for ends of 2060-2063 only.",
+   "Entrant: add Boeing 737 slack. With the FAA-backed rate 47/month (564/yr, around 27 May 2026) absorbing Airbus overflow above board Boeing demand, the entrant at 1,200/yr Airbus capacity goes from +0.42 to -1.35 (Do Nothing) and from -0.51 to -1.45 (fps 2044) (a4.json). Counting the A220 (13/month in 2028) puts Airbus single-aisle capacity at about 1,056/yr, giving -0.68 / +0.72 / +0.83.",
+   "Cite Airbus's H1 2026 results (29 Jul 2026) as the latest confirmation of the rate 70-75 by end-2027, stabilising at 75 (https://www.airbus.com/en/newsroom/press-releases/2026-07-airbus-reports-half-year-h1-2026-results). The airbus.com and globalair.com URLs the verifier cited could not be fetched here."
+  ],
+  "overall": "FACT: I re-ran the key numbers on the user's own board code through the headless harness, not through the verifier's indep.py. Almost all of the verifier's numbers hold:\n- fps10 minus Do Nothing: +1.063 at 2041 and -2.527 at 2044; with Delay Tactics, -0.242 and -3.494.\n- The 30% capex overrun cases.\n- The 2044 equilibria: 2 pure Nash, both Boeing Do Nothing, the same under flat and overlap strain.\n- The EIS sweep, and fps leaving every equilibrium from 2043.\n- Airbus's best responses, and the PV of the naked fine ($15.23B at 2041, $12.09B at 2044).\n- The NGSA-lead thresholds (pure Nash at 3 years or less, pairwise at 4, near-Nash at 5).\n- The exact break-evens: margin 31.205%, capex $44.96B, price $66.94M, recovery 1.846pp/yr.\n- via Embraer break-even at $44.96B.\n- fps 10yr in 13 of the 17 snapshot cells.\n- The engine board's invariance and its decoupling from Boeing's launch decision (code lines checked).\n- The vacuum and entrant arithmetic.\n\nIts refutations of the brief (13 not 12; via Embraer $45.0B not $52.9B; fine in PV; 1,600/yr is a one-year peak with fps 2044) stand.\n\nThe verifier itself made errors that must be fixed before use:\n1. It names the wrong thresholds for fps entering pure Nash. The right ones are the break-evens against Delay Tactics: margin about 34.03%, capex about $40.83B, price about $73.0M, recovery about 2.28pp/yr. It said '3pp/yr' and '33.4% / $41B', and at 33.4% / $41B there are 0 pure Nash.\n2. The late-sweep uptick is mainly a window artifact, as the brief said. The verifier denied this, but a fixed calendar window removes 80-95% of it.\n3. No pure Nash at 2041 comes from a Delay Tactics best-response cycle, not from the \u03b5 band.\n4. '-3.59 is a lower bound on delay damage' fails under spread capex: the delay costs only -0.68 there, and Boeing is at Do Nothing either way.\n5. The double Delay Tactics fee gap is $0.52B at 2041, not $0.40B.\n6. The strain 'correction' over-reaches: the snapshot prints a $3.00B strain.\n\nMISSED EVIDENCE: Boeing's 737 line, at the FAA-backed rate 47/month (about 27 May 2026), could absorb much of Airbus's overflow. That turns the Do Nothing entrant case from +0.42 to -1.35 and fps 2044 from -0.51 to -1.45. The third-entrant case is therefore weaker than both the brief and the verifier imply.\n\nJUDGEMENT: the board conclusion survives. On the board as built, a 3-year fps delay moves Boeing to Do Nothing on narrowbody and shifts the contest to the widebody Chicken. But 'conservative magnitudes' does not hold for every variant. No probabilities were part of this board task, so none could be checked.\n\nMy scripts and outputs are in /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/adv2/ (a1-a5.py and .json)."
+ }
+}

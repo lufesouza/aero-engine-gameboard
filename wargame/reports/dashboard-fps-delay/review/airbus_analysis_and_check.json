@@ -1,0 +1,571 @@
+{
+ "key": "airbus",
+ "analysis": {
+  "headline": "If Boeing's fps slips from 2041 to 2044, Airbus most likely holds NGSA at about 2037 (65%) and drops Delay Tactics (95%). It probably loses the widebody Chicken to an early 787 Re-engine (stays out of an A350 Re-engine, 50%). It uses the empty market to raise prices on scarce slots rather than to build. It keeps its rate-75 discipline and adds only marginal capacity. On the board's conventions that is enough to keep a third entrant's NPV negative. The board's own logic would have Airbus build to about rate 100, which is worth $20.0B PV.",
+  "responses": [
+   {
+    "move": "NGSA timing: hold entry into service around 2037 (launch around 2030). Do not react to the fps slip.",
+    "probability": "65%",
+    "board_value": "+50.12 $B for Airbus against Boeing Do Nothing on both programmes (this is the pure Nash cell). +47.60 $B against fps 10-year. Each year of slip costs 3.25 $B against Boeing Do Nothing (2038: +46.87) and 4.91 $B against fps (2038: +42.70).",
+    "rationale": "Fact: on the board, NGSA 2037 sits in both pure equilibria at fps 2044. Every year of slip costs Airbus $3-5B, and fps comes back into Boeing's equilibria if NGSA slips to 2039 or later. Fact: profile hard rule 2 says 'our own clock': neither accelerate nor delay because of Boeing. The reaction row for a late or absent fps says keep NGSA. Fact: in both war games Airbus gave identical round-1 orders (NGSA 2028, entering service 2035). In the delayed game its CEO framing was 'A delayed fps (EIS 2041+) does not change it.' Fact: at Farnborough in July 2026 Airbus restated a 2030 launch with entry into service in the second half of the next decade. That matches the board's 2037. Judgement: board, profile, war game and public plan all point the same way, so this is the modal outcome. The 35% left over is mostly slip risk (next row).",
+    "evidence": [
+     {
+      "source": "SCRATCH/dash/analysis2.json ngsa_timing (fps_eis 2044)",
+      "fact": "Airbus payoff against Boeing Do Nothing by NGSA entry year: 2035 +57.96, 2036 +53.89, 2037 +50.12, 2038 +46.87, 2039 +43.85, 2040 +41.05, 2041 +38.44. Against fps 10-year: 2037 +47.60, 2038 +42.70."
+     },
+     {
+      "source": "SCRATCH/dash/delay.json delay3_2044.pure",
+      "fact": "2 pure Nash, both with NGSA: (NGSA + A350 Re-engine | Boeing Do Nothing/Do Nothing) +50.12/-6.05 and (NGSA + A350 Do Nothing | Boeing Do Nothing + 787 Re-engine) +47.68/-0.47."
+     },
+     {
+      "source": "wargame/profiles/airbus/profile.md Quick card hard rule 2; reaction_function.json 'Boeing launches fps late (2032 or after), or not at all'",
+      "fact": "'Neither accelerate NGSA because Boeing launched the fps, nor delay it because Boeing hesitates' (inference). The reaction row reads: 'Airbus does not wait for Boeing.'"
+     },
+     {
+      "source": "wargame/reports/wg5-2045d/rounds.json round 2, Airbus rationale",
+      "fact": "'NGSA executes to EIS 2035 at the technology-ready year on its own clock (rules 1-2)... A delayed fps (EIS 2041+) does not change it.'"
+     },
+     {
+      "source": "https://travelradar.aero/airbus-remains-committed-to-launching-a320-successor-by-2030/ and https://leehamnews.com/2026/07/28/airbus-walks-line-between-shareholder-returns-and-clean-sheet-ambitions/ (Farnborough, July 2026)",
+      "fact": "Faury placed the NGSA launch in 2030, with entry into service in the second part of the following decade, and said 'We are not there yet'. Airbus does not want to wait for Boeing. (Seen in search snippets only.)"
+     },
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0409",
+      "fact": "FY2025 Board Report: next-generation single-aisle 'expected to enter into service around 2037'."
+     }
+    ]
+   },
+   {
+    "move": "NGSA timing: slip 2 or more years (entry into service 2039 or later), for technology or engine readiness or to protect cash",
+    "probability": "25% (of which a deliberate slow-down to save cash is about 10%; the rest is technology or engine slip)",
+    "board_value": "NGSA 2039: +43.85 against Do Nothing, +37.40 against fps. fps comes back into the near-Nash set (6 near). NGSA 2040: Boeing's fps 10-year minus Do Nothing turns positive (+0.79; 0 pure, 21 near). NGSA 2041: fps is in all 4 pure equilibria.",
+    "rationale": "Fact: on the board, slowing down to save cash destroys value every year, even though NB capex is a lump at entry into service and gets cheaper when later. Fact: the board's NGSA lead over fps is the deterrent. fps re-enters Boeing's equilibria once the lead falls to about 5 years or less (near-Nash) and 3 years (pure). Fact: Airbus has a record of slipping. Hydrogen moved to 'later than 2035' (AX-0006). Rate 75 slipped about 2 years (A-0159 against A-0218). Profile bias 3 is 'derivative comfort that makes the clean sheet late'. Fact: in July 2026 Airbus approved a \u20ac5bn buyback and committed about 60% of FCF to shareholders. Faury's CEO term ends in April 2028, before the 2030 launch (search results). Judgement: the fps delay removes the urgency of the share race, so a 1-2 year technology-led slip is credible. A deliberate 'slow down to save cash' is unlikely: Airbus's own pay metric (EBIT and FCF over the decade) does not reward it, and the board shows that a slip to 2040 or later invites Boeing back.",
+    "evidence": [
+     {
+      "source": "SCRATCH/dash/analysis2.json ngsa_timing (fps_eis 2044)",
+      "fact": "NGSA 2039: near 6 (includes fps 10yr Solo). NGSA 2040: Boeing fps10 minus Do Nothing +0.788, 0 pure / 21 near. NGSA 2041: 4 pure, all fps."
+     },
+     {
+      "source": "wargame/profiles/airbus/profile.md \u00a78 bias 3; executives/evidence.jsonl AX-0006",
+      "fact": "'Derivative comfort that makes the clean sheet late'. The hydrogen aircraft is 'now expected to come later than 2035'."
+     },
+     {
+      "source": "https://www.rttnews.com/3669084/airbus-targets-12-13-bln-adj-ebit-for-fy29-confirms-5-bln-share-buyback.aspx ; https://quartr.com/events/airbus-se-air-investor-update_3g8Qr7Th (July 2026)",
+      "fact": "\u20ac12-13bn EBIT Adjusted target for 2029, a \u20ac5bn buyback over three years, and about 60% of FCF returned to shareholders."
+     },
+     {
+      "source": "https://travelradar.aero/airbus-remains-committed-to-launching-a320-successor-by-2030/",
+      "fact": "Faury's current term ends in April 2028, before the stated 2030 launch (search snippet)."
+     }
+    ]
+   },
+   {
+    "move": "NGSA timing: accelerate entry into service to 2035-2036",
+    "probability": "10%",
+    "board_value": "NGSA 2036: +53.89 against Do Nothing (+3.77 over 2037). NGSA 2035: +57.96 (+7.85 over 2037). Against fps: +51.75 and +56.20.",
+    "rationale": "Fact: the board pays Airbus $3.8-4.1B for each year it pulls NGSA forward. Fact: the profile forbids this. Hard rule 1 is 'NGSA never enters service before the technology-ready year', and the playbook says 'Earlier: never'. Fact: Airbus's public 2026 plan is a 2030 launch, and its engine technology (open fan) is unproven. Judgement: the delay removes the only strategic reason to accelerate, which was beating a 2041 fps. This is where the board and the profile disagree most clearly: the board says accelerate, the doctrine and the public plan say no.",
+    "evidence": [
+     {
+      "source": "SCRATCH/dash/analysis2.json ngsa_timing (fps_eis 2044)",
+      "fact": "2035 +57.96 / 2036 +53.89 / 2037 +50.12 against Boeing Do Nothing."
+     },
+     {
+      "source": "wargame/profiles/airbus/profile.md Quick card hard rule 1; \u00a76 'NGSA launch'",
+      "fact": "'NGSA never enters service before the technology-ready year'; 'Earlier: never.'"
+     },
+     {
+      "source": "wargame/reports/wg5-2045d/rounds.json round 1, Airbus rationale",
+      "fact": "NGSA 2026 and 2027 were deleted as red-line breaks (rule 1), even though the grid showed 2028 as the best PV."
+     }
+    ]
+   },
+   {
+    "move": "A350 widebody Chicken: stay out (A350 Do Nothing) once Boeing commits a 787 Re-engine first",
+    "probability": "50%",
+    "board_value": "+47.68 for Airbus, -0.47 for Boeing (pure Nash #2). Staying out beats a crash by +2.32 (47.68 against 45.36).",
+    "rationale": "Fact: at fps 2044 the widebody is a Chicken game with two pure equilibria. Boeing gains 5.59 by winning (-0.47 against -6.05). Airbus gains only 2.43 (50.12 against 47.68). A crash costs Boeing 8.40 and Airbus 4.76 against their winning cells. Fact: with no fps, Boeing has no overlap strain on its 787 Re-engine. Fact: in the delayed war game Boeing moved first (787 Re-engine 2031). Airbus had deferred because its pre-emption test failed: launching lost 0.54-0.68 against a simultaneous 787 Re-engine, and it declared a $0.28B premium. Its Board then shelved the A350 Re-engine, which was negative on standard terms or GEnx (-0.34 to -0.52). Shelving was worth +0.33 to Airbus. Fact: profile rule 3 (stay out after a 787 Re-engine) is inference from the Chicken structure. The A330neo precedent cuts the other way. Judgement: a larger prize plus a free balance sheet makes Boeing the likelier first mover. Airbus's doctrine then tells it to stay out.",
+    "evidence": [
+     {
+      "source": "SCRATCH/wf/airbus_cells.json wb_chicken_by_a350_eis (a350_eis 2035)",
+      "fact": "Airbus/Boeing $B: A350 Re-engine vs 787 Do Nothing +50.115/-6.052; both re-engine +45.359/-8.867; both Do Nothing +48.329/-3.767; A350 Do Nothing vs 787 Re-engine +47.683/-0.466."
+     },
+     {
+      "source": "wargame/reports/wg5-2045d/rounds.json rounds 2-3, Airbus rationale",
+      "fact": "Round 2: 'the s6 pre-emption test fails... launching loses 0.54-0.68 against it'; doctrine premium $0.28B. Round 3: every A350 Re-engine variant -0.27 to -0.52 (+0.18 at best on aggressive terms); 'Board... decided not to launch'."
+     },
+     {
+      "source": "wargame/reports/player_behaviour.md \u00a71.4 and \u00a72 table",
+      "fact": "Boeing's 787 Re-engine first was worth +5.03 to Boeing and -3.15 to Airbus. Airbus shelving the A350 was worth +0.33 to Airbus and spared Boeing $5.05B."
+     },
+     {
+      "source": "wargame/profiles/airbus/profile.md hard rule 3 and \u00a710",
+      "fact": "Rule 3 'rests on the game's Chicken structure, not on precedent'. The A330neo, a cheap re-engine against the newer 787 (A-0090, A-0091), 'cuts the other way'."
+     }
+    ]
+   },
+   {
+    "move": "A350 widebody Chicken: commit an A350 Re-engine first (pre-emption), before Boeing moves",
+    "probability": "30%",
+    "board_value": "+50.12 for Airbus, -6.05 for Boeing (pure Nash #1). Gain over Do Nothing if Boeing then stays out: +1.79. Loss if Boeing re-engines anyway: -2.32. A later A350 entry year changes little (2042: +50.11; crash cell improves to +46.74).",
+    "rationale": "Fact: this is Airbus's preferred equilibrium, worth 2.43 more than the other. In the on-time war game Airbus did pre-empt (A350 2035, +2.04; Faury: it 'settles the widebody Chicken before Boeing moves'), because Boeing was tied up in fps development. Fact: the profile allows pre-emption only if it beats Do Nothing by $1B against every plausible Boeing order. On the board it fails that test, because a simultaneous 787 Re-engine leaves Airbus -2.32 worse off. Fact: Airbus's Board ran a 'widebody market dynamics' review in 2025 (A-0302/AX-0019). Press reports say Airbus is studying a stretched A350. Judgement: the fps delay frees Boeing, which is exactly what took away Airbus's first-mover window in the war game. Pre-emption stays plausible only if Airbus commits early and visibly (Board item plus a Rolls-Royce engine) before Boeing's balance sheet allows a 787 Re-engine.",
+    "evidence": [
+     {
+      "source": "SCRATCH/dash/delay.json delay3_2044.airbus_best_response",
+      "fact": "Against Boeing Do Nothing/Do Nothing, Airbus's best response is NGSA + A350 Re-engine +50.115 (next best NGSA + A350 Do Nothing +48.329)."
+     },
+     {
+      "source": "wargame/reports/wg5-2045/rounds.json round 2, Airbus rationale",
+      "fact": "A350 Re-engine 2035 +2.04 over Poaching only; +2.71 against Boeing's best reply; 'settles the widebody Chicken before Boeing moves'."
+     },
+     {
+      "source": "wargame/profiles/airbus/profile.md \u00a76 A350 Re-engine",
+      "fact": "'Pre-empt in T2 only if options shows a 787 Re-engine as Boeing's best response and pre-emption beats Do Nothing by at least $1B against all plausible Boeing orders.'"
+     },
+     {
+      "source": "https://www.ch-aviation.com/news/169940-airbus-weighs-stretched-a350-and-a220-options",
+      "fact": "Airbus is studying stretched A350 and A220 variants amid strong demand (search snippet; date not shown)."
+     }
+    ]
+   },
+   {
+    "move": "A350 widebody Chicken: both re-engine (crash)",
+    "probability": "10%",
+    "board_value": "Airbus +45.36, Boeing -8.87 (the worst cell for both).",
+    "rationale": "Fact: sealed, simultaneous decisions produced engine coordination failures in both war games. A same-round A350 Re-engine in the delayed game would have given Boeing -6.29 and Airbus -0.41. Judgement: possible only if both commit in the same window without reading each other's signals.",
+    "evidence": [
+     {
+      "source": "SCRATCH/wf/airbus_cells.json",
+      "fact": "Both re-engine: Airbus +45.359, Boeing -8.867."
+     },
+     {
+      "source": "wargame/reports/player_behaviour.md \u00a71.4",
+      "fact": "'Both airplanes in the same round would have hurt both airframers': Boeing -6.29, Airbus -0.41, RR -2.15, CFM +1.78 (G2 R2)."
+     }
+    ]
+   },
+   {
+    "move": "A350 widebody Chicken: neither re-engines (Airbus answers with A350F and stretch derivatives instead)",
+    "probability": "10%",
+    "board_value": "Airbus +48.33, Boeing -3.77. Not an equilibrium: each side gains by re-engining alone.",
+    "rationale": "Fact: the board has no widebody stretch lever, and this cell is unstable. Fact: Airbus's derivative doctrine and A350F industrialisation (A-0327) offer non-engine widebody moves. Judgement: this stays a tail case unless both sides' engine options (UltraFan, GEnx) slip.",
+    "evidence": [
+     {
+      "source": "SCRATCH/wf/airbus_cells.json",
+      "fact": "Both Do Nothing: Airbus +48.329, Boeing -3.767."
+     },
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0327",
+      "fact": "The A350F moved into its industrial phase in 2025."
+     }
+    ]
+   },
+   {
+    "move": "Delay Tactics: drop",
+    "probability": "95%",
+    "board_value": "Against Boeing Do Nothing (the equilibrium), Delay Tactics cost Airbus -12.50: the $48.32B naked fine PV'd to 2044 at 8%, plus $1B of operating cost (2041: -15.75). If Boeing did launch fps 10-year, they would gain only +1.16 (2041: +1.45). Break-even probability that Boeing launches: 91.5%.",
+    "rationale": "Fact: fps drops out of every equilibrium from fps entry 2043 onward, so Airbus would be playing a naked lever. Fact: the war-game Airbus never used Delay Tactics in either game. In the delayed game they were worth +0.49 to +0.69 (round 2) and +0.21 to +0.51 (round 3), always below the $1B test. They failed the team test because NGSA was already first, and they ran against the integrity pillar (AX-0073, A-0331, A-0474). In the on-time game Airbus refused them at +0.72, at a cost of $0.74B and its 60/40 objective. Judgement: the board, the profile and the war game agree after the delay. The naked-fine risk alone settles it.",
+    "evidence": [
+     {
+      "source": "SCRATCH/wf/airbus_cells.json delay_tactics_2044 / delay_tactics_2041",
+      "fact": "gain_if_fps10 +1.156, loss_if_boeing_does_nothing -12.496, breakeven_p_fps 0.9153 (2041: +1.452 / -15.745 / 0.9156)."
+     },
+     {
+      "source": "board.py lines 1036-1042 (SCRATCH/board/board.py)",
+      "fact": "The naked fine fires when Airbus uses Delay Tactics and Boeing does not launch fps. It is PV-discounted to the fps entry year at Airbus's WACC."
+     },
+     {
+      "source": "wargame/reports/wg5-2045d/rounds.json rounds 2-3, Airbus rationale",
+      "fact": "Delay Tactics: +0.55 vs fps 2031 ... -0.34 with no fps (round 2); +0.509 vs fps 2036 ... -0.232 with no fps (round 3); 'Never $1B'."
+     },
+     {
+      "source": "wargame/reports/player_behaviour.md Airbus section",
+      "fact": "'Delay Tactics refused in round 3' (game 1): cost Airbus $0.74B and its 60/40 objective (59.8%), and spared Boeing $4.07B."
+     },
+     {
+      "source": "wargame/profiles/airbus/reaction_function.json 'Rival cancels fps' and 'Delay Tactics stance'",
+      "fact": "'Stop Delay Tactics.' 'Default off. One turn only, when fps is in development and whatif shows at least $1B.'"
+     }
+    ]
+   },
+   {
+    "move": "Delay Tactics: keep in reserve for one round, only if Boeing visibly launches fps",
+    "probability": "5%",
+    "board_value": "+1.16 conditional on an fps 10-year launch (Airbus +47.60 against +46.45 without).",
+    "rationale": "Fact: against a launched fps the board value clears the profile's $1B test. It still fails the team test that Delay Tactics must change who enters service first: NGSA 2037 already leads fps 2044 by 7 years. Judgement: this survives only as an option in the drawer, triggered by a public fps launch.",
+    "evidence": [
+     {
+      "source": "SCRATCH/dash/delay.json delay3_2044.airbus_best_response 'fps10 + Do Nothing 787'",
+      "fact": "Best: NGSA + Delay Tactics (Bottleneck) + A350 Re-engine +47.603; without Delay Tactics +46.447."
+     },
+     {
+      "source": "wargame/profiles/airbus/objectives.md \u00a75.2 / profile \u00a76",
+      "fact": "The default team's test requires Delay Tactics to change who enters service first. The covert lever is a Board 'abnormal risk' item (A-0298, A-0299)."
+     }
+    ]
+   },
+   {
+    "move": "Pricing and campaigns: monetise slot scarcity (hold or raise prices; no broad discounting for share)",
+    "probability": "60%",
+    "board_value": "No Airbus price lever on the board. Board convention: +1pp of NGSA margin is about +$3.76B PV (Boeing Do Nothing path, 2037-2056, 8%). About 6.7pp (about $3.7M per aircraft at the board's $55M) on rate-75-equivalent volume would replace the $20.0B the board books on volume above it.",
+    "rationale": "Fact: Airbus has priced up on scarcity before: a 'multimillion dollar premium for the NEO' (A-0044) and a 'pricing opportunity given the scarcity of slots' (A-0136). It favours cash sales (A-0259) and is paid on EBIT and FCF (AX-0067: FCF 157%, EBIT 115%). Fact: the A320 Family backlog was 7,499 at end-May 2026, about 8.3 years at rate 75 (7,499/900, computed). Faury has called rate 75 a 'prudent level', keeping demand ahead of supply. Fact: the war game had no price lever; the market cell set capture multipliers (NGSA x1.03 then x1.05). Judgement: with Boeing not launching, Airbus's cheapest response is to sell scarcity. The catch: a premium plus unserved demand is exactly what funds an entrant (see the capacity rows).",
+    "evidence": [
+     {
+      "source": "SCRATCH/wf/price_vs_volume.json",
+      "fact": "Boeing Do Nothing: PV per 1pp of NGSA margin 3.762 (uncapped). At a 1,200/yr cap, 6.66pp, or $3.66M per aircraft, offsets the 20.0 lost."
+     },
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0044, A-0136, A-0259",
+      "fact": "Multimillion-dollar neo premium (2011). Pricing opportunity from slot scarcity (2018). 'Airbus favours cash sales'."
+     },
+     {
+      "source": "https://afm.aero/airbus-now-operates-10-a320-family-final-assembly-lines-worldwide",
+      "fact": "A320 Family backlog 7,499 at end-May 2026, including 5,615 A321neo (search snippet)."
+     },
+     {
+      "source": "https://finance.yahoo.com/news/airbus-ceo-confident-75-aircraft-143002002.html (Reuters, syndicated; date not confirmed, context suggests 2024)",
+      "fact": "Faury: going above 75 a month is not on the cards for now. 75 is a 'prudent level of production' that keeps demand ahead of supply."
+     }
+    ]
+   },
+   {
+    "move": "Pricing and campaigns: targeted aggressive campaigns (launch pricing, early slots, financing) at Boeing strongholds and at customers COMAC is courting",
+    "probability": "30%",
+    "board_value": "Not modelled (fixed prices: A320 $52M, NGSA $55M, 737 $48M; harness SNAP).",
+    "rationale": "Fact: Airbus broke Boeing accounts with balance-sheet leasing (American, A-0045), early slots (Lion, A-0080) and launch pricing at or below ceo prices (A-0064, A-0066). Boeing called it 'a market share game' (A-0065). Profile bias 2 is 'launch-price aggression despite stated cash discipline'. Fact: after 2018 Boeing expected 'more disciplined' behaviour (A-0128), and COVID-era pricing was 'pretty disciplined' (A-0174). Judgement: aggression would be selective. NGSA launch pricing to lock in 737 operators who would otherwise wait for a late fps, plus China campaigns against the C919.",
+    "evidence": [
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0045, A-0064, A-0066, A-0065",
+      "fact": "Balance sheet used to close American; neo priced at or below A320 prices; 'predatory pricing'; 'it is a market share game'."
+     },
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0128, A-0174",
+      "fact": "Boeing expected Airbus to 'become more disciplined' after Leahy left; 'pretty disciplined through this whole COVID moment'."
+     }
+    ]
+   },
+   {
+    "move": "Pricing and campaigns: broad price war for share",
+    "probability": "10%",
+    "board_value": "Not modelled.",
+    "rationale": "Fact: management pay rests on EBIT and FCF (AX-0067, A-0310), and July 2026 commitments return about 60% of FCF to shareholders. Judgement: little reason to cut prices when sold out and Boeing is not launching.",
+    "evidence": [
+     {
+      "source": "https://quartr.com/events/airbus-se-air-investor-update_3g8Qr7Th",
+      "fact": "About 60% of FCF to shareholders, 30-50% dividend payout, \u20ac5bn buyback over three years (July 2026)."
+     }
+    ]
+   },
+   {
+    "move": "Capacity (outside the board): stay disciplined. Stabilise at rate 75 through NGSA entry, creep only modestly with the NGSA production system after about 2037, and ration demand with price.",
+    "probability": "50%",
+    "board_value": "In equilibrium this gives up $20.0B PV (6,860 aircraft, 2037-2056) on volume above the rate-75-equivalent 1,200 board units a year. That is 40% of Airbus's +$50.1B board payoff (16.3 if Boeing launched fps 2044; 7.95 at fps 2041).",
+    "rationale": "Fact: Airbus's stated plan is 70-75 a month by end-2027, 'stabilising at rate 75' (A-0218; Feb and July 2026). The July 2026 investor deck reportedly omitted the '75 thereafter' language. Engines bind the rate: P&W will not commit engines, and CFM cannot make up the gap (Feb 2026; Leeham 2026-07-28). The NGSA wing is being proven at 'the same high industrial rates as current metallic wings' (A-0441), so NGSA is being industrialised for today's rates, not higher. Ramp-up is about 7.5% of the CEO's 2026 bonus, against 40% for EBIT and FCF (AX-0073, AX-0067). Judgement: this is the modal capacity posture.",
+    "evidence": [
+     {
+      "source": "SCRATCH/wf/airbus_cells.json capacity_value",
+      "fact": "Boeing Do Nothing: pv_above_1200 20.0 (6,860 units), pv_above_1320 12.48, pv_above_1440 6.34. fps 2044: 16.33 / 8.81 / 3.16."
+     },
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0218, A-0441",
+      "fact": "'...between 70 and 75 aircraft a month by the end of 2027, stabilising at rate 75' (engine-gated). Composite wing to be produced 'at the same high industrial rates as current metallic wings'."
+     },
+     {
+      "source": "https://www.airdatanews.com/airbus-targets-around-870-deliveries-in-2026-as-engine-issues-slow-a320neo-ramp-up (Feb 2026)",
+      "fact": "2026 guidance about 870 deliveries. P&W failed to commit the engines ordered. CFM cannot accelerate enough to compensate. Airbus started contractual dispute proceedings."
+     },
+     {
+      "source": "https://leehamnews.com/2026/07/28/airbus-walks-line-between-shareholder-returns-and-clean-sheet-ambitions/",
+      "fact": "Faury wants more GTFs than P&W is 'currently willing to allocate to us'. He expects engine issues to be behind Airbus by 2028."
+     }
+    ]
+   },
+   {
+    "move": "Capacity: modest, targeted denial expansion (+5-10%, about rate 79-83 equivalent), timed to the NGSA ramp, plus engine-supply agreements",
+    "probability": "25%",
+    "board_value": "Lifting Airbus's ceiling from 1,200 to 1,260 board units a year (+5%) turns the board-convention entrant NPV from +0.42 to -0.49 (Boeing Do Nothing; fps 2044: -0.51 to -1.41). Lifting it to 1,320 (+10%) recovers 7.5 of the 20.0 (12.48 still above the cap).",
+    "rationale": "Fact: Airbus adds lines when it ramps. It opened second lines at Tianjin and Mobile in 2025 (A-0263, A-0317) and a second Toulouse line on 15 June 2026, for 10 A320 Family lines. Historically it out-ramped Boeing (A-0019, A-0105, A-0138, A-0159) and never acted as the 'swing producer' (A-0039). It buys supply security (Spirit work packages, Aubert & Duval; A-0317, A-0457). Judgement: denying a third player does not require rate 100. On the board's entrant economics, about 5% more capacity removes the entrant's case, which is the kind of incremental step Airbus has taken before.",
+    "evidence": [
+     {
+      "source": "SCRATCH/wf/entrant_caps.json (entrant EIS 2038, $15B capex, $48M, 12% margin, 10% WACC, board share paths)",
+      "fact": "Boeing Do Nothing: cap 1,200 +0.42, 1,260 -0.49, 1,320 -1.40, 1,440 -3.07. fps 2044: -0.51 / -1.41 / -2.32 / -3.88."
+     },
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0263, A-0317, A-0457",
+      "fact": "Additional final assembly lines came on line in 2025 in Tianjin and Mobile. Spirit work packages acquired. Joint owner of Aubert & Duval."
+     },
+     {
+      "source": "https://afm.aero/airbus-now-operates-10-a320-family-final-assembly-lines-worldwide ; https://www.airbus.com/en/newsroom/press-releases/2026-06-airbus-inaugurates-new-a320-family-final-assembly-line-in-toulouse",
+      "fact": "10 A320 Family lines in 2026 (4 Hamburg, 2 Toulouse, 2 Mobile, 2 Tianjin). Second Toulouse line inaugurated 15 June 2026 (search snippets)."
+     },
+     {
+      "source": "wargame/profiles/airbus/evidence.jsonl A-0019, A-0039",
+      "fact": "'They ramp up much more aggressively on production rates' (2009). 'They have not been the swing producer' (2011)."
+     }
+    ]
+   },
+   {
+    "move": "Capacity: build to fill the board's 80% share (about rate 100), with roughly 3-4 more lines plus engines",
+    "probability": "10%",
+    "board_value": "Recovers the full $20.0B PV (Boeing Do Nothing) before capacity capex. Original Mobile A320 line: $600M; total Mobile site investment above $1B.",
+    "rationale": "Fact: 75 a month on 10 lines is about 7.5 a month per line (computed), so about 25 more a month needs about 3.3 more lines at the same productivity. Engines are the binding input, not lines. Fact: Faury said rates above 75 were 'not on the cards for now'. Judgement: board economics favour this, since line capex is small against $20B, but Airbus's evidence of cash discipline and engine gating makes it a tail case before NGSA is in service.",
+    "evidence": [
+     {
+      "source": "SCRATCH/dash/vacuum.json cases 'Boeing Do Nothing'",
+      "fact": "Airbus board share reaches 80% from 2043. Unserved demand at 1,200/yr capacity: 6,860 aircraft 2037-2056, peak 400/yr. At 900/yr: 12,860."
+     },
+     {
+      "source": "https://businessalabama.com/airbus-set-to-expand-in-mobile/ ; https://digital-release.wkrg.com/?p=273105",
+      "fact": "The original Mobile A320 line was a $600M line. Cumulative Mobile investment is above $1B (search snippets)."
+     }
+    ]
+   },
+   {
+    "move": "Capacity: fill the gap with adjacent own products or a partnership (A220-500 stretch, or absorbing a would-be entrant, as with the CSeries)",
+    "probability": "15%",
+    "board_value": "Not on the board. The board cannot value an Embraer partnership; CFM's '4-Partner Embraer' move is never among the moves the board evaluates (brief).",
+    "rationale": "Fact: Airbus's strongest-rated precedent for a third party is taking control rather than out-building. It used the neo to fend off the CSeries, then took majority control (2018) (A-0126, A-0141, A-0151, A-0265). Fact: the A220-500 has been under study, with no launch as of August 2026. Faury said in April 2026 that Airbus was 'not close', and the stated precondition is A220 breakeven. Fact: Airbus's Board says 'the period of a duopoly... has ended' but expects COMAC to be 'paced by their industrial ramp-up, certification' (AX-0024). IBA forecasts about 28 C919 deliveries in 2026. Judgement: this complements the disciplined posture rather than replacing it.",
+    "evidence": [
+     {
+      "source": "wargame/profiles/airbus/reaction_function.json 'Rival or a third party opens an acquisition/partnership opportunity'",
+      "fact": "'Airbus used the neo to fend off the CSeries (2011), then took majority control of the programme (2018)'; strength: strong."
+     },
+     {
+      "source": "wargame/profiles/airbus/executives/evidence.jsonl AX-0024",
+      "fact": "'The period of a duopoly in the mainline commercial aircraft market has ended. Airbus considers that COMAC's progression will be measured... paced by their industrial ramp-up, certification...'"
+     },
+     {
+      "source": "https://mentourpilot.com/airbus-a220-500-launch-not-coming-this-year/ ; https://www.airdatanews.com/airbus-a220-500-production-2026",
+      "fact": "No A220-500 launch as of mid-2026. Faury: 'more a question of when than if', but not close (search snippets)."
+     },
+     {
+      "source": "https://leehamnews.com/2026/09/01/boosting-c919-production-rates-remains-comacs-real-test/",
+      "fact": "IBA expects C919 deliveries of about 28 in 2026, 59 in 2028 and 93 by 2030."
+     }
+    ]
+   }
+  ],
+  "capacity_response": "Facts. In equilibrium (Boeing Do Nothing) the board gives Airbus 80% of a 2,000-a-year narrowbody market from 2043, i.e. 1,600 a year (SCRATCH/dash/vacuum.json). Airbus's real plan is 70-75 a month by end-2027, 'stabilising at rate 75', about 900 a year (A-0218; airdatanews Feb 2026; H1 2026). Even the board's starting point (60% \u00d7 2,000 = 1,200) is above rate 75, so the board's market is stylised: real duopoly output is about 900 from Airbus plus about 600 from Boeing.\n\nJudgement on scale: I map board units to reality proportionally (board 1,200 = rate 75). On that basis the board's 80% means about rate 100 (+25 a month), which is about 3.3 more lines at the current 7.5 a month per line (10 lines for 75, computed).\n\nBoard value of capacity (my solve, SCRATCH/wf/airbus_cells.json):\n- Volume above the rate-75 equivalent is worth $20.0B PV to Airbus in equilibrium (6,860 aircraft, 2037-2056, NGSA $55M \u00d7 26.28% at 8%).\n- That is about 40% of Airbus's +$50.1B board payoff.\n- The figure is $16.3B if Boeing launched fps 2044, and $7.95B if fps stayed at 2041.\n- So the slip more than doubles what the board says capacity is worth to Airbus.\n\nDenial threshold (SCRATCH/wf/entrant_caps.json): denying a third player does not need rate 100.\n- Under the board's entrant conventions ($15B capex, entry into service 2038, $48M, 12% margin, 10% WACC, serving only unserved demand), the entrant's NPV in equilibrium is +0.42 at a 1,200 ceiling.\n- It is -0.49 at 1,260 (+5%, about rate 79) and -1.40 at 1,320 (+10%).\n\nFacts on Airbus's capacity discipline:\n- Expansion instinct: it historically ramped harder and earlier than Boeing (A-0019, A-0105, A-0138, A-0159). It added lines in 2025 at Tianjin and Mobile (A-0263, A-0317) and in June 2026 at Toulouse, for 10 lines. It buys supply security (Spirit, Aubert & Duval: A-0317, A-0457).\n- Brake: its targets are engine-gated and slip about 2 years (A-0159 against A-0218). Suppliers doubted rate 75 (AX-0043, AX-0044). P&W is the 2026-27 'pacer' (airdatanews Feb 2026; Leeham 2026-07-28).\n- Stated intent: 'stabilising at rate 75' (A-0218). Faury called 75 a 'prudent level' that keeps demand ahead of supply, with nothing above 75 'for now' (Reuters, syndicated; date not confirmed).\n- Pay and capital: ramp-up is about 7.5% of the CEO's bonus against 40% for EBIT and FCF (AX-0073, AX-0067). July 2026 brought a \u20ac5bn buyback and about 60% of FCF returned.\n- NGSA design: the NGSA wing is being proven at today's rates (A-0441).\n- On entrants: Airbus reads COMAC as real but slow (AX-0024; IBA about 28 C919 deliveries in 2026). Its precedent for a third party is to absorb it (CSeries to A220), not to out-build it.\n\nJudgement:\n- Airbus will not build to rate 100 to pre-empt a vacuum (10%).\n- It will most likely hold 75 and sell scarcity (50%), or add a targeted +5-10% timed to NGSA and backed by engine deals (25%). On the board's numbers the second option is enough to keep an entrant's NPV negative.\n- It may fill the edges with the A220-500 or a partnership (15%).\n- The binding constraint is engines, not final assembly lines. A line costs well under $1B (original Mobile A320 line $600M), but neither LEAP nor GTF output can presently cover the board's volumes.\n- Neither the board nor the war-game engine checks capacity: both assume Airbus can deliver 75-80% of 2,000 a year. War-game Airbus delivered 75% in 2050 in the delayed game (wg5-2045d/final_report.md).",
+  "war_game_alignment": "Agreements.\n- Both treat the slip as removing Boeing from the narrowbody. Board: fps leaves every equilibrium from 2043. War game: Boeing's go/no-go failed (-0.73 against the $1B hurdle; slip test -4.71) and it never launched.\n- Both say the contest moves to the widebody Chicken.\n- Both reward Airbus: board +39.21 (2041) to +47.60 against fps and +50.12 in equilibrium. War game +36.53 to +44.54 (wg5-2045d/final_report.md).\n- Airbus kept NGSA on its own clock in both games (identical round-1 orders).\n- It never used Delay Tactics.\n\nWhere they differ.\n1. Baselines. The war-game NGSA enters service in 2035 (launch 2028) and its 'late' fps is launch+10 (2041 from a 2031 launch). The board has NGSA 2037 (which matches Airbus's July 2026 public plan of a 2030 launch) and moves fps from 2041 to 2044. The war game therefore gives Airbus a 2-year earlier NGSA than Airbus itself now plans.\n2. Widebody. The board is simultaneous and cannot choose between its two Chicken equilibria. Airbus's preferred one (A350 Re-engine, +50.12) is worth 2.43 more to it. The war game settled the contest by sequencing: freed from fps, Boeing moved first (787 Re-engine 2031). Airbus's pre-emption test failed, so it deferred (premium $0.28B) and then shelved (+0.33 against launching). In the on-time game the sequence ran the other way and Airbus pre-empted. The war game therefore predicts Airbus's widebody result better than the board alone.\n3. Delay Tactics.\n   - Board: Airbus's best response to an actual fps includes Delay Tactics (+1.16 at 2044, which clears $1B). In the 2041 snapshot, 9 of the 17 near-Nash pairs contain a Delay Tactics move.\n   - War game: Delay Tactics stayed off, below $1B (+0.21 to +0.72) and failing the team's who-enters-first test.\n   - After the slip both agree to drop it.\n4. Poaching. The board books 'Delay fps Poaching' as a Delay Tactic exposed to the naked fine. The war game's Poaching is a public recruiting lever that Airbus did use (+0.25B in game 2, +0.32B in game 1; player_behaviour.md).\n5. Capacity and price. Neither engine has an Airbus rate or price lever, so the war game cannot test the vacuum question. The agent's statements only repeat 'a disciplined and controlled production ramp-up'.",
+  "profile_alignment": "Where profile and board agree:\n- Keep NGSA on schedule: rule 2 'own clock'; reaction row 'late fps: NGSA wins the race; Airbus does not wait for Boeing'.\n- Drop Delay Tactics: the 'Rival cancels fps' row says 'stop Delay Tactics'; default off; one turn only and only against an fps in development.\n- Stay out of the A350 Re-engine once Boeing commits a 787 Re-engine (rule 3).\n\nWhere they disagree:\n1. Acceleration. The board pays +$3.8-4.1B for each year NGSA comes earlier (2035: +57.96 against +50.12 at 2037). The profile's hard rule 1 and 'Earlier: never', plus Airbus's public 2030 launch, forbid it. The profile wins on behaviour; the board shows what that discipline costs.\n2. Rule 3 is not precedent. The audit calls it inference from the game's Chicken structure. The only real analogue, the A330neo cheaply re-engined against the newer 787 (A-0090, A-0091), points towards re-engining. My 30% on pre-emption reflects that.\n3. Pre-emption test against the board's equilibrium ranking. The board ranks the A350 Re-engine equilibrium first for Airbus. The profile's \u00a76 test (beat Do Nothing by $1B against all plausible Boeing orders) rejects pre-emption whenever a simultaneous 787 Re-engine is possible (-2.32).\n4. Delay Tactics on the board's numbers. Against an actual fps the board's +1.16 clears the profile's $1B test. The team's who-enters-first test (NGSA 2037 against fps 2044) and the integrity pillar (A-0331, A-0474, AX-0073) still keep it off.\n5. Capacity. The profile's reading of Airbus is 'ramp harder and earlier than Boeing, never swing' (\u00a73; A-0019, A-0105, A-0138, A-0159). Its 2025-26 evidence, though, is 'stabilising at rate 75' and engine-gated (A-0218), with cash first (AX-0067). The board assumes 80% of 2,000 a year with no capacity cost, and puts $20.0B of Airbus's $50.1B on volume above rate-75 equivalent. Airbus's revealed preference is to price scarcity (A-0044, A-0136) and to absorb entrants (CSeries), not to out-build them.\n6. Pricing. The profile documents both aggressive launch pricing (bias 2) and stated cash discipline. The board has no price lever at all.",
+  "what_would_change_it": [
+   "Boeing publicly re-commits to an fps before about 2032, or the board's fps case is restored. Brief thresholds at 2044: fps margin at or above 31.2% (33.4% for the +$1B hurdle), fps 10-year capex at or below about $45B, price at or above $66.9M, or Phase-2 recovery at or above about 2pp a year. Delay Tactics reserve odds rise (still capped by the naked-fine break-even of 91.5% launch probability). The value of not slipping NGSA rises.",
+   "Boeing shows it cannot fund a 787 Re-engine before about 2030 (balance sheet, 777X or 737 MAX certification drag). Airbus's first-mover window on the A350 Re-engine reopens, and pre-emption odds move from 30% towards 50%, as in the on-time game.",
+   "Engine supply loosens: P&W GTF Advantage and CFM output catch up by 2028, as Faury expects (Leeham 2026-07-28), and both commit volumes above rate 75. Odds of capacity expansion (the denial and rate-100 rows) roughly double.",
+   "COMAC beats IBA's ramp (for example more than 100 C919s a year before 2030, or EASA validation), or Embraer forms a Western-backed narrowbody partnership. Airbus would move from scarcity pricing to denial: targeted capacity, the A220-500, or a partnership on the CSeries model.",
+   "NGSA engine technology slips (open fan unproven; RISE flight test on the A380 around the end of the decade). NGSA slip odds rise and the deterrent lead shrinks. The board re-admits fps at NGSA 2039-2040.",
+   "Leadership or capital-allocation shift: Faury's term ends April 2028, before the 2030 launch, and a larger buyback or payout push raises the odds of a cash-driven slow-down.",
+   "Board recalibration: a narrowbody market of about 1,500 a year rather than 2,000, or an explicit Airbus capacity ceiling, cuts the $20.0B capacity value and the vacuum roughly in proportion."
+  ],
+  "caveats": [
+   "SCRATCH = /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad. New solves for this answer: SCRATCH/wf/airbus_cells.py/.json (widebody Chicken by A350 entry year, Delay Tactics break-even, capacity value), SCRATCH/wf/price_vs_volume.py/.json, SCRATCH/wf/entrant_caps.py/.json. All use the overlap-aware strain patch and the snapshot sliders (harness SNAP), with fps entry 2044 and NGSA 2037.",
+   "Board values are $B PV-2026 at Airbus's 8% WACC (Boeing 10.5%). The board is a simultaneous game, so it cannot model who moves first in the widebody Chicken. I took sequencing from the war game.",
+   "The capacity mapping (board 1,200 a year = real rate 75) is my scaling assumption, not a board output. Capacity and price values are board-convention arithmetic (Airbus share path \u00d7 2,000 \u00d7 $55M \u00d7 26.28%, 2037-2056). They exclude line capex, engine supply, learning curves and the effect of a price premium on demand.",
+   "The war games differ from the board in baseline. NGSA enters service 2035 in the war game against 2037 on the board. The war game's delay is launch+10 instead of +7, against fps 2041 to 2044 on the board. Each game is one seed. Executive profiles for Toepfer and Wagner are low and very-low confidence, and Airbus's own voice is one document (the FY2025 Board Report).",
+   "Web facts came from search-result snippets. WebFetch was blocked by the egress proxy for airbus.com, finance.yahoo.com, ajot.com, airfreight.news and aviation-defence-universe.com. The Reuters quote 'not on the cards for now / prudent level' has an unconfirmed date (its context points to 2024). The Morgan Stanley note that the July 2026 deck omitted '75 thereafter' conflicts with the H1 2026 release wording 'stabilising at rate 75 thereafter'.",
+   "All probabilities are my judgement. They sum to 100% within each decision: NGSA timing, A350 Chicken, Delay Tactics, pricing, capacity. The capacity options are each a primary posture, but in practice they can be combined.",
+   "The board labels talent poaching 'Delay fps Poaching' and treats it as a Delay Tactic with naked-fine exposure. The war game's Poaching is a separate public lever. The two are not comparable."
+  ]
+ },
+ "check": {
+  "claims": [
+   {
+    "claim": "Airbus board payoff at NGSA 2037 (fps 2044) is +50.12 against Boeing Do Nothing and +47.60 against fps 10-year; each year of slip costs 3.25 (to +46.87) against Do Nothing and 4.91 (to +42.70) against fps",
+    "verdict": "corrected",
+    "detail": "Fact: every number reproduces from SCRATCH/dash/analysis2.json ngsa_timing (fps 2044): 50.115, 47.603, 46.87, 42.696. Correction: +47.60 and +42.70 are Airbus's payoffs WITH Delay Tactics (Bottleneck). Without Delay Tactics they are +46.45 and +41.54 (airbus_vs_fps10_noDT). The analysis's modal case drops Delay Tactics, so the label must say so. The same applies to the acceleration row's +51.75 and +56.20 (+50.59 and +55.04 without Delay Tactics)."
+   },
+   {
+    "claim": "Every year of NGSA slip costs Airbus $3-5B",
+    "verdict": "corrected",
+    "detail": "Fact (analysis2.json, fps 2044): against Boeing Do Nothing the yearly cost falls as the slip lengthens: 2037->38 3.25, 38->39 3.02, 39->40 2.80, 40->41 2.61. Against fps 10-year (with Delay Tactics) it is 4.91, 5.30, 5.01, 4.73. The correct range is about $2.6-5.3B a year."
+   },
+   {
+    "claim": "Board, profile, war game and public plan all point the same way: hold NGSA at about 2037",
+    "verdict": "refuted",
+    "detail": "Fact: the profile's default is NGSA launch 2028 with EIS 2035, the 'technology-ready year' (profile.md Quick card T1, hard rule 1 '2035 at base', \u00a76 'Default: 2028'). reaction_function.json 'Boeing launches fps late (2032 or after), or not at all' says 'Keep NGSA at 2028 (or no later than 2030)'. Both war games launched in 2028 with EIS 2035 (wg5-2045d and wg5-2045 rounds.json round 1), and player_behaviour.md line 376 calls 2028 'PV-best on its own grid'. On the board, NGSA EIS is an input slider: 'Launch NGSA' is in both pure equilibria at every EIS from 2035 to 2038 (analysis2.json shows 2 pure at each), and the payoffs favour 2035 (+57.96 vs +50.12). Only Airbus's public plan points to about 2037: launch 2030, EIS in the second half of the 2030s (Farnborough, July 2026). A June 2026 report says 'EIS 2037 or 2038, engine selection 2027'. Judgement: the 65% can stand on the public plan, but the stated reasoning is wrong."
+   },
+   {
+    "claim": "The profile forbids accelerating NGSA to 2035-2036 (hard rule 1, 'Earlier: never'); this is where board and profile disagree most clearly",
+    "verdict": "refuted",
+    "detail": "Fact: hard rule 1 forbids EIS before the technology-ready year, which is 2035 at base (profile.md line 26). 'Earlier: never' (\u00a76) means no launch before 2028, i.e. EIS 2035. Bias 3 tells the player to resist the pull towards a 2030 launch. So board and profile AGREE on EIS 2035. The real disagreement is between the board and profile (2035) and Airbus's public plan (2030 launch, about 2037). The supporting citation is also mis-stated: wg5-2045d round 1 deleted NGSA 2026 and 2027 under rule 1, AND 2028 was the best PV anyway (50.47 vs 47.63/44.57). 'Even though' does not follow."
+   },
+   {
+    "claim": "The fps delay removes the only strategic reason to accelerate NGSA (beating a 2041 fps)",
+    "verdict": "corrected",
+    "detail": "Fact (analysis2.json): against Boeing Do Nothing, the board pays the same +7.85 for EIS 2035 over 2037 at both fps 2041 and fps 2044 (57.96 vs 50.115), because Phase-1 capture starts earlier. Against fps 10-year, the gain from 2035 over 2037 falls from +13.49 (2041) to +8.59 (2044). The delay reduces the incentive but does not remove it."
+   },
+   {
+    "claim": "fps comes back into Boeing's near-Nash set at NGSA 2039 (6 near); fps10 minus Do Nothing turns positive at NGSA 2040 (+0.79; 0 pure / 21 near); at NGSA 2041 fps is in all 4 pure equilibria",
+    "verdict": "confirmed",
+    "detail": "Fact: analysis2.json, and my re-solve (SCRATCH/wf/verify_airbus/v1.py). Missed: all 4 pure equilibria at NGSA 2041 also contain an Airbus Delay Tactics move (Bottleneck or Poaching). The Delay Tactics 95% 'drop' is therefore conditional on NGSA holding, but the analysis gives 25% to a slip of 2 or more years."
+   },
+   {
+    "claim": "Airbus slips: hydrogen 'later than 2035' (AX-0006); rate 75 slipped about 2 years (A-0159 vs A-0218); bias 3 'derivative comfort'",
+    "verdict": "confirmed",
+    "detail": "Fact: AX-0006 says 'now expected to come later than 2035'. A-0159 (2021) signalled 75 in late 2025; A-0218 (FY2025 report) says 70-75 by end-2027. Bias 3 is at profile.md line 372."
+   },
+   {
+    "claim": "In July 2026 Airbus approved a EUR5bn buyback and committed about 60% of FCF to shareholders",
+    "verdict": "corrected",
+    "detail": "Fact: the EUR5bn buyback over three years and the EUR12-13bn 2029 EBIT Adjusted target are confirmed (Airbus press release, 21 July 2026: https://www.airbus.com/en/newsroom/press-releases/2026-07-airbus-to-present-new-mid-term-outlook-strengthen-commitment-to-profitable-growth-and-shareholder). The 'about 60% of FCF' is J.P. Morgan's estimate for dividends plus buybacks over 3-4 years (Dow Jones, 22 July 2026, via itiger.com/news/2653753481). It is not an Airbus commitment; only the Quartr summary presents it as one. The 30-50% figure is a dividend payout ratio of earnings (June 2025)."
+   },
+   {
+    "claim": "Faury's CEO term ends in April 2028, before the 2030 launch",
+    "verdict": "confirmed",
+    "detail": "Fact: his mandate was renewed at the 15 April 2025 AGM (Airbus press release, April 2025). Reuters (5 Oct 2026, https://www.thestar.com.my/business/business-news/2026/10/05/airbus-board-appointments-herald-ceo-decision-next-year-sources-say) describes an April 2028 deadline and a renewal or succession decision expected in 2027. Missed: Faury has not ruled out a fourth term, and Lars Wagner is seen as heir. The decision falls in the same year as the reported 2027 NGSA engine selection."
+   },
+   {
+    "claim": "At Farnborough July 2026 Airbus restated a 2030 NGSA launch with EIS in the second half of the next decade; A-0409 says EIS 'around 2037'",
+    "verdict": "confirmed",
+    "detail": "Fact: Bloomberg interview at Farnborough 2026 and Aviation Week ('bullish on launching A320 replacement in 2030'). A-0409 quote matches (FY2025 Board Report p.135). Additional: a report dated 25 June 2026 says EIS '2037 or 2038' after engine selection in 2027 (Air Data News / Simple Flying, search snippets). 'We are not there yet' was not verified."
+   },
+   {
+    "claim": "Widebody Chicken at fps 2044: A350 Re-engine vs 787 Do Nothing +50.115/-6.052; both re-engine +45.359/-8.867; both Do Nothing +48.329/-3.767; A350 Do Nothing vs 787 Re-engine +47.683/-0.466; derived gaps 5.59, 2.43, 8.40, 4.76, 2.32, 1.79",
+    "verdict": "confirmed",
+    "detail": "Fact: SCRATCH/wf/airbus_cells.json wb_chicken_by_a350_eis (2035), and my re-solve gives the same two pure equilibria (133.41%/95.34% and 131.79%/99.64%). The arithmetic is correct. In board.py, strain applies only when Boeing both launches fps and re-engines, so with no fps there is no strain on the 787 Re-engine."
+   },
+   {
+    "claim": "Delayed war game: Airbus's pre-emption test failed (-0.54 to -0.68 against a simultaneous 787 Re-engine, premium $0.28B); Board later shelved the A350 Re-engine (-0.34 to -0.52; +0.18 at best); shelving worth +0.33",
+    "verdict": "confirmed",
+    "detail": "Fact: wg5-2045d/rounds.json round 2 and round 3 Airbus rationale (BOARD GATE 'dPV of launching -0.34 to -0.52'); player_behaviour.md lines 78 and 398."
+   },
+   {
+    "claim": "player_behaviour.md: Boeing's 787 Re-engine first +5.03 Boeing / -3.15 Airbus; both in the same round Boeing -6.29, Airbus -0.41, RR -2.15, CFM +1.78",
+    "verdict": "confirmed",
+    "detail": "Fact: player_behaviour.md lines 45, 297, 299 and 396."
+   },
+   {
+    "claim": "On-time war game: Airbus pre-empted with the A350 Re-engine 2035 (+2.04; +2.71 against Boeing's best reply; 'settles the widebody Chicken before Boeing moves')",
+    "verdict": "confirmed",
+    "detail": "Fact: wg5-2045/rounds.json round 2 Airbus rationale (lines 122, 133-157 of the extracted text). 'Because Boeing was tied up in fps development' is the analyst's reading. The rationale says Boeing's best reply to the plan was B14 (fps without a 787 Re-engine)."
+   },
+   {
+    "claim": "Profile rule 3 is inference from the Chicken structure; the A330neo precedent cuts the other way",
+    "verdict": "confirmed",
+    "detail": "Fact: profile.md hard rule 3 and \u00a710 lines 427-429; A-0090 and A-0091 quotes match."
+   },
+   {
+    "claim": "Delay Tactics cost -12.50 against Boeing Do Nothing = $48.32B naked fine PV'd to 2044 at 8% plus $1B operating cost; gain +1.16 if fps launches; break-even launch probability 91.5% (2041: -15.75 / +1.45)",
+    "verdict": "corrected",
+    "detail": "Fact: the totals match airbus_cells.json. The decomposition is wrong: the fine is 48.32/1.08^18 = 12.09 PV (board.py lines 1036-1042). The $1B is nominal, spread over 2035-2043 (board.py lines 1032-1034), which is about $0.40B PV, not $1B. Missed: the break-even is almost the same at 2041 (91.6%) and 2044 (91.5%). The slip matters for Delay Tactics because fps leaves the equilibria, not because the naked-fine arithmetic changes."
+   },
+   {
+    "claim": "War-game Delay Tactics values: delayed game +0.49 to +0.69 (round 2), +0.21 to +0.51 (round 3); on-time game refused at +0.72, costing $0.74B and the 60/40 objective (59.8%), sparing Boeing $4.07B",
+    "verdict": "confirmed",
+    "detail": "Fact: wg5-2045d/rounds.json rounds 2-3; wg5-2045/rounds.json round 3 (doctrine premium $0.72B); player_behaviour.md lines 76 and 397."
+   },
+   {
+    "claim": "Reaction function: 'Rival cancels fps' -> stop Delay Tactics; Delay Tactics stance 'Default off. One turn only, when fps is in development and whatif shows at least $1B'",
+    "verdict": "confirmed",
+    "detail": "Fact: reaction_function.json rows 'Rival cancels fps' and 'Delay Tactics stance (Airbus covert lever; no literal precedent)'."
+   },
+   {
+    "claim": "In the 2041 snapshot, 9 of the 17 near-Nash pairs contain a Delay Tactics move",
+    "verdict": "confirmed",
+    "detail": "Fact: re-solved in SCRATCH/wf/verify_airbus/v1.py: 0 pure, 17 near, 9 with Delay Tactics, 14 with an fps move (12 fps 10-year plus 2 fps 7-year)."
+   },
+   {
+    "claim": "+1pp of NGSA margin = +$3.76B PV; about 6.7pp ($3.66M per aircraft) on capped volume replaces the $20.0B",
+    "verdict": "confirmed",
+    "detail": "Fact: SCRATCH/wf/price_vs_volume.json (3.762 uncapped; 3.001 per pp on capped units; 6.66pp; $3.66M)."
+   },
+   {
+    "claim": "A320 Family backlog 7,499 at end-May 2026 (5,615 A321neo), about 8.3 years at rate 75; 10 FALs after the second Toulouse line opened 15 June 2026",
+    "verdict": "confirmed",
+    "detail": "Fact: Airbus press release, June 2026 (https://www.airbus.com/en/newsroom/press-releases/2026-06-airbus-inaugurates-new-a320-family-final-assembly-line-in-toulouse): 4 Hamburg, 2 Mobile, 2 Tianjin, 2 Toulouse. 7,499/900 = 8.33 years. Leeham (19 Aug 2026) adds that the backlog is sold out at rate 75 through 2032."
+   },
+   {
+    "claim": "Reuters: Faury called rate 75 a 'prudent level'; going above 75 'not on the cards for now' (date unconfirmed, context suggests 2024)",
+    "verdict": "corrected",
+    "detail": "Fact: the quote is confirmed (Reuters via finance.yahoo.com, 'Airbus CEO confident about 75 aircraft a month target'). The date is most likely January 2025, not 2024: the aviacionaldia.com write-up of the same remarks sits under a 2025/01 URL, and the target then was 75 in 2027. The statement predates the February 2026 cut and is about the A320neo plateau, not NGSA."
+   },
+   {
+    "claim": "Airbus pricing and campaign evidence (A-0044, A-0136, A-0259, A-0045, A-0064, A-0066, A-0065, A-0128, A-0174)",
+    "verdict": "confirmed",
+    "detail": "Fact: each quote matches wargame/profiles/airbus/evidence.jsonl."
+   },
+   {
+    "claim": "Capacity value: $20.0B PV (6,860 aircraft, 2037-2056) above 1,200/yr in equilibrium, 40% of Airbus's +$50.1B; $16.3B at fps 2044; $7.95B at fps 2041",
+    "verdict": "confirmed",
+    "detail": "Fact: airbus_cells.json capacity_value. board.py lines 1197-1210 price every Airbus NB unit after NGSA EIS at the NGSA price and margin, and the baseline is 60% x 2,000 at A320 values (lines 990-1016). So capping at 1,200 removes about 20.0 from the +50.1 delta. Caveat: this is gross margin before line and engine capex, and the board 1,200 = rate 75 mapping is the analyst's assumption."
+   },
+   {
+    "claim": "The NGSA wing is being proven at today's rates (A-0441), so NGSA is being industrialised for today's rates, not higher",
+    "verdict": "refuted",
+    "detail": "Fact: A-0441 is a minimum producibility requirement (composite wing 'at the same high industrial rates as current metallic wings'), not a ceiling. Missed evidence from 2026: (1) Aviation Week/Aviation Daily, Faury at a 9 June 2026 Berlin event: Airbus is 'considering a production rate greater than 100 aircraft per month for the A320neo's replacement', and the steepness of the NGSA ramp-up is undecided (paywalled; seen via snippets and Hosteltur's summary). (2) Air Data News, 7 Oct 2026: Airbus 'is preparing its next-generation single-aisle aircraft for a production rate of around 100 jets per month' (https://www.airdatanews.com/airbus-targets-100-aircraft-per-month-for-a320-successor/, snippet). (3) Leeham, 19 Aug 2026: rate 83 'under study for some time' for the A320neo (https://leehamnews.com/2026/08/19/airbus-pushing-to-increase-monthly-a320neo-production-rate-sooner-than-later/). (4) afm.aero (single source): target of more than 1,100 deliveries a year by 2029."
+   },
+   {
+    "claim": "Ramp-up is about 7.5% of the CEO's 2026 bonus against 40% for EBIT and FCF (AX-0073, AX-0067)",
+    "verdict": "confirmed",
+    "detail": "Fact: AX-0073 weights put 'deliver and secure ramp-up' at 7.5% for 2026. Citation nit: the 40% EBIT+FCF comes from A-0310 (EBIT 20% STI plus FCF 20% STI, 2025), not AX-0067, which gives achievement levels (FCF 157%, EBIT 115%)."
+   },
+   {
+    "claim": "Airbus plan is 70-75/month by end-2027 'stabilising at rate 75'; P&W failed to commit engines; 2026 guidance about 870 deliveries (Feb 2026)",
+    "verdict": "confirmed",
+    "detail": "Fact: A-0218; Reuters, Feb 2026 ('Airbus softens output target in engine row with Pratt & Whitney', streetinsider.com); the H1 2026 release (29 July 2026) keeps 'stabilising at rate 75 thereafter' and 870. At the H1 results Faury said the engine quantities now agreed with P&W support the targets."
+   },
+   {
+    "claim": "The July 2026 investor deck reportedly omitted the '75 thereafter' language (Morgan Stanley note)",
+    "verdict": "unverifiable",
+    "detail": "No Morgan Stanley note was found. The H1 2026 release of 29 July 2026 retains 'stabilising at rate 75 thereafter'. AirInsight's Farnborough write-up says 'rate 75 by 2029', which conflicts with both. The analyst's own caveat flags the conflict, but the capacity row states it as fact."
+   },
+   {
+    "claim": "Entrant NPV (board conventions, EIS 2038, $15B, $48M, 12%, 10%): +0.42 at a 1,200 cap -> -0.49 at 1,260 (Boeing Do Nothing); fps 2044 -0.51 -> -1.41; so +5% capacity is enough to keep an entrant out",
+    "verdict": "corrected",
+    "detail": "Fact: the numbers reproduce (SCRATCH/wf/entrant_caps.json). Correction: the conclusion is knife-edge on one parameter set. My re-run (SCRATCH/wf/verify_airbus/v2.py), Boeing Do Nothing, at 1,260 / 1,320: $10B capex +1.10 / +0.20; 15% margin +0.58 / -0.55; entrant EIS 2040 at $15B -0.12 / -0.84; $20B entrant with a 10% captive slice (e.g. COMAC's domestic demand) +0.94 / +0.03. A captive-demand entrant is not deterred by +5-10% Airbus capacity. C919 development is also largely sunk, so the $15B lump does not describe COMAC."
+   },
+   {
+    "claim": "Airbus capacity precedents: A-0263, A-0317, A-0457, A-0019, A-0039; original Mobile A320 line $600M, total Mobile above $1B",
+    "verdict": "confirmed",
+    "detail": "Fact: the evidence.jsonl quotes match. Mobile: $600M announced July 2012 (JOC, pressreader). The above-$1B total includes the A220 line and a 2020 hangar (Airbus press release, Jan 2020). The original line was sized for about 4 a month, so the cost per unit of rate is higher than the analysis implies, though still small against $20B."
+   },
+   {
+    "claim": "A220-500 not launched; Faury said in April 2026 Airbus was 'not close'; precondition is A220 breakeven",
+    "verdict": "corrected",
+    "detail": "Fact: Faury in April 2026: 'a matter of when... rather than if, but it's not now'. 'Not close' is ch-aviation's characterisation. Reuters (June 2026): a Farnborough launch was 'not probable' because of muted lessor response. The breakeven precondition was stated in autumn 2025 (The Air Current). No launch was found through August 2026."
+   },
+   {
+    "claim": "IBA forecasts about 28 C919 deliveries in 2026, 59 in 2028, 93 by 2030 (Leeham 2026-09-01); AX-0024 'duopoly has ended'",
+    "verdict": "confirmed",
+    "detail": "Fact: Leeham, 1 Sep 2026 (https://leehamnews.com/2026/09/01/boosting-c919-production-rates-remains-comacs-real-test/); the AX-0024 quote matches. Missed: COMAC targets 150 a year by 2028 and 200 by 2029, with a second FAL and RMB44bn of state investment, and Chinese airlines expect 33 deliveries in 2026 (Aviation Week; search snippets). The analysis's trigger 'more than 100 C919s a year before 2030' is therefore close to IBA's own 2030 base case (93), not a tail event."
+   },
+   {
+    "claim": "ch-aviation: Airbus studying stretched A350 and A220",
+    "verdict": "confirmed",
+    "detail": "Fact: ch-aviation 169940 (relaying Reuters/Bloomberg, about April 2026). It names an A350-1000 stretch concept above 400 seats; Rolls-Royce says a new engine would take 6-7 years, and the A350F must reach service first."
+   },
+   {
+    "claim": "War-game alignment numbers: Boeing go/no-go -0.73 vs $1B hurdle, slip test -4.71; Airbus +36.53 vs +44.54; Airbus 75% share in 2050; Poaching +0.32 / +0.25",
+    "verdict": "confirmed",
+    "detail": "Fact: BRIEF.md war-game section; player_behaviour.md lines 175 and 400."
+   },
+   {
+    "claim": "Headline: Airbus 'probably' loses the widebody Chicken (stays out, 50%)",
+    "verdict": "corrected",
+    "detail": "Judgement on wording: 50% is 'as likely as not', not 'probably'. The analysis's own split is 50 stay out / 30 pre-empt / 10 crash / 10 neither."
+   },
+   {
+    "claim": "Headline: Airbus keeps rate-75 discipline and adds only marginal capacity; on the board's conventions that is enough to keep a third entrant's NPV negative; the board's logic would have Airbus build to about rate 100",
+    "verdict": "corrected",
+    "detail": "Fact: the modal capacity branch (hold 75, 50%) leaves the equilibrium entrant NPV at +0.42 (vacuum.json). Only the 25% '+5-10%' branch turns it negative, and that result is knife-edge (see the entrant claim). 'Rate 100' is presented as the board's logic against Airbus's discipline, but 2026 reporting says Airbus itself is considering about 100 a month (or more) for the NGSA production system (Aviation Week, June 2026; Air Data News, 7 Oct 2026). The $20.0B is gross margin before line and engine capex."
+   }
+  ],
+  "corrections": [
+   "NGSA timing rows: delete the claim that board, profile, war game and public plan all point to 2037. The profile default and both war games are a 2028 launch with EIS 2035 (profile.md Quick card T1, \u00a76; reaction_function.json late-fps row 'Keep NGSA at 2028 (or no later than 2030)'; rounds.json round 1). The board pays +7.85 for 2035 over 2037. Only Airbus's public plan (2030 launch; Farnborough July 2026; June 2026 report 'EIS 2037 or 2038') supports about 2037. 'Launch NGSA sits in both pure equilibria' holds for any EIS from 2035 to 2038, because EIS is an input.",
+   "Acceleration row: replace 'the profile forbids this' and 'board and profile disagree most clearly'. Hard rule 1's technology-ready year is 2035, so the profile and board agree on EIS 2035; the conflict is with the public 2030-launch plan. Fix the wg5-2045d citation: 2028 WAS the best PV, so drop 'even though'. Replace 'the delay removes the only strategic reason to accelerate': against Boeing Do Nothing the value of 2035 over 2037 is unchanged (+7.85); against fps 10-year it falls from +13.49 to +8.59.",
+   "Label +47.60, +42.70, +37.40, +51.75 and +56.20 as Airbus payoffs WITH Delay Tactics. Without them: +46.45 (2037), +41.54 (2038), +36.25 (2039), +50.59 (2036), +55.04 (2035).",
+   "Change 'every year of slip costs $3-5B' to about $2.6-3.3B a year against Boeing Do Nothing (falling with each year) and $4.7-5.3B against fps 10-year.",
+   "Delay Tactics decomposition: -12.50 = naked fine 48.32/1.08^18 = 12.09 PV, plus $1B nominal operating cost spread over 2035-2043 (about $0.40B PV). Note that the break-even launch probability is the same at 2041 (91.6%) and 2044 (91.5%).",
+   "Buyback: keep 'EUR5bn over three years' and 'EUR12-13bn EBIT Adjusted 2029' (Airbus press release, 21 July 2026). Re-attribute 'about 60% of FCF' to a J.P. Morgan estimate (Dow Jones, 22 July 2026); it is not an Airbus commitment.",
+   "Reuters 'prudent level' / 'not on the cards for now' quote: date it to about January 2025 (target then 75 in 2027), not 2024. State that it predates the Feb 2026 cut and concerns the A320neo, not NGSA.",
+   "Capacity rows: delete 'NGSA is being industrialised for today's rates, not higher'; A-0441 is a minimum producibility requirement. Add the missed 2026 evidence: Aviation Week (Faury, Berlin, 9 June 2026) reports Airbus considering more than 100 a month for the A320neo replacement, with ramp steepness undecided; Air Data News (7 Oct 2026) reports NGSA being prepared for about 100 a month; Leeham (19 Aug 2026) reports rate 83 under study and the backlog sold out at 75 through 2032; afm.aero reports a target of more than 1,100 deliveries by 2029 (single source). Re-split the capacity probabilities into pre-NGSA (A320neo: hold 75, with 83 under study) and post-NGSA (rate ~100 is Airbus's own reported design target). The 10% on 'build to about rate 100' and the 50% on 'creep only modestly after 2037' are not supported by current evidence. Judgement: the post-NGSA rate-100 branch should rise materially (for example to about 30% or more).",
+   "Headline: replace 'keeps its rate-75 discipline and adds only marginal capacity ... enough to keep a third entrant's NPV negative'. The modal 'hold 75' branch leaves the equilibrium entrant NPV at +0.42. Only the 25% +5-10% branch flips it, and that is knife-edge: $10B capex gives +1.10 at 1,260; a 10% captive-demand slice gives +0.94 at 1,260 and +0.03 at 1,320 (SCRATCH/wf/verify_airbus/v2.py). Capacity denial does not deter a COMAC-type entrant with captive demand and sunk development. Reframe 'the board's own logic would have Airbus build to rate 100' as gross margin before capex, and note Airbus's own reported NGSA rate ambition.",
+   "Headline wording: 'probably loses the widebody Chicken' should read 'as likely as not' (50%).",
+   "Probability consistency: state that the Delay Tactics (95% drop) and Chicken probabilities are conditional on NGSA holding about 2037. With a 25% chance of a slip to 2039 or later, the board re-admits fps (near-Nash at NGSA 2039; all 4 pure equilibria at NGSA 2041 contain fps AND Airbus Delay Tactics). Also note that a slip past 2037 breaks profile rule 8 and the 2028-2030 launch window.",
+   "Mark the 'July 2026 deck omitted 75 thereafter (Morgan Stanley)' line as unverified. The H1 2026 release of 29 July 2026 retains 'stabilising at rate 75 thereafter'.",
+   "A220-500: quote Faury (April 2026) as 'a matter of when ... rather than if, but it's not now'; 'not close' is ch-aviation's wording. Add Reuters (June 2026): a Farnborough launch was 'not probable'.",
+   "COMAC: add COMAC's own targets (150 a year by 2028, 200 by 2029, second FAL, RMB44bn) and airlines' expectation of 33 deliveries in 2026, alongside IBA's 28/59/93. The 'more than 100 C919s a year before 2030' trigger is close to IBA's 2030 base case (93), so it is not a tail event.",
+   "Citation fix: the 40% EBIT+FCF weight is A-0310 (20% + 20% STI), not AX-0067. Faury's term: add that Reuters (5 Oct 2026) expects the renewal decision in 2027 and that he has not ruled out a fourth term."
+  ],
+  "overall": "The quantitative board work holds up. Every solver number I re-ran or reopened matches the cited JSON or my re-solve: the Chicken cells, the Delay Tactics break-even, the capacity value of $20.0B / $16.3B / $7.95B, the entrant caps, the price per pp, the near-Nash counts and the fps re-entry at NGSA 2039-2041. The war-game and profile quotes are accurate.\n\nThe interpretation has three material errors and one major gap.\n\n1. NGSA timing is misread. The profile and both war games put NGSA at a 2028 launch with EIS 2035, the technology-ready year. 'Earlier: never' forbids only EIS before 2035. So the claimed board-versus-profile clash on acceleration is false, and 'all sources point to 2037' is wrong. Only Airbus's public plan supports about 2037.\n\n2. The capacity conclusion misses 2026 evidence. Airbus is reportedly considering about 100 a month (or more) for the NGSA production system (Aviation Week, June 2026; Air Data News, 7 Oct 2026), and rate 83 is under study for the A320neo (Leeham, Aug 2026). This refutes 'NGSA industrialised for today's rates' and undercuts the 50% 'hold 75 and creep' modal and the 10% on rate 100.\n\n3. The headline's deterrence claim is overstated. The modal 'hold 75' branch leaves the board-convention entrant NPV positive (+0.42). The +5% denial result is knife-edge, and it does not deter a captive-demand entrant such as COMAC.\n\nSmaller corrections:\n- The 'about 60% of FCF' is a J.P. Morgan estimate, not an Airbus commitment.\n- The fps-scenario payoffs (+47.60 etc.) include Delay Tactics.\n- The slip-cost range is about $2.6-5.3B, not $3-5B.\n- The Delay Tactics cost decomposition is wrong ($1B nominal is about $0.4B PV).\n- The Reuters 'prudent level' quote dates to about January 2025.\n- 'Probably' is too strong for a 50% outcome.\n\nProbabilities sum correctly within each decision, but the Delay Tactics and Chicken odds are not conditioned on the 25% NGSA-slip branch, under which the board brings back both fps and Delay Tactics.\n\nJudgement: the NGSA-hold (65%), drop Delay Tactics (95%) and widebody Chicken calls are defensible once relabelled. The capacity and entrant-deterrence sections need substantive revision before use.\n\nScratch files: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/wf/verify_airbus/v1.py and v2.py."
+ }
+}
