@@ -31,6 +31,10 @@ RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "M
        "Rolls-Royce Holdings plc", "Transcript Digest", "Filings.pdf", "SEC Fillings", "Durability news", "Global Strategy Brief",
        "Company Profile.pdf", "SAF.PA", "Embraer",
        "wargame/scenarios", "referee_only", "wargame/README.md", "profiles/build"]
+# The dashboard war game (dash-2050): only the game master sees the user's board, its snapshot, the
+# game-master code and earlier reports (they hold every side's payoffs and private rationale).
+DASH = ["Combined_Game_Board", "dashboard-fps-delay", "Game.txt", "wargame/dashgame", "uploads/", "wargame/reports",
+        "/scratchpad/dash"]
 BLOCK = {
     "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-2010.md", "airbus-strategist.md", "boeing-strategist.md",
                     "wargame/runs",
@@ -38,13 +42,13 @@ BLOCK = {
     "airbus-2010": ["profiles/boeing", "profiles/airbus/", "boeing-2010.md", "boeing-strategist.md", "airbus-strategist.md",
                     "wargame/runs",
                     "wargame-boeing"] + RR + PW + CFM + BUILD + RAW,
-    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + RR + PW + CFM + BUILD,
-    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + RR + PW + CFM + BUILD,
-    "rolls-royce-strategist": AIRFRAMERS + PW + CFM + ["wargame/runs"] + BUILD,
-    "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + ["wargame/runs"] + BUILD,
-    "cfm-strategist": AIRFRAMERS + RR + PW + SHARED + ["wargame/runs"] + BUILD,
+    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + RR + PW + CFM + BUILD + DASH,
+    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + RR + PW + CFM + BUILD + DASH,
+    "rolls-royce-strategist": AIRFRAMERS + PW + CFM + ["wargame/runs"] + BUILD + DASH,
+    "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + ["wargame/runs"] + BUILD + DASH,
+    "cfm-strategist": AIRFRAMERS + RR + PW + SHARED + ["wargame/runs"] + BUILD + DASH,
     "wargame-market": ["profiles/", "wargame/runs", "wargame/config", "gameboard.py", "wargame-boeing", "wargame-airbus",
-                       "wargame-rolls_royce", "wargame-pratt_whitney", "wargame-cfm"] + BUILD,
+                       "wargame-rolls_royce", "wargame-pratt_whitney", "wargame-cfm"] + BUILD + DASH,
 }
 
 

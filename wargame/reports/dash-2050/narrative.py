@@ -1,0 +1,19 @@
+"""Narrative for the dash-2050 page (placeholder until the game is played)."""
+TITLE = "dash-2050 war game"
+LEDE = "Placeholder."
+FINDINGS = [("Placeholder", "Text.")]
+TILES = {}
+DPV_TITLE = "Each player's ΔPV after each round"
+SHARES_LEDE = ""
+NB_TITLE = "Narrowbody"
+BOEING_PATH_TITLE = "Boeing path"
+WB_TITLE = "Widebody"
+ENG_NB_TITLE = "NB engines"
+ENG_WB_TITLE = "WB engines"
+MONEY_LEDE = ""
+TIMELINE_LEDE = ""
+PLAY_LEDE = ""
+PLAY_POINTS = []
+METHOD = "<p>Placeholder.</p>"
+FOOTER = "Placeholder."
+ROUNDS = {}
