@@ -1,0 +1,107 @@
+{
+ "snapshot | board as built (16 CFM moves)": {
+  "n_cfm_moves": 16,
+  "pure": [
+   {
+    "cfm": "2-Ducted Only",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_b": -62.65,
+    "pw_b": 18.34,
+    "rr_b": 17.25
+   }
+  ],
+  "near": 19,
+  "near_with_partner_embraer": 0
+ },
+ "snapshot | all CFM moves": {
+  "n_cfm_moves": 42,
+  "pure": [
+   {
+    "cfm": "2-Ducted Only | 4-Partner Embraer | 6-Upgrade GenX9",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_b": -58.97,
+    "pw_b": 16.05,
+    "rr_b": 15.1
+   },
+   {
+    "cfm": "2-Ducted Only | 4-Partner Embraer | 7-Invest GenX",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_b": -58.97,
+    "pw_b": 16.05,
+    "rr_b": 15.1
+   }
+  ],
+  "near": 58,
+  "near_with_partner_embraer": 28
+ },
+ "fps 2044 launched, Boeing ~30% | board as built (16 CFM moves)": {
+  "n_cfm_moves": 16,
+  "pure": [
+   {
+    "cfm": "2-Ducted Only",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_b": -57.56,
+    "pw_b": 22.29,
+    "rr_b": 9.35
+   }
+  ],
+  "near": 19,
+  "near_with_partner_embraer": 0
+ },
+ "fps 2044 launched, Boeing ~30% | all CFM moves": {
+  "n_cfm_moves": 42,
+  "pure": [
+   {
+    "cfm": "2-Ducted Only | 4-Partner Embraer | 6-Upgrade GenX9",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_b": -54.13,
+    "pw_b": 19.81,
+    "rr_b": 7.58
+   },
+   {
+    "cfm": "2-Ducted Only | 4-Partner Embraer | 7-Invest GenX",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_b": -54.13,
+    "pw_b": 19.81,
+    "rr_b": 7.58
+   }
+  ],
+  "near": 58,
+  "near_with_partner_embraer": 28
+ },
+ "Boeing Do Nothing (737 on LEAP at 20%) | board as built (16 CFM moves)": {
+  "n_cfm_moves": 16,
+  "pure": [
+   {
+    "cfm": "2-Ducted Only",
+    "rr": "0-Do Nothing (Milk WB)",
+    "cfm_b": -24.97,
+    "pw_b": 14.3,
+    "rr_b": 0.0
+   }
+  ],
+  "near": 15,
+  "near_with_partner_embraer": 0
+ },
+ "Boeing Do Nothing (737 on LEAP at 20%) | all CFM moves": {
+  "n_cfm_moves": 42,
+  "pure": [
+   {
+    "cfm": "2-Ducted Only | 4-Partner Embraer | 6-Upgrade GenX9",
+    "rr": "0-Do Nothing (Milk WB)",
+    "cfm_b": -23.22,
+    "pw_b": 12.3,
+    "rr_b": -0.94
+   },
+   {
+    "cfm": "2-Ducted Only | 4-Partner Embraer | 7-Invest GenX",
+    "rr": "0-Do Nothing (Milk WB)",
+    "cfm_b": -23.22,
+    "pw_b": 12.3,
+    "rr_b": -0.94
+   }
+  ],
+  "near": 46,
+  "near_with_partner_embraer": 22
+ }
+}

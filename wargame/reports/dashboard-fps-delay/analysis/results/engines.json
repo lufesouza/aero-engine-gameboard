@@ -1,0 +1,71 @@
+{
+ "snapshot (fps 2041, Boeing 50% of new-NB market, fps engines from all 3 makers)": {
+  "pw_locked": "2-Launch GTF2 Go Solo",
+  "f_nb": [
+   42,
+   42,
+   17
+  ],
+  "pure": [
+   {
+    "cfm": "2-Ducted Only",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_yield": 60.8,
+    "pw_yield": 116.7,
+    "rr_yield": 115.7,
+    "cfm_b": -62.65,
+    "pw_b": 18.34,
+    "rr_b": 17.25
+   }
+  ],
+  "near_count": 19,
+  "cfm_partner_embraer_increment_b": 2.49,
+  "pw_when_cfm_partners_embraer_b": -2.29
+ },
+ "fps 2044 launched, Boeing ~30% of new-NB market": {
+  "pw_locked": "2-Launch GTF2 Go Solo",
+  "f_nb": [
+   45,
+   45,
+   10
+  ],
+  "pure": [
+   {
+    "cfm": "2-Ducted Only",
+    "rr": "2-Ultrafan NB Solo",
+    "cfm_yield": 64.0,
+    "pw_yield": 120.3,
+    "rr_yield": 108.5,
+    "cfm_b": -57.56,
+    "pw_b": 22.29,
+    "rr_b": 9.35
+   }
+  ],
+  "near_count": 19,
+  "cfm_partner_embraer_increment_b": 2.25,
+  "pw_when_cfm_partners_embraer_b": -2.48
+ },
+ "Boeing Do Nothing: 737 stays on LEAP at 20%": {
+  "pw_locked": "2-Launch GTF2 Go Solo",
+  "f_nb": [
+   60,
+   40,
+   0
+  ],
+  "pure": [
+   {
+    "cfm": "2-Ducted Only",
+    "rr": "0-Do Nothing (Milk WB)",
+    "cfm_yield": 84.4,
+    "pw_yield": 113.0,
+    "rr_yield": 100.0,
+    "cfm_b": -24.97,
+    "pw_b": 14.3,
+    "rr_b": 0.0
+   }
+  ],
+  "near_count": 15,
+  "cfm_partner_embraer_increment_b": 0.58,
+  "pw_when_cfm_partners_embraer_b": -2.0
+ }
+}

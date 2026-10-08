@@ -1,0 +1,1337 @@
+{
+ "nb_split": {
+  "nb_2041": 17.057,
+  "nb_2044": 9.327,
+  "timing_only": -4.415,
+  "share_effect": -3.315
+ },
+ "share_paths": {
+  "2041": [
+   [
+    2026,
+    0.4,
+    0.4
+   ],
+   [
+    2027,
+    0.4,
+    0.4
+   ],
+   [
+    2028,
+    0.4,
+    0.4
+   ],
+   [
+    2029,
+    0.4,
+    0.4
+   ],
+   [
+    2030,
+    0.4,
+    0.4
+   ],
+   [
+    2031,
+    0.4,
+    0.4
+   ],
+   [
+    2032,
+    0.4,
+    0.4
+   ],
+   [
+    2033,
+    0.4,
+    0.4
+   ],
+   [
+    2034,
+    0.4,
+    0.4
+   ],
+   [
+    2035,
+    0.4,
+    0.4
+   ],
+   [
+    2036,
+    0.4,
+    0.4
+   ],
+   [
+    2037,
+    0.37,
+    0.37
+   ],
+   [
+    2038,
+    0.34,
+    0.34
+   ],
+   [
+    2039,
+    0.31,
+    0.31
+   ],
+   [
+    2040,
+    0.28,
+    0.28
+   ],
+   [
+    2041,
+    0.29,
+    0.25
+   ],
+   [
+    2042,
+    0.3,
+    0.22
+   ],
+   [
+    2043,
+    0.31,
+    0.2
+   ],
+   [
+    2044,
+    0.32,
+    0.2
+   ],
+   [
+    2045,
+    0.33,
+    0.2
+   ],
+   [
+    2046,
+    0.34,
+    0.2
+   ],
+   [
+    2047,
+    0.35,
+    0.2
+   ],
+   [
+    2048,
+    0.36,
+    0.2
+   ],
+   [
+    2049,
+    0.37,
+    0.2
+   ],
+   [
+    2050,
+    0.38,
+    0.2
+   ],
+   [
+    2051,
+    0.39,
+    0.2
+   ],
+   [
+    2052,
+    0.4,
+    0.2
+   ],
+   [
+    2053,
+    0.41,
+    0.2
+   ],
+   [
+    2054,
+    0.42,
+    0.2
+   ],
+   [
+    2055,
+    0.43,
+    0.2
+   ],
+   [
+    2056,
+    0.44,
+    0.2
+   ],
+   [
+    2057,
+    0.45,
+    0.2
+   ],
+   [
+    2058,
+    0.46,
+    0.2
+   ],
+   [
+    2059,
+    0.47,
+    0.2
+   ],
+   [
+    2060,
+    0.48,
+    0.2
+   ]
+  ],
+  "2044": [
+   [
+    2026,
+    0.4,
+    0.4
+   ],
+   [
+    2027,
+    0.4,
+    0.4
+   ],
+   [
+    2028,
+    0.4,
+    0.4
+   ],
+   [
+    2029,
+    0.4,
+    0.4
+   ],
+   [
+    2030,
+    0.4,
+    0.4
+   ],
+   [
+    2031,
+    0.4,
+    0.4
+   ],
+   [
+    2032,
+    0.4,
+    0.4
+   ],
+   [
+    2033,
+    0.4,
+    0.4
+   ],
+   [
+    2034,
+    0.4,
+    0.4
+   ],
+   [
+    2035,
+    0.4,
+    0.4
+   ],
+   [
+    2036,
+    0.4,
+    0.4
+   ],
+   [
+    2037,
+    0.37,
+    0.37
+   ],
+   [
+    2038,
+    0.34,
+    0.34
+   ],
+   [
+    2039,
+    0.31,
+    0.31
+   ],
+   [
+    2040,
+    0.28,
+    0.28
+   ],
+   [
+    2041,
+    0.25,
+    0.25
+   ],
+   [
+    2042,
+    0.22,
+    0.22
+   ],
+   [
+    2043,
+    0.2,
+    0.2
+   ],
+   [
+    2044,
+    0.21,
+    0.2
+   ],
+   [
+    2045,
+    0.22,
+    0.2
+   ],
+   [
+    2046,
+    0.23,
+    0.2
+   ],
+   [
+    2047,
+    0.24,
+    0.2
+   ],
+   [
+    2048,
+    0.25,
+    0.2
+   ],
+   [
+    2049,
+    0.26,
+    0.2
+   ],
+   [
+    2050,
+    0.27,
+    0.2
+   ],
+   [
+    2051,
+    0.28,
+    0.2
+   ],
+   [
+    2052,
+    0.29,
+    0.2
+   ],
+   [
+    2053,
+    0.3,
+    0.2
+   ],
+   [
+    2054,
+    0.31,
+    0.2
+   ],
+   [
+    2055,
+    0.32,
+    0.2
+   ],
+   [
+    2056,
+    0.33,
+    0.2
+   ],
+   [
+    2057,
+    0.34,
+    0.2
+   ],
+   [
+    2058,
+    0.35,
+    0.2
+   ],
+   [
+    2059,
+    0.36,
+    0.2
+   ],
+   [
+    2060,
+    0.37,
+    0.2
+   ],
+   [
+    2061,
+    0.38,
+    0.2
+   ],
+   [
+    2062,
+    0.39,
+    0.2
+   ],
+   [
+    2063,
+    0.4,
+    0.2
+   ]
+  ]
+ },
+ "project_split": {
+  "v2041": 1.063,
+  "v2044": -2.527,
+  "pure_timing": -0.275,
+  "share_effect": -3.315
+ },
+ "ngsa_timing": [
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2035,
+   "airbus_vs_fps10": 52.702,
+   "airbus_vs_fps10_noDT": 51.247,
+   "airbus_vs_dn": 57.96,
+   "boeing_fps10_minus_dn": -2.262,
+   "boeing_fps10_minus_dn_DT": -3.567,
+   "pure": 2,
+   "near": 2,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2036,
+   "airbus_vs_fps10": 45.755,
+   "airbus_vs_fps10_noDT": 44.302,
+   "airbus_vs_dn": 53.887,
+   "boeing_fps10_minus_dn": -0.576,
+   "boeing_fps10_minus_dn_DT": -1.88,
+   "pure": 2,
+   "near": 3,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2037,
+   "airbus_vs_fps10": 39.208,
+   "airbus_vs_fps10_noDT": 37.756,
+   "airbus_vs_dn": 50.115,
+   "boeing_fps10_minus_dn": 1.063,
+   "boeing_fps10_minus_dn_DT": -0.242,
+   "pure": 0,
+   "near": 17,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787",
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2038,
+   "airbus_vs_fps10": 33.287,
+   "airbus_vs_fps10_noDT": 31.835,
+   "airbus_vs_dn": 46.87,
+   "boeing_fps10_minus_dn": 2.648,
+   "boeing_fps10_minus_dn_DT": 1.344,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2039,
+   "airbus_vs_fps10": 27.771,
+   "airbus_vs_fps10_noDT": 26.318,
+   "airbus_vs_dn": 43.854,
+   "boeing_fps10_minus_dn": 4.108,
+   "boeing_fps10_minus_dn_DT": 2.803,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2040,
+   "airbus_vs_fps10": 22.965,
+   "airbus_vs_fps10_noDT": 21.51,
+   "airbus_vs_dn": 41.05,
+   "boeing_fps10_minus_dn": 5.404,
+   "boeing_fps10_minus_dn_DT": 4.099,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2041,
+   "airbus_vs_fps10": 18.926,
+   "airbus_vs_fps10_noDT": 17.469,
+   "airbus_vs_dn": 38.443,
+   "boeing_fps10_minus_dn": 6.495,
+   "boeing_fps10_minus_dn_DT": 5.191,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2042,
+   "airbus_vs_fps10": 22.694,
+   "airbus_vs_fps10_noDT": 21.474,
+   "airbus_vs_dn": 36.022,
+   "boeing_fps10_minus_dn": 3.295,
+   "boeing_fps10_minus_dn_DT": 1.99,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2043,
+   "airbus_vs_fps10": 20.206,
+   "airbus_vs_fps10_noDT": 19.208,
+   "airbus_vs_dn": 33.589,
+   "boeing_fps10_minus_dn": 3.567,
+   "boeing_fps10_minus_dn_DT": 2.263,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2044,
+   "airbus_vs_fps10": 17.927,
+   "airbus_vs_fps10_noDT": 17.134,
+   "airbus_vs_dn": 31.337,
+   "boeing_fps10_minus_dn": 3.805,
+   "boeing_fps10_minus_dn_DT": 2.501,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2041,
+   "ngsa_eis": 2045,
+   "airbus_vs_fps10": 15.84,
+   "airbus_vs_fps10_noDT": 15.236,
+   "airbus_vs_dn": 29.252,
+   "boeing_fps10_minus_dn": 4.012,
+   "boeing_fps10_minus_dn_DT": 2.707,
+   "pure": 4,
+   "near": 16,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2035,
+   "airbus_vs_fps10": 56.196,
+   "airbus_vs_fps10_noDT": 55.038,
+   "airbus_vs_dn": 57.96,
+   "boeing_fps10_minus_dn": -2.527,
+   "boeing_fps10_minus_dn_DT": -3.494,
+   "pure": 2,
+   "near": 2,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2036,
+   "airbus_vs_fps10": 51.749,
+   "airbus_vs_fps10_noDT": 50.592,
+   "airbus_vs_dn": 53.887,
+   "boeing_fps10_minus_dn": -2.527,
+   "boeing_fps10_minus_dn_DT": -3.494,
+   "pure": 2,
+   "near": 2,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2037,
+   "airbus_vs_fps10": 47.603,
+   "airbus_vs_fps10_noDT": 46.447,
+   "airbus_vs_dn": 50.115,
+   "boeing_fps10_minus_dn": -2.527,
+   "boeing_fps10_minus_dn_DT": -3.494,
+   "pure": 2,
+   "near": 2,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2038,
+   "airbus_vs_fps10": 42.696,
+   "airbus_vs_fps10_noDT": 41.541,
+   "airbus_vs_dn": 46.87,
+   "boeing_fps10_minus_dn": -1.677,
+   "boeing_fps10_minus_dn_DT": -2.644,
+   "pure": 2,
+   "near": 2,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2039,
+   "airbus_vs_fps10": 37.398,
+   "airbus_vs_fps10_noDT": 36.245,
+   "airbus_vs_dn": 43.854,
+   "boeing_fps10_minus_dn": -0.427,
+   "boeing_fps10_minus_dn_DT": -1.393,
+   "pure": 2,
+   "near": 6,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787",
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2040,
+   "airbus_vs_fps10": 32.392,
+   "airbus_vs_fps10_noDT": 31.238,
+   "airbus_vs_dn": 41.05,
+   "boeing_fps10_minus_dn": 0.788,
+   "boeing_fps10_minus_dn_DT": -0.179,
+   "pure": 0,
+   "near": 21,
+   "eq_boeing_moves": [
+    "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
+    "Do Nothing (737 MAX) + Do Nothing 787",
+    "Do Nothing (737 MAX) + Re-engine 787",
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787",
+    "fps 7yr Solo + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2041,
+   "airbus_vs_fps10": 27.663,
+   "airbus_vs_fps10_noDT": 26.508,
+   "airbus_vs_dn": 38.443,
+   "boeing_fps10_minus_dn": 1.963,
+   "boeing_fps10_minus_dn_DT": 0.996,
+   "pure": 4,
+   "near": 20,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787",
+    "fps 7yr Solo + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2042,
+   "airbus_vs_fps10": 23.258,
+   "airbus_vs_fps10_noDT": 22.101,
+   "airbus_vs_dn": 36.022,
+   "boeing_fps10_minus_dn": 3.045,
+   "boeing_fps10_minus_dn_DT": 2.078,
+   "pure": 4,
+   "near": 20,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787",
+    "fps 7yr Solo + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2043,
+   "airbus_vs_fps10": 19.235,
+   "airbus_vs_fps10_noDT": 18.078,
+   "airbus_vs_dn": 33.589,
+   "boeing_fps10_minus_dn": 4.005,
+   "boeing_fps10_minus_dn_DT": 3.038,
+   "pure": 4,
+   "near": 20,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787",
+    "fps 7yr Solo + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2044,
+   "airbus_vs_fps10": 15.845,
+   "airbus_vs_fps10_noDT": 14.687,
+   "airbus_vs_dn": 31.337,
+   "boeing_fps10_minus_dn": 4.814,
+   "boeing_fps10_minus_dn_DT": 3.847,
+   "pure": 4,
+   "near": 20,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787",
+    "fps 7yr Solo + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  },
+  {
+   "fps_eis": 2044,
+   "ngsa_eis": 2045,
+   "airbus_vs_fps10": 18.671,
+   "airbus_vs_fps10_noDT": 17.703,
+   "airbus_vs_dn": 29.252,
+   "boeing_fps10_minus_dn": 2.442,
+   "boeing_fps10_minus_dn_DT": 1.475,
+   "pure": 4,
+   "near": 20,
+   "eq_boeing_moves": [
+    "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
+    "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
+    "fps 10yr Solo + Do Nothing 787",
+    "fps 10yr Solo + Re-engine 787",
+    "fps 7yr Solo + Do Nothing 787",
+    "fps 7yr Solo + Re-engine 787"
+   ],
+   "eq_airbus_moves": [
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "Launch NGSA + Delay fps Poaching + Re-engine A350",
+    "Launch NGSA + Do Nothing A350",
+    "Launch NGSA + Re-engine A350"
+   ]
+  }
+ ],
+ "thresholds_2044": {
+  "fps margin (%) | modal": {
+   "base": 25.64,
+   "g0": -2.527,
+   "k_per_unit": 0.4541,
+   "breakeven": 31.205,
+   "confirm_at_breakeven": 0.0,
+   "hurdle": 1.0,
+   "value_at_hurdle": 33.408
+  },
+  "fps margin (%) | delay_tactics": {
+   "base": 25.64,
+   "g0": -3.494,
+   "k_per_unit": 0.4164,
+   "breakeven": 34.031,
+   "confirm_at_breakeven": -0.0,
+   "hurdle": -2.0,
+   "value_at_hurdle": 29.228
+  },
+  "fps 10yr capex ($B) | modal": {
+   "base": 55.25,
+   "g0": -2.527,
+   "k_per_unit": -0.2501,
+   "breakeven": 45.146,
+   "confirm_at_breakeven": -0.0433,
+   "hurdle": 1.0,
+   "value_at_hurdle": 41.148
+  },
+  "fps 10yr capex ($B) | delay_tactics": {
+   "base": 55.25,
+   "g0": -3.494,
+   "k_per_unit": -0.2501,
+   "breakeven": 41.281,
+   "confirm_at_breakeven": -0.1039,
+   "hurdle": -2.0,
+   "value_at_hurdle": 49.277
+  },
+  "fps price ($M) | modal": {
+   "base": 55.0,
+   "g0": -2.527,
+   "k_per_unit": 0.2117,
+   "breakeven": 66.938,
+   "confirm_at_breakeven": -0.0,
+   "hurdle": 1.0,
+   "value_at_hurdle": 71.662
+  },
+  "fps price ($M) | delay_tactics": {
+   "base": 55.0,
+   "g0": -3.494,
+   "k_per_unit": 0.1941,
+   "breakeven": 73.0,
+   "confirm_at_breakeven": -0.0,
+   "hurdle": -2.0,
+   "value_at_hurdle": 62.697
+  },
+  "grid_recovery_speed_x_balance": [
+   {
+    "ramp10_b_pp": 1.0,
+    "balance_share": 50,
+    "fps10_minus_dn": -2.527,
+    "fps10_minus_dn_DT": -3.494
+   },
+   {
+    "ramp10_b_pp": 1.0,
+    "balance_share": 55,
+    "fps10_minus_dn": -2.527,
+    "fps10_minus_dn_DT": -3.494
+   },
+   {
+    "ramp10_b_pp": 1.0,
+    "balance_share": 60,
+    "fps10_minus_dn": -2.527,
+    "fps10_minus_dn_DT": -3.494
+   },
+   {
+    "ramp10_b_pp": 1.5,
+    "balance_share": 50,
+    "fps10_minus_dn": -0.958,
+    "fps10_minus_dn_DT": -1.925
+   },
+   {
+    "ramp10_b_pp": 1.5,
+    "balance_share": 55,
+    "fps10_minus_dn": -0.958,
+    "fps10_minus_dn_DT": -1.925
+   },
+   {
+    "ramp10_b_pp": 1.5,
+    "balance_share": 60,
+    "fps10_minus_dn": -0.958,
+    "fps10_minus_dn_DT": -1.925
+   },
+   {
+    "ramp10_b_pp": 2.0,
+    "balance_share": 50,
+    "fps10_minus_dn": 0.369,
+    "fps10_minus_dn_DT": -0.597
+   },
+   {
+    "ramp10_b_pp": 2.0,
+    "balance_share": 55,
+    "fps10_minus_dn": 0.545,
+    "fps10_minus_dn_DT": -0.422
+   },
+   {
+    "ramp10_b_pp": 2.0,
+    "balance_share": 60,
+    "fps10_minus_dn": 0.612,
+    "fps10_minus_dn_DT": -0.355
+   },
+   {
+    "ramp10_b_pp": 3.0,
+    "balance_share": 50,
+    "fps10_minus_dn": 2.14,
+    "fps10_minus_dn_DT": 1.173
+   },
+   {
+    "ramp10_b_pp": 3.0,
+    "balance_share": 55,
+    "fps10_minus_dn": 2.678,
+    "fps10_minus_dn_DT": 1.711
+   },
+   {
+    "ramp10_b_pp": 3.0,
+    "balance_share": 60,
+    "fps10_minus_dn": 3.088,
+    "fps10_minus_dn_DT": 2.121
+   },
+   {
+    "ramp10_b_pp": 4.0,
+    "balance_share": 50,
+    "fps10_minus_dn": 3.234,
+    "fps10_minus_dn_DT": 2.267
+   },
+   {
+    "ramp10_b_pp": 4.0,
+    "balance_share": 55,
+    "fps10_minus_dn": 4.053,
+    "fps10_minus_dn_DT": 3.087
+   },
+   {
+    "ramp10_b_pp": 4.0,
+    "balance_share": 60,
+    "fps10_minus_dn": 4.742,
+    "fps10_minus_dn_DT": 3.775
+   }
+  ],
+  "delay_tactics_shift": [
+   {
+    "sab_share": 0,
+    "fps10_minus_dn_DT": -2.527
+   },
+   {
+    "sab_share": 2.5,
+    "fps10_minus_dn_DT": -3.011
+   },
+   {
+    "sab_share": 5,
+    "fps10_minus_dn_DT": -3.494
+   },
+   {
+    "sab_share": 7.5,
+    "fps10_minus_dn_DT": -3.977
+   },
+   {
+    "sab_share": 10,
+    "fps10_minus_dn_DT": -4.461
+   }
+  ],
+  "fps7_minus_dn_2044": -3.397,
+  "via_embraer_breakeven_capex": {
+   "g0": -15.951,
+   "k": -0.3389,
+   "breakeven_capex": 52.93
+  }
+ },
+ "vacuum": [
+  {
+   "fps_eis": 2041,
+   "year": 2030,
+   "boeing_share_if_fps": 0.4,
+   "airbus_units_if_fps": 1200,
+   "boeing_share_if_dn": 0.4,
+   "airbus_units_if_dn": 1200
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2035,
+   "boeing_share_if_fps": 0.4,
+   "airbus_units_if_fps": 1200,
+   "boeing_share_if_dn": 0.4,
+   "airbus_units_if_dn": 1200
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2037,
+   "boeing_share_if_fps": 0.37,
+   "airbus_units_if_fps": 1260,
+   "boeing_share_if_dn": 0.37,
+   "airbus_units_if_dn": 1260
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2040,
+   "boeing_share_if_fps": 0.28,
+   "airbus_units_if_fps": 1440,
+   "boeing_share_if_dn": 0.28,
+   "airbus_units_if_dn": 1440
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2041,
+   "boeing_share_if_fps": 0.29,
+   "airbus_units_if_fps": 1420,
+   "boeing_share_if_dn": 0.25,
+   "airbus_units_if_dn": 1500
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2043,
+   "boeing_share_if_fps": 0.31,
+   "airbus_units_if_fps": 1380,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2044,
+   "boeing_share_if_fps": 0.32,
+   "airbus_units_if_fps": 1360,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2045,
+   "boeing_share_if_fps": 0.33,
+   "airbus_units_if_fps": 1340,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2050,
+   "boeing_share_if_fps": 0.38,
+   "airbus_units_if_fps": 1240,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2056,
+   "boeing_share_if_fps": 0.44,
+   "airbus_units_if_fps": 1120,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2041,
+   "year": 2060,
+   "boeing_share_if_fps": 0.48,
+   "airbus_units_if_fps": 1040,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2030,
+   "boeing_share_if_fps": 0.4,
+   "airbus_units_if_fps": 1200,
+   "boeing_share_if_dn": 0.4,
+   "airbus_units_if_dn": 1200
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2035,
+   "boeing_share_if_fps": 0.4,
+   "airbus_units_if_fps": 1200,
+   "boeing_share_if_dn": 0.4,
+   "airbus_units_if_dn": 1200
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2037,
+   "boeing_share_if_fps": 0.37,
+   "airbus_units_if_fps": 1260,
+   "boeing_share_if_dn": 0.37,
+   "airbus_units_if_dn": 1260
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2040,
+   "boeing_share_if_fps": 0.28,
+   "airbus_units_if_fps": 1440,
+   "boeing_share_if_dn": 0.28,
+   "airbus_units_if_dn": 1440
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2041,
+   "boeing_share_if_fps": 0.25,
+   "airbus_units_if_fps": 1500,
+   "boeing_share_if_dn": 0.25,
+   "airbus_units_if_dn": 1500
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2043,
+   "boeing_share_if_fps": 0.2,
+   "airbus_units_if_fps": 1600,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2044,
+   "boeing_share_if_fps": 0.21,
+   "airbus_units_if_fps": 1580,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2045,
+   "boeing_share_if_fps": 0.22,
+   "airbus_units_if_fps": 1560,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2050,
+   "boeing_share_if_fps": 0.27,
+   "airbus_units_if_fps": 1460,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2056,
+   "boeing_share_if_fps": 0.33,
+   "airbus_units_if_fps": 1340,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2060,
+   "boeing_share_if_fps": 0.37,
+   "airbus_units_if_fps": 1260,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  },
+  {
+   "fps_eis": 2044,
+   "year": 2063,
+   "boeing_share_if_fps": 0.4,
+   "airbus_units_if_fps": 1200,
+   "boeing_share_if_dn": 0.2,
+   "airbus_units_if_dn": 1600
+  }
+ ],
+ "airbus_units_above_60pct_2041": 600,
+ "airbus_units_above_60pct_fps_window_2041": 1920,
+ "airbus_units_above_60pct_2044": 1660,
+ "airbus_units_above_60pct_fps_window_2044": 5460
+}

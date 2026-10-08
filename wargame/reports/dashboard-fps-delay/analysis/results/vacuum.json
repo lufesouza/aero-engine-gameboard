@@ -1,0 +1,332 @@
+{
+ "cases": {
+  "fps 2041": {
+   "airbus_share": {
+    "2037": 0.63,
+    "2040": 0.72,
+    "2041": 0.71,
+    "2043": 0.69,
+    "2044": 0.68,
+    "2046": 0.66,
+    "2050": 0.62,
+    "2056": 0.56
+   },
+   "unserved_cap900": {
+    "cum_2037_2056": 7720,
+    "peak_per_yr": 540,
+    "years_with_gap": 20
+   },
+   "unserved_cap1080": {
+    "cum_2037_2056": 4120,
+    "peak_per_yr": 360,
+    "years_with_gap": 20
+   },
+   "unserved_cap1200": {
+    "cum_2037_2056": 1920,
+    "peak_per_yr": 240,
+    "years_with_gap": 15
+   },
+   "unserved_cap1320": {
+    "cum_2037_2056": 480,
+    "peak_per_yr": 120,
+    "years_with_gap": 7
+   }
+  },
+  "fps 2044": {
+   "airbus_share": {
+    "2037": 0.63,
+    "2040": 0.72,
+    "2041": 0.75,
+    "2043": 0.8,
+    "2044": 0.79,
+    "2046": 0.77,
+    "2050": 0.73,
+    "2056": 0.67
+   },
+   "unserved_cap900": {
+    "cum_2037_2056": 11040,
+    "peak_per_yr": 700,
+    "years_with_gap": 20
+   },
+   "unserved_cap1080": {
+    "cum_2037_2056": 7440,
+    "peak_per_yr": 520,
+    "years_with_gap": 20
+   },
+   "unserved_cap1200": {
+    "cum_2037_2056": 5040,
+    "peak_per_yr": 400,
+    "years_with_gap": 20
+   },
+   "unserved_cap1320": {
+    "cum_2037_2056": 2700,
+    "peak_per_yr": 280,
+    "years_with_gap": 18
+   }
+  },
+  "Boeing Do Nothing": {
+   "airbus_share": {
+    "2037": 0.63,
+    "2040": 0.72,
+    "2041": 0.75,
+    "2043": 0.8,
+    "2044": 0.8,
+    "2046": 0.8,
+    "2050": 0.8,
+    "2056": 0.8
+   },
+   "unserved_cap900": {
+    "cum_2037_2056": 12860,
+    "peak_per_yr": 700,
+    "years_with_gap": 20
+   },
+   "unserved_cap1080": {
+    "cum_2037_2056": 9260,
+    "peak_per_yr": 520,
+    "years_with_gap": 20
+   },
+   "unserved_cap1200": {
+    "cum_2037_2056": 6860,
+    "peak_per_yr": 400,
+    "years_with_gap": 20
+   },
+   "unserved_cap1320": {
+    "cum_2037_2056": 4520,
+    "peak_per_yr": 280,
+    "years_with_gap": 18
+   }
+  }
+ },
+ "entrant_unserved_only": [
+  {
+   "case": "fps 2041",
+   "eis": 2036,
+   "capex_b": 15.0,
+   "units_2037_2056": 1900,
+   "pv_margin": 2.33,
+   "pv_capex": 5.78,
+   "alpha_pen": 0.0,
+   "npv": -3.45
+  },
+  {
+   "case": "fps 2041",
+   "eis": 2036,
+   "capex_b": 25.0,
+   "units_2037_2056": 1900,
+   "pv_margin": 2.33,
+   "pv_capex": 9.64,
+   "alpha_pen": 0.0,
+   "npv": -7.31
+  },
+  {
+   "case": "fps 2041",
+   "eis": 2038,
+   "capex_b": 15.0,
+   "units_2037_2056": 1720,
+   "pv_margin": 2.0,
+   "pv_capex": 4.78,
+   "alpha_pen": 0.0,
+   "npv": -2.78
+  },
+  {
+   "case": "fps 2041",
+   "eis": 2038,
+   "capex_b": 25.0,
+   "units_2037_2056": 1720,
+   "pv_margin": 2.0,
+   "pv_capex": 7.97,
+   "alpha_pen": 0.0,
+   "npv": -5.96
+  },
+  {
+   "case": "fps 2041",
+   "eis": 2040,
+   "capex_b": 15.0,
+   "units_2037_2056": 1327,
+   "pv_margin": 1.39,
+   "pv_capex": 3.95,
+   "alpha_pen": 0.0,
+   "npv": -2.56
+  },
+  {
+   "case": "fps 2041",
+   "eis": 2040,
+   "capex_b": 25.0,
+   "units_2037_2056": 1327,
+   "pv_margin": 1.39,
+   "pv_capex": 6.58,
+   "alpha_pen": 0.0,
+   "npv": -5.2
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2036,
+   "capex_b": 15.0,
+   "units_2037_2056": 5020,
+   "pv_margin": 4.6,
+   "pv_capex": 5.78,
+   "alpha_pen": 0.0,
+   "npv": -1.18
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2036,
+   "capex_b": 25.0,
+   "units_2037_2056": 5020,
+   "pv_margin": 4.6,
+   "pv_capex": 9.64,
+   "alpha_pen": 0.0,
+   "npv": -5.04
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2038,
+   "capex_b": 15.0,
+   "units_2037_2056": 4840,
+   "pv_margin": 4.27,
+   "pv_capex": 4.78,
+   "alpha_pen": 0.0,
+   "npv": -0.51
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2038,
+   "capex_b": 25.0,
+   "units_2037_2056": 4840,
+   "pv_margin": 4.27,
+   "pv_capex": 7.97,
+   "alpha_pen": 0.0,
+   "npv": -3.69
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2040,
+   "capex_b": 15.0,
+   "units_2037_2056": 4420,
+   "pv_margin": 3.62,
+   "pv_capex": 3.95,
+   "alpha_pen": 0.0,
+   "npv": -0.33
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2040,
+   "capex_b": 25.0,
+   "units_2037_2056": 4420,
+   "pv_margin": 3.62,
+   "pv_capex": 6.58,
+   "alpha_pen": 0.0,
+   "npv": -2.96
+  },
+  {
+   "case": "Boeing Do Nothing",
+   "eis": 2036,
+   "capex_b": 15.0,
+   "units_2037_2056": 6840,
+   "pv_margin": 5.52,
+   "pv_capex": 5.78,
+   "alpha_pen": 0.0,
+   "npv": -0.26
+  },
+  {
+   "case": "Boeing Do Nothing",
+   "eis": 2036,
+   "capex_b": 25.0,
+   "units_2037_2056": 6840,
+   "pv_margin": 5.52,
+   "pv_capex": 9.64,
+   "alpha_pen": 0.0,
+   "npv": -4.11
+  },
+  {
+   "case": "Boeing Do Nothing",
+   "eis": 2038,
+   "capex_b": 15.0,
+   "units_2037_2056": 6660,
+   "pv_margin": 5.2,
+   "pv_capex": 4.78,
+   "alpha_pen": 0.0,
+   "npv": 0.42
+  },
+  {
+   "case": "Boeing Do Nothing",
+   "eis": 2038,
+   "capex_b": 25.0,
+   "units_2037_2056": 6660,
+   "pv_margin": 5.2,
+   "pv_capex": 7.97,
+   "alpha_pen": 0.0,
+   "npv": -2.77
+  },
+  {
+   "case": "Boeing Do Nothing",
+   "eis": 2040,
+   "capex_b": 15.0,
+   "units_2037_2056": 6240,
+   "pv_margin": 4.54,
+   "pv_capex": 3.95,
+   "alpha_pen": 0.0,
+   "npv": 0.59
+  },
+  {
+   "case": "Boeing Do Nothing",
+   "eis": 2040,
+   "capex_b": 25.0,
+   "units_2037_2056": 6240,
+   "pv_margin": 4.54,
+   "pv_capex": 6.58,
+   "alpha_pen": 0.0,
+   "npv": -2.04
+  }
+ ],
+ "entrant_with_slice": [
+  {
+   "case": "fps 2041",
+   "eis": 2038,
+   "capex_b": 20.0,
+   "units_2037_2056": 1720,
+   "pv_margin": 2.0,
+   "pv_capex": 6.37,
+   "alpha_pen": 0.0,
+   "npv": -4.37,
+   "slice": 0.05,
+   "npv_with_slice": -2.86
+  },
+  {
+   "case": "fps 2041",
+   "eis": 2038,
+   "capex_b": 20.0,
+   "units_2037_2056": 1720,
+   "pv_margin": 2.0,
+   "pv_capex": 6.37,
+   "alpha_pen": 0.0,
+   "npv": -4.37,
+   "slice": 0.1,
+   "npv_with_slice": -1.35
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2038,
+   "capex_b": 20.0,
+   "units_2037_2056": 4840,
+   "pv_margin": 4.27,
+   "pv_capex": 6.37,
+   "alpha_pen": 0.0,
+   "npv": -2.1,
+   "slice": 0.05,
+   "npv_with_slice": -0.59
+  },
+  {
+   "case": "fps 2044",
+   "eis": 2038,
+   "capex_b": 20.0,
+   "units_2037_2056": 4840,
+   "pv_margin": 4.27,
+   "pv_capex": 6.37,
+   "alpha_pen": 0.0,
+   "npv": -2.1,
+   "slice": 0.1,
+   "npv_with_slice": 0.92
+  }
+ ]
+}

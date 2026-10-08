@@ -1,0 +1,54 @@
+{
+ "flat strain (uploaded build)": {
+  "pure": 1,
+  "near": 13,
+  "missing": 4,
+  "extra": 0,
+  "bad_round": [
+   [
+    124,
+    99,
+    124.19,
+    98.48,
+    "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
+    "fps 10yr Solo + Re-engine 787"
+   ],
+   [
+    125,
+    99,
+    124.52,
+    98.48,
+    "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
+    "fps 10yr Solo + Re-engine 787"
+   ],
+   [
+    125,
+    99,
+    124.52,
+    98.48,
+    "Launch NGSA + Delay fps Poaching + Do Nothing A350",
+    "fps 10yr Solo + Re-engine 787"
+   ],
+   [
+    124,
+    100,
+    123.55,
+    99.49,
+    "Launch NGSA + Do Nothing A350",
+    "fps 10yr Solo + Re-engine 787"
+   ]
+  ]
+ },
+ "overlap-aware strain": {
+  "pure": 0,
+  "near": 17,
+  "missing": 0,
+  "extra": 0,
+  "bad_round": []
+ },
+ "engine": {
+  "pure": 1,
+  "near": 19,
+  "pw_locked": "2-Launch GTF2 Go Solo"
+ }
+}

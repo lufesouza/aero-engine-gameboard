@@ -1,0 +1,361 @@
+======================================================================
+AEROSPACE GAME-THEORY DASHBOARD — FULL STATE SNAPSHOT
+======================================================================
+
+CONTEXT
+-------
+This is a coupled non-cooperative game over the post-2037
+narrowbody (NB) and widebody (WB) commercial-aircraft markets.
+Two airframers (Airbus, Boeing) and three engine makers
+(CFM/GE, Pratt & Whitney, Rolls-Royce) make simultaneous
+strategy choices. Payoffs are EV-normalised yields (100% = no
+change vs status quo). Equilibria are computed as Pure Nash
+(no unilateral improvement) and Near-Nash (within an ε-band).
+
+1. ENGINE SUPPLIER SELECTION
+------------------------------
+  Boeing fps supplier      : RR, PW, and CFM (all 3)
+  Airbus NGSA supplier     : PW and CFM
+  Selection code           : (7, 6)
+  Engines in play          : CFM, PW, RR
+
+2. POST-2037 NB MARKET SHARE (when both airframers launch)
+------------------------------
+  Boeing fps               : 50%
+  Airbus NGSA              : 50%
+  Derived NB engine share  : CFM 42% | PW 42% | RR 17%
+
+3. ENGINE-PLAYER POSTURES (DERIVED FROM SUPPLIER MATRIX)
+------------------------------
+  PW locked move           : 2-Launch GTF2 Go Solo
+  PW lock rationale        : an airframer chose PW (solo)
+  RR posture               : Solo or Do Nothing
+
+4. AIRCRAFT PRICES ($M PER AIRCRAFT)
+------------------------------
+  737 MAX                  : $48M
+  A320neo                  : $52M
+  Boeing fps (next-gen NB) : $55M
+  Airbus NGSA (next-gen NB): $55M
+  Widebody (787 / A350)    : $180M
+
+5. OPERATIONAL MARGINS (%)
+------------------------------
+  Airbus A320neo                                : 13.14%
+  Airbus NGSA                                   : 26.28%
+  Airbus A350 (WB) — status quo                 : 4.95%
+  Airbus A350 (WB) NO 787 re-engine (post-EIS)  : 10.76%
+  Airbus A350 (WB) WITH 787 re-engine (post-EIS): 6.47%
+  Boeing 737                                    : 8.00%
+  Boeing fps                                    : 25.64%
+  Boeing 787 (WB) — status quo                  : 20.00%
+  Boeing 787 (WB) NO A350 re-engine (post-EIS)  : 25.21%
+  Boeing 787 (WB) WITH A350 re-engine (post-EIS): 15.77%
+
+6. AIRFRAMER NON-RECURRING SPEND ($B, CAPEX + NRE)
+------------------------------
+  fps 7yr Solo             : $64.47B
+  fps 10yr Solo            : $55.25B
+  fps via Embraer          : $100.00B
+  NGSA Build               : $30.07B
+  Boeing 787 Re-engine     : $5.00B
+  Airbus A350 Re-engine    : $5.00B
+  Boeing 737 Rate Hike     : $2.94B (nominal at 2032 fixed-calendar)
+  fps EIS year             : 2041
+  NGSA EIS year            : 2037
+  787 Re-engine EIS year   : 2035
+  A350 Re-engine EIS year  : 2035
+
+7. ENGINE-MAKER BALANCE SHEETS ($B)
+------------------------------
+  CFM/GE                   : EV $160B / Debt $35B
+  PW                       : EV $110B / Debt $40B
+  RR                       : EV $110B / Debt $40B
+
+8. ENGINE R&D ($B) — all conditional on actual program launch
+------------------------------
+  CFM Open Fan R&D (only on Open Fan / Open + Ducted) : $8.0B
+  CFM Ducted Fan R&D (only on Ducted / Open + Ducted) : $4.0B
+  PW GTF2 Solo R&D (only when PW locked to Solo)      : $2.0B
+  PW GTF2 JV R&D (only when PW locked to JV with RR)  : $2.0B
+  RR Ultrafan R&D — NB (only if RR launches NB)       : $8.0B
+  RR Ultrafan R&D — WB (only if RR launches WB)       : $4.0B
+  RR T1000 Upgrade R&D (only if RR plays T1000)       : $2.0B
+
+9. STRAIN, FINES & OTHER COSTS
+------------------------------
+  Airbus Two-Front Strain  : $3.00B
+  Boeing Two-Front Strain  : $3.00B
+  Naked Espionage Fine     : $48.32B
+  NB Obsolescence (milker) : 24.8%
+  WB Obsolescence (milker) : 15.0%
+  WB lone-refresh capture  : 787 +1.0pp/yr (cap 85.0%) | A350 +1.5pp/yr (cap 60%)
+  Sabotage Share Shift     : 5.0% (FLAT, 5 yrs from fps EIS)
+  Sabotage Op Cost / Move  : $1.00B
+  Generic engine strain    : $2.00B
+  RR NB+WB concurrent strn : $5.00B (triggers when RR has both NB and WB project)
+  CFM Lobby Cost (Move 5)  : $1.00B
+  fps 7yr ramp NB share +  : 5.0pp (first-mover bonus over 10yr / Embraer)
+  fps capture speed        : 7yr 1.0pp/yr | 10yr/Embraer 1.0pp/yr
+  NGSA Phase-2 recovery    : vs 7yr 1.0pp/yr | vs 10yr 1.0pp/yr (NGSA Phase-1 capture fixed at +3pp/yr)
+
+10. GAME-THEORY PARAMETERS
+------------------------------
+  Airframer ε-Nash tol     : 1.00%
+  Engine ε-Nash tol        : 5.00%
+  True Cost Penalty α      : 0.30
+  Engine Gross Multiplier  : 1.60x
+  Engine timeline (synced) : 2026-2056 (T=31 yrs; NB EIS 2037 = min(fps, NGSA), WB EIS 2035 = min(787, A350))
+
+======================================================================
+AIRFRAMER GAME — EQUILIBRIA
+======================================================================
+Pure Nash count     : 0
+Near-Nash count (ε) : 17
+
+PURE NASH: none at current parameters.
+
+NEAR-NASH EQUILIBRIA (within ε)
+------------------------------
+  Near-Nash #1  (Airbus 125% | Boeing 95%)
+    Airbus  NB: Launch NGSA  + Delay fps Bottleneck  + Delay fps Poaching
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo  + Increase 737 Rate
+    Boeing  WB: Milk 787
+  Near-Nash #2  (Airbus 126% | Boeing 95%)
+    Airbus  NB: Launch NGSA  + Delay fps Bottleneck  + Delay fps Poaching
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Milk 787
+  Near-Nash #3  (Airbus 124% | Boeing 99%)
+    Airbus  NB: Launch NGSA  + Delay fps Bottleneck  + Delay fps Poaching
+    Airbus  WB: Milk A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Re-engine 787
+  Near-Nash #4  (Airbus 125% | Boeing 95%)
+    Airbus  NB: Launch NGSA  + Delay fps Bottleneck
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo  + Increase 737 Rate
+    Boeing  WB: Milk 787
+  Near-Nash #5  (Airbus 126% | Boeing 95%)
+    Airbus  NB: Launch NGSA  + Delay fps Bottleneck
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Milk 787
+  Near-Nash #6  (Airbus 125% | Boeing 99%)
+    Airbus  NB: Launch NGSA  + Delay fps Bottleneck
+    Airbus  WB: Milk A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Re-engine 787
+  Near-Nash #7  (Airbus 125% | Boeing 95%)
+    Airbus  NB: Launch NGSA  + Delay fps Poaching
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo  + Increase 737 Rate
+    Boeing  WB: Milk 787
+  Near-Nash #8  (Airbus 126% | Boeing 95%)
+    Airbus  NB: Launch NGSA  + Delay fps Poaching
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Milk 787
+  Near-Nash #9  (Airbus 125% | Boeing 99%)
+    Airbus  NB: Launch NGSA  + Delay fps Poaching
+    Airbus  WB: Milk A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Re-engine 787
+  Near-Nash #10  (Airbus 123% | Boeing 95%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 7yr Solo
+    Boeing  WB: Milk 787
+  Near-Nash #11  (Airbus 124% | Boeing 96%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo  + Increase 737 Rate
+    Boeing  WB: Milk 787
+  Near-Nash #12  (Airbus 125% | Boeing 96%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Milk 787
+  Near-Nash #13  (Airbus 133% | Boeing 95%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Re-engine A350
+    Boeing  NB: Milk 737MAX
+    Boeing  WB: Milk 787
+  Near-Nash #14  (Airbus 122% | Boeing 99%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Milk A350
+    Boeing  NB: Launch fps 10yr Solo  + Increase 737 Rate
+    Boeing  WB: Re-engine 787
+  Near-Nash #15  (Airbus 124% | Boeing 100%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Milk A350
+    Boeing  NB: Launch fps 10yr Solo
+    Boeing  WB: Re-engine 787
+  Near-Nash #16  (Airbus 131% | Boeing 99%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Milk A350
+    Boeing  NB: Milk 737MAX  + Increase 737 Rate
+    Boeing  WB: Re-engine 787
+  Near-Nash #17  (Airbus 132% | Boeing 100%)
+    Airbus  NB: Launch NGSA
+    Airbus  WB: Milk A350
+    Boeing  NB: Milk 737MAX
+    Boeing  WB: Re-engine 787
+
+======================================================================
+ENGINE GAME — EQUILIBRIA
+======================================================================
+Pure Nash count     : 1
+Near-Nash count (ε) : 19
+PW locked move      : 2-Launch GTF2 Go Solo
+
+PURE NASH EQUILIBRIA
+------------------------------
+  Pure Nash #1  (CFM 61% | RR 116%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: Milk Trent
+
+NEAR-NASH EQUILIBRIA (within ε)
+------------------------------
+  Near-Nash #1  (CFM 70% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing (Milk WB)
+    RR      WB: Milk Trent
+  Near-Nash #2  (CFM 67% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 1-Ultrafan WB
+  Near-Nash #3  (CFM 69% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 4-Upgrade T1000
+  Near-Nash #4  (CFM 60% | RR 111%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: 4-Upgrade T1000
+  Near-Nash #5  (CFM 70% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 6-Upgrade GenX9
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing (Milk WB)
+    RR      WB: Milk Trent
+  Near-Nash #6  (CFM 67% | RR 111%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 6-Upgrade GenX9
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 1-Ultrafan WB
+  Near-Nash #7  (CFM 68% | RR 111%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 6-Upgrade GenX9
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 4-Upgrade T1000
+  Near-Nash #8  (CFM 60% | RR 115%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 6-Upgrade GenX9
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: Milk Trent
+  Near-Nash #9  (CFM 59% | RR 110%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 6-Upgrade GenX9
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: 4-Upgrade T1000
+  Near-Nash #10  (CFM 70% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 7-Invest GenX
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing (Milk WB)
+    RR      WB: Milk Trent
+  Near-Nash #11  (CFM 67% | RR 111%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 7-Invest GenX
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 1-Ultrafan WB
+  Near-Nash #12  (CFM 68% | RR 111%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 7-Invest GenX
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 4-Upgrade T1000
+  Near-Nash #13  (CFM 60% | RR 115%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 7-Invest GenX
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: Milk Trent
+  Near-Nash #14  (CFM 59% | RR 110%)
+    CFM/GE  NB: 2-Ducted Only
+    CFM/GE  WB: 7-Invest GenX
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: 4-Upgrade T1000
+  Near-Nash #15  (CFM 68% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only | 5-Lobby Govts
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing (Milk WB)
+    RR      WB: Milk Trent
+  Near-Nash #16  (CFM 66% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only | 5-Lobby Govts
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 1-Ultrafan WB
+  Near-Nash #17  (CFM 67% | RR 112%)
+    CFM/GE  NB: 2-Ducted Only | 5-Lobby Govts
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 0-Do Nothing
+    RR      WB: 4-Upgrade T1000
+  Near-Nash #18  (CFM 59% | RR 116%)
+    CFM/GE  NB: 2-Ducted Only | 5-Lobby Govts
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: Milk Trent
+  Near-Nash #19  (CFM 58% | RR 111%)
+    CFM/GE  NB: 2-Ducted Only | 5-Lobby Govts
+    CFM/GE  WB: Milk GEnx
+    PW      NB: 2-Launch GTF2 Go Solo
+    PW      WB: (no WB platform)
+    RR      NB: 2-Ultrafan NB Solo
+    RR      WB: 4-Upgrade T1000
+
+======================================================================
+END OF SNAPSHOT
+======================================================================
