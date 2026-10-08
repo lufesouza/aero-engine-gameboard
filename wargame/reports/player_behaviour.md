@@ -27,7 +27,7 @@ A synthesis step resolved the remaining disagreements, all in the verifiers' fav
 - **Objectives** come from the Boeing PD briefing: hold 50/50 in narrowbody and defend incumbency. The objective premium is capped at $2B.
 
 **How it behaves**
-1. **Readiness gates first.** No fps, no 787 Re-engine and no rate step in round 1 (hard rules H1, H3, H6). A new airplane comes "when the market, the technology and we are ready".
+1. **Readiness gates first.** No fps and no 787 Re-engine in round 1 (H1, H3), and no rate step under the round-1 supply crunch (H6). A new airplane comes "when the market, the technology and we are ready".
 2. **The business case must close.** The fps go/no-go test requires beating Do Nothing by more than $1B, and losing no more than $2B to it in Malave's slip test. This makes Boeing a margin player, not a share player.
 3. **One major development at a time** (H4). It never cancels (H5), absorbs shocks and never blames anyone.
 4. **Commits only to a committed engine.** Its engine requirement is engine-neutral and names no maker.
@@ -41,13 +41,13 @@ A synthesis step resolved the remaining disagreements, all in the verifiers' fav
   - **Round 2, launched fps 2031 (Solo, 10-year ramp-up) with the rate step.** fps alone was worth **+$7.44B** to Boeing and cost Airbus **$11.31B**. The rate step cost Airbus $3.77B.
   - **Result:** incumbency defended (40.2%), +$3.9B.
 - **Game 2:**
-  - **Round 2, fps rejected.** The same go/no-go test rejected the delayed fps: −0.73 against Do Nothing, and −4.71 in the slip test. Not launching was worth **+$6.25B** to Boeing.
+  - **Round 2, fps rejected.** The same go/no-go test rejected the delayed fps: −0.73 against Do Nothing, and −4.71 in the slip test. Choosing the 787 Re-engine instead of fps was worth **+$6.25B** to Boeing; refusing fps on its own (keeping the 787 Re-engine) was worth +$3.08B to Boeing and +$8.61B to Airbus.
   - **Round 2, 787 Re-engine on GE in 2031 instead.** Moving first was worth **+$5.03B** to Boeing and **−$3.15B** to Airbus, which then shelved its A350 Re-engine. It cost Rolls-Royce $2.66B and gave CFM/GE +$2.44B.
   - **Result:** narrowbody share fell to 32% in 2045 and widebody share rose to 68%, for +$1.7B. Both share objectives failed, but they would have failed even with fps (37.45% < 40%).
 - **Effect on others.** Boeing's engine requirement named no maker, so rivals read it in opposite ways:
   - In game 1, Rolls-Royce built an UltraFan narrowbody that no aircraft took, and Pratt & Whitney cancelled the GTF2 that Boeing then named.
   - In game 2, Boeing's "GTF2 qualifies today" was contradicted the same round. It corrected this in round 3.
-- **Thin seats.** Malave's slip-test veto, which decided the game-2 no-fps call, rests on one earnings call.
+- **Thin seats.** Malave's slip-test veto, one of two failed legs behind the game-2 no-fps call (the nominal leg failed too), rests on one earnings call.
 
 ## Airbus: a disciplined, rule-bound incumbent that maximises PV inside red lines
 
@@ -61,7 +61,7 @@ A synthesis step resolved the remaining disagreements, all in the verifiers' fav
 2. **Asks for the partner's best new engine but never waits for it.** It launches in the same sealed round and accepts the fallback, since requesting a rival engine costs nothing.
 3. **Derivatives come second and in sequence.** No concurrent developments under the supply crunch.
 4. **Widebody Chicken discipline.** It pre-empts only when that pays, and stays out once Boeing has re-engined the 787.
-5. **Integrity first.** It never uses Delay Tactics. It poaches Boeing engineers only while it has a programme of its own in development.
+5. **Integrity first.** Delay Tactics at most once, only against an fps in development and only if worth at least $1B; it refused them in game 1 round 3 at +$0.72B. It poaches Boeing engineers only while it has a programme of its own in development.
 6. **Signals and resets.** It signals to pull suppliers and customers, then resets openly ("subject to Board approval").
 7. **Thin seats ratify, they don't decide.** The thin executive seats only confirmed the company default.
 
@@ -103,7 +103,7 @@ A synthesis step resolved the remaining disagreements, all in the verifiers' fav
 - **Game 1, round 2: a bet on Boeing's requirement.** It read Boeing's engine requirement as an announcement and launched UltraFan narrowbody for fps. Boeing named GTF2, and the bet cost $4.44B.
 - **Game 1, round 2: the missed widebody launch.** It could have launched the UltraFan widebody and won the A350. On its own, that option was worth +$1.32B.
 - **Game 2, round 3: honouring the one-year-ahead promise.** It kept the promise on Airbus's conditional signal, and the engine was stranded (−$1.53B).
-- **Result:** last in both games (−$7.0B, then −$3.7B). Both bets were declared and faithful to doctrine, so the referee scored them as fidelity, not blunders.
+- **Result:** last in both games (−$7.0B, then −$3.7B). Both bets were declared and within its premium cap: the game-1 bet was objective-driven, the game-2 one honoured its promise.
 
 ## Pratt & Whitney: durability first, then cut what nobody selects
 
@@ -114,7 +114,7 @@ A synthesis step resolved the remaining disagreements, all in the verifiers' fav
 
 **How it behaves**
 1. **Fix forward.** It books the GTF durability upgrade first.
-2. **Hedges NGSA with a GTF2.** Launched in 2030 to avoid overlapping work: below the team's bar on its own odds, cleared by the objectives file.
+2. **Hedged NGSA with a GTF2 for 2030.** Cleared by its objectives file, below the team's bar on its own odds; the profile default was a disclosed offer for 2029.
 3. **The CFO cuts an unselected engine at the first chance** (Mitchill's veto). It "reaffirms, then cuts".
 4. **No discounts, no widebody engine.** A Joint Venture with Rolls-Royce only after an airframer names UltraFan.
 5. **Voice:** dated and disclosure-heavy in Calio's voice ("control what you can control", "time on wing is the name of the game").
@@ -437,7 +437,7 @@ All values are as played minus the rejected alternative.
 | Who wins the widebody | **Scenario, through doctrine** | H4 kept Boeing out while fps was in development (G1); Airbus rule 3 kept Airbus out after the 787 Re-engine (G2). |
 | Airbus +8.0 between the games; Boeing objectives 1/2 → 0/2 | **Scenario** | The narrowbody objective was lost either way: with fps launched in G2, Boeing is at 37.45% < 40%. |
 | Size of the airframers' gains | **Scenario (injects)** | Fuel spike: Airbus +6.68 / +6.38, Boeing +1.89 / +1.25. Widebody boom rewarded whoever won the widebody: G1 Airbus +0.66, Boeing -0.14; G2 Boeing +0.98, Airbus -0.11. |
-| RR last in both games | **Doctrine (hard rule 1, honouring commitments) meeting the engine rules** | Myopic regret 26.15 / 21.84. The rule is worth about 18-21 to RR; the bets cost 4.44 and 1.53. |
+| RR last in both games | **Doctrine (hard rule 1, honouring commitments) meeting the engine rules** | Myopic regret 26.15 / 21.84. The rule cost RR about 18-21 (−18.23 / −21.41); the bets cost 4.44 and 1.53. |
 | P&W -2.77 in both games | **Doctrine, unchanged by the scenario** | Identical orders in both games; the hedge cost 0.73. |
 
 ---
