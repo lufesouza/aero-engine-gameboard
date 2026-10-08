@@ -123,7 +123,8 @@ def line_chart(series, y_lo, y_hi, y_step, y_fmt, label, refs, aria_label, end_l
         lx = w - right + 8
         if sx(x) + 10 < lx:
             out.append(f'<line x1="{sx(x) + 6:.1f}" x2="{lx - 3:.1f}" y1="{sy(v):.1f}" y2="{sy(v) + dy:.1f}" class="leader"/>')
-        out.append(f'<text x="{lx}" y="{sy(v) + dy + 4:.1f}" class="endlab">{esc(txt)}</text>')
+        if txt:
+            out.append(f'<text x="{lx}" y="{sy(v) + dy + 4:.1f}" class="endlab">{esc(txt)}</text>')
     years = sorted({x for _, _, d in series for x, _ in d})
     payload = {"x0": left, "x1": w - right, "xlo": x_lo, "xhi": x_hi, "w": w, "fmt": y_fmt, "years": years,
                "series": [{"name": n, "k": f"var(--{c})", "vals": {str(x): v for x, v in d}} for n, c, d in series]}

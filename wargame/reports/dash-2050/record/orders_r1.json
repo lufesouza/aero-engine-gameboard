@@ -1,0 +1,261 @@
+{
+ "boeing": {
+  "orders": {
+   "fps": "launch_7yr",
+   "fps_engine_code": 3,
+   "rate_737": "increase",
+   "re787": "hold"
+  },
+  "other_moves": [
+   {
+    "move": "fps launch-customer campaign with 737 operators",
+    "public": true,
+    "detail": "Seek anchor commitments from the large 737 fleets, with commonality, transition and training support. Precedent: the MAX launch built on an anchor customer when share was at risk [B-0413, B-0422]."
+   },
+   {
+    "move": "Engine readiness requirement",
+    "public": true,
+    "detail": "CFM is the baseline engine. The fps engine must be ready in 2036, a year ahead of EIS, with durability demonstrated before service entry [B-2304, B-2078, B-1597]."
+   },
+   {
+    "move": "Early FAA certification-basis agreement for fps",
+    "public": true,
+    "detail": "Agree the certification basis and plan with the FAA at launch, in line with Ortberg's push for a faster, reformed process [BX-1309]."
+   },
+   {
+    "move": "Supplier readiness programme",
+    "public": false,
+    "detail": "Embed Boeing staff, hold buffer inventory and fund fragile suppliers ahead of the 2032 737 step and fps development [B-2097, B-2043, B-2330]."
+   },
+   {
+    "move": "Engineering workforce retention and redeployment",
+    "public": false,
+    "detail": "Move 777X and MAX 7/10 engineers onto fps, add retention and hiring to protect against talent poaching [B-1941, B-0729]."
+   },
+   {
+    "move": "Campaign-by-campaign 737 pricing",
+    "public": false,
+    "detail": "Match in must-win incumbent campaigns, funded by productivity. Walk away from ruinous deals. Use scarcity pricing elsewhere [B-0840, B-0961, B-2331]."
+   }
+  ],
+  "public_statement": "The market, the technology and our balance sheet have come together, so we are launching our next single-aisle airplane, built for our 737 customers on a mature CFM engine, with entry into service planned for 2037. It is so much more important that we do this right than fast: this plan carries headroom, and we will take the 737 up another step only when our KPIs and our suppliers tell us we're ready. We're turning it, and the financials will follow our production performance.",
+  "rationale": "Triggers. Row 1: we expect NGSA to be in development this round [B-2536]. \u00a77: the A350 Re-engine is a Chicken game [B-2446]. There are no injects, so H6 and H7 do not apply.\n\nHard rules in 2030. H1 is lifted because its conditions have lapsed. The 777X entered service in 2027 [BX-0550] and turns cash-positive in 2029 [BX-0547]. The MAX 7/10 is certified. MS net debt is -$16.8B in 2030E (FIN \u00a78a). Finishing these programs \"free[s] up a lot of capital\" [B-2326]. The doctrine's 2029 year has passed, so 2030 is the first open year. H2 cannot bind: EIS is 2037, after \"not before '35\" [B-2061]. The first half of H3 has lapsed, but H4 binds: a 7-year fps plus the 787 Re-engine would overlap for 5 years Solo [B-0341].\n\nGrid. fps 7-yr + 787 hold is the maximin plan (+2.25 to +5.61). It beats the 10-year ramp in every column, by $5.19-5.20B against NGSA. Do Nothing scores -3.64 (S2) and -5.93 (S4). Waiting puts meaningful share at risk [B-0422], and lateness has cost us before [B-0733, B-0804]. Embraer scores -13.19 to -28.45, so it is out.\n\n787 Re-engine. It adds +1.29 if the A350 stays put and loses $4.83B if the A350 re-engines. Break-even is about a 21% chance of the A350 move, and we expect it. We stand aside now and revisit in 2035 (2-year overlap, H4-compliant) only if the A350 has not re-engined.\n\nRate Increase. It costs $0.74B in every fps column, within \u03b5. Doctrine commits it in Round 1 [B-2298, B-2287], as do the team rule and the objective tie-break. Doctrine premium: $0.74B, within the $2B H8 cap.\n\nBuffer test. S5 scores +1.85 against Do Nothing at -3.64. Using the 10-yr row as a 3-year-slip proxy, fps still beats Do Nothing by $2.98B. Pass.\n\nEngine. Code 3: CFM as sole source [B-0600, B-0613, B-2304]. It has no payoff effect.\n\nObjective, before \u2192 after. 50/50: missed (40%) \u2192 missed, about 48-49% in 2040 against NGSA (derived from the public rules). No Round-1 plan meets it, and fps 7-yr comes closest. Incumbency: met \u2192 met (45% in 2032-36).\n\nThin profiles: the Malave (low) and Pope (very low) seats run mainly on doctrine.",
+  "exco": {
+   "ceo": "Ortberg frames. No quality, FAA or supply inject is live, so the KPIs are stable [BX-1271]. The three work streams have converged: the 777X and MAX 7/10 are done and capital is freed [B-2326, BX-1296]. An EIS in 2037 respects 'not before '35' [B-2061]. Airbus's date does not set ours [B-2313]. Testing 'doing less, better' [BX-1239]: Do Nothing scores -3.64 or -5.93 against NGSA, while fps 7-yr scores +2.25 to +5.61 in every column. He would rather be right than fast [BX-1241], but the 10-year ramp costs $5.2B against NGSA, beyond the $2B cap.",
+   "cfo": "Malave puts the balance sheet first [BX-0556]. The 7-year fps bill of $64.47B at EIS and its $21.7B undiscounted debt penalty are already in the grid. The 777X turns cash-positive from 2029 [BX-0547], and MS net debt is -$16.8B in 2030E. His buffer test is the baseline [BX-0553]: the plan's worst column is +1.51 (S4); with Delay Tactics it scores +1.85 against Do Nothing at -3.64; the 10-year row, as a 3-year-slip proxy, still beats Do Nothing by $2.98B. He vetoes Embraer (-13.19 to -28.45) and a Round-1 787 Re-engine (-4.83 if the A350 re-engines), and accepts the $0.74B Rate Increase as within \u03b5.",
+   "coo": "Pope's seat has very thin evidence and is run on doctrine. On-time, predictable delivery comes first [BX-1331], with one major development at a time [B-0341]. So fps 7-yr cannot carry a same-round 787 Re-engine (5-year overlap, $3B strain, H4). The 737 step lands in 2032, which gives two years to build supplier buffers and fund fragile suppliers [B-2330, B-2308]. The chain binds beyond 47 [B-2340], so the step stays KPI-gated in increments of 5 [B-2351]. fps goes Solo, not Embraer: we own the IP and partner only where we lack it [BX-1330]. CFM for maturity and durability [B-0613, B-2304].",
+   "decision_rule": "Ortberg proposes and decides. Malave's buffer test is the baseline veto, and it passes: the plan is positive in every column and beats Do Nothing in the slip proxy. The KPI doctrine allows the Rate Increase because no H6 trigger is live. Ortberg decides: fps 7-yr Solo on CFM, 787 hold, and the Round-1 Rate Increase, as the team rule specifies. The rate decision is a tie within \u03b5 that doctrine decides; the $0.74B premium is logged."
+  },
+  "expected_scenario": "S4: Airbus launches NGSA and the A350 Re-engine (my modal case, about 35%). Overall I expect NGSA at about 80% and the A350 Re-engine at about 50%.",
+  "best_grid_plan_in_expected_scenario": "fps 7-yr + 787: hold (+2.25, yield 101.7%)",
+  "premium_b": 0.74,
+  "premium_reason": "This is a doctrine premium for the Round-1 737 Rate Increase: fps 7-yr + 737 rate up scores +1.51 against +2.25 in S4, the same $0.74B gap in every column. The gap is within \u03b5 ($1B), so doctrine decides. The 737 rate is the main FCF driver that funds the next airplane [B-2298], and the 38-42-47-52 ladder held through shocks [B-2287]. The team rule says 'Rate Increase in Turn 1 unless H6', and the objective's tie-break also favours it. The premium is within the $2B H8 cap. The objective premium is zero.",
+  "objective_note": "Before these orders: Hold 50/50 is NOT MET (40.0% in 2040, 2045 and 2050). Defend incumbency is MET (40.0% worst year). After, derived from the public rules rather than GM numbers: Hold 50/50 is still NOT MET. With fps 7-yr in service in 2037 alongside NGSA, Boeing climbs about 1 pp a year plus the +5 pp bonus, to about 48-49% in 2040. That leaves a gap of 1-2 pp, rising to about 6 pp with Delay Tactics (about 44%). The share should reach about 50% or more by 2045-50. No Round-1 plan can meet 2040, and fps 7-yr is the closest attainable path, so we play for the best position. Defend incumbency stays MET: 45% in 2032-36 from the Rate Increase, and at least 40% thereafter in every scenario. Objective premium: 0.",
+  "predictions": "Airbus: launches NGSA (p about 0.8), probably with the A350 Re-engine (p about 0.5). Covert Delay Tactics are possible but unlikely (p about 0.15), given the risk of a fine if fps were never launched. Its statement will stress share and readiness. CFM/GE: launches the ducted engine (fps requests CFM, and NGSA likely does too) plus a GEnx upgrade or investment. It may lobby on emissions if it also backs the Open Fan. P&W: GTF2 launch_if_selected aimed at NGSA, or a Joint Venture commitment with RR. RR: likely a Joint Venture commitment with P&W. UltraFan widebody only if it expects the A350 Re-engine, otherwise the Trent 1000 upgrade. UltraFan NB Solo is unlikely.",
+  "expected_pv_b": 2.69
+ },
+ "airbus": {
+  "orders": {
+   "ngsa": "launch",
+   "ngsa_engine_code": 7,
+   "rea350": "hold",
+   "delay_tactics": "none"
+  },
+  "other_moves": [
+   {
+    "move": "NGSA launch-customer campaign among A320 family operators",
+    "detail": "Offer conversion rights from existing A320neo backlog positions and sell cross-crew qualification and family commonality [A-0238, A-0241]. Customers keep their A320neo slots until NGSA arrives.",
+    "public": true
+   },
+   {
+    "move": "Keep improving the A320neo family to hold about 60% of the backlog until NGSA",
+    "detail": "A321LR/XLR range and continuous performance packages, the derivative-first doctrine [A-0200, A-0245]. A disciplined and controlled ramp, with no swing in rates.",
+    "public": true
+   },
+   {
+    "move": "Secure NGSA's industrial supply for our own ramp",
+    "detail": "Long-term agreements for composite wing capacity, forgings (Aubert & Duval) and titanium, plus long-range rate signals to suppliers [A-0441, A-0457, A-0458, A-0159, AX-0060]. Capacity is for Airbus's own programme only.",
+    "public": true
+   },
+   {
+    "move": "Fund NGSA with risk-sharing partners, customer advances and European repayable advances and Clean Aviation co-funding",
+    "detail": "This lowers the self-funded share of the bill [A-0348, A-0368, A-0445]. Negotiated quietly, to avoid feeding a trade dispute.",
+    "public": false
+   },
+   {
+    "move": "A220-500 stretch: customer consultation only",
+    "detail": "Closes the seat gap at the bottom of the 737 range [A-0265, A-0239]. The launch decision is held until NGSA's engineering load is visible, because of the engineering capacity constraint.",
+    "public": false
+   }
+  ],
+  "public_statement": "Our core principles of safety, quality, integrity, compliance and security will remain at the heart of all we do. On that basis our Board has today approved the launch of our next-generation single-aisle, entering service around 2037 on matured technologies and a wing proven buildable at rate, with the engine competition open to CFM, Pratt & Whitney and Rolls-Royce. We will keep a disciplined and controlled production ramp-up of the A320 family, and we will fund this preparation of the Airbus of the 30s with a commitment to shareholder returns while preserving financial flexibility.",
+  "rationale": "Situation: nothing launched; 2030 is the last year of our NGSA window (hard rule 1); EIS 2037 matches \"around 2037\" [A-0409]. Reaction row 3 (no fps yet): launch on our own clock, do not wait [A-0246, A-0110]. Default plan: NGSA in window, A350 Do Nothing, Delay Tactics off.\nGrid: NGSA alone scores +15.30 to +48.33 across S1-S6; the best no-NGSA row reaches +3.26. Red-line filter (step 4): (a) NGSA + A350 Re-engine breaks rule 6 (one launch per round; 5-year overlap, $3B strain). Its edge is +1.79 in S1-S4 but -2.32 in S5/S6, about +0.76 at my 25% odds of a 787 Re-engine, so it fails the $1B test anyway. (b) Delay Tactics now breaks rule 4 (only after a public fps launch). Blind, it costs -15.74 if Boeing never launches fps (S1/S5) against +1.58 to +2.05 otherwise, about -1.8 expected; integrity weighs against it in any case [AX-0073, A-0474]. Survivor: NGSA alone, positive in every column (worst +15.30, S3).\nEngine: the code leaves our PV unchanged. Code 7 maximises supply certainty after the engine-driven ramp reset [A-0218, AX-0054], extends dual sourcing [A-0047, A-0243], keeps CFM as the floor and avoids every forbidden pair.\nExpected S2/S4: best grid plan +35.44; ours +32.09; premium $3.35B (A350 1.79, Delay Tactics 1.58). Both are red-line deletions, not discretionary, so the $3B cap does not apply. The A350 option is kept for 2035 (2-year overlap, $1.2B strain) if the 787 is not re-engined.\nObjective: before, both met at 60.0%. NGSA is the only board lever that defends 2040-50. S1: both met. S2/S4: we lead 2037-40 at +3pp a year, then Boeing climbs 1pp a year; 2040 and 2045 should hold, 2050 is at risk (rule arithmetic, GM to confirm). S3: missed whatever we do. protect_a320 (2030, 2035) falls only to a 737 Rate Increase (+5pp 2032-36), which no lever counters. Objective premium 0.\nBoard item, NGSA ($30.07B): pillars pass, Toepfer pass ($4.3B a year), Wagner pass. Toepfer and Wagner lines are role-derived (low confidence).",
+  "exco": {
+   "ceo": "Faury frames it: 2030 is the last launch year whose EIS (2037) still meets our stated 'around 2037' [A-0409], and the technologies have matured on gates rather than on Boeing's calendar [AX-0020, AX-0006]. Boeing has launched nothing, and we neither wait for it nor race it (hard rule 2). He proposes the company default: launch NGSA now (grid +15.30 to +48.33 in every column), A350 Do Nothing, and no Delay Tactics, because no fps is in development and the five pillars are the baseline [AX-0073, AX-0081]. The launch goes to the Board as his recommendation [AX-0026].",
+   "cfo": "Toepfer: NGSA alone costs about $30.07B over 7 years, or $4.3B a year in cash. That is under the roughly $5.2B one-year-FCF guardrail [AX-0104] and keeps net cash [AX-0102, A-0401]. It is robust: positive in every Boeing column, worst case +15.30 (S3). Adding the A350 Re-engine now means about $5.9B a year at peak and a 5-year overlap costing $3B of strain, so it fails his test. Its +1.79 edge turns into -2.32 if Boeing re-engines the 787, so it does not clear $1B in expectation. A blind Delay Tactics order risks the naked fine (-15.74 in S1/S5) for +1.58, which is not a prudent risk [AX-0022, A-0343].",
+   "coo": "Wagner (role-derived, low confidence): the composite wing must be buildable at rate and the production system matured with the aircraft [A-0441, A-0225], and both are ready for a 2030 launch with the end-2027 ramp reset behind us [AX-0054]. No A350 Re-engine while NGSA's peak engineering load runs and the A350F is still being absorbed [A-0327, AX-0082]. The earliest sensible slot is 2035, when overlap falls to 2 years ($1.2B strain). Engine: the board fits only makers ready by 2037 and never delays NGSA, so he asks for maximum supply certainty and requests all three (code 7), with CFM as the floor. This continues our dual-source practice [A-0047, A-0243], given that an engine maker's shortfall slipped our ramp [A-0218].",
+   "decision_rule": "The CEO proposed the default and both soft-veto tests pass for NGSA alone, so it is the highest-PV survivor. NGSA + A350 Re-engine fails company rule 6 and the CFO's peak-spend and Wagner's concurrency tests; a company red line cannot be overridden by the team, and its expected edge (+0.76) is below the $1B override bar. Any Delay Tactics fails rule 4 and the integrity pillar, which is never overridden. Board gate, NGSA launch: five pillars pass, Toepfer pass ($4.3B a year), Wagner pass, \u0394PV +32.09 in the expected scenario, so approval is assumed. No override used."
+  },
+  "expected_scenario": "S2/S4: Boeing launches fps with a 10-year ramp-up or via Embraer (EIS 2040) and no 787 Re-engine. A 737 Rate Increase is likely but is not priced on our grid.",
+  "best_grid_plan_in_expected_scenario": "NGSA + A350 Re-engine + Delay Tactics (one move): +35.44 (123.6%) in S2 and S4. Our plan, NGSA + A350 hold with no Delay Tactics, gives +32.09 (121.4%).",
+  "premium_b": 3.35,
+  "premium_reason": "The full $3.35B against the grid's best comes from options our red lines delete before any PV comparison (profile step 4), so it is not a discretionary doctrine premium and the $3B cap does not apply. (1) A350 Re-engine now (+1.79): hard rule 6 allows one launch per round, the 5-year NGSA overlap fails the CFO's peak-spend test (about $5.9B a year), and the edge becomes -2.32 if Boeing re-engines the 787. Airbus re-engines widebodies late and cheaply, as with the A330neo [A-0090, A-0091], keeps a prudent net-cash posture [A-0343, A-0401], and is still absorbing the A350F [A-0327]. The option is kept for 2035. (2) Delay Tactics (+1.58): hard rule 4 allows it only after a public fps launch. Ordered blind, it risks the $48.32B naked fine (-15.74 in S1/S5). The post-DPA integrity baseline [A-0474, AX-0073] argues against it in any case.",
+  "objective_note": "Before these orders, both metrics are met at 60.0% in every year (zero margin). After launching NGSA in 2030 (EIS 2037), the result depends on Boeing:\n- **S1 (rivals hold):** both metrics met. NGSA leads at +3pp a year to the 80% cap.\n- **S2/S4 (fps EIS 2040):** by the public rules we gain about 3pp a year from 2037 until fps arrives, then Boeing climbs back at 1pp a year. 2040 and 2045 should stay above 60%, but 2050 is at risk of falling below 60% (my rule arithmetic; the GM's next brief will confirm).\n- **S3 (fps 7-year ramp, same-year EIS 2037):** nb_share_60 is missed whatever we order.\n- **protect_a320 (counts 2030 and 2035 only):** met unless Boeing orders the 737 Rate Increase. That gives Boeing +5pp in 2032-36, putting us at 55% in 2035, and no Airbus board lever counters it.\n\nNGSA now is the only order that advances the objective. Delay Tactics would add only in 2040 and the A350 Re-engine adds nothing to narrowbody share. Objective premium: $0. The objective cannot be guaranteed in this game; this is the best attainable position.",
+  "predictions": "**Boeing:**\n- fps launch, about 85% in total: 10-year ramp about 50%, via Embraer about 25%, 7-year about 10%. Hold about 15%.\n- Engine code 3 (CFM single source, as on the MAX [A-0047]) or 6.\n- 737 Rate Increase likely, about 60% ('sold out' [A-0820]).\n- 787 Re-engine about 25%; more likely in a later round, given its balance-sheet preconditions.\n\n**CFM/GE:** launches the ducted engine to serve both new airframes, possibly with emissions lobbying. No Open Fan alone. GEnx hold or upgrade.\n\n**Pratt & Whitney:** GTF2 launch_if_selected (our code 7 selects it; ready 2036) or a Joint Venture commitment with Rolls-Royce.\n\n**Rolls-Royce:** UltraFan narrowbody launch_if_selected (ready 2037) or a Joint Venture commitment with P&W. No UltraFan widebody yet, since no re-engine is in play; a Trent 1000 upgrade is possible.",
+  "expected_pv_b": 32.09
+ },
+ "cfm": {
+  "orders": {
+   "ducted": "launch",
+   "open_fan": "hold",
+   "partner_embraer": "launch",
+   "lobby_emissions": "hold",
+   "genx": "upgrade_genx9"
+  },
+  "other_moves": [
+   {
+    "move": "Offer the new CFM engine, with the LEAP derivative, to both Boeing (fps) and Airbus (NGSA) on standard risk-adjusted terms, with no launch pricing",
+    "detail": "Serve both airframers [CX-0587][CX-0185]; price for a fair risk-adjusted return [CX-0609]; launch pricing 'behind us' [CX-0930]. Narrowbody pricing is a joint decision with Safran [CX-0184]; consent assumed.",
+    "public": true
+   },
+   {
+    "move": "RISE open fan continues as a funded technology programme with no product launch until an airframer commits",
+    "detail": "Durability and dust testing, plus integration studies offered to both airframers [CX-0216][CX-0193]; no 'program dividend' [CX-0174]; entry date is the airframer's call [CX-0205].",
+    "public": true
+   },
+   {
+    "move": "LEAP durability programme: LEAP-1B kit rolled out at natural shop visits, LEAP-1A held at CFM56 levels",
+    "detail": "Targets of 8,000 cycles in harsh and 17,000 in neutral conditions [CX-0655][CX-0996]; retrofits take 'years, not months' [CX-0649].",
+    "public": true
+   },
+   {
+    "move": "LEAP-1B output paced to Boeing's actual 737 rate, supporting any rate increase",
+    "detail": "'a backlog that we share' [CX-0197]; pace shipments to Boeing's real rate and inventory [CX-0206]. Rate commitments are made jointly with Safran [CX-0160].",
+    "public": true
+   },
+   {
+    "move": "Supply-chain readiness for the new engine alongside the LEAP ramp",
+    "detail": "GE engineers kept at key supplier sites [CX-0993]; buffer stock on long-lead castings and forgings [CX-0556]; one owner for supply, engineering and quality [CX-0633]. This covers the raw-materials constraint.",
+    "public": false
+   },
+   {
+    "move": "Private campaign talks with Airbus on NGSA and with Boeing on fps, with durability as the selling point",
+    "detail": "Win rate over 70% on the A320 family since 2023 [CX-0218]; platform talks stay private [CX-0586]; no comment on rivals [CX-0580].",
+    "public": false
+   }
+  ],
+  "public_statement": "We don't have a birthright on that next order, so CFM is committing a new advanced engine. It will be ready in 2036, in time for any new narrowbody launched now, and we will offer it alongside the LEAP to both of our airframer customers and to Embraer. RISE remains our next generation, and when it goes into service is really for our airframer and airline customers to decide; safety, quality, delivery and cost, always in that order.",
+  "rationale": "Board: nothing launched; NB engines 76%, WB 42%. Orders are simultaneous. A ducted engine launched in 2035 would be ready in 2041, four years after a 2037 NGSA, so a threat this round has to be anticipated now.\n\nTriggers: reaction row 2 (an airframer about to launch while rival engines are available: defend, with a launch year at or before the airframer's) [CX-1288][CX-0207]. Dashboard hard rule 3, grid clause: rival selections take our slot (hold: S2 -32.07, S3 -85.68, S6 -106.38).\n\nGrid: Ducted+Embraer+GEnx is best in S2-S5 (-20.29, -71.46, -49.69, -48.32). It beats GEnx alone by 10.2-13.0 there and trails only in S1 (-4.82 vs +1.18) and S6 (by 1.31). It loses only if the odds that nobody launches exceed about 65%; I put them near 20%. Weighted by my scenario odds: -32.3, against -40.1 for GEnx alone and -34.2 for ducted alone.\n\nDeclared departures from profile defaults: Embraer flips on by its own flip test (positive on the board: +2.4 to +4.9 in launch scenarios once strain is paid). There is no Embraer evidence, so confidence is low. One-commitment sequencing does not apply: strain is a single $2B charge. Terms stay standard [CX-0609][CX-0930].\n\nOpen fan: hold. Hard rule 2: any airframe launched this round enters service before 2045. OF+Lobby on top of our plan costs $36.05B in S2 (-56.34 vs -20.29), beyond the $15B RISE allowance. Launching now buys nothing over 2035: both are ready in 2045. RISE stays funded as technology [CX-0174][CX-0214][CX-0205].\n\nSafran gate: ducted and Embraer are CFM narrowbody moves; consent assumed. Offering a new engine to both airframers to hold the shared LEAP franchise is joint practice [CX-0185][CX-0184]. Safran wanted a next engine \"by 2035\" [CX-0152] and owns half the share at risk (inference). GEnx is GE alone.\n\nExpected scenario S2; chosen plan = grid best; doctrine premium 0, objective premium 0.\n\nObjective: dominance met before (76%). After, it is protected by +10pp (ducted) and +5pp (Embraer) once a new narrowbody is in service, and at risk only if CFM is shut out (S3, S6). Open fan: not met before or after.",
+  "exco": {
+   "ceo": "Culp frames the turn: 'What game are we playing? And how do we win?' [CX-0467]. The game is the installed base, with every new narrowbody on a CFM engine, and 'we don't have a birthright on that next order' [CX-0564]: an NGSA launched now with a rival engine on launch_if_selected costs us $32B (S2 hold) to $86B (S3 hold), and we want 'to be on all the critical platforms' [CX-0587]. RISE is 'all in' [CX-0214], but its date is 'really not for us to say' [CX-0205], so there is no open fan into a wait. He proposes ducted + Embraer + GEnx upgrade on standard terms.",
+   "cfo": "Ghai tests the money. The $4B ducted R&D plus $2B strain sits easily against at least $8.5B of free cash flow by 2028 and the 70% return floor [CX-0646][CX-0645], inside the 2-3% capex frame [CX-0922], with pricing kept standard and price/cost positive [CX-0929][CX-0930]. On the grid the bundle beats GEnx alone by 10.2-13.0 in S2-S5, costs 6.00 in S1 and weighs in at -32.3 against -40.1. What the case leaves out [CX-0961]: if no airframe launches before 2045, the $4B is sunk (cancel write-off 5/6 in 2035). That cuts against his 'no number before volumes' habit [CX-0944], but the board charges R&D undiscounted, so launching now costs no more than in 2035. The open fan fails his test: +$36.05B of cost in S2.",
+   "coo": "Ali tests readiness. The ducted engine is ready in 2036, exactly launch + 6, with no earlier date disclosed and test-gated ('turn on and turn off') [CX-0009]. A ducted engine gets 'less than half' the open-fan gain [CX-0183], so he treats it as a LEAP-lineage defensive step ('we are actually working on upgrades') [CX-0162], not the next generation. With 80% of shortages coming from 9 suppliers [CX-0613] and the LEAP ramp to 2,500 [CX-0213], the stacking strain is real ($2B on the board); it is managed under one supply-engineering-quality owner [CX-0633] with 550-600 engineers at suppliers [CX-0993]. RISE has 350+ tests [CX-0216] but no product date before 2045 here, so it stays funded as technology [CX-0174].",
+   "decision_rule": "Culp proposes and decides. Ghai's money tests pass (capex frame, cash-return floor, standard price), and so does Ali's date test (ready in 2036 = launch + 6; no open-fan date given). Whether either test is a formal veto is an inference. The Safran gate is passed by assumed consent on ducted and Embraer, as joint practice in serving both airframers [CX-0185] and in joint pricing [CX-0184]; the GEnx upgrade is GE alone. No tie-break was needed under 'safety, quality, delivery and cost, always in that order' [CX-0658]: the plan is the grid best in the expected scenario, premium 0. Low-confidence inputs: Embraer (no evidence) and Ali's date veto (inference from 2024 words)."
+  },
+  "expected_scenario": "S2: Airbus launches NGSA (EIS 2037) selecting code 6 (P&W + CFM), with P&W's GTF2 launching on launch_if_selected; Boeing holds fps this round (737 rate increase likely). Roughly 0.4 odds that Boeing also launches fps 10-yr on code 7 (S5).",
+  "best_grid_plan_in_expected_scenario": "Ducted + Partner Embraer + GEnx upgrade: -20.29 (87.3%) in S2. It is also best in S3, S4 and S5.",
+  "premium_b": 0,
+  "premium_reason": "No premium: the chosen plan is the grid's best in the expected scenario S2. I declined an objective premium for the open fan: adding Open Fan + Lobby would cost $36.05B in S2 (-56.34 vs -20.29). That is far above the $2B round cap and the $15B RISE allowance, and it would press airframers into the open-fan wait (hard rule 2; 'really not for us to say when' [CX-0205]).",
+  "objective_note": "Before: Dominate NB met (worst year 76%); Introduce Open Fan not met (not launched). After these orders: dominance still met if nobody launches (76%, since nothing changes until a new narrowbody is in service). It is reinforced in S2/S4/S5 by ducted (+10pp from 2036) and Embraer (+5pp from 2037) once a new narrowbody is in service, and at risk only if an airframer shuts CFM out (S3, S6). Open Fan: not met, gap = not launched. It can only be met by a launch in 2030 or 2035 (ready 2045). If any NGSA or fps enters service before 2045, the 35pp loss (20pp with lobbying) puts it far beyond the premium cap. I will revisit in 2035 only if no new narrowbody has been launched by then. Objective premium paid: 0.",
+  "predictions": "Airbus: launches NGSA (p about 0.65) on code 6 (P&W + CFM, the A320neo dual-source model), with code 7 possible and code 2 at about 0.15; A350 Re-engine hold; Delay Tactics unknown (covert). Boeing: holds fps this round (launch p about 0.4; if it launches, launch_10yr on code 7); 737 rate increase likely; 787 Re-engine hold. P&W: gtf2_solo launch_if_selected, so it launches if NGSA picks code 6 or 2; JV commitment with RR possible (about 0.35). RR: ultrafan_nb_solo launch_if_selected or a JV commitment with P&W; Trent 1000 upgrade likely (about 0.5); UltraFan WB hold.",
+  "expected_pv_b": -32.3
+ },
+ "pratt_whitney": {
+  "orders": {
+   "gtf2_solo": "launch_if_selected",
+   "jv_with_rr": "hold"
+  },
+  "other_moves": [
+   {
+    "move": "GTF fleet durability: back-port GTF Advantage / Hot Section Plus into the A320neo fleet and expand shop-visit capacity with partner MRO network",
+    "public": true,
+    "detail": "Fix-forward on the installed base, kit priced not given; fleet lift and bending the AOG curve come before any new engine [PX-0106][PX-0100][PX-0080][PX-0118][P-1363]."
+   },
+   {
+    "move": "Conditional GTF2 offer to Airbus (NGSA) and Boeing (fps)",
+    "public": true,
+    "detail": "Evolved geared architecture (composite fan, CMC hot section, new gear), ready six years from launch, standard terms with pass-through pricing; P&W commits in the round an airframer names it [PX-0067][PX-0117][PX-0055]."
+   },
+   {
+    "move": "RTX capital framework unchanged (CFO register)",
+    "public": true,
+    "detail": "Dividend first, continued deleveraging; any GTF2 programme funded inside the existing E&D and capex envelope with our risk-sharing partners. 'We do not want to starve the business' [PX-0192][PX-0081][PX-0353][PX-0268]."
+   },
+   {
+    "move": "Line up GTF risk-sharing partners (MTU, JAEC) for GTF2, P&W keeping about 51% and programme leadership",
+    "public": false,
+    "detail": "Partners carry their pro-rata share of development and defect cost, as on the GTF [P-1714][PX-0299][PX-0269]."
+   },
+   {
+    "move": "Fund GTF2 enabling technology without a launch commitment",
+    "public": false,
+    "detail": "Composite fan, CMC hot section, gear durability testing kept warm so GTF2 is launchable on selection [P-0757][PX-0067]."
+   },
+   {
+    "move": "Open the next-platform business-model discussion with Airbus",
+    "public": false,
+    "detail": "No launch-style OE discounts; realign OE loss and aftermarket terms on NGSA [PX-0068][PX-0070][P-0774][PX-0055]."
+   }
+  ],
+  "public_statement": "We're controlling what we can control: the GTF fleet is getting the Advantage's durability back-ported, because time on wing is the name of the game. Our next-generation geared turbofan is a responsible bet with a responsible payback, mature gear technology ready six years from launch on standard terms, and we will commit it the moment an airframer selects it for its next single-aisle. We have learned our lesson from the prior iterations of the GTF: durability will be proven before entry into service.",
+  "rationale": "Triggers: row 1 (airframer launch with engine competition: match non-commitment, defend franchise early) [P-0711][P-0739][P-1347]; row 12 (Joint Venture) [P-1233]. Nothing is public yet. Grid: holding loses -27.76 in any NGSA without us (S2/S3/S5/S6), so the A320neo slot is existential. GTF2 Solo and Solo-if-selected are identical wherever we are selected (S2 +22.73, S4 +19.31, S5 +23.30); they differ only when nobody selects us: S1/S7 -2.00 vs 0; S3/S6 -23.97 vs -27.76 (board credits GTF2's +10pp unfitted). My odds (NGSA 0.7, names us 0.6; fps 0.5, names us 0.35) give SIS +2.55 vs unconditional +3.13: doctrine premium about $0.58B in expectation, inside the $1B allowance (reaches ~1.0 only if Airbus names us at 0.4). Accepted: we commit when the airframer commits [P-0711], spend minimal while waiting [P-0739], returns not bragging rights [P-0702]; Calio invests on visible demand [PX-0109]; Mitchill vetoes carrying an unselected engine. The team's 0.3 hedge bar is met by SIS itself: it captures every selection without simultaneity risk, the hedge's only purpose; mature gear tech lets us wait (dashboard \u00a73). Doctrine relief: SIS fires on shared codes 6/7; sole source [P-0737] guarded against dual-source discounting [P-0698], which the board does not price; 40-50% of a shared platform is fine [P-1292], as on the A320neo [P-1993][P-0707]. Joint Venture: hold. Commit only adds S7's -2.00, and a live GTF2 would fold in and equalise our share with RR, sharing the 'company jewels' [P-1233]; no airframer has signalled UltraFan. Cash: $2B over six years vs RTX FCF $8-10B [P-1964], inside the envelope [PX-0268]; dividend untouched. Round 2: nothing to cancel if unselected; SIS again into any 2035 launch (ready 2041, before a 2042 EIS). Objective: credibility not met -> met in S2/S4/S5 (~0.47); capitalise met -> met except S3/S6 (unreachable by any plan). Objective premium 0. Low confidence: Eddy's card is one event; JV stance thin.",
+  "exco": {
+   "ceo": "Calio frames: control what you can control [PX-0020]. Nothing is on the public record: no airframe, no selection, no CFM or RR commitment. The grid says missing NGSA costs -27.76, the 'miss a cycle ... shut out for decades' case [PX-0071][P-1347], so we must be able to answer an NGSA selection this round; but we invest when demand is visible [PX-0109][PX-0009], with durability proven before entry into service [PX-0073].",
+   "cfo": "Mitchill: GTF2 is $2B over six years, about $0.33B a year against RTX free cash flow of $8-10B [P-1964], well inside the roughly $10B E&D and capex envelope [PX-0268]; dividend first, deleveraging continues [PX-0081][PX-0353]. An unconditional launch carries -2.00 in S1/S7 with nobody flying it, which I veto as an unselected engine; its ~$0.58B expected edge rests only on the board's unfitted +10pp (S3/S6 -23.97 vs -27.76), upside I will not book before it is proven [PX-0311]. Joint Venture: -2.00 in S7 and no exit once formed [PX-0319]; hold.",
+   "coo": "Eddy: GTF2 is an evolved geared turbofan, composite fan, CMC hot section, new gear [PX-0067]; launched in 2030 it is ready in 2036, ahead of a 2037 NGSA or fps EIS, with full-life parts proven first [PX-0128]. Engineering stays on fleet lift and the Advantage back-port [PX-0123][PX-0106], so launch only into a selection. Single-aisle focused [PX-0127]; standard pass-through pricing [PX-0117].",
+   "decision_rule": "Eddy proposed launch_if_selected and Joint Venture hold; Mitchill's gate passed (no unselected engine carried, cash fits, no aggressive terms); no President veto (no strain on this board, durability gate intact). Calio decided under 'safety and durability first, then optimise' [PX-0035] and the tie-break that 'miss a cycle' beats 'cross that bridge' only on visible demand [PX-0109]: launch_if_selected makes the commitment coincide exactly with visible demand. The unconditional launch trails by less than the $1B allowance in expected PV, so the doctrine-favoured order is kept and the premium declared."
+  },
+  "expected_scenario": "S2: Airbus launches NGSA in 2030 naming P&W alongside CFM (code 6); Boeing holds fps this round or launches it on CFM. Modal at about 0.35 under my odds (NGSA launch 0.7, names us 0.6; fps launch 0.5, names us 0.35).",
+  "best_grid_plan_in_expected_scenario": "GTF2 Solo (+22.73), tied by GTF2 Solo if selected (+22.73); hold would give -27.76.",
+  "premium_b": 0,
+  "premium_reason": "In S2 launch_if_selected ties GTF2 Solo at +22.73, so no premium in the expected scenario. Across my scenario odds the unconditional launch is about $0.58B better in expectation (S1/S7 -2.00 vs S3/S6 +3.79 from the board's unfitted +10pp); declared as a doctrine premium within the $1B allowance: P&W commits when the airframer commits (NMA 2016-19) [P-0711][P-0739], not for bragging rights [P-0702]; Calio's visible-demand test [PX-0109]; Mitchill's no-unselected-engine veto.",
+  "objective_note": "Before: Restore credibility NOT MET (no new P&W engine on a new airframe); Capitalise on GTF MET (+0.00). After these orders, if nobody moves later: S2 expected, GTF2 triggers in 2030, ready 2036, in service on NGSA 2037, so credibility MET and capitalise MET (+22.73). S4/S5 also both met (+19.31/+23.30). S1/S7 unchanged (credibility missed, capitalise met at 0.00). S3/S6 both missed (-27.76); no plan reaches them (unconditional launch -23.97 still misses). P(both met) about 0.47. Objective premium 0: launch_if_selected weakly dominates the unconditional launch on objective metrics this round (S1 unconditional would break \u0394PV >= 0).",
+  "predictions": "Airbus: launches NGSA in 2030 (p~0.7), engine code 6 P&W+CFM (p~0.6; otherwise 5 RR+CFM or 7); holds A350 Re-engine; Delay Tactics covert and unknowable. Boeing: orders the 737 rate increase; fps launch about 50/50, if launched more likely code 3 CFM than 7 (P&W included ~0.35), 10-yr ramp more likely than 7-yr; holds 787 Re-engine. CFM/GE: launches its ducted engine to defend the new airframes, likely the GEnx upgrade; open fan possibly alongside or later; lobbying possible. Rolls-Royce: UltraFan NB Solo launch_if_selected or hold; Joint Venture commit about 0.3; Trent 1000 upgrade more likely than UltraFan WB.",
+  "expected_pv_b": 2.55
+ },
+ "rolls_royce": {
+  "orders": {
+   "ultrafan_nb_solo": "launch_if_selected",
+   "jv_with_pw": "hold",
+   "ultrafan_wb": "hold",
+   "t1000_upgrade": "hold"
+  },
+  "other_moves": [
+   {
+    "move": "UltraFan narrowbody offer to both airframers",
+    "public": true,
+    "detail": "UltraFan is offered for fps and NGSA on standard terms with TotalCare. We launch it in the round an airframer selects it, and entry into service is no earlier than launch plus 7 years. The self-funded narrowbody demonstrator continues so that we are ready when an airframer moves (R-1017, R-1024, RX-0094)."
+   },
+   {
+    "move": "Partnership open, not a precondition",
+    "public": true,
+    "detail": "We are open to a risk-and-revenue-sharing partner, P&W included, on terms that credit UltraFan's technology. No unilateral Joint Venture commitment until a partner's commitment is on the public record (R-1010, R-1022, R-1025, RX-0118)."
+   },
+   {
+    "move": "Trent XWB exclusivity on the A350 family",
+    "public": false,
+    "detail": "Open private talks with Airbus to extend Trent XWB sole source and support terms into the 2040s, so that a GE-powered A350 Re-engine is headed off before it is announced. This repeats the 2020-21 extension against GE (R-0360, R-0361)."
+   },
+   {
+    "move": "Time-on-wing programme continued",
+    "public": true,
+    "detail": "Continue the existing GBP 1bn, four-year durability programme on the Trent 1000, 7000 and XWB inside the flat R&D envelope. This is not the board's Trent 1000 upgrade package (R-1601, RX-0214)."
+   }
+  ],
+  "public_statement": "UltraFan is the most efficient engine architecture available and it scales from widebody to narrowbody, so Rolls-Royce is ready for the next single-aisle: in the round an airframer selects UltraFan, we launch it, with entry into service seven years from launch. But we need airframers to go there first, and we won't do anything that is not profitable; our preference is partnership, though we don't need partnership for capability. We don't commit that easily, but when we commit, we honour it.",
+  "rationale": "Round 1: nothing is launched or announced. Reaction row 1 (new narrowbody with an engine competition) applies in advance, and dashboard_game.md \u00a75 maps our 'no airframe, no engine' rule [R-0994, R-1005, RX-0058] onto launch_if_selected. Rows 2 (A350 Re-engine), 12 (P&W Joint Venture) and 17 (GEnx) are not triggered. Biases in play: 4 (one-shot slots) [R-1812] and 8 (concurrency) [R-0929, R-1127].\n\nGrid:\n- launch_if_selected is never worse than hold: +32.60 (S2), +28.24 (S4), +44.22 (S5), 0.00 elsewhere. Nothing is spent unless an airframer selects us.\n- An outright Solo gains +3.57 only in S3 and S6 and loses 8.00 in S1, S7 and S8. On our weights (no narrowbody launch 0.33, a launch without us 0.32, RR selected 0.35) Solo is worth +10.28 against +11.77. It would also be a speculative launch, which the hard rule bars.\n- Trent 1000 upgrade: -0.29 alone, and 5.30 worse if UltraFan triggers (S2: 27.30 against 32.60, from $5B of strain). It fails \u00a79 step 9 and the red line against an upgrade during UltraFan development. The profile's +0.81 is superseded.\n- UltraFan WB: -4.00 (S8: -0.90). No A350 Re-engine has been announced.\n- Joint Venture: 0.00, or -4.00 in S7. P&W has made no commitment, and we commit only after it does [R-1010, R-1022, R-1025].\n\nDoctrine premium $0B; objective premium $0B.\n\nObjectives:\n- nb_entry before these orders: not met (2045 0.0%, 2050 0.0%). After: met if an airframer names RR this round (UltraFan ready 2037). Otherwise still reachable in 2035 (Solo ready 2042, Joint Venture ready 2041).\n- wb_dominance before: met (58.0%). After: met (58.0%, or 53% if CFM funds a GEnx package).\n\nPrecedent: the Trent 7000 was committed in the round Airbus launched the A330neo [R-0319]. Caveat: our narrowbody launch behaviour is words only [R-1011, R-1022], and Watson's card is low-to-medium confidence. Launching on selection rests on the dashboard mapping more than on history.",
+  "exco": {
+   "ceo": "Erginbilgic frames the round in cash and quality of earnings. No airframe has launched, so there is nothing to commit to yet; the question is whether we are ready the moment one is selected [RX-0058, R-1005]. Narrowbody is a growth option we 'don't need' [R-1011, R-1598], and we 'don't commit that easily' [RX-0124]: launch_if_selected lets us honour a selection in the same round without a speculative $8B. Partnership stays the preference, not a precondition [RX-0118, RX-0072].",
+   "cfo": "McCabe asked for the selected, unselected and expected PV. launch_if_selected spends nothing if we are not selected (0.00) and returns +32.60 on NGSA (yield 129.6%), +28.24 on fps and +44.22 on both. Its expected PV is about +11.8, against +10.3 for an outright Solo that loses 8.00 if no narrowbody launches. If triggered, $8B over 7 years is about $1.14B (about GBP 0.84bn) a year, roughly 23% of FY26 FCF guidance of GBP 3.6-3.8bn [R-0222]. That is well above the mid-to-high-teens hurdle she co-signs [RX-0213, R-1579] and fits a flat R&D envelope [RX-0214]. She rejects the Trent 1000 upgrade (-0.29 alone, 5.30 worse alongside a triggered UltraFan) and UltraFan WB (-4.00).",
+   "coo": "Watson tests maturity. A 2030 launch is ready in 2037: exactly the entry into service of NGSA and of a 7-year fps, and three years ahead of a 10-year fps. Nothing is compressed and no date earlier than launch plus 7 is disclosed [RX-0296, RX-0284]. He flags the zero margin against NGSA, remembering that NMA was 'too aggressive' [R-1934]. With no widebody project alongside there is no $5B strain, so he backs holding UltraFan WB and the upgrade to keep engineering unsplit [R-0929, R-1127], and support capacity is built before entry into service [RX-0283, RX-0279].",
+   "decision_rule": "The CEO proposes and decides; any launch needs the CFO's co-signature, and Civil holds a maturity veto. The CEO proposed launch_if_selected on UltraFan NB with every other lever on hold. The CFO co-signed: there is no loss if we are not selected, and the hurdle is cleared if the launch triggers. Civil did not veto: the 7-year development is not compressed and there is no narrowbody-widebody overlap. No doctrine or objective premium."
+  },
+  "expected_scenario": "S2: Airbus launches NGSA in 2030 (entry into service 2037) naming all three engine makers (code 7). Boeing either holds fps or launches it on CFM alone. No Re-engines, and P&W does not commit to the Joint Venture.",
+  "best_grid_plan_in_expected_scenario": "UltraFan NB Solo (+32.60, yield 129.6%), tied with UltraFan NB if selected (+32.60), which is our order.",
+  "premium_b": 0,
+  "premium_reason": "None. launch_if_selected matches the PV-best plan in S2 (+32.60) and is never worse than hold in any column. An outright Solo would add +3.57 only if an airframer launches without us (S3, S6) and loses 8.00 if none launches (S1, S7, S8). It is worse on expected PV (+10.28 against +11.77) and is barred by the 'no airframe, no engine' hard rule [R-0994, R-1005]. Holding the Trent 1000 upgrade (-0.29) and UltraFan WB (-4.00) costs nothing against the grid.",
+  "objective_note": "Before: nb_entry is not met (RR narrowbody share 0.0% in 2045 and 2050); wb_dominance is met (58.0% in every year, against the 50% bar). After these orders: if Airbus or Boeing selects a code including RR this round (our P is about 0.35), UltraFan NB launches in 2030 and is ready in 2037, so nb_entry is met in 2045 and 2050 and wb_dominance stays at 58%. If not, nb_entry remains unmet but reachable in round 2 (2035): a Solo ready in 2042 once a new narrowbody is in service, a Joint Venture ready in 2041 if P&W commits, or launch on selection for a 2035 fps. wb_dominance holds at 58%, or 53% if CFM funds a GEnx package. Objective premium $0B.",
+  "predictions": "Airbus:\n- Launches NGSA in 2030 (entry into service 2037), naming all three engine makers (code 7). Our odds given a launch: code 7 about 45%, code 6 about 35%, code 3 about 15%. We put a launch at about 65%.\n- Holds the A350 Re-engine.\n- Delay Tactics: unknowable (covert).\n\nBoeing:\n- Increases the 737 rate.\n- About 55% it launches fps, most likely with the 7-year ramp-up (entry into service 2037, matching NGSA), on CFM alone (code 3), consistent with one engine per narrowbody [R-1830].\n- No 787 Re-engine.\n\nPratt & Whitney:\n- GTF2 Solo launch_if_selected.\n- Holds on the Joint Venture (about 35% it commits).\n\nCFM/GE:\n- Launches the ducted engine (ready 2036) and funds the GEnx upgrade, which would take RR's widebody share to 53%.\n- No open fan this round, because it cannot be ready before a 2037 NGSA and would cost CFM 35 pp of narrowbody share.\n- Possibly emissions lobbying.",
+  "expected_pv_b": 11
+ }
+}

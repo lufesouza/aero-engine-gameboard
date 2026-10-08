@@ -108,7 +108,7 @@ def chart_dpv_rounds():
             out.append(f'<circle cx="{xs[j]:.1f}" cy="{y:.1f}" r="7" fill="var(--{SEQ[j]})" class="ring" {attrs}/>')
         v = ROUNDS[-1]["value"][s]["pv_delta"]
         out.append(f'<text x="{w - right + 10}" y="{y + 4:.1f}" class="val">{K.num(v)}</text>')
-    out.append(f'<text x="{left}" y="{top - 22}" class="tick">ΔPV against the status quo, $B at 2026 (board valuation; nobody moves after the round)</text>')
+    out.append(f'<text x="10" y="{top - 22}" class="tick">ΔPV vs status quo, $B at 2026 (nobody moves after the round)</text>')
     out.append("</svg>")
     rows = [[NAME[s]] + [K.num(r["value"][s]["pv_delta"]) for r in ROUNDS] for s in SIDES]
     legend = "".join(f'<span><i class="sq" style="background:var(--{SEQ[j]})"></i>After round {j + 1} ({r["year"]})</span>' for j, r in enumerate(ROUNDS))
@@ -116,8 +116,9 @@ def chart_dpv_rounds():
             + K.tview("ΔPV by round, $B", ["Player"] + [f"After {y}" for y in RYEARS], rows))
 
 
-def spread(values, y_lo, y_hi, gap=15, plot_h=274):
-    """dy offsets (px) that keep end labels at least `gap` px apart (line_chart's plot area is 274 px tall)."""
+def spread(values, y_lo, y_hi, gap=18, plot_h=274, floor=14):
+    """dy offsets (px) that keep end labels at least `gap` apart (18 also clears the larger phone font) and at least
+    `floor` above the x-axis tick row. line_chart's plot area is 274 px tall."""
     pos = [(y_hi - v) / (y_hi - y_lo) * plot_h for v in values]
     order = sorted(range(len(values)), key=lambda i: pos[i])
     placed = {}
@@ -126,6 +127,11 @@ def spread(values, y_lo, y_hi, gap=15, plot_h=274):
         p = pos[i] if last is None else max(pos[i], last + gap)
         placed[i] = p
         last = p
+    limit = plot_h - floor
+    for i in reversed(order):                 # push the lowest labels up off the tick row, keeping the gaps
+        if placed[i] > limit:
+            placed[i] = limit
+        limit = placed[i] - gap
     return [placed[i] - pos[i] for i in range(len(values))]
 
 
@@ -147,7 +153,16 @@ def chart_boeing_paths():
     for j, r in enumerate(ROUNDS):
         series.append((f"After round {j + 1} ({r['year']})", SEQ[j], [(y, v) for y, v in zip(YEARS, r["years"]["boeing"]["nb_share"])]))
     last = [r["years"]["boeing"]["nb_share"][-1] for r in ROUNDS]
-    ends = list(zip(spread(last, 0, .8), [f"R{j + 1}: {pct(v, 0)}" for j, v in enumerate(last)]))
+    # rounds that end on the same value share one label (the later lines draw over the earlier ones)
+    labels = []
+    for j, v in enumerate(last):
+        same = [k for k, w in enumerate(last) if abs(w - v) < 1e-9]
+        if j == same[-1]:
+            tag = f"R{same[0] + 1}" if len(same) == 1 else f"R{same[0] + 1}-R{same[-1] + 1}"
+            labels.append(f"{tag}: {pct(v, 0)}")
+        else:
+            labels.append("")
+    ends = list(zip(spread([v if lab else -1 for v, lab in zip(last, labels)], 0, .8), labels))
     svg = K.line_chart(series, 0, .8, .1, "pct", "Boeing share of narrowbody deliveries, as projected after each round",
                        refs=[(.5, "50/50 objective", "above"), (.4, "status quo 40%", "below")],
                        aria_label="Boeing narrowbody share as projected after each round", end_labels=ends, notes=[], x_lo=2026, x_hi=2060)
@@ -173,7 +188,7 @@ def chart_gantt():
         cancelled = "cancel" in p["status"] or "folded" in p["status"]
         end = p["due"]
         cls = "b neg" if cancelled else ("b pos" if p["owner"] in ("boeing", "airbus") else "b t41")
-        out.append(f'<text x="{left - 10}" y="{y + 15}" text-anchor="end" class="rowlab sm">{esc(p["name"])}</text>')
+        out.append(f'<text x="{left - 10}" y="{y + 15}" text-anchor="end" class="rowlab sm">{esc(p["name"].replace("production-rate ", "rate "))}</text>')
         x0, x1 = sx(p["launch"]), sx(end)
         out.append(f'<path d="{K.hbar_path(x0, max(x1, x0 + 3), y + 4, 14)}" class="{cls}" '
                    f'{K.mark_attrs((p["status"], p["name"] + ": launched " + str(p["launch"]) + ", " + p["due_kind"] + " " + str(end), None))}/>')
@@ -186,7 +201,43 @@ def chart_gantt():
     return legend + f'<div class="cw">{"".join(out)}</div>' + K.tview("Programme timeline", ["Programme", "Launched", "Due", "Status"], rows, num_cols=[1])
 
 
+def small_lines(series, label, aria, y_fmt="int", hi=None):
+    """Compact line chart for small multiples: series = [(name, css var, [(year, value)], dashed)]."""
+    w, h, left, right, top, bot = 440, 250, 40, 122, 18, 34
+    x_lo, x_hi = 2026, 2060
+    vals = [v for _, _, d, _ in series for _, v in d]
+    hi = hi or max(5, 5 * (int(max(vals) / 5) + 1))
+    step = 5 if hi <= 25 else 10 if hi <= 60 else 20
+    sx = lambda x: left + (x - x_lo) / (x_hi - x_lo) * (w - left - right)
+    sy = lambda v: top + (hi - v) / hi * (h - top - bot)
+    out = [f'<svg viewBox="0 0 {w} {h}" class="chart sm" role="img" aria-label="{esc(aria, quote=True)}">']
+    t = 0
+    while t <= hi + 1e-9:
+        out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(t):.1f}" y2="{sy(t):.1f}" class="grid"/>'
+                   f'<text x="{left - 6}" y="{sy(t) + 4:.1f}" text-anchor="end" class="tick">{t:g}</text>')
+        t += step
+    for yr in (2030, 2040, 2050, 2060):
+        out.append(f'<text x="{sx(yr):.1f}" y="{h - bot + 16}" text-anchor="middle" class="tick">{yr}</text>')
+    for j, yr in enumerate(RYEARS):
+        out.append(f'<line x1="{sx(yr):.1f}" x2="{sx(yr):.1f}" y1="{top}" y2="{h - bot}" class="leader"/>')
+    last = [d[-1][1] for _, _, d, _ in series]
+    dys = spread(last, 0, hi, gap=14, plot_h=h - top - bot)
+    for (name, var, d, dashed), dy in zip(series, dys):
+        path = "M" + " L".join(f"{sx(x):.1f},{sy(v):.1f}" for x, v in d)
+        dash = ' stroke-dasharray="5 4"' if dashed else ""
+        out.append(f'<path d="{path}" fill="none" stroke="var(--{var})" stroke-width="2"{dash} stroke-linejoin="round"/>')
+        x, v = d[-1]
+        out.append(f'<text x="{w - right + 6}" y="{sy(v) + dy + 4:.1f}" class="endlab">{esc(name)} {K.rnd(v, 1):.1f}</text>')
+    out.append(f'<text x="{left}" y="{h - 4}" class="tick">{esc(label)}</text></svg>')
+    return f'<div class="cw">{"".join(out)}</div>'
+
+
 def chart_money(side, key, sq_key, title):
+    return small_lines([("Game", "s1", ser(side, key), False), ("Status quo", "sq", ser(side, sq_key), True)],
+                       "$B a year, nominal; vertical lines mark the rounds", f"{NAME[side]}: {title}")
+
+
+def chart_money_old(side, key, sq_key, title):
     series = [("This game", "s1", ser(side, key)), ("Status quo", "sq", ser(side, sq_key))]
     vals = FINAL["years"][side][key] + FINAL["years"][side][sq_key]
     hi = max(5, 5 * (int(max(vals) / 5) + 1))
@@ -209,8 +260,10 @@ def decisions_table(r):
         if adj:
             cell += '<br><span class="muted small">GM adjustment: ' + esc("; ".join(adj)) + "</span>"
         st = r["public_statements"].get(s) or ""
-        rows.append([esc(NAME[s]), cell, f'<span class="small">{esc(st)}</span>'])
-    return K.table(["Player", "Orders (as adjudicated)", "Public statement"], rows)
+        if st:
+            cell += f'<p class="small muted" style="margin:6px 0 0">Public statement: “{esc(st)}”</p>'
+        rows.append([esc(NAME[s]), cell])
+    return K.table(["Player", "Orders (as adjudicated) and public statement"], rows)
 
 
 def value_table(r):
@@ -380,7 +433,7 @@ def round_section(r):
 <div class="grid2"><div class="panel"><p class="label">Value after the round (board; nobody moves later)</p>{value_table(r)}</div>
 <div class="panel"><p class="label">Engines on the new narrowbodies</p>{K.table(["Airframe", "Requested", "Fitted", "Note"], fit_rows) if fit_rows else '<p class="muted">No new narrowbody launched yet.</p>'}</div></div>
 <div class="panel"><p class="label">Market shares projected after the round</p>{shares_table(r)}</div>
-<div class="panel"><p class="label">Financials projected after the round</p>{periods_table(r)}{bridge_table(r)}
+<div class="panel"><p class="label">Financials projected after the round</p>{periods_table(r)}<p class="label" style="margin-top:14px">How each player's ΔPV is built</p>{bridge_table(r)}
 {"".join(year_table(r, s) for s in SIDES)}</div>
 <div class="panel"><p class="label">Each player's reasoning (private during the game)</p>{rationale_block(r)}</div>
 </div></section>'''
@@ -413,11 +466,36 @@ def tiles():
     return '<div class="tiles">' + "".join(out) + "</div>"
 
 
+def check_narrative():
+    """The narrative's headline numbers must match the data (to their printed precision)."""
+    bad = []
+    for desc, ri, side, field, val in NAR.CHECKS:
+        got = ROUNDS[ri]["value"][side][field]
+        if abs(K.rnd(got, 2) - val) > 1e-9:
+            bad.append((desc, side, val, got))
+    for side, key, yr, val in NAR.SHARE_CHECKS:
+        got = FINAL["years"][side][key][yr - 2026]
+        dp = len(str(val).split(".")[1]) if "." in str(val) else 0
+        if abs(K.rnd(got, dp) - val) > 1e-9:
+            bad.append(("share", side, key, yr, val, got))
+    assert not bad, bad
+
+
 def build(out_path):
+    check_narrative()
     css = K.CSS.replace("--pos: #3b4a5e; --neg: #8792a3;",
                         "--pos: #3b4a5e; --neg: #8792a3; --sq: #8a95a5; --seq1: #9ec5f4; --seq2: #5598e7; --seq3: #256abf; --seq4: #0d366b;")
     css = css.replace("--pos: #c9d3e0; --neg: #5d6a7c; color-scheme: dark; }",
                       "--pos: #c9d3e0; --neg: #5d6a7c; --sq: #6f7b8d; --seq1: #184f95; --seq2: #256abf; --seq3: #5598e7; --seq4: #b7d3f6; color-scheme: dark; }")
+    css += """
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid3 > * { min-width: 0; }
+.chart.sm .tick { font-size: 12px; } .chart.sm .endlab { font-size: 12px; }
+.bl li b { display: inline; font: 600 1em var(--font-body); letter-spacing: 0; margin: 0; }
+.bl ul { margin: 6px 0 0; padding-left: 18px; } .bl li { margin-bottom: 4px; }
+@media (max-width: 900px) { .grid3 { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .chart.sm { min-width: 0; } }
+"""
     rounds_html = "".join(round_section(r) for r in ROUNDS)
     page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>dash-2050 War Game</title>
@@ -444,12 +522,13 @@ def build(out_path):
 
 <section id="money"><h2>Financials</h2><p class="lede">{NAR.MONEY_LEDE}</p><div class="stack">
 <div class="panel"><p class="label">How each player's final ΔPV is built</p>{bridge_table(FINAL)}</div>
-<div class="grid2"><div class="panel"><p class="ctitle">Boeing operating profit, $B a year</p>{chart_money("boeing", "profit", "sq_profit", "Boeing operating profit, $B nominal")}</div>
-<div class="panel"><p class="ctitle">Airbus operating profit, $B a year</p>{chart_money("airbus", "profit", "sq_profit", "Airbus operating profit, $B nominal")}</div></div>
-<div class="grid2"><div class="panel"><p class="ctitle">CFM/GE engine lifecycle value, $B a year</p>{chart_money("cfm", "value", "sq_value", "CFM/GE engine value, $B nominal")}</div>
-<div class="panel"><p class="ctitle">Pratt &amp; Whitney engine lifecycle value, $B a year</p>{chart_money("pratt_whitney", "value", "sq_value", "P&W engine value, $B nominal")}</div></div>
-<div class="grid2"><div class="panel"><p class="ctitle">Rolls-Royce engine lifecycle value, $B a year</p>{chart_money("rolls_royce", "value", "sq_value", "RR engine value, $B nominal")}</div>
-<div class="panel"><p class="label">Totals by period (final state)</p>{periods_table(FINAL)}</div></div>
+<div class="grid2"><div class="panel"><p class="ctitle">Boeing operating profit: fps lifts it from 2037</p>{chart_money("boeing", "profit", "sq_profit", "operating profit")}</div>
+<div class="panel"><p class="ctitle">Airbus operating profit: NGSA lifts it from 2037</p>{chart_money("airbus", "profit", "sq_profit", "operating profit")}</div></div>
+<div class="grid3"><div class="panel"><p class="ctitle">CFM/GE engine value: below the status quo from 2037</p>{chart_money("cfm", "value", "sq_value", "engine lifecycle value")}</div>
+<div class="panel"><p class="ctitle">P&amp;W engine value: below the status quo from 2037</p>{chart_money("pratt_whitney", "value", "sq_value", "engine lifecycle value")}</div>
+<div class="panel"><p class="ctitle">Rolls-Royce engine value: more than double from 2037</p>{chart_money("rolls_royce", "value", "sq_value", "engine lifecycle value")}</div></div>
+<div class="legend"><span><i class="ln" style="background:var(--s1)"></i>This game</span><span><i class="ln" style="background:var(--sq)"></i>Status quo (dashed)</span></div>
+<div class="panel"><p class="label">Totals by period (final state)</p>{periods_table(FINAL)}</div>
 {"".join(year_table(FINAL, s) for s in SIDES)}
 </div></section>
 

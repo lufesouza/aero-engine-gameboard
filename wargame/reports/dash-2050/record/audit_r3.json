@@ -1,0 +1,62 @@
+{
+ "boeing": {
+  "agent_type": "boeing-strategist",
+  "tool_calls": 20,
+  "paths": [
+   "/tmp/wargame-boeing",
+   "wargame/profiles/boeing"
+  ],
+  "foreign_paths": [],
+  "denied": [],
+  "engine_commands": [],
+  "clean": true
+ },
+ "cfm": {
+  "agent_type": "cfm-strategist",
+  "tool_calls": 22,
+  "paths": [
+   "/tmp/wargame-cfm",
+   "wargame/profiles/cfm"
+  ],
+  "foreign_paths": [],
+  "denied": [],
+  "engine_commands": [],
+  "clean": true
+ },
+ "airbus": {
+  "agent_type": "airbus-strategist",
+  "tool_calls": 17,
+  "paths": [
+   "/tmp/wargame-airbus",
+   "wargame/profiles/airbus"
+  ],
+  "foreign_paths": [],
+  "denied": [],
+  "engine_commands": [],
+  "clean": true
+ },
+ "pratt_whitney": {
+  "agent_type": "pratt-whitney-strategist",
+  "tool_calls": 19,
+  "paths": [
+   "/tmp/wargame-pratt_whitney",
+   "wargame/profiles/pratt_whitney"
+  ],
+  "foreign_paths": [],
+  "denied": [],
+  "engine_commands": [],
+  "clean": true
+ },
+ "rolls_royce": {
+  "agent_type": "rolls-royce-strategist",
+  "tool_calls": 21,
+  "paths": [
+   "/tmp/wargame-rolls_royce",
+   "wargame/profiles/rolls_royce"
+  ],
+  "foreign_paths": [],
+  "denied": [],
+  "engine_commands": [],
+  "clean": true
+ }
+}

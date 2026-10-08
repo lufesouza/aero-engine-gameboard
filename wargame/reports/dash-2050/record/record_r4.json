@@ -1,0 +1,548 @@
+{
+ "round": 4,
+ "year": 2050,
+ "orders": {
+  "boeing": {
+   "fps": "hold",
+   "fps_engine_code": null,
+   "rate_737": "hold",
+   "re787": "hold"
+  },
+  "airbus": {
+   "ngsa": "hold",
+   "ngsa_engine_code": null,
+   "rea350": "hold",
+   "delay_tactics": "none"
+  },
+  "cfm": {
+   "ducted": "hold",
+   "open_fan": "hold",
+   "partner_embraer": "hold",
+   "lobby_emissions": "hold",
+   "genx": "hold"
+  },
+  "pratt_whitney": {
+   "gtf2_solo": "hold",
+   "jv_with_rr": "hold"
+  },
+  "rolls_royce": {
+   "ultrafan_nb_solo": "hold",
+   "jv_with_pw": "hold",
+   "ultrafan_wb": "hold",
+   "t1000_upgrade": "hold"
+  }
+ },
+ "problems": {
+  "boeing": [],
+  "airbus": [],
+  "cfm": [],
+  "pratt_whitney": [],
+  "rolls_royce": []
+ },
+ "log": [],
+ "public_statements": {
+  "boeing": "Our fps and 787 families are earning for our customers every day, and the financials will follow our production performance: stability first, then rate, and steady improvements to both airplanes with CFM, GE and Rolls-Royce. We're not done until we're done, and we're confident we have an answer for anything our single-aisle and widebody customers need. We will do a new airplane when the market and the technology and we're ready, because it is so much more important that we do this right than fast.",
+  "airbus": "Our core principles of safety, quality, integrity, compliance and security will remain at the heart of all we do. Our next-generation single-aisle is in service with engines from CFM, Pratt & Whitney and Rolls-Royce on a disciplined and controlled production ramp-up, and together with the A220 family it gives our customers a family from the smallest single-aisle to the largest. On widebodies the A350 family remains our reference and we will keep improving it with Rolls-Royce, with a commitment to shareholder returns while preserving financial flexibility.",
+  "cfm": "Our new engine has been flying on both of our customers' new single-aisles since 2037, and the job for the next decade is the one that pays for decades: time on wing, shop visits and delivering to Boeing's and Airbus's real rates, with safety, quality, delivery and cost, always in that order. RISE remains our next generation with Safran, and when it goes into service is for our airframer and airline customers to decide, so until then its technology keeps going into the engines they fly today. I won't speak to competition, and we'll keep telling you what we know and what we don't.",
+  "pratt_whitney": "We're controlling what we can control: our geared turbofan has been flying on NGSA since 2037, time on wing is the name of the game, and we're growing the architecture with Airbus on its larger NGSA and the A220-500. Our 50/50 Joint Venture commitment to Rolls-Royce stands on the V2500 model, with each partner's technology credited and not transferred. That is a responsible bet with a responsible payback, and we'll keep it on the table without chasing it.",
+  "rolls_royce": "Our UltraFan narrowbody is in its thirteenth year in service and earning, and our engagement is still another 15, 20 years on those planes, so the job now is time on wing and shop visits, not a new engine that no airframe needs. There's no change of strategy: we are a pretty consistent company, we deliver what we say, we stay very aligned with Airbus, and we will grow UltraFan with the NGSA family. We remain open to partners that credit the technology we bring, but we will not fold an engine that is already flying into a 50/50 venture."
+ },
+ "public_other_moves": {
+  "boeing": [
+   {
+    "move": "787 continuous improvement with GE and Rolls-Royce",
+    "public": true,
+    "detail": "Keep the 787 the most efficient airplane in its segment through the GEnx performance packages GE has offered and Rolls-Royce's Trent time-on-wing work on standard terms. No Re-engine. Precedents: incremental 737NG gains before re-engining, and the 787 as the answer to the A330neo [B-0286, B-0634, B-0934, B-0858]."
+   },
+   {
+    "move": "787 capacity and availability",
+    "public": true,
+    "detail": "Keep growing Charleston capacity toward rates in the teens, and sell the 787 on delivery availability to widebody customers [B-2336, BX-1317]."
+   },
+   {
+    "move": "fps family growth: study a minimum-capex stretch with customers",
+    "public": true,
+    "detail": "This answers the larger NGSA variant the way the MAX 10 answered the A321neo: low R&D, the same CFM engine, no date until customers commit. There is no new airplane against a variant and no answer to the A220-500 ('no niche') [B-1271, B-1814, B-2063, B-2070]."
+   }
+  ],
+  "airbus": [
+   {
+    "move": "A350 family: step improvements with Rolls-Royce, sold on availability and value",
+    "detail": "Performance and weight/range improvement packages on the A350 and Trent XWB, as we did in steps on the A330neo [A-0251], plus the ULR and freighter versions [A-0254, A-0255, A-0253]. We compete against the 787 on availability and price, as with the A330 bridge [A-0003, A-0094]. This is derivative-first [A-0200], with no new widebody engine requested.",
+    "public": true
+   },
+   {
+    "move": "NGSA and A220 families: grow the range and sell commonality",
+    "detail": "Continue the A220-500 and the larger NGSA variant launched in 2045, as on the A321neo/LR/XLR path [A-0200, A-0245, A-0239]. Sell cross-crew qualification, family commonality and delivery availability to A320 and NGSA operators and contested accounts to hold parity and win back share [A-0238, A-0241].",
+    "public": true
+   },
+   {
+    "move": "NGSA engine fleet support: hold all three makers to time on wing and shop capacity",
+    "detail": "As a three-source customer, require fleet statistics, shop capacity and pacing parts from CFM, Pratt & Whitney and Rolls-Royce ahead of the first heavy shop visits, and keep alternative sources live [A-0243, A-0360, A-0218]. Neutral on how Rolls-Royce and Pratt & Whitney structure any partnership. We treat Joint Ventures as normal practice [A-0371].",
+    "public": true
+   },
+   {
+    "move": "Keep NGSA's industrial supply secured",
+    "detail": "Maintain long-term agreements for composite wing capacity, forgings and titanium, and keep giving suppliers long-range rate signals [A-0457, A-0159, AX-0060].",
+    "public": true
+   }
+  ],
+  "cfm": [
+   {
+    "move": "Fleet support for the CFM engine on fps and NGSA: time on wing, shop capacity and retrofits at natural shop visits",
+    "detail": "Durability is proven in service, not claimed. Fixes go in at natural shop visits, 'years, not months' [CX-0649]. About 70% of shop visits are done by CFM, 'split equally' with Safran [CX-0219]. No fix is called done without 'turn on and turn off' test evidence [CX-0009]. This is a joint capacity decision, and Safran's consent is assumed as joint practice.",
+    "public": true
+   },
+   {
+    "move": "RISE technology insertion into the in-service CFM engine (performance and durability block upgrades)",
+    "detail": "'do we have to wait until RISE ... the answer is no' [CX-0162]. Upgrades are offered to both airframers on standard terms and fitted at natural shop visits [CX-0649]. This is joint durability work with Safran, so consent is assumed.",
+    "public": true
+   },
+   {
+    "move": "RISE continues as a funded joint technology programme with Safran, its road map co-planned with both airframers, and no product launch until an airframer commits",
+    "detail": "No 'program dividend' [CX-0174]; future technology bets are protected [CX-0398]. Entry into service is the airframer's call [CX-0205][CX-0469]. We stay aligned with both airframers on the road map [CX-0185][CX-0193], and integration work with Airbus continues [CX-0211]. RISE is joint with Safran [CX-0147][CX-0166].",
+    "public": true
+   },
+   {
+    "move": "Standard risk-adjusted terms continue for Boeing, Airbus and Embraer, with no launch pricing",
+    "detail": "A fair risk-adjusted return 'regardless of what our competitors may do' [CX-0609]; launch pricing is 'behind us' [CX-0930]; price/cost positive [CX-0929]. Narrowbody pricing is a joint decision with Safran [CX-0184], and consent is assumed.",
+    "public": true
+   },
+   {
+    "move": "GEnx performance packages with Boeing to keep the 787 competitive (GE alone)",
+    "detail": "This supports Boeing's announced 787 continuous-improvement path. The 787 is won on fuel burn and time on wing, not price [CX-0615][CX-0599]. No Safran gate applies.",
+    "public": true
+   }
+  ],
+  "pratt_whitney": [
+   {
+    "move": "Joint Venture commitment stands; UltraFan's in-service maturity credited through workshare, not cash",
+    "public": true,
+    "detail": "The 50/50 narrowbody Joint Venture commitment stays on the record, on the IAE and Engine Alliance model. Each partner designs, builds and owns its modules, and each partner's technology is credited, not transferred: the fan-drive gear and hot section, and UltraFan. Rolls-Royce's in-service maturity is recognised through the module workshare and the revenue-sharing schedule, not through a balancing cash payment [P-1233][P-1240][P-1676][P-1744][PX-0299]."
+   },
+   {
+    "move": "Geared turbofan derivatives for Airbus's larger NGSA variant and the A220-500",
+    "public": true,
+    "detail": "Thrust growth and range packages stay inside the geared architecture for the larger NGSA, and a PW1500G-family derivative goes on the A220-500. Standard terms, pass-through pricing, no launch-style discounts. Derivatives over clean sheets [PX-0007][PX-0067][PX-0129][P-1250][PX-0117][PX-0055]."
+   },
+   {
+    "move": "GTF2 fleet: life-limited-part shop visits and partner MRO capacity",
+    "public": true,
+    "detail": "Size the pacing parts and partner shop network for the heavy visits on the NGSA fleet that entered service in 2037, and keep fleet lift ahead of new OE. Kits are priced, not given. Compensation and negative engine margin terms stay private [PX-0123][PX-0118][PX-0084][PX-0100][PX-0113]."
+   },
+   {
+    "move": "RTX capital framework unchanged (CFO register)",
+    "public": true,
+    "detail": "Derivative work and any Joint Venture share are funded inside the existing E&D and capex envelope, with our partners. The dividend comes first and deleveraging continues. 'We do not want to starve the business.' [PX-0081][PX-0353][PX-0268][PX-0192]"
+   }
+  ],
+  "rolls_royce": [
+   {
+    "move": "UltraFan narrowbody fleet support through the NGSA fleet's heavy shop visits",
+    "public": true,
+    "detail": "The NGSA UltraFan fleet, in service since 2037, is reaching its second shop-visit cycle, where engine-maker profit catches up. We will grow narrowbody TotalCare and partner MRO capacity at the pace of that cycle, as in the Singapore MRO Joint Venture. Durability fixes and UltraFan technology go in at natural shop visits, not through recalls (RX-0289, RX-0283, RX-0287, R-1419, R-1212)."
+   },
+   {
+    "move": "UltraFan thrust-growth derivative for Airbus's larger NGSA variant",
+    "public": true,
+    "detail": "We will support Airbus's larger, longer-range NGSA variant with a thrust-growth UltraFan derivative. It is funded inside the flat R&D envelope, on standard terms, and tested to maturity before any date is given. This follows the Trent 7000 for the A330neo, 'not incremental to our R&D plans', and the Trent XWB-97 for the A350-1000 (R-0937, R-0312, R-0974, RX-0214, RX-0284)."
+   },
+   {
+    "move": "Joint Venture: no change of position",
+    "public": true,
+    "detail": "We note Pratt & Whitney's reaffirmed offer. UltraFan narrowbody is in service, funded and matured by Rolls-Royce, and it stays outside a 50/50 venture. We remain open to risk-and-revenue-sharing partners on modules, MRO and the next generation, on terms that credit the technology each partner brings (RX-0098, RX-0118, R-0318, R-1394)."
+   },
+   {
+    "move": "Capital allocation: no new engine-programme spend; installed-base cash returned (CFO register)",
+    "public": true,
+    "detail": "That's how you should hold it: no new engine programme this year, and gross R&D broadly flat on a smaller and more focused portfolio. Cash from the installed base goes first to a strong balance sheet, then to a 30-40% payout. Buybacks compete with investment on strategic fit, value and timing, and we don't have any intent of levering up for buybacks (R-0900, R-0909, RX-0214, RX-0248, RX-0261)."
+   },
+   {
+    "move": "Trent time-on-wing programme continued; standard terms on Boeing's 787 packages",
+    "public": true,
+    "detail": "Durability work on the Trent 1000, 7000 and XWB continues inside the flat envelope. It is not the board's Trent 1000 upgrade. We support Boeing's 787 performance packages on standard terms, with no price concessions for share (R-1601, RX-0285, R-0998, R-0367)."
+   }
+  ]
+ },
+ "private_other_moves": {
+  "boeing": [
+   {
+    "move": "Defend incumbent fps and 737 accounts against Airbus's NGSA recovery campaign",
+    "public": false,
+    "detail": "Match only in must-win incumbent campaigns, funded by productivity, with commonality, training and transition support for the 737 and fps fleets. Walk away from ruinous deals and do not react to single losses [B-0840, B-0961, B-1868, B-2331]."
+   },
+   {
+    "move": "Widebody pricing discipline against A350 availability and value pricing",
+    "public": false,
+    "detail": "Press availability where we have Charleston slots. Match only in must-win campaigns and do not follow into a price war [B-0917, B-2424, B-0840]."
+   },
+   {
+    "move": "fps production stability and supplier health",
+    "public": false,
+    "detail": "Keep embedded staff, buffers and second sources at critical fps suppliers, so deliveries hold a 2050 narrowbody share that sits at exactly 50%. No shortfall is attributed to Airbus unless it is exposed [B-2097, B-2330, B-2285, B-1923]."
+   }
+  ],
+  "airbus": [
+   {
+    "move": "Selective campaign terms on contested accounts",
+    "detail": "Early delivery positions and sharp but cash-disciplined pricing in head-to-head campaigns against fps, as at Lion Air and American [A-0080, A-0045]. Kept within cash-sale policy, with no customer financing used as a sales weapon [A-0259].",
+    "public": false
+   }
+  ],
+  "cfm": [
+   {
+    "move": "Contingency if Rolls-Royce and P&W form their Joint Venture: no public reaction, no price cut, compete on durability campaign by campaign",
+    "detail": "'I won't speak to competition' [CX-0580]. There is no price war for share [CX-0609]. NGSA campaigns are fought on time on wing and the win-rate record [CX-0218], and RISE stays funded [CX-0553].",
+    "public": false
+   },
+   {
+    "move": "Supply chain and output paced to the airframers' actual rates",
+    "detail": "Boeing's narrowbody share is now 50%, after its fps ramp-up boost ended in 2047. Shipments are paced to the actual rate [CX-0206], with engineers at supplier sites [CX-0993] and supply, engineering and quality under one owner [CX-0633].",
+    "public": false
+   },
+   {
+    "move": "Capital frame unchanged: no new launch capex this round",
+    "detail": "Capex stays at 2-3% of revenue [CX-0922], at least 70% of free cash flow is returned [CX-0645], and R&D is protected [CX-0962][CX-0174].",
+    "public": false
+   }
+  ],
+  "pratt_whitney": [
+   {
+    "move": "Realign the OE-loss and aftermarket model with Airbus on the larger NGSA variant",
+    "public": false,
+    "detail": "The new variant is the next platform on which to revisit the business model. Reprice fleet-management agreements for inflation and real time on wing as they reach term [PX-0068][PX-0070][PX-0275][P-0571]."
+   }
+  ],
+  "rolls_royce": [
+   {
+    "move": "A350 family: Trent XWB exclusivity and UltraFan technology insertion, continued privately with Airbus",
+    "public": false,
+    "detail": "Airbus's Board review of the widebody market continues with its engine partners. We continue private talks to extend Trent XWB sole source, and we offer UltraFan technology inserted into the Trent XWB as a performance package rather than a new widebody engine. Standard terms, with no 'silly pricing' as sole source (R-0360, R-0361, RX-0295, R-0334)."
+   }
+  ]
+ },
+ "bulletin_notes": [
+  "Round 4 (2050) adjudicated. Public events: none."
+ ],
+ "private_notes": {},
+ "value": {
+  "boeing": {
+   "pv_delta": 1.8468592734483629,
+   "yield": 101.42066097957566
+  },
+  "airbus": {
+   "pv_delta": 15.606052581884503,
+   "yield": 110.40403505458967
+  },
+  "cfm": {
+   "pv_delta": -25.174319102806635,
+   "yield": 84.26605056074585
+  },
+  "pratt_whitney": {
+   "pv_delta": -10.640838687956588,
+   "yield": 90.32651028367583
+  },
+  "rolls_royce": {
+   "pv_delta": 15.680961552554372,
+   "yield": 114.25541959323125
+  }
+ },
+ "value_public_view": {
+  "boeing": {
+   "pv_delta": 3.791598197983081,
+   "yield": 102.91661399844853
+  },
+  "airbus": {
+   "pv_delta": 13.444440882069705,
+   "yield": 108.96296058804647
+  },
+  "cfm": {
+   "pv_delta": -23.4242423189977,
+   "yield": 85.35984855062644
+  },
+  "pratt_whitney": {
+   "pv_delta": -11.374173858703578,
+   "yield": 89.65984194663311
+  },
+  "rolls_royce": {
+   "pv_delta": 14.947626381807375,
+   "yield": 113.58875125618852
+  }
+ },
+ "returned": {
+  "boeing": {
+   "orders": {
+    "fps": "hold",
+    "fps_engine_code": null,
+    "rate_737": "hold",
+    "re787": "hold"
+   },
+   "other_moves": [
+    {
+     "move": "787 continuous improvement with GE and Rolls-Royce",
+     "public": true,
+     "detail": "Keep the 787 the most efficient airplane in its segment through the GEnx performance packages GE has offered and Rolls-Royce's Trent time-on-wing work on standard terms. No Re-engine. Precedents: incremental 737NG gains before re-engining, and the 787 as the answer to the A330neo [B-0286, B-0634, B-0934, B-0858]."
+    },
+    {
+     "move": "787 capacity and availability",
+     "public": true,
+     "detail": "Keep growing Charleston capacity toward rates in the teens, and sell the 787 on delivery availability to widebody customers [B-2336, BX-1317]."
+    },
+    {
+     "move": "fps family growth: study a minimum-capex stretch with customers",
+     "public": true,
+     "detail": "This answers the larger NGSA variant the way the MAX 10 answered the A321neo: low R&D, the same CFM engine, no date until customers commit. There is no new airplane against a variant and no answer to the A220-500 ('no niche') [B-1271, B-1814, B-2063, B-2070]."
+    },
+    {
+     "move": "Defend incumbent fps and 737 accounts against Airbus's NGSA recovery campaign",
+     "public": false,
+     "detail": "Match only in must-win incumbent campaigns, funded by productivity, with commonality, training and transition support for the 737 and fps fleets. Walk away from ruinous deals and do not react to single losses [B-0840, B-0961, B-1868, B-2331]."
+    },
+    {
+     "move": "Widebody pricing discipline against A350 availability and value pricing",
+     "public": false,
+     "detail": "Press availability where we have Charleston slots. Match only in must-win campaigns and do not follow into a price war [B-0917, B-2424, B-0840]."
+    },
+    {
+     "move": "fps production stability and supplier health",
+     "public": false,
+     "detail": "Keep embedded staff, buffers and second sources at critical fps suppliers, so deliveries hold a 2050 narrowbody share that sits at exactly 50%. No shortfall is attributed to Airbus unless it is exposed [B-2097, B-2330, B-2285, B-1923]."
+    }
+   ],
+   "public_statement": "Our fps and 787 families are earning for our customers every day, and the financials will follow our production performance: stability first, then rate, and steady improvements to both airplanes with CFM, GE and Rolls-Royce. We're not done until we're done, and we're confident we have an answer for anything our single-aisle and widebody customers need. We will do a new airplane when the market and the technology and we're ready, because it is so much more important that we do this right than fast.",
+   "rationale": "Triggers.\n- Row 5 applies: the A350 is still not re-engined and Airbus's board review continues. A 787 Re-engine is in character only if it gains more than \u03b5 [B-0342, B-0634].\n- Row 6 applies to the A220-500 and the larger NGSA: no fps order, a minimum-capex answer or none [B-1271, B-2063, B-2070].\n- Row 8 applies to Airbus's NGSA campaign and A350 pricing: match only must-win campaigns, no order change [B-0840, B-0961, B-1868].\n- If Airbus re-engines the A350 this round, row 3 applies: statement only [B-0858, B-0917].\n\nHard rules.\n- H3's second half has not fired.\n- H4 is moot: fps has been in service since 2037.\n- H5, H6 and H7 have nothing to act on.\n- Every narrowbody order can only be hold.\n\nGrid.\n- Hold scores +1.85 in both S1 and S2.\n- The 787 Re-engine scores +1.72 in S1 (-0.13) and +0.58 in S2 (-1.27).\n- Hold dominates in both columns, so there is no break-even probability. Weighted at P(S2) of 0.3, hold scores 1.85 and the Re-engine 1.38. Maximin: hold +1.85, Re-engine +0.58.\n- A 2050 Re-engine enters service only in 2055. It books its $5B for almost no share.\n\nPremium. 0 in every column. Declared premiums so far total 1.54 (R1 0.74, R2 0.80). 0.11 was also logged in R3 against S1.\n\nPrecedent. Boeing declined a re-engine against the A330neo with \"absolutely no regret\" [B-0858, B-0917]. It keeps its airplanes the most efficient in their segment through step-by-step packages [B-0286, B-0934].\n\nObjective.\n- Before: Hold 50/50 is NOT MET. The worst year is 2040 at 44.0% (a gap of -6.0 pp, already history); 2045 at 54.0% and 2050 at 50.0% are met. Defend incumbency is MET (worst year 40.0%).\n- After: unchanged. The re787 order is widebody, and no narrowbody order is legal.\n- The 50/50 objective cannot be fully met in this game. The best attainable position is secured: at least 50% in 2045 and 2050, with incumbency held throughout.\n- 2050 sits at exactly 50.0%, so private fps delivery stability and incumbent-campaign moves guard it [B-2330, B-2097, B-0840].\n- Objective premium: 0.\n\nThe Malave seat (low confidence) and the Pope seat (very low) ran on doctrine.",
+   "exco": {
+    "ceo": "Ortberg frames. No quality, FAA or supply inject is live, so the KPIs are stable [BX-1271]. fps and NGSA have both been in service since 2037, and our narrowbody share has held 50% since 2047. Airbus's variants and campaigns do not set our plans [B-2313, B-2070]. He asked for the Re-engine's effect: -0.13 in S1 and -1.27 in S2. Applying 'doing less and doing it better' [BX-1239] and 'right rather than fast' [BX-1241], we improve the 787 and do not re-engine it.",
+    "cfo": "Malave puts the balance sheet first [BX-0556]. The debt penalty already costs -7.23, and the $64.5B for fps was booked in 2037. A Re-engine would book another $5B at a 2055 entry into service and is worse than hold in both columns (+1.72 and +0.58 against +1.85), so it fails his buffer test outright [BX-0553]. Hold is the 'higher confidence plan' [BX-0548]. Growth capex stays on Charleston, where demand is proven [BX-0546, BX-1317].",
+    "coo": "Pope's seat runs on doctrine because her evidence is very thin. On-time, predictable delivery comes first [BX-1331]. Engineering and supplier capacity stay on fps production stability and the 787 packages GE and Rolls-Royce have offered, not on a new widebody development. A larger fps family member, if customers want one, would be a minimum-capex derivative on Boeing's own IP [BX-1330, B-1271]. Nothing is needed against the A220-500 [B-2070].",
+    "decision_rule": "Ortberg proposes and decides, with Malave's buffer test as the baseline veto. The 787 Re-engine fails that test because it is worse than hold in both columns. Hold is identical and positive in S1 and S2 (+1.85), so it is both the PV-best and the maximin plan, and no tie-break or premium is needed. Orders: fps hold (in service on CFM, no engine change), 737 rate hold, 787 hold."
+   },
+   "expected_scenario": "S1, rivals hold, at about 70%. Airbus's board review is still running, Rolls-Royce says it 'will not spend on a new engine that no airframe needs', and a 2050 A350 Re-engine would not enter service until 2055. S2, an A350 Re-engine, is about 30%.",
+   "best_grid_plan_in_expected_scenario": "fps hold + 787 hold: +1.85 (yield 101.4%) in S1. It is also the best plan in S2 (+1.85). This is my choice.",
+   "premium_b": 0,
+   "premium_reason": "There is no premium: hold is the best plan in both S1 and S2. The 787 Re-engine trails it by 0.13 in S1 and 1.27 in S2. Doctrine and PV agree, in line with Boeing's 'no regret' stance on not re-engining against the A330neo [B-0858, B-0917]. Declared doctrine premiums stay at 1.54 cumulative (R1 0.74, R2 0.80), plus 0.11 logged in R3 against S1, all under the $2B cap. Objective premium: 0.",
+   "objective_note": "Before these orders:\n- Hold 50/50 is NOT MET. 2040 was 44.0% (a gap of -6.0 pp, already history); 2045 at 54.0% and 2050 at 50.0% are met.\n- Defend incumbency is MET (worst year 40.0%, 2026-31).\n\nAfter these orders: unchanged. The re787 order is widebody, and every narrowbody order can only be hold.\n\nThe 50/50 objective cannot be fully met in this game. The best attainable position is locked in on the board: at least 50% in 2045 and 2050, with incumbency held in every year.\n\n2050 sits at exactly 50.0% with no margin, so private fps delivery stability and must-win incumbent campaigns guard it off-board. Objective premium: 0.",
+   "predictions": "Airbus:\n- Holds on the A350 Re-engine (p about 0.7; launch p about 0.3).\n- Has no narrowbody board move available.\n- Continues the A220-500, the larger NGSA variant, its NGSA and A320 customer campaign, and A350 availability-and-value pricing.\n\nCFM/GE:\n- Holds; no Open Fan launch (p about 0.85) and no emissions lobbying.\n- Continues fleet support, standard terms and GEnx packages for the 787.\n\nPratt & Whitney:\n- Keeps its Joint Venture commitment standing (p about 0.8).\n- No new launch; GTF2 fleet and shop-capacity support.\n\nRolls-Royce:\n- Does not commit to the 50/50 Joint Venture (p about 0.85).\n- Launches UltraFan widebody only alongside an A350 Re-engine (p about 0.2, correlated with Airbus).\n- A Trent 1000 upgrade is unlikely (p about 0.15); continues TotalCare and time-on-wing work.",
+   "expected_pv_b": 1.85
+  },
+  "airbus": {
+   "orders": {
+    "ngsa": "hold",
+    "ngsa_engine_code": null,
+    "rea350": "hold",
+    "delay_tactics": "none"
+   },
+   "other_moves": [
+    {
+     "move": "A350 family: step improvements with Rolls-Royce, sold on availability and value",
+     "detail": "Performance and weight/range improvement packages on the A350 and Trent XWB, as we did in steps on the A330neo [A-0251], plus the ULR and freighter versions [A-0254, A-0255, A-0253]. We compete against the 787 on availability and price, as with the A330 bridge [A-0003, A-0094]. This is derivative-first [A-0200], with no new widebody engine requested.",
+     "public": true
+    },
+    {
+     "move": "NGSA and A220 families: grow the range and sell commonality",
+     "detail": "Continue the A220-500 and the larger NGSA variant launched in 2045, as on the A321neo/LR/XLR path [A-0200, A-0245, A-0239]. Sell cross-crew qualification, family commonality and delivery availability to A320 and NGSA operators and contested accounts to hold parity and win back share [A-0238, A-0241].",
+     "public": true
+    },
+    {
+     "move": "Selective campaign terms on contested accounts",
+     "detail": "Early delivery positions and sharp but cash-disciplined pricing in head-to-head campaigns against fps, as at Lion Air and American [A-0080, A-0045]. Kept within cash-sale policy, with no customer financing used as a sales weapon [A-0259].",
+     "public": false
+    },
+    {
+     "move": "NGSA engine fleet support: hold all three makers to time on wing and shop capacity",
+     "detail": "As a three-source customer, require fleet statistics, shop capacity and pacing parts from CFM, Pratt & Whitney and Rolls-Royce ahead of the first heavy shop visits, and keep alternative sources live [A-0243, A-0360, A-0218]. Neutral on how Rolls-Royce and Pratt & Whitney structure any partnership. We treat Joint Ventures as normal practice [A-0371].",
+     "public": true
+    },
+    {
+     "move": "Keep NGSA's industrial supply secured",
+     "detail": "Maintain long-term agreements for composite wing capacity, forgings and titanium, and keep giving suppliers long-range rate signals [A-0457, A-0159, AX-0060].",
+     "public": true
+    }
+   ],
+   "public_statement": "Our core principles of safety, quality, integrity, compliance and security will remain at the heart of all we do. Our next-generation single-aisle is in service with engines from CFM, Pratt & Whitney and Rolls-Royce on a disciplined and controlled production ramp-up, and together with the A220 family it gives our customers a family from the smallest single-aisle to the largest. On widebodies the A350 family remains our reference and we will keep improving it with Rolls-Royce, with a commitment to shareholder returns while preserving financial flexibility.",
+   "rationale": "Situation (2050, final round). NGSA and fps have been in service since 2037. The fps ramp bonus ended in 2046, and shares have been 50/50 since 2047. If nobody moves we stand at +15.61. Boeing has had three rounds and put no 787 Re-engine on record. It has publicly chosen 787 continuous improvement with GE and Rolls-Royce. The only live lever is rea350. Delay Tactics is closed: fps is in service and rule 4's single use was spent in 2035. We stay silent on the bulletin's unattributed 2037-41 observation.\n\nTriggers. Reaction rows 5 and 14: with no 787 Re-engine, test the A350 Re-engine [A-0090, A-0091, A-0302]. Rule 3 is not triggered. Rule 6 passes: one launch, zero NGSA overlap.\n\nGrid, Re-engine against Do Nothing:\n- S1: +0.59 (16.20 vs 15.61). S2: -0.43 (15.18 vs 15.61).\n- Breakeven is 58% odds of a 787 Re-engine. At our 30% the expected edge is about +0.28.\n- Do Nothing pays +15.61 in both columns. It is the only plan that does not depend on Boeing.\n- The edge fell from +0.91 in 2045 because a 2055 EIS leaves few counted years.\n\nTests. The \u00a76 launch test (at least $1B over Do Nothing) fails even in the best column. Toepfer's robustness test fails because the Re-engine is negative in S2. The best case is below the $1B override bar. In the final round there is no option value in waiting, but no test turns on that.\n\nDecision: NGSA hold, A350 Do Nothing, no Delay Tactics. This is the doctrine default within \u03b5 (step 6). Doctrine premium: $0.59B against the best S1 plan, about $0.28B expected. Airbus re-engines widebodies late and cheaply, and only when the case clearly pays (A330neo) [A-0090, A-0091]. Until then it competes on availability and price [A-0003, A-0094] and keeps a prudent net-cash posture [A-0343, AX-0022].\n\nObjective: both metrics missed, before and after. No board lever reaches narrowbody share. Objective premium: $0.\n\nOff-board: A350 improvement steps with Rolls-Royce [A-0251, A-0254]; NGSA, A220 and commonality campaigns [A-0200, A-0238].\n\nConfidence: Toepfer's and Wagner's lines are role-derived from thin profiles.",
+   "exco": {
+    "ceo": "Faury frames the last round. NGSA has been mature since 2037, shares have held 50/50 since fps's ramp bonus ended, and the A350 is the only open board lever. Boeing has three times chosen 787 continuous improvement over a Re-engine, so he expects S1 at about 70%. He proposes the company default, A350 Do Nothing. The Re-engine's best case (+0.59) is noise-sized and does not clear the $1B launch test, and widebody strategy stays a Board review item [A-0302, AX-0019]. Under the five pillars [AX-0073, AX-0081], no covert lever is in play and the 2035 order is never mentioned.",
+    "cfo": "Toepfer: cash does not bind. The Re-engine is $5B over 2050-55, about $1.0B a year with no NGSA capex and no strain, far under the roughly $5.2B FCF guardrail [AX-0104]. It fails his robustness test: +0.59 in S1 but -0.43 in S2. That puts breakeven at 58% odds of a 787 Re-engine and the expected edge at about +0.28. A prudent risk approach [AX-0022, A-0343] does not send a Board item above EUR300m [AX-0026] for under $0.3B of expected value: shareholder returns while preserving financial flexibility [AX-0001].",
+    "coo": "Wagner (role-derived, very low confidence): the NGSA ramp is disciplined and controlled [AX-0010]. But the shared engineering teams [A-0366] are now on the A220-500 and the larger NGSA variant launched in 2045 [A-0200, A-0245], so an A350 Re-engine would add off-board concurrency, which is the briefing's own constraint. Rolls-Royce has no UltraFan widebody on record and says it will not spend on an engine no airframe needs. An uncommitted engine repeats the supply risk that reset our rate [AX-0054, A-0218]. He raises this as a flag, not a veto, and prefers A350 improvement steps on the Trent XWB [A-0253, A-0251].",
+    "decision_rule": "A350 hold passes company rules 3 and 6 and both executives' tests. The Re-engine passes rules 3 and 6 but fails Toepfer's robustness test (a soft veto) and the \u00a76 $1B launch test. Faury may override only with at least $1B over the best survivor. The Re-engine's best case is +0.59, so no override is used, and the game's single override goes unspent. The highest-PV survivor is A350 hold (+15.61 in S1 and S2), which is also the company default within \u03b5. No board order goes to the Board this round."
+   },
+   "expected_scenario": "S1, rivals hold (about 70%): Boeing keeps improving the 787 continuously and growing its capacity, as it has said publicly. S2, Boeing launches the 787 Re-engine in this final round (about 30%).",
+   "best_grid_plan_in_expected_scenario": "NGSA hold + A350 Re-engine: +16.20 (110.8%) in S1. Our plan, NGSA hold + A350 hold, gives +15.61 (110.4%) in both S1 and S2. It is the best plan in S2, where the Re-engine falls to +15.18.",
+   "premium_b": 0.59,
+   "premium_reason": "Doctrine premium: we leave out the A350 Re-engine, giving up $0.59B against the best S1 plan, or about $0.28B in expectation at 30% odds of a 787 Re-engine. The gap is within the $1B \u03b5, so the doctrine default (Do Nothing) governs under decision-procedure step 6. The Re-engine also fails the \u00a76 launch test (at least $1B over Do Nothing) even in its best column, and it loses $0.43B if Boeing re-engines the 787 at the same time (the widebody Chicken crash). Historically Airbus re-engines widebodies late and cheaply, as with the A330neo, and only when the case clearly pays [A-0090, A-0091]. Until then it competes on availability and price [A-0003, A-0094] under a prudent net-cash posture [A-0343, AX-0022].",
+   "objective_note": "Before these orders:\n- Defend the 60/40 edge: not met. Worst year is 2045 at 46.0% (2040 56.0%, 2050 50.0%), a gap of 14pp.\n- Protect the A320 family: not met. Worst counted year is 55.0% (2032-36, from the 737 Rate Increase), a gap of 5pp.\n\nAfter these orders: unchanged on both metrics. The only live lever (rea350) is widebody and does not move narrowbody share. NGSA is in service, and Delay Tactics is closed.\n\nThe objective cannot be met in this game, and the objective premium is $0. The best attainable position is to hold 50/50 parity after 2047 through the unpriced off-board moves: the A220-500, the larger NGSA variant, and commonality and slot campaigns.",
+   "predictions": "Boeing: hold, about 70%. It keeps 787 continuous improvement with GE and Rolls-Royce plus Charleston capacity, as stated. 787 Re-engine launch about 30% (EIS 2055). It has no narrowbody order to make. Expect statements on fps production stability and 787 availability.\n\nCFM/GE: hold. No Open Fan, since RISE waits for an airframer to commit. Fleet support and standard terms continue. Emissions lobbying about 15%; GEnx investment about 20%.\n\nPratt & Whitney: the Joint Venture commitment stands (withdrawal about 15%), otherwise hold. GTF2 fleet support continues.\n\nRolls-Royce: no Joint Venture commitment on 50/50 terms (about 85%). UltraFan widebody about 10%, only if it reads a re-engine as coming. Trent 1000 upgrade about 25%. Otherwise hold, with narrowbody TotalCare and time-on-wing work.",
+   "expected_pv_b": 15.61
+  },
+  "cfm": {
+   "orders": {
+    "ducted": "hold",
+    "open_fan": "hold",
+    "partner_embraer": "hold",
+    "lobby_emissions": "hold",
+    "genx": "hold"
+   },
+   "other_moves": [
+    {
+     "move": "Fleet support for the CFM engine on fps and NGSA: time on wing, shop capacity and retrofits at natural shop visits",
+     "detail": "Durability is proven in service, not claimed. Fixes go in at natural shop visits, 'years, not months' [CX-0649]. About 70% of shop visits are done by CFM, 'split equally' with Safran [CX-0219]. No fix is called done without 'turn on and turn off' test evidence [CX-0009]. This is a joint capacity decision, and Safran's consent is assumed as joint practice.",
+     "public": true
+    },
+    {
+     "move": "RISE technology insertion into the in-service CFM engine (performance and durability block upgrades)",
+     "detail": "'do we have to wait until RISE ... the answer is no' [CX-0162]. Upgrades are offered to both airframers on standard terms and fitted at natural shop visits [CX-0649]. This is joint durability work with Safran, so consent is assumed.",
+     "public": true
+    },
+    {
+     "move": "RISE continues as a funded joint technology programme with Safran, its road map co-planned with both airframers, and no product launch until an airframer commits",
+     "detail": "No 'program dividend' [CX-0174]; future technology bets are protected [CX-0398]. Entry into service is the airframer's call [CX-0205][CX-0469]. We stay aligned with both airframers on the road map [CX-0185][CX-0193], and integration work with Airbus continues [CX-0211]. RISE is joint with Safran [CX-0147][CX-0166].",
+     "public": true
+    },
+    {
+     "move": "Standard risk-adjusted terms continue for Boeing, Airbus and Embraer, with no launch pricing",
+     "detail": "A fair risk-adjusted return 'regardless of what our competitors may do' [CX-0609]; launch pricing is 'behind us' [CX-0930]; price/cost positive [CX-0929]. Narrowbody pricing is a joint decision with Safran [CX-0184], and consent is assumed.",
+     "public": true
+    },
+    {
+     "move": "GEnx performance packages with Boeing to keep the 787 competitive (GE alone)",
+     "detail": "This supports Boeing's announced 787 continuous-improvement path. The 787 is won on fuel burn and time on wing, not price [CX-0615][CX-0599]. No Safran gate applies.",
+     "public": true
+    },
+    {
+     "move": "Contingency if Rolls-Royce and P&W form their Joint Venture: no public reaction, no price cut, compete on durability campaign by campaign",
+     "detail": "'I won't speak to competition' [CX-0580]. There is no price war for share [CX-0609]. NGSA campaigns are fought on time on wing and the win-rate record [CX-0218], and RISE stays funded [CX-0553].",
+     "public": false
+    },
+    {
+     "move": "Supply chain and output paced to the airframers' actual rates",
+     "detail": "Boeing's narrowbody share is now 50%, after its fps ramp-up boost ended in 2047. Shipments are paced to the actual rate [CX-0206], with engineers at supplier sites [CX-0993] and supply, engineering and quality under one owner [CX-0633].",
+     "public": false
+    },
+    {
+     "move": "Capital frame unchanged: no new launch capex this round",
+     "detail": "Capex stays at 2-3% of revenue [CX-0922], at least 70% of free cash flow is returned [CX-0645], and R&D is protected [CX-0962][CX-0174].",
+     "public": false
+    }
+   ],
+   "public_statement": "Our new engine has been flying on both of our customers' new single-aisles since 2037, and the job for the next decade is the one that pays for decades: time on wing, shop visits and delivering to Boeing's and Airbus's real rates, with safety, quality, delivery and cost, always in that order. RISE remains our next generation with Safran, and when it goes into service is for our airframer and airline customers to decide, so until then its technology keeps going into the engines they fly today. I won't speak to competition, and we'll keep telling you what we know and what we don't.",
+   "rationale": "Board (2050, final round): fps (code 3, CFM only) and NGSA (code 7) have been in service since 2037. Our ducted engine, the Embraer partnership and the GEnx upgrade are all in service. No airframe is open and in-service selections cannot change, so neither the defensive trigger (hard rule 3) nor any airframer row applies. Rolls-Royce declined P&W's 50/50 Joint Venture in 2045 but stays \"open to partners on terms that credit\" UltraFan, and P&W's terms now credit it. That is the one live rival row, and we have no lever against it [CX-0580][CX-0609].\n\nGrid (S1): hold -25.17 (84.3%); Open Fan + Lobby -40.56 (-15.39); Open Fan -44.35 (-19.18). Lobby alone costs $1B and has no board effect. Hold is PV-best and breaks no hard rule.\n\nOpen fan: no airframer has asked for RISE, and entry is its call [CX-0205][CX-0469]. A 2050 launch would be ready in 2060, long after both airframes entered service, so hard rule 2 forbids it. Its 15.39 premium also exceeds the $15B RISE allowance and the $2B round cap. RISE stays funded technology with no \"program dividend\" [CX-0174][CX-0398], and its content goes into today's engines [CX-0162].\n\nSafran gate: there is no new CFM narrowbody programme, price or capacity decision. Joint RISE technology [CX-0147][CX-0166], joint standard pricing [CX-0184] and shop visits split equally [CX-0219] are joint practice, so consent is assumed. Safran's own view is low-confidence (one appearance [CX-0152]).\n\nPremium: 0 (doctrine and objective). Game total: 0 against the $4B cap.\n\nObjective: before these orders, dominance was met (worst 59.7% in 2040; 66.0% in 2045; 63.5% in 2050) and the open fan was not met. After hold, both are unchanged. The open-fan metric cannot be met (earliest ready date 2060). Launching anyway would cut 2050 share by 20-35pp, to about 43.5% or 28.5% (inference), so dominance would be missed too. Best attainable position: dominance held.\n\nOff-grid: if Rolls-Royce commits, the Joint Venture takes 10pp from CFM over 2050-56. That is about $3.4B by our year-table arithmetic ($10.09M per narrowbody engine in 2050; inference). Dominance would be about 53.5%, still met. At p 0.3, guided low [CX-0270][CX-0324]: -26.2.\n\nThin profile: Ali's own words end in 2024 [CX-0013]; his test standard is applied by inference.",
+   "exco": {
+    "ceo": "Culp frames with 'What game are we playing? And how do we win?' [CX-0467]. This is the last decision year, and the game is the installed-base annuity: 63.5% of narrowbody engines on two in-service airframes, where the economics happen 'in and around the first and second' shop visits [CX-0422] and 'We get paid in dollars, not in percentages' [CX-0630]. No airframer has asked for RISE, and its entry is 'really not for us to say' [CX-0205]. So he proposes holding everything, keeping RISE as funded joint technology [CX-0174], and saying nothing about the pending Joint Venture [CX-0580].",
+    "cfo": "Ghai tests the grid. Hold is -25.17 (84.3%), against Open Fan + Lobby at -40.56 and Open Fan at -44.35. A launch gives up 15.39-19.18 for a product ready in 2060, after the board's 2056 narrowbody horizon, with no airframer volumes behind it [CX-0944]. Hold keeps capex inside 2-3% of revenue [CX-0922], at least 70% of free cash flow returned [CX-0645] and pricing price/cost positive [CX-0929]. On what the case leaves out [CX-0961]: a formed P&W-Rolls-Royce Joint Venture would cost about $3.4B by our own arithmetic. At p 0.3 he books -26.2, guided low [CX-0324].",
+    "coo": "Ali tests readiness. The ducted engine was called ready in 2036 on 'turn on and turn off' evidence [CX-0009] and has 14 years in service. The work now is time on wing: retrofits at natural shop visits ('years, not months' [CX-0649]) and about 70% of shop visits, split equally with Safran [CX-0219], with supply, engineering and quality under one owner [CX-0633]. The physics case for the open fan stands [CX-0180], but a 10-year product programme with no airframe to fly it would load the supply chain for nothing, so its technologies go into today's engines instead [CX-0162].",
+    "decision_rule": "Culp proposes and decides. Hold passes Ghai's capex and price tests and Ali's readiness test. The open fan fails Ghai's tests (its premium is above the RISE allowance) and the doctrine (hard rule 2), so the tie-break 'safety, quality, delivery and cost, always in that order' [CX-0658] is not needed. The Safran gate is passed by assumed consent: there is no new CFM narrowbody decision, and RISE, pricing and shop visits are joint practice [CX-0147][CX-0184][CX-0219]. Treating Ghai's and Ali's tests as vetoes is an inference, and Ali's profile is thin (his own words end in March 2024)."
+   },
+   "expected_scenario": "S1: rivals hold on the board. fps and NGSA are in service and their engines are fixed. The one live off-grid risk is Rolls-Royce committing to P&W's standing Joint Venture now that P&W's terms credit UltraFan, at p about 0.3. A widebody Re-engine launched in 2050 would enter service in 2055, after the board's 2054 widebody horizon, so it is unlikely and immaterial to us.",
+   "best_grid_plan_in_expected_scenario": "Hold everything: -25.17 (84.3%) in S1. Open Fan + Lobby is -40.56 (74.7%) and Open Fan alone is -44.35 (72.3%).",
+   "premium_b": 0,
+   "premium_reason": "No premium: hold is the grid best and the only plan that breaks no hard rule. We again declined an objective premium for the open fan: 15.39 (Open Fan + Lobby) or 19.18 (Open Fan). Either is above the $2B round cap and the $15B RISE allowance. It would buy no objective metric, since a 2050 launch is ready only in 2060, and it would break hard rule 2: both new narrowbodies have been in service since 2037, and GE does not press an airframer into the open-fan wait [CX-0205][CX-0469]. Premiums paid across the game: 0.",
+   "objective_note": "Before these orders, dominance was met: worst year 59.7% in 2040, 66.0% in 2045 and 63.5% in 2050, all at or above 50%. The open fan was not met because it has not been launched. After these orders (hold), both are unchanged: dominance met at the same values, open fan not met. The open-fan metric cannot be met in this game: a 2050 launch would be ready in 2060. Launching it anyway would cost $15.39-19.18B and cut CFM's 2050 narrowbody share by 20pp (with lobbying) or 35pp, to about 43.5% or 28.5% (inference), so dominance would be missed too. If a P&W-Rolls-Royce Joint Venture forms this round, the rules take 10pp from CFM, leaving about 53.5% in 2050, still met (inference). Objective premium paid: 0. Best attainable final position: narrowbody dominance held, and RISE kept as funded joint technology ready for the next airframe an airframer chooses to launch on it.",
+   "predictions": "Boeing: no narrowbody change is possible (fps in service on code 3, CFM only). 787 Re-engine: hold, p about 0.85. It is publicly on the continuous-improvement path, and a 2050 launch would enter service in 2055, after the board's widebody horizon. Airbus: no narrowbody change is possible (NGSA in service on code 7). A350 Re-engine: hold, p about 0.85, since its Board review continues. Delay Tactics can no longer be ordered. P&W: its Joint Venture commitment stands (p about 0.9); no other board move. Rolls-Royce: commits to the Joint Venture, p about 0.3 (it refused 50/50 terms in 2045 but is open to terms crediting UltraFan, which P&W now offers). Trent 1000 upgrade about 0.15, since it said its durability work is not the board's upgrade. UltraFan WB about 0.1, since no Re-engine can enter service within the window.",
+   "expected_pv_b": -26.2
+  },
+  "pratt_whitney": {
+   "orders": {
+    "gtf2_solo": "hold",
+    "jv_with_rr": "hold"
+   },
+   "other_moves": [
+    {
+     "move": "Joint Venture commitment stands; UltraFan's in-service maturity credited through workshare, not cash",
+     "public": true,
+     "detail": "The 50/50 narrowbody Joint Venture commitment stays on the record, on the IAE and Engine Alliance model. Each partner designs, builds and owns its modules, and each partner's technology is credited, not transferred: the fan-drive gear and hot section, and UltraFan. Rolls-Royce's in-service maturity is recognised through the module workshare and the revenue-sharing schedule, not through a balancing cash payment [P-1233][P-1240][P-1676][P-1744][PX-0299]."
+    },
+    {
+     "move": "Geared turbofan derivatives for Airbus's larger NGSA variant and the A220-500",
+     "public": true,
+     "detail": "Thrust growth and range packages stay inside the geared architecture for the larger NGSA, and a PW1500G-family derivative goes on the A220-500. Standard terms, pass-through pricing, no launch-style discounts. Derivatives over clean sheets [PX-0007][PX-0067][PX-0129][P-1250][PX-0117][PX-0055]."
+    },
+    {
+     "move": "GTF2 fleet: life-limited-part shop visits and partner MRO capacity",
+     "public": true,
+     "detail": "Size the pacing parts and partner shop network for the heavy visits on the NGSA fleet that entered service in 2037, and keep fleet lift ahead of new OE. Kits are priced, not given. Compensation and negative engine margin terms stay private [PX-0123][PX-0118][PX-0084][PX-0100][PX-0113]."
+    },
+    {
+     "move": "Realign the OE-loss and aftermarket model with Airbus on the larger NGSA variant",
+     "public": false,
+     "detail": "The new variant is the next platform on which to revisit the business model. Reprice fleet-management agreements for inflation and real time on wing as they reach term [PX-0068][PX-0070][PX-0275][P-0571]."
+    },
+    {
+     "move": "RTX capital framework unchanged (CFO register)",
+     "public": true,
+     "detail": "Derivative work and any Joint Venture share are funded inside the existing E&D and capex envelope, with our partners. The dividend comes first and deleveraging continues. 'We do not want to starve the business.' [PX-0081][PX-0353][PX-0268][PX-0192]"
+    }
+   ],
+   "public_statement": "We're controlling what we can control: our geared turbofan has been flying on NGSA since 2037, time on wing is the name of the game, and we're growing the architecture with Airbus on its larger NGSA and the A220-500. Our 50/50 Joint Venture commitment to Rolls-Royce stands on the V2500 model, with each partner's technology credited and not transferred. That is a responsible bet with a responsible payback, and we'll keep it on the table without chasing it.",
+   "rationale": "Triggers. Row 12, a partner Joint Venture: share risk and investment, never technology [P-1233][P-1676][P-1744]. Rows 10 and 13: stand by a fielded engine [P-1371]. Row 6: answer with incremental product [P-1302][PX-0007]. Rolls-Royce has publicly refused a 50/50 deal. The closest precedent is the 2012 P&W-Rolls-Royce midsize Joint Venture, which lapsed after July 2012 [P-1870][P-1874]. Rolls-Royce's test is alignment between the partners [P-1875].\n\nGrid.\n- Keep the commitment (hold): -10.64 in S1, -5.13 in S2.\n- Withdraw: -10.64 in both.\n- Keeping is never worse. It gains +5.51 if Rolls-Royce commits and needs no new cash: GTF2's $2B counts toward our share, and R&D stays at -2.00.\n- This is the last round, so withdrawing has no option value. It only closes the door.\n- GTF2 must stay on hold: it is in service, and the red line on fielded engines applies. No widebody move [P-1313].\n\nOdds. Rolls-Royce said it will not fold an in-service UltraFan into a 50/50 venture. I put P(S2) at 0.15.\n- Expected value: keep -9.81 (0.85 \u00d7 -10.64 + 0.15 \u00d7 -5.13); withdraw -10.64. Premium 0.\n\nBias check.\n- Bias 6 (technology possessiveness) is avoided: we do not withdraw out of pique.\n- Mitchill vetoes a cash payment to buy Rolls-Royce in, so its maturity is credited through workshare instead (IAE model; the 2012 buy-out [P-1838] was a purchase of control, not a precedent for equalisation).\n\nOff-board. Derivatives for the larger NGSA and the A220-500 are how we capitalise on the GTF base the board already credits. Airbus says it is pursuing a post-2046 share recovery, which lifts our third of NGSA.\n\nObjective.\n- Credibility: MET before and after (GTF2 on NGSA since 2037).\n- Capitalise: NOT MET. Before: -10.64. After: -10.64 in S1 (gap 10.64) or -5.13 in S2 (gap 5.13).\n- No legal order reaches \u0394PV \u2265 0, so this objective cannot be met in this game. The best attainable position is keeping the Joint Venture path open. Objective premium 0.\n\nConfidence: low on the Joint Venture. Calio and Eddy have no Joint Venture evidence, and Eddy's card rests on one event.",
+   "exco": {
+    "ceo": "Calio frames: control what you can control [PX-0020]. Credibility is met: GTF2 has flown on NGSA since 2037, so we did not miss the cycle [PX-0071], and time on wing in the fleet is job one [PX-0084][PX-0073]. Rolls-Royce said no to 50/50. But partners are kept even under strain [PX-0038], and the standing commitment is a responsible bet with a responsible payback [PX-0010], so it stays. Growth comes from derivatives on Airbus's larger NGSA and the A220-500 [PX-0007][PX-0067].",
+    "cfo": "Mitchill: the grid shows keep at -10.64 / -5.13 and withdraw at -10.64 / -10.64. Keeping needs no new cash: GTF2's $2B counts toward our share and R&D stays at -2.00. I guide on S1 and book S2 only if Rolls-Royce commits [PX-0311]; at 0.15 the expected value is -9.81. Partners carry capital [PX-0269][PX-0299], predictability beats upside [PX-0319], and there will be no cash payment to buy Rolls-Royce in. The dividend comes first and deleveraging continues [PX-0081][PX-0353].",
+    "coo": "Eddy: GTF2 is in service, with durability proven before entry into service [PX-0128]. The work now is pacing parts and partner shop capacity for the heavy life-limited-part visits on the fleet that entered service in 2037 [PX-0123][PX-0118]. The Joint Venture adds no development or engineering load because both engines are already ready; his condition remains IAE-style module ownership [P-1240]. Derivatives stay inside the geared architecture, single-aisle only [PX-0127][PX-0129]. Low confidence: his card rests on one event.",
+    "decision_rule": "Eddy proposed GTF2 hold, the only legal value. Calio proposed keeping the Joint Venture commitment standing. Mitchill's gate passed: no new capital, no unselected engine, no aggressive terms, no upside booked. The President had no veto, since the durability gate is intact. Calio decided under 'safety and durability first, then optimise' [PX-0035]. Keeping weakly dominates withdrawing, and the module structure protects the core-technology red line [P-1233]."
+   },
+   "expected_scenario": "S1, rivals hold: Rolls-Royce keeps to its public refusal of a 50/50 Joint Venture and does not commit (about 0.85). S2, Rolls-Royce commits and the Joint Venture forms: about 0.15.",
+   "best_grid_plan_in_expected_scenario": "GTF2: hold with the Joint Venture commitment kept standing (-10.64), tied in S1 by hold + withdraw (-10.64). In S2 keeping is strictly better (-5.13 against -10.64).",
+   "premium_b": 0,
+   "premium_reason": "None. Keeping the commitment ties the best plan in S1 and is strictly best in S2. Its expected value is -9.81, against -10.64 for withdrawing. No doctrine or objective premium is paid. The red line on core technology [P-1233] is kept by the IAE and Engine Alliance module structure [P-1676][P-1744], not by giving up PV.",
+   "objective_note": "Before:\n- Restore credibility: MET (GTF2 ready 2036, in service on NGSA since 2037).\n- Capitalise on the GTF: NOT MET (-10.64, gap 10.64).\n\nAfter these orders, if nobody moves later:\n- S1: credibility met; capitalise missed at -10.64.\n- S2: credibility met; capitalise missed at -5.13 (gap 5.13).\n- Expected: -9.81.\n\nCapitalise cannot be met in this game, because no legal order reaches \u0394PV \u2265 0. The best attainable position is keeping the Joint Venture path open. Objective premium 0.",
+   "predictions": "- Rolls-Royce: does not commit to the Joint Venture (about 0.85; commits about 0.15). Trent 1000 upgrade about 0.25, otherwise hold. No UltraFan widebody, since no Re-engine is in service.\n- Airbus: holds. No A350 Re-engine (about 0.9), since a 2055 entry into service falls after the widebody window. NGSA is locked on CFM, P&W and RR. Family growth and the A220-500 stay off the board.\n- Boeing: holds. No 787 Re-engine (about 0.9). fps is locked on CFM, and 787 improvements continue.\n- CFM/GE: holds. No open fan, which would be ready only in 2060 with both airframes already in service. Emissions lobbying about 0.1. Standard terms continue.",
+   "expected_pv_b": -9.81
+  },
+  "rolls_royce": {
+   "orders": {
+    "ultrafan_nb_solo": "hold",
+    "jv_with_pw": "hold",
+    "ultrafan_wb": "hold",
+    "t1000_upgrade": "hold"
+   },
+   "other_moves": [
+    {
+     "move": "UltraFan narrowbody fleet support through the NGSA fleet's heavy shop visits",
+     "public": true,
+     "detail": "The NGSA UltraFan fleet, in service since 2037, is reaching its second shop-visit cycle, where engine-maker profit catches up. We will grow narrowbody TotalCare and partner MRO capacity at the pace of that cycle, as in the Singapore MRO Joint Venture. Durability fixes and UltraFan technology go in at natural shop visits, not through recalls (RX-0289, RX-0283, RX-0287, R-1419, R-1212)."
+    },
+    {
+     "move": "UltraFan thrust-growth derivative for Airbus's larger NGSA variant",
+     "public": true,
+     "detail": "We will support Airbus's larger, longer-range NGSA variant with a thrust-growth UltraFan derivative. It is funded inside the flat R&D envelope, on standard terms, and tested to maturity before any date is given. This follows the Trent 7000 for the A330neo, 'not incremental to our R&D plans', and the Trent XWB-97 for the A350-1000 (R-0937, R-0312, R-0974, RX-0214, RX-0284)."
+    },
+    {
+     "move": "Joint Venture: no change of position",
+     "public": true,
+     "detail": "We note Pratt & Whitney's reaffirmed offer. UltraFan narrowbody is in service, funded and matured by Rolls-Royce, and it stays outside a 50/50 venture. We remain open to risk-and-revenue-sharing partners on modules, MRO and the next generation, on terms that credit the technology each partner brings (RX-0098, RX-0118, R-0318, R-1394)."
+    },
+    {
+     "move": "A350 family: Trent XWB exclusivity and UltraFan technology insertion, continued privately with Airbus",
+     "public": false,
+     "detail": "Airbus's Board review of the widebody market continues with its engine partners. We continue private talks to extend Trent XWB sole source, and we offer UltraFan technology inserted into the Trent XWB as a performance package rather than a new widebody engine. Standard terms, with no 'silly pricing' as sole source (R-0360, R-0361, RX-0295, R-0334)."
+    },
+    {
+     "move": "Capital allocation: no new engine-programme spend; installed-base cash returned (CFO register)",
+     "public": true,
+     "detail": "That's how you should hold it: no new engine programme this year, and gross R&D broadly flat on a smaller and more focused portfolio. Cash from the installed base goes first to a strong balance sheet, then to a 30-40% payout. Buybacks compete with investment on strategic fit, value and timing, and we don't have any intent of levering up for buybacks (R-0900, R-0909, RX-0214, RX-0248, RX-0261)."
+    },
+    {
+     "move": "Trent time-on-wing programme continued; standard terms on Boeing's 787 packages",
+     "public": true,
+     "detail": "Durability work on the Trent 1000, 7000 and XWB continues inside the flat envelope. It is not the board's Trent 1000 upgrade. We support Boeing's 787 performance packages on standard terms, with no price concessions for share (R-1601, RX-0285, R-0998, R-0367)."
+    }
+   ],
+   "public_statement": "Our UltraFan narrowbody is in its thirteenth year in service and earning, and our engagement is still another 15, 20 years on those planes, so the job now is time on wing and shop visits, not a new engine that no airframe needs. There's no change of strategy: we are a pretty consistent company, we deliver what we say, we stay very aligned with Airbus, and we will grow UltraFan with the NGSA family. We remain open to partners that credit the technology we bring, but we will not fold an engine that is already flying into a 50/50 venture.",
+   "rationale": "Final round (2050). UltraFan NB Solo has flown on NGSA since 2037. If nobody moves: +15.68 (114.3%). The board counts narrowbody to 2056 and widebody to 2054.\n\nReaction rows matched:\n- Row 12: P&W's Joint Venture commitment, standing since 2035, reaffirmed with \"technology credited\".\n- Rows 2 and 3: Airbus says \"no re-engine decision\" and its Board review continues; Boeing stays on 787 improvement packages. These are signals, not announcements naming an engine for this round.\n- Row 17: the GEnx package has been in service since 2033, so CFM's widebody move is spent.\n\nGrid:\n- Hold is best in both columns: +15.68 (S1), +15.46 (S2).\n- Joint Venture commit is identical (+15.68 / +15.46). With zero board value it cannot beat WACC within 3 years [R-1356]. P&W's offer is still 50/50 and would still fold an in-service Solo into the venture of the rival NGSA engine maker, which is the IAE misalignment [R-0318, R-1892, R-1893]. We answered in 2045: \"there's no change of strategy\" [RX-0098].\n- Trent 1000 upgrade: -6.92 (S1), -6.55 (S2). It would count only from 2053, two years before the widebody window closes, and it carries the $5B NB+WB strain. The team default (fund it in the first round with no UltraFan in development) is overridden: the loss is above the $3B cap, so the PV-best order applies [R-0959, R-1561].\n- UltraFan WB: -9.00 / -8.32. It would be ready in 2056, after the window, and no Re-engine names it [R-0994, R-1005].\n\nPremium: $0.\n\nExpected PV: 0.85 x 15.68 + 0.15 x 15.46 = +15.65.\n\nObjective:\n- Before: nb_entry met (19.4% in 2045, 20.6% in 2050); wb_dominance met (worst year 55.2%).\n- After (hold on all levers): unchanged in both columns. The engine codes are locked, a Re-engine launched now enters service in 2055, and the GEnx move is spent.\n- Objective premium $0.\n\nOff-board moves:\n- Narrowbody fleet support into the second shop visits, where profit catches up [R-1419].\n- An UltraFan thrust derivative for Airbus's larger NGSA, inside the flat envelope, as with the Trent 7000 [R-0937] and XWB-97 [R-0312].\n- Private A350 exclusivity talks [R-0361].\n- Cash to dividends and buybacks [R-0909].\n\nCaveat: Watson's card is low-to-medium confidence, and it drove the fleet-support move.",
+   "exco": {
+    "ceo": "Erginbilgic frames the round in cash and quality of earnings [RX-0054]. The narrowbody entry is done and earning, 'a milestone on our journey, not our final destination' [RX-0062], and the engine maker's engagement runs 'another 15, 20 years on that plane' [RX-0059]. So the last round is about harvest, not new options [RX-0051, R-1573]. No airframer has launched or named us for a Re-engine this round, so there is no widebody engine ('we need airframers ... to go there first' [RX-0058]). P&W's reaffirmed 50/50 gets the same answer as in 2045: 'There's no change of strategy' [RX-0098], and partnership is a preference, not a need [RX-0118].",
+    "cfo": "McCabe asked for both columns:\n- Hold is best at +15.68 / +15.46.\n- The Joint Venture adds 0.00, so it clears neither the mid-to-high-teens hurdle [RX-0213] nor WACC within 3 years [R-1356].\n- The upgrade loses 6.92 / 6.55 and UltraFan WB loses 9.00 / 8.32. Both break the flat R&D envelope [RX-0214].\n\nCash goes to the balance sheet, a 30-40% payout, and buybacks by value and timing, with no levering up [R-0909, RX-0248, RX-0261]. Her tail worry is the Joint Venture rule that equalises RR's and P&W's narrowbody shares (20.6% against 15.9% in 2049). The grid shows no change, but the risk runs only one way.",
+    "coo": "Watson's job is 'keeping our engines flying and earning for as long as possible' [RX-0289]. The NGSA UltraFan fleet is reaching the heavy shop visits where profit catches up [R-1419]. So he scales TotalCare and partner MRO [RX-0283, RX-0287] and puts fixes in at natural shop visits [R-1212]. A widebody project now would strain shared engineers [R-0929] for an engine ready only in 2056. UltraFan technology inserted into the Trent fleet is the cheaper route [RX-0295, RX-0285]. Nothing launches, so he has nothing to veto. The NGSA growth-variant thrust derivative must follow a paced test plan with no early date [RX-0284, RX-0296].",
+    "decision_rule": "The CEO proposed Do Nothing on all four levers, plus public fleet-support, derivative and partnership lines. Nothing launches, so the CFO's co-signature was not needed; she concurred. Civil had nothing to veto. The company hard rules allowed a Joint Venture commit, because P&W is committed, but did not require it. The team's tempo, 'until I am sure we will deliver, I'm not committing' [RX-0124], and its zero grid value decided hold. The team default to fund the Trent 1000 upgrade was overridden: its 6.92 loss is above the $3B cap, so the PV-best order applies (profile \u00a79 step 11) [R-0959, R-1561]."
+   },
+   "expected_scenario": "S1, rivals hold (about 0.85). Boeing keeps improving the 787 with no Re-engine. Airbus continues its Board widebody review with no A350 Re-engine decision. P&W's Joint Venture commitment simply stands or is withdrawn. CFM/GE makes no board move that touches us. The residual 0.15 is one or both Re-engines (S2-like): they would enter service in 2055, so our PV moves only to about +15.46.",
+   "best_grid_plan_in_expected_scenario": "UltraFan NB: hold, at +15.68 (114.3%). It ties with hold plus a Joint Venture commit (+15.68). Our order is hold on all four levers.",
+   "premium_b": 0,
+   "premium_reason": "None. Hold is the PV-best plan in S1 (+15.68) and in S2 (+15.46), and declining the Joint Venture costs 0.00 in both columns. The Trent 1000 upgrade, the team default for the first round with no UltraFan in development, is not funded: at -6.92 / -6.55 it is above the $3B doctrine-premium cap, so the PV-best order applies. That follows RR's practice of reversing when the business case moves [R-0959, R-1561]; it is not a premium. UltraFan WB loses 9.00 / 8.32 and has no airframe [R-0994].",
+   "objective_note": "Before these orders, both metrics are met:\n- nb_entry: RR narrowbody engine share 19.4% in 2045 and 20.6% in 2050.\n- wb_dominance: RR widebody engine share 55.2% in its worst year, against the 50% bar.\n\nAfter these orders (hold on all four levers), both are unchanged in S1 and S2:\n- The narrowbody engine codes are locked, since fps and NGSA are in service.\n- Any Re-engine launched in 2050 enters service in 2055, after the 2050 measurement year.\n- CFM/GE's one-time GEnx move is already spent.\n\nThe objective is secured, so no lever is needed to advance it. Objective premium $0.",
+   "predictions": "Boeing:\n- No 787 Re-engine (about 85%). It continues the 787 improvement packages with GE and RR and grows Charleston capacity.\n- fps stays on CFM; the code is locked.\n\nAirbus:\n- No A350 Re-engine (about 80%). If it launches (about 15-20%), it enters service in 2055 and the engine is most likely left open.\n- NGSA stays on all three makers; the code is locked.\n- Off board: the larger NGSA variant, the A220-500 on P&W, and campaigns.\n- Delay Tactics are no longer possible.\n\nPratt & Whitney:\n- Its Joint Venture commitment stands (about 60%) or is withdrawn after our repeated answer (about 40%).\n- No other board move; GTF2 fleet support continues.\n\nCFM/GE:\n- No board move that affects us (about 85%). RISE stays a funded technology programme with no product launch. A late open fan launch is possible but irrelevant to the counted windows. Emissions lobbying is possible, with no effect on us.\n\nJoint scenario: S1 about 0.85; S2 or a single Re-engine about 0.15.",
+   "expected_pv_b": 15.65
+  }
+ }
+}

@@ -1,0 +1,313 @@
+{
+ "boeing": {
+  "scenarios": [
+   "Rivals hold",
+   "Airbus launches A350 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "fps: hold + 787: hold",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      1.8468592734483629,
+      101.42066097957566
+     ],
+     [
+      1.8468592734483629,
+      101.42066097957566
+     ]
+    ]
+   },
+   {
+    "plan": "fps: hold + 787 Re-engine",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      1.7155891796039917,
+      101.31968398431076
+     ],
+     [
+      0.5751341221836732,
+      100.44241086321821
+     ]
+    ]
+   }
+  ]
+ },
+ "airbus": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches 787 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "NGSA: hold + A350: hold",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      15.606052581884503,
+      110.40403505458967
+     ],
+     [
+      15.606052581884503,
+      110.40403505458967
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold + A350 Re-engine",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      16.202065531808934,
+      110.80137702120595
+     ],
+     [
+      15.181540091419443,
+      110.12102672761296
+     ]
+    ]
+   }
+  ]
+ },
+ "cfm": {
+  "scenarios": [
+   "Rivals hold"
+  ],
+  "rows": [
+   {
+    "plan": "hold everything",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -25.174319102806635,
+      84.26605056074585
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -44.348642656680454,
+      72.28209833957472
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan + Lobby",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "launch",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -40.55964684787739,
+      74.65022072007663
+     ]
+    ]
+   }
+  ]
+ },
+ "pratt_whitney": {
+  "scenarios": [
+   "Rivals hold",
+   "Rolls-Royce commits to the Joint Venture"
+  ],
+  "rows": [
+   {
+    "plan": "GTF2: hold",
+    "orders": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "hold"
+    },
+    "cells": [
+     [
+      -10.640838687956588,
+      90.32651028367583
+     ],
+     [
+      -5.133423282743934,
+      95.33325156114188
+     ]
+    ]
+   },
+   {
+    "plan": "GTF2: hold + withdraw JV commitment",
+    "orders": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "withdraw"
+    },
+    "cells": [
+     [
+      -10.640838687956588,
+      90.32651028367583
+     ],
+     [
+      -10.640838687956588,
+      90.32651028367583
+     ]
+    ]
+   }
+  ]
+ },
+ "rolls_royce": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches 787 Re-engine and Airbus A350 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "UltraFan NB: hold",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      15.680961552554372,
+      114.25541959323125
+     ],
+     [
+      15.46435541880033,
+      114.05850492618212
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      8.757789991563307,
+      107.96162726505756
+     ],
+     [
+      8.914642709109323,
+      108.10422064464484
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      6.680961552554372,
+      106.07360141141307
+     ],
+     [
+      7.142516309396534,
+      106.49319664490594
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + commit to JV",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      15.680961552554372,
+      114.25541959323125
+     ],
+     [
+      15.46435541880033,
+      114.05850492618212
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + commit to JV + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      8.757789991563307,
+      107.96162726505756
+     ],
+     [
+      8.914642709109323,
+      108.10422064464484
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + commit to JV + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      6.680961552554372,
+      106.07360141141307
+     ],
+     [
+      7.142516309396534,
+      106.49319664490594
+     ]
+    ]
+   }
+  ]
+ }
+}

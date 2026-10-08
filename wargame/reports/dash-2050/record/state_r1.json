@@ -1,0 +1,77 @@
+{
+ "year": 2030,
+ "prog": {
+  "fps": {
+   "launch": 2030,
+   "cancel": null,
+   "variant": "7yr",
+   "eis": 2037
+  },
+  "ngsa": {
+   "launch": 2030,
+   "cancel": null,
+   "eis": 2037
+  },
+  "pw_solo": {
+   "launch": 2030,
+   "cancel": null,
+   "ready": 2036
+  },
+  "rr_solo": {
+   "launch": 2030,
+   "cancel": null,
+   "ready": 2037
+  },
+  "cfm_ducted": {
+   "launch": 2030,
+   "cancel": null,
+   "ready": 2036
+  },
+  "cfm_embraer": {
+   "launch": 2030,
+   "cancel": null,
+   "ready": 2037
+  },
+  "cfm_genx": {
+   "launch": 2030,
+   "cancel": null,
+   "kind": "genx9",
+   "ready": 2033
+  }
+ },
+ "rate737": {
+  "launch": 2030
+ },
+ "dt": {
+  "bottleneck": null,
+  "poaching": null
+ },
+ "dead": [],
+ "jv_commit": {
+  "pratt_whitney": null,
+  "rolls_royce": null
+ },
+ "codes": {
+  "fps": 3,
+  "ngsa": 7
+ },
+ "log": [
+  {
+   "year": 2030,
+   "events": [
+    "fps (Boeing) launched in 2030",
+    "Boeing 737 production-rate increase ordered in 2030 (rate up from 2032)",
+    "NGSA (Airbus) launched in 2030",
+    "fps engine selection: CFM",
+    "NGSA engine selection: RR, PW and CFM",
+    "P&W GTF2 (Solo) launched in 2030",
+    "pw_solo: conditional launch triggered by ngsa",
+    "RR UltraFan NB (Solo) launched in 2030",
+    "rr_solo: conditional launch triggered by ngsa",
+    "CFM ducted engine launched in 2030",
+    "CFM-Embraer partnership launched in 2030",
+    "GEnx (CFM/GE) launched in 2030"
+   ]
+  }
+ ]
+}
