@@ -30,22 +30,22 @@ def summary(over=None, strain="overlap"):
     out = {"pure": [], "near": []}
     for k, lst in (("pure", pure), ("near", near)):
         for a, b, ya, yb, da, db in lst:
-            out[k].append({"airbus": H.lab(a), "boeing": H.lab(b), "ya": round(ya, 2), "yb": round(yb, 2), "da": round(da, 3), "db": round(db, 3)})
+            out[k].append({"airbus": H.lab(a), "boeing": H.lab(b), "ya": round(ya, 2), "yb": round(yb, 2), "da": round(da, 6), "db": round(db, 6)})
     # Boeing value of fps (vs Do Nothing 737, same WB move) in each Airbus context, both WB moves
     ctx = {}
     for name, a in AROWS.items():
         row = {}
         for wb in ("Re_engine_787", "Milk_787"):
             dn = cell(MX, A, B, a, DN(wb))["b_total_delta"]
-            row[wb] = {"do_nothing": round(dn, 3)}
+            row[wb] = {"do_nothing": round(dn, 6)}
             for vn, f in (("fps10", FPS10), ("fps7", FPS7), ("via_embraer", EMB)):
                 c = cell(MX, A, B, a, f(wb))
-                row[wb][vn] = round(c["b_total_delta"], 3)
-                row[wb][vn + "_vs_dn"] = round(c["b_total_delta"] - dn, 3)
+                row[wb][vn] = round(c["b_total_delta"], 6)
+                row[wb][vn + "_vs_dn"] = round(c["b_total_delta"] - dn, 6)
         # Boeing best response in the row
         i = A.index(a)
         j = max(range(len(B)), key=lambda j: MX[i][j]["yield_b"])
-        row["best_response"] = H.lab(B[j]); row["best_db"] = round(MX[i][j]["b_total_delta"], 3)
+        row["best_response"] = H.lab(B[j]); row["best_db"] = round(MX[i][j]["b_total_delta"], 6)
         ctx[name] = row
     out["boeing_by_airbus_ctx"] = ctx
     # Airbus best response to each main Boeing move
@@ -56,18 +56,18 @@ def summary(over=None, strain="overlap"):
         j = B.index(b)
         i = max(range(len(A)), key=lambda i: MX[i][j]["yield_a"])
         ranked = sorted(range(len(A)), key=lambda i: -MX[i][j]["yield_a"])[:3]
-        br[bn] = {"best": H.lab(A[i]), "da": round(MX[i][j]["a_total_delta"], 3),
-                  "top3": [(H.lab(A[k]), round(MX[k][j]["a_total_delta"], 3)) for k in ranked]}
+        br[bn] = {"best": H.lab(A[i]), "da": round(MX[i][j]["a_total_delta"], 6),
+                  "top3": [(H.lab(A[k]), round(MX[k][j]["a_total_delta"], 6)) for k in ranked]}
     out["airbus_best_response"] = br
     # Decomposition of fps10 vs Do Nothing in the snapshot's modal context (NGSA + Re-engine A350, Do Nothing 787)
     dec = {}
     for name in ("NGSA + Re-engine A350", "NGSA + Bottleneck + Re-engine A350"):
         a = AROWS[name]
         f = cell(MX, A, B, a, FPS10("Milk_787")); d = cell(MX, A, B, a, DN("Milk_787"))
-        dec[name] = {k: round(f[k] - d[k], 3) for k in ("b_delta_nb", "b_delta_wb", "b_delta_tc", "b_strain", "b_total_delta")}
-        dec[name]["fps_pv_capex"] = round(f["b_tc_data"]["pv_capex"], 3); dec[name]["fps_alpha_pen"] = round(f["b_tc_data"]["delta_pen"], 3)
-        dec[name]["fps_nb_pv"] = round(f["b_scen_nb_pv"], 3); dec[name]["dn_nb_pv"] = round(d["b_scen_nb_pv"], 3)
-        dec[name]["base_nb_pv"] = round(SS["_BASE"]["b_base_nb"], 3)
+        dec[name] = {k: round(f[k] - d[k], 6) for k in ("b_delta_nb", "b_delta_wb", "b_delta_tc", "b_strain", "b_total_delta")}
+        dec[name]["fps_pv_capex"] = round(f["b_tc_data"]["pv_capex"], 6); dec[name]["fps_alpha_pen"] = round(f["b_tc_data"]["delta_pen"], 6)
+        dec[name]["fps_nb_pv"] = round(f["b_scen_nb_pv"], 6); dec[name]["dn_nb_pv"] = round(d["b_scen_nb_pv"], 6)
+        dec[name]["base_nb_pv"] = round(SS["_BASE"]["b_base_nb"], 6)
     out["decomp_fps10_vs_dn"] = dec
     return out
 
@@ -89,15 +89,15 @@ if __name__ == "__main__":
         for name in ("NGSA + Re-engine A350", "NGSA + Bottleneck + Re-engine A350", "NGSA + Do Nothing A350"):
             a = AROWS[name]
             for wb in ("Milk_787", "Re_engine_787"):
-                row[f"{name} | {wb} | fps10-DN"] = round(cell(MX, A, B, a, FPS10(wb))["b_total_delta"] - cell(MX, A, B, a, DN(wb))["b_total_delta"], 3)
-                row[f"{name} | {wb} | fps7-DN"] = round(cell(MX, A, B, a, FPS7(wb))["b_total_delta"] - cell(MX, A, B, a, DN(wb))["b_total_delta"], 3)
+                row[f"{name} | {wb} | fps10-DN"] = round(cell(MX, A, B, a, FPS10(wb))["b_total_delta"] - cell(MX, A, B, a, DN(wb))["b_total_delta"], 6)
+                row[f"{name} | {wb} | fps7-DN"] = round(cell(MX, A, B, a, FPS7(wb))["b_total_delta"] - cell(MX, A, B, a, DN(wb))["b_total_delta"], 6)
         # Airbus: value of Delay Tactics (Bottleneck) vs none when Boeing plays fps10 + Do Nothing 787
         for awb in ("Re_engine_A350",):
             j = B.index(FPS10("Milk_787"))
-            row["airbus_delay_tactics_value_vs_fps10"] = round(MX[A.index(AROWS["NGSA + Bottleneck + Re-engine A350"])][j]["a_total_delta"] - MX[A.index(AROWS["NGSA + Re-engine A350"])][j]["a_total_delta"], 3)
-            row["airbus_ngsa_value_vs_fps10"] = round(MX[A.index(AROWS["NGSA + Re-engine A350"])][j]["a_total_delta"] - MX[A.index(("Milk_A320neo", "No_Bottleneck", "No_Poaching", "Re_engine_A350"))][j]["a_total_delta"], 3)
+            row["airbus_delay_tactics_value_vs_fps10"] = round(MX[A.index(AROWS["NGSA + Bottleneck + Re-engine A350"])][j]["a_total_delta"] - MX[A.index(AROWS["NGSA + Re-engine A350"])][j]["a_total_delta"], 6)
+            row["airbus_ngsa_value_vs_fps10"] = round(MX[A.index(AROWS["NGSA + Re-engine A350"])][j]["a_total_delta"] - MX[A.index(("Milk_A320neo", "No_Bottleneck", "No_Poaching", "Re_engine_A350"))][j]["a_total_delta"], 6)
             jd = B.index(DN("Milk_787"))
-            row["airbus_ngsa_value_vs_dn"] = round(MX[A.index(AROWS["NGSA + Re-engine A350"])][jd]["a_total_delta"] - MX[A.index(("Milk_A320neo", "No_Bottleneck", "No_Poaching", "Re_engine_A350"))][jd]["a_total_delta"], 3)
+            row["airbus_ngsa_value_vs_dn"] = round(MX[A.index(AROWS["NGSA + Re-engine A350"])][jd]["a_total_delta"] - MX[A.index(("Milk_A320neo", "No_Bottleneck", "No_Poaching", "Re_engine_A350"))][jd]["a_total_delta"], 6)
         sweep.append(row)
     R["sweep_fps_eis"] = sweep
     json.dump(R, open(os.path.join(OUTDIR, "delay.json"), "w"), indent=1)

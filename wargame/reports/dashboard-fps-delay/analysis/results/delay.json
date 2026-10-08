@@ -7,362 +7,362 @@
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 124.56,
     "yb": 94.69,
-    "da": 36.836,
-    "db": -6.909
+    "da": 36.836415,
+    "db": -6.909405
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 125.8,
     "yb": 95.26,
-    "da": 38.693,
-    "db": -6.167
+    "da": 38.693141,
+    "db": -6.166816
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
     "boeing": "fps 10yr Solo + Re-engine 787",
     "ya": 124.19,
     "yb": 98.92,
-    "da": 36.283,
-    "db": -1.398
+    "da": 36.283087,
+    "db": -1.398408
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 124.9,
     "yb": 94.69,
-    "da": 37.351,
-    "db": -6.909
+    "da": 37.350804,
+    "db": -6.909405
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 126.14,
     "yb": 95.26,
-    "da": 39.208,
-    "db": -6.167
+    "da": 39.20753,
+    "db": -6.166816
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
     "boeing": "fps 10yr Solo + Re-engine 787",
     "ya": 124.52,
     "yb": 98.92,
-    "da": 36.787,
-    "db": -1.398
+    "da": 36.786509,
+    "db": -1.398408
    },
    {
     "airbus": "Launch NGSA + Delay fps Poaching + Re-engine A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 124.9,
     "yb": 94.69,
-    "da": 37.351,
-    "db": -6.909
+    "da": 37.350804,
+    "db": -6.909405
    },
    {
     "airbus": "Launch NGSA + Delay fps Poaching + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 126.14,
     "yb": 95.26,
-    "da": 39.208,
-    "db": -6.167
+    "da": 39.20753,
+    "db": -6.166816
    },
    {
     "airbus": "Launch NGSA + Delay fps Poaching + Do Nothing A350",
     "boeing": "fps 10yr Solo + Re-engine 787",
     "ya": 124.52,
     "yb": 98.92,
-    "da": 36.787,
-    "db": -1.398
+    "da": 36.786509,
+    "db": -1.398408
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "fps 7yr Solo + Do Nothing 787",
     "ya": 122.97,
     "yb": 95.36,
-    "da": 34.453,
-    "db": -6.037
+    "da": 34.453489,
+    "db": -6.036509
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 123.93,
     "yb": 95.69,
-    "da": 35.899,
-    "db": -5.605
+    "da": 35.898811,
+    "db": -5.605001
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 125.17,
     "yb": 96.26,
-    "da": 37.756,
-    "db": -4.862
+    "da": 37.755536,
+    "db": -4.862412
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "Do Nothing (737 MAX) + Do Nothing 787",
     "ya": 133.41,
     "yb": 95.44,
-    "da": 50.115,
-    "db": -5.925
+    "da": 50.11538,
+    "db": -5.925168
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
     "ya": 122.31,
     "yb": 99.36,
-    "da": 33.467,
-    "db": -0.837
+    "da": 33.466865,
+    "db": -0.836593
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "fps 10yr Solo + Re-engine 787",
     "ya": 123.55,
     "yb": 99.93,
-    "da": 35.324,
-    "db": -0.094
+    "da": 35.323591,
+    "db": -0.094004
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
     "ya": 130.55,
     "yb": 99.17,
-    "da": 45.827,
-    "db": -1.081
+    "da": 45.826709,
+    "db": -1.081486
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + Re-engine 787",
     "ya": 131.79,
     "yb": 99.74,
-    "da": 47.683,
-    "db": -0.339
+    "da": 47.683435,
+    "db": -0.338897
    }
   ],
   "boeing_by_airbus_ctx": {
    "NGSA + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.74,
-     "fps10": -8.495,
-     "fps10_vs_dn": 0.245,
-     "fps7": -9.825,
-     "fps7_vs_dn": -1.086,
-     "via_embraer": -27.488,
-     "via_embraer_vs_dn": -18.749
+     "do_nothing": -8.739757,
+     "fps10": -8.494864,
+     "fps10_vs_dn": 0.244893,
+     "fps7": -9.825393,
+     "fps7_vs_dn": -1.085636,
+     "via_embraer": -27.48833,
+     "via_embraer_vs_dn": -18.748573
     },
     "Milk_787": {
-     "do_nothing": -5.925,
-     "fps10": -4.862,
-     "fps10_vs_dn": 1.063,
-     "fps7": -6.037,
-     "fps7_vs_dn": -0.111,
-     "via_embraer": -22.974,
-     "via_embraer_vs_dn": -17.049
+     "do_nothing": -5.925168,
+     "fps10": -4.862412,
+     "fps10_vs_dn": 1.062757,
+     "fps7": -6.036509,
+     "fps7_vs_dn": -0.111341,
+     "via_embraer": -22.974054,
+     "via_embraer_vs_dn": -17.048886
     },
     "best_response": "fps 10yr Solo + Do Nothing 787",
-    "best_db": -4.862
+    "best_db": -4.862412
    },
    "NGSA + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.339,
-     "fps10": -0.094,
-     "fps10_vs_dn": 0.245,
-     "fps7": -1.425,
-     "fps7_vs_dn": -1.086,
-     "via_embraer": -19.087,
-     "via_embraer_vs_dn": -18.749
+     "do_nothing": -0.338897,
+     "fps10": -0.094004,
+     "fps10_vs_dn": 0.244893,
+     "fps7": -1.424533,
+     "fps7_vs_dn": -1.085636,
+     "via_embraer": -19.08747,
+     "via_embraer_vs_dn": -18.748573
     },
     "Milk_787": {
-     "do_nothing": -3.64,
-     "fps10": -2.577,
-     "fps10_vs_dn": 1.063,
-     "fps7": -3.751,
-     "fps7_vs_dn": -0.111,
-     "via_embraer": -20.689,
-     "via_embraer_vs_dn": -17.049
+     "do_nothing": -3.639816,
+     "fps10": -2.577059,
+     "fps10_vs_dn": 1.062757,
+     "fps7": -3.751157,
+     "fps7_vs_dn": -0.111341,
+     "via_embraer": -20.688702,
+     "via_embraer_vs_dn": -17.048886
     },
     "best_response": "fps 10yr Solo + Re-engine 787",
-    "best_db": -0.094
+    "best_db": -0.094004
    },
    "NGSA + Bottleneck + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.74,
-     "fps10": -9.799,
-     "fps10_vs_dn": -1.06,
-     "fps7": -11.13,
-     "fps7_vs_dn": -2.39,
-     "via_embraer": -28.793,
-     "via_embraer_vs_dn": -20.053
+     "do_nothing": -8.739757,
+     "fps10": -9.799268,
+     "fps10_vs_dn": -1.059511,
+     "fps7": -11.129797,
+     "fps7_vs_dn": -2.39004,
+     "via_embraer": -28.792734,
+     "via_embraer_vs_dn": -20.052977
     },
     "Milk_787": {
-     "do_nothing": -5.925,
-     "fps10": -6.167,
-     "fps10_vs_dn": -0.242,
-     "fps7": -7.341,
-     "fps7_vs_dn": -1.416,
-     "via_embraer": -24.278,
-     "via_embraer_vs_dn": -18.353
+     "do_nothing": -5.925168,
+     "fps10": -6.166816,
+     "fps10_vs_dn": -0.241647,
+     "fps7": -7.340913,
+     "fps7_vs_dn": -1.415745,
+     "via_embraer": -24.278458,
+     "via_embraer_vs_dn": -18.35329
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -5.925
+    "best_db": -5.925168
    },
    "NGSA + Bottleneck + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.339,
-     "fps10": -1.398,
-     "fps10_vs_dn": -1.06,
-     "fps7": -2.729,
-     "fps7_vs_dn": -2.39,
-     "via_embraer": -20.392,
-     "via_embraer_vs_dn": -20.053
+     "do_nothing": -0.338897,
+     "fps10": -1.398408,
+     "fps10_vs_dn": -1.059511,
+     "fps7": -2.728937,
+     "fps7_vs_dn": -2.39004,
+     "via_embraer": -20.391874,
+     "via_embraer_vs_dn": -20.052977
     },
     "Milk_787": {
-     "do_nothing": -3.64,
-     "fps10": -3.881,
-     "fps10_vs_dn": -0.242,
-     "fps7": -5.056,
-     "fps7_vs_dn": -1.416,
-     "via_embraer": -21.993,
-     "via_embraer_vs_dn": -18.353
+     "do_nothing": -3.639816,
+     "fps10": -3.881463,
+     "fps10_vs_dn": -0.241647,
+     "fps7": -5.055561,
+     "fps7_vs_dn": -1.415745,
+     "via_embraer": -21.993106,
+     "via_embraer_vs_dn": -18.35329
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.339
+    "best_db": -0.338897
    }
   },
   "airbus_best_response": {
    "fps10 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 39.208,
+    "da": 39.20753,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      38.693
+      38.693141
      ]
     ]
    },
    "fps10 + Re-engine 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-    "da": 36.787,
+    "da": 36.786509,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      36.787
+      36.786509
      ],
      [
       "Launch NGSA + Delay fps Poaching + Do Nothing A350",
-      36.787
+      36.786509
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
-      36.283
+      36.283087
      ]
     ]
    },
    "fps7 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 35.905,
+    "da": 35.905482,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      35.905
+      35.905482
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      35.905
+      35.905482
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      35.391
+      35.391093
      ]
     ]
    },
    "Do Nothing 737 + Do Nothing 787": {
     "best": "Launch NGSA + Re-engine A350",
-    "da": 50.115,
+    "da": 50.11538,
     "top3": [
      [
       "Launch NGSA + Re-engine A350",
-      50.115
+      50.11538
      ],
      [
       "Launch NGSA + Do Nothing A350",
-      48.329
+      48.329174
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      34.37
+      34.370072
      ]
     ]
    },
    "Do Nothing 737 + Re-engine 787": {
     "best": "Launch NGSA + Do Nothing A350",
-    "da": 47.683,
+    "da": 47.683435,
     "top3": [
      [
       "Launch NGSA + Do Nothing A350",
-      47.683
+      47.683435
      ],
      [
       "Launch NGSA + Re-engine A350",
-      45.359
+      45.358755
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      31.949
+      31.949051
      ]
     ]
    },
    "via Embraer + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 39.208,
+    "da": 39.20753,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      38.693
+      38.693141
      ]
     ]
    }
   },
   "decomp_fps10_vs_dn": {
    "NGSA + Re-engine A350": {
-    "b_delta_nb": 17.057,
+    "b_delta_nb": 17.057498,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -15.995,
+    "b_delta_tc": -15.994741,
     "b_strain": 0.0,
-    "b_total_delta": 1.063,
-    "fps_pv_capex": 12.357,
-    "fps_alpha_pen": 3.638,
-    "fps_nb_pv": 44.765,
-    "dn_nb_pv": 27.708,
-    "base_nb_pv": 31.348
+    "b_total_delta": 1.062757,
+    "fps_pv_capex": 12.356575,
+    "fps_alpha_pen": 3.638166,
+    "fps_nb_pv": 44.76527,
+    "dn_nb_pv": 27.707772,
+    "base_nb_pv": 31.347588
    },
    "NGSA + Bottleneck + Re-engine A350": {
-    "b_delta_nb": 15.753,
+    "b_delta_nb": 15.753094,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -15.995,
+    "b_delta_tc": -15.994741,
     "b_strain": 0.0,
-    "b_total_delta": -0.242,
-    "fps_pv_capex": 12.357,
-    "fps_alpha_pen": 3.638,
-    "fps_nb_pv": 43.461,
-    "dn_nb_pv": 27.708,
-    "base_nb_pv": 31.348
+    "b_total_delta": -0.241647,
+    "fps_pv_capex": 12.356575,
+    "fps_alpha_pen": 3.638166,
+    "fps_nb_pv": 43.460866,
+    "dn_nb_pv": 27.707772,
+    "base_nb_pv": 31.347588
    }
   }
  },
@@ -373,16 +373,16 @@
     "boeing": "Do Nothing (737 MAX) + Do Nothing 787",
     "ya": 133.41,
     "yb": 95.34,
-    "da": 50.115,
-    "db": -6.052
+    "da": 50.11538,
+    "db": -6.0522
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + Re-engine 787",
     "ya": 131.79,
     "yb": 99.64,
-    "da": 47.683,
-    "db": -0.466
+    "da": 47.683435,
+    "db": -0.465929
    }
   ],
   "near": [
@@ -391,242 +391,242 @@
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
     "ya": 132.17,
     "yb": 94.77,
-    "da": 48.259,
-    "db": -6.795
+    "da": 48.258655,
+    "db": -6.794789
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
     "ya": 130.55,
     "yb": 99.07,
-    "da": 45.827,
-    "db": -1.209
+    "da": 45.826709,
+    "db": -1.208518
    }
   ],
   "boeing_by_airbus_ctx": {
    "NGSA + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.867,
-     "fps10": -11.997,
-     "fps10_vs_dn": -3.131,
-     "fps7": -13.007,
-     "fps7_vs_dn": -4.141,
-     "via_embraer": -26.203,
-     "via_embraer_vs_dn": -17.337
+     "do_nothing": -8.866789,
+     "fps10": -11.997499,
+     "fps10_vs_dn": -3.13071,
+     "fps7": -13.007364,
+     "fps7_vs_dn": -4.140576,
+     "via_embraer": -26.203295,
+     "via_embraer_vs_dn": -17.336507
     },
     "Milk_787": {
-     "do_nothing": -6.052,
-     "fps10": -8.579,
-     "fps10_vs_dn": -2.527,
-     "fps7": -9.45,
-     "fps7_vs_dn": -3.397,
-     "via_embraer": -22.003,
-     "via_embraer_vs_dn": -15.951
+     "do_nothing": -6.0522,
+     "fps10": -8.579483,
+     "fps10_vs_dn": -2.527283,
+     "fps7": -9.44968,
+     "fps7_vs_dn": -3.397479,
+     "via_embraer": -22.003145,
+     "via_embraer_vs_dn": -15.950945
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -6.052
+    "best_db": -6.0522
    },
    "NGSA + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.466,
-     "fps10": -3.597,
-     "fps10_vs_dn": -3.131,
-     "fps7": -4.607,
-     "fps7_vs_dn": -4.141,
-     "via_embraer": -17.802,
-     "via_embraer_vs_dn": -17.337
+     "do_nothing": -0.465929,
+     "fps10": -3.596639,
+     "fps10_vs_dn": -3.13071,
+     "fps7": -4.606505,
+     "fps7_vs_dn": -4.140576,
+     "via_embraer": -17.802436,
+     "via_embraer_vs_dn": -17.336507
     },
     "Milk_787": {
-     "do_nothing": -3.767,
-     "fps10": -6.294,
-     "fps10_vs_dn": -2.527,
-     "fps7": -7.164,
-     "fps7_vs_dn": -3.397,
-     "via_embraer": -19.718,
-     "via_embraer_vs_dn": -15.951
+     "do_nothing": -3.766848,
+     "fps10": -6.294131,
+     "fps10_vs_dn": -2.527283,
+     "fps7": -7.164327,
+     "fps7_vs_dn": -3.397479,
+     "via_embraer": -19.717793,
+     "via_embraer_vs_dn": -15.950945
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.466
+    "best_db": -0.465929
    },
    "NGSA + Bottleneck + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.867,
-     "fps10": -12.964,
-     "fps10_vs_dn": -4.097,
-     "fps7": -13.974,
-     "fps7_vs_dn": -5.107,
-     "via_embraer": -27.17,
-     "via_embraer_vs_dn": -18.303
+     "do_nothing": -8.866789,
+     "fps10": -12.964274,
+     "fps10_vs_dn": -4.097485,
+     "fps7": -13.974139,
+     "fps7_vs_dn": -5.10735,
+     "via_embraer": -27.17007,
+     "via_embraer_vs_dn": -18.303282
     },
     "Milk_787": {
-     "do_nothing": -6.052,
-     "fps10": -9.546,
-     "fps10_vs_dn": -3.494,
-     "fps7": -10.416,
-     "fps7_vs_dn": -4.364,
-     "via_embraer": -22.97,
-     "via_embraer_vs_dn": -16.918
+     "do_nothing": -6.0522,
+     "fps10": -9.546258,
+     "fps10_vs_dn": -3.494058,
+     "fps7": -10.416455,
+     "fps7_vs_dn": -4.364254,
+     "via_embraer": -22.96992,
+     "via_embraer_vs_dn": -16.91772
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -6.052
+    "best_db": -6.0522
    },
    "NGSA + Bottleneck + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.466,
-     "fps10": -4.563,
-     "fps10_vs_dn": -4.097,
-     "fps7": -5.573,
-     "fps7_vs_dn": -5.107,
-     "via_embraer": -18.769,
-     "via_embraer_vs_dn": -18.303
+     "do_nothing": -0.465929,
+     "fps10": -4.563414,
+     "fps10_vs_dn": -4.097485,
+     "fps7": -5.573279,
+     "fps7_vs_dn": -5.10735,
+     "via_embraer": -18.769211,
+     "via_embraer_vs_dn": -18.303282
     },
     "Milk_787": {
-     "do_nothing": -3.767,
-     "fps10": -7.261,
-     "fps10_vs_dn": -3.494,
-     "fps7": -8.131,
-     "fps7_vs_dn": -4.364,
-     "via_embraer": -20.685,
-     "via_embraer_vs_dn": -16.918
+     "do_nothing": -3.766848,
+     "fps10": -7.260906,
+     "fps10_vs_dn": -3.494058,
+     "fps7": -8.131102,
+     "fps7_vs_dn": -4.364254,
+     "via_embraer": -20.684568,
+     "via_embraer_vs_dn": -16.91772
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.466
+    "best_db": -0.465929
    }
   },
   "airbus_best_response": {
    "fps10 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 47.603,
+    "da": 47.603089,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      47.198
+      47.197508
      ]
     ]
    },
    "fps10 + Re-engine 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-    "da": 45.173,
+    "da": 45.173337,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      45.173
+      45.173337
      ],
      [
       "Launch NGSA + Delay fps Poaching + Do Nothing A350",
-      45.173
+      45.173337
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
-      44.77
+      44.770403
      ]
     ]
    },
    "fps7 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 44.982,
+    "da": 44.981818,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      44.982
+      44.981818
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      44.982
+      44.981818
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      44.576
+      44.576236
      ]
     ]
    },
    "Do Nothing 737 + Do Nothing 787": {
     "best": "Launch NGSA + Re-engine A350",
-    "da": 50.115,
+    "da": 50.11538,
     "top3": [
      [
       "Launch NGSA + Re-engine A350",
-      50.115
+      50.11538
      ],
      [
       "Launch NGSA + Do Nothing A350",
-      48.329
+      48.329174
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      37.619
+      37.619495
      ]
     ]
    },
    "Do Nothing 737 + Re-engine 787": {
     "best": "Launch NGSA + Do Nothing A350",
-    "da": 47.683,
+    "da": 47.683435,
     "top3": [
      [
       "Launch NGSA + Do Nothing A350",
-      47.683
+      47.683435
      ],
      [
       "Launch NGSA + Re-engine A350",
-      45.359
+      45.358755
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      35.19
+      35.189743
      ]
     ]
    },
    "via Embraer + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 47.603,
+    "da": 47.603089,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      47.198
+      47.197508
      ]
     ]
    }
   },
   "decomp_fps10_vs_dn": {
    "NGSA + Re-engine A350": {
-    "b_delta_nb": 9.327,
+    "b_delta_nb": 9.327412,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -11.855,
+    "b_delta_tc": -11.854695,
     "b_strain": 0.0,
-    "b_total_delta": -2.527,
-    "fps_pv_capex": 9.158,
-    "fps_alpha_pen": 2.696,
-    "fps_nb_pv": 37.162,
-    "dn_nb_pv": 27.835,
-    "base_nb_pv": 31.602
+    "b_total_delta": -2.527283,
+    "fps_pv_capex": 9.158224,
+    "fps_alpha_pen": 2.69647,
+    "fps_nb_pv": 37.162216,
+    "dn_nb_pv": 27.834804,
+    "base_nb_pv": 31.601652
    },
    "NGSA + Bottleneck + Re-engine A350": {
-    "b_delta_nb": 8.361,
+    "b_delta_nb": 8.360637,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -11.855,
+    "b_delta_tc": -11.854695,
     "b_strain": 0.0,
-    "b_total_delta": -3.494,
-    "fps_pv_capex": 9.158,
-    "fps_alpha_pen": 2.696,
-    "fps_nb_pv": 36.195,
-    "dn_nb_pv": 27.835,
-    "base_nb_pv": 31.602
+    "b_total_delta": -3.494058,
+    "fps_pv_capex": 9.158224,
+    "fps_alpha_pen": 2.69647,
+    "fps_nb_pv": 36.195441,
+    "dn_nb_pv": 27.834804,
+    "base_nb_pv": 31.601652
    }
   }
  },
@@ -637,16 +637,16 @@
     "boeing": "Do Nothing (737 MAX) + Do Nothing 787",
     "ya": 133.41,
     "yb": 95.34,
-    "da": 50.115,
-    "db": -6.052
+    "da": 50.11538,
+    "db": -6.0522
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + Re-engine 787",
     "ya": 131.79,
     "yb": 99.64,
-    "da": 47.683,
-    "db": -0.466
+    "da": 47.683435,
+    "db": -0.465929
    }
   ],
   "near": [
@@ -655,242 +655,242 @@
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
     "ya": 132.17,
     "yb": 94.77,
-    "da": 48.259,
-    "db": -6.795
+    "da": 48.258655,
+    "db": -6.794789
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
     "ya": 130.55,
     "yb": 99.07,
-    "da": 45.827,
-    "db": -1.209
+    "da": 45.826709,
+    "db": -1.208518
    }
   ],
   "boeing_by_airbus_ctx": {
    "NGSA + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.867,
-     "fps10": -16.733,
-     "fps10_vs_dn": -7.866,
-     "fps7": -18.971,
-     "fps7_vs_dn": -10.104,
-     "via_embraer": -38.647,
-     "via_embraer_vs_dn": -29.78
+     "do_nothing": -8.866789,
+     "fps10": -16.732555,
+     "fps10_vs_dn": -7.865766,
+     "fps7": -18.970959,
+     "fps7_vs_dn": -10.10417,
+     "via_embraer": -38.64678,
+     "via_embraer_vs_dn": -29.779991
     },
     "Milk_787": {
-     "do_nothing": -6.052,
-     "fps10": -13.055,
-     "fps10_vs_dn": -7.003,
-     "fps7": -15.084,
-     "fps7_vs_dn": -9.032,
-     "via_embraer": -33.775,
-     "via_embraer_vs_dn": -27.723
+     "do_nothing": -6.0522,
+     "fps10": -13.055377,
+     "fps10_vs_dn": -7.003177,
+     "fps7": -15.08409,
+     "fps7_vs_dn": -9.03189,
+     "via_embraer": -33.775273,
+     "via_embraer_vs_dn": -27.723072
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -6.052
+    "best_db": -6.0522
    },
    "NGSA + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.466,
-     "fps10": -8.332,
-     "fps10_vs_dn": -7.866,
-     "fps7": -10.57,
-     "fps7_vs_dn": -10.104,
-     "via_embraer": -30.246,
-     "via_embraer_vs_dn": -29.78
+     "do_nothing": -0.465929,
+     "fps10": -8.331695,
+     "fps10_vs_dn": -7.865766,
+     "fps7": -10.570099,
+     "fps7_vs_dn": -10.10417,
+     "via_embraer": -30.24592,
+     "via_embraer_vs_dn": -29.779991
     },
     "Milk_787": {
-     "do_nothing": -3.767,
-     "fps10": -10.77,
-     "fps10_vs_dn": -7.003,
-     "fps7": -12.799,
-     "fps7_vs_dn": -9.032,
-     "via_embraer": -31.49,
-     "via_embraer_vs_dn": -27.723
+     "do_nothing": -3.766848,
+     "fps10": -10.770025,
+     "fps10_vs_dn": -7.003177,
+     "fps7": -12.798738,
+     "fps7_vs_dn": -9.03189,
+     "via_embraer": -31.48992,
+     "via_embraer_vs_dn": -27.723072
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.466
+    "best_db": -0.465929
    },
    "NGSA + Bottleneck + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.867,
-     "fps10": -17.699,
-     "fps10_vs_dn": -8.833,
-     "fps7": -19.938,
-     "fps7_vs_dn": -11.071,
-     "via_embraer": -39.614,
-     "via_embraer_vs_dn": -30.747
+     "do_nothing": -8.866789,
+     "fps10": -17.69933,
+     "fps10_vs_dn": -8.832541,
+     "fps7": -19.937734,
+     "fps7_vs_dn": -11.070945,
+     "via_embraer": -39.613555,
+     "via_embraer_vs_dn": -30.746766
     },
     "Milk_787": {
-     "do_nothing": -6.052,
-     "fps10": -14.022,
-     "fps10_vs_dn": -7.97,
-     "fps7": -16.051,
-     "fps7_vs_dn": -9.999,
-     "via_embraer": -34.742,
-     "via_embraer_vs_dn": -28.69
+     "do_nothing": -6.0522,
+     "fps10": -14.022152,
+     "fps10_vs_dn": -7.969952,
+     "fps7": -16.050865,
+     "fps7_vs_dn": -9.998665,
+     "via_embraer": -34.742048,
+     "via_embraer_vs_dn": -28.689847
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -6.052
+    "best_db": -6.0522
    },
    "NGSA + Bottleneck + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.466,
-     "fps10": -9.298,
-     "fps10_vs_dn": -8.833,
-     "fps7": -11.537,
-     "fps7_vs_dn": -11.071,
-     "via_embraer": -31.213,
-     "via_embraer_vs_dn": -30.747
+     "do_nothing": -0.465929,
+     "fps10": -9.29847,
+     "fps10_vs_dn": -8.832541,
+     "fps7": -11.536874,
+     "fps7_vs_dn": -11.070945,
+     "via_embraer": -31.212695,
+     "via_embraer_vs_dn": -30.746766
     },
     "Milk_787": {
-     "do_nothing": -3.767,
-     "fps10": -11.737,
-     "fps10_vs_dn": -7.97,
-     "fps7": -13.766,
-     "fps7_vs_dn": -9.999,
-     "via_embraer": -32.457,
-     "via_embraer_vs_dn": -28.69
+     "do_nothing": -3.766848,
+     "fps10": -11.7368,
+     "fps10_vs_dn": -7.969952,
+     "fps7": -13.765512,
+     "fps7_vs_dn": -9.998665,
+     "via_embraer": -32.456695,
+     "via_embraer_vs_dn": -28.689847
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.466
+    "best_db": -0.465929
    }
   },
   "airbus_best_response": {
    "fps10 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 47.603,
+    "da": 47.603089,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      47.198
+      47.197508
      ]
     ]
    },
    "fps10 + Re-engine 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-    "da": 45.173,
+    "da": 45.173337,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      45.173
+      45.173337
      ],
      [
       "Launch NGSA + Delay fps Poaching + Do Nothing A350",
-      45.173
+      45.173337
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
-      44.77
+      44.770403
      ]
     ]
    },
    "fps7 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 44.982,
+    "da": 44.981818,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      44.982
+      44.981818
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      44.982
+      44.981818
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      44.576
+      44.576236
      ]
     ]
    },
    "Do Nothing 737 + Do Nothing 787": {
     "best": "Launch NGSA + Re-engine A350",
-    "da": 50.115,
+    "da": 50.11538,
     "top3": [
      [
       "Launch NGSA + Re-engine A350",
-      50.115
+      50.11538
      ],
      [
       "Launch NGSA + Do Nothing A350",
-      48.329
+      48.329174
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      37.619
+      37.619495
      ]
     ]
    },
    "Do Nothing 737 + Re-engine 787": {
     "best": "Launch NGSA + Do Nothing A350",
-    "da": 47.683,
+    "da": 47.683435,
     "top3": [
      [
       "Launch NGSA + Do Nothing A350",
-      47.683
+      47.683435
      ],
      [
       "Launch NGSA + Re-engine A350",
-      45.359
+      45.358755
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      35.19
+      35.189743
      ]
     ]
    },
    "via Embraer + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 47.603,
+    "da": 47.603089,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      47.198
+      47.197508
      ]
     ]
    }
   },
   "decomp_fps10_vs_dn": {
    "NGSA + Re-engine A350": {
-    "b_delta_nb": 9.327,
+    "b_delta_nb": 9.327412,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -16.331,
+    "b_delta_tc": -16.330589,
     "b_strain": 0.0,
-    "b_total_delta": -7.003,
-    "fps_pv_capex": 11.907,
-    "fps_alpha_pen": 4.424,
-    "fps_nb_pv": 37.162,
-    "dn_nb_pv": 27.835,
-    "base_nb_pv": 31.602
+    "b_total_delta": -7.003177,
+    "fps_pv_capex": 11.90652,
+    "fps_alpha_pen": 4.424068,
+    "fps_nb_pv": 37.162216,
+    "dn_nb_pv": 27.834804,
+    "base_nb_pv": 31.601652
    },
    "NGSA + Bottleneck + Re-engine A350": {
-    "b_delta_nb": 8.361,
+    "b_delta_nb": 8.360637,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -16.331,
+    "b_delta_tc": -16.330589,
     "b_strain": 0.0,
-    "b_total_delta": -7.97,
-    "fps_pv_capex": 11.907,
-    "fps_alpha_pen": 4.424,
-    "fps_nb_pv": 36.195,
-    "dn_nb_pv": 27.835,
-    "base_nb_pv": 31.602
+    "b_total_delta": -7.969952,
+    "fps_pv_capex": 11.90652,
+    "fps_alpha_pen": 4.424068,
+    "fps_nb_pv": 36.195441,
+    "dn_nb_pv": 27.834804,
+    "base_nb_pv": 31.601652
    }
   }
  },
@@ -901,16 +901,16 @@
     "boeing": "Do Nothing (737 MAX) + Do Nothing 787",
     "ya": 133.41,
     "yb": 95.34,
-    "da": 50.115,
-    "db": -6.052
+    "da": 50.11538,
+    "db": -6.0522
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + Re-engine 787",
     "ya": 131.79,
     "yb": 99.64,
-    "da": 47.683,
-    "db": -0.466
+    "da": 47.683435,
+    "db": -0.465929
    }
   ],
   "near": [
@@ -919,242 +919,242 @@
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Do Nothing 787",
     "ya": 132.17,
     "yb": 94.77,
-    "da": 48.259,
-    "db": -6.795
+    "da": 48.258655,
+    "db": -6.794789
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
     "ya": 130.55,
     "yb": 99.07,
-    "da": 45.827,
-    "db": -1.209
+    "da": 45.826709,
+    "db": -1.208518
    }
   ],
   "boeing_by_airbus_ctx": {
    "NGSA + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.867,
-     "fps10": -12.555,
-     "fps10_vs_dn": -3.688,
-     "fps7": -13.557,
-     "fps7_vs_dn": -4.69,
-     "via_embraer": -26.735,
-     "via_embraer_vs_dn": -17.868
+     "do_nothing": -8.866789,
+     "fps10": -12.554872,
+     "fps10_vs_dn": -3.688083,
+     "fps7": -13.556762,
+     "fps7_vs_dn": -4.689973,
+     "via_embraer": -26.735057,
+     "via_embraer_vs_dn": -17.868268
     },
     "Milk_787": {
-     "do_nothing": -6.052,
-     "fps10": -8.579,
-     "fps10_vs_dn": -2.527,
-     "fps7": -9.45,
-     "fps7_vs_dn": -3.397,
-     "via_embraer": -22.003,
-     "via_embraer_vs_dn": -15.951
+     "do_nothing": -6.0522,
+     "fps10": -8.579483,
+     "fps10_vs_dn": -2.527283,
+     "fps7": -9.44968,
+     "fps7_vs_dn": -3.397479,
+     "via_embraer": -22.003145,
+     "via_embraer_vs_dn": -15.950945
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -6.052
+    "best_db": -6.0522
    },
    "NGSA + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.466,
-     "fps10": -4.154,
-     "fps10_vs_dn": -3.688,
-     "fps7": -5.156,
-     "fps7_vs_dn": -4.69,
-     "via_embraer": -18.334,
-     "via_embraer_vs_dn": -17.868
+     "do_nothing": -0.465929,
+     "fps10": -4.154012,
+     "fps10_vs_dn": -3.688083,
+     "fps7": -5.155902,
+     "fps7_vs_dn": -4.689973,
+     "via_embraer": -18.334197,
+     "via_embraer_vs_dn": -17.868268
     },
     "Milk_787": {
-     "do_nothing": -3.767,
-     "fps10": -6.294,
-     "fps10_vs_dn": -2.527,
-     "fps7": -7.164,
-     "fps7_vs_dn": -3.397,
-     "via_embraer": -19.718,
-     "via_embraer_vs_dn": -15.951
+     "do_nothing": -3.766848,
+     "fps10": -6.294131,
+     "fps10_vs_dn": -2.527283,
+     "fps7": -7.164327,
+     "fps7_vs_dn": -3.397479,
+     "via_embraer": -19.717793,
+     "via_embraer_vs_dn": -15.950945
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.466
+    "best_db": -0.465929
    },
    "NGSA + Bottleneck + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.867,
-     "fps10": -13.522,
-     "fps10_vs_dn": -4.655,
-     "fps7": -14.524,
-     "fps7_vs_dn": -5.657,
-     "via_embraer": -27.702,
-     "via_embraer_vs_dn": -18.835
+     "do_nothing": -8.866789,
+     "fps10": -13.521647,
+     "fps10_vs_dn": -4.654858,
+     "fps7": -14.523536,
+     "fps7_vs_dn": -5.656748,
+     "via_embraer": -27.701832,
+     "via_embraer_vs_dn": -18.835043
     },
     "Milk_787": {
-     "do_nothing": -6.052,
-     "fps10": -9.546,
-     "fps10_vs_dn": -3.494,
-     "fps7": -10.416,
-     "fps7_vs_dn": -4.364,
-     "via_embraer": -22.97,
-     "via_embraer_vs_dn": -16.918
+     "do_nothing": -6.0522,
+     "fps10": -9.546258,
+     "fps10_vs_dn": -3.494058,
+     "fps7": -10.416455,
+     "fps7_vs_dn": -4.364254,
+     "via_embraer": -22.96992,
+     "via_embraer_vs_dn": -16.91772
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -6.052
+    "best_db": -6.0522
    },
    "NGSA + Bottleneck + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.466,
-     "fps10": -5.121,
-     "fps10_vs_dn": -4.655,
-     "fps7": -6.123,
-     "fps7_vs_dn": -5.657,
-     "via_embraer": -19.301,
-     "via_embraer_vs_dn": -18.835
+     "do_nothing": -0.465929,
+     "fps10": -5.120787,
+     "fps10_vs_dn": -4.654858,
+     "fps7": -6.122677,
+     "fps7_vs_dn": -5.656748,
+     "via_embraer": -19.300972,
+     "via_embraer_vs_dn": -18.835043
     },
     "Milk_787": {
-     "do_nothing": -3.767,
-     "fps10": -7.261,
-     "fps10_vs_dn": -3.494,
-     "fps7": -8.131,
-     "fps7_vs_dn": -4.364,
-     "via_embraer": -20.685,
-     "via_embraer_vs_dn": -16.918
+     "do_nothing": -3.766848,
+     "fps10": -7.260906,
+     "fps10_vs_dn": -3.494058,
+     "fps7": -8.131102,
+     "fps7_vs_dn": -4.364254,
+     "via_embraer": -20.684568,
+     "via_embraer_vs_dn": -16.91772
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.466
+    "best_db": -0.465929
    }
   },
   "airbus_best_response": {
    "fps10 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 47.603,
+    "da": 47.603089,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      47.198
+      47.197508
      ]
     ]
    },
    "fps10 + Re-engine 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-    "da": 45.173,
+    "da": 45.173337,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      45.173
+      45.173337
      ],
      [
       "Launch NGSA + Delay fps Poaching + Do Nothing A350",
-      45.173
+      45.173337
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
-      44.77
+      44.770403
      ]
     ]
    },
    "fps7 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 44.982,
+    "da": 44.981818,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      44.982
+      44.981818
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      44.982
+      44.981818
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      44.576
+      44.576236
      ]
     ]
    },
    "Do Nothing 737 + Do Nothing 787": {
     "best": "Launch NGSA + Re-engine A350",
-    "da": 50.115,
+    "da": 50.11538,
     "top3": [
      [
       "Launch NGSA + Re-engine A350",
-      50.115
+      50.11538
      ],
      [
       "Launch NGSA + Do Nothing A350",
-      48.329
+      48.329174
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      37.619
+      37.619495
      ]
     ]
    },
    "Do Nothing 737 + Re-engine 787": {
     "best": "Launch NGSA + Do Nothing A350",
-    "da": 47.683,
+    "da": 47.683435,
     "top3": [
      [
       "Launch NGSA + Do Nothing A350",
-      47.683
+      47.683435
      ],
      [
       "Launch NGSA + Re-engine A350",
-      45.359
+      45.358755
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      35.19
+      35.189743
      ]
     ]
    },
    "via Embraer + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 47.603,
+    "da": 47.603089,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      47.603
+      47.603089
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      47.198
+      47.197508
      ]
     ]
    }
   },
   "decomp_fps10_vs_dn": {
    "NGSA + Re-engine A350": {
-    "b_delta_nb": 9.327,
+    "b_delta_nb": 9.327412,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -11.855,
+    "b_delta_tc": -11.854695,
     "b_strain": 0.0,
-    "b_total_delta": -2.527,
-    "fps_pv_capex": 9.158,
-    "fps_alpha_pen": 2.696,
-    "fps_nb_pv": 37.162,
-    "dn_nb_pv": 27.835,
-    "base_nb_pv": 31.602
+    "b_total_delta": -2.527283,
+    "fps_pv_capex": 9.158224,
+    "fps_alpha_pen": 2.69647,
+    "fps_nb_pv": 37.162216,
+    "dn_nb_pv": 27.834804,
+    "base_nb_pv": 31.601652
    },
    "NGSA + Bottleneck + Re-engine A350": {
-    "b_delta_nb": 8.361,
+    "b_delta_nb": 8.360637,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -11.855,
+    "b_delta_tc": -11.854695,
     "b_strain": 0.0,
-    "b_total_delta": -3.494,
-    "fps_pv_capex": 9.158,
-    "fps_alpha_pen": 2.696,
-    "fps_nb_pv": 36.195,
-    "dn_nb_pv": 27.835,
-    "base_nb_pv": 31.602
+    "b_total_delta": -3.494058,
+    "fps_pv_capex": 9.158224,
+    "fps_alpha_pen": 2.69647,
+    "fps_nb_pv": 36.195441,
+    "dn_nb_pv": 27.834804,
+    "base_nb_pv": 31.601652
    }
   }
  },
@@ -1165,8 +1165,8 @@
     "boeing": "Do Nothing (737 MAX) + Re-engine 787",
     "ya": 131.79,
     "yb": 99.74,
-    "da": 47.683,
-    "db": -0.339
+    "da": 47.683435,
+    "db": -0.338897
    }
   ],
   "near": [
@@ -1175,330 +1175,330 @@
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 124.56,
     "yb": 94.69,
-    "da": 36.836,
-    "db": -6.909
+    "da": 36.836415,
+    "db": -6.909405
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 125.8,
     "yb": 95.26,
-    "da": 38.693,
-    "db": -6.167
+    "da": 38.693141,
+    "db": -6.166816
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 124.9,
     "yb": 94.69,
-    "da": 37.351,
-    "db": -6.909
+    "da": 37.350804,
+    "db": -6.909405
    },
    {
     "airbus": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 126.14,
     "yb": 95.26,
-    "da": 39.208,
-    "db": -6.167
+    "da": 39.20753,
+    "db": -6.166816
    },
    {
     "airbus": "Launch NGSA + Delay fps Poaching + Re-engine A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 124.9,
     "yb": 94.69,
-    "da": 37.351,
-    "db": -6.909
+    "da": 37.350804,
+    "db": -6.909405
    },
    {
     "airbus": "Launch NGSA + Delay fps Poaching + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 126.14,
     "yb": 95.26,
-    "da": 39.208,
-    "db": -6.167
+    "da": 39.20753,
+    "db": -6.166816
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "fps 7yr Solo + Do Nothing 787",
     "ya": 122.97,
     "yb": 95.36,
-    "da": 34.453,
-    "db": -6.037
+    "da": 34.453489,
+    "db": -6.036509
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Do Nothing 787",
     "ya": 123.93,
     "yb": 95.69,
-    "da": 35.899,
-    "db": -5.605
+    "da": 35.898811,
+    "db": -5.605001
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "fps 10yr Solo + Do Nothing 787",
     "ya": 125.17,
     "yb": 96.26,
-    "da": 37.756,
-    "db": -4.862
+    "da": 37.755536,
+    "db": -4.862412
    },
    {
     "airbus": "Launch NGSA + Re-engine A350",
     "boeing": "Do Nothing (737 MAX) + Do Nothing 787",
     "ya": 133.41,
     "yb": 95.44,
-    "da": 50.115,
-    "db": -5.925
+    "da": 50.11538,
+    "db": -5.925168
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "fps 10yr Solo + 737 Rate Increase + Re-engine 787",
     "ya": 122.31,
     "yb": 98.92,
-    "da": 33.467,
-    "db": -1.41
+    "da": 33.466865,
+    "db": -1.409895
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "fps 10yr Solo + Re-engine 787",
     "ya": 123.55,
     "yb": 99.49,
-    "da": 35.324,
-    "db": -0.667
+    "da": 35.323591,
+    "db": -0.667305
    },
    {
     "airbus": "Launch NGSA + Do Nothing A350",
     "boeing": "Do Nothing (737 MAX) + 737 Rate Increase + Re-engine 787",
     "ya": 130.55,
     "yb": 99.17,
-    "da": 45.827,
-    "db": -1.081
+    "da": 45.826709,
+    "db": -1.081486
    }
   ],
   "boeing_by_airbus_ctx": {
    "NGSA + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.74,
-     "fps10": -9.068,
-     "fps10_vs_dn": -0.328,
-     "fps7": -10.394,
-     "fps7_vs_dn": -1.654,
-     "via_embraer": -28.046,
-     "via_embraer_vs_dn": -19.306
+     "do_nothing": -8.739757,
+     "fps10": -9.068165,
+     "fps10_vs_dn": -0.328408,
+     "fps7": -10.393844,
+     "fps7_vs_dn": -1.654087,
+     "via_embraer": -28.046056,
+     "via_embraer_vs_dn": -19.306299
     },
     "Milk_787": {
-     "do_nothing": -5.925,
-     "fps10": -4.862,
-     "fps10_vs_dn": 1.063,
-     "fps7": -6.037,
-     "fps7_vs_dn": -0.111,
-     "via_embraer": -22.974,
-     "via_embraer_vs_dn": -17.049
+     "do_nothing": -5.925168,
+     "fps10": -4.862412,
+     "fps10_vs_dn": 1.062757,
+     "fps7": -6.036509,
+     "fps7_vs_dn": -0.111341,
+     "via_embraer": -22.974054,
+     "via_embraer_vs_dn": -17.048886
     },
     "best_response": "fps 10yr Solo + Do Nothing 787",
-    "best_db": -4.862
+    "best_db": -4.862412
    },
    "NGSA + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.339,
-     "fps10": -0.667,
-     "fps10_vs_dn": -0.328,
-     "fps7": -1.993,
-     "fps7_vs_dn": -1.654,
-     "via_embraer": -19.645,
-     "via_embraer_vs_dn": -19.306
+     "do_nothing": -0.338897,
+     "fps10": -0.667305,
+     "fps10_vs_dn": -0.328408,
+     "fps7": -1.992984,
+     "fps7_vs_dn": -1.654087,
+     "via_embraer": -19.645196,
+     "via_embraer_vs_dn": -19.306299
     },
     "Milk_787": {
-     "do_nothing": -3.64,
-     "fps10": -2.577,
-     "fps10_vs_dn": 1.063,
-     "fps7": -3.751,
-     "fps7_vs_dn": -0.111,
-     "via_embraer": -20.689,
-     "via_embraer_vs_dn": -17.049
+     "do_nothing": -3.639816,
+     "fps10": -2.577059,
+     "fps10_vs_dn": 1.062757,
+     "fps7": -3.751157,
+     "fps7_vs_dn": -0.111341,
+     "via_embraer": -20.688702,
+     "via_embraer_vs_dn": -17.048886
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.339
+    "best_db": -0.338897
    },
    "NGSA + Bottleneck + Re-engine A350": {
     "Re_engine_787": {
-     "do_nothing": -8.74,
-     "fps10": -10.373,
-     "fps10_vs_dn": -1.633,
-     "fps7": -11.698,
-     "fps7_vs_dn": -2.958,
-     "via_embraer": -29.35,
-     "via_embraer_vs_dn": -20.611
+     "do_nothing": -8.739757,
+     "fps10": -10.372569,
+     "fps10_vs_dn": -1.632812,
+     "fps7": -11.698248,
+     "fps7_vs_dn": -2.958491,
+     "via_embraer": -29.35046,
+     "via_embraer_vs_dn": -20.610703
     },
     "Milk_787": {
-     "do_nothing": -5.925,
-     "fps10": -6.167,
-     "fps10_vs_dn": -0.242,
-     "fps7": -7.341,
-     "fps7_vs_dn": -1.416,
-     "via_embraer": -24.278,
-     "via_embraer_vs_dn": -18.353
+     "do_nothing": -5.925168,
+     "fps10": -6.166816,
+     "fps10_vs_dn": -0.241647,
+     "fps7": -7.340913,
+     "fps7_vs_dn": -1.415745,
+     "via_embraer": -24.278458,
+     "via_embraer_vs_dn": -18.35329
     },
     "best_response": "Do Nothing (737 MAX) + Do Nothing 787",
-    "best_db": -5.925
+    "best_db": -5.925168
    },
    "NGSA + Bottleneck + Do Nothing A350": {
     "Re_engine_787": {
-     "do_nothing": -0.339,
-     "fps10": -1.972,
-     "fps10_vs_dn": -1.633,
-     "fps7": -3.297,
-     "fps7_vs_dn": -2.958,
-     "via_embraer": -20.95,
-     "via_embraer_vs_dn": -20.611
+     "do_nothing": -0.338897,
+     "fps10": -1.97171,
+     "fps10_vs_dn": -1.632812,
+     "fps7": -3.297389,
+     "fps7_vs_dn": -2.958491,
+     "via_embraer": -20.9496,
+     "via_embraer_vs_dn": -20.610703
     },
     "Milk_787": {
-     "do_nothing": -3.64,
-     "fps10": -3.881,
-     "fps10_vs_dn": -0.242,
-     "fps7": -5.056,
-     "fps7_vs_dn": -1.416,
-     "via_embraer": -21.993,
-     "via_embraer_vs_dn": -18.353
+     "do_nothing": -3.639816,
+     "fps10": -3.881463,
+     "fps10_vs_dn": -0.241647,
+     "fps7": -5.055561,
+     "fps7_vs_dn": -1.415745,
+     "via_embraer": -21.993106,
+     "via_embraer_vs_dn": -18.35329
     },
     "best_response": "Do Nothing (737 MAX) + Re-engine 787",
-    "best_db": -0.339
+    "best_db": -0.338897
    }
   },
   "airbus_best_response": {
    "fps10 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 39.208,
+    "da": 39.20753,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      38.693
+      38.693141
      ]
     ]
    },
    "fps10 + Re-engine 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-    "da": 36.787,
+    "da": 36.786509,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      36.787
+      36.786509
      ],
      [
       "Launch NGSA + Delay fps Poaching + Do Nothing A350",
-      36.787
+      36.786509
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Do Nothing A350",
-      36.283
+      36.283087
      ]
     ]
    },
    "fps7 + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 35.905,
+    "da": 35.905482,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      35.905
+      35.905482
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      35.905
+      35.905482
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      35.391
+      35.391093
      ]
     ]
    },
    "Do Nothing 737 + Do Nothing 787": {
     "best": "Launch NGSA + Re-engine A350",
-    "da": 50.115,
+    "da": 50.11538,
     "top3": [
      [
       "Launch NGSA + Re-engine A350",
-      50.115
+      50.11538
      ],
      [
       "Launch NGSA + Do Nothing A350",
-      48.329
+      48.329174
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      34.37
+      34.370072
      ]
     ]
    },
    "Do Nothing 737 + Re-engine 787": {
     "best": "Launch NGSA + Do Nothing A350",
-    "da": 47.683,
+    "da": 47.683435,
     "top3": [
      [
       "Launch NGSA + Do Nothing A350",
-      47.683
+      47.683435
      ],
      [
       "Launch NGSA + Re-engine A350",
-      45.359
+      45.358755
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Do Nothing A350",
-      31.949
+      31.949051
      ]
     ]
    },
    "via Embraer + Do Nothing 787": {
     "best": "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-    "da": 39.208,
+    "da": 39.20753,
     "top3": [
      [
       "Launch NGSA + Delay fps Bottleneck + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Poaching + Re-engine A350",
-      39.208
+      39.20753
      ],
      [
       "Launch NGSA + Delay fps Bottleneck + Delay fps Poaching + Re-engine A350",
-      38.693
+      38.693141
      ]
     ]
    }
   },
   "decomp_fps10_vs_dn": {
    "NGSA + Re-engine A350": {
-    "b_delta_nb": 17.057,
+    "b_delta_nb": 17.057498,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -15.995,
+    "b_delta_tc": -15.994741,
     "b_strain": 0.0,
-    "b_total_delta": 1.063,
-    "fps_pv_capex": 12.357,
-    "fps_alpha_pen": 3.638,
-    "fps_nb_pv": 44.765,
-    "dn_nb_pv": 27.708,
-    "base_nb_pv": 31.348
+    "b_total_delta": 1.062757,
+    "fps_pv_capex": 12.356575,
+    "fps_alpha_pen": 3.638166,
+    "fps_nb_pv": 44.76527,
+    "dn_nb_pv": 27.707772,
+    "base_nb_pv": 31.347588
    },
    "NGSA + Bottleneck + Re-engine A350": {
-    "b_delta_nb": 15.753,
+    "b_delta_nb": 15.753094,
     "b_delta_wb": 0.0,
-    "b_delta_tc": -15.995,
+    "b_delta_tc": -15.994741,
     "b_strain": 0.0,
-    "b_total_delta": -0.242,
-    "fps_pv_capex": 12.357,
-    "fps_alpha_pen": 3.638,
-    "fps_nb_pv": 43.461,
-    "dn_nb_pv": 27.708,
-    "base_nb_pv": 31.348
+    "b_total_delta": -0.241647,
+    "fps_pv_capex": 12.356575,
+    "fps_alpha_pen": 3.638166,
+    "fps_nb_pv": 43.460866,
+    "dn_nb_pv": 27.707772,
+    "base_nb_pv": 31.347588
    }
   }
  },
@@ -1514,21 +1514,21 @@
     "fps 10yr Solo + Do Nothing 787",
     "fps 10yr Solo + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 9.684,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 7.933,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 7.855,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 5.916,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 7.739,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 5.988,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 5.911,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": 3.971,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 9.684,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 7.933,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 7.855,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 5.916,
-   "airbus_delay_tactics_value_vs_fps10": 1.97,
-   "airbus_ngsa_value_vs_fps10": 23.319,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 9.683544,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 7.93308,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 7.855477,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 5.915713,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 7.738805,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 5.988341,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 5.910738,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": 3.970974,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 9.683544,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 7.93308,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 7.855477,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 5.915713,
+   "airbus_delay_tactics_value_vs_fps10": 1.969742,
+   "airbus_ngsa_value_vs_fps10": 23.319053,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2038,
@@ -1541,21 +1541,21 @@
     "fps 10yr Solo + Do Nothing 787",
     "fps 10yr Solo + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 7.291,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 5.707,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 5.775,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 4.012,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 5.531,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 3.947,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 4.015,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": 2.252,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 7.291,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 5.707,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 5.775,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 4.012,
-   "airbus_delay_tactics_value_vs_fps10": 1.825,
-   "airbus_ngsa_value_vs_fps10": 26.619,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 7.291033,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 5.706902,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 5.775351,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 4.012109,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 5.531088,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 3.946957,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 4.015406,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": 2.252164,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 7.291033,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 5.706902,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 5.775351,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 4.012109,
+   "airbus_delay_tactics_value_vs_fps10": 1.825002,
+   "airbus_ngsa_value_vs_fps10": 26.619365,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2039,
@@ -1568,21 +1568,21 @@
     "fps 10yr Solo + Do Nothing 787",
     "fps 10yr Solo + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 5.016,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 3.582,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 3.769,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 2.165,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 3.423,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 1.989,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 2.176,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": 0.572,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 5.016,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 3.582,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 3.769,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 2.165,
-   "airbus_delay_tactics_value_vs_fps10": 1.691,
-   "airbus_ngsa_value_vs_fps10": 30.217,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 5.015682,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 3.582079,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 3.768851,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 2.164913,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 3.422971,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 1.989369,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 2.176141,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": 0.572203,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 5.015682,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 3.582079,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 3.768851,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 2.164913,
+   "airbus_delay_tactics_value_vs_fps10": 1.690984,
+   "airbus_ngsa_value_vs_fps10": 30.217181,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2040,
@@ -1596,21 +1596,21 @@
     "fps 10yr Solo + Re-engine 787",
     "fps 7yr Solo + Do Nothing 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 2.926,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 1.629,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 1.91,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 0.45,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 1.485,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 0.187,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 0.469,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -0.991,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 2.926,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 1.629,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 1.91,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 0.45,
-   "airbus_delay_tactics_value_vs_fps10": 1.567,
-   "airbus_ngsa_value_vs_fps10": 33.924,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 2.926158,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": 1.62878,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 1.910281,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": 0.450082,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": 1.484791,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": 0.187414,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": 0.468914,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -0.991285,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 2.926158,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": 1.62878,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 1.910281,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": 0.450082,
+   "airbus_delay_tactics_value_vs_fps10": 1.566893,
+   "airbus_ngsa_value_vs_fps10": 33.923587,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2041,
@@ -1627,21 +1627,21 @@
     "fps 10yr Solo + Re-engine 787",
     "fps 7yr Solo + Do Nothing 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 1.063,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -0.111,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 0.245,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -1.086,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -0.242,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -1.416,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -1.06,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -2.39,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 1.063,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -0.111,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 0.245,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -1.086,
-   "airbus_delay_tactics_value_vs_fps10": 1.452,
-   "airbus_ngsa_value_vs_fps10": 37.344,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": 1.062757,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -0.111341,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": 0.244893,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -1.085636,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -0.241647,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -1.415745,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -1.059511,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -2.39004,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": 1.062757,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -0.111341,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": 0.244893,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -1.085636,
+   "airbus_delay_tactics_value_vs_fps10": 1.451993,
+   "airbus_ngsa_value_vs_fps10": 37.343548,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2042,
@@ -1657,21 +1657,21 @@
     "fps 10yr Solo + Do Nothing 787",
     "fps 10yr Solo + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -0.521,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -1.584,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -1.169,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -2.383,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -1.701,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -2.764,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -2.35,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -3.563,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -0.521,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -1.584,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -1.169,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -2.383,
-   "airbus_delay_tactics_value_vs_fps10": 1.346,
-   "airbus_ngsa_value_vs_fps10": 40.416,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -0.521026,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -1.583557,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -1.169458,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -2.383035,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -1.701482,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -2.764014,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -2.349914,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -3.563491,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -0.521026,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -1.583557,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -1.169458,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -2.383035,
+   "airbus_delay_tactics_value_vs_fps10": 1.345605,
+   "airbus_ngsa_value_vs_fps10": 40.416353,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2043,
@@ -1684,21 +1684,21 @@
     "Do Nothing (737 MAX) + Do Nothing 787",
     "Do Nothing (737 MAX) + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -1.853,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -2.815,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.478,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.584,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -2.921,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.883,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.546,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -4.653,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -1.853,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -2.815,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.478,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.584,
-   "airbus_delay_tactics_value_vs_fps10": 1.247,
-   "airbus_ngsa_value_vs_fps10": 43.168,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -1.852942,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -2.814509,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.477749,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.584389,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -2.921228,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.882795,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.546035,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -4.652676,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -1.852942,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -2.814509,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.477749,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.584389,
+   "airbus_delay_tactics_value_vs_fps10": 1.247098,
+   "airbus_ngsa_value_vs_fps10": 43.167717,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2044,
@@ -1711,21 +1711,21 @@
     "Do Nothing (737 MAX) + Do Nothing 787",
     "Do Nothing (737 MAX) + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -2.527,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -3.397,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -3.131,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -4.141,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -3.494,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -4.364,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -4.097,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -5.107,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -2.527,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -3.397,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -3.131,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -4.141,
-   "airbus_delay_tactics_value_vs_fps10": 1.156,
-   "airbus_ngsa_value_vs_fps10": 44.926,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -2.527283,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -3.397479,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -3.13071,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -4.140576,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -3.494058,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -4.364254,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -4.097485,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -5.10735,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -2.527283,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -3.397479,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -3.13071,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -4.140576,
+   "airbus_delay_tactics_value_vs_fps10": 1.155887,
+   "airbus_ngsa_value_vs_fps10": 44.925804,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2045,
@@ -1738,21 +1738,21 @@
     "Do Nothing (737 MAX) + Do Nothing 787",
     "Do Nothing (737 MAX) + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -2.287,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -3.075,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.871,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.793,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -3.162,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.95,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.746,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -4.668,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -2.287,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -3.075,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.871,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.793,
-   "airbus_delay_tactics_value_vs_fps10": 1.071,
-   "airbus_ngsa_value_vs_fps10": 45.251,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -2.287134,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -3.074642,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.871212,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.793499,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -3.162043,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.949551,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.746122,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -4.668408,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -2.287134,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -3.074642,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.871212,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.793499,
+   "airbus_delay_tactics_value_vs_fps10": 1.071433,
+   "airbus_ngsa_value_vs_fps10": 45.251404,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2046,
@@ -1765,21 +1765,21 @@
     "Do Nothing (737 MAX) + Do Nothing 787",
     "Do Nothing (737 MAX) + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -2.07,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -2.782,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.636,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.479,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -2.862,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.574,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.428,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -4.271,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -2.07,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -2.782,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.636,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.479,
-   "airbus_delay_tactics_value_vs_fps10": 0.993,
-   "airbus_ngsa_value_vs_fps10": 45.539,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -2.069804,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -2.782481,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.636373,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.479402,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -2.861578,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.574255,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.428146,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -4.271175,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -2.069804,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -2.782481,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.636373,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.479402,
+   "airbus_delay_tactics_value_vs_fps10": 0.993234,
+   "airbus_ngsa_value_vs_fps10": 45.53886,
+   "airbus_ngsa_value_vs_dn": 46.859935
   },
   {
    "fps_eis": 2047,
@@ -1792,21 +1792,21 @@
     "Do Nothing (737 MAX) + Do Nothing 787",
     "Do Nothing (737 MAX) + Re-engine 787"
    ],
-   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -1.873,
-   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -2.518,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.424,
-   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.195,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -2.59,
-   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.235,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.14,
-   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -3.912,
-   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -1.873,
-   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -2.518,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.424,
-   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.195,
-   "airbus_delay_tactics_value_vs_fps10": 0.921,
-   "airbus_ngsa_value_vs_fps10": 45.791,
-   "airbus_ngsa_value_vs_dn": 46.86
+   "NGSA + Re-engine A350 | Milk_787 | fps10-DN": -1.873126,
+   "NGSA + Re-engine A350 | Milk_787 | fps7-DN": -2.518083,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps10-DN": -2.423848,
+   "NGSA + Re-engine A350 | Re_engine_787 | fps7-DN": -3.195151,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps10-DN": -2.589663,
+   "NGSA + Bottleneck + Re-engine A350 | Milk_787 | fps7-DN": -3.23462,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps10-DN": -3.140385,
+   "NGSA + Bottleneck + Re-engine A350 | Re_engine_787 | fps7-DN": -3.911688,
+   "NGSA + Do Nothing A350 | Milk_787 | fps10-DN": -1.873126,
+   "NGSA + Do Nothing A350 | Milk_787 | fps7-DN": -2.518083,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps10-DN": -2.423848,
+   "NGSA + Do Nothing A350 | Re_engine_787 | fps7-DN": -3.195151,
+   "airbus_delay_tactics_value_vs_fps10": 0.920828,
+   "airbus_ngsa_value_vs_fps10": 45.790997,
+   "airbus_ngsa_value_vs_dn": 46.859935
   }
  ]
 }

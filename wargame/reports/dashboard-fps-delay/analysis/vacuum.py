@@ -56,3 +56,38 @@ json.dump(OUT, open(os.path.join(OUTDIR, "vacuum.json"), "w"), indent=1)
 for k, v in OUT["cases"].items(): print(k, v)
 for e in ent: print(e)
 for e in OUT["entrant_with_slice"]: print(e)
+
+
+# ── Entrant sensitivities used in the report (added after review) ──────────────────────────────────────────────
+def entrant2(case, eis=2038, capex=15.0, cap=1200, price_m=48.0, margin=0.12, wacc=0.10, spread=None, boeing_cap=None, end=2056):
+    """Entrant serving demand the board gives Airbus beyond Airbus's capacity.
+    spread=(first, last): bill paid evenly over those calendar years instead of one lump at entry into service.
+    boeing_cap: aircraft/yr the 737 line can build; its slack above the board's Boeing demand absorbs overflow first."""
+    fe, launch = {"fps 2041": (2041, True), "fps 2044": (2044, True), "Boeing Do Nothing": (2044, False)}[case]
+    SS = H.af({"af_fps_eis": fe}, H.OVERLAP_PATCH)[3]; mod = SS["_MOD"]
+    v = 0.0
+    for y in range(eis, end + 1):
+        b, a = mod._compute_nb_share_unified(y - 2026, launch, True, fe - 2026, 2037 - 2026, is_7yr=False)
+        over = max(0.0, 2000 * a - cap)
+        if boeing_cap is not None:
+            over = max(0.0, over - max(0.0, boeing_cap - 2000 * b))
+        v += min(1.0, (y - eis + 1) / 3.0) * over * price_m / 1000.0 * margin / (1 + wacc) ** (y - 2026)
+    if spread:
+        n = spread[1] - spread[0] + 1
+        pv_capex = sum(capex / n / (1 + wacc) ** (y - 2026) for y in range(spread[0], spread[1] + 1))
+    else:
+        pv_capex = capex / (1 + wacc) ** (eis - 2026)
+    return round(v - pv_capex, 6)
+
+if __name__ == "__main__":
+    CASES = ("fps 2041", "fps 2044", "Boeing Do Nothing")
+    S = {
+        "lump_eis2038_cap1200": {c: entrant2(c) for c in CASES},
+        "lump_eis2042_cap1200": {c: entrant2(c, eis=2042) for c in CASES},
+        "spread2034_41_eis2042_cap1200": {c: entrant2(c, eis=2042, spread=(2034, 2041)) for c in CASES},
+        "lump_eis2038_cap1200_737_rate47": {c: entrant2(c, boeing_cap=564) for c in CASES},
+        "lump_eis2038_cap900": {c: entrant2(c, cap=900) for c in CASES},
+    }
+    OUT["entrant_sensitivities"] = S
+    json.dump(OUT, open(os.path.join(OUTDIR, "vacuum.json"), "w"), indent=1)
+    for k, v in S.items(): print(k, v)

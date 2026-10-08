@@ -1,9 +1,9 @@
 {
  "nb_split": {
-  "nb_2041": 17.057,
-  "nb_2044": 9.327,
-  "timing_only": -4.415,
-  "share_effect": -3.315
+  "nb_2041": 17.057498,
+  "nb_2044": 9.327412,
+  "timing_only": -4.415128,
+  "share_effect": -3.314958
  },
  "share_paths": {
   "2041": [
@@ -377,20 +377,20 @@
   ]
  },
  "project_split": {
-  "v2041": 1.063,
-  "v2044": -2.527,
-  "pure_timing": -0.275,
-  "share_effect": -3.315
+  "v2041": 1.062757,
+  "v2044": -2.527283,
+  "pure_timing": -0.275082,
+  "share_effect": -3.314958
  },
  "ngsa_timing": [
   {
    "fps_eis": 2041,
    "ngsa_eis": 2035,
-   "airbus_vs_fps10": 52.702,
-   "airbus_vs_fps10_noDT": 51.247,
-   "airbus_vs_dn": 57.96,
-   "boeing_fps10_minus_dn": -2.262,
-   "boeing_fps10_minus_dn_DT": -3.567,
+   "airbus_vs_fps10": 52.701591,
+   "airbus_vs_fps10_noDT": 51.247402,
+   "airbus_vs_dn": 57.96017,
+   "boeing_fps10_minus_dn": -2.262488,
+   "boeing_fps10_minus_dn_DT": -3.566892,
    "pure": 2,
    "near": 2,
    "eq_boeing_moves": [
@@ -407,11 +407,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2036,
-   "airbus_vs_fps10": 45.755,
-   "airbus_vs_fps10_noDT": 44.302,
-   "airbus_vs_dn": 53.887,
-   "boeing_fps10_minus_dn": -0.576,
-   "boeing_fps10_minus_dn_DT": -1.88,
+   "airbus_vs_fps10": 45.754725,
+   "airbus_vs_fps10_noDT": 44.301676,
+   "airbus_vs_dn": 53.886913,
+   "boeing_fps10_minus_dn": -0.575733,
+   "boeing_fps10_minus_dn_DT": -1.880138,
    "pure": 2,
    "near": 3,
    "eq_boeing_moves": [
@@ -429,11 +429,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2037,
-   "airbus_vs_fps10": 39.208,
-   "airbus_vs_fps10_noDT": 37.756,
-   "airbus_vs_dn": 50.115,
-   "boeing_fps10_minus_dn": 1.063,
-   "boeing_fps10_minus_dn_DT": -0.242,
+   "airbus_vs_fps10": 39.20753,
+   "airbus_vs_fps10_noDT": 37.755536,
+   "airbus_vs_dn": 50.11538,
+   "boeing_fps10_minus_dn": 1.062757,
+   "boeing_fps10_minus_dn_DT": -0.241647,
    "pure": 0,
    "near": 17,
    "eq_boeing_moves": [
@@ -460,11 +460,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2038,
-   "airbus_vs_fps10": 33.287,
-   "airbus_vs_fps10_noDT": 31.835,
-   "airbus_vs_dn": 46.87,
-   "boeing_fps10_minus_dn": 2.648,
-   "boeing_fps10_minus_dn_DT": 1.344,
+   "airbus_vs_fps10": 33.28701,
+   "airbus_vs_fps10_noDT": 31.834986,
+   "airbus_vs_dn": 46.87031,
+   "boeing_fps10_minus_dn": 2.648107,
+   "boeing_fps10_minus_dn_DT": 1.343703,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -488,11 +488,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2039,
-   "airbus_vs_fps10": 27.771,
-   "airbus_vs_fps10_noDT": 26.318,
-   "airbus_vs_dn": 43.854,
-   "boeing_fps10_minus_dn": 4.108,
-   "boeing_fps10_minus_dn_DT": 2.803,
+   "airbus_vs_fps10": 27.771339,
+   "airbus_vs_fps10_noDT": 26.318373,
+   "airbus_vs_dn": 43.853653,
+   "boeing_fps10_minus_dn": 4.107763,
+   "boeing_fps10_minus_dn_DT": 2.803359,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -516,11 +516,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2040,
-   "airbus_vs_fps10": 22.965,
-   "airbus_vs_fps10_noDT": 21.51,
-   "airbus_vs_dn": 41.05,
-   "boeing_fps10_minus_dn": 5.404,
-   "boeing_fps10_minus_dn_DT": 4.099,
+   "airbus_vs_fps10": 22.96508,
+   "airbus_vs_fps10_noDT": 21.51036,
+   "airbus_vs_dn": 41.049609,
+   "boeing_fps10_minus_dn": 5.403837,
+   "boeing_fps10_minus_dn_DT": 4.099433,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -544,11 +544,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2041,
-   "airbus_vs_fps10": 18.926,
-   "airbus_vs_fps10_noDT": 17.469,
-   "airbus_vs_dn": 38.443,
-   "boeing_fps10_minus_dn": 6.495,
-   "boeing_fps10_minus_dn_DT": 5.191,
+   "airbus_vs_fps10": 18.926142,
+   "airbus_vs_fps10_noDT": 17.468943,
+   "airbus_vs_dn": 38.443468,
+   "boeing_fps10_minus_dn": 6.495091,
+   "boeing_fps10_minus_dn_DT": 5.190687,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -572,11 +572,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2042,
-   "airbus_vs_fps10": 22.694,
-   "airbus_vs_fps10_noDT": 21.474,
-   "airbus_vs_dn": 36.022,
-   "boeing_fps10_minus_dn": 3.295,
-   "boeing_fps10_minus_dn_DT": 1.99,
+   "airbus_vs_fps10": 22.694079,
+   "airbus_vs_fps10_noDT": 21.47401,
+   "airbus_vs_dn": 36.02153,
+   "boeing_fps10_minus_dn": 3.29474,
+   "boeing_fps10_minus_dn_DT": 1.990335,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -600,11 +600,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2043,
-   "airbus_vs_fps10": 20.206,
-   "airbus_vs_fps10_noDT": 19.208,
-   "airbus_vs_dn": 33.589,
-   "boeing_fps10_minus_dn": 3.567,
-   "boeing_fps10_minus_dn_DT": 2.263,
+   "airbus_vs_fps10": 20.206351,
+   "airbus_vs_fps10_noDT": 19.207861,
+   "airbus_vs_dn": 33.589208,
+   "boeing_fps10_minus_dn": 3.567117,
+   "boeing_fps10_minus_dn_DT": 2.262713,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -628,11 +628,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2044,
-   "airbus_vs_fps10": 17.927,
-   "airbus_vs_fps10_noDT": 17.134,
-   "airbus_vs_dn": 31.337,
-   "boeing_fps10_minus_dn": 3.805,
-   "boeing_fps10_minus_dn_DT": 2.501,
+   "airbus_vs_fps10": 17.927332,
+   "airbus_vs_fps10_noDT": 17.134008,
+   "airbus_vs_dn": 31.337058,
+   "boeing_fps10_minus_dn": 3.805049,
+   "boeing_fps10_minus_dn_DT": 2.500645,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -656,11 +656,11 @@
   {
    "fps_eis": 2041,
    "ngsa_eis": 2045,
-   "airbus_vs_fps10": 15.84,
-   "airbus_vs_fps10_noDT": 15.236,
-   "airbus_vs_dn": 29.252,
-   "boeing_fps10_minus_dn": 4.012,
-   "boeing_fps10_minus_dn_DT": 2.707,
+   "airbus_vs_fps10": 15.839753,
+   "airbus_vs_fps10_noDT": 15.236397,
+   "airbus_vs_dn": 29.251733,
+   "boeing_fps10_minus_dn": 4.011809,
+   "boeing_fps10_minus_dn_DT": 2.707405,
    "pure": 4,
    "near": 16,
    "eq_boeing_moves": [
@@ -684,11 +684,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2035,
-   "airbus_vs_fps10": 56.196,
-   "airbus_vs_fps10_noDT": 55.038,
-   "airbus_vs_dn": 57.96,
-   "boeing_fps10_minus_dn": -2.527,
-   "boeing_fps10_minus_dn_DT": -3.494,
+   "airbus_vs_fps10": 56.195853,
+   "airbus_vs_fps10_noDT": 55.037771,
+   "airbus_vs_dn": 57.96017,
+   "boeing_fps10_minus_dn": -2.527283,
+   "boeing_fps10_minus_dn_DT": -3.494058,
    "pure": 2,
    "near": 2,
    "eq_boeing_moves": [
@@ -705,11 +705,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2036,
-   "airbus_vs_fps10": 51.749,
-   "airbus_vs_fps10_noDT": 50.592,
-   "airbus_vs_dn": 53.887,
-   "boeing_fps10_minus_dn": -2.527,
-   "boeing_fps10_minus_dn_DT": -3.494,
+   "airbus_vs_fps10": 51.749142,
+   "airbus_vs_fps10_noDT": 50.5922,
+   "airbus_vs_dn": 53.886913,
+   "boeing_fps10_minus_dn": -2.527283,
+   "boeing_fps10_minus_dn_DT": -3.494058,
    "pure": 2,
    "near": 2,
    "eq_boeing_moves": [
@@ -726,11 +726,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2037,
-   "airbus_vs_fps10": 47.603,
-   "airbus_vs_fps10_noDT": 46.447,
-   "airbus_vs_dn": 50.115,
-   "boeing_fps10_minus_dn": -2.527,
-   "boeing_fps10_minus_dn_DT": -3.494,
+   "airbus_vs_fps10": 47.603089,
+   "airbus_vs_fps10_noDT": 46.447202,
+   "airbus_vs_dn": 50.11538,
+   "boeing_fps10_minus_dn": -2.527283,
+   "boeing_fps10_minus_dn_DT": -3.494058,
    "pure": 2,
    "near": 2,
    "eq_boeing_moves": [
@@ -747,11 +747,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2038,
-   "airbus_vs_fps10": 42.696,
-   "airbus_vs_fps10_noDT": 41.541,
-   "airbus_vs_dn": 46.87,
-   "boeing_fps10_minus_dn": -1.677,
-   "boeing_fps10_minus_dn_DT": -2.644,
+   "airbus_vs_fps10": 42.695796,
+   "airbus_vs_fps10_noDT": 41.541499,
+   "airbus_vs_dn": 46.87031,
+   "boeing_fps10_minus_dn": -1.67687,
+   "boeing_fps10_minus_dn_DT": -2.643645,
    "pure": 2,
    "near": 2,
    "eq_boeing_moves": [
@@ -768,11 +768,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2039,
-   "airbus_vs_fps10": 37.398,
-   "airbus_vs_fps10_noDT": 36.245,
-   "airbus_vs_dn": 43.854,
-   "boeing_fps10_minus_dn": -0.427,
-   "boeing_fps10_minus_dn_DT": -1.393,
+   "airbus_vs_fps10": 37.398201,
+   "airbus_vs_fps10_noDT": 36.244582,
+   "airbus_vs_dn": 43.853653,
+   "boeing_fps10_minus_dn": -0.426712,
+   "boeing_fps10_minus_dn_DT": -1.393487,
    "pure": 2,
    "near": 6,
    "eq_boeing_moves": [
@@ -793,11 +793,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2040,
-   "airbus_vs_fps10": 32.392,
-   "airbus_vs_fps10_noDT": 31.238,
-   "airbus_vs_dn": 41.05,
-   "boeing_fps10_minus_dn": 0.788,
-   "boeing_fps10_minus_dn_DT": -0.179,
+   "airbus_vs_fps10": 32.39172,
+   "airbus_vs_fps10_noDT": 31.237966,
+   "airbus_vs_dn": 41.049609,
+   "boeing_fps10_minus_dn": 0.787675,
+   "boeing_fps10_minus_dn_DT": -0.1791,
    "pure": 0,
    "near": 21,
    "eq_boeing_moves": [
@@ -825,11 +825,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2041,
-   "airbus_vs_fps10": 27.663,
-   "airbus_vs_fps10_noDT": 26.508,
-   "airbus_vs_dn": 38.443,
-   "boeing_fps10_minus_dn": 1.963,
-   "boeing_fps10_minus_dn_DT": 0.996,
+   "airbus_vs_fps10": 27.662555,
+   "airbus_vs_fps10_noDT": 26.507943,
+   "airbus_vs_dn": 38.443468,
+   "boeing_fps10_minus_dn": 1.962676,
+   "boeing_fps10_minus_dn_DT": 0.995901,
    "pure": 4,
    "near": 20,
    "eq_boeing_moves": [
@@ -854,11 +854,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2042,
-   "airbus_vs_fps10": 23.258,
-   "airbus_vs_fps10_noDT": 22.101,
-   "airbus_vs_dn": 36.022,
-   "boeing_fps10_minus_dn": 3.045,
-   "boeing_fps10_minus_dn_DT": 2.078,
+   "airbus_vs_fps10": 23.257575,
+   "airbus_vs_fps10_noDT": 22.10146,
+   "airbus_vs_dn": 36.02153,
+   "boeing_fps10_minus_dn": 3.044518,
+   "boeing_fps10_minus_dn_DT": 2.077743,
    "pure": 4,
    "near": 20,
    "eq_boeing_moves": [
@@ -883,11 +883,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2043,
-   "airbus_vs_fps10": 19.235,
-   "airbus_vs_fps10_noDT": 18.078,
-   "airbus_vs_dn": 33.589,
-   "boeing_fps10_minus_dn": 4.005,
-   "boeing_fps10_minus_dn_DT": 3.038,
+   "airbus_vs_fps10": 19.235313,
+   "airbus_vs_fps10_noDT": 18.078322,
+   "airbus_vs_dn": 33.589208,
+   "boeing_fps10_minus_dn": 4.005119,
+   "boeing_fps10_minus_dn_DT": 3.038344,
    "pure": 4,
    "near": 20,
    "eq_boeing_moves": [
@@ -912,11 +912,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2044,
-   "airbus_vs_fps10": 15.845,
-   "airbus_vs_fps10_noDT": 14.687,
-   "airbus_vs_dn": 31.337,
-   "boeing_fps10_minus_dn": 4.814,
-   "boeing_fps10_minus_dn_DT": 3.847,
+   "airbus_vs_fps10": 15.844606,
+   "airbus_vs_fps10_noDT": 14.686804,
+   "airbus_vs_dn": 31.337058,
+   "boeing_fps10_minus_dn": 4.813915,
+   "boeing_fps10_minus_dn_DT": 3.84714,
    "pure": 4,
    "near": 20,
    "eq_boeing_moves": [
@@ -941,11 +941,11 @@
   {
    "fps_eis": 2044,
    "ngsa_eis": 2045,
-   "airbus_vs_fps10": 18.671,
-   "airbus_vs_fps10_noDT": 17.703,
-   "airbus_vs_dn": 29.252,
-   "boeing_fps10_minus_dn": 2.442,
-   "boeing_fps10_minus_dn_DT": 1.475,
+   "airbus_vs_fps10": 18.671277,
+   "airbus_vs_fps10_noDT": 17.703442,
+   "airbus_vs_dn": 29.251733,
+   "boeing_fps10_minus_dn": 2.441936,
+   "boeing_fps10_minus_dn_DT": 1.475161,
    "pure": 4,
    "near": 20,
    "eq_boeing_moves": [
@@ -971,178 +971,175 @@
  "thresholds_2044": {
   "fps margin (%) | modal": {
    "base": 25.64,
-   "g0": -2.527,
+   "g0": -2.527283,
    "k_per_unit": 0.4541,
-   "breakeven": 31.205,
+   "breakeven": 31.205488,
    "confirm_at_breakeven": 0.0,
    "hurdle": 1.0,
-   "value_at_hurdle": 33.408
+   "value_at_hurdle": 33.40765
   },
   "fps margin (%) | delay_tactics": {
    "base": 25.64,
-   "g0": -3.494,
+   "g0": -3.494058,
    "k_per_unit": 0.4164,
-   "breakeven": 34.031,
+   "breakeven": 34.031242,
    "confirm_at_breakeven": -0.0,
    "hurdle": -2.0,
-   "value_at_hurdle": 29.228
+   "value_at_hurdle": 29.228092
   },
   "fps 10yr capex ($B) | modal": {
    "base": 55.25,
-   "g0": -2.527,
+   "g0": -2.527283,
    "k_per_unit": -0.2501,
-   "breakeven": 45.146,
+   "breakeven": 45.145914,
    "confirm_at_breakeven": -0.0433,
    "hurdle": 1.0,
-   "value_at_hurdle": 41.148
+   "value_at_hurdle": 41.147911
   },
   "fps 10yr capex ($B) | delay_tactics": {
    "base": 55.25,
-   "g0": -3.494,
+   "g0": -3.494058,
    "k_per_unit": -0.2501,
-   "breakeven": 41.281,
+   "breakeven": 41.280745,
    "confirm_at_breakeven": -0.1039,
    "hurdle": -2.0,
-   "value_at_hurdle": 49.277
+   "value_at_hurdle": 49.276752
   },
   "fps price ($M) | modal": {
    "base": 55.0,
-   "g0": -2.527,
+   "g0": -2.527283,
    "k_per_unit": 0.2117,
-   "breakeven": 66.938,
+   "breakeven": 66.938448,
    "confirm_at_breakeven": -0.0,
    "hurdle": 1.0,
-   "value_at_hurdle": 71.662
+   "value_at_hurdle": 71.662276
   },
   "fps price ($M) | delay_tactics": {
    "base": 55.0,
-   "g0": -3.494,
+   "g0": -3.494058,
    "k_per_unit": 0.1941,
-   "breakeven": 73.0,
+   "breakeven": 72.999935,
    "confirm_at_breakeven": -0.0,
    "hurdle": -2.0,
-   "value_at_hurdle": 62.697
+   "value_at_hurdle": 62.696766
   },
   "grid_recovery_speed_x_balance": [
    {
     "ramp10_b_pp": 1.0,
     "balance_share": 50,
-    "fps10_minus_dn": -2.527,
-    "fps10_minus_dn_DT": -3.494
+    "fps10_minus_dn": -2.527283,
+    "fps10_minus_dn_DT": -3.494058
    },
    {
     "ramp10_b_pp": 1.0,
     "balance_share": 55,
-    "fps10_minus_dn": -2.527,
-    "fps10_minus_dn_DT": -3.494
+    "fps10_minus_dn": -2.527283,
+    "fps10_minus_dn_DT": -3.494058
    },
    {
     "ramp10_b_pp": 1.0,
     "balance_share": 60,
-    "fps10_minus_dn": -2.527,
-    "fps10_minus_dn_DT": -3.494
+    "fps10_minus_dn": -2.527283,
+    "fps10_minus_dn_DT": -3.494058
    },
    {
     "ramp10_b_pp": 1.5,
     "balance_share": 50,
-    "fps10_minus_dn": -0.958,
-    "fps10_minus_dn_DT": -1.925
+    "fps10_minus_dn": -0.957796,
+    "fps10_minus_dn_DT": -1.924571
    },
    {
     "ramp10_b_pp": 1.5,
     "balance_share": 55,
-    "fps10_minus_dn": -0.958,
-    "fps10_minus_dn_DT": -1.925
+    "fps10_minus_dn": -0.957796,
+    "fps10_minus_dn_DT": -1.924571
    },
    {
     "ramp10_b_pp": 1.5,
     "balance_share": 60,
-    "fps10_minus_dn": -0.958,
-    "fps10_minus_dn_DT": -1.925
+    "fps10_minus_dn": -0.957796,
+    "fps10_minus_dn_DT": -1.924571
    },
    {
     "ramp10_b_pp": 2.0,
     "balance_share": 50,
-    "fps10_minus_dn": 0.369,
-    "fps10_minus_dn_DT": -0.597
+    "fps10_minus_dn": 0.369426,
+    "fps10_minus_dn_DT": -0.597349
    },
    {
     "ramp10_b_pp": 2.0,
     "balance_share": 55,
-    "fps10_minus_dn": 0.545,
-    "fps10_minus_dn_DT": -0.422
+    "fps10_minus_dn": 0.544814,
+    "fps10_minus_dn_DT": -0.421961
    },
    {
     "ramp10_b_pp": 2.0,
     "balance_share": 60,
-    "fps10_minus_dn": 0.612,
-    "fps10_minus_dn_DT": -0.355
+    "fps10_minus_dn": 0.611691,
+    "fps10_minus_dn_DT": -0.355084
    },
    {
     "ramp10_b_pp": 3.0,
     "balance_share": 50,
-    "fps10_minus_dn": 2.14,
-    "fps10_minus_dn_DT": 1.173
+    "fps10_minus_dn": 2.139937,
+    "fps10_minus_dn_DT": 1.173162
    },
    {
     "ramp10_b_pp": 3.0,
     "balance_share": 55,
-    "fps10_minus_dn": 2.678,
-    "fps10_minus_dn_DT": 1.711
+    "fps10_minus_dn": 2.677911,
+    "fps10_minus_dn_DT": 1.711136
    },
    {
     "ramp10_b_pp": 3.0,
     "balance_share": 60,
-    "fps10_minus_dn": 3.088,
-    "fps10_minus_dn_DT": 2.121
+    "fps10_minus_dn": 3.087748,
+    "fps10_minus_dn_DT": 2.120973
    },
    {
     "ramp10_b_pp": 4.0,
     "balance_share": 50,
-    "fps10_minus_dn": 3.234,
-    "fps10_minus_dn_DT": 2.267
+    "fps10_minus_dn": 3.234135,
+    "fps10_minus_dn_DT": 2.26736
    },
    {
     "ramp10_b_pp": 4.0,
     "balance_share": 55,
-    "fps10_minus_dn": 4.053,
-    "fps10_minus_dn_DT": 3.087
+    "fps10_minus_dn": 4.053374,
+    "fps10_minus_dn_DT": 3.086599
    },
    {
     "ramp10_b_pp": 4.0,
     "balance_share": 60,
-    "fps10_minus_dn": 4.742,
-    "fps10_minus_dn_DT": 3.775
+    "fps10_minus_dn": 4.742001,
+    "fps10_minus_dn_DT": 3.775226
    }
   ],
   "delay_tactics_shift": [
    {
     "sab_share": 0,
-    "fps10_minus_dn_DT": -2.527
+    "fps10_minus_dn_DT": -2.527283
    },
    {
     "sab_share": 2.5,
-    "fps10_minus_dn_DT": -3.011
+    "fps10_minus_dn_DT": -3.01067
    },
    {
     "sab_share": 5,
-    "fps10_minus_dn_DT": -3.494
+    "fps10_minus_dn_DT": -3.494058
    },
    {
     "sab_share": 7.5,
-    "fps10_minus_dn_DT": -3.977
+    "fps10_minus_dn_DT": -3.977445
    },
    {
     "sab_share": 10,
-    "fps10_minus_dn_DT": -4.461
+    "fps10_minus_dn_DT": -4.460833
    }
   ],
-  "fps7_minus_dn_2044": -3.397,
-  "via_embraer_breakeven_capex": {
-   "g0": -15.951,
-   "k": -0.3389,
-   "breakeven_capex": 52.93
-  }
+  "fps7_minus_dn_2044": -3.397479,
+  "via_embraer_minus_dn_2044": -15.950945,
+  "note": "margin and price thresholds are exact (payoffs are linear in them); the bill thresholds here are two-run linear estimates and the debt penalty is cubic in the bill, so use robustness.json lever_thresholds_2044 for exact values"
  },
  "vacuum": [
   {

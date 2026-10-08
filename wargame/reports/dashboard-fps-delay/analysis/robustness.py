@@ -35,7 +35,7 @@ def bill_patch(kind):
 def fpsval(over, patch, ctx="NGSA + Re-engine A350", wb="Milk_787"):
     MX, A, B, SS = H.af(over, patch)
     a = AROWS[ctx]
-    return round(cell(MX, A, B, a, FPS10(wb))["b_total_delta"] - cell(MX, A, B, a, DN(wb))["b_total_delta"], 3)
+    return round(cell(MX, A, B, a, FPS10(wb))["b_total_delta"] - cell(MX, A, B, a, DN(wb))["b_total_delta"], 6)
 bt = {}
 for kind in ("board_lump", "lump_at_2041", "spread9", "spread6", "slip_spread9"):
     p = OV if kind == "board_lump" else bill_patch(kind)
@@ -58,3 +58,28 @@ for name, d in OUT["pure_equilibrium_levers_2044"].items():
     print(name, {v: (r["pure"], r["fps_in_pure"], r["near"]) for v, r in d.items()})
 print("bill timing:", json.dumps(bt, indent=0))
 print("with 787 Re-engine:", OUT["with_787_reengine"])
+
+
+# ── Exact lever thresholds at 2044 by bisection (fps 10-year and fps via Embraer), added after review ──────────────
+from delay import EMB
+def lever_val(key, x, ctx, var=FPS10):
+    MX, A, B, SS = H.af({"af_fps_eis": 2044, key: x}, OV)
+    a = AROWS[ctx]
+    return cell(MX, A, B, a, var("Milk_787"))["b_total_delta"] - cell(MX, A, B, a, DN("Milk_787"))["b_total_delta"]
+def bisect(key, target, ctx, lo, hi, var=FPS10, n=40):
+    f = lambda x: lever_val(key, x, ctx, var) - target
+    flo = f(lo)
+    for _ in range(n):
+        mid = (lo + hi) / 2
+        if (f(mid) > 0) == (flo > 0): lo, flo = mid, f(mid)
+        else: hi = mid
+    return round((lo + hi) / 2, 4)
+if __name__ == "__main__":
+    MODC, DTC = "NGSA + Re-engine A350", "NGSA + Bottleneck + Re-engine A350"
+    T = {}
+    for name, key, lo, hi in (("fps margin %", "af_m_fps", 25.0, 40.0), ("fps 10yr bill $B", "af_cx_fps10", 30.0, 55.25), ("fps price $M", "af_price_fps", 55.0, 80.0)):
+        T[name] = {"breakeven": bisect(key, 0.0, MODC, lo, hi), "hurdle_1B": bisect(key, 1.0, MODC, lo, hi), "breakeven_vs_delay_tactics": bisect(key, 0.0, DTC, lo, hi)}
+    T["fps via Embraer bill $B"] = {"breakeven": bisect("af_cx_fpsemb", 0.0, MODC, 30.0, 100.0, var=EMB)}
+    OUT["lever_thresholds_2044"] = T
+    json.dump(OUT, open(os.path.join(OUTDIR, "robustness.json"), "w"), indent=1)
+    print(json.dumps(T, indent=0))

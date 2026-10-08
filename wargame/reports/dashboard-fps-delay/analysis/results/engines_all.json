@@ -5,9 +5,9 @@
    {
     "cfm": "2-Ducted Only",
     "rr": "2-Ultrafan NB Solo",
-    "cfm_b": -62.65,
-    "pw_b": 18.34,
-    "rr_b": 17.25
+    "cfm_b": -62.645911,
+    "pw_b": 18.337086,
+    "rr_b": 17.249591
    }
   ],
   "near": 19,
@@ -19,16 +19,16 @@
    {
     "cfm": "2-Ducted Only | 4-Partner Embraer | 6-Upgrade GenX9",
     "rr": "2-Ultrafan NB Solo",
-    "cfm_b": -58.97,
-    "pw_b": 16.05,
-    "rr_b": 15.1
+    "cfm_b": -58.972551,
+    "pw_b": 16.046873,
+    "rr_b": 15.104241
    },
    {
     "cfm": "2-Ducted Only | 4-Partner Embraer | 7-Invest GenX",
     "rr": "2-Ultrafan NB Solo",
-    "cfm_b": -58.97,
-    "pw_b": 16.05,
-    "rr_b": 15.1
+    "cfm_b": -58.972551,
+    "pw_b": 16.046873,
+    "rr_b": 15.104241
    }
   ],
   "near": 58,
@@ -40,9 +40,9 @@
    {
     "cfm": "2-Ducted Only",
     "rr": "2-Ultrafan NB Solo",
-    "cfm_b": -57.56,
-    "pw_b": 22.29,
-    "rr_b": 9.35
+    "cfm_b": -57.56356,
+    "pw_b": 22.287702,
+    "rr_b": 9.348359
    }
   ],
   "near": 19,
@@ -54,16 +54,16 @@
    {
     "cfm": "2-Ducted Only | 4-Partner Embraer | 6-Upgrade GenX9",
     "rr": "2-Ultrafan NB Solo",
-    "cfm_b": -54.13,
-    "pw_b": 19.81,
-    "rr_b": 7.58
+    "cfm_b": -54.132216,
+    "pw_b": 19.809365,
+    "rr_b": 7.579257
    },
    {
     "cfm": "2-Ducted Only | 4-Partner Embraer | 7-Invest GenX",
     "rr": "2-Ultrafan NB Solo",
-    "cfm_b": -54.13,
-    "pw_b": 19.81,
-    "rr_b": 7.58
+    "cfm_b": -54.132216,
+    "pw_b": 19.809365,
+    "rr_b": 7.579257
    }
   ],
   "near": 58,
@@ -75,8 +75,8 @@
    {
     "cfm": "2-Ducted Only",
     "rr": "0-Do Nothing (Milk WB)",
-    "cfm_b": -24.97,
-    "pw_b": 14.3,
+    "cfm_b": -24.971976,
+    "pw_b": 14.30195,
     "rr_b": 0.0
    }
   ],
@@ -89,16 +89,16 @@
    {
     "cfm": "2-Ducted Only | 4-Partner Embraer | 6-Upgrade GenX9",
     "rr": "0-Do Nothing (Milk WB)",
-    "cfm_b": -23.22,
-    "pw_b": 12.3,
-    "rr_b": -0.94
+    "cfm_b": -23.215299,
+    "pw_b": 12.299253,
+    "rr_b": -0.942989
    },
    {
     "cfm": "2-Ducted Only | 4-Partner Embraer | 7-Invest GenX",
     "rr": "0-Do Nothing (Milk WB)",
-    "cfm_b": -23.22,
-    "pw_b": 12.3,
-    "rr_b": -0.94
+    "cfm_b": -23.215299,
+    "pw_b": 12.299253,
+    "rr_b": -0.942989
    }
   ],
   "near": 46,

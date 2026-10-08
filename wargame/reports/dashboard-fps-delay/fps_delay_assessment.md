@@ -8,6 +8,8 @@
 
 The analysis draws on the two war games we played: fps on time (wg5-2045) and fps three years late (wg5-2045d).
 
+**Terms.** A pure equilibrium is an outcome where neither company gains by changing its own moves; a near-Nash outcome is one where neither gains more than the board's tolerance of one yield point (about $1.3B for Boeing). A cell is one combination of Airbus and Boeing moves.
+
 **Delay assumed.** fps entry into service moves from 2041 to 2044. Everything else stays as in the snapshot: NGSA 2037, both Re-engines 2035, and the snapshot's costs, margins, prices and capture speeds.
 
 **How it was done.**
@@ -27,14 +29,14 @@ All $ figures are your board's own measure: present value at 2026, $B, against t
    - **fps leaves every equilibrium.** The game moves from 0 pure and 17 near-Nash equilibria to 2 pure ones, and in both Boeing does nothing on the narrowbody.
    - **These are the board's mildest numbers.** They assume the delay is planned and the bill is deferred with it. If the slip is found after the bill is committed, fps is −$6.7B, or −$11.4B with a 30% overrun.
 2. **The cause is share, not discounting.**
-   - **Share costs $3.3B.** NGSA gets 7 years alone instead of 4, so Boeing re-enters at 20% share instead of 28%. At 1 point a year it never gets back to parity inside the window.
-   - **Timing costs $0.3B.**
+   - **Share costs $3.31B.** NGSA gets 7 years alone instead of 4, so Boeing re-enters at 20% share instead of 28%. At 1 point a year it never gets back to parity inside the window.
+   - **Timing nets to only $0.28B.** Later cash costs $4.42B, but the board's pay-at-entry rule makes the later bill $4.14B cheaper.
    - **NGSA's lead is the deciding variable.** fps is a pure equilibrium only when NGSA leads by 3 years or less. Your snapshot (a 4-year lead) is on the knife edge; the delay makes it 7.
 3. **Airbus's best response is to do very little.**
-   - **NGSA:** keep the 2030 launch and roughly 2037 entry into service. It never pays Airbus to slow down.
-   - **Delay Tactics:** drop them. The delay does their job, and against a Boeing that doesn't launch they risk a fine worth about $12B in present value.
+   - **NGSA:** keep the 2030 launch and roughly 2037 entry into service. Slowing down never pays: each year of slip costs Airbus $2.6–3.2B.
+   - **Delay Tactics:** drop them. The delay does their job, and against a Boeing that doesn't launch they cost about $12.5B (mostly the board's fine).
    - **Widebody:** the contest moves to widebody Chicken.
-   - **Payoff:** Airbus gains $8–11B on the board.
+   - **Payoff:** Airbus gains $8.4B on the board if Boeing still launches a late fps, and $10.9B in the new equilibrium where Boeing does nothing (both against the snapshot's typical outcome).
    - **The catch:** almost all of that gain is narrowbody volume beyond what Airbus can build today. Airbus only collects it if it adds capacity. That one decision also sets the odds of a third player.
 4. **A third player becomes more likely, but stays the less likely outcome.** These are judgements:
    - **Either Embraer or COMAC entering:** about 15% with fps on time, about 22% with the delay.
@@ -43,8 +45,9 @@ All $ figures are your board's own measure: present value at 2026, $B, against t
    - **The more likely consequences:**
      - Airbus builds more and prices the scarcity.
      - 737 MAX volumes stay higher than the board assumes.
-     - COMAC takes a large part of Boeing's share in China (about 45% → 50%). That hurts Boeing more than any exporting entrant.
-5. **On the engine side, a Boeing that doesn't launch fps is a large gain for CFM.**
+     - COMAC supplies 40% or more of China's single-aisle deliveries by 2045, taking Boeing's China business (about a 45% → 50% chance). That hurts Boeing more than any exporting entrant.
+5. **Our late-fps war game reached the same end state.** Boeing failed its own go/no-go test (−0.73 against a +$1B hurdle), re-engined the 787 instead, and Airbus shelved the A350 Re-engine: the board's second 2044 equilibrium.
+6. **On the engine side, a Boeing that doesn't launch fps is a large gain for CFM.**
    - **CFM:** about +$38B relative to the snapshot, because the LEAP-powered 737 keeps Boeing's slot.
    - **Rolls-Royce:** loses its narrowbody entry (worth +$17B in the snapshot).
    - **Pratt & Whitney:** about −$4B.
@@ -103,7 +106,7 @@ The case loses $3.59B between 2041 and 2044:
 |---|---:|
 | Narrowbody profit, fps minus Do Nothing: +17.06 → +9.33 | −7.73 |
 |   …the same cash, 3 years later | −4.42 |
-|   …Boeing re-enters from a deeper hole | **−3.32** |
+|   …Boeing re-enters from a deeper hole | **−3.31** |
 | The fps bill in present value: 12.36 → 9.16 | +3.20 |
 | Debt penalty: 3.64 → 2.70 | +0.94 |
 | **Net** | **−3.59** |
@@ -187,9 +190,9 @@ The board solves for what pays. Airbus's behavioural profile and both war games 
 
 | Decision | Most likely response (probability) | Board value | Profile and war-game evidence |
 |---|---|---|---|
-| **NGSA timing** | Keep the plan: 2030 launch, ~2037 entry into service (65%). Slip for technology reasons (25%). Pull earlier (10%). A deliberate slowdown to save cash is unlikely. | Each year of NGSA slip costs Airbus $2.6–3.3B against a Boeing that does nothing, and $4.7–5.3B against fps. At a 5-year lead or less fps returns. Each year earlier pays about $3.8–4.1B. | Profile rule "own clock": don't wait for Boeing. Its default is the technology-ready year, entry 2035. Both war games launched NGSA in 2028 for 2035; the late-fps game noted "a delayed fps does not change it". Public plan, Farnborough July 2026: launch 2030, entry in the second half of the 2030s. |
-| **Delay Tactics** | Drop them (95%, if NGSA holds). | Worth +$1.16B only if Boeing actually launches fps. Against a Boeing that does nothing they cost −$12.5B: the $48.3B naked fine is about $12.1B in present value, plus about $0.4B of operating cost. They pay only if Boeing launches with more than about 91% probability. | The war-game Airbus never used them in either game; they always fell below its $1B test and ran against its integrity pillar. The profile says stop Delay Tactics once fps is off. |
-| **Widebody Chicken** (now the main contest) | Stay out once Boeing re-engines the 787 first (50%). Pre-empt with an A350 Re-engine (30%). Both re-engine (10%). Neither (10%). | A350 Re-engine alone +50.12; stay out +47.68; both +45.36. Pre-empting gains +1.8 if Boeing stays out but loses −2.3 if Boeing re-engines anyway. That fails Airbus's own test of beating Do Nothing by $1B against every plausible Boeing move. | Late-fps war game: Boeing, freed from fps, moved first (787 Re-engine in 2031); Airbus deferred, then shelved, which was worth +$0.33B. On-time game: Airbus pre-empted while Boeing was busy with fps. |
+| **NGSA timing** | Keep the plan: 2030 launch, ~2037 entry into service (65%). Slip for technology reasons (25%). Pull earlier (10%). A deliberate slowdown to save cash is unlikely. | Each year of NGSA slip costs Airbus $2.6–3.2B against a Boeing that does nothing, and $4.7–5.3B against fps. At a 5-year lead or less fps returns. Each year earlier pays about $3.8–4.1B. | Profile rule "own clock": don't wait for Boeing. Its default is the technology-ready year, entry 2035. Both war games launched NGSA in 2028 for 2035; the late-fps game noted "a delayed fps does not change it". Public plan, Farnborough July 2026: launch 2030, entry in the second half of the 2030s. |
+| **Delay Tactics** | Drop them (95%, if NGSA holds). | Worth +$1.16B only if Boeing actually launches fps. Against a Boeing that does nothing they cost $12.5B: the $48.3B naked fine is about $12.1B in present value, plus about $0.4B of operating cost. They pay only if Boeing launches with more than about 91.5% probability. | The war-game Airbus never used them in either game; they always fell below its $1B test and ran against its integrity pillar. The profile says stop Delay Tactics once fps is off. |
+| **Widebody Chicken** (now the main contest) | Stay out once Boeing re-engines the 787 first (50%). Pre-empt with an A350 Re-engine (30%). Both re-engine (10%). Neither (10%). | A350 Re-engine alone +50.12; stay out +47.68; both +45.36. Pre-empting gains $1.8B if Boeing stays out but loses $2.3B if Boeing re-engines anyway. That fails Airbus's own test of beating Do Nothing by $1B against every plausible Boeing move. | Late-fps war game: Boeing, freed from fps, moved first (787 Re-engine in 2031); Airbus deferred, then shelved, which was worth +$0.33B. On-time game: Airbus pre-empted while Boeing was busy with fps. |
 | **Price** (not on the board) | Sell the scarcity: hold or raise prices, with targeted campaigns at Boeing strongholds and at customers COMAC is courting. Broad price war unlikely. | +1 point of NGSA margin is worth about $3.8B. | Airbus priced up on slot scarcity before (neo premium) and is paid on EBIT and free cash flow; July 2026 brought a €5B buyback over 3 years. |
 | **Capacity** (not on the board) | Hold rate 75 and price the scarcity (~40%). Add 5–10% timed to NGSA, with engine deals (~30%). Size NGSA's production system for about 100 a month (~20%). Absorb or partner (A220-500, the CSeries precedent) (~10%). | See below: the delay's whole gain to Airbus is volume above its current capacity. | Stated plan: 70–75 a month by end-2027, "stabilising at rate 75", gated by engines. 2026 reports: NGSA being prepared for about 100 a month (Aviation Week, June 2026; Air Data News, 7 Oct 2026; seen in search snippets only), and rate 83 under study for the A320neo (Leeham, August 2026). Airbus historically out-ramped Boeing and opened new lines in 2025–26. |
 
@@ -204,7 +207,7 @@ On the board, the delay is worth +$8.4B to Airbus against a launched fps (39.21 
 | If Airbus… | Airbus captures the delay gain? | The gap left for others |
 |---|---|---|
 | Holds rate 75 and prices the scarcity | No: it earns price, not volume | Large: queues lengthen, the 737 sells more, an entrant has a case |
-| Builds NGSA for ~100 a month, as the 2026 reports suggest | Yes, largely | Small: little demand is left unserved after about 2040 |
+| Builds NGSA for ~100 a month, as the 2026 reports suggest | Yes, largely | Smaller but real: up to 400 a year on the board's share rule (about 150 on the war-game path) |
 
 ---
 
@@ -303,7 +306,7 @@ COMAC's case doesn't hinge on this: its development spending is sunk and its cap
 
 **An exporting entrant mostly fills demand Airbus cannot build.** It is chiefly an Airbus risk and a check on Airbus's delay gain.
 
-**COMAC taking China hits Boeing.** China is about 20% of global single-aisle demand. Losing about 6% of the board's 2,000-a-year market wipes out the 2041 fps case (+1.06 → 0); that is about 30% of China. At 2044 it deepens the loss: −2.53 becomes −3.46 at 10%.
+**COMAC taking China hits Boeing.** China is about 20% of global single-aisle demand. Losing about 6% of the board's 2,000-a-year market wipes out the 2041 fps case (+1.06 → 0); that is about 30% of China. If COMAC takes 10% of the board's market (about half of China), the 2044 case deepens from −2.53 to −3.46.
 
 **Signals to watch.** Each one moves the odds:
 - **Airbus:** an NGSA production-rate decision, and a line or engine deal above rate 75.
@@ -339,7 +342,7 @@ In both war games, Pratt & Whitney cancelled its next-generation geared turbofan
 - **Bill timing.** The board pays the whole programme bill in the entry-into-service year (§1.3). This drives both the positive 2041 case and the "cheaper delay".
 - **Evaluation window.** The window runs from 2026 to entry into service + 19.
   - It moves Boeing's Do Nothing payoff with the fps slider (−$0.13B between 2041 and 2044).
-  - On a common calendar horizon the delay costs Boeing $3.9–4.8B, not $3.6B. The verdict holds for any horizon up to 2089.
+  - On a common calendar horizon the delay costs Boeing $3.9–4.8B, not the $3.59B drop in §1.2. The verdict holds for any horizon up to 2089.
 - **No third player, capacity, price, or move order.** The board lets Airbus build 1,600 a year and has no Embraer or COMAC. Who moves first in the widebody Chicken is taken from the war game.
 - **The naked fine and the "fps via Embraer" bill are slider settings.** The fine is $48.3B and is discounted to the fps date. "fps via Embraer" is $100B, which is the slider's maximum.
 - **Board build.** The uploaded build is not the one that produced the snapshot (§0). The engine board doesn't read Boeing's launch decision, and CFM's Embraer move is never evaluated.

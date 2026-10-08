@@ -328,5 +328,32 @@
    "slice": 0.1,
    "npv_with_slice": 0.92
   }
- ]
+ ],
+ "entrant_sensitivities": {
+  "lump_eis2038_cap1200": {
+   "fps 2041": -2.775197,
+   "fps 2044": -0.505694,
+   "Boeing Do Nothing": 0.416927
+  },
+  "lump_eis2042_cap1200": {
+   "fps 2041": -2.436701,
+   "fps 2044": -0.494791,
+   "Boeing Do Nothing": 0.42783
+  },
+  "spread2034_41_eis2042_cap1200": {
+   "fps 2041": -4.305378,
+   "fps 2044": -2.363468,
+   "Boeing Do Nothing": -1.440847
+  },
+  "lump_eis2038_cap1200_737_rate47": {
+   "fps 2041": -2.781264,
+   "fps 2044": -1.452484,
+   "Boeing Do Nothing": -1.347282
+  },
+  "lump_eis2038_cap900": {
+   "fps 2041": 1.684178,
+   "fps 2044": 4.02664,
+   "Boeing Do Nothing": 4.94926
+  }
+ }
 }

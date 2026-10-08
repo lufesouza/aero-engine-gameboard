@@ -13,14 +13,14 @@
     "cfm_yield": 60.8,
     "pw_yield": 116.7,
     "rr_yield": 115.7,
-    "cfm_b": -62.65,
-    "pw_b": 18.34,
-    "rr_b": 17.25
+    "cfm_b": -62.645911,
+    "pw_b": 18.337086,
+    "rr_b": 17.249591
    }
   ],
   "near_count": 19,
-  "cfm_partner_embraer_increment_b": 2.49,
-  "pw_when_cfm_partners_embraer_b": -2.29
+  "cfm_partner_embraer_increment_b": 2.493093,
+  "pw_when_cfm_partners_embraer_b": -2.290212
  },
  "fps 2044 launched, Boeing ~30% of new-NB market": {
   "pw_locked": "2-Launch GTF2 Go Solo",
@@ -36,14 +36,14 @@
     "cfm_yield": 64.0,
     "pw_yield": 120.3,
     "rr_yield": 108.5,
-    "cfm_b": -57.56,
-    "pw_b": 22.29,
-    "rr_b": 9.35
+    "cfm_b": -57.56356,
+    "pw_b": 22.287702,
+    "rr_b": 9.348359
    }
   ],
   "near_count": 19,
-  "cfm_partner_embraer_increment_b": 2.25,
-  "pw_when_cfm_partners_embraer_b": -2.48
+  "cfm_partner_embraer_increment_b": 2.251076,
+  "pw_when_cfm_partners_embraer_b": -2.478337
  },
  "Boeing Do Nothing: 737 stays on LEAP at 20%": {
   "pw_locked": "2-Launch GTF2 Go Solo",
@@ -59,13 +59,13 @@
     "cfm_yield": 84.4,
     "pw_yield": 113.0,
     "rr_yield": 100.0,
-    "cfm_b": -24.97,
-    "pw_b": 14.3,
+    "cfm_b": -24.971976,
+    "pw_b": 14.30195,
     "rr_b": 0.0
    }
   ],
   "near_count": 15,
-  "cfm_partner_embraer_increment_b": 0.58,
-  "pw_when_cfm_partners_embraer_b": -2.0
+  "cfm_partner_embraer_increment_b": 0.57641,
+  "pw_when_cfm_partners_embraer_b": -2.002697
  }
 }

@@ -194,43 +194,63 @@
  },
  "bill_timing": {
   "board_lump": {
-   "2041": 1.063,
-   "2041_vs_delay_tactics": -0.242,
-   "2044": -2.527,
-   "2044_vs_delay_tactics": -3.494
+   "2041": 1.062757,
+   "2041_vs_delay_tactics": -0.241647,
+   "2044": -2.527283,
+   "2044_vs_delay_tactics": -3.494058
   },
   "lump_at_2041": {
-   "2044": -6.667,
-   "2044_vs_delay_tactics": -7.634
+   "2044": -6.667329,
+   "2044_vs_delay_tactics": -7.634104
   },
   "spread9": {
-   "2041": -10.177,
-   "2041_vs_delay_tactics": -11.482,
-   "2044": -10.858,
-   "2044_vs_delay_tactics": -11.825
+   "2041": -10.177244,
+   "2041_vs_delay_tactics": -11.481649,
+   "2044": -10.857945,
+   "2044_vs_delay_tactics": -11.82472
   },
   "spread6": {
-   "2041": -5.959,
-   "2041_vs_delay_tactics": -7.263,
-   "2044": -7.732,
-   "2044_vs_delay_tactics": -8.698
+   "2041": -5.959028,
+   "2041_vs_delay_tactics": -7.263432,
+   "2044": -7.731563,
+   "2044_vs_delay_tactics": -8.698338
   },
   "slip_spread9": {
-   "2044": -17.907,
-   "2044_vs_delay_tactics": -18.874
+   "2044": -17.90733,
+   "2044_vs_delay_tactics": -18.874105
   },
   "lump_at_2041_plus_30pct_at_2044": {
-   "2044": -11.388
+   "2044": -11.388418
   }
  },
  "with_787_reengine": {
   "2041": {
-   "vs_A350_reengine": 0.245,
-   "vs_A350_do_nothing": 0.245
+   "vs_A350_reengine": 0.244893,
+   "vs_A350_do_nothing": 0.244893
   },
   "2044": {
-   "vs_A350_reengine": -3.131,
-   "vs_A350_do_nothing": -3.131
+   "vs_A350_reengine": -3.13071,
+   "vs_A350_do_nothing": -3.13071
+  }
+ },
+ "lever_thresholds_2044": {
+  "fps margin %": {
+   "breakeven": 31.2055,
+   "hurdle_1B": 33.4076,
+   "breakeven_vs_delay_tactics": 34.0312
+  },
+  "fps 10yr bill $B": {
+   "breakeven": 44.9633,
+   "hurdle_1B": 40.6873,
+   "breakeven_vs_delay_tactics": 40.8313
+  },
+  "fps price $M": {
+   "breakeven": 66.9384,
+   "hurdle_1B": 71.6623,
+   "breakeven_vs_delay_tactics": 72.9999
+  },
+  "fps via Embraer bill $B": {
+   "breakeven": 44.9633
   }
  }
 }

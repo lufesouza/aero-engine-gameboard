@@ -12,7 +12,7 @@ for name, ov in CASES.items():
     for label, patch in (("board as built (16 CFM moves)", None), ("all CFM moves", PATCH)):
         SS = H.en(ov, patch)
         MX, EA, EC = SS["_EMX"], SS["_EA"], SS["_EC"]
-        pure = [{"cfm": EA[a], "rr": EC[c], "cfm_b": round(MX[a][c]["A"]["delta_b"], 2), "pw_b": round(MX[a][c]["B"]["delta_b"], 2), "rr_b": round(MX[a][c]["C"]["delta_b"], 2)} for a, c in SS["_EPURE"]]
+        pure = [{"cfm": EA[a], "rr": EC[c], "cfm_b": round(MX[a][c]["A"]["delta_b"], 6), "pw_b": round(MX[a][c]["B"]["delta_b"], 6), "rr_b": round(MX[a][c]["C"]["delta_b"], 6)} for a, c in SS["_EPURE"]]
         near_emb = sum(1 for a, c in SS["_ENEAR"] if "Embraer" in EA[a])
         OUT[f"{name} | {label}"] = {"n_cfm_moves": len(EA), "pure": pure, "near": len(SS["_ENEAR"]), "near_with_partner_embraer": near_emb}
 json.dump(OUT, open(os.path.join(OUTDIR, "engines_all.json"), "w"), indent=1)

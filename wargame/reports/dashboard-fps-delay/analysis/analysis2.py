@@ -29,13 +29,13 @@ s41, s44 = streams(2041), streams(2044)
 npv = lambda rows: sum(r["diff_b"] * r["df"] for r in rows)
 nb41, nb44 = npv(s41), npv(s44)
 shifted = nb41 / 1.105 ** 3            # same 2041 stream, 3 years later
-OUT["nb_split"] = {"nb_2041": round(nb41, 3), "nb_2044": round(nb44, 3), "timing_only": round(shifted - nb41, 3), "share_effect": round(nb44 - shifted, 3)}
+OUT["nb_split"] = {"nb_2041": round(nb41, 6), "nb_2044": round(nb44, 6), "timing_only": round(shifted - nb41, 6), "share_effect": round(nb44 - shifted, 6)}
 OUT["share_paths"] = {"2041": [(r["year"], r["b_share_fps"], r["b_share_dn"]) for r in s41], "2044": [(r["year"], r["b_share_fps"], r["b_share_dn"]) for r in s44]}
 # whole-project timing (net of capex/alpha), using solved cells
 MX41 = solve({"af_fps_eis": 2041}); MX44 = solve({"af_fps_eis": 2044})
 v41 = cell(MX41[0], MX41[1], MX41[2], AR, FPS10("Milk_787"))["b_total_delta"] - cell(MX41[0], MX41[1], MX41[2], AR, DN("Milk_787"))["b_total_delta"]
 v44 = cell(MX44[0], MX44[1], MX44[2], AR, FPS10("Milk_787"))["b_total_delta"] - cell(MX44[0], MX44[1], MX44[2], AR, DN("Milk_787"))["b_total_delta"]
-OUT["project_split"] = {"v2041": round(v41, 3), "v2044": round(v44, 3), "pure_timing": round(v41 / 1.105 ** 3 - v41, 3), "share_effect": round(v44 - v41 / 1.105 ** 3, 3)}
+OUT["project_split"] = {"v2041": round(v41, 6), "v2044": round(v44, 6), "pure_timing": round(v41 / 1.105 ** 3 - v41, 6), "share_effect": round(v44 - v41 / 1.105 ** 3, 6)}
 
 # 2) Airbus response: NGSA EIS timing with fps at 2044 (and at 2041 for reference)
 tim = []
@@ -45,11 +45,11 @@ for fe in (2041, 2044):
         jf = B.index(FPS10("Milk_787")); jd = B.index(DN("Milk_787"))
         pure, near = H.eq_lists(MX, A, B)
         tim.append({"fps_eis": fe, "ngsa_eis": ne,
-                    "airbus_vs_fps10": round(MX[A.index(AS)][jf]["a_total_delta"], 3),
-                    "airbus_vs_fps10_noDT": round(MX[A.index(AR)][jf]["a_total_delta"], 3),
-                    "airbus_vs_dn": round(MX[A.index(AR)][jd]["a_total_delta"], 3),
-                    "boeing_fps10_minus_dn": round(MX[A.index(AR)][jf]["b_total_delta"] - MX[A.index(AR)][jd]["b_total_delta"], 3),
-                    "boeing_fps10_minus_dn_DT": round(MX[A.index(AS)][jf]["b_total_delta"] - MX[A.index(AS)][jd]["b_total_delta"], 3),
+                    "airbus_vs_fps10": round(MX[A.index(AS)][jf]["a_total_delta"], 6),
+                    "airbus_vs_fps10_noDT": round(MX[A.index(AR)][jf]["a_total_delta"], 6),
+                    "airbus_vs_dn": round(MX[A.index(AR)][jd]["a_total_delta"], 6),
+                    "boeing_fps10_minus_dn": round(MX[A.index(AR)][jf]["b_total_delta"] - MX[A.index(AR)][jd]["b_total_delta"], 6),
+                    "boeing_fps10_minus_dn_DT": round(MX[A.index(AS)][jf]["b_total_delta"] - MX[A.index(AS)][jd]["b_total_delta"], 6),
                     "pure": len(pure), "near": len(near), "eq_boeing_moves": sorted({H.lab(b) for a, b, *_ in pure + near}),
                     "eq_airbus_moves": sorted({H.lab(a) for a, b, *_ in pure + near})})
 OUT["ngsa_timing"] = tim
@@ -69,20 +69,21 @@ for key, base, step, label in (("af_m_fps", 25.64, 1.0, "fps margin (%)"), ("af_
         # +$1B go/no-go hurdle (war-game rule) for the modal context; $-2B slip floor for Delay Tactics
         hurdle = 1.0 if ctxn == "modal" else -2.0
         xh = base + (hurdle - g0) / k
-        thr[f"{label} | {ctxn}"] = {"base": base, "g0": round(g0, 3), "k_per_unit": round(k, 4), "breakeven": round(x, 3), "confirm_at_breakeven": round(conf, 4), "hurdle": hurdle, "value_at_hurdle": round(xh, 3)}
+        thr[f"{label} | {ctxn}"] = {"base": base, "g0": round(g0, 6), "k_per_unit": round(k, 4), "breakeven": round(x, 6), "confirm_at_breakeven": round(conf, 4), "hurdle": hurdle, "value_at_hurdle": round(xh, 6)}
 # capture speed (Boeing Phase-2 recovery pp/yr) and post-2037 balance share: grid
 grid = []
 for pp in (1.0, 1.5, 2.0, 3.0, 4.0):
     for bal in (50, 55, 60):
-        grid.append({"ramp10_b_pp": pp, "balance_share": bal, "fps10_minus_dn": round(fpsval({"af_ramp10_b_pp": pp, "_boeing_share_both": bal}), 3),
-                     "fps10_minus_dn_DT": round(fpsval({"af_ramp10_b_pp": pp, "_boeing_share_both": bal}, AS), 3)})
+        grid.append({"ramp10_b_pp": pp, "balance_share": bal, "fps10_minus_dn": round(fpsval({"af_ramp10_b_pp": pp, "_boeing_share_both": bal}), 6),
+                     "fps10_minus_dn_DT": round(fpsval({"af_ramp10_b_pp": pp, "_boeing_share_both": bal}, AS), 6)})
 thr["grid_recovery_speed_x_balance"] = grid
 # Airbus Delay Tactics share shift: what if Delay Tactics bite harder (war-game style), 0..10pp
-thr["delay_tactics_shift"] = [{"sab_share": s, "fps10_minus_dn_DT": round(fpsval({"af_sab_share": s}, AS), 3)} for s in (0, 2.5, 5, 7.5, 10)]
+thr["delay_tactics_shift"] = [{"sab_share": s, "fps10_minus_dn_DT": round(fpsval({"af_sab_share": s}, AS), 6)} for s in (0, 2.5, 5, 7.5, 10)]
 # fps 7yr variant at 2044 and via-Embraer capex break-even vs Do Nothing
-thr["fps7_minus_dn_2044"] = round(fpsval({}, AR, var=FPS7), 3)
-g0 = fpsval({}, AR, var=EMB); g1 = fpsval({"af_cx_fpsemb": 90.0}, AR, var=EMB); k = (g1 - g0) / -10.0
-thr["via_embraer_breakeven_capex"] = {"g0": round(g0, 3), "k": round(k, 4), "breakeven_capex": round(100.0 - g0 / k, 2)}
+thr["fps7_minus_dn_2044"] = round(fpsval({}, AR, var=FPS7), 6)
+thr["via_embraer_minus_dn_2044"] = round(fpsval({}, AR, var=EMB), 6)
+thr["note"] = ("margin and price thresholds are exact (payoffs are linear in them); the bill thresholds here are two-run linear "
+               "estimates and the debt penalty is cubic in the bill, so use robustness.json lever_thresholds_2044 for exact values")
 OUT["thresholds_2044"] = thr
 
 # 4) Vacuum sizing: Airbus NB units/yr implied by the board's shares (2000 NB/yr market)
@@ -108,6 +109,6 @@ print("thresholds:")
 for k, v in thr.items():
     if isinstance(v, dict) and "breakeven" in v: print("  ", k, v)
 print("  grid:"); [print("    ", g) for g in grid]
-print("  DT shift:", thr["delay_tactics_shift"]); print("  fps7-DN 2044:", thr["fps7_minus_dn_2044"], " via Embraer:", thr["via_embraer_breakeven_capex"])
+print("  DT shift:", thr["delay_tactics_shift"]); print("  fps7-DN 2044:", thr["fps7_minus_dn_2044"], " via Embraer - DN:", thr["via_embraer_minus_dn_2044"])
 print("vacuum:"); [print("  ", v) for v in vac]
 print({k: v for k, v in OUT.items() if k.startswith("airbus_units")})

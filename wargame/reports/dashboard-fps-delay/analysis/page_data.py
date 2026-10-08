@@ -12,8 +12,8 @@ for fe in (2041, 2044):
         pure, near = H.eq_lists(MX, A, B)
         a = AROWS["NGSA + Re-engine A350"]; s = AROWS["NGSA + Bottleneck + Re-engine A350"]
         rows.append({"ngsa_eis": ne, "lead": fe - ne,
-                     "fps_minus_dn": round(cell(MX, A, B, a, FPS10("Milk_787"))["b_total_delta"] - cell(MX, A, B, a, DN("Milk_787"))["b_total_delta"], 3),
-                     "fps_minus_dn_vs_delay_tactics": round(cell(MX, A, B, s, FPS10("Milk_787"))["b_total_delta"] - cell(MX, A, B, s, DN("Milk_787"))["b_total_delta"], 3),
+                     "fps_minus_dn": round(cell(MX, A, B, a, FPS10("Milk_787"))["b_total_delta"] - cell(MX, A, B, a, DN("Milk_787"))["b_total_delta"], 6),
+                     "fps_minus_dn_vs_delay_tactics": round(cell(MX, A, B, s, FPS10("Milk_787"))["b_total_delta"] - cell(MX, A, B, s, DN("Milk_787"))["b_total_delta"], 6),
                      "pure": len(pure), "near": len(near),
                      "fps_in_pure": sum("fps" in H.lab(b) for _, b, *_ in pure),
                      "fps_in_near": sum("fps" in H.lab(b) for _, b, *_ in near)})
