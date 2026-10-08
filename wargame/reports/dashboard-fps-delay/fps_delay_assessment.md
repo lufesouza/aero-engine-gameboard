@@ -26,7 +26,7 @@ All $ figures are your board's own measure: present value at 2026, $B, against t
 1. **The fps business case flips from "indifferent" to "no".**
    - **Against Do Nothing:** fps (10-year ramp) goes from +$1.1B to −$2.5B.
    - **Against Airbus Delay Tactics:** from −$0.2B to −$3.5B.
-   - **fps leaves every equilibrium.** The game moves from 0 pure and 17 near-Nash equilibria to 2 pure ones, and in both Boeing does nothing on the narrowbody.
+   - **fps leaves every equilibrium.** The game moves from 0 pure and 17 near-Nash equilibria to 2 pure and 2 near-Nash, and in all four Boeing does nothing on the narrowbody.
    - **These are the board's mildest numbers.** They assume the delay is planned and the bill is deferred with it. If the slip is found after the bill is committed, fps is −$6.7B, or −$11.4B with a 30% overrun.
 2. **The cause is share, not discounting.**
    - **Share costs $3.31B.** NGSA gets 7 years alone instead of 4, so Boeing re-enters at 20% share instead of 28%. At 1 point a year it never gets back to parity inside the window.
@@ -149,11 +149,11 @@ Your board books the entire fps bill as one payment in the entry-into-service ye
 
 ### 1.4 What would bring fps back at 2044
 
-Each lever moves on its own. All levels are solved on the board.
+Each lever moves on its own. All levels are solved on the board and rounded to the nearest value; fps needs to be just beyond each.
 
 | Lever (snapshot value) | Beats Do Nothing | Beats Do Nothing by $1B | Back in a **pure** equilibrium |
 |---|---:|---:|---:|
-| fps margin (25.64%) | 31.2% | 33.4% | **34.1%** |
+| fps margin (25.64%) | 31.2% | 33.4% | **34.0%** |
 | fps 10-year bill ($55.25B) | $45.0B | $40.7B | **$40.8B** |
 | fps price ($55M) | $66.9M | $71.7M | **$73.0M** |
 | Boeing's share recovery after entry (1 point/yr) | 1.85 | 2.30 | **2.28** |
@@ -196,7 +196,7 @@ The board solves for what pays. Airbus's behavioural profile and both war games 
 | **Price** (not on the board) | Sell the scarcity: hold or raise prices, with targeted campaigns at Boeing strongholds and at customers COMAC is courting. Broad price war unlikely. | +1 point of NGSA margin is worth about $3.8B. | Airbus priced up on slot scarcity before (neo premium) and is paid on EBIT and free cash flow; July 2026 brought a €5B buyback over 3 years. |
 | **Capacity** (not on the board) | Hold rate 75 and price the scarcity (~40%). Add 5–10% timed to NGSA, with engine deals (~30%). Size NGSA's production system for about 100 a month (~20%). Absorb or partner (A220-500, the CSeries precedent) (~10%). | See below: the delay's whole gain to Airbus is volume above its current capacity. | Stated plan: 70–75 a month by end-2027, "stabilising at rate 75", gated by engines. 2026 reports: NGSA being prepared for about 100 a month (Aviation Week, June 2026; Air Data News, 7 Oct 2026; seen in search snippets only), and rate 83 under study for the A320neo (Leeham, August 2026). Airbus historically out-ramped Boeing and opened new lines in 2025–26. |
 
-**These branches depend on each other.** If NGSA slips to 2039–2041, fps comes back, and Delay Tactics come back with it. The 95% "drop" assumes NGSA holds.
+**These branches depend on each other.** If NGSA slips to 2039–2041, fps comes back, and from 2040 Delay Tactics come back with it. The 95% "drop" assumes NGSA holds.
 
 ### The capacity decision links Airbus's response to the third-player question
 
@@ -236,10 +236,10 @@ Entering as Boeing's partner (the board's "fps via Embraer" Joint Venture) does 
 | Case | fps 2041 | fps 2044 | Boeing Do Nothing |
 |---|---:|---:|---:|
 | Bill paid at entry in 2038, Airbus capped at 1,200 a year | −2.78 | −0.51 | +0.42 |
-| Embraer-realistic timing (entry 2042), bill paid at entry | −2.44 | −0.49 | — |
+| Embraer-realistic timing (entry 2042), bill paid at entry | −2.44 | −0.49 | +0.43 |
 | Same, but bill spread over 2034–41 | −4.31 | −2.36 | −1.44 |
-| The 737 at rate 47 absorbs part of the overflow | — | −1.45 | −1.35 |
-| Airbus capped at rate 75 (900 a year) | +1.68 | +4.03 | +4.95 |
+| The 737 at rate 47 absorbs part of the overflow (entry 2038) | −2.78 | −1.45 | −1.35 |
+| Airbus capped at rate 75, 900 a year (entry 2038) | +1.68 | +4.03 | +4.95 |
 
 **The delay improves an entrant's case by about $2B, but Airbus's capacity moves it more than the delay does.** With realistic spending, an entrant needs either Airbus to stay at rate 75 or a protected home market.
 
@@ -354,5 +354,6 @@ In both war games, Pratt & Whitney cancelled its next-generation geared turbofan
 ## Files
 
 - `inputs/`: your dashboard and snapshot, as received.
-- `analysis/`: the headless solver (`harness.py`) and one script per result. `run_all.sh` reproduces every number above; results are in `analysis/results/`.
+- `analysis/`: the headless solver (`harness.py`) and one script per result. `run_all.sh` reproduces every board number above, including the COMAC-share, flat-strain and common-horizon sensitivities (`sensitivities.py`); results are in `analysis/results/`.
 - `review/`: the full outputs of the four analysts and their adversarial checks, with all citations, plus the critic's notes. File paths inside them point to a scratch area that is not kept.
+- `fps_delay_assessment.html`: the same assessment as an interactive page, built by `make_fps_delay_html.py` from `analysis/results/`.

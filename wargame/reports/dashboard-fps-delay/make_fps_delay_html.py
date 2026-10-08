@@ -14,8 +14,8 @@ from decimal import Decimal, ROUND_HALF_UP
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "analysis", "results")
 J = lambda n: json.load(open(os.path.join(RES, n + ".json")))
-DELAY, A2, VAC, ENG, ROB, REC, PAGE = (J("delay"), J("analysis2"), J("vacuum"), J("engines"), J("robustness"),
-                                       J("recovery_threshold"), J("page_data"))
+DELAY, A2, VAC, ENG, ROB, REC, PAGE, SENS = (J("delay"), J("analysis2"), J("vacuum"), J("engines"), J("robustness"),
+                                             J("recovery_threshold"), J("page_data"), J("sensitivities"))
 esc = html.escape
 MOD = "NGSA + Re-engine A350"
 DT = "NGSA + Bottleneck + Re-engine A350"
@@ -53,7 +53,7 @@ def tip(*rows):
 
 def mark_attrs(*rows):
     """Attributes for a focusable chart mark: tooltip payload plus an accessible name."""
-    name = "; ".join(f"{l}: {v}" if l else v for v, l, k in rows)
+    name = "; ".join((f"{l}: {v}" if v else l) if l else v for v, l, k in rows)
     return f'tabindex="0" role="img" aria-label="{esc(name, quote=True)}" data-tip="{tip(*rows)}"'
 
 
@@ -83,10 +83,11 @@ def svg_open(w, h, label, cls="chart"):
     return f'<svg viewBox="0 0 {w} {h}" class="{cls}" role="group" aria-label="{esc(label, quote=True)}">'
 
 
-def tview(title, head, rows):
-    """Table view inside <details>; each row's first cell is a row header."""
-    th = "".join(f'<th scope="col"{" class=n" if i else ""}>{esc(h)}</th>' for i, h in enumerate(head))
-    body = "".join("<tr>" + "".join((f'<th scope="row">{c}</th>' if j == 0 else f'<td class="n">{c}</td>')
+def tview(title, head, rows, num_cols=None):
+    """Table view inside <details>; each row's first cell is a row header. num_cols: numeric columns (default all)."""
+    nc = set(num_cols) if num_cols is not None else set(range(1, len(head)))
+    th = "".join(f'<th scope="col"{" class=n" if i in nc else ""}>{esc(h)}</th>' for i, h in enumerate(head))
+    body = "".join("<tr>" + "".join((f'<th scope="row">{c}</th>' if j == 0 else f'<td{" class=n" if j in nc else ""}>{c}</td>')
                                     for j, c in enumerate(r)) + "</tr>" for r in rows)
     return (f'<details class="tv"><summary>Table view: {esc(title)}</summary><div class="scroll"><table>'
             f'<thead><tr>{th}</tr></thead><tbody>{body}</tbody></table></div></details>')
@@ -99,47 +100,55 @@ def table(head, rows, num_cols=()):
     return f'<div class="scroll"><table><thead><tr>{th}</tr></thead><tbody>{body}</tbody></table></div>'
 
 
-# ------------------------------------------------------------------ chart 1: fps value by entry year
-def chart_eis():
+# ------------------------------------------------------------------ chart 1: fps value by entry year (wide + narrow)
+EIS_KEY = "NGSA + Re-engine A350 | Milk_787 | fps10-DN"
+
+
+def chart_eis(narrow=False):
     rows = DELAY["sweep_fps_eis"]
-    key = "NGSA + Re-engine A350 | Milk_787 | fps10-DN"
-    w, h, left, right, top, bot = 760, 340, 56, 16, 34, 92
+    if narrow:
+        w, h, left, right, top, bot = 400, 330, 46, 6, 34, 86
+    else:
+        w, h, left, right, top, bot = 760, 340, 56, 16, 34, 92
     lo, hi = -4, 10
     band = (w - left - right) / len(rows)
     sy = lambda v: top + (hi - v) / (hi - lo) * (h - top - bot)
-    out = [svg_open(w, h, "fps 10-year minus Do Nothing by fps entry year, 2037 to 2047")]
+    out = [svg_open(w, h, "fps 10-year minus Do Nothing by fps entry year, 2037 to 2047", "chart narrow" if narrow else "chart")]
     for t in range(lo, hi + 1, 2):
         out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(t):.1f}" y2="{sy(t):.1f}" class="{"zero" if t == 0 else "grid"}"/>'
-                   f'<text x="{left - 8}" y="{sy(t) + 4:.1f}" text-anchor="end" class="tick">{"0" if t == 0 else num(t, "+d")}</text>')
+                   f'<text x="{left - 6}" y="{sy(t) + 4:.1f}" text-anchor="end" class="tick">{"0" if t == 0 else num(t, "+d")}</text>')
     yb = h - bot + 22
-    out.append(f'<text x="4" y="{yb + 30:.1f}" class="tick">in eq.</text>')
-    focus = 0
+    out.append(f'<text x="2" y="{yb + 30:.1f}" class="tick">in eq.</text>')
     for i, r in enumerate(rows):
-        v, y, eq = r[key], r["fps_eis"], r["fps_in_any_eq"]
+        v, y, eq = r[EIS_KEY], r["fps_eis"], r["fps_in_any_eq"]
         bw = min(24, band * .55)
         x = left + i * band + (band - bw) / 2
         cx = x + bw / 2
         hl = y in (2041, 2044)
-        if y == 2042:
-            focus = cx + band / 2
         if hl:
-            cap = "Snapshot" if y == 2041 else "3-year delay"
+            cap = ("Snapshot" if y == 2041 else ("Delay" if narrow else "3-year delay"))
             end = sy(v) - 24 if v >= 0 else sy(0) - 4
             out.append(f'<text x="{cx:.1f}" y="{top - 14}" text-anchor="middle" class="ann">{cap}</text>'
                        f'<line x1="{cx:.1f}" x2="{cx:.1f}" y1="{top - 8}" y2="{end:.1f}" class="leader"/>')
         out.append(f'<path d="{bar_path(x, bw, sy(0), sy(v))}" class="b {"pos" if v >= 0 else "neg"}{" hl" if hl else ""}"/>')
-        out.append(f'<text x="{cx:.1f}" y="{yb:.1f}" text-anchor="middle" class="tick{" strong" if hl else ""}">{y}</text>')
+        ylab = f"’{y % 100:02d}" if narrow else str(y)
+        out.append(f'<text x="{cx:.1f}" y="{yb:.1f}" text-anchor="middle" class="tick{" strong" if hl else ""}">{ylab}</text>')
         out.append(f'<circle cx="{cx:.1f}" cy="{yb + 26:.1f}" r="4.5" class="{"eqy" if eq else "eqn"}"/>')
         if hl:
             ly = sy(v) - 8 if v >= 0 else sy(v) + 17
             out.append(f'<text x="{cx:.1f}" y="{ly:.1f}" text-anchor="middle" class="val">{num(v)}</text>')
         rows_t = ((num(v) + " $B", f"fps {y}: fps 10-year minus Do Nothing", None), ("yes" if eq else "no", "fps in any equilibrium", None))
-        out.append(f'<rect x="{left + i * band:.1f}" y="{top}" width="{band:.1f}" height="{h - top - bot + 44}" class="hit" {mark_attrs(*rows_t)}/>')
-    out.append(f'<text x="{left}" y="{h - 6}" class="tick">$B, present value · Airbus NGSA + Re-engine A350 · Boeing Do Nothing on the 787</text>')
+        out.append(f'<rect x="{left + i * band:.1f}" y="{top}" width="{band:.1f}" height="{h - top - bot + 56}" class="hit" {mark_attrs(*rows_t)}/>')
+    cap = "$B, present value" if narrow else "$B, present value · Airbus NGSA + Re-engine A350 · Boeing Do Nothing on the 787"
+    out.append(f'<text x="{left}" y="{h - 6}" class="tick">{cap}</text>')
     out.append("</svg>")
-    tv = tview("fps value by entry year", ["fps entry", "fps minus Do Nothing ($B)", "fps in any equilibrium"],
-               [[r["fps_eis"], num(r[key]), "yes" if r["fps_in_any_eq"] else "no"] for r in rows])
-    return "".join(out), tv, focus
+    return "".join(out)
+
+
+def eis_table():
+    rows = DELAY["sweep_fps_eis"]
+    return tview("fps value by entry year", ["fps entry", "fps minus Do Nothing ($B)", "fps in any equilibrium"],
+                 [[r["fps_eis"], num(r[EIS_KEY]), "yes" if r["fps_in_any_eq"] else "no"] for r in rows], num_cols=(1,))
 
 
 # ------------------------------------------------------------------ chart 2: bridge 2041 -> 2044, timing grouped
@@ -148,8 +157,8 @@ def bridge_steps():
     d44 = DELAY["delay3_2044"]["decomp_fps10_vs_dn"][MOD]
     sp = A2["nb_split"]
     return [("fps 2041", d41["b_total_delta"], "t41"),
-            ("Same cash,\n3 years later", sp["timing_only"], "step"),
-            ("Bill paid later\n(present value)", d41["fps_pv_capex"] - d44["fps_pv_capex"], "step"),
+            ("Same cash,\n3 yrs later", sp["timing_only"], "step"),
+            ("Bill paid\nlater (PV)", d41["fps_pv_capex"] - d44["fps_pv_capex"], "step"),
             ("Lower debt\npenalty", d41["fps_alpha_pen"] - d44["fps_alpha_pen"], "step"),
             ("Deeper\nshare hole", sp["share_effect"], "step"),
             ("fps 2044", d44["b_total_delta"], "t44")]
@@ -157,8 +166,8 @@ def bridge_steps():
 
 def chart_bridge():
     steps = bridge_steps()
-    w, h, left, right, top, bot = 760, 360, 56, 16, 48, 62
-    lo, hi = -8, 2
+    w, h, left, right, top, bot = 760, 290, 56, 16, 48, 62
+    lo, hi = -4, 2
     band = (w - left - right) / len(steps)
     bw = 38
     sy = lambda v: top + (hi - v) / (hi - lo) * (h - top - bot)
@@ -171,7 +180,7 @@ def chart_bridge():
     bx1 = left + 3 * band + (band + bw) / 2
     by = top - 22
     out.append(f'<path d="M{bx0:.1f},{by + 8:.1f}V{by:.1f}H{bx1:.1f}V{by + 8:.1f}" class="bracket"/>'
-               f'<text x="{(bx0 + bx1) / 2:.1f}" y="{by - 6:.1f}" text-anchor="middle" class="ann">Timing effects, net {num(timing)}</text>')
+               f'<text x="{bx0:.1f}" y="{by - 6:.1f}" class="ann">Timing, net {num(timing)}</text>')
     run = 0.0
     for i, (lab, v, kind) in enumerate(steps):
         x = left + i * band + (band - bw) / 2
@@ -258,7 +267,7 @@ def chart_airbus_units():
     p = PAGE["paths"]
     ser = [(n, c, [(y, u) for y, b, a, u in p[n] if y >= 2030]) for n, c in SCEN]
     svg = line_chart(ser, 800, 1700, 100, "int", "Airbus narrowbody deliveries a year implied by the board (2,000-a-year market)",
-                     refs=[(900, "Rate 75 (Airbus’s stated plan)", "above"), (1200, "~100 a month (reported NGSA sizing)", "below")],
+                     refs=[(900, "Rate 75 (Airbus’s stated plan)", "above"), (1200, "~100 a month (reported)", "below")],
                      aria_label="Airbus narrowbody deliveries a year implied by the board, against rate 75 and about 100 a month",
                      end_labels=[(14, "fps 2041: 1,040"), (0, "fps 2044: 1,200"), (0, "Do Nothing: 1,600")],
                      notes=[(2037, "NGSA enters")], x_lo=2030, wash=("Boeing Do Nothing", "s3", 1200))
@@ -277,63 +286,92 @@ def lead_status(r):
     return "fps in no equilibrium"
 
 
-def chart_lead():
-    w, h, left, right, top, bot = 760, 392, 56, 16, 74, 62
-    lo, hi = -6, 7
-    leads = list(range(8, -1, -1))
-    band = (w - left - right) / len(leads)
-    sx = lambda L: left + (8 - L) * band + band / 2
-    sy = lambda v: top + (hi - v) / (hi - lo) * (h - top - bot)
+LEAD_ZONES = [(8, 6, "fps in no equilibrium"), (5, 5, "fps near-Nash in a few cells only"),
+              (4, 4, "no pure equilibrium exists; fps near-Nash only"), (3, 0, "fps in every pure equilibrium")]
+
+
+def lead_rows():
     rows = {fe: {r["lead"]: r for r in PAGE["ngsa_lead"][fe]} for fe in ("2041", "2044")}
     for fe in rows:   # the zones are drawn from this rule; fail loudly if the solved data disagree
-        for L in leads:
+        for L in range(0, 10):
             r = rows[fe][L]
             exp = "pure" if L <= 3 else "nopure" if L == 4 else "few" if L == 5 else "none"
             got = "pure" if r["fps_in_pure"] else "nopure" if r["pure"] == 0 else "few" if r["fps_in_near"] else "none"
             assert exp == got, (fe, L, got)
         assert rows[fe][8]["fps_minus_dn"] == rows[fe][9]["fps_minus_dn"] == rows[fe][7]["fps_minus_dn"]
-    out = [svg_open(w, h, "fps 10-year minus Do Nothing by NGSA head start, for fps 2041 and fps 2044")]
-    zones = [(8, 6, ["fps in no equilibrium"]), (5, 5, ["near-Nash,", "few cells"]), (4, 4, ["no pure eq.", "exists"]),
-             (3, 0, ["fps in every pure equilibrium"])]
-    for i, (a, b, lines) in enumerate(zones):
+    return rows
+
+
+def chart_lead(narrow=False):
+    if narrow:
+        w, h, left, right, top, bot = 400, 360, 40, 6, 40, 56
+    else:
+        w, h, left, right, top, bot = 760, 414, 56, 16, 96, 62
+    lo, hi = -6, 7
+    leads = list(range(8, -1, -1))
+    band = (w - left - right) / len(leads)
+    sx = lambda L: left + (8 - L) * band + band / 2
+    sy = lambda v: top + (hi - v) / (hi - lo) * (h - top - bot)
+    rows = lead_rows()
+    out = [svg_open(w, h, "fps 10-year minus Do Nothing by NGSA head start, for fps 2041 and fps 2044", "chart narrow" if narrow else "chart")]
+    wide_labels = {0: [(-14, "fps in no equilibrium")], 1: [(-48, "fps near-Nash"), (-35, "in few cells")],
+                   2: [(-22, "no pure eq.;"), (-9, "fps near-Nash")], 3: [(-14, "fps in every pure equilibrium")]}
+    zone_top = top - (24 if narrow else 62)
+    for i, (a, b, _) in enumerate(LEAD_ZONES):   # shading first, so no label is painted over
         x0, x1 = left + (8 - a) * band, left + (8 - b + 1) * band
         if i % 2 == 1:
-            out.append(f'<rect x="{x0:.1f}" y="{top - 38}" width="{x1 - x0:.1f}" height="{h - bot - top + 38}" class="zone"/>')
-        for k, part in enumerate(lines):
-            out.append(f'<text x="{(x0 + x1) / 2:.1f}" y="{top - 22 - (len(lines) - 1 - k) * 13}" text-anchor="middle" class="zlab">{esc(part)}</text>')
+            out.append(f'<rect x="{x0:.1f}" y="{zone_top}" width="{x1 - x0:.1f}" height="{h - bot - zone_top:.1f}" class="zone"/>')
+    for i, (a, b, _) in enumerate(LEAD_ZONES):
+        x0, x1 = left + (8 - a) * band, left + (8 - b + 1) * band
+        if narrow:
+            out.append(f'<text x="{(x0 + x1) / 2:.1f}" y="{top - 8}" text-anchor="middle" class="zlab">{i + 1}</text>')
+        else:
+            for dy, part in wide_labels[i]:
+                out.append(f'<text x="{(x0 + x1) / 2:.1f}" y="{top + dy}" text-anchor="middle" class="zlab">{esc(part)}</text>')
     for t in range(-6, hi + 1, 2):
         out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(t):.1f}" y2="{sy(t):.1f}" class="{"zero" if t == 0 else "grid"}"/>'
-                   f'<text x="{left - 8}" y="{sy(t) + 4:.1f}" text-anchor="end" class="tick">{"0" if t == 0 else num(t, "+d")}</text>')
+                   f'<text x="{left - 6}" y="{sy(t) + 4:.1f}" text-anchor="end" class="tick">{"0" if t == 0 else num(t, "+d")}</text>')
     for L in leads:
-        out.append(f'<text x="{sx(L):.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick">{L} yr</text>')
+        out.append(f'<text x="{sx(L):.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick">{L if narrow else f"{L} yr"}</text>')
     out.append(f'<text x="{(left + w - right) / 2:.1f}" y="{h - bot + 38}" text-anchor="middle" class="tick">NGSA head start over fps (years)</text>')
     for fe, var in (("2041", "s1"), ("2044", "s2")):
         d = "M" + " L".join(f"{sx(L):.1f},{sy(rows[fe][L]['fps_minus_dn']):.1f}" for L in leads)
         out.append(f'<path d="{d}" fill="none" stroke="var(--{var})" stroke-width="2" stroke-linejoin="round"/>')
         for L in leads:
             out.append(f'<circle cx="{sx(L):.1f}" cy="{sy(rows[fe][L]["fps_minus_dn"]):.1f}" r="4" fill="var(--{var})" class="ring"/>')
-    for fe, L, l1, l2, tyv in (("2041", 4, "Snapshot: fps 2041,", "4-yr lead", 4.6), ("2044", 7, "Delay: fps 2044,", "7-yr lead", -5.3)):
+    if narrow:
+        notes = (("2041", 4, "Snapshot", 4.8), ("2044", 7, "Delay", -4.9))
+    else:
+        notes = (("2041", 4, "Snapshot: fps 2041,", 4.6), ("2044", 7, "Delay: fps 2044,", -5.3))
+    for fe, L, l1, tyv in notes:
         r = rows[fe][L]
         cx, cy = sx(L), sy(r["fps_minus_dn"])
-        lx, ly = left + 8, sy(tyv)
+        lx, ly = left + 6, sy(tyv)
+        l2 = (f"{L}-yr lead " if not narrow else "") + f"({num(r['fps_minus_dn'])})"
         out.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="9" class="mark"/>')
         if L == 4:
-            out.append(f'<line x1="{cx - 8:.1f}" y1="{cy - 6:.1f}" x2="{lx + 152:.1f}" y2="{ly - 4:.1f}" class="leader"/>')
+            out.append(f'<line x1="{cx - 8:.1f}" y1="{cy - 6:.1f}" x2="{lx + (70 if narrow else 152):.1f}" y2="{ly - 4:.1f}" class="leader"/>')
         else:
             out.append(f'<line x1="{cx - 2:.1f}" y1="{cy + 10:.1f}" x2="{cx - 2:.1f}" y2="{ly - 26:.1f}" class="leader"/>')
         out.append(f'<text x="{lx:.1f}" y="{ly - 14:.1f}" class="val">{esc(l1)}</text>'
-                   f'<text x="{lx:.1f}" y="{ly + 2:.1f}" class="val">{esc(l2)} ({num(r["fps_minus_dn"])})</text>')
-    for L in leads:   # one hit column per lead, reporting both fps dates
+                   f'<text x="{lx:.1f}" y="{ly + 2:.1f}" class="val">{esc(l2)}</text>')
+    for L in leads:   # one hit column per head start, reporting both fps dates
         a, b = rows["2041"][L], rows["2044"][L]
         lab = f"{L}-year lead" + (" or more" if L == 8 else "")
         rows_t = ((num(a["fps_minus_dn"]) + " $B", f"fps 2041, NGSA {a['ngsa_eis']}", "var(--s1)"),
                   (num(b["fps_minus_dn"]) + " $B", f"fps 2044, NGSA {b['ngsa_eis']}", "var(--s2)"),
-                  (lead_status(b), lab, None))
+                  (lab, lead_status(b), None))
         out.append(f'<rect x="{left + (8 - L) * band:.1f}" y="{top}" width="{band:.1f}" height="{h - top - bot}" class="hit" {mark_attrs(*rows_t)}/>')
     out.append("</svg>")
-    tv = tview("fps value by NGSA head start", ["NGSA lead", "fps 2041 ($B)", "fps 2044 ($B)", "Status (both fps dates)"],
-               [[f"{L} yr" + ("+" if L == 8 else ""), num(rows['2041'][L]['fps_minus_dn']), num(rows['2044'][L]['fps_minus_dn']), lead_status(rows['2044'][L])] for L in leads])
-    return "".join(out), tv
+    return "".join(out)
+
+
+def lead_table():
+    rows = lead_rows()
+    leads = list(range(8, -1, -1))
+    return tview("fps value by NGSA head start", ["NGSA lead", "fps 2041 ($B)", "fps 2044 ($B)", "Status (both fps dates)"],
+                 [[f"{L} yr" + ("+" if L == 8 else ""), num(rows['2041'][L]['fps_minus_dn']), num(rows['2044'][L]['fps_minus_dn']), lead_status(rows['2044'][L])] for L in leads],
+                 num_cols=(1, 2))
 
 
 # ------------------------------------------------------------------ chart 5: readings of the delay (wide + stacked)
@@ -373,7 +411,7 @@ def chart_readings(stacked=False):
                 out.append(f'<text x="{sx(a) + 10:.1f}" y="{cy + 4:.1f}" class="val muted">{num(a)}</text>')
             else:
                 out.append(f'<text x="{sx(a):.1f}" y="{cy - 12:.1f}" text-anchor="middle" class="val muted sm">{num(a)}</text>')
-        rows_t = [(" ".join(lines), "", None), (num(b) + " $B", "fps 2044", None)] + ([(num(a) + " $B", "fps 2041", None)] if a is not None else [])
+        rows_t = [("", " ".join(lines), None), (num(b) + " $B", "fps 2044", None)] + ([(num(a) + " $B", "fps 2041", None)] if a is not None else [])
         out.append(f'<rect x="0" y="{y:.1f}" width="{w}" height="{rowh}" class="hit" {mark_attrs(*rows_t)}/>')
     out.append(f'<text x="{(left + w - right) / 2:.1f}" y="{h - 5}" text-anchor="middle" class="tick">fps 10-year minus Do Nothing, $B</text>')
     out.append("</svg>")
@@ -389,7 +427,7 @@ ODDS = [("Third player", [("Embraer, independent entrant", 6, 10, "Clean sheet w
 
 
 def chart_odds(stacked=False):
-    w, left, right, top, rowh, lab_h = (400, 10, 24, 6, 58, 22) if stacked else (760, 300, 40, 10, 40, 0)
+    w, left, right, top, rowh, lab_h = (400, 10, 76, 6, 58, 22) if stacked else (760, 300, 40, 10, 40, 0)
     n = sum(len(r) for _, r in ODDS) + len(ODDS)
     h = top + rowh * n + 46
     lo, hi = 0, 60
@@ -415,7 +453,7 @@ def chart_odds(stacked=False):
             out.append(f'<line x1="{sx(a) + 7:.1f}" x2="{sx(b) - 6:.1f}" y1="{cy:.1f}" y2="{cy:.1f}" class="conn"/>')
             out.append(f'<circle cx="{sx(a):.1f}" cy="{cy:.1f}" r="6" class="hollow"/><circle cx="{sx(b):.1f}" cy="{cy:.1f}" r="5.5" class="filled"/>')
             out.append(f'<text x="{sx(b) + 12:.1f}" y="{cy + 4:.1f}" class="val">{a}% → {b}%</text>')
-            out.append(f'<rect x="0" y="{y0:.1f}" width="{w}" height="{rowh}" class="hit" {mark_attrs((f"{a}% → {b}%", lab, None), (note, "", None))}/>')
+            out.append(f'<rect x="0" y="{y0:.1f}" width="{w}" height="{rowh}" class="hit" {mark_attrs((f"{a}% → {b}%", lab, None), ("", note, None))}/>')
             i += 1
     out.append(f'<text x="{(left + w - right) / 2:.1f}" y="{h - 5}" text-anchor="middle" class="tick">Probability (judgement)</text>')
     out.append("</svg>")
@@ -472,7 +510,7 @@ def airbus_cards():
           "Profile rule “own clock”: don’t wait for Boeing; its default is the technology-ready year (entry 2035). Both war games launched NGSA in 2028 for 2035; the late-fps game noted “a delayed fps does not change it”. Public plan (Farnborough, July 2026): launch 2030, entry in the second half of the 2030s."),
          ("Delay Tactics", [("Drop them (if NGSA holds)", 95), ("Keep in reserve for a visible fps launch", 5)],
           "Worth +$1.16B only if Boeing actually launches fps. Against a Boeing that does nothing they cost $12.5B: the board’s “naked fine” applies (a $48.3B penalty for Delay Tactics with no fps to delay, about $12.1B in present value) plus about $0.4B of operating cost. They pay only if Boeing launches with more than about 91.5% probability.",
-          "The war-game Airbus never used them in either game: always below its $1B test and against its integrity pillar. The profile says stop Delay Tactics once fps is off."),
+          "The war-game Airbus never used them in either game: always below its $1B test and against its integrity commitment. The profile says stop Delay Tactics once fps is off."),
          ("Widebody Chicken (now the main contest)", [("Stay out once Boeing re-engines the 787 first", 50), ("Pre-empt with an A350 Re-engine", 30), ("Both re-engine", 10), ("Neither", 10)],
           "Chicken: each side wants to re-engine only if the other doesn’t, so whoever commits first wins. A350 Re-engine alone +50.12; stay out +47.68; both +45.36. Pre-empting gains $1.8B if Boeing stays out but loses $2.3B if Boeing re-engines anyway, so it fails Airbus’s own test of beating Do Nothing by $1B against every plausible Boeing move.",
           "Late-fps war game: Boeing, freed from fps, re-engined the 787 first (2031); Airbus deferred, then shelved (+$0.33B). On-time game: Airbus pre-empted while Boeing was busy with fps."),
@@ -523,8 +561,8 @@ CSS = r"""
 :root {
   --bg: #f4f6f9; --surface: #ffffff; --sunk: #eef2f7; --line: #d5dce6; --grid: #e3e8ef;
   --fg: #141c28; --muted: #556275; --faint: #8a95a5;
-  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
-  --pos: #3b4a5e; --neg: #9aa6b6;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #17a06f;
+  --pos: #3b4a5e; --neg: #8792a3;
   --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -609,7 +647,8 @@ section { margin-top: 44px; }
 .chart .hit:focus-visible { fill: var(--fg); fill-opacity: .08; stroke: var(--fg); stroke-width: 1.5; }
 .chart .cross { stroke: var(--muted); stroke-width: 1; }
 .chart.xh:focus { outline: none; }
-.chart.xh:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+.chart.xh:focus-visible { outline: none; }
+.cw:has(> .chart.xh:focus-visible) { outline: 2px solid var(--fg); outline-offset: 2px; border-radius: 4px; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .85rem; color: var(--muted); margin: 6px 0 6px; }
 .legend i { display: inline-block; vertical-align: middle; margin-right: 6px; }
 .legend i.ln { width: 16px; height: 2px; border-radius: 1px; }
@@ -624,7 +663,7 @@ section { margin-top: 44px; }
   border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: .82rem; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
 .tip div { display: flex; align-items: baseline; gap: 6px; line-height: 1.35; }
 .tip b { font: 600 .86rem var(--font-mono); white-space: nowrap; }
-.tip span.l { color: var(--muted); }
+.tip span.l { color: var(--muted); flex: 1 1 auto; min-width: 0; }
 .tip .k { display: inline-block; width: 12px; height: 2px; border-radius: 1px; flex: none; align-self: center; }
 .tip .yr { font: 600 .78rem var(--font-mono); color: var(--muted); margin-bottom: 4px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -634,6 +673,7 @@ details.tv table { margin-top: 8px; }
 .loop { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; margin: 12px 0 6px; padding: 0; list-style: none; counter-reset: lp; }
 .loop li { flex: 1 1 150px; border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; background: var(--sunk); font-size: .9rem; }
 .loop li::before { counter-increment: lp; content: counter(lp); font: 600 .78rem var(--font-mono); color: var(--muted); display: block; }
+.zkey { margin: 8px 0 0; padding-left: 20px; font-size: .86rem; color: var(--muted); }
 .loop li.back { background: var(--surface); border-style: dashed; color: var(--muted); }
 .dcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; }
 .dcard h3 { margin-bottom: 10px; }
@@ -672,9 +712,11 @@ footer { margin-top: 40px; font-size: .82rem; color: var(--muted); border-top: 1
   .chart .val, .chart .endlab, .chart .rowlab.sm { font-size: 14px; }
   .chart .grp { font-size: 12px; } .chart .val.sm { font-size: 12.5px; }
   .chart.narrow .tick { font-size: 12px; } .chart.narrow .val, .chart.narrow .rowlab.sm { font-size: 13px; }
-  tbody th { min-width: 8.5rem; }
-  thead th { white-space: normal; }
+  th, td { padding: 7px 6px; font-size: .86rem; }
+  thead th { white-space: normal; letter-spacing: .02em; }
+  tbody th { min-width: 7rem; }
 }
+@media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: no-preference) { a { transition: color .15s; } }
 """
 
@@ -697,7 +739,7 @@ JS = r"""
       for (const r of rows) {
         const d = document.createElement('div');
         if (r.k) { const k = document.createElement('span'); k.className = 'k'; k.style.background = r.k; d.appendChild(k); }
-        const v = document.createElement('b'); v.textContent = r.v; d.appendChild(v);
+        if (r.v) { const v = document.createElement('b'); v.textContent = r.v; d.appendChild(v); }
         if (r.l) { const l = document.createElement('span'); l.className = 'l'; l.textContent = r.l; d.appendChild(l); }
         tip.appendChild(d);
       }
@@ -779,6 +821,9 @@ def build():
     rr0 = ENG[keys[0]]["pure"][0]["rr_b"]
     steps = bridge_steps()
     net = v44 - v41
+    hz = [-v["delay_cost"] for v in SENS["common_horizon"].values()]
+    hz_lo, hz_hi = rnd(min(hz), 1), rnd(max(hz), 1)
+    assert (hz_lo, hz_hi) == (3.9, 4.8) and SENS["flat_strain_max_reproducing"] == 1.55
     dec41, dec44 = DELAY["snapshot_2041"]["decomp_fps10_vs_dn"][MOD], DELAY["delay3_2044"]["decomp_fps10_vs_dn"][MOD]
 
     # guards: the prose below states these numbers
@@ -789,17 +834,17 @@ def build():
     assert lev["Boeing recovery pp/yr"]["2.25"]["fps_in_pure"] == 0
     assert rnd(a44 - a41, 1) == 8.4 and rnd(a_dn - a41, 1) == 10.9 and rnd(cfm2 - cfm0, 0) == 38 and rnd(pw0 - pw2, 0) == 4
 
-    eis_svg, eis_tv, eis_focus = chart_eis()
+    eis_tv, lead_tv = eis_table(), lead_table()
     bridge_svg, timing_net = chart_bridge()
     share_svg, share_tv = chart_share()
-    lead_svg, lead_tv = chart_lead()
+
     units_svg, units_tv = chart_airbus_units()
 
     tiles = [("fps vs Do Nothing", f"{num(v41)} → {num(v44)}", f"$B, present value. Against Airbus Delay Tactics: {num(d41)} → {num(d44)}"),
              ("fps in equilibrium", "14 of 17 → none", "On time, fps (either ramp) is in 14 of the 17 near-Nash outcomes; at 2044 it is in none of the 4 (2 pure, 2 near-Nash)"),
              ("Airbus gain", f"+${rnd(a44 - a41, 1):.1f}–{rnd(a_dn - a41, 1):.1f}B", f"+${rnd(a44 - a41, 1):.1f}B if Boeing still launches a late fps; +${rnd(a_dn - a41, 1):.1f}B in the new equilibrium where Boeing does nothing (vs the snapshot’s typical outcome)"),
              ("Third player", "~15% → ~22%", "Embraer or COMAC entering (judgement)"),
-             ("CFM vs the snapshot", f"+${rnd(cfm2 - cfm0, 0):.0f}B", f"Its engine-board loss shrinks from {num(cfm0, '+.1f')}B to {num(cfm2, '+.1f')}B if Boeing keeps the 737 on LEAP")]
+             ("CFM vs the snapshot", f"+${rnd(cfm2 - cfm0, 0):.0f}B", f"Its engine-board loss shrinks from about −${abs(rnd(cfm0, 0)):.0f}B to −${abs(rnd(cfm2, 0)):.0f}B if Boeing keeps the 737 on LEAP")]
     tiles_html = "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div><div class="d">{esc(d)}</div></div>' for k, v, d in tiles)
 
     numbers = table(["Boeing: fps 10-year Solo minus Do Nothing ($B)", "fps 2041 (snapshot)", "fps 2044 (delay)"], [
@@ -818,7 +863,7 @@ def build():
         ["Timing effects, net", num(timing_net)], ["Deeper share hole", num(steps[4][1])],
         ["fps 2044", num(v44)], ["Change, 2041 → 2044", num(net)]])
     levers = table(["Lever (snapshot value)", "Beats Do Nothing", "Beats Do Nothing by $1B", "Back in a pure equilibrium"], [
-        ["fps margin (25.64%)", f"{LT['fps margin %']['breakeven']:.1f}%", f"{LT['fps margin %']['hurdle_1B']:.1f}%", "<b>34.1%</b>"],
+        ["fps margin (25.64%)", f"{LT['fps margin %']['breakeven']:.1f}%", f"{LT['fps margin %']['hurdle_1B']:.1f}%", f"<b>{LT['fps margin %']['breakeven_vs_delay_tactics']:.1f}%</b>"],
         ["fps 10-year bill ($55.25B)", f"${LT['fps 10yr bill $B']['breakeven']:.1f}B", f"${LT['fps 10yr bill $B']['hurdle_1B']:.1f}B", f"<b>${LT['fps 10yr bill $B']['breakeven_vs_delay_tactics']:.1f}B</b>"],
         ["fps price ($55M)", f"${LT['fps price $M']['breakeven']:.1f}M", f"${LT['fps price $M']['hurdle_1B']:.1f}M", f"<b>${LT['fps price $M']['breakeven_vs_delay_tactics']:.1f}M</b>"],
         ["Boeing’s share recovery after entry (1 point/yr)", f"{REC['breakeven_modal']:.2f}", f"{REC['hurdle_1B_modal']:.2f}", f"<b>{REC['breakeven_delay_tactics']:.2f}</b>"],
@@ -871,20 +916,20 @@ def build():
 <style>{CSS}</style></head><body><div class="wrap">
 <header class="top"><span class="eyebrow">Game-theory dashboard snapshot · fps entry into service 2041 → 2044</span>
 <h1>fps Three Years Late</h1>
-<p class="lede">What a 3-year fps delay does to Boeing’s business case on your dashboard, how Airbus would respond, and the odds that it brings Embraer or COMAC in as a third player. Everything else stays as in the snapshot: NGSA in service 2037, both Re-engines 2035, and the snapshot’s costs, margins, prices and capture speeds. The analysis also draws on our two war games: fps on time (wg5-2045) and fps three years late (wg5-2045d).</p>
+<p class="lede">What a 3-year fps delay does to Boeing’s business case on your dashboard, how Airbus would respond, and the odds that it brings Embraer or COMAC in as a third player. Everything else stays as in the snapshot: NGSA in service 2037, both Re-engines 2035, and the snapshot’s costs, margins, prices and capture speeds (share points a year a new aircraft wins). The analysis also draws on our two war games: fps on time (wg5-2045) and fps three years late (wg5-2045d).</p>
 <nav class="toc" aria-label="Contents"><a href="#bottom-line">Bottom line</a><a href="#business-case">Business case</a><a href="#airbus">Airbus’s response</a><a href="#third-player">Third player</a><a href="#engines">Engine makers</a><a href="#board">Board vs snapshot</a><a href="#limits">Limits</a><a href="#sources">Sources</a></nav>
 </header>
 <main>
 <section id="bottom-line"><h2>The fps case flips from indifferent to no, and Airbus wins by doing little</h2>
 <div class="tiles">{tiles_html}</div>
-<p class="gloss"><b>Reading the numbers.</b> $B is present value at 2026 against the status quo (Boeing discounts at 10.5%, Airbus at 8%). A <b>pure equilibrium</b> is an outcome where neither company gains by changing its own moves. A <b>near-Nash</b> outcome is one where neither gains more than the board’s tolerance of one yield point (about $1.3B for Boeing), so it is stable in practice. A <b>cell</b> is one combination of Airbus and Boeing moves. The numbers use the board build that reproduces your snapshot exactly (see <a href="#board">board vs snapshot</a>).</p>
+<p class="gloss"><b>Reading the numbers.</b> $B is present value at 2026 against the status quo (Boeing discounts at 10.5%, Airbus at 8%). A <b>pure equilibrium</b> is an outcome where neither company gains by changing its own moves. A <b>near-Nash</b> outcome is one where neither gains more than the board’s tolerance of one yield point (about $1.3B for Boeing), so it is stable in practice. A <b>cell</b> is one combination of Airbus and Boeing moves. We also call pure equilibria “stable” and near-Nash outcomes “near-stable”. <b>Solo</b> means Boeing alone (not via Embraer); 10-year and 7-year are the board’s two fps ramp options. The numbers use the board build that reproduces your snapshot exactly (see <a href="#board">board vs snapshot</a>).</p>
 <div class="bl">
 <div class="panel"><div><b>The fps business case flips from “indifferent” to “no”.</b>fps (10-year ramp) against Do Nothing goes from {usd(v41, sign=True)} to {usd(v44)}, and from {usd(d41)} to {usd(d44)} against Airbus Delay Tactics. On time no outcome is fully stable and fps is in most of the near-stable ones; three years late the only stable outcomes (2 pure equilibria) have Boeing doing nothing on the narrowbody. These are the board’s mildest numbers: they assume a planned delay with the bill deferred too. If the slip is found after the bill is committed, fps is {usd(bt['lump_at_2041']['2044'])}, or {usd(bt['lump_at_2041_plus_30pct_at_2044']['2044'])} with a 30% overrun.</div></div>
 <div class="panel"><div><b>The cause is share, not discounting.</b>NGSA gets 7 years alone instead of 4, so Boeing re-enters at 20% share instead of 28% and, at 1 point a year, never gets back to parity inside the window. The share hole costs {usd(-sp['share_effect'])}; the timing effects net to only {usd(-proj['pure_timing'])}. NGSA’s head start decides it: fps is a pure equilibrium only when NGSA leads by 3 years or less. The snapshot’s 4-year lead is the knife edge; the delay makes it 7.</div></div>
-<div class="panel"><div><b>Airbus’s best response is to do very little.</b>Keep NGSA on its 2030-launch plan (slowing it never pays: each year of slip costs Airbus $2.6–3.2B), drop Delay Tactics (the delay does their job, and against a Boeing that doesn’t launch they cost about $12.5B), and let the contest move to the widebody game of Chicken. Airbus gains $8.4–10.9B on the board, but almost all of it is narrowbody volume beyond what it can build today. Whether Airbus adds that capacity also sets the odds of a third player.</div></div>
+<div class="panel"><div><b>Airbus’s best response is to do very little.</b>Keep NGSA on its 2030-launch plan (slowing it never pays: each year of slip costs Airbus $2.6–3.2B), drop Delay Tactics (the delay does their job, and against a Boeing that doesn’t launch they cost about $12.5B), and let the contest move to the widebody game of Chicken (whoever commits to a Re-engine first wins). Airbus gains $8.4–10.9B on the board, but almost all of it is narrowbody volume beyond what it can build today. Whether Airbus adds that capacity also sets the odds of a third player.</div></div>
 <div class="panel"><div><b>A third player becomes more likely, but stays the less likely outcome.</b>Judgement: Embraer or COMAC enters ~15% → ~22%; Embraer independently ~6% → ~10%; COMAC as a real exporter ~11% → ~15%. More likely: Airbus builds more and prices the scarcity, 737 MAX volumes stay higher than the board assumes, and (≈45% → 50% chance) COMAC supplies 40% or more of China’s single-aisle deliveries by 2045, taking Boeing’s China business. That hurts Boeing more than any exporting entrant.</div></div>
-<div class="panel"><div><b>Our late-fps war game reached the same end state.</b>Boeing failed its own go/no-go test (−0.73 against a +$1B hurdle), re-engined the 787 instead, and Airbus shelved the A350 Re-engine: the board’s second equilibrium. The two models differ in calibration but agree on direction and end state.</div></div>
-<div class="panel"><div><b>A Boeing that doesn’t launch fps is a large gain for CFM.</b>About +$38B against the snapshot, because the LEAP-powered 737 keeps Boeing’s slot. Rolls-Royce loses its narrowbody entry ({usd(rr0, sign=True)} in the snapshot) and Pratt &amp; Whitney about $4B. Your engine board has a CFM “Partner Embraer” move it never evaluates; included, it is in every engine equilibrium.</div></div>
+<div class="panel"><div><b>Our late-fps war game reached the same end state.</b>Boeing failed its own go/no-go test (−0.73 against a +$1B hurdle), re-engined the 787 instead, and Airbus shelved the A350 Re-engine: equilibrium B at 2044 (Boeing re-engines the 787, Airbus leaves the A350 alone), one of the board’s two. The two models differ in calibration but agree on direction and end state.</div></div>
+<div class="panel"><div><b>A Boeing that doesn’t launch fps is a large gain for CFM.</b>About +$38B against the snapshot, because the LEAP-powered 737 keeps Boeing’s slot. Rolls-Royce loses its narrowbody entry ({usd(rr0, sign=True)} in the snapshot) and Pratt &amp; Whitney gives up about $4B. Your engine board has a CFM “Partner Embraer” move it never evaluates; included, it is in every engine equilibrium.</div></div>
 </div></section>
 
 <section id="business-case"><h2>Business case: fps goes from indifferent to clearly negative</h2>
@@ -892,7 +937,7 @@ def build():
 <div class="panel"><p class="ctitle">fps stops paying from 2042 and drops out of every equilibrium from 2043</p>
 <p class="label">fps 10-year minus Do Nothing by fps entry year ($B)</p>
 <div class="legend"><span><i class="bar" style="background:var(--pos)"></i>fps beats Do Nothing</span><span><i class="bar" style="background:var(--neg)"></i>fps loses</span><span><i class="dot"></i>fps in an equilibrium</span><span><i class="ringf"></i>in none</span></div>
-<div class="cw" data-focus="{eis_focus:.0f}">{eis_svg}</div>{eis_tv}
+{both(chart_eis)}{eis_tv}
 <p class="cap">2042 is slightly negative but inside the board’s $1.3B tolerance, so fps is still near-stable there. After 2044 the value rises slightly; that is a quirk of the board’s evaluation window (entry into service + 19 years), which makes a later fps the same losing project, discounted further.</p></div>
 {numbers}
 <div class="panel callout"><h3>At 2041 Boeing is indifferent, not committed</h3>
@@ -915,7 +960,7 @@ def build():
 <div class="panel"><p class="ctitle">NGSA’s head start decides it: 3 years or less and fps is an equilibrium again</p>
 <p class="label">fps 10-year minus Do Nothing by NGSA head start ($B)</p>
 <div class="legend"><span><i class="ln" style="background:var(--s1)"></i>fps 2041</span><span><i class="ln" style="background:var(--s2)"></i>fps 2044</span></div>
-<div class="cw" data-focus="260">{lead_svg}</div>{lead_tv}
+{both(chart_lead)}<ol class="zkey only-narrow">{"".join(f"<li>{esc(z[2])}</li>" for z in LEAD_ZONES)}</ol>{lead_tv}
 <p class="cap">The rule is the same for both fps dates. At a head start of 3 years or less fps is in every pure equilibrium. At 4 years fps beats Do Nothing head to head, but no pure equilibrium exists (the snapshot sits here). At 5 years fps survives only in a few near-Nash cells; at 6 or more it is in none. The delay moves the head start from 4 years to 7. Head starts of 7 years or more give the same values, because NGSA’s capture has hit its 80% cap.</p></div>
 </div>
 
@@ -928,19 +973,21 @@ def build():
 <h3 style="margin-top:30px">What would bring fps back at 2044</h3>
 <p class="muted">Each lever moves on its own; every level is solved on the board.</p>
 {levers}
-<p class="cap" style="margin-top:10px"><b>Breaking even is not enough.</b> Between “beats Do Nothing” and the pure-equilibrium level the board cycles with no pure equilibrium; fps settles only once it beats Do Nothing even against Delay Tactics. “fps via Embraer” differs from the 10-year Solo (Boeing alone) only in its bill, so its break-even is the same {usd(LT['fps via Embraer bill $B']['breakeven'], 1)}, less than half the $100B the slider is set to.</p>
+<p class="cap" style="margin-top:10px">Each level is the solved threshold, rounded to the nearest value; fps needs to be just beyond it. <b>Breaking even is not enough.</b> Between “beats Do Nothing” and the pure-equilibrium level the board cycles with no pure equilibrium; fps settles only once it beats Do Nothing even against Delay Tactics. “fps via Embraer” differs from the 10-year Solo (Boeing alone) only in its bill, so its break-even is the same {usd(LT['fps via Embraer bill $B']['breakeven'], 1)}, less than half the $100B the slider is set to.</p>
 
 <h3 style="margin-top:30px">What the game becomes</h3>
 {eqtab}
+<p class="cap">The other two near-Nash outcomes at 2044 are A and B with a 737 Rate Increase added; fps is in none of the four.</p>
 <div class="grid2" style="margin-top:14px">
 <div class="panel"><b>Boeing’s own payoff hardly moves</b> ({num(b41_typ)} → {num(p44[0]['db'])}). Do Nothing was already almost as good as fps. The delay destroys the option, the fps path back into the narrowbody market, and leaves Boeing at 20% narrowbody share from 2043. Its best remaining move is to re-engine the 787 first (equilibrium B): winning the widebody Chicken is worth +$5.6B to Boeing and only +$2.4B to Airbus.</div>
 <div class="panel"><b>Our late-fps war game reached the same end state.</b> In wg5-2045d Boeing failed its own go/no-go test (−0.73 against a +$1B hurdle; −4.71 against Delay Tactics), re-engined the 787 instead, and Airbus shelved the A350 Re-engine: equilibrium B. Its calibration differs (NGSA 2035, a $30B fps bill), but measured as NGSA head start it also crosses the knife edge, from 3 years to 6.</div>
 </div></section>
 
 <section id="airbus"><h2>Airbus’s response: hold, drop Delay Tactics, and decide on capacity</h2>
-<p class="muted">The board solves for what pays; Airbus’s behavioural profile and both war games show what Airbus tends to do. Probabilities are judgement; board values are solved. They depend on each other: if NGSA slips to 2039–2041, fps comes back and Delay Tactics come back with it, so the 95% “drop” assumes NGSA holds.</p>
+<p class="muted">The board solves for what pays; Airbus’s behavioural profile and both war games show what Airbus tends to do. Probabilities are judgement; board values are solved. They depend on each other: if NGSA slips to 2039–2041, fps comes back (and from 2040 Delay Tactics come back with it), so the 95% “drop” assumes NGSA holds.</p>
 <div class="dcards">{airbus_cards()}</div>
-<div class="panel" style="margin-top:14px"><p class="ctitle">The capacity decision links Airbus’s response to the third-player question</p>
+<div class="panel" style="margin-top:14px"><p class="ctitle">If Boeing does nothing, the board needs 1,600 Airbus aircraft a year: 400 above ~100 a month, 700 above rate 75</p>
+<p class="muted small">This is where Airbus’s response and the third-player question meet.</p>
 <p class="label">Airbus narrowbody deliveries a year implied by the board</p>
 <div class="legend">{scen_leg}</div>
 <div class="cw">{units_svg}</div>{units_tv}
@@ -985,7 +1032,7 @@ def build():
 <p class="cap"><b>What binds COMAC is production, US parts and certification, not demand.</b> The delay mostly gives Beijing more reason to steer Chinese orders to COMAC and to Airbus’s Tianjin line.</p></div>
 </div>
 <div class="grid2" style="margin-top:14px">
-<div class="panel"><h3>Who bears the risk</h3><p><b>An exporting entrant mostly fills demand Airbus cannot build</b>: chiefly an Airbus risk, and a check on Airbus’s delay gain.</p><p><b>COMAC taking China hits Boeing.</b> China is about 20% of global single-aisle demand. Losing about 6% of the board’s market (about 30% of China) wipes out the 2041 fps case (+1.06 → 0). If COMAC takes 10% of the board’s market (about half of China), the 2044 case deepens from −2.53 to −3.46.</p></div>
+<div class="panel"><h3>Who bears the risk</h3><p><b>An exporting entrant mostly fills demand Airbus cannot build</b>: chiefly an Airbus risk, and a check on Airbus’s delay gain.</p><p><b>COMAC taking China hits Boeing.</b> China is about 20% of global single-aisle demand. Losing about {SENS['comac_slice_breakeven_2041'] * 100:.0f}% of the board’s market (about 30% of China) wipes out the 2041 fps case ({num(v41)} → 0). If COMAC takes 10% of the board’s market (about half of China), the 2044 case deepens from {num(v44)} to {num(SENS['comac_slice']['0.1']['2044'])}.</p></div>
 <div class="panel"><h3>Signals to watch</h3><ul class="facts">
 <li><b>Airbus:</b> an NGSA production-rate decision; a line or engine deal above rate 75.</li>
 <li><b>Embraer:</b> money signed with PIF, Korea or Japan; an engine selection; investment above about $0.4B a year rather than buybacks.</li>
@@ -1006,15 +1053,15 @@ def build():
 <section id="board"><h2>Board vs snapshot: your snapshot came from a later build</h2>
 <div class="panel"><ul class="facts">
 <li><b>Attached file:</b> charges the full $3B Boeing two-front strain whenever fps and a 787 Re-engine are developed together. Solved as uploaded it gives 1 pure and 13 near-Nash equilibria and misses 4 of your 17 cells.</li>
-<li><b>Overlap-aware strain</b> (strain scaled by how far the two development windows overlap) reproduces the snapshot exactly: 0 pure and 17 near-Nash, the same cells and every rounded yield. Boeing’s windows overlap one year in five, so its strain is $0.6B. A flat strain of $1.55B or less would also fit, but the snapshot prints $3.00B.</li>
+<li><b>Overlap-aware strain</b> (strain scaled by how far the two development windows overlap) reproduces the snapshot exactly: 0 pure and 17 near-Nash, the same cells and every rounded yield. Boeing’s windows overlap one year in five, so its strain is $0.6B. A flat strain of ${SENS['flat_strain_max_reproducing']:.2f}B or less would also fit, but the snapshot prints $3.00B.</li>
 <li><b>What it changes:</b> only cells where Boeing also re-engines the 787. Both rules give the same equilibria at 2044.</li>
 <li><b>The engine board can’t see the delay.</b> It takes the earlier of fps and NGSA (2037) as the narrowbody entry year. That is a decoupling in the board, not evidence that engine makers are unaffected.</li>
 </ul>
-<p class="cap"><b>How it was done.</b> Your board was solved headlessly (Streamlit never runs; a mock harness executes its code). Five AI analysts covered Airbus’s response, Embraer, COMAC, an independent re-derivation of every board number and a completeness review, each with an adversarial checker, and three more checked this page; their corrections are applied.</p></div></section>
+<p class="cap"><b>How it was done.</b> Your board’s own code was run directly, without the dashboard interface (a stand-in for Streamlit executes it). Five AI analysts covered Airbus’s response, Embraer, COMAC, an independent re-derivation of every board number and a completeness review, each with an adversarial checker, and three more checked this page; their corrections are applied.</p></div></section>
 
 <section id="limits"><h2>Limits to keep in mind</h2><div class="panel"><ul class="cav">
 <li><b>Bill timing.</b> The board pays the whole programme bill in the entry-into-service year. This drives both the positive 2041 case and the “cheaper delay” (see the readings above).</li>
-<li><b>Evaluation window.</b> It runs from 2026 to entry into service + 19, so Boeing’s Do Nothing payoff moves with the fps slider (by $0.13B between 2041 and 2044). On a common calendar horizon the delay costs Boeing $3.9–4.8B, not the $3.59B drop in the bridge; the verdict holds for any horizon up to 2089.</li>
+<li><b>Evaluation window.</b> It runs from 2026 to entry into service + 19, so Boeing’s Do Nothing payoff moves with the fps slider (by $0.13B between 2041 and 2044). On a common calendar horizon (2056 to 2080) the delay costs Boeing ${hz_lo:.1f}–{hz_hi:.1f}B, not the $3.59B drop in the bridge; fps 2044 only breaks even if the horizon runs to {SENS['fps2044_breakeven_horizon']}.</li>
 <li><b>No third player, capacity, price or move order.</b> The board lets Airbus build 1,600 a year and has no Embraer or COMAC. Who moves first in the widebody Chicken comes from the war game.</li>
 <li><b>Slider settings.</b> The $48.3B penalty for Delay Tactics without an fps is discounted to the fps date; “fps via Embraer” is $100B, the slider’s maximum.</li>
 <li><b>Board build.</b> The uploaded build is not the one that produced the snapshot. The engine board doesn’t read Boeing’s launch decision, and CFM’s Embraer move is never evaluated.</li>
@@ -1027,7 +1074,7 @@ def build():
 </main>
 <footer>fps Three Years Late · probabilities are judgement; board values are solved on your dashboard with overlap-aware strain.</footer>
 </div><script>{JS}</script></body></html>"""
-    assert page.count("<svg viewBox") == 11, page.count("<svg viewBox")
+    assert page.count("<svg viewBox") == 13, page.count("<svg viewBox")
     return page
 
 
