@@ -267,6 +267,11 @@ def bulletin(state, year, round_no, statements=None, public_other=None, notes=No
             for it in items:
                 L.append("- **%s:** %s%s" % (M.NAMES[s], it.get("move", ""), (" — " + it["detail"]) if it.get("detail") else ""))
         L.append("")
+    sf = unexplained_shortfall(state, year)
+    if sf:
+        L += ["**Market observation.** In %d-%d Boeing's narrowbody deliveries ran %s below what the published rules "
+              "give for the programmes on record (shares in the table below). The game master does not attribute causes." % (
+                  sf[0][0], sf[-1][0], " / ".join(sorted({"%.0f points of market share" % (100 * (p_ - a)) for _, a, p_ in sf}))), ""]
     obs = observed(state, year)
     L += ["## Observed market, %d-%d" % (2026, year - 1), "",
           "Shares of deliveries. Engine shares are of all engines delivered on narrowbody and widebody aircraft.", "",
@@ -333,6 +338,29 @@ def objective_status(side, state, v):
         wb = {y: en[y]["rolls_royce"]["wb_share"] for y in (2040, 2045, 2050)}
         out.append(("Keep WB dominance: RR WB engine share ≥ 50% in 2040, 2045, 2050", min(wb.values()) >= 0.5 - 1e-9,
                     "worst year %s" % pct(min(wb.values()))))
+    return out
+
+
+def sees_covert(state, side, year):
+    """Airbus always values its own covert moves. Another player's valuation includes them only once their market
+    effect is entirely in the past (observed deliveries); its cause is never disclosed."""
+    if side == "airbus":
+        return True
+    fps = M.live(state, "fps")
+    if not (state["dt"]["bottleneck"] or state["dt"]["poaching"]) or not fps:
+        return False
+    return fps["eis"] + 5 <= year
+
+
+def unexplained_shortfall(state, year):
+    """Public market observation: years before `year` in which Boeing's NB deliveries ran below what the published
+    rules give for the programmes on record. Returns [(year, actual, rule)]."""
+    va = M.value(state, covert=True, series=True)["_af_series"]["years"]
+    vp = M.value(state, covert=False, series=True)["_af_series"]["years"]
+    out = []
+    for a, p_ in zip(va, vp):
+        if a["year"] < year and abs(a["boeing"]["nb_share"] - p_["boeing"]["nb_share"]) > 1e-9:
+            out.append((a["year"], a["boeing"]["nb_share"], p_["boeing"]["nb_share"]))
     return out
 
 
@@ -480,7 +508,7 @@ def payoff_grid(state, side, year):
     """Own ΔPV and yield for every own plan × rival scenario, assuming no moves after this round."""
     opts = own_options(state, side, year)
     scen = rival_scenarios(state, side, year)
-    covert = (side == "airbus")
+    covert = sees_covert(state, side, year)
     grid = []
     for olab, o in opts:
         row = []
@@ -545,7 +573,7 @@ def table(head, rows):
 
 def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
     name = M.NAMES[side]
-    v = M.value(state, covert=(side == "airbus"), series=True)
+    v = M.value(state, covert=sees_covert(state, side, year), series=True)
     me = v[side]
     L = ["# %s — private brief, round %d (decision year %d)" % (name, round_no, year), "",
          "From the game master, for %s only. It holds the public record (in the bulletin) and your own position. "
