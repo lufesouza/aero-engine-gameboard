@@ -183,6 +183,8 @@ def build(n_rounds=None):
     v0 = M.value(s0, covert=True, series=True)
     data["status_quo"]["years"] = years_block(v0)
     data["regret"] = regret(n_rounds)
+    data["stage"] = {str(n): jl("stage_r%d.json" % n) for n in range(1, n_rounds + 1)
+                     if os.path.exists(os.path.join(RUN_DIR, "stage_r%d.json" % n))}
     data["audit"] = {str(n): jl("audit_r%d.json" % n) for n in range(1, n_rounds + 1)
                      if os.path.exists(os.path.join(RUN_DIR, "audit_r%d.json" % n))}
     data["params"] = {"af": {k: v for k, v in M.af_params().items() if isinstance(v, (int, float))},

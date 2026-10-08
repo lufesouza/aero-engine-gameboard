@@ -312,6 +312,25 @@ def regret_table():
     return K.table(["Player"] + [f"Round {n} ({y})" for n, y in enumerate(RYEARS, 1)], rows, num_cols=tuple(range(1, len(ROUNDS) + 1)))
 
 
+def stage_table():
+    S = D.get("stage") or {}
+    rows = []
+    for n in range(1, len(ROUNDS) + 1):
+        x = S.get(str(n))
+        if not x:
+            continue
+        eq = "<br>".join(f"Boeing: {esc(p[0])} · Airbus: {esc(p[1])} ({K.num(p[2])} / {K.num(p[3])})" for p in x["pure"]) or "none"
+        pv = x["played_value"]
+        played = f"Boeing: {esc(x['played'][0] or '?')} · Airbus: {esc(x['played'][1] or '?')} ({K.num(pv[0])} / {K.num(pv[1])})"
+        rows.append([f"Round {n} ({x['year']})", eq, played,
+                     f"Boeing {esc(x['boeing_best_response_to_played_airbus'][0])} ({K.num(x['boeing_best_response_to_played_airbus'][1])})<br>"
+                     f"Airbus {esc(x['airbus_best_response_to_played_boeing'][0])} ({K.num(x['airbus_best_response_to_played_boeing'][1])})"])
+    if not rows:
+        return ""
+    return ('<p class="label">The airframer stage game on the board, each round (engine makers as played; nobody moves later; ΔPV $B Boeing / Airbus)</p>'
+            + K.table(["Round", "Pure equilibria", "What was played", "Best reply to the other's actual play"], rows))
+
+
 def regret_detail():
     R = D["regret"]
     rows = []
@@ -439,6 +458,7 @@ def build(out_path):
 {rounds_html}
 
 <section id="play"><h2>How well each player played</h2><p class="lede">{NAR.PLAY_LEDE}</p><div class="stack">
+<div class="panel">{stage_table()}</div>
 <div class="panel"><p class="label">Regret by round, $B (final ΔPV of the best alternative minus the actual, holding everyone else's actual orders)</p>{regret_table()}{regret_detail()}</div>
 <div class="bl">{"".join(f'<div class="panel"><div><b>{esc(t)}</b>{x}</div></div>' for t, x in NAR.PLAY_POINTS)}</div>
 </div></section>
