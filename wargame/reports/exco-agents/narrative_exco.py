@@ -2,51 +2,63 @@
 
 TITLE = "One agent per executive: the fifteen ExCo agents"
 
-LEDE = ("Each company in the war game will now be played by three agents instead of one: its CEO, its CFO and its operating "
-        "head. Each agent is built from that person's own words in earnings calls and investor events; Airbus's three are built "
-        "from the FY2025 Board Report, which is mostly not their speech. This page profiles the fifteen agents, the evidence "
-        "behind each, and how a round will run with them. <b>The game has not been run with them yet.</b>")
+LEDE = ("In our Boeing vs Airbus war game (with the engine makers CFM/GE, Pratt &amp; Whitney and Rolls-Royce), each company "
+        "will now be played by three AI agents instead of one: one each for its CEO, its CFO and its operating head, together "
+        "its executive committee (ExCo). Each agent is an AI model told to argue and decide as that person would, using only a "
+        "profile built from the person's public words in earnings calls and investor events. Airbus's three rest mostly on its "
+        "FY2025 Board Report, which is not their speech. <b>The game has not been run with these agents yet.</b> This page "
+        "shows what each agent is built on and how a round will run.")
 
 FINDINGS = [
     ("Each company now decides as three people, not one.",
      "The CEO frames the round and decides. The CFO and the operating head test the frame independently, each against "
-     "their own stated rules, and can block on the grounds their team's rule gives them. How binding that is differs by "
-     "company: binding at Boeing, Pratt &amp; Whitney and Rolls-Royce; soft at Airbus (overridable only for a plan at least "
-     "$1B better, on the Board's record); inferred at CFM/GE."),
+     "their own stated rules, and can block on the grounds their team's rule gives them. How hard that block is differs by "
+     "company. At Boeing, Pratt &amp; Whitney and Rolls-Royce a standing veto binds the CEO, though Boeing's two veto rights "
+     "are themselves inferred from what the executives said. At Airbus the vetoes are soft: the CEO may override a failed "
+     "test once per game, only for a plan at least $1B better, recorded as a Board item. At CFM/GE a failed test binds "
+     "unless Culp answers it with evidence, and whether either colleague holds a veto at all is inferred."),
     ("Six agents stand on deep records and play from their own rules.",
      "Culp, Mitchill, Calio, Erginbilgic, Ghai and Ortberg each have more than 100 items in their own words. Their tests "
-     "come from what they said: Ortberg asks for a rate step only on KPIs, with \"no subjectivity\" [BX-1259]. Ghai keeps "
-     "capex in the 2% to 3% range [CX-0922]. Culp wants \"at least a 20% reduction in fuel burn\" [CX-0217]. McCabe and "
-     "Erginbilgic sign off every case above \u00a325 million together, against mid- to high-teens hurdles [RX-0213]."),
+     "come from what they said: Ortberg asks for a rate step only on KPIs, with \"no subjectivity\" [BX-1259]. Ghai holds "
+     "pricing \"price/cost positive\" [CX-0929]. Culp wants \"at least a 20% reduction in fuel burn\" [CX-0217]. "
+     "Erginbilgic says \"until I am sure we will deliver, I'm not committing\" [RX-0124]. Two more, McCabe and Watson, "
+     "stand on moderate records (61 and 27 items)."),
     ("Seven agents have thin or filing-based records, and are told to defer rather than invent.",
-     "Malave's eleven items come from one call; Pope's eight predate her current role; Ali has 13 and Eddy 21 from one day. "
+     "Malave's eleven items come from one call. Pope's eight and Ali's 13 (four investor events, 2022-2024) predate their "
+     "current roles. Eddy's 21 come from a single day. "
      "Each of these agents names whom to defer to on what, and marks every view beyond the record as inference. Malave "
      "still carries a sharp test of his own: a baseline with buffer \"from a schedule and cost perspective\" [BX-0553]."),
     ("Airbus is profiled from what its Board says, not from what its executives say.",
      "Faury has one line in his own words [AX-0081]; Toepfer and Wagner have none. Their tests and soft vetoes follow from "
      "their roles, their pay metrics and the Board Report, so the Airbus ExCo is where the agents are least like the people."),
     ("Nothing has been played yet.",
-     "The agents are installed and isolated, and the round script is written. The next step is to replay the four dash-2050 "
-     "rounds with the fifteen agents and compare their orders with the single company agents' play."),
+     "The agents are set up and kept apart from each other's files, and the round procedure is written. The next step is to "
+     "replay the four rounds of the earlier game (dash-2050, where one agent played each company) with the fifteen agents, "
+     "and compare their orders with that game."),
 ]
 
-ROSTER_LEDE = ("The default 2026 executive committee of each company. Select a person for the full profile. <b>Record</b> is "
-               "the depth of the evidence in the person's own words: deep (100 or more items), moderate (25 to 99), thin "
-               "(fewer than 25) or filing-based (Airbus, built from the Board Report). <b>veto</b> marks the members whom the "
-               "team's decision rule lets block the CEO's orders.")
+ROSTER_LEDE = ("The default 2026 executive committee of each company. Select a person for the full profile. "
+               "<b>Volume</b> counts the items in the person's own words: deep (100 or more), moderate (25 to 99), thin "
+               "(5 to 24) or filing-based (under 5; Airbus, built from the Board Report). <b>Confidence</b> is the profile's "
+               "own rating of how well that evidence supports the agent; low ratings have an orange border. The <b>veto</b> "
+               "label says how hard the member can block the CEO's orders. <b>Steps</b> are the parts of each round the agent "
+               "plays: the CEO frames, decides and, when needed, revises; the CFO and the operating head test the plan, then "
+               "concur or veto (see How a round will run).")
 
 EVIDENCE_LEDE = ("The depth of the record varies a lot from person to person. Agents with a deep record play from their own "
                  "stated rules and numbers. Agents with a thin record are told to fall back on the company profile or defer to "
                  "a named colleague, never to invent a view.")
 
 BARS_TITLE = "Evidence behind each agent: from 2 items (Wagner) to 425 (Culp)"
-BARS_CAP = ("Items in each person's evidence file, by whose words they are. Culp also has 51 items tagged to the CFM Joint "
-            "Venture, Ghai 7 and Ali 7, which are not counted here. Airbus has one line in an executive's own words (Faury's "
-            "signed line in the Board Report).")
+BARS_CAP = ("Items in each person's own evidence file, by whose words they are. Not counted here: items in the company's "
+            "evidence file where the person is the speaker ({comp}), and items tagged to the CFM Joint Venture (Culp 51, "
+            "Ghai 7, Ali 7). Airbus has one line in an executive's own words (Faury's signed line in the Board Report).")
 
 RUG_TITLE = "When it was said: six items in ten are from 2023-2025"
 RUG_CAP = ("One tick per item, at the date of the call, conference or filing. Malave's eleven items come from a single call "
-           "(29 October 2025), and Eddy's 21 from a single day (19 June 2023). Pope's eight predate her current role (2012-2022). "
+           "(29 October 2025), and Eddy's 21 from a single day (19 June 2023). 26 of Watson's 27 come from one day (28 "
+           "November 2023), and four of those are turns by an unnamed speaker that the profile attributes to him. Pope's eight "
+           "predate her current role (2012-2022). "
            "Fourteen of Ortberg's items are from his years at Rockwell Collins (2017) and Collins Aerospace (2019). Toepfer's and "
            "Wagner's items, and Faury's 47 Board Report lines, carry the report's issue date, 18 February 2026.")
 
@@ -72,13 +84,15 @@ TEAM_RULES = {
                "Malave: any plan that fails his buffer test (the slip leg). KPI doctrine: no 737 Rate Increase while the brief "
                "reports a live quality, FAA or supply-chain problem. Both binding; both inferred from the evidence."],
     "airbus": ["Faury leads the ExCo and takes the final call. NGSA, A350 Re-engine, cancellations and Delay Tactics are Board items.",
-               "Toepfer: cash, overlap and robustness. Wagner: production, engines and quality.",
-               "Soft vetoes: a failed test can be overridden only if the plan is at least $1B better than the best option that passes, "
-               "recorded as a Board item. The five pillars cannot be overridden."],
+               "Toepfer: peak cash, robustness, overlap. Wagner: production readiness, A350F absorption, supply and the ramp "
+               "(his engine choice is advice).",
+               "Soft vetoes: the CEO may override a failed test once per game, only for a plan at least $1B better than the best "
+               "option that passes, recorded as a Board item. The five pillars cannot be overridden."],
     "cfm": ["Culp proposes and decides. Safran is a joint party on pricing and RISE.",
-            "Ghai: price/cost positive, capex within 2-3% of revenue, no number before volumes. Ali: dates only from real testing.",
-            "Both inferred: a failed test binds unless Culp answers it with evidence. Culp's red lines: at least 20% better fuel "
-            "burn; durability is not traded for fuel burn."],
+            "Ghai: a launch must pay for itself, volumes before numbers, no launch-era pricing (veto tests); capex within 2-3% "
+            "of revenue (advice). Ali: dates only from real testing.",
+            "Ghai on terms and capex; Ali on dates no test backs. Both inferred: a failed veto test binds unless Culp answers it "
+            "with evidence. Culp's red lines: at least 20% better fuel burn; durability is not traded for fuel burn."],
     "pratt_whitney": ["Calio frames and decides; Eddy proposes the engine orders.",
                       "Mitchill: payback and return gate on every capital order. Eddy: durability, parts and capacity.",
                       "Mitchill on four grounds: dividend or debt path, an unselected engine, aggressive terms, unproven upside. "
@@ -87,35 +101,54 @@ TEAM_RULES = {
                     "McCabe: mid-to-high-teens hurdle, the unselected downside, the balance sheet. Watson: maturity, and support "
                     "in place before entry into service.",
                     "McCabe: joint sign-off on any launch or aggressive terms, plus balance-sheet vetoes. Watson: compressed "
-                    "maturity, or entry into service earlier than launch plus development time. Binding."],
+                    "maturity, a disclosed entry into service earlier than launch plus development time, or no support in place "
+                    "before entry into service. Binding."],
 }
 
-PROTOCOL_CAP = ("Rules from each company's <code>executives/teams.md</code>. The round script is "
-                "<code>wargame/dashgame/workflows/exco_round.js</code>. It has been dry-run with stub agents only, to check the "
-                "step order, the output formats and the revise rule. No executive agent has been run in a round.")
+PROTOCOL_CAP = ("Rules from each company's team file, as adapted to this board in the round script, "
+                "<code>wargame/dashgame/workflows/exco_round.js</code>. The script has been tried only with placeholder agents, "
+                "to check the step order, the output formats and when the CEO revises. No executive agent has played a round.")
 
 CARDS_LEDE = ("Each card is the profile its agent plays from. Evidence ids such as BX-0553 show the source line on hover or "
-              "keyboard focus. <span class=\"inf\">inference</span> marks a view the evidence does not state directly. Quotes "
-              "are word for word from the evidence files. Airbus Board Report lines are marked as text, not speech, and keep "
-              "the PDF's missing spaces. Lever positions, rivals, colleagues and the earlier role-play are under each card's "
-              "fold.")
+              "keyboard focus. <span class=\"inf\">inference</span> marks a view the evidence does not state directly. Veto "
+              "labels: <b>binding</b> (the CEO must revise within it), <b>soft</b> (the CEO may override it on the record, as "
+              "the team rule allows), <b>by inference</b> (the evidence shows the test, not the decision right), <b>advice "
+              "only</b>. Red lines are company hard rules: anyone may flag a breach and the CEO strikes it. Quotes are word for "
+              "word from the evidence files. Airbus Board Report lines are marked as text, not speech, and keep the PDF's "
+              "missing spaces. Lever positions, rivals, colleagues and the earlier role-play are under each card's fold.")
+
+GLOSSARY = [
+    ("Brief and grid", "Each round the game master gives each company a brief. Its grid shows the value of each of the "
+                       "company's plans (rows) against what the others might do (columns)."),
+    ("ΔPV", "A plan's value in $B, at 2026 present value, against the status quo."),
+    ("Do Nothing", "Keep the current products; no launch."),
+    ("Slip leg, risk case", "The grid column where the rival's moves or a delay hurt the plan most."),
+    ("EIS", "Entry into service."),
+    ("Premium", "Value a member gives up, in $B, to follow doctrine or an assigned objective; it is declared and capped."),
+    ("Hard rules (H1, rule 6 ...)", "The company's red lines, from its profile, as mapped to this board."),
+    ("Inference", "A view the evidence does not state directly, labelled as such."),
+]
 
 ISOLATION = """
-<p>The same hook that kept the five company agents apart in dash-2050 now covers the fifteen executive agents
-(<code>.claude/hooks/wargame_isolation.py</code>).</p>
+<p>The same hook that kept the single company agents apart in dash-2050 now covers the fifteen executive agents
+(<code>.claude/hooks/wargame_isolation.py</code>). It checks every file path and command an agent uses, so it stops access
+by name, not a deliberately disguised one. A post-game audit of every tool call (<code>audit.py</code>) backs it up.</p>
 <ul class="cav">
-<li><b>Own company only.</b> Each executive has its company strategist's limits. It cannot read another company's
-profiles, agent files or private folder (<code>/tmp/wargame-&lt;company&gt;</code>). It also cannot read the game master's
-code, the dashboard, the reports, or any earlier run's record.</li>
-<li><b>No engine.</b> An executive runs no game-engine command at all. Its numbers come only from the brief that the game
-master writes into its company's folder.</li>
-<li><b>Searches stay at home.</b> Searches, wildcard reads and recursive reads must stay inside the company's own folders. The
-game master's scratch areas and all agent transcripts are off limits.</li>
+<li><b>Own company only.</b> Each executive has the same limits as its single company agent had. It cannot read another
+company's profiles, agent files or folder (<code>/tmp/wargame-&lt;company&gt;</code>). It cannot read the game master's code,
+the dashboard, the reports or the game master's run records. Its own company's folder stays readable: the run the game
+master names, plus earlier rounds' notes and orders of that run.</li>
+<li><b>No earlier game.</b> The earlier games' files have been moved out of the company folders into an archive no player
+can read. The executives are also blocked from the earlier dash-2050 run by name, so a replay cannot see its orders.</li>
+<li><b>No engine, no game-master code.</b> An executive runs no game-engine command and cannot import the game master's
+modules. Its numbers come only from the brief that the game master writes into its company's folder.</li>
+<li><b>Searches stay at home.</b> Searches, wildcard reads and recursive reads must stay inside the company's own folders.
+The game master's scratchpad, the session transcripts and the workflow agents' transcripts are blocked.</li>
 <li><b>Inside the ExCo.</b> Colleagues may read each other's agent files (they know each other), but memos pass only through
 the game master. Within a round, the CFO and the operating head write their tests before either sees the other's.</li>
-<li><b>Tested.</b> All 225 hook test cases behave as expected. They include 18 new cases for the executive agents, and 183
-checks that every file each agent is told to read is allowed for that agent. All 360 tool calls the company agents made in
-dash-2050 are still allowed.</li>
+<li><b>Tested.</b> All {cases} hook test cases behave as expected. They include {new} cases for the executive agents, and
+{paths} checks that every file each agent is told to read is allowed for that agent. All 360 tool calls the single company
+agents made in dash-2050 are still allowed.</li>
 </ul>
 """
 
@@ -131,15 +164,18 @@ which maps the levers to the board.</li>
 the files in place. A final pass compared the fifteen agents for consistency across companies.</li>
 <li><b>Independent audit.</b> Two fresh auditors per company then read the agents again: one checked that each cited item
 supports its claim, the other that each agent can play its seat by the rules without leaking. A fixer re-checked every
-finding against the sources before changing anything. Of 165 findings (some reported by both auditors), the fixer made 138
-changes to the agent files and rejected 4 with a reason. The 13 that belonged elsewhere are fixed in the round script, the
-board notes and the specification.</li>
-<li><b>Mechanical check.</b> <code>check_agents.py</code> checks each agent's front matter and section order. It also checks
-that every cited id exists, that every quote is an exact substring of its source item, and that each quote's date and
-perspective match the source.</li>
+finding against the sources before changing anything. There were 165 findings; 10 were the same finding reported by both
+auditors. Of the other 155, the fixer made 138 changes to the agent files and rejected 4 with a reason. The 13 that belonged
+elsewhere are fixed in the round script, the board notes and the specification.</li>
+<li><b>Page review.</b> Two more reviewers read this page: one recomputed its numbers and quotes from the data, the other
+read it on desktop and phone. Their 32 findings, including gaps in the isolation, are fixed.</li>
+<li><b>Mechanical check.</b> <code>check_agents.py</code> checks each agent's front matter and section order, and that every
+cited id exists. It checks every signature quote (each agent's voice lines and the quotes on its card) word for word
+against its source item, with "..." marking any gap, and that each card quote's date and perspective match the source.</li>
 <li><b>Limits.</b> Airbus's agents rest on what the Board Report says about them, not on their speech. Four records are thin and
-Airbus's three are filing-based; those agents defer instead of inventing. The "as voiced in dash-2050" lines are the earlier single agent's role-play, shown
-for comparison, not evidence. How the agents behave in play is untested until the game is run.</li>
+Airbus's three are filing-based; those agents defer instead of inventing. Volume is not trust: Watson's 27 items come almost
+all from one day, and the profiles' own confidence ratings are shown next to the volume. The "as voiced in dash-2050"
+lines are the earlier single company agent's role-play, shown for comparison, not evidence. How the agents behave in play is untested until the game is run.</li>
 </ol>
 <p class="label">Files</p>
 <ul class="facts small">
@@ -154,3 +190,24 @@ script (not run), the game master's save helper, and the stub dry run.</li>
 
 FOOTER = ("BOEING PROPRIETARY. Built by wargame/reports/exco-agents/make_exco_html.py from the agent profiles in data/agents "
           "and the evidence files in wargame/profiles/*/executives. No game was run with these agents.")
+
+# Each profile's own overall confidence, in short (the full wording is on the card). The builder checks that the
+# key words appear in the profile's confidence_overall.
+CONFIDENCE = {
+    "boeing-ortberg": ("Medium-high", "medium-high"),
+    "boeing-malave": ("Low", "low"),
+    "boeing-pope": ("Very low", "very low"),
+    "airbus-faury": ("Medium", "medium overall"),
+    "airbus-toepfer": ("Low", "low"),
+    "airbus-wagner": ("Very low", "very low"),
+    "cfm-culp": ("High in core areas", "high on guidance"),
+    "cfm-ghai": ("High in core areas", "high on guidance"),
+    "cfm-ali": ("Medium on engineering, low elsewhere", "medium on engineering"),
+    "pratt-whitney-calio": ("High in core areas", "high in his core areas"),
+    "pratt-whitney-mitchill": ("High in core areas", "high on his core finance areas"),
+    "pratt-whitney-eddy": ("Low", "low"),
+    "rolls-royce-erginbilgic": ("High in core areas", "high on capital allocation"),
+    "rolls-royce-mccabe": ("High in core areas", "high on capital allocation"),
+    "rolls-royce-watson": ("Low to medium", "low to medium"),
+}
+LOW_CONFIDENCE = ("Low", "Very low", "Low to medium", "Medium on engineering, low elsewhere")

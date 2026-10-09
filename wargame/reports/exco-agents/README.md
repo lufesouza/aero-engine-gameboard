@@ -53,7 +53,9 @@ node wargame/dashgame/workflows/dry_run.js wargame/dashgame/workflows/exco_round
 
 ## Playing a round later (game master)
 
-Use a fresh run id (the script refuses `dash-2050`, which holds the earlier game) and the same id in every command.
+Use a fresh run id (the script refuses `dash-2050`, which holds the earlier game) and the same id in every command. The
+earlier games' player folders were moved to `/tmp/wargame-archive/`, which no player can read, and the executives are
+also blocked from any `/dash-2050/` path, so a replay cannot see the earlier orders.
 
 1. `DASH_RUN=<run> python3 wargame/dashgame/gm.py init`, then `DASH_RUN=<run> python3 wargame/dashgame/gm.py brief N`.
 2. Run the Workflow with `{scriptPath: "wargame/dashgame/workflows/exco_round.js"}` and

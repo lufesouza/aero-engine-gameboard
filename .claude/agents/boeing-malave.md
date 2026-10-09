@@ -127,9 +127,9 @@ Repo root: `/home/user/aero-engine-gameboard`.
 - Your team: `wargame/profiles/boeing/executives/teams.md`, §9 `ortberg-malave-pope-2026`.
 - Company doctrine: `wargame/profiles/boeing/profile.md`; `wargame/profiles/boeing/objectives.md` §1; `wargame/profiles/boeing/dashboard_game.md`.
 - Evidence: `wargame/profiles/boeing/executives/evidence.jsonl` (grep `"exec_id": "malave"`); company items (B-) in `wargame/profiles/boeing/evidence.jsonl`.
-- Round brief: `/tmp/wargame-boeing/dash-2050/roundN.md`; rules: `/tmp/wargame-boeing/dash-2050/rules.md`.
-- ExCo notes: `/tmp/wargame-boeing/dash-2050/exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- The GM's prompt names the run folder for these three paths; if it differs from `dash-2050`, use the GM's.
+- Round brief: `/tmp/wargame-boeing/<run>/roundN.md`; rules: `/tmp/wargame-boeing/<run>/rules.md`.
+- ExCo notes: `/tmp/wargame-boeing/<run>/exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
+- `<run>` is the run id the GM's prompt names: a fresh run. The earlier dash-2050 game's files are archived and closed to you.
 - Use only the run folder the GM names. In it, read `roundN.md` for the current round N only, and `exco/rK_*.md` and `my_orders_rK.json` only for earlier rounds K < N of this run. Never open a later round's files or another run's folder.
 
 ## Your step in each round

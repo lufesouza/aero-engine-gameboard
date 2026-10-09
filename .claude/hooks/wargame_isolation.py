@@ -27,7 +27,8 @@ XF = {side: [n + ".md" for n in names] for side, names in EXECS.items()}
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
          "/scratchpad/audit", "/scratchpad/ab_synth_work", "/scratchpad/text", "/scratchpad/rr", "/scratchpad/pw",
-         "/scratchpad/engines", "/scratchpad/execs", "/scratchpad/cfm", "/scratchpad/rrx", "/scratchpad/pwx"]
+         "/scratchpad/engines", "/scratchpad/execs", "/scratchpad/cfm", "/scratchpad/rrx", "/scratchpad/pwx",
+         "wargame-archive"]   # /tmp/wargame-archive: earlier games' player folders, moved out of reach
 RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"] + XF["rolls_royce"]
 PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"] + XF["pratt_whitney"]
 CFMP = ["profiles/cfm", "cfm-strategist.md", "wargame-cfm"] + XF["cfm"]
@@ -99,12 +100,14 @@ OWN_ROOTS = {"boeing-strategist": ["wargame/profiles/boeing/", "/tmp/wargame-boe
              "airbus-2010": ["wargame/profiles/airbus_2010/", "/tmp/wargame-airbus"]}
 REPO = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 
-# Each executive inherits its company strategist's blocks and folders; no engine commands at all (dash-2050 has none).
+# Each executive inherits its company strategist's blocks and folders. On top: no engine or game-master code at all
+# (dash-2050 has none), not the earlier dash-2050 run (the replay must not see its orders), not the 2010 agents.
 COMPANY_AGENT = {"boeing": "boeing-strategist", "airbus": "airbus-strategist", "cfm": "cfm-strategist",
                  "pratt_whitney": "pratt-whitney-strategist", "rolls_royce": "rolls-royce-strategist"}
 for _side, _names in EXECS.items():
     for _n in _names:
-        BLOCK[_n] = BLOCK[COMPANY_AGENT[_side]] + ["wargame.engine"]
+        BLOCK[_n] = BLOCK[COMPANY_AGENT[_side]] + ["wargame.engine", "wargame.dashgame", "from wargame", "import wargame",
+                                                   "/dash-2050/", "boeing-2010.md", "airbus-2010.md"]
         PLAYER_SIDE[_n] = _side
         OWN_ROOTS[_n] = OWN_ROOTS[COMPANY_AGENT[_side]]
 
@@ -194,6 +197,9 @@ def main():
         return
     blob = json.dumps(data.get("tool_input", {}))
     hit = next((r for r in rules + (GM_PRIVATE if agent in OWN_ROOTS else []) if r in blob), None)
+    if not hit and agent in OWN_ROOTS:   # session transcripts are the game master's; only persisted tool outputs are not
+        import re
+        hit = next((m for m in re.findall(r"\.claude/projects/[^\s\"'`]*", blob) if "/tool-results/" not in m), None)
     if not hit:
         hit = scope_violation(agent, data.get("tool_name", ""), data.get("tool_input", {}) or {}, data.get("cwd"))
     if not hit and "wargame.engine" in blob:

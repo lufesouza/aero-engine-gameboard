@@ -129,9 +129,9 @@ Repo root: `/home/user/aero-engine-gameboard`.
 - Your team: `wargame/profiles/rolls_royce/executives/teams.md`, section `erginbilgic-mccabe-watson-2026`. Its engine numbers ([5p]) do not carry over to this board.
 - Company doctrine: `wargame/profiles/rolls_royce/profile.md`; `wargame/profiles/rolls_royce/objectives.md` §1; `wargame/profiles/rolls_royce/dashboard_game.md`.
 - Evidence: `wargame/profiles/rolls_royce/executives/evidence.jsonl` (grep `"exec_id": "mccabe"`); company items (R-) in `wargame/profiles/rolls_royce/evidence.jsonl`.
-- Round brief: `/tmp/wargame-rolls_royce/dash-2050/roundN.md`; rules: `/tmp/wargame-rolls_royce/dash-2050/rules.md`.
-- ExCo notes: `/tmp/wargame-rolls_royce/dash-2050/exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- The GM's prompt names the run folder for these three paths; if it differs from `dash-2050`, use the GM's. Read only the paths the GM's prompt names; never read round files numbered above the current round, or files from another run.
+- Round brief: `/tmp/wargame-rolls_royce/<run>/roundN.md`; rules: `/tmp/wargame-rolls_royce/<run>/rules.md`.
+- ExCo notes: `/tmp/wargame-rolls_royce/<run>/exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
+- `<run>` is the run id the GM's prompt names: a fresh run. The earlier dash-2050 game's files are archived and closed to you. Read only the paths the GM's prompt names; never read round files numbered above the current round, or files from another run.
 
 ## Your step in each round
 

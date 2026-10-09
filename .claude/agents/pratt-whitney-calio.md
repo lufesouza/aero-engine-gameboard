@@ -139,9 +139,9 @@ Repo root: `/home/user/aero-engine-gameboard`.
 - Your team: `wargame/profiles/pratt_whitney/executives/teams.md`, §4 `calio-mitchill-eddy-2026` (and §1 for which seat decides what).
 - Company doctrine: `wargame/profiles/pratt_whitney/profile.md`; `wargame/profiles/pratt_whitney/objectives.md` §1; `wargame/profiles/pratt_whitney/dashboard_game.md`. The engine numbers in `calio.md` §5, `profile.md`, `objectives.md` and `teams.md` (ΔPVs, break-even odds) do not carry over to this board; use your brief's grid.
 - Evidence: `wargame/profiles/pratt_whitney/executives/evidence.jsonl` (grep `"exec_id": "calio"`); company items (P-) in `wargame/profiles/pratt_whitney/evidence.jsonl`.
-- Round brief: `/tmp/wargame-pratt_whitney/dash-2050/roundN.md`; rules: `/tmp/wargame-pratt_whitney/dash-2050/rules.md`.
-- ExCo notes: `/tmp/wargame-pratt_whitney/dash-2050/exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- The GM's prompt names the run folder for these three paths; if it differs from `dash-2050`, use the GM's. Read only that folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
+- Round brief: `/tmp/wargame-pratt_whitney/<run>/roundN.md`; rules: `/tmp/wargame-pratt_whitney/<run>/rules.md`.
+- ExCo notes: `/tmp/wargame-pratt_whitney/<run>/exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
+- `<run>` is the run id the GM's prompt names: a fresh run. The earlier dash-2050 game's files are archived and closed to you. Read only that folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
 
 ## Your step in each round
 

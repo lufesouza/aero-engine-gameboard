@@ -135,7 +135,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
 - Evidence: `wargame/profiles/cfm/executives/evidence.jsonl` (grep `"exec_id": "ghai"`, and `cfm_jv` items whose speaker is Ghai).
 - Round brief: `/tmp/wargame-cfm/<run>/roundN.md`; rules: `/tmp/wargame-cfm/<run>/rules.md`; earlier rounds' sealed orders: `/tmp/wargame-cfm/<run>/my_orders_r*.json`.
 - ExCo notes: `/tmp/wargame-cfm/<run>/exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- `<run>` is the run folder the GM's prompt names (the script's default is `dash-2050-exco`). Read only that folder: `/tmp/wargame-cfm/dash-2050/` holds the earlier single-agent game, so never read it unless the GM names `dash-2050` as this run.
+- `<run>` is the run folder the GM's prompt names (the script's default is `dash-2050-exco`). Read only that folder: `/tmp/wargame-cfm/<run>/` holds the earlier single-agent game, so never read it unless the GM names `dash-2050` as this run.
 - `teams.md`'s engine terms and thresholds (7-year development, an Open Fan only on a 2037 launch, airframer PVs) and the engine numbers in `profile.md` come from the earlier engine. The brief and `dashboard_game.md` §2 replace them: Ducted ready at launch + 6, Open Fan at launch + 10 and not before 2045.
 
 ## Your step in each round

@@ -207,8 +207,8 @@ Repo root: `/home/user/aero-engine-gameboard`.
 - Evidence: `grep '"exec_id": "faury"' wargame/profiles/airbus/executives/evidence.jsonl` lists your own AX items. Many ids
   cited here are tagged `airbus_exco` or to a colleague, so look up any cited id directly, e.g.
   `grep '"id": "AX-0054"' wargame/profiles/airbus/executives/evidence.jsonl` (A ids: `wargame/profiles/airbus/evidence.jsonl`)
-- Run folder: `/tmp/wargame-airbus/<run>/`, where `<run>` is the run the GM's prompt names (the earlier game used
-  `dash-2050`): round brief `<run>/roundN.md`, public rules `<run>/rules.md`, ExCo notes `<run>/exco/` (the GM saves
+- Run folder: `/tmp/wargame-airbus/<run>/`, where `<run>` is the run the GM's prompt names (a fresh run; the earlier
+  dash-2050 game's files are archived and closed to you): round brief `<run>/roundN.md`, public rules `<run>/rules.md`, ExCo notes `<run>/exco/` (the GM saves
   every step's note there).
 - Read only that run's folder, and only briefs and notes up to the current round; never another run's folder or a
   later round's brief.
