@@ -41,19 +41,25 @@ for a, p in BY.items():
 PERSP = {"own_words": ("Own words", "s1"), "filing": ("Board Report text", "s2"), "observed_by_boeing": ("Remark by Boeing", "s3"),
          "observed_by_pratt_whitney": ("Remark by RTX / P&W", "s3"), "analyst_question": ("Analyst's question", "s3")}
 CITE = {"own_words": "own words", "filing": "Board Report text, not speech", "observed_by_boeing": "as quoted by Boeing",
-        "observed_by_pratt_whitney": "as quoted by RTX / Pratt & Whitney", "analyst_question": "an analyst's question"}
+        "observed_by_pratt_whitney": "as quoted by RTX / Pratt & Whitney", "analyst_question": "an analyst's question",
+        "own_behaviour": "company record", "own_behaviour_observed_by_boeing_or_analysts": "observed by Boeing or analysts"}
 
 
-def level(txt):
-    m = re.search(r"(very low|low|medium|high)", txt or "", re.I)
-    return m.group(1).capitalize() if m else "Not stated"
+def depth(a):
+    """Depth of the person's record, from the count of items in their own words."""
+    n = BY[a]["n_own_words"]
+    return "Deep" if n >= 100 else "Moderate" if n >= 25 else "Thin" if n >= 5 else "Filing-based"
+
+
+DEPTH_NOTE = {"Deep": "100 or more items in own words", "Moderate": "25 to 99 items in own words", "Thin": "fewer than 25 items in own words",
+              "Filing-based": "almost nothing in own words; built from the Board Report"}
 
 
 def ids_in(obj):
     return sorted(set(CA.IDRE.findall(json.dumps(obj))))
 
 
-CITED = sorted({i for a in ORDER for i in ids_in(PROF[a])})
+CITED = sorted({i for a in ORDER for i in ids_in(PROF[a])} | set(CA.IDRE.findall(json.dumps(NAR.FINDINGS))))
 
 
 def eids(ids):
@@ -74,6 +80,11 @@ def rich(text):
     t = GROUP.sub(lambda m: " " + eids(re.findall(IDS, m.group(1))), t)
     parts = re.split(r"(<span class=\"eids\">.*?</span></span>)", t)
     return "".join(x if x.startswith('<span class="eids">') else BARE.sub(lambda m: eids([m.group(1)]), x) for x in parts)
+
+
+def ids_html(h):
+    """Narrative HTML with its [ID] groups rendered as id chips (the text is already HTML)."""
+    return GROUP.sub(lambda m: " " + eids(re.findall(IDS, m.group(1))), h)
 
 
 def infer(flag):
@@ -162,8 +173,8 @@ def evidence_table():
         dates = sorted(e["date"] for e in ITEMS[a] if e.get("date"))
         rows.append([f"{esc(BY[a]['name'])} <span class=muted>({esc(COMPANY[BY[a]['side']])}, {esc(BY[a]['seat'])})</span>", str(len(ITEMS[a])),
                      str(c.get("own_words", 0)), str(len(ITEMS[a]) - c.get("own_words", 0)), dates[0] if dates else "—", dates[-1] if dates else "—",
-                     esc(level(PROF[a]["evidence"]["confidence_overall"]))])
-    return K.tview("evidence by person", ["Person", "Items", "Own words", "Other", "First", "Last", "Confidence"], rows, num_cols=[1, 2, 3, 4, 5])
+                     esc(depth(a))])
+    return K.tview("evidence by person", ["Person", "Items", "Own words", "Other", "First", "Last", "Record"], rows, num_cols=[1, 2, 3, 4, 5])
 
 
 # ── roster, protocol ──
@@ -177,13 +188,13 @@ def roster():
         cells.append(f'<div class="rc">{esc(COMPANY[s])}<span class="small muted">{esc(BY[ROSTER[s][0]]["team"])}</span></div>')
         for a in ROSTER[s]:
             p, pr = BY[a], PROF[a]
-            lv = level(pr["evidence"]["confidence_overall"])
+            lv = depth(a)
             own = p["n_own_words"]
-            steps = ", ".join(pr.get("protocol_steps") or [])
+            steps = ", ".join(pr.get("protocol_steps") or []).replace("_", " ")
             cells.append(f'<a class="rcell" href="#{a}"><span class="seat">{esc(p["seat"])}</span><b>{esc(p["name"])}</b>'
                          f'<span class="small muted">{esc(p["title"])}</span>'
                          f'<span class="chips"><span class="chip">{len(ITEMS[a])} items</span>'
-                         f'<span class="chip">{own} own words</span><span class="chip lv lv-{lv.lower().replace(" ", "")}">{esc(lv)}</span>'
+                         f'<span class="chip">{own} own words</span><span class="chip lv lv-{lv.lower()}">{esc(lv)} record</span>'
                          f'{VETO_CHIP if pr.get("veto_holder") else ""}</span>'
                          f'<span class="small muted">Steps: {esc(steps)}</span></a>')
     return f'<div class="roster">{head}{"".join(cells)}</div>'
@@ -214,8 +225,8 @@ def quote_html(q):
 def card(a):
     p, pr = BY[a], PROF[a]
     ev = pr["evidence"]
-    lv = level(ev["confidence_overall"])
-    thin_flag = lv in ("Low", "Very low") or len(ITEMS[a]) < 25
+    lv = depth(a)
+    thin_flag = lv in ("Thin", "Filing-based")
     conf = "".join(f'<li><b>{esc(c["area"])}:</b> {rich(c["level"])}</li>' for c in ev.get("confidence_by_area") or [])
     tests = K.table(["Test", "Threshold or rule", "Evidence"],
                     [[rich(t["test"]) + infer(t.get("inference")), rich(t["threshold"]), eids(t.get("ids"))] for t in pr["tests"]])
@@ -233,8 +244,8 @@ def card(a):
 <header class="ph"><p class="label">{esc(COMPANY[p["side"]])} · {esc(p["seat"])} · agent <code>{esc(a)}</code></p>
 <h3>{esc(p["name"])}</h3><p class="muted small">{esc(p["title"])}. {rich(pr["role_dates"])}</p>
 <p class="chips"><span class="chip">{len(ITEMS[a])} evidence items</span><span class="chip">{p["n_own_words"]} in own words</span>
-<span class="chip">{esc(ev.get("first") or "—")} to {esc(ev.get("last") or "—")}</span><span class="chip lv lv-{lv.lower().replace(" ", "")}">Confidence: {esc(lv)}</span>
-{"<span class='chip veto'>holds a veto</span>" if pr.get("veto_holder") else ""}<span class="chip">Steps: {esc(", ".join(pr.get("protocol_steps") or []))}</span></p>
+<span class="chip">{esc(ev.get("first") or "—")} to {esc(ev.get("last") or "—")}</span><span class="chip lv lv-{lv.lower()}">{esc(lv)} record</span>
+{"<span class='chip veto'>holds a veto</span>" if pr.get("veto_holder") else ""}<span class="chip">Steps: {esc(", ".join(pr.get("protocol_steps") or []).replace("_", " "))}</span></p>
 <p class="mandate">{rich(pr["mandate"])}</p></header>
 <div class="grid2"><div><p class="label">What {esc(SHORT[a])} is paid to protect</p>{lst(pr["objective_ranked"], ordered=True)}</div>
 <div><p class="label">How {esc(SHORT[a])} decides</p>{lst(pr["decision_style"])}</div></div>
@@ -264,12 +275,12 @@ def cards():
 def tiles():
     n_items = sum(len(ITEMS[a]) for a in ORDER)
     n_own = sum(1 for a in ORDER for e in ITEMS[a] if e.get("perspective") == "own_words")
-    thin = [SHORT[a] for a in ORDER if level(PROF[a]["evidence"]["confidence_overall"]) in ("Low", "Very low")]
+    thin = [SHORT[a] for a in ORDER if depth(a) in ("Thin", "Filing-based")]
     quotes = sum(len(PROF[a]["voice"]["quotes"]) for a in ORDER)
     t = [("Agents", "15", "Three per company: the CEO, the CFO and the operating head of each default 2026 ExCo"),
          ("Evidence items", f"{n_items:,}", f"{n_own:,} in the person's own words; Airbus mostly Board Report text"),
          ("Cited in the profiles", f"{len(CITED):,} ids", f"every id resolves to an evidence item; {quotes} signature quotes checked word for word"),
-         ("Thin records", f"{len(thin)}", ", ".join(thin) + ": each defers to the company profile or a named colleague"),
+         ("Thin or filing-based", f"{len(thin)} of 15", ", ".join(thin) + ": each falls back on the company profile or a named colleague"),
          ("Game", "Not run", "Agents installed and isolated; the round script is written and dry-run with stub agents only")]
     return '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div><div class="d">{esc(d)}</div></div>'
                                            for k, v, d in t) + "</div>"
@@ -287,8 +298,8 @@ EXTRA_CSS = """
 .rcell .seat { display: none; font: 500 .7rem/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .chips { display: flex; flex-wrap: wrap; gap: 4px 6px; margin: 4px 0; }
 .chip { font: 500 .74rem/1.2 var(--font-mono); padding: 2px 7px; border-radius: 999px; background: var(--sunk); color: var(--muted); border: 1px solid var(--line); white-space: nowrap; }
-.chip.lv-high { color: var(--fg); } .chip.lv-medium { color: var(--fg); }
-.chip.lv-low, .chip.lv-verylow { color: var(--fg); border-color: var(--s2); }
+.chip.lv-deep, .chip.lv-moderate { color: var(--fg); }
+.chip.lv-thin, .chip.lv-filing-based { color: var(--fg); border-color: var(--s2); }
 .chip.veto { color: var(--fg); border-color: var(--fg); }
 .chip.b-formal { color: var(--fg); border-color: var(--fg); } .chip.b-soft { border-style: dashed; color: var(--fg); }
 .chip.b-inference { border-style: dotted; } .chip.b-none { opacity: .8; }
@@ -359,7 +370,13 @@ def checks():
          ("Ortberg 14 Collins items 2017/2019", len(ortberg_collins) == 14 and {d[:4] for d in ortberg_collins} == {"2017", "2019"}),
          ("Toepfer/Wagner all 2026-02-18", {e["date"] for e in airbus_feb} == {"2026-02-18"}),
          ("Faury 47 Board Report lines 2026-02-18", len(faury_br) == 47 and {e["date"] for e in faury_br} == {"2026-02-18"}),
-         ("five thin records", sum(level(PROF[a]["evidence"]["confidence_overall"]) in ("Low", "Very low") for a in ORDER) == 5)]
+         ("depth counts 6/2/4/3", collections.Counter(depth(a) for a in ORDER) == {"Deep": 6, "Moderate": 2, "Thin": 4, "Filing-based": 3}),
+         ("Airbus all filing-based", [depth(a) for a in ROSTER["airbus"]] == ["Filing-based"] * 3)]
+    nar_ids = set(CA.IDRE.findall(json.dumps(NAR.FINDINGS)))
+    C.append(("narrative ids exist", nar_ids <= set(EV)))
+    deep = sorted((a for a in ORDER if depth(a) == "Deep"), key=lambda a: -BY[a]["n_own_words"])
+    C.append(("deep six named", [SHORT[a] for a in deep] == ["Culp", "Mitchill", "Calio", "Erginbilgic", "Ghai", "Ortberg"]))
+    C.append(("Ali 13, Eddy 21", n["cfm-ali"] == 13 and n["pratt-whitney-eddy"] == 21))
     bad = [c for c, ok in C if not ok]
     if bad:
         print("NARRATIVE CHECKS FAILED:", bad)
@@ -372,9 +389,10 @@ def build(out_path):
     ev = {}
     for i in CITED:
         e = EV[i]
-        q = e["quote"]
-        ev[i] = {"date": e.get("date"), "doc": (e.get("doc") or "")[:60], "p": CITE.get(e.get("perspective"), e.get("perspective")),
-                 "s": (e.get("speaker") or "")[:80], "q": q if len(q) <= 420 else q[:417] + "…"}
+        q = e.get("quote") or e.get("finding") or ""
+        src = (e.get("speaker") or "")[:80] if e.get("quote") else "Finding from an analyst model (not a quote)"
+        ev[i] = {"date": e.get("date"), "doc": (e.get("doc") or "")[:60], "p": CITE.get(e.get("perspective"), (e.get("perspective") or "").replace("_", " ")),
+                 "s": src, "q": q if len(q) <= 420 else q[:417] + "…"}
     evjson = json.dumps(ev, ensure_ascii=False).replace("</", "<\\/")
     page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ExCo Agent Profiles</title>
@@ -387,7 +405,7 @@ def build(out_path):
 {"".join(f'<a href="#co-{s}">{esc(COMPANY[s])}</a>' for s in SIDES)}<a href="#isolation">Isolation</a><a href="#method">Method</a></nav></header>
 
 <section id="summary"><h2>Summary</h2>{tiles()}
-<div class="bl">{"".join(f'<div class="panel"><div><b>{esc(t)}</b>{x}</div></div>' for t, x in NAR.FINDINGS)}</div></section>
+<div class="bl">{"".join(f'<div class="panel"><div><b>{esc(t)}</b>{ids_html(x)}</div></div>' for t, x in NAR.FINDINGS)}</div></section>
 
 <section id="roster"><h2>The fifteen agents</h2><p class="lede">{NAR.ROSTER_LEDE}</p>{roster()}</section>
 

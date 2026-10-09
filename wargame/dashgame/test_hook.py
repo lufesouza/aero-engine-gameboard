@@ -6,6 +6,7 @@ dash-2050 (if the transcripts are present) would still be allowed.
 import glob
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -65,6 +66,22 @@ CASES = [
     ("pratt-whitney-calio", "Bash", {"command": "grep -n mitchill " + REPO + "/wargame/profiles/pratt_whitney/executives/teams.md"}, "allow"),
     ("airbus-faury", "Bash", {"command": "ls /tmp/wargame-airbus/dash-2050/exco/"}, "allow"),
 ]
+# Every path an executive agent's own file tells it to read ("## Your files") must be allowed for that agent.
+sys.path.insert(0, os.path.dirname(HOOK))
+import wargame_isolation as W  # noqa: E402
+for side, names in W.EXECS.items():
+    for n in names:
+        f = os.path.join(REPO, ".claude", "agents", n + ".md")
+        if not os.path.exists(f):
+            continue
+        txt = open(f).read()
+        sec = txt[txt.find("## Your files"):txt.find("## Your step")]
+        for path in sorted(set(re.findall(r"`([^`\s]*/[^`\s]*)`", sec))):
+            path = path.replace("roundN", "round1")
+            if path.endswith("/") and not path.startswith("/tmp"):
+                continue
+            full = path if path.startswith("/") else os.path.join(REPO, path)
+            CASES.append((n, "Read", {"file_path": full.rstrip("/") + ("/x.md" if path.endswith("/") else "")}, "allow"))
 bad = [(c, decide(*c[:3])) for c in CASES if decide(*c[:3]) != c[3]]
 print("hook cases: %d of %d as expected" % (len(CASES) - len(bad), len(CASES)))
 for c, got in bad:

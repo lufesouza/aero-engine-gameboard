@@ -32,10 +32,10 @@ const TEAMS = {
   boeing: {
     company: 'Boeing', ceo: 'boeing-ortberg', cfo: 'boeing-malave', ops: 'boeing-pope',
     names: { ceo: 'Kelly Ortberg', cfo: 'Jay Malave', ops: 'Stephanie Pope' },
-    rule: 'Ortberg proposes and decides. Malave is his independent check on programme estimates: he can veto any plan that fails his buffer test (the slip leg). Rates are KPI-gated: the KPI doctrine (Pope\'s seat) vetoes a 737 Rate Increase under an inject. Ortberg decides everything else. (teams.md §9; both vetoes are inferences from the evidence.)',
+    rule: 'Ortberg proposes and decides. Malave is his independent check on programme estimates: he can veto any plan that fails his buffer test (the slip leg). Rates are KPI-gated: the KPI doctrine (Pope\'s seat) vetoes a 737 Rate Increase while a quality, FAA or supply-chain problem is live (the board has no injects, so it binds only if the brief reports one). Ortberg decides everything else. (teams.md §9; both vetoes are inferences from the evidence.)',
     veto: {
       cfo: { ground: 'any plan that fails your buffer test (the slip leg)', binding: true },
-      ops: { ground: 'a 737 Rate Increase under an inject (the KPI doctrine)', binding: true },
+      ops: { ground: 'a 737 Rate Increase while the brief reports a live quality, FAA or supply-chain problem (the KPI doctrine)', binding: true },
     },
   },
   airbus: {

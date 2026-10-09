@@ -7,11 +7,33 @@ LEDE = ("Each company in the war game will now be played by three agents instead
         "from the FY2025 Board Report, which is mostly not their speech. This page profiles the fifteen agents, the evidence "
         "behind each, and how a round will run with them. <b>The game has not been run with them yet.</b>")
 
-FINDINGS = []   # set after the profiles are final
+FINDINGS = [
+    ("Each company now decides as three people, not one.",
+     "The CEO frames the round and decides. The CFO and the operating head test the frame independently, each against "
+     "their own stated rules, and can block on the grounds their team's rule gives them. How binding that is differs by "
+     "company: binding at Boeing, Pratt &amp; Whitney and Rolls-Royce; soft at Airbus (overridable only for a plan at least "
+     "$1B better, on the Board's record); inferred at CFM/GE."),
+    ("Six agents stand on deep records and play from their own rules.",
+     "Culp, Mitchill, Calio, Erginbilgic, Ghai and Ortberg each have more than 100 items in their own words. Their tests "
+     "come from what they said: Ortberg asks for a rate step only on KPIs, with \"no subjectivity\" [BX-1259]. Ghai keeps "
+     "capex in the 2% to 3% range [CX-0922]. Culp wants \"at least a 20% reduction in fuel burn\" [CX-0217]. McCabe and "
+     "Erginbilgic sign off every case above \u00a325 million together, against mid- to high-teens hurdles [RX-0213]."),
+    ("Seven agents have thin or filing-based records, and are told to defer rather than invent.",
+     "Malave's eleven items come from one call; Pope's eight predate her current role; Ali has 13 and Eddy 21 from one day. "
+     "Each of these agents names whom to defer to on what, and marks every view beyond the record as inference. Malave "
+     "still carries a sharp test of his own: a baseline with buffer \"from a schedule and cost perspective\" [BX-0553]."),
+    ("Airbus is profiled from what its Board says, not from what its executives say.",
+     "Faury has one line in his own words [AX-0081]; Toepfer and Wagner have none. Their tests and soft vetoes follow from "
+     "their roles, their pay metrics and the Board Report, so the Airbus ExCo is where the agents are least like the people."),
+    ("Nothing has been played yet.",
+     "The agents are installed and isolated, and the round script is written. The next step is to replay the four dash-2050 "
+     "rounds with the fifteen agents and compare their orders with the single company agents' play."),
+]
 
-ROSTER_LEDE = ("The default 2026 executive committee of each company. Select a person for the full profile. Confidence is the "
-               "profile's own overall rating. <b>veto</b> marks the members whom the team's decision rule lets block the "
-               "CEO's orders.")
+ROSTER_LEDE = ("The default 2026 executive committee of each company. Select a person for the full profile. <b>Record</b> is "
+               "the depth of the evidence in the person's own words: deep (100 or more items), moderate (25 to 99), thin "
+               "(fewer than 25) or filing-based (Airbus, built from the Board Report). <b>veto</b> marks the members whom the "
+               "team's decision rule lets block the CEO's orders.")
 
 EVIDENCE_LEDE = ("The depth of the record varies a lot from person to person. Agents with a deep record play from their own "
                  "stated rules and numbers. Agents with a thin record are told to fall back on the company profile or defer to "
@@ -32,21 +54,21 @@ PROTOCOL_LEDE = ("The game master runs five steps for each company in each round
                  "each other's steps. Inside a company, each executive sees only what the game master passes on.")
 
 STEPS = [
-    ("1 · Frame (CEO)", "Reads the company's brief. Writes the question, the levers in play, the options worth testing, the red "
+    ("Frame (CEO)", "Reads the company's brief. Writes the question, the levers in play, the options worth testing, the red "
                         "lines, what he or she asks of each colleague, and an initial lean."),
-    ("2 · Test (CFO and operating head)", "In parallel, without seeing each other's memo: tests with thresholds and grid numbers, "
+    ("Test (CFO and operating head)", "In parallel, without seeing each other's memo: tests with thresholds and grid numbers, "
                                           "recommended orders, any veto. At P&W the operating head also proposes the engine orders."),
-    ("3 · Decide (CEO)", "Reads both memos and decides by the team's rule. Returns the orders, other moves and public statement, "
+    ("Decide (CEO)", "Reads both memos and decides by the team's rule. Returns the orders, other moves and public statement, "
                          "and records how each memo was weighed."),
-    ("4 · Veto check", "The CFO and the operating head each concur, or veto on a ground the team rule gives them."),
-    ("5 · Revise (CEO)", "Only if a binding veto stands: revises once within the veto, or overrides where the rule allows, on the record."),
+    ("Veto check", "The CFO and the operating head each concur, or veto on a ground the team rule gives them."),
+    ("Revise (CEO)", "Only if a binding veto stands: revises once within the veto, or overrides where the rule allows, on the record."),
 ]
 
 TEAM_RULES = {
     "boeing": ["Ortberg proposes and decides.",
                "Malave: independent check on programme estimates (buffer, balance sheet first). Pope's seat: rates are KPI-gated.",
-               "Malave: any plan that fails his buffer test (the slip leg). KPI doctrine: no 737 Rate Increase under an inject. "
-               "Both binding; both inferred from the evidence."],
+               "Malave: any plan that fails his buffer test (the slip leg). KPI doctrine: no 737 Rate Increase while the brief "
+               "reports a live quality, FAA or supply-chain problem. Both binding; both inferred from the evidence."],
     "airbus": ["Faury leads the ExCo and takes the final call. NGSA, A350 Re-engine, cancellations and Delay Tactics are Board items.",
                "Toepfer: cash, overlap and robustness. Wagner: production, engines and quality.",
                "Soft vetoes: a failed test can be overridden only if the plan is at least $1B better than the best option that passes, "
@@ -107,8 +129,8 @@ the files in place. A final pass compared the fifteen agents for consistency acr
 <li><b>Mechanical check.</b> <code>check_agents.py</code> checks each agent's front matter and section order. It also checks
 that every cited id exists, that every quote is an exact substring of its source item, and that each quote's date and
 perspective match the source.</li>
-<li><b>Limits.</b> Airbus's agents rest on what the Board Report says about them, not on their speech. Five records are thin;
-those agents defer instead of inventing. The "as voiced in dash-2050" lines are the earlier single agent's role-play, shown
+<li><b>Limits.</b> Airbus's agents rest on what the Board Report says about them, not on their speech. Four records are thin and
+Airbus's three are filing-based; those agents defer instead of inventing. The "as voiced in dash-2050" lines are the earlier single agent's role-play, shown
 for comparison, not evidence. How the agents behave in play is untested until the game is run.</li>
 </ol>
 <p class="label">Files</p>
