@@ -13,7 +13,8 @@ LEDE = (
     "Airbus finishes far ahead of Boeing (+$15.61B against +$1.85B). Boeing's narrowbody gain is the larger, but its fps "
     "bill and debt penalty absorb almost all of it, and Airbus's covert Delay Tactic widened the gap by $4.1B. "
     "Nobody re-engined a widebody. Rolls-Royce, which entered the narrowbody market, finishes highest (+$15.68B). "
-    "CFM/GE keeps most narrowbody engines but loses $25.17B against today's 76% share, and P&amp;W loses $10.64B.")
+    "CFM/GE keeps most narrowbody engines but ends $25.17B down: $19.17B of engine value lost against today's 76% "
+    "share, plus $6B of R&amp;D and strain. P&amp;W ends $10.64B down.")
 
 FINDINGS = [
     ("Boeing's 2030 launch erased NGSA's head start.",
@@ -53,9 +54,11 @@ FINDINGS = [
      "<li>P&amp;W goes from 24% to 18.7% in 2037, falls to 14.3% in 2046, and holds 15.9% from 2047.</li>"
      "<li>P&amp;W and Rolls-Royce launched only once NGSA selected them (\"launch if selected\"), so no engine was "
      "built without an airframe.</li></ul>"),
-    ("The Joint Venture needed both commitments in the same round.",
-     " P&amp;W committed publicly to the Joint Venture in 2035. Rolls-Royce held: its rule is to commit only after "
-     "P&amp;W is on the record, and the moves were simultaneous. Under the GM's Joint Venture rules, a Joint Venture "
+    ("The Joint Venture paid only if Rolls-Royce committed by 2035.",
+     " P&amp;W committed publicly to the Joint Venture in 2035, and its commitment stood to the end of the game. "
+     "Rolls-Royce's rule is to commit only after P&amp;W is on the record. In 2035 the moves were simultaneous, so it "
+     "held. By 2045, when it could see P&amp;W's commitment, its UltraFan R&amp;D was spent and joining was worth "
+     "nothing more. Committing first, in 2030, would have been worth $4.00B ex post. Under the GM's Joint Venture rules, a Joint Venture "
      "can form without an airframer selecting code 4, and it inherits the most advanced folded solo programme's "
      "schedule.<ul>"
      "<li>Under those rules, Rolls-Royce committing in 2035 would have given it the same narrowbody share for less "
@@ -64,7 +67,7 @@ FINDINGS = [
      "<li>On its own 6-year schedule, the Joint Venture would have missed NGSA's 2037 entry into service, leaving NGSA "
      "on CFM alone. Rolls-Royce would then be at −$2.97B. Your board itself offers the Joint Venture only when an "
      "airframer selects code 4.</li>"
-     "<li>By 2045 joining was worth nothing more to Rolls-Royce, and it declined.</li></ul>"),
+     "</ul>"),
     ("Objectives: the entrant met both of its own; the airframers met one between them.",
      "<ul><li><b>Boeing</b> held incumbency, but missed 50/50 in 2040 (44%; met in 2045 and 2050).</li>"
      "<li><b>Airbus</b> lost both. Its 60/40 edge became 50/50, and the 737 rate increase broke A320 protection "
@@ -103,7 +106,8 @@ MONEY_LEDE = (
     "entry into service as the board does, and the debt penalty.</li>"
     "<li>Boeing's fps bill ($21.50B in PV for $64.47B booked in 2037), its debt penalty ($7.23B) and the rate "
     "increase ($1.62B) absorb all but $1.85B of its +$32.18B narrowbody gain.</li>"
-    "<li>Airbus's smaller bill ($12.90B in PV) and low debt ($0.39B) leave it about half of its +$29.38B.</li>"
+    "<li>Airbus's smaller bill ($12.90B in PV), debt penalty ($0.39B) and Delay Tactics spend ($0.48B) leave it about "
+    "half of its +$29.38B.</li>"
     "<li>Engine value is the lifetime value of the engines each maker delivers. Rolls-Royce's narrowbody entry takes its "
     "yearly engine value from $4.2B in 2036 to $11.4B in 2037.</li></ul>")
 
@@ -122,16 +126,21 @@ PLAY_POINTS = [
     ("Calibration.",
      "<ul><li>Airbus expected +$32.09B in 2030 and got +$13.44B. It put only 10% on Boeing choosing the 7-year "
      "ramp-up, and its grid did not price the 737 rate increase ($1.86B).</li>"
-     "<li>P&amp;W expected +$2.55B and got −$11.37B. NGSA named all three makers rather than P&amp;W and CFM, which "
-     "cost P&amp;W $7.94B against code 6. Boeing also put fps on CFM alone.</li>"
+     "<li>P&amp;W expected +$2.55B and got −$11.37B, for three reasons it did not expect or price:<ul>"
+     "<li>NGSA named all three makers rather than P&amp;W and CFM, which cost P&amp;W $7.94B against code 6.</li>"
+     "<li>CFM/GE's ducted engine and Embraer partnership cost it a further $6.70B. Its grid held CFM/GE fixed.</li>"
+     "<li>Boeing chose the 7-year ramp-up. With NGSA on code 6, a 10-year fps would have left P&amp;W at +$3.25B "
+     "instead of −$3.44B.</li></ul></li>"
      "<li>From 2035 on, Airbus and Rolls-Royce were within $0.9B of the GM valuation each round, and Boeing within $1.3B. "
-     "CFM/GE was up to $4.1B too pessimistic and P&amp;W up to $3.3B too optimistic.</li></ul>"),
+     "CFM/GE was up to $4.1B too pessimistic. P&amp;W was $1.7B too pessimistic in 2035 and $3.3B too optimistic in "
+     "2045.</li></ul>"),
     ("Fidelity to doctrine.",
      "<ul><li>Each player declared the premiums its doctrine cost.</li>"
-     "<li>Boeing: $0.74B for the Round-1 rate increase and $0.80B for passing on the 787 Re-engine, both within its $1B "
-     "tie band. It logged $0.11B more in 2045.</li>"
-     "<li>Airbus: $3.35B in 2030, for the A350 Re-engine and Delay Tactics its red lines ruled out. Then $1.57B, "
+     "<li>Boeing declared $0.74B for the Round-1 rate increase and $0.80B for passing on the 787 Re-engine, both within "
+     "its $1B tie band. It logged $0.11B more in 2045.</li>"
+     "<li>Airbus declared $3.35B in 2030, for the A350 Re-engine and Delay Tactics its red lines ruled out. Then $1.57B, "
      "$0.91B and $0.59B for staying out of the A350 Re-engine.</li>"
+     "<li>These are the players' own figures, from rounded grid cells. The exact gaps are in the regret table.</li>"
      "<li>P&amp;W ($0.58B, 2030) and Rolls-Royce ($0.46B, 2035) declared premiums in expectation for waiting on "
      "commitments.</li>"
      "<li>No player cancelled a programme.</li></ul>"),
@@ -161,10 +170,11 @@ ROUNDS = {
                  "<li><b>P&amp;W</b> committed publicly to a Joint Venture; <b>Rolls-Royce</b> waited for a commitment "
                  "on the record.</li>"
                  "<li><b>Boeing</b> passed on the 787 Re-engine. It would overlap fps by two years, and an A350 "
-                 "Re-engine would cancel its gain.</li></ul>")},
+                 "Re-engine would turn its gain into a loss.</li></ul>")},
     3: {"title": "2045: everyone holds; the delivery shortfall is published without a cause",
         "lede": ("<ul><li>Both new narrowbodies have been in service since 2037. The live levers were the widebody "
-                 "Re-engines, the Joint Venture, the Open Fan and the widebody engine upgrades, and every player held.</li>"
+                 "Re-engines, the Joint Venture, the Open Fan, emissions lobbying and the widebody engine upgrades, and every "
+                 "player held.</li>"
                  "<li><b>Boeing</b> treated the 2037-41 shortfall as a supplier issue.</li>"
                  "<li><b>Airbus</b> re-tested the A350 Re-engine and found it below its $1B launch bar.</li>"
                  "<li><b>Rolls-Royce</b> judged the Joint Venture worthless once UltraFan was flying.</li></ul>")},
@@ -205,7 +215,8 @@ below, which checks every path each agent touched and every tool output it recei
 recursive or relative access outside the player's own folders, command substitution, and the GM's scratch files and
 agent transcripts.
 <ul>
-<li>It was re-tested on 24 cases and on all 360 tool calls the players made, none of which it would block.</li>
+<li>It was re-tested on 24 cases and on all 360 Read, Bash, Grep and Glob calls the players made, none of which
+it would block.</li>
 <li>One gap remains: the session's tool-results folder, where every agent's large outputs are saved, is shared.</li>
 </ul></li>
 <li><b>Rounds.</b> Four sealed, simultaneous rounds: 2030, 2035, 2045, 2050. Each round's value is the GM valuation of the
@@ -224,7 +235,8 @@ ready before 2045.</li>
 windows.</li>
 <li>The 737 rate increase could only be ordered in 2030; the board books it in 2032. The board's own rule was kept: if
 neither new narrowbody is ever launched, the rate increase lifts Boeing's share in every year from 2026. So Boeing's
-2030 grid row for "rate up, no fps" includes $1.82B for 2026-31. Boeing did not choose that row.</li>
+2030 grid row for "rate up, no fps" includes $1.82B for 2026-31 in the columns where Airbus does not launch NGSA.
+Boeing did not choose that row.</li>
 </ul></li>
 <li><b>Cancellations.</b>
 <ul>
