@@ -131,32 +131,43 @@ def evidence_bars(w, label_w, narrow=False):
     return "".join(out)
 
 
-def evidence_rug():
-    w, left, right, top, bot, rh, gh = 760, 150, 16, 8, 34, 24, 22
+def evidence_rug(narrow=False):
+    """One tick per evidence item by date. Wide: names on the left. Narrow (phones): each name above its row."""
+    if narrow:
+        w, left, right, top, bot, rh, gh = 360, 6, 10, 8, 34, 36, 22
+    else:
+        w, left, right, top, bot, rh, gh = 760, 150, 16, 8, 34, 24, 22
     lo, hi = 2012, 2026.5
     sx = lambda v: left + (v - lo) / (hi - lo) * (w - left - right)
     h = top + len(SIDES) * gh + len(ORDER) * rh + bot
-    out = [K.svg_open(w, h, "When each agent's evidence was said or written: one tick per item", "chart rug")]
+    out = [K.svg_open(w, h, "When each agent's evidence was said or written: one tick per item", "chart narrow" if narrow else "chart rug")]
     for yr in range(2012, 2027, 2):
-        out.append(f'<line x1="{sx(yr):.1f}" x2="{sx(yr):.1f}" y1="{top}" y2="{h - bot}" class="grid"/>'
-                   f'<text x="{sx(yr):.1f}" y="{h - bot + 16}" text-anchor="middle" class="tick">{yr}</text>')
+        out.append(f'<line x1="{sx(yr):.1f}" x2="{sx(yr):.1f}" y1="{top}" y2="{h - bot}" class="grid"/>')
+        if not narrow or yr % 4 == 0 or yr == 2026:
+            anchor = "start" if narrow and yr == lo else "end" if narrow and yr == 2026 else "middle"
+            out.append(f'<text x="{sx(yr):.1f}" y="{h - bot + 16}" text-anchor="{anchor}" class="tick">{yr}</text>')
     y = top
     for s in SIDES:
         out.append(f'<text x="0" y="{y + 15}" class="grp">{esc(COMPANY[s].upper())}</text>')
         y += gh
         for a in ROSTER[s]:
-            out.append(f'<text x="{left - 8}" y="{y + 16}" text-anchor="end" class="rowlab sm">{esc(SHORT[a])}</text>')
+            if narrow:
+                out.append(f'<text x="{left}" y="{y + 11}" class="rowlab sm">{esc(SHORT[a])}</text>')
+                t0, t1 = y + 15, y + 31
+            else:
+                out.append(f'<text x="{left - 8}" y="{y + 16}" text-anchor="end" class="rowlab sm">{esc(SHORT[a])}</text>')
+                t0, t1 = y + 4, y + 20
             dates = sorted(e["date"] for e in ITEMS[a] if e.get("date"))
             for e in sorted(ITEMS[a], key=lambda e: e.get("perspective") == "own_words"):
                 if e.get("date"):
                     x = sx(year(e["date"]))
-                    out.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{y + 4}" y2="{y + 20}" stroke="var(--{PERSP.get(e.get("perspective"), ("", "s3"))[1]})" stroke-width="1.4" opacity=".75"/>')
+                    out.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{t0}" y2="{t1}" stroke="var(--{PERSP.get(e.get("perspective"), ("", "s3"))[1]})" stroke-width="1.4" opacity=".75"/>')
             by_year = collections.Counter(d[:4] for d in dates)
             rows = [(f"{dates[0]} to {dates[-1]}" if dates else "no dated items", "", None)] + \
                    [(str(n), yy, None) for yy, n in sorted(by_year.items())]
             out.append(f'<rect x="0" y="{y}" width="{w}" height="{rh}" class="hit" {K.mark_attrs((BY[a]["name"], "", None), *rows)}/>')
             y += rh
-    out.append(f'<text x="{left}" y="{h - 4}" class="tick">Date of the call, conference or filing</text></svg>')
+    out.append(f'<text x="{left}" y="{h - 4}" class="tick">{"Date of the item" if narrow else "Date of the call, conference or filing"}</text></svg>')
     return "".join(out)
 
 
@@ -334,7 +345,6 @@ code { font: .86em var(--font-mono); }
   .rcell .seat { display: block; }
   .quotes { grid-template-columns: 1fr; }
   td .eids { max-width: 8rem; }
-  .chart.rug { min-width: 720px; }
 }
 """
 
@@ -412,7 +422,7 @@ def build(out_path):
 <section id="evidence"><h2>What each agent is built on</h2><p class="lede">{NAR.EVIDENCE_LEDE}</p><div class="stack">
 <div class="panel"><p class="ctitle">{esc(NAR.BARS_TITLE)}</p>{legend_persp()}<div class="only-wide">{evidence_bars(760, 170)}</div><div class="only-narrow">{evidence_bars(360, 84, narrow=True)}</div>
 <p class="cap">{NAR.BARS_CAP}</p></div>
-<div class="panel"><p class="ctitle">{esc(NAR.RUG_TITLE)}</p>{legend_persp()}<div class="cw" data-focus="560">{evidence_rug()}</div>
+<div class="panel"><p class="ctitle">{esc(NAR.RUG_TITLE)}</p>{legend_persp()}<div class="only-wide">{evidence_rug()}</div><div class="only-narrow">{evidence_rug(narrow=True)}</div>
 <p class="cap">{NAR.RUG_CAP}</p>{evidence_table()}</div></div></section>
 
 <section id="protocol"><h2>How a round will run</h2><p class="lede">{NAR.PROTOCOL_LEDE}</p><div class="panel">{protocol()}<p class="cap">{NAR.PROTOCOL_CAP}</p></div></section>
