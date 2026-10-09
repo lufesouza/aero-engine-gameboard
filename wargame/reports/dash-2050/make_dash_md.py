@@ -25,7 +25,10 @@ def pct(v):
 
 def strip(html_txt):
     import re
-    return re.sub(r"<[^>]+>", "", html_txt).replace("&amp;", "&")
+    t = re.sub(r"\s*<li>\s*", "\n- ", html_txt)
+    t = re.sub(r"</?(ul|li|p|h3)[^>]*>", "\n", t)
+    t = re.sub(r"<[^>]+>", "", t).replace("&amp;", "&")
+    return re.sub(r"\n\s*\n+", "\n", t).strip()
 
 
 def tbl(head, rows):
@@ -133,7 +136,7 @@ def build(out):
         rows.append([NAME[s], n2(v["pv_delta"]), f"{K.rnd(v['yield'], 2):.2f}%", f"{sum(o['met'] for o in obj)} of {len(obj)}"])
     L += [tbl(["Player", "Final ΔPV $B", "Yield", "Objectives met"], rows), ""]
     for t, x in NAR.FINDINGS:
-        L += [f"- **{t}** {strip(x)}"]
+        L += [f"**{t}**", strip(x), ""]
     L += ["", "### ΔPV after each round ($B at 2026)", "",
           tbl(["Player"] + [f"After {y}" for y in RYEARS], [[NAME[s]] + [n2(r["value"][s]["pv_delta"]) for r in ROUNDS] for s in SIDES]), "",
           "### Objectives at the end", "",
@@ -145,6 +148,13 @@ def build(out):
     for r in ROUNDS:
         L += [round_md(r), ""]
     L += ["## Method", "", strip(NAR.METHOD), ""]
+    bc = D.get("board_check")
+    if bc:
+        L += ["### Your board alone against the GM valuation, final state", "",
+              tbl(["Player", "Board alone ΔPV $B", "GM valuation ΔPV $B", "Difference"],
+                  [[NAME[s], n2(bc[s]["board"]), n2(bc[s]["gm"]), n2(bc[s]["gm"] - bc[s]["board"])] for s in SIDES]), "",
+              "Airbus differs by the Delay Tactics spending window; the engine makers by the GM's year-by-year narrowbody split "
+              "(the board uses a fixed 50/50). With a fixed 50/50 split the GM engine model gives the board's numbers exactly.", ""]
     with open(out, "w") as f:
         f.write("\n".join(L))
     print("wrote", out)

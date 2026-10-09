@@ -478,10 +478,19 @@ def engine_timing(state):
                     live(state, "rea350")["eis"] if live(state, "rea350") else DEFAULT_EIS["rea350"])
     wb_upgrade_start = min(DEFAULT_EIS["re787"], DEFAULT_EIS["rea350"])
     start = {}
-    for k in ("cfm_ducted", "cfm_embraer", "pw_solo", "rr_solo", "jv"):
+    for k in ("cfm_ducted", "cfm_embraer", "pw_solo", "rr_solo"):
         r = live(state, k)
         if r and nb_anchor is not None:
             start[k] = max(r["ready"], nb_anchor)
+    j = live(state, "jv")
+    if j and nb_anchor is not None:
+        # a Joint Venture counts from the year it forms at the earliest, even when it inherits an earlier schedule
+        start["jv"] = max(j["ready"], nb_anchor, j["launch"])
+    for k in ("pw_solo", "rr_solo"):
+        f = state["prog"].get("_folded_" + k)
+        if f and nb_anchor is not None:
+            # a solo programme folded into the Joint Venture keeps counting in the years before the fold
+            start[k] = (max(f["ready"], nb_anchor), f["cancel"])
     of = live(state, "cfm_open_fan")
     if of and nb_anchor is not None and nb_anchor < of["ready"]:
         start["cfm_open_fan"] = max(of["launch"], nb_anchor)      # the board's wait penalty
@@ -500,7 +509,10 @@ def engine_timing(state):
 
 def engine_moves_at(state, start, yr):
     def on(k):
-        return k in start and start[k] <= yr
+        if k not in start:
+            return False
+        s0, s1 = start[k] if isinstance(start[k], tuple) else (start[k], None)
+        return s0 <= yr and (s1 is None or yr < s1)
     cfm = set()
     if on("cfm_open_fan"): cfm.add("open_fan")
     if on("cfm_ducted"): cfm.add("ducted")

@@ -175,6 +175,32 @@ def regret(n_rounds):
     return out
 
 
+def board_check(state):
+    """The user's board alone at the final state, next to the GM valuation: airframers from evaluate_scenario() at the
+    state's dates, engine makers from simulate() with the final engine selections at the board's fixed 50/50 split."""
+    H = M.H
+    va = M.value_airframers(state, covert=True, series=False)
+    v = M.value(state, covert=True, series=True)
+    mod = M.en_board()["_MOD"]
+    sup = {c: o for o, c in mod.SUPPLIER_CODE.items()}
+    bc, ac = state["codes"].get("fps", 7), state["codes"].get("ngsa", 7)
+    rr, pw, cfm = mod.derive_nb_engine_shares(bc, ac, 50)
+    eis = va["_inputs"]["eis"]
+    over = {"_b_supplier": sup[bc], "_a_supplier": sup[ac], "_last_b_supp_seen": sup[bc], "_last_a_supp_seen": sup[ac],
+            "_last_boeing_share_seen": 50, "f_cfm_nb": cfm, "f_pw_nb": pw, "f_rr_nb": rr, "f_jv_nb": pw + rr,
+            "af_fps_eis": eis[0], "af_ngsa_eis": eis[1], "af_787_eis": eis[2], "af_a350_eis": eis[3]}
+    SE = H.en(over)
+    last = [r for r in v["_en_series"]["years"] if r["year"] == M.REPORT_END][0]["moves"]
+    res = SE["_ESIM"](last[0], SE["_EPW"], last[2], 31)
+    out = {"boeing": {"board": va["boeing"]["board_pv_delta"], "gm": va["boeing"]["pv_delta"]},
+           "airbus": {"board": va["airbus"]["board_pv_delta"], "gm": va["airbus"]["pv_delta"]}}
+    for side, k in (("cfm", "A"), ("pratt_whitney", "B"), ("rolls_royce", "C")):
+        out[side] = {"board": res[k]["delta_b"], "gm": v[side]["pv_delta"]}
+    out["_engine_inputs"] = {"codes": [bc, ac], "pw_lock": SE["_EPW"], "cfm_move": last[0], "rr_move": last[2],
+                             "f_nb": [cfm, pw, rr], "eis": list(eis)}
+    return out
+
+
 def build(n_rounds=None):
     n_rounds = n_rounds or rounds_played()
     data = {"run": RUN, "rounds": [round_block(n) for n in range(1, n_rounds + 1)]}
@@ -183,6 +209,7 @@ def build(n_rounds=None):
     v0 = M.value(s0, covert=True, series=True)
     data["status_quo"]["years"] = years_block(v0)
     data["regret"] = regret(n_rounds)
+    data["board_check"] = board_check(jl("state_r%d.json" % n_rounds))
     data["stage"] = {str(n): jl("stage_r%d.json" % n) for n in range(1, n_rounds + 1)
                      if os.path.exists(os.path.join(RUN_DIR, "stage_r%d.json" % n))}
     data["audit"] = {str(n): jl("audit_r%d.json" % n) for n in range(1, n_rounds + 1)

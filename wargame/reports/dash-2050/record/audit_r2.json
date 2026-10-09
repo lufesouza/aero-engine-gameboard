@@ -3,60 +3,132 @@
   "agent_type": "airbus-strategist",
   "tool_calls": 17,
   "paths": [
-   "/tmp/wargame-airbus",
-   "wargame/profiles/airbus"
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/profile.md",
+   "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b66liz45q.txt",
+   "/tmp/wargame-airbus/dash-2050",
+   "/tmp/wargame-airbus/dash-2050/my_orders_r1.json",
+   "/tmp/wargame-airbus/dash-2050/round1.md",
+   "/tmp/wargame-airbus/dash-2050/round2.md",
+   "/tmp/wargame-airbus/dash-2050/rules.md",
+   "/tmp/wargame-airbus/scratch",
+   "/tmp/wargame-airbus/scratch/r2_rationale.txt"
   ],
   "foreign_paths": [],
   "denied": [],
   "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [
+   "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b66liz45q.txt"
+  ],
   "clean": true
  },
  "rolls_royce": {
   "agent_type": "rolls-royce-strategist",
   "tool_calls": 15,
   "paths": [
-   "/tmp/wargame-rolls_royce",
-   "wargame/profiles/rolls_royce"
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_ceo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_cfo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_coo_civil.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/profile.md",
+   "/tmp/wargame-rolls_royce/dash-2050",
+   "/tmp/wargame-rolls_royce/dash-2050/my_orders_r1.json",
+   "/tmp/wargame-rolls_royce/dash-2050/round1.md",
+   "/tmp/wargame-rolls_royce/dash-2050/round2.md",
+   "/tmp/wargame-rolls_royce/dash-2050/rules.md"
   ],
   "foreign_paths": [],
   "denied": [],
   "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
   "clean": true
  },
  "cfm": {
   "agent_type": "cfm-strategist",
   "tool_calls": 18,
   "paths": [
-   "/tmp/wargame-cfm",
-   "wargame/profiles/cfm"
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles/*.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/profile.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/reaction_function.json",
+   "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bv68doe8d.txt",
+   "/tmp/wargame-cfm/dash-2050",
+   "/tmp/wargame-cfm/dash-2050/my_orders_r1.json",
+   "/tmp/wargame-cfm/dash-2050/r2_rationale.txt",
+   "/tmp/wargame-cfm/dash-2050/round1.md",
+   "/tmp/wargame-cfm/dash-2050/round2.md",
+   "/tmp/wargame-cfm/dash-2050/rules.md"
   ],
   "foreign_paths": [],
   "denied": [],
   "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [
+   "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bv68doe8d.txt"
+  ],
   "clean": true
  },
  "pratt_whitney": {
   "agent_type": "pratt-whitney-strategist",
   "tool_calls": 21,
   "paths": [
-   "/tmp/wargame-pratt_whitney",
-   "wargame/profiles/pratt_whitney"
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/profile.md",
+   "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bmfdszuq6.txt",
+   "/tmp/wargame-pratt_whitney/dash-2050",
+   "/tmp/wargame-pratt_whitney/dash-2050/my_orders_r1.json",
+   "/tmp/wargame-pratt_whitney/dash-2050/round1.md",
+   "/tmp/wargame-pratt_whitney/dash-2050/round2.md",
+   "/tmp/wargame-pratt_whitney/dash-2050/rules.md",
+   "/tmp/wargame-pratt_whitney/scratch",
+   "/tmp/wargame-pratt_whitney/scratch/rationale.txt"
   ],
   "foreign_paths": [],
   "denied": [],
   "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [
+   "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bmfdszuq6.txt"
+  ],
   "clean": true
  },
  "boeing": {
   "agent_type": "boeing-strategist",
   "tool_calls": 21,
   "paths": [
-   "/tmp/wargame-boeing",
-   "wargame/profiles/boeing"
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/profile.md",
+   "/tmp/wargame-boeing/dash-2050",
+   "/tmp/wargame-boeing/dash-2050/my_orders_r1.json",
+   "/tmp/wargame-boeing/dash-2050/round1.md",
+   "/tmp/wargame-boeing/dash-2050/round2.md",
+   "/tmp/wargame-boeing/dash-2050/rules.md",
+   "/tmp/wargame-boeing/scratch",
+   "/tmp/wargame-boeing/scratch/r2_rationale.txt"
   ],
   "foreign_paths": [],
   "denied": [],
   "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
   "clean": true
  }
 }

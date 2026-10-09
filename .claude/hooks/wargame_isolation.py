@@ -76,6 +76,90 @@ def engine_violation(agent, command):
     return None
 
 
+# The game master's private areas: its scratchpad and task outputs, and every agent transcript. Players' own
+# persisted tool outputs live in the session's tool-results folder, which stays readable.
+GM_PRIVATE = ["/tmp/claude-0/", "/subagents/", "/workflows/"]
+OWN_ROOTS = {"boeing-strategist": ["wargame/profiles/boeing/", "/tmp/wargame-boeing"],
+             "airbus-strategist": ["wargame/profiles/airbus/", "/tmp/wargame-airbus"],
+             "cfm-strategist": ["wargame/profiles/cfm/", "/tmp/wargame-cfm"],
+             "pratt-whitney-strategist": ["wargame/profiles/pratt_whitney/", "/tmp/wargame-pratt_whitney"],
+             "rolls-royce-strategist": ["wargame/profiles/rolls_royce/", "/tmp/wargame-rolls_royce"],
+             "boeing-2010": ["wargame/profiles/boeing_2010/", "/tmp/wargame-boeing"],
+             "airbus-2010": ["wargame/profiles/airbus_2010/", "/tmp/wargame-airbus"]}
+REPO = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+
+
+def _inside_own(agent, path, cwd):
+    """True if `path` (made absolute and normalised) lies inside one of the agent's own folders."""
+    roots = [os.path.realpath(r if r.startswith("/") else os.path.join(REPO, r)) for r in OWN_ROOTS.get(agent, [])]
+    p = os.path.realpath(path if path.startswith("/") else os.path.join(cwd or REPO, path))
+    return any(p == r or p.startswith(r.rstrip("/") + "/") for r in roots)
+
+
+def scope_violation(agent, tool, ti, cwd):
+    """Searches and wildcard or recursive reads must stay inside the player's own folders."""
+    import re
+    if agent not in OWN_ROOTS:
+        return None
+    if tool in ("Grep", "Glob"):
+        root = ti.get("path") or cwd or REPO
+        if not _inside_own(agent, root, cwd):
+            return f"{tool} outside your own folders ({root})"
+        pat = ti.get("pattern", "") if tool == "Glob" else ""
+        if pat.startswith("/") or ".." in pat:
+            return f"Glob pattern outside your own folders ({pat})"
+    if tool == "Read":
+        fp = ti.get("file_path", "")
+        if os.path.normpath(fp) != fp and ".." in fp:
+            if not _inside_own(agent, fp, cwd):
+                return f"normalised path outside your own folders ({fp})"
+    if tool == "Bash":
+        cmd = ti.get("command", "")
+        body = cmd.split("\n")[0] if "<<" in cmd else cmd      # heredoc bodies are data, not paths
+        quoted = []
+
+        def _q(m):                                              # quoted text is literal: no globbing, no splitting
+            quoted.append((m.group(0)[0], m.group(0)[1:-1]))
+            return " QSTR%d " % (len(quoted) - 1)
+        bare = re.sub(r"'[^']*'|\"(?:[^\"\\\\]|\\\\.)*\"", _q, body)
+        dq = " ".join(t for k, t in quoted if k == '"')
+        if "$(" in bare or "`" in bare or "$(" in dq or "`" in dq:
+            return "command substitution"
+        if re.search(r"\b(glob|os\.walk|listdir|scandir|subprocess|os\.system|popen)\b", cmd):
+            return "file discovery or shell calls from a script"
+        wd = cwd or REPO
+        for seg in re.split(r"\s*(?:&&|\|\||;|\|)\s*", bare):
+            seg = seg.strip()
+            m = re.match(r"cd\s+(\S+)$", seg)
+            if m:
+                d = m.group(1)
+                if d.startswith("QSTR"):
+                    d = quoted[int(d[4:])][1]
+                wd = os.path.realpath(d if d.startswith("/") else os.path.join(wd, d))
+                continue
+            toks = [t for t in re.split(r"[\s<>]+", seg) if t]
+            recursive = bool(re.search(r"(^|\s)(-[a-zA-Z]*[rR][a-zA-Z]*|--recursive)(\s|$)", seg) and
+                             re.match(r"(grep|egrep|fgrep|rg|ls|cp|du)\b", seg)) or \
+                bool(re.match(r"(find|tree|rg)\b", seg))
+            npaths = 0
+            for t in toks:
+                lit = t.startswith("QSTR")
+                if lit:
+                    t = quoted[int(t[4:])][1]
+                if t.startswith("-") or not re.fullmatch(r"[\w./~*?\[\]{}+-]+", t):
+                    continue
+                globbing = (not lit) and bool(re.search(r"[*?\[{]", t))
+                if not ("/" in t or globbing or t in (".", "..")):
+                    continue
+                npaths += 1
+                static = (re.split(r"[*?\[{]", t)[0] or ".") if globbing else t
+                if (globbing or recursive or ".." in t) and not _inside_own(agent, static, wd):
+                    return f"wildcard, recursive or relative access outside your own folders ({t})"
+            if recursive and not npaths and not _inside_own(agent, ".", wd):
+                return "recursive search outside your own folders"
+    return None
+
+
 def main():
     try:
         data = json.load(sys.stdin)
@@ -89,7 +173,9 @@ def main():
     if not rules:
         return
     blob = json.dumps(data.get("tool_input", {}))
-    hit = next((r for r in rules if r in blob), None)
+    hit = next((r for r in rules + (GM_PRIVATE if agent in OWN_ROOTS else []) if r in blob), None)
+    if not hit:
+        hit = scope_violation(agent, data.get("tool_name", ""), data.get("tool_input", {}) or {}, data.get("cwd"))
     if not hit and "wargame.engine" in blob:
         hit = engine_violation(agent, str((data.get("tool_input") or {}).get("command", "")))
     if hit:

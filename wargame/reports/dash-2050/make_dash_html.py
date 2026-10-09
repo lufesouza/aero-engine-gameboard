@@ -439,6 +439,24 @@ def round_section(r):
 </div></section>'''
 
 
+def board_table():
+    bc = D.get("board_check")
+    if not bc:
+        return ""
+    why = {"boeing": "Same: no GM adjustment applies.",
+           "airbus": "Delay Tactics spend starts at the 2035 order year, not over the board's 2028-36 window.",
+           "cfm": "The GM splits engines by the airframers' year-by-year narrowbody shares (Boeing 41-55%); the board "
+                  "uses a fixed 50/50. Boeing's slot is CFM-only, and the Delay Tactic cut it in 2037-41.",
+           "pratt_whitney": "As CFM/GE: the year-by-year split.",
+           "rolls_royce": "As CFM/GE: the year-by-year split."}
+    rows = [[esc(NAME[s]), K.num(bc[s]["board"]), K.num(bc[s]["gm"]), K.num(bc[s]["gm"] - bc[s]["board"]), esc(why[s])] for s in SIDES]
+    return ('<h3>Your board alone against the GM valuation, final state</h3>'
+            + K.table(["Player", "Board alone, ΔPV $B", "GM valuation, ΔPV $B", "Difference", "Why"], rows, num_cols=(1, 2, 3))
+            + '<p class="cap">The board alone means evaluate_scenario() at the final entry-into-service dates (2037, 2037, 2035, 2035) for the airframers, '
+              'and simulate() with the final engine selections (fps on CFM, NGSA on all three) and moves at the board\'s fixed 50/50 split for the '
+              'engine makers. With a fixed 50/50 split the GM engine model gives the board\'s numbers exactly.</p>')
+
+
 def audit_table():
     A = D.get("audit") or {}
     if not A:
@@ -448,10 +466,10 @@ def audit_table():
         cells = []
         for n in range(1, len(ROUNDS) + 1):
             a = (A.get(str(n)) or {}).get(s)
-            cells.append("—" if not a else (f'clean ({a["tool_calls"]} calls)' if a["clean"] else
+            cells.append("—" if not a else (f'clean ({a["tool_calls"]} calls, {len(a["paths"])} paths)' if a["clean"] else
                                             f'check: {len(a["foreign_paths"])} foreign paths, {len(a["denied"])} denials'))
         rows.append([esc(NAME[s])] + cells)
-    return ('<p class="label">Isolation audit of every player agent\'s tool calls</p>'
+    return ('<p class="label">Isolation audit: every path each player agent touched and every tool output it received</p>'
             + K.table(["Player"] + [f"Round {n}" for n in range(1, len(ROUNDS) + 1)], rows))
 
 
@@ -542,7 +560,7 @@ def build(out_path):
 <div class="bl">{"".join(f'<div class="panel"><div><b>{esc(t)}</b>{x}</div></div>' for t, x in NAR.PLAY_POINTS)}</div>
 </div></section>
 
-<section id="method"><h2>Method</h2><div class="panel stack">{NAR.METHOD}{audit_table()}</div></section>
+<section id="method"><h2>Method</h2><div class="panel stack">{NAR.METHOD}{board_table()}{audit_table()}</div></section>
 <footer>{NAR.FOOTER}</footer></div>
 <script>{K.JS}</script></body></html>'''
     with open(out_path, "w") as f:

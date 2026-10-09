@@ -18079,6 +18079,48 @@
    }
   }
  },
+ "board_check": {
+  "boeing": {
+   "board": 1.8468592734483629,
+   "gm": 1.8468592734483629
+  },
+  "airbus": {
+   "board": 15.44037377878489,
+   "gm": 15.606052581884503
+  },
+  "cfm": {
+   "board": -23.429999426083157,
+   "gm": -25.174319102806635
+  },
+  "pratt_whitney": {
+   "board": -11.39932229156291,
+   "gm": -10.640838687956588
+  },
+  "rolls_royce": {
+   "board": 14.922477948948064,
+   "gm": 15.680961552554372
+  },
+  "_engine_inputs": {
+   "codes": [
+    3,
+    7
+   ],
+   "pw_lock": "2-Launch GTF2 Go Solo",
+   "cfm_move": "2-Ducted Only | 4-Partner Embraer | 6-Upgrade GenX9",
+   "rr_move": "2-Ultrafan NB Solo",
+   "f_nb": [
+    66.66666666666667,
+    16.666666666666668,
+    16.666666666666668
+   ],
+   "eis": [
+    2037,
+    2037,
+    2035,
+    2035
+   ]
+  }
+ },
  "stage": {
   "1": {
    "round": 1,
@@ -18295,60 +18337,117 @@
     "agent_type": "cfm-strategist",
     "tool_calls": 24,
     "paths": [
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/teams.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bbftvg13c.txt",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bjkle2ocz.txt",
      "/tmp/wargame-cfm",
-     "wargame/profiles/cfm"
+     "/tmp/wargame-cfm/dash-2050/round1.md",
+     "/tmp/wargame-cfm/dash-2050/rules.md",
+     "/tmp/wargame-cfm/r1_rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bbftvg13c.txt",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bjkle2ocz.txt"
+    ],
     "clean": true
    },
    "pratt_whitney": {
     "agent_type": "pratt-whitney-strategist",
     "tool_calls": 18,
     "paths": [
-     "/tmp/wargame-pratt_whitney",
-     "wargame/profiles/pratt_whitney"
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bz73x7o77.txt",
+     "/tmp/wargame-pratt_whitney/dash-2050/round1.md",
+     "/tmp/wargame-pratt_whitney/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bz73x7o77.txt"
+    ],
     "clean": true
    },
    "rolls_royce": {
     "agent_type": "rolls-royce-strategist",
     "tool_calls": 22,
     "paths": [
-     "/tmp/wargame-rolls_royce",
-     "wargame/profiles/rolls_royce"
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b35y1j3sr.txt",
+     "/tmp/wargame-rolls_royce/dash-2050/round1.md",
+     "/tmp/wargame-rolls_royce/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b35y1j3sr.txt"
+    ],
     "clean": true
    },
    "airbus": {
     "agent_type": "airbus-strategist",
     "tool_calls": 17,
     "paths": [
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/profile.md",
      "/tmp/wargame-airbus",
-     "wargame/profiles/airbus"
+     "/tmp/wargame-airbus/dash-2050/round1.md",
+     "/tmp/wargame-airbus/dash-2050/rules.md",
+     "/tmp/wargame-airbus/r1_rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [],
     "clean": true
    },
    "boeing": {
     "agent_type": "boeing-strategist",
     "tool_calls": 18,
     "paths": [
-     "/tmp/wargame-boeing",
-     "wargame/profiles/boeing"
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/brgln74ym.txt",
+     "/tmp/wargame-boeing/dash-2050/round1.md",
+     "/tmp/wargame-boeing/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/brgln74ym.txt"
+    ],
     "clean": true
    }
   },
@@ -18357,60 +18456,132 @@
     "agent_type": "airbus-strategist",
     "tool_calls": 17,
     "paths": [
-     "/tmp/wargame-airbus",
-     "wargame/profiles/airbus"
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b66liz45q.txt",
+     "/tmp/wargame-airbus/dash-2050",
+     "/tmp/wargame-airbus/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-airbus/dash-2050/round1.md",
+     "/tmp/wargame-airbus/dash-2050/round2.md",
+     "/tmp/wargame-airbus/dash-2050/rules.md",
+     "/tmp/wargame-airbus/scratch",
+     "/tmp/wargame-airbus/scratch/r2_rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b66liz45q.txt"
+    ],
     "clean": true
    },
    "rolls_royce": {
     "agent_type": "rolls-royce-strategist",
     "tool_calls": 15,
     "paths": [
-     "/tmp/wargame-rolls_royce",
-     "wargame/profiles/rolls_royce"
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_ceo.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_cfo.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_coo_civil.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/profile.md",
+     "/tmp/wargame-rolls_royce/dash-2050",
+     "/tmp/wargame-rolls_royce/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-rolls_royce/dash-2050/round1.md",
+     "/tmp/wargame-rolls_royce/dash-2050/round2.md",
+     "/tmp/wargame-rolls_royce/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [],
     "clean": true
    },
    "cfm": {
     "agent_type": "cfm-strategist",
     "tool_calls": 18,
     "paths": [
-     "/tmp/wargame-cfm",
-     "wargame/profiles/cfm"
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles/*.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/profile.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/reaction_function.json",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bv68doe8d.txt",
+     "/tmp/wargame-cfm/dash-2050",
+     "/tmp/wargame-cfm/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-cfm/dash-2050/r2_rationale.txt",
+     "/tmp/wargame-cfm/dash-2050/round1.md",
+     "/tmp/wargame-cfm/dash-2050/round2.md",
+     "/tmp/wargame-cfm/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bv68doe8d.txt"
+    ],
     "clean": true
    },
    "pratt_whitney": {
     "agent_type": "pratt-whitney-strategist",
     "tool_calls": 21,
     "paths": [
-     "/tmp/wargame-pratt_whitney",
-     "wargame/profiles/pratt_whitney"
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bmfdszuq6.txt",
+     "/tmp/wargame-pratt_whitney/dash-2050",
+     "/tmp/wargame-pratt_whitney/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-pratt_whitney/dash-2050/round1.md",
+     "/tmp/wargame-pratt_whitney/dash-2050/round2.md",
+     "/tmp/wargame-pratt_whitney/dash-2050/rules.md",
+     "/tmp/wargame-pratt_whitney/scratch",
+     "/tmp/wargame-pratt_whitney/scratch/rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bmfdszuq6.txt"
+    ],
     "clean": true
    },
    "boeing": {
     "agent_type": "boeing-strategist",
     "tool_calls": 21,
     "paths": [
-     "/tmp/wargame-boeing",
-     "wargame/profiles/boeing"
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/profile.md",
+     "/tmp/wargame-boeing/dash-2050",
+     "/tmp/wargame-boeing/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-boeing/dash-2050/round1.md",
+     "/tmp/wargame-boeing/dash-2050/round2.md",
+     "/tmp/wargame-boeing/dash-2050/rules.md",
+     "/tmp/wargame-boeing/scratch",
+     "/tmp/wargame-boeing/scratch/r2_rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [],
     "clean": true
    }
   },
@@ -18419,60 +18590,134 @@
     "agent_type": "boeing-strategist",
     "tool_calls": 20,
     "paths": [
-     "/tmp/wargame-boeing",
-     "wargame/profiles/boeing"
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/profile.md",
+     "/tmp/wargame-boeing/dash-2050",
+     "/tmp/wargame-boeing/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-boeing/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-boeing/dash-2050/round2.md",
+     "/tmp/wargame-boeing/dash-2050/round3.md",
+     "/tmp/wargame-boeing/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [],
     "clean": true
    },
    "cfm": {
     "agent_type": "cfm-strategist",
     "tool_calls": 22,
     "paths": [
-     "/tmp/wargame-cfm",
-     "wargame/profiles/cfm"
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/brfyq5sl6.txt",
+     "/tmp/wargame-cfm/dash-2050",
+     "/tmp/wargame-cfm/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-cfm/dash-2050/r2_rationale.txt",
+     "/tmp/wargame-cfm/dash-2050/r3_rationale.txt",
+     "/tmp/wargame-cfm/dash-2050/round2.md",
+     "/tmp/wargame-cfm/dash-2050/round3.md",
+     "/tmp/wargame-cfm/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/brfyq5sl6.txt"
+    ],
     "clean": true
    },
    "airbus": {
     "agent_type": "airbus-strategist",
     "tool_calls": 17,
     "paths": [
-     "/tmp/wargame-airbus",
-     "wargame/profiles/airbus"
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles/*.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b97piuv7w.txt",
+     "/tmp/wargame-airbus/dash-2050",
+     "/tmp/wargame-airbus/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-airbus/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-airbus/dash-2050/round2.md",
+     "/tmp/wargame-airbus/dash-2050/round3.md",
+     "/tmp/wargame-airbus/dash-2050/rules.md",
+     "/tmp/wargame-airbus/scratch",
+     "/tmp/wargame-airbus/scratch/r3_rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b97piuv7w.txt"
+    ],
     "clean": true
    },
    "pratt_whitney": {
     "agent_type": "pratt-whitney-strategist",
     "tool_calls": 19,
     "paths": [
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/teams.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/profile.md",
      "/tmp/wargame-pratt_whitney",
-     "wargame/profiles/pratt_whitney"
+     "/tmp/wargame-pratt_whitney/dash-2050",
+     "/tmp/wargame-pratt_whitney/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-pratt_whitney/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-pratt_whitney/dash-2050/round2.md",
+     "/tmp/wargame-pratt_whitney/dash-2050/round3.md",
+     "/tmp/wargame-pratt_whitney/dash-2050/rules.md",
+     "/tmp/wargame-pratt_whitney/r3_rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [],
     "clean": true
    },
    "rolls_royce": {
     "agent_type": "rolls-royce-strategist",
     "tool_calls": 21,
     "paths": [
-     "/tmp/wargame-rolls_royce",
-     "wargame/profiles/rolls_royce"
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_coo_civil.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/teams.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bybzoshps.txt",
+     "/tmp/wargame-rolls_royce/dash-2050",
+     "/tmp/wargame-rolls_royce/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-rolls_royce/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-rolls_royce/dash-2050/round2.md",
+     "/tmp/wargame-rolls_royce/dash-2050/round3.md",
+     "/tmp/wargame-rolls_royce/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bybzoshps.txt"
+    ],
     "clean": true
    }
   },
@@ -18481,60 +18726,138 @@
     "agent_type": "rolls-royce-strategist",
     "tool_calls": 19,
     "paths": [
-     "/tmp/wargame-rolls_royce",
-     "wargame/profiles/rolls_royce"
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_ceo.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bxvcm7hmr.txt",
+     "/tmp/wargame-rolls_royce/dash-2050",
+     "/tmp/wargame-rolls_royce/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-rolls_royce/dash-2050/my_orders_r3.json",
+     "/tmp/wargame-rolls_royce/dash-2050/round3.md",
+     "/tmp/wargame-rolls_royce/dash-2050/round4.md",
+     "/tmp/wargame-rolls_royce/dash-2050/rules.md",
+     "/tmp/wargame-rolls_royce/scratch",
+     "/tmp/wargame-rolls_royce/scratch/r4_rationale.txt"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bxvcm7hmr.txt"
+    ],
     "clean": true
    },
    "cfm": {
     "agent_type": "cfm-strategist",
     "tool_calls": 15,
     "paths": [
-     "/tmp/wargame-cfm",
-     "wargame/profiles/cfm"
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/cfm/profile.md",
+     "/tmp/wargame-cfm/dash-2050",
+     "/tmp/wargame-cfm/dash-2050/my_orders_r3.json",
+     "/tmp/wargame-cfm/dash-2050/r3_rationale.txt",
+     "/tmp/wargame-cfm/dash-2050/r4_rationale.txt",
+     "/tmp/wargame-cfm/dash-2050/round4.md",
+     "/tmp/wargame-cfm/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [],
     "clean": true
    },
    "airbus": {
     "agent_type": "airbus-strategist",
     "tool_calls": 15,
     "paths": [
-     "/tmp/wargame-airbus",
-     "wargame/profiles/airbus"
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles/airbus_ceo.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles/airbus_cfo.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles/airbus_coo_commercial_aircraft.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/teams.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/airbus/profile.md",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b9hls52m4.txt",
+     "/tmp/wargame-airbus/dash-2050",
+     "/tmp/wargame-airbus/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-airbus/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-airbus/dash-2050/my_orders_r3.json",
+     "/tmp/wargame-airbus/dash-2050/round3.md",
+     "/tmp/wargame-airbus/dash-2050/round4.md",
+     "/tmp/wargame-airbus/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/b9hls52m4.txt"
+    ],
     "clean": true
    },
    "pratt_whitney": {
     "agent_type": "pratt-whitney-strategist",
     "tool_calls": 18,
     "paths": [
-     "/tmp/wargame-pratt_whitney",
-     "wargame/profiles/pratt_whitney"
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles/pratt_whitney_ceo.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles/pratt_whitney_cfo.txt",
+     "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles/pratt_whitney_coo_president.txt",
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bal6894xz.txt",
+     "/tmp/wargame-pratt_whitney/dash-2050",
+     "/tmp/wargame-pratt_whitney/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-pratt_whitney/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-pratt_whitney/dash-2050/my_orders_r3.json",
+     "/tmp/wargame-pratt_whitney/dash-2050/round3.md",
+     "/tmp/wargame-pratt_whitney/dash-2050/round4.md",
+     "/tmp/wargame-pratt_whitney/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [
+     "/root/.claude/projects/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/tool-results/bal6894xz.txt"
+    ],
     "clean": true
    },
    "boeing": {
     "agent_type": "boeing-strategist",
     "tool_calls": 23,
     "paths": [
-     "/tmp/wargame-boeing",
-     "wargame/profiles/boeing"
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/dashboard_game.md",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/evidence.jsonl",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles",
+     "/home/user/aero-engine-gameboard/wargame/profiles/boeing/profile.md",
+     "/tmp/wargame-boeing/dash-2050",
+     "/tmp/wargame-boeing/dash-2050/my_orders_r1.json",
+     "/tmp/wargame-boeing/dash-2050/my_orders_r2.json",
+     "/tmp/wargame-boeing/dash-2050/my_orders_r3.json",
+     "/tmp/wargame-boeing/dash-2050/round4.md",
+     "/tmp/wargame-boeing/dash-2050/rules.md"
     ],
     "foreign_paths": [],
     "denied": [],
     "engine_commands": [],
+    "leaks_in_outputs": [],
+    "own_tool_results_read": [],
     "clean": true
    }
   }

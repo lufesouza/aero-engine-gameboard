@@ -15,6 +15,8 @@ Rebuild (needs Python 3 with pandas, numpy and plotly, which the board imports):
 
 ```
 cd wargame/dashgame && python3 test_model.py          # the GM valuation reproduces the board
+python3 test_rules.py                                  # the record replays exactly; no played year ever changes
+python3 test_hook.py                                   # the isolation hook denies known bypasses, allows own access
 DASH_RUN=dash-2050 python3 reports.py                  # needs wargame/runs/dash-2050 (copy of record/)
 cp ../runs/dash-2050/report_data.json ../reports/dash-2050/data/
 cd ../reports/dash-2050 && python3 make_dash_html.py && python3 make_dash_md.py

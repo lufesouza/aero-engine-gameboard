@@ -2,7 +2,7 @@
 
 BOEING PROPRIETARY. Boeing Product Development war game on the narrowbody/widebody game-theory dashboard.
 
-Five AI players played four sealed rounds (2030, 2035, 2045 and 2050) on your game-theory dashboard. Boeing, Airbus, CFM/GE, Pratt & Whitney and Rolls-Royce each decided as its named leadership team, from its own profile and the PD briefing's objectives, moves, enablers and constraints. The game master alone saw the board. Boeing launched fps on the 7-year ramp-up in 2030, the same year Airbus launched NGSA, so both enter service in 2037 and the narrowbody market settles at 50/50 from 2047. Airbus still finishes ahead (+$15.61B). The NGSA's margin and one covert Delay Tactic did that. Boeing ends at +$1.85B. Nobody re-engined a widebody. Rolls-Royce enters the narrowbody market (+$15.68B). CFM/GE keeps most narrowbody engines but loses $25.17B against today's 76% share, and P&W loses $10.64B.
+Five AI players played four sealed rounds (2030, 2035, 2045 and 2050) on your game-theory dashboard. Boeing, Airbus, CFM/GE, Pratt & Whitney and Rolls-Royce each decided as its named leadership team, from its own profile and the PD briefing's objectives, moves, enablers and constraints. The game master alone saw the board. Boeing launched fps on the 7-year ramp-up in 2030, the same year Airbus launched NGSA, so both enter service in 2037 and the narrowbody market settles at 50/50 from 2047. Airbus finishes far ahead of Boeing (+$15.61B against +$1.85B). Boeing's narrowbody gain is the larger, but its fps bill and debt penalty absorb almost all of it, and Airbus's covert Delay Tactic widened the gap by $4.1B. Nobody re-engined a widebody. Rolls-Royce, which entered the narrowbody market, finishes highest (+$15.68B). CFM/GE keeps most narrowbody engines but loses $25.17B against today's 76% share, and P&W loses $10.64B.
 
 ## Summary
 
@@ -14,12 +14,47 @@ Five AI players played four sealed rounds (2030, 2035, 2045 and 2050) on your ga
 | Pratt & Whitney | −10.64 | 90.33% | 1 of 2 |
 | Rolls-Royce | +15.68 | 114.26% | 2 of 2 |
 
-- **Boeing's 2030 launch erased NGSA's head start.**  fps on the 7-year ramp-up enters service in 2037, alongside NGSA.Boeing's narrowbody share climbs from 40% to 54% in 2045, helped by the ramp's 5-point first-mover bonus, and settles at 50%.In Boeing's own 2030 grid, against an NGSA launch, this plan scored +$3.79B. The 10-year ramp-up scored −$1.40B, which would have let NGSA lead by three years. Doing Nothing (with the rate increase) scored −$4.38B.Matching NGSA's date was worth about $8B to Boeing. This is the opposite of the fps-delay assessment, where a 4-year NGSA lead left fps a knife-edge.
-- **Airbus still wins on value, with help from a covert Delay Tactic.** NGSA's 26.3% margin, against 13.1% on the A320neo, adds $29.38B of narrowbody profit (PV).In 2035 Airbus ordered one Delay Tactic, a supply-chain bottleneck, against an fps already in development. It cost $0.48B and moved Airbus from +$13.44B to +$15.61B.It cut Boeing from +$3.79B to +$1.85B and Boeing's 2040 share from 49% to 44%.It was never exposed. The bulletin reported a 5-point delivery shortfall in 2037-41 without a cause, and Boeing read it as a supplier problem, as its doctrine says.
-- **Nobody re-engined a widebody.**  In every round, each pure equilibrium of the board's airframer stage game had exactly one side re-engining: a game of Chicken. Both held for all four rounds, so the 787 stays at 58.8% of widebody deliveries.Boeing's reason: one development at a time while fps was in development, then its A330neo "no regret" precedent.Airbus's reason: its one-launch-a-round rule and its peak-spend test, then its $1B launch test.Measured ex post, re-engining in 2030 would have been worth $2.03B more to Boeing, or $1.77B more to Airbus.
-- **Engine selections set the engine makers' fortunes.**  Boeing put fps on CFM alone; Airbus opened NGSA to all three makers.CFM/GE falls from 76% of narrowbody engines to 57.8% in 2037, then recovers to 63.5% from 2047 as Boeing's share rises. It keeps a majority throughout.Rolls-Royce goes from 0% to 20.6-23.5%.P&W goes from 24% to 14.6-18.7%.P&W and Rolls-Royce launched only once NGSA selected them ("launch if selected"), so no engine was built without an airframe.
-- **Rolls-Royce turned down a Joint Venture that would have paid.**  P&W committed publicly to the Joint Venture in 2035. Rolls-Royce held: its rule is to commit only after P&W is on the record, and the moves were simultaneous.On the board, the Joint Venture would have given Rolls-Royce the same narrowbody share for less R&D: $5.71B including the write-off on UltraFan Solo, against $8B. That makes +$17.97B against +$15.68B.It would have lifted P&W from −$10.64B to −$5.13B, and taken CFM/GE from −$25.17B to −$32.26B.By 2045 joining was worth nothing more to Rolls-Royce, and it declined.
-- **Objectives: the entrant met both of its own; the airframers met one between them.** Boeing held incumbency, but missed 50/50 in 2040 (44%; met in 2045 and 2050).Airbus lost both. Its 60/40 edge became 50/50, and the 737 rate increase broke A320 protection (55% in 2032-36).CFM/GE kept narrowbody dominance (59.7% at worst) but never launched the Open Fan.P&W restored credibility (GTF2 flies on NGSA) at a loss.Rolls-Royce met both: narrowbody entry and widebody dominance (55%).
+**Boeing's 2030 launch erased NGSA's head start.**
+fps on the 7-year ramp-up enters service in 2037, alongside NGSA.
+- Boeing's narrowbody share climbs from 40% to a peak of 55% in 2046, helped by the ramp's 5-point first-mover bonus, and settles at 50%.
+- In Boeing's own 2030 grid, against an NGSA launch, this plan scored +$3.79B. The 10-year ramp-up scored −$1.40B, which would have let NGSA lead by three years. Doing Nothing (with the rate increase) scored −$4.38B.
+- The launch was worth $8.2B against Doing Nothing, and $5.2B against the 10-year ramp-up.
+- This is consistent with the fps-delay assessment: closing NGSA's lead to zero takes fps well off the knife edge it sat on with a 4-year lead.
+
+**Airbus finishes far ahead of Boeing on costs, and a covert Delay Tactic widened the gap.**
+- Boeing's narrowbody profit gain is the larger: +$32.18B against Airbus's +$29.38B, both in PV. But Boeing's fps bill ($21.50B in PV), debt penalty ($7.23B) and rate increase ($1.62B) absorb all but $1.85B. Airbus's bill ($12.90B) and debt penalty ($0.39B) are far smaller.
+- In 2035 Airbus ordered one Delay Tactic, a supply-chain bottleneck, against an fps already in development. It cost $0.48B and moved Airbus from +$13.44B to +$15.61B.
+- It cut Boeing from +$3.79B to +$1.85B and Boeing's 2040 share from 49% to 44%.
+- Through the engine split it also cost CFM/GE $1.75B and gave P&W and Rolls-Royce $0.73B each.
+- The order was never published, but its effect was visible. In 2045 the bulletin reported a 5-point shortfall in Boeing's 2037-41 deliveries without a cause. Under the public rules that signature points to Delay Tactics, and CFM/GE inferred it privately. Boeing treated it as a supplier problem, as its doctrine says.
+
+**Nobody re-engined a widebody.**
+In 2030, 2035 and 2045 the board's airframer stage game was a game of Chicken: two pure equilibria, each with one side re-engining. By 2050 only Airbus re-engining remained an equilibrium. Both held for all four rounds, so the 787 stays at 58.8% of widebody deliveries.
+- Boeing's reason: one development at a time while fps was in development, then its A330neo "no regret" precedent.
+- Airbus's reason: its one-launch-a-round rule and its peak-spend test, then its $1B launch test.
+- Measured ex post, a 2030 787 Re-engine would have added $1.28B for Boeing, and an A350 Re-engine $1.77B for Airbus.
+
+**Engine selections set the engine makers' fortunes.**
+Boeing put fps on CFM alone; Airbus opened NGSA to all three makers.
+- CFM/GE falls from 76% of narrowbody engines to 57.8% in 2037. It rises to 66.7% in 2046 as Boeing's CFM-only fps gains share, and settles at 63.5% from 2047 when the 7-year bonus ends. It keeps a majority throughout.
+- Rolls-Royce goes from 0% to 23.5% in 2037, falls to a low of 19.0% in 2046, and holds 20.6% from 2047.
+- P&W goes from 24% to 18.7% in 2037, falls to 14.3% in 2046, and holds 15.9% from 2047.
+- P&W and Rolls-Royce launched only once NGSA selected them ("launch if selected"), so no engine was built without an airframe.
+
+**The Joint Venture needed both commitments in the same round.**
+P&W committed publicly to the Joint Venture in 2035. Rolls-Royce held: its rule is to commit only after P&W is on the record, and the moves were simultaneous. Under the GM's Joint Venture rules, a Joint Venture can form without an airframer selecting code 4, and it inherits the most advanced folded solo programme's schedule.
+- Under those rules, Rolls-Royce committing in 2035 would have given it the same narrowbody share for less R&D: $5.71B including the write-off on UltraFan Solo, against $8B. That makes +$17.97B against +$15.68B.
+- It would also have lifted P&W from −$10.64B to −$5.13B, and taken CFM/GE from −$25.17B to −$32.26B.
+- On its own 6-year schedule, the Joint Venture would have missed NGSA's 2037 entry into service, leaving NGSA on CFM alone. Rolls-Royce would then be at −$2.97B. Your board itself offers the Joint Venture only when an airframer selects code 4.
+- By 2045 joining was worth nothing more to Rolls-Royce, and it declined.
+
+**Objectives: the entrant met both of its own; the airframers met one between them.**
+- Boeing held incumbency, but missed 50/50 in 2040 (44%; met in 2045 and 2050).
+- Airbus lost both. Its 60/40 edge became 50/50, and the 737 rate increase broke A320 protection (55% in 2032-36).
+- CFM/GE kept narrowbody dominance but never launched the Open Fan. Its worst tested year (2040-50) was 59.7%; its low point was 57.8% in 2037.
+- P&W restored credibility (GTF2 flies on NGSA) at a loss.
+- Rolls-Royce met both: narrowbody entry and widebody dominance (55%).
+
 
 ### ΔPV after each round ($B at 2026)
 
@@ -60,7 +95,11 @@ Five AI players played four sealed rounds (2030, 2035, 2045 and 2050) on your ga
 
 **2030: both new narrowbodies launch in the same year**
 
-Airbus launched NGSA on its own clock, open to all three engine makers. It expected Boeing's fps to take the 10-year ramp-up or go via Embraer.Boeing lifted its Round-1 hard rule: by its own reading the 777X and MAX 7/10 were done and its debt repaired. It launched fps on the 7-year ramp-up on CFM, plus the 737 rate increase.P&W and Rolls-Royce launched on being selected for NGSA.CFM/GE committed a ducted engine for both airframers, a partnership with Embraer and the GEnx upgrade.No player touched the widebody.
+- Airbus launched NGSA on its own clock, open to all three engine makers. It expected Boeing's fps to take the 10-year ramp-up or go via Embraer.
+- Boeing lifted its Round-1 hard rule: by its own reading the 777X and MAX 7/10 were done and its debt repaired. It launched fps on the 7-year ramp-up on CFM, plus the 737 rate increase.
+- P&W and Rolls-Royce launched on being selected for NGSA.
+- CFM/GE committed a ducted engine for both airframers, a partnership with Embraer and the GEnx upgrade.
+- No airframer touched the widebody. CFM/GE's GEnx upgrade was the only widebody move.
 
 ### Orders (as adjudicated)
 
@@ -497,7 +536,9 @@ CFM/GE:
 
 **2035: a covert Delay Tactic and an unanswered Joint Venture offer**
 
-Airbus ordered one Delay Tactic (supply-chain bottleneck) against the fps in development. It cost Boeing 5 points of share in 2037-41.P&W committed publicly to a Joint Venture; Rolls-Royce waited for a commitment on the record.Boeing passed on the 787 Re-engine. It would overlap fps by two years, and an A350 Re-engine would cancel its gain.
+- Airbus ordered one Delay Tactic (supply-chain bottleneck) against the fps in development. It cost Boeing 5 points of share in 2037-41.
+- P&W committed publicly to a Joint Venture; Rolls-Royce waited for a commitment on the record.
+- Boeing passed on the 787 Re-engine. It would overlap fps by two years, and an A350 Re-engine would cancel its gain.
 
 ### Orders (as adjudicated)
 
@@ -985,7 +1026,10 @@ CFM/GE:
 
 **2045: everyone holds; the delivery shortfall is published without a cause**
 
-Both new narrowbodies have been in service since 2037. The only live levers were the widebody Re-engines and the Joint Venture, and every player held.Boeing treated the 2037-41 shortfall as a supplier issue.Airbus re-tested the A350 Re-engine and found it below its $1B launch bar.Rolls-Royce judged the Joint Venture worthless once UltraFan was flying.
+- Both new narrowbodies have been in service since 2037. The live levers were the widebody Re-engines, the Joint Venture, the Open Fan and the widebody engine upgrades, and every player held.
+- Boeing treated the 2037-41 shortfall as a supplier issue.
+- Airbus re-tested the A350 Re-engine and found it below its $1B launch bar.
+- Rolls-Royce judged the Joint Venture worthless once UltraFan was flying.
 
 ### Orders (as adjudicated)
 
@@ -1480,7 +1524,7 @@ CFM/GE:
 
 **2050: everyone holds again; the game ends at 50/50**
 
-A Re-engine ordered in 2050 would enter service only in 2055. Discounted to 2026, its gain was below each airframer's launch bar. Every player held, and the final state is the 2035 state.
+A Re-engine ordered in 2050 would enter service only in 2055. Airbus's A350 Re-engine gained about $0.6B if Boeing held, below its $1B bar. Boeing's 787 Re-engine was a loss in both cases. Every player held, and the final state is the 2035 state.
 
 ### Orders (as adjudicated)
 
@@ -2000,76 +2044,105 @@ Joint scenario: S1 about 0.85; S2 or a single Re-engine about 0.15.
 
 ## Method
 
-
 How the game was run
-
-Board. Your Combined_Game_Board.py, run headless (never in Streamlit) at the snapshot settings in Game.txt.
-The overlap-aware two-front strain from the earlier analysis is used. Every airframer number is the board's own
-evaluate_scenario() at the game's entry-into-service dates. The year-by-year figures are traced from inside it
-and reconcile to its present values to 10−9.
-Players. Five agents, one per company. Each decided as its named leadership team: CEO frames, CFO tests,
+- Board. Your Combined_Game_Board.py, run headless (never in Streamlit) at the snapshot settings in Game.txt.
+The overlap-aware two-front strain from the earlier analysis is used.
+- Airframer values are the board's own evaluate_scenario() at the game's entry-into-service dates, plus
+the GM rules below.
+- Engine values apply the board's simulate() rules year by year.
+- The table at the end of this section sets each final value next to what your board alone gives.
+- Year-by-year airframer figures are traced from inside evaluate_scenario() and reconcile to its present
+values to 10−9.
+- Players. Five agents, one per company. Each decided as its named leadership team: CEO frames, CFO tests,
 operating head tests, then the team's decision rule. Each used its company profile, its executive and role profiles,
 and a dashboard addendum that maps the briefing slide's goals, moves, enablers and constraints onto the board.
-Information. Only the game master (GM) saw the full board.
-
-Each player received the public bulletin plus a private brief: its own position, its own year-by-year projection,
-its objective status, and its own payoff for each of its plans against a few public scenarios of rival moves.
-A hook blocked every player from other players' profiles and briefs, from the run record, from the board file, the
-snapshot, the GM code and earlier reports.
-The audit below lists what each agent touched.
-
-Rounds. Four sealed, simultaneous rounds: 2030, 2035, 2045, 2050. Each round's value is the board's valuation of
-the state after that round, assuming nobody moves again. The final round's value is the game outcome.
-
+- Information. Only the game master (GM) saw the full board. Each player received the public bulletin plus a
+private brief: its own position, its own year-by-year projection, its objective status, and its own payoff for each
+of its plans against a few public scenarios of rival moves.
+- Isolation, during the game. A path-filter hook denied each player direct access to other players' profiles
+and briefs, the run record, the board file, the snapshot, the GM code and earlier reports.
+- It matched literal paths, so a wildcard or a search of a parent folder could have reached past it, and the
+session's shared storage was not covered.
+- An independent review of all 20 player transcripts found no access to another player's material. So did the audit
+below, which checks every path each agent touched and every tool output it received.
+- Isolation, after the game. The hook was hardened. It now also denies searches with no path, wildcard,
+recursive or relative access outside the player's own folders, command substitution, and the GM's scratch files and
+agent transcripts.
+- It was re-tested on 24 cases and on all 360 tool calls the players made, none of which it would block.
+- One gap remains: the session's tool-results folder, where every agent's large outputs are saved, is shared.
+- Rounds. Four sealed, simultaneous rounds: 2030, 2035, 2045, 2050. Each round's value is the GM valuation of the
+state after that round, assuming nobody moves again. The final round's value is the game outcome.
 Rules the GM added to the static board
-
-Time.
-
-A programme enters service (or an engine is ready) after its development time from the decision year: fps 7 or 10
-years, fps via Embraer 10, NGSA 7, Re-engines 5; ducted engine 6, GTF2 6, UltraFan NB 7, UltraFan WB 6, Trent and GEnx
-upgrades 3; Open Fan 10 and never before 2045.
-Unlaunched programmes keep the snapshot dates (fps 2041, NGSA 2037, Re-engines 2035) for the board's valuation
+- Time.
+- A programme enters service, or an engine is ready, after its development time from the decision year.
+- Airframes: fps 7 or 10 years, fps via Embraer 10, NGSA 7, Re-engines 5.
+- Engines: ducted 6, GTF2 6, UltraFan NB 7, UltraFan WB 6, Trent and GEnx upgrades 3, the Embraer partnership 7,
+the Joint Venture 6 (or an inherited schedule, below). Lobbying is immediate. Open Fan takes 10 years and is never
+ready before 2045.
+- Unlaunched programmes keep the snapshot dates (fps 2041, NGSA 2037, Re-engines 2035) for the board's valuation
 windows.
-The 737 rate increase could only be ordered in 2030 (the board dates it 2032).
-
-Cancellations write off the bill × years elapsed ÷ development years, booked in the cancel year, with the board's
+- The 737 rate increase could only be ordered in 2030; the board books it in 2032. The board's own rule was kept: if
+neither new narrowbody is ever launched, the rate increase lifts Boeing's share in every year from 2026. So Boeing's
+2030 grid row for "rate up, no fps" includes $1.82B for 2026-31. Boeing did not choose that row.
+- Cancellations.
+- Airframes write off the bill × years elapsed ÷ development years, booked in the cancel year, with the board's
 debt penalty.
-Delay Tactics are covert.
-
-Their spend falls in the years before fps entry into service, never before the order year.
-The naked fine applies only if Boeing never launches fps.
-Their share effect enters another player's valuation only once it is fully in the past. The bulletin then reports
-the shortfall in Boeing's deliveries without a cause.
-
-Engines. The engine board is applied year by year.
-
-Each airframer's narrowbody share is split equally among the engines actually fitted to its airframe. The board uses a
-fixed 50/50 split; here the split follows the airframers' year-by-year shares.
-Each engine move counts from the year it is ready. An engine not ready by an airframe's entry into service is dropped
-from it; CFM is always available.
-The Joint Venture forms when both makers have committed.
-Open Fan's wait penalty applies only if a new narrowbody enters service before it is ready.
-UltraFan WB counts only once a re-engined widebody is in service.
-With every engine ready at the board's entry into service and a 50/50 split, this reproduces the board's
-simulate() exactly; tested on 648 move combinations.
-
-Other moves (pricing campaigns, partnerships, derivatives) were recorded and published when public, but the board
-does not price them.
-
+- Engines write off R&D × years elapsed ÷ development years, undiscounted like the board's R&D.
+- Delay Tactics are covert: the order and its cause are never published.
+- Their spend falls in the years before fps entry into service, never before the order year. This raises Airbus's
+value by $0.17B against the board, which spreads the spend over the board's own window.
+- The naked fine applies only if Boeing never launches fps.
+- Their effect shows in observed deliveries from fps entry into service. Once it is fully in the past, it enters
+every player's own valuation and the bulletin reports the shortfall without a cause.
+- Through the year-by-year engine split, Delay Tactics also move the engine makers' values; the board's engine game
+has no such link.
+- Engines. The engine board is applied year by year.
+- Each airframer's narrowbody share is split equally among the engines actually fitted to its airframe. The board
+uses a fixed 50/50 split; here the split follows the airframers' year-by-year shares.
+- Each narrowbody engine move counts from the later of its ready year and the first new narrowbody's entry into
+service. Widebody upgrades count from the later of their ready year and 2035, the board's widebody anchor. UltraFan WB
+counts only once a re-engined widebody is in service.
+- An engine not ready by an airframe's entry into service is dropped from it; CFM is always available. Code 4
+without a formed Joint Venture falls back to whichever P&W and Rolls-Royce solo engines are ready. This was not
+used in this game.
+- Open Fan's wait penalty applies only if a new narrowbody enters service before it is ready.
+- With every engine ready at the board's entry into service and a 50/50 split, this reproduces the board's
+simulate() exactly: 648 move combinations in board mode, plus one full game state.
+- Joint Venture.
+- It forms when both makers have committed, without needing an airframer to choose code 4. The board offers it only
+through code 4.
+- A solo programme folds into it, writing off spend beyond the maker's Joint Venture share.
+- The Joint Venture inherits the most advanced folded programme's schedule, and counts from its formation year at
+the earliest.
+- Both makers' Joint Venture moves apply, as on the board: CFM loses 20 points before re-normalising.
+- Other moves (pricing campaigns, partnerships, derivatives) were recorded and published when public, but the
+board does not price them.
+- Tests. test_model.py checks the board reproduction. test_rules.py replays the
+whole record, checks that no year already played ever changes, and checks the rule arithmetic.
+test_hook.py checks the isolation hook.
 What the numbers are
-
-ΔPV and yield. ΔPV is the change in present value at 2026 against the status quo (nobody launches anything), at
-each player's board WACC: Boeing 10.5%, Airbus 8%, CFM/GE 8.5%, P&W and RR 10%. Yield = 100 + ΔPV ÷ enterprise value.
-Board conventions.
-
-Airframe programme spend is booked in full at entry into service.
-Engine R&D is undiscounted.
-Each programme's market counts for 20 years from its entry into service.
-Engine value is lifetime value per engine delivered: price × 1.6, rising 2.2% a year.
-
-Regret. The final ΔPV a player would have had with its best alternative orders in that round, holding every other
-order in the game as played (later rounds re-run), minus its actual final ΔPV.
-What the board does not price. Engine durability, customer lock-in, COMAC or Embraer as entrants, the
+- ΔPV and yield. ΔPV is the change in present value at 2026 against the status quo (nobody launches anything),
+at each player's board WACC: Boeing 10.5%, Airbus 8%, CFM/GE 8.5%, P&W and RR 10%. Yield = 100 + 100 × ΔPV ÷
+enterprise value.
+- Board conventions.
+- Airframe programme spend is booked in full at entry into service.
+- Engine R&D is undiscounted.
+- Each market counts from 2026 through 19 years after the relevant entry into service. For airframers that is each
+programme's own date; for narrowbody engines, the first new narrowbody's date.
+- Engine value is the lifetime value per engine delivered: price × 1.6, rising 2.2% a year.
+- Regret. The final ΔPV a player would have had with its best alternative orders in that round, holding every
+other order in the game as played (later rounds re-run), minus its actual final ΔPV.
+- What the board does not price. Engine durability, customer lock-in, COMAC or Embraer as entrants, the
 A220-500, pricing campaigns and government support. Players' moves on these are recorded in each round's detail.
 
+### Your board alone against the GM valuation, final state
 
+| Player | Board alone ΔPV $B | GM valuation ΔPV $B | Difference |
+|---|---:|---:|---:|
+| Boeing | +1.85 | +1.85 | +0.00 |
+| Airbus | +15.44 | +15.61 | +0.17 |
+| CFM/GE | −23.43 | −25.17 | −1.74 |
+| Pratt & Whitney | −11.40 | −10.64 | +0.76 |
+| Rolls-Royce | +14.92 | +15.68 | +0.76 |
+
+Airbus differs by the Delay Tactics spending window; the engine makers by the GM's year-by-year narrowbody split (the board uses a fixed 50/50). With a fixed 50/50 split the GM engine model gives the board's numbers exactly.
