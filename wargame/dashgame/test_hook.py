@@ -45,6 +45,25 @@ CASES = [
     (B, "Read", {"file_path": "/root/.claude/projects/p/s/tool-results/brgln74ym.txt"}, "allow"),
     (B, "Bash", {"command": "python3 -m wargame.engine brief --run x --side boeing"}, "allow"),
     ("claude", "Grep", {"pattern": "x"}, "allow"),
+    # per-executive agents: their company strategist's limits, no engine at all, colleagues' agent files allowed
+    ("boeing-malave", "Read", {"file_path": "/tmp/wargame-airbus/dash-2050/round1.md"}, "deny"),
+    ("boeing-malave", "Read", {"file_path": REPO + "/wargame/profiles/airbus/executives/toepfer.md"}, "deny"),
+    ("boeing-ortberg", "Read", {"file_path": REPO + "/.claude/agents/airbus-faury.md"}, "deny"),
+    ("boeing-strategist", "Read", {"file_path": REPO + "/.claude/agents/airbus-faury.md"}, "deny"),
+    ("cfm-ghai", "Read", {"file_path": REPO + "/.claude/agents/rolls-royce-mccabe.md"}, "deny"),
+    ("rolls-royce-strategist", "Read", {"file_path": REPO + "/.claude/agents/pratt-whitney-eddy.md"}, "deny"),
+    ("wargame-market", "Read", {"file_path": REPO + "/.claude/agents/cfm-culp.md"}, "deny"),
+    ("airbus-toepfer", "Bash", {"command": "python3 -m wargame.engine brief --run x --side airbus"}, "deny"),
+    ("airbus-wagner", "Read", {"file_path": REPO + "/wargame/reports/dash-2050/record/record_r1.json"}, "deny"),
+    ("rolls-royce-watson", "Grep", {"pattern": "Covert", "path": "/tmp"}, "deny"),
+    ("pratt-whitney-eddy", "Read", {"file_path": "/tmp/claude-0/s/scratchpad/exco/draft/pratt-whitney-calio.json"}, "deny"),
+    ("cfm-ali", "Bash", {"command": "cat /tmp/wargame-*/dash-2050/exco/*.md"}, "deny"),
+    ("boeing-pope", "Read", {"file_path": REPO + "/wargame/profiles/boeing/executives/pope.md"}, "allow"),
+    ("boeing-malave", "Read", {"file_path": "/tmp/wargame-boeing/dash-2050/exco/r1_frame.md"}, "allow"),
+    ("cfm-ali", "Grep", {"pattern": "\"exec_id\": \"ali\"", "path": REPO + "/wargame/profiles/cfm/executives"}, "allow"),
+    ("rolls-royce-mccabe", "Read", {"file_path": REPO + "/.claude/agents/rolls-royce-erginbilgic.md"}, "allow"),
+    ("pratt-whitney-calio", "Bash", {"command": "grep -n mitchill " + REPO + "/wargame/profiles/pratt_whitney/executives/teams.md"}, "allow"),
+    ("airbus-faury", "Bash", {"command": "ls /tmp/wargame-airbus/dash-2050/exco/"}, "allow"),
 ]
 bad = [(c, decide(*c[:3])) for c in CASES if decide(*c[:3]) != c[3]]
 print("hook cases: %d of %d as expected" % (len(CASES) - len(bad), len(CASES)))

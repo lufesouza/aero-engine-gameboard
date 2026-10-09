@@ -8,24 +8,35 @@ No player or market agent may read run state (sealed orders live there) or run
 engine commands other than read-only ones from its own side's view; only the Game
 Orchestrator sees the full game-theory board (players may not run `equilibria`). The Game
 Orchestrator (referee), the analyst and the main session are not restricted.
+
+The per-executive agents (one per member of each company's default ExCo, e.g. boeing-ortberg) carry their company
+strategist's restrictions, may not run any engine command, and keep to their company's own folders. Inside an ExCo,
+colleagues see each other only through what the game master passes them.
 """
 import json
 import os
 import sys
 
+# The per-executive agents of each company's default ExCo (agent files .claude/agents/<name>.md).
+EXECS = {"boeing": ["boeing-ortberg", "boeing-malave", "boeing-pope"],
+         "airbus": ["airbus-faury", "airbus-toepfer", "airbus-wagner"],
+         "cfm": ["cfm-culp", "cfm-ghai", "cfm-ali"],
+         "pratt_whitney": ["pratt-whitney-calio", "pratt-whitney-mitchill", "pratt-whitney-eddy"],
+         "rolls_royce": ["rolls-royce-erginbilgic", "rolls-royce-mccabe", "rolls-royce-watson"]}
+XF = {side: [n + ".md" for n in names] for side, names in EXECS.items()}
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
          "/scratchpad/audit", "/scratchpad/ab_synth_work", "/scratchpad/text", "/scratchpad/rr", "/scratchpad/pw",
          "/scratchpad/engines", "/scratchpad/execs", "/scratchpad/cfm", "/scratchpad/rrx", "/scratchpad/pwx"]
-RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"]
-PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"]
-CFMP = ["profiles/cfm", "cfm-strategist.md", "wargame-cfm"]
+RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"] + XF["rolls_royce"]
+PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"] + XF["pratt_whitney"]
+CFMP = ["profiles/cfm", "cfm-strategist.md", "wargame-cfm"] + XF["cfm"]
 # The cross-player overview page summarises every side, the config holds every player's assigned objective,
 # and the root gameboard.py holds every engine maker's move table: no player reads them.
 SHARED = ["profiles/overview", "wargame/config", "gameboard.py"]
 CFM = CFMP + SHARED
 AIRFRAMERS = ["profiles/boeing", "profiles/airbus", "boeing-strategist.md", "airbus-strategist.md", "boeing-2010.md",
-              "airbus-2010.md", "wargame-boeing", "wargame-airbus"]
+              "airbus-2010.md", "wargame-boeing", "wargame-airbus"] + XF["boeing"] + XF["airbus"]
 # Raw uploads contain every year; the period-locked 2010 players may not read them.
 RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "Morgan Stanley", "NYSE BA Financials",
        "Rolls-Royce Holdings plc", "Transcript Digest", "Filings.pdf", "SEC Fillings", "Durability news", "Global Strategy Brief",
@@ -38,17 +49,17 @@ DASH = ["Combined_Game_Board", "dashboard-fps-delay", "Game.txt", "wargame/dashg
 BLOCK = {
     "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-2010.md", "airbus-strategist.md", "boeing-strategist.md",
                     "wargame/runs",
-                    "wargame-airbus"] + RR + PW + CFM + BUILD + RAW,
+                    "wargame-airbus"] + XF["boeing"] + XF["airbus"] + RR + PW + CFM + BUILD + RAW,
     "airbus-2010": ["profiles/boeing", "profiles/airbus/", "boeing-2010.md", "boeing-strategist.md", "airbus-strategist.md",
                     "wargame/runs",
-                    "wargame-boeing"] + RR + PW + CFM + BUILD + RAW,
-    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + RR + PW + CFM + BUILD + DASH,
-    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + RR + PW + CFM + BUILD + DASH,
+                    "wargame-boeing"] + XF["boeing"] + XF["airbus"] + RR + PW + CFM + BUILD + RAW,
+    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + XF["airbus"] + RR + PW + CFM + BUILD + DASH,
+    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + XF["boeing"] + RR + PW + CFM + BUILD + DASH,
     "rolls-royce-strategist": AIRFRAMERS + PW + CFM + ["wargame/runs"] + BUILD + DASH,
     "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + ["wargame/runs"] + BUILD + DASH,
     "cfm-strategist": AIRFRAMERS + RR + PW + SHARED + ["wargame/runs"] + BUILD + DASH,
     "wargame-market": ["profiles/", "wargame/runs", "wargame/config", "gameboard.py", "wargame-boeing", "wargame-airbus",
-                       "wargame-rolls_royce", "wargame-pratt_whitney", "wargame-cfm"] + BUILD + DASH,
+                       "wargame-rolls_royce", "wargame-pratt_whitney", "wargame-cfm"] + sum(XF.values(), []) + BUILD + DASH,
 }
 
 
@@ -87,6 +98,15 @@ OWN_ROOTS = {"boeing-strategist": ["wargame/profiles/boeing/", "/tmp/wargame-boe
              "boeing-2010": ["wargame/profiles/boeing_2010/", "/tmp/wargame-boeing"],
              "airbus-2010": ["wargame/profiles/airbus_2010/", "/tmp/wargame-airbus"]}
 REPO = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+
+# Each executive inherits its company strategist's blocks and folders; no engine commands at all (dash-2050 has none).
+COMPANY_AGENT = {"boeing": "boeing-strategist", "airbus": "airbus-strategist", "cfm": "cfm-strategist",
+                 "pratt_whitney": "pratt-whitney-strategist", "rolls_royce": "rolls-royce-strategist"}
+for _side, _names in EXECS.items():
+    for _n in _names:
+        BLOCK[_n] = BLOCK[COMPANY_AGENT[_side]] + ["wargame.engine"]
+        PLAYER_SIDE[_n] = _side
+        OWN_ROOTS[_n] = OWN_ROOTS[COMPANY_AGENT[_side]]
 
 
 def _inside_own(agent, path, cwd):

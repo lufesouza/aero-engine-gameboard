@@ -1,0 +1,709 @@
+[
+ {
+  "side": "boeing",
+  "exec_id": "ortberg",
+  "agent_name": "boeing-ortberg",
+  "name": "Kelly Ortberg",
+  "seat": "CEO",
+  "title": "President and CEO",
+  "team": "ortberg-malave-pope-2026",
+  "profile_file": "wargame/profiles/boeing/executives/ortberg.md",
+  "role_file": "wargame/profiles/boeing/executives/roles/boeing_ceo.txt",
+  "evidence_file": "wargame/profiles/boeing/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "ortberg"
+  ],
+  "n_items": 107,
+  "n_own_words": 107,
+  "perspectives": {
+   "own_words": 107
+  },
+  "sources": {
+   "rtx_transcripts": 14,
+   "transcripts": 93
+  },
+  "first": "2017-09-05",
+  "last": "2025-10-29",
+  "dimensions": {
+   "credibility": 16,
+   "communication": 11,
+   "decision_style": 11,
+   "priorities": 11,
+   "team": 11,
+   "product_strategy": 9,
+   "operations": 9,
+   "risk_appetite": 9,
+   "crisis_response": 8,
+   "capital_allocation": 7,
+   "rival_view": 5
+  },
+  "docs": {
+   "Company Conference Presentation": 40,
+   "FQ3 2024 Earnings Call Transcripts": 21,
+   "Shareholder/Analyst Call": 13,
+   "FQ4 2024 Earnings Call Transcripts": 12,
+   "FQ3 2025 Earnings Call Transcripts": 9,
+   "FQ2 2025 Earnings Call Transcripts": 6
+  },
+  "id_range": [
+   "BX-1219",
+   "BX-1325"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "boeing",
+  "exec_id": "malave",
+  "agent_name": "boeing-malave",
+  "name": "Jay Malave",
+  "seat": "CFO",
+  "title": "EVP of Finance and CFO",
+  "team": "ortberg-malave-pope-2026",
+  "profile_file": "wargame/profiles/boeing/executives/malave.md",
+  "role_file": "wargame/profiles/boeing/executives/roles/boeing_cfo.txt",
+  "evidence_file": "wargame/profiles/boeing/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "malave"
+  ],
+  "n_items": 11,
+  "n_own_words": 11,
+  "perspectives": {
+   "own_words": 11
+  },
+  "sources": {
+   "transcripts": 11
+  },
+  "first": "2025-10-29",
+  "last": "2025-10-29",
+  "dimensions": {
+   "credibility": 3,
+   "capital_allocation": 2,
+   "communication": 2,
+   "priorities": 2,
+   "decision_style": 1,
+   "operations": 1
+  },
+  "docs": {
+   "FQ3 2025 Earnings Call Transcripts": 11
+  },
+  "id_range": [
+   "BX-0546",
+   "BX-0556"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "boeing",
+  "exec_id": "pope",
+  "agent_name": "boeing-pope",
+  "name": "Stephanie Pope",
+  "seat": "Operating head",
+  "title": "President and CEO of Boeing Commercial Airplanes (COO seat)",
+  "team": "ortberg-malave-pope-2026",
+  "profile_file": "wargame/profiles/boeing/executives/pope.md",
+  "role_file": "wargame/profiles/boeing/executives/roles/boeing_coo_bca.txt",
+  "evidence_file": "wargame/profiles/boeing/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "pope"
+  ],
+  "n_items": 8,
+  "n_own_words": 8,
+  "perspectives": {
+   "own_words": 8
+  },
+  "sources": {
+   "transcripts": 8
+  },
+  "first": "2012-09-14",
+  "last": "2022-11-02",
+  "dimensions": {
+   "capital_allocation": 4,
+   "priorities": 2,
+   "communication": 1,
+   "product_strategy": 1
+  },
+  "docs": {
+   "Analyst/Investor Day": 7,
+   "Company Conference Presentation": 1
+  },
+  "id_range": [
+   "BX-1326",
+   "BX-1333"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "airbus",
+  "exec_id": "faury",
+  "agent_name": "airbus-faury",
+  "name": "Guillaume Faury",
+  "seat": "CEO",
+  "title": "Chief Executive Officer",
+  "team": "faury-toepfer-wagner-2026",
+  "profile_file": "wargame/profiles/airbus/executives/faury.md",
+  "role_file": "wargame/profiles/airbus/executives/roles/airbus_ceo.txt",
+  "evidence_file": "wargame/profiles/airbus/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "faury"
+  ],
+  "n_items": 55,
+  "n_own_words": 1,
+  "perspectives": {
+   "observed_by_boeing": 4,
+   "observed_by_pratt_whitney": 4,
+   "filing": 46,
+   "own_words": 1
+  },
+  "sources": {
+   "transcripts": 4,
+   "rtx_transcripts": 4,
+   "airbus_fy2025": 47
+  },
+  "first": "2021-06-03",
+  "last": "2026-02-18",
+  "dimensions": {
+   "priorities": 17,
+   "product_strategy": 7,
+   "credibility": 6,
+   "operations": 6,
+   "team": 5,
+   "risk_appetite": 3,
+   "capital_allocation": 3,
+   "crisis_response": 3,
+   "rival_view": 2,
+   "decision_style": 2,
+   "communication": 1
+  },
+  "docs": {
+   "Airbus SE Report of the Board of Directors 2025": 47,
+   "Company Conference Presentation": 3,
+   "FQ3 2021 Earnings Call": 3,
+   "FQ2 2021 Earnings Call": 1,
+   "FQ1 2025 Earnings Call": 1
+  },
+  "id_range": [
+   "AX-0039",
+   "AX-0093"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "airbus",
+  "exec_id": "toepfer",
+  "agent_name": "airbus-toepfer",
+  "name": "Thomas Toepfer",
+  "seat": "CFO",
+  "title": "Chief Financial Officer",
+  "team": "faury-toepfer-wagner-2026",
+  "profile_file": "wargame/profiles/airbus/executives/toepfer.md",
+  "role_file": "wargame/profiles/airbus/executives/roles/airbus_cfo.txt",
+  "evidence_file": "wargame/profiles/airbus/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "toepfer"
+  ],
+  "n_items": 7,
+  "n_own_words": 0,
+  "perspectives": {
+   "filing": 7
+  },
+  "sources": {
+   "airbus_fy2025": 7
+  },
+  "first": "2026-02-18",
+  "last": "2026-02-18",
+  "dimensions": {
+   "team": 3,
+   "capital_allocation": 2,
+   "communication": 1,
+   "credibility": 1
+  },
+  "docs": {
+   "Airbus SE Report of the Board of Directors 2025": 7
+  },
+  "id_range": [
+   "AX-0101",
+   "AX-0107"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "airbus",
+  "exec_id": "wagner",
+  "agent_name": "airbus-wagner",
+  "name": "Lars Wagner",
+  "seat": "Operating head",
+  "title": "CEO Airbus Commercial Aircraft",
+  "team": "faury-toepfer-wagner-2026",
+  "profile_file": "wargame/profiles/airbus/executives/wagner.md",
+  "role_file": "wargame/profiles/airbus/executives/roles/airbus_coo_commercial_aircraft.txt",
+  "evidence_file": "wargame/profiles/airbus/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "wagner"
+  ],
+  "n_items": 2,
+  "n_own_words": 0,
+  "perspectives": {
+   "filing": 2
+  },
+  "sources": {
+   "airbus_fy2025": 2
+  },
+  "first": "2026-02-18",
+  "last": "2026-02-18",
+  "dimensions": {
+   "team": 2
+  },
+  "docs": {
+   "Airbus SE Report of the Board of Directors 2025": 2
+  },
+  "id_range": [
+   "AX-0108",
+   "AX-0109"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "cfm",
+  "exec_id": "culp",
+  "agent_name": "cfm-culp",
+  "name": "Larry Culp",
+  "seat": "CEO",
+  "title": "Chairman and CEO, GE Aerospace",
+  "team": "culp-ghai-ali-2026",
+  "profile_file": "wargame/profiles/cfm/executives/culp.md",
+  "role_file": "wargame/profiles/cfm/executives/roles/cfm_ceo.txt",
+  "evidence_file": "wargame/profiles/cfm/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "culp",
+   "cfm_jv"
+  ],
+  "n_items": 425,
+  "n_own_words": 423,
+  "perspectives": {
+   "own_words": 423,
+   "analyst_question": 2
+  },
+  "sources": {
+   "ge_transcripts": 425
+  },
+  "first": "2018-10-30",
+  "last": "2025-10-21",
+  "dimensions": {
+   "credibility": 78,
+   "capital_allocation": 47,
+   "communication": 47,
+   "product_strategy": 43,
+   "decision_style": 40,
+   "operations": 33,
+   "risk_appetite": 32,
+   "priorities": 28,
+   "team": 28,
+   "rival_view": 25,
+   "crisis_response": 24
+  },
+  "docs": {
+   "Company Conference Presentation": 165,
+   "Shareholder/Analyst Call": 27,
+   "FQ4 2019 Earnings Call Transcripts": 19,
+   "Analyst/Investor Day": 19,
+   "FQ1 2020 Earnings Call Transcripts": 17,
+   "Guidance/Update Call": 14
+  },
+  "id_range": [
+   "CX-0234",
+   "CX-0658"
+  ],
+  "extra_items_same_person_other_tag": 51
+ },
+ {
+  "side": "cfm",
+  "exec_id": "ghai",
+  "agent_name": "cfm-ghai",
+  "name": "Rahul Ghai",
+  "seat": "CFO",
+  "title": "Senior VP and CFO, GE Aerospace",
+  "team": "culp-ghai-ali-2026",
+  "profile_file": "wargame/profiles/cfm/executives/ghai.md",
+  "role_file": "wargame/profiles/cfm/executives/roles/cfm_cfo.txt",
+  "evidence_file": "wargame/profiles/cfm/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "ghai",
+   "cfm_jv"
+  ],
+  "n_items": 108,
+  "n_own_words": 108,
+  "perspectives": {
+   "own_words": 108
+  },
+  "sources": {
+   "ge_transcripts": 108
+  },
+  "first": "2023-03-09",
+  "last": "2025-11-11",
+  "dimensions": {
+   "credibility": 30,
+   "product_strategy": 24,
+   "communication": 11,
+   "capital_allocation": 9,
+   "operations": 6,
+   "priorities": 6,
+   "risk_appetite": 6,
+   "rival_view": 5,
+   "decision_style": 4,
+   "crisis_response": 4,
+   "team": 3
+  },
+  "docs": {
+   "Company Conference Presentation": 25,
+   "Analyst/Investor Day": 23,
+   "FQ2 2025 Earnings Call Transcripts": 15,
+   "FQ3 2024 Earnings Call Transcripts": 10,
+   "FQ1 2025 Earnings Call Transcripts": 8,
+   "FQ4 2024 Earnings Call Transcripts": 7
+  },
+  "id_range": [
+   "CX-0891",
+   "CX-0998"
+  ],
+  "extra_items_same_person_other_tag": 7
+ },
+ {
+  "side": "cfm",
+  "exec_id": "ali",
+  "agent_name": "cfm-ali",
+  "name": "Mohamed Ali",
+  "seat": "Operating head",
+  "title": "Senior VP and Chief Technology & Operations Officer, GE Aerospace",
+  "team": "culp-ghai-ali-2026",
+  "profile_file": "wargame/profiles/cfm/executives/ali.md",
+  "role_file": "wargame/profiles/cfm/executives/roles/cfm_coo_operations.txt",
+  "evidence_file": "wargame/profiles/cfm/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "ali",
+   "cfm_jv"
+  ],
+  "n_items": 13,
+  "n_own_words": 13,
+  "perspectives": {
+   "own_words": 13
+  },
+  "sources": {
+   "ge_transcripts": 13
+  },
+  "first": "2022-03-10",
+  "last": "2024-03-07",
+  "dimensions": {
+   "credibility": 3,
+   "decision_style": 2,
+   "team": 2,
+   "risk_appetite": 1,
+   "crisis_response": 1,
+   "rival_view": 1,
+   "communication": 1,
+   "priorities": 1,
+   "product_strategy": 1
+  },
+  "docs": {
+   "Analyst/Investor Day": 12,
+   "Company Conference Presentation": 1
+  },
+  "id_range": [
+   "CX-0001",
+   "CX-0013"
+  ],
+  "extra_items_same_person_other_tag": 7
+ },
+ {
+  "side": "pratt_whitney",
+  "exec_id": "calio",
+  "agent_name": "pratt-whitney-calio",
+  "name": "Chris Calio",
+  "seat": "CEO",
+  "title": "RTX Chairman and CEO",
+  "team": "calio-mitchill-eddy-2026",
+  "profile_file": "wargame/profiles/pratt_whitney/executives/calio.md",
+  "role_file": "wargame/profiles/pratt_whitney/executives/roles/pratt_whitney_ceo.txt",
+  "evidence_file": "wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "calio"
+  ],
+  "n_items": 110,
+  "n_own_words": 110,
+  "perspectives": {
+   "own_words": 110
+  },
+  "sources": {
+   "rtx_transcripts": 110
+  },
+  "first": "2021-05-18",
+  "last": "2025-10-21",
+  "dimensions": {
+   "credibility": 32,
+   "product_strategy": 14,
+   "communication": 14,
+   "priorities": 8,
+   "rival_view": 8,
+   "capital_allocation": 7,
+   "risk_appetite": 7,
+   "decision_style": 7,
+   "crisis_response": 5,
+   "operations": 5,
+   "team": 3
+  },
+  "docs": {
+   "Company Conference Presentation": 27,
+   "Analyst/Investor Day": 21,
+   "FQ4 2023 Earnings Call Transcripts": 8,
+   "FQ2 2024 Earnings Call Transcripts": 8,
+   "Special Call": 6,
+   "FQ3 2023 Earnings Call Transcripts": 5
+  },
+  "id_range": [
+   "PX-0001",
+   "PX-0110"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "pratt_whitney",
+  "exec_id": "mitchill",
+  "agent_name": "pratt-whitney-mitchill",
+  "name": "Neil Mitchill",
+  "seat": "CFO",
+  "title": "RTX EVP and CFO",
+  "team": "calio-mitchill-eddy-2026",
+  "profile_file": "wargame/profiles/pratt_whitney/executives/mitchill.md",
+  "role_file": "wargame/profiles/pratt_whitney/executives/roles/pratt_whitney_cfo.txt",
+  "evidence_file": "wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "mitchill"
+  ],
+  "n_items": 180,
+  "n_own_words": 180,
+  "perspectives": {
+   "own_words": 180
+  },
+  "sources": {
+   "rtx_transcripts": 180
+  },
+  "first": "2019-06-17",
+  "last": "2025-10-21",
+  "dimensions": {
+   "credibility": 48,
+   "product_strategy": 28,
+   "communication": 25,
+   "capital_allocation": 19,
+   "operations": 18,
+   "crisis_response": 15,
+   "decision_style": 11,
+   "risk_appetite": 6,
+   "priorities": 5,
+   "rival_view": 3,
+   "team": 2
+  },
+  "docs": {
+   "Company Conference Presentation": 56,
+   "Analyst/Investor Day": 19,
+   "FQ4 2024 Earnings Call Transcripts": 14,
+   "Special Call": 9,
+   "FQ3 2025 Earnings Call Transcripts": 8,
+   "Fq3 2021 Earnings Call": 6
+  },
+  "id_range": [
+   "PX-0181",
+   "PX-0360"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "pratt_whitney",
+  "exec_id": "eddy",
+  "agent_name": "pratt-whitney-eddy",
+  "name": "Shane Eddy",
+  "seat": "Operating head",
+  "title": "President, Pratt & Whitney",
+  "team": "calio-mitchill-eddy-2026",
+  "profile_file": "wargame/profiles/pratt_whitney/executives/operations.md",
+  "role_file": "wargame/profiles/pratt_whitney/executives/roles/pratt_whitney_coo_president.txt",
+  "evidence_file": "wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "eddy"
+  ],
+  "n_items": 21,
+  "n_own_words": 21,
+  "perspectives": {
+   "own_words": 21
+  },
+  "sources": {
+   "rtx_transcripts": 21
+  },
+  "first": "2023-06-19",
+  "last": "2023-06-19",
+  "dimensions": {
+   "credibility": 6,
+   "communication": 3,
+   "crisis_response": 3,
+   "product_strategy": 3,
+   "operations": 2,
+   "decision_style": 1,
+   "priorities": 1,
+   "risk_appetite": 1,
+   "team": 1
+  },
+  "docs": {
+   "Analyst/Investor Day": 21
+  },
+  "id_range": [
+   "PX-0111",
+   "PX-0131"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "rolls_royce",
+  "exec_id": "erginbilgic",
+  "agent_name": "rolls-royce-erginbilgic",
+  "name": "Tufan Erginbilgic",
+  "seat": "CEO",
+  "title": "CEO and Executive Director",
+  "team": "erginbilgic-mccabe-watson-2026",
+  "profile_file": "wargame/profiles/rolls_royce/executives/erginbilgic.md",
+  "role_file": "wargame/profiles/rolls_royce/executives/roles/rolls_royce_ceo.txt",
+  "evidence_file": "wargame/profiles/rolls_royce/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "erginbilgic"
+  ],
+  "n_items": 110,
+  "n_own_words": 110,
+  "perspectives": {
+   "own_words": 110
+  },
+  "sources": {
+   "rr_transcripts": 110
+  },
+  "first": "2023-02-23",
+  "last": "2025-07-31",
+  "dimensions": {
+   "credibility": 25,
+   "product_strategy": 19,
+   "capital_allocation": 14,
+   "communication": 14,
+   "rival_view": 10,
+   "decision_style": 6,
+   "priorities": 6,
+   "risk_appetite": 5,
+   "crisis_response": 4,
+   "operations": 4,
+   "team": 3
+  },
+  "docs": {
+   "FY 2024 Earnings Call Transcripts": 21,
+   "FH1 2023 Earnings Call Transcripts": 19,
+   "FH1 2024 Earnings Call Transcripts": 17,
+   "FH1 2025 Earnings Call Transcripts": 17,
+   "Analyst/Investor Day": 16,
+   "FY 2022 Earnings Call Transcripts": 12
+  },
+  "id_range": [
+   "RX-0030",
+   "RX-0139"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "rolls_royce",
+  "exec_id": "mccabe",
+  "agent_name": "rolls-royce-mccabe",
+  "name": "Helen McCabe",
+  "seat": "CFO",
+  "title": "CFO and Director",
+  "team": "erginbilgic-mccabe-watson-2026",
+  "profile_file": "wargame/profiles/rolls_royce/executives/mccabe.md",
+  "role_file": "wargame/profiles/rolls_royce/executives/roles/rolls_royce_cfo.txt",
+  "evidence_file": "wargame/profiles/rolls_royce/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "mccabe"
+  ],
+  "n_items": 61,
+  "n_own_words": 61,
+  "perspectives": {
+   "own_words": 61
+  },
+  "sources": {
+   "rr_transcripts": 61
+  },
+  "first": "2023-11-28",
+  "last": "2025-07-31",
+  "dimensions": {
+   "credibility": 17,
+   "capital_allocation": 12,
+   "communication": 8,
+   "product_strategy": 8,
+   "operations": 5,
+   "priorities": 4,
+   "risk_appetite": 3,
+   "decision_style": 2,
+   "team": 1,
+   "rival_view": 1
+  },
+  "docs": {
+   "Analyst/Investor Day": 22,
+   "FY 2024 Earnings Call Transcripts": 17,
+   "FH1 2025 Earnings Call Transcripts": 9,
+   "FH1 2024 Earnings Call Transcripts": 8,
+   "FY 2023 Earnings Call Transcripts": 5
+  },
+  "id_range": [
+   "RX-0211",
+   "RX-0271"
+  ],
+  "extra_items_same_person_other_tag": 0
+ },
+ {
+  "side": "rolls_royce",
+  "exec_id": "rwatson",
+  "agent_name": "rolls-royce-watson",
+  "name": "Rob Watson",
+  "seat": "Operating head",
+  "title": "President, Civil Aerospace",
+  "team": "erginbilgic-mccabe-watson-2026",
+  "profile_file": "wargame/profiles/rolls_royce/executives/operations.md",
+  "role_file": "wargame/profiles/rolls_royce/executives/roles/rolls_royce_coo_civil.txt",
+  "evidence_file": "wargame/profiles/rolls_royce/executives/evidence.jsonl",
+  "evidence_exec_ids": [
+   "rwatson"
+  ],
+  "n_items": 27,
+  "n_own_words": 27,
+  "perspectives": {
+   "own_words": 27
+  },
+  "sources": {
+   "rr_transcripts": 27
+  },
+  "first": "2021-06-17",
+  "last": "2023-11-28",
+  "dimensions": {
+   "credibility": 6,
+   "priorities": 4,
+   "product_strategy": 4,
+   "operations": 3,
+   "team": 2,
+   "capital_allocation": 2,
+   "communication": 2,
+   "crisis_response": 1,
+   "decision_style": 1,
+   "risk_appetite": 1,
+   "rival_view": 1
+  },
+  "docs": {
+   "Analyst/Investor Day": 26,
+   "Shareholder/Analyst Call": 1
+  },
+  "id_range": [
+   "RX-0272",
+   "RX-0298"
+  ],
+  "extra_items_same_person_other_tag": 0
+ }
+]
