@@ -47,13 +47,14 @@ def save(n, path):
         for seat in ("cfo", "ops"):
             notes.append(("veto_" + seat, "%s veto check" % SEATS[seat], (x.get("veto_checks") or {}).get(seat)))
         if x.get("revision"):
-            notes.append(("revision", "CEO revision after a binding veto", x["revision"]))
+            notes.append(("revision", "CEO revision after a binding veto or a red-line flag", x["revision"]))
         for key, title, obj in notes:
             if obj is not None:
                 with open(os.path.join(d, "r%d_%s.md" % (n, key)), "w") as f:
                     f.write(md("Round %d: %s" % (n, title), obj))
         fin = dict(x.get("final") or {})
-        fin["exco"] = {k: x.get(k) for k in ("frame", "cfo", "ops", "decision", "veto_checks", "binding_vetoes", "revision")}
+        fin["exco"] = {k: x.get(k) for k in ("frame", "cfo", "ops", "decision", "veto_checks", "binding_vetoes", "red_line_flags",
+                                             "revision")}
         returned[side] = fin
     out = os.path.join(HERE, "..", "runs", run, "orders_exco_r%d.json" % n)
     os.makedirs(os.path.dirname(out), exist_ok=True)

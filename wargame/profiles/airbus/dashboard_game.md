@@ -77,6 +77,10 @@ The objective never changes your payoff.
   most once, and only after Boeing has launched fps and before it enters service. There is no exposure mechanic in
   this game; the deterrent is the naked fine and your integrity rules.
 - **Rule 5** (poaching only while an Airbus programme is in development) applies to the talent-poaching move.
+- **Stricter Delay Tactics** (`executives/teams.md`, the 2026 ExCo: the move must change who enters service first).
+  On this board Delay Tactics shift share, not entry into service, so read literally the condition keeps Delay Tactics
+  off, and that is the default. Setting it aside, with the grid's $1B test standing in for it, is an adaptation the
+  CEO must record in the rationale and in the Board item.
 - **Rule 6** (at most one new launch per round; NGSA/A350 overlap of 2 years or less unless it pays at least $1B more)
   applies to the grid numbers in your brief.
 - **Rule 8** cannot bind: no engine delays NGSA on this board; an engine that is not ready is dropped instead.

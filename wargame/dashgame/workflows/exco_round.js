@@ -1,7 +1,7 @@
 export const meta = {
   name: 'dash-exco-round',
   description: 'One dash-2050 round played by the per-executive agents: frame, test, decide, veto check, revise, per company',
-  whenToUse: 'Game master only. After `python3 gm.py brief N`. Save the result with `python3 exco.py save N result.json`, then `python3 gm.py adjudicate N <orders file>`.',
+  whenToUse: 'Game master only. Use a fresh run id (not the earlier dash-2050). After `DASH_RUN=<run> python3 gm.py brief N`, run with args {run: <run>, round: N, year}. Save the result with `DASH_RUN=<run> python3 exco.py save N result.json`, then `DASH_RUN=<run> python3 gm.py adjudicate N wargame/runs/<run>/orders_exco_rN.json`.',
   phases: [
     { title: 'Frame', detail: 'CEO frames the round' },
     { title: 'Test', detail: 'CFO and operating head test the frame, in parallel and independently' },
@@ -12,6 +12,7 @@ export const meta = {
 }
 
 // args: {run: 'dash-2050-exco', round: 1, year: 2030, sides: ['boeing', ...] (optional, default all five)}
+// `run` must equal the DASH_RUN that gm.py used to write the briefs, and must not be the earlier game's dash-2050.
 // Each executive sees only its own company's brief and what the GM passes from its colleagues. Nothing crosses
 // between companies: each company's chain is independent, and the isolation hook enforces the file side.
 // Not run yet: the user asked for the agents only.
@@ -43,14 +44,14 @@ const TEAMS = {
     names: { ceo: 'Guillaume Faury', cfo: 'Thomas Toepfer', ops: 'Lars Wagner' },
     rule: 'The CEO leads the ExCo and takes the final call. The CFO and the CEO of Commercial Aircraft hold tests, not formal vetoes: a failed test is a soft veto, which the CEO can override only when the plan is at least $1B better (ΔPV on the brief\'s grid) than the best option that passes, and the override is recorded as a Board item. The five pillars (safety, quality, integrity, compliance, security) cannot be overridden. NGSA launch, A350 Re-engine, any cancellation and Delay Tactics are Board items; assume the Board approves when the tests pass. (teams.md; the soft veto is an inference.)',
     veto: {
-      cfo: { ground: 'a failed financial test (soft veto; overridable only at +$1B, recorded as a Board item; never against the five pillars)', binding: 'soft' },
-      ops: { ground: 'a failed industrial or programme test (soft veto; overridable only at +$1B, recorded as a Board item; never against the five pillars)', binding: 'soft' },
+      cfo: { ground: 'a failed financial test: a soft veto, binding unless the CEO records an override for a plan at least $1B better than the best option that passes, as a Board item; a five-pillars breach is binding with no override', binding: 'soft' },
+      ops: { ground: 'a failed industrial or programme test: a soft veto, binding unless the CEO records an override for a plan at least $1B better than the best option that passes, as a Board item; a five-pillars breach is binding with no override', binding: 'soft' },
     },
   },
   cfm: {
     company: 'CFM/GE', ceo: 'cfm-culp', cfo: 'cfm-ghai', ops: 'cfm-ali',
     names: { ceo: 'Larry Culp', cfo: 'Rahul Ghai', ops: 'Mohamed Ali' },
-    rule: 'Culp proposes and decides. Ghai tests terms and capex: price/cost positive, capex within 2-3% of revenue, no number before the airframer\'s volumes are agreed. Ali tests dates: confidence from real testing, not analysis. Treating either test as a veto is an inference: a failed test binds unless Culp answers it with evidence. Culp\'s red lines: a next engine needs at least 20% better fuel burn, and durability is not traded for fuel burn. The Safran gate: narrowbody pricing and RISE work are joint with Safran.',
+    rule: 'Culp proposes and decides. Ghai tests terms and capex: price/cost positive, capex within 2-3% of revenue, no number before the airframer\'s volumes are agreed. Ali tests dates: confidence from real testing, not analysis. Whether either test is a formal veto is not shown; in this game (the script\'s inference) a failed test binds unless Culp answers it with evidence. Tie-break: "safety, quality, delivery and cost, always in that order". Culp\'s red lines: a next engine needs at least 20% better fuel burn, and durability is not traded for fuel burn. The Safran gate: narrowbody price, capacity and RISE go to the partner; expect consent (inference).',
     veto: {
       cfo: { ground: 'terms or capex that fail your tests (inference: binds unless Culp answers it with evidence)', binding: 'inference' },
       ops: { ground: 'dates not backed by real testing (inference: binds unless Culp answers it with evidence)', binding: 'inference' },
@@ -59,7 +60,7 @@ const TEAMS = {
   pratt_whitney: {
     company: 'Pratt & Whitney', ceo: 'pratt-whitney-calio', cfo: 'pratt-whitney-mitchill', ops: 'pratt-whitney-eddy',
     names: { ceo: 'Chris Calio', cfo: 'Neil Mitchill', ops: 'Shane Eddy' },
-    rule: 'Eddy proposes the engine orders (upgrade, launch timing and terms); Calio frames the turn and proposes the disclosure. Every capital order passes Mitchill\'s payback and return gate; he can veto on four grounds: the dividend or the debt path, carrying an unselected engine, aggressive terms, booking upside before it is proven. Eddy can veto on technical grounds: durability not proven before entry into service, parts and capacity short of the fleet\'s needs. Calio decides, setting the safety and durability constraint first. Tie-breaks: the fleet beats a new engine; a rival\'s discount never moves the answer.',
+    rule: 'Eddy proposes the engine orders (on this board GTF2 and the Joint Venture with Rolls-Royce; an inference from the evidence); Calio frames the turn and proposes the disclosure. Every capital order passes Mitchill\'s payback and return gate; he can veto on four grounds: the dividend or the debt path, carrying an unselected engine, aggressive terms, booking upside before it is proven. Eddy can veto on technical grounds: durability not proven before entry into service, parts and capacity short of the fleet\'s needs. Calio decides, setting the safety and durability constraint first. Tie-breaks: the fleet beats a new engine; "if you miss a cycle" beats "we\'ll cross that bridge" only on visible demand; a rival\'s discount never moves the answer.',
     proposes: 'ops',
     veto: {
       cfo: { ground: 'one of your four grounds: the dividend or debt path, carrying an unselected engine, aggressive terms, booking upside before it is proven', binding: true },
@@ -69,10 +70,10 @@ const TEAMS = {
   rolls_royce: {
     company: 'Rolls-Royce', ceo: 'rolls-royce-erginbilgic', cfo: 'rolls-royce-mccabe', ops: 'rolls-royce-watson',
     names: { ceo: 'Tufan Erginbilgic', cfo: 'Helen McCabe', ops: 'Rob Watson' },
-    rule: 'The CEO proposes and decides. Any launch and any aggressive terms need joint CEO-CFO sign-off against mid-to-high-teens hurdles. CFO vetoes: an equity raise, leverage above about 1.5x net debt to EBITDA, levering up for buybacks; in the game her real check is the hurdle and the unselected downside (inference). Civil veto: any compressed maturity, or an entry into service earlier than launch plus development time; support in place before entry into service. Tie-break: the CEO.',
+    rule: 'The CEO proposes and decides. Any launch and any aggressive terms need joint CEO-CFO sign-off against mid-to-high-teens hurdles. CFO vetoes: an equity raise, leverage above about 1.5x net debt to EBITDA, levering up for buybacks; in the game her real check is the hurdle and the unselected downside (inference). Civil veto: any compressed maturity, or a disclosed entry into service earlier than launch plus development time, or no support in place before entry into service. Tie-break: the CEO.',
     veto: {
       cfo: { ground: 'withholding your joint sign-off on a launch or aggressive terms (hurdle, unselected downside), or a balance-sheet veto', binding: true },
-      ops: { ground: 'compressed maturity, or an entry into service earlier than launch plus development time', binding: true },
+      ops: { ground: 'compressed maturity, a disclosed entry into service earlier than launch plus development time, or no support in place before entry into service', binding: true },
     },
   },
 }
@@ -118,16 +119,18 @@ const decideSchema = side => ({
 })
 const VETO = {
   type: 'object',
-  properties: { concur: { type: 'boolean' }, veto: { type: 'object', properties: { ground: str, evidence_ids: strs, binding: { type: 'boolean' } } }, note: str },
-  required: ['concur', 'note'],
+  properties: { concur: { type: 'boolean' }, veto: { type: 'object', properties: { ground: str, evidence_ids: strs, binding: { type: 'boolean' } } },
+    red_line_breach: { type: 'boolean' }, red_line: str, note: str },
+  required: ['concur', 'red_line_breach', 'note'],
 }
 
 const A = args || {}
-const RUN = A.run || 'dash-2050-exco'
+const RUN = A.run
 const N = A.round
 const YEAR = A.year
 const SIDES = A.sides || Object.keys(TEAMS)
-if (!N || !YEAR) throw new Error('args.round and args.year are required')
+if (!RUN || !N || !YEAR) throw new Error('args.run, args.round and args.year are required')
+if (RUN === 'dash-2050') throw new Error('use a fresh run id: dash-2050 holds the earlier game')
 
 const js = x => '```json\n' + JSON.stringify(x, null, 1) + '\n```'
 function head(side, seat, step) {
@@ -136,7 +139,8 @@ function head(side, seat, step) {
   return [
     `War game run \`${RUN}\`, round ${N} (decision year ${YEAR}). Your step: **${step}**.`,
     `You are ${t.names[seat]} of ${t.company}. Follow your agent file: "Your step in each round", "Your tests", "Your vetoes and red lines", "Your voice".`,
-    `Your company's brief for this round: \`${dir}/round${N}.md\`; the public rules: \`${dir}/rules.md\`; earlier rounds' ExCo notes and sealed orders: \`${dir}/exco/\` and \`${dir}/my_orders_r*.json\`.`,
+    `Your company's run folder is \`${dir}/\` (use it instead of any other run folder your agent file names). Your brief for this round: \`${dir}/round${N}.md\`; the public rules: \`${dir}/rules.md\`.` +
+      (N > 1 ? ` Earlier rounds (1 to ${N - 1}): ExCo notes in \`${dir}/exco/\` and sealed orders in \`${dir}/my_orders_r<k>.json\`.` : ' This is the first round: there are no earlier notes or orders.'),
     `Your ExCo's decision rule: ${t.rule}`,
     'Use only numbers from your brief and your own company\'s profile files. Read nothing of another company. Run no wargame.engine command.',
   ].join('\n\n')
@@ -171,7 +175,7 @@ async function vetoCheck(x, side) {
   if (!x.decision) throw new Error(`${side}: no decision`)
   const t = TEAMS[side]
   const one = seat => {
-    const p = head(side, seat, 'veto_check') + `\n\nYour own test memo:\n${js(x[seat])}\n\nThe CEO's decision:\n${js(x.decision)}\n\nConcur, or invoke a veto only on a ground the team rule gives you: ${t.veto[seat].ground}. Say whether it is binding under the rule.`
+    const p = head(side, seat, 'veto_check') + `\n\nYour own test memo:\n${js(x[seat])}\n\nThe CEO's decision:\n${js(x.decision)}\n\nConcur, or invoke a veto only on a ground the team rule gives you: ${t.veto[seat].ground}. Set \`veto.binding\` true only if, under the rule, the CEO must revise within it (or record an allowed override). Separately, if the orders break a company hard rule (a red line), set \`red_line_breach\` true and name the rule in \`red_line\`: that is not a veto, but the CEO must strike the breach.`
     return agent(p, { label: `${side}:veto:${seat}`, phase: 'Veto check', agentType: t[seat], schema: VETO })
   }
   const [cfo, ops] = await parallel([() => one('cfo'), () => one('ops')])
@@ -180,12 +184,16 @@ async function vetoCheck(x, side) {
 
 async function revise(x, side) {
   const t = TEAMS[side]
-  const standing = ['cfo', 'ops'].filter(s => x.veto_checks[s] && !x.veto_checks[s].concur && x.veto_checks[s].veto && x.veto_checks[s].veto.binding)
-  if (!standing.length) return Object.assign({}, x, { binding_vetoes: [], revision: null, final: x.decision })
-  const vs = standing.map(s => `${t.names[s]}: ${js(x.veto_checks[s])}`).join('\n\n')
-  const p = head(side, 'ceo', 'revise') + `\n\nYour decision:\n${js(x.decision)}\n\nBinding veto(es) from your ExCo:\n\n${vs}\n\nRevise your orders once, within the veto, or override only where the team rule allows it and record each override in \`overrides\`.`
+  const vc = x.veto_checks
+  const binding = ['cfo', 'ops'].filter(s => vc[s] && !vc[s].concur && vc[s].veto && vc[s].veto.binding)
+  const flags = ['cfo', 'ops'].filter(s => vc[s] && vc[s].red_line_breach)
+  if (!binding.length && !flags.length) return Object.assign({}, x, { binding_vetoes: [], red_line_flags: [], revision: null, final: x.decision })
+  const parts = []
+  if (binding.length) parts.push('Binding veto(es) from your ExCo:\n\n' + binding.map(s => `${t.names[s]}: ${js(vc[s])}`).join('\n\n'))
+  if (flags.length) parts.push('Company red-line breach(es) flagged by your ExCo:\n\n' + flags.map(s => `${t.names[s]}: ${js({ red_line: vc[s].red_line, note: vc[s].note })}`).join('\n\n'))
+  const p = head(side, 'ceo', 'revise') + `\n\nYour decision:\n${js(x.decision)}\n\n${parts.join('\n\n')}\n\nRevise your orders once. Stay within each binding veto, or override only where the team rule allows it and record each override in \`overrides\`. Strike every flagged red-line breach you confirm (red lines are never traded for PV); if you judge a flag mistaken, keep the order and say why in \`rationale\`.`
   const revision = await agent(p, { label: `${side}:revise`, phase: 'Revise', agentType: t.ceo, schema: decideSchema(side) })
-  return Object.assign({}, x, { binding_vetoes: standing, revision, final: revision || x.decision })
+  return Object.assign({}, x, { binding_vetoes: binding, red_line_flags: flags, revision, final: revision || x.decision })
 }
 
 log(`Round ${N} (${YEAR}), run ${RUN}: ${SIDES.join(', ')}`)

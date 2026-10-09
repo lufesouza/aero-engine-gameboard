@@ -78,7 +78,9 @@ The objective never changes your payoff. Any PV you give up for it is an **objec
   launched, committed or selected on the public record, or when your grid shows a rival selection would take your slot.
 - **Hard rules 1, 5, 6, 7 and 8** apply as written. Rule 4 (standard terms) has no lever on this board.
 - **Superseded.** `leap_upgrade` and pricing terms do not exist here. The engine numbers in `profile.md` and
-  `objectives.md` came from the earlier engine and do not carry over; the dashboard's numbers replace them.
+  `objectives.md`, and the engine terms and thresholds in `executives/teams.md` (7-year development, an Open Fan only
+  on a 2037 launch, airframer PVs), came from the earlier engine and do not carry over; the dashboard's numbers
+  replace them.
 
 ## 6. Each round
 

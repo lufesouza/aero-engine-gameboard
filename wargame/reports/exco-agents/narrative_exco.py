@@ -60,8 +60,10 @@ STEPS = [
                                           "recommended orders, any veto. At P&W the operating head also proposes the engine orders."),
     ("Decide (CEO)", "Reads both memos and decides by the team's rule. Returns the orders, other moves and public statement, "
                          "and records how each memo was weighed."),
-    ("Veto check", "The CFO and the operating head each concur, or veto on a ground the team rule gives them."),
-    ("Revise (CEO)", "Only if a binding veto stands: revises once within the veto, or overrides where the rule allows, on the record."),
+    ("Veto check", "The CFO and the operating head each concur, or veto on a ground the team rule gives them. Either "
+                    "can also flag a breach of a company red line."),
+    ("Revise (CEO)", "Only if a binding veto stands or a red line is flagged: revises once within the veto, or overrides "
+                      "where the rule allows, on the record, and strikes any breach it confirms."),
 ]
 
 TEAM_RULES = {
@@ -111,8 +113,9 @@ master writes into its company's folder.</li>
 game master's scratch areas and all agent transcripts are off limits.</li>
 <li><b>Inside the ExCo.</b> Colleagues may read each other's agent files (they know each other), but memos pass only through
 the game master. Within a round, the CFO and the operating head write their tests before either sees the other's.</li>
-<li><b>Tested.</b> All 42 hook test cases behave as expected, including 18 new ones for the executive agents. All 360 tool
-calls the company agents made in dash-2050 are still allowed.</li>
+<li><b>Tested.</b> All 225 hook test cases behave as expected. They include 18 new cases for the executive agents, and 183
+checks that every file each agent is told to read is allowed for that agent. All 360 tool calls the company agents made in
+dash-2050 are still allowed.</li>
 </ul>
 """
 
@@ -126,6 +129,11 @@ which maps the levers to the board.</li>
 17 sections in a fixed order, quotes word for word with their ids, inferences labelled, and the round step each seat plays.</li>
 <li><b>Verification.</b> A second agent per company re-checked every claim, id and quote against the evidence and corrected
 the files in place. A final pass compared the fifteen agents for consistency across companies.</li>
+<li><b>Independent audit.</b> Two fresh auditors per company then read the agents again: one checked that each cited item
+supports its claim, the other that each agent can play its seat by the rules without leaking. A fixer re-checked every
+finding against the sources before changing anything. Of 165 findings (some reported by both auditors), the fixer made 138
+changes to the agent files and rejected 4 with a reason. The 13 that belonged elsewhere are fixed in the round script, the
+board notes and the specification.</li>
 <li><b>Mechanical check.</b> <code>check_agents.py</code> checks each agent's front matter and section order. It also checks
 that every cited id exists, that every quote is an exact substring of its source item, and that each quote's date and
 perspective match the source.</li>

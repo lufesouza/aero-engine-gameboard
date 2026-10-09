@@ -19,6 +19,7 @@ evidence files under `wargame/profiles/<company>/executives/`. The game has **no
 - `.claude/agents/<agent>.md`: the fifteen agent definitions (system prompts).
 - `data/agents/<agent>.json`: each agent's profile, the data behind the page.
 - `data/people.json`: evidence counts, dates and sources per person, taken from the evidence files.
+- `SPEC.md`: the specification the agents were drafted to (template, sections, return fields, evidence rules).
 - `check_agents.py`: checks every agent:
   - front matter and the 17 sections, in order;
   - every cited evidence id exists;
@@ -52,8 +53,12 @@ node wargame/dashgame/workflows/dry_run.js wargame/dashgame/workflows/exco_round
 
 ## Playing a round later (game master)
 
-1. `DASH_RUN=<run> python3 wargame/dashgame/gm.py init`, then `gm.py brief N`.
+Use a fresh run id (the script refuses `dash-2050`, which holds the earlier game) and the same id in every command.
+
+1. `DASH_RUN=<run> python3 wargame/dashgame/gm.py init`, then `DASH_RUN=<run> python3 wargame/dashgame/gm.py brief N`.
 2. Run the Workflow with `{scriptPath: "wargame/dashgame/workflows/exco_round.js"}` and
-   `args: {run, round: N, year}`. Save its result to a JSON file.
+   `args: {run: "<run>", round: N, year}`. Save its result to a JSON file.
 3. `python3 wargame/dashgame/exco.py save N <result.json>`.
-4. `python3 wargame/dashgame/gm.py adjudicate N wargame/runs/<run>/orders_exco_rN.json`.
+4. `DASH_RUN=<run> python3 wargame/dashgame/gm.py adjudicate N wargame/runs/<run>/orders_exco_rN.json`.
+
+The revise step runs when a colleague's binding veto stands or a colleague flags a company red-line breach.
