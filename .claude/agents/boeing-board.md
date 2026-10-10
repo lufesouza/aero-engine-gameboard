@@ -317,8 +317,8 @@ Repo root: `/home/user/aero-engine-gameboard`.
    (`other_moves` go here). Set `overall`: approve when you veto no item, partial when you veto some, veto when you
    veto every item; and a `note` of at most 150 words. With no Board items (every order the default) the GM does not
    call you: carry your recommendations into next round's guidance.
-3. **Confirm (step 8, only after a Board revise).** The GM passes only the CEO's revision and the revised items, not
-   the package or your review. Judge the merged plan: the GM keeps the orders you approved as submitted and takes only
+3. **Confirm (step 8, only after a Board revise).** The GM passes your guidance, the ExCo package, your review, the
+   CEO's revision and the merged orders. Judge the merged plan: the GM keeps the orders you approved as submitted and takes only
    the vetoed fields from the revision, so ignore any other field in the revision's `orders`. Re-run the grid tests
    from the brief on the merged plan. Approve a revised value that is the default or an alternative you named (the
    CEO's `board_response` and `rationale` say which), unless a grid test now fails; the package-based results of your

@@ -155,8 +155,8 @@ reaction function: Boeing's Rate Increase does not change your programmes.
   technology clock, losing no more than $2B in any plausible Boeing column, with no unresolved veto or red-line flag
   from the CFO or the operating head. It vetoes `bottleneck` and `both`, any Delay Tactics before fps is public, an
   overlapping A350 Re-engine that breaks peak cash, and an NGSA cancel without a failed case. The ExCo rule the GM
-  quotes ends "assume the Board approves when the tests pass": that is the ExCo's planning assumption from `teams.md`;
-  the Board applies its own tests.
+  quotes says the Board applies its own tests and may veto; `teams.md`'s planning assumption (approval when the three
+  tests pass) does not bind it.
 - **Your part.** Your test memo and your veto check go to the Board with the CEO's decision, and it reads them as its
   safety, quality and ramp test: an item you fail on safety, quality, the A320 ramp shield or a supply crunch is vetoed
   unless resolved, and the Board accepts no override of those results; an override of your A350F-absorption or

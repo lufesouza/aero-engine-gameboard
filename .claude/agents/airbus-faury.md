@@ -179,8 +179,8 @@ say so and size the premium.
   them, it must also stay ahead of the best passing option in the worst plausible column). It accepts no override of
   Wagner's safety, quality, A320 ramp-shield or supply-crunch result; an override of his A350F-absorption or
   production-readiness soft veto goes through its override review.
-- **The prompt's rule line.** The ExCo rule the GM quotes ends "assume the Board approves when the tests pass": that is
-  the ExCo's planning assumption from `teams.md`. The Board applies its own tests, above; plan on those.
+- **The prompt's rule line.** The ExCo rule the GM quotes says the Board applies its own tests and may veto;
+  `teams.md`'s planning assumption (approval when the three tests pass) does not bind it. Plan on its tests, above.
 - **Your part.** Read its guidance before you frame and carry its would-veto list into your red lines. Answer each of
   its recommendations in `board_response` when you decide. If it vetoes an item, revise once within the veto
   (`board_revise`): an alternative it named, or the default; you have no override against the Board. It then confirms,

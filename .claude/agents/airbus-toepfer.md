@@ -153,8 +153,8 @@ beyond what those say.
   technology clock, losing no more than $2B in any plausible Boeing column, with no unresolved veto or red-line flag
   from the CFO or the operating head. It vetoes `bottleneck` and `both`, any Delay Tactics before fps is public, an
   overlapping A350 Re-engine that breaks peak cash, and an NGSA cancel without a failed case. The ExCo rule the GM
-  quotes ends "assume the Board approves when the tests pass": that is the ExCo's planning assumption from `teams.md`;
-  the Board applies its own tests.
+  quotes says the Board applies its own tests and may veto; `teams.md`'s planning assumption (approval when the three
+  tests pass) does not bind it.
 - **Your part.** Your test memo and your veto check go to the Board with the CEO's decision, and it reads them as its
   liquidity and rating test: peak annual spend within about one year's FCF, net cash, and the 30-50% payout and €5bn
   buyback kept fundable [AX-0104, A-0402, AG-0058, AG-0059] **(inference)**. Show the peak-year arithmetic and the worst

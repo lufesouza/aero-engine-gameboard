@@ -69,6 +69,10 @@ CITE = {"own_words": "own words", "filing": "Board Report text, not speech", "ob
 def cite(e, persp=None):
     """Plain label for whose words an evidence item is."""
     persp = persp or e.get("perspective")
+    if e.get("source") == "ge_ciq":
+        return "Capital IQ data, not a filing"
+    if persp == "board_own_words" and e.get("source") == "airbus_fy2025":
+        return "the board's own written words (Board Report text, not speech)"
     if persp == "filing" and e.get("source") != "airbus_fy2025" and "Board of Directors" not in (e.get("doc") or ""):
         return "filing text, not speech"
     return CITE.get(persp, (persp or "").replace("_", " "))
@@ -104,20 +108,43 @@ GROUP = re.compile(r"\s*[\[(]((?:%s)(?:\s*[,;]\s*(?:%s))*)[\])]" % (IDS, IDS))
 BARE = re.compile(r"(?<![\w>-])(%s)(?![\w-])" % IDS)
 FILES = (r"(?:board|teams|profile|dashboard_game|objectives|operations|ortberg|malave|pope|faury|toepfer|wagner|culp|ghai|ali|calio|"
          r"mitchill|eddy|erginbilgic|mccabe)\.md")
-FILE_NAME = {"board": "the Board profile", "teams": "the team rules", "profile": "the company profile", "dashboard_game": "the game notes",
+FILE_NAME = {"board": "the Board profile", "teams": "the team rules", "profile": "the company profile", "dashboard_game": "the game note",
              "objectives": "the objectives"}
 # Plain words for display only: order-field names, file references and rule shorthand. Quotes are never touched.
+STEP_NAME = {"0": "the Board guidance step", "1": "the frame step", "2": "the test step", "3": "the decide step",
+             "4": "the veto check", "5": "the revise step", "6": "the Board review", "7": "the board-revise step",
+             "8": "the Board confirm step"}
+ORDER_WORDS = [("launch_via_embraer", "launch via Embraer"), ("launch_7yr", "7-year launch"), ("launch_10yr", "10-year launch"),
+               ("upgrade_genx9", "GEnx9 upgrade"), ("invest_genx", "GEnx investment"), ("fps_engine_code", "fps engine code"),
+               ("ngsa_engine_code", "NGSA engine code"), ("rate_737", "737 Rate Increase"), ("re787", "787 Re-engine"),
+               ("rea350", "A350 Re-engine"), ("delay_tactics", "Delay Tactics"), ("gtf2_solo", "GTF2 (P&W alone)"),
+               ("ultrafan_nb_solo", "UltraFan narrowbody (RR alone)"), ("ultrafan_wb", "UltraFan widebody"),
+               ("t1000_upgrade", "Trent 1000 upgrade"), ("partner_embraer", "Embraer partnership"),
+               ("lobby_emissions", "emissions lobbying"), ("open_fan", "Open Fan"), ("genx", "GEnx package")]
 PLAIN = [
     (r"`", ""),
+    (r"\((?:%s):\s*" % FILES, "("),
     (r"\b(%s)(?:\s*§\s?[\d.]+(?:\s*(?:and|,)\s*§?\s?[\d.]+)*)?" % FILES, lambda m: FILE_NAME.get(m.group(1)[:-3], "the personal profile")),
+    (r"\bin §\s?\d+(?:\.\d+)?", "in the company profile"),
     (r"\s*§\s?\d+(?:\.\d+)?", ""),
-    (r"\bstep-4 veto\b", "veto at the veto check"), (r"\bstep-4\b", "veto-check"), (r"\bveto_check\b", "veto check"),
+    (r"\bstep-4 veto check\b", "veto check"), (r"\bstep-4 veto\b", "veto at the veto check"),
+    (r"\ba step[- ]([0-8]) change\b", lambda m: "a change at " + STEP_NAME[m.group(1)]),
+    (r"\b(at |in |after |before )?step[- ]([0-8])\b(?! of)", lambda m: (m.group(1) or "") + STEP_NAME[m.group(2)]),
+    (r"\bveto_check\b", "veto check"),
+    (r"\bthe GM\b", "the game master"), (r"\bThe GM\b", "The game master"), (r"\bGM's\b", "game master's"),
+    (r"\bepsilon\b", "$1B"), (r"\bin PV\b", "in present value"),
+    (r"\bon this board\b", "in this game"), (r"\bOn this board\b", "In this game"), (r"\bthis board's\b", "the game's"), (r"\bthe board has no injects\b", "the game board has no injects"),
+    (r"\s*\((?:CEO|CFO|operating head|agent),? (?:boeing|airbus|cfm|pratt-whitney|rolls-royce)-[a-z]+\)", ""),
+    (r",? (?:boeing|airbus|cfm|pratt-whitney|rolls-royce)-(?:ortberg|malave|pope|faury|toepfer|wagner|culp|ghai|ali|calio|mitchill|eddy|erginbilgic|mccabe|watson|board)\b", ""),
+    (r"\b([a-z_]+)\.py\b", lambda m: m.group(1).replace("_", "¦") + ".py"),
     (r"\blaunch_if_selected\b", "launch if selected"), (r"\bjv_with_pw\b", "Joint Venture with P&W"),
     (r"\bjv_with_rr\b", "Joint Venture with Rolls-Royce"), (r"\bcfm_jv\b", "CFM Joint Venture"),
     (r"\bpremium_b\b", "declared premium"), (r"\bexpected_pv_b\b", "expected value"),
     (r"\bpratt_whitney\b", "Pratt & Whitney"), (r"\brolls_royce\b", "Rolls-Royce"),
     (r"within ε", "within the tie margin"), (r"ε", "the tie margin"),
+] + [(r"\b%s\b" % k, v) for k, v in ORDER_WORDS] + [
     (r"\b([a-z0-9]+(?:_[a-z0-9]+)+)\b", lambda m: m.group(1).replace("_", " ")),
+    (r"¦", "_"),
 ]
 PLAIN = [(re.compile(p), r) for p, r in PLAIN]
 
@@ -325,13 +352,13 @@ def roster():
                          f'<span class="chip{" warn" if cf in NAR.LOW_CONFIDENCE else ""}">Confidence: {esc(cf)}</span>'
                          f'<span class="chip veto">{esc(veto_summary(a))}</span></span>'
                          f'<span class="small muted">Steps: {esc(steps)}</span></a>')
-        b = BOARDS[s]
+        g = NAR.GOV[s]
         tr, fi, wb = bkinds(s)
-        chair = b["composition"].get("chair", "")
-        cells.append(f'<a class="rcell rboard" href="#{BOARD_AGENT[s]}"><span class="seat">Board</span><b>{esc(b["board_name"])}</b>'
-                     f'<span class="small muted">Chair: {esc(chair)}{" (also CEO)" if b["composition"].get("chair_is_ceo") else ""}</span>'
-                     f'<span class="chips"><span class="chip">{tr + fi} transcript/filing · {wb} web items</span>'
-                     f'<span class="chip">Risk aversion {score(s, "risk_aversion")} / 5</span><span class="chip">Time horizon {score(s, "time_horizon")} / 5</span>'
+        cells.append(f'<a class="rcell rboard" href="#{BOARD_AGENT[s]}"><span class="seat">Board</span><b>{esc(NAR.BOARD_SHORT[s])}</b>'
+                     f'<span class="small muted">Chair: {esc(g["chair"])}</span>'
+                     f'<span class="chips"><span class="chip">{tr + fi} transcript and filing · {wb} web-search items</span>'
+                     f'<span class="chip{" warn" if g["conf"] in NAR.LOW_CONFIDENCE else ""}">Confidence: {esc(g["conf"])}</span>'
+                     f'<span class="chip">Risk aversion {fmt(score(s, "risk_aversion"))} / 5</span><span class="chip">Time horizon {fmt(score(s, "time_horizon"))} / 5</span>'
                      f'<span class="chip veto">recommends; binding veto</span></span>'
                      f'<span class="small muted">Steps: guidance, review, confirm</span></a>')
     return f'<div class="roster">{head}{"".join(cells)}</div>'
@@ -345,7 +372,7 @@ def protocol():
 
 
 def glossary():
-    return ('<details class="gloss-box panel"><summary>Board terms used on the cards</summary><dl class="gl">'
+    return ('<details class="gloss-box panel"><summary>Game terms used on the cards</summary><dl class="gl">'
             + "".join(f"<dt>{esc(t)}</dt><dd>{esc(d)}</dd>" for t, d in NAR.GLOSSARY) + "</dl></details>")
 
 
@@ -362,7 +389,7 @@ def quote_html(q):
     if persp == "own_words" and (e.get("speaker") or "").startswith("Unknown"):
         note = "attributed: an unnamed speaker in the transcript"
     ocr = (' <span class="inf">PDF spacing as extracted</span>'
-           if persp == "filing" or re.search(r"[a-z][A-Z]|[a-z],[A-Za-z]|[A-Za-z]{18,}", q["quote"]) else "")
+           if e.get("source") == "airbus_fy2025" or re.search(r"[a-z][A-Z]|[a-z],[A-Za-z]|[A-Za-z]{18,}", q["quote"]) else "")
     return (f'<blockquote class="q{"" if persp == "own_words" else " q-other"}"><p>“{esc(q["quote"])}”</p>'
             f'<footer>{eids([q["id"]])} · {esc(q.get("date") or "")} · {esc(short_doc(q.get("doc")))} · <b>{esc(note)}</b>{ocr}</footer></blockquote>')
 
@@ -391,7 +418,7 @@ def exec_board(a):
     if not bd:
         return ""
     sd = BY[a]["side"]
-    return (f'<p class="label">{esc(SHORT[a])} and the Board (<a href="#{BOARD_AGENT[sd]}">{esc(BOARDS[sd]["board_name"])}</a>)</p>'
+    return (f'<p class="label">{esc(SHORT[a])} and the Board ({link_board(sd)})</p>'
             f'<p>{rich(bd.get("summary", ""))} {rich(bd.get("seat_role", ""))} {eids(bd.get("ids"))}</p>')
 
 
@@ -489,33 +516,58 @@ def score(side, key):
     return BOARDS[side]["culture"][key]["score"]
 
 
+def fmt(v):
+    return f"{v:g}"
+
+
+def board_votes(side):
+    """Each Board's own statement of how its two scores change its votes ('Your votes' in its agent file's culture section)."""
+    md = open(os.path.join(REPO, ".claude", "agents", BOARD_AGENT[side] + ".md")).read()
+    sec = md[md.find("## Your culture"):md.find("## Matters reserved")]
+    out = {}
+    for key, head in (("risk_aversion", "**Risk aversion"), ("time_horizon", "**Time horizon")):
+        part = sec[sec.find(head):]
+        m = re.search(r"- \*Your votes \(inference\)\.\* (.*?)(?=\n- \*|\n\n|\n\*\*|$)", part, re.S)
+        out[key] = re.sub(r"\s*\n\s*", " ", m.group(1)).strip() if m else ""
+    return out
+
+
+VOTES = {sd: board_votes(sd) for sd in SIDES}
+
+
+def gist(text):
+    """The calibrated label and its first clause: the text before the first full stop."""
+    t = plain(text)
+    return re.split(r"(?<=[a-z0-9\)])\. ", t, 1)[0].rstrip(".") + "."
+
+
 def culture_map(narrow=False):
-    """Each board placed by its risk aversion (x) and time horizon (y), both 1-5. One neutral mark per board,
-    named by a direct label (identity is the label, not a colour)."""
+    """Each board placed by its risk aversion (x) and time horizon (y). One neutral mark per board, named by a direct label."""
     if narrow:
         w, h, l, r, t, b = 360, 380, 40, 14, 26, 50
     else:
-        w, h, l, r, t, b = 640, 430, 56, 150, 26, 54
-    sx = lambda v: l + (v - 0.5) / 5 * (w - l - r)
-    sy = lambda v: t + (5.5 - v) / 5 * (h - t - b)
-    out = [K.svg_open(w, h, "Culture map: each Board by risk aversion and time horizon, scored 1 to 5", "chart narrow" if narrow else "chart")]
-    out.append(f'<rect x="{sx(3):.1f}" y="{sy(5.5):.1f}" width="{sx(5.5) - sx(3):.1f}" height="{sy(3) - sy(5.5):.1f}" class="zone"/>')
-    for v in range(1, 6):
+        w, h, l, r, t, b = 640, 430, 56, 30, 26, 54
+    lo = 1.5
+    sx = lambda v: l + (v - lo) / (5.5 - lo) * (w - l - r)
+    sy = lambda v: t + (5.5 - v) / (5.5 - lo) * (h - t - b)
+    out = [K.svg_open(w, h, "Culture map: each Board by risk aversion and time horizon, scored on a shared scale", "chart narrow" if narrow else "chart cmap")]
+    out.append(f'<rect x="{sx(3.5):.1f}" y="{sy(5.5):.1f}" width="{sx(5.5) - sx(3.5):.1f}" height="{sy(3.5) - sy(5.5):.1f}" class="zone czone"/>')
+    for v in (2, 3, 4, 5):
         out.append(f'<line x1="{sx(v):.1f}" x2="{sx(v):.1f}" y1="{t}" y2="{h - b}" class="grid"/>'
                    f'<text x="{sx(v):.1f}" y="{h - b + 16}" text-anchor="middle" class="tick">{v}</text>'
                    f'<line x1="{l}" x2="{w - r}" y1="{sy(v):.1f}" y2="{sy(v):.1f}" class="grid"/>'
                    f'<text x="{l - 8}" y="{sy(v) + 4:.1f}" text-anchor="end" class="tick">{v}</text>')
-    out.append(f'<text x="{(l + w - r) / 2:.1f}" y="{h - 8}" text-anchor="middle" class="tick">Risk aversion (1 seeks bold bets · 5 protects balance sheet and safety first)</text>'
-               if not narrow else f'<text x="{(l + w - r) / 2:.1f}" y="{h - 8}" text-anchor="middle" class="tick">Risk aversion →</text>')
-    out.append(f'<text x="12" y="{(t + h - b) / 2:.1f}" text-anchor="middle" class="tick" transform="rotate(-90 12 {(t + h - b) / 2:.1f})">'
-               f'{"Time horizon (1 short-term · 5 long-term)" if not narrow else "Long-term →"}</text>')
-    out.append(f'<text x="{sx(5.4):.1f}" y="{sy(5.4) + 4:.1f}" text-anchor="end" class="zlab">risk-averse, long-term</text>')
+    xl = "Risk aversion (3 balanced · 4 averse: rating and safety first · 5 a board in crisis)" if not narrow else "Risk aversion →"
+    yl = "Time horizon (2 near-term · 3 balanced · 4 long-term leaning)" if not narrow else "Long-term →"
+    out.append(f'<text x="{(l + w - r) / 2:.1f}" y="{h - 8}" text-anchor="middle" class="tick">{xl}</text>')
+    out.append(f'<text x="12" y="{(t + h - b) / 2:.1f}" text-anchor="middle" class="tick" transform="rotate(-90 12 {(t + h - b) / 2:.1f})">{yl}</text>')
+    out.append(f'<text x="{sx(5.4):.1f}" y="{sy(5.4) + 4:.1f}" text-anchor="end" class="zlab">averse and long-term leaning</text>')
     pts = collections.defaultdict(list)
     for sd in SIDES:
         pts[(score(sd, "risk_aversion"), score(sd, "time_horizon"))].append(sd)
-    boxes = [(sx(x) - 9, sy(y) - 9, sx(x) + 9, sy(y) + 9) for (x, y) in pts]     # the dots themselves
-    cw = 8.6 if narrow else 7.4               # approx. width of one label character (phones render labels larger)
-    short = {"pratt_whitney": "P&W", "rolls_royce": "Rolls-Royce"} if narrow else {}
+    boxes = [(sx(x) - 9, sy(y) - 9, sx(x) + 9, sy(y) + 9) for (x, y) in pts]
+    cw = 8.6 if narrow else 7.4
+    short = {"pratt_whitney": "RTX", "cfm": "GE"} if narrow else {}
 
     def free(bx):
         return (bx[0] >= l + 2 and bx[2] <= w - 2 and bx[1] >= t - 4 and bx[3] <= h - b - 2
@@ -523,9 +575,9 @@ def culture_map(narrow=False):
     for (x, y), sides in sorted(pts.items(), key=lambda kv: (-kv[0][0], -kv[0][1])):
         cx, cy = sx(x), sy(y)
         out.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="7" class="filled"/>')
-        label = " · ".join(short.get(sd, COMPANY[sd]) for sd in sides)
+        label = " · ".join(short.get(sd, NAR.MAP_LABEL[sd]) for sd in sides)
         tw, th = len(label) * cw, 16 if narrow else 14
-        mid = min(max(cx - tw / 2, l + 2), w - 2 - tw)          # centred above/below, kept inside the plot
+        mid = min(max(cx - tw / 2, l + 2), w - 2 - tw)
         cands = [(cx + 12, cy - th / 2, "start"), (cx - 12 - tw, cy - th / 2, "end"), (mid, cy - 12 - th, "start"),
                  (mid, cy + 12, "start"), (cx + 12, cy - th - 6, "start"), (cx + 12, cy + 6, "start"),
                  (cx - 12 - tw, cy - th - 6, "end"), (cx - 12 - tw, cy + 6, "end"), (mid, cy - 30 - th, "start"), (mid, cy + 30, "start")]
@@ -540,52 +592,58 @@ def culture_map(narrow=False):
         out.append(f'<text x="{tx:.1f}" y="{ly + 11:.1f}" text-anchor="{anchor}" class="endlab">{esc(label)}</text>')
         for sd in sides:
             c = BOARDS[sd]["culture"]
-            tipr = [(f"{x} / 5", "risk aversion", None), (f"{y} / 5", "time horizon", None),
-                    ("", first_clause(c["risk_aversion"]["rationale"], 160), None), ("", first_clause(c["time_horizon"]["rationale"], 160), None)]
+            tipr = [(f"{fmt(x)} / 5", "risk aversion: " + gist(c["risk_aversion"]["rationale"]), None),
+                    (f"{fmt(y)} / 5", "time horizon: " + gist(c["time_horizon"]["rationale"]), None)]
             out.append(f'<rect x="{min(cx - 14, lx - 2):.1f}" y="{min(cy - 14, ly - 2):.1f}" width="{max(cx + 14, lx + tw + 2) - min(cx - 14, lx - 2):.1f}" '
                        f'height="{max(cy + 14, ly + th + 2) - min(cy - 14, ly - 2):.1f}" class="hit" '
-                       f'{K.mark_attrs((BOARDS[sd]["board_name"], "", None), *tipr)}/>')
+                       f'{K.mark_attrs((NAR.BOARD_SHORT[sd], "", None), *tipr)}/>')
     out.append("</svg>")
     return "".join(out)
 
 
+def link_board(sd, text=None):
+    return f'<a href="#{BOARD_AGENT[sd]}">{esc(text or NAR.BOARD_SHORT[sd])}</a>'
+
+
+def votes_table():
+    rows = [[link_board(sd), f'<b>{fmt(score(sd, "risk_aversion"))}</b> · {rich(VOTES[sd]["risk_aversion"])}',
+             f'<b>{fmt(score(sd, "time_horizon"))}</b> · {rich(VOTES[sd]["time_horizon"])}'] for sd in SIDES]
+    return stack_table(["Board", "Risk aversion: how it changes the votes", "Time horizon: how it changes the votes"], rows)
+
+
 def culture_table():
-    rows = []
-    for sd in SIDES:
-        b, c = BOARDS[sd], BOARDS[sd]["culture"]
-        rows.append([esc(COMPANY[sd]), f'{score(sd, "risk_aversion")} / 5', rich(c["risk_aversion"]["rationale"]),
-                     f'{score(sd, "time_horizon")} / 5', rich(c["time_horizon"]["rationale"])])
-    return ('<details class="tv"><summary>Table view: culture scores and why</summary>'
-            + stack_table(["Board", "Risk aversion", "Why", "Time horizon", "Why"], rows) + "</details>")
+    rows = [[link_board(sd), f'{fmt(score(sd, "risk_aversion"))} / 5', rich(gist(BOARDS[sd]["culture"]["risk_aversion"]["rationale"])),
+             f'{fmt(score(sd, "time_horizon"))} / 5', rich(gist(BOARDS[sd]["culture"]["time_horizon"]["rationale"]))] for sd in SIDES]
+    return ('<details class="tv"><summary>Table view: the scores in short (full reasoning on each Board card)</summary>'
+            + stack_table(["Board", "Risk aversion", "In short", "Time horizon", "In short"], rows, num_cols=(1, 3)) + "</details>")
 
 
 def governance_table():
     rows = []
     for sd in SIDES:
-        b = BOARDS[sd]
-        cp = b["composition"]
+        g = NAR.GOV[sd]
         tr, fi, wb = bkinds(sd)
-        chair = esc(cp.get("chair", "")) + (" <span class='muted small'>(also CEO)</span>" if cp.get("chair_is_ceo") else "")
-        rm = b["reserved_matters"][0] if b["reserved_matters"] else {"matter": "—", "threshold": ""}
-        rows.append([f'<a href="#{BOARD_AGENT[sd]}">{esc(b["board_name"])}</a>', chair,
-                     rich(rm["matter"] + (": " + rm["threshold"] if rm.get("threshold") else "")),
-                     f'{score(sd, "risk_aversion")} / {score(sd, "time_horizon")}', f"{tr} · {fi} · {wb}", esc(b.get("as_of", ""))])
-    return stack_table(["Board", "Chair", "First reserved matter", "Risk aversion / time horizon", "Evidence: transcript · filing · web", "As of"],
-                       rows, num_cols=(4,))
+        rows.append([link_board(sd), esc(g["chair"]), esc(g["lid"]), esc(g["launch"]), fmt(score(sd, "risk_aversion")),
+                     fmt(score(sd, "time_horizon")), f"{tr + fi} · {wb}", esc(g["as_of"])])
+    return stack_table(["Board", "Chair", "Lead or senior independent director", "Approval of a programme launch", "Risk aversion",
+                        "Time horizon", "Evidence: transcript and filing · web search", "As of"], rows, num_cols=(4, 5, 6))
 
 
 def board_card(sd):
     b = BOARDS[sd]
     cp, c, ev = b["composition"], b["culture"], b["evidence"]
+    g = NAR.GOV[sd]
     tr, fi, wb = bkinds(sd)
     comm = "".join(f'<li><b>{esc(x["name"])}.</b> {rich(x["role"])}</li>' for x in cp.get("committees") or [])
     mem = "".join(f'<li><b>{esc(x["name"])}.</b> {rich(x["background"])}</li>' for x in cp.get("notable_members") or [])
     cult = "".join(f'<li><b>{lab}.</b> {rich(c[k]["text"])} {eids(c[k].get("ids"))}</li>' for k, lab in
                    (("capital_allocation", "Capital allocation"), ("safety_oversight", "Safety oversight"),
                     ("stakeholder_influence", "Shareholders and stakeholders"), ("pay_horizon", "Pay horizon")) if c.get(k))
-    sc = "".join(f'<div class="score"><div class="k">{lab}</div><div class="v">{c[k]["score"]} / 5</div>'
-                 f'<div class="small">{rich(c[k]["rationale"])} {eids(c[k].get("ids"))}</div>'
-                 f'<div class="small muted"><b>Trend:</b> {rich(c[k].get("trend", ""))}</div></div>'
+    sc = "".join(f'<div class="score"><div class="k">{lab}</div><div class="v">{fmt(c[k]["score"])} / 5</div>'
+                 f'<p class="small"><b>{rich(gist(c[k]["rationale"]))}</b></p>'
+                 f'<p class="small"><b>How it changes the votes:</b> {rich(VOTES[sd][k])}</p>'
+                 f'<details class="why"><summary>Why {fmt(c[k]["score"])}, and the trend</summary><p class="small">{rich(c[k]["rationale"])} '
+                 f'{eids(c[k].get("ids"))}</p><p class="small muted"><b>Trend:</b> {rich(c[k].get("trend", ""))}</p></details></div>'
                  for k, lab in (("risk_aversion", "Risk aversion"), ("time_horizon", "Time horizon")))
     reserved = stack_table(["Matter", "Threshold or rule", "Evidence"],
                            [[rich(r["matter"]) + infer(r.get("inference")), rich(r.get("threshold", "")), eids(r.get("ids"))] for r in b["reserved_matters"]])
@@ -594,31 +652,42 @@ def board_card(sd):
     tests = stack_table(["Test", "Threshold or rule", "Evidence"],
                         [[rich(t["test"]) + infer(t.get("inference")), rich(t["threshold"]), eids(t.get("ids"))] for t in b["tests"]])
     veto = "".join(f'<li>{rich(v["ground"])}{infer(v.get("inference"))} {eids(v.get("ids"))}</li>' for v in b["veto"])
+    will_veto = "".join(f"<li>{esc(first_clause(v['ground'], 140))}</li>" for v in b["veto"][:5])
     mgmt = "".join(f'<li><b>{esc(m["name"])}.</b> {rich(m["relation"])} {eids(m.get("ids"))}</li>' for m in b["management_relationship"])
     past = "".join(f'<li><b>{esc(d["date"])}.</b> {rich(d["decision"])} {eids(d.get("ids"))}</li>' for d in b["past_decisions"])
-    gaps = "".join(f"<li>{rich(g)}</li>" for g in b["thin"]["gaps"])
+    gaps = "".join(f"<li>{rich(x)}</li>" for x in b["thin"]["gaps"])
     quotes = "".join(quote_html(q) for q in b["voice"].get("quotes") or []) or '<p class="small muted">No words of the board on record in the transcripts or filings.</p>'
     srcs = "".join(f'<li>{eids([w["id"]]) if w.get("id") else ""} {esc(w.get("title", ""))} · {esc(w.get("publisher", ""))} · {esc(w.get("date", ""))} · '
                    f'<span class="url">{esc(w.get("url", ""))}</span></li>' for w in b.get("web_sources") or [])
     conf_items = "".join(f'<li><b>{esc(x["area"])}:</b> {rich(x["level"])}</li>' for x in ev.get("confidence_by_area") or [])
+    size = (cp.get("size", "") or "").strip()
+    size = size if not size or size.endswith((".", ")")) else size + "."
+    chair_full = cp.get("chair", "") + (" (also CEO)" if cp.get("chair_is_ceo") and "CEO" not in cp.get("chair", "") else "")
     return f"""<article class="pcard panel bcard" id="{BOARD_AGENT[sd]}">
 <header class="ph"><p class="label"><span>{esc(COMPANY[sd])} · Board of Directors</span><a class="back" href="#roster">Back to the roster</a></p>
-<h4>{esc(b["board_name"])}</h4><p class="muted small">As of {esc(b.get("as_of", ""))}. Chair: {esc(cp.get("chair", ""))}{" (also CEO)" if cp.get("chair_is_ceo") else ""}{". Lead independent director: " + esc(cp["lead_independent_director"]) if cp.get("lead_independent_director") else ""}. {esc(cp.get("size", ""))} {esc(cp.get("independence", ""))}</p>
+<h4>{esc(b["board_name"])}</h4><p class="muted small">Chair: {esc(g["chair"])}. Lead or senior independent director: {esc(g["lid"])}. As of {esc(g["as_of"])}.</p>
 <p class="chips"><span class="chip">{tr} transcript items</span><span class="chip">{fi} filing items</span><span class="chip">{wb} web-search items</span>
-<span class="chip">Risk aversion {score(sd, "risk_aversion")} / 5</span><span class="chip">Time horizon {score(sd, "time_horizon")} / 5</span>
+<span class="chip{" warn" if g["conf"] in NAR.LOW_CONFIDENCE else ""}">Confidence: {esc(g["conf"])}</span>
 <span class="chip veto">recommends; binding veto</span><span class="chip">Steps: guidance, review, confirm</span></p>
-<p class="mandate">{rich(b["mandate"])}</p></header>
+<p class="mandate">{rich(b["mandate"])}</p>
+<dl class="glance"><dt>Approves a launch</dt><dd>{esc(g["launch"])}</dd>
+<dt>Will veto</dt><dd><ul class="facts small">{will_veto}</ul></dd>
+<dt>Recommends</dt><dd>{rich(first_clause(b["recommendation_style"]["text"], 220))}</dd></dl></header>
 <div class="scores">{sc}</div>
+<p class="label">Tests the Board applies to each Board item</p>{tests}
+<div class="thin"><p class="label">Where the record is thin</p><ul class="facts">{gaps}</ul>
+<p class="small"><b>When the record is silent:</b> {rich(b["thin"]["fallback"])}</p></div>
+<details class="more"><summary>Board items, veto grounds in full, recommendations, how it decides, culture beyond the two scores</summary>
+<p class="label">Board items in the game</p>{items}
+<p class="label">Its veto and its limits</p><ul class="facts">{veto}</ul>
+<p class="label">Its recommendations</p><p>{rich(b["recommendation_style"]["text"])} {eids(b["recommendation_style"].get("ids"))}</p>
 <div class="grid2"><div><p class="label">What the Board holds management to</p>{lst(b["holds_management_to"], ordered=True)}</div>
 <div><p class="label">How it decides</p>{lst(b["decision_process"])}</div></div>
 <p class="label">Culture beyond the two scores</p><ul class="facts">{cult}</ul>
-<p class="label">Board items in the game</p>{items}
-<p class="label">Tests the Board applies</p>{tests}
-<p class="label">Its veto and its limits</p><ul class="facts">{veto}</ul>
-<p class="label">Its recommendations</p><p>{rich(b["recommendation_style"]["text"])} {eids(b["recommendation_style"].get("ids"))}</p>
-<div class="thin"><p class="label">Where the record is thin</p><ul class="facts">{gaps}</ul>
-<p class="small"><b>When the record is silent:</b> {rich(b["thin"]["fallback"])}</p></div>
+</details>
 <details class="more"><summary>Composition, reserved matters, management, decisions taken, rivals, voice, sources</summary>
+<p class="small"><b>Chair:</b> {rich(chair_full)}{". <b>Lead independent director:</b> " + rich(cp["lead_independent_director"]) if cp.get("lead_independent_director") else ""}. {rich(size)} {rich(cp.get("independence", ""))}</p>
+<p class="small muted"><b>As of:</b> {rich(b.get("as_of", ""))}</p>
 <div class="grid2"><div><p class="label">Committees</p><ul class="facts">{comm}</ul></div><div><p class="label">Directors who bear on the game</p><ul class="facts">{mem}</ul></div></div>
 <p class="small"><b>Shareholders:</b> {rich(cp.get("shareholders", ""))} {eids(cp.get("ids"))}</p>
 <p class="label">Matters reserved to the Board</p>{reserved}
@@ -627,13 +696,14 @@ def board_card(sd):
 <p class="label">Decisions it has taken</p><ul class="facts">{past}</ul>
 <p class="label">Voice</p><p class="small">{rich(b["voice"].get("style", ""))}</p><div class="quotes">{quotes}</div>
 <p class="label">Evidence base</p><p class="small">{rich(ev.get("sources_note", ""))}</p><p class="small"><b>Confidence, in the profile's words:</b> {rich(ev.get("confidence_overall", ""))}</p><ul class="facts small">{conf_items}</ul>
-<p class="label">Web sources (found by web search; not fetched)</p><ul class="facts small srcs">{srcs}</ul>
+<p class="label">Web sources (found by web search; pages not fetched)</p><ul class="facts small srcs">{srcs}</ul>
 </details><p class="small muted agentfile">Agent file: <code>.claude/agents/{esc(BOARD_AGENT[sd])}.md</code> · Board profile: <code>wargame/profiles/{esc(sd)}/board/board.md</code></p></article>"""
 
 
 def boards_section():
-    return (f'<div class="panel"><p class="ctitle">{esc(NAR.MAP_TITLE)}</p><div class="only-wide">{culture_map()}</div>'
+    return (f'<div class="panel"><p class="ctitle">{esc(NAR.MAP_TITLE)}</p><div class="only-wide cmapw">{culture_map()}</div>'
             f'<div class="only-narrow">{culture_map(narrow=True)}</div><p class="cap">{NAR.MAP_CAP}</p>{culture_table()}</div>'
+            f'<div class="panel" style="margin-top:14px"><p class="label">How the scores show in the votes (each Board\'s own statement)</p>{votes_table()}</div>'
             f'<div class="panel" style="margin-top:14px"><p class="label">The five Boards at a glance</p>{governance_table()}</div>'
             + "".join(f'<div style="margin-top:14px">{board_card(sd)}</div>' for sd in SIDES))
 
@@ -700,6 +770,13 @@ dl.gl dt { font-weight: 600; } dl.gl dd { margin: 0; }
 .score .k { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .score .v { font: 600 1.5rem/1.2 var(--font-body); margin: 4px 0; }
 .srcs .url { font: .78rem var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+.tip b { white-space: normal; overflow-wrap: anywhere; }
+.tiles { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.cmapw .chart { max-width: 760px; margin: 0 auto; }
+.chart .czone { fill: var(--sunk); stroke: var(--line); stroke-dasharray: 4 3; }
+details.why summary { cursor: pointer; color: var(--muted); font-size: .86rem; }
+.gloss-box { margin-top: 14px; }
+@media (min-width: 761px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
 code { font: .86em var(--font-mono); }
 table.rules th[scope=row] { white-space: nowrap; }
 @media (max-width: 760px) {
@@ -729,9 +806,11 @@ EV_JS = r"""
   const EV = JSON.parse(document.getElementById('evdata').textContent);
   document.querySelectorAll('.eid').forEach(el => {
     const e = EV[el.dataset.e]; if (!e) return;
-    const rows = [{v: el.dataset.e, l: [e.date, e.doc, e.p].filter(Boolean).join(' · ')}, {v: '', l: e.s}, {v: '', l: '“' + e.q + '”'}];
+    const rows = e.w
+      ? [{v: el.dataset.e, l: [e.date, e.doc].filter(Boolean).join(' · ')}, {v: '', l: e.s}, {v: '', l: 'Search-result summary (not a quote): ' + e.q}]
+      : [{v: el.dataset.e, l: [e.date, e.doc, e.p].filter(Boolean).join(' · ')}, {v: '', l: e.s}, {v: '', l: '“' + e.q + '”'}];
     el.dataset.tip = JSON.stringify(rows);
-    el.setAttribute('aria-label', el.dataset.e + ': ' + e.q);
+    el.setAttribute('aria-label', el.dataset.e + (e.w ? ': search-result summary, not a quote: ' : ': ') + e.q);
   });
 })();
 """
@@ -770,6 +849,11 @@ def checks():
          ("confidence labels match the profiles", all(NAR.CONFIDENCE[a][1] in PROF[a]["evidence"]["confidence_overall"].lower() for a in ORDER)),
          ("Airbus once per game in Faury's file", "at most one override per game" in open(os.path.join(REPO, ".claude/agents/airbus-faury.md")).read())]
     sc = {sd: (score(sd, "risk_aversion"), score(sd, "time_horizon")) for sd in SIDES}
+    C += [("short chair names match the profiles", all(NAR.GOV[sd]["chair"].split(",")[0].split()[-1] in BOARDS[sd]["composition"]["chair"] for sd in SIDES)),
+          ("short lead directors match", all(NAR.GOV[sd]["lid"].split(" (")[0].split()[-1] in json.dumps(BOARDS[sd]["composition"]) or NAR.GOV[sd]["lid"].startswith("None")
+                                             for sd in SIDES)),
+          ("every board states how both scores change its votes", all(VOTES[sd]["risk_aversion"] and VOTES[sd]["time_horizon"] for sd in SIDES)),
+          ("web counts", web_stats()["web_n"] == sum(bkinds(sd)[2] for sd in SIDES))]
     C += [("board scores as stated", sc == {"boeing": (4.5, 3), "airbus": (4, 4), "cfm": (4, 3), "pratt_whitney": (3.5, 3), "rolls_royce": (4, 2.5)}),
           ("Boeing most risk-averse, RTX least", max(sc, key=lambda k: sc[k][0]) == "boeing" and min(sc, key=lambda k: sc[k][0]) == "pratt_whitney"),
           ("Airbus longest horizon, RR shortest", max(sc, key=lambda k: sc[k][1]) == "airbus" and min(sc, key=lambda k: sc[k][1]) == "rolls_royce"),
@@ -792,6 +876,14 @@ def checks():
     print("checks passed:", len(C))
 
 
+def web_stats():
+    web = [e for sd in SIDES for e in BOARD_EV[sd] if e.get("kind") == "web"]
+    corr = sum(1 for e in web if e.get("corroborated_by"))
+    re_s = sum(1 for e in web if e.get("verified") not in (None, "", "not re-searched"))
+    rr = sum(1 for e in BOARD_EV["rolls_royce"] if e.get("kind") == "web" and e.get("verified") in (None, "", "not re-searched"))
+    return {"web_n": len(web), "web_corr": corr, "web_unc": len(web) - corr, "web_re": re_s, "web_not": len(web) - re_s, "web_not_rr": rr}
+
+
 def build(out_path, preview=False):
     if not preview:
         checks()
@@ -801,8 +893,11 @@ def build(out_path, preview=False):
         e = EV[i]
         q = e.get("quote") or e.get("finding") or ""
         src = (e.get("speaker") or "")[:80] if e.get("quote") else "Finding from an analyst model (not a quote)"
+        web = e.get("kind") == "web"
+        if web:
+            src = f"Web search, source: {e.get('publisher') or e.get('speaker') or ''}; " + ("corroborated by a second search" if e.get("corroborated_by") else "not corroborated (used only as inference)")
         ev[i] = {"date": e.get("date"), "doc": short_doc(e.get("doc"), 60), "s": src, "q": q if len(q) <= 420 else q[:417] + "…",
-                 "p": cite(e)}
+                 "p": cite(e), "w": web}
     evjson = json.dumps(ev, ensure_ascii=False).replace("</", "<\\/")
     comp = ", ".join(f"{SHORT[a]} {COMP[a]}" for a in sorted(ORDER, key=lambda a: -COMP[a]) if COMP[a])
     iso = NAR.ISOLATION.format(cases=len(TH.CASES), new=TH.N_EXEC, paths=TH.N_PATHS)
@@ -821,7 +916,7 @@ def build(out_path, preview=False):
 
 <section id="roster"><h2>The twenty agents</h2><p class="lede">{NAR.ROSTER_LEDE}</p>{roster()}</section>
 
-<section id="protocol"><h2>How a round will run</h2><p class="lede">{NAR.PROTOCOL_LEDE}</p><div class="panel">{protocol()}<p class="cap">{NAR.PROTOCOL_CAP}</p></div></section>
+<section id="protocol"><h2>How a round will run</h2><p class="lede">{NAR.PROTOCOL_LEDE}</p><div class="panel">{protocol()}<p class="cap">{NAR.PROTOCOL_CAP}</p></div>{glossary()}</section>
 
 <section id="boards"><h2>The Boards</h2><p class="lede">{NAR.BOARDS_LEDE}</p>{boards_section()}</section>
 
@@ -831,11 +926,11 @@ def build(out_path, preview=False):
 <div class="panel"><p class="ctitle">{esc(NAR.RUG_TITLE)}</p>{legend_persp()}<div class="only-wide">{evidence_rug()}</div><div class="only-narrow">{evidence_rug(narrow=True)}</div>
 <p class="cap">{NAR.RUG_CAP}</p>{evidence_table()}</div></div></section>
 
-<section id="agents"><h2>The agents</h2><p class="lede">{NAR.CARDS_LEDE}</p>{glossary()}{cards()}</section>
+<section id="agents"><h2>The executives</h2><p class="lede">{NAR.CARDS_LEDE}</p>{cards()}</section>
 
 <section id="isolation"><h2>Isolation</h2><div class="panel stack">{iso}</div></section>
 
-<section id="method"><h2>Method</h2><div class="panel stack">{NAR.METHOD}</div></section>
+<section id="method"><h2>Method</h2><div class="panel stack">{NAR.METHOD.format(**web_stats())}</div></section>
 <footer>{NAR.FOOTER}</footer></div>
 <script type="application/json" id="evdata">{evjson}</script>
 <script>{EV_JS}</script><script>{K.JS}</script></body></html>'''

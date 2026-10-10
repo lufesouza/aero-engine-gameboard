@@ -278,12 +278,21 @@ async function boardReview(x, side) {
   const pkg = { frame: x.frame, cfo_memo: x.cfo, ops_memo: x.ops, decision: x.decision, veto_checks: x.veto_checks, revision: x.revision }
   const p = head(side, 'board', 'review') + `\n\nYour guidance this round:\n${js(x.board_guidance)}\n\nThe ExCo's package, passed by the game master:\n${js(pkg)}\n\nThe orders it submits:\n${js(x.final.orders)}\n\nThe Board items: ${items.join(', ')}. For each, approve or veto, with the ground and evidence; for a veto you may name acceptable alternatives (other values of that order field, or the default). Then your recommendations.`
   const rv = await agent(p, { label: `${side}:board:review`, phase: 'Board review', agentType: t.board, schema: REVIEW })
+  if (!rv) {   // fail closed: no Board approval, no Board item
+    log(`${side}: no Board review returned; its Board items revert to the default: ${items.join(', ')}`)
+    return Object.assign({}, x, { board_items: items, board_review: { failed: true, items: [], recommendations: [], overall: 'veto', note: 'No review returned: failed closed.' } })
+  }
   return Object.assign({}, x, { board_items: items, board_review: rv })
 }
 
 async function boardReviseConfirm(x, side) {
   const t = TEAMS[side]
   const rv = x.board_review
+  if (rv && rv.failed) {
+    const orders = revert(side, x.final.orders, x.board_items)
+    return Object.assign({}, x, { board_vetoed: x.board_items, board_revision: null, board_confirm: null, board_reverted: x.board_items,
+      final_orders: orders, final: Object.assign({}, x.final, { orders }) })
+  }
   const vetoed = rv ? rv.items.filter(i => i.decision === 'veto' && x.board_items.includes(i.order_field)).map(i => i.order_field) : []
   if (!vetoed.length) return Object.assign({}, x, { board_vetoed: [], board_revision: null, board_confirm: null, board_reverted: [], final_orders: x.final.orders })
   const p = head(side, 'ceo', 'board_revise') + `\n\nYour orders as submitted:\n${js(x.final)}\n\nThe Board's review:\n${js(rv)}\n\nThe Board vetoed: ${vetoed.join(', ')}. Revise once, within the Board's veto: for each vetoed order choose an alternative the Board named, or the default. Keep the approved orders. Answer the Board's recommendations in \`board_response\`.`

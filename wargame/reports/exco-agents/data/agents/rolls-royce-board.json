@@ -595,7 +595,7 @@
    "inference": false
   },
   {
-   "text": "Before approving it needs the grid rows with and without each item, the CEO's expected scenario and predictions, the CFO's co-signature and worst column, the operating head's ready year against each EIS and support plan, both veto checks and any declared premium; a missing figure is computed from the brief and raised as a recommendation, not a veto. The CFO's co-signature is her step-4 veto check concurring with that value; a step-5 change to a more conditional form (launch to launch_if_selected or hold) keeps it, and a launch or commit value that appears only at step 5 has it only if her test memo co-signed it. At confirm the GM passes only the CEO's revision: a revised value from the board's acceptable alternatives is approved unless the revision shows a new fact that fails a test",
+   "text": "Before approving it needs the grid rows with and without each item, the CEO's expected scenario and predictions, the CFO's co-signature and worst column, the operating head's ready year against each EIS and support plan, both veto checks and any declared premium; a missing figure is computed from the brief and raised as a recommendation, not a veto. The CFO's co-signature is her step-4 veto check concurring with that value; a step-5 change to a more conditional form (launch to launch_if_selected or hold) keeps it, and a launch or commit value that appears only at step 5 has it only if her test memo co-signed it. At confirm the GM passes the board's guidance, the ExCo package, its review, the CEO's revision and the merged orders: a revised value from the board's acceptable alternatives is approved unless the revision shows a new fact that fails a test",
    "ids": [
     "RG-0044",
     "RX-0213",

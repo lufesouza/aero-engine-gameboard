@@ -408,7 +408,7 @@
       "inference": false
     },
     {
-      "text": "The ExCo's rule in the prompt ends 'assume the Board approves when the tests pass': that is the ExCo's planning assumption from teams.md; the board's own tests govern its votes",
+      "text": "The ExCo's rule in the prompt says the Board applies its own tests and may veto; teams.md's planning assumption (approval when the three tests pass) does not bind it: its own tests govern its votes",
       "ids": [],
       "inference": true
     },
@@ -489,7 +489,7 @@
     },
     {
       "test": "One clean sheet at a time",
-      "threshold": "At most one new launch per round; NGSA and A350 Re-engine development overlap of 2 years or less unless the grid shows at least $1B more; with the bills in dashboard_game.md section 2, Liquidity fails any year with both in development (about $4.3B + $1.0B = $5.3B before strain), so the allowance matters only if the brief's bills differ",
+      "threshold": "At most one new launch per round; NGSA and A350 Re-engine development overlap of 2 years or less unless the grid shows at least $1B more; with the bills in dashboard_game.md section 2, Liquidity fails any year with both in development (about $4.3B + $1.0B = $5.3B before strain, about $5.9B with it), so the allowance matters only if the brief's bills differ",
       "ids": [
         "A-0343",
         "A-0401",

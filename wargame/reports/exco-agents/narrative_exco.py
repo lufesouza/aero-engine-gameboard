@@ -19,12 +19,13 @@ FINDINGS = [
      "The Board never originates an order."),
     ("The Boards' cultures differ, and their tests follow from them.",
      "On one shared scale, Boeing's Board is the most risk-averse (4.5 of 5): no cash returned since 2020 [BG-0034] and about "
-     "$24 billion of equity raised in 2024 to keep the rating [BG-0062]. So it vetoes any item that can lose more than $1B in "
-     "a plausible column. RTX's is the least (3.5): it approved a $10 billion accelerated buyback three months into the "
-     "powder-metal crisis [PG-0028]. Airbus's looks furthest ahead (4 of 5 on time horizon), keeping NGSA on its 2030 clock "
-     "[AG-0063]; Rolls-Royce's the least far (2.5), with returns first as the platform for innovation [RG-0029] and a record "
-     "capital return [RG-0059]."),
-    ("Each company now decides as three people, not one.",
+     "$24 billion of equity raised in 2024 to keep the rating [BG-0062]. In the game we set its veto at any item that can "
+     "lose more than $1B in a scenario the brief has not ruled out (half the CFO's $2B buffer; our inference, not a real "
+     "board threshold). RTX (P&amp;W) is the least risk-averse (3.5): its Board approved a $10 billion accelerated buyback "
+     "three months into the powder-metal crisis [PG-0028]. Airbus looks furthest ahead (4 of 5 on time horizon): management's "
+     "NGSA plan is kept whole on its 2030 clock [AG-0063], the Board's approval being an inference. Rolls-Royce looks least "
+     "far (2.5): it is returning £7-9 billion over 2026-2028 [RG-0059] while the UltraFan narrowbody waits on a partner."),
+    ("The ExCo decides as three people, not one.",
      "The CEO frames the round and decides. The CFO and the operating head test the frame independently, each against "
      "their own stated rules, and can block on the grounds their team's rule gives them. How hard that block is differs by "
      "company. At Boeing, Pratt &amp; Whitney and Rolls-Royce a standing veto binds the CEO, though Boeing's two veto rights "
@@ -78,7 +79,8 @@ RUG_CAP = ("One tick per item, at the date of the call, conference or filing. Ma
            "Wagner's items, and Faury's 47 Board Report lines, carry the report's issue date, 18 February 2026.")
 
 PROTOCOL_LEDE = ("The game master runs up to nine steps for each company in each round: the Board's guidance, five ExCo "
-                 "steps, then the Board's review of every big decision. The companies run side by side and never see each "
+                 "steps, the Board's review of every big decision and, after a Board veto, the CEO's revision and the Board's "
+                 "confirmation. The companies run side by side and never see each "
                  "other's steps. Inside a company, each agent sees only what the game master passes on.")
 
 STEPS = [
@@ -127,9 +129,12 @@ TEAM_RULES = {
                     "before entry into service. Binding."],
 }
 
-PROTOCOL_CAP = ("Rules from each company's team file, as adapted to this board in the round script, "
-                "<code>wargame/dashgame/workflows/exco_round.js</code>. The script has been tried only with placeholder agents, "
-                "to check the step order, the output formats and when the CEO revises. No executive agent has played a round.")
+PROTOCOL_CAP = ("ExCo columns from each company's team file, as adapted to the game in the round script, "
+                "<code>wargame/dashgame/workflows/exco_round.js</code>; Board column from each Board's profile, whose dollar "
+                "thresholds are mostly the ExCo's game parameters adopted by the Board (an inference). The script has been tried "
+                "only with placeholder agents, to check the step order, the output formats, when the CEO revises, when a Board "
+                "veto reverts an item, and that a failed Board review fails closed (its items revert to the default). No "
+                "executive or Board agent has played a round.")
 
 CARDS_LEDE = ("Each card is the profile its agent plays from. Evidence ids such as BX-0553 show the source line on hover or "
               "keyboard focus. <span class=\"inf\">inference</span> marks a view the evidence does not state directly. Veto "
@@ -141,12 +146,18 @@ CARDS_LEDE = ("Each card is the profile its agent plays from. Evidence ids such 
 
 GLOSSARY = [
     ("Brief and grid", "Each round the game master gives each company a brief. Its grid shows the value of each of the "
-                       "company's plans (rows) against what the others might do (columns)."),
+                       "company's plans (rows) against what the others might do (columns, S1, S2 ...)."),
+    ("Expected column", "The column the CEO judges most likely; with weights across columns, the weighted value."),
+    ("Plausible column", "Any column the public bulletin has not ruled out."),
+    ("Risk-case column", "The column that hurts the plan most (for Boeing, the slip leg)."),
+    ("Item value", "The plan's value minus the same plan with that one order at its default: what the order itself adds."),
+    ("Present value", "Value in $B discounted to 2026, as the grid shows it."),
     ("ΔPV", "A plan's value in $B, at 2026 present value, against the status quo."),
     ("Do Nothing", "Keep the current products; no launch."),
     ("Slip leg, risk case", "The grid column where the rival's moves or a delay hurt the plan most."),
     ("EIS", "Entry into service."),
     ("Premium", "Value a member gives up, in $B, to follow doctrine or an assigned objective; it is declared and capped."),
+    ("Tie margin", "$1B: plans closer than this count as equal."),
     ("Hard rules (H1, rule 6 ...)", "The company's red lines, from its profile, as mapped to this board."),
     ("Inference", "A view the evidence does not state directly, labelled as such."),
     ("Board item", "Any order that differs from the default (hold, or none): a launch, a cancellation, a Joint Venture "
@@ -167,8 +178,8 @@ the dashboard, the reports or the game master's run records. Its own company's f
 master names, plus earlier rounds' notes and orders of that run.</li>
 <li><b>No earlier game.</b> The earlier games' files have been moved out of the company folders into an archive no player
 can read. The executives are also blocked from the earlier dash-2050 run by name, so a replay cannot see its orders.</li>
-<li><b>No engine, no game-master code.</b> An executive runs no game-engine command and cannot import the game master's
-modules. Its numbers come only from the brief that the game master writes into its company's folder.</li>
+<li><b>No engine, no game-master code.</b> An executive or Board agent runs no game-engine command and cannot import the
+game master's modules. Its numbers come only from the brief that the game master writes into its company's folder.</li>
 <li><b>Searches stay at home.</b> Searches, wildcard reads and recursive reads must stay inside the company's own folders.
 The game master's scratchpad, the session transcripts and the workflow agents' transcripts are blocked.</li>
 <li><b>Inside the company.</b> The ExCo and its Board may read each other's agent files (they know each other), but
@@ -198,9 +209,11 @@ elsewhere are fixed in the round script, the board notes and the specification.<
 <li><b>Boards.</b> One research agent per company searched the transcripts and filings for what they say about the
 board (approvals, authorisations, reserved matters, chairs' remarks) and added new items, each quote checked against its
 page by <code>verify_quotes.py</code>. It then used web search for the board's composition, rules, pay horizons, culture
-and past decisions. This environment blocks direct page fetches, so web facts come from search results with their URLs;
-each was corroborated by a second, differently worded search, and a separate verifier searched again before keeping it.
-Web statements are never shown as quotes. A drafting agent wrote the Board agent and the executives' new Board sections;
+and past decisions. This environment blocks direct page fetches, so web facts come from search results with their URLs
+and are shown as search summaries, never as quotes. Each was to be corroborated by a second, differently worded search:
+{web_corr} of {web_n} were, and the other {web_unc} are used only as inference, never behind a score, test or veto. A
+separate agent then searched again: {web_re} items were re-searched (some corrected, none dropped); {web_not} were not,
+because the shared search budget ran out ({web_not_rr} of them Rolls-Royce's, whose web research came last). A drafting agent wrote the Board agent and the executives' new Board sections;
 a verifier checked them; a final pass calibrated the culture scores across the five boards.</li>
 <li><b>Page review.</b> Two more reviewers read this page: one recomputed its numbers and quotes from the data, the other
 read it on desktop and phone. Their 32 findings, including gaps in the isolation, are fixed.</li>
@@ -210,11 +223,15 @@ against its source item, with "..." marking any gap, and that each card quote's 
 <li><b>Limits.</b> Airbus's agents rest on what the Board Report says about them, not on their speech. Four records are thin and
 Airbus's three are filing-based; those agents defer instead of inventing. Volume is not trust: Watson's 27 items come almost
 all from one day, and the profiles' own confidence ratings are shown next to the volume. The "as voiced in dash-2050"
-lines are the earlier single company agent's role-play, shown for comparison, not evidence. How the agents behave in play is untested until the game is run.</li>
+lines are the earlier single company agent's role-play, shown for comparison, not evidence. The Boards' own words
+are few and mostly old, and their dollar thresholds are the ExCo's game parameters adopted by inference. How the agents behave in play is untested until the game is run.</li>
 </ol>
 <p class="label">Files</p>
 <ul class="facts small">
-<li><code>.claude/agents/&lt;agent&gt;.md</code>: the fifteen agent definitions (for example <code>boeing-ortberg.md</code>).</li>
+<li><code>.claude/agents/&lt;agent&gt;.md</code>: the twenty agent definitions (fifteen executives, for example
+<code>boeing-ortberg.md</code>, and five Boards, for example <code>boeing-board.md</code>).</li>
+<li><code>wargame/profiles/&lt;company&gt;/board/</code>: each Board's profile (<code>board.md</code>), evidence
+(<code>evidence.jsonl</code>) and web sources (<code>sources.md</code>).</li>
 <li><code>wargame/reports/exco-agents/data/agents/&lt;agent&gt;.json</code>: the profiles behind this page;
 <code>data/people.json</code>: evidence counts per person.</li>
 <li><code>wargame/reports/exco-agents/check_agents.py</code> and <code>make_exco_html.py</code>: the checker and this page.</li>
@@ -224,7 +241,8 @@ script (not run), the game master's save helper, and the stub dry run.</li>
 """
 
 FOOTER = ("BOEING PROPRIETARY. Built by wargame/reports/exco-agents/make_exco_html.py from the agent profiles in data/agents "
-          "and the evidence files in wargame/profiles/*/executives. No game was run with these agents.")
+          "and the evidence files in wargame/profiles/*/ (evidence.jsonl, executives/, board/). No game was run with these "
+          "agents.")
 
 # Each profile's own overall confidence, in short (the full wording is on the card). The builder checks that the
 # key words appear in the profile's confidence_overall.
@@ -251,7 +269,8 @@ LOW_CONFIDENCE = ("Low", "Very low", "Low to medium", "Medium on engineering, lo
 BOARD_RULES = {
     "boeing": "Board (independent chair Mollenkopf): a launch must be more than $1B ahead of its default in the CEO's expected "
               "column, no item may lose more than $1B in a plausible column, the plan stays within $2B of Do Nothing in the "
-              "risk-case column, one development at a time. Risk aversion 4.5, time horizon 3.",
+              "risk-case column, developments overlapping at most two years. Dollar limits are the ExCo's game parameters "
+              "adopted by the Board (inference). Risk aversion 4.5, time horizon 3.",
     "airbus": "Board (chair Moraleda since October 2026; approval above €300m, two-thirds above €800m): peak spend within about "
               "a year's free cash flow, one clean-sheet launch at a time, no NGSA entry into service before 2035, no item "
               "losing more than $2B in a plausible column, tight limits on Delay Tactics. Risk aversion 4, time horizon 4.",
@@ -259,8 +278,9 @@ BOARD_RULES = {
            "ahead, no item losing more than its own bill, an Open Fan only on an airframer path, new R&D within the payout "
            "floor. Risk aversion 4, time horizon 3.",
     "pratt_whitney": "RTX Board (Calio chairs; lead independent director Reynolds): the return hurdle, an unconditional launch "
-                     "only onto a committed airframe, no item losing more than its own $2B, durability first, the dividend "
-                     "never gives. Risk aversion 3.5, time horizon 3.",
+                     "only onto a committed airframe or as NGSA franchise defence at least $0.5B ahead of launch if selected, "
+                     "no item losing more than its own $2B, durability first, the dividend never gives. Risk aversion 3.5, "
+                     "time horizon 3.",
     "rolls_royce": "Board (chair Frew; senior independent director Culmer): safety and maturity first, no unconditional launch "
                    "without an airframe on the record, profit over share, one big programme at a time, the Joint Venture once "
                    "P&W is committed or an airframe's code includes it. Risk aversion 4, time horizon 2.5.",
@@ -273,7 +293,29 @@ MAP_TITLE = "Culture map: where each Board sits on risk aversion and time horizo
 MAP_CAP = ("Scores are judgements from the evidence, calibrated on one shared scale; a half point places a Board between "
            "two descriptions. Risk aversion: 3 balanced; 4 averse (rating and safety first, proof before commitment, staged "
            "programme risk still approved); 5 a board in crisis. Time horizon: 2 near-term; 3 balanced; 4 long-term "
-           "leaning. A higher risk aversion means a tighter downside limit and more proof before an unconditional "
-           "commitment; a longer horizon means more near-term cost accepted for a long-term position. Each Board agent "
-           "knows only its own scores. Airbus, GE and Rolls-Royce tie on risk aversion, and Boeing, GE and RTX on time "
-           "horizon, where the evidence does not separate them.")
+           "leaning. Within each Board the scores set its limits (Boeing's downside limit moved from $2B to $1B when it was "
+           "scored 4.5 rather than 4). Across companies the limits are stated in each company's own terms, so they are not "
+           "directly comparable: the airframers' in dollars, the engine makers' against the item's own bill, which is $2-8B. "
+           "The table below gives each Board's own statement of how its scores change its votes. Each Board agent knows only "
+           "its own scores. Airbus, GE (CFM) and Rolls-Royce tie on risk aversion, and Boeing, GE (CFM) and RTX (P&amp;W) on "
+           "time horizon, where the evidence does not separate them.")
+
+BOARD_SHORT = {"boeing": "Boeing Board", "airbus": "Airbus Board", "cfm": "GE Aerospace Board (CFM)",
+               "pratt_whitney": "RTX Board (P&W)", "rolls_royce": "Rolls-Royce Board"}
+MAP_LABEL = {"boeing": "Boeing", "airbus": "Airbus", "cfm": "GE (CFM)", "pratt_whitney": "RTX (P&W)", "rolls_royce": "Rolls-Royce"}
+GOV = {   # short facts; the builder checks the names against each Board's profile
+    "boeing": {"chair": "Steven Mollenkopf, independent", "lid": "None (independent chair)",
+               "launch": "No published threshold: the Board approves every new-airplane launch, in two gates", "as_of": "Apr 2026",
+               "conf": "Medium-high"},
+    "airbus": {"chair": "Amparo Moraleda, independent (since Oct 2026)", "lid": "Mark Dunkerley",
+               "launch": "Above €300m; a two-thirds majority above €800m", "as_of": "Oct 2026", "conf": "Medium"},
+    "cfm": {"chair": "Larry Culp, Chairman and CEO", "lid": "Wes Bush (Lead Director)",
+            "launch": "No published threshold (a 'major' action); CFM programmes also need Safran's consent", "as_of": "Oct 2026",
+            "conf": "Medium"},
+    "pratt_whitney": {"chair": "Chris Calio, Chairman and CEO", "lid": "Fredric Reynolds",
+                      "launch": "No published threshold; a new engine or Joint Venture is outside the self-funded plan, so a Board matter",
+                      "as_of": "Apr 2026", "conf": "Medium"},
+    "rolls_royce": {"chair": "Dame Anita Frew, independent", "lid": "George Culmer (Senior Independent Director)",
+                    "launch": "Board threshold not public; CEO and CFO sign off every case above £25m", "as_of": "Sep 2026",
+                    "conf": "Medium"},
+}

@@ -354,7 +354,8 @@ Repo root: `/home/user/aero-engine-gameboard`.
    numbers and ids, and for a veto the acceptable alternatives. Add recommendations (other moves, the public statement,
    next round). Set `overall` (approve, partial or veto) and a `note` of at most 150 words in your voice.
 3. **Confirm (step 8, only after a Board revise).** For each revised item, approve or veto on the same tests. The GM
-   passes only the CEO's revision, so name at review only alternatives that already pass every test. A revised value
+   passes your guidance, the ExCo package, your review, the CEO's revision and the merged orders; name at review only
+   alternatives that already pass every test. A revised value
    from your acceptable alternatives (for a vetoed `launch`, `launch_if_selected`) is approved unless the revision shows
    a new fact that fails a test; it keeps McCabe's co-signature as a more conditional form (inference). A still-vetoed
    item reverts to the default (`hold`). Your recommendations carry into next round's guidance.

@@ -1,22 +1,28 @@
-# ExCo agents: one agent per executive
+# ExCo and Board agents: one agent per executive, one per Board
 
 BOEING PROPRIETARY.
 
-Each company in the dash-2050 war game can now be played by three agents instead of one: the CEO, the CFO and the
-operating head of its default 2026 executive committee. Each agent is profiled from that person's own words in the
-evidence files under `wargame/profiles/<company>/executives/`. The game has **not** been run with these agents.
+Each company in the dash-2050 war game can now be played by four agents instead of one: the CEO, the CFO and the
+operating head of its default 2026 executive committee (ExCo), each profiled from that person's own words in the evidence
+files under `wargame/profiles/<company>/executives/`, and its Board of Directors, profiled from the transcripts, filings
+and web search under `wargame/profiles/<company>/board/` (spec: `BOARD_SPEC.md`). The Board recommends before each round
+and approves or vetoes every order that differs from the default; its veto binds, and its culture (risk aversion, time
+horizon) sets its tests. The game has **not** been run with these agents.
 
-| Company | CEO | CFO | Operating head |
-|---|---|---|---|
-| Boeing | `boeing-ortberg` | `boeing-malave` | `boeing-pope` |
-| Airbus | `airbus-faury` | `airbus-toepfer` | `airbus-wagner` |
-| CFM/GE | `cfm-culp` | `cfm-ghai` | `cfm-ali` |
-| Pratt & Whitney | `pratt-whitney-calio` | `pratt-whitney-mitchill` | `pratt-whitney-eddy` |
-| Rolls-Royce | `rolls-royce-erginbilgic` | `rolls-royce-mccabe` | `rolls-royce-watson` |
+| Company | CEO | CFO | Operating head | Board |
+|---|---|---|---|---|
+| Boeing | `boeing-ortberg` | `boeing-malave` | `boeing-pope` | `boeing-board` |
+| Airbus | `airbus-faury` | `airbus-toepfer` | `airbus-wagner` | `airbus-board` |
+| CFM/GE | `cfm-culp` | `cfm-ghai` | `cfm-ali` | `cfm-board` (GE Aerospace, with Safran's consent on CFM) |
+| Pratt & Whitney | `pratt-whitney-calio` | `pratt-whitney-mitchill` | `pratt-whitney-eddy` | `pratt-whitney-board` (RTX) |
+| Rolls-Royce | `rolls-royce-erginbilgic` | `rolls-royce-mccabe` | `rolls-royce-watson` | `rolls-royce-board` |
 
 ## Files
 
-- `.claude/agents/<agent>.md`: the fifteen agent definitions (system prompts).
+- `.claude/agents/<agent>.md`: the twenty agent definitions (system prompts).
+- `wargame/profiles/<company>/board/`: each Board's profile (`board.md`), evidence (`evidence.jsonl`, ids BG/AG/CG/PG/RG) and web
+  sources (`sources.md`). Web facts come from web search (page fetches are blocked in this environment) and are never
+  shown as quotes.
 - `data/agents/<agent>.json`: each agent's profile, the data behind the page.
 - `data/people.json`: evidence counts, dates and sources per person, taken from the evidence files.
 - `SPEC.md`: the specification the agents were drafted to (template, sections, return fields, evidence rules).
@@ -28,12 +34,16 @@ evidence files under `wargame/profiles/<company>/executives/`. The game has **no
 - `make_exco_html.py`, `narrative_exco.py`: build `exco_agents.html`. The builder checks the numbers the text states
   against the data.
 - `wargame/dashgame/workflows/exco_round.js`: the round script for the game master (not run). Per company and round it
-  runs five steps:
+  runs up to nine steps:
+  0. Board guidance (recommendations);
   1. frame (CEO);
   2. test (CFO and operating head, in parallel);
   3. decide (CEO);
   4. veto check;
-  5. revise (CEO, only if a binding veto stands).
+  5. revise (CEO, only if a binding veto or a red-line flag stands);
+  6. Board review (approve or veto each Board item);
+  7. board revise (CEO, only after a Board veto);
+  8. Board confirm (a still-vetoed item reverts to the default; a failed review fails closed).
 - `wargame/dashgame/workflows/dry_run.js`: runs the round script with stub agents, to check its flow.
 - `wargame/dashgame/exco.py`:
   - `check` compares the script's order fields with `rules.py`;

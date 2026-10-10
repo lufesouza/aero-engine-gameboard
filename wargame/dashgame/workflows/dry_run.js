@@ -1,7 +1,8 @@
 // Dry run of exco_round.js with stub agents (no agent runs): node dry_run.js exco_round.js [result.json]
 // Checks syntax, the step order, the schemas and the revise rule; the stub has Rolls-Royce veto in both seats and
 // Boeing's operating head flag a red-line breach; the Boeing Board vetoes one item then approves the revision,
-// and the Rolls-Royce Board vetoes one item twice (it reverts to the default).
+// the Rolls-Royce Board vetoes one item twice (it reverts to the default), and the CFM/GE Board review fails
+// (its items revert to the default: fail closed).
 const fs = require('fs')
 const src = fs.readFileSync(process.argv[2], 'utf8').replace('export const meta', 'const meta')
 const calls = []
@@ -16,6 +17,7 @@ const stub = (prompt, opts) => {
     return 'x'
   }
   const o = mk(s)
+  if (opts.label === 'cfm:board:review') return Promise.resolve(null)   // a failed Board review must fail closed
   if (opts.label.includes(':board:review') || opts.label.includes(':board:confirm')) {
     // Board stub: Boeing vetoes its first item at review and approves at confirm; Rolls-Royce vetoes at both (revert)
     const m = prompt.match(/The (?:Board items|revised Board items): ([^.]*)\./)
