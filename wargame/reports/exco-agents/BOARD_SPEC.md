@@ -106,6 +106,7 @@ the queries used.
   5 = strongly averse (protects the balance sheet, the rating and safety first; demands proof before commitment).
 - **Time horizon**, 1-5: 1 = short-term results (quarterly earnings, near-term cash returns, buybacks first);
   3 = balanced; 5 = long-term (multi-decade programmes and technology, accepts near-term cost for long-term position).
+- Scores may use half points (e.g. 4.5) to place a board within a band; the bands keep their meaning.
 - Each score has a rationale, evidence ids, and a trend (how it has moved, e.g. before and after a crisis).
 - Scores are judgements from evidence, labelled as such. The final cross-check calibrates them across the five
   boards so that a 4 means the same at every company.
