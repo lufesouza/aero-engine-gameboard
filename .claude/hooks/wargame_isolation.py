@@ -17,12 +17,13 @@ import json
 import os
 import sys
 
-# The per-executive agents of each company's default ExCo (agent files .claude/agents/<name>.md).
-EXECS = {"boeing": ["boeing-ortberg", "boeing-malave", "boeing-pope"],
-         "airbus": ["airbus-faury", "airbus-toepfer", "airbus-wagner"],
-         "cfm": ["cfm-culp", "cfm-ghai", "cfm-ali"],
-         "pratt_whitney": ["pratt-whitney-calio", "pratt-whitney-mitchill", "pratt-whitney-eddy"],
-         "rolls_royce": ["rolls-royce-erginbilgic", "rolls-royce-mccabe", "rolls-royce-watson"]}
+# The per-executive agents of each company's default ExCo, and its Board of Directors agent
+# (agent files .claude/agents/<name>.md). They share their company's limits.
+EXECS = {"boeing": ["boeing-ortberg", "boeing-malave", "boeing-pope", "boeing-board"],
+         "airbus": ["airbus-faury", "airbus-toepfer", "airbus-wagner", "airbus-board"],
+         "cfm": ["cfm-culp", "cfm-ghai", "cfm-ali", "cfm-board"],
+         "pratt_whitney": ["pratt-whitney-calio", "pratt-whitney-mitchill", "pratt-whitney-eddy", "pratt-whitney-board"],
+         "rolls_royce": ["rolls-royce-erginbilgic", "rolls-royce-mccabe", "rolls-royce-watson", "rolls-royce-board"]}
 XF = {side: [n + ".md" for n in names] for side, names in EXECS.items()}
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",

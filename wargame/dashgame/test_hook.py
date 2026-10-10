@@ -76,6 +76,16 @@ CASES = [
     ("boeing-ortberg", "Read", {"file_path": REPO + "/.claude/agents/airbus-2010.md"}, "deny"),
     ("boeing-malave", "Read", {"file_path": "/tmp/wargame-boeing/dash-2050-exco/round2.md"}, "allow"),
     ("boeing-malave", "Read", {"file_path": "/root/.claude/projects/p/s/tool-results/abc123.txt"}, "allow"),
+    # boards: their company's limits
+    ("boeing-board", "Read", {"file_path": REPO + "/wargame/profiles/airbus/board/board.md"}, "deny"),
+    ("airbus-board", "Read", {"file_path": REPO + "/.claude/agents/boeing-board.md"}, "deny"),
+    ("rolls-royce-board", "Read", {"file_path": "/tmp/wargame-pratt_whitney/dash-2050-exco/round1.md"}, "deny"),
+    ("cfm-board", "Bash", {"command": "python3 -m wargame.engine brief --run x --side cfm"}, "deny"),
+    ("pratt-whitney-board", "Grep", {"pattern": "veto", "path": "/tmp"}, "deny"),
+    ("boeing-ortberg", "Read", {"file_path": REPO + "/wargame/profiles/airbus/board/evidence.jsonl"}, "deny"),
+    ("boeing-board", "Read", {"file_path": REPO + "/wargame/profiles/boeing/board/board.md"}, "allow"),
+    ("cfm-board", "Read", {"file_path": "/tmp/wargame-cfm/dash-2050-exco/exco/r1_decision.md"}, "allow"),
+    ("rolls-royce-board", "Read", {"file_path": REPO + "/.claude/agents/rolls-royce-erginbilgic.md"}, "allow"),
 ]
 sys.path.insert(0, os.path.dirname(HOOK))
 import wargame_isolation as W  # noqa: E402
