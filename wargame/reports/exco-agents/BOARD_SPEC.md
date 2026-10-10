@@ -110,6 +110,17 @@ the queries used.
 - Each score has a rationale, evidence ids, and a trend (how it has moved, e.g. before and after a crisis).
 - Scores are judgements from evidence, labelled as such. The final cross-check calibrates them across the five
   boards so that a 4 means the same at every company.
+- **The calibrated shared scale** (what the five agents use). Risk aversion: 3 = balanced (approves debt-funded returns
+  or large deals while programme risk is live); 4 = averse (the rating and safety first, proof before commitment, yet
+  staged, shared or derivative programme risk approved and cash returned from a sound balance sheet); 5 = a board in
+  crisis (returns cut, capital raised, nothing unproven funded). Time horizon: 2 = near-term (development cut first, or
+  cash returned first while the next programme waits); 3 = balanced (core developments protected, most spare cash
+  returned or used to repay debt, pay on one-to-four-year metrics); 4 = long-term leaning (a multi-decade programme
+  prepared for years and kept whole while returns stay moderate). A half point places a board between two descriptions.
+- **How a score drives votes.** The higher the risk aversion, the tighter the per-item downside limit, the more proof on
+  the record before an unconditional commitment, and the less balance-sheet strain accepted; the longer the horizon, the
+  more near-term cost accepted for a long-term position. A board may state its downside limit in dollars or as a share
+  of the item's bill; either way it must tighten as its risk aversion rises. No agent states another board's score.
 
 ## Board items in the game
 

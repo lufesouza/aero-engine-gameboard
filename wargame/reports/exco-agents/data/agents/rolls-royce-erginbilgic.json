@@ -6,7 +6,7 @@
   "seat": "CEO",
   "title": "CEO and Executive Director",
   "team_id": "erginbilgic-mccabe-watson-2026",
-  "role_dates": "CEO & Executive Director from January 2023; first results call in the evidence 23 February 2023 [RX-0038], last evidenced turn 31 July 2025 [RX-0138]; the 2026 team assumes he still holds the seat.",
+  "role_dates": "CEO & Executive Director from January 2023; first results call in the evidence 23 February 2023 [RX-0038], last evidenced turn 31 July 2025 [RX-0138]; re-elected as a director at the 30 April 2026 AGM and granted a 2026 LTIP award on 1 May 2026 [RG-0047, RG-0057]: he holds the seat as of 2026.",
   "evidence": {
     "n_items": 110,
     "n_own_words": 110,
@@ -194,7 +194,7 @@
     },
     {
       "test": "Premium cap",
-      "threshold": "Doctrine-favoured order only within $3B of the best expected PV per round; premium declared",
+      "threshold": "Doctrine-favoured order only within $3B of the best expected PV per round; premium declared (the Board caps an UltraFan WB premium at $1B and counts each Board item's shortfall against its hold row)",
       "ids": [],
       "inference": true
     }
@@ -275,7 +275,7 @@
     },
     {
       "lever": "UltraFan WB",
-      "position": "Do Nothing; launch only once an A350 Re-engine is on the public record (launched earlier, or announced for this round in an earlier statement) and its row beats hold or the gap is a declared premium within $3B; 787 Re-engine only once Boeing has named UltraFan in a public statement (no widebody engine code on the board); never beside an UltraFan NB Solo unless both are selected ($5B strain beside a Joint Venture)",
+      "position": "Do Nothing; launch only once an A350 Re-engine is on the public record (launched earlier, or announced for this round in an earlier statement) and its row beats hold or the gap is a declared premium within $3B (the Board caps an UltraFan WB premium at $1B); 787 Re-engine only once Boeing has named UltraFan in a public statement (no widebody engine code on the board); never beside an UltraFan NB Solo unless both are selected ($5B strain beside a Joint Venture)",
       "ids": [
         "R-1574",
         "R-0361"
@@ -512,7 +512,42 @@
   "protocol_steps": [
     "frame",
     "decide",
-    "revise"
+    "revise",
+    "board_revise"
   ],
-  "veto_holder": false
+  "veto_holder": false,
+  "board": {
+    "summary": "The Rolls-Royce Holdings plc Board (agent rolls-royce-board): 14 directors as of 1 September 2026 under the independent chair Dame Anita Frew, with George Culmer as Senior Independent Director; Erginbilgic and McCabe are its two executive directors, re-elected in April 2026. Its Safety, Energy Transition & Tech Committee (since 2023) oversees safety and technology; its Remuneration Committee set his 2026 pay (LTIP up to 750% of salary with three-year conditions, released two years later; its measures, three-year free cash flow, margin and relative TSR, come from the share-plan page and are inference for his award). Every order that differs from hold is a Board item (ultrafan_nb_solo launch, launch_if_selected or cancel; jv_with_pw commit or withdraw; ultrafan_wb and t1000_upgrade launch or cancel); its reserved-matters schedule (December 2024) puts strategy first, but no value threshold above the CEO-CFO £25m sign-off was found, and its veto binds. Culture scored risk aversion 4 of 5 and time horizon 2.5 of 5 (half points allowed): safety, then the balance sheet; precaution sized to the reasonable worst case; a long-cycle view held behind returns first, now with single-A ratings and a £7-9bn buyback for 2026-2028; its own growth bets (UltraFan 30, SMR) are staged and shared. It approves launch_if_selected and a Joint Venture commit after P&W's readily; an unconditional launch only into an RR selection on the record; narrowbody items only at a non-negative weighted value with no premium; a widebody shortfall only as a declared premium within $3B, an UltraFan WB within $1B of it. It vetoes a first Joint Venture commit (commit only once P&W's commitment is on the public record or a live airframe's engine code includes P&W); overlapping programmes, including the Trent 1000 upgrade in any round where an UltraFan is in development, launched or ordered launch_if_selected; an item that fails Watson's maturity (Ready by EIS, for an unconditional launch or commit), early-date or support test against the final orders, or on which his binding Civil veto still stands after the revision (a zero-margin pass or capacity advice is not a veto ground); and any item that can lose more than its own bill (inference).",
+    "seat_role": "As CEO and executive director (no vote on his own package in the game, inference), he reads the Board's guidance before framing and carries its would-veto list into his red lines, answers each recommendation in board_response when deciding, and after a Board veto revises once within it, with no override against the Board (board_revise: an alternative the Board named, or the default); the Board then confirms, and a still-vetoed item reverts to the default. The board chose him through the open and transparent search it ran in 2022 and backs the CEO in public once it has set the priorities.",
+    "ids": [
+      "RG-0009",
+      "RX-0102",
+      "RX-0213",
+      "RG-0010",
+      "RX-0038",
+      "RG-0026",
+      "RG-0025",
+      "RG-0027",
+      "RG-0041",
+      "RG-0033",
+      "RG-0031",
+      "RG-0021",
+      "RG-0029",
+      "RG-0017",
+      "RG-0047",
+      "RG-0048",
+      "RG-0051",
+      "RG-0064",
+      "RG-0049",
+      "RG-0050",
+      "RG-0055",
+      "RG-0056",
+      "RG-0057",
+      "RG-0054",
+      "RG-0060",
+      "RG-0059",
+      "RG-0065",
+      "RG-0066"
+    ]
+  }
 }

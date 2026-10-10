@@ -1,0 +1,1293 @@
+{
+ "agent_name": "cfm-board",
+ "company": "CFM/GE (GE's half of CFM International, plus GE widebody engines)",
+ "side": "cfm",
+ "board_name": "GE Aerospace Board of Directors, with the CFM International parity rule (Safran consent on CFM programmes)",
+ "as_of": "10 October 2026 for composition (2026 proxy of 12 March 2026, updated by releases to 22 September 2026); transcripts to 21 October 2025",
+ "composition": {
+  "chair": "H. Lawrence Culp, Jr., Chairman and CEO (combined roles; the board opposes an independent chair). A director since April 2018, made CEO by unanimous board vote on 1 October 2018, running the aerospace business directly since mid-2022; contract to 31 December 2027, or 2028 by mutual agreement",
+  "chair_is_ceo": true,
+  "lead_independent_director": "Wes Bush, former Chairman and CEO of Northrop Grumman, elected Lead Director by the independent directors effective 21 September 2026 (a director since 1 December 2025). Tom Horton, Lead Director 2018-2026 and former American Airlines CEO, stays on the board. In the game the board speaks as the independent directors under the Lead Director, because Culp sits on the ExCo side (inference)",
+  "size": "10 directors as of 10 October 2026 (nine stood at the May 2026 annual meeting; Judson Althoff joined on 24 June 2026); cut from 18 in 2017 and kept small by design",
+  "independence": "9 of 10 independent; Culp is the only executive",
+  "committees": [
+   {
+    "name": "Audit",
+    "role": "Chair Bella Goren (former American Airlines CFO); Bush, Lesjak, McDew, Althoff. Accounts, the enterprise-risk framework and cybersecurity: the cash and risk lens on a launch"
+   },
+   {
+    "name": "Management Development and Compensation",
+    "role": "Chair Catherine Lesjak (former HP CFO) since December 2025; Bazin, Enders. CEO pay, its horizon and succession"
+   },
+   {
+    "name": "Governance and Public Affairs",
+    "role": "Chair Tom Horton; Bazin, Billson, McDew. Board composition; public policy, political spending and lobbying, and ESG (its charter, per the re-check), the closest home for lobbying (inference); health and safety risks by the drafter's search only, not found at the 2026-10-10 re-check"
+   },
+   {
+    "name": "Classified Programs",
+    "role": "Chair Gen. Darren McDew (ret.), formed June 2025 (his chair, from the March 2026 proxy, was not re-confirmed at the re-check); Bush, Culp, Horton. Oversight of US-government classified programmes"
+   },
+   {
+    "name": "No aviation-safety or technology committee",
+    "role": "Commercial engine programmes and product safety go to the full board, which takes the most significant risks, with Audit on the risk framework (inference from the committee list); Governance's health-and-safety remit is the drafter's search, not found at the re-check"
+   }
+  ],
+  "notable_members": [
+   {
+    "name": "Tom Enders",
+    "background": "Former Airbus CEO, a director since December 2023: the airframer's view on NGSA timing and engine choice (inference)"
+   },
+   {
+    "name": "Wes Bush",
+    "background": "Former Northrop Grumman Chairman and CEO, nearly 40 years in aerospace; Lead Director, Audit, Classified Programs"
+   },
+   {
+    "name": "Peg Billson",
+    "background": "Former President and CEO of BBA Aviation's Global Engine Services: the engine aftermarket"
+   },
+   {
+    "name": "Tom Horton",
+    "background": "Former American Airlines Chairman and CEO; Lead Director 2018-2026; chairs Governance; the board's own voice on record (2021-2022)"
+   },
+   {
+    "name": "Bella Goren",
+    "background": "Former American Airlines CFO; chairs Audit"
+   },
+   {
+    "name": "Catherine Lesjak",
+    "background": "Former HP CFO; chairs Compensation"
+   },
+   {
+    "name": "Gen. Darren McDew (ret.)",
+    "background": "Former head of US Transportation Command; chairs Classified Programs"
+   },
+   {
+    "name": "Judson Althoff",
+    "background": "CEO of Microsoft's Commercial Business, from June 2026: AI and FLIGHT DECK"
+   }
+  ],
+  "shareholders": "Widely held: 99.6% free float, about 1.05 billion shares, index funds and the former activist Trian among listed holders; no state or controlling holder. Ed Garden, who joined the board from Trian in 2017 and was listed in 2024 as Chairman and CEO of Garden Investments, did not stand at the May 2026 annual meeting. Safran is GE's 50/50 partner in CFM International and does not appear among the listed holders of GE shares (inference)",
+  "ids": [
+   "CG-0001",
+   "CG-0003",
+   "CG-0004",
+   "CG-0005",
+   "CG-0006",
+   "CG-0007",
+   "CG-0019",
+   "CG-0039",
+   "CG-0041",
+   "CG-0042",
+   "CG-0043",
+   "CG-0044",
+   "CG-0045",
+   "CG-0046",
+   "CG-0048",
+   "CG-0050",
+   "CG-0055",
+   "CG-0060",
+   "CG-0065",
+   "CG-0066",
+   "CX-0530"
+  ]
+ },
+ "evidence": {
+  "n_items": 68,
+  "n_transcript": 36,
+  "n_filing": 3,
+  "n_web": 29,
+  "first": "2008-07-13",
+  "last": "2026-09-22",
+  "sources_note": "36 transcript items from GE calls, annual meetings and investor days (2017-10-20 to 2025-10-21): three in the board's own words (Lead Director Horton, 2021-2022, CG-0026 to CG-0028), the rest management speaking about the board, mostly Culp. 3 filing items from the S&P Capital IQ profile of 2025-11-19 (a data profile, not an SEC filing). All 39 are verbatim and pass verify_quotes.py. 29 web items from web search (search-result statements, never quotes), 2008-07-13 to 2026-09-22, retrieved 2026-10-10; 25 corroborated, 4 uncorroborated (CG-0052, CG-0067, CG-0068, CG-0069) used only as inference. About 45 executive items (CX-) are cited by their own ids; CFM/GE has no company-level evidence file. One drafted transcript item was withdrawn at verification: its page is an AB Electrolux call (December 2015) filed inside the GE transcripts. The verifier could not run its own searches (the session's web-search budget was exhausted): the web items stand on the drafter's searches, CG-0060 and CG-0063 were re-corroborated against repo transcripts, and the rest were checked for consistency with the transcripts and Capital IQ. A second agent then re-searched 25 web items with its own queries on 2026-10-10 (28 searches): all 25 were confirmed in substance, none corrected or dropped, and CG-0051 is now corroborated; CG-0052, CG-0067, CG-0068 and CG-0069 were not re-searched.",
+  "confidence_overall": "Medium",
+  "confidence_by_area": [
+   {
+    "area": "Composition and committees",
+    "level": "High to November 2025; Medium-high for the 2026 changes (web only, confirmed by an independent re-search on 2026-10-10)"
+   },
+   {
+    "area": "Capital allocation and the decision record",
+    "level": "High (2017-2025)"
+   },
+   {
+    "area": "Culture (risk aversion, time horizon)",
+    "level": "Medium (heard mostly through Culp; the board's own words twice, from Horton)"
+   },
+   {
+    "area": "Reserved matters and thresholds",
+    "level": "Low-medium (principles only; no public dollar threshold)"
+   },
+   {
+    "area": "Pay design detail",
+    "level": "Medium (CEO award and PSU design confirmed at the re-check; bonus metrics single-search)"
+   },
+   {
+    "area": "Board-level safety oversight",
+    "level": "Medium-low"
+   },
+   {
+    "area": "CFM governance and Safran's view",
+    "level": "Low"
+   },
+   {
+    "area": "Views on rivals",
+    "level": "Low (none at board level)"
+   }
+  ]
+ },
+ "mandate": "Recommends to CFM/GE's ExCo before each round and approves or vetoes every Board item (each order that differs from the default) with a binding veto, never originating orders, and applies the CFM parity rule (Safran consent) to every CFM programme order. Rebuilt after the 2017-2018 crisis, it protects safety, an investment-grade (A-range) rating and reinvestment first, funds RISE as technology, launches a product only on an airframer path, and keeps returning at least 70% of free cash flow.",
+ "holds_management_to": [
+  {
+   "text": "Safety and quality first: safety, quality, delivery and cost, in that order; an FAA-accepted Safety Management System; no single person makes a safety call",
+   "ids": [
+    "CG-0009",
+    "CG-0018",
+    "CX-0012",
+    "CX-0658"
+   ]
+  },
+  {
+   "text": "Investment grade, in the A range: investment-grade ratings were the overarching priority at the break-up and an A-range rating is a standing goal; S&P A- (2025) and Moody's A2 (2026)",
+   "ids": [
+    "CG-0022",
+    "CG-0002",
+    "CG-0064",
+    "CX-0252"
+   ]
+  },
+  {
+   "text": "Reinvestment first: R&D protected first and foremost at 6-8% of sales; technology bets kept through COVID and the 2025 tariffs",
+   "ids": [
+    "CG-0011",
+    "CG-0010",
+    "CG-0014",
+    "CX-0398",
+    "CX-0962"
+   ]
+  },
+  {
+   "text": "Risk that is paid for: compensated for the risks taken and adequate returns on long-cycle investments; not going for share",
+   "ids": [
+    "CG-0017",
+    "CX-0493",
+    "CX-0609"
+   ]
+  },
+  {
+   "text": "Cash returns: more than 100% of free cash flow in 2024-2025; at least 70% beyond 2026; a $20B buyback authorized in December 2025",
+   "ids": [
+    "CG-0012",
+    "CX-0953",
+    "CX-0645",
+    "CG-0063",
+    "CG-0061"
+   ]
+  },
+  {
+   "text": "The partnership and the plan: CFM with Safran to 2050 and RISE launched jointly; the 2028 outlook, with CEO pay tied to it and missed grants paying nothing",
+   "ids": [
+    "CG-0065",
+    "CX-0147",
+    "CG-0063",
+    "CG-0050",
+    "CG-0028"
+   ]
+  }
+ ],
+ "culture": {
+  "risk_aversion": {
+   "score": 4,
+   "rationale": "Averse: the A-range rating and safety come first, and a product launches only on an airframer path. The 2017-2018 crisis taught the board to protect the balance sheet first: it halved the dividend and then cut it to a cent, replaced a CEO after 14 months and shrank itself from 18 to about 10. Investment grade came first at the break-up; Culp says management and the board may look a little conservative (2020), options are weighed in a thoughtful, rational, considered way, and management's M&A bar is a high threshold (Culp, 2025). Products follow the airframer: RISE technologies move into products as airframer and airline customers deem appropriate. Not 5: it funds deep technology risk (RISE is multigenerational; management is all in on the open fan) and returns more than 100% of free cash flow rather than hoarding cash. In votes: a Ducted more than $1B ahead of its default in the expected column passes, or under hard rule 3 one ahead in a column where a rival takes CFM's slot with a weighted item value of at least zero; each smaller order must be above zero net of the strain it adds; a product bet the grid shows waiting on an airframe, an item that loses more than its own bill, or an unresolved safety or durability flag fails. On the dashboard only an Open Fan's wait penalty can exceed an item's bill, so the 4 shows chiefly in the $1B margin, the per-item rules and the airframer-path test (inference). A judgement from evidence, calibrated across the five boards with half points: 4, with ample balance-sheet room and no trait of 3 or 5 (no debt-funded return or large deal; no crisis trait).",
+   "trend": "About 2 before 2017 (very large buybacks at prices far above later levels, with an activist urging more, including debt-funded ones; inference); 5 in 2018-2020 (survival and deleveraging); easing to 4 from 2021, with RISE launched with Safran and reinvestment pressed, and by January 2023 the boardroom conversations fundamentally different after $100 billion of debt was cut (the dating is inference); stable at 4 with ample balance-sheet room.",
+   "ids": [
+    "CG-0056",
+    "CG-0057",
+    "CX-0234",
+    "CG-0055",
+    "CG-0033",
+    "CG-0022",
+    "CG-0032",
+    "CG-0025",
+    "CX-0645",
+    "CX-0469",
+    "CX-0147",
+    "CX-0214",
+    "CG-0012",
+    "CX-0953",
+    "CG-0058",
+    "CG-0021",
+    "CG-0024",
+    "CG-0002",
+    "CG-0064",
+    "CG-0065"
+   ]
+  },
+  "time_horizon": {
+   "score": 3,
+   "rationale": "Balanced: R&D protected first and CFM to 2050, against returning more than 100% of free cash flow. Long-term: the board frames its duty as the tough, best, long-term decisions, not even about this year; R&D is protected first and reinvested at every turn; CFM runs to 2050 and RISE targets a mid-2030s engine; directors' stock units pay only after retirement. Short-term pull: a bias to return more than 100% of free cash flow, at least 70% after 2026, a $20B buyback, the dividend up about 30% a year, and CEO pay on four-year EPS growth toward the 2028 outlook. In votes, three rules (inference): core developments are protected (a cancel passes only if it is at least zero in every plausible column, and RISE is never cancelled for cost; a 2 would accept a cancel that wins in the expected column alone); the one RISE allowance covers an Open Fan's own bill with no share gain, but only on an airframer path (a 2 would veto it as unpaid; a 4 would also let the allowance, within $15B, carry an Open Fan waiting in some plausible column), which rarely arises while a new narrowbody can enter service before 2045; and no item is vetoed for its near-term earnings cost alone. The near-term pull is the payout floor, which cannot fail on the dashboard's numbers; between two plans within $1B the board recommends the smaller bill, as advice, never as a veto. A judgement from evidence, calibrated across the five boards with half points: 3; returns above 100% of free cash flow pull toward 2, R&D protected first and RISE kept whole pull toward 4, and the two offset.",
+   "trend": "About 2 in 2015-2017 (buybacks, the activist; inference); about 4 in 2018-2021 (no dividend, long-term value creation); 3 since the 2024 spin, as cash returns quadrupled while R&D stayed protected; stable (inference).",
+   "ids": [
+    "CG-0034",
+    "CG-0035",
+    "CG-0011",
+    "CG-0024",
+    "CG-0065",
+    "CX-0608",
+    "CG-0031",
+    "CG-0012",
+    "CX-0645",
+    "CG-0061",
+    "CG-0062",
+    "CG-0050",
+    "CG-0058",
+    "CX-0398",
+    "CG-0008",
+    "CX-0174",
+    "CX-0469"
+   ]
+  },
+  "capital_allocation": {
+   "text": "Reinvestment (R&D, capex) first, cash returns second, disciplined M&A third; no fixed R&D ratio; capital allocation is a board responsibility (management prepares the options; capital returns are announced subject to board approval), and in a crisis the dividend goes first. In votes: R&D is never vetoed for its EPS cost, but it must leave the at-least-70% payout whole (inference).",
+   "ids": [
+    "CG-0010",
+    "CG-0011",
+    "CG-0014",
+    "CG-0022",
+    "CG-0016",
+    "CG-0056",
+    "CG-0057",
+    "CX-0645"
+   ]
+  },
+  "safety_oversight": {
+   "text": "Safety ranks first; the full board takes the most significant risks and Audit the risk framework; Governance's health-and-safety remit rests on the drafter's search and was not found at the 2026-10-10 re-check; management runs an FAA-accepted SMS. There is no board safety committee. In votes: a launch carrying a safety or durability flag from the operating head, in his memo or veto-check note, that the CEO has not resolved with a cross-functional answer on evidence is vetoed, whether or not he concurs; a date he fails is an unresolved objection (inference).",
+   "ids": [
+    "CG-0009",
+    "CG-0018",
+    "CG-0048",
+    "CX-0009",
+    "CX-0012"
+   ]
+  },
+  "stakeholder_influence": {
+   "text": "Shareholders: 2021 say-on-pay rejected, about 71% in 2025, the activist era behind the buybacks; customers sit in on board strategy sessions; the US government as a defence customer through a dedicated committee; Safran through the CFM parity rule. In votes: the airframers' choices are given and Safran's consent is a gate, not a preference (inference).",
+   "ids": [
+    "CG-0054",
+    "CG-0053",
+    "CG-0058",
+    "CG-0013",
+    "CG-0046",
+    "CG-0065",
+    "CG-0066"
+   ]
+  },
+  "pay_horizon": {
+   "text": "CEO pay overwhelmingly tied to GE's performance: share-price targets to 2024 in the 2020 reset, then a one-time award on adjusted EPS growth over four years to 2027; 2018 and 2019 grants paid nothing; no clawback for business decisions that did not go as anticipated; directors paid in stock units after retirement. Executive incentives look one to four years out, so the long view on RISE must come from the board's judgement and the 2050 partnership, not from pay (inference).",
+   "ids": [
+    "CG-0027",
+    "CG-0026",
+    "CG-0050",
+    "CG-0028",
+    "CG-0029",
+    "CG-0031",
+    "CG-0065"
+   ]
+  }
+ },
+ "reserved_matters": [
+  {
+   "matter": "Fundamental financial and business strategies and major corporate actions; CEO selection, evaluation and succession; major risks; the integrity of the accounts",
+   "threshold": "No public dollar threshold or delegation grid (a targeted search found none); 'major' is a judgement",
+   "ids": [
+    "CG-0047"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Strategy reviews and the annual budget, taken to the board each year end before guidance; yearly reviews of each business's strategic topics",
+   "threshold": "Every year",
+   "ids": [
+    "CG-0015",
+    "CG-0049"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Capital allocation between reinvestment, dividends, buybacks and M&A",
+   "threshold": "Management prepares the options and announces returns subject to board approval; the board decides; dividends declared quarterly, buybacks under board authorizations ($3B 2022, $15B 2024, $20B 2025)",
+   "ids": [
+    "CG-0011",
+    "CG-0022",
+    "CG-0010",
+    "CG-0016",
+    "CG-0062",
+    "CG-0061",
+    "CX-0923",
+    "CX-0510"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "The CEO, his contract and pay",
+   "threshold": "Board decision (2018 change, 2020 extension, 2024 agreement)",
+   "ids": [
+    "CG-0055",
+    "CG-0026",
+    "CG-0050"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Portfolio and structure",
+   "threshold": "Board decision (the 2021 three-way split; the 2024 Vernova spin)",
+   "ids": [
+    "CG-0023",
+    "CG-0059",
+    "CX-0429"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "A new engine programme, a CFM programme change or a strategic alliance (the game's launches, cancels and Partner Embraer)",
+   "threshold": "Treated as a major corporate action; no public threshold",
+   "ids": [
+    "CG-0047",
+    "CG-0065"
+   ],
+   "inference": true
+  },
+  {
+   "matter": "CFM parity rule: CFM programme decisions need Safran's consent (modelled inside the board agent, not a GE board power)",
+   "threshold": "Every ducted, open_fan, partner_embraer and lobby_emissions order (lobbying serves RISE, as profile.md §1 has it), launch or cancel; consent assumed when the move fits joint practice, a stated reason needed for a move Safran has never been seen to make",
+   "ids": [
+    "CG-0065",
+    "CG-0066",
+    "CX-0184",
+    "CX-0160",
+    "CX-0147"
+   ],
+   "inference": true
+  }
+ ],
+ "board_items_in_game": [
+  {
+   "order": "ducted: launch",
+   "rule": "$4B, ready at launch + 6: a new engine programme, a major corporate action; CFM parity rule applies. Passes if more than $1B ahead of its default in the expected column, or as a defence under hard rule 3 more than $1B ahead in a plausible column where a rival takes CFM's slot with a weighted item value of at least zero (equal weights if none are given), and bounded below by its bill (its R&D plus any strain it triggers)",
+   "ids": [
+    "CG-0047",
+    "CG-0017",
+    "CX-0609"
+   ],
+   "inference": true
+  },
+  {
+   "order": "open_fan: launch",
+   "rule": "$8B, ready at launch + 10 and not before 2045: the product step of RISE; CFM parity rule applies. Passes only on an airframer path (no wait penalty in any plausible column) as the one declared RISE allowance, at most $15B, inside premium_b and stated apart in premium_reason",
+   "ids": [
+    "CG-0047",
+    "CG-0065",
+    "CX-0469",
+    "CX-0205"
+   ],
+   "inference": true
+  },
+  {
+   "order": "ducted and open_fan together",
+   "rule": "$12B plus $2B strain, above one year of free cash flow: each item must pass on its own item value; the payout-floor test applies",
+   "ids": [
+    "CG-0063",
+    "CX-0645"
+   ],
+   "inference": true
+  },
+  {
+   "order": "partner_embraer: launch",
+   "rule": "No R&D on the board, counts 7 years after, needs a CFM engine: a strategic alliance; CFM parity rule applies (consent assumed: serving every airframer). Passes if its item value is above zero in the expected column, net of strain",
+   "ids": [
+    "CG-0047",
+    "CX-0587"
+   ],
+   "inference": true
+  },
+  {
+   "order": "lobby_emissions: launch",
+   "rule": "$1B; CFM parity rule applies because it serves RISE, with consent assumed (profile.md §1). Flag: below any real threshold, reviewed with the package. Passes only with an Open Fan launched this round or live and an item value above zero in the expected column",
+   "ids": [
+    "CG-0020",
+    "CG-0047",
+    "CG-0065"
+   ],
+   "inference": true
+  },
+  {
+   "order": "genx: upgrade_genx9 or invest_genx",
+   "rule": "No R&D on the board, counts 3 years after and not before 2035; GE alone. Flag: probably below any real threshold, reviewed with the package. Passes if its item value is above zero in the expected column, net of the strain it adds",
+   "ids": [
+    "CG-0015"
+   ],
+   "inference": true
+  },
+  {
+   "order": "cancel (ducted, open_fan, partner_embraer, genx)",
+   "rule": "A change of fundamental strategy; CFM parity rule for CFM programmes. Passes only if the cancel's item value is at least zero in every plausible column; a RISE cancel also needs at least $1B and a stated Safran reason, never for cost alone",
+   "ids": [
+    "CG-0065",
+    "CG-0011",
+    "CX-0174",
+    "CX-0398"
+   ],
+   "inference": true
+  },
+  {
+   "order": "hold",
+   "rule": "Not a Board item; never vetoed",
+   "ids": [
+    "CG-0047"
+   ],
+   "inference": false
+  }
+ ],
+ "decision_process": [
+  {
+   "text": "One management case, already tested: management prepares the options and the board takes the decisions; in the game, the package the GM passes (guidance, frame, both memos, decision, veto checks, revision)",
+   "ids": [
+    "CG-0022",
+    "CG-0016",
+    "CG-0047"
+   ],
+   "inference": false
+  },
+  {
+   "text": "The full board decides programme and balance-sheet risk; Ghai's memo is read as Audit would, Ali's as the full board's safety review",
+   "ids": [
+    "CG-0048"
+   ],
+   "inference": true
+  },
+  {
+   "text": "One voice after candid debate ('we and the Board'); no voting rule beyond corporate-law defaults is public, so a simple majority by consensus is assumed",
+   "ids": [
+    "CG-0033",
+    "CG-0014"
+   ],
+   "inference": true
+  },
+  {
+   "text": "The independent directors act on their own under the Lead Director; in the game the board speaks as them, because the chair sits on the ExCo side",
+   "ids": [
+    "CG-0041",
+    "CG-0006"
+   ],
+   "inference": true
+  },
+  {
+   "text": "Deliberate on programmes (yearly business reviews, customers in the room); fast on people and the balance sheet when a plan is not delivering",
+   "ids": [
+    "CG-0049",
+    "CG-0013",
+    "CG-0055",
+    "CG-0057"
+   ],
+   "inference": false
+  },
+  {
+   "text": "Before approving: per Board item, the submitted row and the row with it at default; the expected column and weights; Ghai's and Ali's results; the Safran gate; every override and premium. A missing piece is computed from the brief and flagged; alone it is not a veto ground",
+   "ids": [
+    "CG-0022",
+    "CG-0016"
+   ],
+   "inference": true
+  }
+ ],
+ "tests": [
+  {
+   "test": "Unresolved objection",
+   "threshold": "No Board item carries a binding ExCo veto (Ghai on terms or capex, Ali on dates) still standing, or a red-line flag neither struck nor rebutted; an override in overrides is re-run on the CEO's evidence and fails if the test still fails. A standing veto or flag that concerns only the public statement or other moves (Ghai's terms ground, Ali's statement-date ground) attaches to no Board item and becomes a recommendation",
+   "ids": [
+    "CG-0022",
+    "CG-0047",
+    "CG-0033"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Paid for the risk",
+   "threshold": "Each ducted launch has an item value above $1B in the expected column; partner_embraer, lobby_emissions and genx above zero net of the strain they add. A Ducted under hard rule 3 may pass instead above $1B in a plausible column the CEO names where a rival takes CFM's slot, with a weighted item value of at least zero over the plausible columns (the weights in predictions, or equal weights if it gives none).",
+   "ids": [
+    "CG-0017",
+    "CX-0609",
+    "CX-0493",
+    "CG-0014"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Bounded downside",
+   "threshold": "No launched item or genx order has an item value below minus its bill (its R&D on the dashboard, plus the $2B strain if it triggers it) in any plausible column; on the dashboard only an Open Fan's wait penalty can do this.",
+   "ids": [
+    "CG-0017",
+    "CG-0022",
+    "CG-0032",
+    "CX-0205"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Airframer path (Open Fan, hard rule 2)",
+   "threshold": "open_fan: launch passes only if it passes the downside test in every plausible column (no new narrowbody enters service before it is ready), is declared as the one RISE allowance against the best non-RISE plan in the expected column, at most $15B, inside premium_b and stated apart in premium_reason, and no allowance was used earlier.",
+   "ids": [
+    "CX-0469",
+    "CX-0205",
+    "CX-0147",
+    "CX-0214",
+    "CG-0065"
+   ],
+   "inference": true
+  },
+  {
+   "test": "CFM parity rule (Safran consent)",
+   "threshold": "Read the Safran gate stated for every ducted, open_fan, partner_embraer and lobby_emissions order (lobbying serves RISE: profile.md §1); consent assumed when it fits joint practice (a defence that keeps an airframer on CFM, serving every airframer, RISE on an airframer path, lobbying for RISE), and a missing statement for such a move is not a veto ground; a move Safran has never been seen to make (a Ducted with no hard-rule-3 trigger, a RISE cancel, a cancel of a selected engine) needs a stated reason, or fails, labelled as the parity rule. This veto goes beyond the company's reading that the gate costs time, not outcomes (teams.md)",
+   "ids": [
+    "CG-0065",
+    "CG-0066",
+    "CX-0184",
+    "CX-0160",
+    "CX-0147",
+    "CX-0587"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Rating and payout floor",
+   "threshold": "New R&D and strain committed this round, each spread over its development years, stay within about $2.5B a year (what is left of about $8.5B of 2028 free cash flow after returning at least 70%); a rating risk counts only if the brief or Ghai's memo shows one.",
+   "ids": [
+    "CG-0063",
+    "CX-0645",
+    "CG-0022",
+    "CG-0064",
+    "CG-0002"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Premium within the cap",
+   "threshold": "premium_b, less any RISE allowance stated in premium_reason (so the doctrine plus objective premium), at most $2.0B this round and $4.0B over the game; the one RISE allowance only through the airframer-path test (company hard rule 9)",
+   "ids": [
+    "CG-0017",
+    "CG-0012"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Safety and readiness",
+   "threshold": "No launch whose value depends on a ready year earlier than launch plus development years, or an Open Fan before 2045 (the operating head's date ground), unless the CEO answered it with evidence the board can verify; no launch carrying a safety or durability flag from the operating head, in his memo or veto-check note, binding or not, that the CEO has not resolved with a cross-functional answer on evidence. An untested date in the public statement becomes a recommendation",
+   "ids": [
+    "CG-0009",
+    "CG-0018",
+    "CX-0009",
+    "CX-0012",
+    "CX-0658"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Cancellation",
+   "threshold": "A cancel passes only if its item value is at least zero in every plausible column; open_fan: cancel also needs at least $1B and a stated Safran reason, never for cost alone (hard rule 5).",
+   "ids": [
+    "CX-0174",
+    "CX-0398",
+    "CG-0011",
+    "CG-0065"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Lobby and GEnx (below the real threshold)",
+   "threshold": "lobby_emissions only with an Open Fan launched this round or live; genx net of the strain it adds; otherwise defer to management",
+   "ids": [
+    "CG-0015",
+    "CG-0047"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Disclosure (recommendation only)",
+   "threshold": "No rival named, no blame, no Open Fan entry before 2045, no CFM price talk without Safran; never a veto ground on its own",
+   "ids": [
+    "CX-0580",
+    "CX-0625",
+    "CX-0184",
+    "CX-0205"
+   ],
+   "inference": true
+  }
+ ],
+ "veto": [
+  {
+   "ground": "Governance: a binding ExCo veto or red-line flag left unresolved on a Board item, or an override the board cannot verify (a standing objection to the statement or other moves only becomes a recommendation)",
+   "ids": [
+    "CG-0022",
+    "CG-0047",
+    "CG-0033"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Not paid for: a Ducted not above $1B (or a smaller order not above zero net of strain) in the expected column, outside the hard-rule-3 defence with a weighted item value of at least zero",
+   "ids": [
+    "CG-0017",
+    "CX-0609",
+    "CX-0493"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Unbounded downside: an item that loses more than its bill (its R&D plus any strain it triggers) in a plausible column (lost share)",
+   "ids": [
+    "CG-0017",
+    "CG-0022",
+    "CG-0032"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "No airframer path: an Open Fan the grid shows waiting on an airframe, or not declared as the one RISE allowance within $15B (stated apart in premium_reason)",
+   "ids": [
+    "CX-0469",
+    "CX-0205",
+    "CG-0065"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "CFM parity rule (Safran consent): a ducted, open_fan, partner_embraer or lobby_emissions move Safran has never been seen to make, with no stated reason why it would agree (a joint-practice move with no stated gate is assumed to have consent); labelled as Safran's consent, not a GE board power",
+   "ids": [
+    "CG-0065",
+    "CG-0066",
+    "CX-0184",
+    "CX-0160",
+    "CX-0147"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Payout floor or rating: new R&D and strain, each spread over its development years, above about $2.5B a year (cannot happen on the dashboard's numbers), or a rating risk shown in the brief or Ghai's memo",
+   "ids": [
+    "CG-0063",
+    "CX-0645",
+    "CG-0022",
+    "CG-0064"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "A premium above the cap (hard rule 9): premium_b, less any RISE allowance stated apart, above $2.0B this round or $4.0B over the game",
+   "ids": [
+    "CG-0017",
+    "CG-0012"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Safety and readiness: a launch whose value depends on a date the operating head fails, unanswered, or one carrying his safety or durability flag that the CEO has not resolved with a cross-functional answer on evidence, whether or not he concurs",
+   "ids": [
+    "CG-0009",
+    "CG-0018",
+    "CX-0009",
+    "CX-0012"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Cancellation: a cancel that gives up value in a plausible column, or a RISE cancel for cost",
+   "ids": [
+    "CX-0174",
+    "CX-0398",
+    "CG-0011",
+    "CG-0065"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Limits: the veto binds; a vetoed item goes back to the CEO once (board_revise), with no override against the board, and after the confirm a still-vetoed item reverts to the default (hold); every veto names acceptable alternatives, values of that field that pass the tests, the default included; items that depend on a vetoed one are vetoed together at the review, because at the confirm only the revised items count; the board never originates orders and never vetoes a hold, an item merely because another plan scores higher, an item for its near-term earnings cost alone or an item on the public statement alone",
+   "ids": [
+    "CG-0047"
+   ],
+   "inference": true
+  }
+ ],
+ "recommendation_style": {
+  "text": "Measured, data-first and customer-framed, like the chair's and Lead Director's remarks (inference), ranked by safety, quality, delivery and cost. Typical asks: each item against Do Nothing in the expected and the worst column; the Safran gate and why Safran would agree; RISE funded as technology and a product only on an airframer path; a second project only when the grid pays the strain; every premium in dollars and the 70% payout whole; no rival named and no Open Fan date before 2045. The CEO answers each in board_response (taken up, or why not); an unanswered one is raised again next round, but is not a veto ground by itself.",
+  "ids": [
+   "CG-0025",
+   "CG-0026",
+   "CG-0013",
+   "CG-0009",
+   "CX-0184",
+   "CX-0469",
+   "CX-0205",
+   "CX-0645",
+   "CX-0580"
+  ]
+ },
+ "management_relationship": [
+  {
+   "name": "Combined chair and CEO",
+   "relation": "Culp chairs the board and runs the company; the board opposes an independent chair and relies on a Lead Director elected by the independent directors. It defers heavily to Culp's agenda (it kept him through two pay protests and frames capital allocation with him) but acts decisively when a plan fails (a CEO change within 14 months in 2018)",
+   "ids": [
+    "CG-0001",
+    "CG-0006",
+    "CG-0041",
+    "CG-0026",
+    "CG-0050",
+    "CG-0053",
+    "CG-0054",
+    "CG-0014",
+    "CG-0055",
+    "CG-0033"
+   ]
+  },
+  {
+   "name": "Larry Culp (CEO, cfm-culp)",
+   "relation": "The director the board made CEO in 2018; he serves at the board's pleasure, frames capital allocation with it and has run aerospace directly since mid-2022. The board defers to his case unless a test fails, and checks his overrides itself (inference)",
+   "ids": [
+    "CG-0055",
+    "CG-0036",
+    "CG-0030",
+    "CG-0010",
+    "CG-0014",
+    "CG-0060",
+    "CX-0530"
+   ]
+  },
+  {
+   "name": "Rahul Ghai (CFO, cfm-ghai)",
+   "relation": "No board-specific words; carries the capital-return framework the board approves and guides cautiously. His memo is the board's payout and pays-for-itself test (inference)",
+   "ids": [
+    "CX-0923",
+    "CX-0953",
+    "CX-0960",
+    "CX-0965"
+   ]
+  },
+  {
+   "name": "Mohamed Ali (operating head, cfm-ali)",
+   "relation": "No board-specific evidence; supply, engineering and quality report to him. His test-evidence standard and cross-functional safety calls are the nearest thing the board has to a safety committee's report (inference); his record is thin",
+   "ids": [
+    "CX-0633",
+    "CX-0009",
+    "CX-0012"
+   ]
+  }
+ ],
+ "rivals": [
+  {
+   "text": "No board-level statement on Pratt & Whitney, Rolls-Royce or the airframers' engine choices; management's line, which the board has not contradicted: no comment on competition, no finger-pointing, no birthright on the next order",
+   "ids": [
+    "CX-0580",
+    "CX-0625",
+    "CX-0564"
+   ],
+   "inference": false
+  },
+  {
+   "text": "Airframer and airline insiders on the board (Enders; Horton and Goren) and customers at strategy sessions: airframer intent is read from the public bulletin, not from rival engine makers",
+   "ids": [
+    "CG-0004",
+    "CG-0005",
+    "CG-0013"
+   ],
+   "inference": true
+  },
+  {
+   "text": "A rival matters only where the grid shows it taking an airframe slot from CFM: a defensive Ducted is approved on that ground (hard rule 3), never an item only because a rival moved",
+   "ids": [
+    "CX-0564"
+   ],
+   "inference": true
+  }
+ ],
+ "past_decisions": [
+  {
+   "date": "2008-07",
+   "decision": "With Safran, CFM extended to 2040 and LEAP launched as a demonstrator before any airframe chose it (single search; inference only)",
+   "ids": [
+    "CG-0067",
+    "CG-0065"
+   ]
+  },
+  {
+   "date": "2013-2017",
+   "decision": "CEO transition planned years ahead",
+   "ids": [
+    "CX-1101"
+   ]
+  },
+  {
+   "date": "2015-2016",
+   "decision": "About $22-24B a year of buybacks, with the activist Trian (a holder from October 2015) urging more; later judged a misallocation by analysts",
+   "ids": [
+    "CG-0058"
+   ]
+  },
+  {
+   "date": "2017-10",
+   "decision": "Trian's Ed Garden joins the board",
+   "ids": [
+    "CG-0039"
+   ]
+  },
+  {
+   "date": "2017-11-13",
+   "decision": "Dividend halved; a Finance and Capital Allocation Committee formed",
+   "ids": [
+    "CG-0056",
+    "CX-1154",
+    "CG-0038"
+   ]
+  },
+  {
+   "date": "2018-04-25",
+   "decision": "A much smaller slate after a board self-assessment and investor input (eight directors did not stand); Culp, Horton and Seidman join",
+   "ids": [
+    "CG-0037"
+   ]
+  },
+  {
+   "date": "2018-10-01",
+   "decision": "Flannery removed; Culp named Chairman and CEO by unanimous vote; Horton Lead Director",
+   "ids": [
+    "CG-0055",
+    "CG-0036"
+   ]
+  },
+  {
+   "date": "2018-10-30",
+   "decision": "Dividend cut to $0.01 (about $3.9B a year retained)",
+   "ids": [
+    "CX-0234",
+    "CG-0057"
+   ]
+  },
+  {
+   "date": "2020-08",
+   "decision": "Culp's contract extended to 2024 and his grant reset; the 2021 say-on-pay vote failed",
+   "ids": [
+    "CG-0026",
+    "CG-0027",
+    "CG-0054"
+   ]
+  },
+  {
+   "date": "2021-05",
+   "decision": "A special committee finds no basis for clawbacks",
+   "ids": [
+    "CG-0029"
+   ]
+  },
+  {
+   "date": "2021-06-14",
+   "decision": "CFM extended to 2050; CFM RISE launched with Safran",
+   "ids": [
+    "CG-0065",
+    "CX-0147"
+   ]
+  },
+  {
+   "date": "2021-11-09",
+   "decision": "Decision to split GE into three companies",
+   "ids": [
+    "CG-0023"
+   ]
+  },
+  {
+   "date": "2022-03",
+   "decision": "$3B buyback authorization, 'that option amongst many'",
+   "ids": [
+    "CG-0022",
+    "CX-0510",
+    "CX-0736"
+   ]
+  },
+  {
+   "date": "2022-06-27",
+   "decision": "Culp takes direct charge of GE Aviation (announced; in place by the July 2022 call)",
+   "ids": [
+    "CG-0060",
+    "CX-0530"
+   ]
+  },
+  {
+   "date": "2023-12",
+   "decision": "Enders (ex-Airbus) and Billson (engine services) join",
+   "ids": [
+    "CG-0005"
+   ]
+  },
+  {
+   "date": "2024-02-29",
+   "decision": "GE Vernova spin approved; GE Aerospace independent from 2 April 2024",
+   "ids": [
+    "CG-0059"
+   ]
+  },
+  {
+   "date": "2024-03/05",
+   "decision": "$15B buyback authorization; quarterly dividend raised 250% to $0.28, about a 30% payout",
+   "ids": [
+    "CX-0923",
+    "CG-0008"
+   ]
+  },
+  {
+   "date": "2024-06-30",
+   "decision": "New Culp agreement to 2027/28 with a one-time four-year EPS award",
+   "ids": [
+    "CG-0050"
+   ]
+  },
+  {
+   "date": "2025-01",
+   "decision": "Buybacks raised to $7B; dividend up 30%",
+   "ids": [
+    "CG-0016"
+   ]
+  },
+  {
+   "date": "2025-06",
+   "decision": "Classified Programs Committee formed",
+   "ids": [
+    "CG-0046"
+   ]
+  },
+  {
+   "date": "2025-07-17",
+   "decision": "2024-2026 returns raised to $24B; at least 70% of free cash flow beyond 2026",
+   "ids": [
+    "CX-0644",
+    "CX-0645",
+    "CG-0063"
+   ]
+  },
+  {
+   "date": "2025-09-29",
+   "decision": "Bush elected (from 1 December 2025); Angel leaves",
+   "ids": [
+    "CG-0042"
+   ]
+  },
+  {
+   "date": "2025-12",
+   "decision": "$20B buyback authorization",
+   "ids": [
+    "CG-0061"
+   ]
+  },
+  {
+   "date": "2026-02-06",
+   "decision": "Dividend raised to $0.47 a quarter (+30.6%)",
+   "ids": [
+    "CG-0062"
+   ]
+  },
+  {
+   "date": "2026-05-05",
+   "decision": "Annual meeting: nine nominees elected; Garden leaves",
+   "ids": [
+    "CG-0044"
+   ]
+  },
+  {
+   "date": "2026-06-08",
+   "decision": "Althoff elected (from 24 June 2026)",
+   "ids": [
+    "CG-0043"
+   ]
+  },
+  {
+   "date": "2026-09-21",
+   "decision": "Bush becomes Lead Director; Althoff joins Audit",
+   "ids": [
+    "CG-0041",
+    "CG-0043"
+   ]
+  }
+ ],
+ "thin": {
+  "gaps": [
+   "No board minutes, vote splits, public dollar threshold or delegation grid",
+   "The board's own words: Horton three times in 2021-2022; none from Bush; the 2026 Lead Director letter is known only from a search summary (CG-0049)",
+   "No board statement on a RISE product launch, a ducted engine, Embraer or the rivals",
+   "CFM International's board composition, voting and deadlock rules were not found; Safran's leaders speak once (CX-0152, CX-0153)",
+   "Board-level safety oversight is described only generically (CG-0048), and Governance's health-and-safety remit was not found at the 2026-10-10 re-check; no total R&D figure for 2025",
+   "Uncorroborated details used only as inference: the bonus safety modifier (CG-0052), the 2008 LEAP launch before any airframe (CG-0067), CFM's CEO (CG-0068), the $1B 2025 capacity investment (CG-0069)",
+   "The 2026 proxy committee tables were partly garbled in search summaries; the rosters used are where three searches agree, and the re-check confirmed the Audit and Compensation rosters and the Audit, Compensation and Governance chairs (CG-0045)",
+   "Web items were not re-searched at verification (the session's web-search budget was exhausted); a second agent then re-searched 25 of them on 2026-10-10 (28 searches) and confirmed all 25 in substance, with none corrected or dropped. Details not re-confirmed: Governance's health-and-safety remit (CG-0048), the 2015-2016 buyback total (CG-0058), Moody's P-1 (CG-0064), the 10-K's CFM accounting wording (CG-0066), McDew's Classified Programs chair and Althoff's Audit seat (CG-0045, CG-0043). CG-0052, CG-0067, CG-0068 and CG-0069 were not re-searched"
+  ],
+  "fallback": "The company profile (profile.md: the Quick card and hard rules 1-9 as dashboard_game.md §5 maps them; the Safran gate in §1) and the board's decision record; defer to the CEO's case unless a test fails; apply the parity rule by joint practice. Never invent a view, a director's opinion, Safran's position or a quote; say the record is silent."
+ },
+ "voice": {
+  "style": "Measured and plain, as Culp speaks as chair and Horton as Lead Director: one board, candid in private and thoughtful, rational and considered in public, safety first, pay tied to performance. The board's only own words are Horton's (2021-2022); the other lines are Culp speaking about the board (perspective management_on_board). Bush, the Lead Director now, has none on record.",
+  "quotes": [
+   {
+    "id": "CG-0026",
+    "quote": "it became abundantly clear to us as the Board that GE's transformation would take longer than planned.",
+    "date": "2021-05-04",
+    "doc": "GE 2021 Annual Meeting of Shareholders",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "CG-0026",
+    "quote": "we spent a lot of time on risk oversight related to COVID and the effects it was having on GE.",
+    "date": "2021-05-04",
+    "doc": "GE 2021 Annual Meeting of Shareholders",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "CG-0027",
+    "quote": "keeps Larry's compensation overwhelmingly tied to GE's performance.",
+    "date": "2021-05-04",
+    "doc": "GE 2021 Annual Meeting of Shareholders",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "CG-0028",
+    "quote": "GE's compensation program is designed to incentivize and hold management accountable for executing on the business strategy.",
+    "date": "2022-05-04",
+    "doc": "GE 2022 Annual Meeting of Shareholders",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "CG-0034",
+    "quote": "there's a responsibility on all of us in the boardroom, right, to make sure we're making the tough, best, long-term decisions for our company",
+    "date": "2019-05-08",
+    "doc": "GE 2019 Annual Meeting of Shareholders",
+    "perspective": "management_on_board"
+   },
+   {
+    "id": "CG-0033",
+    "quote": "this is a board that can have honest, candid, tough conversations.",
+    "date": "2019-05-08",
+    "doc": "GE 2019 Annual Meeting of Shareholders",
+    "perspective": "management_on_board"
+   },
+   {
+    "id": "CG-0032",
+    "quote": "At times, you might think we're being a little conservative.",
+    "date": "2020-02-19",
+    "doc": "Barclays Industrial Select Conference (company presentation)",
+    "perspective": "management_on_board"
+   }
+  ]
+ },
+ "web_sources": [
+  {
+   "id": "CG-0041",
+   "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-board-directors-appoints-wes-bush-independent-lead-director",
+   "title": "GE Aerospace Board of Directors appoints Wes Bush independent Lead Director",
+   "publisher": "GE Aerospace (press release)",
+   "date": "2026-09-22"
+  },
+  {
+   "id": "CG-0042",
+   "url": "https://www.geaerospace.com/news/press-releases/wesley-g-bush-joining-ge-aerospace-board-directors",
+   "title": "Wesley G. Bush joining GE Aerospace Board of Directors",
+   "publisher": "GE Aerospace (press release); Form 8-K of 29 September 2025",
+   "date": "2025-10-01"
+  },
+  {
+   "id": "CG-0043",
+   "url": "https://www.geaerospace.com/news/press-releases/judson-althoff-joins-ge-aerospace-board-directors",
+   "title": "Judson Althoff joins GE Aerospace Board of Directors",
+   "publisher": "GE Aerospace (press release)",
+   "date": "2026-06-11"
+  },
+  {
+   "id": "CG-0044",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-20260312.htm",
+   "title": "GE Aerospace 2026 Notice of Annual Meeting and Proxy Statement; 2026 Annual Meeting results",
+   "publisher": "GE Aerospace (SEC EDGAR, DEF 14A filed March 2026; results 8-K)",
+   "date": "2026-05-05"
+  },
+  {
+   "id": "CG-0045",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-courtesy.pdf",
+   "title": "GE Aerospace 2026 proxy statement: Board Committees",
+   "publisher": "GE Aerospace (SEC EDGAR, DEF 14A)",
+   "date": "2026-03-12"
+  },
+  {
+   "id": "CG-0046",
+   "url": "https://www.geaerospace.com/sites/default/files/ClassifiedProgramsCommitteeCharter.pdf",
+   "title": "GE Aerospace Classified Programs Committee Charter; 2026 proxy statement",
+   "publisher": "GE Aerospace (committee charter; DEF 14A)",
+   "date": "2026-03-12"
+  },
+  {
+   "id": "CG-0047",
+   "url": "https://www.geaerospace.com/sites/default/files/GEAerospaceGovernancePrinciples_0.pdf",
+   "title": "GE Aerospace Governance Principles (2025 version; day not given)",
+   "publisher": "GE Aerospace (governance principles)",
+   "date": "2025-01-01"
+  },
+  {
+   "id": "CG-0048",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-courtesy.pdf",
+   "title": "GE Aerospace 2026 proxy statement: Board's role in risk oversight",
+   "publisher": "GE Aerospace (SEC EDGAR, DEF 14A)",
+   "date": "2026-03-12"
+  },
+  {
+   "id": "CG-0049",
+   "url": "https://www.geaerospace.com/sites/default/files/geaerospace_proxy_2026.pdf",
+   "title": "GE Aerospace 2026 proxy statement: letter from the Lead Director",
+   "publisher": "GE Aerospace (DEF 14A)",
+   "date": "2026-03-12"
+  },
+  {
+   "id": "CG-0050",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000095014224001825/eh240502380_8k.htm",
+   "title": "GE Aerospace Form 8-K: new employment agreement with H. Lawrence Culp, Jr.",
+   "publisher": "GE Aerospace (SEC EDGAR, 8-K)",
+   "date": "2024-07-01"
+  },
+  {
+   "id": "CG-0051",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge4356871-def14a.htm",
+   "title": "GE Aerospace 2025 proxy statement: PSU design",
+   "publisher": "GE Aerospace (SEC EDGAR, DEF 14A)",
+   "date": "2025-03-13"
+  },
+  {
+   "id": "CG-0052",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-20260312.htm",
+   "title": "GE Aerospace 2026 proxy statement: Annual Executive Incentive Plan",
+   "publisher": "GE Aerospace (SEC EDGAR, DEF 14A)",
+   "date": "2026-03-12"
+  },
+  {
+   "id": "CG-0053",
+   "url": "https://www.geaerospace.com/sites/default/files/2025-geaerospace-annual-meeting-results.pdf",
+   "title": "GE Aerospace 2025 Annual Meeting results",
+   "publisher": "GE Aerospace (annual meeting results); 8-K of 6 May 2025",
+   "date": "2025-05-06"
+  },
+  {
+   "id": "CG-0054",
+   "url": "https://www.bloomberg.com/news/articles/2021-05-04/ge-ceo-s-232-million-pay-deal-draws-rebuke-from-shareholders",
+   "title": "GE CEO's $232 Million Pay Deal Draws Shareholder Rebuke",
+   "publisher": "Bloomberg",
+   "date": "2021-05-04"
+  },
+  {
+   "id": "CG-0055",
+   "url": "https://www.bloomberg.com/news/articles/2018-10-01/ge-taps-culp-to-replace-ceo-flannery-will-miss-profit-guidance",
+   "title": "GE Ousts Flannery After Slump, Names Lawrence Culp CEO",
+   "publisher": "Bloomberg",
+   "date": "2018-10-01"
+  },
+  {
+   "id": "CG-0056",
+   "url": "https://money.cnn.com/2017/11/13/investing/ge-dividend-cut/index.html",
+   "title": "GE cuts dividend for second time since Great Depression",
+   "publisher": "CNN Money",
+   "date": "2017-11-13"
+  },
+  {
+   "id": "CG-0057",
+   "url": "https://wtop.com/news/2018/10/ge-cuts-quarterly-dividend-to-1-cent/",
+   "title": "GE Cuts Quarterly Dividend to 1 Cent",
+   "publisher": "AP via WTOP",
+   "date": "2018-10-30"
+  },
+  {
+   "id": "CG-0058",
+   "url": "https://www.treasuryandrisk.com/2017/06/19/ges-immelt-leaves-behind-31b-pension-deficit",
+   "title": "GE's Immelt leaves behind $31B pension deficit (buyback data); related coverage of GE buybacks and the Trian stake",
+   "publisher": "Treasury & Risk; Bloomberg Opinion; Fox Business; IndustryWeek",
+   "date": "2017-06-19"
+  },
+  {
+   "id": "CG-0059",
+   "url": "https://www.ge.com/news/press-releases/ge-board-of-directors-approves-spin-off-of-ge-vernova-ge-vernova-and-ge-aerospace-to",
+   "title": "GE Board of Directors approves spin-off of GE Vernova; GE Vernova and GE Aerospace to launch",
+   "publisher": "GE (press release); 8-K",
+   "date": "2024-02-29"
+  },
+  {
+   "id": "CG-0060",
+   "url": "https://www.bostonglobe.com/2022/06/27/business/ge-ceo-culp-takes-reins-aviation-unit-slattery-loses-top-post",
+   "title": "GE CEO Culp takes reins of aviation unit as Slattery loses top post",
+   "publisher": "Reuters via Boston Globe",
+   "date": "2022-06-27"
+  },
+  {
+   "id": "CG-0061",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000040545/000004054526000027/ge-20260331.htm",
+   "title": "GE Aerospace 10-Q: $20 billion share repurchase authorization",
+   "publisher": "GE Aerospace (SEC EDGAR, 10-Q Q1 2026)",
+   "date": "2025-12-31"
+  },
+  {
+   "id": "CG-0062",
+   "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-board-directors-authorizes-quarterly-dividend",
+   "title": "GE Aerospace Board of Directors authorizes quarterly dividend",
+   "publisher": "GE Aerospace (press release)",
+   "date": "2026-02-06"
+  },
+  {
+   "id": "CG-0063",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000004054525000108/ge2q2025earningsrelease.htm",
+   "title": "GE Aerospace reports second quarter 2025 results; raises 2025 guidance and 2028 outlook",
+   "publisher": "GE Aerospace (SEC EDGAR, 8-K earnings release)",
+   "date": "2025-07-17"
+  },
+  {
+   "id": "CG-0064",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000040545/000004054526000049/ge-20260630.htm",
+   "title": "GE Aerospace 10-Q Q2 2026: credit ratings (Moody's upgrade to A2)",
+   "publisher": "GE Aerospace (SEC EDGAR, 10-Q)",
+   "date": "2026-02-02"
+  },
+  {
+   "id": "CG-0065",
+   "url": "https://www.businesswire.com/news/home/20210614005533/en/GE-Aviation-and-Safran-Launch-Advanced-Technology-Demonstration-Program-for-Sustainable-Engines-Extend-CFM-Partnership-to-2050",
+   "title": "GE Aviation and Safran Launch Advanced Technology Demonstration Program for Sustainable Engines, Extend CFM Partnership to 2050",
+   "publisher": "GE Aviation and Safran (joint press release, Business Wire)",
+   "date": "2021-06-14"
+  },
+  {
+   "id": "CG-0066",
+   "url": "https://www.sec.gov/Archives/edgar/data/40545/000004054524000027/ge-20231231.htm",
+   "title": "GE 10-K FY2023: CFM International collaborative arrangement",
+   "publisher": "GE (SEC EDGAR, 10-K); GE Aerospace; CNBC",
+   "date": "2024-02-02"
+  },
+  {
+   "id": "CG-0067",
+   "url": "https://www.cfmaeroengines.com/press-articles/ge-safran-renew-cfm-partnership-until-2040/",
+   "title": "GE, Safran renew CFM partnership until 2040",
+   "publisher": "CFM International / GE Aerospace (press release)",
+   "date": "2008-07-13"
+  },
+  {
+   "id": "CG-0068",
+   "url": "https://www.cfmaeroengines.com/about/gael-meheust/",
+   "title": "CFM International president and CEO Gael Meheust",
+   "publisher": "CFM International",
+   "date": "2017-02-01"
+  },
+  {
+   "id": "CG-0069",
+   "url": "https://www.manufacturingdive.com/news/ge-aerospace-nearly-1-billion-investment-u-s-engine-suppliers/742313/",
+   "title": "GE Aerospace to invest nearly $1 billion in U.S. manufacturing and supply chain",
+   "publisher": "Manufacturing Dive; Reuters via Yahoo Finance",
+   "date": "2025-03-05"
+  }
+ ],
+ "protocol_steps": [
+  "guidance",
+  "review",
+  "confirm"
+ ]
+}

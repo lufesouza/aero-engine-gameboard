@@ -1,0 +1,1182 @@
+{
+ "agent_name": "pratt-whitney-board",
+ "company": "Pratt & Whitney",
+ "side": "pratt_whitney",
+ "board_name": "RTX Corporation Board of Directors",
+ "as_of": "30 April 2026 for composition (2026 proxy statement of 9 March 2026; 8-K of 4 May 2026 on the annual meeting); committee charters dated 1 May 2025; research date 10 October 2026",
+ "composition": {
+  "chair": "Christopher T. Calio, Chairman, President and CEO (chair since 30 April 2025, when Greg Hayes left the board; CEO since May 2024; formerly President of Pratt & Whitney)",
+  "chair_is_ceo": true,
+  "lead_independent_director": "Fredric G. Reynolds (since 1 December 2023; retired CFO of CBS; chaired the Audit Committee until 15 February 2024), designated by the independent directors; the board waived its age-75 rule so that he could stand again in 2026",
+  "size": "10 directors elected on 30 April 2026; 12 in February 2025, including Hayes and Winnefeld (FY2024 10-K list); 11 after Hayes left in April 2025; 10 after Winnefeld resigned effective 5 March 2026 and the board cut its size; the 2020 merger agreement had set 15 seats",
+  "independence": "9 of 10 independent: every director but the CEO-chair. The Governance Committee reviews the leadership structure, with no fixed policy on combining the roles, and in 2026 the board still judged a combined chair and CEO with an independent lead director the right structure. In the game the board acts through its independent directors; the CEO-chair has no vote on his own package (inference: game convention).",
+  "committees": [
+   {
+    "name": "Finance Committee",
+    "role": "Reviews significant capital appropriations, dividend policy, buyback programmes, financing and major transactions; about four meetings a year; reports to the full board; chaired by Brian Rogers, with the CEO a member since December 2023. A new engine programme or a Joint Venture reaches the board here first (inference) [PG-0047, PG-0048, P-1285]"
+   },
+   {
+    "name": "Audit Committee (chair Leanne Caret since 15 February 2024; Reynolds before)",
+    "role": "Financial and compliance risk; receives the top enterprise risks each year; Caret and Ramos are its audit committee financial experts [PG-0033, PG-0034, PG-0044]"
+   },
+   {
+    "name": "Governance and Public Policy Committee",
+    "role": "Product safety and the quality management system (quality and AI in its 2024 charter), safety-regulator engagement, board leadership structure [PG-0050, PG-0051, PG-0045]; chaired by Robert Work, with George Oliver to take the chair from 30 April 2026 per the 2026 proxy [PG-0052]"
+   },
+   {
+    "name": "Human Capital and Compensation Committee",
+    "role": "Executive pay: a three-year PSU plan on EPS, ROIC and relative TSR, and a one-year bonus on earnings and free cash flow [PG-0054, PG-0056, PG-0058]"
+   },
+   {
+    "name": "Special Activities Committee",
+    "role": "Classified programmes and transactions with special risk; product cybersecurity [PG-0053]"
+   },
+   {
+    "name": "No safety or technology committee",
+    "role": "Product safety sits with Governance and Public Policy; commercial engine programmes have no committee of their own (inference) [PG-0032, PG-0050]"
+   }
+  ],
+  "notable_members": [
+   {
+    "name": "Christopher T. Calio (chair and CEO)",
+    "background": "Former President of Pratt & Whitney; the only director with engine-programme experience in the evidence (inference) [P-1751, PG-0043]"
+   },
+   {
+    "name": "Fredric G. Reynolds (Lead Independent Director)",
+    "background": "Retired CFO of CBS, a 'great financial mind'; Audit chair until February 2024 [PG-0003, PG-0044]"
+   },
+   {
+    "name": "Brian C. Rogers",
+    "background": "Retired Chairman of T. Rowe Price, brought in as an investor-minded voice [PG-0002, PG-0003]"
+   },
+   {
+    "name": "Tracy A. Atkinson",
+    "background": "Retired EVP of State Street: finance [PG-0002]"
+   },
+   {
+    "name": "George R. Oliver",
+    "background": "Former Chairman and CEO of Johnson Controls, counted by management as commercial-aerospace experience; named in the 2026 proxy to chair the Governance and Public Policy Committee from 30 April 2026 [PG-0002, PG-0004, PG-0052]"
+   },
+   {
+    "name": "Denise L. Ramos",
+    "background": "Retired CEO of ITT, counted as commercial-aerospace experience; an audit committee financial expert [PG-0002, PG-0004, PG-0044]"
+   },
+   {
+    "name": "Ellen M. Pawlikowski, Robert O. Work, Bernard A. Harris Jr.",
+    "background": "Defence: ex-Commander of Air Force Materiel Command (Pawlikowski) and ex-Deputy Secretary of Defense (Work); Harris is CEO of Vesalius Ventures [PG-0002]; all three counted by management as solid defence credentials [PG-0004]"
+   },
+   {
+    "name": "Leanne G. Caret",
+    "background": "A director since January 2023 and Audit Committee chair since 15 February 2024, an audit committee financial expert [PG-0044, PG-0062]; her earlier career is not in the board evidence (gap)"
+   }
+  ],
+  "shareholders": "Widely held; no controlling, family or state shareholder in the evidence; 91% for say-on-pay in 2021 and about 96.6% of votes cast in 2026. The US government is the defence customer; since October 2024 RTX has been under deferred prosecution agreements with the DOJ and an SEC order, which require an independent compliance monitor. Pratt & Whitney's GTF partners carried 49% of the 2023 powder-metal charge.",
+  "ids": [
+   "PG-0041",
+   "PG-0042",
+   "PG-0043",
+   "PG-0044",
+   "PG-0045",
+   "PG-0032",
+   "PG-0047",
+   "PG-0002",
+   "PG-0003",
+   "PG-0004",
+   "PG-0006",
+   "PG-0009",
+   "PG-0040",
+   "P-1563",
+   "P-1751",
+   "PG-0062",
+   "PG-0046",
+   "PG-0048",
+   "PG-0052",
+   "PG-0059"
+  ]
+ },
+ "evidence": {
+  "n_items": 62,
+  "n_transcript": 30,
+  "n_filing": 11,
+  "n_web": 21,
+  "first": "2015-12-10",
+  "last": "2026-05-04",
+  "sources_note": "30 transcript items (UTC and RTX calls, investor days and annual meetings, 2015-12-10 to 2025-07-22) and 11 filing items (UTC and RTX 10-Ks, FY2017 to FY2024), verbatim and checked by verify_quotes.py; only two are in the board's own words (Executive Chairman Tom Kennedy, 2021 annual meeting). 21 web items from web search (search-result statements, not quotes), 2023-11-22 to 2026-05-04. The drafter ran 24 searches (12 items corroborated); on 2026-10-10 a second agent re-searched all 21 with 22 searches: all 21 are now corroborated (19 kept, 2 corrected, none dropped). Corrected: PG-0044 (Leanne Caret, not Reynolds, has chaired the Audit Committee since 15 February 2024) and PG-0056 (business-unit executives' bonuses are half on their unit's earnings and cash flow, half on RTX's). The re-search also dated Winnefeld's resignation (effective 5 March 2026; board cut from eleven to ten). Details not re-found (the PSU weights in PG-0054, the 2023-25 PSU components in PG-0055, the 164% factor in PG-0058) carry no score, test or veto on their own. Company (P-) and executive (PX-) items are cited by their own ids.",
+  "confidence_overall": "Medium",
+  "confidence_by_area": [
+   {
+    "area": "Composition and committees",
+    "level": "High"
+   },
+   {
+    "area": "Capital-allocation record",
+    "level": "High"
+   },
+   {
+    "area": "Pay horizon",
+    "level": "Medium-High"
+   },
+   {
+    "area": "Matters reserved to the board (no published dollar threshold)",
+    "level": "Medium"
+   },
+   {
+    "area": "Risk appetite and time horizon",
+    "level": "Medium"
+   },
+   {
+    "area": "Safety oversight",
+    "level": "Medium"
+   },
+   {
+    "area": "How votes are taken",
+    "level": "Low"
+   },
+   {
+    "area": "Reading of rivals",
+    "level": "Low"
+   }
+  ]
+ },
+ "mandate": "Recommends to Pratt & Whitney's ExCo before each round and approves or vetoes every Board item (each order that differs from the default) with a binding veto, never originating orders. It holds management to the return hurdle it was told, durability before entry into service, the dividend and the return to pre-ASR debt, and proof before commitment. Its chair is the CEO, so it acts through its nine independent directors led by Lead Independent Director Fredric Reynolds.",
+ "holds_management_to": [
+  {
+   "text": "A return above the hurdle the board was told: a new engine bid only against 'a return that we have to see', well in excess of the cost of capital; otherwise buy back stock. In 2017 UTC's board saw the intrinsic-value model a couple of times a year and reviewed the GTF's NPV every year; there is no later evidence on either practice",
+   "ids": [
+    "P-0731",
+    "P-0715",
+    "P-1165",
+    "PG-0024",
+    "P-1163",
+    "P-1191"
+   ]
+  },
+  {
+   "text": "Durability and quality before entry into service: the GTF's early problems were discussed with the board 'ad infinitum'; time on wing over efficiency; directors face derivative claims over GTF oversight",
+   "ids": [
+    "P-1215",
+    "P-1360",
+    "PG-0050",
+    "PG-0039"
+   ]
+  },
+  {
+   "text": "The dividend, then debt back to pre-ASR levels before buybacks",
+   "ids": [
+    "P-0566",
+    "PG-0010",
+    "PG-0011",
+    "P-0686",
+    "P-0669",
+    "PX-0353"
+   ]
+  },
+  {
+   "text": "Proof before commitment: sole source on a committed airframe (on the game board a shared code is accepted once the CEO declares it as doctrine relief, dashboard_game.md §5); invest when demand is seen",
+   "ids": [
+    "P-0746",
+    "P-0737",
+    "P-1367"
+   ]
+  },
+  {
+   "text": "Long-term shareowner value and growing capital returns together",
+   "ids": [
+    "PG-0017",
+    "PG-0030",
+    "PG-0038"
+   ]
+  }
+ ],
+ "culture": {
+  "risk_aversion": {
+   "score": 3.5,
+   "rationale": "Averse, most of all to programme risk. No new engine without a case that clears the hurdle told to the board, and only as sole source on a committed airframe; P&W matched Boeing's non-commitment on the NMA engine; no new centreline engine in the 2021-25 plan. Since the powder-metal charge, the downgrade, the derivative suits and the compliance monitor, deleveraging, durability and quality come first. Not 4: in October 2023, three months into the recall, the board approved an $11B buyback with a $10B debt-funded ASR after a full discussion of its timing, judging the liability bounded (both rating agencies moved to a negative outlook), and it took Rockwell Collins at a lower return and the Raytheon merger. It has never cut the dividend in a crisis. Not 3: programme discipline, durability first and the debt-first order since 2024 are 4 traits. In votes: a franchise-defence launch needs a weighted edge over launch_if_selected of at least +$0.5B, a quarter of its bill (a 3 board would take it at break-even, a 4 board not at all); a Joint Venture commit needs Rolls-Royce's commitment on the record or a live airframe code that includes Rolls-Royce, and its weighted value; debt, never the dividend, may stretch for one round (as in October 2023) (inference). A judgement from evidence, calibrated across the five boards with half points: 3.5, between balanced and averse, strict on programmes and looser on the balance sheet.",
+   "trend": "About 3 in 2015-2023 (strict programme discipline beside heavy, partly debt-funded buybacks and acquisitions); 3.5 since 2024 (debt, durability and quality first after the powder-metal crisis, but the dividend still ahead of debt); likely to ease as debt falls and buybacks return (the easing is inference).",
+   "ids": [
+    "P-0731",
+    "P-0715",
+    "P-0746",
+    "P-0737",
+    "P-0711",
+    "P-0713",
+    "P-0745",
+    "P-1563",
+    "P-1554",
+    "PG-0039",
+    "PG-0040",
+    "P-0686",
+    "P-1360",
+    "PG-0050",
+    "PG-0028",
+    "PG-0035",
+    "P-0603",
+    "PG-0029",
+    "P-0609",
+    "PG-0021",
+    "PG-0022",
+    "PG-0013",
+    "P-0669",
+    "PG-0010",
+    "P-0423",
+    "P-1368",
+    "PX-0353"
+   ]
+  },
+  "time_horizon": {
+   "score": 3,
+   "rationale": "Balanced: an intrinsic-value lens on programmes, against one-to-three-year pay and large steady cash returns. Long-term: in 2017 decisions rested on an intrinsic-value model at about 8%; UTC was 'overinvesting in Pratt' for years and reviewed the GTF's whole-programme NPV with the board every year (2017); by 2016 the long-term EPS goal was 6%, not 10%, because engine investment weighed on earnings, and the board reset pay rather than the investment (the motive is inference); the board asked whether the conglomerate had under-invested for margin; succession is planned for the long haul. Short to medium term: a one-year bonus on earnings and free cash flow, a three-year PSU plan on EPS, ROIC and relative TSR, large and steady cash returns, and R&D as the first cut in a shock. A judgement from evidence, calibrated across the five boards with half points: 3; R&D was the first cut in the 2020 shock, but since 2024 debt and the dividend come before buybacks, inside a self-funded engine envelope. In votes (inference): it accepts a declared objective premium of up to $0.5B, half the company's $1B cap, on an item that serves the 2050 credibility goal (a 4 board would accept the full $1B, a 2 board none); it protects a live GTF2 a live airframe has asked for (a cancel must beat hold in every plausible column); near-term EPS and ROIC drag without a selection draws a recommendation, never a veto on its own.",
+   "trend": "About 4 in 2008-2016 (the GTF build-out); about 2-3 in 2017-2023 (growing capital-return commitments, the 2023 ASR timed to the share price); 3 now (debt paydown and the dividend first, investment in GTF Advantage and enabling technology rather than a new engine).",
+   "ids": [
+    "P-1163",
+    "PG-0024",
+    "P-1126",
+    "P-1219",
+    "P-1191",
+    "PG-0020",
+    "PG-0015",
+    "PG-0005",
+    "PG-0056",
+    "PG-0054",
+    "PG-0019",
+    "P-0240",
+    "P-0603",
+    "P-0467",
+    "P-1372",
+    "PG-0029",
+    "P-1347"
+   ]
+  },
+  "capital_allocation": {
+   "text": "Investment first ('First, it's about investing in the business for the long term'): committed programme spend and about $6B a year of self-funded R&D and capex are protected, though discretionary development is the first cut in a demand shock. Among cash uses the dividend comes first, declared by the board each quarter and raised every year from 2021 to 2025; then debt back to pre-ASR levels; buybacks are 'the fill in' and M&A bolt-on only; buyback authorities renewed routinely. Any stricter ranking of investment against the dividend is inference. GTF2's ~$0.33B a year is 5-6% of the envelope (inference).",
+   "ids": [
+    "P-0566",
+    "P-1887",
+    "PG-0038",
+    "P-0677",
+    "P-0686",
+    "PX-0353",
+    "P-0499",
+    "PX-0268",
+    "P-1357",
+    "PG-0037",
+    "PG-0036",
+    "PG-0035",
+    "P-1320",
+    "P-0867",
+    "P-1372",
+    "P-0467"
+   ]
+  },
+  "safety_oversight": {
+   "text": "Product safety and the quality management system sit with the Governance and Public Policy Committee; there is no safety committee. P&W's own Safety Board forced the 2023 fleet action; the board met at P&W and saw the GTF on test; the GTF's early problems were discussed with it at length. A durability or readiness failure in the operating head's memo is a veto (inference).",
+   "ids": [
+    "PG-0050",
+    "PG-0032",
+    "P-1028",
+    "PG-0023",
+    "P-1215"
+   ]
+  },
+  "stakeholder_influence": {
+   "text": "Widely held, with investor-minded directors and strong shareholder support for pay (91% in 2021); the US government as defence customer, with an independent compliance monitor under the 2024 deferred prosecution agreements; GTF partners who carried 49% of the 2023 powder-metal charge.",
+   "ids": [
+    "PG-0003",
+    "PG-0009",
+    "PG-0040",
+    "P-1563"
+   ]
+  },
+  "pay_horizon": {
+   "text": "PSUs vest over three years on adjusted EPS CAGR (35%), ROIC (35%) and relative TSR (30%); ROIC entered pay in 2016 because 'capital is not free'; the annual bonus rests on one year's earnings and free cash flow; the board has reset pay goals while engine investment weighed on earnings (a 6% long-term EPS goal for 2015-17) and neutralised tariffs (2025); directors get a fixed retainer, no bonus. Nothing in pay rewards outcomes beyond three years, so the board supplies the long view (inference).",
+   "ids": [
+    "PG-0054",
+    "PG-0019",
+    "PG-0018",
+    "PG-0056",
+    "PG-0020",
+    "PG-0058",
+    "PG-0012"
+   ]
+  }
+ },
+ "reserved_matters": [
+  {
+   "matter": "Dividends and share repurchases",
+   "threshold": "At the board's discretion, weighed against other investment opportunities; it declares each quarterly dividend and authorises each buyback programme",
+   "ids": [
+    "PG-0031",
+    "PG-0038",
+    "PG-0035",
+    "PG-0036",
+    "PG-0037"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Significant capital appropriations, financing programmes and major transactions",
+   "threshold": "Finance Committee review, reported to the full board; no published dollar threshold",
+   "ids": [
+    "PG-0047",
+    "PG-0049"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Project gate by size",
+   "threshold": "Through the CFO, the CEO and up to the board, 'depending on the various sizes' (Mitchill in 2021, when Hayes was CEO; today through Mitchill and Calio)",
+   "ids": [
+    "P-1285",
+    "PX-0199"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "New engine bids",
+   "threshold": "Only against the return management told the board it must see",
+   "ids": [
+    "P-0731"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Programme value review",
+   "threshold": "In 2017 (UTC) the GTF's whole-programme NPV was reviewed with the board every year and the intrinsic-value model shared a couple of times a year; no later evidence",
+   "ids": [
+    "P-1191",
+    "PG-0024"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Portfolio, M&A and CEO succession",
+   "threshold": "Board decisions after long reviews (UTC separation, Rockwell Collins, Raytheon; a three-year succession process)",
+   "ids": [
+    "PG-0014",
+    "PG-0022",
+    "PG-0013",
+    "PG-0026"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Enterprise risk, cybersecurity, product safety and quality",
+   "threshold": "Annual top-risk review through Audit and the full board; safety and quality with Governance and Public Policy",
+   "ids": [
+    "PG-0034",
+    "PG-0033",
+    "PG-0050"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "A new commercial engine programme or a Joint Venture",
+   "threshold": "Outside the self-funded plan, so a board matter (no new centreline engine in the plan)",
+   "ids": [
+    "P-0745",
+    "P-1285",
+    "P-0731",
+    "PG-0047"
+   ],
+   "inference": true
+  }
+ ],
+ "board_items_in_game": [
+  {
+   "order": "gtf2_solo: launch",
+   "rule": "$2B over 6 years: a new engine programme, a significant capital appropriation; not below the real threshold",
+   "ids": [
+    "PG-0047",
+    "P-1285",
+    "P-0731",
+    "P-0499"
+   ],
+   "inference": true
+  },
+  {
+   "order": "gtf2_solo: launch_if_selected",
+   "rule": "The same $2B programme, pre-authorised and spent only on a selection: the form the doctrine prefers; not below the threshold",
+   "ids": [
+    "P-0746",
+    "P-0737",
+    "P-0711"
+   ],
+   "inference": true
+  },
+  {
+   "order": "gtf2_solo: cancel",
+   "rule": "Ending a programme with a write-off of R&D x years elapsed / 6; in the record a CEO decision, so possibly below the real threshold, but reviewed with the package",
+   "ids": [
+    "P-1342"
+   ],
+   "inference": true
+  },
+  {
+   "order": "jv_with_rr: commit",
+   "rule": "A public strategic collaboration with a $2B P&W share, reported to Finance as a significant transaction; risk and investment shared, never technology",
+   "ids": [
+    "PG-0047",
+    "P-1233",
+    "P-1563"
+   ],
+   "inference": true
+  },
+  {
+   "order": "jv_with_rr: withdraw",
+   "rule": "Ending a public commitment before the Joint Venture forms; possibly below the real threshold, but reviewed with the package",
+   "ids": [
+    "P-1875"
+   ],
+   "inference": true
+  },
+  {
+   "order": "hold (either field)",
+   "rule": "Not a Board item and never vetoed; a standing Joint Venture commitment stays as approved",
+   "ids": [],
+   "inference": false
+  }
+ ],
+ "decision_process": [
+  {
+   "text": "One management case with all the data: for a big decision management provides 'all the data, with all the thinking', and the board frames the question as its own, long-term shareowner value, with doing nothing an option",
+   "ids": [
+    "PG-0016",
+    "PG-0017"
+   ],
+   "inference": false
+  },
+  {
+   "text": "Debate, then back management: a full discussion of the ASR's timing before approving it",
+   "ids": [
+    "PG-0029",
+    "PG-0028"
+   ],
+   "inference": false
+  },
+  {
+   "text": "Committees review and report to the full board (Finance for capital); majority rule is assumed, no vote splits are public; it answers as one voice",
+   "ids": [
+    "PG-0047",
+    "PG-0008"
+   ],
+   "inference": true
+  },
+  {
+   "text": "Slow and evidence-heavy on structural moves (a year-long review before the separation); fast on capital returns once liquidity allows",
+   "ids": [
+    "PG-0014",
+    "PG-0036"
+   ],
+   "inference": false
+  },
+  {
+   "text": "With a combined chair and CEO, the independent directors act through the Lead Independent Director; in the game the CEO-chair has no vote on his own package",
+   "ids": [
+    "PG-0044",
+    "PG-0045",
+    "PG-0042"
+   ],
+   "inference": true
+  },
+  {
+   "text": "Before approving it needs the submitted grid row and the row with each item at hold, the CEO's expected scenario, column probabilities (predictions) and any declared premium (premium_b), the CFO's column probabilities and expected edge, cancel round and envelope check, the operating head's ready year against each EIS and parts result, and both veto checks; a missing piece is computed from the brief, never a veto ground alone",
+   "ids": [
+    "PG-0016"
+   ],
+   "inference": true
+  }
+ ],
+ "tests": [
+  {
+   "test": "Unresolved objection",
+   "threshold": "No Board item carries a binding veto from the CFO (four grounds) or the operating head (two grounds) that the CEO did not respect, or a red-line flag he neither struck nor rebutted; the team rule has no override, so any override fails",
+   "ids": [
+    "P-1285",
+    "PX-0199",
+    "PG-0016"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Return hurdle",
+   "threshold": "Weighted item value (submitted row minus the row with the field at hold) of at least zero, or a shortfall that passes Declared premium; the grid discounts at 10%, above the 8% of the 2017 value model; below it, buy back stock",
+   "ids": [
+    "P-0731",
+    "P-0715",
+    "P-1163",
+    "P-1165",
+    "PG-0024"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Committed airframe",
+   "threshold": "An unconditional launch only into a selection including P&W (codes 2, 6, 7, or 4 with a formed Joint Venture) on the public record, with a shared code (6, 7) declared by the CEO as doctrine relief (dashboard_game.md §5; if undeclared, a recommendation, not a veto), or as NGSA franchise defence with an expected edge over launch_if_selected of at least +$0.5B, a quarter of the bill (odds needed 2.5 / (2 + G), against break-even 2 / (2 + G)); a 3 board would take the bet at break-even, a 4 board would allow no unselected launch; no premium relaxes it (the margin: inference, from the 3.5)",
+   "ids": [
+    "P-0746",
+    "P-0737",
+    "P-0711",
+    "P-1367",
+    "P-1347",
+    "P-1868"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Bounded downside",
+   "threshold": "No launch, launch_if_selected or commit loses more than its own $2B against hold in any plausible column; an unselected launch names its cancel round where one exists (2030 to 2035, 2045 to 2050; a 2035 launch can never be cancelled)",
+   "ids": [
+    "P-0609",
+    "PG-0029",
+    "PG-0019"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Proof before commitment",
+   "threshold": "What P&W books or announces (the public statement and public other moves) counts a selection, a Rolls-Royce commitment or partner money only once on the public record, as in the CFO's ground 4; scenario weights in rationale, expected_pv_b and predictions are allowed; a conditional order's value in the columns that trigger it (a selection for launch_if_selected, Rolls-Royce's commitment for commit) is its own condition, not booked upside; an order whose case rests only on unrecorded upside fails, while a public statement alone that books it draws a recommendation, not a veto",
+   "ids": [
+    "P-1367",
+    "PX-0311",
+    "PX-0350",
+    "PG-0039"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Durability first",
+   "threshold": "Each engine item ready by the EIS of the airframe it serves (GTF2 at launch + 6; the Joint Venture engine at formation + 6 or a folded programme's ready year); no item the operating head fails on durability or parts unless resolved",
+   "ids": [
+    "P-1360",
+    "P-1214",
+    "P-1215",
+    "PG-0050",
+    "PG-0023"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Dividend and envelope",
+   "threshold": "New R&D within the self-funded envelope (about $6B a year; GTF2 about $0.33B a year); at the 3.5 the envelope may stretch for one round, once in the game, if the CFO's memo shows the dividend covered and debt back on its pre-ASR path afterwards (as in October 2023); no plan needing a dividend cut; not applicable unless the brief adds spend",
+   "ids": [
+    "P-0566",
+    "PG-0010",
+    "PG-0031",
+    "P-0686",
+    "P-0499",
+    "PX-0268",
+    "PG-0029",
+    "P-0603"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Joint Venture",
+   "threshold": "Commit when Rolls-Royce's commitment is on the public record or a live airframe not yet in service has a code that includes Rolls-Royce (1, 4, 5 or 7), with weighted item value of at least zero (or within a premium that passes Declared premium); the Joint Venture forms, and P&W spends, only when both are committed, so Rolls-Royce need not commit first; P&W's gear and core technology stay out",
+   "ids": [
+    "P-1233",
+    "P-1875",
+    "P-1563",
+    "PG-0047"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Declared premium",
+   "threshold": "An item whose weighted item value is below zero passes only if the CEO declares the gap in premium_b with its reason, the item serves the assigned objective (a new P&W engine in service on a new airframe by 2050: a launch_if_selected, or a commit whose engine can be ready by a live airframe's EIS), the gap is at most $0.5B, and the decision's total premium stays inside the company's $1B cap (objectives.md §6); a 4 board would accept the full $1B, a 2 board none; it never relaxes Committed airframe, Bounded downside or Durability first (the $0.5B: inference, from the time horizon 3)",
+   "ids": [
+    "PG-0020",
+    "P-1347",
+    "P-1126"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Premature exit",
+   "threshold": "Cancel or withdraw only with weighted item value of at least zero; a cancel while a live airframe not yet in service has a code that includes P&W (2, 6, 7, or 4 with a formed Joint Venture) and GTF2 can still be ready by its EIS also needs the cancel row ahead of hold in every plausible column (the time horizon 3 protects a programme a customer has asked for)",
+   "ids": [
+    "P-1342",
+    "PG-0019",
+    "P-1191"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Miss a cycle (recommendation only)",
+   "threshold": "In guidance, recommend launch_if_selected wherever it is legal and GTF2 could be ready by a live airframe's EIS (a round in which every order is hold never reaches the review); at review, repeat it if gtf2_solo is hold in that case beside another Board item; the board cannot order it",
+   "ids": [
+    "PG-0015",
+    "PG-0020",
+    "P-1126",
+    "P-1347"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Disclosure (recommendation only)",
+   "threshold": "The public statement promises no EIS earlier than launch + 6, no durability not yet proven, nothing on an airframer's dates",
+   "ids": [
+    "PG-0039",
+    "PG-0050"
+   ],
+   "inference": true
+  }
+ ],
+ "veto": [
+  {
+   "ground": "Governance: an unresolved binding ExCo veto, a red-line flag neither struck nor rebutted, or an override the team rule does not allow",
+   "ids": [
+    "P-1285",
+    "PX-0199",
+    "PG-0016"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Return hurdle: the item's weighted value against hold is below zero and no declared premium that passes the Declared premium test covers the gap",
+   "ids": [
+    "P-0731",
+    "P-0715",
+    "P-1165"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Premium: a shortfall against hold that is undeclared, serves no part of the assigned objective, exceeds $0.5B, or takes the decision's total premium past the $1B company cap",
+   "ids": [
+    "PG-0020",
+    "P-1347"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Uncommitted airframe: an unconditional launch with no P&W selection on the record and no franchise-defence case whose expected edge over launch_if_selected reaches +$0.5B (alternative: launch_if_selected)",
+   "ids": [
+    "P-0746",
+    "P-0737",
+    "P-1367"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Unbounded downside: an item that can lose more than its own $2B, or an unselected launch with no cancel round named where one exists",
+   "ids": [
+    "P-0609",
+    "PG-0029"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Unproven upside: an order whose case rests only on a selection, a Rolls-Royce commitment or partner money not on the record (scenario weights in the rationale, expected PV and predictions are allowed, and a conditional order's own trigger is not booked upside; a public statement alone that books such upside draws a recommendation, not a veto)",
+   "ids": [
+    "P-1367",
+    "PX-0311",
+    "PG-0039"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Durability: an engine not ready by the EIS it serves, or failed by the operating head on durability or parts",
+   "ids": [
+    "P-1360",
+    "P-1215",
+    "PG-0050"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Dividend and envelope: a plan that needs a dividend cut, or new R&D outside the self-funded envelope beyond the one-round stretch the 3.5 allows (dividend covered, debt back on its pre-ASR path)",
+   "ids": [
+    "P-0566",
+    "PG-0010",
+    "P-0686"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Joint Venture conditions: commit with neither Rolls-Royce's commitment on the record nor a live airframe code that includes Rolls-Royce (1, 4, 5 or 7), or with core technology at stake",
+   "ids": [
+    "P-1233",
+    "P-1875"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Premature exit: a cancel or withdraw whose weighted value against hold is below zero, or a cancel, while a live airframe whose code includes P&W can still be served by GTF2 in time, that is not ahead of hold in every plausible column",
+   "ids": [
+    "P-1342",
+    "PG-0019"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Limits: the veto binds; a vetoed item goes back to the CEO once (board_revise), with no override against the board, and after the confirm a still-vetoed item reverts to the default (hold); every veto names acceptable alternatives, values of that field that pass the tests, the default included (launch_if_selected or hold for launch; hold otherwise); the board never originates orders and never vetoes a hold, an item merely because another plan scores higher, an item for its near-term earnings cost alone or an item on the public statement alone",
+   "ids": [
+    "PG-0017",
+    "PG-0020"
+   ],
+   "inference": true
+  }
+ ],
+ "recommendation_style": {
+  "text": "Data-heavy and framed on long-term shareowner value, as management describes its sessions (style: inference). Typical asks: show the return against Do Nothing and against a buyback; commit only on a selection, through launch_if_selected; write the cancel round in; prove durability before entry into service and say so plainly; keep the dividend and the debt path whole; in a Joint Venture share risk, never the gear. The CEO answers each in board_response (taken up, or why not); an unanswered one is raised again next round, but is not a veto ground by itself.",
+  "ids": [
+   "PG-0016",
+   "PG-0017",
+   "P-1165",
+   "P-0746",
+   "P-1342",
+   "P-1360",
+   "PG-0039",
+   "P-0566",
+   "P-0686",
+   "P-1233"
+  ]
+ },
+ "management_relationship": [
+  {
+   "name": "Combined chair and CEO",
+   "relation": "RTX's default model (Hayes, then Calio), with a Lead Independent Director designated by the independent directors. The board defers but questions first: its own review before the separation, all the data on big decisions, a debate before the ASR. No board-management tension is visible; the tension is external (derivative claims over GTF oversight).",
+   "ids": [
+    "PG-0006",
+    "PG-0007",
+    "PG-0026",
+    "PG-0043",
+    "PG-0044",
+    "PG-0045",
+    "PG-0014",
+    "PG-0016",
+    "PG-0029",
+    "PG-0039"
+   ]
+  },
+  {
+   "name": "Chris Calio (CEO and chair, pratt-whitney-calio)",
+   "relation": "The board's choice after a three-year succession process, with 'the full support of the Board'; formerly President of P&W; durability first, cut a failing programme, invests on visible demand. The board defers to his case unless a test fails (inference).",
+   "ids": [
+    "PG-0026",
+    "PG-0027",
+    "P-1751",
+    "P-1360",
+    "P-1342",
+    "P-1367"
+   ]
+  },
+  {
+   "name": "Neil Mitchill (CFO, pratt-whitney-mitchill)",
+   "relation": "Runs the gate that escalates to the board by size; holds the dividend and a strong rating as fixed and debt before buybacks. His memo is the board's return, envelope and cancel test.",
+   "ids": [
+    "P-1285",
+    "PX-0199",
+    "PX-0282",
+    "PX-0353"
+   ]
+  },
+  {
+   "name": "Shane Eddy (President of Pratt & Whitney, pratt-whitney-eddy)",
+   "relation": "In post per the 2026 team; his tenure after June 2023 is not shown, and in November 2025 the press quotes Rick Deurloo as President, Commercial Engines. No direct board evidence; one event, the 2023 Investor Day on fleet durability and the industrial recovery (Low confidence). His memo is the board's durability and readiness test.",
+   "ids": [
+    "PX-0116",
+    "PX-0120",
+    "P-1817"
+   ]
+  }
+ ],
+ "rivals": [
+  {
+   "text": "No board-level statement on CFM/GE, Rolls-Royce or the airframers is in the evidence; rivals are read only from the public bulletin",
+   "ids": [],
+   "inference": true
+  },
+  {
+   "text": "Management's view: stand-alone engine makers find long programmes harder to finance, while the conglomerate let P&W afford programmes it could not fund alone",
+   "ids": [
+    "P-2063",
+    "P-1138",
+    "P-0378"
+   ],
+   "inference": false
+  },
+  {
+   "text": "Rolls-Royce's own executives (Guyette, 2012; Rishton, 2014) said it could not make an A320neo engine case when P&W could, and that a Joint Venture holds only while both partners are on the same new engine",
+   "ids": [
+    "P-1868",
+    "P-1875"
+   ],
+   "inference": false
+  }
+ ],
+ "past_decisions": [
+  {
+   "date": "2015-10-14",
+   "decision": "$12B buyback authorisation (UTC)",
+   "ids": [
+    "PG-0037"
+   ]
+  },
+  {
+   "date": "2015-12",
+   "decision": "ROIC added to the long-term incentive plan from 2016",
+   "ids": [
+    "PG-0019"
+   ]
+  },
+  {
+   "date": "2015-16",
+   "decision": "Long-term EPS goal set at 6% instead of 10% (2015-17 plan) while engine investment weighed on earnings",
+   "ids": [
+    "PG-0020"
+   ]
+  },
+  {
+   "date": "2017 (summer)",
+   "decision": "Acquisition of Rockwell Collins, accepting a lower return",
+   "ids": [
+    "PG-0022",
+    "PG-0021"
+   ]
+  },
+  {
+   "date": "2018-11",
+   "decision": "Separation of UTC into three companies after a year-long review",
+   "ids": [
+    "PG-0014"
+   ]
+  },
+  {
+   "date": "2019-02",
+   "decision": "NMA engine bid only against the return told to the board; sole source",
+   "ids": [
+    "P-0731",
+    "P-0737"
+   ]
+  },
+  {
+   "date": "2019-06",
+   "decision": "Merger with Raytheon; 15-seat board, Executive Chairman Kennedy",
+   "ids": [
+    "PG-0013",
+    "PG-0006"
+   ]
+  },
+  {
+   "date": "2020-04/05",
+   "decision": "COVID: dividend kept after stress tests; buybacks suspended; R&D and capex cut",
+   "ids": [
+    "PG-0010",
+    "PG-0011",
+    "P-0423",
+    "P-1372"
+   ]
+  },
+  {
+   "date": "2020-12-07",
+   "decision": "New $5B buyback authorisation",
+   "ids": [
+    "PG-0036"
+   ]
+  },
+  {
+   "date": "2021-04-26",
+   "decision": "Dividend raised 7%; Kennedy retires, Hayes to be Chairman and CEO",
+   "ids": [
+    "PG-0008",
+    "PG-0007"
+   ]
+  },
+  {
+   "date": "2022-02",
+   "decision": "Calio made COO over all businesses as part of succession",
+   "ids": [
+    "PG-0025"
+   ]
+  },
+  {
+   "date": "2023-10-21",
+   "decision": "$11B buyback authority including a $10B ASR, during the powder-metal recall",
+   "ids": [
+    "PG-0028",
+    "PG-0029",
+    "PG-0035"
+   ]
+  },
+  {
+   "date": "2023-12-01",
+   "decision": "Reynolds named Lead Independent Director",
+   "ids": [
+    "PG-0044"
+   ]
+  },
+  {
+   "date": "2023-12 / 2024-05",
+   "decision": "Calio named CEO after a three-year process; Hayes Executive Chairman",
+   "ids": [
+    "PG-0026"
+   ]
+  },
+  {
+   "date": "2024-02-15",
+   "decision": "Leanne Caret succeeds Reynolds as Audit Committee chair",
+   "ids": [
+    "PG-0044"
+   ]
+  },
+  {
+   "date": "2025-01",
+   "decision": "Tariff effects neutralised in incentive metrics",
+   "ids": [
+    "PG-0058"
+   ]
+  },
+  {
+   "date": "2025-01-31",
+   "decision": "Calio elected Chairman (effective 2025-04-30); Hayes leaves the board",
+   "ids": [
+    "PG-0043",
+    "PG-0062"
+   ]
+  },
+  {
+   "date": "2025-07",
+   "decision": "Dividend raised 8%",
+   "ids": [
+    "P-0677"
+   ]
+  },
+  {
+   "date": "2026-03",
+   "decision": "Winnefeld resigns (effective 5 March); board cut from 11 to 10 seats; age-75 waiver lets Reynolds stand again",
+   "ids": [
+    "PG-0041",
+    "PG-0046"
+   ]
+  },
+  {
+   "date": "2026-04-30",
+   "decision": "Dividend raised 7.4% to 73 cents; paid every year since 1936",
+   "ids": [
+    "PG-0061"
+   ]
+  },
+  {
+   "date": "2026-04-30",
+   "decision": "George Oliver named in the 2026 proxy to chair Governance and Public Policy from this date, succeeding Robert Work",
+   "ids": [
+    "PG-0052"
+   ]
+  }
+ ],
+ "thin": {
+  "gaps": [
+   "Only two items in the board's own words (Kennedy, 2021); no independent director, including the Lead Director, is on record",
+   "No published dollar threshold for board approval of capital spending; the Finance Committee charter refers only to significant capital appropriations (search finding)",
+   "No minutes or vote splits; how the board decides is inferred from management's account",
+   "No board statement on a next-generation narrowbody engine or a Joint Venture with Rolls-Royce",
+   "Leanne Caret's career before RTX and the full 2026 committee rosters (beyond the Audit, Finance and Governance chairs) were not found",
+   "All 21 web items were re-searched on 2026-10-10 (22 searches): 19 kept, 2 corrected (PG-0044 Audit chair, PG-0056 business-unit bonus split); the PSU weights (PG-0054), the 2023-25 PSU components (PG-0055) and the 164% factor (PG-0058) rest on the drafter's search alone",
+   "The operating head's relationship with the board rests on one event (2023)"
+  ],
+  "fallback": "Apply the company doctrine in profile.md (return hurdle, sole source, dividend first, Joint Ventures share risk not technology), then the nearest precedent in the decision record; defer to the CEO's case unless a test fails. Never invent a view, a director's opinion or a quote; say the record is silent."
+ },
+ "voice": {
+  "style": "Measured, collective and financial: 'the Board' in the third person, long-term shareowner value first, the dividend a commitment. Only one of the board's two own-words items carries a voice (Kennedy, 2021); no independent director is on record. The other lines are the then chair-CEO describing the board, or the 10-K the directors sign, each labelled by its perspective.",
+  "quotes": [
+   {
+    "id": "PG-0007",
+    "quote": "I am pleased that Greg Hayes will be taking on the role of Chairman and CEO as of June 1",
+    "date": "2021-04-26",
+    "doc": "RTX 2021 Annual Meeting of Shareowners",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "PG-0013",
+    "quote": "the Board believes this is the right thing to do for shareowners over the long term.",
+    "date": "2019-06-17",
+    "doc": "Shareholder/Analyst Call (Paris Air Show)",
+    "perspective": "management_on_board"
+   },
+   {
+    "id": "PG-0017",
+    "quote": "The question that the board has to answer, that we have to answer is what is the best way to create additional long-term shareowner value.",
+    "date": "2018-09-14",
+    "doc": "Company Conference Presentation",
+    "perspective": "management_on_board"
+   },
+   {
+    "id": "PG-0029",
+    "quote": "we had a fulsome discussion with the Board about the timing of the ASR.",
+    "date": "2023-10-24",
+    "doc": "FQ3 2023 Earnings Call",
+    "perspective": "management_on_board"
+   },
+   {
+    "id": "PG-0031",
+    "quote": "Decisions with respect to dividends and share repurchases are subject to the discretion of our Board of Directors",
+    "date": "2024-12-31",
+    "doc": "RTX Form 10-K FY2024",
+    "perspective": "filing"
+   },
+   {
+    "id": "PG-0034",
+    "quote": "The top ERM risks are compiled annually and shared with the Audit Committee of the Board of Directors as well as the full Board of Directors.",
+    "date": "2024-12-31",
+    "doc": "RTX Form 10-K FY2024",
+    "perspective": "filing"
+   }
+  ]
+ },
+ "web_sources": [
+  {
+   "id": "PG-0041",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817926000036/rtx014050-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2026-03-09"
+  },
+  {
+   "id": "PG-0042",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817926000036/rtx014050-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2026-03-09"
+  },
+  {
+   "id": "PG-0043",
+   "url": "https://www.rtx.com/news/news-center/2025/02/03/rtx-board-elects-christopher-t-calio-as-chairman",
+   "title": "RTX Board Elects Christopher T. Calio as Chairman (press release)",
+   "publisher": "RTX Corporation (rtx.com)",
+   "date": "2025-02-03"
+  },
+  {
+   "id": "PG-0044",
+   "url": "https://raytheon.mediaroom.com/2023-11-22-RTX-Announces-New-Lead-Independent-Director",
+   "title": "RTX Announces New Lead Independent Director (press release)",
+   "publisher": "RTX Corporation (mediaroom)",
+   "date": "2023-11-22"
+  },
+  {
+   "id": "PG-0045",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817925000067/rtx4383903-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2025 (2025 proxy statement; filing date approximate)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2025-03-01"
+  },
+  {
+   "id": "PG-0046",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817926000036/rtx014050-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2026-03-09"
+  },
+  {
+   "id": "PG-0047",
+   "url": "https://prd-sc102-cdn.rtx.com/-/media/rtx/r/rtx-corporate-governance/rtx-finance-committee-charter.pdf?rev=-1",
+   "title": "RTX Finance Committee Charter (dated May 1, 2025)",
+   "publisher": "RTX Corporation (rtx.com)",
+   "date": "2025-05-01"
+  },
+  {
+   "id": "PG-0048",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817925000067/rtx4383903-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2025 (2025 proxy statement; filing date approximate)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2025-03-01"
+  },
+  {
+   "id": "PG-0049",
+   "url": "https://prd-sc102-cdn.rtx.com/-/media/rtx/r/rtx-corporate-governance/rtx-finance-committee-charter.pdf?rev=-1",
+   "title": "RTX Finance Committee Charter and corporate governance materials (search finding)",
+   "publisher": "RTX Corporation (rtx.com)",
+   "date": "2025-05-01"
+  },
+  {
+   "id": "PG-0050",
+   "url": "https://prd-sc102-cdn.rtx.com/-/media/rtx/r/rtx-corporate-governance/rtx-governance-and-public-policy-committee-charter.pdf?rev=-1",
+   "title": "RTX Governance and Public Policy Committee Charter (dated May 2, 2024; as described in the 2026 proxy)",
+   "publisher": "RTX Corporation (rtx.com)",
+   "date": "2026-03-09"
+  },
+  {
+   "id": "PG-0051",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817925000067/rtx4383903-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2025 (2025 proxy statement; filing date approximate)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2025-03-01"
+  },
+  {
+   "id": "PG-0052",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817926000036/rtx014050-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2026-03-09"
+  },
+  {
+   "id": "PG-0053",
+   "url": "https://prd-sc102-cdn.rtx.com/-/media/rtx/r/rtx-corporate-governance/rtx-special-activities-committee-charter.pdf?rev=-1",
+   "title": "RTX Special Activities Committee Charter (dated May 1, 2025)",
+   "publisher": "RTX Corporation (rtx.com)",
+   "date": "2025-05-01"
+  },
+  {
+   "id": "PG-0054",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817924000096/rtx4243711_def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2024 (2024 proxy statement; filing date approximate)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2024-03-01"
+  },
+  {
+   "id": "PG-0055",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817926000036/rtx014050-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2026-03-09"
+  },
+  {
+   "id": "PG-0056",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817926000036/rtx014050-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2026-03-09"
+  },
+  {
+   "id": "PG-0057",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000130817925000067/rtx4383903-def14a.htm",
+   "title": "RTX Corp - Form DEF 14A - FY2025 (2025 proxy statement; filing date approximate)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2025-03-01"
+  },
+  {
+   "id": "PG-0058",
+   "url": "https://dc.fortune.com/2026/04/29/ceo-pay-tariff-adjustment-rtx-ross-gap/",
+   "title": "CEO pay and tariff adjustments (RTX)",
+   "publisher": "Fortune",
+   "date": "2026-04-29"
+  },
+  {
+   "id": "PG-0059",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000101829/000114036126018932/ef20072402_8k.htm",
+   "title": "RTX Corp - Form 8-K (2026 annual meeting results)",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2026-05-04"
+  },
+  {
+   "id": "PG-0060",
+   "url": "https://www.sec.gov/Archives/edgar/data/101829/000010182926000006/rtx-20251231.htm",
+   "title": "RTX Corp - Form 10-K - FY2025",
+   "publisher": "RTX Corporation (SEC EDGAR)",
+   "date": "2025-12-31"
+  },
+  {
+   "id": "PG-0061",
+   "url": "https://www.rtx.com/news/news-center/2026/04/30/rtx-board-of-directors-increases-quarterly-cash-dividend",
+   "title": "RTX Board of Directors Increases Quarterly Cash Dividend (press release)",
+   "publisher": "RTX Corporation (rtx.com)",
+   "date": "2026-04-30"
+  }
+ ],
+ "protocol_steps": [
+  "guidance",
+  "review",
+  "confirm"
+ ]
+}

@@ -153,7 +153,7 @@
   },
   {
    "test": "Responsible bet",
-   "threshold": "Doctrine-favoured order kept only while it trails the best expected PV by $1B or less; premium declared; inside the cap, where it differs from the order serving the assigned objective, take the objective's unless a red line or binding veto blocks it (objectives.md §6); doctrine and objective premiums share the one $1B cap",
+   "threshold": "Doctrine-favoured order kept only while it trails the best expected PV by $1B or less; premium declared; inside the cap, where it differs from the order serving the assigned objective, take the objective's unless a red line or binding veto blocks it (objectives.md §6); doctrine and objective premiums share the one $1B cap; the Board passes a Board item that trails hold only within $0.5B of declared premium that serves the objective",
    "ids": [
     "PX-0010"
    ],
@@ -196,7 +196,7 @@
    ]
   },
   {
-   "ground": "Not a step-4 veto: his block on launch-style discounts (teams.md §1), applied when deciding; on this board, to other moves and statements only (inference)",
+   "ground": "Not a step-4 veto: his block on launch-style discounts (teams.md §1), applied when deciding; on this game board, to other moves and statements only (inference)",
    "binding": "none",
    "ids": [
     "PX-0055",
@@ -260,7 +260,7 @@
   },
   {
    "lever": "Joint Venture with RR",
-   "position": "No evidence of his own; off by default, on when RR commits or an airframer signals UltraFan, core technology protected; GTF2 first; a live GTF2 folds in and its spend counts toward P&W's $2B share",
+   "position": "No evidence of his own; off by default, on when RR's commitment is on the public record or an airframer signals UltraFan (a live airframe's code includes Rolls-Royce: 1, 4, 5 or 7), core technology protected; GTF2 first; a live GTF2 folds in and its spend counts toward P&W's $2B share",
    "ids": [
     "PX-0038",
     "PX-0014",
@@ -279,7 +279,7 @@
   },
   {
    "lever": "Widebody",
-   "position": "No move on this board; narrow-body focused",
+   "position": "No move on this game board; narrow-body focused",
    "ids": [
     "PX-0027"
    ],
@@ -287,7 +287,7 @@
   },
   {
    "lever": "Pricing terms",
-   "position": "Not a board order. In other moves and statements: standard terms, no launch-style discounts",
+   "position": "Not a game-board order. In other moves and statements: standard terms, no launch-style discounts",
    "ids": [
     "PX-0055",
     "P-0466"
@@ -296,7 +296,7 @@
   },
   {
    "lever": "GTF durability kit",
-   "position": "Not a board order here (dashboard_game.md §5); the Hot Section kit may be announced as an other move with no board effect",
+   "position": "Not a game-board order here (dashboard_game.md §5); the Hot Section kit may be announced as an other move with no game-board effect",
    "ids": [
     "PX-0088",
     "PX-0106"
@@ -485,7 +485,35 @@
  "protocol_steps": [
   "frame",
   "decide",
-  "revise"
+  "revise",
+  "board_revise"
  ],
- "veto_holder": false
+ "veto_holder": false,
+ "board": {
+  "summary": "The RTX Corporation Board of Directors (agent pratt-whitney-board): ten directors, nine independent, chaired by Calio himself; in the game it acts through its independent directors led by Lead Independent Director Fredric Reynolds (retired CBS CFO). Every order that differs from hold is a Board item (gtf2_solo launch, launch_if_selected or cancel; jv_with_rr commit or withdraw); RTX publishes no dollar threshold, and its veto binds. Culture scored risk aversion 3.5 of 5 and time horizon 3 of 5 (half points allowed): the return hurdle, sole source and proof before commitment, durability first, the dividend and pre-ASR debt. It approves launch_if_selected readily; an unconditional launch only into a P&W selection on the record or as NGSA franchise defence with an expected edge over launch_if_selected of at least +$0.5B (a margin over break-even, at its 3.5); commit once Rolls-Royce's commitment is on the record or a live airframe's code includes Rolls-Royce (1, 4, 5 or 7), on its weighted value; cancel or withdraw only with a weighted value against hold of at least zero, and a cancel while a live airframe whose code includes P&W can still be served also needs the cancel row ahead of hold in every plausible column. An item below hold passes only as a declared premium of at most $0.5B that serves the assigned objective, inside the team's $1B cap (its time horizon 3). It also vetoes an item that can lose more than its own $2B against hold in a plausible column, breaks the dividend or envelope rule, carries an unresolved binding veto or red-line flag, books unrecorded upside, or is not ready by the EIS it serves (inference).",
+  "seat_role": "As CEO (and the Board's chair, with no vote on his own package in the game), he reads the Board's guidance before framing and carries its would-veto list into his red lines, answers each recommendation in board_response when deciding, and after a Board veto revises once within it, with no override against the Board (board_revise: an alternative the Board named, or the default); the Board then confirms, and a still-vetoed item reverts to the default. The Board chose him after a three-year process and gives him its full support.",
+  "ids": [
+   "PG-0041",
+   "PG-0042",
+   "PG-0043",
+   "PG-0044",
+   "PG-0003",
+   "PG-0045",
+   "PG-0047",
+   "PG-0048",
+   "PG-0049",
+   "P-1285",
+   "P-0731",
+   "P-0746",
+   "P-1367",
+   "P-1360",
+   "PG-0050",
+   "P-0566",
+   "P-0686",
+   "PG-0054",
+   "PG-0026",
+   "PG-0027",
+   "PG-0016"
+  ]
+ }
 }

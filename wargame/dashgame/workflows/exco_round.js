@@ -39,7 +39,7 @@ const TEAMS = {
     board: 'boeing-board', boardName: 'the Boeing Board of Directors',
     company: 'Boeing', ceo: 'boeing-ortberg', cfo: 'boeing-malave', ops: 'boeing-pope',
     names: { ceo: 'Kelly Ortberg', cfo: 'Jay Malave', ops: 'Stephanie Pope' },
-    rule: 'Ortberg proposes and decides. Malave is his independent check on programme estimates: he can veto any plan that fails his buffer test (the slip leg). Rates are KPI-gated: the KPI doctrine (Pope\'s seat) vetoes a 737 Rate Increase while a quality, FAA or supply-chain problem is live (the board has no injects, so it binds only if the brief reports one). Ortberg decides everything else. (teams.md §9; both vetoes are inferences from the evidence.)',
+    rule: 'Ortberg proposes and decides. Malave is his independent check on programme estimates: he can veto any plan that fails his buffer test (the slip leg). Rates are KPI-gated: the KPI doctrine (Pope\'s seat) vetoes a 737 Rate Increase while a quality, FAA or supply-chain problem is live (the game board has no injects, so it binds only if the brief reports one). Ortberg decides everything else. (teams.md §9; both vetoes are inferences from the evidence.)',
     veto: {
       cfo: { ground: 'any plan that fails your buffer test (the slip leg)', binding: true },
       ops: { ground: 'a 737 Rate Increase while the brief reports a live quality, FAA or supply-chain problem (the KPI doctrine)', binding: true },
@@ -49,7 +49,7 @@ const TEAMS = {
     board: 'airbus-board', boardName: 'the Airbus SE Board of Directors',
     company: 'Airbus', ceo: 'airbus-faury', cfo: 'airbus-toepfer', ops: 'airbus-wagner',
     names: { ceo: 'Guillaume Faury', cfo: 'Thomas Toepfer', ops: 'Lars Wagner' },
-    rule: 'The CEO leads the ExCo and takes the final call. The CFO and the CEO of Commercial Aircraft hold tests, not formal vetoes: a failed test is a soft veto, which the CEO can override only when the plan is at least $1B better (ΔPV on the brief\'s grid) than the best option that passes, and the override is recorded as a Board item. The five pillars (safety, quality, integrity, compliance, security) cannot be overridden. NGSA launch, A350 Re-engine, any cancellation and Delay Tactics are Board items; assume the Board approves when the tests pass. (teams.md; the soft veto is an inference.)',
+    rule: 'The CEO leads the ExCo and takes the final call. The CFO and the CEO of Commercial Aircraft hold tests, not formal vetoes: a failed test is a soft veto, which the CEO can override only when the plan is at least $1B better (ΔPV on the brief\'s grid) than the best option that passes, and the override is recorded as a Board item. The five pillars (safety, quality, integrity, compliance, security) cannot be overridden. NGSA launch, A350 Re-engine, any cancellation and Delay Tactics are Board items; the Board of Directors applies its own tests and may veto. (teams.md; the soft veto is an inference.)',
     veto: {
       cfo: { ground: 'a failed financial test: a soft veto, binding unless the CEO records an override for a plan at least $1B better than the best option that passes, as a Board item; a five-pillars breach is binding with no override', binding: 'soft' },
       ops: { ground: 'a failed industrial or programme test: a soft veto, binding unless the CEO records an override for a plan at least $1B better than the best option that passes, as a Board item; a five-pillars breach is binding with no override', binding: 'soft' },
@@ -59,7 +59,7 @@ const TEAMS = {
     board: 'cfm-board', boardName: 'the GE Aerospace Board of Directors (with Safran\'s consent on CFM programmes)',
     company: 'CFM/GE', ceo: 'cfm-culp', cfo: 'cfm-ghai', ops: 'cfm-ali',
     names: { ceo: 'Larry Culp', cfo: 'Rahul Ghai', ops: 'Mohamed Ali' },
-    rule: 'Culp proposes and decides. Ghai tests terms and capex: price/cost positive, capex within 2-3% of revenue, no number before the airframer\'s volumes are agreed. Ali tests dates: confidence from real testing, not analysis. Whether either test is a formal veto is not shown; in this game (the script\'s inference) a failed test binds unless Culp answers it with evidence. Tie-break: "safety, quality, delivery and cost, always in that order". Culp\'s red lines: a next engine needs at least 20% better fuel burn, and durability is not traded for fuel burn. The Safran gate: narrowbody price, capacity and RISE go to the partner; expect consent (inference).',
+    rule: 'Culp proposes and decides. Ghai tests terms and capex: price/cost positive and no number before the airframer\'s volumes are agreed (veto tests); capex within 2-3% of revenue is advice (an analogy for R&D). Ali tests dates: confidence from real testing, not analysis. Whether either test is a formal veto is not shown; in this game (the script\'s inference) a failed test binds unless Culp answers it with evidence. Tie-break: "safety, quality, delivery and cost, always in that order". Culp\'s red lines: a next engine needs at least 20% better fuel burn, and durability is not traded for fuel burn. The Safran gate: narrowbody price, capacity and RISE go to the partner; expect consent (inference).',
     veto: {
       cfo: { ground: 'terms or capex that fail your tests (inference: binds unless Culp answers it with evidence)', binding: 'inference' },
       ops: { ground: 'dates not backed by real testing (inference: binds unless Culp answers it with evidence)', binding: 'inference' },
@@ -293,7 +293,8 @@ async function boardReviseConfirm(x, side) {
   const changed = vetoed.filter(k => orders[k] !== DEFAULTS[side][k])
   let confirm = null, reverted = vetoed.filter(k => orders[k] === DEFAULTS[side][k])
   if (changed.length) {
-    const cp = head(side, 'board', 'confirm') + `\n\nYou vetoed ${vetoed.join(', ')}. The CEO's revision:\n${js(rev)}\n\nThe revised Board items: ${changed.map(k => `${k} = ${orders[k]}`).join(', ')}. Approve or veto each. A still-vetoed item reverts to the default.`
+    const pkg = { frame: x.frame, cfo_memo: x.cfo, ops_memo: x.ops, decision: x.decision, veto_checks: x.veto_checks, revision: x.revision }
+    const cp = head(side, 'board', 'confirm') + `\n\nYour guidance this round:\n${js(x.board_guidance)}\n\nThe ExCo's package:\n${js(pkg)}\n\nYour review:\n${js(rv)}\n\nThe CEO's revision after your veto:\n${js(rev)}\n\nThe orders now, after the revision:\n${js(orders)}\n\nThe revised Board items: ${changed.map(k => `${k} = ${orders[k]}`).join(', ')}. Approve or veto each (an alternative you named should pass unless something changed). A still-vetoed item reverts to the default.`
     confirm = await agent(cp, { label: `${side}:board:confirm`, phase: 'Board confirm', agentType: t.board, schema: REVIEW })
     const still = confirm ? confirm.items.filter(i => i.decision === 'veto' && changed.includes(i.order_field)).map(i => i.order_field) : changed
     orders = revert(side, orders, still)

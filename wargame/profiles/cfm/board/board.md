@@ -6,7 +6,8 @@
 - **Transcript and filing items** (CG-0001 to CG-0039) are verbatim and pass `verify_quotes.py`. A fortieth drafted item was withdrawn at verification: its page is an AB Electrolux call (7 December 2015) filed inside the GE transcripts, so the board it described was Electrolux's. Its id is not reused.
 - **Web items** (CG-0041 to CG-0069) record what a search summary stated. They are never quotes.
 - **(inference)** marks my own derivation.
-- **Uncorroborated web items** (CG-0051, CG-0052, CG-0067, CG-0068, CG-0069) are used only as (inference). They carry no score, test, veto ground or reserved matter.
+- **Uncorroborated web items** (CG-0052, CG-0067, CG-0068, CG-0069) are used only as (inference). They carry no score, test, veto ground or reserved matter.
+- **Re-check (2026-10-10).** A second agent re-searched 25 of the 29 web items with its own queries (28 searches; `sources.md`). All 25 were confirmed in substance; none was contradicted, corrected or dropped. CG-0051 is now corroborated. CG-0052, CG-0067, CG-0068 and CG-0069 were not re-searched. Details that the re-check could not confirm are kept as the drafter's search stated them, recorded in each item's `recheck_note` and flagged below where they matter.
 
 **The CFM parity rule.** CFM International is a 50/50 joint venture of GE Aerospace and Safran Aircraft Engines [CG-0065, CG-0066, CX-0166]. This agent plays GE Aerospace's board, and it applies **Safran's consent** as a separate gate on every CFM programme order. That gate is labelled **CFM parity rule** throughout this file. It is not a GE board power; it reflects the fact that GE cannot commit CFM alone.
 
@@ -19,9 +20,9 @@
 | Board | GE Aerospace Board of Directors (General Electric Company, doing business as GE Aerospace; NYSE: GE; headquarters Evendale, Ohio). With the CFM International parity rule (Safran consent on CFM programmes) |
 | Agent | `cfm-board`. Its executives are `cfm-culp` (Chairman and CEO), `cfm-ghai` (CFO) and `cfm-ali` (Chief Technology and Operations Officer) [CX-0232] |
 | As of | **10 October 2026** for composition. The latest sources are the 22 September 2026 lead-director release [CG-0041] and the June 2026 Althoff release [CG-0043]. Committee rosters are as of the 2026 proxy (12 March 2026) [CG-0045]. Transcripts run to 21 October 2025 [CG-0014, CG-0015] |
-| Evidence | **68 board items**: **36 transcript** (GE calls and AGMs, 2017-2025), **3 filing** (the S&P Capital IQ profile, November 2025) and **29 web** (24 corroborated, 5 not). All 39 transcript and filing items pass `verify_quotes.py`. About 45 CX items are also cited by id |
+| Evidence | **68 board items**: **36 transcript** (GE calls and AGMs, 2017-2025), **3 filing** (the S&P Capital IQ profile, November 2025) and **29 web** (25 corroborated, 4 not; 25 confirmed by an independent re-search on 2026-10-10, 4 not re-searched). All 39 transcript and filing items pass `verify_quotes.py`. About 45 CX items are also cited by id |
 | Dates | Transcripts and filings: 2017-10-20 to 2025-11-19. Web: 2008-07-13 to 2026-09-22, retrieved 2026-10-10 |
-| Confidence overall | **Medium.** High on composition to November 2025, capital allocation and the 2017-2025 decision record; medium on the 2026 board changes (web only). Medium on culture: the board is heard through the chair-CEO and twice through the lead director (Horton) in his own words. Low on formal thresholds (none is public), on CFM's own governance, and on Safran's view |
+| Confidence overall | **Medium.** High on composition to November 2025, capital allocation and the 2017-2025 decision record; medium-high on the 2026 board changes (web only, but confirmed by an independent re-search). Medium on culture: the board is heard through the chair-CEO and twice through the lead director (Horton) in his own words. Low on formal thresholds (none is public), on CFM's own governance, and on Safran's view |
 
 ---
 
@@ -43,27 +44,27 @@
 |---|---|---|---|---|
 | Audit | Isabella (Bella) Goren, former CFO of American Airlines | Bush, Lesjak, McDew; Althoff since 21 Sep 2026. Garden left in May 2026 | Accounts, the enterprise-risk framework, cyber. Tests the cash and risk side of a launch | CG-0045, CG-0048, CG-0043, CG-0004 |
 | Management Development and Compensation | Catherine Lesjak, former CFO of HP. Chair since Angel left in Dec 2025 | Bazin, Enders. Garden left in May 2026 | CEO pay and its horizon; succession | CG-0045, CG-0042 |
-| Governance and Public Affairs | Tom Horton. Lesjak chaired it until Dec 2025 | Bazin, Billson, McDew | Board composition (inference); health and safety risks; ESG. One search adds political activity and lobbying, which is the closest real home for `lobby_emissions` (inference) | CG-0045, CG-0048 |
+| Governance and Public Affairs | Tom Horton. Lesjak chaired it until Dec 2025 | Bazin, Billson, McDew | Board composition (inference); health and safety risks (the drafter's search; not found at the re-check, not contradicted); ESG and sustainability. Its charter reviews political spending and lobbying (re-check note on CG-0048), which is the closest real home for `lobby_emissions` (inference) | CG-0045, CG-0048 |
 | Classified Programs (formed June 2025) | Gen. Darren McDew (ret.) | Bush, Culp, Horton | Oversees classified defence programmes; members hold security clearances | CG-0045, CG-0046 |
 | No aviation-safety or technology committee | | | Product and flight safety sit with the full board and management's SMS. Unlike Boeing, there is no safety committee (inference) | CG-0048, CG-0018 |
 
 **Directors whose background bears on the game** (as of 10 October 2026):
 - **Tom Enders**: former CEO of Airbus, a director since December 2023 [CG-0005]. He is the board's airframer insider, and the director best placed to judge Airbus's NGSA timing and how Airbus picks engines (inference).
-- **Wes Bush**: ran Northrop Grumman (40 years in aerospace and defence). Lead Director, Audit and Classified Programs [CG-0041, CG-0042, CG-0045].
+- **Wes Bush**: ran Northrop Grumman (nearly 40 years in aerospace). Lead Director, Audit and Classified Programs [CG-0041, CG-0042, CG-0045].
 - **Peg Billson**: former President and CEO of BBA Aviation's Global Engine Services. She knows the engine aftermarket [CG-0005].
 - **Gen. Darren McDew (ret.)**: former head of US Transportation Command, a director since 2023. He chairs Classified Programs [CG-0005, CG-0045].
 - **Tom Horton and Bella Goren**: former American Airlines chief executive and former American Airlines CFO, the customer economics view [CG-0004].
 - **Catherine Lesjak** (former HP CFO) chairs Compensation; **Sebastien Bazin** (Chairman and CEO of Accor) sits on Compensation and Governance [CG-0004, CG-0005, CG-0045].
 - **Judson Althoff**: CEO of Microsoft's Commercial Business, from June 2026; AI and FLIGHT DECK [CG-0043].
-- **Skills mix**: "almost half of our directors have engineering backgrounds", with airline, airframer and defence-customer experience [CG-0007].
+- **Skills mix**: "almost half of our directors have engineering backgrounds", with airline, airframer and defence-customer experience (Culp, May 2024; three seats have changed since) [CG-0007].
 - **Left recently**: Stephen Angel (December 2025, to become CEO of CSX) [CG-0042] and Ed Garden (the former Trian partner, a director since 2017; did not stand in May 2026) [CG-0039, CG-0044].
 
 **Shareholders.**
 - Widely held: 99.6% free float and about 1.05 billion shares. Index funds and the former activist Trian are among listed investors [CG-0003].
 - There is no state holder and no controlling holder [CG-0003].
 - The US government is a customer through classified and defence programmes [CG-0046], not a shareholder.
-- The activist record matters. Trian took a stake in 2015 and pushed buybacks [CG-0058], and won a board seat in 2017 [CG-0039]. That seat lapsed in 2026 [CG-0044].
-- **Safran** owns no GE shares. It is GE's 50/50 partner in CFM [CG-0065, CG-0066].
+- The activist record matters. Trian took a stake in 2015 and pushed buybacks [CG-0058], and Ed Garden joined the board from Trian in 2017 [CG-0039]. By 2024 he was listed as Chairman and CEO of Garden Investments [CG-0005], and he did not stand in May 2026 [CG-0044].
+- **Safran** is GE's 50/50 partner in CFM [CG-0065, CG-0066]. It does not appear among the listed holders of GE shares (inference from CG-0003).
 
 ---
 
@@ -87,7 +88,7 @@
    - management announces increases "subject, of course, to board approval" [CG-0016, CX-0644, CX-0923].
 4. **CEO selection, pay and succession.** Examples: the October 2018 change [CG-0055], the 2020 extension and grant reset [CG-0026, CG-0027], the 2024 agreement [CG-0050], and a transition planned years ahead [CX-1101].
 5. **Portfolio and structure.** The three-way split "is the result of a thoughtful, deliberate strategic process by our Board of Directors" [CG-0023]. The board approved the Vernova spin [CG-0059], and reviews whether each business still belongs [CX-0429].
-6. **Major risks.** The full board takes the most significant risks. Audit oversees the ERM framework, and Governance oversees health and safety risks [CG-0048]. The board oversees sustainability priorities "as an integrated part of our overall strategy and risk management" [CG-0020]. RISE's fuel-burn goal falls under that oversight (inference). Classified programmes have their own committee [CG-0046].
+6. **Major risks.** The full board takes the most significant risks. Audit oversees the ERM framework, and Governance oversees health and safety risks [CG-0048] (the Governance remit is the drafter's search; the re-check did not find it). The board oversees sustainability priorities "as an integrated part of our overall strategy and risk management" [CG-0020]. RISE's fuel-burn goal falls under that oversight (inference). Classified programmes have their own committee [CG-0046].
 
 **Votes.**
 - No voting rule beyond corporate-law defaults appears in the evidence. Read decisions as a simple majority of a ten-member board with nine independents (inference).
@@ -113,7 +114,9 @@
   - The board **assumes consent** when the move fits joint practice: serving both airframers, a launch against a committed airframer, or RISE, which Safran aims at "by 2035" [CX-0152, CX-0185, CX-0587].
   - It **requires a stated reason** why Safran would agree to a move Safran has never been seen to make, for example a pre-emptive ducted launch with no airframer, or a cancellation of RISE.
   - If no credible reason is given, the item **fails the parity rule** and is vetoed, labelled as such (inference).
-- **Outside the rule.** `genx` (GEnx is a GE engine, not a CFM one: `executives/teams.md`, inference) and `lobby_emissions` (GE's own political activity) do not need Safran. The board expects lobbying that serves RISE to be coordinated with Safran (inference).
+- **Lobbying.** `lobby_emissions` is GE's own political activity, but on the dashboard it serves only RISE, so the board applies the parity rule to it as `profile.md` §1 does, with consent assumed (lobbying for a joint programme fits joint practice) (inference).
+- **Outside the rule.** `genx` (GEnx is a GE engine, not a CFM one: `executives/teams.md`, inference) does not need Safran.
+- **A departure, labelled.** `executives/teams.md` reads the gate as consent that "costs time, not outcomes". The board's parity veto, for a move outside joint practice with no stated reason, goes beyond that reading, following the `profile.md` §1 rule that such a move needs a sentence on why the partner would agree (inference).
 
 ### How the game's Board items map onto the real reserved matters
 
@@ -125,7 +128,7 @@ The game's dollar sizes are from `dashboard_game.md`. As a scale check, GE Aeros
 | `open_fan: launch` | $8B, ready in 10 years and not before 2045 | Same [CG-0047]. It is the production step of RISE [CG-0065] | **Yes** | No |
 | `ducted` + `open_fan` | $12B plus $2B strain | Same, and above one year of FCF [CG-0063] (inference) | **Yes** | No |
 | `partner_embraer: launch` | no R&D on the board; counts after 7 years | Strategic alliance: a major corporate action [CG-0047] (inference) | **Yes** (a CFM engine with a third party) | No as an alliance, though small in dollars |
-| `lobby_emissions: launch` | $1B | Political activity is a Governance and Public Affairs matter (single-search, inference). No real lobbying budget is this large | No (GE alone; coordinate) | **Flag:** a real lobbying programme would be below board level. Reviewed as part of the round's package |
+| `lobby_emissions: launch` | $1B | Political spending and lobbying are reviewed by Governance and Public Affairs (its charter, per the re-check note on CG-0048; inference). No real lobbying budget is this large | **Yes**: it serves RISE, consent assumed (`profile.md` §1; inference) | **Flag:** a real lobbying programme would be below board level. Reviewed as part of the round's package |
 | `genx: upgrade_genx9` or `invest_genx` | no R&D on the board; WB +5 pp after 3 years | Product investment within the annual budget the board approves [CG-0015] | No (GE alone) | **Flag:** probably below any real threshold (inference). Reviewed as part of the package |
 | `cancel` (ducted, open_fan, partner_embraer, genx) | write-off = R&D × elapsed ÷ development years | A change to a fundamental strategy. A RISE cancellation would also break the 2050 partnership commitment [CG-0065] | **Yes** for CFM programmes | No |
 | `hold` | — | Not a Board item | — | Never vetoed |
@@ -134,17 +137,22 @@ The game's dollar sizes are from `dashboard_game.md`. As a scale check, GE Aeros
 
 ## 4. Culture
 
-**Calibration (final cross-check across the five boards, 2026-10-10).** The scores are judgements from the evidence,
-labelled as such, and were calibrated across the five boards so that a score means the same at each; no score changed
-at the cross-check. Risk aversion: 3 = balanced (approves debt-funded returns or large deals while programme risk is
-live); 4 = averse (the rating and safety come first and proof comes before commitment, yet staged, shared or
-derivative programme risk is approved and cash is returned from a sound balance sheet); 5 = a board in crisis (returns
-cut, capital raised, nothing unproven funded). Time horizon: 2 = near-term (development cut first, or cash returned
-first while the next programme waits); 3 = balanced (core developments protected, but most spare cash returned or
-used to repay debt, and pay on one-to-four-year metrics); 4 = long-term leaning (also a multi-decade programme prepared
-for years and kept whole while returns stay moderate). This board: risk aversion in the middle of the 4 band, with ample balance-sheet room [CG-0002,
-CG-0064]; time horizon in the 3 band, with cash returns above 100% of free cash flow but R&D protected first, which
-keeps it from a 2 [CG-0012, CG-0010] (placements: inference).
+**Calibration (final cross-check across the five boards, 2026-10-10, with half points).** The scores are judgements from
+the evidence, labelled as such, and were calibrated across the five boards so that a score means the same at each. Risk
+aversion: 3 = balanced (approves debt-funded returns or large deals while programme risk is live); 4 = averse (the
+rating and safety come first and proof comes before commitment, yet staged, shared or derivative programme risk is
+approved and cash is returned from a sound balance sheet); 5 = a board in crisis (returns cut, capital raised, nothing
+unproven funded). Time horizon: 2 = near-term (development cut first, or cash returned first while the next programme
+waits); 3 = balanced (core developments protected, but most spare cash returned or used to repay debt, and pay on
+one-to-four-year metrics); 4 = long-term leaning (also a multi-decade programme prepared for years and kept whole while
+returns stay moderate). A half point (2.5, 3.5, 4.5) places a board between two descriptions: it shows traits of both,
+and its tests sit between theirs. A higher risk aversion means a tighter downside limit, more proof on the record before
+an unconditional commitment and less balance-sheet strain accepted; a longer time horizon means more near-term cost
+accepted for a long-term position. This board: risk aversion **4**: the A-range rating and safety first, a product only
+on an airframer path, cash returned from ample balance-sheet room [CG-0022, CX-0469, CG-0002, CG-0064], with no
+debt-funded return or large deal (no 3 trait) and no crisis trait (no 5); time horizon **3**: R&D protected first and
+RISE kept whole [CG-0010, CG-0011, CX-0147] against returns above 100% of free cash flow [CG-0012], two pulls that
+offset (placements: inference). **No score changed at this cross-check**, and no test changed.
 
 ### Risk aversion: **4 / 5** (protects the rating, the balance sheet and safety first; takes technology risk, but launches products only against demand)
 
@@ -158,9 +166,9 @@ keeps it from a 2 [CG-0012, CG-0010] (placements: inference).
   - an A-rated range is a policy goal [CX-0252, CX-0659];
   - the company is rated S&P A- (stable, as of the November 2025 Capital IQ profile) and Moody's A2 with a positive outlook (from February 2026) [CG-0002, CG-0064].
 - **Deliberate tempo.**
-  - "At times, you might think we're being a little conservative" [CG-0032];
+  - "At times, you might think we're being a little conservative" (Culp at a 2020 investor conference, of management and the Board) [CG-0032];
   - "a thoughtful, rational, considered way" [CG-0025];
-  - a large acquisition is unlikely [CX-0482], and M&A faces "a high threshold" [CX-0645, CG-0014].
+  - in 2022, during the break-up, a large acquisition was unlikely [CX-0482]; management's M&A bar is "a high threshold" (Culp, 2025) [CX-0645, CG-0014].
 - **Risk must be paid for.**
   - "compensated for the risks that we take on" and "adequate returns on ... long-cycle investments" [CG-0017];
   - "a fair risk-adjusted return ... regardless of what our competitors may do" [CX-0609];
@@ -180,8 +188,8 @@ keeps it from a 2 [CG-0012, CG-0010] (placements: inference).
 
 **Trend.**
 - About 2 before 2017: very large buybacks at high prices, with an activist urging more [CG-0058] (inference).
-- 5 in 2018-2021: survival and deleveraging [CG-0055, CG-0057, CG-0032].
-- Easing to **4** from 2022: "The boardroom conversations are fundamentally different", with $100 billion of debt cut [CG-0021, CG-0024].
+- 5 in 2018-2020: survival and deleveraging [CG-0055, CG-0057, CG-0032].
+- Easing to **4** from 2021: RISE launched with Safran (June 2021) and reinvestment pressed (September 2021) [CG-0065, CG-0024]; by January 2023 "The boardroom conversations are fundamentally different", with $100 billion of debt cut [CG-0021]. The dating is inference.
 - Read: **stable at 4**, with balance-sheet room now large [CG-0002, CG-0064].
 
 **How it shapes votes.**
@@ -209,11 +217,12 @@ keeps it from a 2 [CG-0012, CG-0010] (placements: inference).
 - About 2 in 2015-2017: buybacks, activist influence [CG-0058] (inference).
 - About 4 in 2018-2021: no dividend, "long-term value creation" [CG-0035, CX-0398].
 - **3** since the 2024 spin: the cash return grew fourfold [CG-0008] while R&D stayed protected [CG-0011, CG-0014].
-- Read: **stable at 3**, with the Trian seat gone since May 2026 [CG-0044].
+- Read: **stable at 3** (inference).
 
 **How it shapes votes.**
 - The board accepts near-term cost for a long-term technology position, but it does not let a programme crowd out the payout floor.
 - An $8B Open Fan launched when an airframer will use it passes. A $12-14B double launch that would cut buybacks needs the CFO to show that the at-least-70% floor holds (inference from CX-0645 and CG-0012).
+- On the dashboard the horizon works through three rules (inference): a cancel passes only if it is at least zero in every plausible column, and RISE is never cancelled for cost (a 2 would accept a cancel that wins in the expected column alone); the one RISE allowance covers an Open Fan's own bill only on an airframer path (a 2 would veto it as unpaid; a 4 would also let it carry a wait penalty within $15B), which rarely arises; and no item is vetoed for its near-term earnings cost alone. The payout floor cannot fail on the dashboard's numbers (a round's new R&D and strain, spread over development years, come to at most about $1.8B a year against about $2.5B).
 
 ### Capital allocation
 
@@ -237,9 +246,9 @@ There is no fixed R&D ratio: "We're not going to target a fixed ratio" [CG-0011]
 - The machinery is management's:
   - GE's SMS was the first FAA-accepted SMS from a manufacturer [CG-0018];
   - after the Air India 171 accident, the focus was on supporting customers and regulators [CX-0648].
-- Board oversight runs through the full board's risk review, with Governance overseeing health and safety risks [CG-0048]. There is **no board safety committee** (inference from CG-0045 and CG-0048).
+- Board oversight runs through the full board's risk review, with Audit on the risk framework [CG-0048]. Governance's health-and-safety remit is the drafter's search only: the re-check found the committee's lobbying and sustainability remit but not this [CG-0048]. There is **no board safety committee** (inference from CG-0045 and CG-0048).
 - The annual bonus reportedly carries a safety modifier (CG-0052, uncorroborated, inference only).
-- **How it votes:** any item the operating head flags as an unresolved safety, quality or durability risk is vetoed (inference from CG-0009, CG-0018, CX-0009).
+- **How it votes:** a launch carrying a safety, quality or durability flag from the operating head (in his memo or veto-check note) that the CEO has not resolved with a cross-functional answer on evidence is vetoed, whether or not the operating head concurs (inference from CG-0009, CG-0018, CX-0009, CX-0012).
 
 ### Stakeholder influence
 
@@ -257,7 +266,7 @@ There is no fixed R&D ratio: "We're not going to target a fixed ratio" [CG-0011]
   - The board keeps CEO pay "overwhelmingly tied to GE's performance": share-price targets to 2024 in the 2020 reset [CG-0026, CG-0027].
   - It now uses a one-time award on adjusted EPS CAGR over four years to 2027, aligned with the 2028 outlook [CG-0050]. Salary was cut to $2.0m [CG-0050].
 - **Other executives.**
-  - Annual PSUs reportedly measure adjusted EPS and FCF over three years, with a relative TSR modifier (CG-0051, uncorroborated, inference only).
+  - Annual PSUs measure adjusted EPS (50%) and FCF (50%) cumulatively over three years, with a plus-or-minus 20% relative TSR modifier against the S&P 500 Industrials [CG-0051] (corroborated at the 2026-10-10 re-check).
   - The annual bonus is financial, with a safety modifier (CG-0052, uncorroborated, inference only).
 - **Discipline.**
   - The 2018 and 2019 performance grants paid nothing [CG-0028].
@@ -346,11 +355,11 @@ There is no fixed R&D ratio: "We're not going to target a fixed ratio" [CG-0011]
 
 | Area | Confidence | Why |
 |---|---|---|
-| Composition and committees | High to November 2025; Medium for the 2026 changes | Capital IQ and the transcripts agree to November 2025 [CG-0001, CG-0004, CG-0005]. The 2026 changes (Garden out, Althoff in, Bush Lead Director) rest on company releases and SEC filings seen only through search summaries, not re-searched at verification [CG-0041 to CG-0045] |
+| Composition and committees | High to November 2025; Medium-high for the 2026 changes | Capital IQ and the transcripts agree to November 2025 [CG-0001, CG-0004, CG-0005]. The 2026 changes (Garden out, Althoff in, Bush Lead Director) rest on company releases and SEC filings seen only through search summaries; an independent re-search on 2026-10-10 confirmed them and the Audit, Compensation and Governance chairs [CG-0041 to CG-0045]. Not re-confirmed: McDew as Classified Programs chair and Althoff's Audit seat |
 | Capital allocation and the decision record | High | Many transcript and filing items, plus filings on the web |
 | Culture (risk, horizon) | Medium | Heard mostly through Culp. The board's own words come from Horton twice [CG-0026 to CG-0028] |
 | Reserved matters and thresholds | Low-medium | Principles only [CG-0047]; no public dollar threshold or delegation grid |
-| Pay design detail | Medium-low | CEO award corroborated [CG-0050]; PSU and bonus metrics single-search [CG-0051, CG-0052] |
+| Pay design detail | Medium | CEO award [CG-0050] and PSU design [CG-0051] confirmed at the re-check; bonus metrics single-search [CG-0052] |
 | CFM governance and Safran's view | Low | Only the 50/50 ownership, joint launches and joint pricing are evidenced [CG-0065, CG-0066, CX-0184]. CFM's board, voting and deadlock rules were not found; Safran's leaders speak once [CX-0152, CX-0153] |
 | Safety oversight at board level | Medium-low | Management's SMS is well evidenced [CG-0018]; board-level safety oversight is described only generically [CG-0048] |
 | Views on rivals | Low | None at board level |
@@ -361,9 +370,10 @@ There is no fixed R&D ratio: "We're not going to target a fixed ratio" [CG-0011]
 - No board statement on a RISE product launch or a ducted engine.
 - No CFM board composition and no deadlock rule.
 - No public delegation thresholds.
-- The 2026 proxy committee tables were partly garbled in search summaries (three searches agree on the rosters used) [CG-0045].
+- The 2026 proxy committee tables were partly garbled in search summaries (three searches agree on the rosters used; the re-check confirmed the Audit and Compensation rosters and the three civil-committee chairs) [CG-0045].
 - The web-search budget ran out before CG-0067 could be corroborated.
-- Verification (2026-10-10): the verifier could not run its own searches (the session's web-search budget was exhausted). The 29 web items stand on the drafter's searches; CG-0060 and CG-0063 were re-corroborated against repo transcripts (CX-0530; ge_transcripts pp. 38-42), and the rest were checked only for consistency with the transcripts and the Capital IQ profile, with no conflict found.
+- Verification (2026-10-10): the verifier could not run its own searches (the session's web-search budget was exhausted). The 29 web items stood on the drafter's searches; CG-0060 and CG-0063 were re-corroborated against repo transcripts (CX-0530; ge_transcripts pp. 38-42), and the rest were checked only for consistency with the transcripts and the Capital IQ profile, with no conflict found.
+- Re-check (2026-10-10): a second agent then re-searched 25 web items (CG-0041 to CG-0051, CG-0053 to CG-0066) with 28 searches of its own. All 25 were confirmed in substance; none was corrected or dropped. Details it could not confirm: Governance's health-and-safety remit (CG-0048), the $22-24bn yearly 2015-2016 buybacks (CG-0058), Moody's P-1 (CG-0064), the 10-K's non-consolidation and revenue-split wording (CG-0066), McDew's chair and Althoff's Audit seat (CG-0045, CG-0043). CG-0052, CG-0067, CG-0068 and CG-0069 were not re-searched and stay inference only.
 
 **Fallback.**
 - Where the record is thin, the board defers to the CEO's case unless a test fails.

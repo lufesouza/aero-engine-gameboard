@@ -12,6 +12,18 @@ LEDE = ("In our Boeing vs Airbus war game (with the engine makers CFM/GE, Pratt 
         "<b>The game has not been run with these agents yet.</b>")
 
 FINDINGS = [
+    ("Every big decision now passes the company's Board.",
+     "Each company's ExCo decides, but every order that differs from the default (a launch, a cancellation, a Joint Venture "
+     "commitment, the Rate Increase, Delay Tactics) goes to its Board. The Board recommends before the round, then approves "
+     "or vetoes each item; the CEO revises once within a veto, and an item the Board still vetoes reverts to the default. "
+     "The Board never originates an order."),
+    ("The Boards' cultures differ, and their tests follow from them.",
+     "On one shared scale, Boeing's Board is the most risk-averse (4.5 of 5): no cash returned since 2020 [BG-0034] and about "
+     "$24 billion of equity raised in 2024 to keep the rating [BG-0062]. So it vetoes any item that can lose more than $1B in "
+     "a plausible column. RTX's is the least (3.5): it approved a $10 billion accelerated buyback three months into the "
+     "powder-metal crisis [PG-0028]. Airbus's looks furthest ahead (4 of 5 on time horizon), keeping NGSA on its 2030 clock "
+     "[AG-0063]; Rolls-Royce's the least far (2.5), with returns first as the platform for innovation [RG-0029] and a record "
+     "capital return [RG-0059]."),
     ("Each company now decides as three people, not one.",
      "The CEO frames the round and decides. The CFO and the operating head test the frame independently, each against "
      "their own stated rules, and can block on the grounds their team's rule gives them. How hard that block is differs by "
@@ -34,7 +46,7 @@ FINDINGS = [
      "Faury has one line in his own words [AX-0081]; Toepfer and Wagner have none. Their tests and soft vetoes follow from "
      "their roles, their pay metrics and the Board Report, so the Airbus ExCo is where the agents are least like the people."),
     ("Nothing has been played yet.",
-     "The agents are set up and kept apart from each other's files, and the round procedure is written. The next step is to "
+     "The twenty agents are set up and kept apart from each other's files, and the round procedure is written. The next step is to "
      "replay the four rounds of the earlier game (dash-2050, where one agent played each company) with the twenty agents, "
      "and compare their orders with that game."),
 ]
@@ -236,7 +248,32 @@ CONFIDENCE = {
 LOW_CONFIDENCE = ("Low", "Very low", "Low to medium", "Medium on engineering, low elsewhere")
 
 # Board texts: filled in from the Board profiles (see make_exco_html.checks()).
-BOARD_RULES = {sd: "" for sd in ("boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce")}
-BOARDS_LEDE = ""
+BOARD_RULES = {
+    "boeing": "Board (independent chair Mollenkopf): a launch must be more than $1B ahead of its default in the CEO's expected "
+              "column, no item may lose more than $1B in a plausible column, the plan stays within $2B of Do Nothing in the "
+              "risk-case column, one development at a time. Risk aversion 4.5, time horizon 3.",
+    "airbus": "Board (chair Moraleda since October 2026; approval above €300m, two-thirds above €800m): peak spend within about "
+              "a year's free cash flow, one clean-sheet launch at a time, no NGSA entry into service before 2035, no item "
+              "losing more than $2B in a plausible column, tight limits on Delay Tactics. Risk aversion 4, time horizon 4.",
+    "cfm": "GE Aerospace Board (Culp chairs; Lead Director Bush), with Safran's consent on CFM programmes: a Ducted more than $1B "
+           "ahead, no item losing more than its own bill, an Open Fan only on an airframer path, new R&D within the payout "
+           "floor. Risk aversion 4, time horizon 3.",
+    "pratt_whitney": "RTX Board (Calio chairs; lead independent director Reynolds): the return hurdle, an unconditional launch "
+                     "only onto a committed airframe, no item losing more than its own $2B, durability first, the dividend "
+                     "never gives. Risk aversion 3.5, time horizon 3.",
+    "rolls_royce": "Board (chair Frew; senior independent director Culmer): safety and maturity first, no unconditional launch "
+                   "without an airframe on the record, profit over share, one big programme at a time, the Joint Venture once "
+                   "P&W is committed or an airframe's code includes it. Risk aversion 4, time horizon 2.5.",
+}
+BOARDS_LEDE = ("One agent per company plays its Board of Directors. It does not run the company: it recommends before each "
+               "round, then approves or vetoes every big decision, and its veto binds. What it approves follows from its "
+               "culture, scored from the evidence on two scales: how risk-averse it is and how far ahead it looks. "
+               "Composition is as of the latest source, mostly 2026.")
 MAP_TITLE = "Culture map: where each Board sits on risk aversion and time horizon"
-MAP_CAP = ""
+MAP_CAP = ("Scores are judgements from the evidence, calibrated on one shared scale; a half point places a Board between "
+           "two descriptions. Risk aversion: 3 balanced; 4 averse (rating and safety first, proof before commitment, staged "
+           "programme risk still approved); 5 a board in crisis. Time horizon: 2 near-term; 3 balanced; 4 long-term "
+           "leaning. A higher risk aversion means a tighter downside limit and more proof before an unconditional "
+           "commitment; a longer horizon means more near-term cost accepted for a long-term position. Each Board agent "
+           "knows only its own scores. Airbus, GE and Rolls-Royce tie on risk aversion, and Boeing, GE and RTX on time "
+           "horizon, where the evidence does not separate them.")

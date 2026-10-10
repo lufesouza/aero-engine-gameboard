@@ -66,6 +66,14 @@ CITE = {"own_words": "own words", "filing": "Board Report text, not speech", "ob
         "web_official": "web search: company or regulator source", "web_press": "web search: press", "web_analysis": "web search: analysis"}
 
 
+def cite(e, persp=None):
+    """Plain label for whose words an evidence item is."""
+    persp = persp or e.get("perspective")
+    if persp == "filing" and e.get("source") != "airbus_fy2025" and "Board of Directors" not in (e.get("doc") or ""):
+        return "filing text, not speech"
+    return CITE.get(persp, (persp or "").replace("_", " "))
+
+
 def volume(a):
     """Volume of the person's record: the count of items in their own words."""
     n = BY[a]["n_own_words"]
@@ -350,7 +358,7 @@ def lst(items, ordered=False, key="text"):
 def quote_html(q):
     e = EV.get(q["id"], {})
     persp = q.get("perspective") or e.get("perspective")
-    note = CITE.get(persp, persp or "")
+    note = cite(e, persp)
     if persp == "own_words" and (e.get("speaker") or "").startswith("Unknown"):
         note = "attributed: an unnamed speaker in the transcript"
     ocr = (' <span class="inf">PDF spacing as extracted</span>'
@@ -456,9 +464,14 @@ def tiles():
     n_own = sum(1 for a in ORDER for e in ITEMS[a] if e.get("perspective") == "own_words")
     thin = [SHORT[a] for a in ORDER if volume(a) in ("Thin", "Filing-based")]
     quotes = sum(len(PROF[a]["voice"]["quotes"]) for a in ORDER)
-    t = [("Agents", "15", "Three per company: the CEO, the CFO and the operating head of each default 2026 ExCo"),
+    btf = sum(bkinds(sd)[0] + bkinds(sd)[1] for sd in SIDES)
+    bweb = sum(bkinds(sd)[2] for sd in SIDES)
+    bcorr = sum(1 for sd in SIDES for e in BOARD_EV[sd] if e.get("kind") == "web" and e.get("corroborated_by"))
+    t = [("Agents", "20", "Four per company: the CEO, the CFO and the operating head of each default 2026 ExCo, and its Board"),
+         ("Board evidence", f"{btf + bweb:,}", f"{btf} transcript and filing items, each quote checked against its page; {bweb} web-search "
+                                                f"items, {bcorr} corroborated by a second search"),
          ("Items in the executives' files", f"{n_items:,}", f"{n_own:,} in the person's own words; Airbus mostly Board Report text"),
-         ("Cited in the profiles", f"{len(CITED):,} ids", f"every id resolves to an evidence item; {quotes} signature quotes checked word for word"),
+         ("Cited in the profiles", f"{len(CITED):,} ids", f"every id resolves to an evidence item; {quotes} executive signature quotes checked word for word"),
          ("Thin or filing-based", f"{len(thin)} of 15", ", ".join(thin) + ": each falls back on the company profile or a named colleague"),
          ("Game", "Not run", "The agents are set up and kept apart from each other's files; the round procedure has been tried only with "
                              "placeholder agents")]
@@ -756,6 +769,16 @@ def checks():
           == ["Culp", "Mitchill", "Calio", "Erginbilgic", "Ghai", "Ortberg"]),
          ("confidence labels match the profiles", all(NAR.CONFIDENCE[a][1] in PROF[a]["evidence"]["confidence_overall"].lower() for a in ORDER)),
          ("Airbus once per game in Faury's file", "at most one override per game" in open(os.path.join(REPO, ".claude/agents/airbus-faury.md")).read())]
+    sc = {sd: (score(sd, "risk_aversion"), score(sd, "time_horizon")) for sd in SIDES}
+    C += [("board scores as stated", sc == {"boeing": (4.5, 3), "airbus": (4, 4), "cfm": (4, 3), "pratt_whitney": (3.5, 3), "rolls_royce": (4, 2.5)}),
+          ("Boeing most risk-averse, RTX least", max(sc, key=lambda k: sc[k][0]) == "boeing" and min(sc, key=lambda k: sc[k][0]) == "pratt_whitney"),
+          ("Airbus longest horizon, RR shortest", max(sc, key=lambda k: sc[k][1]) == "airbus" and min(sc, key=lambda k: sc[k][1]) == "rolls_royce"),
+          ("board chairs as stated", [BOARDS[sd]["composition"]["chair"].split(",")[0].split(" (")[0] for sd in SIDES]
+           == ["Steven M. Mollenkopf", "Amparo Moraleda", "H. Lawrence Culp", "Christopher T. Calio", "Dame Anita Frew"]),
+          ("finding/board-rule ids exist", set(CA.IDRE.findall(json.dumps(NAR.BOARD_RULES))) <= set(EV)),
+          ("every board web item behind a score/test/veto is corroborated",
+           all(EV.get(i, {}).get("kind") != "web" or EV[i].get("corroborated_by") for sd in SIDES
+               for i in CA.IDRE.findall(json.dumps([BOARDS[sd]["culture"], BOARDS[sd]["tests"], BOARDS[sd]["veto"]]))))]
     for t, x in NAR.FINDINGS:
         for q, i in re.findall(r'"([^"]+)" \[([A-Z]+-\d{4})\]', x):
             C.append((f"finding quote {i} verbatim", CA.verbatim(q, EV[i].get("quote", ""))))
@@ -779,7 +802,7 @@ def build(out_path, preview=False):
         q = e.get("quote") or e.get("finding") or ""
         src = (e.get("speaker") or "")[:80] if e.get("quote") else "Finding from an analyst model (not a quote)"
         ev[i] = {"date": e.get("date"), "doc": short_doc(e.get("doc"), 60), "s": src, "q": q if len(q) <= 420 else q[:417] + "…",
-                 "p": CITE.get(e.get("perspective"), (e.get("perspective") or "").replace("_", " "))}
+                 "p": cite(e)}
     evjson = json.dumps(ev, ensure_ascii=False).replace("</", "<\\/")
     comp = ", ".join(f"{SHORT[a]} {COMP[a]}" for a in sorted(ORDER, key=lambda a: -COMP[a]) if COMP[a])
     iso = NAR.ISOLATION.format(cases=len(TH.CASES), new=TH.N_EXEC, paths=TH.N_PATHS)

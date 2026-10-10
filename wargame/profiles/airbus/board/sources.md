@@ -1,6 +1,6 @@
 # Airbus SE Board of Directors: web sources
 
-Retrieved 2026-10-10 with the WebSearch tool (the container cannot fetch pages). Each web item in `evidence.jsonl` records the search summary's statement of a fact, not verbatim page text. Corroboration is a second, differently worded search that returned the same fact (`corroborated_by`). Five items are single-search and uncorroborated (marked below); they are used only as (inference) and carry no score, test, veto or reserved matter. AG-0064 was downgraded on verification: its recorded second query (about the buyback) and that result's title do not state the RISE test date or a 2031 launch.
+Retrieved 2026-10-10 with the WebSearch tool (the container cannot fetch pages). Each web item in `evidence.jsonl` records the search summary's statement of a fact, not verbatim page text. Corroboration is a second, differently worded search that returned the same fact (`corroborated_by`). Three items are single-search and uncorroborated (marked below: AG-0060, AG-0061, AG-0069); they are used only as (inference) and carry no score, test, veto or reserved matter. AG-0064 was downgraded on the first verification (its recorded second query did not state the RISE test date or a 2031 launch) and corroborated on the independent re-check; it is an analysts' projection and stays inference only. AG-0047 was corroborated on the re-check. **Independent re-check, 2026-10-10:** a second agent re-searched 31 of the 34 web items with 30 searches (listed at the end): 30 confirmed, 1 corrected (AG-0070, date), none dropped; AG-0060, AG-0061 and AG-0069 were not re-searched. Each web item's `verified` field records the outcome, and the re-check's query and URL are appended to its `corroborated_by`.
 
 ## Primary sources (one line per evidence item)
 
@@ -12,7 +12,7 @@ Retrieved 2026-10-10 with the WebSearch tool (the container cannot fetch pages).
 | AG-0044 | 2026-10-01 | Airbus SE (governance page) | Amparo Moraleda - Non-Executive Director (biography) | https://www.airbus.com/en/about-us/our-governance/amparo-moraleda | https://www.borsaitaliana.it/borsa/notizie/teleborsa/finanza/airbus-annuncia-cambiamenti-nel-cda-amparo-moraleda-prima-donna-alla-presidenza-159_2026-10-02_TLB.html?lang=it |
 | AG-0045 | 2020-04-16 | Airbus SE (press release) | Airbus shareholders approve 2020 AGM resolutions | https://www.airbus.com/en/newsroom/press-releases/2020-04-airbus-shareholders-approve-2020-agm-resolutions | https://afm.aero/airbus-appoints-amparo-moraleda-as-board-chair-in-2026 |
 | AG-0046 | 2026-10-10 | Airbus SE (governance page) | Antony Wood - Non-Executive Director (biography) | https://www.airbus.com/en/about-us/our-governance/antony-wood | https://www.airbus.com/en/newsroom/press-releases/2023-04-airbus-shareholders-approve-all-resolutions-at-2023-agm |
-| AG-0047 | 2020-03-01 | Airbus SE | Airbus 2020 AGM Information Notice | https://www.airbus.com/sites/g/files/jlcbta136/files/2022-02/Airbus-2020-Information-Notice-GV.pdf | **uncorroborated** |
+| AG-0047 | 2020-03-01 | Airbus SE | Airbus 2020 AGM Information Notice | https://www.airbus.com/sites/g/files/jlcbta136/files/2022-02/Airbus-2020-Information-Notice-GV.pdf | https://www.airbus.com/en/newsroom/press-releases/2020-03-airbus-publishes-agenda-for-2020-annual-general-meeting (re-check 2026-10-10) |
 | AG-0048 | 2026-10-05 | Reuters via The Star | Airbus board appointments herald CEO decision next year, sources say (Reuters) | https://www.thestar.com.my/business/business-news/2026/10/05/airbus-board-appointments-herald-ceo-decision-next-year-sources-say | https://www.businessday.co.za/world/international-companies/2026-10-04-ceo-decision-looms-as-airbus-reshapes-leadership/ |
 | AG-0049 | 2026-10-10 | Airbus SE (governance page) | Powers: Members of the Board of Directors (governance framework and documents) | https://www.airbus.com/en/about-us/our-governance/governance-framework-and-documents | https://www.airbus.com/node/86401; https://www.airbus.com:443/sites/g/files/jlcbta136/files/2021-06/Internal-Rules-BoardofDirectors.pdf |
 | AG-0050 | 2012-12-05 | Airbus SE (EADS) press release | Ad hoc release 5 December 2012: EADS governance and shareholding | https://www.airbus.com/en/newsroom/press-releases/2012-12-ad-hoc-release-5-december-2012-eads-governance-and-shareholding | https://aviationweek.com/aerospace/eads-undergoes-major-ownership-change; https://www.flightglobal.com/analysis-enders-strengthens-grip-on-new-look-eads/108113.article |
@@ -29,13 +29,13 @@ Retrieved 2026-10-10 with the WebSearch tool (the container cannot fetch pages).
 | AG-0061 | 2026-09-11 | Airbus SE (press release) | Airbus commences limited share buyback to support future employee share ownership plan activities | https://www.airbus.com/en/newsroom/press-releases/2026-09-airbus-commences-limited-share-buyback-to-support-future-employee-share-ownership-plan-activities | **uncorroborated** |
 | AG-0062 | 2026-06-30 | Airbus SE (investor page) | Financing strategy (hedging and debt information) | https://www.airbus.com/index.php/en/investors/hedging-debt-information | https://www.abcbourse.com/marches/sp-global-ratings-releve-la-note-de-credit-d-airbus-a-a-la-perspective-est_699038 |
 | AG-0063 | 2026-06-27 | AirlineGeeks (citing Aviation Week) | Report: Airbus to Launch A320 Replacement Program in 2030 | https://airlinegeeks.com/2026/06/27/report-airbus-to-launch-a320-replacement-program-in-2030/ | https://travelradar.aero/airbus-remains-committed-to-launching-a320-successor-by-2030/ |
-| AG-0064 | 2026-06-08 | AIN Online | Airbus closes options for new-generation airliners | https://backend.ainonline.com/aviation-news/aerospace/2026-06-08/airbus-closes-options-new-generation-airliners | **uncorroborated** (the second query's result, https://www.insideflyer.com/posts/boeing-and-airbus-plan-next-gen-single-aisle-jets-for-late-2030s/, does not confirm the specifics) |
+| AG-0064 | 2026-06-08 | AIN Online | Airbus closes options for new-generation airliners | https://backend.ainonline.com/aviation-news/aerospace/2026-06-08/airbus-closes-options-new-generation-airliners | **uncorroborated** (the second query's result, https://www.insideflyer.com/posts/boeing-and-airbus-plan-next-gen-single-aisle-jets-for-late-2030s/, does not confirm the specifics); corroborated on re-check 2026-10-10 by https://leehamnews.com/2026/05/21/airbus-27-year-march-to-a-new-airplane/ (analysts' projection: inference only) |
 | AG-0065 | 2025-02-07 | Aerospace Testing International | Airbus delays ZEROe hydrogen aircraft research program | https://aerospacetestinginternational.com/news/airbus-delays-zeroe-hydrogen-aircraft-research-program.html | https://aviacionline.com/airbus-delays-hydrogen-powered-commercial-aircraft-project-until-mid-next-decade |
 | AG-0066 | 2023-12-01 | TipRanks / The Fly (citing the Financial Times) | Airbus CEO says may need state backing for A320 successor (FT report) | https://www.tipranks.com/news/the-fly/airbus-ceo-says-may-need-state-backing-for-a320-successor-ft-reports | https://www.airport-technology.com/newsletters/airbus-state-support-needed-new-aircraft |
 | AG-0067 | 2025-11-28 | Cyprus Mail (Reuters) | Airbus issues major A320 recall after flight-control incident | https://cyprus-mail.com/2025/11/28/airbus-issues-major-a320-recall-after-flight-control-incident | https://airlinegeeks.com/2025/11/28/a320-fleet-update-prompts-significant-disruptions-airbus-says/ |
 | AG-0068 | 2025-12-03 | Associated Press via News4Jax | Airbus cuts 2025 delivery target due to A320 fuselage panel issue | https://www.news4jax.com/business/2025/12/03/airbus-cuts-2025-delivery-target-due-to-a320-fuselage-panel-issue/ | https://www.marketscreener.com/news/airbus-cuts-plane-delivery-goal-due-to-a320-fuselage-quality-issue-ce7d51ded981f426 |
 | AG-0069 | 2026-10-10 | Airbus SE (website) | Safety of our products | https://airbus.com/en/safety/safety-of-our-products | **uncorroborated** |
-| AG-0070 | 2025-04-17 | Airbus SE (press release) | Airbus signs definitive agreement with Spirit AeroSystems | https://www.airbus.com/en/newsroom/press-releases/2025-04-airbus-signs-definitive-agreement-with-spirit-aerosystems | https://centreforaviation.com/news/airbus-completes-acquisition-of-spirit-aerosystems-sites-in-us-europe-and-morocco-1341749 |
+| AG-0070 | 2025-04-27 (corrected on re-check from 2025-04-17: Spirit's 8-K dates the agreement 27 April 2025) | Airbus SE (press release) | Airbus signs definitive agreement with Spirit AeroSystems | https://www.airbus.com/en/newsroom/press-releases/2025-04-airbus-signs-definitive-agreement-with-spirit-aerosystems | https://centreforaviation.com/news/airbus-completes-acquisition-of-spirit-aerosystems-sites-in-us-europe-and-morocco-1341749; https://www.sec.gov/Archives/edgar/data/1364885/000110465925119096/tm2532915d1_8k.htm |
 | AG-0071 | 2025-10-23 | Defense One | Airbus, Leonardo, Thales join forces to reshape European space landscape | https://www.defenseone.com/business/2025/10/airbus-leonardo-thales-join-forces-reshape-european-space-landscape/409054 | https://www.nst.com.my/amp/business/corporate/2025/10/1300391/europe-firms-agree-satellite-merger-counter-starlink |
 | AG-0072 | 2024-10-30 | Airbus SE (press release) | Airbus proposes to renew CEO mandate and announces Commercial Aircraft leadership transition | https://www.airbus.com/en/newsroom/press-releases/2024-10-airbus-proposes-to-renew-ceo-mandate-and-announces-commercial | https://www.airbus.com/en/about-us/our-governance/guillaume-faury |
 | AG-0073 | 2024-12-04 | BNN Bloomberg (Reuters) | Airbus measures to cost about 2,000 jobs, most in space division | https://www.bnnbloomberg.ca/business/2024/12/04/airbus-measures-to-cost-about-2000-jobs-most-in-space-division/ | https://www.satellitetoday.com/finance/2024/10/16/airbus-to-cut-2500-jobs-in-defence-and-space/ |
@@ -43,7 +43,7 @@ Retrieved 2026-10-10 with the WebSearch tool (the container cannot fetch pages).
 
 ## Repo sources
 
-- AG-0001 to AG-0040: Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026), OCR pages in `$WARGAME_BUILD_DIR/text/airbus_pages/NNN.txt` (source `airbus_fy2025`, page = OCR file number). All 40 pass `verify_quotes.py`.
+- AG-0001 to AG-0040 and AG-0075 (added at the review fix, 2026-10-10: Irene Rummelhoff in the FY2025 board list, page 54): Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026), OCR pages in `$WARGAME_BUILD_DIR/text/airbus_pages/NNN.txt` (source `airbus_fy2025`, page = OCR file number). All 41 pass `verify_quotes.py`.
 - Existing company and executive items cited in `board.md` (A-, AX-) come from `../evidence.jsonl` and `../executives/evidence.jsonl` unchanged.
 
 ## Queries used (67)
@@ -124,3 +124,36 @@ Retrieved 2026-10-10 with the WebSearch tool (the container cannot fetch pages).
 - No board-level safety committee; no external safety-culture assessment of Airbus comparable to the FAA expert panel on Boeing.
 - The LTIP metric weights for the 2026 grant were not in web results (the FY2025 report gives the 2022 plan: 75% EPS, 25% FCF; A-0334).
 - Backgrounds of Doris Hopke, Irene Rummelhoff and Catherine Guillouard were not confirmed by search.
+
+## Independent re-check queries (2026-10-10, 30)
+
+1. Airbus 2026 Annual General Meeting results Henriette Hallberg Thygesen Oliver Zipse appointed dividend 3.20
+2. Airbus board October 2026 Amparo Moraleda chair Obermann SAP Christophe Fouquet co-opted Dunkerley lead independent director
+3. Airbus Board Rules qualified majority investment programmes acquisition in excess of €800 million €300 million
+4. Amparo Moraleda biography IBM Spain Portugal Iberdrola International COO Airbus director since 2015 Maersk CaixaBank
+5. Antony Wood Airbus non-executive director Meggitt CEO Rolls-Royce Aerospace president Chemring chair National Grid
+6. Airbus 2020 AGM Mark Dunkerley Stephan Gemkow appointed non-executive directors Lufthansa CFO Hawaiian Airlines
+7. Airbus board appointments herald CEO decision next year Faury mandate April 2028 Lars Wagner heir apparent Reuters October 2026
+8. Airbus July 2026 €5 billion share buyback three years EBIT Adjusted 2029 €12-13 billion mid-term outlook
+9. S&P upgrades Airbus to A+ stable 2026 Moody's A1 Airbus rating
+10. Faury Airbus keeps 2030 launch A320 successor June 2026 RISE open fan testing moved 2029 launch unlikely before 2031
+11. Airbus new dividend policy June 2025 payout ratio 30% to 50% cash conversion around 1 five-year special dividend buybacks
+12. Airbus H1 2026 results 351 deliveries free cash flow before customer financing guidance 870 EBIT Adjusted 7.5 billion gross cash 23.4
+13. EADS December 2012 governance shareholding reform France Germany 12% Spain 4% "no veto right" directors shareholders normalisation
+14. Airbus board selects Guillaume Faury October 2018 Denis Ranque unanimous internal external candidates; December 2017 Enders not seek new mandate Bregier leave February 2018
+15. Airbus January 31 2020 agreements PNF SFO DOJ €3,598 million penalties AFA monitoring Ethics and Compliance Committee Denis Ranque
+16. Airbus March 23 2020 COVID-19 new €15 billion credit facility withdraws 2019 dividend €1.80 suspends voluntary pension top-up liquidity €30 billion board approval
+17. Airbus ends A380 production February 14 2019 Emirates order cut last deliveries 2021 Enders no substantial backlog board meeting approve
+18. Airbus board approval A350 freighter July 29 2021 entry into service 2025; A350F delayed second half 2027 Spirit AeroSystems February 2025
+19. Airbus delays ZEROe hydrogen aircraft beyond 2035 five to ten years budget cut 25% February 2025
+20. Faury Financial Times December 2023 Airbus may need state support A320 successor hydrogen repayable launch investment
+21. Airbus A320 precautionary software 6,000 aircraft JetBlue solar radiation November 28 2025; December 3 2025 delivery target cut 790 fuselage panels 628 aircraft
+22. Airbus cuts 2025 delivery target to around 790 A320 fuselage panel quality issue 628 aircraft December 2025
+23. Airbus definitive agreement Spirit AeroSystems April 2025 $439 million compensation Kinston Saint-Nazaire Belfast completed December 8 2025
+24. Airbus Leonardo Thales memorandum of understanding October 23 2025 space businesses 35% 32.5% 25,000 employees €6.5 billion operational 2027
+25. Airbus 2025 AGM April 15 2025 shareholders approve renewal Guillaume Faury CEO three years; October 30 2024 Lars Wagner succeed Christian Scherer
+26. "Airbus" H1 2021 results "Board of Directors" approved launch A350 Freighter July 2021
+27. Airbus Board of Directors Qualified Majority "strategic alliances" Chairman CEO nomination headquarters location powers
+28. René Obermann succeeds Denis Ranque Airbus Chairman April 2020 board selected 2019 former Deutsche Telekom CEO director since 2018
+29. Airbus Board announces top management succession plan 15 December 2017 Enders Bregier Faury Commercial Aircraft president
+30. Airbus Defence and Space 2,043 job cuts December 2024 OneSat write-downs no compulsory redundancies mid-2026

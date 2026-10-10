@@ -486,7 +486,34 @@
  "protocol_steps": [
   "frame",
   "decide",
-  "revise"
+  "revise",
+  "board_revise"
  ],
- "veto_holder": false
+ "veto_holder": false,
+ "board": {
+  "summary": "The GE Aerospace Board of Directors (agent cfm-board), ten directors with Culp as combined Chairman and CEO, speaks in the game through the independent directors under Lead Director Wes Bush (inference), and has no safety or technology committee, so engine programmes go to the full board, which takes the most significant risks (Governance's health-and-safety remit rests on one search that the 2026-10-10 re-check did not find). It approves or vetoes every order that differs from the default: ducted, open_fan and partner_embraer launches or cancels (major corporate actions), and lobby_emissions and genx (below any real threshold, reviewed with the package); its veto binds. On every CFM order (Ducted, Open Fan, Embraer, and Lobby, which serves RISE) it also applies the CFM parity rule: Safran's consent, assumed when the move fits joint practice, otherwise a stated reason why Safran would agree. Its culture is scored risk aversion 4 of 5 and time horizon 3 of 5: safety, an investment-grade (A-range) rating and reinvestment first, risk only when paid for, at least 70% of free cash flow returned, RISE funded as technology and launched as a product only on an airframer path. It approves a Ducted more than $1B ahead of its default in the expected column, or under hard rule 3 in a plausible column where a rival takes CFM's slot with a weighted item value of at least zero; GEnx, Embraer and Lobby only when they pay net of the strain they add, and Lobby only with an Open Fan launched or live; no item may lose more than its bill (its R&D, plus the $2B strain if it triggers it) in a plausible column. It vetoes an Open Fan the grid shows waiting on an airframe in any plausible column (it must be the one declared RISE allowance, within $15B), a cancel that loses in any plausible column or a RISE cancel for cost, a premium above the cap (a RISE allowance stated apart in premium_reason is not counted in it), a CFM move outside joint practice with no stated reason why Safran would agree, a launch carrying a safety or durability flag from Ali that Culp has not resolved with a cross-functional answer on evidence, and an override it cannot verify; a standing objection to the statement alone becomes a recommendation (inference).",
+  "seat_role": "He chairs the board as well as running the company and serves at its pleasure. As CEO he reads the Board's guidance before framing and carries its would-veto list into his situation and his asks of Ghai and Ali, labelled as Board guidance (not into red_lines: the guidance does not bind); answers each recommendation in board_response when deciding; states any RISE allowance apart from the doctrine or objective premium in premium_reason and gives column weights in predictions; and after a Board veto revises once within it, with no override against the Board (board_revise: an alternative the Board named, or the default, and an empty overrides list); the Board then confirms, and a still-vetoed item reverts to the default. He gives it the grid rows, each item's value against its default and the Safran gate it will check.",
+  "ids": [
+   "CG-0044",
+   "CG-0043",
+   "CG-0030",
+   "CG-0041",
+   "CG-0045",
+   "CG-0048",
+   "CG-0005",
+   "CG-0047",
+   "CG-0015",
+   "CG-0065",
+   "CG-0066",
+   "CX-0184",
+   "CG-0009",
+   "CG-0022",
+   "CX-0252",
+   "CG-0011",
+   "CG-0017",
+   "CX-0645",
+   "CG-0063",
+   "CX-0469"
+  ]
+ }
 }

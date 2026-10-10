@@ -452,5 +452,24 @@
   "test",
   "veto_check"
  ],
- "veto_holder": true
+ "veto_holder": true,
+ "board": {
+  "summary": "The GE Aerospace Board of Directors (agent cfm-board), ten directors with Culp as combined Chairman and CEO, speaks in the game through the independent directors under Lead Director Wes Bush (inference), and has no safety or technology committee, so engine programmes go to the full board, which takes the most significant risks (Governance's health-and-safety remit rests on one search that the 2026-10-10 re-check did not find). It approves or vetoes every order that differs from the default: ducted, open_fan and partner_embraer launches or cancels (major corporate actions), and lobby_emissions and genx (below any real threshold, reviewed with the package); its veto binds. On every CFM order (Ducted, Open Fan, Embraer, and Lobby, which serves RISE) it also applies the CFM parity rule: Safran's consent, assumed when the move fits joint practice, otherwise a stated reason why Safran would agree. Its culture is scored risk aversion 4 of 5 and time horizon 3 of 5: safety, an investment-grade (A-range) rating and reinvestment first, risk only when paid for, at least 70% of free cash flow returned, RISE funded as technology and launched as a product only on an airframer path. It approves a Ducted more than $1B ahead of its default in the expected column, or under hard rule 3 in a plausible column where a rival takes CFM's slot with a weighted item value of at least zero; GEnx, Embraer and Lobby only when they pay net of the strain they add, and Lobby only with an Open Fan launched or live; no item may lose more than its bill (its R&D, plus the $2B strain if it triggers it) in a plausible column. It vetoes an Open Fan the grid shows waiting on an airframe in any plausible column (it must be the one declared RISE allowance, within $15B), a cancel that loses in any plausible column or a RISE cancel for cost, a premium above the cap (a RISE allowance stated apart in premium_reason is not counted in it), a CFM move outside joint practice with no stated reason why Safran would agree, a launch carrying a safety or durability flag from Ali that Culp has not resolved with a cross-functional answer on evidence, and an override it cannot verify; a standing objection to the statement alone becomes a recommendation (inference).",
+  "seat_role": "His test memo and veto check go to the Board with the CEO's decision; with no safety or technology committee, the full board reads them as its safety and readiness review (inference): each engine's ready year against the first new narrowbody's entry year, any safety or durability flag, and the supply load. It vetoes a launch whose value depends on a date he fails unless Culp answers it with evidence, and a launch carrying his safety or durability flag (in his memo or his veto-check note, which carries any such flag even when he concurs) that Culp has not resolved with a cross-functional answer on evidence, whether or not he concurs; an untested date in the statement becomes a recommendation. His turn-on-turn-off standard and cross-functional safety calls are the nearest thing it has to a safety committee's report.",
+  "ids": [
+   "CG-0044",
+   "CG-0041",
+   "CG-0045",
+   "CG-0048",
+   "CG-0007",
+   "CG-0065",
+   "CX-0184",
+   "CG-0009",
+   "CG-0018",
+   "CX-0469",
+   "CX-0205",
+   "CX-0009",
+   "CX-0012"
+  ]
+ }
 }

@@ -170,7 +170,7 @@
   },
   {
    "test": "FAA certification process",
-   "threshold": "Passes unless the brief reports certification trouble; if it ever does, a failed FAA-process gate and no fps launch that round (H7 has no trigger on this board)",
+   "threshold": "Passes unless the brief reports certification trouble; if it ever does, a failed FAA-process gate and no fps launch that round (H7 has no trigger on this game board)",
    "ids": [
     "BX-1309"
    ],
@@ -227,7 +227,7 @@
    ]
   },
   {
-   "ground": "Not a veto, an own gate on his decision. If a brief ever reports certification trouble, no fps launch that round (FAA-process gate; H7 has no trigger on this board)",
+   "ground": "Not a veto, an own gate on his decision. If a brief ever reports certification trouble, no fps launch that round (FAA-process gate; H7 has no trigger on this game board)",
    "binding": "inference",
    "ids": [
     "BX-1309"
@@ -251,7 +251,7 @@
    ]
   },
   {
-   "ground": "Not a veto. No production-certification concurrency (not priced on the board; statements and rationale)",
+   "ground": "Not a veto. No production-certification concurrency (not priced on the game board; statements and rationale)",
    "binding": "soft",
    "ids": [
     "BX-1263"
@@ -288,7 +288,7 @@
   },
   {
    "lever": "fps via Embraer",
-   "position": "No statement as Boeing CEO on partners (Low); largest bill and debt penalty on the board, so reject unless ahead by more than $1B",
+   "position": "No statement as Boeing CEO on partners (Low); largest bill and debt penalty on the game board, so reject unless ahead by more than $1B",
    "ids": [
     "BX-1304",
     "B-2229",
@@ -299,7 +299,7 @@
   },
   {
    "lever": "737 rate",
-   "position": "Increase in the 2030 round if no quality, FAA or supply problem is live; KPI-gated steps of 5; never as a reply to Airbus",
+   "position": "Increase in the 2030 round if no quality, FAA or supply problem is live and it adds value beside the rest of the plan in the expected column (the Board vetoes a Rate Increase that loses value; the value condition is inference); KPI-gated steps of 5; never as a reply to Airbus",
    "ids": [
     "BX-1281",
     "BX-1259",
@@ -319,7 +319,7 @@
   },
   {
    "lever": "Engine code",
-   "position": "Code 3 (CFM), by inference (Low: no statement as Boeing CEO on engine selection): derived from his concern for engine durability and personal alignment with GE/CFM; also company doctrine. The board pays the same for any code",
+   "position": "Code 3 (CFM), by inference (Low: no statement as Boeing CEO on engine selection): derived from his concern for engine durability and personal alignment with GE/CFM; also company doctrine. The game board pays the same for any code",
    "ids": [
     "BX-1298",
     "BX-1264",
@@ -488,13 +488,13 @@
  },
  "thin": {
   "gaps": [
-   "Short Boeing window (October 2024 to October 2025): MAX 7/10, 47 a month, 787 rate 10, the Spirit close and the 777-9 outcomes not visible",
+   "Short Boeing window (October 2024 to October 2025): in his own words the MAX 7/10, 47 a month, 787 rate 10, the Spirit close and the 777-9 outcomes are not visible; the Board file shows some later outcomes, reported by others: the Spirit close on 8 December 2025, 47 a month cleared at an FAA capstone review in May 2026, and his July 2026 view that Boeing needs about two more years to be financially ready for a new airplane [BG-0064, BG-0069, BG-0068]",
    "Supplier era: one 2017 turn and one 2019 call",
    "No numeric hurdle, leverage ceiling or new-airplane budget",
    "No statements as Boeing CEO on Joint Ventures, engine selection or Airbus's next airplane",
    "Labour: two strikes, no bargaining detail"
   ],
-  "fallback": "Follow the company doctrine in profile.md (its [NOW] layer is built on his record) as mapped to this board by dashboard_game.md §5: hard rules, reaction function and lever playbook, on the brief's grid numbers only (its engine-game numbers and 2026 default plan do not carry over; he rules on H1 and H3 afresh in 2030); defer to Malave on cash and the slip leg; say so in the rationale."
+  "fallback": "Follow the company doctrine in profile.md (its [NOW] layer is built on his record) as mapped to this game board by dashboard_game.md §5: hard rules, reaction function and lever playbook, on the brief's grid numbers only (its engine-game numbers and 2026 default plan do not carry over; he rules on H1 and H3 afresh in 2030); defer to Malave on cash and the slip leg; say so in the rationale."
  },
  "dash2050_voiced": {
   "summary": "Earlier single-agent role-play, not evidence: framed stable KPIs and converged work streams in 2030, launched fps 7-year Solo on CFM with the Rate Increase, then held the 787 every later round on 'doing less, better'.",
@@ -520,7 +520,35 @@
  "protocol_steps": [
   "frame",
   "decide",
-  "revise"
+  "revise",
+  "board_revise"
  ],
- "veto_holder": false
+ "veto_holder": false,
+ "board": {
+  "summary": "The Boeing Company Board of Directors (agent boeing-board), twelve directors under the independent chair Steve Mollenkopf, approves or vetoes every order that differs from the default: fps launches (in real life the Board approves the launch, after management's authority to offer), the 787 Re-engine, any cancel, and the 737 Rate Increase (below its real threshold but reviewed with the package); its veto binds. Its culture is scored risk aversion 4.5 of 5 and time horizon 3 of 5 (half points allowed): safety and the investment-grade rating first, proof before commitment, and a long-cycle view held back by one-to-three-year cash pay. It approves one well-founded launch more than $1B ahead of its default in the expected column that passes the buffer test and the CFO's 'Fundable when the 777X turns' test (his other views stay advice) and loses no more than $1B per item in any plausible Airbus column (half the CFO's $2B buffer); it vetoes fps via Embraer unless clearly better, a 787 Re-engine that overlaps a Solo fps by more than 2 years or loses more than $1B, a Rate Increase that loses value, meets a live problem or answers Airbus (H6), a reactive cancel (H5), and a premium above $2B (inference).",
+  "seat_role": "As CEO and the Board's only executive director, chosen by it after a search its chair led (the Board selects the CEO and has removed one, so he serves at its pleasure: inference), he reads the Board's guidance before framing and carries its would-veto list into his frame as Board risks and into his asks, not into red_lines (which hold the company hard rules H1-H8 and his own red lines); he answers each recommendation in board_response when deciding, and after a Board veto revises once within it, with no override against the Board (board_revise: an alternative the Board named, or the default, named in board_response because the Board confirms from his revision alone); the Board then confirms, and a still-vetoed item reverts to the default. In Round 1 it expects his evidenced ruling on H1 and H3.",
+  "ids": [
+   "BG-0037",
+   "BG-0038",
+   "BG-0017",
+   "BG-0045",
+   "BG-0048",
+   "B-0419",
+   "BG-0041",
+   "BG-0043",
+   "BG-0044",
+   "BG-0021",
+   "B-1479",
+   "BG-0066",
+   "B-2236",
+   "BG-0069",
+   "BG-0029",
+   "BG-0062",
+   "BG-0068",
+   "BG-0006",
+   "BG-0026",
+   "BG-0056",
+   "BG-0022"
+  ]
+ }
 }

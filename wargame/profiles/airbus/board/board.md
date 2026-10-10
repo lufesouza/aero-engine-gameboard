@@ -3,7 +3,10 @@
 **Evidence tags.** AG- ids are in `board/evidence.jsonl` (this folder). A- and AX- ids are the company and executive
 files (`../evidence.jsonl`, `../executives/evidence.jsonl`), cited unchanged. Filing quotes are verbatim and machine-checked;
 web items record a search summary's statement, never a quote. **(inference)** marks my derivation. Uncorroborated web
-items (AG-0047, AG-0060, AG-0061, AG-0064, AG-0069) are used only as (inference) and carry no score, test or veto.
+items (AG-0060, AG-0061, AG-0069) are used only as (inference) and carry no score, test or veto. AG-0064 is corroborated
+but is an analysts' projection, so it too is used only as (inference). **Independent re-check (2026-10-10):** a second
+agent re-searched 31 of the 34 web items (30 searches): 30 confirmed, 1 corrected (AG-0070: agreement dated 27 April
+2025, not 17 April), none dropped; AG-0060, AG-0061 and AG-0069 were not re-searched (`"verified"` field in the evidence).
 
 ---
 
@@ -14,8 +17,8 @@ items (AG-0047, AG-0060, AG-0061, AG-0064, AG-0069) are used only as (inference)
 | Board | Airbus SE Board of Directors (one-tier board, Dutch SE, seat in Amsterdam/Leiden) |
 | Agent | `airbus-board`; executives `airbus-faury` (CEO), `airbus-toepfer` (CFO), `airbus-wagner` (CEO Commercial Aircraft) |
 | As of | **10 October 2026** for composition (latest source: Airbus release of 1 October 2026, AG-0042, AG-0043); governance rules as of the FY2025 Board Report issued 18 February 2026 |
-| Evidence | **74 board items**: 0 transcript, **40 filing** (FY2025 Board Report, all pass `verify_quotes.py`), **34 web** (29 corroborated by a second search, 5 not). Plus 65 company and executive items cited by id |
-| Dates | Filing 2026-02-18; web 2012-12-05 to 2026-10-05 (retrieved 2026-10-10) |
+| Evidence | **75 board items**: 0 transcript, **41 filing** (FY2025 Board Report, all pass `verify_quotes.py`), **34 web** (31 corroborated by a second search, 3 not; 31 re-checked by an independent search on 2026-10-10). Plus 65 company and executive items cited by id |
+| Dates | Filing 2026-02-18; web 2012-12-05 to 2026-10-10 (undated pages carry the retrieval date, 2026-10-10) |
 | Confidence overall | **Medium.** High on rules (reserved matters, majorities, pay design), medium on culture (inferred from decisions, not from board speech), low on individual directors' views and on the new chair's style |
 
 There are no Airbus earnings-call transcripts in the repo, so the board never speaks in its own spoken words here. Its
@@ -32,7 +35,7 @@ meetings, at 95% attendance [AG-0009].
 
 **Leadership.**
 - **Chair: Amparo Moraleda** since 1 October 2026 [AG-0042]. She is Spanish, has been on the board since 2015, and was formerly General Manager of IBM Spain and Portugal and COO of Iberdrola's international division [AG-0044]. She is the first woman and the first Spaniard to chair Airbus [AG-0042]. Until October 2026 she chaired the RNGC and was therefore lead independent director [AG-0023, AG-0024].
-- **Lead Independent Director and RNGC chair: Mark Dunkerley** since 1 October 2026 [AG-0043]. The chair of the RNGC is automatically the lead independent director, who appraises the chair and mediates between directors [AG-0024]. He has an airline-industry background (AG-0047, uncorroborated).
+- **Lead Independent Director and RNGC chair: Mark Dunkerley** since 1 October 2026 [AG-0043]. The chair of the RNGC is automatically the lead independent director, who appraises the chair and mediates between directors [AG-0024]. He has an airline-industry background and sat on the board of Spirit Airlines [AG-0047].
 - **CEO: Guillaume Faury**, the only executive director [AG-0026]. He was selected in October 2018 [AG-0051] and renewed at the 2025 AGM for three years [AG-0072]. His mandate runs to April 2028, and the renewal decision is expected in 2027 [AG-0048].
 - **Previous chair: Rene Obermann**, chair from April 2020 [AG-0045] until he left on 1 October 2026 for SAP [AG-0042]. He came from technology and private equity, not aerospace [AG-0008].
 
@@ -47,13 +50,13 @@ meetings, at 95% attendance [AG-0009].
 
 **Directors whose background bears on decisions** (as of 10 October 2026):
 - **Antony Wood**: former CEO of Meggitt and former President of Rolls-Royce Aerospace (2013-16). He is the engine and supplier-risk insider [AG-0046], sits on the Audit Committee [AG-0020] and was renewed in 2026 [AG-0041].
-- **Stephan Gemkow**: chairs the Audit Committee [AG-0020] and is a former Lufthansa CFO (AG-0047, uncorroborated). He was renewed in 2026 [AG-0041].
+- **Stephan Gemkow**: chairs the Audit Committee [AG-0020] and is a former Lufthansa CFO, with 22 years at Lufthansa [AG-0047]. He was renewed in 2026 [AG-0041].
 - **Henriette Hallberg Thygesen**: CEO of Terma (defence and aerospace). She joined in 2026 for three years [AG-0041].
 - **Oliver Zipse**: chairman of the BMW board of management when appointed, a high-volume industrial operator. He joined in April 2026 for one year, completing Victor Chu's mandate [AG-0041].
 - **Christophe Fouquet**: CEO of ASML, a technology-intensive manufacturing business. He was co-opted on 1 October 2026 [AG-0042].
 - **Jean-Pierre Clamadieu**: RNGC member [AG-0023]. He leaves at the 2027 AGM, and Florent Menegaux (CEO of Michelin) is to succeed him [AG-0043].
-- Also: Catherine Guillouard and Doris Hopke (Audit; Hopke also sits on the RNGC) [AG-0020, AG-0023], and Irene Rummelhoff (background not confirmed in evidence).
-- **Skills mix:** seven of twelve have aerospace experience and three have defence experience [AG-0007]. Recruiting targets expertise in the industry's technology challenges [AG-0015].
+- Also: Catherine Guillouard and Doris Hopke (Audit; Hopke also sits on the RNGC) [AG-0020, AG-0023], and Irene Rummelhoff, a director since 2022, re-elected in 2025 to 2028 (FY2025 board list [AG-0075]; no 2026 source records her leaving; background not confirmed in evidence).
+- **Skills mix** (2025 skills matrix, before the 2026 changes): seven of twelve had aerospace experience and three defence experience [AG-0007]. Recruiting targets expertise in the industry's technology challenges [AG-0015].
 - **Left in 2026:** Victor Chu and Feiyu Xu at the April AGM [AG-0041], and Obermann on 1 October [AG-0042].
 
 **Shareholders and states.**
@@ -84,7 +87,7 @@ meetings, at 95% attendance [AG-0009].
 - A Qualified Majority matter needs ten of twelve directors present (eight at a reconvened meeting) [AG-0011].
 - In the game the board agent speaks as one voice. A Qualified Majority item is read as "the case must persuade a broad majority, including the finance and industrial directors" **(inference)**.
 
-**Tempo.** About monthly meetings [AG-0009], an annual strategy off-site [AG-0016], and rolling forecasts and scenario reviews [AX-0007].
+**Tempo.** About monthly meetings [AG-0009], an annual strategy off-site [AG-0016], scheduled and ad hoc reviews of top risks [AG-0014], and rolling forecasts and scenario reviews [AX-0007]; emergency decisions within days in a shock [AG-0054].
 
 ### How the game's Board items map onto the real reserved matters
 
@@ -105,16 +108,25 @@ engine background as the lens (inference from AG-0046).
 
 ## 4. Culture
 
-**Calibration (final cross-check across the five boards, 2026-10-10).** The scores are judgements from the evidence,
-labelled as such, and were calibrated across the five boards so that a score means the same at each; no score changed
-at the cross-check. Risk aversion: 3 = balanced (approves debt-funded returns or large deals while programme risk is
-live); 4 = averse (the rating and safety come first and proof comes before commitment, yet staged, shared or
-derivative programme risk is approved and cash is returned from a sound balance sheet); 5 = a board in crisis (returns
-cut, capital raised, nothing unproven funded). Time horizon: 2 = near-term (development cut first, or cash returned
-first while the next programme waits); 3 = balanced (core developments protected, but most spare cash returned or
-used to repay debt, and pay on one-to-four-year metrics); 4 = long-term leaning (also a multi-decade programme prepared
-for years and kept whole while returns stay moderate). This board: risk aversion in the middle of the 4 band; time horizon at the low end of the 4 band,
-because NGSA is kept whole but the July 2026 buyback pulls toward 3 [AG-0063, AG-0059] (placements: inference).
+**Calibration (final cross-check across the five boards, 2026-10-10, with half points).** The scores are judgements from
+the evidence, labelled as such, and were calibrated across the five boards so that a score means the same at each. Risk
+aversion: 3 = balanced (approves debt-funded returns or large deals while programme risk is live); 4 = averse (the
+rating and safety come first and proof comes before commitment, yet staged, shared or derivative programme risk is
+approved and cash is returned from a sound balance sheet); 5 = a board in crisis (returns cut, capital raised, nothing
+unproven funded). Time horizon: 2 = near-term (development cut first, or cash returned first while the next programme
+waits); 3 = balanced (core developments protected, but most spare cash returned or used to repay debt, and pay on
+one-to-four-year metrics); 4 = long-term leaning (also a multi-decade programme prepared for years and kept whole while
+returns stay moderate). A half point (2.5, 3.5, 4.5) places a board between two descriptions: it shows traits of both,
+and its tests sit between theirs. A higher risk aversion means a tighter downside limit, more proof on the record before
+an unconditional commitment and less balance-sheet strain accepted; a longer time horizon means more near-term cost
+accepted for a long-term position. This board: risk aversion **4**: net cash and an A+/A1 rating protected, an abnormal
+level of risk reserved to the board and proof before commitment (also what a plain "strongly averse" 5 describes), but
+staged, derivative, shared or funded programme risk goes ahead and cash is returned from a sound balance sheet
+[A-0402, AG-0062, A-0299, AG-0056, AG-0070, AG-0071, AG-0059], so 4, not 5; time horizon **4**: NGSA prepared for
+years and kept on its 2030 clock while returns stay within a stated budget [AG-0063, AG-0058, AG-0059]; the July 2026
+buyback and one-to-four-year pay pull toward 3, not yet to 3.5, because no development has waited for returns
+(placements: inference). **No score changed at this cross-check.** The downside limit per Board item at 4 is $2B in any
+plausible column (it had been drafted at $1B).
 
 ### Risk aversion: **4 / 5** (averse: strict on balance-sheet and integrity risk; accepts measured programme risk)
 
@@ -125,14 +137,13 @@ because NGSA is kept whole but the July 2026 buyback pulls toward 3 [AG-0063, AG
 - The board's own self-evaluation asks for stronger risk oversight in decision-making [AX-0008], and its formal declaration admits that its risk systems cannot catch everything [AG-0033].
 - It wants proof before commitment:
   - the NGSA is gated on technology and production-system maturity [A-0225] and on a 2030 launch [AG-0063];
-  - the hydrogen aircraft was cut and delayed once its technology lagged [AG-0065];
-  - the A380 was ended once its backlog failed [AG-0055, A-0143].
+  - under its oversight the hydrogen aircraft was cut and delayed once its technology lagged [AG-0065];
+  - the A380 was ended once its backlog failed; a Bloomberg pre-report said the board would need to approve it formally, but no vote is on record [AG-0055, A-0143] (the board's role in both: inference).
 - It frames the ramp as "disciplined and controlled" [A-0303, AX-0010].
 
 **Against (why not 5).**
 - It approved the A350F before any launch order [AG-0056].
-- It took over failing Spirit sites, although Spirit paid Airbus to do so [AG-0070].
-- It joined a three-way space merger [AG-0071].
+- Airbus took over failing Spirit sites, although Spirit paid it to do so [AG-0070], and agreed a three-way space merger [AG-0071]. The sources name the company; the board's approval is inference from its reserved matters (acquisitions above €300m, strategic alliances) [A-0298, AG-0049].
 - It is starting capital-return buybacks while the NGSA is ahead [AG-0059].
 
 The board takes programme risk when that risk is staged, derivative, shared or funded. It does not take it when it threatens liquidity, the rating or integrity (inference).
@@ -144,7 +155,7 @@ The board takes programme risk when that risk is staged, derivative, shared or f
 
 **How it shapes votes.**
 - The board approves a launch only if the plan keeps net cash and the rating intact, puts EIS no earlier than technology-ready, and runs no second clean sheet in parallel.
-- It vetoes anything carrying a large contingent penalty or an integrity exposure.
+- It vetoes anything carrying a large contingent penalty or an integrity exposure, and any item that loses more than $2B in a plausible Boeing column (the limit at 4; inference).
 
 ### Time horizon: **4 / 5** (long-term, with a growing pull toward near-term returns)
 
@@ -155,7 +166,7 @@ The board takes programme risk when that risk is staged, derivative, shared or f
 - Cash targets are set over five years [AG-0058, AG-0059], and the long-term state shareholders hold about a quarter of the shares [A-0381].
 
 **Pulls toward the short term.**
-- About half of target variable pay is one-year: the STI is 150% of salary on EBIT and FCF, against an LTI capped at 150% [A-0309, A-0310, A-0332]. The LTI measures only three years [AG-0030], and there is no five-year holding period [AG-0031].
+- About half of target variable pay is the one-year STI (target 150% of salary, against an LTI capped at 150%), in which EBIT and FCF together weigh 40% (20% each) [A-0309, A-0310, A-0332]. The LTI measures only three years [AG-0030], and there is no five-year holding period [AG-0031].
 - The payout ceiling was raised to 50% [AG-0058], and a first €5bn capital-return buyback was approved in July 2026 [AG-0059]. Observers warn of a Boeing-style drift (AG-0060, uncorroborated, inference only).
 
 **Trend.** A slight drift toward near-term returns since mid-2025 (from about 4.5 to 4, inference). The NGSA plan has not been cut to pay for returns.
@@ -163,6 +174,7 @@ The board takes programme risk when that risk is staged, derivative, shared or f
 **How it shapes votes.**
 - The board accepts near-term cost for a long-term position: it would not vote down an NGSA that is on its technology clock because of near-term EBIT.
 - It does not accept a long-term bet that endangers the dividend policy or the buyback, except in a crisis, where the 2020 precedent applies [AG-0054].
+- On the game's levers the horizon works through three limits: no veto of an NGSA launch on its clock for its spend or near-term earnings cost, no NGSA cancel unless continuing loses in every plausible column, and no veto of a later launch for lateness alone. It gives no allowance on peak cash: risk aversion decides that conflict (inference).
 
 ### Capital allocation
 
@@ -180,7 +192,7 @@ The order of priority (inference from the record):
 
 - The full board reviews product safety in depth twice a year [AX-0015]. Aviation safety and security are "the highest priority" [AG-0038], and safety heads the CEO's 2026 objectives [A-0331, AX-0073].
 - There is no board safety committee [AG-0022, inference]. Each division has a Chief Product Safety Officer as an independent voice (AG-0069, uncorroborated).
-- Recent practice puts safety ahead of output:
+- Recent company practice puts safety ahead of output (company actions; the board's role is inference):
   - a fleet-wide precautionary software action on about 6,000 A320s in November 2025 [AG-0067];
   - a delivery-guidance cut rather than shipping aircraft with suspect panels in December 2025 [AG-0068, A-0185].
 - How it votes: a plan that the operating head flags as a safety or quality risk to the ramp is vetoed (inference from AX-0015, A-0331).
@@ -207,23 +219,25 @@ The order of priority (inference from the record):
 
 ## 5. Decision record
 
+Rows marked (Company action) are decisions the sources attribute to the company; the board's role in them is inference.
+
 | Date | Decision | Ids |
 |---|---|---|
-| Dec 2012 / 2013 | Governance reform: state stakes capped (12/12/4%), no veto rights, "emancipation" from political influence | AG-0050 |
+| Dec 2012 / 2013 | Governance reform: state stakes capped (12/12/4%), no veto rights, framed as emancipation from political influence | AG-0050 |
 | 15 Dec 2017 | Succession plan: Enders not to seek a new term; Bregier to leave; Faury to Commercial Aircraft (during the bribery probes) | AG-0052 |
 | 8 Oct 2018 | Faury selected as CEO, unanimously, after reviewing internal and external candidates | AG-0051 |
-| 14 Feb 2019 | A380 production ended, after Emirates cut its order (the board's vote is reported only by Bloomberg) | AG-0055, A-0143 |
+| 14 Feb 2019 | (Company action) A380 production ended, after Emirates cut its order; a Bloomberg pre-report said the board would need to approve it formally; no vote on record | AG-0055, A-0143 |
 | Apr 2019 / Apr 2020 | Obermann selected, then chair, succeeding Ranque | AG-0045 |
-| 31 Jan 2020 | €3.6bn settlement with the PNF, SFO and DOJ; AFA monitoring; the board's ethics committee credited | AG-0053, A-0474 |
+| 31 Jan 2020 | (Company action) €3.6bn settlement with the PNF, SFO and DOJ; AFA monitoring; the original statement credited the board and its ethics committee (not reconfirmed on re-check) | AG-0053, A-0474 |
 | 23 Mar 2020 | COVID: 2019 dividend (€1.4bn) withdrawn; new €15bn credit facility; pension top-up suspended; guidance withdrawn | AG-0054 |
 | 29 Jul 2021 | A350F development approved with no launch customer; EIS later slipped to H2 2027 | AG-0056, AG-0057 |
 | 30 Oct 2024 | Faury renewal proposed (approved at the April 2025 AGM); Wagner named to succeed Scherer from 1 Jan 2026 | AG-0072, AX-0108 |
-| Dec 2024 | Defence and Space: 2,043 job cuts after about €1.5bn of space write-downs | AG-0073, A-0281 |
-| Feb 2025 | Hydrogen aircraft delayed beyond 2035; budget cut | AG-0065 |
-| Apr-Dec 2025 | Spirit AeroSystems sites taken over; Airbus received $439m; closed 8 Dec 2025 | AG-0070 |
-| 18 Jun 2025 | Dividend payout range raised to 30-50% | AG-0058 |
-| 23 Oct 2025 | Space merger MoU with Leonardo and Thales (35/32.5/32.5) | AG-0071, A-0304 |
-| Nov-Dec 2025 | Precautionary A320 fleet action; 2025 delivery guidance cut to about 790 | AG-0067, AG-0068, A-0185 |
+| Dec 2024 | (Company action) Defence and Space: 2,043 job cuts after about €1.5bn of space write-downs | AG-0073, A-0281 |
+| Feb 2025 | (Company action) Hydrogen aircraft delayed beyond 2035; budget cut | AG-0065 |
+| Apr-Dec 2025 | (Company action) Spirit AeroSystems sites taken over (agreement 27 Apr 2025); Airbus received $439m; closed 8 Dec 2025 | AG-0070 |
+| 18 Jun 2025 | Dividend payout range raised to 30-50% (shareholder policy is a reserved matter) | AG-0058, A-0299 |
+| 23 Oct 2025 | (Company action) Space merger MoU with Leonardo and Thales (35/32.5/32.5) | AG-0071, A-0304 |
+| Nov-Dec 2025 | (Company action) Precautionary A320 fleet action; 2025 delivery guidance cut to about 790 | AG-0067, AG-0068, A-0185 |
 | Feb-Apr 2026 | FY2025 dividend of €3.20 (48% payout); 2022 LTI vested above target; AGM approves all resolutions and new directors | A-0386, A-0336, AG-0041 |
 | 21 Jul 2026 | €5bn share buyback over three years approved; 2029 EBIT target of €12-13bn | AG-0059 |
 | 1 Oct 2026 | Obermann leaves; Moraleda chair; Fouquet co-opted; Dunkerley lead independent director | AG-0042, AG-0043 |
@@ -281,7 +295,7 @@ The order of priority (inference from the record):
 - Backgrounds of Hopke, Rummelhoff and Guillouard not confirmed.
 - No external safety-culture assessment.
 - The 2026 LTI weights are not disclosed.
-- NGSA launch timing is contested: 2030 [AG-0063] against 2031 or later (AG-0064, uncorroborated: inference only).
+- NGSA launch timing is contested: 2030 [AG-0063] against 2031 or later (AG-0064, an analysts' projection corroborated by Leeham News: inference only).
 
 **Fallback.**
 - Where the record is thin, apply the company profile's hard rules and the decision record above.
@@ -300,8 +314,9 @@ Thresholds that are game parameters or my derivation are marked (inference); eac
 | One clean sheet at a time | At most one new launch per round. NGSA / A350 Re-engine development overlap of 2 years or less, unless the grid shows at least $1B more | Company rule 6; A-0343, A-0401, AG-0049 |
 | Technology readiness | NGSA EIS never before the technology-ready year (2035); launch window 2028-2030 | A-0225, A-0409, AG-0063, AG-0065 |
 | Business case | The launch beats Do Nothing on the grid in the scenario the CEO expects, and the CEO states the worst plausible Boeing response | A-0364, AX-0007, AG-0029 |
+| Downside | Each Board item gains in the CEO's expected scenario and loses no more than $2B against its default in any plausible Boeing column, the limit at 4 (inference) | AX-0007, AG-0029, AG-0033, A-0364 |
 | Integrity and abnormal risk | Delay Tactics only after Boeing has launched fps, at most once, never naked (no $48.32B fine exposure), with the CEO's recorded adaptation. Supply-chain bottleneck: veto (inference: conflicts with the integrity pillar and with supply-security policy) | A-0299, A-0331, AG-0053, A-0474, AG-0070 |
-| Ramp and safety | No plan that the operating head flags as a threat to safety, quality or the rate-75 ramp | AX-0015, A-0331, A-0303, AX-0023 |
+| Ramp and safety | No plan that the operating head flags as a threat to safety, quality, the rate-75 ramp or supply (a supply crunch); no override of these flags is accepted (inference) | AX-0015, A-0331, A-0303, AX-0023 |
 | Reaction discipline | No NGSA cancellation in reaction to Boeing; cancel only a failed business case | Company rule 7; A-0364, AG-0055 |
 | Shareholder returns | The plan keeps the 30-50% payout and the €5bn buyback fundable, or the CEO explains why not | AG-0058, AG-0059 |
 | Board package integrity | No unresolved ExCo veto or red-line flag on an item that needs a Qualified Majority | AX-0027, AG-0049 (inference) |

@@ -6,13 +6,13 @@
   "seat": "Operating head",
   "title": "CEO Airbus Commercial Aircraft",
   "team_id": "faury-toepfer-wagner-2026",
-  "role_dates": "Joined the business in November (year cut off in the OCR, probably 2025) and became CEO of Commercial Aircraft on 1 January 2026, after a handover from Christian Scherer [AX-0108, AX-0100, A-0493].",
+  "role_dates": "Named on 30 October 2024 as Christian Scherer's successor [AG-0072]; joined the business in November (year cut off in the OCR, probably 2025) and became CEO of Commercial Aircraft on 1 January 2026, after a handover from Scherer [AX-0108, AX-0100, A-0493]. Reuters' sources say the start waited more than a year partly to meet handover rules at MTU, which places his previous role there (inference from that wording) [AG-0048].",
   "evidence": {
     "n_items": 2,
     "n_own_words": 0,
     "first": "2026-02-18",
     "last": "2026-02-18",
-    "sources_note": "2 items from the FY2025 Board Report (filing): an Executive Committee list and a succession note. 2 more name him in the handover and 1 refers only to the role. None in his own words; no outside remarks.",
+    "sources_note": "2 items from the FY2025 Board Report (filing): an Executive Committee list and a succession note. 2 more name him in the handover and 1 refers only to the role. None in his own words; no outside remarks. The board file adds an Airbus release naming him (AG-0072) and a Reuters report on his handover (AG-0048).",
     "confidence_overall": "Very low (role-derived)",
     "confidence_by_area": [
       {
@@ -216,7 +216,7 @@
     },
     {
       "lever": "Delay Tactics",
-      "position": "No evidence: follow company doctrine (hard rules 4-5) and the five pillars; at most one move, only after fps is launched and before its EIS; bottleneck only as a first claim on capacity, poaching only while a programme is in development; a second move is a red line; checks that Faury records setting aside the team's stricter condition",
+      "position": "No evidence: follow company doctrine (hard rules 4-5) and the five pillars; at most one move, only after fps is launched and before its EIS; bottleneck only as a first claim on capacity, poaching only while a programme is in development; a second move is a red line; checks that Faury records setting aside the team's stricter condition; the Board vetoes bottleneck and both, so in practice only poaching can pass it",
       "ids": [
         "AX-0073"
       ],
@@ -340,7 +340,7 @@
   "thin": {
     "gaps": [
       "Very low confidence: no statements, decisions or priorities of his own",
-      "Arrival year cut off in the OCR; prior career not in the sources",
+      "Join year cut off in the OCR (November 2025 likely, inference); his prior role appears only as a press report's mention of handover rules at MTU (AG-0048), nothing of his record there",
       "Every test is the role applied to the board, not a threshold he set",
       "No evidence on how he reads rivals, on tempo, on risk appetite or on voice"
     ],
@@ -371,5 +371,21 @@
     "test",
     "veto_check"
   ],
-  "veto_holder": true
+  "veto_holder": true,
+  "board": {
+    "summary": "The Airbus SE Board of Directors (agent airbus-board), chaired since 1 October 2026 by Amparo Moraleda with Mark Dunkerley as lead independent director, approves or vetoes every order that differs from the default: NGSA and A350 Re-engine launches (Qualified Majority above EUR 800m), each Delay Tactics move ('an abnormal level of risk') and any cancellation; its veto binds. Its culture is scored risk aversion 4 of 5 and time horizon 4 of 5: pillars, net cash and the A+/A1 rating first, proof before commitment, and a long-term programme kept on its clock. It approves one programme at a time, funded within about a year's FCF, losing no more than $2B in a plausible Boeing column, and vetoes bottleneck, both, any Delay Tactics before fps is public and an overlapping A350 Re-engine that breaks peak cash (inference).",
+    "seat_role": "His test memo and veto check go to the Board with the CEO's decision; the Board, which has no safety committee and reviews product safety itself twice a year, reads them as its safety, quality and ramp test (an item he fails on safety, quality, the A320 ramp shield or a supply crunch is vetoed unless resolved, and it accepts no override of those results; an override of his A350F-absorption or production-readiness soft veto goes through its override review), and expects an engine code with CFM plus a second maker (inference). He is widely seen as heir to the CEO. The ExCo rule the GM quotes ends 'assume the Board approves when the tests pass': that is the ExCo's planning assumption from teams.md; the Board applies its own tests.",
+    "ids": [
+      "AX-0015",
+      "AG-0022",
+      "AG-0038",
+      "A-0331",
+      "AG-0046",
+      "A-0243",
+      "A-0360",
+      "AG-0048",
+      "AG-0049",
+      "A-0299"
+    ]
+  }
 }

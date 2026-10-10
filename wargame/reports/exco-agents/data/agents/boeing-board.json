@@ -1,0 +1,1282 @@
+{
+ "agent_name": "boeing-board",
+ "company": "Boeing",
+ "side": "boeing",
+ "board_name": "The Boeing Company Board of Directors",
+ "as_of": "17 April 2026 for composition (2026 proxy of 6 March 2026 and the annual meeting); committee charters as amended 17 December 2025; governance principles: current boeing.com version (date not confirmed; the companion Director Independence Standards affirmed 23 June 2026); latest evidence 20 July 2026",
+ "composition": {
+  "chair": "Steven M. Mollenkopf (independent Board Chair since 2024; director since 2020; former Qualcomm CEO, chosen for his engineering background)",
+  "chair_is_ceo": false,
+  "lead_independent_director": "None on record: the role lapsed in October 2019 when the chair and CEO roles were split (Calhoun, the lead director, became non-executive chair); an independent chair has been required since June 2020, so none is needed (inference)",
+  "size": "12 directors, all re-elected at the annual meeting of 17 April 2026; Bradley Tilden (December 2025) was the 10th new director since 2019.",
+  "independence": "The CEO, Kelly Ortberg, is the only executive on the slate, so 11 of 12 are non-executive (inference from the slate); the governance principles require at least 75% independent directors.",
+  "committees": [
+   {
+    "name": "Aerospace Safety Committee (chair David L. Joyce; Bradley Tilden a member)",
+    "role": "Oversees the safe design, development, certification, production, maintenance and operation of products; at least three independent directors with aviation, engineering or safety expertise; reviews the safety and quality management systems and regulator dealings; hears the Chief Engineer and the Chief Aerospace Safety Officer directly [BG-0041, BG-0043, BG-0025, BG-0039]. Reads the operating head's readiness case (inference). The 2026 chair rests on third-party data and 2024 press, not a Boeing document (BG-0041); Joyce led the Safety Committee in 2022 (BG-0012)."
+   },
+   {
+    "name": "Finance Committee (chair Akhil Johri; Bradley Tilden a member)",
+    "role": "Recommends to the board on capital structure, debt and equity issuance, dividends and buybacks, M&A, divestitures and joint ventures, and on significant investments and capital projects (in the December 2025 charter; whether that item was new then is not confirmed) [BG-0041, BG-0044]. Reads the CFO's cash and rating case (inference). The 2026 chair rests on third-party data, not a Boeing document (BG-0041)."
+   },
+   {
+    "name": "Audit Committee (chair Lynne M. Doughtie)",
+    "role": "Financial risk and controls; shares cybersecurity risk oversight with Aerospace Safety and reports to the full board after each meeting [BG-0041, BG-0024]; the 2026 chair rests on third-party data (BG-0041)"
+   },
+   {
+    "name": "Compensation Committee (chair Lynn J. Good on one third-party source only: inference)",
+    "role": "Sets incentive metrics and horizons: free cash flow, a Safety & Execution scorecard and a product-safety modifier [BG-0056, BG-0026, BG-0055]"
+   },
+   {
+    "name": "Governance & Public Policy Committee",
+    "role": "Board composition and succession process; Bob Bradway held the governance role in 2024 [BG-0019, BG-0040]"
+   },
+   {
+    "name": "Special Programs Committee",
+    "role": "Remit not in the evidence; not in play on the dash-2050 board [BG-0040]"
+   }
+  ],
+  "notable_members": [
+   {
+    "name": "Steven M. Mollenkopf (chair)",
+    "background": "Former Qualcomm CEO; the first post-MAX director, 'an engineer's engineer' who works with the technical programmes; led the 2024 CEO search [BG-0038, BG-0011, BG-0017]"
+   },
+   {
+    "name": "David L. Joyce (Aerospace Safety chair)",
+    "background": "GE Aviation CEO 2008-2020, a propulsion engineer; his 2021 election was seen as filling the board's aviation-engineering gap; chairs Aerospace Safety (third-party data and CNBC 2024; he led it in 2022); engine readiness gets expert scrutiny (inference) [BG-0012, BG-0041, BG-0053]"
+   },
+   {
+    "name": "Akhil Johri (Finance chair)",
+    "background": "Former UTC CFO; chaired Audit from 2022 to at least 2024, now chairs Finance (third-party data, not a Boeing document); reads the cash case (inference) [BG-0012, BG-0058, BG-0041]"
+   },
+   {
+    "name": "Bradley D. Tilden",
+    "background": "Former Alaska Air Group CEO, an airline customer's view; safety-management and finance expertise; on Aerospace Safety and Finance since December 2025 [BG-0039]"
+   },
+   {
+    "name": "Lynne M. Doughtie (Audit chair)",
+    "background": "Formerly of KPMG [BG-0012, BG-0041]"
+   },
+   {
+    "name": "David L. Gitlin",
+    "background": "Carrier CEO, formerly at UTC and Raytheon; sat on the Safety Committee in 2022 [BG-0013]"
+   },
+   {
+    "name": "Adm. John M. Richardson",
+    "background": "Oversaw the naval fleet's nuclear and safety matters [BG-0011]"
+   },
+   {
+    "name": "Gen. Stayce D. Harris",
+    "background": "A pilot who knows Boeing airplanes and the cockpit [BG-0012]"
+   },
+   {
+    "name": "Lynn J. Good and Robert A. Bradway",
+    "background": "Outside views from nuclear power and pharmaceuticals on safety, manufacturing and operating risk [BG-0007]"
+   },
+   {
+    "name": "Robert K. (Kelly) Ortberg",
+    "background": "President and CEO, the only executive director [BG-0037, BG-0017]"
+   }
+  ],
+  "shareholders": "Widely held: institutions own about 71-75%, Vanguard, BlackRock and Fidelity (FMR) each about 9-10% in an order that varies by date, with Capital World Investors (Capital Group) in the top ten; no controlling or state shareholder (the largest holder has about 10%; the drafter's figures of about 4% for the employee savings plan and about 0.1% for government were not re-confirmed). If six preferred dividends go unpaid, holders of the 6% mandatory convertible preferred issued in October 2024 elect two directors.",
+  "ids": [
+   "BG-0037",
+   "BG-0038",
+   "BG-0039",
+   "BG-0040",
+   "BG-0041",
+   "BG-0030",
+   "BG-0045",
+   "BG-0047",
+   "BG-0046",
+   "BG-0002",
+   "BX-1217",
+   "BG-0060",
+   "BG-0033",
+   "BG-0028"
+  ]
+ },
+ "evidence": {
+  "n_items": 68,
+  "n_transcript": 23,
+  "n_filing": 13,
+  "n_web": 32,
+  "first": "2011-08-30",
+  "last": "2026-07-20",
+  "sources_note": "23 transcript items (2014-07-23 to 2024-07-31), seven of them in the board's own words (chairman Lawrence Kellner at the 2021 annual meeting) and the rest management speaking about the board; 13 filing items from the 10-Ks for FY2018, FY2020 and FY2024 (2019-02-08 to 2025-02-03). All 36 are verbatim and pass verify_quotes.py. 32 web items from web search (search-result statements, never quotes), re-searched independently by a second agent on 2026-10-10 (30 searches): 31 of 32 re-searched, 26 confirmed (BG-0042 only in part), 5 corrected (BG-0044, BG-0045, BG-0048, BG-0055, BG-0060), none dropped; BG-0067 is now corroborated; BG-0057 was not re-searched. Uncorroborated details used only as inference: Good as Compensation chair (BG-0042) and the CEO's hiring award (BG-0057). Two unconfirmed web items were withdrawn at verification (a 2024 BlackRock vote against the safety chair; a claimed 2025 dividend restart). Where the repo's calls and 10-Ks overlap the web items, they agree. Company (B-) and executive (BX-) items are cited by their own ids. The current chair, Steve Mollenkopf, has no words on record.",
+  "confidence_overall": "Medium-High: high on composition, safety oversight and the capital-allocation record; medium on reserved matters (no published dollar threshold) and on the 2026 committee chairs (third-party data, not a Boeing document); low on how votes are taken and on how the board reads rivals",
+  "confidence_by_area": [
+   {
+    "area": "Composition (April 2026)",
+    "level": "High"
+   },
+   {
+    "area": "Committee chairs (2026; third-party data, not a Boeing document)",
+    "level": "Medium"
+   },
+   {
+    "area": "Safety oversight",
+    "level": "High"
+   },
+   {
+    "area": "Capital-allocation record",
+    "level": "High"
+   },
+   {
+    "area": "Pay horizon",
+    "level": "Medium-High"
+   },
+   {
+    "area": "Reserved matters and thresholds",
+    "level": "Medium"
+   },
+   {
+    "area": "How votes are taken",
+    "level": "Low-Medium"
+   },
+   {
+    "area": "Reading of rivals",
+    "level": "Low"
+   }
+  ]
+ },
+ "mandate": "Recommends to Boeing's ExCo before each round and approves or vetoes every Board item (each order that differs from the default) with a binding veto, never originating orders. After three crises in five years it protects safety and the investment-grade rating first, wants proof before commitment, and backs one well-founded launch at a time once market, technology and Boeing's finances are ready.",
+ "holds_management_to": [
+  {
+   "text": "Safety and quality first: board oversight of design, certification and production; a court-tested oversight duty; a product-safety modifier that can cut long-term pay to zero",
+   "ids": [
+    "BG-0043",
+    "BG-0025",
+    "BG-0051",
+    "BG-0026",
+    "BG-0002"
+   ]
+  },
+  {
+   "text": "The investment-grade rating: Baa3 with a negative outlook in January 2025; about $24B of equity raised rather than lose it; debt first",
+   "ids": [
+    "BG-0029",
+    "BG-0062",
+    "BG-0028",
+    "B-2327"
+   ]
+  },
+  {
+   "text": "Stability before the next airplane: production and the development programmes first (Calhoun's 2021 order, echoed by Ortberg in 2025); no new airplane until market, technology and Boeing's finances are ready",
+   "ids": [
+    "BX-0248",
+    "B-2296",
+    "B-2327",
+    "BG-0068",
+    "B-2303"
+   ]
+  },
+  {
+   "text": "The business case brought to it: management's staged process (authority to offer, then authority to launch) ends in the board's launch approval; management is held to the case afterwards",
+   "ids": [
+    "BG-0021",
+    "B-1479",
+    "B-0419",
+    "BG-0066",
+    "BG-0022"
+   ]
+  },
+  {
+   "text": "Cash over one to three years: free cash flow as the master metric of pay",
+   "ids": [
+    "BG-0015",
+    "BG-0056",
+    "BG-0026"
+   ]
+  },
+  {
+   "text": "The long-cycle position: a long-cycle business whose shareholders and stakeholders align over the long term",
+   "ids": [
+    "BG-0006",
+    "BG-0003",
+    "BG-0045"
+   ]
+  }
+ ],
+ "culture": {
+  "risk_aversion": {
+   "score": 4.5,
+   "rationale": "Averse: the rating and safety come first after three crises in five years, and a launch needs proof before commitment. After the 737 MAX (2019), COVID (2020) and the Alaska accident and strike (2024) it ended buybacks and suspended the dividend, raised about $24B of equity in October 2024 to keep the rating (Baa3 with a negative outlook as of January 2025, the latest rating on record), sold Jeppesen to deleverage, and carries personal exposure for safety oversight after a Delaware ruling and a $237.5M settlement; an FAA panel found the safety culture lacking. Management's staged launch process ends in the board's launch approval, and Ortberg said in July 2026 that Boeing is not yet financially ready for a new airplane. Not 5: staged industrial risk goes ahead, the Spirit AeroSystems reintegration closed in December 2025 (about $8.3B with debt; the board's approval is inference from the Finance charter), the FAA-gated 737 rate steps (38 to 42 to 47) have not been blocked (inference: rate steps are management's call), and it approved the 2011 Re-engine under competitive pressure. In the game: one well-founded launch, not a bet; at 4.5 its downside limit is $1B per item, half the CFO's $2B buffer, so it vetoes an item that loses more than $1B in a plausible Airbus column, two overlapping developments, and fps via Embraer unless clearly better (inference). A judgement from evidence, calibrated across the five boards with half points: 4.5, between averse and a board in crisis, because one crisis trait is still live on the record (no cash returned, no reinstatement on record) and a second is recent (capital last raised in October 2024, with no later raise on record), and it lacks the averse board's cash returns from a sound balance sheet, while staged industrial risk still goes ahead.",
+   "trend": "About 2 before 2019 (a management target of returning about 100% of free cash flow, about $43B of buybacks in 2013 to early 2019, and a $20B buyback authorised three months before the grounding); 5 at the crisis peaks of 2020 and 2024; 4.5 now and easing slowly toward 4 as production recovers (the easing is inference); no return to pre-2019 leverage.",
+   "ids": [
+    "BG-0034",
+    "B-1677",
+    "B-2259",
+    "BG-0062",
+    "BG-0028",
+    "BG-0029",
+    "BG-0063",
+    "BG-0051",
+    "BG-0052",
+    "BG-0050",
+    "BG-0021",
+    "B-1586",
+    "B-0419",
+    "BG-0068",
+    "BG-0064",
+    "BG-0044",
+    "BG-0069",
+    "B-2103",
+    "B-2236",
+    "BG-0066",
+    "B-1164",
+    "BG-0035",
+    "BG-0054",
+    "B-2327"
+   ]
+  },
+  "time_horizon": {
+   "score": 3,
+   "rationale": "Balanced: long-cycle in its words, one to three years in its pay. Long-term in what it says and in refusing to rush a new airplane: 'a long-cycle business' with stakeholders and shareholders aligned on a long-term basis, CEO continuity for a long-cycle industry, and the long-term interest written into its principles; former CEO Calhoun said in 2022 that every programme lasts for decades and that he trusted the board to evaluate him on that basis. Medium-term in what it pays and measures: the annual bonus is 80% financial (40% of it on one year's free cash flow is inference: that split was not re-confirmed), the long-term award pays on three-year free cash flow, and in 2013-2019 cash returns came first while a clean sheet waited. In the game the horizon sets two rules (inference): core developments are protected, so the Cancellation test vetoes a cancel unless keeping the programme loses at least $1B in every plausible column; and at 3 it grants no extra downside for a long-term position, so the $1B Downside limit applies to fps as to every item, while it never vetoes an item for its near-term cost alone (the grid is already in PV). Between the 7- and 10-year ramps it recommends the smaller bill only when the two are within $1B in every plausible column, otherwise the ramp with the higher worst column. At 4 it would also accept up to the CFO's $2B buffer of Downside on fps; at 2 it would accept a cancel that loses in the expected column alone. The $2B premium cap is company rule H8 at any horizon. A judgement from evidence, calibrated across the five boards with half points: 3, balanced; no cash is returned, but spare cash repays debt before it funds the next airplane, while the core developments are protected (Calhoun's 2021 order, echoed by Ortberg in 2025 and 2026).",
+   "trend": "About 2 in 2013-2019, when cash returns came first; 3 now, with no shareholder returns and cash going to debt, production and the developments; meant to rise once the rating is secure (inference).",
+   "ids": [
+    "BG-0006",
+    "BG-0003",
+    "BG-0023",
+    "BG-0045",
+    "BG-0010",
+    "BG-0056",
+    "BG-0026",
+    "B-1164",
+    "BG-0054",
+    "B-2259",
+    "B-2327",
+    "BX-0248",
+    "BG-0068"
+   ]
+  },
+  "capital_allocation": {
+   "text": "Now: production stability and the development programmes (Calhoun's 2021 order, echoed by Ortberg in 2025); then debt down to a solid investment grade; then the next airplane when ready; shareholder returns last (common dividend suspended since March 2020, no reinstatement on record). Before 2019 it authorised buybacks in 2006-2007 and each December 2013-2018 ($10B to $20B in 2013-2018), while actual buybacks ran about $3-9B a year; a dividend had been paid every year from 1942 until March 2020. In the game a plan that would need new equity or put the rating at risk fails (inference).",
+   "ids": [
+    "BX-0248",
+    "B-2296",
+    "B-2327",
+    "BG-0029",
+    "BG-0068",
+    "BG-0034",
+    "B-2259",
+    "BX-0566",
+    "B-0877",
+    "B-1467",
+    "BG-0035",
+    "BG-0054",
+    "B-1089",
+    "B-1327",
+    "BG-0036"
+   ]
+  },
+  "safety_oversight": {
+   "text": "A permanent Aerospace Safety Committee since 2019, created after the two MAX accidents, chaired by a propulsion engineer and hearing the Chief Engineer and Chief Aerospace Safety Officer directly; weekly safety-review risks reach the board; investors hold the safety chair to account by name. In the game no launch or Rate Increase passes without the operating head's readiness results (inference).",
+   "ids": [
+    "BG-0049",
+    "BG-0001",
+    "BG-0043",
+    "BG-0025",
+    "BG-0014",
+    "BG-0058",
+    "BG-0041"
+   ]
+  },
+  "stakeholder_influence": {
+   "text": "No state shareholder; the state acts as regulator and prosecutor (the FAA gates 737 rates; the DOJ agreement commits over $1.1B). Shareholders forced the independent chair and faster deleveraging; the board consulted customers, investors and regulators on the 2024 CEO choice. In the game nothing that relies on regulator leniency passes (inference).",
+   "ids": [
+    "BG-0060",
+    "B-2236",
+    "BG-0069",
+    "BG-0065",
+    "BG-0046",
+    "BG-0015",
+    "BG-0018",
+    "BG-0020",
+    "BG-0005"
+   ]
+  },
+  "pay_horizon": {
+   "text": "Annual bonus: one company score, 80% financial and 20% Safety & Execution (the split inside the 80%, free cash flow 40%, core EPS 20% and revenue 20%, was not re-confirmed: inference). Long-term units pay on three-year cumulative free cash flow with a product-safety modifier that can cut the payout to zero; the older relative-TSR units paid 0% in 2023; awards were cut 22% after the 2024 accident. A horizon of one to three years, cash-weighted and gated by safety, far shorter than the programmes on the board, so the board supplies the long view itself (inference).",
+   "ids": [
+    "BG-0056",
+    "BG-0026",
+    "BG-0027",
+    "BG-0055",
+    "BX-0251"
+   ]
+  }
+ },
+ "reserved_matters": [
+  {
+   "matter": "New airplane programmes: the board approves the launch; management reaches it through two gates, authority to offer on a business case, then authority to launch on launch customers (that authority to offer is also a board vote is inference)",
+   "threshold": "No published dollar threshold; the same process for every programme; management brings a programme once the NRE is known and the risk acceptable, and does not run ahead of formal approval, though in 2011 the MAX was announced before the board met",
+   "ids": [
+    "B-0419",
+    "BG-0066",
+    "B-0763",
+    "BG-0021",
+    "B-1479",
+    "B-1586",
+    "B-0581",
+    "B-0438",
+    "B-0521"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Major derivatives (Re-engine)",
+   "threshold": "As for new airplanes; the 2011 737 MAX Re-engine was a board approval",
+   "ids": [
+    "BG-0066",
+    "B-0438"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Significant investments and capital projects; M&A, divestitures and joint ventures",
+   "threshold": "Finance Committee review and recommendation to the full board (charter of December 2025); no dollar threshold found",
+   "ids": [
+    "BG-0044"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Capital structure: dividends, buybacks, equity and preferred terms, debt",
+   "threshold": "All, regardless of size: the board declares dividends, authorises and terminates buybacks and sets preferred terms without a shareholder vote",
+   "ids": [
+    "BG-0033",
+    "BG-0034",
+    "BG-0035",
+    "BG-0032",
+    "BG-0044"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "CEO selection, succession and tenure",
+   "threshold": "All: the board runs the search itself, selects the CEO and has removed one; that the CEO serves at its pleasure is inference (as Calhoun put it in 2021, the tenure is the board's to set)",
+   "ids": [
+    "BG-0045",
+    "BG-0018",
+    "BG-0016",
+    "BG-0048"
+   ],
+   "inference": false
+  },
+  {
+   "matter": "Safety oversight of design, certification and production; executive pay design",
+   "threshold": "Standing committee remits reporting to the full board after each meeting",
+   "ids": [
+    "BG-0043",
+    "BG-0025",
+    "BG-0024",
+    "BG-0055"
+   ],
+   "inference": false
+  }
+ ],
+ "board_items_in_game": [
+  {
+   "order": "fps: launch_7yr, fps: launch_10yr (with fps_engine_code)",
+   "rule": "$64.47B or $55.25B at EIS: a new airplane, which the board approves at launch after management's authority to offer; a significant capital project for Finance and a certification matter for Aerospace Safety; far above any real threshold",
+   "ids": [
+    "B-0419",
+    "BG-0066",
+    "BG-0021",
+    "B-1479",
+    "BG-0044",
+    "BG-0043"
+   ],
+   "inference": false
+  },
+  {
+   "order": "fps: launch_via_embraer",
+   "rule": "$100B at EIS: a new airplane plus a joint venture (Finance); the 2018 Embraer JV ended in 2020",
+   "ids": [
+    "BG-0044",
+    "B-1674",
+    "B-1792"
+   ],
+   "inference": false
+  },
+  {
+   "order": "re787: launch",
+   "rule": "$5B at EIS: a major derivative, as the 2011 Re-engine was",
+   "ids": [
+    "BG-0066",
+    "BG-0044"
+   ],
+   "inference": false
+  },
+  {
+   "order": "fps: cancel, re787: cancel",
+   "rule": "A write-off whose debt penalty stays; no Boeing cancellation of a launched airplane is on record (the 2020 deferral came before launch), so it is read as the board's call",
+   "ids": [
+    "B-1729",
+    "BG-0022"
+   ],
+   "inference": true
+  },
+  {
+   "order": "rate_737: increase (2030 round only)",
+   "rule": "FLAG: below the board's real threshold. $2.94B in 2032; in practice management's operating decision gated by KPIs and the FAA; reviewed as part of the round's package because production safety is in the Aerospace Safety remit",
+   "ids": [
+    "B-2103",
+    "B-2236",
+    "BG-0069",
+    "BG-0043"
+   ],
+   "inference": false
+  },
+  {
+   "order": "fps_engine_code",
+   "rule": "Rides with the fps launch; no separate vote; never a veto ground",
+   "ids": [
+    "BG-0041",
+    "BG-0043"
+   ],
+   "inference": true
+  },
+  {
+   "order": "other_moves",
+   "rule": "Unpriced and below any threshold: read with the package; recommend only",
+   "ids": [],
+   "inference": true
+  },
+  {
+   "order": "hold (every field)",
+   "rule": "Not a Board item; never vetoed",
+   "ids": [],
+   "inference": true
+  }
+ ],
+ "decision_process": [
+  {
+   "text": "One management case: the CEO brings a case management has already satisfied itself on and does not run ahead of formal approval (though the 2011 MAX was announced before the board met); in the game, the package the GM passes",
+   "ids": [
+    "B-0581",
+    "B-0438",
+    "B-0521",
+    "BG-0022"
+   ],
+   "inference": false
+  },
+  {
+   "text": "Committees review by expertise and report to the full board, which decides; Finance recommends on capital projects and capital structure",
+   "ids": [
+    "BG-0024",
+    "BG-0044"
+   ],
+   "inference": false
+  },
+  {
+   "text": "One voice: no minutes or vote splits are public and decisions come out as the board's (majority by consensus is inference)",
+   "ids": [
+    "BG-0003",
+    "BG-0018"
+   ],
+   "inference": true
+  },
+  {
+   "text": "Deliberate and staged: management's staged launch process ending in the board's launch approval; in a crisis, step by step (the chair taken from the CEO, then the CEO replaced); a nine-month CEO search",
+   "ids": [
+    "BG-0021",
+    "B-1586",
+    "B-0419",
+    "BG-0047",
+    "BG-0048",
+    "BG-0018"
+   ],
+   "inference": false
+  },
+  {
+   "text": "Reads Malave's memo as the Finance Committee would and Pope's as the Aerospace Safety Committee would",
+   "ids": [
+    "BG-0041",
+    "BG-0043",
+    "BG-0044"
+   ],
+   "inference": true
+  },
+  {
+   "text": "Before approving it needs the submitted grid row and, per item, the row at default; the expected and risk-case columns; the CFO's buffer test and his 'Fundable when the 777X turns' result; the operating head's KPI, strain and supplier results; the CEO's Round-1 ruling on H1 and H3; any premium, logged. A missing piece is computed from the brief and raised as a recommendation, not a veto ground",
+   "ids": [
+    "BG-0021",
+    "BG-0022",
+    "BG-0025"
+   ],
+   "inference": true
+  },
+  {
+   "text": "The veto binds: the CEO revises once within it (an alternative the board named, or the default), and after the board's confirm a still-vetoed item reverts to the default. Plan-level tests (Rating first, the premium cap, the Round-1 H1 ruling) are voted item by item: the board vetoes the item whose reversion to the default cures the failure and names the cure. At confirm the GM passes only the CEO's revision: the board judges the merged plan (approved orders as submitted, vetoed fields from the revision), re-runs the grid tests from the brief and approves the default or an alternative it named unless a grid test now fails. With every order at the default the GM skips the review, and recommendations go into the next round's guidance. The board names acceptable alternatives for every veto, never originates orders, and never vetoes a hold, an engine code alone, a Rate Increase for its size, or an item merely because another plan scores higher (except fps via Embraer under Rating first)",
+   "ids": [
+    "BG-0045",
+    "BG-0021"
+   ],
+   "inference": true
+  }
+ ],
+ "tests": [
+  {
+   "test": "Unresolved objection",
+   "threshold": "No Board item carries a binding ExCo veto still standing after the revision (Malave's buffer test; the KPI veto on a Rate Increase), or a red-line flag the CEO neither struck nor rebutted; the team rule gives him no override",
+   "ids": [
+    "BG-0022",
+    "BG-0024",
+    "BX-1316"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Business case",
+   "threshold": "Each launch has an item value (submitted row minus the row with that field at default) above $1B in the CEO's expected column; a Rate Increase, above zero. Method: a Rate Increase's item value is the submitted row minus the same row with rate_737 at hold, column by column. The $1B threshold is the ExCo's own game parameter, adopted by the board (inference)",
+   "ids": [
+    "BG-0021",
+    "BG-0022",
+    "B-0581",
+    "BG-0066"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Rating first",
+   "threshold": "The submitted plan is no more than $2B below Do Nothing in the risk-case column (not applicable without one); fps via Embraer ($100B bill, $52.5B debt penalty before discounting) passes only if it beats the best Solo launch by more than $1B in every plausible column. The $2B and $1B thresholds are the ExCo's own game parameters (Malave's buffer, H8), adopted by the board (inference)",
+   "ids": [
+    "BG-0029",
+    "BG-0062",
+    "BG-0028",
+    "B-2327"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Downside",
+   "threshold": "No Board item has an item value below -$1B (epsilon) in any plausible column: at the 4.5, half the CFO's $2B buffer; at the horizon of 3 the same limit holds for fps. Method: compute a 787 Re-engine's item value in each Airbus column; it fails if any plausible column is below -$1B",
+   "ids": [
+    "BG-0029",
+    "BG-0062",
+    "BG-0034",
+    "BG-0068"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Boeing ready (fps)",
+   "threshold": "Market: the business case passes. Technology: EIS 2035 or later (always met; earliest fps EIS 2037). Boeing: the plan passes the CFO's buffer test (as in Rating first; not applicable counts as a pass) and his 'Fundable when the 777X turns' test, and in Round 1 the decision rules on H1 with evidence that the 777X and MAX 7/10 are done and debt repair is on track. The CFO's 'Balance sheet first', cash-path and premium results are advice: never a veto ground",
+   "ids": [
+    "BG-0068",
+    "B-2303",
+    "BX-1303",
+    "B-2327"
+   ],
+   "inference": false
+  },
+  {
+   "test": "Safety and production readiness",
+   "threshold": "No launch or Rate Increase while the brief reports a live quality, FAA or certification problem, or while the operating head's memo fails it on KPIs, suppliers or strain unresolved",
+   "ids": [
+    "BG-0043",
+    "BG-0025",
+    "BG-0050",
+    "BG-0051",
+    "B-2236"
+   ],
+   "inference": false
+  },
+  {
+   "test": "One development at a time",
+   "threshold": "A Solo fps (EIS-7 to EIS) and a 787 Re-engine (EIS-5 to EIS) overlap at most 2 years, counting programmes already launched; same round: 7-year fps plus Re-engine overlaps 5 years and fails, 10-year fps plus Re-engine overlaps 2 years and passes",
+   "ids": [
+    "B-2167",
+    "BX-0410",
+    "BG-0068"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Rate Increase (below the real threshold)",
+   "threshold": "Besides the business case: stable KPIs (no live problem, no standing KPI veto) and a rationale that does not cite Airbus as the reason (H6); otherwise defer to management",
+   "ids": [
+    "B-2103",
+    "B-2236",
+    "BG-0069"
+   ],
+   "inference": false
+  },
+  {
+   "test": "Cancellation",
+   "threshold": "The horizon-3 rule (core developments protected): veto a cancel (H5) unless keeping the programme loses at least $1B against cancelling in every plausible column; never for a slip, a charge, a supplier problem or Airbus entering service first",
+   "ids": [
+    "BG-0022",
+    "B-1729",
+    "B-2167"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Premium within the cap",
+   "threshold": "The decision's premium_b (doctrine plus objective) is at most $2B and logged with its reason (H8)",
+   "ids": [
+    "BG-0022"
+   ],
+   "inference": true
+  },
+  {
+   "test": "Engine code (recommendation only)",
+   "threshold": "Never a veto ground; ask that the code name a maker whose engine is ready by fps EIS",
+   "ids": [
+    "BG-0041",
+    "BG-0043"
+   ],
+   "inference": true
+  }
+ ],
+ "veto": [
+  {
+   "ground": "Governance: a binding ExCo veto or red-line flag left unresolved on a Board item",
+   "ids": [
+    "BG-0022",
+    "BG-0024"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "No business case: a launch not more than $1B ahead of its default in the expected column, or a Rate Increase that loses value (the $1B threshold is the ExCo's game parameter, adopted by the board: inference)",
+   "ids": [
+    "BG-0021",
+    "BG-0022",
+    "B-0581"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "The rating: a plan more than $2B below Do Nothing in the risk-case column, or fps via Embraer without a clear lead over a Solo launch (the $2B and $1B thresholds are the ExCo's game parameters, adopted by the board: inference)",
+   "ids": [
+    "BG-0029",
+    "BG-0062",
+    "B-2327"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Downside: an item that loses more than $1B against its default in a plausible column (at the 4.5, half the CFO's $2B buffer)",
+   "ids": [
+    "BG-0029",
+    "BG-0062",
+    "BG-0068"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Boeing not ready: an fps launch that fails the CFO's buffer test or his 'Fundable when the 777X turns' test or, in Round 1, has no evidenced CEO ruling on H1; the CFO's 'Balance sheet first', cash-path and premium views are advice and never a ground",
+   "ids": [
+    "BG-0068",
+    "B-2303",
+    "B-2327"
+   ],
+   "inference": false
+  },
+  {
+   "ground": "Safety and production readiness: a launch or Rate Increase under a live quality, FAA or certification problem, or failed by the operating head and unresolved",
+   "ids": [
+    "BG-0043",
+    "BG-0025",
+    "BG-0050"
+   ],
+   "inference": false
+  },
+  {
+   "ground": "Two developments at once: a Solo fps and 787 Re-engine overlapping more than 2 years",
+   "ids": [
+    "B-2167",
+    "BX-0410",
+    "BG-0068"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Rate Increase under a live problem or as a reply to Airbus",
+   "ids": [
+    "B-2236",
+    "BG-0069"
+   ],
+   "inference": false
+  },
+  {
+   "ground": "Reactive cancellation (H5)",
+   "ids": [
+    "BG-0022",
+    "B-1729"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "A premium above the $2B cap",
+   "ids": [
+    "BG-0022"
+   ],
+   "inference": true
+  },
+  {
+   "ground": "Limits: the veto binds; a vetoed item goes back to the CEO once (board_revise), with no override against the board, and after the confirm a still-vetoed item reverts to the default (hold); when a plan-level test fails (Rating first, the premium cap, the Round-1 H1 ruling) the board vetoes the item whose reversion to the default cures it and names the cure; every veto names acceptable alternatives, values of that field that pass the tests, the default included; the board never originates orders and never vetoes a hold, an item merely because another plan scores higher (except fps via Embraer under Rating first), an item for its near-term earnings cost alone or an item on the public statement alone, nor an engine code alone or a Rate Increase for its size",
+   "ids": [
+    "BG-0045"
+   ],
+   "inference": true
+  }
+ ],
+ "recommendation_style": {
+  "text": "Written, collective and safety-first, in the register of the 2021 chair's remarks (inference): show the risk-case column against Do Nothing; prefer the smaller bill (the 10-year ramp) only when the two ramps are within $1B in every plausible column, otherwise the ramp with the higher worst column (the CFO's Meet and beat), as a risk-averse board; one development at a time; KPI-gated rates; an engine ready by EIS; no fps date before launch and a conservative EIS at launch; log every premium. The CEO answers each in board_response (taken up, or why not); an unanswered one is raised again next round, but is not a veto ground by itself.",
+  "ids": [
+   "BG-0001",
+   "BG-0005",
+   "BG-0006",
+   "B-2315"
+  ]
+ },
+ "management_relationship": [
+  {
+   "name": "Separate chair and CEO",
+   "relation": "Roles split since October 2019 and an independent chair required since June 2020; the board owns CEO selection outright and acts when trust with the regulator breaks (2019) or after a safety crisis (2024); it defers to management on operations and rate pacing and holds it to the business case",
+   "ids": [
+    "BG-0047",
+    "BG-0046",
+    "BG-0002",
+    "BG-0018",
+    "BG-0048",
+    "BG-0061",
+    "BG-0045",
+    "BG-0022"
+   ]
+  },
+  {
+   "name": "Kelly Ortberg (CEO, boeing-ortberg)",
+   "relation": "The board's own choice after a nine-month search led by the chair, for 35 years in aerospace; the board selects the CEO and has removed one, so he serves at its pleasure (inference; as Calhoun put it in 2021, the tenure is the board's to set); his order (culture, stability, execution, then the future; debt first) matches the board's culture. The board defers to his case unless a test fails (inference)",
+   "ids": [
+    "BG-0017",
+    "BG-0018",
+    "BG-0045",
+    "BG-0048",
+    "BG-0016",
+    "BX-1245",
+    "B-2327",
+    "B-2303"
+   ]
+  },
+  {
+   "name": "Jay Malave (CFO, boeing-malave)",
+   "relation": "No board-specific evidence; his first priority, fully restoring the health of the balance sheet, is the board's rating test, and the Finance chair (a former aerospace CFO) reads his memo closely (inference). Low confidence profile",
+   "ids": [
+    "BX-0556",
+    "B-2345",
+    "BG-0041"
+   ]
+  },
+  {
+   "name": "Stephanie Pope (head of Commercial Airplanes, boeing-pope)",
+   "relation": "Boeing named her to lead Commercial Airplanes in the March 2024 changes (her appointment was not restated at re-search); her memo is the board's production and safety test, which the Aerospace Safety Committee also hears from the Chief Engineer. Very low confidence profile",
+   "ids": [
+    "BG-0061",
+    "BG-0043",
+    "BG-0025"
+   ]
+  }
+ ],
+ "rivals": [
+  {
+   "text": "No board-level statement on Airbus or the engine makers",
+   "ids": [],
+   "inference": true
+  },
+  {
+   "text": "Indirect only: the 2011 Re-engine approval followed A320neo order wins and a customer's defection",
+   "ids": [
+    "BG-0066",
+    "B-0521"
+   ],
+   "inference": false
+  },
+  {
+   "text": "The CEO the board chose declines to match Airbus's timeline for a new airplane; that the board shares the view is inference. Read Airbus only from the public bulletin and never approve an item only because Airbus moved",
+   "ids": [
+    "B-2313",
+    "BG-0068"
+   ],
+   "inference": true
+  }
+ ],
+ "past_decisions": [
+  {
+   "date": "2006-2007, 2013-2018",
+   "decision": "Buyback authorisations: $3B in 2006 and $7B in 2007, then each December from $10B (2013) to $20B (2018), with dividend increases; actual buybacks ran about $3-9B a year in 2013-2018",
+   "ids": [
+    "BX-0566",
+    "B-0061",
+    "B-0877",
+    "B-1327",
+    "BG-0035",
+    "BG-0054"
+   ]
+  },
+  {
+   "date": "2011-08-30",
+   "decision": "Approved the 737 MAX (Re-engine) launch on 496 commitments; announced before the board met",
+   "ids": [
+    "BG-0066",
+    "B-0521",
+    "B-0438"
+   ]
+  },
+  {
+   "date": "2013-11",
+   "decision": "777X launched at the Dubai Airshow on 259 orders and commitments, its timing up to the board's approval (launch month and orders corroborated; the board's authorisation date not found)",
+   "ids": [
+    "B-0763",
+    "BG-0067"
+   ]
+  },
+  {
+   "date": "2014",
+   "decision": "Let the CEO (McNerney) stay past age 65 (implied by his answer on a call, not a board statement)",
+   "ids": [
+    "BG-0023"
+   ]
+  },
+  {
+   "date": "2018-12",
+   "decision": "Embraer partnership agreed (terminated April 2020)",
+   "ids": [
+    "B-1493",
+    "B-1674",
+    "B-1792"
+   ]
+  },
+  {
+   "date": "2019-04 to 2019-09",
+   "decision": "Special committee on airplane policies, then a permanent Aerospace Safety Committee",
+   "ids": [
+    "BX-1172",
+    "BG-0049",
+    "BG-0001"
+   ]
+  },
+  {
+   "date": "2019-10-11",
+   "decision": "Split the chair and CEO roles",
+   "ids": [
+    "BG-0047",
+    "BX-1217"
+   ]
+  },
+  {
+   "date": "2019-12-22",
+   "decision": "Replaced the CEO to restore confidence with regulators, customers and stakeholders (effective 22 December per the 8-K; announced 23 December)",
+   "ids": [
+    "BG-0048",
+    "BG-0009"
+   ]
+  },
+  {
+   "date": "2020-03",
+   "decision": "Terminated the buyback authorisation and suspended the dividend",
+   "ids": [
+    "BG-0034",
+    "B-1677"
+   ]
+  },
+  {
+   "date": "2020-06",
+   "decision": "Required an independent chair in the governance principles",
+   "ids": [
+    "BG-0046",
+    "BG-0002"
+   ]
+  },
+  {
+   "date": "2021-04-20",
+   "decision": "Extended the CEO retirement age to 70 for continuity in a long-cycle industry",
+   "ids": [
+    "BG-0003"
+   ]
+  },
+  {
+   "date": "2021-11",
+   "decision": "Directors settled the safety-oversight derivative suit for $237.5M; a director with aviation or safety expertise added",
+   "ids": [
+    "BG-0052",
+    "BG-0051"
+   ]
+  },
+  {
+   "date": "2024 (Q1)",
+   "decision": "Pay reset after the Alaska accident: 60% safety and quality weight at Commercial Airplanes; long-term awards cut 22%",
+   "ids": [
+    "BG-0055"
+   ]
+  },
+  {
+   "date": "2024-03-25",
+   "decision": "CEO transition announced; Mollenkopf independent chair; new head of Commercial Airplanes",
+   "ids": [
+    "BG-0061"
+   ]
+  },
+  {
+   "date": "2024-07-31",
+   "decision": "Chose Kelly Ortberg as CEO after a nine-month search led by the chair",
+   "ids": [
+    "BG-0017",
+    "BG-0018"
+   ]
+  },
+  {
+   "date": "2024-10-30",
+   "decision": "About $24B equity raise (common plus mandatory convertible preferred) to protect the rating",
+   "ids": [
+    "BG-0028",
+    "BG-0062"
+   ]
+  },
+  {
+   "date": "2025",
+   "decision": "One company-wide bonus score with Safety & Execution at 20%",
+   "ids": [
+    "BG-0056"
+   ]
+  },
+  {
+   "date": "2025-04-22",
+   "decision": "Sold Jeppesen and other digital assets for $10.55B",
+   "ids": [
+    "BG-0063"
+   ]
+  },
+  {
+   "date": "2025-05",
+   "decision": "DOJ non-prosecution agreement (over $1.1B); the board's role is inference",
+   "ids": [
+    "BG-0065"
+   ]
+  },
+  {
+   "date": "2025-12-03",
+   "decision": "Elected Brad Tilden to the board (Aerospace Safety and Finance)",
+   "ids": [
+    "BG-0039"
+   ]
+  },
+  {
+   "date": "2025-12-08",
+   "decision": "Closed the Spirit AeroSystems acquisition (about $8.3B with debt)",
+   "ids": [
+    "BG-0064"
+   ]
+  },
+  {
+   "date": "2025-12-17",
+   "decision": "Amended the Finance Committee charter, which covers significant investments and capital projects (that this item was added then is not confirmed)",
+   "ids": [
+    "BG-0044"
+   ]
+  }
+ ],
+ "thin": {
+  "gaps": [
+   "No published dollar threshold for matters reserved to the board; the mapping rests on the two-gate launch process and the Finance Committee charter",
+   "No minutes or vote splits: how dissent is handled is unknown",
+   "No words on record from the current chair, Steve Mollenkopf; the 2026 chair letter was not reached; the board's voice rests on Kellner (2021)",
+   "No board statement on Airbus, engine choice or partnerships for a new airplane; no evidence after July 2026",
+   "The 2026 committee chairs (Joyce, Johri, Doughtie) rest on third-party data and, for Joyce, 2024 press; no Boeing document naming them was reached (BG-0041)",
+   "Uncorroborated details used only as inference: Good as Compensation chair (BG-0042) and the CEO's hiring award (BG-0057, not re-searched); the 777X launch day and the board's authorisation date (BG-0067) are not confirmed, though the launch month and orders now are. Two unconfirmed web claims were withdrawn at verification (a 2024 BlackRock vote against the safety chair; a 2025 dividend restart)",
+   "The web re-search (2026-10-10) was capped at 30 searches: 31 of 32 web items were re-searched and BG-0057 was not; some details within confirmed items were not re-confirmed (each item's verification_note names them), so check before relying on a web-only detail for a close call",
+   "The Special Programs Committee's remit and Mortimer Buckley's background are not in the evidence"
+  ],
+  "fallback": "Apply the company profile (profile.md: the Quick card and hard rules H1-H8 as dashboard_game.md section 5 maps them) and the board's decision record; defer to the CEO's case unless a test fails. Never invent a view, a director's opinion or a quote; say the record is silent."
+ },
+ "voice": {
+  "style": "Measured and collective: the Board as one voice, safety and the long cycle first, shareholder feedback acknowledged. The only spoken board words on record are chairman Kellner's at the 2021 annual meeting; the current chair has none. The last line is 10-K text recording the board's 2020 decision.",
+  "quotes": [
+   {
+    "id": "BG-0001",
+    "quote": "the Aerospace Safety Committee is a permanent committee of the board.",
+    "date": "2021-04-20",
+    "doc": "Shareholder/Analyst Call (2021 Annual Meeting of Shareholders)",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "BG-0002",
+    "quote": "ensure effective Board oversight of the company's strategy, operations and culture, anchored by our shared values of safety, quality and integrity.",
+    "date": "2021-04-20",
+    "doc": "Shareholder/Analyst Call (2021 Annual Meeting of Shareholders)",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "BG-0003",
+    "quote": "the continuity necessary to thrive in our long-cycle industry",
+    "date": "2021-04-20",
+    "doc": "Shareholder/Analyst Call (2021 Annual Meeting of Shareholders)",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "BG-0006",
+    "quote": "As we think about long-term strategy as a Board, we're a long-cycle business",
+    "date": "2021-04-20",
+    "doc": "Shareholder/Analyst Call (2021 Annual Meeting of Shareholders)",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "BG-0006",
+    "quote": "what's good for our stakeholders is good for our shareholders on a long-term basis.",
+    "date": "2021-04-20",
+    "doc": "Shareholder/Analyst Call (2021 Annual Meeting of Shareholders)",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "BG-0005",
+    "quote": "We will continue to use your feedback to inform our decision-making going forward.",
+    "date": "2021-04-20",
+    "doc": "Shareholder/Analyst Call (2021 Annual Meeting of Shareholders)",
+    "perspective": "board_own_words"
+   },
+   {
+    "id": "BG-0034",
+    "quote": "our Board of Directors terminated its prior authorization to repurchase shares ... and suspended the declaration and/or payment of dividends until further notice.",
+    "date": "2021-02-01",
+    "doc": "10-K FY2020",
+    "perspective": "filing"
+   }
+  ]
+ },
+ "web_sources": [
+  {
+   "id": "BG-0037",
+   "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312526096787/d39411ddef14a.htm",
+   "title": "BOEING CO - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "The Boeing Company (SEC EDGAR)",
+   "date": "2026-03-06"
+  },
+  {
+   "id": "BG-0038",
+   "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312526096787/d39411ddef14a.htm",
+   "title": "BOEING CO - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "The Boeing Company (SEC EDGAR)",
+   "date": "2026-03-06"
+  },
+  {
+   "id": "BG-0039",
+   "url": "https://investors.boeing.com/investors/news/press-release-details/2025/Boeing-Elects-Bradley-D--Tilden-to-Board-of-Directors/default.aspx",
+   "title": "Boeing Elects Bradley D. Tilden to Board of Directors",
+   "publisher": "The Boeing Company (investor relations)",
+   "date": "2025-12-03"
+  },
+  {
+   "id": "BG-0040",
+   "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312526096787/d39411ddef14a.htm",
+   "title": "BOEING CO - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "The Boeing Company (SEC EDGAR)",
+   "date": "2026-03-06"
+  },
+  {
+   "id": "BG-0041",
+   "url": "https://vectorshift.ai/research/companies/boeing-co/people",
+   "title": "Boeing board committee chairs, 2026 (third-party profile; the drafter's result linked the FY2025 Form ARS, not reached at re-search)",
+   "publisher": "VectorShift (third-party profile); for Joyce also CNBC (2024)",
+   "date": "2026"
+  },
+  {
+   "id": "BG-0042",
+   "url": "https://www.marketscreener.com/quote/stock/BOEING-4816/company-governance/",
+   "title": "Executive Committee: Boeing (company governance)",
+   "publisher": "MarketScreener",
+   "date": "2026"
+  },
+  {
+   "id": "BG-0043",
+   "url": "https://www.boeing.com/content/dam/boeing/v2/company/corporate-governance/charter_aerospace_safety.pdf",
+   "title": "Aerospace Safety Committee Charter (as amended December 17, 2025)",
+   "publisher": "The Boeing Company",
+   "date": "2025-12-17"
+  },
+  {
+   "id": "BG-0044",
+   "url": "https://www.boeing.com/content/dam/boeing/v2/company/corporate-governance/charter_finance.pdf",
+   "title": "Finance Committee Charter (as amended December 17, 2025)",
+   "publisher": "The Boeing Company",
+   "date": "2025-12-17"
+  },
+  {
+   "id": "BG-0045",
+   "url": "https://www.boeing.com/content/dam/boeing/v2/company/corporate-governance/corporate-governance-principles.pdf",
+   "title": "Corporate Governance Principles (current boeing.com version) and Director Independence Standards (affirmed June 23, 2026)",
+   "publisher": "The Boeing Company",
+   "date": "2026-06-23"
+  },
+  {
+   "id": "BG-0046",
+   "url": "https://valueedgeadvisors.com/2020/04/29/independent-chair-proposal-gets-majority-support-at-boeing/",
+   "title": "Independent chair proposal gets majority support at Boeing",
+   "publisher": "ValueEdge Advisors",
+   "date": "2020-04-29"
+  },
+  {
+   "id": "BG-0047",
+   "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292719000067/exhibit991.htm",
+   "title": "BOEING CO - Form 8-K - FY2019 (Exhibit 99.1)",
+   "publisher": "The Boeing Company (SEC EDGAR)",
+   "date": "2019-10-11"
+  },
+  {
+   "id": "BG-0048",
+   "url": "https://www.bloomberg.com/news/articles/2019-12-23/boeing-ceo-dennis-muilenburg-resigns-david-calhoun-named-president-and-ceo",
+   "title": "Boeing Ousts CEO, Picks Chairman to Map Exit From Max Crisis",
+   "publisher": "Bloomberg",
+   "date": "2019-12-23"
+  },
+  {
+   "id": "BG-0049",
+   "url": "https://boeing.mediaroom.com/2019-09-25-Boeing-Chairman-President-and-CEO-Dennis-Muilenburg-and-Boeing-Board-of-Directors-Reaffirm-Companys-Commitment-to-Safety",
+   "title": "Boeing Chairman, President and CEO Dennis Muilenburg and Boeing Board of Directors Reaffirm Company's Commitment to Safety",
+   "publisher": "The Boeing Company (news release)",
+   "date": "2019-09-25"
+  },
+  {
+   "id": "BG-0050",
+   "url": "https://www.faa.gov/newsroom/Sec103_ExpertPanelReview_Report_Final.pdf",
+   "title": "Section 103 Organization Designation Authorizations (ODA) for Transport Airplanes Expert Panel Review Report",
+   "publisher": "Federal Aviation Administration",
+   "date": "2024-02-26"
+  },
+  {
+   "id": "BG-0051",
+   "url": "https://www.hklaw.com/en/insights/publications/2021/09/recent-delaware-decision-highlights-heightened-board-oversight",
+   "title": "Recent Delaware Decision Highlights Heightened Board Oversight",
+   "publisher": "Holland & Knight",
+   "date": "2021-09-30"
+  },
+  {
+   "id": "BG-0052",
+   "url": "https://www.dandodiary.com/2021/11/articles/shareholders-derivative-litigation/boeing-air-crash-derivative-lawsuit-settles-for-237-5-million/",
+   "title": "Boeing Air Crash Derivative Lawsuit Settles for $237.5 Million",
+   "publisher": "The D&O Diary",
+   "date": "2021-11"
+  },
+  {
+   "id": "BG-0053",
+   "url": "https://leehamnews.com/2021/09/06/pontifications-david-joyce-fills-key-void-on-boeings-board/",
+   "title": "Pontifications: David Joyce fills key void on Boeing's Board",
+   "publisher": "Leeham News and Analysis",
+   "date": "2021-09-06"
+  },
+  {
+   "id": "BG-0054",
+   "url": "https://prospect.org/2019/05/31/make-passengers-safer-boeing-just-made-shareholders-richer/",
+   "title": "To Make Passengers Safer? Boeing Just Made Shareholders Richer",
+   "publisher": "The American Prospect",
+   "date": "2019-05-31"
+  },
+  {
+   "id": "BG-0055",
+   "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312524088568/d550077ddef14a.htm",
+   "title": "BOEING CO - Form DEF 14A - FY2024 (2024 proxy statement)",
+   "publisher": "The Boeing Company (SEC EDGAR)",
+   "date": "2024-04"
+  },
+  {
+   "id": "BG-0056",
+   "url": "https://www.sec.gov/Archives/edgar/data/12927/000119312526096787/d39411ddef14a.htm",
+   "title": "BOEING CO - Form DEF 14A - FY2026 (2026 proxy statement)",
+   "publisher": "The Boeing Company (SEC EDGAR)",
+   "date": "2026-03-06"
+  },
+  {
+   "id": "BG-0057",
+   "url": "https://www.sec.gov/Archives/edgar/data/12927/000001292724000058/ba-20240730.htm",
+   "title": "BOEING CO - Form 8-K (Ortberg appointment and compensation)",
+   "publisher": "The Boeing Company (SEC EDGAR)",
+   "date": "2024-07-30"
+  },
+  {
+   "id": "BG-0058",
+   "url": "https://www.cnbc.com/2024/04/30/glass-lewis-recommends-investors-vote-against-three-boeing-directors-including-ceo-calhoun.html",
+   "title": "Glass Lewis recommends investors vote against three Boeing directors, including CEO Calhoun",
+   "publisher": "CNBC",
+   "date": "2024-04-30"
+  },
+  {
+   "id": "BG-0060",
+   "url": "https://simplywall.st/stocks/us/capital-goods/nyse-ba/boeing/ownership",
+   "title": "The Boeing Company ownership",
+   "publisher": "Simply Wall St",
+   "date": "2026-04"
+  },
+  {
+   "id": "BG-0061",
+   "url": "https://investors.boeing.com/investors/news/press-release-details/2024/Boeing-Announces-Board-and-Management-Changes/default.aspx",
+   "title": "Boeing Announces Board and Management Changes",
+   "publisher": "The Boeing Company (investor relations)",
+   "date": "2024-03-25"
+  },
+  {
+   "id": "BG-0062",
+   "url": "https://www.kirkland.com/news/press-release/2024/11/boeing-closes-24-25-billion-equity-offering-marking-largest-follow-on-in-history",
+   "title": "Boeing Closes $24.25 Billion Equity Offering, Marking Largest Follow-On in History",
+   "publisher": "Kirkland & Ellis",
+   "date": "2024-11"
+  },
+  {
+   "id": "BG-0063",
+   "url": "https://www.bloomberg.com/news/articles/2025-04-22/boeing-sells-jeppesen-unit-to-thoma-bravo-for-10-6-billion",
+   "title": "Boeing Sells Jeppesen Unit to Thoma Bravo for $10.6 Billion",
+   "publisher": "Bloomberg",
+   "date": "2025-04-22"
+  },
+  {
+   "id": "BG-0064",
+   "url": "https://abcnews.go.com/Business/wireStory/boeing-finalizes-47b-acquisition-key-737-max-supplier-128218277",
+   "title": "Boeing finalizes $4.7B acquisition of key 737 Max supplier Spirit AeroSystems",
+   "publisher": "AP via ABC News",
+   "date": "2025-12-08"
+  },
+  {
+   "id": "BG-0065",
+   "url": "https://www.aljazeera.com/economy/2025/5/23/boeing-reaches-deal-with-us-doj-to-avoid-prosecution-over-737-max-crashes",
+   "title": "Boeing reaches deal with US DOJ to avoid prosecution over 737 Max crashes",
+   "publisher": "Al Jazeera",
+   "date": "2025-05-23"
+  },
+  {
+   "id": "BG-0066",
+   "url": "https://boeing.mediaroom.com/2011-08-30-Boeing-Launches-737-New-Engine-Family-with-Commitments-for-496-Airplanes-from-Five-Airlines",
+   "title": "Boeing Launches 737 New Engine Family with Commitments for 496 Airplanes from Five Airlines",
+   "publisher": "The Boeing Company (news release)",
+   "date": "2011-08-30"
+  },
+  {
+   "id": "BG-0067",
+   "url": "https://boeing.mediaroom.com/Boeing-Launches-777X-with-Record-Breaking-Orders-Strengthens-Partnerships-in-the-Middle-East-at-the-2013-Dubai-Airshow",
+   "title": "Boeing Launches 777X with Record-Breaking Orders",
+   "publisher": "The Boeing Company (news release)",
+   "date": "2013-11"
+  },
+  {
+   "id": "BG-0068",
+   "url": "https://airguide.info/?p=419429",
+   "title": "Boeing CEO: New Jet Still Years Away as Company Rebuilds Finances",
+   "publisher": "Airguide (reporting a CNBC interview)",
+   "date": "2026-07-20"
+  },
+  {
+   "id": "BG-0069",
+   "url": "https://spectrumlocalnews.com/us/snplus/business/2025/10/18/faa-approval-boeing-increase-737-max-production",
+   "title": "FAA approval for Boeing to increase 737 MAX production",
+   "publisher": "Spectrum News",
+   "date": "2025-10-18"
+  }
+ ],
+ "protocol_steps": [
+  "guidance",
+  "review",
+  "confirm"
+ ]
+}

@@ -1,0 +1,1203 @@
+{
+  "agent_name": "airbus-board",
+  "company": "Airbus",
+  "side": "airbus",
+  "board_name": "Airbus SE Board of Directors",
+  "as_of": "10 October 2026 for composition (Airbus release of 1 October 2026); governance and pay rules from the FY2025 Board Report issued 18 February 2026",
+  "composition": {
+    "chair": "Amparo Moraleda (since 1 October 2026; on the board since 2015)",
+    "chair_is_ceo": false,
+    "lead_independent_director": "Mark Dunkerley (since 1 October 2026; chairs the RNGC)",
+    "size": "12 directors on staggered three-year terms, a third renewed each year.",
+    "independence": "One executive director (the CEO, Guillaume Faury); eleven non-executives, all independent, chair included (FY2025 report).",
+    "committees": [
+      {
+        "name": "Audit Committee (chair Stephan Gemkow; members as of the FY2025 report)",
+        "role": "Prepares the accounts approval and oversees the enterprise risk system; tests a programme's cash and risk case; the CFO is its management interface [AG-0020, AG-0021, AG-0032, AX-0107]"
+      },
+      {
+        "name": "Remuneration, Nomination and Governance Committee (chair Mark Dunkerley from 1 October 2026)",
+        "role": "Pay targets set after scenario analysis, ExCo appointments and succession; prepares the 2027 decision on the CEO's renewal [AG-0023, AG-0029, AG-0043, AG-0048]"
+      },
+      {
+        "name": "Ethics, Compliance and Sustainability Committee (six members; 2026 chair not confirmed)",
+        "role": "Integrity and compliance; the 2020 settlement statement credited it (not reconfirmed on re-check); reviews any covert move such as Delay Tactics (inference) [AG-0022, AG-0053]"
+      },
+      {
+        "name": "No safety or technology committee",
+        "role": "The full board reviews product safety in depth twice a year [AX-0015, AG-0022]"
+      }
+    ],
+    "notable_members": [
+      {
+        "name": "Amparo Moraleda (chair)",
+        "background": "Former General Manager of IBM Spain and Portugal and COO of Iberdrola's international division; first woman and first Spaniard to chair Airbus [AG-0042, AG-0044]"
+      },
+      {
+        "name": "Mark Dunkerley (lead independent director)",
+        "background": "Renewed in 2026; RNGC chair from 1 October 2026 [AG-0041, AG-0043]; airline executive, on the board of Spirit Airlines when he joined in 2020 [AG-0047]"
+      },
+      {
+        "name": "Stephan Gemkow (Audit chair)",
+        "background": "Renewed in 2026 [AG-0020, AG-0041]; former Lufthansa CFO, 22 years at Lufthansa [AG-0047]"
+      },
+      {
+        "name": "Antony Wood",
+        "background": "Former head of Rolls-Royce Aerospace (2013-16) and Meggitt CEO; Audit member; the engine and supplier-risk lens (inference) [AG-0046, AG-0020, AG-0041]"
+      },
+      {
+        "name": "Henriette Hallberg Thygesen",
+        "background": "CEO of Terma (defence and aerospace); joined at the April 2026 AGM [AG-0041]"
+      },
+      {
+        "name": "Oliver Zipse",
+        "background": "Chairman of BMW's board of management when appointed; joined at the April 2026 AGM for one year [AG-0041]"
+      },
+      {
+        "name": "Christophe Fouquet",
+        "background": "CEO of ASML; co-opted on 1 October 2026 in place of Rene Obermann [AG-0042]"
+      },
+      {
+        "name": "Jean-Pierre Clamadieu",
+        "background": "RNGC member; leaves at the 2027 AGM, to be succeeded by Florent Menegaux of Michelin [AG-0023, AG-0043]"
+      }
+    ],
+    "shareholders": "French state 10.83% (Sogepa) and German state 10.82% (GZBV) at 31 December 2025; Spain capped near 4%; all three under 30% under the 2013 pact. No shareholder or group of directors has a veto; the states cannot nominate directors; directors vote freely on reserved matters; unless France and Germany both agree, the states' pact votes against any change to the Board Rules or Articles at the AGM.",
+    "ids": [
+      "AG-0001",
+      "AG-0002",
+      "AG-0005",
+      "AG-0042",
+      "AG-0043",
+      "AG-0044",
+      "AG-0045",
+      "AG-0024",
+      "A-0381",
+      "A-0382",
+      "AG-0050",
+      "AG-0003",
+      "AG-0004",
+      "AG-0036",
+      "AG-0037",
+      "AX-0027"
+    ]
+  },
+  "evidence": {
+    "n_items": 75,
+    "n_transcript": 0,
+    "n_filing": 41,
+    "n_web": 34,
+    "first": "2012-12-05",
+    "last": "2026-10-10",
+    "sources_note": "41 filing items from the FY2025 Board Report (issued 2026-02-18), verbatim and checked by verify_quotes.py, 12 of them in the board's own written words; 34 web items from web search (search-result statements, not quotes), 31 corroborated by a second search and 3 not (AG-0060, AG-0061, AG-0069, used only as inference; AG-0064 is corroborated but an analysts' projection, so also inference only). No Airbus transcripts exist in the repo, so the board has no spoken words on record. Company (A-) and executive (AX-) items are cited by their own ids. Undated company web pages carry the retrieval date 2026-10-10. The first verifier could not search; an independent re-check on 2026-10-10 (30 searches) re-searched 31 of the 34 web items: 30 confirmed (including the three web-only claims without repo backing: the EUR 800m Qualified Majority threshold, the Moody's A1 rating and the board changes after April 2026), 1 corrected (AG-0070: the Spirit agreement is dated 27 April 2025, not 17 April), none dropped; AG-0060, AG-0061 and AG-0069 were not re-searched. Each web item's 'verified' field records this.",
+    "confidence_overall": "Medium: high on rules (reserved matters, majorities, pay design), medium on culture (judged from decisions, not board speech), low on individual directors' views and on the new chair's style",
+    "confidence_by_area": [
+      {
+        "area": "Composition (October 2026)",
+        "level": "High"
+      },
+      {
+        "area": "Reserved matters and votes",
+        "level": "High"
+      },
+      {
+        "area": "Pay horizon",
+        "level": "High"
+      },
+      {
+        "area": "Risk aversion",
+        "level": "Medium"
+      },
+      {
+        "area": "Time horizon",
+        "level": "Medium"
+      },
+      {
+        "area": "Safety oversight",
+        "level": "Medium"
+      },
+      {
+        "area": "Individual directors' views",
+        "level": "Low"
+      },
+      {
+        "area": "Rivals",
+        "level": "Low"
+      }
+    ]
+  },
+  "mandate": "Recommends to the Airbus ExCo before each round and approves or vetoes every Board item (each order that differs from the default) with a binding veto, never originating orders; it protects the five pillars, net cash and the rating first, and backs one programme at a time on its technology clock.",
+  "holds_management_to": [
+    {
+      "text": "The five pillars, safety first: aviation safety and security the highest priority; integrity after the 2020 settlement",
+      "ids": [
+        "AG-0038",
+        "A-0331",
+        "AX-0073",
+        "AG-0053",
+        "A-0474"
+      ]
+    },
+    {
+      "text": "Liquidity, net cash and the rating: a prudent financial-risk approach, net cash of EUR 12.2bn, S&P A+ and Moody's A1",
+      "ids": [
+        "AX-0022",
+        "A-0402",
+        "AG-0062"
+      ]
+    },
+    {
+      "text": "The long-term position: the Airbus of the 2030s on technology gates; NGSA launch in 2030 with entry into service in the second half of the 2030s",
+      "ids": [
+        "AG-0039",
+        "A-0225",
+        "AG-0063",
+        "A-0409"
+      ]
+    },
+    {
+      "text": "The ramp and the year's numbers: a disciplined and controlled ramp, EBIT and FCF",
+      "ids": [
+        "A-0303",
+        "A-0310",
+        "AG-0074"
+      ]
+    },
+    {
+      "text": "Shareholder returns within financial flexibility: a 30-50% payout and a EUR 5bn buyback",
+      "ids": [
+        "AG-0058",
+        "AG-0059",
+        "A-0300"
+      ]
+    }
+  ],
+  "culture": {
+    "risk_aversion": {
+      "score": 4,
+      "rationale": "Averse: strict on balance-sheet and integrity risk, measured on programme risk. A prudent financial-risk stance, net cash and an A+/A1 rating it protects; 'an abnormal level of risk' is a reserved matter and launches above EUR 800m need a Qualified Majority with ten of twelve present; it wants proof before commitment (NGSA gated on technology maturity; under its oversight hydrogen was cut and delayed and the A380 ended, its role in both being inference). These traits are also what a plain 'strongly averse' 5 describes. Not 5: it approved the A350F with no launch order, the Spirit sites were taken over (paid by Spirit) and a three-way space merger agreed (deals its reserved matters bring to it; its approval is inference), and it returns cash from a sound balance sheet. A judgement from evidence, calibrated across the five boards with half points: 4; its downside limit is $2B per item in any plausible column (inference).",
+      "trend": "Stable at 4. It tightened after the 2016-2020 integrity crisis and COVID (dividend withdrawn and EUR 15bn of credit added within days); since 2025 it has loosened on shareholder returns, not on programme risk.",
+      "ids": [
+        "AX-0022",
+        "A-0402",
+        "AG-0062",
+        "A-0299",
+        "AG-0049",
+        "AG-0011",
+        "A-0225",
+        "AG-0065",
+        "AG-0055",
+        "A-0143",
+        "AX-0008",
+        "AG-0056",
+        "AG-0070",
+        "AG-0071",
+        "AG-0053",
+        "AG-0054",
+        "AG-0058",
+        "AG-0059",
+        "A-0298"
+      ]
+    },
+    "time_horizon": {
+      "score": 4,
+      "rationale": "Long-term leaning: NGSA prepared for years and kept whole, with returns moderate until the 2026 buyback. The board defines its purpose as long-term value and justifies innovation by viability in the decades ahead; pay philosophy names long-term shareholders; staggered terms and successions planned a year ahead; five-year cash targets; NGSA prepared for years for a 2030 launch. The pull the other way: about half of target variable pay is the one-year STI, in which EBIT and FCF together weigh 40% (20% each); the long-term award measures three years with no five-year holding, the payout ceiling rose to 50% and a first EUR 5bn buyback was approved in July 2026. A judgement from evidence, calibrated across the five boards with half points: 4; the July 2026 buyback and one-to-four-year pay pull toward 3, not yet to 3.5, because no development has waited for returns. On the game's levers the horizon works through three limits (inference): it never vetoes an NGSA launch on its clock for its spend or near-term earnings cost, vetoes an NGSA cancel unless continuing loses in every plausible column, and never vetoes a later launch for lateness alone. It gives no allowance on peak cash: risk aversion decides that conflict.",
+      "trend": "Drifting slightly toward near-term returns since mid-2025 (from about 4.5 to 4, inference); the NGSA plan has not been cut to pay for returns.",
+      "ids": [
+        "AG-0006",
+        "AG-0039",
+        "AG-0028",
+        "AG-0005",
+        "AG-0072",
+        "AG-0058",
+        "AG-0063",
+        "A-0302",
+        "A-0309",
+        "A-0310",
+        "A-0332",
+        "AG-0030",
+        "AG-0031",
+        "AG-0059"
+      ]
+    },
+    "capital_allocation": {
+      "text": "Liquidity and the rating first (in a shock the dividend goes first); then disciplined investment in the future portfolio, inside aerospace and defence; then the 30-50% payout and the EUR 5bn buyback; then risk-reducing deals (Spirit sites, shared-risk European space). A plan that needs an equity raise or a dividend cut outside a crisis fails (inference).",
+      "ids": [
+        "AX-0022",
+        "AG-0062",
+        "AG-0054",
+        "A-0194",
+        "AX-0003",
+        "AG-0058",
+        "AG-0059",
+        "AG-0070",
+        "AG-0071",
+        "AG-0034"
+      ]
+    },
+    "safety_oversight": {
+      "text": "No safety committee: the full board reviews product safety in depth twice a year. Under that oversight the company put safety ahead of output in late 2025 (a precautionary software action on about 6,000 A320s; a delivery cut rather than shipping suspect panels; company actions, the board's role inference). An item the operating head fails on safety, quality or the ramp is vetoed (inference).",
+      "ids": [
+        "AX-0015",
+        "AG-0038",
+        "AG-0067",
+        "AG-0068",
+        "A-0185"
+      ]
+    },
+    "stakeholder_influence": {
+      "text": "Directors owe their duty to the company and its stakeholders. The French, German and Spanish states are minority holders without a veto who act through the AGM and refundable advances; the CEO has floated state support for the A320 successor. State money is upside, never assumed in the case (inference).",
+      "ids": [
+        "AG-0012",
+        "AG-0050",
+        "AG-0003",
+        "AG-0037",
+        "A-0348",
+        "AG-0066"
+      ]
+    },
+    "pay_horizon": {
+      "text": "STI target 150% of salary, 40% of it on EBIT and FCF (20% each) and the rest on sustainability, business objectives and the CEO's priorities; LTI capped at 150%, measured over three years and vesting about four years after grant; the 2022 plan was 75% average EPS and 25% cumulative FCF. Nothing in pay rewards outcomes beyond about four years, so the board supplies the long view itself (inference).",
+      "ids": [
+        "A-0309",
+        "A-0310",
+        "AX-0073",
+        "A-0332",
+        "AG-0030",
+        "A-0334"
+      ]
+    }
+  },
+  "reserved_matters": [
+    {
+      "matter": "Investments, programme launches, acquisitions and divestments",
+      "threshold": "Board approval above EUR 300m; Qualified Majority (two-thirds, ten of twelve present) above EUR 800m",
+      "ids": [
+        "A-0298",
+        "AG-0049",
+        "AG-0011",
+        "AX-0026"
+      ],
+      "inference": false
+    },
+    {
+      "matter": "Anything involving an abnormal level of risk; shareholder policy; major capital-markets actions and announcements",
+      "threshold": "Simple Majority; all key market disclosures board-reviewed",
+      "ids": [
+        "A-0299",
+        "AX-0004"
+      ],
+      "inference": false
+    },
+    {
+      "matter": "Strategy and the Yearly Budget, including investment, R&D and major programmes",
+      "threshold": "Simple Majority; execution delegated to the CEO",
+      "ids": [
+        "A-0297",
+        "AX-0026"
+      ],
+      "inference": false
+    },
+    {
+      "matter": "Any change in the nature and scope of the business; relocation of material activities",
+      "threshold": "Simple Majority",
+      "ids": [
+        "AG-0010"
+      ],
+      "inference": false
+    },
+    {
+      "matter": "Appointing or removing the Chair and the CEO; strategic alliances; moving the headquarters",
+      "threshold": "Qualified Majority",
+      "ids": [
+        "AG-0049"
+      ],
+      "inference": false
+    },
+    {
+      "matter": "Dividend proposals and buybacks",
+      "threshold": "Dividend proposed to the AGM; buybacks under an 18-month AGM authority of up to 10% of capital",
+      "ids": [
+        "A-0300",
+        "AG-0035"
+      ],
+      "inference": false
+    },
+    {
+      "matter": "Executive Committee appointments proposed by the CEO; the CEO's pay and targets",
+      "threshold": "Board approval on RNGC advice",
+      "ids": [
+        "AX-0028",
+        "AG-0029"
+      ],
+      "inference": false
+    },
+    {
+      "matter": "Equity issuance beyond a tiny board authority",
+      "threshold": "Goes to the AGM, where the states vote",
+      "ids": [
+        "AG-0034"
+      ],
+      "inference": false
+    }
+  ],
+  "board_items_in_game": [
+    {
+      "order": "ngsa: launch (with ngsa_engine_code)",
+      "rule": "$30.07B: a programme launch above EUR 800m and a major programme in the Yearly Budget, so a Qualified Majority item; the engine code rides with it",
+      "ids": [
+        "AG-0049",
+        "A-0297"
+      ],
+      "inference": false
+    },
+    {
+      "order": "rea350: launch",
+      "rule": "$5B: a programme launch above EUR 800m, so a Qualified Majority item",
+      "ids": [
+        "AG-0049"
+      ],
+      "inference": false
+    },
+    {
+      "order": "delay_tactics: bottleneck, poaching or both",
+      "rule": "$1B a move (about EUR 0.9bn at an assumed $1.10 per EUR) plus a $48.32B fine if naked: above EUR 300m and 'an abnormal level of risk', the ethics committee's field; read as needing a Qualified Majority",
+      "ids": [
+        "A-0298",
+        "A-0299",
+        "AG-0022"
+      ],
+      "inference": true
+    },
+    {
+      "order": "ngsa: cancel, rea350: cancel",
+      "rule": "A write-off: a change to major programmes in the Yearly Budget and a major capital-markets announcement",
+      "ids": [
+        "A-0297",
+        "A-0299"
+      ],
+      "inference": false
+    },
+    {
+      "order": "Joint Venture commit or withdraw",
+      "rule": "Not on Airbus's board; a strategic alliance would be a Qualified Majority item",
+      "ids": [
+        "AG-0049"
+      ],
+      "inference": false
+    },
+    {
+      "order": "Lobbying and other_moves (e.g. an A220-500 study)",
+      "rule": "Below the real threshold: not an order field, so not voted; reviewed as part of the round's package, with recommendations only",
+      "ids": [],
+      "inference": true
+    },
+    {
+      "order": "hold, none",
+      "rule": "Not a Board item; never vetoed",
+      "ids": [],
+      "inference": false
+    }
+  ],
+  "decision_process": [
+    {
+      "text": "Board items reach it only after the ExCo has agreed them: one management case, brought by the CEO",
+      "ids": [
+        "AG-0026"
+      ],
+      "inference": false
+    },
+    {
+      "text": "The ExCo's rule in the prompt ends 'assume the Board approves when the tests pass': that is the ExCo's planning assumption from teams.md; the board's own tests govern its votes",
+      "ids": [],
+      "inference": true
+    },
+    {
+      "text": "Most decisions by Simple Majority; launches above EUR 800m, the Chair and CEO and alliances by Qualified Majority (two-thirds, ten of twelve present); no director has a veto",
+      "ids": [
+        "AX-0027",
+        "AG-0049",
+        "AG-0011"
+      ],
+      "inference": false
+    },
+    {
+      "text": "Scenario-led: rolling forecasts, scenarios and top-risk reviews, so it reads the whole grid row, not only the expected column",
+      "ids": [
+        "AX-0007",
+        "AG-0014",
+        "AG-0029"
+      ],
+      "inference": false
+    },
+    {
+      "text": "About monthly meetings and an annual strategy off-site; scheduled and ad hoc reviews of top risks as they require; emergency decisions within days in a shock",
+      "ids": [
+        "AG-0009",
+        "AG-0016",
+        "AG-0014",
+        "AG-0054"
+      ],
+      "inference": false
+    },
+    {
+      "text": "The Audit Committee tests the cash and risk case; the CFO is its management interface",
+      "ids": [
+        "AG-0021",
+        "AG-0032",
+        "AX-0107"
+      ],
+      "inference": false
+    },
+    {
+      "text": "In the game it speaks as one voice; a Qualified Majority item must persuade the finance and industrial directors too",
+      "ids": [],
+      "inference": true
+    }
+  ],
+  "tests": [
+    {
+      "test": "Unresolved objection",
+      "threshold": "No Board item carries a binding ExCo veto that the CEO neither respected nor overrode as the rule allows, or a red-line flag he neither struck nor rebutted",
+      "ids": [
+        "AX-0027",
+        "AG-0049",
+        "AG-0026"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Override review",
+      "threshold": "An override of a soft veto passes only at least $1B over the best passing option in the CEO's expected scenario, recorded as a Board item, the first of the game, and not against the five pillars or a red line; on a Qualified Majority item it must also stay ahead in the worst plausible column; no override of the operating head's safety-and-ramp tests is accepted",
+      "ids": [
+        "AX-0008",
+        "AG-0049",
+        "AG-0033"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Liquidity and rating",
+      "threshold": "Peak annual programme spend no more than about one year's FCF, $5.2B (EUR 4,753m at an assumed $1.10 per EUR): NGSA about $4.3B a year passes; NGSA with an overlapping A350 Re-engine (about $5.9B) fails",
+      "ids": [
+        "AX-0104",
+        "A-0402",
+        "AG-0062",
+        "AX-0022"
+      ],
+      "inference": true
+    },
+    {
+      "test": "One clean sheet at a time",
+      "threshold": "At most one new launch per round; NGSA and A350 Re-engine development overlap of 2 years or less unless the grid shows at least $1B more; with the bills in dashboard_game.md section 2, Liquidity fails any year with both in development (about $4.3B + $1.0B = $5.3B before strain), so the allowance matters only if the brief's bills differ",
+      "ids": [
+        "A-0343",
+        "A-0401",
+        "AG-0049"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Technology clock",
+      "threshold": "NGSA entry into service (launch + 7) never before 2035; round 1 (2030) is the last year of the 2028-2030 window; a later launch is not vetoed for lateness alone but must pass the downside and liquidity tests (set by the time horizon)",
+      "ids": [
+        "A-0225",
+        "A-0409",
+        "AG-0063",
+        "AG-0065"
+      ],
+      "inference": false
+    },
+    {
+      "test": "Downside",
+      "threshold": "Each Board item gains in the CEO's expected scenario and loses no more than $2B in any plausible column (the limit at the 4; the item value is the grid row with the item minus the row with that field at its default, column by column)",
+      "ids": [
+        "AX-0007",
+        "AG-0029",
+        "AG-0033",
+        "A-0364"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Integrity and abnormal risk",
+      "threshold": "bottleneck and both are vetoed; poaching only after Boeing's fps launch is public and before its entry into service, with NGSA or an A350 Re-engine in development, as the first Delay Tactics of the game, at least $1B over the same plan without it, with the CEO's recorded adaptation of the team rule, and never in public",
+      "ids": [
+        "A-0299",
+        "AG-0053",
+        "A-0474",
+        "AG-0022",
+        "A-0331"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Safety and ramp",
+      "threshold": "No item that the operating head fails on safety or quality (a five-pillars flag included), on his A320 ramp shield or on a supply crunch, unless his veto check shows it resolved; no override of these safety-and-ramp tests is accepted; an override of his A350F-absorption or production-readiness soft veto goes through the override review, and his engineering-capacity test is company rule 6",
+      "ids": [
+        "AX-0015",
+        "AG-0038",
+        "A-0331",
+        "A-0303",
+        "AG-0067",
+        "AG-0068"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Reaction discipline",
+      "threshold": "Cancel NGSA only if continuing loses at least $1B against cancelling in every plausible column, never for a Boeing move alone; cancel an A350 Re-engine only if Boeing's 787 Re-engine enters service first and its remaining spend loses at least $1B (set by the time horizon)",
+      "ids": [
+        "AG-0055",
+        "A-0143",
+        "A-0364"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Returns kept fundable",
+      "threshold": "The plan passes the liquidity test, so net cash still carries the payout and the EUR 5bn buyback; no equity raise or dividend cut outside a crisis",
+      "ids": [
+        "AG-0058",
+        "AG-0059",
+        "AG-0034",
+        "AG-0054"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Engine supply (recommendation only)",
+      "threshold": "The NGSA code keeps CFM plus a second maker (5, 6 or 7); never a veto ground, since the code does not change the payoff",
+      "ids": [
+        "A-0243",
+        "A-0360",
+        "AX-0054"
+      ],
+      "inference": true
+    },
+    {
+      "test": "Plan-level failure",
+      "threshold": "When Liquidity, One clean sheet or Returns kept fundable fails for the plan as a whole, veto the added or later item (an A350 Re-engine first, then Delay Tactics), never an NGSA launch on its clock; the time horizon sets Technology clock, Reaction discipline and the rule never to veto for near-term earnings cost alone, risk aversion sets Liquidity, One clean sheet, Downside and Integrity and wins where they conflict",
+      "ids": [
+        "A-0225",
+        "AG-0063",
+        "AX-0022"
+      ],
+      "inference": true
+    }
+  ],
+  "veto": [
+    {
+      "ground": "Balance sheet: peak annual programme spend above about one year's FCF, or a plan needing an equity raise or a dividend cut outside a crisis",
+      "ids": [
+        "AX-0022",
+        "A-0402",
+        "AG-0062",
+        "AX-0104",
+        "AG-0034"
+      ],
+      "inference": true
+    },
+    {
+      "ground": "Two fronts: a second new launch in one round, or an NGSA / A350 Re-engine overlap above 2 years without at least $1B more",
+      "ids": [
+        "A-0343",
+        "AG-0049"
+      ],
+      "inference": true
+    },
+    {
+      "ground": "Technology: NGSA entry into service before 2035",
+      "ids": [
+        "A-0225",
+        "A-0409"
+      ],
+      "inference": false
+    },
+    {
+      "ground": "Integrity and abnormal risk: bottleneck, both, any Delay Tactics before fps is public (the $48.32B naked fine), or poaching outside its conditions",
+      "ids": [
+        "A-0299",
+        "AG-0053",
+        "A-0474"
+      ],
+      "inference": true
+    },
+    {
+      "ground": "Safety and ramp: an item the operating head fails on safety, quality, the A320 ramp shield or a supply crunch, unresolved; no override of these is accepted",
+      "ids": [
+        "AX-0015",
+        "AG-0038",
+        "A-0331"
+      ],
+      "inference": true
+    },
+    {
+      "ground": "Downside: an item that loses more than $2B in a plausible column",
+      "ids": [
+        "AX-0007",
+        "AG-0033"
+      ],
+      "inference": true
+    },
+    {
+      "ground": "Governance: an unresolved binding ExCo veto or red-line flag, or an override that fails the override review",
+      "ids": [
+        "AX-0027",
+        "AX-0008",
+        "AG-0049"
+      ],
+      "inference": true
+    },
+    {
+      "ground": "Reactive cancellation: an NGSA cancel without a failed business case on the grid",
+      "ids": [
+        "AG-0055",
+        "A-0364"
+      ],
+      "inference": true
+    },
+    {
+      "ground": "Limits: the veto binds; a vetoed item goes back to the CEO once (board_revise), with no override against the board, and after the confirm a still-vetoed item reverts to the default (hold, or none for Delay Tactics); every veto names acceptable alternatives, values of that field that pass the tests, the default included; the board never originates orders and never vetoes a hold or none, an item merely because another plan scores higher, an item for its near-term earnings cost alone or an item on the public statement alone, nor an engine code on its own",
+      "ids": [
+        "AG-0026"
+      ],
+      "inference": true
+    }
+  ],
+  "recommendation_style": {
+    "text": "Scenario-based and staged, delivered as the chair and lead independent director would (inference): show the worst plausible Boeing response and peak cash; one programme at a time; keep NGSA on its 2030 clock and use the window; keep the A350 Re-engine until NGSA spend rolls off; keep Delay Tactics off unless every condition holds; two engine makers in the NGSA code; windows, not dates, in public. The CEO answers each in board_response (taken up, or why not); an unanswered one is raised again next round, but is not a veto ground by itself.",
+    "ids": [
+      "AG-0013",
+      "AG-0014",
+      "AX-0007",
+      "AX-0004"
+    ]
+  },
+  "management_relationship": [
+    {
+      "name": "Separate chair and CEO",
+      "relation": "The CEO is the only executive on a board of eleven independent non-executives; cooperative and deferential on execution (positive 2025 evaluation, no clawback for the 2025 miss), firm on governance (disclosures, ExCo appointments, the CEO's objectives)",
+      "ids": [
+        "AG-0002",
+        "AG-0026",
+        "AG-0018",
+        "AX-0035",
+        "AX-0004",
+        "AX-0028",
+        "AX-0070"
+      ]
+    },
+    {
+      "name": "Guillaume Faury (CEO, airbus-faury)",
+      "relation": "Trusted, agile CEO in his third term with a positive relationship with the board; paid on EBIT, FCF and his priorities; his renewal is the board's 2027 call. The board defers to his case unless a test fails (inference)",
+      "ids": [
+        "AX-0059",
+        "AG-0072",
+        "A-0310",
+        "AX-0073",
+        "AG-0048"
+      ]
+    },
+    {
+      "name": "Thomas Toepfer (CFO, airbus-toepfer)",
+      "relation": "The Audit Committee's management interface and chair of internal control; the board reads his memo as its liquidity and rating test (his profile is Low confidence)",
+      "ids": [
+        "AX-0107",
+        "AX-0106",
+        "AX-0022",
+        "A-0402"
+      ]
+    },
+    {
+      "name": "Lars Wagner (CEO Commercial Aircraft, airbus-wagner)",
+      "relation": "In post since 1 January 2026 after a planned handover and widely seen as heir; the board reads his memo as its safety, quality and ramp test (his profile is Very low confidence)",
+      "ids": [
+        "AX-0108",
+        "AX-0100",
+        "AG-0048",
+        "A-0303",
+        "A-0331"
+      ]
+    }
+  ],
+  "rivals": [
+    {
+      "text": "The duopoly has ended, but COMAC's rise will be measured; new entrants and rival launches are a named risk even with a record backlog",
+      "ids": [
+        "AX-0024",
+        "AG-0040"
+      ],
+      "inference": false
+    },
+    {
+      "text": "Against Boeing the anchor is about 60% of the single-aisle backlog; the board reviewed widebody market dynamics in depth in 2025; US tariffs were a significant risk to US deliveries",
+      "ids": [
+        "AX-0025",
+        "A-0302",
+        "AX-0019",
+        "A-0301"
+      ],
+      "inference": false
+    },
+    {
+      "text": "No evidence on how the board reads Boeing's fps timing: NGSA runs on Airbus's own clock, and any reaction to Boeing is inference",
+      "ids": [
+        "AG-0063"
+      ],
+      "inference": true
+    }
+  ],
+  "past_decisions": [
+    {
+      "date": "2012-12 / 2013",
+      "decision": "Governance reform: state stakes capped, no veto rights for any shareholder or group of directors",
+      "ids": [
+        "AG-0050"
+      ]
+    },
+    {
+      "date": "2017-12-15",
+      "decision": "Succession plan during the bribery probes: Enders not to seek a new term, Bregier to leave, Faury to Commercial Aircraft",
+      "ids": [
+        "AG-0052"
+      ]
+    },
+    {
+      "date": "2018-10-08",
+      "decision": "Faury selected as CEO, unanimously, after reviewing internal and external candidates",
+      "ids": [
+        "AG-0051"
+      ]
+    },
+    {
+      "date": "2019-02-14",
+      "decision": "Company action under the board's oversight (board role: inference): A380 production ended after Emirates cut its order; a Bloomberg pre-report said the board would need to approve it formally; no vote on record",
+      "ids": [
+        "AG-0055",
+        "A-0143"
+      ]
+    },
+    {
+      "date": "2020-01-31",
+      "decision": "Company action under the board's oversight (board role: inference): EUR 3.6bn settlement with French, UK and US authorities (the original statement credited the board and its ethics committee for supporting the investigation; not reconfirmed on re-check)",
+      "ids": [
+        "AG-0053",
+        "A-0474"
+      ]
+    },
+    {
+      "date": "2020-03-23",
+      "decision": "COVID: 2019 dividend withdrawn, a new EUR 15bn credit facility, guidance withdrawn",
+      "ids": [
+        "AG-0054"
+      ]
+    },
+    {
+      "date": "2021-07-29",
+      "decision": "A350F development approved with no launch customer; its entry into service later slipped to H2 2027",
+      "ids": [
+        "AG-0056",
+        "AG-0057"
+      ]
+    },
+    {
+      "date": "2024-10-30",
+      "decision": "Faury's renewal proposed (approved at the April 2025 AGM); Wagner named to lead Commercial Aircraft from 1 January 2026",
+      "ids": [
+        "AG-0072",
+        "AX-0108"
+      ]
+    },
+    {
+      "date": "2024-12",
+      "decision": "Company action under the board's oversight (board role: inference): Defence and Space: about 2,000 job cuts after about EUR 1.5bn of space write-downs",
+      "ids": [
+        "AG-0073",
+        "A-0281"
+      ]
+    },
+    {
+      "date": "2025-02",
+      "decision": "Company action under the board's oversight (board role: inference): Hydrogen aircraft delayed beyond 2035 and its budget cut",
+      "ids": [
+        "AG-0065"
+      ]
+    },
+    {
+      "date": "2025-04 to 2025-12",
+      "decision": "Company action under the board's oversight (board role: inference): Spirit AeroSystems sites taken over, with Spirit paying Airbus $439m",
+      "ids": [
+        "AG-0070"
+      ]
+    },
+    {
+      "date": "2025-06-18",
+      "decision": "Dividend payout range raised to 30-50% (shareholder policy is a reserved matter)",
+      "ids": [
+        "AG-0058",
+        "A-0299"
+      ]
+    },
+    {
+      "date": "2025-10-23",
+      "decision": "Company action under the board's oversight (board role: inference): Space merger memorandum with Leonardo and Thales (35/32.5/32.5)",
+      "ids": [
+        "AG-0071",
+        "A-0304"
+      ]
+    },
+    {
+      "date": "2025-11 to 2025-12",
+      "decision": "Company action under the board's oversight (board role: inference): Precautionary A320 fleet software action; 2025 delivery guidance cut to about 790",
+      "ids": [
+        "AG-0067",
+        "AG-0068",
+        "A-0185"
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "decision": "AGM: EUR 3.20 dividend (48% payout); Thygesen and Zipse join; Dunkerley, Gemkow and Wood renewed",
+      "ids": [
+        "AG-0041",
+        "A-0386"
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "decision": "EUR 5bn share buyback over three years approved; 2029 EBIT Adjusted target of EUR 12-13bn",
+      "ids": [
+        "AG-0059"
+      ]
+    },
+    {
+      "date": "2026-10-01",
+      "decision": "Obermann leaves; Moraleda becomes chair; Fouquet co-opted; Dunkerley lead independent director",
+      "ids": [
+        "AG-0042",
+        "AG-0043"
+      ]
+    },
+    {
+      "date": "2027 (expected)",
+      "decision": "Decision on Faury's renewal or a handover (Wagner widely seen as heir)",
+      "ids": [
+        "AG-0048"
+      ]
+    }
+  ],
+  "thin": {
+    "gaps": [
+      "No Airbus transcripts: no spoken words of the chair or directors; the board's voice is the Board Report",
+      "No minutes, no 2026 meeting counts and no committee lists after October 2026; the ethics committee's chair is not confirmed",
+      "No formal record of the A380 vote (AG-0055 is a press report of a Bloomberg pre-announcement)",
+      "The board's role in several company actions (A380, settlement, Defence and Space, hydrogen, Spirit, space, the A320 actions) is inference: the sources name the company",
+      "Backgrounds of Hopke, Rummelhoff and Guillouard not confirmed",
+      "No external safety-culture assessment; the Chief Product Safety Officer item (AG-0069) is company-sourced and uncorroborated",
+      "The 2026 long-term incentive weights are not disclosed",
+      "NGSA launch timing is contested: 2030 (AG-0063) against 2031 or later (AG-0064, an analysts' projection corroborated by Leeham News: inference only); on this board the rules fix the clock",
+      "Critics' reading of the buyback as a Boeing-style drift (AG-0060) is uncorroborated and carries no score"
+    ],
+    "fallback": "Apply the company profile's hard rules and decision procedure and the board's decision record; defer to the CEO's case unless a test fails; never invent a view, a director's opinion or a quote, and say the record is silent."
+  },
+  "voice": {
+    "style": "Written, measured and collective: 'the Board' in the third person, governance before numbers, risk named plainly. All lines are Board Report text, written, not speech; there are no transcripts. Five are the board's own written words; AG-0038 and AG-0039 come from the report's company strategy section, where 'its' is the company.",
+    "quotes": [
+      {
+        "id": "AG-0006",
+        "quote": "A high-performing ... forward-looking ... Board that delivers long-term value",
+        "date": "2026-02-18",
+        "doc": "Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026)",
+        "perspective": "board_own_words"
+      },
+      {
+        "id": "AG-0014",
+        "quote": "with the Board focusing on enhancing the Company's internal resilience against a spectrum of risks.",
+        "date": "2026-02-18",
+        "doc": "Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026)",
+        "perspective": "board_own_words"
+      },
+      {
+        "id": "AG-0016",
+        "quote": "The Board of Directors holds an annual off-site meeting to review and refine the Company's strategic priorities.",
+        "date": "2026-02-18",
+        "doc": "Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026)",
+        "perspective": "board_own_words"
+      },
+      {
+        "id": "AG-0033",
+        "quote": "these systems cannot provide absolute certainty that all relevant risks have been identified or are effectively managed.",
+        "date": "2026-02-18",
+        "doc": "Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026)",
+        "perspective": "board_own_words"
+      },
+      {
+        "id": "AG-0028",
+        "quote": "delivering long-term sustainable returns for all shareholders and other stakeholders",
+        "date": "2026-02-18",
+        "doc": "Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026)",
+        "perspective": "board_own_words"
+      },
+      {
+        "id": "AG-0038",
+        "quote": "with aviation safety and security continuing to be its highest priority.",
+        "date": "2026-02-18",
+        "doc": "Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026)",
+        "perspective": "filing"
+      },
+      {
+        "id": "AG-0039",
+        "quote": "which aims at ensuring the Company's long-term viability in the decades ahead.",
+        "date": "2026-02-18",
+        "doc": "Airbus SE Report of the Board of Directors 2025 (issued 18 February 2026)",
+        "perspective": "filing"
+      }
+    ]
+  },
+  "web_sources": [
+    {
+      "id": "AG-0041",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2026-04-airbus-announces-results-of-2026-annual-general-meeting",
+      "title": "Airbus announces results of 2026 Annual General Meeting",
+      "publisher": "Airbus SE (press release)",
+      "date": "2026-04-14"
+    },
+    {
+      "id": "AG-0042",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2026-10-airbus-announces-nominations-to-its-board-of-directors",
+      "title": "Airbus announces nominations to its Board of Directors (Rene Obermann to step down to focus on his SAP mandate)",
+      "publisher": "Airbus SE (press release)",
+      "date": "2026-10-01"
+    },
+    {
+      "id": "AG-0043",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2026-10-airbus-announces-nominations-to-its-board-of-directors",
+      "title": "Airbus announces nominations to its Board of Directors",
+      "publisher": "Airbus SE (press release)",
+      "date": "2026-10-01"
+    },
+    {
+      "id": "AG-0044",
+      "url": "https://www.airbus.com/en/about-us/our-governance/amparo-moraleda",
+      "title": "Amparo Moraleda - Non-Executive Director (biography)",
+      "publisher": "Airbus SE (governance page)",
+      "date": "2026-10-01"
+    },
+    {
+      "id": "AG-0045",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2020-04-airbus-shareholders-approve-2020-agm-resolutions",
+      "title": "Airbus shareholders approve 2020 AGM resolutions",
+      "publisher": "Airbus SE (press release)",
+      "date": "2020-04-16"
+    },
+    {
+      "id": "AG-0046",
+      "url": "https://www.airbus.com/en/about-us/our-governance/antony-wood",
+      "title": "Antony Wood - Non-Executive Director (biography)",
+      "publisher": "Airbus SE (governance page)",
+      "date": "2026-10-10"
+    },
+    {
+      "id": "AG-0047",
+      "url": "https://www.airbus.com/sites/g/files/jlcbta136/files/2022-02/Airbus-2020-Information-Notice-GV.pdf",
+      "title": "Airbus 2020 AGM Information Notice",
+      "publisher": "Airbus SE",
+      "date": "2020-03-01"
+    },
+    {
+      "id": "AG-0048",
+      "url": "https://www.thestar.com.my/business/business-news/2026/10/05/airbus-board-appointments-herald-ceo-decision-next-year-sources-say",
+      "title": "Airbus board appointments herald CEO decision next year, sources say (Reuters)",
+      "publisher": "Reuters via The Star",
+      "date": "2026-10-05"
+    },
+    {
+      "id": "AG-0049",
+      "url": "https://www.airbus.com/en/about-us/our-governance/governance-framework-and-documents",
+      "title": "Powers: Members of the Board of Directors (governance framework and documents)",
+      "publisher": "Airbus SE (governance page)",
+      "date": "2026-10-10"
+    },
+    {
+      "id": "AG-0050",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2012-12-ad-hoc-release-5-december-2012-eads-governance-and-shareholding",
+      "title": "Ad hoc release 5 December 2012: EADS governance and shareholding",
+      "publisher": "Airbus SE (EADS) press release",
+      "date": "2012-12-05"
+    },
+    {
+      "id": "AG-0051",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2018-10-airbus-board-of-directors-selects-guillaume-faury-future-chief",
+      "title": "Airbus Board of Directors selects Guillaume Faury as future Chief Executive Officer",
+      "publisher": "Airbus SE (press release)",
+      "date": "2018-10-08"
+    },
+    {
+      "id": "AG-0052",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2017-12-airbus-board-of-directors-announces-top-management-succession-plan",
+      "title": "Airbus Board of Directors announces top management succession plan",
+      "publisher": "Airbus SE (press release)",
+      "date": "2017-12-15"
+    },
+    {
+      "id": "AG-0053",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2020-01-airbus-reaches-agreements-with-french-uk-and-us-authorities",
+      "title": "Airbus reaches agreements with French, U.K. and U.S. authorities",
+      "publisher": "Airbus SE (press release)",
+      "date": "2020-01-31"
+    },
+    {
+      "id": "AG-0054",
+      "url": "https://airbus.com/en/newsroom/press-releases/2020-03-airbus-announces-measures-to-bolster-liquidity-and-balance-sheet-in",
+      "title": "Airbus announces measures to bolster liquidity and balance sheet in response to COVID-19",
+      "publisher": "Airbus SE (press release)",
+      "date": "2020-03-23"
+    },
+    {
+      "id": "AG-0055",
+      "url": "https://ainonline.com/aviation-news/air-transport/2019-02-14/airbus-terminates-a380-program",
+      "title": "Airbus Terminates A380 Program",
+      "publisher": "AIN Online",
+      "date": "2019-02-14"
+    },
+    {
+      "id": "AG-0056",
+      "url": "https://centreforaviation.com/news/airbus-granted-board-approval-to-offer-a350-freighter-variant-1082734",
+      "title": "Airbus granted board approval to offer A350 freighter variant",
+      "publisher": "CAPA Centre for Aviation",
+      "date": "2021-07-30"
+    },
+    {
+      "id": "AG-0057",
+      "url": "https://www.airdatanews.com/a350f-freighter-to-enter-service-in-2nd-half-of-2027/",
+      "title": "A350F freighter to enter service in 2nd half of 2027",
+      "publisher": "AirData News",
+      "date": "2025-02-20"
+    },
+    {
+      "id": "AG-0058",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2025-06-airbus-to-present-new-dividend-policy-and-reaffirm-cash-conversion",
+      "title": "Airbus to present new dividend policy and reaffirm cash conversion target",
+      "publisher": "Airbus SE (press release)",
+      "date": "2025-06-18"
+    },
+    {
+      "id": "AG-0059",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2026-07-airbus-to-present-new-mid-term-outlook-strengthen-commitment-to-profitable-growth-and-shareholder",
+      "title": "Airbus to present new mid-term outlook, strengthen commitment to profitable growth and shareholder returns",
+      "publisher": "Airbus SE (press release)",
+      "date": "2026-07-21"
+    },
+    {
+      "id": "AG-0060",
+      "url": "https://leehamnews.com/2026/07/28/airbus-walks-line-between-shareholder-returns-and-clean-sheet-ambitions/",
+      "title": "Airbus walks line between shareholder returns and clean-sheet ambitions (uncorroborated: inference only)",
+      "publisher": "Leeham News / AIN Online",
+      "date": "2026-07-28"
+    },
+    {
+      "id": "AG-0061",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2026-09-airbus-commences-limited-share-buyback-to-support-future-employee-share-ownership-plan-activities",
+      "title": "Airbus commences limited share buyback to support future employee share ownership plan activities (uncorroborated: inference only)",
+      "publisher": "Airbus SE (press release)",
+      "date": "2026-09-11"
+    },
+    {
+      "id": "AG-0062",
+      "url": "https://www.airbus.com/index.php/en/investors/hedging-debt-information",
+      "title": "Financing strategy (hedging and debt information)",
+      "publisher": "Airbus SE (investor page)",
+      "date": "2026-06-30"
+    },
+    {
+      "id": "AG-0063",
+      "url": "https://airlinegeeks.com/2026/06/27/report-airbus-to-launch-a320-replacement-program-in-2030/",
+      "title": "Report: Airbus to Launch A320 Replacement Program in 2030",
+      "publisher": "AirlineGeeks (citing Aviation Week)",
+      "date": "2026-06-27"
+    },
+    {
+      "id": "AG-0064",
+      "url": "https://backend.ainonline.com/aviation-news/aerospace/2026-06-08/airbus-closes-options-new-generation-airliners",
+      "title": "Airbus closes options for new-generation airliners (analysts' projection: inference only)",
+      "publisher": "AIN Online",
+      "date": "2026-06-08"
+    },
+    {
+      "id": "AG-0065",
+      "url": "https://aerospacetestinginternational.com/news/airbus-delays-zeroe-hydrogen-aircraft-research-program.html",
+      "title": "Airbus delays ZEROe hydrogen aircraft research program",
+      "publisher": "Aerospace Testing International",
+      "date": "2025-02-07"
+    },
+    {
+      "id": "AG-0066",
+      "url": "https://www.tipranks.com/news/the-fly/airbus-ceo-says-may-need-state-backing-for-a320-successor-ft-reports",
+      "title": "Airbus CEO says may need state backing for A320 successor (FT report)",
+      "publisher": "TipRanks / The Fly (citing the Financial Times)",
+      "date": "2023-12-01"
+    },
+    {
+      "id": "AG-0067",
+      "url": "https://cyprus-mail.com/2025/11/28/airbus-issues-major-a320-recall-after-flight-control-incident",
+      "title": "Airbus issues major A320 recall after flight-control incident",
+      "publisher": "Cyprus Mail (Reuters)",
+      "date": "2025-11-28"
+    },
+    {
+      "id": "AG-0068",
+      "url": "https://www.news4jax.com/business/2025/12/03/airbus-cuts-2025-delivery-target-due-to-a320-fuselage-panel-issue/",
+      "title": "Airbus cuts 2025 delivery target due to A320 fuselage panel issue",
+      "publisher": "Associated Press via News4Jax",
+      "date": "2025-12-03"
+    },
+    {
+      "id": "AG-0069",
+      "url": "https://airbus.com/en/safety/safety-of-our-products",
+      "title": "Safety of our products (uncorroborated: inference only)",
+      "publisher": "Airbus SE (website)",
+      "date": "2026-10-10"
+    },
+    {
+      "id": "AG-0070",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2025-04-airbus-signs-definitive-agreement-with-spirit-aerosystems",
+      "title": "Airbus signs definitive agreement with Spirit AeroSystems",
+      "publisher": "Airbus SE (press release)",
+      "date": "2025-04-27"
+    },
+    {
+      "id": "AG-0071",
+      "url": "https://www.defenseone.com/business/2025/10/airbus-leonardo-thales-join-forces-reshape-european-space-landscape/409054",
+      "title": "Airbus, Leonardo, Thales join forces to reshape European space landscape",
+      "publisher": "Defense One",
+      "date": "2025-10-23"
+    },
+    {
+      "id": "AG-0072",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2024-10-airbus-proposes-to-renew-ceo-mandate-and-announces-commercial",
+      "title": "Airbus proposes to renew CEO mandate and announces Commercial Aircraft leadership transition",
+      "publisher": "Airbus SE (press release)",
+      "date": "2024-10-30"
+    },
+    {
+      "id": "AG-0073",
+      "url": "https://www.bnnbloomberg.ca/business/2024/12/04/airbus-measures-to-cost-about-2000-jobs-most-in-space-division/",
+      "title": "Airbus measures to cost about 2,000 jobs, most in space division",
+      "publisher": "BNN Bloomberg (Reuters)",
+      "date": "2024-12-04"
+    },
+    {
+      "id": "AG-0074",
+      "url": "https://www.airbus.com/en/newsroom/press-releases/2026-07-airbus-reports-half-year-h1-2026-results",
+      "title": "Airbus reports Half-Year (H1) 2026 results",
+      "publisher": "Airbus SE (press release)",
+      "date": "2026-07-29"
+    }
+  ],
+  "protocol_steps": [
+    "guidance",
+    "review",
+    "confirm"
+  ]
+}

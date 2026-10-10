@@ -142,7 +142,7 @@
   },
   {
    "test": "Engineering load",
-   "threshold": "No strain charge on this board: judgement only; one new development at a time",
+   "threshold": "No strain charge on this game board: judgement only; one new development at a time",
    "ids": [
     "PX-0123"
    ],
@@ -160,7 +160,7 @@
   },
   {
    "test": "Single aisle",
-   "threshold": "No widebody engine; this board has no widebody move for him",
+   "threshold": "No widebody engine; this game board has no widebody move for him",
    "ids": [
     "PX-0127"
    ],
@@ -183,7 +183,7 @@
    ]
   },
   {
-   "ground": "Engineering load (the team rule's strain form): no charge on this board, advice only",
+   "ground": "Engineering load (the team rule's strain form): no charge on this game board, advice only",
    "binding": "none",
    "ids": [
     "PX-0123"
@@ -226,7 +226,7 @@
   },
   {
    "lever": "Joint Venture with RR",
-   "position": "No evidence; before any commitment, propose hold unless Rolls-Royce commits or an airframer signals UltraFan, then state technical conditions (ready by EIS; P&W keeps its gear and core) and defer to Calio",
+   "position": "No evidence; before any commitment, propose hold unless Rolls-Royce's commitment is on the public record or an airframer signals UltraFan (a live airframe's code includes Rolls-Royce: 1, 4, 5 or 7), then state technical conditions (ready by EIS; P&W keeps its gear and core) and defer to Calio",
    "ids": [
     "PX-0118",
     "P-1233"
@@ -244,7 +244,7 @@
   },
   {
    "lever": "Widebody",
-   "position": "No move on this board; single aisle focused",
+   "position": "No move on this game board; single aisle focused",
    "ids": [
     "PX-0127"
    ],
@@ -252,7 +252,7 @@
   },
   {
    "lever": "Pricing terms",
-   "position": "Not a board order. In other moves: pass-through pricing to offset inflation, no discounts (inference for OE)",
+   "position": "Not a game-board order. In other moves: pass-through pricing to offset inflation, no discounts (inference for OE)",
    "ids": [
     "PX-0117"
    ],
@@ -410,5 +410,23 @@
   "test",
   "veto_check"
  ],
- "veto_holder": true
+ "veto_holder": true,
+ "board": {
+  "summary": "The RTX Corporation Board of Directors (agent pratt-whitney-board), chaired by Calio, with Lead Independent Director Fredric Reynolds; product safety and quality sit with its Governance and Public Policy Committee (no safety or technology committee), and its directors face derivative claims over GTF oversight. Every order that differs from hold is a Board item (gtf2_solo launch, launch_if_selected or cancel; jv_with_rr commit or withdraw); its veto binds. Culture scored risk aversion 3.5 of 5 and time horizon 3 of 5 (half points allowed): the return hurdle, sole source and proof before commitment, durability first, the dividend and pre-ASR debt. It approves launch_if_selected readily; an unconditional launch only into a P&W selection on the record or as NGSA franchise defence with an expected edge over launch_if_selected of at least +$0.5B (a margin over break-even, at its 3.5); commit once Rolls-Royce's commitment is on the record or a live airframe's code includes Rolls-Royce (1, 4, 5 or 7), on its weighted value; cancel or withdraw only with a weighted value against hold of at least zero, and a cancel while a live airframe whose code includes P&W can still be served also needs the cancel row ahead of hold in every plausible column. An item below hold passes only as a declared premium of at most $0.5B that serves the assigned objective, inside the team's $1B cap (its time horizon 3). It also vetoes an item that can lose more than its own $2B against hold in a plausible column, breaks the dividend or envelope rule, carries an unresolved binding veto or red-line flag, books unrecorded upside, or is not ready by the EIS it serves (inference).",
+  "seat_role": "His proposal, test memo and veto check go to the Board with the CEO's decision; the Board reads them as its durability and readiness test (each engine ready by the EIS it serves; no item he fails on durability or parts unless resolved). The Board has no direct evidence on him; his record is one event (inference).",
+  "ids": [
+   "PG-0043",
+   "PG-0044",
+   "PG-0050",
+   "PG-0032",
+   "PG-0023",
+   "PG-0039",
+   "P-1285",
+   "P-0731",
+   "P-1360",
+   "P-1215",
+   "PX-0116",
+   "PX-0120"
+  ]
+ }
 }

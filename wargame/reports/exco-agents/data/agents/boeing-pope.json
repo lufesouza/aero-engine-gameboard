@@ -135,7 +135,7 @@
   },
   {
    "test": "Capacity follows demand",
-   "threshold": "Demand is fixed on the board (2,000 NB a year), so read the Rate Increase rows: back it where it adds value against the same plan without it in the expected column; otherwise not applicable",
+   "threshold": "Demand is fixed on the game board (2,000 NB a year), so read the Rate Increase rows: back it where it adds value against the same plan without it in the expected column; otherwise not applicable",
    "ids": [
     "BX-1329"
    ],
@@ -186,7 +186,7 @@
   },
   {
    "lever": "fps via Embraer",
-   "position": "Solo by default since the IP is Boeing's; via Embraer brings no capacity relief on the board, only a larger bill",
+   "position": "Solo by default since the IP is Boeing's; via Embraer brings no capacity relief on the game board, only a larger bill",
    "ids": [
     "BX-1330"
    ],
@@ -319,5 +319,25 @@
   "test",
   "veto_check"
  ],
- "veto_holder": true
+ "veto_holder": true,
+ "board": {
+  "summary": "The Boeing Company Board of Directors (agent boeing-board), twelve directors under the independent chair Steve Mollenkopf, approves or vetoes every order that differs from the default: fps launches (in real life the Board approves the launch, after management's authority to offer), the 787 Re-engine, any cancel, and the 737 Rate Increase (below its real threshold but reviewed with the package); its veto binds. Its culture is scored risk aversion 4.5 of 5 and time horizon 3 of 5 (half points allowed): safety and the investment-grade rating first, proof before commitment, and a long-cycle view held back by one-to-three-year cash pay. It approves one well-founded launch more than $1B ahead of its default in the expected column that passes the buffer test and the CFO's 'Fundable when the 777X turns' test (his other views stay advice) and loses no more than $1B per item in any plausible Airbus column (half the CFO's $2B buffer); it vetoes fps via Embraer unless clearly better, a 787 Re-engine that overlaps a Solo fps by more than 2 years or loses more than $1B, a Rate Increase that loses value, meets a live problem or answers Airbus (H6), a reactive cancel (H5), and a premium above $2B (inference).",
+  "seat_role": "Her test memo and veto check go to the Board with the CEO's decision; the Board, whose Aerospace Safety Committee is chaired by David Joyce, a former GE Aviation CEO (the 2026 chair rests on third-party data and 2024 press, not a Boeing document; he led it in 2022), and hears the Chief Engineer directly, reads them as its safety and production-readiness test, approving no launch or Rate Increase she fails on KPIs, suppliers or strain unless resolved (inference). Boeing named her to lead Commercial Airplanes in the March 2024 changes (not re-confirmed at re-search).",
+  "ids": [
+   "BG-0037",
+   "BG-0038",
+   "BG-0061",
+   "BG-0012",
+   "BG-0041",
+   "BG-0043",
+   "BG-0025",
+   "B-2236",
+   "BG-0069",
+   "BG-0050",
+   "BG-0051",
+   "BG-0021",
+   "BG-0068",
+   "BG-0029"
+  ]
+ }
 }

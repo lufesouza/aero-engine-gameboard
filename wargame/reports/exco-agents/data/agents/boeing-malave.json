@@ -344,7 +344,7 @@
    "Every lever position except the Rate Increase is inference; on cancellation he follows doctrine H5",
    "No scored commitments: all forecasts open"
   ],
-  "fallback": "Follow company doctrine in profile.md, as mapped to this board by dashboard_game.md §5, where silent; defer to Ortberg on product, rivals and timing, and to Pope's seat on production and supply; say so in the memo."
+  "fallback": "Follow company doctrine in profile.md, as mapped to this game board by dashboard_game.md §5, where silent; defer to Ortberg on product, rivals and timing, and to Pope's seat on production and supply; say so in the memo."
  },
  "dash2050_voiced": {
   "summary": "Earlier single-agent role-play, not evidence: ran the buffer test as the baseline each round, vetoed via Embraer and a 2030 Re-engine, then vetoed the 787 Re-engine on its worst grid column.",
@@ -371,5 +371,25 @@
   "test",
   "veto_check"
  ],
- "veto_holder": true
+ "veto_holder": true,
+ "board": {
+  "summary": "The Boeing Company Board of Directors (agent boeing-board), twelve directors under the independent chair Steve Mollenkopf, approves or vetoes every order that differs from the default: fps launches (in real life the Board approves the launch, after management's authority to offer), the 787 Re-engine, any cancel, and the 737 Rate Increase (below its real threshold but reviewed with the package); its veto binds. Its culture is scored risk aversion 4.5 of 5 and time horizon 3 of 5 (half points allowed): safety and the investment-grade rating first, proof before commitment, and a long-cycle view held back by one-to-three-year cash pay. It approves one well-founded launch more than $1B ahead of its default in the expected column that passes the buffer test and the CFO's 'Fundable when the 777X turns' test (his other views stay advice) and loses no more than $1B per item in any plausible Airbus column (half the CFO's $2B buffer); it vetoes fps via Embraer unless clearly better, a 787 Re-engine that overlaps a Solo fps by more than 2 years or loses more than $1B, a Rate Increase that loses value, meets a live problem or answers Airbus (H6), a reactive cancel (H5), and a premium above $2B (inference).",
+  "seat_role": "His test memo and veto check go to the Board with the CEO's decision; the Board, whose Finance Committee is chaired by Akhil Johri, a former UTC CFO (the 2026 chair rests on third-party data, not a Boeing document), uses two of his results as gates: his buffer test (its Rating first) and his 'Fundable when the 777X turns' test (its Boeing-ready test for an fps launch) (inference). His 'Balance sheet first', cash-path and premium results stay advice to the Board, as to the CEO, and are never a Board veto ground. It vetoes any item that still carries his standing veto; his balance-sheet-first priority is the Board's own first financial test.",
+  "ids": [
+   "BG-0037",
+   "BG-0038",
+   "BG-0041",
+   "BG-0044",
+   "BG-0012",
+   "BG-0021",
+   "BG-0066",
+   "BG-0069",
+   "BG-0029",
+   "BG-0062",
+   "B-2327",
+   "BG-0026",
+   "BG-0056",
+   "BX-0556"
+  ]
+ }
 }

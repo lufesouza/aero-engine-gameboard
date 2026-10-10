@@ -6,7 +6,7 @@
   "seat": "CFO",
   "title": "CFO and Director",
   "team_id": "erginbilgic-mccabe-watson-2026",
-  "role_dates": "CFO and Director from about November 2023: first evidenced at the 28 November 2023 Capital Markets Day [RX-0211], last at the H1 2025 results call of 31 July 2025 [RX-0263]; whether she is still CFO in 2026 is not in the evidence.",
+  "role_dates": "CFO and Director from about November 2023: first evidenced at the 28 November 2023 Capital Markets Day [RX-0211], last at the H1 2025 results call of 31 July 2025 [RX-0263]; re-elected as a director at the 30 April 2026 AGM and granted a 2026 LTIP award on 1 May 2026 [RG-0047, RG-0057]: she holds the seat as of 2026.",
   "evidence": {
     "n_items": 61,
     "n_own_words": 61,
@@ -229,7 +229,7 @@
     },
     {
       "lever": "UltraFan WB",
-      "position": "Do Nothing; co-sign only once an A350 Re-engine is on the public record (protecting the widebody base), or a 787 Re-engine whose maker named UltraFan in a public statement, and only if the row beats hold or the gap is a declared premium within $3B",
+      "position": "Do Nothing; co-sign only once an A350 Re-engine is on the public record (protecting the widebody base), or a 787 Re-engine whose maker named UltraFan in a public statement, and only if the row beats hold or the gap is a declared premium within $3B (the Board caps an UltraFan WB premium at $1B)",
       "ids": [
         "RX-0262",
         "RX-0259"
@@ -441,5 +441,32 @@
     "test",
     "veto_check"
   ],
-  "veto_holder": true
+  "veto_holder": true,
+  "board": {
+    "summary": "The Rolls-Royce Holdings plc Board (agent rolls-royce-board), 14 directors as of 1 September 2026 under the independent chair Dame Anita Frew, with George Culmer, a former Lloyds CFO, as Senior Independent Director; McCabe sits on it as CFO and director, re-elected in April 2026. Its Audit Committee (chaired by Nick Luff as of the 2024 AGM script; he leaves the board at the 2027 AGM; Alessandra Genco from September 2026) covers long-term contract accounting and market and financial risk. Her pay rides on its 2026 policy (an LTIP with three-year conditions released two years later, whose measures, three-year free cash flow, margin and relative TSR, come from the share-plan page and are inference for her award; a 450% shareholding requirement). Every order that differs from hold is a Board item; its veto binds. Culture scored risk aversion 4 of 5 and time horizon 2.5 of 5 (half points allowed): safety, then the balance sheet, as in her capital frame; precaution sized to the reasonable worst case; payments only from sustainable free cash flow; with single A from two agencies and net cash, it is returning £7-9bn over 2026-2028. It vetoes any launch or commit without her co-signature, a narrowbody item whose weighted value against hold is below 0, an undeclared or capped-out widebody premium ($3B a round, $1B for an UltraFan WB), any item that can lose more than its own bill, and the Trent 1000 upgrade in any round where an UltraFan is in development, launched or ordered launch_if_selected (inference).",
+    "seat_role": "Her test memo and veto check go to the Board with the CEO's decision; the Board reads them as its balance-sheet, hurdle and worst-case evidence (each item's value against hold, column by column and weighted; the worst plausible column against the item's own bill; capex a year; any premium). A launch or commit without her co-signature is a Board veto ground; the Board reads her co-signature from her step-4 veto check (concur on that value), and a CEO change at step 5 to a more conditional form keeps it (inference).",
+    "ids": [
+      "RG-0004",
+      "RG-0009",
+      "RX-0213",
+      "RG-0024",
+      "RG-0046",
+      "RX-0242",
+      "RG-0041",
+      "RG-0043",
+      "RG-0033",
+      "R-0738",
+      "RG-0028",
+      "RG-0047",
+      "RG-0048",
+      "RG-0051",
+      "RG-0050",
+      "RG-0055",
+      "RG-0056",
+      "RG-0057",
+      "RG-0054",
+      "RG-0060",
+      "RG-0059"
+    ]
+  }
 }

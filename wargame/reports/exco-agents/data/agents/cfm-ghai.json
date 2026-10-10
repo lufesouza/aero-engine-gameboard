@@ -141,8 +141,8 @@
    "inference": true
   },
   {
-   "test": "No overcapitalization (advice)",
-   "threshold": "His rule is capex within 2-3% of revenue, said of capex on facilities; R&D is a separate envelope (profile.md §2). By analogy: R&D per development year fits in the cash left after returning more than 70% of deployable cash, on about $8.5B of 2028 free cash flow (roughly $2.5B a year). Advice only, not a veto ground",
+   "test": "No overcapitalization (veto: capex, per the GM's rule)",
+   "threshold": "His rule is capex within 2-3% of revenue, said of capex on facilities; R&D is a separate envelope (profile.md §2). The GM's team rule lists it among his capex tests, which bind. By analogy: R&D committed this round, spread over its development years, fits in the cash left after returning more than 70% of deployable cash, on about $8.5B of 2028 free cash flow (roughly $2.5B a year). On the board's numbers it cannot fail (at most about $1.8B a year); if a brief ever makes it fail, it is a capex fail",
    "ids": [
     "CX-0922",
     "CX-0923",
@@ -227,10 +227,17 @@
    ]
   },
   {
-   "ground": "No overcapitalization (an analogy from capex to R&D), what the case leaves out, dated sequence, stacking warning, level of expected PV: advice only",
-   "binding": "none",
+   "ground": "Capex, per the GM's team rule: new R&D spread over its development years above about $2.5B a year (no overcapitalization, an analogy from capex to R&D; it cannot fail on the board's numbers)",
+   "binding": "inference",
    "ids": [
     "CX-0922",
+    "CX-0923"
+   ]
+  },
+  {
+   "ground": "What the case leaves out, dated sequence, stacking warning, level of expected PV: advice only",
+   "binding": "none",
+   "ids": [
     "CX-0961",
     "CX-0911",
     "CX-0933"
@@ -478,5 +485,29 @@
   "test",
   "veto_check"
  ],
- "veto_holder": true
+ "veto_holder": true,
+ "board": {
+  "summary": "The GE Aerospace Board of Directors (agent cfm-board), ten directors with Culp as combined Chairman and CEO, speaks in the game through the independent directors under Lead Director Wes Bush (inference), and has no safety or technology committee, so engine programmes go to the full board, which takes the most significant risks (Governance's health-and-safety remit rests on one search that the 2026-10-10 re-check did not find). It approves or vetoes every order that differs from the default: ducted, open_fan and partner_embraer launches or cancels (major corporate actions), and lobby_emissions and genx (below any real threshold, reviewed with the package); its veto binds. On every CFM order (Ducted, Open Fan, Embraer, and Lobby, which serves RISE) it also applies the CFM parity rule: Safran's consent, assumed when the move fits joint practice, otherwise a stated reason why Safran would agree. Its culture is scored risk aversion 4 of 5 and time horizon 3 of 5: safety, an investment-grade (A-range) rating and reinvestment first, risk only when paid for, at least 70% of free cash flow returned, RISE funded as technology and launched as a product only on an airframer path. It approves a Ducted more than $1B ahead of its default in the expected column, or under hard rule 3 in a plausible column where a rival takes CFM's slot with a weighted item value of at least zero; GEnx, Embraer and Lobby only when they pay net of the strain they add, and Lobby only with an Open Fan launched or live; no item may lose more than its bill (its R&D, plus the $2B strain if it triggers it) in a plausible column. It vetoes an Open Fan the grid shows waiting on an airframe in any plausible column (it must be the one declared RISE allowance, within $15B), a cancel that loses in any plausible column or a RISE cancel for cost, a premium above the cap (a RISE allowance stated apart in premium_reason is not counted in it), a CFM move outside joint practice with no stated reason why Safran would agree, a launch carrying a safety or durability flag from Ali that Culp has not resolved with a cross-functional answer on evidence, and an override it cannot verify; a standing objection to the statement alone becomes a recommendation (inference).",
+  "seat_role": "His test memo and veto check go to the Board with the CEO's decision; the Board, whose Audit Committee is chaired by Bella Goren (former American Airlines CFO) and which treats capital allocation as its own responsibility, reads them as its payout and pays-for-itself test: each item's value in the expected and the worst column, new R&D per year (each item spread over its development years) against about $2.5B (his no-overcapitalization test becomes its payout-floor test, which cannot fail on the board's numbers), and the premium count (inference). It vetoes an item that still carries his standing veto unless Culp answered it with evidence it can verify; a standing terms veto on the statement alone becomes a recommendation; the return framework he presents is the one it approves.",
+  "ids": [
+   "CG-0044",
+   "CG-0041",
+   "CG-0045",
+   "CG-0004",
+   "CG-0011",
+   "CG-0065",
+   "CX-0184",
+   "CG-0016",
+   "CX-0923",
+   "CG-0061",
+   "CG-0022",
+   "CX-0252",
+   "CG-0010",
+   "CG-0017",
+   "CX-0645",
+   "CG-0063",
+   "CX-0953",
+   "CG-0048"
+  ]
+ }
 }

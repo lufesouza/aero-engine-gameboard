@@ -115,7 +115,7 @@
   "tests": [
     {
       "test": "Ready by EIS",
-      "threshold": "UltraFan NB (launch + 7) or the Joint Venture engine (formation + 6, earlier with a folded Solo further along) ready by the selecting airframe's EIS: launched in or before the airframe's launch round passes; same round as NGSA or a 7-year fps is zero margin (pass and flag); a later launch, or a later formation without a folded Solo ready in time, fails. A fail is advice, not a veto",
+      "threshold": "UltraFan NB (launch + 7) or the Joint Venture engine (formation + 6, earlier with a folded Solo further along) ready by the selecting airframe's EIS: launched in or before the airframe's launch round passes; same round as NGSA or a 7-year fps is zero margin (a pass with a note on the margin, not a fail and not a veto ground); a later launch, or a later formation without a folded Solo ready in time, fails. A fail is advice, not a veto",
       "ids": [
         "RX-0296",
         "RX-0284"
@@ -199,7 +199,7 @@
   "lever_positions": [
     {
       "lever": "UltraFan NB launch_if_selected",
-      "position": "Passes only in a round where UltraFan can be ready by the selecting airframe's EIS; flag zero margin; architecture 'scalable'",
+      "position": "Passes only in a round where UltraFan can be ready by the selecting airframe's EIS; note zero margin as a pass; architecture 'scalable'",
       "ids": [
         "RX-0294",
         "RX-0296"
@@ -418,5 +418,25 @@
     "test",
     "veto_check"
   ],
-  "veto_holder": true
+  "veto_holder": true,
+  "board": {
+    "summary": "The Rolls-Royce Holdings plc Board (agent rolls-royce-board), 14 directors as of 1 September 2026 under the independent chair Dame Anita Frew; Watson is not a director (inference). Since 2023 its Safety, Energy Transition & Tech Committee (chair Wendy Mars) focuses on safety and oversees technology strategy and investments, UltraFan included (inference); Paul Adams, its ex-P&W engineer, is not on the 2026 roster (left in 2023, inference: one listing). Every order that differs from hold is a Board item; its veto binds. Culture scored risk aversion 4 of 5 and time horizon 2.5 of 5 (half points allowed): product safety its most important priority, the Trent 1000 crisis overseen directly, the risk of many new products at once; the Trent 1000 durability package (June 2025) was funded first, safety is 5% of the bonus, and the 2026 narrowbody step is an UltraFan 30 demonstrator, not a launch. It vetoes any item that fails his maturity (Ready by EIS, for an unconditional launch or commit), early-date or support test against the final orders, or on which his binding Civil veto still stands after the CEO's revision, even where the ExCo treats a late engine as advice; a zero-margin pass, capacity, MRO or strain advice, and a concern the revision cured lead to a recommendation, not a veto. It also vetoes overlapping programmes (inference).",
+    "seat_role": "His test memo and veto check go to the Board with the CEO's decision; the Board reads them as its safety and readiness evidence (each item's ready year against each live airframe's EIS, the support plan, any overlap, each concern marked as a test fail, a binding veto or a note), and a failed maturity, early-date or support test carries weight there (inference).",
+    "ids": [
+      "RG-0009",
+      "RG-0025",
+      "RG-0026",
+      "RG-0027",
+      "RG-0019",
+      "RG-0047",
+      "RG-0048",
+      "RG-0051",
+      "RG-0049",
+      "RG-0050",
+      "RG-0053",
+      "RG-0068",
+      "RG-0058",
+      "RG-0065"
+    ]
+  }
 }

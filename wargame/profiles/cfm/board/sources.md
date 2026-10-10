@@ -6,13 +6,18 @@ second, differently worded search that returned the same fact (`corroborated_by`
 verbatim transcript or filing item already in the repo, the entry names that item ("(repo transcript)" or "(repo
 filing)") and has no URL; those items pass `verify_quotes.py`.
 
-- **29 web items:** 24 corroborated and 5 uncorroborated (CG-0051, CG-0052, CG-0067, CG-0068, CG-0069).
+- **29 web items:** 25 corroborated and 4 uncorroborated (CG-0052, CG-0067, CG-0068, CG-0069). CG-0051 was corroborated at the 2026-10-10 re-check.
 - The uncorroborated items are used only as (inference). They carry no culture score, test, veto ground or reserved matter.
 - **Verification pass (2026-10-10).** The verifier could not run its own, differently worded searches: the session's
   web-search budget was exhausted before it started. No web item was dropped or changed for that reason; the items
   stand on the drafter's searches below. Two were re-corroborated against verbatim repo transcripts (CG-0060 with
   CX-0530; CG-0063 with ge_transcripts pp. 38-39), and all were checked for consistency with the transcripts and the
   Capital IQ profile (no conflict found). A later pass with search budget should re-run one new query per item.
+- **Re-check (2026-10-10).** A second agent re-ran its own queries (28 searches, listed at the end). It confirmed 25
+  items in substance (CG-0041 to CG-0051, CG-0053 to CG-0066); none was contradicted, corrected or dropped. Each
+  confirmed item has `"verified": "2026-10-10"`, the re-check query and URL appended to `corroborated_by`, and,
+  where a detail was not confirmed, a `recheck_note`. CG-0052, CG-0067, CG-0068 and CG-0069 were not re-searched
+  (`"verified": "not re-searched"`) and stay inference only.
 - Search summaries were sometimes garbled when they parsed proxy tables. The committee rosters (CG-0045) are taken
   from three searches that agree; one summary flagged the table layout as ambiguous.
 
@@ -30,7 +35,7 @@ filing)") and has no URL; those items pass `verify_quotes.py`.
 | CG-0048 | 2026-03-12 | GE Aerospace (SEC EDGAR, DEF 14A) | GE Aerospace 2026 proxy statement: Board's role in risk oversight | https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-courtesy.pdf | https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-20260312.htm; https://www.geaerospace.com/sites/default/files/geaerospace_proxy2025.pdf |
 | CG-0049 | 2026-03-12 | GE Aerospace (DEF 14A) | GE Aerospace 2026 proxy statement: letter from the Lead Director | https://www.geaerospace.com/sites/default/files/geaerospace_proxy_2026.pdf | https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-courtesy.pdf |
 | CG-0050 | 2024-07-01 | GE Aerospace (SEC EDGAR, 8-K) | GE Aerospace Form 8-K: new employment agreement with H. Lawrence Culp, Jr. | https://www.sec.gov/Archives/edgar/data/40545/000095014224001825/eh240502380_8k.htm | https://www.tipranks.com/news/company-announcements/ge-aerospace-confirms-ceos-extension-and-new-compensation-plan; https://www.aol.com/ge-aerospace-signs-larry-culp-125840105.html |
-| CG-0051 | 2025-03-13 | GE Aerospace (SEC EDGAR, DEF 14A) | GE Aerospace 2025 proxy statement: PSU design | https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge4356871-def14a.htm | **uncorroborated** (single search; inference only) |
+| CG-0051 | 2025-03-13 | GE Aerospace (SEC EDGAR, DEF 14A) | GE Aerospace 2025 proxy statement: PSU design | https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge4356871-def14a.htm | https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge_courtesy-pdf.pdf (re-check 2026-10-10, search 28) |
 | CG-0052 | 2026-03-12 | GE Aerospace (SEC EDGAR, DEF 14A) | GE Aerospace 2026 proxy statement: Annual Executive Incentive Plan | https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-20260312.htm | **uncorroborated** (single search; inference only) |
 | CG-0053 | 2025-05-06 | GE Aerospace (annual meeting results); 8-K of 6 May 2025 | GE Aerospace 2025 Annual Meeting results | https://www.geaerospace.com/sites/default/files/2025-geaerospace-annual-meeting-results.pdf | https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge4356871-def14a.htm |
 | CG-0054 | 2021-05-04 | Bloomberg | GE CEO's $232 Million Pay Deal Draws Shareholder Rebuke | https://www.bloomberg.com/news/articles/2021-05-04/ge-ceo-s-232-million-pay-deal-draws-rebuke-from-shareholders | https://www.bostonglobe.com/2021/05/03/business/ge-chief-executive-larry-culps-compensation-faces-scrutiny-shareholder-vote |
@@ -113,3 +118,34 @@ filing)") and has no URL; those items pass `verify_quotes.py`.
 49. GE Aerospace invest nearly $1 billion US manufacturing 2025 2026 plants supply chain announcement
 50. GE Safran renew CFM partnership until 2040 LEAP launch 2008 agreement
 51. LEAP engine launched 2008 without aircraft application first customer COMAC C919 December 2009 CFM (not run: the session's web-search budget was exhausted, so CG-0067 stays uncorroborated)
+
+## Re-check queries (2026-10-10; 28 run, the cap)
+
+1. GE Aerospace Wes Bush independent Lead Director Tom Horton September 2026 -> CG-0041: https://www.sec.gov/Archives/edgar/data/0000040545/000004054526000059/ex990120260922.htm
+2. Wesley G. Bush joining GE Aerospace Board of Directors Stephen Angel CSX -> CG-0042: https://intelligencecommunitynews.com/wesley-bush-joins-ge-aerospace-board/
+3. Judson Althoff joins GE Aerospace Board of Directors -> CG-0043: https://www.geaerospace.com/news/investor-relations/ir-updates/welcoming-microsofts-judson-althoff
+4. GE Aerospace 2026 annual meeting results directors elected Ed Garden not standing for re-election -> CG-0044: https://www.geaerospace.com/sites/default/files/2026-geaerospace-annual-meeting-results.pdf
+5. GE Aerospace 2026 proxy committee chairs Goren Audit Lesjak Compensation Horton Governance McDew Classified Programs -> CG-0044, CG-0045, CG-0046 (four committees, Classified Programs formed June 2025; chairs not shown (resolved by search 7)): https://www.geaerospace.com/investor-relations/governance; https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-20260312.htm
+6. GE Aerospace Classified Programs Committee established June 2025 charter -> CG-0046 (charter content; date conflict noted, unverified): https://www.geaerospace.com/sites/default/files/ClassifiedProgramsCommitteeCharter.pdf
+7. GE Aerospace board committee assignments chair Audit Committee Goren Management Development Compensation Committee chair Lesjak -> CG-0042, CG-0045: https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-courtesy.pdf; https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge4356871-def14a.htm
+8. GE Aerospace Governance Principles board functions "fundamental financial and business strategies and major corporate actions" -> CG-0047: https://www.geaerospace.com/sites/default/files/GEAerospaceGovernancePrinciples_0.pdf
+9. GE Aerospace proxy 2026 board risk oversight Audit Committee enterprise risk management Governance and Public Affairs health and safety risks -> CG-0048 (Audit ERM and executive risk committee; Governance health-and-safety not found): https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-courtesy.pdf
+10. GE Aerospace 2026 proxy letter from Lead Director Horton board dedicated reviews strategic topics each core business -> letter found, deep-dive wording not seen (resolved by search 27)
+11. GE Culp new employment agreement June 2024 through 2027 base salary $2 million one-time performance stock units EPS -> CG-0050: https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge4356871-def14a.htm
+12. GE Aerospace 2025 say on pay vote 71% support Culp compensation -> CG-0050, CG-0053: https://fintool.com/app/research/companies/GE/people/larry-culp; https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-20260312.htm
+13. GE shareholders reject executive pay 2021 vote 58% against Culp $232 million -> CG-0054: https://www.cfo.com/news/ge-shareholders-reject-pay-plan-for-ceo-culp/655649/
+14. GE board names Larry Culp chairman CEO replaces Flannery October 1 2018 Horton lead director unanimous -> CG-0055: https://www.ge.com/news/press-releases/h-lawrence-culp-jr-named-chairman-and-ceo-ge
+15. GE cuts dividend in half November 2017 24 cents to 12 cents, then October 2018 cuts to one cent -> CG-0056 (November 2017 cut only; October 2018 not covered (resolved by search 25)): https://fortune.com/2017/11/13/ge-dividends-general-electric-stock
+16. GE share buybacks 2015 2016 $22 billion Trian Peltz stake $2.5 billion recommended debt-funded buyback -> CG-0058 (Trian stake and debt-funded buyback thesis; $22-24bn yearly figure not found): https://foxbusiness.com/features/ges-performance-under-scrutiny; https://www.industryweek.com/the-economy/article/21966049/ge-shares-jump-as-activist-peltz-reports-stake
+17. GE board approves spin-off of GE Vernova February 29 2024 distribution April 2 one share for every four -> CG-0059: https://www.gevernova.com/news/press-releases/ge-board-of-directors-approves-spin-off-of-ge-vernova-ge-vernova-and-ge-aerospace-to
+18. Culp becomes CEO of GE Aviation June 2022 Slattery chief commercial officer -> CG-0060: https://www.ge.com/news/press-releases/ge-announces-changes-to-ge-aviation-senior-leadership-team
+19. GE Aerospace board approves new $20 billion share repurchase authorization December 2025 dividend $0.47 -> CG-0062 ($0.47 dividends; $20B buyback not surfaced (resolved by search 23)): https://www.placera.se/pressmeddelanden/ge-aerospace-board-of-directors-authorizes-quarterly-dividend-20260206
+20. GE Aerospace July 2025 raises 2028 outlook operating profit $11.5 billion free cash flow $8.5 billion $24 billion shareholder returns 70% -> CG-0063: https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-second-quarter-2025-results
+21. Moody's upgrades GE Aerospace to A2 February 2026 P-1 positive outlook -> CG-0064: https://www.kapitalmarktexperten.de/ge-aerospace-aktie-erstaunlicher-umsatzzuwachs/
+22. GE Aviation Safran extend CFM International partnership to 2050 launch CFM RISE June 2021 -> CG-0065: https://www.ge.com/news/press-releases/ge-aviation-and-safran-launch-advanced-technology-demonstration-program-for
+23. "GE Aerospace" "$20 billion" share repurchase program authorized December 2025 -> CG-0061: https://www.zacks.com/stock/news/2978532/ge-aerospace-s-robust-capital-position-fuels-higher-shareholder-returns
+24. GE 10-K CFM International collaborative arrangement Safran Aircraft Engines jointly owned non-consolidated sells LEAP CFM56 engines -> CG-0066 (50/50 ownership, CFM56 and LEAP; 10-K wording not reached): https://www.safran-group.com/companies/cfm-international
+25. General Electric slashes quarterly dividend to 1 cent October 30 2018 Culp first move -> CG-0057: https://www.business-standard.com/amp/article/reuters/ge-cuts-dividend-splits-power-business-118103000811_1.html
+26. GE Aerospace Governance and Public Affairs Committee charter oversees risks health and safety political activities lobbying -> CG-0048 (political spending and lobbying, ESG and climate risk; health and safety not found): https://www.geaerospace.com:443/sites/default/files/gpac-charter-04-05-24_0.pdf
+27. GE Aerospace 2026 proxy statement Lead Director letter engine deliveries up 26% board deep dives strategy -> CG-0049: https://www.sec.gov/Archives/edgar/data/40545/000004054526000018/ge-20260312.htm
+28. GE Aerospace performance stock units 2025 adjusted EPS free cash flow three-year relative TSR modifier S&P 500 Industrials -> CG-0051: https://www.sec.gov/Archives/edgar/data/40545/000130817925000114/ge_courtesy-pdf.pdf
