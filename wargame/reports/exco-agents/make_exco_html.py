@@ -33,6 +33,10 @@ for s in SIDES:
     ROSTER[s].sort(key=lambda a: SEATS.index(BY[a]["seat"]))
 ORDER = [a for s in SIDES for a in ROSTER[s]]
 SHORT = {a: BY[a]["name"].split()[-1] for a in ORDER}
+BOARD_AGENT = {s: s.replace("_", "-") + "-board" for s in SIDES}
+BOARDS = {s: json.load(open(os.path.join(HERE, "data", "agents", BOARD_AGENT[s] + ".json"))) for s in SIDES}
+BOARD_EV = {s: [json.loads(l) for l in open(os.path.join(REPO, "wargame", "profiles", s, "board", "evidence.jsonl")) if l.strip()]
+            if os.path.exists(os.path.join(REPO, "wargame", "profiles", s, "board", "evidence.jsonl")) else [] for s in SIDES}
 PRON = {a: ("her" if a in ("boeing-pope", "rolls-royce-mccabe") else "his") for a in ORDER}
 
 EV = CA.EV
@@ -57,7 +61,9 @@ PERSP = {"own_words": ("Own words", "s1"), "filing": ("Board Report text", "s2")
          "observed_by_pratt_whitney": ("Remark by RTX / P&W", "s3"), "analyst_question": ("Analyst's question", "s3")}
 CITE = {"own_words": "own words", "filing": "Board Report text, not speech", "observed_by_boeing": "as quoted by Boeing",
         "observed_by_pratt_whitney": "as quoted by RTX / Pratt & Whitney", "analyst_question": "an analyst's question",
-        "own_behaviour": "company record", "own_behaviour_observed_by_boeing_or_analysts": "observed by Boeing or analysts"}
+        "own_behaviour": "company record", "own_behaviour_observed_by_boeing_or_analysts": "observed by Boeing or analysts",
+        "board_own_words": "the board's own words", "management_on_board": "management on the board",
+        "web_official": "web search: company or regulator source", "web_press": "web search: press", "web_analysis": "web search: analysis"}
 
 
 def volume(a):
@@ -74,7 +80,8 @@ def ids_in(obj):
     return sorted(set(CA.IDRE.findall(json.dumps(obj))))
 
 
-CITED = sorted({i for a in ORDER for i in ids_in(PROF[a])} | set(CA.IDRE.findall(json.dumps(NAR.FINDINGS))))
+CITED = sorted({i for a in ORDER for i in ids_in(PROF[a])} | {i for s in SIDES for i in ids_in(BOARDS[s])}
+                | set(CA.IDRE.findall(json.dumps(NAR.FINDINGS))))
 
 
 def eids(ids):
@@ -84,12 +91,13 @@ def eids(ids):
     return '<span class="eids">' + " ".join(f'<span class="eid" tabindex="0" data-e="{esc(i)}">{esc(i)}</span>' for i in ids) + "</span>"
 
 
-IDS = r"(?:BX|AX|CX|PX|RX|B|A|C|P|R)-\d{4}"
+IDS = r"(?:BX|AX|CX|PX|RX|BG|AG|CG|PG|RG|B|A|C|P|R)-\d{4}"
 GROUP = re.compile(r"\s*[\[(]((?:%s)(?:\s*[,;]\s*(?:%s))*)[\])]" % (IDS, IDS))
 BARE = re.compile(r"(?<![\w>-])(%s)(?![\w-])" % IDS)
-FILES = (r"(?:teams|profile|dashboard_game|objectives|operations|ortberg|malave|pope|faury|toepfer|wagner|culp|ghai|ali|calio|"
+FILES = (r"(?:board|teams|profile|dashboard_game|objectives|operations|ortberg|malave|pope|faury|toepfer|wagner|culp|ghai|ali|calio|"
          r"mitchill|eddy|erginbilgic|mccabe)\.md")
-FILE_NAME = {"teams": "the team rules", "profile": "the company profile", "dashboard_game": "the board notes", "objectives": "the objectives"}
+FILE_NAME = {"board": "the Board profile", "teams": "the team rules", "profile": "the company profile", "dashboard_game": "the game notes",
+             "objectives": "the objectives"}
 # Plain words for display only: order-field names, file references and rule shorthand. Quotes are never touched.
 PLAIN = [
     (r"`", ""),
@@ -294,7 +302,7 @@ def evidence_table():
 
 # ── roster, protocol, glossary ──
 def roster():
-    head = '<div class="rh"></div>' + "".join(f'<div class="rh">{s}</div>' for s in SEATS)
+    head = '<div class="rh"></div>' + "".join(f'<div class="rh">{s}</div>' for s in SEATS + ["Board"])
     cells = []
     for s in SIDES:
         cells.append(f'<div class="rc">{esc(COMPANY[s])}</div>')
@@ -309,13 +317,23 @@ def roster():
                          f'<span class="chip{" warn" if cf in NAR.LOW_CONFIDENCE else ""}">Confidence: {esc(cf)}</span>'
                          f'<span class="chip veto">{esc(veto_summary(a))}</span></span>'
                          f'<span class="small muted">Steps: {esc(steps)}</span></a>')
+        b = BOARDS[s]
+        tr, fi, wb = bkinds(s)
+        chair = b["composition"].get("chair", "")
+        cells.append(f'<a class="rcell rboard" href="#{BOARD_AGENT[s]}"><span class="seat">Board</span><b>{esc(b["board_name"])}</b>'
+                     f'<span class="small muted">Chair: {esc(chair)}{" (also CEO)" if b["composition"].get("chair_is_ceo") else ""}</span>'
+                     f'<span class="chips"><span class="chip">{tr + fi} transcript/filing · {wb} web items</span>'
+                     f'<span class="chip">Risk aversion {score(s, "risk_aversion")} / 5</span><span class="chip">Time horizon {score(s, "time_horizon")} / 5</span>'
+                     f'<span class="chip veto">recommends; binding veto</span></span>'
+                     f'<span class="small muted">Steps: guidance, review, confirm</span></a>')
     return f'<div class="roster">{head}{"".join(cells)}</div>'
 
 
 def protocol():
-    steps = "".join(f"<li><b>{esc(t)}</b><br>{esc(d)}</li>" for t, d in NAR.STEPS)
-    rows = [[esc(COMPANY[s])] + [esc(x) for x in NAR.TEAM_RULES[s]] for s in SIDES]
-    return f'<ol class="loop">{steps}</ol>' + stack_table(["Company", "Frames and decides", "Tests", "Vetoes and how binding"], rows, cls="rules")
+    steps = "".join(f'<li{" class=bstep" if t.startswith("Board") else ""}><b>{esc(t)}</b><br>{esc(d)}</li>' for t, d in NAR.STEPS)
+    rows = [[esc(COMPANY[s])] + [esc(x) for x in NAR.TEAM_RULES[s]] + [rich(NAR.BOARD_RULES[s])] for s in SIDES]
+    return f'<ol class="loop">{steps}</ol>' + stack_table(["Company", "Frames and decides", "Tests", "Vetoes and how binding",
+                                                          "Board: recommends and vetoes"], rows, cls="rules")
 
 
 def glossary():
@@ -360,6 +378,15 @@ def vetoes_html(a):
     return out
 
 
+def exec_board(a):
+    bd = PROF[a].get("board") or {}
+    if not bd:
+        return ""
+    sd = BY[a]["side"]
+    return (f'<p class="label">{esc(SHORT[a])} and the Board (<a href="#{BOARD_AGENT[sd]}">{esc(BOARDS[sd]["board_name"])}</a>)</p>'
+            f'<p>{rich(bd.get("summary", ""))} {rich(bd.get("seat_role", ""))} {eids(bd.get("ids"))}</p>')
+
+
 def card(a):
     p, pr = BY[a], PROF[a]
     ev = pr["evidence"]
@@ -401,6 +428,7 @@ def card(a):
 <div><p class="label">How {esc(SHORT[a])} decides</p>{lst(pr["decision_style"])}</div></div>
 <p class="label">Tests (applied whenever the brief has the data)</p>{tests}
 {vetoes_html(a)}
+{exec_board(a)}
 <p class="label">Voice</p><p class="small">{rich(pr["voice"]["style"])}</p><div class="quotes">{"".join(quote_html(q) for q in q_main)}</div>{more_q}
 <div class="thin{" warn" if thin_flag else ""}"><p class="label">Where the record is thin</p><ul class="facts">{gaps}</ul>
 <p class="small"><b>When the record is silent:</b> {rich(pr["thin"]["fallback"])}</p></div>
@@ -436,6 +464,165 @@ def tiles():
                              "placeholder agents")]
     return '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div><div class="d">{esc(d)}</div></div>'
                                            for k, v, d in t) + "</div>"
+
+
+# ── boards ──
+def bkinds(side):
+    c = collections.Counter(e.get("kind") for e in BOARD_EV[side])
+    return c.get("transcript", 0), c.get("filing", 0), c.get("web", 0)
+
+
+def score(side, key):
+    return BOARDS[side]["culture"][key]["score"]
+
+
+def culture_map(narrow=False):
+    """Each board placed by its risk aversion (x) and time horizon (y), both 1-5. One neutral mark per board,
+    named by a direct label (identity is the label, not a colour)."""
+    if narrow:
+        w, h, l, r, t, b = 360, 380, 40, 14, 26, 50
+    else:
+        w, h, l, r, t, b = 640, 430, 56, 150, 26, 54
+    sx = lambda v: l + (v - 0.5) / 5 * (w - l - r)
+    sy = lambda v: t + (5.5 - v) / 5 * (h - t - b)
+    out = [K.svg_open(w, h, "Culture map: each Board by risk aversion and time horizon, scored 1 to 5", "chart narrow" if narrow else "chart")]
+    out.append(f'<rect x="{sx(3):.1f}" y="{sy(5.5):.1f}" width="{sx(5.5) - sx(3):.1f}" height="{sy(3) - sy(5.5):.1f}" class="zone"/>')
+    for v in range(1, 6):
+        out.append(f'<line x1="{sx(v):.1f}" x2="{sx(v):.1f}" y1="{t}" y2="{h - b}" class="grid"/>'
+                   f'<text x="{sx(v):.1f}" y="{h - b + 16}" text-anchor="middle" class="tick">{v}</text>'
+                   f'<line x1="{l}" x2="{w - r}" y1="{sy(v):.1f}" y2="{sy(v):.1f}" class="grid"/>'
+                   f'<text x="{l - 8}" y="{sy(v) + 4:.1f}" text-anchor="end" class="tick">{v}</text>')
+    out.append(f'<text x="{(l + w - r) / 2:.1f}" y="{h - 8}" text-anchor="middle" class="tick">Risk aversion (1 seeks bold bets · 5 protects balance sheet and safety first)</text>'
+               if not narrow else f'<text x="{(l + w - r) / 2:.1f}" y="{h - 8}" text-anchor="middle" class="tick">Risk aversion →</text>')
+    out.append(f'<text x="12" y="{(t + h - b) / 2:.1f}" text-anchor="middle" class="tick" transform="rotate(-90 12 {(t + h - b) / 2:.1f})">'
+               f'{"Time horizon (1 short-term · 5 long-term)" if not narrow else "Long-term →"}</text>')
+    out.append(f'<text x="{sx(5.4):.1f}" y="{sy(5.4) + 4:.1f}" text-anchor="end" class="zlab">risk-averse, long-term</text>')
+    pts = collections.defaultdict(list)
+    for sd in SIDES:
+        pts[(score(sd, "risk_aversion"), score(sd, "time_horizon"))].append(sd)
+    boxes = [(sx(x) - 9, sy(y) - 9, sx(x) + 9, sy(y) + 9) for (x, y) in pts]     # the dots themselves
+    cw = 8.6 if narrow else 7.4               # approx. width of one label character (phones render labels larger)
+    short = {"pratt_whitney": "P&W", "rolls_royce": "Rolls-Royce"} if narrow else {}
+
+    def free(bx):
+        return (bx[0] >= l + 2 and bx[2] <= w - 2 and bx[1] >= t - 4 and bx[3] <= h - b - 2
+                and not any(bx[0] < o[2] and bx[2] > o[0] and bx[1] < o[3] and bx[3] > o[1] for o in boxes))
+    for (x, y), sides in sorted(pts.items(), key=lambda kv: (-kv[0][0], -kv[0][1])):
+        cx, cy = sx(x), sy(y)
+        out.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="7" class="filled"/>')
+        label = " · ".join(short.get(sd, COMPANY[sd]) for sd in sides)
+        tw, th = len(label) * cw, 16 if narrow else 14
+        mid = min(max(cx - tw / 2, l + 2), w - 2 - tw)          # centred above/below, kept inside the plot
+        cands = [(cx + 12, cy - th / 2, "start"), (cx - 12 - tw, cy - th / 2, "end"), (mid, cy - 12 - th, "start"),
+                 (mid, cy + 12, "start"), (cx + 12, cy - th - 6, "start"), (cx + 12, cy + 6, "start"),
+                 (cx - 12 - tw, cy - th - 6, "end"), (cx - 12 - tw, cy + 6, "end"), (mid, cy - 30 - th, "start"), (mid, cy + 30, "start")]
+
+        def cost(cd):
+            bx = (cd[0], cd[1], cd[0] + tw, cd[1] + th)
+            inside = bx[0] >= l + 2 and bx[2] <= w - 2 and bx[1] >= t - 4 and bx[3] <= h - b - 2
+            return (0 if inside else 1, sum(bx[0] < o[2] and bx[2] > o[0] and bx[1] < o[3] and bx[3] > o[1] for o in boxes))
+        lx, ly, anchor = next(((a, b2, an) for a, b2, an in cands if free((a, b2, a + tw, b2 + th))), min(cands, key=cost))
+        boxes.append((lx, ly, lx + tw, ly + th))
+        tx = lx if anchor == "start" else lx + tw if anchor == "end" else lx + tw / 2
+        out.append(f'<text x="{tx:.1f}" y="{ly + 11:.1f}" text-anchor="{anchor}" class="endlab">{esc(label)}</text>')
+        for sd in sides:
+            c = BOARDS[sd]["culture"]
+            tipr = [(f"{x} / 5", "risk aversion", None), (f"{y} / 5", "time horizon", None),
+                    ("", first_clause(c["risk_aversion"]["rationale"], 160), None), ("", first_clause(c["time_horizon"]["rationale"], 160), None)]
+            out.append(f'<rect x="{min(cx - 14, lx - 2):.1f}" y="{min(cy - 14, ly - 2):.1f}" width="{max(cx + 14, lx + tw + 2) - min(cx - 14, lx - 2):.1f}" '
+                       f'height="{max(cy + 14, ly + th + 2) - min(cy - 14, ly - 2):.1f}" class="hit" '
+                       f'{K.mark_attrs((BOARDS[sd]["board_name"], "", None), *tipr)}/>')
+    out.append("</svg>")
+    return "".join(out)
+
+
+def culture_table():
+    rows = []
+    for sd in SIDES:
+        b, c = BOARDS[sd], BOARDS[sd]["culture"]
+        rows.append([esc(COMPANY[sd]), f'{score(sd, "risk_aversion")} / 5', rich(c["risk_aversion"]["rationale"]),
+                     f'{score(sd, "time_horizon")} / 5', rich(c["time_horizon"]["rationale"])])
+    return ('<details class="tv"><summary>Table view: culture scores and why</summary>'
+            + stack_table(["Board", "Risk aversion", "Why", "Time horizon", "Why"], rows) + "</details>")
+
+
+def governance_table():
+    rows = []
+    for sd in SIDES:
+        b = BOARDS[sd]
+        cp = b["composition"]
+        tr, fi, wb = bkinds(sd)
+        chair = esc(cp.get("chair", "")) + (" <span class='muted small'>(also CEO)</span>" if cp.get("chair_is_ceo") else "")
+        rm = b["reserved_matters"][0] if b["reserved_matters"] else {"matter": "—", "threshold": ""}
+        rows.append([f'<a href="#{BOARD_AGENT[sd]}">{esc(b["board_name"])}</a>', chair,
+                     rich(rm["matter"] + (": " + rm["threshold"] if rm.get("threshold") else "")),
+                     f'{score(sd, "risk_aversion")} / {score(sd, "time_horizon")}', f"{tr} · {fi} · {wb}", esc(b.get("as_of", ""))])
+    return stack_table(["Board", "Chair", "First reserved matter", "Risk aversion / time horizon", "Evidence: transcript · filing · web", "As of"],
+                       rows, num_cols=(4,))
+
+
+def board_card(sd):
+    b = BOARDS[sd]
+    cp, c, ev = b["composition"], b["culture"], b["evidence"]
+    tr, fi, wb = bkinds(sd)
+    comm = "".join(f'<li><b>{esc(x["name"])}.</b> {rich(x["role"])}</li>' for x in cp.get("committees") or [])
+    mem = "".join(f'<li><b>{esc(x["name"])}.</b> {rich(x["background"])}</li>' for x in cp.get("notable_members") or [])
+    cult = "".join(f'<li><b>{lab}.</b> {rich(c[k]["text"])} {eids(c[k].get("ids"))}</li>' for k, lab in
+                   (("capital_allocation", "Capital allocation"), ("safety_oversight", "Safety oversight"),
+                    ("stakeholder_influence", "Shareholders and stakeholders"), ("pay_horizon", "Pay horizon")) if c.get(k))
+    sc = "".join(f'<div class="score"><div class="k">{lab}</div><div class="v">{c[k]["score"]} / 5</div>'
+                 f'<div class="small">{rich(c[k]["rationale"])} {eids(c[k].get("ids"))}</div>'
+                 f'<div class="small muted"><b>Trend:</b> {rich(c[k].get("trend", ""))}</div></div>'
+                 for k, lab in (("risk_aversion", "Risk aversion"), ("time_horizon", "Time horizon")))
+    reserved = stack_table(["Matter", "Threshold or rule", "Evidence"],
+                           [[rich(r["matter"]) + infer(r.get("inference")), rich(r.get("threshold", "")), eids(r.get("ids"))] for r in b["reserved_matters"]])
+    items = stack_table(["Order", "How it reaches the Board", "Evidence"],
+                        [[rich(r["order"]) + infer(r.get("inference")), rich(r["rule"]), eids(r.get("ids"))] for r in b["board_items_in_game"]])
+    tests = stack_table(["Test", "Threshold or rule", "Evidence"],
+                        [[rich(t["test"]) + infer(t.get("inference")), rich(t["threshold"]), eids(t.get("ids"))] for t in b["tests"]])
+    veto = "".join(f'<li>{rich(v["ground"])}{infer(v.get("inference"))} {eids(v.get("ids"))}</li>' for v in b["veto"])
+    mgmt = "".join(f'<li><b>{esc(m["name"])}.</b> {rich(m["relation"])} {eids(m.get("ids"))}</li>' for m in b["management_relationship"])
+    past = "".join(f'<li><b>{esc(d["date"])}.</b> {rich(d["decision"])} {eids(d.get("ids"))}</li>' for d in b["past_decisions"])
+    gaps = "".join(f"<li>{rich(g)}</li>" for g in b["thin"]["gaps"])
+    quotes = "".join(quote_html(q) for q in b["voice"].get("quotes") or []) or '<p class="small muted">No words of the board on record in the transcripts or filings.</p>'
+    srcs = "".join(f'<li>{eids([w["id"]]) if w.get("id") else ""} {esc(w.get("title", ""))} · {esc(w.get("publisher", ""))} · {esc(w.get("date", ""))} · '
+                   f'<span class="url">{esc(w.get("url", ""))}</span></li>' for w in b.get("web_sources") or [])
+    conf_items = "".join(f'<li><b>{esc(x["area"])}:</b> {rich(x["level"])}</li>' for x in ev.get("confidence_by_area") or [])
+    return f"""<article class="pcard panel bcard" id="{BOARD_AGENT[sd]}">
+<header class="ph"><p class="label"><span>{esc(COMPANY[sd])} · Board of Directors</span><a class="back" href="#roster">Back to the roster</a></p>
+<h4>{esc(b["board_name"])}</h4><p class="muted small">As of {esc(b.get("as_of", ""))}. Chair: {esc(cp.get("chair", ""))}{" (also CEO)" if cp.get("chair_is_ceo") else ""}{". Lead independent director: " + esc(cp["lead_independent_director"]) if cp.get("lead_independent_director") else ""}. {esc(cp.get("size", ""))} {esc(cp.get("independence", ""))}</p>
+<p class="chips"><span class="chip">{tr} transcript items</span><span class="chip">{fi} filing items</span><span class="chip">{wb} web-search items</span>
+<span class="chip">Risk aversion {score(sd, "risk_aversion")} / 5</span><span class="chip">Time horizon {score(sd, "time_horizon")} / 5</span>
+<span class="chip veto">recommends; binding veto</span><span class="chip">Steps: guidance, review, confirm</span></p>
+<p class="mandate">{rich(b["mandate"])}</p></header>
+<div class="scores">{sc}</div>
+<div class="grid2"><div><p class="label">What the Board holds management to</p>{lst(b["holds_management_to"], ordered=True)}</div>
+<div><p class="label">How it decides</p>{lst(b["decision_process"])}</div></div>
+<p class="label">Culture beyond the two scores</p><ul class="facts">{cult}</ul>
+<p class="label">Board items in the game</p>{items}
+<p class="label">Tests the Board applies</p>{tests}
+<p class="label">Its veto and its limits</p><ul class="facts">{veto}</ul>
+<p class="label">Its recommendations</p><p>{rich(b["recommendation_style"]["text"])} {eids(b["recommendation_style"].get("ids"))}</p>
+<div class="thin"><p class="label">Where the record is thin</p><ul class="facts">{gaps}</ul>
+<p class="small"><b>When the record is silent:</b> {rich(b["thin"]["fallback"])}</p></div>
+<details class="more"><summary>Composition, reserved matters, management, decisions taken, rivals, voice, sources</summary>
+<div class="grid2"><div><p class="label">Committees</p><ul class="facts">{comm}</ul></div><div><p class="label">Directors who bear on the game</p><ul class="facts">{mem}</ul></div></div>
+<p class="small"><b>Shareholders:</b> {rich(cp.get("shareholders", ""))} {eids(cp.get("ids"))}</p>
+<p class="label">Matters reserved to the Board</p>{reserved}
+<div class="grid2"><div><p class="label">How it sees management</p><ul class="facts">{mgmt}</ul></div>
+<div><p class="label">How it reads the rivals</p>{lst(b["rivals"])}</div></div>
+<p class="label">Decisions it has taken</p><ul class="facts">{past}</ul>
+<p class="label">Voice</p><p class="small">{rich(b["voice"].get("style", ""))}</p><div class="quotes">{quotes}</div>
+<p class="label">Evidence base</p><p class="small">{rich(ev.get("sources_note", ""))}</p><p class="small"><b>Confidence, in the profile's words:</b> {rich(ev.get("confidence_overall", ""))}</p><ul class="facts small">{conf_items}</ul>
+<p class="label">Web sources (found by web search; not fetched)</p><ul class="facts small srcs">{srcs}</ul>
+</details><p class="small muted agentfile">Agent file: <code>.claude/agents/{esc(BOARD_AGENT[sd])}.md</code> · Board profile: <code>wargame/profiles/{esc(sd)}/board/board.md</code></p></article>"""
+
+
+def boards_section():
+    return (f'<div class="panel"><p class="ctitle">{esc(NAR.MAP_TITLE)}</p><div class="only-wide">{culture_map()}</div>'
+            f'<div class="only-narrow">{culture_map(narrow=True)}</div><p class="cap">{NAR.MAP_CAP}</p>{culture_table()}</div>'
+            f'<div class="panel" style="margin-top:14px"><p class="label">The five Boards at a glance</p>{governance_table()}</div>'
+            + "".join(f'<div style="margin-top:14px">{board_card(sd)}</div>' for sd in SIDES))
 
 
 EXTRA_CSS = """
@@ -492,10 +679,19 @@ h3.co { font-size: 1.6rem; margin: 30px 0 10px; scroll-margin-top: 12px; }
 dl.gl { display: grid; grid-template-columns: 13rem 1fr; gap: 6px 14px; margin: 10px 0 0; font-size: .92rem; }
 dl.gl dt { font-weight: 600; } dl.gl dd { margin: 0; }
 .loop li b { font-weight: 600; }
+.loop li.bstep { background: var(--surface); border-color: var(--fg); }
+.roster { grid-template-columns: 130px repeat(4, minmax(0, 1fr)); }
+.rcell.rboard { border-style: dashed; }
+.scores { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.score { background: var(--sunk); border-radius: 6px; padding: 10px 12px; }
+.score .k { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.score .v { font: 600 1.5rem/1.2 var(--font-body); margin: 4px 0; }
+.srcs .url { font: .78rem var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
 code { font: .86em var(--font-mono); }
 table.rules th[scope=row] { white-space: nowrap; }
 @media (max-width: 760px) {
   .roster { grid-template-columns: 1fr; }
+  .scores { grid-template-columns: 1fr; }
   .roster .rh { display: none; }
   .roster .rc { padding: 14px 0 2px; }
   .rcell .seat { display: block; }
@@ -573,8 +769,9 @@ def checks():
     print("checks passed:", len(C))
 
 
-def build(out_path):
-    checks()
+def build(out_path, preview=False):
+    if not preview:
+        checks()
     css = K.CSS + EXTRA_CSS
     ev = {}
     for i in CITED:
@@ -593,17 +790,19 @@ def build(out_path):
 <style>{css}</style></head><body><div class="wrap">
 <header class="top"><p class="eyebrow">Boeing Product Development · war game agents · BOEING PROPRIETARY</p>
 <h1>{esc(NAR.TITLE)}</h1><p class="lede">{NAR.LEDE}</p>
-<nav class="toc"><a href="#summary">Summary</a><a href="#roster">Roster</a><a href="#protocol">How a round runs</a><a href="#evidence">Evidence</a>
+<nav class="toc"><a href="#summary">Summary</a><a href="#roster">Roster</a><a href="#protocol">How a round runs</a><a href="#boards">Boards</a><a href="#evidence">Evidence</a>
 {"".join(f'<a href="#co-{s}">{esc(COMPANY[s])}</a>' for s in SIDES)}<a href="#isolation">Isolation</a><a href="#method">Method</a></nav></header>
 
 <section id="summary"><h2>Summary</h2>{tiles()}
 <div class="bl">{"".join(f'<div class="panel"><div><b>{esc(t)}</b>{ids_html(x)}</div></div>' for t, x in NAR.FINDINGS)}</div></section>
 
-<section id="roster"><h2>The fifteen agents</h2><p class="lede">{NAR.ROSTER_LEDE}</p>{roster()}</section>
+<section id="roster"><h2>The twenty agents</h2><p class="lede">{NAR.ROSTER_LEDE}</p>{roster()}</section>
 
 <section id="protocol"><h2>How a round will run</h2><p class="lede">{NAR.PROTOCOL_LEDE}</p><div class="panel">{protocol()}<p class="cap">{NAR.PROTOCOL_CAP}</p></div></section>
 
-<section id="evidence"><h2>What each agent is built on</h2><p class="lede">{NAR.EVIDENCE_LEDE}</p><div class="stack">
+<section id="boards"><h2>The Boards</h2><p class="lede">{NAR.BOARDS_LEDE}</p>{boards_section()}</section>
+
+<section id="evidence"><h2>What each executive agent is built on</h2><p class="lede">{NAR.EVIDENCE_LEDE}</p><div class="stack">
 <div class="panel"><p class="ctitle">{esc(NAR.BARS_TITLE)}</p>{legend_persp()}<div class="only-wide">{evidence_bars(760, 170)}</div><div class="only-narrow">{evidence_bars(360, 84, narrow=True)}</div>
 <p class="cap">{NAR.BARS_CAP.format(comp=comp)}</p></div>
 <div class="panel"><p class="ctitle">{esc(NAR.RUG_TITLE)}</p>{legend_persp()}<div class="only-wide">{evidence_rug()}</div><div class="only-narrow">{evidence_rug(narrow=True)}</div>
@@ -623,4 +822,5 @@ def build(out_path):
 
 
 if __name__ == "__main__":
-    build(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "exco_agents.html"))
+    args = [x for x in sys.argv[1:] if x != "--preview"]       # --preview: skip the checks (drafts in progress)
+    build(args[0] if args else os.path.join(HERE, "exco_agents.html"), preview="--preview" in sys.argv)

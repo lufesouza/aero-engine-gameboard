@@ -1,13 +1,15 @@
 """Text of the ExCo agent-profiles page. Numbers quoted here are checked against the data by make_exco_html.CHECKS."""
 
-TITLE = "One agent per executive: the fifteen ExCo agents"
+TITLE = "The ExCo and Board agents: twenty agents across five companies"
 
 LEDE = ("In our Boeing vs Airbus war game (with the engine makers CFM/GE, Pratt &amp; Whitney and Rolls-Royce), each company "
-        "will now be played by three AI agents instead of one: one each for its CEO, its CFO and its operating head, together "
-        "its executive committee (ExCo). Each agent is an AI model told to argue and decide as that person would, using only a "
-        "profile built from the person's public words in earnings calls and investor events. Airbus's three rest mostly on its "
-        "FY2025 Board Report, which is not their speech. <b>The game has not been run with these agents yet.</b> This page "
-        "shows what each agent is built on and how a round will run.")
+        "is now played by four AI agents: its CEO, its CFO and its operating head, who together form its executive committee "
+        "(ExCo), and its Board of Directors. The ExCo decides; the Board recommends before each round and can veto any big "
+        "decision after it. Each executive agent argues and decides as that person would, from a profile built from the "
+        "person's public words in earnings calls and investor events (Airbus's three rest mostly on its FY2025 Board Report). "
+        "Each Board agent decides as that board would, from what the transcripts and filings say about it and what web search "
+        "finds on its composition, rules and culture: how risk-averse it is, and how far it looks ahead. "
+        "<b>The game has not been run with these agents yet.</b>")
 
 FINDINGS = [
     ("Each company now decides as three people, not one.",
@@ -33,17 +35,18 @@ FINDINGS = [
      "their roles, their pay metrics and the Board Report, so the Airbus ExCo is where the agents are least like the people."),
     ("Nothing has been played yet.",
      "The agents are set up and kept apart from each other's files, and the round procedure is written. The next step is to "
-     "replay the four rounds of the earlier game (dash-2050, where one agent played each company) with the fifteen agents, "
+     "replay the four rounds of the earlier game (dash-2050, where one agent played each company) with the twenty agents, "
      "and compare their orders with that game."),
 ]
 
-ROSTER_LEDE = ("The default 2026 executive committee of each company. Select a person for the full profile. "
+ROSTER_LEDE = ("The default 2026 executive committee of each company, and its Board. Select an agent for the full profile. "
                "<b>Volume</b> counts the items in the person's own words: deep (100 or more), moderate (25 to 99), thin "
                "(5 to 24) or filing-based (under 5; Airbus, built from the Board Report). <b>Confidence</b> is the profile's "
                "own rating of how well that evidence supports the agent; low ratings have an orange border. The <b>veto</b> "
                "label says how hard the member can block the CEO's orders. <b>Steps</b> are the parts of each round the agent "
                "plays: the CEO frames, decides and, when needed, revises; the CFO and the operating head test the plan, then "
-               "concur or veto (see How a round will run).")
+               "concur or veto; the Board gives guidance, reviews every big decision and confirms any revision (see How a "
+               "round will run).")
 
 EVIDENCE_LEDE = ("The depth of the record varies a lot from person to person. Agents with a deep record play from their own "
                  "stated rules and numbers. Agents with a thin record are told to fall back on the company profile or defer to "
@@ -62,20 +65,27 @@ RUG_CAP = ("One tick per item, at the date of the call, conference or filing. Ma
            "Fourteen of Ortberg's items are from his years at Rockwell Collins (2017) and Collins Aerospace (2019). Toepfer's and "
            "Wagner's items, and Faury's 47 Board Report lines, carry the report's issue date, 18 February 2026.")
 
-PROTOCOL_LEDE = ("The game master runs five steps for each company in each round. The companies run side by side and never see "
-                 "each other's steps. Inside a company, each executive sees only what the game master passes on.")
+PROTOCOL_LEDE = ("The game master runs up to nine steps for each company in each round: the Board's guidance, five ExCo "
+                 "steps, then the Board's review of every big decision. The companies run side by side and never see each "
+                 "other's steps. Inside a company, each agent sees only what the game master passes on.")
 
 STEPS = [
-    ("Frame (CEO)", "Reads the company's brief. Writes the question, the levers in play, the options worth testing, the red "
-                        "lines, what he or she asks of each colleague, and an initial lean."),
+    ("Board guidance", "The Board reads the brief and gives the ExCo non-binding guidance: priorities, risk appetite, "
+                       "what it would approve or veto, recommendations."),
+    ("Frame (CEO)", "Reads the brief and the Board's guidance. Writes the question, the levers in play, the options worth "
+                    "testing, the red lines, what he or she asks of each colleague, and an initial lean."),
     ("Test (CFO and operating head)", "In parallel, without seeing each other's memo: tests with thresholds and grid numbers, "
-                                          "recommended orders, any veto. At P&W the operating head also proposes the engine orders."),
+                                      "recommended orders, any veto. At P&W the operating head also proposes the engine orders."),
     ("Decide (CEO)", "Reads both memos and decides by the team's rule. Returns the orders, other moves and public statement, "
-                         "and records how each memo was weighed."),
+                     "records how each memo was weighed, and answers each Board recommendation."),
     ("Veto check", "The CFO and the operating head each concur, or veto on a ground the team rule gives them. Either "
-                    "can also flag a breach of a company red line."),
+                   "can also flag a breach of a company red line."),
     ("Revise (CEO)", "Only if a binding veto stands or a red line is flagged: revises once within the veto, or overrides "
-                      "where the rule allows, on the record, and strikes any breach it confirms."),
+                     "where the rule allows, on the record, and strikes any breach it confirms."),
+    ("Board review", "Every order that differs from the default is a Board item. The Board approves or vetoes each, may "
+                     "name acceptable alternatives, and recommends. It never originates an order."),
+    ("Board revise (CEO)", "Only after a Board veto: the CEO revises once, to an alternative the Board named or the default."),
+    ("Board confirm", "The Board approves or vetoes the revised items. A still-vetoed item reverts to the default."),
 ]
 
 TEAM_RULES = {
@@ -127,14 +137,19 @@ GLOSSARY = [
     ("Premium", "Value a member gives up, in $B, to follow doctrine or an assigned objective; it is declared and capped."),
     ("Hard rules (H1, rule 6 ...)", "The company's red lines, from its profile, as mapped to this board."),
     ("Inference", "A view the evidence does not state directly, labelled as such."),
+    ("Board item", "Any order that differs from the default (hold, or none): a launch, a cancellation, a Joint Venture "
+                   "commitment, the Rate Increase, Delay Tactics. The Board approves or vetoes each."),
+    ("Board guidance", "The Board's non-binding recommendations before a round: priorities, risk appetite, what it would "
+                       "approve or veto."),
 ]
 
 ISOLATION = """
-<p>The same hook that kept the single company agents apart in dash-2050 now covers the fifteen executive agents
+<p>The same hook that kept the single company agents apart in dash-2050 now covers the fifteen executive agents and
+the five Board agents
 (<code>.claude/hooks/wargame_isolation.py</code>). It checks every file path and command an agent uses, so it stops access
 by name, not a deliberately disguised one. A post-game audit of every tool call (<code>audit.py</code>) backs it up.</p>
 <ul class="cav">
-<li><b>Own company only.</b> Each executive has the same limits as its single company agent had. It cannot read another
+<li><b>Own company only.</b> Each executive and each Board has the same limits as its single company agent had. It cannot read another
 company's profiles, agent files or folder (<code>/tmp/wargame-&lt;company&gt;</code>). It cannot read the game master's code,
 the dashboard, the reports or the game master's run records. Its own company's folder stays readable: the run the game
 master names, plus earlier rounds' notes and orders of that run.</li>
@@ -144,10 +159,11 @@ can read. The executives are also blocked from the earlier dash-2050 run by name
 modules. Its numbers come only from the brief that the game master writes into its company's folder.</li>
 <li><b>Searches stay at home.</b> Searches, wildcard reads and recursive reads must stay inside the company's own folders.
 The game master's scratchpad, the session transcripts and the workflow agents' transcripts are blocked.</li>
-<li><b>Inside the ExCo.</b> Colleagues may read each other's agent files (they know each other), but memos pass only through
-the game master. Within a round, the CFO and the operating head write their tests before either sees the other's.</li>
-<li><b>Tested.</b> All {cases} hook test cases behave as expected. They include {new} cases for the executive agents, and
-{paths} checks that every file each agent is told to read is allowed for that agent. All 360 tool calls the single company
+<li><b>Inside the company.</b> The ExCo and its Board may read each other's agent files (they know each other), but
+memos, guidance and reviews pass only through the game master. Within a round, the CFO and the operating head write their
+tests before either sees the other's; the Board sees the ExCo's package only after the CEO has decided.</li>
+<li><b>Tested.</b> All {cases} hook test cases behave as expected. They include {new} cases for the executive and Board
+agents, and {paths} checks that every file each agent is told to read is allowed for that agent. All 360 tool calls the single company
 agents made in dash-2050 are still allowed.</li>
 </ul>
 """
@@ -167,6 +183,13 @@ supports its claim, the other that each agent can play its seat by the rules wit
 finding against the sources before changing anything. There were 165 findings; 10 were the same finding reported by both
 auditors. Of the other 155, the fixer made 138 changes to the agent files and rejected 4 with a reason. The 13 that belonged
 elsewhere are fixed in the round script, the board notes and the specification.</li>
+<li><b>Boards.</b> One research agent per company searched the transcripts and filings for what they say about the
+board (approvals, authorisations, reserved matters, chairs' remarks) and added new items, each quote checked against its
+page by <code>verify_quotes.py</code>. It then used web search for the board's composition, rules, pay horizons, culture
+and past decisions. This environment blocks direct page fetches, so web facts come from search results with their URLs;
+each was corroborated by a second, differently worded search, and a separate verifier searched again before keeping it.
+Web statements are never shown as quotes. A drafting agent wrote the Board agent and the executives' new Board sections;
+a verifier checked them; a final pass calibrated the culture scores across the five boards.</li>
 <li><b>Page review.</b> Two more reviewers read this page: one recomputed its numbers and quotes from the data, the other
 read it on desktop and phone. Their 32 findings, including gaps in the isolation, are fixed.</li>
 <li><b>Mechanical check.</b> <code>check_agents.py</code> checks each agent's front matter and section order, and that every
@@ -211,3 +234,9 @@ CONFIDENCE = {
     "rolls-royce-watson": ("Low to medium", "low to medium"),
 }
 LOW_CONFIDENCE = ("Low", "Very low", "Low to medium", "Medium on engineering, low elsewhere")
+
+# Board texts: filled in from the Board profiles (see make_exco_html.checks()).
+BOARD_RULES = {sd: "" for sd in ("boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce")}
+BOARDS_LEDE = ""
+MAP_TITLE = "Culture map: where each Board sits on risk aversion and time horizon"
+MAP_CAP = ""
