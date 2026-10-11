@@ -1,0 +1,498 @@
+{
+ "rolls_royce": {
+  "agent_type": "rolls-royce-board, rolls-royce-erginbilgic, rolls-royce-mccabe, rolls-royce-watson",
+  "tool_calls": 61,
+  "paths": [
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/evidence.jsonl",
+   "/tmp/wargame-rolls_royce/dash-2050-exco",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_board_guidance.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_board_review.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_decision.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_frame.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_test_cfo.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_test_ops.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_veto_cfo.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco/r3_veto_ops.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/round4.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/rules.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/work",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/work/r4_cfo_calc.py",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/work/r4_cfo_memo.txt",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/work/r4_frame_calc.txt",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/work/r4_guidance_calc.py",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/work/r4_ops_calc.txt",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/work/r4_ops_memo.txt"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: rolls-royce-board may not access 'command substitution'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a565c6135870bf979.jsonl",
+    "agent_type": "rolls-royce-mccabe",
+    "tool_calls": 13,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a5a58643d0cd85a69.jsonl",
+    "agent_type": "rolls-royce-watson",
+    "tool_calls": 2,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aa79b1c70d7e11b5d.jsonl",
+    "agent_type": "rolls-royce-erginbilgic",
+    "tool_calls": 3,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aa80edb58bfacd5c4.jsonl",
+    "agent_type": "rolls-royce-board",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-ac3d30506d35f7417.jsonl",
+    "agent_type": "rolls-royce-watson",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ad8ee5be9c33217f6.jsonl",
+    "agent_type": "rolls-royce-mccabe",
+    "tool_calls": 2,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-af1655c685a354b09.jsonl",
+    "agent_type": "rolls-royce-erginbilgic",
+    "tool_calls": 12,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   }
+  ]
+ },
+ "pratt_whitney": {
+  "agent_type": "pratt-whitney-board, pratt-whitney-calio, pratt-whitney-eddy, pratt-whitney-mitchill",
+  "tool_calls": 60,
+  "paths": [
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_board_guidance.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_board_review.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_decision.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_frame.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_test_cfo.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_test_ops.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_veto_cfo.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco/r3_veto_ops.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/my_orders_r3.json",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/round4.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/rules.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r3_cfo_calc.py",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r3_cfo_memo.txt",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r3_ops_calc.py",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r4_board_guidance_calc.py",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r4_cfo_calc.py",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r4_cfo_memo.txt",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r4_decide_check.py",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r4_frame_calc.py",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r4_ops_calc.py",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/work/r4_ops_memo.txt"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: pratt-whitney-board may not access 'command substitution'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a1206ccbcd476ce79.jsonl",
+    "agent_type": "pratt-whitney-eddy",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a33140a2562a6dae3.jsonl",
+    "agent_type": "pratt-whitney-calio",
+    "tool_calls": 4,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a53b74f8c67673c31.jsonl",
+    "agent_type": "pratt-whitney-mitchill",
+    "tool_calls": 4,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a8af2a1b6bc2ad045.jsonl",
+    "agent_type": "pratt-whitney-eddy",
+    "tool_calls": 4,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a96e84d440f7427a3.jsonl",
+    "agent_type": "pratt-whitney-mitchill",
+    "tool_calls": 13,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aa8288482eaa43f13.jsonl",
+    "agent_type": "pratt-whitney-calio",
+    "tool_calls": 8,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ad05702b6796db1f3.jsonl",
+    "agent_type": "pratt-whitney-board",
+    "tool_calls": 13,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   }
+  ]
+ },
+ "airbus": {
+  "agent_type": "airbus-board, airbus-faury, airbus-toepfer, airbus-wagner",
+  "tool_calls": 75,
+  "paths": [
+   "/dev/null",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/profile.md",
+   "/tmp/wargame-airbus/dash-2050-exco",
+   "/tmp/wargame-airbus/dash-2050-exco/exco",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r*_decision.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r2_board_review.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_board_guidance.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_board_review.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_decision.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_frame.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_test_cfo.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_test_ops.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_veto_cfo.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco/r3_veto_ops.md",
+   "/tmp/wargame-airbus/dash-2050-exco/my_orders_r3.json",
+   "/tmp/wargame-airbus/dash-2050-exco/round4.md",
+   "/tmp/wargame-airbus/dash-2050-exco/rules.md",
+   "/tmp/wargame-airbus/dash-2050-exco/work",
+   "/tmp/wargame-airbus/dash-2050-exco/work/ids.txt",
+   "/tmp/wargame-airbus/dash-2050-exco/work/r4_cfo_calc.py",
+   "/tmp/wargame-airbus/dash-2050-exco/work/r4_memo.txt",
+   "/tmp/wargame-airbus/dash-2050-exco/work/r4_ops_memo_draft.txt"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: airbus-board may not access 'command substitution'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a0ae25c4261d162f2.jsonl",
+    "agent_type": "airbus-faury",
+    "tool_calls": 4,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a237279372e98f04e.jsonl",
+    "agent_type": "airbus-wagner",
+    "tool_calls": 6,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a4ee1bdac88e573d5.jsonl",
+    "agent_type": "airbus-toepfer",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a81bee4f7be15e498.jsonl",
+    "agent_type": "airbus-board",
+    "tool_calls": 19,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a92afba80e9f32f77.jsonl",
+    "agent_type": "airbus-wagner",
+    "tool_calls": 12,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a9e8b19e85cee70ad.jsonl",
+    "agent_type": "airbus-faury",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aeaff5ea11668e273.jsonl",
+    "agent_type": "airbus-toepfer",
+    "tool_calls": 5,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   }
+  ]
+ },
+ "cfm": {
+  "agent_type": "cfm-ali, cfm-board, cfm-culp, cfm-ghai",
+  "tool_calls": 70,
+  "paths": [
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/profile.md",
+   "/tmp/wargame-cfm/dash-2050-exco",
+   "/tmp/wargame-cfm/dash-2050-exco/exco",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_board_guidance.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_board_review.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_decision.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_frame.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_test_cfo.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_test_ops.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_veto_cfo.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco/r3_veto_ops.md",
+   "/tmp/wargame-cfm/dash-2050-exco/my_orders_r3.json",
+   "/tmp/wargame-cfm/dash-2050-exco/round4.md",
+   "/tmp/wargame-cfm/dash-2050-exco/rules.md",
+   "/tmp/wargame-cfm/dash-2050-exco/work",
+   "/tmp/wargame-cfm/dash-2050-exco/work/r3_cfo_calc.py",
+   "/tmp/wargame-cfm/dash-2050-exco/work/r3_cfo_wb.py",
+   "/tmp/wargame-cfm/dash-2050-exco/work/r4_ali_dates.py",
+   "/tmp/wargame-cfm/dash-2050-exco/work/r4_ali_memo.txt",
+   "/tmp/wargame-cfm/dash-2050-exco/work/r4_cfo_calc.py",
+   "/tmp/wargame-cfm/dash-2050-exco/work/r4_cfo_memo.txt",
+   "/tmp/wargame-cfm/dash-2050-exco/work/r4_frame_calc.py"
+  ],
+  "foreign_paths": [],
+  "denied": [],
+  "denied_paths": [],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a35360c84284653d6.jsonl",
+    "agent_type": "cfm-culp",
+    "tool_calls": 11,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aa6fe96c4c422844f.jsonl",
+    "agent_type": "cfm-board",
+    "tool_calls": 12,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aa8a66764b27dd119.jsonl",
+    "agent_type": "cfm-ali",
+    "tool_calls": 5,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ab0c7c16dc2aeef4c.jsonl",
+    "agent_type": "cfm-ghai",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ac4b864be246483d1.jsonl",
+    "agent_type": "cfm-culp",
+    "tool_calls": 7,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ad106729540e78317.jsonl",
+    "agent_type": "cfm-ali",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aece4eadf45894f5b.jsonl",
+    "agent_type": "cfm-ghai",
+    "tool_calls": 7,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   }
+  ]
+ },
+ "boeing": {
+  "agent_type": "boeing-board, boeing-malave, boeing-ortberg, boeing-pope",
+  "tool_calls": 73,
+  "paths": [
+   "/dev/null",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/ortberg.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/pope.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/teams.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/profile.md",
+   "/tmp/wargame-boeing/dash-2050-exco",
+   "/tmp/wargame-boeing/dash-2050-exco/exco",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r1_board_review.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r2_board_guidance.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r2_board_review.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_board_guidance.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_board_review.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_decision.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_frame.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_test_cfo.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_test_ops.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_veto_cfo.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco/r3_veto_ops.md",
+   "/tmp/wargame-boeing/dash-2050-exco/round3.md",
+   "/tmp/wargame-boeing/dash-2050-exco/round4.md",
+   "/tmp/wargame-boeing/dash-2050-exco/rules.md",
+   "/tmp/wargame-boeing/dash-2050-exco/work",
+   "/tmp/wargame-boeing/dash-2050-exco/work/r3_cfo_calc.py",
+   "/tmp/wargame-boeing/dash-2050-exco/work/r4_board_calc.txt",
+   "/tmp/wargame-boeing/dash-2050-exco/work/r4_cfo_calc.py",
+   "/tmp/wargame-boeing/dash-2050-exco/work/r4_cfo_memo.txt",
+   "/tmp/wargame-boeing/dash-2050-exco/work/r4_frame_calc.py",
+   "/tmp/wargame-boeing/dash-2050-exco/work/r4_memo.txt",
+   "/tmp/wargame-boeing/dash-2050-exco/work/r4_ops_calc.py"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: boeing-board may not access 'command substitution'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a0872c63fae2c9a1d.jsonl",
+    "agent_type": "boeing-ortberg",
+    "tool_calls": 8,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a33906fd49d8a5ecd.jsonl",
+    "agent_type": "boeing-ortberg",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a35f78be37ed7447d.jsonl",
+    "agent_type": "boeing-malave",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a602c8e2e0e0b413f.jsonl",
+    "agent_type": "boeing-malave",
+    "tool_calls": 2,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a621a199dd5609840.jsonl",
+    "agent_type": "boeing-pope",
+    "tool_calls": 2,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a98b123c1d9268c20.jsonl",
+    "agent_type": "boeing-pope",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-adc11390d8e1935f6.jsonl",
+    "agent_type": "boeing-board",
+    "tool_calls": 17,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   }
+  ]
+ }
+}

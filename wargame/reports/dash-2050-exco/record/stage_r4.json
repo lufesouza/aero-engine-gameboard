@@ -1,0 +1,43 @@
+{
+ "round": 4,
+ "year": 2050,
+ "pure": [
+  [
+   "fps: hold + 787: hold",
+   "NGSA: hold + A350 Re-engine",
+   0.5664379095962957,
+   23.938149679058228
+  ],
+  [
+   "fps: hold + 787 Re-engine",
+   "NGSA: hold + A350: hold",
+   0.7057132695195989,
+   23.3328228424882
+  ]
+ ],
+ "near_within_1b": [
+  [
+   "fps: hold + 787: hold",
+   "NGSA: hold + A350: hold",
+   0.663208572464228,
+   23.366586850527383
+  ]
+ ],
+ "played": [
+  "fps: hold + 787: hold",
+  "NGSA: hold + A350: hold"
+ ],
+ "played_value": [
+  0.663208572464228,
+  23.366586850527383
+ ],
+ "eps_b": 1.0,
+ "boeing_best_response_to_played_airbus": [
+  "fps: hold + 787 Re-engine",
+  0.7057132695195989
+ ],
+ "airbus_best_response_to_played_boeing": [
+  "NGSA: hold + A350 Re-engine",
+  23.938149679058228
+ ]
+}

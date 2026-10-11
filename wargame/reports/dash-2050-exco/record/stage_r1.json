@@ -1,0 +1,109 @@
+{
+ "round": 1,
+ "year": 2030,
+ "pure": [
+  [
+   "fps 10-yr + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (one move)",
+   -3.400472463934946,
+   26.669663168168928
+  ],
+  [
+   "fps 10-yr + 787 Re-engine",
+   "NGSA + A350: hold + Delay Tactics (one move)",
+   1.41910690975616,
+   24.07763840504953
+  ]
+ ],
+ "near_within_1b": [
+  [
+   "fps 7-yr + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (one move)",
+   -3.448111511821647,
+   21.04933958023646
+  ],
+  [
+   "fps 7-yr + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (both moves)",
+   -3.448111511821647,
+   20.39389523575485
+  ],
+  [
+   "fps 7-yr + 787 Re-engine",
+   "NGSA + A350: hold + Delay Tactics (one move)",
+   0.4463610717676145,
+   18.463690694144127
+  ],
+  [
+   "fps 7-yr + 787 Re-engine",
+   "NGSA + A350: hold + Delay Tactics (both moves)",
+   0.4463610717676145,
+   17.82900768793499
+  ],
+  [
+   "fps 7-yr + 737 rate up + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (one move)",
+   -4.190700560307867,
+   19.192614076102426
+  ],
+  [
+   "fps 7-yr + 737 rate up + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (both moves)",
+   -4.190700560307867,
+   18.537169731620818
+  ],
+  [
+   "fps 10-yr + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (both moves)",
+   -3.400472463934946,
+   26.10372923320708
+  ],
+  [
+   "fps 10-yr + 787 Re-engine",
+   "NGSA + A350: hold + Delay Tactics (both moves)",
+   1.41910690975616,
+   23.526341247781914
+  ],
+  [
+   "fps 10-yr + 737 rate up + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (one move)",
+   -4.1430615124211805,
+   24.812937664034923
+  ],
+  [
+   "fps 10-yr + 737 rate up + 787: hold",
+   "NGSA + A350 Re-engine + Delay Tactics (both moves)",
+   -4.1430615124211805,
+   24.247003729073075
+  ],
+  [
+   "fps 10-yr + 737 rate up + 787 Re-engine",
+   "NGSA + A350: hold + Delay Tactics (one move)",
+   0.6765178612699255,
+   22.220912900915526
+  ],
+  [
+   "fps 10-yr + 737 rate up + 787 Re-engine",
+   "NGSA + A350: hold + Delay Tactics (both moves)",
+   0.6765178612699255,
+   21.66961574364791
+  ]
+ ],
+ "played": [
+  "fps 10-yr + 787: hold",
+  "NGSA + A350: hold"
+ ],
+ "played_value": [
+  0.663208572464228,
+  23.366586850527383
+ ],
+ "eps_b": 1.0,
+ "boeing_best_response_to_played_airbus": [
+  "fps 10-yr + 787 Re-engine",
+  2.860473571442633
+ ],
+ "airbus_best_response_to_played_boeing": [
+  "NGSA + A350 Re-engine + Delay Tactics (one move)",
+  26.669663168168928
+ ]
+}

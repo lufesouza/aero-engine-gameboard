@@ -1,0 +1,34 @@
+{
+ "this_v2": {
+  "board": "v2",
+  "boeing": -0.662127,
+  "airbus": 32.091024,
+  "cfm": -42.289318,
+  "pratt_whitney": -1.198537,
+  "rolls_royce": 21.901562
+ },
+ "this_v3": {
+  "board": "v3",
+  "boeing": 0.663209,
+  "airbus": 23.366587,
+  "cfm": -38.288186,
+  "pratt_whitney": -2.930196,
+  "rolls_royce": 20.549366
+ },
+ "earlier_v2": {
+  "board": "v2",
+  "boeing": 1.846859,
+  "airbus": 15.606053,
+  "cfm": -25.174319,
+  "pratt_whitney": -10.640839,
+  "rolls_royce": 15.680962
+ },
+ "earlier_v3": {
+  "board": "v3",
+  "boeing": -1.568386,
+  "airbus": 17.581107,
+  "cfm": -28.625852,
+  "pratt_whitney": -9.399819,
+  "rolls_royce": 17.301444
+ }
+}

@@ -1,0 +1,1129 @@
+{
+ "boeing": {
+  "scenarios": [
+   "Rivals hold",
+   "Airbus launches A350 Re-engine",
+   "Risk case: Airbus Delay Tactics (covert)"
+  ],
+  "rows": [
+   {
+    "plan": "fps: hold + 787: hold",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      0.663208572464228,
+      100.5101604403571
+     ],
+     [
+      -0.7976249600637573,
+      99.3864423384125
+     ],
+     [
+      -0.778158089222245,
+      99.40141685444442
+     ]
+    ]
+   },
+   {
+    "plan": "fps: hold + 787 Re-engine",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      1.3089578813771428,
+      101.00689067798241
+     ],
+     [
+      -3.790363051656652,
+      97.08433611411027
+     ],
+     [
+      -0.13240878030933034,
+      99.89814709206975
+     ]
+    ]
+   },
+   {
+    "plan": "cancel fps + 787: hold",
+    "orders": {
+     "fps": "cancel",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      -18.329011201105075,
+      85.90076061453456
+     ],
+     [
+      -19.78984473363306,
+      84.77704251258996
+     ],
+     [
+      -18.329011201105075,
+      85.90076061453456
+     ]
+    ]
+   },
+   {
+    "plan": "cancel fps + 787 Re-engine",
+    "orders": {
+     "fps": "cancel",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      -16.659554387712287,
+      87.18495816329823
+     ],
+     [
+      -21.758875320746082,
+      83.2624035994261
+     ],
+     [
+      -16.659554387712287,
+      87.18495816329823
+     ]
+    ]
+   }
+  ]
+ },
+ "airbus": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches 787 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "NGSA: hold + A350: hold",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      23.366586850527383,
+      115.57772456701825
+     ],
+     [
+      22.881334582663484,
+      115.254223055109
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold + A350: hold + Delay Tactics (one move)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "bottleneck",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      25.02074112608034,
+      116.68049408405356
+     ],
+     [
+      24.53548885821644,
+      116.35699257214429
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold + A350: hold + Delay Tactics (both moves)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "both",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      24.551284291151326,
+      116.36752286076755
+     ],
+     [
+      24.066032023287427,
+      116.04402134885828
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold + A350 Re-engine",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      24.912043259535206,
+      116.60802883969014
+     ],
+     [
+      21.674763977278065,
+      114.44984265151871
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold + A350 Re-engine + Delay Tactics (one move)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "bottleneck",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      26.558127015967766,
+      117.70541801064518
+     ],
+     [
+      23.320847733710625,
+      115.54723182247375
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold + A350 Re-engine + Delay Tactics (both moves)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "both",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      26.0804575116757,
+      117.38697167445046
+     ],
+     [
+      22.84317822941856,
+      115.22878548627904
+     ]
+    ]
+   },
+   {
+    "plan": "cancel NGSA + A350: hold",
+    "orders": {
+     "ngsa": "cancel",
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      -16.28234067123234,
+      89.14510621917844
+     ],
+     [
+      -16.76759293909624,
+      88.82160470726917
+     ]
+    ]
+   },
+   {
+    "plan": "cancel NGSA + A350: hold + Delay Tactics (one move)",
+    "orders": {
+     "ngsa": "cancel",
+     "rea350": "hold",
+     "delay_tactics": "bottleneck",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      -15.734747306538486,
+      89.51016846230767
+     ],
+     [
+      -16.219999574402383,
+      89.1866669503984
+     ]
+    ]
+   },
+   {
+    "plan": "cancel NGSA + A350: hold + Delay Tactics (both moves)",
+    "orders": {
+     "ngsa": "cancel",
+     "rea350": "hold",
+     "delay_tactics": "both",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      -16.191586851963535,
+      89.20560876535764
+     ],
+     [
+      -16.676839119827434,
+      88.88210725344838
+     ]
+    ]
+   },
+   {
+    "plan": "cancel NGSA + A350 Re-engine",
+    "orders": {
+     "ngsa": "cancel",
+     "rea350": "launch",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      -14.17693434921699,
+      90.54871043385533
+     ],
+     [
+      -17.41421363147413,
+      88.3905242456839
+     ]
+    ]
+   },
+   {
+    "plan": "cancel NGSA + A350 Re-engine + Delay Tactics (one move)",
+    "orders": {
+     "ngsa": "cancel",
+     "rea350": "launch",
+     "delay_tactics": "bottleneck",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      -13.635639224739393,
+      90.90957385017374
+     ],
+     [
+      -16.87291850699653,
+      88.75138766200232
+     ]
+    ]
+   },
+   {
+    "plan": "cancel NGSA + A350 Re-engine + Delay Tactics (both moves)",
+    "orders": {
+     "ngsa": "cancel",
+     "rea350": "launch",
+     "delay_tactics": "both",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      -14.098937452492766,
+      90.60070836500482
+     ],
+     [
+      -17.336216734749904,
+      88.44252217683339
+     ]
+    ]
+   }
+  ]
+ },
+ "cfm": {
+  "scenarios": [
+   "Rivals hold",
+   "Airbus switches NGSA engines to code 2 (PW)",
+   "Boeing switches fps engines to code 1 (RR)"
+  ],
+  "rows": [
+   {
+    "plan": "hold everything",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -31.203058581111293,
+      80.49808838680545
+     ],
+     [
+      -58.504782876129326,
+      63.434510702419175
+     ],
+     [
+      -78.30894353519892,
+      51.056910290500674
+     ]
+    ]
+   },
+   {
+    "plan": "Partner Embraer (cancel)",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "cancel",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -34.28748736071725,
+      78.57032039955172
+     ],
+     [
+      -62.95429787048616,
+      60.65356383094615
+     ],
+     [
+      -83.74866656250933,
+      47.657083398431666
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -88.79894759568981,
+      44.500657752693876
+     ],
+     [
+      -116.10067189070796,
+      27.437080068307523
+     ],
+     [
+      -118.39722264527887,
+      26.001735846700697
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan + Lobby",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "launch",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -68.54356658944195,
+      57.16027088159878
+     ],
+     [
+      -95.84529088445993,
+      40.09669319721254
+     ],
+     [
+      -114.29602887019809,
+      28.564981956126203
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan + Partner Embraer (cancel)",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "cancel",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -94.36317082602477,
+      41.02301823373452
+     ],
+     [
+      -122.03886861173407,
+      23.725707117666204
+     ],
+     [
+      -119.75356763071449,
+      25.15402023080344
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan + Partner Embraer (cancel) + Lobby",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "cancel",
+     "lobby_emissions": "launch",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -73.0450207694644,
+      54.34686201908475
+     ],
+     [
+      -101.71183127923322,
+      36.43010545047923
+     ],
+     [
+      -115.49879356629029,
+      27.813254021068573
+     ]
+    ]
+   },
+   {
+    "plan": "Ducted (cancel)",
+    "orders": {
+     "ducted": "cancel",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -46.499587398424204,
+      70.93775787598487
+     ],
+     [
+      -75.16639790819302,
+      53.021001307379365
+     ],
+     [
+      -95.96076660021619,
+      40.024520874864876
+     ]
+    ]
+   },
+   {
+    "plan": "Ducted (cancel) + Partner Embraer (cancel)",
+    "orders": {
+     "ducted": "cancel",
+     "open_fan": "hold",
+     "partner_embraer": "cancel",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -46.499587398424204,
+      70.93775787598487
+     ],
+     [
+      -75.16639790819302,
+      53.021001307379365
+     ],
+     [
+      -95.96076660021619,
+      40.024520874864876
+     ]
+    ]
+   },
+   {
+    "plan": "Ducted (cancel) + Open Fan",
+    "orders": {
+     "ducted": "cancel",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -102.30253493318851,
+      36.060915666757175
+     ],
+     [
+      -124.82082527556791,
+      21.98698420277006
+     ],
+     [
+      -121.06692046396087,
+      24.33317471002445
+     ]
+    ]
+   },
+   {
+    "plan": "Ducted (cancel) + Open Fan + Lobby",
+    "orders": {
+     "ducted": "cancel",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "launch",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -82.04715392694057,
+      48.72052879566214
+     ],
+     [
+      -109.34887822195857,
+      31.656951111275887
+     ],
+     [
+      -117.06237373593784,
+      26.836016415038856
+     ]
+    ]
+   },
+   {
+    "plan": "Ducted (cancel) + Open Fan + Partner Embraer (cancel)",
+    "orders": {
+     "ducted": "cancel",
+     "open_fan": "launch",
+     "partner_embraer": "cancel",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -108.57527086373166,
+      32.140455710167714
+     ],
+     [
+      -125.63548336606165,
+      21.477822896211478
+     ],
+     [
+      -122.59008367366393,
+      23.38119770396004
+     ]
+    ]
+   },
+   {
+    "plan": "Ducted (cancel) + Open Fan + Partner Embraer (cancel) + Lobby",
+    "orders": {
+     "ducted": "cancel",
+     "open_fan": "launch",
+     "partner_embraer": "cancel",
+     "lobby_emissions": "launch",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -87.25712080717126,
+      45.464299495517956
+     ],
+     [
+      -115.9239313169402,
+      27.54754292691237
+     ],
+     [
+      -118.33530960923976,
+      26.040431494225146
+     ]
+    ]
+   }
+  ]
+ },
+ "pratt_whitney": {
+  "scenarios": [
+   "Rivals hold",
+   "Airbus switches NGSA engines to code 5 (RR and CFM)",
+   "Boeing switches fps engines to code 7 (RR, PW and CFM)",
+   "Rolls-Royce commits to the Joint Venture"
+  ],
+  "rows": [
+   {
+    "plan": "GTF2: hold",
+    "orders": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "hold"
+    },
+    "cells": [
+     [
+      -8.437611034397975,
+      92.32944451418366
+     ],
+     [
+      -29.757373642271673,
+      72.94784214338938
+     ],
+     [
+      3.3678161382286476,
+      103.06165103475331
+     ],
+     [
+      -8.437611034397975,
+      92.32944451418366
+     ]
+    ]
+   },
+   {
+    "plan": "GTF2: hold + commit to JV",
+    "orders": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "commit"
+    },
+    "cells": [
+     [
+      -8.437611034397975,
+      92.32944451418366
+     ],
+     [
+      -29.757373642271673,
+      72.94784214338938
+     ],
+     [
+      3.3678161382286476,
+      103.06165103475331
+     ],
+     [
+      -2.9301956291853344,
+      97.3361857916497
+     ]
+    ]
+   },
+   {
+    "plan": "cancel GTF2",
+    "orders": {
+     "gtf2_solo": "cancel",
+     "jv_with_rr": "hold"
+    },
+    "cells": [
+     [
+      -29.42404030893834,
+      73.25087244641969
+     ],
+     [
+      -29.42404030893834,
+      73.25087244641969
+     ],
+     [
+      -29.42404030893834,
+      73.25087244641969
+     ],
+     [
+      -29.42404030893834,
+      73.25087244641969
+     ]
+    ]
+   },
+   {
+    "plan": "cancel GTF2 + commit to JV",
+    "orders": {
+     "gtf2_solo": "cancel",
+     "jv_with_rr": "commit"
+    },
+    "cells": [
+     [
+      -29.42404030893834,
+      73.25087244641969
+     ],
+     [
+      -29.42404030893834,
+      73.25087244641969
+     ],
+     [
+      -29.42404030893834,
+      73.25087244641969
+     ],
+     [
+      -4.596862295852001,
+      95.82103427649818
+     ]
+    ]
+   }
+  ]
+ },
+ "rolls_royce": {
+  "scenarios": [
+   "Rivals hold",
+   "Airbus switches NGSA engines to code 6 (PW and CFM)",
+   "Boeing switches fps engines to code 5 (RR and CFM)",
+   "Pratt & Whitney commits to the Joint Venture",
+   "Boeing launches 787 Re-engine and Airbus A350 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "UltraFan NB: hold",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      18.263651943096853,
+      116.60331994826987
+     ],
+     [
+      -3.056110664776888,
+      97.22171757747556
+     ],
+     [
+      35.971792702036744,
+      132.7016297291243
+     ],
+     [
+      18.263651943096853,
+      116.60331994826987
+     ],
+     [
+      18.1743517901023,
+      116.5221379910021
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      12.23524861549253,
+      111.1229532868114
+     ],
+     [
+      -9.084513992381176,
+      91.74135091601711
+     ],
+     [
+      29.94338937443242,
+      127.22126306766583
+     ],
+     [
+      12.23524861549253,
+      111.1229532868114
+     ],
+     [
+      12.299914243523084,
+      111.18174022138462
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      9.263651943096853,
+      108.42150176645168
+     ],
+     [
+      -12.056110664776888,
+      89.03989939565737
+     ],
+     [
+      26.971792702036744,
+      124.51981154730613
+     ],
+     [
+      9.263651943096853,
+      108.42150176645168
+     ],
+     [
+      11.218251494651476,
+      110.19841044968317
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + commit to JV",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      18.263651943096853,
+      116.60331994826987
+     ],
+     [
+      -3.056110664776888,
+      97.22171757747556
+     ],
+     [
+      35.971792702036744,
+      132.7016297291243
+     ],
+     [
+      20.549366228811138,
+      118.68124202619194
+     ],
+     [
+      18.1743517901023,
+      116.5221379910021
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + commit to JV + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      12.23524861549253,
+      111.1229532868114
+     ],
+     [
+      -9.084513992381176,
+      91.74135091601711
+     ],
+     [
+      29.94338937443242,
+      127.22126306766583
+     ],
+     [
+      14.520962901206815,
+      113.20087536473346
+     ],
+     [
+      12.299914243523084,
+      111.18174022138462
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + commit to JV + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      9.263651943096853,
+      108.42150176645168
+     ],
+     [
+      -12.056110664776888,
+      89.03989939565737
+     ],
+     [
+      26.971792702036744,
+      124.51981154730613
+     ],
+     [
+      11.549366228811138,
+      110.49942384437377
+     ],
+     [
+      11.218251494651476,
+      110.19841044968317
+     ]
+    ]
+   },
+   {
+    "plan": "cancel UltraFan NB",
+    "orders": {
+     "ultrafan_nb_solo": "cancel",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      -6.277811784275236,
+      94.2928983779316
+     ],
+     [
+      -6.277811784275236,
+      94.2928983779316
+     ],
+     [
+      -6.277811784275236,
+      94.2928983779316
+     ],
+     [
+      -6.277811784275236,
+      94.2928983779316
+     ],
+     [
+      -6.367111937269811,
+      94.2117164206638
+     ]
+    ]
+   },
+   {
+    "plan": "cancel UltraFan NB + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "cancel",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      -7.306215111879523,
+      93.3579862619277
+     ],
+     [
+      -7.306215111879523,
+      93.3579862619277
+     ],
+     [
+      -7.306215111879523,
+      93.3579862619277
+     ],
+     [
+      -7.306215111879523,
+      93.3579862619277
+     ],
+     [
+      -7.241549483848977,
+      93.41677319650093
+     ]
+    ]
+   },
+   {
+    "plan": "cancel UltraFan NB + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "cancel",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      -10.277811784275237,
+      90.65653474156797
+     ],
+     [
+      -10.277811784275237,
+      90.65653474156797
+     ],
+     [
+      -10.277811784275237,
+      90.65653474156797
+     ],
+     [
+      -10.277811784275237,
+      90.65653474156797
+     ],
+     [
+      -8.323212232720586,
+      92.43344342479946
+     ]
+    ]
+   },
+   {
+    "plan": "cancel UltraFan NB + commit to JV",
+    "orders": {
+     "ultrafan_nb_solo": "cancel",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      -6.277811784275236,
+      94.2928983779316
+     ],
+     [
+      -6.277811784275236,
+      94.2928983779316
+     ],
+     [
+      -6.277811784275236,
+      94.2928983779316
+     ],
+     [
+      16.549366228811138,
+      115.04487838982831
+     ],
+     [
+      -6.367111937269811,
+      94.2117164206638
+     ]
+    ]
+   },
+   {
+    "plan": "cancel UltraFan NB + commit to JV + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "cancel",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      -7.306215111879523,
+      93.3579862619277
+     ],
+     [
+      -7.306215111879523,
+      93.3579862619277
+     ],
+     [
+      -7.306215111879523,
+      93.3579862619277
+     ],
+     [
+      10.520962901206815,
+      109.56451172836984
+     ],
+     [
+      -7.241549483848977,
+      93.41677319650093
+     ]
+    ]
+   },
+   {
+    "plan": "cancel UltraFan NB + commit to JV + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "cancel",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      -10.277811784275237,
+      90.65653474156797
+     ],
+     [
+      -10.277811784275237,
+      90.65653474156797
+     ],
+     [
+      -10.277811784275237,
+      90.65653474156797
+     ],
+     [
+      7.549366228811139,
+      106.86306020801013
+     ],
+     [
+      -8.323212232720586,
+      92.43344342479946
+     ]
+    ]
+   }
+  ]
+ }
+}

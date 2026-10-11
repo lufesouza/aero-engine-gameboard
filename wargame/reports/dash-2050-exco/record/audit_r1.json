@@ -1,0 +1,545 @@
+{
+ "cfm": {
+  "agent_type": "cfm-ali, cfm-board, cfm-culp, cfm-ghai",
+  "tool_calls": 93,
+  "paths": [
+   "/dev/null",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/*.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/board",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/ali.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/culp.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/ghai.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles/cfm_ceo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/roles/cfm_coo_operations.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/executives/teams.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/objectives.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/cfm/profile.md",
+   "/tmp/wargame-cfm/dash-2050-exco",
+   "/tmp/wargame-cfm/dash-2050-exco/*.md",
+   "/tmp/wargame-cfm/dash-2050-exco/exco",
+   "/tmp/wargame-cfm/dash-2050-exco/round1.md",
+   "/tmp/wargame-cfm/dash-2050-exco/rules.md"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: cfm-culp may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: cfm-ali may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: cfm-ghai may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: cfm-board may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: cfm-board may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad",
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/chk.py",
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/grid.py",
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/memo.txt"
+  ],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a1a039a1bc5a0c8a0.jsonl",
+    "agent_type": "cfm-culp",
+    "tool_calls": 16,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a3d5f0d5449b94230.jsonl",
+    "agent_type": "cfm-ali",
+    "tool_calls": 7,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a4eff6cc5ef733b0a.jsonl",
+    "agent_type": "cfm-ghai",
+    "tool_calls": 7,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a5ebe49a6cd368b4e.jsonl",
+    "agent_type": "cfm-ali",
+    "tool_calls": 20,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-ad3c1f188732bd1f5.jsonl",
+    "agent_type": "cfm-ghai",
+    "tool_calls": 16,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-aecb492b3ca33d66e.jsonl",
+    "agent_type": "cfm-culp",
+    "tool_calls": 5,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-aef1a06d3e14078de.jsonl",
+    "agent_type": "cfm-board",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-aefda4f482ab0ce99.jsonl",
+    "agent_type": "cfm-board",
+    "tool_calls": 7,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   }
+  ]
+ },
+ "pratt_whitney": {
+  "agent_type": "pratt-whitney-board, pratt-whitney-calio, pratt-whitney-eddy, pratt-whitney-mitchill",
+  "tool_calls": 76,
+  "paths": [
+   "/dev/null",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/*.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/board",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/board/board.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/calio.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/mitchill.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/operations.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/roles/pratt_whitney_coo_president.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/executives/teams.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/objectives.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/pratt_whitney/profile.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/*.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/exco",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/round1.md",
+   "/tmp/wargame-pratt_whitney/dash-2050-exco/rules.md"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: pratt-whitney-mitchill may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: pratt-whitney-eddy may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: pratt-whitney-board may not access 'command substitution'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/memo.txt"
+  ],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a1d3a46de6991da30.jsonl",
+    "agent_type": "pratt-whitney-calio",
+    "tool_calls": 2,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a255155d2625f0f54.jsonl",
+    "agent_type": "pratt-whitney-mitchill",
+    "tool_calls": 8,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a29bcfbea99ceea77.jsonl",
+    "agent_type": "pratt-whitney-mitchill",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a2b7eddaa75be29d7.jsonl",
+    "agent_type": "pratt-whitney-eddy",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a54cd008f04466fa0.jsonl",
+    "agent_type": "pratt-whitney-board",
+    "tool_calls": 6,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a7cda691e855920dc.jsonl",
+    "agent_type": "pratt-whitney-board",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-ad2c51de688efa38f.jsonl",
+    "agent_type": "pratt-whitney-eddy",
+    "tool_calls": 5,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ad419d6e5ece1437e.jsonl",
+    "agent_type": "pratt-whitney-calio",
+    "tool_calls": 12,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   }
+  ]
+ },
+ "airbus": {
+  "agent_type": "airbus-board, airbus-faury, airbus-toepfer, airbus-wagner",
+  "tool_calls": 88,
+  "paths": [
+   "/dev/null",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/board",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/board/board.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/*.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/faury.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles/airbus_ceo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/roles/airbus_cfo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/teams.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/toepfer.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/executives/wagner.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/objectives.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/airbus/profile.md",
+   "/tmp/wargame-airbus/dash-2050-exco",
+   "/tmp/wargame-airbus/dash-2050-exco/*.md",
+   "/tmp/wargame-airbus/dash-2050-exco/exco",
+   "/tmp/wargame-airbus/dash-2050-exco/round1.md",
+   "/tmp/wargame-airbus/dash-2050-exco/rules.md"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: airbus-toepfer may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: airbus-toepfer may not access 'wildcard, recursive or relative access outside your own folders ([AX-0102])'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: airbus-wagner may not access 'wildcard, recursive or relative access outside your own folders (*[0-9])'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: airbus-board may not access 'command substitution'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: airbus-wagner may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/memo.txt"
+  ],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a1833503a5b496473.jsonl",
+    "agent_type": "airbus-toepfer",
+    "tool_calls": 23,
+    "foreign_paths": [],
+    "denied": 2,
+    "clean": true
+   },
+   {
+    "file": "agent-a43df79cf385c006e.jsonl",
+    "agent_type": "airbus-wagner",
+    "tool_calls": 6,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a45730bda45520274.jsonl",
+    "agent_type": "airbus-faury",
+    "tool_calls": 9,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a73f700eb7c8ffdd1.jsonl",
+    "agent_type": "airbus-toepfer",
+    "tool_calls": 3,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a8f3ba502b46963b7.jsonl",
+    "agent_type": "airbus-board",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-aaf75e6780379ae8f.jsonl",
+    "agent_type": "airbus-faury",
+    "tool_calls": 13,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-adaec2909196598ce.jsonl",
+    "agent_type": "airbus-board",
+    "tool_calls": 5,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ae0292d9194d5e708.jsonl",
+    "agent_type": "airbus-wagner",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   }
+  ]
+ },
+ "boeing": {
+  "agent_type": "boeing-board, boeing-malave, boeing-ortberg, boeing-pope",
+  "tool_calls": 81,
+  "paths": [
+   "/dev/null",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/board",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/malave.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/ortberg.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/pope.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles/boeing_ceo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles/boeing_cfo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/roles/boeing_coo_bca.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/executives/teams.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/objectives.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/boeing/profile.md",
+   "/tmp/wargame-boeing/dash-2050-exco",
+   "/tmp/wargame-boeing/dash-2050-exco/*.md",
+   "/tmp/wargame-boeing/dash-2050-exco/exco",
+   "/tmp/wargame-boeing/dash-2050-exco/round1.md",
+   "/tmp/wargame-boeing/dash-2050-exco/rules.md"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: boeing-malave may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: boeing-board may not access 'command substitution'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: boeing-pope may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad",
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/cash.py",
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/memo.txt"
+  ],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a20b5f269d134c703.jsonl",
+    "agent_type": "boeing-board",
+    "tool_calls": 12,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a57fd7496ace63fae.jsonl",
+    "agent_type": "boeing-malave",
+    "tool_calls": 17,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a5b08aca9b920b9fe.jsonl",
+    "agent_type": "boeing-pope",
+    "tool_calls": 6,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a95f8777fc4ec8ec3.jsonl",
+    "agent_type": "boeing-board",
+    "tool_calls": 6,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a9b7220a9083050af.jsonl",
+    "agent_type": "boeing-ortberg",
+    "tool_calls": 17,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ab03ed078276a021b.jsonl",
+    "agent_type": "boeing-malave",
+    "tool_calls": 5,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ab575db4200eba8f5.jsonl",
+    "agent_type": "boeing-ortberg",
+    "tool_calls": 4,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-ace3bd089110e961e.jsonl",
+    "agent_type": "boeing-pope",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   }
+  ]
+ },
+ "rolls_royce": {
+  "agent_type": "rolls-royce-board, rolls-royce-erginbilgic, rolls-royce-mccabe, rolls-royce-watson",
+  "tool_calls": 72,
+  "paths": [
+   "/dev/null",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/board/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/dashboard_game.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/erginbilgic.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/evidence.jsonl",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/mccabe.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/operations.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/roles/rolls_royce_ceo.txt",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/executives/teams.md",
+   "/home/user/aero-engine-gameboard/wargame/profiles/rolls_royce/profile.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/*.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/exco",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/round1.md",
+   "/tmp/wargame-rolls_royce/dash-2050-exco/rules.md"
+  ],
+  "foreign_paths": [],
+  "denied": [
+   "PreToolUse:Bash hook error: War-game isolation: rolls-royce-watson may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: rolls-royce-board may not access 'command substitution'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: rolls-royce-board may not access 'command substitution'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: rolls-royce-mccabe may not access 'wildcard, recursive or relative access outside your own folders (/dev/null)'. Use only your own profile and the engine's --side view.",
+   "PreToolUse:Bash hook error: War-game isolation: rolls-royce-mccabe may not access '/tmp/claude-0/'. Use only your own profile and the engine's --side view."
+  ],
+  "denied_paths": [
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad",
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/calc.py",
+   "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/memo.txt"
+  ],
+  "engine_commands": [],
+  "leaks_in_outputs": [],
+  "own_tool_results_read": [],
+  "clean": true,
+  "agents": [
+   {
+    "file": "agent-a019c423222f544cb.jsonl",
+    "agent_type": "rolls-royce-erginbilgic",
+    "tool_calls": 15,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a09dfe10252447418.jsonl",
+    "agent_type": "rolls-royce-erginbilgic",
+    "tool_calls": 3,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a4a951087a3c6ddf5.jsonl",
+    "agent_type": "rolls-royce-watson",
+    "tool_calls": 5,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a7dfd735eeeff98ee.jsonl",
+    "agent_type": "rolls-royce-mccabe",
+    "tool_calls": 3,
+    "foreign_paths": [],
+    "denied": 0,
+    "clean": true
+   },
+   {
+    "file": "agent-a8067d87332d74e98.jsonl",
+    "agent_type": "rolls-royce-watson",
+    "tool_calls": 14,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-a91db777bba4be8ff.jsonl",
+    "agent_type": "rolls-royce-board",
+    "tool_calls": 7,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-abda50730c356a0b0.jsonl",
+    "agent_type": "rolls-royce-board",
+    "tool_calls": 9,
+    "foreign_paths": [],
+    "denied": 1,
+    "clean": true
+   },
+   {
+    "file": "agent-aed2c923bc49d4292.jsonl",
+    "agent_type": "rolls-royce-mccabe",
+    "tool_calls": 16,
+    "foreign_paths": [],
+    "denied": 2,
+    "clean": true
+   }
+  ]
+ }
+}
