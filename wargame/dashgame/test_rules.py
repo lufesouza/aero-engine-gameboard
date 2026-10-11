@@ -93,6 +93,23 @@ d = [x for x in st["dead"] if x["key"] == "fps"][0]
 check(abs(d["sunk_nom"] - 55.25 * 5 / 10) < 1e-9, ("fps cancellation write-off", d))
 print("3. conditional launches, fold-in write-off (RR %.3f), Delay Tactics window, cancellation write-off" % (8 * 5 / 7 - 4))
 
+# 4. a Joint Venture formed after an airframe's EIS does not reach back: it inherits a folded solo's earlier ready
+#    date, but the partner that had no engine at that EIS is not fitted to it, and played years stay as they were
+st = M.new_state()
+st, _ = R.adjudicate(st, 2030, {"airbus": {"ngsa": "launch", "ngsa_engine_code": 4},
+                                "pratt_whitney": {"gtf2_solo": "launch"}})
+before = {r["year"]: (r["pratt_whitney"]["nb_share"], r["rolls_royce"]["nb_share"])
+          for r in M.value(st, covert=True, series=True)["_en_series"]["years"]}
+st2, _ = R.adjudicate(st, 2045, {"pratt_whitney": {"jv_with_rr": "commit"}, "rolls_royce": {"jv_with_pw": "commit"}})
+check(M.live(st2, "jv") and M.live(st2, "jv")["ready"] == 2036, "late JV inherits the folded GTF2's 2036 date")
+makers, jv, _ = M.effective_code(st2, "ngsa")
+check(makers == {"PW"} and not jv, ("late JV: NGSA (EIS 2037) keeps the P&W engine only", makers, jv))
+after = {r["year"]: (r["pratt_whitney"]["nb_share"], r["rolls_royce"]["nb_share"])
+         for r in M.value(st2, covert=True, series=True)["_en_series"]["years"]}
+changed = [y for y in before if y < 2045 and any(abs(a - b) > 1e-12 for a, b in zip(before[y], after[y]))]
+check(not changed, ("late JV rewrote engine shares before 2045", changed[:5]))
+print("4. a Joint Venture formed after an airframe's EIS leaves earlier engine fits and shares unchanged")
+
 if fails:
     print("FAILURES:", len(fails))
     for f in fails[:20]:

@@ -68,9 +68,13 @@ cow.** Your widebody engines (the only engine on the A350 and the A330neo, one o
 profit and cash, and Civil carries most of the group. A narrowbody engine is a new product with its own risks, so a
 heavy narrowbody investment could put the widebody franchise at risk. Two lines are scored:
 
-- **Bounded narrowbody risk:** your own narrowbody development money, committed or written off, stays within $4B (the
-  Joint Venture share; an UltraFan NB Solo is $8B, and a Solo folded into the Joint Venture writes off what it spent).
-- **Widebody never starved:** no narrowbody and widebody development live together (the board's $5B overlap strain).
+- **Bounded narrowbody risk:** your own narrowbody development money, committed or written off, stays within $4B. The
+  Joint Venture share is $4B and an UltraFan NB Solo $8B; a Solo cancelled or folded into the Joint Venture counts its
+  spend to date (a Solo launched in 2030 and folded in 2035 is $5.7B).
+- **Widebody never starved:** never hold a narrowbody engine programme (UltraFan NB Solo or the Joint Venture) and a
+  widebody programme (UltraFan WB or Trent 1000 upgrade) at the same time. The board charges a one-off $5B strain
+  whenever both are on record, whatever their dates and even after one is ready; only cancelling one before it is
+  ready removes it.
 
 Your objective to enter the narrowbody market stands; this sets its terms. Your brief shows the metrics for every
 plan. Your company's 2026 analyst-model baseline (Morgan Stanley, Goldman Sachs) is in `analyst_models_2026.md`.

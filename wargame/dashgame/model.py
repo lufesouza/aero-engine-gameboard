@@ -278,12 +278,23 @@ CODE_LABEL = {1: "RR", 2: "PW", 3: "CFM", 4: "RR & PW (JV)", 5: "RR and CFM", 6:
 FORBIDDEN = {(1, 1), (1, 4), (2, 2), (2, 4), (3, 3), (4, 1), (4, 2), (4, 4), (5, 5), (6, 6)}
 
 
+def jv_available_by(state, eis):
+    """The Joint Venture's engine can be on an airframe entering service in `eis` only if the Joint Venture existed
+    by then: one formed later inherits a folded solo's earlier `ready` date, but not the years before it formed."""
+    j = live(state, "jv")
+    return bool(j and max(j["ready"], j["launch"]) <= eis)
+
+
 def maker_ready_by(state, maker, eis):
-    """Can `maker` put a new narrowbody engine on an airframe entering service in `eis`?"""
+    """Can `maker` put a new narrowbody engine on an airframe entering service in `eis`? A solo programme later
+    folded into the Joint Venture still counts for its own maker at an EIS it was ready for."""
     if maker == "CFM":
         return True                      # LEAP derivative or a new CFM engine: the board never removes CFM
-    keys = ["pw_solo", "jv"] if maker == "PW" else ["rr_solo", "jv"]
-    return any(live(state, k) and live(state, k)["ready"] <= eis for k in keys)
+    solo = "pw_solo" if maker == "PW" else "rr_solo"
+    s = live(state, solo) or state["prog"].get("_folded_" + solo)
+    if s and s["ready"] <= eis:
+        return True
+    return jv_available_by(state, eis)
 
 
 def effective_code(state, key):
@@ -293,8 +304,7 @@ def effective_code(state, key):
     makers, jv = CODE_SETS[code]
     eis = r["eis"]
     if jv:
-        j = live(state, "jv")
-        if j and j["ready"] <= eis:
+        if jv_available_by(state, eis):
             return set(makers), True, ""
         keep = {m for m in makers if maker_ready_by(state, m, eis)}
         note = "Joint Venture not ready by EIS"
@@ -443,7 +453,7 @@ def af_series(state, cell, eis, dt):
         assert abs(acc[k] - cell[ck]) < 1e-9, (k, acc[k], cell[ck])
     for k, bk in (("bb_nb", "b_base_nb"), ("ab_nb", "a_base_nb"), ("bb_wb", "b_base_wb"), ("ab_wb", "a_base_wb")):
         assert abs(acc[k] - base[bk]) < 1e-9, (k, acc[k], base[bk])
-    # non-recurring spend as the board books it (nominal $B by calendar year), plus GM items
+    # non-recurring spend as the board books it ($B by calendar year, unescalated 2026 prices as the airframer board books them), plus GM items
     nr = {"boeing": {}, "airbus": {}}
 
     def put(side, yr, item, v):
