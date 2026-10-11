@@ -170,6 +170,16 @@ const CURRENT = {
   airbus: 'Board figures: where your agent file quotes an older figure, these govern (they match your brief and dashboard_game.md): NGSA $35.52B at EIS, about $5.07B a year over 7 years in a cash view, so NGSA alone passes a $5.2B peak-cash line narrowly and NGSA with an overlapping A350 Re-engine (about $6.67B a year with strain) does not. The fps 7-year share bonus is gone: every fps move follows the EIS-lead rule in rules.md. An unlaunched Re-engine sits at 2042 on the board.',
 }
 
+// Control's objective set for this game (runs created with objectives "control2"): what Control added for each
+// company. The measured targets, the company's current status, and the metrics for every plan are in its brief §2-3.
+const OBJ2 = A.objectives === 'control2'
+const OBJECTIVES = {
+  boeing: 'Control has added to your mission for this game (the GM scores it alongside ΔPV; it never changes the payoff, and any PV you give up for it is objective premium under H8): (1) **Repair the balance sheet: bring debt back to historical levels.** The level, the deadline and your year-by-year debt path (the GM\'s balance-sheet tracker, built from the July-August 2026 analyst models) are in your brief §2; the "objective metrics by plan" table under your payoff grid shows how every plan scores. (2) **Enabler: a stable supply of parts, above all engines.** You want dual or even triple engine sources on your narrowbody, and three narrowbody engine makers in the market rather than two. Engine codes still do not change your payoff on the board, but they decide this enabler, and your selection can trigger P&W\'s and Rolls-Royce\'s conditional engine launches; your brief lists the sources each code gives. Your company\'s 2026 analyst-model baseline is in `wargame/profiles/boeing/analyst_models_2026.md`.',
+  airbus: 'Control has added to your mission for this game (the GM scores it alongside ΔPV; it never changes the payoff): **Enabler: a stable supply of parts, above all engines.** You want dual or even triple engine sources on your narrowbody (the A320neo has two today: CFM and P&W GTF), and three narrowbody engine makers in the market rather than two. Engine codes still do not change your payoff on the board, but they decide this enabler, and your selection can trigger P&W\'s and Rolls-Royce\'s conditional engine launches; your brief lists the sources each code gives and the metrics for every plan. Your company\'s 2026 analyst-model baseline is in `wargame/profiles/airbus/analyst_models_2026.md`.',
+  rolls_royce: 'Control has added to your mission for this game (the GM scores it alongside ΔPV; it never changes the payoff): **Protect the widebody cash cow.** Your widebody engines (the only engine on the A350 and the A330neo, one of two on the 787) carry the company\'s profit and cash. A narrowbody engine is a new product with its own risks, so a heavy narrowbody investment could put the widebody franchise at risk. Measured: your own narrowbody development money stays within $4B (the Joint Venture share; an UltraFan NB Solo is $8B), and no narrowbody and widebody development are live together (the board\'s $5B overlap strain). Your objective to enter the narrowbody market stands; this sets the terms. Your brief shows the metrics for every plan. Your company\'s 2026 analyst-model baseline is in `wargame/profiles/rolls_royce/analyst_models_2026.md`.',
+}
+const objNote = side => (OBJ2 && OBJECTIVES[side]) ? [OBJECTIVES[side]] : []
+
 function head(side, seat, step) {
   const t = TEAMS[side]
   if (seat === 'board') return headBoard(side, step)
@@ -182,7 +192,7 @@ function head(side, seat, step) {
     `Your ExCo's decision rule: ${t.rule}`,
     'Use only numbers from your brief and your own company\'s profile files. Read nothing of another company. Run no wargame.engine command.',
     `For scratch files (calculations, drafts) use \`${dir}/work/\` (create it). The session scratchpad your environment names belongs to the game master and is closed to you.`,
-  ].concat(CURRENT[side] ? [CURRENT[side]] : []).join('\n\n')
+  ].concat(CURRENT[side] ? [CURRENT[side]] : []).concat(objNote(side)).join('\n\n')
 }
 
 function headBoard(side, step) {
@@ -198,6 +208,7 @@ function headBoard(side, step) {
     'Use only numbers from your brief and your own company\'s files. Read nothing of another company. Run no wargame.engine command.',
     `For scratch files (calculations, drafts) use \`${dir}/work/\` (create it). The session scratchpad your environment names belongs to the game master and is closed to you.`,
     ...(CURRENT[side] ? [CURRENT[side]] : []),
+    ...objNote(side),
   ].join('\n\n')
 }
 

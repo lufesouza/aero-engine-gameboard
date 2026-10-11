@@ -5,6 +5,7 @@ projection and payoff grid. No rival's payoff, finances, rationale or covert mov
 """
 import itertools
 import json
+import os
 
 import model as M
 import rules as R
@@ -310,6 +311,87 @@ OBJECTIVES = {
     "pratt_whitney": "Restore credibility; capitalise on the GTF investment",
     "rolls_royce": "Enter the narrowbody market; keep widebody dominance",
 }
+# Control's additions (set "control2" in runs/<run>/objectives.txt; runs without the file keep the base set):
+# Boeing repairs its balance sheet; Boeing and Airbus gain an engine-supply enabler; Rolls-Royce protects its
+# widebody cash cow while it weighs the narrowbody.
+OBJECTIVES_CONTROL2 = {
+    "boeing": "Hold the 50/50 NB split; defend incumbency; repair the balance sheet (debt back to historical levels). "
+              "Enabler: a stable engine supply (dual or triple engine sources; three NB engine makers)",
+    "airbus": "Defend the 60/40 edge; protect the A320 family. "
+              "Enabler: a stable engine supply (dual or triple engine sources; three NB engine makers)",
+    "rolls_royce": "Enter the narrowbody market; keep widebody dominance; protect the widebody cash cow "
+                   "(bounded narrowbody risk)",
+}
+
+
+def objective_set():
+    run = os.environ.get("DASH_RUN")
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "runs", run, "objectives.txt") if run else None
+    if p and os.path.exists(p):
+        with open(p) as f:
+            return f.read().strip()
+    return "base"
+
+
+def objective_text(side):
+    if objective_set() == "control2":
+        return OBJECTIVES_CONTROL2.get(side, OBJECTIVES[side])
+    return OBJECTIVES[side]
+
+
+# ── engine supply (Control's enabler for the airframers) ──
+INCUMBENT = {"boeing": ("737 MAX", ["CFM"]), "airbus": ("A320neo family", ["CFM", "P&W GTF"])}
+SOURCE_NAME = {"CFM": "CFM", "PW": "P&W GTF2", "RR": "RR UltraFan NB", "JV": "P&W-RR Joint Venture"}
+
+
+def engine_sources(state, key):
+    """Independent engine sources fitted to a live new airframe at its EIS. The Joint Venture's engine is one
+    source however many of its partners an airframer names."""
+    r = M.live(state, key)
+    if not r:
+        return []
+    makers, jv, _ = M.effective_code(state, key)
+    eis = r["eis"]
+    src = ["CFM"] if "CFM" in makers else []
+    jv_used = bool(jv)
+    for m, solo in (("PW", "pw_solo"), ("RR", "rr_solo")):
+        if m in makers and not jv:
+            s_, j_ = M.live(state, solo), M.live(state, "jv")
+            if s_ and s_["ready"] <= eis:
+                src.append(m)
+            elif j_ and j_["ready"] <= eis:
+                jv_used = True
+    if jv_used:
+        src.append("JV")
+    return [SOURCE_NAME[x] for x in src]
+
+
+def nb_sources(state, side, year):
+    """(airframe in production, its engine sources) for `side`'s narrowbody in `year`: the new airframe once it
+    is in service, else the incumbent."""
+    key = "fps" if side == "boeing" else "ngsa"
+    r = M.live(state, key)
+    if r and r["eis"] <= year:
+        return ("fps" if key == "fps" else "NGSA"), engine_sources(state, key)
+    return INCUMBENT[side]
+
+
+def nb_engine_makers(v, year):
+    en = {r["year"]: r for r in v["_en_series"]["years"]}
+    return [s for s in ("cfm", "pratt_whitney", "rolls_royce") if en[year][s]["nb_share"] > 1e-9]
+
+
+# ── Rolls-Royce narrowbody risk ──
+def rr_nb_exposure(state):
+    """Rolls-Royce's own narrowbody development money ($B, undiscounted, as the board charges it): live UltraFan NB
+    Solo or its Joint Venture share, plus write-offs of NB programmes it stopped or folded."""
+    x = 0.0
+    if M.live(state, "rr_solo"):
+        x += M.en_rd("rr_solo")
+    if M.live(state, "jv"):
+        x += M.en_rd("jv", "rolls_royce")
+    x += sum(d["sunk_nom"] for d in state["dead"] if d["side"] == "rolls_royce" and d["key"] in ("rr_solo", "jv"))
+    return x
 
 
 def objective_status(side, state, v):
@@ -355,6 +437,48 @@ def objective_status(side, state, v):
         wb = {y: en[y]["rolls_royce"]["wb_share"] for y in (2040, 2045, 2050)}
         out.append(("Keep WB dominance: RR WB engine share ≥ 50% in 2040, 2045, 2050", min(wb.values()) >= 0.5 - 1e-9,
                     "worst year %s" % pct(min(wb.values()))))
+    if objective_set() == "control2":
+        out += control2_status(side, state, v)
+    return out
+
+
+def control2_status(side, state, v):
+    out = []
+    if side == "boeing":
+        import finance as FIN
+        F = FIN.inputs()
+        m = FIN.debt_metrics(state, v, F)
+        H = m["H"]
+        by = {r["year"]: r for r in m["rows"]}
+        out.append(("Repair the balance sheet: debt back to historical levels (≤ $%.0fB, %s) by %d" % (
+            H, F["historical_label"], m["target_year"]), m["reached_by_target"],
+            ("reached in %d" % m["first_year"] if m["first_year"] else "not reached by %d" % M.REPORT_END) +
+            "; debt end-%d $%.1fB; with no new programme it would be reached in %s" % (
+                m["target_year"], by[m["target_year"]]["debt"],
+                m["first_year_no_programme"] or "never")))
+        out.append(("Keep it repaired: debt ≤ $%.0fB at end-%s" % (H, ", ".join(str(y) for y in m["held"])), m["held_ok"],
+                    ", ".join("%d $%.1fB" % (y, d) for y, d in m["held"].items()) +
+                    ("; highest after repair $%.1fB in %d" % (m["peak_after_first"][1], m["peak_after_first"][0])
+                     if m["peak_after_first"] else "")))
+    if side in ("boeing", "airbus"):
+        yrs = (2040, 2045, 2050)
+        src = {y: nb_sources(state, side, y) for y in yrs}
+        out.append(("Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production "
+                    "in 2040, 2045 and 2050", all(len(src[y][1]) >= 2 for y in yrs),
+                    "; ".join("%d %s: %s (%d)" % (y, src[y][0], " + ".join(src[y][1]), len(src[y][1])) for y in yrs)))
+        mk = {y: nb_engine_makers(v, y) for y in (2045, 2050)}
+        nm = {"cfm": "CFM", "pratt_whitney": "P&W", "rolls_royce": "RR"}
+        out.append(("Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+                    all(len(x) == 3 for x in mk.values()),
+                    "; ".join("%d %s" % (y, ", ".join(nm[s] for s in x) or "none") for y, x in mk.items())))
+    if side == "rolls_royce":
+        x = rr_nb_exposure(state)
+        out.append(("Protect the widebody cash cow, bounded NB risk: RR's own NB development spend ≤ $4B (the Joint "
+                    "Venture share; UltraFan NB Solo is $8B)", x <= 4.0 + 1e-9, "$%.2fB committed or written off" % x))
+        _, strain, _, _ = M.engine_costs(state)
+        out.append(("Protect the widebody cash cow, WB never starved: no NB and WB development live together (the "
+                    "board's $5B overlap strain)", strain["rolls_royce"] <= 1e-9,
+                    "strain charged $%.1fB" % strain["rolls_royce"]))
     return out
 
 
@@ -521,8 +645,9 @@ def rival_scenarios(state, side, year):
     return sc
 
 
-def payoff_grid(state, side, year):
-    """Own ΔPV and yield for every own plan × rival scenario, assuming no moves after this round."""
+def payoff_grid(state, side, year, metrics_out=None):
+    """Own ΔPV and yield for every own plan × rival scenario, assuming no moves after this round. With
+    `metrics_out` (a dict), also fills {(plan index, scenario index): objective metrics} for Control's objectives."""
     opts = own_options(state, side, year)
     scen = rival_scenarios(state, side, year)
     covert = sees_covert(state, side, year)
@@ -536,8 +661,96 @@ def payoff_grid(state, side, year):
             # the risk case is the only one that values Airbus's covert move for another player
             v = M.value(s1, covert=(covert or slab.startswith("Risk case")), series=True)
             row.append((v[side]["pv_delta"], v[side]["yield"]))
+            if metrics_out is not None:
+                metrics_out[(len(grid), len(row) - 1)] = plan_metrics(side, s1, v)
         grid.append((olab, o, row))
     return grid, scen
+
+
+def plan_metrics(side, state, v):
+    """Control's objective metrics for one grid cell (a plan against a scenario)."""
+    if side == "boeing":
+        import finance as FIN
+        m = FIN.debt_metrics(state, v)
+        by = {r["year"]: r for r in m["rows"]}
+        return {"repaired": m["first_year"], "debt_2035": by[2035]["debt"], "debt_2040": by[2040]["debt"],
+                "held_ok": m["held_ok"], "sources_2050": len(nb_sources(state, side, 2050)[1]),
+                "makers_2050": len(nb_engine_makers(v, 2050))}
+    if side == "airbus":
+        return {"sources_2050": len(nb_sources(state, side, 2050)[1]), "makers_2050": len(nb_engine_makers(v, 2050))}
+    if side == "rolls_royce":
+        en = {r["year"]: r for r in v["_en_series"]["years"]}
+        _, strain, _, _ = M.engine_costs(state)
+        return {"nb_exposure": rr_nb_exposure(state), "strain": strain["rolls_royce"],
+                "wb_2050": en[2050]["rolls_royce"]["wb_share"], "nb_2050": en[2050]["rolls_royce"]["nb_share"]}
+    return None
+
+
+def code_sources_section(state, side, year):
+    """Independent engine sources each engine code would give on your new narrowbody, with the engine programmes
+    on record now (a maker whose engine is not ready by your EIS drops out; CFM always fits)."""
+    import copy
+    key = "fps" if side == "boeing" else "ngsa"
+    r = M.live(state, key)
+    if r and r["eis"] <= year:
+        return []
+    if r:
+        eis_txt = "your %s's EIS %d" % ("fps" if key == "fps" else "NGSA", r["eis"])
+    else:
+        dev = M.af_dev(key, "10yr") if key == "fps" else M.af_dev(key)
+        eis_txt = "an EIS of %d (a launch this round%s)" % (year + dev, ", 10-year ramp" if key == "fps" else "")
+    rows = []
+    for c in range(1, 8):
+        s2 = copy.deepcopy(state)
+        if not r:
+            s2["prog"][key] = {"launch": year, "eis": year + dev, "cancel": None, "variant": "10yr" if key == "fps" else None}
+        s2["codes"][key] = c
+        src = engine_sources(s2, key)
+        rows.append([c, M.CODE_LABEL[c], " + ".join(src), len(src)])
+    eng = []
+    for k, lab in (("pw_solo", "P&W GTF2"), ("rr_solo", "RR UltraFan NB"), ("jv", "P&W-RR Joint Venture")):
+        e = M.live(state, k)
+        eng.append("%s %s" % (lab, ("ready %d" % e["ready"]) if e else "not launched"))
+    L = ["", "**Engine sources by engine code** at %s, with the engine programmes on record now (%s). A maker whose "
+         "engine is not ready by your EIS drops out and CFM always fits; the engine makers' own moves this round can "
+         "change this." % (eis_txt, "; ".join(eng)), ""]
+    L += table(["Code", "Makers named", "Fitted sources", "Count"], rows)
+    return L
+
+
+def debt_section(state, v):
+    """Boeing's debt path from the GM's balance-sheet tracker (Boeing's brief only)."""
+    import finance as FIN
+    F = FIN.inputs()
+    rows = FIN.debt_path(state, v, F)
+    show = set(range(2026, 2043)) | {2045, 2050, 2055, 2060}
+    L = ["", "**Your debt path** if nobody moves again (the GM's balance-sheet tracker; constant 2026 $B, year end). " +
+         F["method_short"], ""]
+    L += table(["Year", "Base free cash flow", "Profit vs game baseline (pre-tax)", "Programme cash spend",
+                "Interest on added debt", "Free cash flow", "Debt", "Debt with no new programme"],
+               [[r["year"], f1(r["base_fcf"]), money(r["profit_vs_baseline"]), f1(r["spend"]) if r["spend"] else "—",
+                 f1(r["interest"]) if r["interest"] > 0.05 else "—", money(r["fcf"]), f1(r["debt"]),
+                 f1(r["debt_no_programme"])] for r in rows if r["year"] in show])
+    return L
+
+
+def metric_cell(side, m):
+    if side == "boeing":
+        return "%s / $%.1fB / %s / %d" % (m["repaired"] or "never", m["debt_2040"], "yes" if m["held_ok"] else "no",
+                                          m["sources_2050"])
+    if side == "airbus":
+        return "%d / %d" % (m["sources_2050"], m["makers_2050"])
+    return "$%.1fB / $%.0fB / %s / %s" % (m["nb_exposure"], m["strain"], pct(m["wb_2050"]), pct(m["nb_2050"]))
+
+
+METRIC_KEY = {
+    "boeing": "Each cell: year debt first reaches the historical level / debt at end-2040 / held at or below it at "
+              "end-2040, 2045 and 2050 / engine sources on your narrowbody in production in 2050.",
+    "airbus": "Each cell: engine sources on your narrowbody in production in 2050 / narrowbody engine makers in the "
+              "market in 2050.",
+    "rolls_royce": "Each cell: your own NB development money (committed or written off) / NB-WB overlap strain / your "
+                   "WB engine share in 2050 / your NB engine share in 2050.",
+}
 
 
 # ─────────────────────────────── private brief ───────────────────────────────
@@ -630,14 +843,19 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
         t = v["_engine_timing"]
         L += ["", "The board counts the narrowbody engine market to %d and the widebody to %d." % (
             t["nb_window_end"], t["wb_window_end"])]
-    L += ["", "## 2. Your objective", "", "Briefing goal: **%s**." % OBJECTIVES[side], ""]
+    L += ["", "## 2. Your objective", "", "Briefing goal: **%s**." % objective_text(side), ""]
     for lab, ok, det in objective_status(side, state, v):
         L.append("- %s — **%s** (%s)" % (lab, "met" if ok else "not met", det))
+    if objective_set() == "control2" and side == "boeing":
+        L += debt_section(state, v)
+    if objective_set() == "control2" and side in ("boeing", "airbus"):
+        L += code_sources_section(state, side, year)
     L += ["", "## 3. Your options this round", ""]
     legal = R.legal_options(state, side, year)
     for k, opts in legal.items():
         L.append("- `%s`: %s" % (k, ", ".join("`%s`" % o for o in opts)))
-    grid, scen = payoff_grid(state, side, year)
+    mets = {} if (objective_set() == "control2" and side in METRIC_KEY) else None
+    grid, scen = payoff_grid(state, side, year, metrics_out=mets)
     L += ["", "**Your payoff grid.** Your ΔPV in $B (yield in brackets) for each plan (rows) against what the others "
           "might do this round (columns), assuming nobody moves after this round. %s" % (
               "Engine codes do not change your own payoff on the board." if side in ("boeing", "airbus") else
@@ -653,6 +871,11 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
         i = max(range(len(grid)), key=lambda i: grid[i][2][j][0])
         best.append("- Best plan against S%d: %s (%s)" % (j + 1, grid[i][0], money(grid[i][2][j][0])))
     L += [""] + best
+    if mets:
+        L += ["", "**Your objective metrics by plan** (Control's objectives in section 2; same plans and scenarios as "
+              "the payoff grid). " + METRIC_KEY[side], ""]
+        L += table(head, [[g[0]] + [metric_cell(side, mets[(i, j)]) for j in range(len(scen))]
+                          for i, g in enumerate(grid)])
     L += ["", "## 4. What to return", "",
           "Return your sealed orders as the JSON object your task specifies: one value for each order field above, "
           "plus `other_moves`, `public_statement`, `rationale` (with your ExCo deliberation), `predictions` and "

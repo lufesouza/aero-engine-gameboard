@@ -1,0 +1,15 @@
+{
+ "_about": "PLACEHOLDER values for code testing; replaced from the analyst files.",
+ "first_year": 2026,
+ "start_debt_b": 45.0,
+ "historical_level_b": 12.0,
+ "historical_label": "placeholder",
+ "target_year": 2035,
+ "hold_years": [2040, 2045, 2050],
+ "base_fcf_b": {"2026": 3.0, "2027": 8.0, "2028": 10.0, "2029": 11.0, "2030": 12.0},
+ "base_fcf_after_b": 12.0,
+ "tax_rate": 0.21,
+ "real_rate": 0.03,
+ "phasing_curve": [0.05, 0.07, 0.08, 0.10, 0.11, 0.12, 0.14, 0.13, 0.11, 0.09],
+ "method_short": "placeholder"
+}
