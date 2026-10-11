@@ -1,0 +1,247 @@
+{
+ "boeing": {
+  "scenarios": [
+   "Rivals hold",
+   "Airbus launches A350 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "fps: hold + 787: hold",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      0.663208572464228,
+      100.5101604403571
+     ],
+     [
+      0.33534007418963796,
+      100.2579539032228
+     ]
+    ]
+   },
+   {
+    "plan": "fps: hold + 787 Re-engine",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": null
+    },
+    "cells": [
+     [
+      0.9565072993773747,
+      100.73577484567491
+     ],
+     [
+      -0.9223316966703656,
+      99.29051407948434
+     ]
+    ]
+   }
+  ]
+ },
+ "airbus": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches 787 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "NGSA: hold + A350: hold",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      23.366586850527383,
+      115.57772456701825
+     ],
+     [
+      23.257798161969333,
+      115.50519877464622
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold + A350 Re-engine",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null
+    },
+    "cells": [
+     [
+      24.256943816973653,
+      116.17129587798243
+     ],
+     [
+      22.75745713432068,
+      115.17163808954712
+     ]
+    ]
+   }
+  ]
+ },
+ "cfm": {
+  "scenarios": [
+   "Rivals hold"
+  ],
+  "rows": [
+   {
+    "plan": "hold everything",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -69.69210888591914,
+      56.44243194630054
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -95.95617210848297,
+      40.02739243219814
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan + Lobby",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "launch",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -91.58438880772891,
+      42.759756995169425
+     ]
+    ]
+   }
+  ]
+ },
+ "pratt_whitney": {
+  "scenarios": [
+   "Rivals hold"
+  ],
+  "rows": [
+   {
+    "plan": "GTF2: hold",
+    "orders": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "hold"
+    },
+    "cells": [
+     [
+      8.875231543441245,
+      108.06839231221932
+     ]
+    ]
+   }
+  ]
+ },
+ "rolls_royce": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches 787 Re-engine",
+   "Boeing launches 787 Re-engine and Airbus A350 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "UltraFan NB: hold",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      32.3547934014377,
+      129.41344854676154
+     ],
+     [
+      32.3547934014377,
+      129.41344854676154
+     ],
+     [
+      32.605438106585346,
+      129.64130736962304
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      25.876355264707584,
+      123.52395933155235
+     ],
+     [
+      25.876355264707584,
+      123.52395933155235
+     ],
+     [
+      26.14488873562305,
+      123.76808066874823
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      23.354793401437703,
+      121.23163036494337
+     ],
+     [
+      24.07664691421445,
+      121.88786083110405
+     ],
+     [
+      24.585022116302518,
+      122.35002010572956
+     ]
+    ]
+   }
+  ]
+ }
+}
