@@ -1,10 +1,11 @@
-"""Build dash_2050_wargame.html: the five-player war game played on the user's game-theory dashboard (rounds 2030,
-2035, 2045, 2050), with summaries and full per-round detail.
+"""Build dash_2050_exco_wargame.html: the dash-2050 war game replayed with one agent per executive (CEO, CFO, operating
+head) and one per Board, on the user's combined_dash.py board (rounds 2030, 2035, 2045, 2050), with summaries, the
+decision chain of each company in each round, and the comparison with the earlier single-agent game.
 
 Every number comes from data/report_data.json, written by wargame/dashgame/reports.py from the game record. The
 narrative (what happened and why) is in narrative.py and cites only those numbers and the players' own returns.
 
-Usage: python3 make_dash_html.py [out.html]"""
+Usage: python3 make_game_html.py [out.html]"""
 import json
 import os
 import sys
@@ -16,6 +17,9 @@ import narrative as NAR  # noqa: E402
 
 esc = K.esc
 D = json.load(open(os.path.join(HERE, "data", "report_data.json")))
+_XV = os.path.join(HERE, "data", "crossvalue.json")
+XV = json.load(open(_XV)) if os.path.exists(_XV) else None
+OLD = json.load(open(os.path.join(HERE, "..", "dash-2050", "data", "report_data.json")))     # the earlier game
 ROUNDS = D["rounds"]
 FINAL = ROUNDS[-1]
 SIDES = ["boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce"]
@@ -573,21 +577,81 @@ def round_section(r):
 </div></section>'''
 
 
+def governance_section():
+    return (f'<section id="exco"><h2>How the companies decided</h2><p class="lede">{NAR.GOV_LEDE}</p><div class="stack">'
+            f'<div class="panel"><p class="label">ExCo vetoes, revisions and Board votes, by round and company</p>{governance_table()}'
+            '<p class="cap">A Board item is any order that differs from the default (hold). A binding ExCo veto or a red-line flag '
+            'sends the decision back to the CEO for one revision; a Board veto sends it back once more, and a still-vetoed item '
+            'reverts to the default.</p></div>'
+            f'<div class="bl">{"".join(f"<div class=panel><div><b>{esc(t)}</b>{x}</div></div>" for t, x in NAR.GOV_POINTS)}</div>'
+            '</div></section>')
+
+
+def equilibria_panel():
+    bd = D.get("board") or {}
+    if not bd:
+        return ""
+    rows = [[f"Pure Nash {i + 1}", esc(e["airbus"]), esc(e["boeing"]), f'{K.rnd(e["yield_airbus"], 1):.1f}% / {K.rnd(e["yield_boeing"], 1):.1f}%']
+            for i, e in enumerate(bd.get("airframer_pure") or [])]
+    t1 = K.table(["Snapshot (default dates)", "Airbus", "Boeing", "Yield Airbus / Boeing"], rows)
+    rows = [[f"Pure Nash {i + 1}", esc(e["cfm"]), esc(e["pw"]), esc(e["rr"]), f'{e["yield_cfm"]}% / {e["yield_rr"]}%']
+            for i, e in enumerate(bd.get("engine_pure") or [])]
+    t2 = K.table(["Snapshot engine game", "CFM/GE", "P&amp;W", "Rolls-Royce", "Yield CFM / RR"], rows)
+    inp = FINAL["board_inputs"]
+    eis = inp["eis"]
+    played = (f'<p class="cap">Where the game ended, as a board cell: Airbus {esc(lab_af(inp["a"]))}; Boeing {esc(lab_af(inp["b"]))}; '
+              f'at fps {eis[0]}, NGSA {eis[1]}, 787 Re-engine {eis[2]}, A350 Re-engine {eis[3]} (unlaunched Re-engines at the snapshot date).</p>')
+    return ('<p class="label">Your snapshot\'s equilibria (default dates: fps 2041, NGSA 2037, Re-engines 2042), solved on the board</p>'
+            + t1 + f'<p class="cap">{bd.get("airframer_near_count", 0)} Near-Nash cells besides (ε 1%). Engine game: '
+            f'{len(bd.get("engine_pure") or [])} Pure Nash and {bd.get("engine_near_count", 0)} Near-Nash (ε 5%).</p>' + t2 + played)
+
+
+AF_LAB = {"Launch_NGSA": "Launch NGSA", "Milk_A320neo": "Do Nothing (A320neo)", "Sabotage_Bottleneck": "Delay fps Bottleneck",
+          "Sabotage_Poaching": "Delay fps Poaching", "Re_engine_A350": "Re-engine A350", "Milk_A350": "Do Nothing A350",
+          "Launch_fps_7yr_Solo": "fps 7yr Solo", "Launch_fps_10yr_Solo": "fps 10yr Solo", "Launch_fps_via_Embraer": "fps via Embraer",
+          "Milk_737MAX": "Do Nothing (737 MAX)", "Increase_737_Rate": "737 Rate Increase", "Re_engine_787": "Re-engine 787",
+          "Milk_787": "Do Nothing 787"}
+
+
+def lab_af(strat):
+    return " + ".join(AF_LAB[m] for m in strat if m in AF_LAB)
+
+
+def compare_section():
+    """The earlier dash-2050 game (one strategist agent per company, board v2) against this one."""
+    rows = []
+    for i, (r_old, r_new) in enumerate(zip(OLD["rounds"], ROUNDS)):
+        for s in SIDES:
+            rows.append([f"R{i + 1} {esc(NAME[s])}", "<br>".join(esc(t) for t in order_text(s, r_old["orders"][s])),
+                         "<br>".join(esc(t) for t in order_text(s, r_new["orders"][s]))])
+    t1 = K.table(["Round, company", "Earlier game: one strategist agent, earlier board", "This game: ExCo and Board, new board"], rows)
+    t2 = ""
+    if XV:
+        rows = [[esc(NAME[s]), K.num(XV["earlier_v2"][s]), K.num(XV["earlier_v3"][s]), K.num(XV["this_v3"][s]), K.num(XV["this_v2"][s])]
+                for s in SIDES]
+        t2 = ('<p class="label" style="margin-top:14px">Final ΔPV, $B: each game\'s final state valued on both boards</p>'
+              + K.table(["Company", "Earlier game on the earlier board (as played)", "Earlier game's state on the new board",
+                         "This game on the new board (as played)", "This game's state on the earlier board"], rows, num_cols=(1, 2, 3, 4))
+              + '<p class="cap">Reading across a row on one board isolates the decisions; reading the same game on both boards isolates '
+                'the board change. A state carries over as it stands: the same programmes, dates, engine selections and covert '
+                'moves, revalued.</p>')
+    return (f'<section id="compare"><h2>Against the earlier game</h2><p class="lede">{NAR.COMPARE_LEDE}</p><div class="stack">'
+            f'<div class="panel"><p class="label">Orders, round by round</p>{t1}</div><div class="panel">{t2}</div>'
+            f'<div class="bl">{"".join(f"<div class=panel><div><b>{esc(t)}</b>{x}</div></div>" for t, x in NAR.COMPARE_POINTS)}</div>'
+            '</div></section>')
+
+
 def board_table():
     bc = D.get("board_check")
     if not bc:
         return ""
-    why = {"boeing": "Same: no GM adjustment applies.",
-           "airbus": "Delay Tactics spend starts at the 2035 order year, not over the board's 2028-36 window.",
-           "cfm": "The GM splits engines by the airframers' year-by-year narrowbody shares (Boeing 41-55%); the board "
-                  "uses a fixed 50/50. Boeing's slot is CFM-only, and the Delay Tactic cut it in 2037-41.",
-           "pratt_whitney": "As CFM/GE: the year-by-year split.",
-           "rolls_royce": "As CFM/GE: the year-by-year split."}
+    why = NAR.BOARD_WHY
     rows = [[esc(NAME[s]), K.num(bc[s]["board"]), K.num(bc[s]["gm"]), K.num(bc[s]["gm"] - bc[s]["board"]), esc(why[s])] for s in SIDES]
     return ('<h3>Your board alone against the GM valuation, final state</h3>'
             + K.table(["Player", "Board alone, ΔPV $B", "GM valuation, ΔPV $B", "Difference", "Why"], rows, num_cols=(1, 2, 3))
-            + '<p class="cap">The board alone means evaluate_scenario() at the final entry-into-service dates (2037, 2037, 2035, 2035) for the airframers, '
-              'and simulate() with the final engine selections (fps on CFM, NGSA on all three) and moves at the board\'s fixed 50/50 split for the '
+            + f'<p class="cap">The board alone means evaluate_scenario() at the final entry-into-service dates ({", ".join(str(x) for x in bc["_engine_inputs"]["eis"])}: '
+              'fps, NGSA, 787 Re-engine, A350 Re-engine) for the airframers, and simulate() with the final engine selections '
+              f'(codes {bc["_engine_inputs"]["codes"][0]} and {bc["_engine_inputs"]["codes"][1]}) and moves at the board\'s fixed 50/50 split for the '
               'engine makers. With a fixed 50/50 split the GM engine model gives the board\'s numbers exactly.</p>')
 
 
@@ -651,14 +715,14 @@ def build(out_path):
 """
     rounds_html = "".join(round_section(r) for r in ROUNDS)
     page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>dash-2050 War Game</title>
+<title>dash-2050 ExCo War Game</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>{css}</style></head><body><div class="wrap">
-<header class="top"><p class="eyebrow">Boeing Product Development · war game on the game-theory dashboard · BOEING PROPRIETARY</p>
+<header class="top"><p class="eyebrow">Boeing Product Development · war game on the game-theory dashboard · ExCo and Board agents · BOEING PROPRIETARY</p>
 <h1>{esc(NAR.TITLE)}</h1><p class="lede">{NAR.LEDE}</p>
 <nav class="toc"><a href="#summary">Summary</a><a href="#shares">Market shares</a><a href="#money">Financials</a><a href="#timeline">Dates</a>
-{"".join(f'<a href="#r{r["round"]}">Round {r["round"]} ({r["year"]})</a>' for r in ROUNDS)}<a href="#play">How well each played</a><a href="#method">Method</a></nav></header>
+<a href="#exco">How they decided</a>{"".join(f'<a href="#r{r["round"]}">Round {r["round"]} ({r["year"]})</a>' for r in ROUNDS)}<a href="#play">How well each played</a><a href="#compare">Against the earlier game</a><a href="#method">Method</a></nav></header>
 
 <section id="summary"><h2>Summary</h2>{tiles()}
 <div class="bl">{"".join(f'<div class="panel"><div><b>{esc(t)}</b>{x}</div></div>' for t, x in NAR.FINDINGS)}</div>
@@ -675,11 +739,11 @@ def build(out_path):
 
 <section id="money"><h2>Financials</h2><p class="lede">{NAR.MONEY_LEDE}</p><div class="stack">
 <div class="panel"><p class="label">How each player's final ΔPV is built</p>{bridge_table(FINAL)}</div>
-<div class="grid2"><div class="panel"><p class="ctitle">Boeing operating profit: fps lifts it from 2037</p>{chart_money("boeing", "profit", "sq_profit", "operating profit")}</div>
-<div class="panel"><p class="ctitle">Airbus operating profit: NGSA lifts it from 2037</p>{chart_money("airbus", "profit", "sq_profit", "operating profit")}</div></div>
-<div class="grid3"><div class="panel"><p class="ctitle">CFM/GE engine value: below the status quo from 2037</p>{chart_money("cfm", "value", "sq_value", "engine lifecycle value")}</div>
-<div class="panel"><p class="ctitle">P&amp;W engine value: below the status quo from 2037</p>{chart_money("pratt_whitney", "value", "sq_value", "engine lifecycle value")}</div>
-<div class="panel"><p class="ctitle">Rolls-Royce engine value: more than double from 2037</p>{chart_money("rolls_royce", "value", "sq_value", "engine lifecycle value")}</div></div>
+<div class="grid2"><div class="panel"><p class="ctitle">{esc(NAR.MONEY_TITLES["boeing"])}</p>{chart_money("boeing", "profit", "sq_profit", "operating profit")}</div>
+<div class="panel"><p class="ctitle">{esc(NAR.MONEY_TITLES["airbus"])}</p>{chart_money("airbus", "profit", "sq_profit", "operating profit")}</div></div>
+<div class="grid3"><div class="panel"><p class="ctitle">{esc(NAR.MONEY_TITLES["cfm"])}</p>{chart_money("cfm", "value", "sq_value", "engine lifecycle value")}</div>
+<div class="panel"><p class="ctitle">{esc(NAR.MONEY_TITLES["pratt_whitney"])}</p>{chart_money("pratt_whitney", "value", "sq_value", "engine lifecycle value")}</div>
+<div class="panel"><p class="ctitle">{esc(NAR.MONEY_TITLES["rolls_royce"])}</p>{chart_money("rolls_royce", "value", "sq_value", "engine lifecycle value")}</div></div>
 <div class="legend"><span><i class="ln" style="background:var(--s1)"></i>This game</span><span><i class="ln" style="background:var(--sq)"></i>Status quo (dashed)</span></div>
 <div class="panel"><p class="label">Totals by period (final state)</p>{periods_table(FINAL)}</div>
 {"".join(year_table(FINAL, s) for s in SIDES)}
@@ -687,13 +751,18 @@ def build(out_path):
 
 <section id="timeline"><h2>Programme dates</h2><p class="lede">{NAR.TIMELINE_LEDE}</p><div class="panel">{chart_gantt()}</div></section>
 
+{governance_section()}
+
 {rounds_html}
 
 <section id="play"><h2>How well each player played</h2><p class="lede">{NAR.PLAY_LEDE}</p><div class="stack">
+<div class="panel">{equilibria_panel()}</div>
 <div class="panel">{stage_table()}</div>
 <div class="panel"><p class="label">Regret by round, $B (final ΔPV of the best alternative minus the actual, holding everyone else's actual orders)</p>{regret_table()}{regret_detail()}</div>
 <div class="bl">{"".join(f'<div class="panel"><div><b>{esc(t)}</b>{x}</div></div>' for t, x in NAR.PLAY_POINTS)}</div>
 </div></section>
+
+{compare_section()}
 
 <section id="method"><h2>Method</h2><div class="panel stack">{NAR.METHOD}{board_table()}{audit_table()}</div></section>
 <footer>{NAR.FOOTER}</footer></div>
