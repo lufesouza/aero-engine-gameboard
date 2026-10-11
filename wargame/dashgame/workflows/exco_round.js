@@ -162,6 +162,14 @@ if (!RUN || !N || !YEAR) throw new Error('args.run, args.round and args.year are
 if (RUN === 'dash-2050') throw new Error('use a fresh run id: dash-2050 holds the earlier game')
 
 const js = x => '```json\n' + JSON.stringify(x, null, 1) + '\n```'
+// The agent definitions were written for the earlier board; the game runs on combined_dash.py. Where an agent file's
+// figure differs, the current board's governs. Each company gets only its own figures (none changed for the engine
+// makers). The same figures are in each company's dashboard_game.md and brief.
+const CURRENT = {
+  boeing: 'Board figures: where your agent file quotes an older figure, these govern (they match your brief and dashboard_game.md): fps 7-year $65.00B and 10-year $60.32B at EIS; undiscounted debt penalty 7-year fps $22.0B, 10-year $19.1B, via Embraer $52.5B, 787 Re-engine alone $0.6B. The fps 7-year share bonus is gone: every fps move follows the EIS-lead rule in rules.md. An unlaunched Re-engine sits at 2042 on the board.',
+  airbus: 'Board figures: where your agent file quotes an older figure, these govern (they match your brief and dashboard_game.md): NGSA $35.52B at EIS, about $5.07B a year over 7 years in a cash view, so NGSA alone passes a $5.2B peak-cash line narrowly and NGSA with an overlapping A350 Re-engine (about $6.67B a year with strain) does not. The fps 7-year share bonus is gone: every fps move follows the EIS-lead rule in rules.md. An unlaunched Re-engine sits at 2042 on the board.',
+}
+
 function head(side, seat, step) {
   const t = TEAMS[side]
   if (seat === 'board') return headBoard(side, step)
@@ -173,7 +181,7 @@ function head(side, seat, step) {
       (N > 1 ? ` Earlier rounds (1 to ${N - 1}): ExCo notes in \`${dir}/exco/\` and sealed orders in \`${dir}/my_orders_r<k>.json\`.` : ' This is the first round: there are no earlier notes or orders.'),
     `Your ExCo's decision rule: ${t.rule}`,
     'Use only numbers from your brief and your own company\'s profile files. Read nothing of another company. Run no wargame.engine command.',
-  ].join('\n\n')
+  ].concat(CURRENT[side] ? [CURRENT[side]] : []).join('\n\n')
 }
 
 function headBoard(side, step) {
@@ -187,6 +195,7 @@ function headBoard(side, step) {
     `The ExCo is ${t.names.ceo} (CEO), ${t.names.cfo} (CFO) and ${t.names.ops} (operating head). Its decision rule: ${t.rule}`,
     'Every order that differs from the default (hold, or none) is a Board item; an engine code rides with its launch. You approve or veto each Board item and recommend; you never originate orders, and you never veto a hold.',
     'Use only numbers from your brief and your own company\'s files. Read nothing of another company. Run no wargame.engine command.',
+    ...(CURRENT[side] ? [CURRENT[side]] : []),
   ].join('\n\n')
 }
 
