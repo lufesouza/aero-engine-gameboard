@@ -500,8 +500,8 @@ def tiles():
          ("Items in the executives' files", f"{n_items:,}", f"{n_own:,} in the person's own words; Airbus mostly Board Report text"),
          ("Cited in the profiles", f"{len(CITED):,} ids", f"every id resolves to an evidence item; {quotes} executive signature quotes checked word for word"),
          ("Thin or filing-based", f"{len(thin)} of 15", ", ".join(thin) + ": each falls back on the company profile or a named colleague"),
-         ("Game", "Not run", "The agents are set up and kept apart from each other's files; the round procedure has been tried only with "
-                             "placeholder agents")]
+         ("Game", "Played", "Run dash-2050-exco: four rounds on the combined_dash.py board, each company's chain kept apart from the "
+                            "others; the report is separate")]
     return '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div><div class="d">{esc(d)}</div></div>'
                                            for k, v, d in t) + "</div>"
 

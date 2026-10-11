@@ -7,7 +7,8 @@ operating head of its default 2026 executive committee (ExCo), each profiled fro
 files under `wargame/profiles/<company>/executives/`, and its Board of Directors, profiled from the transcripts, filings
 and web search under `wargame/profiles/<company>/board/` (spec: `BOARD_SPEC.md`). The Board recommends before each round
 and approves or vetoes every order that differs from the default; its veto binds, and its culture (risk aversion, time
-horizon) sets its tests. The game has **not** been run with these agents.
+horizon) sets its tests. The game was played with these agents in run `dash-2050-exco` on the `combined_dash.py` board: see
+`../dash-2050-exco/`.
 
 | Company | CEO | CFO | Operating head | Board |
 |---|---|---|---|---|
@@ -33,7 +34,7 @@ horizon) sets its tests. The game has **not** been run with these agents.
   - each quote's date and perspective match the source.
 - `make_exco_html.py`, `narrative_exco.py`: build `exco_agents.html`. The builder checks the numbers the text states
   against the data.
-- `wargame/dashgame/workflows/exco_round.js`: the round script for the game master (not run). Per company and round it
+- `wargame/dashgame/workflows/exco_round.js`: the round script for the game master. Per company and round it
   runs up to nine steps:
   0. Board guidance (recommendations);
   1. frame (CEO);
@@ -67,9 +68,12 @@ Use a fresh run id (the script refuses `dash-2050`, which holds the earlier game
 earlier games' player folders were moved to `/tmp/wargame-archive/`, which no player can read, and the executives are
 also blocked from any `/dash-2050/` path, so a replay cannot see the earlier orders.
 
-1. `DASH_RUN=<run> python3 wargame/dashgame/gm.py init`, then `DASH_RUN=<run> python3 wargame/dashgame/gm.py brief N`.
+1. `DASH_RUN=<run> DASH_BOARD=<v2|v3> python3 wargame/dashgame/gm.py init` (the run keeps its board), then
+   `DASH_RUN=<run> python3 wargame/dashgame/gm.py brief N`.
 2. Run the Workflow with `{scriptPath: "wargame/dashgame/workflows/exco_round.js"}` and
-   `args: {run: "<run>", round: N, year}`. Save its result to a JSON file.
+   `args: {run: "<run>", round: N, year}`, or once per company with `sides: [<side>]` in parallel (each workflow runs
+   only two agents at a time). Save each result to a JSON file and join them with
+   `python3 wargame/dashgame/exco.py merge <result.json> <part.json> ...`.
 3. `python3 wargame/dashgame/exco.py save N <result.json>`.
 4. `DASH_RUN=<run> python3 wargame/dashgame/gm.py adjudicate N wargame/runs/<run>/orders_exco_rN.json`.
 

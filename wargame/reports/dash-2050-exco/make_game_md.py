@@ -12,7 +12,7 @@ sys.path.insert(0, HERE)
 import narrative as NAR  # noqa: E402
 import page_kit as K  # noqa: E402
 from make_game_html import (AF, EN, NAME, ROUNDS, FINAL, SIDES, YEARS, RYEARS, D, order_text, BRIDGE_LABEL, PEOPLE,  # noqa: E402
-                             chain_summary, SEAT)  # noqa: E402
+                             chain_summary, SEAT, OLD, XV, lab_af)  # noqa: E402
 
 M = K.MINUS
 
@@ -153,7 +153,8 @@ def round_md(r):
 
 
 def build(out):
-    L = [f"# {NAR.TITLE}", "", "BOEING PROPRIETARY. Boeing Product Development war game on the narrowbody/widebody game-theory dashboard.", "",
+    L = [f"# {NAR.TITLE}", "", "BOEING PROPRIETARY. Boeing Product Development war game on the narrowbody/widebody game-theory dashboard, "
+         "played by ExCo and Board agents.", "",
          strip(NAR.LEDE), "", "## Summary", ""]
     rows = []
     for s in SIDES:
@@ -171,16 +172,66 @@ def build(out):
     L += ["### Regret (final ΔPV of the best alternative minus actual, everyone else's actual orders held)", "",
           tbl(["Player"] + [f"Round {n}" for n in range(1, len(ROUNDS) + 1)],
               [[NAME[s]] + [n2(D["regret"][str(n)][s]["regret_ex_post"]) for n in range(1, len(ROUNDS) + 1)] for s in SIDES]), ""]
+    # how the companies decided
+    L += ["## How the companies decided", "", strip(NAR.GOV_LEDE), ""]
+    rows = []
+    for r in ROUNDS:
+        for s in SIDES:
+            ex = ((r["returned"].get(s) or {}).get("exco")) or {}
+            rows.append([f"R{r['round']} {NAME[s]}", ", ".join(SEAT.get(v, v) for v in ex.get("binding_vetoes") or []) or "—",
+                         ", ".join(SEAT.get(v, v) for v in ex.get("red_line_flags") or []) or "—", "yes" if ex.get("revision") else "—",
+                         ", ".join(ex.get("board_items") or []) or "—", ", ".join(ex.get("board_vetoed") or []) or "—",
+                         ", ".join(ex.get("board_reverted") or []) or "—"])
+    L += [tbl(["Round, company", "Binding ExCo vetoes", "Red-line flags", "ExCo revised", "Board items", "Board vetoed", "Reverted"], rows), ""]
+    for t, x in NAR.GOV_POINTS:
+        L += [f"**{t}**", strip(x), ""]
+    # equilibria and the stage game
+    bd = D.get("board") or {}
+    if bd:
+        L += ["### Your snapshot's equilibria (default dates: fps 2041, NGSA 2037, Re-engines 2042)", "",
+              tbl(["Pure Nash", "Airbus", "Boeing", "Yield Airbus / Boeing"],
+                  [[i + 1, e["airbus"], e["boeing"], f'{K.rnd(e["yield_airbus"], 1):.1f}% / {K.rnd(e["yield_boeing"], 1):.1f}%']
+                   for i, e in enumerate(bd.get("airframer_pure") or [])]), "",
+              f"{bd.get('airframer_near_count', 0)} Near-Nash besides. Engine game: {len(bd.get('engine_pure') or [])} Pure Nash, "
+              f"{bd.get('engine_near_count', 0)} Near-Nash.", "",
+              f"Where the game ended, as a board cell: Airbus {lab_af(FINAL['board_inputs']['a'])}; Boeing {lab_af(FINAL['board_inputs']['b'])}; "
+              f"at fps {FINAL['board_inputs']['eis'][0]}, NGSA {FINAL['board_inputs']['eis'][1]}.", ""]
+    S = D.get("stage") or {}
+    if S:
+        rows = []
+        for n in range(1, len(ROUNDS) + 1):
+            x = S.get(str(n))
+            if x:
+                rows.append([f"Round {n} ({x['year']})", "; ".join(f"Boeing {p[0]} / Airbus {p[1]} ({n2(p[2])} / {n2(p[3])})" for p in x["pure"]) or "none",
+                             f"Boeing {x['played'][0]} / Airbus {x['played'][1]} ({n2(x['played_value'][0])} / {n2(x['played_value'][1])})"])
+        L += ["### The airframer stage game each round (engine makers as played; nobody moves later)", "",
+              tbl(["Round", "Pure equilibria (ΔPV Boeing / Airbus)", "What was played"], rows), ""]
+    for t, x in NAR.PLAY_POINTS:
+        L += [f"**{t}**", strip(x), ""]
     for r in ROUNDS:
         L += [round_md(r), ""]
+    # the earlier game
+    L += ["## Against the earlier game", "", strip(NAR.COMPARE_LEDE), ""]
+    rows = []
+    for i, (r_old, r_new) in enumerate(zip(OLD["rounds"], ROUNDS)):
+        for s in SIDES:
+            rows.append([f"R{i + 1} {NAME[s]}", "; ".join(order_text(s, r_old["orders"][s])), "; ".join(order_text(s, r_new["orders"][s]))])
+    L += [tbl(["Round, company", "Earlier game (one strategist agent, earlier board)", "This game (ExCo and Board, new board)"], rows), ""]
+    if XV:
+        L += ["Final ΔPV, $B, each game's final state on both boards:", "",
+              tbl(["Company", "Earlier game, earlier board (as played)", "Earlier game's state, new board", "This game, new board (as played)",
+                   "This game's state, earlier board"],
+                  [[NAME[s], n2(XV["earlier_v2"][s]), n2(XV["earlier_v3"][s]), n2(XV["this_v3"][s]), n2(XV["this_v2"][s])] for s in SIDES]), ""]
+    for t, x in NAR.COMPARE_POINTS:
+        L += [f"**{t}**", strip(x), ""]
     L += ["## Method", "", strip(NAR.METHOD), ""]
     bc = D.get("board_check")
     if bc:
         L += ["### Your board alone against the GM valuation, final state", "",
               tbl(["Player", "Board alone ΔPV $B", "GM valuation ΔPV $B", "Difference"],
                   [[NAME[s], n2(bc[s]["board"]), n2(bc[s]["gm"]), n2(bc[s]["gm"] - bc[s]["board"])] for s in SIDES]), "",
-              "Airbus differs by the Delay Tactics spending window; the engine makers by the GM's year-by-year narrowbody split "
-              "(the board uses a fixed 50/50). With a fixed 50/50 split the GM engine model gives the board's numbers exactly.", ""]
+              ] + [f"- {NAME[s]}: {NAR.BOARD_WHY.get(s, '')}" for s in SIDES] + ["",
+              "With a fixed 50/50 split and the board's own engine moves, the GM engine model gives the board's numbers exactly.", ""]
     with open(out, "w") as f:
         f.write("\n".join(L))
     print("wrote", out)

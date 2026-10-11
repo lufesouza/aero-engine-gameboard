@@ -9,7 +9,7 @@ LEDE = ("In our Boeing vs Airbus war game (with the engine makers CFM/GE, Pratt 
         "person's public words in earnings calls and investor events (Airbus's three rest mostly on its FY2025 Board Report). "
         "Each Board agent decides as that board would, from what the transcripts and filings say about it and what web search "
         "finds on its composition, rules and culture: how risk-averse it is, and how far it looks ahead. "
-        "<b>The game has not been run with these agents yet.</b>")
+        "<b>The game has since been played with these agents (run dash-2050-exco, on the combined_dash.py board); its report is separate.</b>")
 
 FINDINGS = [
     ("Every big decision now passes the company's Board.",
@@ -236,7 +236,7 @@ are few and mostly old, and their dollar thresholds are the ExCo's game paramete
 <code>data/people.json</code>: evidence counts per person.</li>
 <li><code>wargame/reports/exco-agents/check_agents.py</code> and <code>make_exco_html.py</code>: the checker and this page.</li>
 <li><code>wargame/dashgame/workflows/exco_round.js</code>, <code>exco.py</code>, <code>workflows/dry_run.js</code>: the round
-script (not run), the game master's save helper, and the stub dry run.</li>
+script (used to play run dash-2050-exco), the game master's save and merge helper, and the stub dry run.</li>
 </ul>
 """
 
