@@ -1,0 +1,5685 @@
+{
+ "run": "dash-2050-exco",
+ "rounds": [
+  {
+   "round": 1,
+   "year": 2030,
+   "objectives": {
+    "boeing": [
+     {
+      "label": "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+      "met": true,
+      "detail": "reached in 2029; net debt end-2030 $0.0B; with no new programme it would be reached in 2029"
+     },
+     {
+      "label": "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2030"
+     },
+     {
+      "label": "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "reached in 2030; 2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2031"
+     },
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": false,
+      "detail": "2040 fps: CFM (1); 2045 fps: CFM (1); 2050 fps: CFM (1)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "airbus": [
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": true,
+      "detail": "2040 NGSA: CFM + P&W GTF2 + RR UltraFan NB (3); 2045 NGSA: CFM + P&W GTF2 + RR UltraFan NB (3); 2050 NGSA: CFM + P&W GTF2 + RR UltraFan NB (3)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "rolls_royce": [
+     {
+      "label": "Protect the widebody cash cow, bounded NB risk: RR's own NB development money \u2264 $4B. The Joint Venture share is $4B and UltraFan NB Solo $8B; a Solo cancelled or folded into the Joint Venture counts its spend to date (a Solo launched in 2030 and folded in 2035 is $5.7B)",
+      "met": false,
+      "detail": "$8.00B committed or written off"
+     },
+     {
+      "label": "Protect the widebody cash cow, WB never starved: never hold an NB engine programme (UltraFan NB Solo or the Joint Venture) and a WB programme (UltraFan WB or Trent 1000 upgrade) at the same time. The board charges a one-off $5B strain whenever both are on record, whatever their dates and even after one is ready; only cancelling one before it is ready removes it",
+      "met": true,
+      "detail": "strain charged $0.0B"
+     }
+    ]
+   },
+   "debt_base": [
+    {
+     "year": 2027,
+     "base_fcf": 5.551,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 5.551,
+     "debt": 16.494009784735816,
+     "debt_no_programme": 16.494009784735816,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 9.438,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 9.438,
+     "debt": 6.700952822637783,
+     "debt_no_programme": 6.700952822637783,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 12.203,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 12.203,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 11.40636,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 10.453304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 9.976776,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 9.023719999999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.547191999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 8.070664,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 7.117607999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 7.533463999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.425848,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 9.318232000000002,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 19.8289608,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.0517724,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.274584,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.4973956,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.7202072,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.943018799999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.1658304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.388642,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.6114536,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "debt_stress": [
+    {
+     "year": 2027,
+     "base_fcf": 3.7008517,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 3.7008517,
+     "debt": 18.344158084735813,
+     "debt_no_programme": 18.344158084735813,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 6.2923146,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 6.2923146,
+     "debt": 11.656959455514492,
+     "debt_no_programme": 11.656959455514492,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 8.1357401,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 8.1357401,
+     "debt": 3.270286764495589,
+     "debt_no_programme": 3.270286764495589,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 6.810486299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 5.857430299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 5.380902299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 4.427846299999998,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.9513182999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 3.4747902999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 2.5217342999999985,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 2.9375902999999983,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.8299743,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 4.722358300000001,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.233087099999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.455898699999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.678710299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.901521899999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.1243335,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.3471451,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.5699567,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.7927683,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.0155799,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "sources": {
+    "boeing": {
+     "2030": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2031": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2032": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2033": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2034": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2035": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2036": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2037": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2038": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2039": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2040": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2041": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2042": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2043": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2044": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2045": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2046": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2047": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2048": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2049": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2050": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2051": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2052": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2053": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2054": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2055": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2056": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2057": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2058": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2059": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2060": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ]
+    },
+    "airbus": {
+     "2030": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2031": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2032": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2033": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2034": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2035": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2036": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2037": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2038": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2039": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2040": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2041": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2042": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2043": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2044": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2045": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2046": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2047": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2048": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2049": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2050": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2051": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2052": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2053": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2054": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2055": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2056": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2057": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2058": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2059": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ],
+     "2060": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W GTF2",
+       "RR UltraFan NB"
+      ]
+     ]
+    }
+   },
+   "makers": {
+    "2030": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2031": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2032": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2033": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2034": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2035": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2036": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2037": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2038": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2039": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2040": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2041": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2042": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2043": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2044": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2045": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2046": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2047": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2048": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2049": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2050": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2051": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2052": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2053": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2054": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2055": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2056": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2057": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2058": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2059": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2060": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ]
+   },
+   "rr_nb_exposure": 8.0,
+   "rr_strain": 0.0,
+   "codes": {
+    "fps": 3,
+    "ngsa": 7
+   }
+  },
+  {
+   "round": 2,
+   "year": 2035,
+   "objectives": {
+    "boeing": [
+     {
+      "label": "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+      "met": true,
+      "detail": "reached in 2029; net debt end-2030 $0.0B; with no new programme it would be reached in 2029"
+     },
+     {
+      "label": "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2030"
+     },
+     {
+      "label": "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "reached in 2030; 2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2031"
+     },
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": false,
+      "detail": "2040 fps: CFM (1); 2045 fps: CFM (1); 2050 fps: CFM (1)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "airbus": [
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": true,
+      "detail": "2040 NGSA: CFM + P&W-RR Joint Venture (2); 2045 NGSA: CFM + P&W-RR Joint Venture (2); 2050 NGSA: CFM + P&W-RR Joint Venture (2)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "rolls_royce": [
+     {
+      "label": "Protect the widebody cash cow, bounded NB risk: RR's own NB development money \u2264 $4B. The Joint Venture share is $4B and UltraFan NB Solo $8B; a Solo cancelled or folded into the Joint Venture counts its spend to date (a Solo launched in 2030 and folded in 2035 is $5.7B)",
+      "met": false,
+      "detail": "$5.71B committed or written off"
+     },
+     {
+      "label": "Protect the widebody cash cow, WB never starved: never hold an NB engine programme (UltraFan NB Solo or the Joint Venture) and a WB programme (UltraFan WB or Trent 1000 upgrade) at the same time. The board charges a one-off $5B strain whenever both are on record, whatever their dates and even after one is ready; only cancelling one before it is ready removes it",
+      "met": true,
+      "detail": "strain charged $0.0B"
+     }
+    ]
+   },
+   "debt_base": [
+    {
+     "year": 2027,
+     "base_fcf": 5.551,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 5.551,
+     "debt": 16.494009784735816,
+     "debt_no_programme": 16.494009784735816,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 9.438,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 9.438,
+     "debt": 6.700952822637783,
+     "debt_no_programme": 6.700952822637783,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 12.203,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 12.203,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 11.40636,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 10.453304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 9.976776,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 9.023719999999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.547191999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 8.070664,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 7.117607999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 7.533463999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.425848,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 9.318232000000002,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 19.8289608,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.0517724,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.274584,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.4973956,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.7202072,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.943018799999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.1658304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.388642,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.6114536,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "debt_stress": [
+    {
+     "year": 2027,
+     "base_fcf": 3.7008517,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 3.7008517,
+     "debt": 18.344158084735813,
+     "debt_no_programme": 18.344158084735813,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 6.2923146,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 6.2923146,
+     "debt": 11.656959455514492,
+     "debt_no_programme": 11.656959455514492,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 8.1357401,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 8.1357401,
+     "debt": 3.270286764495589,
+     "debt_no_programme": 3.270286764495589,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 6.810486299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 5.857430299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 5.380902299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 4.427846299999998,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.9513182999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 3.4747902999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 2.5217342999999985,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 2.9375902999999983,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.8299743,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 4.722358300000001,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.233087099999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.455898699999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.678710299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.901521899999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.1243335,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.3471451,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.5699567,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.7927683,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.0155799,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "sources": {
+    "boeing": {
+     "2030": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2031": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2032": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2033": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2034": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2035": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2036": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2037": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2038": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2039": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2040": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2041": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2042": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2043": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2044": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2045": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2046": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2047": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2048": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2049": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2050": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2051": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2052": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2053": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2054": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2055": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2056": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2057": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2058": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2059": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2060": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ]
+    },
+    "airbus": {
+     "2030": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2031": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2032": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2033": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2034": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2035": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2036": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2037": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2038": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2039": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2040": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2041": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2042": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2043": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2044": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2045": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2046": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2047": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2048": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2049": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2050": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2051": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2052": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2053": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2054": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2055": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2056": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2057": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2058": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2059": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2060": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ]
+    }
+   },
+   "makers": {
+    "2030": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2031": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2032": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2033": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2034": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2035": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2036": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2037": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2038": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2039": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2040": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2041": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2042": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2043": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2044": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2045": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2046": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2047": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2048": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2049": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2050": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2051": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2052": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2053": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2054": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2055": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2056": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2057": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2058": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2059": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2060": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ]
+   },
+   "rr_nb_exposure": 5.714285714285714,
+   "rr_strain": 0.0,
+   "codes": {
+    "fps": 3,
+    "ngsa": 7
+   }
+  },
+  {
+   "round": 3,
+   "year": 2045,
+   "objectives": {
+    "boeing": [
+     {
+      "label": "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+      "met": true,
+      "detail": "reached in 2029; net debt end-2030 $0.0B; with no new programme it would be reached in 2029"
+     },
+     {
+      "label": "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2030"
+     },
+     {
+      "label": "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "reached in 2030; 2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2031"
+     },
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": false,
+      "detail": "2040 fps: CFM (1); 2045 fps: CFM (1); 2050 fps: CFM (1)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "airbus": [
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": true,
+      "detail": "2040 NGSA: CFM + P&W-RR Joint Venture (2); 2045 NGSA: CFM + P&W-RR Joint Venture (2); 2050 NGSA: CFM + P&W-RR Joint Venture (2)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "rolls_royce": [
+     {
+      "label": "Protect the widebody cash cow, bounded NB risk: RR's own NB development money \u2264 $4B. The Joint Venture share is $4B and UltraFan NB Solo $8B; a Solo cancelled or folded into the Joint Venture counts its spend to date (a Solo launched in 2030 and folded in 2035 is $5.7B)",
+      "met": false,
+      "detail": "$5.71B committed or written off"
+     },
+     {
+      "label": "Protect the widebody cash cow, WB never starved: never hold an NB engine programme (UltraFan NB Solo or the Joint Venture) and a WB programme (UltraFan WB or Trent 1000 upgrade) at the same time. The board charges a one-off $5B strain whenever both are on record, whatever their dates and even after one is ready; only cancelling one before it is ready removes it",
+      "met": true,
+      "detail": "strain charged $0.0B"
+     }
+    ]
+   },
+   "debt_base": [
+    {
+     "year": 2027,
+     "base_fcf": 5.551,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 5.551,
+     "debt": 16.494009784735816,
+     "debt_no_programme": 16.494009784735816,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 9.438,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 9.438,
+     "debt": 6.700952822637783,
+     "debt_no_programme": 6.700952822637783,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 12.203,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 12.203,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 11.40636,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 10.453304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 9.976776,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 9.023719999999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.547191999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 8.070664,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 7.117607999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 7.533463999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.425848,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 9.318232000000002,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 19.8289608,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.0517724,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.274584,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.4973956,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.7202072,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.943018799999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.1658304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.388642,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.6114536,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "debt_stress": [
+    {
+     "year": 2027,
+     "base_fcf": 3.7008517,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 3.7008517,
+     "debt": 18.344158084735813,
+     "debt_no_programme": 18.344158084735813,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 6.2923146,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 6.2923146,
+     "debt": 11.656959455514492,
+     "debt_no_programme": 11.656959455514492,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 8.1357401,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 8.1357401,
+     "debt": 3.270286764495589,
+     "debt_no_programme": 3.270286764495589,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 6.810486299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 5.857430299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 5.380902299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 4.427846299999998,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.9513182999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 3.4747902999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 2.5217342999999985,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 2.9375902999999983,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.8299743,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 4.722358300000001,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.233087099999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.455898699999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.678710299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.901521899999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.1243335,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.3471451,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.5699567,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.7927683,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.0155799,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "sources": {
+    "boeing": {
+     "2030": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2031": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2032": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2033": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2034": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2035": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2036": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2037": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2038": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2039": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2040": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2041": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2042": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2043": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2044": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2045": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2046": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2047": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2048": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2049": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2050": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2051": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2052": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2053": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2054": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2055": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2056": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2057": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2058": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2059": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2060": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ]
+    },
+    "airbus": {
+     "2030": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2031": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2032": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2033": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2034": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2035": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2036": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2037": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2038": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2039": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2040": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2041": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2042": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2043": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2044": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2045": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2046": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2047": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2048": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2049": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2050": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2051": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2052": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2053": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2054": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2055": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2056": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2057": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2058": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2059": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2060": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ]
+    }
+   },
+   "makers": {
+    "2030": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2031": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2032": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2033": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2034": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2035": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2036": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2037": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2038": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2039": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2040": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2041": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2042": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2043": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2044": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2045": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2046": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2047": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2048": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2049": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2050": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2051": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2052": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2053": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2054": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2055": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2056": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2057": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2058": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2059": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2060": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ]
+   },
+   "rr_nb_exposure": 5.714285714285714,
+   "rr_strain": 0.0,
+   "codes": {
+    "fps": 3,
+    "ngsa": 7
+   }
+  },
+  {
+   "round": 4,
+   "year": 2050,
+   "objectives": {
+    "boeing": [
+     {
+      "label": "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+      "met": true,
+      "detail": "reached in 2029; net debt end-2030 $0.0B; with no new programme it would be reached in 2029"
+     },
+     {
+      "label": "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2030"
+     },
+     {
+      "label": "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+      "met": true,
+      "detail": "reached in 2030; 2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2031"
+     },
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": false,
+      "detail": "2040 fps: CFM (1); 2045 fps: CFM (1); 2050 fps: CFM (1)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "airbus": [
+     {
+      "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+      "met": true,
+      "detail": "2040 NGSA: CFM + P&W-RR Joint Venture (2); 2045 NGSA: CFM + P&W-RR Joint Venture (2); 2050 NGSA: CFM + P&W-RR Joint Venture (2)"
+     },
+     {
+      "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+      "met": true,
+      "detail": "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+     }
+    ],
+    "rolls_royce": [
+     {
+      "label": "Protect the widebody cash cow, bounded NB risk: RR's own NB development money \u2264 $4B. The Joint Venture share is $4B and UltraFan NB Solo $8B; a Solo cancelled or folded into the Joint Venture counts its spend to date (a Solo launched in 2030 and folded in 2035 is $5.7B)",
+      "met": false,
+      "detail": "$5.71B committed or written off"
+     },
+     {
+      "label": "Protect the widebody cash cow, WB never starved: never hold an NB engine programme (UltraFan NB Solo or the Joint Venture) and a WB programme (UltraFan WB or Trent 1000 upgrade) at the same time. The board charges a one-off $5B strain whenever both are on record, whatever their dates and even after one is ready; only cancelling one before it is ready removes it",
+      "met": true,
+      "detail": "strain charged $0.0B"
+     }
+    ]
+   },
+   "debt_base": [
+    {
+     "year": 2027,
+     "base_fcf": 5.551,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 5.551,
+     "debt": 16.494009784735816,
+     "debt_no_programme": 16.494009784735816,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 9.438,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 9.438,
+     "debt": 6.700952822637783,
+     "debt_no_programme": 6.700952822637783,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 12.203,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 12.203,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 11.40636,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 10.453304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 9.976776,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 9.023719999999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.547191999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 8.070664,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 7.117607999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 7.533463999999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 8.425848,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 9.318232000000002,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 19.8289608,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.0517724,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.274584,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.4973956,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.7202072,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 20.943018799999997,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.1658304,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.388642,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.6114536,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 13.789,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 21.8342652,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "debt_stress": [
+    {
+     "year": 2027,
+     "base_fcf": 3.7008517,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 3.7008517,
+     "debt": 18.344158084735813,
+     "debt_no_programme": 18.344158084735813,
+     "items": {}
+    },
+    {
+     "year": 2028,
+     "base_fcf": 6.2923146,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 6.2923146,
+     "debt": 11.656959455514492,
+     "debt_no_programme": 11.656959455514492,
+     "items": {}
+    },
+    {
+     "year": 2029,
+     "base_fcf": 8.1357401,
+     "profit_vs_baseline": 0.0,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 8.1357401,
+     "debt": 3.270286764495589,
+     "debt_no_programme": 3.270286764495589,
+     "items": {}
+    },
+    {
+     "year": 2030,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 3.016,
+     "interest": 0.0,
+     "fcf": 6.810486299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 3.016
+     }
+    },
+    {
+     "year": 2031,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.2224,
+     "interest": 0.0,
+     "fcf": 5.857430299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.2224
+     }
+    },
+    {
+     "year": 2032,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 4.8256000000000006,
+     "interest": 0.0,
+     "fcf": 5.380902299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 4.8256000000000006
+     }
+    },
+    {
+     "year": 2033,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.032000000000002,
+     "interest": 0.0,
+     "fcf": 4.427846299999998,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.032000000000002
+     }
+    },
+    {
+     "year": 2034,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.9513182999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2035,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 7.2383999999999995,
+     "interest": 0.0,
+     "fcf": 3.4747902999999996,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.2383999999999995
+     }
+    },
+    {
+     "year": 2036,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 0.0,
+     "spend": 8.4448,
+     "interest": 0.0,
+     "fcf": 2.5217342999999985,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 8.4448
+     }
+    },
+    {
+     "year": 2037,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.07680000000000042,
+     "spend": 7.841600000000001,
+     "interest": 0.0,
+     "fcf": 2.9375902999999983,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 7.841600000000001
+     }
+    },
+    {
+     "year": 2038,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.15359999999999996,
+     "spend": 6.635199999999999,
+     "interest": 0.0,
+     "fcf": 3.8299743,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 6.635199999999999
+     }
+    },
+    {
+     "year": 2039,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": -0.23040000000000038,
+     "spend": 5.428799999999998,
+     "interest": 0.0,
+     "fcf": 4.722358300000001,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {
+      "fps (10yr)": 5.428799999999998
+     }
+    },
+    {
+     "year": 2040,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.645519999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.233087099999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2041,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 7.92756,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.455898699999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2042,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.2096,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.678710299999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2043,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.49164,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 15.901521899999999,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2044,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 8.77368,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.1243335,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2045,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.055719999999999,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.3471451,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2046,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.33776,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.5699567,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2047,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.619800000000001,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 16.7927683,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2048,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 9.90184,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.0155799,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2049,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2050,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2051,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2052,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2053,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2054,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2055,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2056,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2057,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2058,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2059,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    },
+    {
+     "year": 2060,
+     "base_fcf": 9.1931263,
+     "profit_vs_baseline": 10.183880000000002,
+     "spend": 0,
+     "interest": 0.0,
+     "fcf": 17.2383915,
+     "debt": 0.0,
+     "debt_no_programme": 0.0,
+     "items": {}
+    }
+   ],
+   "sources": {
+    "boeing": {
+     "2030": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2031": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2032": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2033": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2034": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2035": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2036": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2037": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2038": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2039": [
+      "737 MAX",
+      [
+       "CFM"
+      ]
+     ],
+     "2040": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2041": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2042": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2043": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2044": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2045": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2046": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2047": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2048": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2049": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2050": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2051": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2052": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2053": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2054": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2055": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2056": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2057": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2058": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2059": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ],
+     "2060": [
+      "fps",
+      [
+       "CFM"
+      ]
+     ]
+    },
+    "airbus": {
+     "2030": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2031": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2032": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2033": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2034": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2035": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2036": [
+      "A320neo family",
+      [
+       "CFM",
+       "P&W GTF"
+      ]
+     ],
+     "2037": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2038": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2039": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2040": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2041": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2042": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2043": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2044": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2045": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2046": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2047": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2048": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2049": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2050": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2051": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2052": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2053": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2054": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2055": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2056": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2057": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2058": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2059": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ],
+     "2060": [
+      "NGSA",
+      [
+       "CFM",
+       "P&W-RR Joint Venture"
+      ]
+     ]
+    }
+   },
+   "makers": {
+    "2030": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2031": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2032": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2033": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2034": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2035": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2036": [
+     "cfm",
+     "pratt_whitney"
+    ],
+    "2037": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2038": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2039": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2040": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2041": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2042": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2043": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2044": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2045": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2046": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2047": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2048": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2049": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2050": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2051": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2052": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2053": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2054": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2055": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2056": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2057": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2058": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2059": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ],
+    "2060": [
+     "cfm",
+     "pratt_whitney",
+     "rolls_royce"
+    ]
+   },
+   "rr_nb_exposure": 5.714285714285714,
+   "rr_strain": 0.0,
+   "codes": {
+    "fps": 3,
+    "ngsa": 7
+   }
+  }
+ ]
+}
