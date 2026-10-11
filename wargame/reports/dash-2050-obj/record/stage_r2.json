@@ -1,0 +1,49 @@
+{
+ "round": 2,
+ "year": 2035,
+ "pure": [
+  [
+   "fps: hold + 787: hold",
+   "NGSA: hold + A350 Re-engine + Delay Tactics (one move)",
+   -2.2389916217502304,
+   26.558127015967766
+  ],
+  [
+   "fps: hold + 787 Re-engine",
+   "NGSA: hold + A350: hold + Delay Tactics (one move)",
+   -0.13240878030933034,
+   24.53548885821644
+  ]
+ ],
+ "near_within_1b": [
+  [
+   "fps: hold + 787: hold",
+   "NGSA: hold + A350 Re-engine + Delay Tactics (both moves)",
+   -2.2389916217502304,
+   26.0804575116757
+  ],
+  [
+   "fps: hold + 787 Re-engine",
+   "NGSA: hold + A350: hold + Delay Tactics (both moves)",
+   -0.13240878030933034,
+   24.066032023287427
+  ]
+ ],
+ "played": [
+  "fps: hold + 787: hold",
+  "NGSA: hold + A350: hold"
+ ],
+ "played_value": [
+  0.663208572464228,
+  23.366586850527383
+ ],
+ "eps_b": 1.0,
+ "boeing_best_response_to_played_airbus": [
+  "fps: hold + 787 Re-engine",
+  1.3089578813771428
+ ],
+ "airbus_best_response_to_played_boeing": [
+  "NGSA: hold + A350 Re-engine + Delay Tactics (one move)",
+  26.558127015967766
+ ]
+}
