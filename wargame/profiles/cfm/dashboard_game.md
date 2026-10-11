@@ -69,6 +69,8 @@ Constraints:    Open Fan certification risk | airframer reluctance | raw materia
 The objective never changes your payoff. Any PV you give up for it is an **objective premium**, under the cap in
 `profile.md` (hard rule 9): $2.0B a round and $4.0B a game, plus one RISE allowance.
 
+**From the 2026-10-11 replay:** your company's 2026 analyst-model baseline (Morgan Stanley, Goldman Sachs) is in `analyst_models_2026.md`. Your objectives are unchanged.
+
 ## 5. Profile updates for this game
 
 - **Hard rule 2** (never press an airframer into the Open Fan wait) reads here as: launch the Open Fan only if no new

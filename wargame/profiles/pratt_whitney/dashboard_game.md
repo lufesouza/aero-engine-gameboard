@@ -60,6 +60,8 @@ Constraints:    GTF reputation issues | engineering resources
   NGSA) by 2050.
 - **Capitalise on the GTF investment:** P&W ΔPV ≥ 0 against the status quo.
 
+**From the 2026-10-11 replay:** your company's 2026 analyst-model baseline (Morgan Stanley, Goldman Sachs) is in `analyst_models_2026.md`. Your objectives are unchanged.
+
 ## 5. Profile updates for this game
 
 - **"No new engine without a committed airframer and sole source"** maps onto `launch_if_selected`. It triggers on any

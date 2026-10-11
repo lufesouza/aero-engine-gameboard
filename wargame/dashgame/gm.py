@@ -1,6 +1,6 @@
 """Game-master command line for dash-2050 (the GM only; players are blocked from this folder and from wargame/runs).
 
-  python3 gm.py init                      # new run: state_r0.json, public rules to each player's folder
+  python3 gm.py init [objective_set]     # new run: state_r0.json, public rules to each player's folder; e.g. control2
   python3 gm.py brief N                   # bulletin + private briefs for round N (from state after round N-1)
   python3 gm.py adjudicate N orders.json  # validate and adjudicate round N; writes state_rN.json and the record
 """
@@ -33,10 +33,13 @@ def jsave(name, obj):
         json.dump(obj, f, indent=1, default=str)
 
 
-def init():
+def init(objective_set=None):
     os.makedirs(RUN_DIR, exist_ok=True)
     with open(os.path.join(RUN_DIR, "board.txt"), "w") as f:
         f.write(M.H.VERSION + "\n")       # the run keeps this board version (model.py reads it back)
+    if objective_set:                      # e.g. control2: Control's added objectives (briefs.objective_set reads it)
+        with open(os.path.join(RUN_DIR, "objectives.txt"), "w") as f:
+            f.write(objective_set + "\n")
     s = M.new_state()
     jsave("state_r0.json", s)
     rules_txt = B.public_rules()
@@ -123,7 +126,7 @@ def adjudicate(n, orders_path):
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "init":
-        init()
+        init(sys.argv[2] if len(sys.argv) > 2 else None)
     elif cmd == "brief":
         brief(int(sys.argv[2]))
     elif cmd == "adjudicate":

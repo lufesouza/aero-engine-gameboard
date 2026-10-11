@@ -450,16 +450,24 @@ def control2_status(side, state, v):
         m = FIN.debt_metrics(state, v, F)
         H = m["H"]
         by = {r["year"]: r for r in m["rows"]}
-        out.append(("Repair the balance sheet: debt back to historical levels (≤ $%.0fB, %s) by %d" % (
+        out.append(("Repair the balance sheet: net debt back to historical levels (≤ $%.0fB, %s) by end-%d" % (
             H, F["historical_label"], m["target_year"]), m["reached_by_target"],
             ("reached in %d" % m["first_year"] if m["first_year"] else "not reached by %d" % M.REPORT_END) +
-            "; debt end-%d $%.1fB; with no new programme it would be reached in %s" % (
+            "; net debt end-%d $%.1fB; with no new programme it would be reached in %s" % (
                 m["target_year"], by[m["target_year"]]["debt"],
                 m["first_year_no_programme"] or "never")))
-        out.append(("Keep it repaired: debt ≤ $%.0fB at end-%s" % (H, ", ".join(str(y) for y in m["held"])), m["held_ok"],
+        out.append(("Keep it repaired: net debt ≤ $%.0fB at end-%s" % (H, ", ".join(str(y) for y in m["held"])), m["held_ok"],
                     ", ".join("%d $%.1fB" % (y, d) for y, d in m["held"].items()) +
                     ("; highest after repair $%.1fB in %d" % (m["peak_after_first"][1], m["peak_after_first"][0])
                      if m["peak_after_first"] else "")))
+        ms = FIN.debt_metrics(state, v, F, stress=True)
+        out.append(("Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to "
+                    "≤ $%.0fB by end-%d and held at end-%s" % (H, ms["target_year"], ", ".join(str(y) for y in ms["held"])),
+                    ms["reached_by_target"] and ms["held_ok"],
+                    ("reached in %d" % ms["first_year"] if ms["first_year"] else "not reached") + "; " +
+                    ", ".join("%d $%.1fB" % (y, d) for y, d in ms["held"].items()) +
+                    ("; highest after repair $%.1fB in %d" % (ms["peak_after_first"][1], ms["peak_after_first"][0])
+                     if ms["peak_after_first"] else "")))
     if side in ("boeing", "airbus"):
         yrs = (2040, 2045, 2050)
         src = {y: nb_sources(state, side, y) for y in yrs}
@@ -672,10 +680,13 @@ def plan_metrics(side, state, v):
     if side == "boeing":
         import finance as FIN
         m = FIN.debt_metrics(state, v)
+        ms = FIN.debt_metrics(state, v, stress=True)
         by = {r["year"]: r for r in m["rows"]}
+        bys = {r["year"]: r for r in ms["rows"]}
         return {"repaired": m["first_year"], "debt_2035": by[2035]["debt"], "debt_2040": by[2040]["debt"],
-                "held_ok": m["held_ok"], "sources_2050": len(nb_sources(state, side, 2050)[1]),
-                "makers_2050": len(nb_engine_makers(v, 2050))}
+                "held_ok": m["held_ok"], "stress_ok": ms["reached_by_target"] and ms["held_ok"],
+                "stress_peak": max(r["debt"] for r in ms["rows"] if r["year"] >= 2030),
+                "sources_2050": len(nb_sources(state, side, 2050)[1]), "makers_2050": len(nb_engine_makers(v, 2050))}
     if side == "airbus":
         return {"sources_2050": len(nb_sources(state, side, 2050)[1]), "makers_2050": len(nb_engine_makers(v, 2050))}
     if side == "rolls_royce":
@@ -723,29 +734,32 @@ def debt_section(state, v):
     import finance as FIN
     F = FIN.inputs()
     rows = FIN.debt_path(state, v, F)
-    show = set(range(2026, 2043)) | {2045, 2050, 2055, 2060}
-    L = ["", "**Your debt path** if nobody moves again (the GM's balance-sheet tracker; constant 2026 $B, year end). " +
+    stress = {r["year"]: r for r in FIN.debt_path(state, v, F, F["stress_fcf_scale"])}
+    show = set(range(2027, 2043)) | {2045, 2050, 2055, 2060}
+    L = ["", "**Your net-debt path** if nobody moves again (the GM's balance-sheet tracker; constant 2026 $B, year end). " +
          F["method_short"], ""]
     L += table(["Year", "Base free cash flow", "Profit vs game baseline (pre-tax)", "Programme cash spend",
-                "Interest on added debt", "Free cash flow", "Debt", "Debt with no new programme"],
+                "Interest on added debt", "Free cash flow", "Net debt", "Net debt with no new programme",
+                "Net debt, stress case"],
                [[r["year"], f1(r["base_fcf"]), money(r["profit_vs_baseline"]), f1(r["spend"]) if r["spend"] else "—",
                  f1(r["interest"]) if r["interest"] > 0.05 else "—", money(r["fcf"]), f1(r["debt"]),
-                 f1(r["debt_no_programme"])] for r in rows if r["year"] in show])
+                 f1(r["debt_no_programme"]), f1(stress[r["year"]]["debt"])] for r in rows if r["year"] in show])
     return L
 
 
 def metric_cell(side, m):
     if side == "boeing":
-        return "%s / $%.1fB / %s / %d" % (m["repaired"] or "never", m["debt_2040"], "yes" if m["held_ok"] else "no",
-                                          m["sources_2050"])
+        return "%s / %s / %s ($%.1fB) / %d" % (m["repaired"] or "never", "yes" if m["held_ok"] else "no",
+                                               "yes" if m["stress_ok"] else "no", m["stress_peak"], m["sources_2050"])
     if side == "airbus":
         return "%d / %d" % (m["sources_2050"], m["makers_2050"])
     return "$%.1fB / $%.0fB / %s / %s" % (m["nb_exposure"], m["strain"], pct(m["wb_2050"]), pct(m["nb_2050"]))
 
 
 METRIC_KEY = {
-    "boeing": "Each cell: year debt first reaches the historical level / debt at end-2040 / held at or below it at "
-              "end-2040, 2045 and 2050 / engine sources on your narrowbody in production in 2050.",
+    "boeing": "Each cell: year net debt first reaches the historical level / held at or below it at end-2035, 2040, "
+              "2045 and 2050 / the same in the stress case (free cash flow one-third below consensus), with its highest "
+              "net debt from 2030 / engine sources on your narrowbody in production in 2050.",
     "airbus": "Each cell: engine sources on your narrowbody in production in 2050 / narrowbody engine makers in the "
               "market in 2050.",
     "rolls_royce": "Each cell: your own NB development money (committed or written off) / NB-WB overlap strain / your "

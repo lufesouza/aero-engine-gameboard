@@ -70,6 +70,26 @@ Constraints:    High debt load | ramp-up speed | engineering capacity | supply-c
 The objective never changes your payoff. Any PV you give up to advance it is an **objective premium** and counts
 against the H8 cap.
 
+**Control's additions (runs with the control2 objective set, from the 2026-10-11 replay).** Your brief §2 shows each
+one's status, and the "objective metrics by plan" table under your payoff grid shows how every plan scores.
+
+- **Repair the balance sheet: bring debt back to historical levels.** Measured on net debt (total debt minus cash and
+  short-term investments), the measure the broker models and the consensus forecast. The GM's balance-sheet tracker
+  starts at the consensus end-2026 figure ($22.5B) and runs the analysts' free cash flow (consensus to 2030, held flat
+  after), what the game adds to or takes from your profit, your programme cash as it is spent, and interest on any
+  debt the game adds. Debt comes first: once net debt is back at its 2010-2018 level (about zero), surplus cash goes to
+  the owners, which your Board reserves for itself. Three lines are scored: net debt ≤ $0 by end-2030; held at end-2035,
+  2040, 2045 and 2050; and the same in a **stress case** with free cash flow one-third below consensus (your 2026
+  consensus free cash flow fell 57% in twelve months). Gross debt does not return to its ~$11B pre-crisis level in
+  either broker model by 2030 because bonds repay only as they mature.
+- **Enabler: a stable supply of parts, above all engines.** The 737 MAX has one engine supplier (CFM). You want dual or
+  even triple engine sources on your narrowbody in production in 2040, 2045 and 2050, and three narrowbody engine makers
+  in the market in 2045 and 2050. The Joint Venture's engine counts as one source. Engine codes still do not change your
+  payoff on the board, but they decide this enabler, and your selection can trigger P&W's and Rolls-Royce's conditional
+  engine launches. Your brief lists the sources each code would give.
+- Your company's 2026 analyst-model baseline (Morgan Stanley, Goldman Sachs, Capital IQ) is in
+  `analyst_models_2026.md`.
+
 ## 5. Profile updates for this game
 
 - **H1 (no fps in Round 1) and H3 (no 787 Re-engine in Round 1)** were written for a round sealed at the start of

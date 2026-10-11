@@ -63,6 +63,18 @@ the size.
 - **Enter the narrowbody market:** RR NB engine share > 0 in 2045 and 2050.
 - **Keep widebody dominance:** RR WB engine share ≥ 50% in 2040, 2045 and 2050.
 
+**Control's addition (runs with the control2 objective set, from the 2026-10-11 replay): protect the widebody cash
+cow.** Your widebody engines (the only engine on the A350 and the A330neo, one of two on the 787) carry most of Civil's
+profit and cash, and Civil carries most of the group. A narrowbody engine is a new product with its own risks, so a
+heavy narrowbody investment could put the widebody franchise at risk. Two lines are scored:
+
+- **Bounded narrowbody risk:** your own narrowbody development money, committed or written off, stays within $4B (the
+  Joint Venture share; an UltraFan NB Solo is $8B, and a Solo folded into the Joint Venture writes off what it spent).
+- **Widebody never starved:** no narrowbody and widebody development live together (the board's $5B overlap strain).
+
+Your objective to enter the narrowbody market stands; this sets its terms. Your brief shows the metrics for every
+plan. Your company's 2026 analyst-model baseline (Morgan Stanley, Goldman Sachs) is in `analyst_models_2026.md`.
+
 ## 5. Profile updates for this game
 
 - **"No UltraFan launch without an announcement of a programme that can fly it"** maps onto `launch_if_selected`. You

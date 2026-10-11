@@ -70,6 +70,15 @@ Constraints:    Engineering capacity (NGSA & A350 share teams) | fines if delay 
 
 The objective never changes your payoff.
 
+**Control's addition (runs with the control2 objective set, from the 2026-10-11 replay): an enabler, a stable supply
+of parts, above all engines.** You want dual or even triple engine sources on your narrowbody in production in 2040,
+2045 and 2050 (the A320neo family has two today, CFM and P&W GTF; NGSA counts once it is in service), and three
+narrowbody engine makers in the market in 2045 and 2050. The Joint Venture's engine counts as one source. Engine codes
+still do not change your payoff on the board, but they decide this enabler, and your selection can trigger P&W's and
+Rolls-Royce's conditional engine launches. Your brief lists the sources each code would give and the metrics for
+every plan. Your company's 2026 analyst-model baseline (Morgan Stanley, Goldman Sachs) is in
+`analyst_models_2026.md`.
+
 ## 5. Profile updates for this game
 
 - **Rule 1** (NGSA never enters service before the 2035 technology-ready year; launch window 2028-2030). Round 1

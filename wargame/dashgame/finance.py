@@ -3,7 +3,8 @@
 It scores Control's objective "repair the balance sheet: debt back to historical levels". It never changes a payoff:
 the board's ΔPV, including its own debt penalty on $45B of debt, is untouched.
 
-Debt is total borrowings at year end, in constant 2026 dollars like the board. Each year:
+Debt is net debt (total debt minus cash and short-term investments) at year end, in constant 2026 dollars like the
+board. Each year:
 
     free cash   = base free cash flow (analyst models, see finance_inputs.json)
                 + (1 - tax) x (Boeing operating profit - game baseline profit)     # what the game adds or takes away
@@ -89,8 +90,9 @@ def base_fcf(F, y):
     return F["base_fcf_after_b"] if y > last else b[str(min(int(k) for k in b))]
 
 
-def debt_path(state, v, F=None):
-    """Year-by-year debt rows for Boeing, from the valuation `v` of `state` (needs v['_af_series'])."""
+def debt_path(state, v, F=None, fcf_scale=1.0):
+    """Year-by-year debt rows for Boeing, from the valuation `v` of `state` (needs v['_af_series']). `fcf_scale`
+    scales the base free cash flow (the stress case uses F['stress_fcf_scale'])."""
     F = F or inputs()
     H, tax, rr = F["historical_level_b"], F["tax_rate"], F["real_rate"]
     cash = programme_cash(state, F)
@@ -102,7 +104,7 @@ def debt_path(state, v, F=None):
         upl = (x["nb_profit"] + x["wb_profit"]) - (x["sq_nb_profit"] + x["sq_wb_profit"])
         spend = sum(cash.get(y, {}).values())
         interest = rr * max(0.0, D - Dsq)
-        base = base_fcf(F, y)
+        base = base_fcf(F, y) * fcf_scale
         fcf = base + (1 - tax) * upl - spend - interest
         D = max(min(D, H), D - fcf)
         Dsq = max(min(Dsq, H), Dsq - base)
@@ -111,10 +113,10 @@ def debt_path(state, v, F=None):
     return rows
 
 
-def debt_metrics(state, v, F=None):
+def debt_metrics(state, v, F=None, stress=False):
     F = F or inputs()
     H = F["historical_level_b"]
-    rows = debt_path(state, v, F)
+    rows = debt_path(state, v, F, F["stress_fcf_scale"] if stress else 1.0)
     by = {r["year"]: r for r in rows}
     eps = 1e-6
     first = next((r["year"] for r in rows if r["debt"] <= H + eps), None)
