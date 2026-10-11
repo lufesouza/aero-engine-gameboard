@@ -410,10 +410,16 @@ def regret_detail():
             x = R[str(n)][s]
             act = order_text(s, ROUNDS[n - 1]["orders"][s], prev_codes(ROUNDS, ROUNDS[n - 1]))
             best = "the actual orders (tie)" if x["regret_ex_post"] < 0.005 else x["best_ex_post"]["plan"]
+            ob = x["best_ex_post"].get("objectives_ex_post") or []
+            fin = FINAL["objectives"][s]
+            k = sum(1 for o in fin if o["met"])
+            objs = (f'{k} → {sum(1 for _, m in ob if m)} of {len(fin)}' if ob else
+                    f'{k} → {k} of {len(fin)}' if x["regret_ex_post"] < 0.005 else "—")
             rows.append([f"R{n} {esc(NAME[s])}", esc("; ".join(act)), K.num(x["actual_ex_post"]), esc(best),
-                         K.num(x["best_ex_post"]["ex_post"]), K.num(x["regret_ex_post"]), K.num(x["regret_myopic"])])
+                         K.num(x["best_ex_post"]["ex_post"]), K.num(x["regret_ex_post"]), K.num(x["regret_myopic"]), objs])
     return K.tview("Regret by round and player", ["Round, player", "Actual orders", "Final ΔPV (actual)", "Best alternative (ex post)",
-                                                  "Its final ΔPV", "Regret ex post", "Regret myopic"], rows, num_cols=[2, 4, 5, 6])
+                                                  "Its final ΔPV", "Regret ex post", "Regret myopic",
+                                                  "Objectives met: actual → best alternative"], rows, num_cols=[2, 4, 5, 6])
 
 
 # Order fields and values in plain words, for display only (the record keeps the agents' text verbatim)
@@ -733,22 +739,25 @@ C2 = FINAL.get("control2") or {}
 
 
 def chart_debt():
-    """Boeing's net debt as played (final state): base case, stress case, and no new programme."""
+    """Boeing's net debt as played (final state): base case, stress case, and no new programme. All three end at the
+    historical level, so they share one end label; the axis starts below zero to keep it off the year ticks."""
     rows = C2["debt_base"]
     st = C2["debt_stress"]
-    yrs = [r["year"] for r in rows]
     series = [("Net debt, base case", "s1", [(r["year"], r["debt"]) for r in rows]),
               ("Net debt, stress case", "s2", [(r["year"], r["debt"]) for r in st]),
               ("No new programme", "sq", [(r["year"], r["debt_no_programme"]) for r in rows])]
-    last = [0.6, 0.0, -0.6]
-    ends = list(zip([-10, 4, 18], ["Base case 0", "Stress case 0", "No programme 0"]))
-    svg = K.line_chart(series, 0, 25, 5, "int", "Boeing net debt, $B at year end, 2026 dollars", refs=[(0, "historical level (about zero)", "above")],
+    ends = [(-10, "All three: $0"), (0, ""), (0, "")]
+    svg = K.line_chart(series, -5, 25, 5, "int", "Boeing net debt, $B at year end, 2026 dollars (below zero would be net cash)",
+                       refs=[(0, "historical level (about zero)", "below")],
                        aria_label="Boeing net debt by year: base case, stress case and no new programme", end_labels=ends,
                        notes=[(y, f"R{j + 1}") for j, y in enumerate(RYEARS)], x_lo=2026, x_hi=2060)
+    legend = ('<div class="legend"><span><i class="ln" style="background:var(--s1)"></i>Base case</span>'
+              '<span><i class="ln" style="background:var(--s2)"></i>Stress case (free cash flow one-third lower)</span>'
+              '<span><i class="ln" style="background:var(--sq)"></i>No new programme</span></div>')
     trows = [[str(r["year"]), K.num(r["base_fcf"], ".1f"), K.num(r["profit_vs_baseline"]), (f'{r["spend"]:.1f}' if r["spend"] else "—"),
               K.num(r["fcf"]), f'{r["debt"]:.1f}', f'{r["debt_no_programme"]:.1f}', f'{s_["debt"]:.1f}']
              for r, s_ in zip(rows, st) if r["year"] <= 2042 or r["year"] % 5 == 0]
-    return (f'<div class="cw">{svg}</div>'
+    return (legend + f'<div class="cw">{svg}</div>'
             + K.tview("Boeing net-debt path (final state)", ["Year", "Base free cash flow", "Profit vs game baseline", "Programme cash",
                                                          "Free cash flow", "Net debt", "No new programme", "Net debt, stress case"],
                       trows, num_cols=list(range(1, 8))))
@@ -758,8 +767,8 @@ def chart_cash():
     """Boeing's programme cash against the stress-case free cash flow it must fit inside."""
     rows = C2["debt_base"]
     sc = C2["debt_inputs"]["stress_fcf_scale"]
-    series = [("Stress free cash flow", "s2", [(r["year"], r["base_fcf"] * sc) for r in rows], False),
-              ("Programme cash", "s1", [(r["year"], r["spend"]) for r in rows], False)]
+    series = [("Stress FCF", "s2", [(r["year"], r["base_fcf"] * sc) for r in rows], False),
+              ("fps cash", "s1", [(r["year"], r["spend"]) for r in rows], False)]
     return small_lines(series, "$B a year, 2026 dollars", "Boeing programme cash against stress-case free cash flow", y_fmt="int", hi=15)
 
 
@@ -786,13 +795,13 @@ def sources_table():
         rows.append([f"After round {r['round']} ({r['year']})",
                      f'{esc(" + ".join(fps["2040"][1]))} ({len(fps["2040"][1])})', f'{esc(" + ".join(fps["2050"][1]))} ({len(fps["2050"][1])})',
                      f'{esc(" + ".join(ngsa["2040"][1]))} ({len(ngsa["2040"][1])})', f'{esc(" + ".join(ngsa["2050"][1]))} ({len(ngsa["2050"][1])})',
-                     str(len(c["makers"]["2050"])), b(c["rr_nb_exposure"]), b(c["rr_strain"])])
+                     str(len(c["makers"]["2050"])), b(c["rr_nb_exposure"], sign=False), b(c["rr_strain"], sign=False)])
     p = PREV["rounds"][-1]
     pf, pn = p["sources"]["boeing"], p["sources"]["airbus"]
     rows.append(["<i>Previous game, final</i>", f'{esc(" + ".join(pf["2040"][1]))} ({len(pf["2040"][1])})',
                  f'{esc(" + ".join(pf["2050"][1]))} ({len(pf["2050"][1])})', f'{esc(" + ".join(pn["2040"][1]))} ({len(pn["2040"][1])})',
-                 f'{esc(" + ".join(pn["2050"][1]))} ({len(pn["2050"][1])})', str(len(p["makers"]["2050"])), b(p["rr_nb_exposure"]),
-                 b(p["rr_strain"])])
+                 f'{esc(" + ".join(pn["2050"][1]))} ({len(pn["2050"][1])})', str(len(p["makers"]["2050"])), b(p["rr_nb_exposure"], sign=False),
+                 b(p["rr_strain"], sign=False)])
     return K.table(["State", "fps engines 2040", "fps engines 2050", "NGSA engines 2040", "NGSA engines 2050", "NB engine makers 2050",
                     "RR own NB development money", "RR NB+WB strain"], rows, num_cols=(5, 6, 7))
 

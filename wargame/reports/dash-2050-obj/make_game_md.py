@@ -1,6 +1,6 @@
-"""Write dash_2050_exco_report.md: the full written report of the dash-2050-exco war game (ExCo and Board agents on the
-combined_dash.py board), round by round, from data/report_data.json (the same numbers as the HTML page) and the
-narrative in narrative.py.
+"""Write dash_2050_obj_report.md: the full written report of the dash-2050-obj war game (the ExCo and Board agents on the
+combined_dash.py board, replayed with Control's added objectives and the 2026 analyst baselines), round by round, from
+data/report_data.json (the same numbers as the HTML page) and the narrative in narrative.py.
 
 Usage: python3 make_game_md.py [out.md]"""
 import json
@@ -12,7 +12,7 @@ sys.path.insert(0, HERE)
 import narrative as NAR  # noqa: E402
 import page_kit as K  # noqa: E402
 from make_game_html import (AF, EN, NAME, ROUNDS, FINAL, SIDES, YEARS, RYEARS, D, order_text, BRIDGE_LABEL, PEOPLE,  # noqa: E402
-                             chain_summary, SEAT, OLD, XV, lab_af, plain, PLAIN_FIELD, prev_codes,
+                             chain_summary, SEAT, OLD, PREV, C2, lab_af, plain, PLAIN_FIELD, prev_codes,
                              unchanged_since, memo_binding_count)  # noqa: E402
 
 M = K.MINUS
@@ -159,9 +159,43 @@ def round_md(r):
     return "\n".join(L)
 
 
+def control2_md():
+    """Control's added objectives: the scorecard by round, Boeing's net-debt path and the engine sources."""
+    if not C2:
+        return []
+    L = ["## Control's objectives", "", strip(NAR.OBJ_LEDE), "", "### Every objective, after each round", ""]
+    rows = []
+    for s in SIDES:
+        for i, o in enumerate(FINAL["objectives"][s]):
+            rows.append([NAME[s], o["label"]] + ["met" if r["objectives"][s][i]["met"] else "not met" for r in ROUNDS] + [o["detail"]])
+    L += [tbl(["Company", "Objective"] + [f"After {r['year']}" for r in ROUNDS] + ["Detail, final state"], rows), ""]
+    L += [f"### {NAR.DEBT_TITLE}", ""]
+    rows = [[r["year"], f'{r["base_fcf"]:.1f}', n2(r["profit_vs_baseline"]), f'{r["spend"]:.1f}' if r["spend"] else "—", n2(r["fcf"]),
+             f'{r["debt"]:.1f}', f'{r["debt_no_programme"]:.1f}', f'{s_["debt"]:.1f}']
+            for r, s_ in zip(C2["debt_base"], C2["debt_stress"]) if r["year"] <= 2042 or r["year"] % 5 == 0]
+    L += [tbl(["Year", "Base free cash flow", "Profit vs game baseline", "Programme cash", "Free cash flow", "Net debt",
+               "No new programme", "Net debt, stress case"], rows), "", strip(NAR.DEBT_CAP), "", strip(NAR.CASH_NOTE), ""]
+    rows = []
+    for r in ROUNDS:
+        c = r["control2"]
+        fps, ngsa = c["sources"]["boeing"], c["sources"]["airbus"]
+        rows.append([f"After round {r['round']} ({r['year']})", " + ".join(fps["2040"][1]), " + ".join(fps["2050"][1]),
+                     " + ".join(ngsa["2040"][1]), " + ".join(ngsa["2050"][1]), len(c["makers"]["2050"]), n2(c["rr_nb_exposure"]), n2(c["rr_strain"])])
+    p = PREV["rounds"][-1]
+    rows.append(["Previous game, final", " + ".join(p["sources"]["boeing"]["2040"][1]), " + ".join(p["sources"]["boeing"]["2050"][1]),
+                 " + ".join(p["sources"]["airbus"]["2040"][1]), " + ".join(p["sources"]["airbus"]["2050"][1]), len(p["makers"]["2050"]),
+                 n2(p["rr_nb_exposure"]), n2(p["rr_strain"])])
+    L += ["### Engine sources on the new narrowbodies and Rolls-Royce's narrowbody exposure", "",
+          tbl(["State", "fps engines 2040", "fps engines 2050", "NGSA engines 2040", "NGSA engines 2050", "NB engine makers 2050",
+               "RR own NB development money $B", "RR NB+WB strain $B"], rows), "", strip(NAR.SOURCES_CAP), ""]
+    for t, x in NAR.OBJ_POINTS:
+        L += [f"**{t}**", strip(x), ""]
+    return L
+
+
 def build(out):
     L = [f"# {NAR.TITLE}", "", "BOEING PROPRIETARY. Boeing Product Development war game on the narrowbody/widebody game-theory dashboard, "
-         "played by ExCo and Board agents.", "",
+         "played by ExCo and Board agents, with Control's added objectives.", "",
          strip(NAR.LEDE), "", "## Summary", ""]
     rows = []
     for s in SIDES:
@@ -176,6 +210,7 @@ def build(out):
           "### Objectives at the end", "",
           tbl(["Player", "Metric", "Status", "Detail"], [[NAME[s], o["label"], "met" if o["met"] else "not met", o["detail"]]
                                                         for s in SIDES for o in FINAL["objectives"][s]]), ""]
+    L += control2_md()
     L += ["### Regret (final ΔPV of the best alternative minus actual, everyone else's actual orders held)", "",
           tbl(["Player"] + [f"Round {n}" for n in range(1, len(ROUNDS) + 1)],
               [[NAME[s]] + [n2(D["regret"][str(n)][s]["regret_ex_post"]) for n in range(1, len(ROUNDS) + 1)] for s in SIDES]), ""]
@@ -219,20 +254,40 @@ def build(out):
         L += [f"**{t}**", strip(x), ""]
     for r in ROUNDS:
         L += [round_md(r), ""]
-    # the earlier game
-    L += ["## Against the earlier game", "", strip(NAR.COMPARE_LEDE), ""]
+    # the previous game
+    L += ["## Against the previous game", "", strip(NAR.COMPARE_LEDE), ""]
     rows = []
     for i, (r_old, r_new) in enumerate(zip(OLD["rounds"], ROUNDS)):
         for s in SIDES:
             rows.append([f"R{i + 1} {NAME[s]}", "; ".join(order_text(s, r_old["orders"][s], prev_codes(OLD["rounds"], r_old))),
                          "; ".join(order_text(s, r_new["orders"][s], prev_codes(ROUNDS, r_new)))])
-    L += [tbl(["Round, company", "Earlier game (one strategist agent, earlier dashboard)", "This game (ExCo and Board agents, new dashboard)"], rows), ""]
-    if XV:
-        L += ["Final ΔPV, $B, each game's final state on both versions of the dashboard:", "",
-              tbl(["Company", "Earlier game, earlier dashboard (as played)", "Earlier game's state, new dashboard", "This game, new dashboard (as played)",
-                   "This game's state, earlier dashboard"],
-                  [[NAME[s], n2(XV["earlier_v2"][s]), n2(XV["earlier_v3"][s]), n2(XV["this_v3"][s]), n2(XV["this_v2"][s])] for s in SIDES]), ""]
+    L += [tbl(["Round, company", "Previous game: base objectives", "This game: Control's added objectives and the analyst baselines"], rows), ""]
+    of = OLD["rounds"][-1]
+    L += ["Final ΔPV, $B (same dashboard):", "",
+          tbl(["Company", "Previous game", "This game", "Change"],
+              [[NAME[s], n2(of["value"][s]["pv_delta"]), n2(FINAL["value"][s]["pv_delta"]),
+                n2(FINAL["value"][s]["pv_delta"] - of["value"][s]["pv_delta"])] for s in SIDES]), ""]
+    pr = PREV["rounds"][-1]["objectives"]
+    rows = []
+    for s in ("boeing", "airbus", "rolls_royce"):
+        new = [o for o in FINAL["objectives"][s] if o["label"] in [p["label"] for p in pr[s]]]
+        for p, n_ in zip(pr[s], new):
+            rows.append([NAME[s], p["label"], "met" if p["met"] else "not met", "met" if n_["met"] else "not met"])
+    L += ["Control's objectives on both games (final state; the previous game is scored after the fact):", "",
+          tbl(["Company", "Objective", "Previous game", "This game"], rows), ""]
+    rows = []
+    for lab, side, key in (("Boeing narrowbody", "boeing", "nb_share"), ("Airbus narrowbody", "airbus", "nb_share"),
+                           ("CFM/GE narrowbody engines", "cfm", "nb_share"), ("P&W narrowbody engines", "pratt_whitney", "nb_share"),
+                           ("Rolls-Royce narrowbody engines", "rolls_royce", "nb_share"), ("CFM/GE widebody engines", "cfm", "wb_share"),
+                           ("Rolls-Royce widebody engines", "rolls_royce", "wb_share")):
+        rows.append([lab] + [pct(g["snapshots"][str(y)][side][key]) for y in (2040, 2045, 2050) for g in (of, FINAL)])
+    L += ["Market outcome of both games (final state):", "",
+          tbl(["Share", "2040 previous", "2040 this", "2045 previous", "2045 this", "2050 previous", "2050 this"], rows), ""]
     for t, x in NAR.COMPARE_POINTS:
+        L += [f"**{t}**", strip(x), ""]
+    L += ["## The analyst models: prediction against the game", "", strip(NAR.ANALYST_LEDE), "",
+          tbl(["Company", "Fact", "Source"], [list(r) for r in NAR.ANALYST_TABLE]), "", strip(NAR.ANALYST_CAP), ""]
+    for t, x in NAR.ANALYST_POINTS:
         L += [f"**{t}**", strip(x), ""]
     L += ["## Method", "", strip(NAR.METHOD), ""]
     bc = D.get("board_check")
@@ -248,4 +303,4 @@ def build(out):
 
 
 if __name__ == "__main__":
-    build(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "dash_2050_exco_report.md"))
+    build(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "dash_2050_obj_report.md"))
