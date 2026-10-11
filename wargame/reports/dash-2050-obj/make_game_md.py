@@ -226,7 +226,7 @@ def build(out):
                          ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_vetoed") or []) or "—",
                          ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_reverted") or []) or "—"])
     L += [tbl(["Round, company", "Binding vetoes at the veto check", "Red-line flags", "ExCo revised", "Board items", "Board vetoed", "Reverted"], rows), "",
-          f"The binding vetoes in the CFOs' and operating heads' test memos ({memo_binding_count()} in all) fell on options the CEO did not choose.", ""]
+          f"The binding vetoes in the CFOs' and operating heads' test memos ({memo_binding_count()} in all) fell on options the CEO did not choose or, where conditional, were answered by the CEO's wording; none was invoked against a chosen order.", ""]
     for t, x in NAR.GOV_POINTS:
         L += [f"**{t}**", strip(x), ""]
     # equilibria and the stage game

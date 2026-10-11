@@ -7,12 +7,12 @@ against the data when it builds (see CHECKS and SHARE_CHECKS). Titles, tiles and
 builders escape them); the other strings are HTML. "The dashboard" is the game-theory model (combined_dash.py);
 "Board" is always a company's Board; "Control" is the game's control cell, which set the objectives."""
 
-TITLE = ("One order changes: Boeing opens fps to all three engine makers. Both new narrowbodies fly two engine sources and "
+TITLE = ("One choice changes: Boeing opens fps to all three engine makers. Both new narrowbodies fly two engine sources and "
          "Boeing's balance sheet stays repaired; CFM/GE falls to 27% of narrowbody engines")
 
 LEDE = (
-    "<b>One order changed against the previous game: Boeing opened fps to all three engine makers instead of CFM alone, "
-    "for Control's supply enabler. Every other order in the four rounds was the same.</b> "
+    "<b>One choice changed against the previous game: Boeing opened fps to all three engine makers instead of CFM alone, "
+    "for Control's supply enabler (ordered in 2030, kept in 2035). Every other order in the four rounds was the same.</b> "
     "So the airframers' values did not move (Airbus ΔPV +$23.37B, Boeing +$0.66B), and the engine makers' did: "
     "Rolls-Royce +$32.35B (was +$20.55B), P&amp;W +$8.88B (was −$2.93B), CFM/GE −$69.69B (was −$38.29B). From 2040 the "
     "P&amp;W-Rolls-Royce Joint Venture engine flies on both new narrowbodies and its partners hold 36.5% of narrowbody "
@@ -27,11 +27,12 @@ LEDE = (
     "analyst models in their files. No Board vetoed anything.")
 
 FINDINGS = [
-    ("Control's supply enabler changed one order: Boeing opened fps to all three engine makers.",
+    ("Control's supply enabler changed one choice: Boeing opened fps to all three engine makers.",
      " The engine code does not enter Boeing's value on the dashboard, so the change cost Boeing nothing.<ul>"
      "<li>Ortberg's own record: \"Doctrine and my Low-confidence lean were code 3; code 7 keeps CFM as the fallback and "
      "serves the supply-stability enabler.\" His Board had asked for code 7 \"at no cost to Boeing's payoff\".</li>"
-     "<li>In the previous game, with no enabler in its brief, Boeing put fps on CFM alone (code 3).</li>"
+     "<li>In the previous game, with no enabler in its brief, Boeing put fps on CFM alone (code 3) and kept it there in "
+     "2035. Here it ordered code 7 in 2030 and kept it in 2035.</li>"
      "<li>Boeing published an engine competition: CFM the baseline engine, certifying first; a P&amp;W or Rolls-Royce "
      "engine to follow \"once it shows maturity and durability\". Goal: \"two or three engine sources on our narrowbody "
      "and three narrowbody engine makers in the market.\"</li>"
@@ -99,7 +100,8 @@ FINDINGS = [
      "missed (53% in 2050), as before.</li></ul>"),
     ("No Board vetoed anything, and no veto check sent a decision back.",
      "<ul><li>Nine orders went to a Board (seven in 2030, two in 2035), all approved, as in the previous game.</li>"
-     "<li>The CFOs' and operating heads' test memos marked 60 vetoes binding, all on options the CEOs did not choose.</li>"
+     "<li>The CFOs' and operating heads' test memos marked 60 vetoes binding; none was invoked against an order the "
+     "CEO chose.</li>"
      "<li>Of 140 answers to Board recommendations, the one open divergence is again Boeing's ramp. This time the "
      "Board had offered the 10-year as an alternative it would approve.</li></ul>"),
 ]
@@ -161,8 +163,8 @@ SOURCES_CAP = (
     "$8B Solo bill while the Solo stood, then $5.71B: its $4B Joint Venture share plus $1.71B written off at the fold. "
     "The previous game's final state (fps on CFM alone) is scored on the same yardstick.")
 OBJ_POINTS = [
-    ("The supply enabler changed the one order that changed.",
-     "<ul><li>Boeing chose code 7 against its own lean to code 3, because of the enabler, at no cost to its value. "
+    ("The supply enabler changed the one choice that changed.",
+     "<ul><li>Boeing chose code 7 against its doctrine lean to code 3, because of the enabler, at no cost to its value. "
      "Airbus chose code 7 as in the previous game, now argued through the enabler.</li>"
      "<li>On the previous game's orders Boeing's first enabler line fails: fps on CFM alone, one source in 2040-2050. "
      "Both games keep three narrowbody engine makers.</li></ul>"),
@@ -322,13 +324,13 @@ GOV_LEDE = (
     "check on that decision, and the CEO could revise once. Any order other than hold then went to the Board, with one "
     "more revision and a reversion to the default if a Board veto stood. "
     "In their test memos the CFO and operating head could mark any option a veto, some binding; the CEOs treated the "
-    "binding ones as ruling those options out before choosing. Control's objectives entered every step: each Board's "
-    "guidance, the CFOs' tests (Boeing's debt line, Rolls-Royce's $4B line) and each CEO's objective note. Names below "
+    "binding ones as ruling those options out before choosing. Control's objectives entered every step: the guidance of "
+    "the three Boards with an added objective (Boeing, Airbus, Rolls-Royce), the CFOs' tests (Boeing's debt line, Rolls-Royce's $4B line) and each CEO's objective note. Names below "
     "are the agents profiled on those executives, not the people.")
 
 GOV_POINTS = [
     ("The Boards wrote Control's objectives into their limits.",
-     "<ul><li><b>Boeing:</b> \"net debt must reach $0 by end-2030 and stay there, stress case included\", and code 7 "
+     "<ul><li><b>Boeing:</b> \"Net debt must reach $0 by end-2030 and stay there, in the stress case too\", and code 7 "
      "for the enabler \"at no cost to Boeing's payoff\". It offered to approve the 10-year ramp, against its own "
      "worst-column preference, if the $0.46B was logged as objective premium.</li>"
      "<li><b>Airbus:</b> \"A stable engine supply\" as a priority, code 7 preferred, \"the Board never vetoes a "
@@ -337,14 +339,16 @@ GOV_POINTS = [
      "every widebody programme off the record: \"Any widebody programme now carries $5B for good.\"</li>"
      "<li><b>CFM/GE and P&amp;W</b> had no added objective. Their Boards' limits were the previous game's.</li></ul>"),
     ("No seat said an objective changed an order, except Boeing's CEO on the engine code.",
-     "<ul><li>Every company logged its objective premium. Boeing: $0.46B in 2030, half of it for the stress-case debt "
-     "line. Rolls-Royce declined the $8.31B it would have cost to stay inside its bound. Airbus and CFM/GE paid nothing "
+     "<ul><li>Every company logged its objective premium. Boeing: $0.46B in 2030, logged as doctrine plus objective "
+     "(the stress-case debt line), with no split between the two. Rolls-Royce declined the $8.31B it would have cost to stay inside its bound. Airbus and CFM/GE paid nothing "
      "for objectives.</li>"
-     "<li>Doctrine premiums, logged separately: Boeing $0.65B (2035) and $0.05B (2050); Airbus $0.89B (2045) and $0.57B "
+     "<li>Doctrine premiums, logged separately: Boeing $0.65B (2035), $0.30B (2045, counted after the fact once Airbus "
+     "held) and $0.05B (2050); Airbus $0.89B (2045) and $0.57B "
      "(2050) for holding the A350 Re-engine; P&amp;W $0.26B (2030) for launching only on selection.</li></ul>"),
-    ("The ExCos agreed at the decision; their binding vetoes fell on the options left out.",
+    ("The ExCos agreed at the decision; no binding veto was invoked against a chosen order.",
      "<ul><li>The memos marked 60 vetoes binding (Airbus 22, CFM/GE 16, Rolls-Royce 11, P&amp;W 8, Boeing 3), all on "
-     "options the CEO did not choose. The previous game had 58.</li>"
+     "options the CEO did not choose, or conditional vetoes on the chosen order or statement that the CEO's wording or "
+     "expected column answered; none was invoked against an order chosen. The previous game had 58.</li>"
      "<li>Failed tests on chosen orders were advice: Rolls-Royce's CFO failed its own $4B line on the conditional "
      "launch (and, later, on the hold that kept it) and an R&amp;D-envelope test; CFM/GE's CFO flagged a \"second stack "
      "of projects\" on its 2030 package.</li></ul>"),
@@ -418,8 +422,9 @@ PLAY_POINTS = [
     ("Regret: Airbus gave up most, $3.30B in 2030; none of the best alternatives changes an objective result except "
      "Rolls-Royce's.",
      "<ul><li><b>Boeing:</b> $2.20B in 2030, falling to $0.04B in 2050, all from the 787 Re-engine. With the 10-year "
-     "ramp it keeps every debt line and the enabler, so Control's objectives would not have stopped it; the "
-     "one-development-at-a-time rule and the Board's downside test did.</li>"
+     "ramp it keeps every debt line and the enabler, so Control's objectives would not have stopped it. In 2030 and "
+     "2035 the one-development-at-a-time rule and the Board's downside test did; in 2045 and 2050 the Board's $1B "
+     "business-case test.</li>"
      "<li><b>Airbus:</b> $3.30B in 2030 and $3.19B in 2035 (one Delay Tactics move and the A350 Re-engine), then $0.89B "
      "and $0.57B. Its objective results would have been the same.</li>"
      "<li><b>Rolls-Royce:</b> $1.71B in 2030, exactly its fold-in write-off. Holding UltraFan NB in 2030 and joining in "
@@ -428,7 +433,7 @@ PLAY_POINTS = [
     ("Calibration: the 2030 grids missed the engine selections.",
      "<ul><li>Airbus expected +$45.82B in 2030, in the case where Boeing held fps; it got +$23.37B. Boeing expected "
      "−$1.96B, in the case where Airbus also re-engined the A350; it got +$0.66B.</li>"
-     "<li>The engine makers' 2030 cases rarely had both airframers selecting all three makers. CFM/GE expected −$21B "
+     "<li>None of the engine makers' 2030 cases had both airframers selecting all three makers. CFM/GE expected −$21B "
      "(NGSA on CFM and P&amp;W only) and got −$62.61B; Rolls-Royce +$8.31B (weighted) against +$30.07B; P&amp;W +$0.23B "
      "against +$3.37B.</li>"
      "<li>In 2035 P&amp;W and Rolls-Royce again weighted the other's Joint Venture commitment low (0.10 or less): P&amp;W "
@@ -443,16 +448,18 @@ PLAY_POINTS = [
 
 # ─────────────────────────────── against the previous game ───────────────────────────────
 COMPARE_LEDE = (
-    "<b>One order differs, Boeing's fps engine selection in 2030, and it moves the engine makers' values by $31.40B "
-    "(CFM/GE) and about $11.8B each (P&amp;W and Rolls-Royce).</b> Both games used the same dashboard (combined_dash.py "
-    "at the Game_v3.txt snapshot), the same twenty agents, the same rules and the same four decision years. This game "
-    "added Control's objectives, the GM's net-debt tracker and the 2026 analyst notes to the companies' files. Each "
+    "<b>One choice differs, Boeing's fps engine selection (ordered in 2030, kept in 2035), and it moves the engine "
+    "makers' values by $31.40B (CFM/GE) and $11.81B each (P&amp;W and Rolls-Royce).</b> Both games used the same dashboard "
+    "(combined_dash.py at the Game_v3.txt snapshot), the same twenty agents, the same rules (bar one clarifying sentence, "
+    "see Method) and the same four decision years. This game added Control's objectives, the GM's net-debt tracker and "
+    "the 2026 analyst notes to the companies' files. Each "
     "company's decision record shows why its orders matched or differed.")
 
 COMPARE_POINTS = [
-    ("One order differs.",
-     "<ul><li>Boeing's fps engine selection: CFM alone (code 3) in the previous game, all three makers (code 7) here. "
-     "Ortberg's lean was code 3 in both games; the enabler moved it.</li>"
+    ("One choice differs.",
+     "<ul><li>Boeing's fps engine selection: CFM alone (code 3) in the previous game, all three makers (code 7) here, "
+     "each ordered in 2030 and kept in 2035. Ortberg's doctrine lean was code 3 in both games; here, with the enabler "
+     "and his Board's advice, he framed and ordered code 7.</li>"
      "<li>Every other order in all 20 company-rounds is the same, including Boeing's 10-year ramp, both Joint Venture "
      "commitments and every hold.</li></ul>"),
     ("Same orders, different reasons.",
@@ -463,7 +470,7 @@ COMPARE_POINTS = [
      "trap\".</li>"
      "<li><b>Rolls-Royce's 2030 launch:</b> the same order, now with the $4B breach priced and stated.</li></ul>"),
     ("The engine makers' values move with one selection.",
-     "<ul><li>P&amp;W +$11.81B and Rolls-Royce +$11.80B: from 2040 fps is split among all three makers, with the Joint "
+     "<ul><li>P&amp;W and Rolls-Royce +$11.81B each: from 2040 fps is split among all three makers, with the Joint "
      "Venture engine beside CFM, where before it was all CFM. CFM/GE −$31.40B.</li>"
      "<li>The three engine makers together are $7.79B worse off, so the change is not a pure transfer (inference: the "
      "makers' discount rates and lifecycle values differ).</li>"
@@ -484,10 +491,11 @@ METHOD = """
 <ul class="cav">
 <li><b>A replay.</b> The previous ExCo-and-Board game (run dash-2050-exco) replayed from the start in a fresh run,
 dash-2050-obj: the same dashboard, agents, rules and decision years. Three things were added to the companies' files
-before 2030, and nothing else changed.
+before 2030. Otherwise the public rules gained one clarifying sentence (spend beyond a maker's Joint Venture share is
+written off in the fold year) and the GM's model one check (below); both games replay exactly.
 <ul>
-<li><b>Control's objectives</b> (listed under Control's objectives), in each company's private brief with its metrics
-for every plan on the payoff grid. Boeing's brief also carried its net-debt path, base and stress, and a table of the
+<li><b>Control's objectives</b> (listed under Control's objectives), in Boeing's, Airbus's and Rolls-Royce's private
+briefs, with their metrics for every plan on the payoff grid. CFM/GE's and P&amp;W's objectives were unchanged. Boeing's brief also carried its net-debt path, base and stress, and a table of the
 engine sources each engine code would give.</li>
 <li><b>The GM's balance-sheet tracker</b> for Boeing (below).</li>
 <li><b>The analyst notes</b>: a note per company on the July-August 2026 Morgan Stanley and Goldman Sachs models and,

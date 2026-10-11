@@ -696,7 +696,7 @@ def governance_section():
             'with its launch and is never a Board item on its own. A binding veto or a red-line flag at the veto check (the CFO\'s and '
             'operating head\'s check of the CEO\'s actual decision) sends it back to the CEO for one revision; a Board veto sends it back '
             'once more, and a still-vetoed item reverts to the default. The binding vetoes in the CFOs\' and operating heads\' test memos '
-            f'({memo_binding_count()} in all) fell on options the CEO did not choose, so none appears here.</p></div>'
+            f'({memo_binding_count()} in all) fell on options the CEO did not choose or, where conditional, were answered by the CEO\'s wording; none was invoked against a chosen order, so none appears here.</p></div>'
             f'<div class="bl">{"".join(f"<div class=panel><div><b>{esc(t)}</b>{x}</div></div>" for t, x in NAR.GOV_POINTS)}</div>'
             '</div></section>')
 

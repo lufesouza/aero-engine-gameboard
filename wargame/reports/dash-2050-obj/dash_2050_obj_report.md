@@ -1,8 +1,8 @@
-# One order changes: Boeing opens fps to all three engine makers. Both new narrowbodies fly two engine sources and Boeing's balance sheet stays repaired; CFM/GE falls to 27% of narrowbody engines
+# One choice changes: Boeing opens fps to all three engine makers. Both new narrowbodies fly two engine sources and Boeing's balance sheet stays repaired; CFM/GE falls to 27% of narrowbody engines
 
 BOEING PROPRIETARY. Boeing Product Development war game on the narrowbody/widebody game-theory dashboard, played by ExCo and Board agents, with Control's added objectives.
 
-One order changed against the previous game: Boeing opened fps to all three engine makers instead of CFM alone, for Control's supply enabler. Every other order in the four rounds was the same. So the airframers' values did not move (Airbus ΔPV +$23.37B, Boeing +$0.66B), and the engine makers' did: Rolls-Royce +$32.35B (was +$20.55B), P&W +$8.88B (was −$2.93B), CFM/GE −$69.69B (was −$38.29B). From 2040 the P&W-Rolls-Royce Joint Venture engine flies on both new narrowbodies and its partners hold 36.5% of narrowbody engines each; CFM/GE holds 27%, against 76% today. On Control's objectives: Boeing's net debt is at its historical level from 2029 (from 2030 in the stress case) and stays there through the fps spending peak. Both new narrowbodies fly two engine sources, CFM and the Joint Venture engine, with three engine makers in the market. Rolls-Royce's widebody was never starved, but its own narrowbody money reached $5.71B against the $4B bound, a breach it stated before ordering. Thirteen of nineteen objectives were met, against twelve for the previous game's orders scored the same way. Twenty AI agents played four sealed rounds (2030, 2035, 2045 and 2050), as before: each company an executive committee (ExCo) of CEO, CFO and operating head under a Board agent, now with Control's objectives and the 2026 analyst models in their files. No Board vetoed anything.
+One choice changed against the previous game: Boeing opened fps to all three engine makers instead of CFM alone, for Control's supply enabler (ordered in 2030, kept in 2035). Every other order in the four rounds was the same. So the airframers' values did not move (Airbus ΔPV +$23.37B, Boeing +$0.66B), and the engine makers' did: Rolls-Royce +$32.35B (was +$20.55B), P&W +$8.88B (was −$2.93B), CFM/GE −$69.69B (was −$38.29B). From 2040 the P&W-Rolls-Royce Joint Venture engine flies on both new narrowbodies and its partners hold 36.5% of narrowbody engines each; CFM/GE holds 27%, against 76% today. On Control's objectives: Boeing's net debt is at its historical level from 2029 (from 2030 in the stress case) and stays there through the fps spending peak. Both new narrowbodies fly two engine sources, CFM and the Joint Venture engine, with three engine makers in the market. Rolls-Royce's widebody was never starved, but its own narrowbody money reached $5.71B against the $4B bound, a breach it stated before ordering. Thirteen of nineteen objectives were met, against twelve for the previous game's orders scored the same way. Twenty AI agents played four sealed rounds (2030, 2035, 2045 and 2050), as before: each company an executive committee (ExCo) of CEO, CFO and operating head under a Board agent, now with Control's objectives and the 2026 analyst models in their files. No Board vetoed anything.
 
 ## Summary
 
@@ -14,10 +14,10 @@ One order changed against the previous game: Boeing opened fps to all three engi
 | Pratt & Whitney | +8.88 | 108.07% | 2 of 2 |
 | Rolls-Royce | +32.35 | 129.41% | 3 of 4 |
 
-**Control's supply enabler changed one order: Boeing opened fps to all three engine makers.**
+**Control's supply enabler changed one choice: Boeing opened fps to all three engine makers.**
 The engine code does not enter Boeing's value on the dashboard, so the change cost Boeing nothing.
 - Ortberg's own record: "Doctrine and my Low-confidence lean were code 3; code 7 keeps CFM as the fallback and serves the supply-stability enabler." His Board had asked for code 7 "at no cost to Boeing's payoff".
-- In the previous game, with no enabler in its brief, Boeing put fps on CFM alone (code 3).
+- In the previous game, with no enabler in its brief, Boeing put fps on CFM alone (code 3) and kept it there in 2035. Here it ordered code 7 in 2030 and kept it in 2035.
 - Boeing published an engine competition: CFM the baseline engine, certifying first; a P&W or Rolls-Royce engine to follow "once it shows maturity and durability". Goal: "two or three engine sources on our narrowbody and three narrowbody engine makers in the market."
 - P&W and Rolls-Royce had each ordered a launch conditional on selection, so both triggered on both airframes. After 2030 each new narrowbody had three engine sources.
 
@@ -52,7 +52,7 @@ The engine code does not enter Boeing's value on the dashboard, so the change co
 
 **No Board vetoed anything, and no veto check sent a decision back.**
 - Nine orders went to a Board (seven in 2030, two in 2035), all approved, as in the previous game.
-- The CFOs' and operating heads' test memos marked 60 vetoes binding, all on options the CEOs did not choose.
+- The CFOs' and operating heads' test memos marked 60 vetoes binding; none was invoked against an order the CEO chose.
 - Of 140 answers to Board recommendations, the one open divergence is again Boeing's ramp. This time the Board had offered the 10-year as an alternative it would approve.
 
 
@@ -166,8 +166,8 @@ Net debt at year end in 2026 dollars, from the consensus $22.53B at end-2026. Ba
 
 Independent engine sources fitted to each new narrowbody in production, as Control counts them: the Joint Venture engine is one source. After 2030 each new narrowbody had three (CFM, GTF2 and UltraFan NB, all ready by entry into service); the Joint Venture formed in 2035 made it two. Rolls-Royce's own narrowbody development money is the $8B Solo bill while the Solo stood, then $5.71B: its $4B Joint Venture share plus $1.71B written off at the fold. The previous game's final state (fps on CFM alone) is scored on the same yardstick.
 
-**The supply enabler changed the one order that changed.**
-- Boeing chose code 7 against its own lean to code 3, because of the enabler, at no cost to its value. Airbus chose code 7 as in the previous game, now argued through the enabler.
+**The supply enabler changed the one choice that changed.**
+- Boeing chose code 7 against its doctrine lean to code 3, because of the enabler, at no cost to its value. Airbus chose code 7 as in the previous game, now argued through the enabler.
 - On the previous game's orders Boeing's first enabler line fails: fps on CFM alone, one source in 2040-2050. Both games keep three narrowbody engine makers.
 
 **Two sources, not three: the Joint Venture merged them.**
@@ -199,7 +199,7 @@ Independent engine sources fitted to each new narrowbody in production, as Contr
 
 ## How the companies decided
 
-As in the previous game, the chain never needed its later steps: no binding veto at the veto check, red-line flag, revision, Board veto or reversion in 20 company-rounds. Each company ran the same chain every round. The Board gave guidance. The CEO framed the choice, and the CFO and operating head tested the options independently. The CEO decided; the CFO and operating head then ran a veto check on that decision, and the CEO could revise once. Any order other than hold then went to the Board, with one more revision and a reversion to the default if a Board veto stood. In their test memos the CFO and operating head could mark any option a veto, some binding; the CEOs treated the binding ones as ruling those options out before choosing. Control's objectives entered every step: each Board's guidance, the CFOs' tests (Boeing's debt line, Rolls-Royce's $4B line) and each CEO's objective note. Names below are the agents profiled on those executives, not the people.
+As in the previous game, the chain never needed its later steps: no binding veto at the veto check, red-line flag, revision, Board veto or reversion in 20 company-rounds. Each company ran the same chain every round. The Board gave guidance. The CEO framed the choice, and the CFO and operating head tested the options independently. The CEO decided; the CFO and operating head then ran a veto check on that decision, and the CEO could revise once. Any order other than hold then went to the Board, with one more revision and a reversion to the default if a Board veto stood. In their test memos the CFO and operating head could mark any option a veto, some binding; the CEOs treated the binding ones as ruling those options out before choosing. Control's objectives entered every step: the guidance of the three Boards with an added objective (Boeing, Airbus, Rolls-Royce), the CFOs' tests (Boeing's debt line, Rolls-Royce's $4B line) and each CEO's objective note. Names below are the agents profiled on those executives, not the people.
 
 | Round, company | Binding vetoes at the veto check | Red-line flags | ExCo revised | Board items | Board vetoed | Reverted |
 |---|---:|---:|---:|---|---:|---:|
@@ -224,20 +224,20 @@ As in the previous game, the chain never needed its later steps: no binding veto
 | R4 Pratt & Whitney | — | — | — | — | — | — |
 | R4 Rolls-Royce | — | — | — | — | — | — |
 
-The binding vetoes in the CFOs' and operating heads' test memos (60 in all) fell on options the CEO did not choose.
+The binding vetoes in the CFOs' and operating heads' test memos (60 in all) fell on options the CEO did not choose or, where conditional, were answered by the CEO's wording; none was invoked against a chosen order.
 
 **The Boards wrote Control's objectives into their limits.**
-- Boeing: "net debt must reach $0 by end-2030 and stay there, stress case included", and code 7 for the enabler "at no cost to Boeing's payoff". It offered to approve the 10-year ramp, against its own worst-column preference, if the $0.46B was logged as objective premium.
+- Boeing: "Net debt must reach $0 by end-2030 and stay there, in the stress case too", and code 7 for the enabler "at no cost to Boeing's payoff". It offered to approve the 10-year ramp, against its own worst-column preference, if the $0.46B was logged as objective premium.
 - Airbus: "A stable engine supply" as a priority, code 7 preferred, "the Board never vetoes a code".
 - Rolls-Royce: it would accept the $8B against $4B "only because the trigger is a selection", and kept every widebody programme off the record: "Any widebody programme now carries $5B for good."
 - CFM/GE and P&W had no added objective. Their Boards' limits were the previous game's.
 
 **No seat said an objective changed an order, except Boeing's CEO on the engine code.**
-- Every company logged its objective premium. Boeing: $0.46B in 2030, half of it for the stress-case debt line. Rolls-Royce declined the $8.31B it would have cost to stay inside its bound. Airbus and CFM/GE paid nothing for objectives.
-- Doctrine premiums, logged separately: Boeing $0.65B (2035) and $0.05B (2050); Airbus $0.89B (2045) and $0.57B (2050) for holding the A350 Re-engine; P&W $0.26B (2030) for launching only on selection.
+- Every company logged its objective premium. Boeing: $0.46B in 2030, logged as doctrine plus objective (the stress-case debt line), with no split between the two. Rolls-Royce declined the $8.31B it would have cost to stay inside its bound. Airbus and CFM/GE paid nothing for objectives.
+- Doctrine premiums, logged separately: Boeing $0.65B (2035), $0.30B (2045, counted after the fact once Airbus held) and $0.05B (2050); Airbus $0.89B (2045) and $0.57B (2050) for holding the A350 Re-engine; P&W $0.26B (2030) for launching only on selection.
 
-**The ExCos agreed at the decision; their binding vetoes fell on the options left out.**
-- The memos marked 60 vetoes binding (Airbus 22, CFM/GE 16, Rolls-Royce 11, P&W 8, Boeing 3), all on options the CEO did not choose. The previous game had 58.
+**The ExCos agreed at the decision; no binding veto was invoked against a chosen order.**
+- The memos marked 60 vetoes binding (Airbus 22, CFM/GE 16, Rolls-Royce 11, P&W 8, Boeing 3), all on options the CEO did not choose, or conditional vetoes on the chosen order or statement that the CEO's wording or expected column answered; none was invoked against an order chosen. The previous game had 58.
 - Failed tests on chosen orders were advice: Rolls-Royce's CFO failed its own $4B line on the conditional launch (and, later, on the hold that kept it) and an R&D-envelope test; CFM/GE's CFO flagged a "second stack of projects" on its 2030 package.
 
 **The Boards' advice that was not taken was about words, not orders.**
@@ -277,13 +277,13 @@ Where the game ended, as a board cell: Airbus Launch NGSA + Do Nothing A350; Boe
 - In each round's stage game the two pure equilibria have one airframer re-engine and the other hold: Chicken on the widebody through 2050. Both holding was within $1B of each side's best reply only in 2045 and 2050.
 
 **Regret: Airbus gave up most, $3.30B in 2030; none of the best alternatives changes an objective result except Rolls-Royce's.**
-- Boeing: $2.20B in 2030, falling to $0.04B in 2050, all from the 787 Re-engine. With the 10-year ramp it keeps every debt line and the enabler, so Control's objectives would not have stopped it; the one-development-at-a-time rule and the Board's downside test did.
+- Boeing: $2.20B in 2030, falling to $0.04B in 2050, all from the 787 Re-engine. With the 10-year ramp it keeps every debt line and the enabler, so Control's objectives would not have stopped it. In 2030 and 2035 the one-development-at-a-time rule and the Board's downside test did; in 2045 and 2050 the Board's $1B business-case test.
 - Airbus: $3.30B in 2030 and $3.19B in 2035 (one Delay Tactics move and the A350 Re-engine), then $0.89B and $0.57B. Its objective results would have been the same.
 - Rolls-Royce: $1.71B in 2030, exactly its fold-in write-off. Holding UltraFan NB in 2030 and joining in 2035 would have brought the same Joint Venture without it, and met all four objectives. Valued as if nobody moved afterwards, the conditional launch was its best order (no myopic regret).
 
 **Calibration: the 2030 grids missed the engine selections.**
 - Airbus expected +$45.82B in 2030, in the case where Boeing held fps; it got +$23.37B. Boeing expected −$1.96B, in the case where Airbus also re-engined the A350; it got +$0.66B.
-- The engine makers' 2030 cases rarely had both airframers selecting all three makers. CFM/GE expected −$21B (NGSA on CFM and P&W only) and got −$62.61B; Rolls-Royce +$8.31B (weighted) against +$30.07B; P&W +$0.23B against +$3.37B.
+- None of the engine makers' 2030 cases had both airframers selecting all three makers. CFM/GE expected −$21B (NGSA on CFM and P&W only) and got −$62.61B; Rolls-Royce +$8.31B (weighted) against +$30.07B; P&W +$0.23B against +$3.37B.
 - In 2035 P&W and Rolls-Royce again weighted the other's Joint Venture commitment low (0.10 or less): P&W expected +$0.39B and got +$8.88B. Calio: "In a sealed, simultaneous round, Rolls-Royce's conditional commit was as free and as dominant for it as ours was for us." From 2045 every company was within $1.31B.
 
 **All 20 company-rounds kept to their own information.**
@@ -3793,7 +3793,7 @@ RECORD AND DOCTRINE
 
 ## Against the previous game
 
-One order differs, Boeing's fps engine selection in 2030, and it moves the engine makers' values by $31.40B (CFM/GE) and about $11.8B each (P&W and Rolls-Royce). Both games used the same dashboard (combined_dash.py at the Game_v3.txt snapshot), the same twenty agents, the same rules and the same four decision years. This game added Control's objectives, the GM's net-debt tracker and the 2026 analyst notes to the companies' files. Each company's decision record shows why its orders matched or differed.
+One choice differs, Boeing's fps engine selection (ordered in 2030, kept in 2035), and it moves the engine makers' values by $31.40B (CFM/GE) and $11.81B each (P&W and Rolls-Royce). Both games used the same dashboard (combined_dash.py at the Game_v3.txt snapshot), the same twenty agents, the same rules (bar one clarifying sentence, see Method) and the same four decision years. This game added Control's objectives, the GM's net-debt tracker and the 2026 analyst notes to the companies' files. Each company's decision record shows why its orders matched or differed.
 
 | Round, company | Previous game: base objectives | This game: Control's added objectives and the analyst baselines |
 |---|---|---|
@@ -3854,8 +3854,8 @@ Market outcome of both games (final state):
 | CFM/GE widebody engines | 42.0% | 42.0% | 44.8% | 44.8% | 44.8% | 44.8% |
 | Rolls-Royce widebody engines | 58.0% | 58.0% | 55.2% | 55.2% | 55.2% | 55.2% |
 
-**One order differs.**
-- Boeing's fps engine selection: CFM alone (code 3) in the previous game, all three makers (code 7) here. Ortberg's lean was code 3 in both games; the enabler moved it.
+**One choice differs.**
+- Boeing's fps engine selection: CFM alone (code 3) in the previous game, all three makers (code 7) here, each ordered in 2030 and kept in 2035. Ortberg's doctrine lean was code 3 in both games; here, with the enabler and his Board's advice, he framed and ordered code 7.
 - Every other order in all 20 company-rounds is the same, including Boeing's 10-year ramp, both Joint Venture commitments and every hold.
 
 **Same orders, different reasons.**
@@ -3864,7 +3864,7 @@ Market outcome of both games (final state):
 - Rolls-Royce's 2030 launch: the same order, now with the $4B breach priced and stated.
 
 **The engine makers' values move with one selection.**
-- P&W +$11.81B and Rolls-Royce +$11.80B: from 2040 fps is split among all three makers, with the Joint Venture engine beside CFM, where before it was all CFM. CFM/GE −$31.40B.
+- P&W and Rolls-Royce +$11.81B each: from 2040 fps is split among all three makers, with the Joint Venture engine beside CFM, where before it was all CFM. CFM/GE −$31.40B.
 - The three engine makers together are $7.79B worse off, so the change is not a pure transfer (inference: the makers' discount rates and lifecycle values differ).
 - The airframers' values are identical to the cent.
 
@@ -3918,9 +3918,10 @@ From the analyst note in each company's profile folder (analyst_models_2026.md),
 How the game was run
 - A replay. The previous ExCo-and-Board game (run dash-2050-exco) replayed from the start in a fresh run,
 dash-2050-obj: the same dashboard, agents, rules and decision years. Three things were added to the companies' files
-before 2030, and nothing else changed.
-- Control's objectives (listed under Control's objectives), in each company's private brief with its metrics
-for every plan on the payoff grid. Boeing's brief also carried its net-debt path, base and stress, and a table of the
+before 2030. Otherwise the public rules gained one clarifying sentence (spend beyond a maker's Joint Venture share is
+written off in the fold year) and the GM's model one check (below); both games replay exactly.
+- Control's objectives (listed under Control's objectives), in Boeing's, Airbus's and Rolls-Royce's private
+briefs, with their metrics for every plan on the payoff grid. CFM/GE's and P&W's objectives were unchanged. Boeing's brief also carried its net-debt path, base and stress, and a table of the
 engine sources each engine code would give.
 - The GM's balance-sheet tracker for Boeing (below).
 - The analyst notes: a note per company on the July-August 2026 Morgan Stanley and Goldman Sachs models and,
