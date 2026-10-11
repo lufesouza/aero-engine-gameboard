@@ -4,7 +4,7 @@ For each round: the state after that round valued by the board ("state as of rou
 market shares, programme dates, year-by-year financials and period totals for every player. After the game: the final
 outcome, objective attainment, each player's regret, and the covert moves revealed.
 
-  python3 reports.py            # writes ../runs/dash-2050/report_data.json
+  DASH_RUN=<run> python3 reports.py     # writes ../runs/<run>/report_data.json
 """
 import copy
 import json
@@ -216,6 +216,18 @@ def build(n_rounds=None):
                      if os.path.exists(os.path.join(RUN_DIR, "audit_r%d.json" % n))}
     data["params"] = {"af": {k: v for k, v in M.af_params().items() if isinstance(v, (int, float))},
                       "en": M.engine_params()}
+    H = M.H
+    snap = H.parse_snapshot(H.GAME_TXT)
+    MX, A, B, _ = H.af({}, H.OVERLAP_PATCH)
+    pure, near = H.eq_lists(MX, A, B)
+    ep, en_ = H.parse_engine_snapshot(H.GAME_TXT)
+    data["board"] = {"version": H.VERSION, "file": os.path.basename(H.SRC), "snapshot": os.path.basename(H.GAME_TXT),
+                     "default_eis": M.DEFAULT_EIS,
+                     "airframer_pure": [{"airbus": H.lab(a), "boeing": H.lab(b), "yield_airbus": ya, "yield_boeing": yb,
+                                         "pv_airbus": da, "pv_boeing": db} for a, b, ya, yb, da, db in pure],
+                     "airframer_near_count": len(near), "airframer_snapshot_near": len(snap),
+                     "engine_pure": [{"cfm": c, "pw": p_, "rr": r_, "yield_cfm": yc, "yield_rr": yr} for yc, yr, c, p_, r_ in ep],
+                     "engine_near_count": len(en_)}
     with open(os.path.join(RUN_DIR, "report_data.json"), "w") as f:
         json.dump(data, f, indent=1, default=str)
     return data

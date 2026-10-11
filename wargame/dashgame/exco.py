@@ -2,6 +2,7 @@
 
   python3 exco.py check                      # the script's order fields match rules.ORDER_FIELDS
   python3 exco.py save N result.json         # ExCo notes to each company's folder; orders file for gm.py adjudicate
+  python3 exco.py merge out.json part.json ...   # one result from per-company runs (sides: [one side] each)
 
 `save` writes, for each company, /tmp/wargame-<side>/<run>/exco/rN_<step>.md (its own ExCo and Board only) and
 wargame/runs/<run>/orders_exco_rN.json in the shape `gm.py adjudicate` reads, with the whole ExCo record under
@@ -69,8 +70,28 @@ def save(n, path):
     print("wrote", os.path.relpath(out, HERE), "and ExCo notes for", ", ".join(returned))
 
 
+def merge(out, parts):
+    """Join per-company round results (raw returns or workflow output files, whose return sits under `result`)."""
+    res = None
+    for p in parts:
+        x = json.load(open(p))
+        x = x.get("result", x) if "sides" not in x else x
+        if res is None:
+            res = {"run": x["run"], "round": x["round"], "year": x["year"], "sides": {}}
+        assert (x["run"], x["round"], x["year"]) == (res["run"], res["round"], res["year"]), (p, x["run"], x["round"])
+        for side, v in x["sides"].items():
+            assert side not in res["sides"], ("side twice", side)
+            res["sides"][side] = v
+    missing = [s for s in R.ORDER_FIELDS if not res["sides"].get(s)]
+    with open(out, "w") as f:
+        json.dump(res, f, indent=1, ensure_ascii=False)
+    print("merged", ", ".join(res["sides"]), "->", out, ("; MISSING: " + ", ".join(missing)) if missing else "")
+
+
 if __name__ == "__main__":
     if sys.argv[1] == "check":
         sys.exit(0 if check() else 1)
     elif sys.argv[1] == "save":
         save(int(sys.argv[2]), sys.argv[3])
+    elif sys.argv[1] == "merge":
+        merge(sys.argv[2], sys.argv[3:])

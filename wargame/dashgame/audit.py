@@ -9,7 +9,7 @@ It also scans every tool output the agent received for another player's private 
 private-brief header, or the covert Delay Tactics line in a non-Airbus agent's output. It also records hook denials
 and engine commands.
 
-  python3 audit.py <round> <workflow transcript dir>   # writes ../runs/dash-2050/audit_rN.json
+  DASH_RUN=<run> python3 audit.py <round> <workflow transcript dir> [more dirs]   # writes ../runs/<run>/audit_rN.json
 """
 import glob
 import json
@@ -22,6 +22,15 @@ REPO = os.path.realpath(os.path.join(HERE, "..", ".."))
 RUN_DIR = os.path.join(HERE, "..", "runs", os.environ.get("DASH_RUN", "dash-2050"))
 OWN = {"boeing-strategist": "boeing", "airbus-strategist": "airbus", "cfm-strategist": "cfm",
        "pratt-whitney-strategist": "pratt_whitney", "rolls-royce-strategist": "rolls_royce"}
+# The per-executive and Board agents (workflows/exco_round.js): each company's four agents are pooled under its side.
+EXECS = {"boeing": ["boeing-ortberg", "boeing-malave", "boeing-pope", "boeing-board"],
+         "airbus": ["airbus-faury", "airbus-toepfer", "airbus-wagner", "airbus-board"],
+         "cfm": ["cfm-culp", "cfm-ghai", "cfm-ali", "cfm-board"],
+         "pratt_whitney": ["pratt-whitney-calio", "pratt-whitney-mitchill", "pratt-whitney-eddy", "pratt-whitney-board"],
+         "rolls_royce": ["rolls-royce-erginbilgic", "rolls-royce-mccabe", "rolls-royce-watson", "rolls-royce-board"]}
+for _side, _names in EXECS.items():
+    for _n in _names:
+        OWN[_n] = _side
 NAMES = {"boeing": "Boeing", "airbus": "Airbus", "cfm": "CFM/GE", "pratt_whitney": "Pratt & Whitney", "rolls_royce": "Rolls-Royce"}
 
 
@@ -57,15 +66,21 @@ def bash_paths(cmd, cwd):
     return out
 
 
-def audit(tdir):
+def audit(tdirs):
+    """One entry per side. With several agents per side (ExCo and Board), their calls are pooled; `agents` lists each
+    agent run. Colleagues' agent files (.claude/agents/<own company's agent>.md) count as own material. `tdirs` is one
+    workflow transcript folder or a list of them (a round played as one workflow per company)."""
     out = {}
-    for f in sorted(glob.glob(os.path.join(tdir, "agent-*.jsonl"))):
+    tdirs = [tdirs] if isinstance(tdirs, str) else tdirs
+    files = sorted(f for t in tdirs for f in glob.glob(os.path.join(t, "agent-*.jsonl")))
+    for f in files:
         meta_f = f[:-6] + ".meta.json"
         at = json.load(open(meta_f)).get("agentType", "") if os.path.exists(meta_f) else ""
         side = OWN.get(at)
         if not side:
             continue
-        roots = [os.path.join(REPO, "wargame", "profiles", side), "/tmp/wargame-" + side]
+        roots = [os.path.join(REPO, "wargame", "profiles", side), "/tmp/wargame-" + side] + \
+            [os.path.join(REPO, ".claude", "agents", n + ".md") for n in EXECS[side]]
         paths, denied, engine, leaks, own_saved, calls = [], [], [], [], set(), 0
         cwd = None
         lines = [json.loads(x) for x in open(f) if x.strip()]
@@ -106,19 +121,32 @@ def audit(tdir):
                         leaks.append("covert Delay Tactics line")
 
         def ok(p):
-            return any(p == r or p.startswith(r + "/") for r in roots) or p in own_saved
+            return any(p == r or p.startswith(r + "/") for r in roots) or p in own_saved or p == "/dev/null"
         uniq = sorted(set(paths))
         foreign = [p for p in uniq if not ok(p)]
-        out[side] = {"agent_type": at, "tool_calls": calls, "paths": uniq, "foreign_paths": foreign, "denied": denied,
-                     "engine_commands": engine, "leaks_in_outputs": sorted(set(leaks)),
-                     "own_tool_results_read": sorted(p for p in uniq if p in own_saved),
-                     "clean": not (foreign or denied or engine or leaks)}
+        r = {"agent_type": at, "tool_calls": calls, "paths": uniq, "foreign_paths": foreign, "denied": denied,
+             "engine_commands": engine, "leaks_in_outputs": sorted(set(leaks)),
+             "own_tool_results_read": sorted(p for p in uniq if p in own_saved),
+             "clean": not (foreign or denied or engine or leaks)}
+        if side not in out:
+            out[side] = dict(r, agents=[])
+        else:                                            # pool this agent run into its side's entry
+            o = out[side]
+            o["agent_type"] = ", ".join(sorted(set(o["agent_type"].split(", ")) | {at}))
+            o["tool_calls"] += calls
+            for k in ("paths", "foreign_paths", "leaks_in_outputs", "own_tool_results_read"):
+                o[k] = sorted(set(o[k]) | set(r[k]))
+            o["denied"] += denied
+            o["engine_commands"] += engine
+            o["clean"] = o["clean"] and r["clean"]
+        out[side]["agents"].append({"file": os.path.basename(f), "agent_type": at, "tool_calls": calls,
+                                    "foreign_paths": foreign, "denied": len(denied), "clean": r["clean"]})
     return out
 
 
 if __name__ == "__main__":
-    n, tdir = int(sys.argv[1]), sys.argv[2]
-    res = audit(tdir)
+    n, tdirs = int(sys.argv[1]), sys.argv[2:]
+    res = audit(tdirs)
     with open(os.path.join(RUN_DIR, "audit_r%d.json" % n), "w") as f:
         json.dump(res, f, indent=1)
     for s, r in res.items():
