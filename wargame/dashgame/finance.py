@@ -140,17 +140,45 @@ def _profit_by_year(state, covert):
     return out
 
 
+_HISTORY = None        # {round year: state} set by history_override(), for counterfactual replays
+
+
+class history_override:
+    """Within this block, earlier rounds are valued on the given states (a counterfactual line of play) instead of
+    the run's played state files."""
+    def __init__(self, states):
+        self.states = {s["year"]: s for s in states if s.get("year") is not None}
+
+    def __enter__(self):
+        global _HISTORY
+        self.prev, _HISTORY = _HISTORY, self.states
+        return self
+
+    def __exit__(self, *a):
+        global _HISTORY
+        _HISTORY = self.prev
+
+
+def _is_ancestor(old, new):
+    lo, ln = old.get("log", []), new.get("log", [])
+    return len(lo) <= len(ln) and ln[:len(lo)] == lo
+
+
 def profit_path(state, covert=True):
     """The game's profit change by year, as played: zero before the first decision year; each later year from the
-    state of the latest played round at or before it (this state for its own round year onward)."""
+    state of the latest round at or before it (this state for its own round year onward). Earlier rounds come from
+    history_override() if set, else from the run's played states that are ancestors of this state."""
     own = _profit_by_year(state, covert)
     cur = state.get("year")
     segs = []                                          # (from year, profit dict), in round order
     for n, y in enumerate(ROUNDS, start=1):
         if cur is not None and y < cur:
-            js = _played_state_json(n)
-            s = json.loads(js) if js else None
-            if s is not None and s.get("year") == y:
+            if _HISTORY is not None and y in _HISTORY:
+                s = _HISTORY[y]
+            else:
+                js = _played_state_json(n)
+                s = json.loads(js) if js else None
+            if s is not None and s.get("year") == y and _is_ancestor(s, state):
                 segs.append((y, _profit_by_year(s, covert)))
     if cur is not None:
         segs.append((cur, own))

@@ -101,6 +101,23 @@ def objectives_block(state, v):
     return {s: [{"label": lab, "met": ok, "detail": det} for lab, ok, det in B.objective_status(s, state, v)] for s in M.SIDES}
 
 
+def control2_block(state, v):
+    """Control's objective metrics (runs with objectives.txt = control2): Boeing's net-debt path as played (base and
+    stress), the engine sources on each airframer's narrowbody and the narrowbody engine makers by year, and
+    Rolls-Royce's narrowbody exposure and strain."""
+    import finance as FIN
+    F = FIN.inputs()
+    yrs = list(range(2030, M.REPORT_END + 1))
+    _, strain, _, _ = M.engine_costs(state)
+    return {"debt_base": FIN.debt_path(state, v, F, covert=True),
+            "debt_stress": FIN.debt_path(state, v, F, F["stress_fcf_scale"], covert=True),
+            "debt_inputs": {k: F[k] for k in ("start_debt_b", "historical_level_b", "historical_label", "target_year",
+                                              "hold_years", "stress_fcf_scale", "base_fcf_b", "base_fcf_after_b")},
+            "sources": {side: {str(y): list(B.nb_sources(state, side, y)) for y in yrs} for side in ("boeing", "airbus")},
+            "makers": {str(y): B.nb_engine_makers(v, y) for y in yrs},
+            "rr_nb_exposure": B.rr_nb_exposure(state), "rr_strain": strain["rolls_royce"]}
+
+
 def round_block(n):
     rec = jl("record_r%d.json" % n)
     s = jl("state_r%d.json" % n)
@@ -119,13 +136,15 @@ def round_block(n):
         "snapshots": {str(y): {side: {"nb_share": yb[side]["nb_share"][y - 2026], "wb_share": yb[side]["wb_share"][y - 2026]}
                                for side in M.SIDES} for y in SNAP_YEARS},
         "objectives": objectives_block(s, v),
+        "control2": control2_block(s, v) if B.objective_set() == "control2" else None,
     }
 
 
 # ─────────────────────────────── regret ───────────────────────────────
-def _replay(state, n_from, records, override_side=None, override_orders=None):
+def _replay(state, n_from, records, override_side=None, override_orders=None, trail=None):
     """Adjudicate rounds n_from..last from `state`, using the recorded orders (re-validated against the counterfactual
-    state; anything no longer legal becomes hold). For round n_from, `override_side` plays `override_orders`."""
+    state; anything no longer legal becomes hold). For round n_from, `override_side` plays `override_orders`.
+    `trail` (a list) collects the state after each replayed round."""
     s = state
     for n in range(n_from, len(records) + 1):
         rec = records[n - 1]
@@ -135,6 +154,8 @@ def _replay(state, n_from, records, override_side=None, override_orders=None):
             o = override_orders if (n == n_from and side == override_side) else rec["orders"][side]
             orders[side], _ = R.validate(s, side, year, o)
         s, _ = R.adjudicate(s, year, orders)
+        if trail is not None:
+            trail.append(s)
     return s
 
 
@@ -160,10 +181,18 @@ def regret(n_rounds):
                         o[f] = actual[f]
                 orders = {s2: (o if s2 == side else rec["orders"][s2]) for s2 in M.SIDES}
                 s1, _ = R.adjudicate(prev, year, {k: R.validate(prev, k, year, x)[0] for k, x in orders.items()})
-                my = M.value(s1, covert=True, series=True)[side]["pv_delta"]
-                fin = _replay(prev, n, records, side, o)
-                ep = M.value(fin, covert=True, series=True)[side]["pv_delta"]
-                alts.append({"plan": lab, "orders": o, "myopic": my, "ex_post": ep})
+                v1 = M.value(s1, covert=True, series=True)
+                my = v1[side]["pv_delta"]
+                trail = []
+                fin = _replay(prev, n, records, side, o, trail)
+                vf = M.value(fin, covert=True, series=True)
+                ep = vf[side]["pv_delta"]
+                alt = {"plan": lab, "orders": o, "myopic": my, "ex_post": ep}
+                if B.objective_set() == "control2" and side in ("boeing", "airbus", "rolls_royce"):
+                    import finance as FIN
+                    with FIN.history_override(states[1:n] + trail):
+                        alt["objectives_ex_post"] = [[l_, ok] for l_, ok, _ in B.objective_status(side, fin, vf)]
+                alts.append(alt)
             act_my = M.value(states[n], covert=True, series=True)[side]["pv_delta"]
             act_ep = M.value(states[n_rounds], covert=True, series=True)[side]["pv_delta"]
             bm = max(alts, key=lambda a: a["myopic"])
