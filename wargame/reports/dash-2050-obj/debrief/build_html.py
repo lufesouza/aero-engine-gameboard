@@ -69,7 +69,8 @@ def line_svg(v, FP):
         placed[i] = y
         last = y
     for i, (n, val, var) in enumerate(ends):
-        out.append(f'<text x="{w - right + 8}" y="{placed[i] + 4:.1f}" class="endlab">{esc(n)} {fmt(val) if share else f"{val:.1f}"}</text>')
+        short = n.split(" (")[0]
+        out.append(f'<text x="{w - right + 8}" y="{placed[i] + 4:.1f}" class="endlab">{esc(short)} {fmt(val) if share else f"{val:.1f}"}</text>')
     for a in v.get("annotations") or []:
         yr = a["year"]
         if yr not in xs or not names:
