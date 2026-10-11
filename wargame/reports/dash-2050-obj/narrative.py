@@ -17,8 +17,8 @@ LEDE = (
     "Rolls-Royce +$32.35B (was +$20.55B), P&amp;W +$8.88B (was −$2.93B), CFM/GE −$69.69B (was −$38.29B). From 2040 the "
     "P&amp;W-Rolls-Royce Joint Venture engine flies on both new narrowbodies and its partners hold 36.5% of narrowbody "
     "engines each; CFM/GE holds 27%, against 76% today. "
-    "On Control's objectives: Boeing's net debt is at its historical level from 2029 and stays there through the fps "
-    "spending peak, in the stress case too. Both new narrowbodies fly two engine sources, CFM and the Joint Venture "
+    "On Control's objectives: Boeing's net debt is at its historical level from 2029 (from 2030 in the stress case) "
+    "and stays there through the fps spending peak. Both new narrowbodies fly two engine sources, CFM and the Joint Venture "
     "engine, with three engine makers in the market. Rolls-Royce's widebody was never starved, but its own narrowbody "
     "money reached $5.71B against the $4B bound, a breach it stated before ordering. Thirteen of nineteen objectives "
     "were met, against twelve for the previous game's orders scored the same way. "
@@ -82,9 +82,9 @@ FINDINGS = [
      "previous game. In 2040 it delivers 1,079 narrowbody engines against 3,040 in the status quo.</li>"
      "<li>CFM/GE learned the fps selection only from the 2035 brief, and nothing on its menu could change an airframer's "
      "engine code. Culp: \"Nothing on this grid defends against a switch\". In 2030 it had expected the ducted engine to "
-     "keep it \"back above 50%\" if both airframers chose all three makers; the 2035 brief showed 31.7% from 2040, and "
-     "the Joint Venture took that to 27.0%. The ducted engine is in that figure: without it CFM/GE would hold 17.5% "
-     "(GM computation). Its own ExCo concluded in 2045, wrongly, that the 27.0% left no share for the ducted engine.</li>"
+     "keep it \"back above 50%\" in its columns where Boeing chose all three makers; the 2035 brief showed 31.7% from 2040, and "
+     "the Joint Venture took that to 27.0%. The ducted engine is in that figure: take its share out and CFM/GE would hold 17.5% (GM "
+     "computation; 13.3% had it never launched, since the Embraer partnership would have lapsed too). Its own ExCo concluded in 2045, wrongly, that the 27.0% left no share for the ducted engine.</li>"
      "<li>It refused to compete for fps source position on price, in 2035 and again in 2050. Its Board: \"That is not "
      "ours to chase with terms.\"</li>"
      "<li>Control added no objective for CFM/GE. It missed both of its own: 27% against its 50% narrowbody target, and "
@@ -94,8 +94,9 @@ FINDINGS = [
      "TRAP\": if P&amp;W and Rolls-Royce held, NGSA would fly CFM alone. Code 7 was the only route to three sources, and "
      "only in 2030.</li>"
      "<li>No value was traded for it: \"the engine code is payoff-neutral on this board\".</li>"
-     "<li>No Delay Tactics and no A350 Re-engine in any round, each on its own cash line or $1B test. Airbus's 60/40 "
-     "edge is missed (53% in 2050), as before.</li></ul>"),
+     "<li>No Delay Tactics in any round (red lines, integrity and the team's stricter condition, then closed once fps "
+     "entered service in 2040), and no A350 Re-engine, held on the cash line or the $1B test. Airbus's 60/40 edge is "
+     "missed (53% in 2050), as before.</li></ul>"),
     ("No Board vetoed anything, and no veto check sent a decision back.",
      "<ul><li>Nine orders went to a Board (seven in 2030, two in 2035), all approved, as in the previous game.</li>"
      "<li>The CFOs' and operating heads' test memos marked 60 vetoes binding, all on options the CEOs did not choose.</li>"
@@ -108,15 +109,16 @@ TILES = {
     "airbus": "NGSA in service 2037, open to all three engine makers; two engine sources; A350 held",
     "cfm": "Ducted engine, Embraer partnership, GEnx upgrade; 27% of narrowbody engines from 2040 (76% today)",
     "pratt_whitney": "GTF2 selected for both new narrowbodies, folded into the Joint Venture in 2035: 36.5% of narrowbody engines",
-    "rolls_royce": "UltraFan NB on both narrowbodies through the Joint Venture: 36.5%; own narrowbody money $5.71B against a $4B bound",
+    "rolls_royce": "Joint Venture engine on both narrowbodies (UltraFan NB folded in 2035): 36.5%; own narrowbody money $5.71B against a $4B bound",
 }
 
 DPV_TITLE = "Each company's ΔPV after each round: settled in 2035, when the Joint Venture moved only the engine makers"
 
 # ─────────────────────────────── Control's objectives ───────────────────────────────
 OBJ_LEDE = (
-    "Control added three kinds of objective to the base set. They were in every company's private brief from 2030, each "
-    "plan on the payoff grid carried its metrics, and the GM scored them. They never change a payoff: the dashboard's "
+    "Control added three kinds of objective to the base set. They were in the private briefs of the companies "
+    "concerned (Boeing, Airbus, Rolls-Royce) from 2030, each plan on their payoff grids carried its metrics, and the GM "
+    "scored them. They never change a payoff: the dashboard's "
     "ΔPV, its own debt penalty included, is untouched. A company could give up value for an objective only within its "
     "own premium cap, and had to log it.<ul>"
     "<li><b>Boeing: repair the balance sheet.</b> Net debt back to its historical level (about zero, rounded from its "
@@ -138,14 +140,14 @@ DEBT_CAP = (
     "Net debt at year end in 2026 dollars, from the consensus $22.53B at end-2026. Base free cash flow is the analysts' "
     "consensus for 2027-2030, deflated at 2.2%, and flat at $13.79B after; the stress case is one-third lower. Programme "
     "cash is the fps bill spread over 2030-2039 on the standard development curve; the game's profit change counts from "
-    "fps's entry into service in 2040. Once net debt is at its historical level, surplus cash goes to the owners, so the "
+    "2030: small and negative from NGSA's entry into service in 2037, then positive from fps's in 2040. Once net debt is at its historical level, surplus cash goes to the owners, so the "
     "line stays at zero. With no new programme, net debt would also reach zero in 2029: the analysts' cash flow repairs "
     "the balance sheet before any game decision, and the objective tests whether a launch undoes it.")
 CASH_TITLE = "fps programme cash against the stress-case free cash flow it must fit inside"
 CASH_NOTE = (
     "<ul><li>Stress free cash flow is $9.19B a year from 2030 (2026 dollars). The 10-year fps spends $3.02B in 2030, "
     "rising to a peak of $8.44B in 2036. After the 21% tax effect, the year's free cash flow stays positive in every "
-    "year: at least $2.52B (2036) in the stress case and $7.12B in the base case.</li>"
+    "year: at least $2.52B (2036) in the stress case and, from 2030, $7.12B in the base case.</li>"
     "<li>The 7-year ramp packs a bigger bill ($65.00B against $60.32B) into fewer years: $12.54B in 2034. In the stress "
     "case that year's free cash flow is −$0.71B, so net debt goes back above zero ($0.71B at end-2034, $0.47B at "
     "end-2035) and the 2035 hold fails.</li>"
@@ -154,7 +156,7 @@ CASH_NOTE = (
     "ramps do.</li></ul>")
 SOURCES_CAP = (
     "Independent engine sources fitted to each new narrowbody in production, as Control counts them: the Joint Venture "
-    "engine is one source. After 2030 each new narrowbody had three (CFM, GTF2 and UltraFan NB, all ready before entry "
+    "engine is one source. After 2030 each new narrowbody had three (CFM, GTF2 and UltraFan NB, all ready by entry "
     "into service); the Joint Venture formed in 2035 made it two. Rolls-Royce's own narrowbody development money is the "
     "$8B Solo bill while the Solo stood, then $5.71B: its $4B Joint Venture share plus $1.71B written off at the fold. "
     "The previous game's final state (fps on CFM alone) is scored on the same yardstick.")
@@ -166,8 +168,8 @@ OBJ_POINTS = [
      "Both games keep three narrowbody engine makers.</li></ul>"),
     ("Two sources, not three: the Joint Venture merged them.",
      "<ul><li>After 2030 both new narrowbodies had three independent sources; the 2035 Joint Venture made it two. No "
-     "seat in either airframer could have stopped it: the codes were set in 2030, and the Joint Venture needed only "
-     "the two engine makers' commitments.</li>"
+     "seat in either airframer could have stopped it: the Joint Venture formed on the two engine makers' commitments "
+     "alone, and no engine code could separate the two engines again once they merged.</li>"
      "<li>The Boeing Board named the Joint Venture engine \"the single point of fragility\", and P&amp;W's own operating "
      "head agreed: \"One finding hits both fleets at once.\"</li></ul>"),
     ("The balance-sheet objective bound the ramp choice, not the launch.",
