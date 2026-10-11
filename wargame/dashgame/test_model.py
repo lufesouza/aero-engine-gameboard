@@ -2,7 +2,9 @@
 
 1. The trace / 2060 extension patch leaves all 256 airframer cells unchanged at several EIS tuples.
 2. A game state that maps onto a board cell reproduces that cell exactly (no GM adjustment fires).
-3. The snapshot board still has 0 pure and 17 near-Nash equilibria; the engine board 1 pure and 19 near.
+3. The snapshot board reproduces its snapshot (board/Game.txt for v2: 0 pure and 17 near-Nash, engine 1 pure and 19
+   near; board/Game_v3.txt for v3: 4 pure and 12 near, engine 1 pure and 11 near), with every rounded yield.
+Run with DASH_BOARD=v3 to check the combined_dash.py board.
 4. The engine start shares equal the board's derive_nb_engine_shares() for every supplier-code pair.
 5. The year-by-year engine model, in board mode, reproduces simulate() for every CFM x RR move, PW lock and code
    pair tested; and a game state whose programmes are all ready at the board's EIS reproduces it too.
@@ -39,8 +41,8 @@ print("1. trace patch PV-neutral on 4 x 256 cells")
 st = M.new_state()
 st["prog"]["fps"] = {"launch": 2031, "eis": 2041, "variant": "10yr", "cancel": None}
 st["prog"]["ngsa"] = {"launch": 2030, "eis": 2037, "cancel": None}
-st["prog"]["re787"] = {"launch": 2030, "eis": 2035, "cancel": None}
-st["prog"]["rea350"] = {"launch": 2030, "eis": 2035, "cancel": None}
+st["prog"]["re787"] = {"launch": 2030, "eis": M.DEFAULT_EIS["re787"], "cancel": None}
+st["prog"]["rea350"] = {"launch": 2030, "eis": M.DEFAULT_EIS["rea350"], "cancel": None}
 st["dt"] = {"bottleneck": 2030, "poaching": 2030}
 st["codes"] = {"fps": 7, "ngsa": 6}
 v = M.value_airframers(st)
@@ -58,11 +60,14 @@ check(abs(v2["airbus"]["pv_delta"] - c2["a_total_delta"]) < TOL, "naked fine = b
 print("   naked Delay Tactics ordered 2030 = board: %.4f / %.4f" % (v2["airbus"]["pv_delta"], c2["a_total_delta"]))
 
 # 3. snapshot equilibria
-r = H.check_snapshot(MX, A, B, H.parse_snapshot(os.path.join(M.HERE, "board", "Game.txt")))
-check(r["pure"] == 0 and r["near"] == 17 and r["missing"] == 0 and r["extra"] == 0 and not r["bad_round"], ("snapshot", r))
+r = H.check_snapshot(MX, A, B, H.parse_snapshot(H.GAME_TXT))
+want = {"v2": (0, 17, 1, 19), "v3": (4, 12, 1, 11)}[H.VERSION]
+check((r["pure"], r["near"]) == want[:2] and r["missing"] == 0 and r["extra"] == 0 and not r["bad_round"], ("snapshot", r))
 SE = H.en({})
-check(len(SE["_EPURE"]) == 1 and len(SE["_ENEAR"]) == 19, "engine snapshot")
-print("3. snapshot: airframer", r, "| engine pure", len(SE["_EPURE"]), "near", len(SE["_ENEAR"]))
+re_ = H.check_engine_snapshot(SE, H.GAME_TXT)
+check((re_["pure"], re_["near"]) == want[2:] and re_["pure_match"] and re_["near_match"] and not re_["bad_round"],
+      ("engine snapshot", re_))
+print("3. snapshot (%s, %s): airframer" % (H.VERSION, os.path.basename(H.GAME_TXT)), r, "| engine", re_)
 
 # 4. start shares = derive_nb_engine_shares
 mod = SE["_MOD"]

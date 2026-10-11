@@ -31,10 +31,34 @@ def pct(x):
     return "%.1f%%" % (100 * x)
 
 
+def nb_rules(p):
+    """The narrowbody share rule of the board in use, in plain words (public)."""
+    if M.H.VERSION == "v2":
+        return (f"- Nothing changes until a new airframe enters service.\n"
+                f"- If NGSA enters service first, Airbus gains 3 pp a year (cap 80%).\n"
+                f"- If fps enters service first, Boeing gains {p['v_ramp7_b_pp']:.1f} pp a year (cap 80%).\n"
+                f"- When the second airframe enters service, its maker climbs toward 50% at {p['v_ramp10_b_pp']:.1f} pp a year if it is below\n"
+                f"  50%; otherwise shares stay where they are.\n"
+                f"- If both enter service in the same year, Boeing climbs from 40% toward 50%.\n"
+                f"- **fps 7-year ramp-up:** Boeing gets +{p['v_fps_7yr_advantage']:.0f} pp for 10 years from fps EIS.\n")
+    bal = p["boeing_share_pct"]
+    return (f"- Nothing changes until a new airframe enters service.\n"
+            f"- **Only NGSA launched:** Airbus gains 3 pp a year from NGSA EIS (cap 80%).\n"
+            f"- **Only fps launched:** Boeing gains {p['v_ramp10_b_pp']:.1f} pp a year from fps EIS (cap 80%).\n"
+            f"- **Both launched, different EIS years:** the first one to enter service gains {p['v_eis_lead_pp']:.1f} pp a year while it\n"
+            f"  is alone (cap 80%). From the second EIS, shares move toward a long-run split at {p['v_ramp10_b_pp']:.1f} pp a year\n"
+            f"  (Boeing gaining) or {p['v_ramp10_a_pp']:.1f} pp a year (Airbus gaining). The long-run split is {bal}/{100 - bal} (Boeing/Airbus)\n"
+            f"  shifted toward the first one by {p['v_eis_lead_pp']:.1f} pp for each year of lead (leader cap 80%), and the leader keeps\n"
+            f"  that edge for good. Example: NGSA 2037 and fps 2041 give a long-run split of {bal - 4 * p['v_eis_lead_pp']:.0f}/{100 - bal + 4 * p['v_eis_lead_pp']:.0f}.\n"
+            f"- **Both launched, same EIS year:** Boeing climbs from 40% toward {bal}% at {p['v_ramp10_b_pp']:.1f} pp a year; no lead edge.\n"
+            f"- The three fps moves (7-year, 10-year, via Embraer) follow the same rule: only the two EIS years matter.\n")
+
+
 def public_rules():
     """The rules every player sees (identical text). Rival costs, margins and balance sheets are not in it."""
     P = M.engine_params()
     p = M.af_params()
+    wb_default = min(M.DEFAULT_EIS["re787"], M.DEFAULT_EIS["rea350"])
     return f"""# dash-2050: rules of the game (public; every player has the same text)
 
 **Game master.** The game master (GM) runs the game on the narrowbody/widebody game-theory dashboard. Only the GM sees
@@ -111,14 +135,7 @@ elapsed ÷ development years, booked in the cancel year. A cancelled programme c
 ## How the board sets market shares
 
 **Narrowbody airframes.**
-- Nothing changes until a new airframe enters service.
-- If NGSA enters service first, Airbus gains 3 pp a year (cap 80%).
-- If fps enters service first, Boeing gains {p['v_ramp7_b_pp']:.1f} pp a year (cap 80%).
-- When the second airframe enters service, its maker climbs toward 50% at {p['v_ramp10_b_pp']:.1f} pp a year if it is below
-  50%; otherwise shares stay where they are.
-- If both enter service in the same year, Boeing climbs from 40% toward 50%.
-- **fps 7-year ramp-up:** Boeing gets +{p['v_fps_7yr_advantage']:.0f} pp for 10 years from fps EIS.
-- **737 rate increase:** Boeing gets +5 pp in 2032-36, or every year if neither new airframe is ever launched.
+{nb_rules(p)}- **737 rate increase:** Boeing gets +5 pp in 2032-36, or every year if neither new airframe is ever launched.
 - **Delay Tactics:** Boeing loses {p['v_sabotage_share']:.0f} pp for 5 years from fps EIS.
 
 **Widebody airframes.**
@@ -128,7 +145,7 @@ elapsed ÷ development years, booked in the cancel year. A cancelled programme c
   year, nothing changes.
 
 **Engines.**
-- Nothing changes until the first new narrowbody enters service; on the widebody, until the first re-engine (or 2035).
+- Nothing changes until the first new narrowbody enters service; on the widebody, until the first re-engine (or {wb_default}).
 - From then on, each airframer's share of the NB market is split equally among the makers fitted to its airframe (the
   737 and A320neo slots as above). The engine moves then shift share:
 
@@ -607,7 +624,8 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
     L += table(head, prow)
     if side in ("boeing", "airbus"):
         L += ["", "The board counts each programme's market for 20 years from its EIS (unlaunched programmes use the "
-              "snapshot dates fps 2041, NGSA 2037, Re-engines 2035), so years after that window add nothing to ΔPV."]
+              "snapshot dates fps %d, NGSA %d, Re-engines %d), so years after that window add nothing to ΔPV." % (
+                  M.DEFAULT_EIS["fps"], M.DEFAULT_EIS["ngsa"], M.DEFAULT_EIS["re787"])]
     else:
         t = v["_engine_timing"]
         L += ["", "The board counts the narrowbody engine market to %d and the widebody to %d." % (

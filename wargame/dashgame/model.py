@@ -1,4 +1,5 @@
-"""Valuation for the dash-2050 war game, built on the user's game-theory board (board/Combined_Game_Board.py).
+"""Valuation for the dash-2050 war game, built on the user's game-theory board (board/Combined_Game_Board.py, or
+board/combined_dash.py when DASH_BOARD=v3; see board/harness.py).
 
 Airframers (Boeing, Airbus): the board's own evaluate_scenario(), solved at the state's entry-into-service (EIS)
 dates, plus game-master (GM) adjustments the board cannot express (cancellation write-offs, Delay Tactics ordered
@@ -19,11 +20,23 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "board"))
+# A run keeps the board version it was created with (runs/<run>/board.txt, written by gm.py init); runs without one
+# (dash-2050) use v2. This must be settled before the harness loads its board.
+_RUN = os.environ.get("DASH_RUN")
+_BF = os.path.join(HERE, "..", "runs", _RUN, "board.txt") if _RUN else None
+if _BF and os.path.exists(_BF):
+    with open(_BF) as _f:
+        _V = _f.read().strip()
+    if os.environ.get("DASH_BOARD", _V) != _V:
+        raise SystemExit("run %s uses board %s but DASH_BOARD=%s" % (_RUN, _V, os.environ["DASH_BOARD"]))
+    os.environ["DASH_BOARD"] = _V
 import harness as H  # noqa: E402
 
 Y0 = 2026
 REPORT_END = 2060                     # last calendar year shown in the year-by-year tables
-DEFAULT_EIS = {"fps": 2041, "ngsa": 2037, "re787": 2035, "rea350": 2035}   # snapshot sliders (unlaunched programmes)
+# snapshot sliders (unlaunched programmes): v2 fps 2041, NGSA 2037, Re-engines 2035; v3 Re-engines 2042
+DEFAULT_EIS = {"fps": H.SNAP["af_fps_eis"], "ngsa": H.SNAP["af_ngsa_eis"], "re787": H.SNAP["af_787_eis"],
+               "rea350": H.SNAP["af_a350_eis"]}
 SIDES = ["boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce"]
 NAMES = {"boeing": "Boeing", "airbus": "Airbus", "cfm": "CFM/GE", "pratt_whitney": "Pratt & Whitney",
          "rolls_royce": "Rolls-Royce"}
@@ -472,11 +485,12 @@ def engine_timing(state):
     nb_anchor = min(nb_live) if nb_live else None
     wb_live = [r["eis"] for k in ("re787", "rea350") for r in [live(state, k)] if r]
     # WB window: the board's own anchor, min(787 EIS, A350 EIS) with unlaunched programmes at the snapshot dates.
-    # Upgrades to today's engines start counting from the snapshot date (2035) at the earliest, so a re-engine
-    # launched later never rewrites years already played.
+    # Upgrades to today's engines (GEnx, Trent 1000) start counting at that anchor, as on the board. The anchor never
+    # moves into years already played: a re-engine enters service at least 5 years after launch and can be cancelled
+    # only before its EIS. (On the v2 board the anchor is always 2035, the snapshot date.)
     wb_anchor = min(live(state, "re787")["eis"] if live(state, "re787") else DEFAULT_EIS["re787"],
                     live(state, "rea350")["eis"] if live(state, "rea350") else DEFAULT_EIS["rea350"])
-    wb_upgrade_start = min(DEFAULT_EIS["re787"], DEFAULT_EIS["rea350"])
+    wb_upgrade_start = wb_anchor
     start = {}
     for k in ("cfm_ducted", "cfm_embraer", "pw_solo", "rr_solo"):
         r = live(state, k)

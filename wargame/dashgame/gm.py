@@ -35,6 +35,8 @@ def jsave(name, obj):
 
 def init():
     os.makedirs(RUN_DIR, exist_ok=True)
+    with open(os.path.join(RUN_DIR, "board.txt"), "w") as f:
+        f.write(M.H.VERSION + "\n")       # the run keeps this board version (model.py reads it back)
     s = M.new_state()
     jsave("state_r0.json", s)
     rules_txt = B.public_rules()
@@ -44,7 +46,7 @@ def init():
         os.makedirs(pdir(side), exist_ok=True)
         with open(os.path.join(pdir(side), "rules.md"), "w") as f:
             f.write(rules_txt)
-    print("initialised", RUN_DIR)
+    print("initialised", RUN_DIR, "on board", M.H.VERSION, os.path.basename(M.H.SRC))
 
 
 def brief(n):

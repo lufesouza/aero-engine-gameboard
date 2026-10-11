@@ -344,7 +344,7 @@
   "board_items_in_game": [
     {
       "order": "ngsa: launch (with ngsa_engine_code)",
-      "rule": "$30.07B: a programme launch above EUR 800m and a major programme in the Yearly Budget, so a Qualified Majority item; the engine code rides with it",
+      "rule": "$35.52B: a programme launch above EUR 800m and a major programme in the Yearly Budget, so a Qualified Majority item; the engine code rides with it",
       "ids": [
         "AG-0049",
         "A-0297"
@@ -478,7 +478,7 @@
     },
     {
       "test": "Liquidity and rating",
-      "threshold": "Peak annual programme spend no more than about one year's FCF, $5.2B (EUR 4,753m at an assumed $1.10 per EUR): NGSA about $4.3B a year passes; NGSA with an overlapping A350 Re-engine (about $5.9B) fails",
+      "threshold": "Peak annual programme spend no more than about one year's FCF, $5.2B (EUR 4,753m at an assumed $1.10 per EUR): NGSA about $5.1B a year passes, narrowly; NGSA with an overlapping A350 Re-engine (about $6.7B) fails",
       "ids": [
         "AX-0104",
         "A-0402",
@@ -489,7 +489,7 @@
     },
     {
       "test": "One clean sheet at a time",
-      "threshold": "At most one new launch per round; NGSA and A350 Re-engine development overlap of 2 years or less unless the grid shows at least $1B more; with the bills in dashboard_game.md section 2, Liquidity fails any year with both in development (about $4.3B + $1.0B = $5.3B before strain, about $5.9B with it), so the allowance matters only if the brief's bills differ",
+      "threshold": "At most one new launch per round; NGSA and A350 Re-engine development overlap of 2 years or less unless the grid shows at least $1B more; with the bills in dashboard_game.md section 2, Liquidity fails any year with both in development (about $5.1B + $1.0B = $6.1B before strain, about $6.7B with it), so the allowance matters only if the brief's bills differ",
       "ids": [
         "A-0343",
         "A-0401",

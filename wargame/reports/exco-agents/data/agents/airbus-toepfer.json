@@ -103,7 +103,7 @@
   "tests": [
     {
       "test": "Peak annual cash",
-      "threshold": "Peak annual programme spend at most about $5.2B, spreading each bill (booked at EIS on the board) evenly over its development years: NGSA about $4.3B a year, A350 Re-engine $1.0B a year, strain $0.6B per overlap year; NGSA plus an overlapping A350 Re-engine (about $5.9B) fails",
+      "threshold": "Peak annual programme spend at most about $5.2B, spreading each bill (booked at EIS on the board) evenly over its development years: NGSA about $5.1B a year, A350 Re-engine $1.0B a year, strain $0.6B per overlap year; NGSA plus an overlapping A350 Re-engine (about $6.7B) fails",
       "ids": [
         "AX-0104"
       ],
@@ -201,7 +201,7 @@
   "lever_positions": [
     {
       "lever": "NGSA",
-      "position": "Fund it inside cash flow: NGSA alone, about $4.3B a year, passes; timing follows the company default (2030 on this board)",
+      "position": "Fund it inside cash flow: NGSA alone, about $5.1B a year, passes narrowly; timing follows the company default (2030 on this board)",
       "ids": [
         "AX-0104",
         "AX-0034"

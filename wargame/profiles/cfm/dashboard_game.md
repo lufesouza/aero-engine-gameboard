@@ -28,7 +28,7 @@ Constraints:    Open Fan certification risk | airframer reluctance | raw materia
 | Open + Ducted | both launches | $12B, and the pair counts as an extra project for strain | Both effects |
 | Partner with Embraer | `partner_embraer: launch` (needs Ducted or Open Fan) | no R&D on the board; counts 7 years after launch | CFM +5 pp NB |
 | Lobby governments on emissions | `lobby_emissions: launch` | $1B | Caps the Open Fan loss at 20 pp; nothing on its own |
-| GEnx upgrade or investment (widebody; not on the slide) | `genx: upgrade_genx9` or `invest_genx` | no R&D on the board; counts 3 years after launch, not before 2035 | CFM +5 pp of the widebody engine market. The two are identical on the board |
+| GEnx upgrade or investment (widebody; not on the slide) | `genx: upgrade_genx9` or `invest_genx` | no R&D on the board; counts 3 years after launch, and not before the first re-engined 787 or A350 enters service (2042 if neither re-engines) | CFM +5 pp of the widebody engine market. The two are identical on the board |
 | Do Nothing (LEAP) | `hold` | — | You keep today's engines. On a new airframe you fly as a LEAP derivative: CFM is never dropped |
 | Cancel | `cancel` (before the engine is ready) | write-off = R&D × years elapsed ÷ development years | |
 

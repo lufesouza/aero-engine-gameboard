@@ -28,7 +28,7 @@ Constraints:    Engineering resources shared with widebody | no NB MR&O scale | 
 | UltraFan NB only if an airframer selects RR | `ultrafan_nb_solo: launch_if_selected` | as above, only if triggered | Launches this round only if a live airframe not yet in service selects a code with RR this round, and UltraFan would be ready by its EIS. Otherwise nothing happens and nothing is spent |
 | Joint Venture with P&W | `jv_with_pw: commit` (public, standing until withdrawn) | $4B for RR (half the NB R&D); ready 6 years after formation (sooner if a folded solo programme is further along) | Forms when P&W has also committed. RR +5 pp and P&W +5 pp of NB share, CFM −10 pp; then **RR and P&W hold equal NB shares**. A live UltraFan NB Solo folds into it; spend beyond your $4B share is written off |
 | UltraFan widebody only | `ultrafan_wb: launch` | $4B; ready 6 years after launch | RR +10 pp of the widebody engine market, from CFM. It counts only once a re-engined 787 or A350 is in service. With no Re-engine, the R&D is spent for nothing |
-| Trent 1000 upgrade (not on the slide; exclusive with UltraFan WB) | `t1000_upgrade: launch` | $2B; counts 3 years after launch, not before 2035 | RR +5 pp of the widebody engine market |
+| Trent 1000 upgrade (not on the slide; exclusive with UltraFan WB) | `t1000_upgrade: launch` | $2B; counts 3 years after launch, and not before the first re-engined 787 or A350 enters service (2042 if neither re-engines) | RR +5 pp of the widebody engine market |
 | Do Nothing (Trent only) | `hold` | — | Trent keeps 58% of widebody engines; no narrowbody |
 | Cancel | `cancel` (before ready) | write-off = R&D × years elapsed ÷ development years | |
 

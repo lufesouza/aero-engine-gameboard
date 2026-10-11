@@ -159,7 +159,7 @@ your approval [B-0438], though in 2011 the MAX was announced before your meeting
 
 | Order on the game board | Size (`dashboard_game.md` §2) | Real reserved matter | Below the real threshold? |
 |---|---|---|---|
-| `fps: launch_7yr`, `fps: launch_10yr` (with `fps_engine_code`) | $64.47B or $55.25B at EIS | New airplane: your launch approval [B-0419, BG-0066] after management's authority to offer [BG-0021, B-1479]; a significant capital project [BG-0044]; certification oversight [BG-0043] | No |
+| `fps: launch_7yr`, `fps: launch_10yr` (with `fps_engine_code`) | $65.00B or $60.32B at EIS | New airplane: your launch approval [B-0419, BG-0066] after management's authority to offer [BG-0021, B-1479]; a significant capital project [BG-0044]; certification oversight [BG-0043] | No |
 | `fps: launch_via_embraer` | $100B at EIS | New airplane plus a joint venture [BG-0044]; the 2018 Embraer JV ended in 2020 [B-1674, B-1792] | No |
 | `re787: launch` | $5B at EIS | Major derivative: the 2011 Re-engine was your approval [BG-0066] | No |
 | `fps: cancel`, `re787: cancel` | write-off; its debt penalty stays | No cancellation of a launched Boeing airplane on record; the 2020 deferral came before launch [B-1729] | No (inference) |

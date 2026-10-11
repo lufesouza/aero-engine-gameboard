@@ -46,8 +46,8 @@ RAW = ["Transcripts from", "Boeing 10ks", "airbus_se_report", "GoldmanSachs", "M
        "wargame/scenarios", "referee_only", "wargame/README.md", "profiles/build"]
 # The dashboard war game (dash-2050): only the game master sees the user's board, its snapshot, the
 # game-master code and earlier reports (they hold every side's payoffs and private rationale).
-DASH = ["Combined_Game_Board", "dashboard-fps-delay", "Game.txt", "wargame/dashgame", "uploads/", "wargame/reports",
-        "/scratchpad/dash"]
+DASH = ["Combined_Game_Board", "combined_dash", "dashboard-fps-delay", "Game.txt", "Game_v3", "wargame/dashgame", "uploads/",
+        "wargame/reports", "/scratchpad/dash"]
 BLOCK = {
     "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-2010.md", "airbus-strategist.md", "boeing-strategist.md",
                     "wargame/runs",

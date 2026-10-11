@@ -23,7 +23,7 @@ Constraints:    Engineering capacity (NGSA & A350 share teams) | fines if delay 
 
 | Briefing move | Order | Cost and timing | What the board does |
 |---|---|---|---|
-| Launch NGSA | `ngsa: launch` | **$30.07B** on this board (the slide says $20B), booked at EIS; EIS = launch + 7 | NGSA at $55M and 26.28% margin, against the A320neo at $52M and 13.14%. If NGSA enters service first: +3 pp a year (cap 80%) until fps arrives |
+| Launch NGSA | `ngsa: launch` | **$35.52B** on this board (the slide says $20B), booked at EIS; EIS = launch + 7 | NGSA at $55M and 26.28% margin, against the A320neo at $52M and 13.14%. Share: see the market rules below |
 | A350 Re-engine (widebody; not on the slide) | `rea350: launch` | $5B at EIS; EIS = launch + 5 | Alone: A350 gains 1.5 pp a year to 60% and its margin rises from 4.95% to 10.76%. If the 787 also re-engines, the margin is 6.47% and share gains stop at the 787's EIS |
 | Delay fps (supply-chain bottleneck) | `delay_tactics: bottleneck` | $1B, spent in the years before fps EIS | **Covert.** Boeing loses 5 pp of NB share for 5 years from fps EIS, and Airbus gains it |
 | Delay fps (talent poaching) | `delay_tactics: poaching` | $1B, as above | Same effect. Two moves give the same 5 pp as one: they do not stack |
@@ -39,15 +39,18 @@ Constraints:    Engineering capacity (NGSA & A350 share teams) | fines if delay 
 - They can be ordered in any round before fps enters service.
 
 **Costs every plan carries.**
-- Enterprise value $150B, debt $10B, WACC 8%, α 0.30. Your low debt keeps the penalty small: about $0.8B before
+- Enterprise value $150B, debt $10B, WACC 8%, α 0.30. Your low debt keeps the penalty small: about $1.2B before
   discounting for NGSA.
 - **Two-front strain.** $3B × the overlap between NGSA development (EIS − 7 to EIS) and A350 Re-engine development
   (EIS − 5 to EIS), divided by 5.
 
 **Market rules that drive your number** (public; in `rules.md`).
-- If fps enters service first, Boeing gains 1.0 pp a year (cap 80%), and the fps 7-year ramp-up adds 5 pp for 10
-  years. When NGSA arrives, Airbus climbs back toward 50% at 1.0 pp a year if below 50%; otherwise shares freeze.
-- If both enter service in the same year, Boeing climbs from 40% toward 50%.
+- **Both new narrowbodies launched:** the first to enter service gains 1.0 pp a year while it is alone (cap 80%) and
+  keeps that edge for good. The long-run split is 50/50 shifted toward the first one by 1.0 pp per year of lead; from
+  the second EIS, shares move toward it at 1.0 pp a year. Example: NGSA 2037 and fps 2041 settle at Airbus 54%. Same
+  EIS year: Boeing climbs from 40% toward 50%, with no edge.
+- **Only NGSA launched:** Airbus gains 3 pp a year (cap 80%). **Only fps launched:** Boeing gains 1.0 pp a year (cap 80%).
+- The three fps moves (7-year, 10-year, via Embraer) follow the same share rule; only their EIS years differ.
 
 ## 3. Enablers and constraints in this game
 

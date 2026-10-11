@@ -3,7 +3,15 @@ Adapted from the wb-game-analysis skill harness: picks the board via the radio m
 session-state captures right after each board's equilibrium bookkeeping."""
 import sys, types, contextlib
 import os
-SRC = os.environ.get("BOARD_PY", os.path.join(os.path.dirname(os.path.abspath(__file__)), "Combined_Game_Board.py"))
+_HERE = os.path.dirname(os.path.abspath(__file__))
+# Board version. "v2": Combined_Game_Board.py with the Game.txt snapshot (the dash-2050 game; overlap strain patched in).
+# "v3": combined_dash.py with the Game_v3.txt snapshot (EIS-lead NB share edge, no fps 7-yr share bonus, overlap strain
+# built in, Re-engines EIS 2042). Set DASH_BOARD; the game master's gm.py sets it from the run's board.txt.
+VERSION = os.environ.get("DASH_BOARD", "v2")
+assert VERSION in ("v2", "v3"), VERSION
+BOARD_FILE = {"v2": "Combined_Game_Board.py", "v3": "combined_dash.py"}[VERSION]
+GAME_TXT = os.path.join(_HERE, {"v2": "Game.txt", "v3": "Game_v3.txt"}[VERSION])
+SRC = os.environ.get("BOARD_PY", os.path.join(_HERE, BOARD_FILE))
 base_src = open(SRC, newline="").read()
 NL = "\r\n" if "\r\n" in base_src else "\n"
 AF_ANCHOR = '    st.session_state["_af_near_nash_pairs"] = _near_nash_pairs'
@@ -102,6 +110,11 @@ SNAP = {
     "en_rd_rr_nb": 8.0, "en_rd_rr_wb": 4.0, "en_rd_rr_t1000": 2.0,
     "en_strain_cost": 2.0, "en_rr_nbwb_strain": 5.0, "en_lobby_cost": 1.0, "en_eps_tol": 5.0, "en_gross_mult": 1.6,
 }
+if VERSION == "v3":
+    # Game_v3.txt: changed spend, Re-engine EIS, NB obsolescence; the EIS-lead edge replaces the fps 7-yr bonus
+    SNAP.pop("af_fps_7yr_adv")
+    SNAP.update({"af_cx_fps7": 65.0, "af_cx_fps10": 60.32, "af_cx_ngsa": 35.52, "af_787_eis": 2042, "af_a350_eis": 2042,
+                 "af_nb_milker": 30.0, "af_eis_lead_pp": 1.0})
 
 def af(over=None, patch=None):
     ov = dict(SNAP); ov.update(over or {})
@@ -139,6 +152,8 @@ OVERLAP_PATCH = [
     ("        a_strain_penalty_nom = v_capex_strain_a if (a_launches_nb and a_reengines) else 0.0",
      "        a_strain_penalty_nom = (v_capex_strain_a * " + _ov("v_ngsa_eis_year", "v_a350_eis_year") + ") if (a_launches_nb and a_reengines) else 0.0", 1),
 ]
+if VERSION == "v3":
+    OVERLAP_PATCH = []      # combined_dash.py has the same overlap-aware strain built in (_strain_overlap_frac)
 
 import re as _re
 def parse_snapshot(path):
@@ -173,3 +188,40 @@ def check_snapshot(MX, A, B, snap):
         if round(c["yield_a"]) != ya or round(c["yield_b"]) != yb:
             bad_round.append((ya, yb, round(c["yield_a"], 2), round(c["yield_b"], 2), lab(a), lab(b)))
     return dict(pure=len(pure), near=len(near), missing=len(want - got), extra=len(got - want), bad_round=bad_round)
+
+
+def parse_engine_snapshot(path):
+    """The engine section of a snapshot: (pure, near), each [(cfm_yield, rr_yield, cfm_move, pw_move, rr_move)].
+    CFM's NB and WB lines are joined as the board's move string (WB 'Milk GEnx' adds nothing); RR likewise."""
+    txt = open(path, encoding="utf-8").read().split("ENGINE GAME")[1]
+    out = {}
+    for kind, part in (("pure", txt.split("NEAR-NASH")[0]), ("near", txt.split("NEAR-NASH")[1] if "NEAR-NASH" in txt else "")):
+        rows = []
+        for blk in _re.split(r"\n  (?:Pure|Near)[- ]Nash #\d+  ", part)[1:]:
+            m = _re.match(r"\(CFM (\d+)% \| RR (\d+)%\)", blk)
+            g = lambda lab: _re.search(lab + r"\s*: (.*)", blk).group(1).strip()
+            cn, cw, pn, rn, rw = g("CFM/GE  NB"), g("CFM/GE  WB"), g("PW      NB"), g("RR      NB"), g("RR      WB")
+            cfm = cn + ("" if cw.startswith("Milk") else " | " + cw)
+            rr = rn if rw.startswith("Milk") else rn.replace(" (Milk WB)", "") + " | " + rw
+            rows.append((int(m.group(1)), int(m.group(2)), cfm, pn, rr))
+        out[kind] = rows
+    return out["pure"], out["near"]
+
+
+def check_engine_snapshot(SE, path):
+    """Compare the solved engine board (H.en) with the snapshot's engine equilibria and rounded CFM / RR yields."""
+    pure_s, near_s = parse_engine_snapshot(path)
+    EA, EC, PW, MXE = SE["_EA"], SE["_EC"], SE["_EPW"], SE["_EMX"]
+    got_p = [(EA[i], PW, EC[k]) for i, k in SE["_EPURE"]]
+    got_n = [(EA[i], PW, EC[k]) for i, k in SE["_ENEAR"]]
+    want_p = [(c, p, r) for _, _, c, p, r in pure_s]
+    want_n = [(c, p, r) for _, _, c, p, r in near_s]
+    bad = []
+    for ya, yc, c, p, r in pure_s + near_s:
+        if c in EA and r in EC:
+            cell = MXE[EA.index(c)][EC.index(r)]
+            got = (round(cell["A"]["yield_pct"]), round(cell["C"]["yield_pct"])) if isinstance(cell, dict) and "A" in cell else None
+            if got is not None and got != (ya, yc):
+                bad.append((c, r, (ya, yc), got))
+    return dict(pure=len(got_p), near=len(got_n), pure_match=sorted(got_p) == sorted(want_p),
+                near_match=sorted(got_n) == sorted(want_n), want=(len(want_p), len(want_n)), bad_round=bad)

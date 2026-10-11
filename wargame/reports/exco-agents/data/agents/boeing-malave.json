@@ -114,7 +114,7 @@
   },
   {
    "test": "Balance sheet first",
-   "threshold": "The grid's ΔPV already nets each plan's discounted debt penalty; never subtract it again. Cite the undiscounted figures (7-year fps $21.7B, 10-year $16.3B, via Embraer $52.5B; each move alone, not additive) only for scale; within $1B on the expected column, prefer the plan that adds the smaller penalty",
+   "threshold": "The grid's ΔPV already nets each plan's discounted debt penalty; never subtract it again. Cite the undiscounted figures (7-year fps $22.0B, 10-year $19.1B, via Embraer $52.5B; each move alone, not additive) only for scale; within $1B on the expected column, prefer the plan that adds the smaller penalty",
    "ids": [
     "BX-0556",
     "B-2345"

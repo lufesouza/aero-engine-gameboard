@@ -20,7 +20,7 @@ export const meta = {
 // `run` must equal the DASH_RUN that gm.py used to write the briefs, and must not be the earlier game's dash-2050.
 // Each executive sees only its own company's brief and what the GM passes from its colleagues. Nothing crosses
 // between companies: each company's chain is independent, and the isolation hook enforces the file side.
-// Not run yet: the user asked for the agents only.
+// First played in run dash-2050-exco, on the combined_dash.py board (DASH_BOARD=v3).
 
 // Mirrors wargame/dashgame/rules.py ORDER_FIELDS (`python3 exco.py check` compares them).
 // ORDER_FIELDS_BEGIN

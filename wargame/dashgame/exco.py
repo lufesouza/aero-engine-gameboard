@@ -1,4 +1,4 @@
-"""Game-master helper for rounds played by the per-executive agents (workflows/exco_round.js). Not used yet.
+"""Game-master helper for rounds played by the per-executive agents (workflows/exco_round.js).
 
   python3 exco.py check                      # the script's order fields match rules.ORDER_FIELDS
   python3 exco.py save N result.json         # ExCo notes to each company's folder; orders file for gm.py adjudicate

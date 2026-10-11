@@ -68,7 +68,7 @@ grid ΔPV is the proxy for them; the briefing objective (60/40 edge) is Faury's 
 
 | Test | Threshold or rule | Evidence |
 |---|---|---|
-| Peak annual cash | Peak annual programme cash spend no higher than about one year's FCF: ≈ $5.2B. The board books each bill at EIS; as a cash view, spread it evenly over its development years **(inference)**. With the bills in `dashboard_game.md` §2 (use your brief's if they differ): NGSA $30.07B / 7 ≈ $4.3B a year; A350 Re-engine $5B / 5 = $1.0B a year; strain $3B × overlap ÷ 5, i.e. $0.6B per overlap year. NGSA alone passes; NGSA plus an overlapping A350 Re-engine ≈ $5.9B fails | AX-0104; `teams.md` Step 2 method; `dashboard_game.md` §2 (game guardrail, **inference**) |
+| Peak annual cash | Peak annual programme cash spend no higher than about one year's FCF: ≈ $5.2B. The board books each bill at EIS; as a cash view, spread it evenly over its development years **(inference)**. With the bills in `dashboard_game.md` §2 (use your brief's if they differ): NGSA $35.52B / 7 ≈ $5.1B a year; A350 Re-engine $5B / 5 = $1.0B a year; strain $3B × overlap ÷ 5, i.e. $0.6B per overlap year. NGSA alone passes, narrowly; NGSA plus an overlapping A350 Re-engine ≈ $6.7B fails | AX-0104; `teams.md` Step 2 method; `dashboard_game.md` §2 (game guardrail, **inference**) |
 | Delay Tactics cash | Spread each $1B move evenly over the years from the order to fps EIS and add it to that year's spend | `dashboard_game.md` §2 **(inference)** |
 | Robustness | The plan's ΔPV against Do Nothing is positive in the worst plausible Boeing column (`teams.md` Step 2). An added move (A350 Re-engine, Delay Tactics) is also held to the company's own test: at least $1B over the same plan without it (`profile.md` §6); one that turns negative in a plausible column and misses that $1B fails. The second sentence is the drafter's reading, not in `teams.md` | `teams.md` Step 2; `profile.md` §6; AX-0022 **(inference)** |
 | Overlap | NGSA and A350 Re-engine development overlap of 2 years or less, unless the grid shows at least $1B more. `teams.md` puts this company guardrail in your step; Wagner tests the same overlap on engineering capacity | A-0343, A-0401; `profile.md` hard rule 6 **(inference)** |
@@ -79,7 +79,7 @@ grid ΔPV is the proxy for them; the briefing objective (60/40 edge) is Faury's 
 | Board items | Every order above €300m is a Board item (NGSA, A350 Re-engine, each Delay Tactics move, any cancellation). Within $1B, prefer fewer | AX-0026 |
 | Cancel | Cancel an A350 Re-engine only if Boeing's 787 Re-engine enters service first and the grid shows its remaining spend losing at least $1B; never cancel NGSA. The write-off is bill × years elapsed ÷ development years | `profile.md` §6; `dashboard_game.md` §2 **(inference)** |
 
-Note what the peak-cash test implies **(inference)**: with NGSA at about $4.3B a year, any A350 Re-engine that overlaps
+Note what the peak-cash test implies **(inference)**: with NGSA at about $5.1B a year, any A350 Re-engine that overlaps
 NGSA development fails it, so in practice you want the A350 Re-engine to start after NGSA has entered service. That is
 stricter than the company's 2-year overlap limit (hard rule 6). In `teams.md` the same test passed narrowly on the
 earlier engine's $25B NGSA bill; the dashboard's larger bill is what tips it.
@@ -115,7 +115,7 @@ earlier engine's $25B NGSA bill; the dashboard's larger bill is what tips it.
 
 | Lever | Your position | Evidence |
 |---|---|---|
-| NGSA | Fund it inside cash flow: NGSA alone, about $4.3B a year, passes. Timing follows the company default (launch in 2030 on this board, the last year of the window); you weigh capex timing against the shared EBIT and FCF targets | AX-0104, AX-0034 **(inference)** |
+| NGSA | Fund it inside cash flow: NGSA alone, about $5.1B a year, passes narrowly. Timing follows the company default (launch in 2030 on this board, the last year of the window); you weigh capex timing against the shared EBIT and FCF targets | AX-0104, AX-0034 **(inference)** |
 | A350 Re-engine | Only after NGSA spend has rolled off, and only if it stays positive in the worst plausible column (a 787 Re-engine column included). A concurrent launch fails your peak-cash test | AX-0104, AX-0022 **(inference)** |
 | Delay Tactics | Each move is $1B and a Board item. None before fps is public (fine exposure); never a second move; `poaching` only while a programme is in development; only if the grid shows at least $1B. The team's stricter condition (the move must change who enters service first, `teams.md`) cannot be met on this board, where the move shifts share, not EIS: if Faury orders a move, check that his rationale and Board item record that he set it aside. The Board vetoes `bottleneck` and `both`; in practice only `poaching` can pass it | AX-0026, AX-0022 **(inference)** |
 | Engine code | No evidence: follow Wagner's supply recommendation. The code does not change Airbus's payoff on this board | none |

@@ -23,8 +23,8 @@ Constraints:    High debt load | ramp-up speed | engineering capacity | supply-c
 
 | Briefing move | Order | Cost and timing | What the board does |
 |---|---|---|---|
-| fps, 7-year ramp-up | `fps: launch_7yr` | $64.47B, booked at EIS; EIS = launch + 7 | fps at $55M and 25.64% margin, against the 737 MAX at $48M and 8%. Capture after EIS 1.0 pp a year. Plus a first-mover bonus of +5 pp for 10 years from EIS |
-| fps, 10-year ramp-up | `fps: launch_10yr` | $55.25B at EIS; EIS = launch + 10 | Same airplane and capture speed, no bonus, 3 years later |
+| fps, 7-year ramp-up | `fps: launch_7yr` | $65.00B, booked at EIS; EIS = launch + 7 | fps at $55M and 25.64% margin, against the 737 MAX at $48M and 8%. Capture after EIS 1.0 pp a year. No share bonus: what the faster ramp buys is an earlier EIS, which the lead-edge rule below prices |
+| fps, 10-year ramp-up | `fps: launch_10yr` | $60.32B at EIS; EIS = launch + 10 | Same airplane, share rule and capture speed, 3 years later |
 | fps via Embraer | `fps: launch_via_embraer` | $100B at EIS (Boeing's bill on the board); EIS = launch + 10 | As the 10-year ramp-up; only the cost differs |
 | Increase 737 rate by 2030 | `rate_737: increase`; 2030 round only | $2.94B in 2032 | +5 pp NB share in 2032-36, or in every year if neither new narrowbody is ever launched |
 | 787 Re-engine (widebody; not on the slide) | `re787: launch` | $5B at EIS; EIS = launch + 5 | Alone: 787 gains 1.0 pp a year to 85% and its margin rises from 20% to 25.21%. If the A350 also re-engines, the margin is 15.77% and share gains stop at the A350's EIS |
@@ -34,17 +34,19 @@ Constraints:    High debt load | ramp-up speed | engineering capacity | supply-c
 
 **Costs every plan carries.**
 - **Debt penalty (α 0.30).** Enterprise value $130B, debt $45B, WACC 10.5%. New spend adds to debt, and the penalty
-  is debt × α × (debt ÷ EV)², so it grows fast. Before discounting, a 10-year fps adds $16.3B of penalty, a 7-year fps
-  $21.7B and fps via Embraer $52.5B, against $0.6B for the 787 Re-engine alone. The penalty is discounted like the
+  is debt × α × (debt ÷ EV)², so it grows fast. Before discounting, a 10-year fps adds $19.1B of penalty, a 7-year fps
+  $22.0B and fps via Embraer $52.5B, against $0.6B for the 787 Re-engine alone. The penalty is discounted like the
   spend itself.
 - **Two-front strain.** $3B × the overlap between fps development (EIS − 7 to EIS) and 787 Re-engine development
   (EIS − 5 to EIS), divided by 5. It costs nothing if the two do not overlap.
 
 **Market rules that drive your number** (public; in `rules.md`).
-- If NGSA enters service first, Airbus gains 3 pp a year (cap 80%) until fps arrives. Boeing then climbs toward 50% at
-  1.0 pp a year.
-- If fps enters service first, Boeing gains 1.0 pp a year (cap 80%). When NGSA arrives, shares freeze unless Boeing
-  is above 50%.
+- **Both new narrowbodies launched:** the first to enter service gains 1.0 pp a year while it is alone (cap 80%) and
+  keeps that edge for good. The long-run split is 50/50 shifted toward the first one by 1.0 pp per year of lead; from
+  the second EIS, shares move toward it at 1.0 pp a year. Example: NGSA 2037 and fps 2041 settle at Boeing 46%. Same
+  EIS year: Boeing climbs from 40% toward 50%, with no edge.
+- **Only NGSA launched:** Airbus gains 3 pp a year (cap 80%). **Only fps launched:** Boeing gains 1.0 pp a year (cap 80%).
+- The three fps moves follow the same share rule; only the EIS year and the bill differ.
 - Airbus's covert Delay Tactics, if any, cost Boeing 5 pp for 5 years from fps EIS.
 
 ## 3. Enablers and constraints in this game
@@ -56,7 +58,7 @@ Constraints:    High debt load | ramp-up speed | engineering capacity | supply-c
 | Government incentives | no | ExCo judgement; the board books the full bill |
 | Cash from 787 program | yes: 787 at 20% margin, 58.8% of the widebody | Funds the fps; the 787 Re-engine changes it |
 | High debt load | yes: α debt penalty, WACC 10.5% | CFO test in every round |
-| Ramp-up speed | yes: 1.0 pp a year capture; 7-year ramp +5 pp | 7-year vs 10-year choice |
+| Ramp-up speed | yes: 1.0 pp a year capture; the 7-year ramp enters service 3 years sooner (1 pp of lasting edge per year of lead) | 7-year vs 10-year choice |
 | Engineering capacity | yes: two-front strain | COO test; H4 |
 | Supply-chain bottlenecks | partly: Delay Tactics (covert) and engine fallback | Use the risk-case column of your grid |
 

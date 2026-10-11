@@ -93,7 +93,7 @@ meetings, at 95% attendance [AG-0009].
 
 | Order (dash-2050) | Size on the board | Real reserved matter | Majority | Below the real threshold? |
 |---|---|---|---|---|
-| `ngsa: launch` (+ `ngsa_engine_code`) | $30.07B (slide $20B) | Programme launch above €800m; Yearly Budget, major programmes [AG-0049, A-0297] | Qualified | No |
+| `ngsa: launch` (+ `ngsa_engine_code`) | $35.52B (slide $20B) | Programme launch above €800m; Yearly Budget, major programmes [AG-0049, A-0297] | Qualified | No |
 | `rea350: launch` | $5B | Programme launch above €800m [AG-0049] | Qualified | No |
 | `delay_tactics: bottleneck` / `poaching` | $1B each, with a $48.32B naked fine | Above €300m (about €0.9bn at an assumed $1.10/€, so also above €800m); "abnormal level of risk" [A-0298, A-0299]; integrity, the ECSC's field [AG-0022, AG-0053] | Read as Qualified (inference) | No |
 | `ngsa: cancel` / `rea350: cancel` | write-off | Change to the major-programme plan and the Yearly Budget [A-0297]; major announcement to the capital markets [A-0299] | Simple | No (any write-off above €300m) |
