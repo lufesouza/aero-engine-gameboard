@@ -39,6 +39,8 @@ SERIES_COLOR = {"Boeing": (BOEING_BLUE, False), "Airbus": (FLIGHT, False), "Game
                 "fps 10-year (played)": (BOEING_BLUE, False), "Do Nothing (no fps)": (LIFTOFF, False),
                 "No game (analysts' path)": (GRAY_MID, True)}
 FALLBACK = [(BOEING_BLUE, False), (FLIGHT, False), (SPACE, False)]
+SHORT = {"Free cash flow, base": "Base FCF", "Free cash flow, stress": "Stress FCF", "fps programme cash": "",
+         "fps 10-year (played)": "Played", "No game (analysts' path)": "No game", "Do Nothing (no fps)": "Do Nothing"}
 
 
 # ---------------------------------------------------------------- primitives
@@ -49,6 +51,13 @@ def strip_slides(prs):
         lst.remove(s)
     for rid in rids:
         prs.part.drop_rel(rid)
+
+
+def nobreak(t):
+    """Keep a sign with its number: no line break between +/−/- and $ or a digit."""
+    for sgn in ("+", "\u2212", "-"):
+        t = t.replace(sgn + "$", sgn + "\u2060$")
+    return t
 
 
 def text(slide, x, y, w, h, paras, anchor="t", align=PP_ALIGN.LEFT, line_spacing=None, margins=0.0, space=5):
@@ -74,7 +83,7 @@ def text(slide, x, y, w, h, paras, anchor="t", align=PP_ALIGN.LEFT, line_spacing
         for r in runs:
             t, size, bold, color = r[:4]
             run = p.add_run()
-            run.text = t
+            run.text = nobreak(t)
             run.font.size = Pt(size)
             run.font.bold = bold
             run.font.italic = r[4] if len(r) > 4 else False
@@ -254,20 +263,30 @@ def visual_line(slide, v, FP, x, y, w, h):
         yy = to_y(val) - 0.13
         yy = yy if last is None else max(yy, last + 0.26)
         last = yy
-        lab = f"{n.split(' (')[0]} {val:.0f}%" if share else f"{n.split(' (')[0]} {val:.1f}"
+        short = SHORT.get(n, n.split(" (")[0])
+        if not short:
+            continue
+        lab = f"{short} {val:.0f}%" if share else f"{short} {val:.1f}"
         text(slide, to_x(x_hi) + 0.08, yy, w * (1 - PX - PW) - 0.1, 0.26,
              [[(lab, 12, True, SERIES_COLOR.get(n, FALLBACK[0])[0])]])
-    # annotations: a marker on the first series and a label above it
+    # annotations: numbered markers on the named series (default: the first); the key goes under the chart
+    keys = []
     for a in v.get("annotations") or []:
         yr = a["year"]
         if not names or yr not in yrs[idx[0]: idx[-1] + 1]:
             continue
-        val = ds["series"][names[0]][yrs.index(yr)] * k
+        sname = a.get("series") if a.get("series") in names else names[0]
+        val = ds["series"][sname][yrs.index(yr)] * k
         cx, cy = to_x(yr), to_y(val)
-        rect(slide, cx - 0.07, cy - 0.07, 0.14, 0.14, fill=SPACE, line=WHITE, shape=MSO_SHAPE.OVAL, line_w=1.25)
-        text(slide, cx - 1.1, cy - 0.46, 2.2, 0.3, [[(a["text"], 12, True, SPACE)]], align=PP_ALIGN.CENTER)
+        keys.append(a["text"])
+        numbered_circle(slide, cx - 0.15, cy - 0.15 - 0.3, len(keys), d=0.3, fill=SPACE, size=11)
+        rect(slide, cx - 0.06, cy - 0.06, 0.12, 0.12, fill=SPACE, line=WHITE, shape=MSO_SHAPE.OVAL, line_w=1.0)
     unit = "% of deliveries" if share else ("$B" + (", 2026 dollars" if v["dataset"] in ("boeing_cash", "net_debt", "owners_cash") else ", 2026 prices"))
     text(slide, x, y + h + 0.02, w, 0.26, [[(unit, 10, False, GRAY, True)]])
+    if keys:
+        paras = [[(f"{i + 1}  ", 12, True, SPACE), (t, 12, False, INK)] for i, t in enumerate(keys)]
+        text(slide, x, y + h + 0.28, w, 0.75, [sum(([(f"{i + 1} ", 12, True, BOEING_BLUE), (t + ("     " if i < len(keys) - 1 else ""), 12, False, INK)]
+                                                     for i, t in enumerate(keys)), [])], line_spacing=1.0)
 
 
 def visual_bridge(slide, v, FP, x, y, w, h):
@@ -320,21 +339,29 @@ def visual_bridge(slide, v, FP, x, y, w, h):
 def visual_stats(slide, v, x, y, w, h):
     st = v["stats"]
     n = len(st)
-    gap = 0.18
-    bw = (w - gap * (n - 1)) / n
-    for i, s in enumerate(st):
-        bx = x + i * (bw + gap)
-        rect(slide, bx, y, bw, h, fill=TINT)
-        rect(slide, bx, y, 0.08, h, fill=BOEING_BLUE)
-        text(slide, bx + 0.25, y + 0.25, bw - 0.4, 1.0, [[(s["value"], 40 if n <= 3 else 34, True, BOEING_BLUE)]])
-        text(slide, bx + 0.25, y + 1.3, bw - 0.4, h - 1.45, [[(s["label"], 15, False, INK)]], line_spacing=1.02)
+    cols = 2 if n == 4 else n
+    rows = 2 if n == 4 else 1
+    gap = 0.16
+    bw = (w - gap * (cols - 1)) / cols
+    bh = (h - gap * (rows - 1)) / rows
+    for i, s_ in enumerate(st):
+        bx = x + (i % cols) * (bw + gap)
+        by = y + (i // cols) * (bh + gap)
+        rect(slide, bx, by, bw, bh, fill=TINT)
+        rect(slide, bx, by, 0.08, bh, fill=BOEING_BLUE)
+        text(slide, bx + 0.25, by + 0.12, bw - 0.4, 0.62, [[(s_["value"], 30, True, BOEING_BLUE)]])
+        text(slide, bx + 0.25, by + 0.74, bw - 0.4, bh - 0.82, [[(s_["label"], 14, False, INK)]], line_spacing=1.0)
 
 
 def visual_table(slide, v, x, y, w, h):
     t = v["table"]
     cols, rows = t["columns"], t["rows"]
-    shp = slide.shapes.add_table(len(rows) + 1, len(cols), Inches(x), Inches(y), Inches(w), Inches(min(h, 0.5 * (len(rows) + 1))))
+    HEAD, ROW = 0.5, 0.34
+    shp = slide.shapes.add_table(len(rows) + 1, len(cols), Inches(x), Inches(y), Inches(w), Inches(HEAD + ROW * len(rows)))
     tbl = shp.table
+    tbl.rows[0].height = Inches(HEAD)
+    for r_ in range(1, len(rows) + 1):
+        tbl.rows[r_].height = Inches(ROW)
     first_w = w * (0.34 if len(cols) > 3 else 0.4)
     rest = (w - first_w) / max(1, len(cols) - 1)
     for j in range(len(cols)):
@@ -358,23 +385,30 @@ def visual_table(slide, v, x, y, w, h):
                 p.alignment = PP_ALIGN.LEFT if j == 0 else PP_ALIGN.CENTER
                 for r in p.runs:
                     r.font.size = Pt(14); r.font.color.rgb = INK; r.font.bold = j == 0
+            cell.margin_top = cell.margin_bottom = Inches(0.03)
 
 
 def visual_recs(slide, v, x, y, w, h):
     recs = v["recs"]
     n = len(recs)
-    rh = h / n
+    cols = 2 if n >= 4 else 1
+    rows = (n + cols - 1) // cols
+    gap = 0.14
+    cw = (w - gap * (cols - 1)) / cols
+    ch = (h - gap * (rows - 1)) / rows
     for i, r in enumerate(recs):
-        ry = y + i * rh
-        numbered_circle(slide, x, ry + 0.04, i + 1)
-        text(slide, x + 0.62, ry, w - 0.62, rh - 0.06,
-             [[(r["recommendation"], 16, True, SPACE)], [("Why: ", 14, True, BOEING_BLUE), (r["why"], 14, False, INK)],
-              [("Proof: ", 14, True, BOEING_BLUE), (r["proof"], 14, False, INK)]], line_spacing=1.0, space=2)
+        cx = x + (i % cols) * (cw + gap)
+        cy = y + (i // cols) * (ch + gap)
+        rect(slide, cx, cy, cw, ch, fill=TINT)
+        numbered_circle(slide, cx + 0.1, cy + 0.1, i + 1, d=0.4, size=15)
+        text(slide, cx + 0.6, cy + 0.06, cw - 0.66, ch - 0.1,
+             [[(r["recommendation"], 15, True, SPACE)], [("Why: ", 13, True, BOEING_BLUE), (r["why"], 13, False, INK)],
+              [("Proof: ", 13, True, BOEING_BLUE), (r["proof"], 13, False, INK)]], line_spacing=1.0, space=3)
 
 
 def visual_risks(slide, v, x, y, w, h):
     risks = v["risks"]
-    cols = [("Risk", 0.25), ("Trigger", 0.22), ("Cost", 0.2), ("Mitigation", 0.33)]
+    cols = [("Risk", 0.24), ("Trigger", 0.21), ("Cost", 0.24), ("Mitigation", 0.31)]
     hy = 0.42
     cx = x
     for name, f in cols:
@@ -417,7 +451,7 @@ def build_slide(prs, s, FP):
         # visual (left) + takeaway strip under it; evidence bullets in the right column
         vx, vy, vw, vh = 0.5, 2.0, 7.95, 3.55
         if t == "line":
-            visual_line(slide, v, FP, vx, vy, vw, vh)
+            visual_line(slide, v, FP, vx, vy, vw, vh - (0.5 if v.get("annotations") else 0))
         elif t == "bridge":
             visual_bridge(slide, v, FP, vx, vy, vw, vh)
         else:
@@ -426,18 +460,27 @@ def build_slide(prs, s, FP):
         rect(slide, 8.75, 2.0, 0.04, 4.72, fill=GRAY_LINE)
         bullets_box(slide, 9.0, 2.0, 3.83, 4.72, bullets)
     else:
-        side = bool(bullets) and t in ("table", "columns")
-        vw = 8.4 if side else 12.33
+        band = None
         if t == "table":
-            visual_table(slide, v, 0.5, 2.0, vw, 3.75)
+            nrows = len(v["table"]["rows"]) + 1
+            visual_table(slide, v, 0.5, 2.0, 12.33, 2.6)
+            band = (0.5, 2.0 + 0.5 + 0.34 * (nrows - 1) + 0.12, 2, 13)
         elif t == "recs":
-            visual_recs(slide, v, 0.5, 1.98, 12.33, 3.86)
+            visual_recs(slide, v, 0.5, 1.98, 12.33, 3.3 if bullets else 3.86)
+            band = (0.5, 5.34, 2, 13)
         elif t == "risks":
-            visual_risks(slide, v, 0.5, 1.98, 12.33, 3.86)
+            visual_risks(slide, v, 0.5, 1.98, 12.33, 3.48 if bullets else 3.86)
+            band = (0.5, 5.5, len(bullets) or 1, 12)
         else:
-            visual_columns(slide, v, 0.5, 2.0, vw, 3.75)
-        if side:
-            bullets_box(slide, 9.15, 2.0, 3.68, 3.8, bullets)
+            visual_columns(slide, v, 0.5, 2.0, 12.33, 3.75)
+        if bullets and band:
+            bx, by, ncol, size = band
+            ncol = min(ncol, len(bullets))
+            per = (len(bullets) + ncol - 1) // ncol
+            colw = (12.33 - 0.3 * (ncol - 1)) / ncol
+            for c in range(ncol):
+                chunk = bullets[c * per:(c + 1) * per]
+                bullets_box(slide, bx + c * (colw + 0.3), by, colw, 5.86 - by, chunk, size=size)
         takeaway_strip(slide, 0.5, 5.92, 12.33, 0.8, s["takeaway"])
     return slide
 

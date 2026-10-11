@@ -1,0 +1,1139 @@
+{
+ "draft": {
+  "cover": {
+   "title": "The narrowbody race and the 787: what Boeing should do differently",
+   "subtitle": "Debrief of the 2030-2050 war game (four decision rounds: 2030, 2035, 2045, 2050) for the CEO, the CFO and the head of Commercial Airplanes"
+  },
+  "slides": [
+   {
+    "section": "Executive summary",
+    "action_title": "Boeing kept its balance sheet safe, but came three years late to narrowbodies and left $2.2B on the widebody",
+    "visual": {
+     "type": "stats",
+     "stats": [
+      {
+       "value": "+$0.66B",
+       "label": "Value Boeing created (present value at 2026). Airbus created +$23.37B"
+      },
+      {
+       "value": "38%",
+       "label": "Boeing narrowbody share in 2040, below the 40% line. It recovers to 47% from 2049"
+      },
+      {
+       "value": "5 of 7",
+       "label": "Objectives met: balance sheet and engine supply met, both narrowbody-share goals missed"
+      },
+      {
+       "value": "+$2.20B",
+       "label": "Value a 2030 787 Re-engine would have added, with widebody share at 74.8% by 2050"
+      }
+     ]
+    },
+    "bullets": [
+     "Airbus's new narrowbody (NGSA) entered service in 2037 and ours (the fps) in 2040. Those three years alone put Airbus at 63% in 2039.",
+     "The fps works. From 2040 it more than doubles Boeing's operating profit, and our share climbs back to 47%.",
+     "The balance sheet was never at risk. Net debt reached zero in 2029 and stayed there through the fps cash peak, even in the stress case.",
+     "Our answer: keep the fps plan, add the 787 Re-engine in 2030, protect the 2040 date and both engine sources, and reset the narrowbody goal."
+    ],
+    "takeaway": "Our answer is the same fps and the same safe balance sheet, plus the 787 Re-engine in 2030, for more than four times the value.",
+    "source": "War game dash-2050-obj: the game master's final valuation, market shares and objective scoring. Value on the dashboard basis (new-airplane business, present value at 2026).",
+    "notes": "WHAT TO SAY: Three findings. (1) We lost the narrowbody race on the calendar. Both companies launched in 2030, Airbus with a 7-year plan and Boeing with a 10-year plan, so Airbus had the market to itself from 2037 to 2040. (2) Our airplane and our balance sheet both did their job: the fps more than doubles profit, and net debt stayed at zero. (3) The widebody, where we lead, was left untouched. A 787 Re-engine launched in 2030 was worth more than everything else we did. Slide 7 has four moves. Only one of them changes what Boeing actually ordered.\n\nSOURCES: +$0.66B (Boeing) and +$23.37B (Airbus) are the game master's final value created against the status quo, as present value at 2026 on the dashboard basis (fact pack: pv_bridge and dpv_all). 38% in 2040 and 47% from 2049 are Boeing's narrowbody delivery shares (nb_share). 63% in 2039 is Airbus's peak (nb_share). 5 of 7 is the game master's objective scoring (boeing_objectives): met were the three balance-sheet lines and the two engine-supply lines; missed were the 50/50 split and the 40% incumbency line. +$2.20B is the replayed plan 'fps 10-year + 787 Re-engine' (+2.86) minus the plan played (+0.66), both from plans_2030, computed with python. It equals Boeing's 2030 regret in the game master's table. 74.8% is Boeing's widebody share in 2050 with a 2030 787 Re-engine (re787_by_round). 'More than four times' is 2.86 / 0.66 = 4.3, computed with python. EIS dates 2037 and 2040 come from the fact pack's timeline. Net debt at zero in 2029 comes from the game master's balance-sheet tracker (net_debt, boeing_objectives). The profit doubling comes from boeing_profit ($6.67B to $14.32B in 2040)."
+   },
+   {
+    "section": "State of the narrowbody market",
+    "action_title": "Airbus's new narrowbody flew three years before the fps: Boeing fell to 37% before the fps took it to 47%",
+    "visual": {
+     "type": "line",
+     "dataset": "nb_share",
+     "series": [
+      "Boeing",
+      "Airbus"
+     ],
+     "years": [
+      2026,
+      2060
+     ],
+     "annotations": [
+      {
+       "year": 2037,
+       "text": "NGSA enters service: Airbus pulls ahead"
+      },
+      {
+       "year": 2040,
+       "text": "fps enters service: Boeing at 38%"
+      },
+      {
+       "year": 2049,
+       "text": "Boeing 47%, Airbus 53% from here on"
+      }
+     ]
+    },
+    "bullets": [
+     "Today Airbus delivers 60% of narrowbodies and Boeing 40%.",
+     "Both launched in 2030. NGSA entered service in 2037 and the fps in 2040. Airbus peaked at 63% in 2039.",
+     "Boeing was below its 40% line from 2037 to 2041. The fps then added about a point a year, reaching 47% from 2049.",
+     "The first to market collects first. Airbus's operating profit doubled in 2037, from $8.82B to $18.26B a year. Ours moved only in 2040."
+    ],
+    "takeaway": "We lost the narrowbody race on the calendar, not on the airplane.",
+    "source": "War game dash-2050-obj: the game master's narrowbody delivery shares by year, programme timeline and dashboard operating profit (2026 prices).",
+    "notes": "WHAT TO SAY: This is the state of the narrowbody game. Airbus starts with 60% of the market. Both companies launched a new airplane in the same year, 2030. Airbus chose a 7-year path and was in service in 2037. We chose a 10-year path for schedule headroom and to protect the balance sheet in a downturn, so we arrived in 2040. For three years Airbus had the only new airplane. Our share slid to 37% in 2039 and was 38% in the 2040 test year, so we missed the 40% incumbency line. Once the fps flew, it won back about one point a year, to 47% for good. Airbus ends at 53%, so its own 60% goal is gone too. The new market is close to an even split, but we got there late.\n\nSOURCES: Shares are from the fact pack's nb_share: Boeing 40% in 2026-2036, then 39 / 38 / 37 / 38 / 39 / 40% in 2037-2042, 43% in 2045 and 47% from 2049; Airbus 60% in 2026, 63% in 2039 and 53% from 2049. The 'below 40% from 2037 to 2041' years were read off nb_share with python. Launch years and service dates are from the fact pack's timeline: NGSA launched 2030, in service 2037; fps on the 10-year ramp launched 2030, in service 2040. Airbus operating profit of $8.82B in 2026-2036 and $18.26B in 2037 is from airbus_profit (dashboard, 2026 prices); 18.26 / 8.82 = 2.07, computed with python. Boeing's profit jump in 2040 is from boeing_profit."
+   },
+   {
+    "section": "Boeing's results",
+    "action_title": "The fps more than doubles Boeing's operating profit from 2040, but its cost leaves just $0.66B of value today",
+    "visual": {
+     "type": "bridge",
+     "dataset": "pv_bridge"
+    },
+    "bullets": [
+     "Operating profit is $6.67B a year today, $14.32B in 2040 and $16.86B from 2049 (2026 prices).",
+     "That extra narrowbody profit is worth $20.30B today. The fps bill ($60.32B) costs $14.91B and its financing $4.73B.",
+     "Without the fps our value would be -$3.64B and our share 20% by 2050. Launching it was right: it is worth $4.30B.",
+     "In the same game Airbus created $23.37B."
+    ],
+    "takeaway": "The fps is the right airplane, but with a 2040 entry into service it only just pays for itself in today's money.",
+    "source": "War game dash-2050-obj: the game master's final valuation on the dashboard basis (Boeing's new-airplane business at 2026 prices; value as present value at 2026), and replayed 2030 plans.",
+    "notes": "WHAT TO SAY: These are our financial results on the dashboard's basis, which covers the new-airplane business at 2026 prices, with value as present value at 2026. Profit more than doubles once the fps is in service. But the airplane arrives late, so the profit comes late, and in today's money it barely covers the bill and its financing. Net value is +$0.66B. The dashboard calls this figure delta-PV: value created against the status quo. Do Nothing was worse. Without the fps we would have lost $3.64B of value and fallen to 20% of the narrowbody market. So the launch was right. The issue is timing and what we did alongside it.\n\nSOURCES: The bridge is the fact pack's pv_bridge: narrowbody profit against the status quo +20.30, the fps bill (-14.91; the $60.32B bill is charged in 2040 and discounted), the debt penalty (-4.73; the dashboard's financing charge for the debt the programme adds), and value created +0.66. Discounting is at Boeing's 10.5% WACC (brief_r1_boeing.md). Operating profit of $6.67B, $14.32B (2040) and $16.86B (2049 on) is from boeing_profit. 14.32 / 6.67 = 2.15 and 16.86 / 6.67 = 2.53, computed with python. -$3.64B and 20% in 2050 are the replay of 'fps: hold + 787: hold' (Do Nothing) in plans_2030. $4.30B = 0.66 - (-3.64), computed with python; it matches Boeing's 2030 grid (launch value +4.30 in the column that happened). Airbus +$23.37B is from dpv_all. This bridge is the dashboard's P&L and value. The next slide uses the game master's whole-company balance-sheet tracker, a different basis."
+   },
+   {
+    "section": "Boeing's results",
+    "action_title": "The balance sheet was not the constraint: net debt hit zero in 2029 and stayed there through the fps cash peak",
+    "visual": {
+     "type": "line",
+     "dataset": "boeing_cash",
+     "series": [
+      "fps programme cash",
+      "Free cash flow, base",
+      "Free cash flow, stress"
+     ],
+     "years": [
+      2030,
+      2060
+     ],
+     "annotations": [
+      {
+       "year": 2036,
+       "text": "fps cash peak $8.44B; stress-case cash flow still +$2.52B"
+      },
+      {
+       "year": 2040,
+       "text": "fps in service: free cash flow $19.83B"
+      }
+     ]
+    },
+    "bullets": [
+     "Net debt fell from $22.53B (end-2026) to zero in 2029, from consensus cash flow alone. In the stress case it reached zero in 2030.",
+     "The fps spent $3.02B in 2030, peaking at $8.44B in 2036. Free cash flow stayed positive every year, at least $2.52B in the stress case.",
+     "From 2027 to 2050 the fps returns $325.7B to owners, $44.0B more than Do Nothing. It pays back against Do Nothing in 2046.",
+     "All three balance-sheet goals and both engine-supply goals were met. Both narrowbody-share goals were missed."
+    ],
+    "takeaway": "The 10-year fps left room in the balance sheet for a second, smaller development.",
+    "source": "War game dash-2050-obj: the game master's balance-sheet tracker (whole company, 2026 dollars, analysts' consensus free cash flow; stress case one-third lower) and objective scoring.",
+    "notes": "WHAT TO SAY: This is the CFO's slide, on a different basis from the last one: the game master's whole-company balance-sheet tracker, in 2026 dollars, built on the analysts' consensus. The analysts' cash flow repairs the balance sheet by 2029 before any new programme. The real question was whether a launch would undo that. It did not. The fps cash peak of $8.44B in 2036 still left positive free cash flow in the stress case, where cash flow is one-third below consensus. Once the fps is in service, free cash flow roughly doubles. The point for the next slide: we had headroom, and we did not use it.\n\nSOURCES: $22.53B net debt at end-2026 and zero thereafter are from net_debt. Zero in 2029 (base) and 2030 (stress) are from boeing_objectives. Programme cash of $3.02B (2030) and the $8.44B peak (2036) are from boeing_cash. The stress-case free cash flow low of $2.52B (2036) and the base-case low of $7.12B (2036) are also from boeing_cash. Free cash flow of $19.83B in 2040 is boeing_cash base; stress is $15.23B. Cash to owners from 2027 to 2050, undiscounted: played $325.7B against Do Nothing $281.7B (owners_cash and the fact pack's other facts); the difference, $44.0B, was computed with python. Against Do Nothing the gap is $136.6B by 2060 (544.0 - 407.4, python). Payback year against Do Nothing, 2046, is from the fact pack's other facts. Objectives are from boeing_objectives."
+   },
+   {
+    "section": "Better use of the market",
+    "action_title": "The 787 Re-engine was the biggest unused lever: +$2.2B and 16 points of widebody share if launched in 2030",
+    "visual": {
+     "type": "table",
+     "table": {
+      "columns": [
+       "787 Re-engine launched in",
+       "Boeing value created $B",
+       "Gain vs holding $B",
+       "Boeing widebody share 2050",
+       "In service"
+      ],
+      "rows": [
+       [
+        "Never (as played)",
+        "+0.66",
+        "-",
+        "58.8%",
+        "-"
+       ],
+       [
+        "2030",
+        "+2.86",
+        "+2.20",
+        "74.8%",
+        "2035"
+       ],
+       [
+        "2035",
+        "+1.31",
+        "+0.65",
+        "69.8%",
+        "2040"
+       ],
+       [
+        "2045",
+        "+0.96",
+        "+0.30",
+        "59.8%",
+        "2050"
+       ],
+       [
+        "2050",
+        "+0.71",
+        "+0.05",
+        "58.8%",
+        "2055"
+       ]
+      ]
+     }
+    },
+    "bullets": [
+     "We lead widebodies with 58.8% of deliveries, but we held the 787 all game. Our share stayed flat to 2060.",
+     "Launched with the fps in 2030, the Re-engine adds $2.20B net, and every balance-sheet line still holds (stress-case cash flow low $2.69B).",
+     "It fits our own one-development rule. On the 10-year fps the two programmes overlap only in 2033-35, which is 2 years, our cap.",
+     "Airbus's possible answer is an A350 Re-engine, which would cost us $3.58B against holding. Airbus held the A350 in all four rounds."
+    ],
+    "takeaway": "The prize was largest in 2030 and shrank with every round we waited.",
+    "source": "War game dash-2050-obj: game master replays of Boeing's orders with the 787 Re-engine launched in each round, everyone else's orders as played; Boeing's 2030 payoff grid; Boeing's 2030 ExCo test memos.",
+    "notes": "WHAT TO SAY: This is where we left money on the table. We lead the widebody market, and a 787 Re-engine launched alongside the fps would have lifted our widebody share from 58.8% to 74.8% by 2050 and added $2.2B of value, the single largest gain open to us. It did not break the balance sheet. It fitted our own rule of at most two years of overlapping development. Why did we hold it? In 2030 the CEO expected Airbus to launch both NGSA and an A350 Re-engine. If Airbus re-engines the A350, our Re-engine loses $3.58B against holding, and that broke the Board's $1B downside limit. Airbus never did it. Each round we waited, the prize shrank: +$0.65B in 2035, +$0.30B in 2045, almost nothing in 2050.\n\nSOURCES: The table is the fact pack's re787_by_round. Each row replays Boeing's actual orders with the 787 Re-engine launched in that round, with every other company's orders as played. Gains are each launch value minus +0.66, computed with python. Widebody share 58.8% is from wb_share. The $2.20B net breaks down as +$5.58B widebody profit, -$2.04B extra bill, -$1.04B extra financing and -$0.31B two-front strain. These are the differences between the bridges of 'fps 10-yr + 787 Re-engine' and the plan played in boeing_fin.json (alts), computed with python. Lowest stress free cash flow is $2.69B in 2034 (plans_2030); the stress-case debt line is met. The 2033-35 overlap (2 years, inside Boeing's 2-year cap, $1.2B strain undiscounted) is from Boeing's 2030 CEO and CFO records (exco_result_r1.json). The $3.58B comes from Boeing's 2030 grid (boeing_grid_2030): with an A350 Re-engine the plan scores -2.70 against +0.88 for holding the 787, or -5.54 against -1.96 if NGSA also launches. Airbus's A350 holds are in the orders for all four rounds (fact pack, orders). The CEO's expected case (NGSA plus an A350 Re-engine) is from Boeing's own 2030 decision record. The Board's -$1B downside limit is from Boeing's 2030 Board guidance."
+   },
+   {
+    "section": "Better use of the market",
+    "action_title": "Only a faster fps lifts narrowbody share, and it costs value or the stress-case balance sheet; the 787 does not",
+    "visual": {
+     "type": "table",
+     "table": {
+      "columns": [
+       "2030 plan (replayed)",
+       "Value created $B",
+       "Narrowbody share 2040 / 2050",
+       "Stress-case balance sheet",
+       "Objectives met"
+      ],
+      "rows": [
+       [
+        "As played: fps 10-year",
+        "+0.66",
+        "38% / 47%",
+        "Held",
+        "5 of 7"
+       ],
+       [
+        "fps 10-year + 787 Re-engine (our pick)",
+        "+2.86",
+        "38% / 47%",
+        "Held",
+        "5 of 7"
+       ],
+       [
+        "fps 7-year + 787 Re-engine",
+        "+2.39",
+        "44% / 50%",
+        "Missed: net debt $1.74B end-2035",
+        "5 of 7"
+       ],
+       [
+        "fps 7-year + 737 rate increase",
+        "+0.38",
+        "44% / 50%",
+        "Held",
+        "6 of 7"
+       ],
+       [
+        "No fps (Do Nothing)",
+        "-3.64",
+        "28% / 20%",
+        "Held",
+        "4 of 7"
+       ]
+      ]
+     }
+    },
+    "bullets": [
+     "A 7-year fps enters service with NGSA in 2037. It gives 44% in 2040, 49% in 2045 and 50% in 2050, which meets the 40% line.",
+     "But its bill is bigger ($65.00B against $60.32B) and its cash peaks at $12.54B in 2034, so stress-case cash flow turns negative.",
+     "Only the 737 rate increase holds the balance sheet: 6 of 7 goals, but $2.48B less value than our pick, above the Board's $2B cap.",
+     "No plan open in 2030 reaches 50% in 2040, so the 50/50 goal was out of reach."
+    ],
+    "takeaway": "Buy value with the 787. Do not buy back 2040 share with a schedule bet.",
+    "source": "War game dash-2050-obj: game master replays of Boeing's 2030 plans with everyone else's orders as played; Boeing's 2030 Board guidance ($2B cap on value given up for objectives).",
+    "notes": "WHAT TO SAY: This is the trade-off you face. Speed is the only lever that moves narrowbody share. A 7-year fps arrives with NGSA, holds the 40% line and gets within a point of parity by 2045. But it is a bigger bill packed into fewer years. With the 787 Re-engine on top, it breaks the stress-case balance sheet and our own two-year overlap rule. Paired with a 737 rate increase instead, it holds the balance sheet and meets 6 of 7 goals. That costs $2.48B of value against our pick, more than the $2B the Board lets us give up for objectives in a round. And it bets on hitting 2037 to the year: the 787-8 was planned for May 2008 and delivered in September 2011. Our view: take the value on the widebody, and keep the narrowbody on the date we can trust. These are replays with everyone else's orders as played, and Airbus might have answered a faster fps differently.\n\nSOURCES: Every row is the fact pack's plans_2030 (value, narrowbody share in 2040 and 2050, stress-case debt line, objectives met). The 49% in 2045 for the 7-year plans is from boeing_fin.json (alts). The 7-year bill of $65.00B, the $12.54B peak in 2034, stress free cash flow of -$0.71B (2034) and stress net debt of $0.47B at end-2035 (7-year alone) are from plans_2030 and the report's net-debt section. The 7-year + 787 Re-engine shows stress net debt of $1.74B at end-2035 and stress free cash flow of -$2.0B (2034). Its overlap is 5 years against Boeing's 2-year cap (Boeing 2030 Board guidance and CFO memo, exco_result_r1.json). The 7-year + 737 rate increase plan dips to -$0.41B stress free cash flow in 2034, but net debt is back to zero by the end-2035 checkpoint, so the line is met (plans_2030). $2.48B = 2.86 - 0.38, computed with python. The $2B cap is Boeing's Board rule on total doctrine plus objective premium (2030 Board guidance). The 787-8 dates are from Boeing's 2030 CFO memo (exco_result_r1.json)."
+   },
+   {
+    "section": "Recommendations",
+    "action_title": "Keep the fps on its 10-year plan, add the 787 Re-engine in 2030, protect the 2040 date and reset the share goal",
+    "visual": {
+     "type": "recs",
+     "recs": [
+      {
+       "recommendation": "Launch the fps in 2030 on the 10-year plan, open to all three engine makers.",
+       "why": "It is the only fps plan that keeps the balance sheet repaired in the stress case, and open engines met both supply goals at no cost.",
+       "proof": "fps worth +$4.30B against no fps; narrowbody share 47% against 20% in 2050; stress-case cash flow never below $2.52B."
+      },
+      {
+       "recommendation": "Launch the 787 Re-engine in 2030, together with the fps, and announce it first.",
+       "why": "It is the biggest value lever, it grows the widebody market we already lead, and moving first makes an A350 answer a poor deal for Airbus.",
+       "proof": "Value +$0.66B to +$2.86B; widebody share 58.8% to 74.8% by 2050; every balance-sheet line held."
+      },
+      {
+       "recommendation": "Protect the 2040 fps date: engines and key suppliers ready by 2036, and the Joint Venture engine proven before entry into service.",
+       "why": "Every year late leaves NGSA alone in the market, and a covert Airbus Delay Tactics campaign is the main threat to the date.",
+       "proof": "Three years alone took us to 37%; in the risk case our value falls from +$2.86B to +$1.42B."
+      },
+      {
+       "recommendation": "Reset the narrowbody goal to 47% by 2050, and plan for a dip below 40% in 2037-2041.",
+       "why": "Our view: no plan open in 2030 reaches 50/50, and buying back the 40% line costs more than it is worth.",
+       "proof": "Best case 44% in 2040; the 6-of-7 plan gives up $2.48B against our pick, above the Board's $2B cap."
+      }
+     ]
+    },
+    "bullets": [
+     "All four moves keep net debt at zero in both the base and the stress case.",
+     "Together they lift value from +$0.66B to +$2.86B and widebody share to 74.8% by 2050. Narrowbody share stays at 38% in 2040 and 47% by 2050."
+    ],
+    "takeaway": "One change to what Boeing did, the 787 Re-engine in 2030, carries the whole $2.2B gain.",
+    "source": "War game dash-2050-obj: game master replays of Boeing's 2030 plans and of the 787 Re-engine by round; Boeing's 2030 payoff grid; objective scoring; Boeing's 2030 and 2035 Board guidance.",
+    "notes": "WHAT TO SAY: Four moves. Move 1 is what we did, and we should keep it. The 10-year plan is the one that keeps the balance sheet safe in a downturn, and opening the fps to all three engine makers met both supply goals for free. Move 2 is the change: launch the 787 Re-engine in 2030, alongside the fps, and say so first. It is worth $2.2B and 16 points of widebody share. Move 3 is execution. Our narrowbody problem was the calendar, so the date is sacred: engines and suppliers ready by 2036, and the Joint Venture engine proven before 2040. Move 4 is candour about the goal. 50/50 from 2040 was never reachable, and chasing the 40% line costs more than it is worth. Set 47% by 2050 as the goal and manage the 2037-2041 dip with customers.\n\nSOURCES: Rec 1: +$4.30B = 0.66 - (-3.64) (plans_2030, python). 47% against 20% in 2050 is from plans_2030 (played and Do Nothing). $2.52B is the stress-case free cash flow low in 2036 (boeing_cash). The 10-year is the only fps ramp that holds the stress line without a rate increase (plans_2030). Engine supply met at code 'all three makers' with zero payoff effect (boeing_objectives; Boeing's 2030 brief says engine choice does not change Boeing's value). Rec 2: values from plans_2030 and re787_by_round, widebody share from re787_by_round, debt lines from plans_2030. 'Moving first' rests on the game master's 2030 stage-game analysis (fact pack, stage_equilibria): one equilibrium pairs Boeing 'fps 10-year + 787 Re-engine' with Airbus 'NGSA + A350 hold + Delay Tactics (one move)', so Airbus's best reply to our Re-engine is to hold the A350. Rec 3: 37% (2039) is from nb_share. +$1.42B is the 2030 grid's risk case, NGSA plus covert Delay Tactics, for 'fps 10-yr + 787 Re-engine' (boeing_grid_2030). The difference of $1.44B was computed with python. Boeing's 2035 Board estimated that covert Delay Tactics cost the fps 5 points of share for 5 years from entry into service (exco_result_r2.json). Rec 4: 44% in 2040 and 49% in 2045 are the best 2030 plans (plans_2030; boeing_fin.json alts). $2.48B = 2.86 - 0.38 (python). The $2B cap is from Boeing's 2030 Board guidance. Bullet 2: value and share from plans_2030 and re787_by_round."
+   },
+   {
+    "section": "Risks",
+    "action_title": "The main risk is an Airbus A350 answer to the 787 Re-engine; the move is worth it unless the odds pass 4 in 10",
+    "visual": {
+     "type": "risks",
+     "risks": [
+      {
+       "risk": "Airbus answers our 787 Re-engine with an A350 Re-engine",
+       "trigger": "Airbus announces an A350 Re-engine in the same round as ours",
+       "cost": "$3.58B against holding the 787 (value -5.54 against -1.96 if NGSA also launches). Break-even at a 38% chance of an answer",
+       "mitigation": "Commit first and in public in 2030. The game's model makes holding the A350 Airbus's best reply, and Airbus held it in all four rounds"
+      },
+      {
+       "risk": "Two developments at once stretch engineering and cash",
+       "trigger": "fps stage-gate KPIs slip during the 2033-35 overlap, or cash flow falls more than a third below consensus",
+       "cost": "Programme cash $66.52B against $60.32B; strain of $0.31B already counted; stress-case cash flow low $2.69B in 2034",
+       "mitigation": "Separate 787 and fps teams, KPI-gated stage gates, no buybacks before the 2036 cash peak"
+      },
+      {
+       "risk": "The fps slips, or Airbus slows it covertly with Delay Tactics",
+       "trigger": "A missed fps stage gate, or engine or supplier shortages before 2040",
+       "cost": "Value +$2.86B falls to +$1.42B; Board estimate: 5 points of narrowbody share for 5 years",
+       "mitigation": "Fund lagging suppliers, engines first. Reset once and conservatively, never cancel"
+      },
+      {
+       "risk": "The Joint Venture engine stumbles and the fps is back on CFM alone",
+       "trigger": "A durability finding on the P&W-Rolls-Royce Joint Venture engine",
+       "cost": "Engine-supply goal lost. CFM/GE, down to 27% of narrowbody engines from 76%, must carry the whole fleet",
+       "mitigation": "Durability gate before 2040, CFM kept qualified at full rate, door open to a third source"
+      }
+     ]
+    },
+    "bullets": [
+     "All alternatives are replays: what if Boeing had ordered differently, with everyone else as played. A real Airbus might answer differently.",
+     "The dashboard is a stylised model of the market. It shows how incentives interact; it is not a forecast."
+    ],
+    "takeaway": "Move first on the 787, guard the fps date, and keep a second engine source alive.",
+    "source": "War game dash-2050-obj: Boeing's 2030 payoff grid; the game master's 2030 stage-game analysis; replayed 2030 plans; narrowbody engine shares; Boeing's 2035 Board guidance and 2045 public statement.",
+    "notes": "WHAT TO SAY: Be straight about the risks. The big one is Airbus answering the 787 Re-engine with an A350 Re-engine. If it does so in the same round, our Re-engine costs $3.58B against holding. If it does not, our Re-engine earns $2.2B. So the move pays as long as the chance of an Airbus answer is below about 4 in 10. The game's model says Airbus's best reply to a Boeing Re-engine is to hold, the widebody works like a game of chicken where the first to commit wins, and Airbus held the A350 in every round. Our view: an answer that comes later would cost less than the same-round figure. The second risk is doing two developments at once. The overlap is two years, inside our rule, and its strain is already in the numbers. The third is a late fps, whether our own slip or Airbus slowing our suppliers. The fourth is engines: the Joint Venture made our two engine sources depend on one new engine.\n\nSOURCES: $3.58B is from boeing_grid_2030: 787 Re-engine against hold is -2.70 against +0.88 (A350 Re-engine only) and -5.54 against -1.96 (NGSA plus A350 Re-engine), computed with python. Break-even = 2.20 / (2.20 + 3.58) = 0.38, computed with python. It uses the same-round grid, where the gain is +2.20 in the columns with no A350 answer. The stage equilibrium comes from the fact pack's stage_equilibria for 2030: Boeing 'fps 10-yr + 787 Re-engine' with Airbus 'NGSA + A350: hold + Delay Tactics (one move)', at +1.42 / +24.08. Airbus's A350 holds are in the fact pack's orders. Risk 2: programme cash $66.52B against $60.32B and strain -$0.31B are from boeing_fin.json alts; the $2.69B low in 2034 is from plans_2030; the 2033-35 overlap is from Boeing's 2030 memos. Risk 3: +$1.42B is the 2030 grid's risk case for our pick (boeing_grid_2030). 5 points for 5 years is from Boeing's 2035 Board guidance (exco_result_r2.json). Risk 4: Boeing's 2045 public statement, 'If the Joint Venture engine stumbles, the fps is back on CFM alone' (bulletin_r4.md). CFM/GE's narrowbody engine share of 76% (2026) and 27% (from 2040) is from nb_engine_share."
+   }
+  ],
+  "numbers_used": [
+   {
+    "number": "+0.66 ($B)",
+    "meaning": "Boeing value created against the status quo, present value at 2026 (dashboard)",
+    "source": "factpack.md pv_bridge, dpv_all; plans_2030 played row"
+   },
+   {
+    "number": "+23.37 ($B)",
+    "meaning": "Airbus value created, present value at 2026",
+    "source": "factpack.md dpv_all"
+   },
+   {
+    "number": "60% / 40%",
+    "meaning": "Airbus / Boeing narrowbody delivery share today (2026)",
+    "source": "factpack.md nb_share"
+   },
+   {
+    "number": "63%",
+    "meaning": "Airbus narrowbody share peak in 2039",
+    "source": "factpack.md nb_share"
+   },
+   {
+    "number": "37%",
+    "meaning": "Boeing narrowbody share low point in 2039",
+    "source": "factpack.md nb_share"
+   },
+   {
+    "number": "38%",
+    "meaning": "Boeing narrowbody share in 2040 (incumbency test year)",
+    "source": "factpack.md nb_share, boeing_objectives"
+   },
+   {
+    "number": "47%",
+    "meaning": "Boeing narrowbody share from 2049",
+    "source": "factpack.md nb_share"
+   },
+   {
+    "number": "53%",
+    "meaning": "Airbus narrowbody share from 2049",
+    "source": "factpack.md nb_share"
+   },
+   {
+    "number": "2037-2041",
+    "meaning": "Years Boeing narrowbody share is below 40%",
+    "source": "factpack.md nb_share, read with python"
+   },
+   {
+    "number": "2037 / 2040",
+    "meaning": "Entry into service of NGSA / fps (10-year ramp), both launched 2030",
+    "source": "factpack.md other facts, timeline"
+   },
+   {
+    "number": "5 of 7",
+    "meaning": "Boeing objectives met (3 balance-sheet lines, 2 engine-supply lines; missed 50/50 and incumbency)",
+    "source": "factpack.md boeing_objectives"
+   },
+   {
+    "number": "+2.20 ($B)",
+    "meaning": "Value a 2030 787 Re-engine adds to the plan played (2.86 - 0.66); also Boeing's 2030 regret",
+    "source": "factpack.md plans_2030 and re787_by_round; regret_boeing; computed with python"
+   },
+   {
+    "number": "+2.86 ($B)",
+    "meaning": "Value of fps 10-year + 787 Re-engine in 2030, replayed",
+    "source": "factpack.md plans_2030, re787_by_round"
+   },
+   {
+    "number": "more than four times (4.3x)",
+    "meaning": "2.86 / 0.66",
+    "source": "computed with python from plans_2030"
+   },
+   {
+    "number": "58.8%",
+    "meaning": "Boeing widebody delivery share, flat 2026-2060 as played",
+    "source": "factpack.md wb_share"
+   },
+   {
+    "number": "74.8% / 69.8% / 64.8%",
+    "meaning": "Boeing widebody share in 2050 / 2045 / 2040 with a 2030 787 Re-engine",
+    "source": "factpack.md re787_by_round"
+   },
+   {
+    "number": "16 points",
+    "meaning": "Widebody share gain by 2050 from a 2030 787 Re-engine (74.8 - 58.8)",
+    "source": "computed with python from re787_by_round and wb_share"
+   },
+   {
+    "number": "+1.31 / +0.96 / +0.71 ($B)",
+    "meaning": "Boeing value with the 787 Re-engine launched in 2035 / 2045 / 2050",
+    "source": "factpack.md re787_by_round"
+   },
+   {
+    "number": "+0.65 / +0.30 / +0.05 ($B)",
+    "meaning": "Gain against holding for 787 Re-engine launched in 2035 / 2045 / 2050",
+    "source": "computed with python from re787_by_round (minus 0.66)"
+   },
+   {
+    "number": "69.8% / 59.8% / 58.8%",
+    "meaning": "Boeing widebody share 2050 with 787 Re-engine launched 2035 / 2045 / 2050",
+    "source": "factpack.md re787_by_round"
+   },
+   {
+    "number": "2035 / 2040 / 2050 / 2055",
+    "meaning": "787 Re-engine entry into service when launched 2030 / 2035 / 2045 / 2050",
+    "source": "factpack.md re787_by_round"
+   },
+   {
+    "number": "6.67 / 14.32 / 16.86 ($B a year)",
+    "meaning": "Boeing operating profit today / 2040 / from 2049, 2026 prices (dashboard)",
+    "source": "factpack.md boeing_profit"
+   },
+   {
+    "number": "more than doubles (2.15x in 2040, 2.53x from 2049)",
+    "meaning": "Boeing operating profit relative to $6.67B",
+    "source": "computed with python from boeing_profit"
+   },
+   {
+    "number": "8.82 / 18.26 ($B a year)",
+    "meaning": "Airbus operating profit before NGSA / in 2037",
+    "source": "factpack.md airbus_profit"
+   },
+   {
+    "number": "+20.30 ($B)",
+    "meaning": "Present value of narrowbody profit against the status quo",
+    "source": "factpack.md pv_bridge"
+   },
+   {
+    "number": "-14.91 ($B)",
+    "meaning": "Present value of the fps bill",
+    "source": "factpack.md pv_bridge"
+   },
+   {
+    "number": "60.32 ($B)",
+    "meaning": "fps bill, 10-year ramp (charged in 2040); also total programme cash",
+    "source": "factpack.md pv_bridge; boeing_fin.json alts"
+   },
+   {
+    "number": "-4.73 ($B)",
+    "meaning": "Dashboard debt penalty (financing cost)",
+    "source": "factpack.md pv_bridge"
+   },
+   {
+    "number": "10.5%",
+    "meaning": "Boeing WACC used for present value",
+    "source": "brief_r1_boeing.md section 1"
+   },
+   {
+    "number": "-3.64 ($B)",
+    "meaning": "Boeing value with no fps and no 787 Re-engine (Do Nothing), replayed",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "28% / 20%",
+    "meaning": "Boeing narrowbody share 2040 / 2050 with no fps",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "+4.30 ($B)",
+    "meaning": "Value of the fps launch against Do Nothing (0.66 - (-3.64))",
+    "source": "computed with python from plans_2030; matches Boeing 2030 grid"
+   },
+   {
+    "number": "22.53 ($B)",
+    "meaning": "Boeing net debt end-2026, 2026 dollars (GM tracker)",
+    "source": "factpack.md net_debt"
+   },
+   {
+    "number": "2029 / 2030",
+    "meaning": "Year net debt reaches zero, base / stress case",
+    "source": "factpack.md boeing_objectives"
+   },
+   {
+    "number": "3.02 ($B)",
+    "meaning": "fps programme cash in 2030",
+    "source": "factpack.md boeing_cash"
+   },
+   {
+    "number": "8.44 ($B)",
+    "meaning": "fps programme cash peak in 2036",
+    "source": "factpack.md boeing_cash"
+   },
+   {
+    "number": "2.52 ($B)",
+    "meaning": "Lowest stress-case free cash flow (2036), plan played",
+    "source": "factpack.md boeing_cash, plans_2030"
+   },
+   {
+    "number": "7.12 ($B)",
+    "meaning": "Lowest base-case free cash flow (2036)",
+    "source": "factpack.md boeing_cash"
+   },
+   {
+    "number": "19.83 / 15.23 ($B)",
+    "meaning": "Free cash flow in 2040, base / stress",
+    "source": "factpack.md boeing_cash"
+   },
+   {
+    "number": "325.7 / 281.7 ($B)",
+    "meaning": "Cash to owners 2027-2050, undiscounted, as played / Do Nothing",
+    "source": "factpack.md owners_cash, other facts"
+   },
+   {
+    "number": "44.0 ($B)",
+    "meaning": "Extra cash to owners 2027-2050 from the fps (325.7 - 281.7)",
+    "source": "computed with python"
+   },
+   {
+    "number": "136.6 ($B)",
+    "meaning": "Extra cash to owners 2027-2060 from the fps (544.0 - 407.4)",
+    "source": "computed with python from other facts"
+   },
+   {
+    "number": "2046",
+    "meaning": "Payback year of the fps against Do Nothing",
+    "source": "factpack.md other facts payback_year_vs_do_nothing"
+   },
+   {
+    "number": "2.69 ($B)",
+    "meaning": "Lowest stress-case free cash flow (2034) with fps 10-year + 787 Re-engine",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "+5.58 / -2.04 / -1.04 / -0.31 ($B)",
+    "meaning": "787 Re-engine value parts: widebody profit, extra bill, extra financing, two-front strain",
+    "source": "boeing_fin.json alts bridges (difference vs played), computed with python"
+   },
+   {
+    "number": "66.52 ($B)",
+    "meaning": "Total programme cash, fps 10-year + 787 Re-engine (vs 60.32)",
+    "source": "boeing_fin.json alts total_spend"
+   },
+   {
+    "number": "2033-35, 2 years",
+    "meaning": "Development overlap of the 10-year fps and a 2030 787 Re-engine; Boeing's cap is 2 years",
+    "source": "exco_result_r1.json Boeing CEO frame and CFO/operations memos"
+   },
+   {
+    "number": "3.58 ($B)",
+    "meaning": "Loss of the 787 Re-engine against holding if Airbus re-engines the A350 (-2.70 vs +0.88; -5.54 vs -1.96)",
+    "source": "factpack.md boeing_grid_2030; computed with python"
+   },
+   {
+    "number": "-5.54 / -1.96 ($B)",
+    "meaning": "Boeing value with / without 787 Re-engine if Airbus launches NGSA + A350 Re-engine (10-year fps)",
+    "source": "factpack.md boeing_grid_2030"
+   },
+   {
+    "number": "38% (about 4 in 10)",
+    "meaning": "Break-even chance of an Airbus A350 answer: 2.20 / (2.20 + 3.58)",
+    "source": "computed with python from boeing_grid_2030"
+   },
+   {
+    "number": "+1.42 ($B)",
+    "meaning": "Value of fps 10-year + 787 Re-engine in the risk case (NGSA + covert Delay Tactics)",
+    "source": "factpack.md boeing_grid_2030; stage_equilibria 2030"
+   },
+   {
+    "number": "+24.08 ($B)",
+    "meaning": "Airbus value in the 2030 stage equilibrium where Boeing re-engines the 787 and Airbus holds the A350",
+    "source": "factpack.md other facts stage_equilibria"
+   },
+   {
+    "number": "44% / 49% / 50%",
+    "meaning": "Boeing narrowbody share 2040 / 2045 / 2050 on a 7-year fps",
+    "source": "factpack.md plans_2030; boeing_fin.json alts (2045)"
+   },
+   {
+    "number": "65.00 ($B)",
+    "meaning": "fps bill on the 7-year ramp",
+    "source": "dash_2050_obj_report.md net-debt section; boeing_fin.json alts"
+   },
+   {
+    "number": "12.54 ($B)",
+    "meaning": "7-year fps programme cash peak in 2034",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "-0.71 / 0.47 ($B)",
+    "meaning": "7-year fps alone: lowest stress free cash flow (2034) / stress net debt end-2035",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "+2.39 ($B)",
+    "meaning": "Value of fps 7-year + 787 Re-engine",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "1.74 ($B)",
+    "meaning": "Stress-case net debt end-2035, fps 7-year + 787 Re-engine",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "-2.0 ($B)",
+    "meaning": "Lowest stress free cash flow (2034), fps 7-year + 787 Re-engine",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "+0.38 ($B), 6 of 7",
+    "meaning": "Value and objectives met, fps 7-year + 737 rate increase",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "-0.41 ($B)",
+    "meaning": "Lowest stress free cash flow (2034), fps 7-year + 737 rate increase",
+    "source": "factpack.md plans_2030"
+   },
+   {
+    "number": "2.48 ($B)",
+    "meaning": "Value given up by the 6-of-7 plan against our pick (2.86 - 0.38)",
+    "source": "computed with python from plans_2030"
+   },
+   {
+    "number": "$2B",
+    "meaning": "Boeing Board cap on value given up for doctrine plus objectives (H8)",
+    "source": "exco_result_r1.json Boeing board_guidance"
+   },
+   {
+    "number": "-$1B",
+    "meaning": "Boeing Board downside limit that ruled out the 787 Re-engine in 2030",
+    "source": "exco_result_r1.json Boeing board_guidance"
+   },
+   {
+    "number": "May 2008 / September 2011",
+    "meaning": "787-8 planned vs actual delivery (Boeing's clean-sheet slip record)",
+    "source": "exco_result_r1.json Boeing CFO memo"
+   },
+   {
+    "number": "5 points for 5 years",
+    "meaning": "Boeing Board estimate of narrowbody share lost to covert Delay Tactics from fps entry into service",
+    "source": "exco_result_r2.json Boeing board_guidance"
+   },
+   {
+    "number": "76% / 27%",
+    "meaning": "CFM/GE share of narrowbody engines today / from 2040",
+    "source": "factpack.md nb_engine_share"
+   }
+  ]
+ },
+ "reviews": [
+  {
+   "reviewer": "numbers",
+   "verdict": "Most numbers check out against the fact pack, boeing_fin.json, grids_r1.json, stage_r1.json, exco_result_r1/r2.json and bulletin_r4.md. That covers the shares, the bridge, the cash tracker, plans_2030, re787_by_round, 3.58, the 38% break-even, 66.52 / 65.00 / 60.32, and the 2033-35 two-year overlap. Both line charts use datasets, series and years that exist. Neither forbidden word (Milk, Sabotage) appears anywhere. Three real errors need fixing before the deck ships. (1) Rec 1 says the 10-year plan is the only fps plan that holds the stress-case balance sheet, but slide 6's own table shows the 7-year + 737 rate increase plan as Held. (2) Slide 5 says the 787 Re-engine 'fits our own one-development rule', but the CEO's one-development-at-a-time rule was one of his reasons for holding it; the 2-year overlap cap is a separate rule. (3) Slide 5's 2045 and 2050 gains should be +0.29 and +0.04, not +0.30 and +0.05: the exact values are 0.2933 and 0.0425, and the game master's regret table gives 0.29 and 0.04. Several should-fix wording and framing gaps are listed below. The main ones: the Delay Tactics mechanics are misdescribed, the 4-in-10 break-even is rounded the wrong way, cash to owners is credited to the fps, and the equilibrium cited for 'moving first' gives +1.42, not +2.86.",
+   "issues": [
+    {
+     "slide": 7,
+     "problem": "Rec 1 'why' says the 10-year fps is 'the only fps plan that keeps the balance sheet repaired in the stress case'. This is false and contradicts slide 6.",
+     "evidence": "plans_2030: 'fps 7-yr + 737 rate up + 787: hold ... stress debt line met (stress net debt end-2035 $0.0B) ... 6 of 7'. Slide 6 shows that row as 'Held'. The two via-Embraer + 737 rate up plans also meet the line. The notes' own source line is narrower and correct: 'the only fps ramp that holds the stress line without a rate increase'.",
+     "fix": "'It is the only fps plan that keeps the balance sheet repaired in the stress case without a 737 rate increase, and open engines met both supply goals at no cost.'",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 5,
+     "problem": "Bullet 3 says 'It fits our own one-development rule.' Boeing's records say the opposite. The one-development-at-a-time rule [BX-1239] was one of the CEO's four grounds for holding the 787 Re-engine. The 2-year overlap cap is a different rule (H4).",
+     "evidence": "exco_result_r1.json Boeing final rationale: 'I still HOLD the Re-engine on four grounds: the Board's -$1B Downside limit...; my one-development-at-a-time rule [BX-1239]; company doctrine (... no Re-engine before 2036); the premium'. Ops memo: 'It is H4-legal (2033-35, 2 years, $1.2B strain), but it is a second major development at once, against the one-at-a-time doctrine.' Board: 'One development at a time. No 787 Re-engine this round.'",
+     "fix": "'It stays inside our 2-year overlap cap: on the 10-year fps the two programmes overlap only in 2033-35. It does mean two developments at once, which our one-at-a-time rule avoids.' In the notes, list all of the CEO's grounds for holding it, not only the -$1B limit.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 5,
+     "problem": "The table's 'Gain vs holding' figures for 2045 and 2050 are wrong at the printed precision. They were computed from rounded values.",
+     "evidence": "re787_by_round unrounded: 0.9565 - 0.6632 = 0.2933 and 0.7057 - 0.6632 = 0.0425. regret_boeing gives round 3 = 0.29 and round 4 = 0.04. The slide prints +0.30 and +0.05, and the notes say '+$0.30B in 2045'.",
+     "fix": "Print +0.29 (2045) and +0.04 (2050) in the table, the notes and numbers_used. The 2030 and 2035 values, +2.20 and +0.65, are correct.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 1,
+     "problem": "Bullet 3 reads as if net debt reached zero in 2029 in the stress case too. In the stress case it reached zero in 2030.",
+     "evidence": "net_debt stress series: end-2029 $3.27B, end-2030 $0.0. boeing_objectives: stress case 'reached in 2030'. Slide 4 states this correctly.",
+     "fix": "'Net debt reached zero in 2029 (2030 in the stress case) and stayed there through the fps cash peak.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 4,
+     "problem": "Bullet 3 says 'the fps returns $325.7B to owners'. $325.7B is Boeing's total cash to owners in 2027-2050 under the plan played. The fps's contribution is the $44.0B difference.",
+     "evidence": "owners_cash 'fps 10-year (played)' 2050: 325.70; 'Do Nothing (no fps)' 2050: 281.70. Both are whole-company tracker totals.",
+     "fix": "'From 2027 to 2050 Boeing returns $325.7B to owners, $44.0B more than with no fps. The fps pays back against Do Nothing in 2046.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "Rec 3 'why' calls covert Delay Tactics 'the main threat to the date'. In the game, Delay Tactics do not move the fps date. They cost share after entry into service.",
+     "evidence": "rules.md: 'Delay Tactics: Boeing loses 5 pp for 5 years from fps EIS.' The 2035 Board (exco_result_r2.json) says it 'costs the fps 5 percentage points of share for 5 years from EIS ... never a rushed date'.",
+     "fix": "'Every year late leaves NGSA alone in the market, and covert Airbus Delay Tactics would cost us 5 points of share for 5 years after entry into service.' In risk 3, change 'slows it covertly' to 'cuts its share covertly'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 8,
+     "problem": "The action title says the move is worth it 'unless the odds pass 4 in 10'. The break-even is 38%, so between 38% and 40% the move already loses value. The title overstates the margin.",
+     "evidence": "2.1973 / (2.1973 + 3.5813) = 0.380 (grids_r1.json, unrounded). The risk card correctly says 'Break-even at a 38% chance'.",
+     "fix": "'...the move is worth it while the chance of an Airbus answer stays below about 38% (nearly 4 in 10)'. Use the same wording in the notes.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "The 'moving first' argument rests on a 2030 stage equilibrium in which Airbus answers our Re-engine by holding the A350 and also running Delay Tactics. In that equilibrium Boeing gets +1.42, not +2.86. The deck presents +2.86 as the recommendation's value and +1.42 only as a 'risk case'.",
+     "evidence": "stage_r1.json pure equilibrium: ['fps 10-yr + 787 Re-engine', 'NGSA + A350: hold + Delay Tactics (one move)', 1.419, 24.078]. Slide 7 rec 2 proof: 'Value +$0.66B to +$2.86B'. Slide 8 risk 3: '+$2.86B falls to +$1.42B'.",
+     "fix": "Say it plainly: '+$2.86B with Airbus as played. +$1.42B if Airbus responds as the game's model predicts (A350 held, covert Delay Tactics). Both beat holding by $2.20B.' The gain against holding is $2.20B in both cases, so the recommendation still stands.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "Rec 2 'why' says the Re-engine 'grows the widebody market we already lead'. The Re-engine grows Boeing's share of the widebody market, not the market itself.",
+     "evidence": "re787_by_round: Boeing widebody share 58.8% to 74.8% (2050). wb_share is a share of deliveries.",
+     "fix": "'...it grows our share of the widebody market we already lead (58.8% to 74.8% by 2050)...'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "The recommendations slide does not say that Rec 2 overrides three of Boeing's own 2030 rules: the Board's -$1B downside limit (the Re-engine scores -3.58 against holding if Airbus re-engines the A350), the CEO's one-development-at-a-time rule, and company doctrine of no Re-engine before 2036. Executives need to see that this requires a rule change.",
+     "evidence": "exco_result_r1.json Board: 'No 787 Re-engine this round: its value falls below -$1B whenever Airbus re-engines the A350 (S3, S4)'. CEO rationale lists doctrine §11.4 'no Re-engine before 2036' and BX-1239.",
+     "fix": "Add to Rec 2's 'why' or proof, or to risk 1: 'This needs the Board to accept a -$3.58B downside if Airbus answers, beyond its -$1B limit, and to waive the one-at-a-time rule.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 6,
+     "problem": "The table leaves out the plain 7-year fps row that bullets 1-2 describe (its bill, its $12.54B peak, negative stress cash flow). The notes also imply that only adding the 787 Re-engine breaks the stress-case balance sheet, but the 7-year fps alone already misses it.",
+     "evidence": "plans_2030: 'fps 7-yr + 787: hold: ΔPV +1.12; NB share 2040 44.0%, 2050 50.0%; peak $12.54B (2034); lowest stress FCF $-0.71B; stress debt line NOT met ($0.47B); 5 of 7'. Notes: 'With the 787 Re-engine on top, it breaks the stress-case balance sheet and our own two-year overlap rule.'",
+     "fix": "Add the row 'fps 7-year | +1.12 | 44% / 50% | Missed: net debt $0.47B end-2035 | 5 of 7'. Change the notes to: 'On its own it already misses the stress-case line by $0.47B; with the 787 Re-engine the miss grows to $1.74B and it breaks our two-year overlap rule.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 5,
+     "problem": "The 2035 row (+1.31) is shown as an available option, but Boeing's own 2-year overlap cap ruled it out: launched in 2035 it overlaps the 10-year fps development by 5 years.",
+     "evidence": "exco_result_r2.json Board: 'a 2035 launch (development 2035-2040) overlaps the 10-year fps development (2033-2040) by 5 years, against our 2-year cap, with $3B of strain'. exco_result_r1.json ops: 'the next H4-legal round is 2045'.",
+     "fix": "Footnote the 2035 row: 'Outside our 2-year overlap cap on a 10-year fps.' This strengthens the slide's point that 2030 was the window.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 1,
+     "problem": "Every slide's source line contains the machine run ID 'dash-2050-obj'. That is executive-facing text.",
+     "evidence": "Source lines on slides 1-8 begin 'War game dash-2050-obj: ...'.",
+     "fix": "Replace it with 'War game 2030-2050 (objectives replay): ...' or just 'War game: ...'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 3,
+     "problem": "In the HTML version, the last bar of the bridge chart is labelled 'ΔPV', a machine symbol. build_deck.py maps it to 'Value created' but build_html.py does not. The chart also labels a bar 'Debt penalty' while the bullets call the same item 'financing'.",
+     "evidence": "build_html.py bridge_svg uses lab.split(' (')[0] straight from pv_bridge items, giving 'ΔPV' and 'Debt penalty'. build_deck.py line 285: \"Value created\" if n == \"ΔPV\". Slide 3 bullet: 'its financing $4.73B'.",
+     "fix": "Map 'ΔPV' to 'Value created' in the HTML too, and use one term (e.g. 'Financing cost') in the chart and the bullets.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 6,
+     "problem": "The notes and numbers_used say the 787-8 slip dates come from the CFO memo. They come from the operations memo.",
+     "evidence": "exco_result_r1.json: 'The 787-8 was planned for May 2008 and delivered in September 2011' appears in the boeing 'ops' memo and tests. It does not appear in the 'cfo' memo.",
+     "fix": "Cite 'Boeing's 2030 operations memo (exco_result_r1.json)'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 2,
+     "problem": "Bullet 4 says Boeing's profit 'moved only in 2040'. It dipped in 2037-2039 while NGSA was alone in the market.",
+     "evidence": "boeing_profit: 6.67 (2036), 6.60 (2037), 6.52 (2038), 6.44 (2039), 14.32 (2040).",
+     "fix": "'Ours slipped slightly, then jumped only in 2040.'",
+     "severity": "nice"
+    },
+    {
+     "slide": 2,
+     "problem": "The action title says NGSA 'flew' three years before the fps. The fact pack has entry-into-service dates, not first flights.",
+     "evidence": "timeline: NGSA 'in service since 2037'; fps 'in service since 2040'.",
+     "fix": "'Airbus's new narrowbody entered service three years before the fps...'",
+     "severity": "nice"
+    },
+    {
+     "slide": 8,
+     "problem": "The source line and notes call the Joint Venture quote Boeing's '2045 public statement'. It comes from Boeing's 2045 'Other moves made public', not from its public statement.",
+     "evidence": "bulletin_r4.md, 'Other moves made public', Boeing in-service durability reviews: 'If the Joint Venture engine stumbles, the fps is back on CFM alone.'",
+     "fix": "'Boeing's 2045 public moves (bulletin, round 4)'.",
+     "severity": "nice"
+    },
+    {
+     "slide": 4,
+     "problem": "The notes call $7.12B (2036) the base-case free cash flow low. Over the whole tracker the low is $5.55B in 2027. $7.12B is only the low for 2030-2060, the years on the chart.",
+     "evidence": "boeing_cash 'Free cash flow, base' 2027: 5.551; 2036: 7.1176.",
+     "fix": "'the base-case low during the fps programme, $7.12B (2036)'.",
+     "severity": "nice"
+    },
+    {
+     "slide": 6,
+     "problem": "'Above the Board's $2B cap' measures the premium in hindsight, against our pick in the scenario that happened. The Board's cap was set against the best plan in the CEO's expected scenario (Airbus launching both NGSA and an A350 Re-engine). On that basis the 7-year + 737 rate increase premium is about $0.75B.",
+     "evidence": "Grid S4: fps 7-yr + 787 hold -1.50; fps 7-yr + 737 rate up + hold -2.25. H8 cap: premium against the best grid plan in the expected column.",
+     "fix": "'$2.48B less than our pick in the market that actually happened, more than the $2B the Board allows us to give up.'",
+     "severity": "nice"
+    },
+    {
+     "slide": 1,
+     "problem": "The SOURCES part of every slide's speaker notes uses dataset and file IDs (pv_bridge, plans_2030, re787_by_round, boeing_fin.json, exco_result_r1.json, stage_equilibria) plus 'delta-PV' and \"code 'all three makers'\". The HTML shows these under 'Speaker notes'.",
+     "evidence": "build_html.py: <details class=\"notes\"><summary>Speaker notes</summary>... Slide 3 notes: 'The dashboard calls this figure delta-PV'.",
+     "fix": "Keep them as an audit trail, but drop 'delta-PV' and 'code', or move the SOURCES block into a separate appendix.",
+     "severity": "nice"
+    }
+   ]
+  },
+  {
+   "reviewer": "executive",
+   "verdict": "The story is the right shape and most of it reads in plain English. The order is market, results, balance sheet, unused lever, trade-off, recommendations, then risks. Nearly every number traces to the fact pack. But I would not take this into the room tomorrow. Four things would break in front of the CFO and the Board. (1) The \"why\" for recommendation 1 is contradicted by the deck's own slide 6. (2) The core recommendation, the 787 Re-engine in 2030, is one the Board explicitly said it would veto. The deck says it \"fits our own rule\" and uses Board limits only where they help the argument. (3) The A350 risk is reassured with \"Airbus held it in all four rounds\". Yet in hindsight an A350 Re-engine was Airbus's best move in every round, and our own 2030 expected case assumed Airbus would launch it. (4) Slide 3 charges $4.73B of \"financing\" and slide 4 then says net debt was zero throughout, with no reconciliation on either slide. Beyond those, the cover title states a diagnosis rather than the answer. Several terms are never explained: stress case, Delay Tactics, risk case, Joint Venture engine, strain, and ΔPV in the HTML chart. The case against a faster fps leads with the weaker reason (the balance sheet) instead of the real one (schedule risk).",
+   "issues": [
+    {
+     "slide": 7,
+     "problem": "The 'why' for recommendation 1 is wrong. It says the 10-year plan is 'the only fps plan that keeps the balance sheet repaired in the stress case'. Slide 6's own table shows another fps plan that holds it.",
+     "evidence": "Slide 6 row 'fps 7-year + 737 rate increase … Stress-case balance sheet: Held, 6 of 7'. In the fact pack, plans_2030 'fps 7-yr + 737 rate up + 787: hold' reads 'stress debt line met (stress net debt end-2035 $0.0B)', and the 10-yr + 737 rate-up rows are met too. The speaker notes hedge it ('only fps ramp that holds the stress line without a rate increase'), but the slide text does not.",
+     "fix": "Reword the 'why' to: 'It is the only plan that keeps the balance sheet safe in a downturn without also raising the 737 rate, and it leaves room for the 787 Re-engine.' Or simply: 'It is the date we can trust, with 3 years of slack against our usual slip, and it keeps the balance sheet safe.'",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "The core recommendation, launch the 787 Re-engine in 2030, is exactly what Boeing's Board said it would veto. The deck never says so, and it applies Board rules selectively. It rejects the 6-of-7 plan on the Board's $2B cap, but measures that cap against a plan the Board would itself veto, and it is silent on the Board's -$1B downside limit, which this recommendation breaks by $2.58B. A CEO will ask: 'Are you asking me to overrule my Board, or to change its rule?'",
+     "evidence": "exco_result_r1.json, Boeing board_guidance. Priorities/3: 'One development at a time. No 787 Re-engine this round: its value falls below -$1B whenever Airbus re-engines the A350'. would_veto/1: 're787: launch … fails Downside in S3 and S4 … -3.58 with the 10-year ramp'. The $2.48B 'given up' on slide 6 and rec 4 is measured against +2.86, the vetoed plan. Measured against the best plan the Board would accept (+0.66 as played), the 6-of-7 plan gives up only $0.28B.",
+     "fix": "Add one plain line to rec 2: 'This needs the Board to lift its $1B downside limit for this one decision, because the expected gain ($2.2B) beats the downside if the chance of an Airbus answer stays under 4 in 10.' On slide 6 and rec 4, either measure the $2B cap against a Board-acceptable plan, or drop the cap argument and reject the 6-of-7 plan on schedule and value grounds instead.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 5,
+     "problem": "'It fits our own one-development rule' is a factual misstatement. The rule it does meet is a different one: the cap of at most 2 years of overlap between developments (H4). The Board's one-development rule rules this move out. Also, '2033-35, which is 2 years' reads as three years to anyone counting.",
+     "evidence": "Board priority 3 reads 'One development at a time. No 787 Re-engine this round.' The CEO's frame says the Re-engine 'is still governed by H3's second half, by H4 and by my one-development-at-a-time rule'. H4 is the 2-year overlap cap. Fact pack, other facts: the 10-year fps has no development overlap on its own.",
+     "fix": "Replace it with: 'It breaks our one-development-at-a-time rule, but stays inside our cap of 2 years of overlap (the two programmes run side by side from 2033 to 2035).' Then point to slide 7, where the Board waiver is asked for.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 8,
+     "problem": "The main risk is understated, and its mitigation rests on false comfort. 'Airbus held it in all four rounds' never tested a Boeing Re-engine. In hindsight, an A350 Re-engine was Airbus's best move in every round. Boeing's own 2030 expected case was that Airbus would launch one, which puts the odds above the deck's 4-in-10 break-even. The slide also leaves out the cost of doing nothing if Airbus moves first.",
+     "evidence": "Fact pack, regret_airbus: round 1 best 'NGSA + A350 Re-engine + Delay Tactics', regret 3.3; rounds 2-4 best also include 'A350 Re-engine'. Notes on slide 5 say 'In 2030 the CEO expected Airbus to launch both NGSA and an A350 Re-engine' (CEO initial_lean: 'Expected column: … S4'). stage_equilibria 2030 has two outcomes: if Airbus commits first, Boeing gets -3.40 and Airbus +26.67; if Boeing commits first, Boeing gets +1.42 and Airbus +24.08.",
+     "fix": "Say it straight on the slide. 'Airbus left $3.3B on the table by not re-engining the A350. A smarter Airbus will try. This is a race: whoever commits first wins. If we commit first, Airbus's best reply is to hold. If Airbus commits first, we must hold and we drop to about -$3.4B.' Then make the mitigation dated: 'announce the 787 Re-engine publicly before Airbus's 2030 decision'. Replace 'held in all four rounds' with this logic.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 3,
+     "problem": "The finance basis contradicts itself across two consecutive slides. Slide 3 charges '$4.73B of financing' (labelled 'Debt penalty' on the chart). Slide 4 then says net debt was zero throughout. The CFO will ask 'what debt?', and neither slide answers. That undercuts the request to underpin the recommendations with Boeing's financial results.",
+     "evidence": "Fact pack, pv_bridge: 'Debt penalty: -4.73'. net_debt: 'Base case … 2030: 0.00 … 2060: 0.00'; stress also 0.00 from 2030. The reconciliation ('different basis') exists only in the speaker notes and the source lines.",
+     "fix": "Rename the bar and the bullet 'Model charge for funding the programme (not actual borrowing)'. Add one line on slide 3: 'This is the model's charge for tying up cash; in the real balance sheet (next slide) net debt never rises.' Change the chart label in both builders (build_deck.py, build_html.py).",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 1,
+     "problem": "The cover title and slide 1 headline state the diagnosis, not the answer. The recommendation only shows up in the takeaway and bullet 4. The slide also never says plainly that the recommended plan meets the same 5 of 7 goals: it adds value, not narrowbody share. 'More than four times the value' is a ratio on a small base and sounds like spin.",
+     "evidence": "Action title: 'Boeing kept its balance sheet safe, but came three years late…'. Takeaway: 'Our answer is … plus the 787 Re-engine in 2030, for more than four times the value' (2.86/0.66). plans_2030 shows 'objectives met 5 of 7' for both the played plan and the recommended plan.",
+     "fix": "Headline: 'Keep the fps as planned and add the 787 Re-engine in 2030: +$2.2B of value, same safe balance sheet. The narrowbody gap is a calendar problem we cannot buy back.' Replace '4x' with '+$2.2B'. Add: 'Same 5 of 7 goals; the narrowbody goal needs resetting (slide 7).'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 1,
+     "problem": "'Stress case' is used on slides 1, 5, 6 and 7 before it is explained. The only explanation is in slide 4's source line. This is exactly the jargon the CEO flagged.",
+     "evidence": "Slide 1 bullet: 'even in the stress case'. Slide 4 source: 'stress case one-third lower'.",
+     "fix": "On first use, write: 'even if cash flow runs a third below analysts' forecasts (our stress test)'. After that, use 'downturn test' or 'stress test (cash flow one-third lower)'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 3,
+     "problem": "'The fps bill ($60.32B) costs $14.91B' will puzzle an executive. The HTML bridge chart prints 'ΔPV' as a bar label, because only the PPT builder renames it to 'Value created'.",
+     "evidence": "build_html.py bridge_svg uses lab.split(' (')[0] on the pv_bridge items, which include 'ΔPV'. build_deck.py line 285 renames ΔPV, but not in the HTML.",
+     "fix": "Write: 'The $60.32B fps bill is paid in the late 2030s, so in today's money it is $14.91B.' Rename the 'ΔPV' bar to 'Value created' in build_html.py as well.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 4,
+     "problem": "Bullet 3 wrongly credits the fps with all cash to owners. It also puts an undiscounted $44B next to the $4.30B present value on slide 3, so a reader cannot tell what the fps is really worth. 'Do Nothing' is a game label.",
+     "evidence": "'From 2027 to 2050 the fps returns $325.7B to owners, $44.0B more than Do Nothing'. owners_cash 'fps 10-year (played)' is whole-company cash to owners. pv_bridge and plans_2030 give the fps value against not launching as +4.30 in present value.",
+     "fix": "Write: 'With the fps, Boeing returns $325.7B to owners by 2050, $44B more than without it (not discounted). It pays back in 2046.' Or drop the $44B and keep only the payback year.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 4,
+     "problem": "The title 'The balance sheet was not the constraint' clashes with slides 6 and 7, which reject the faster fps on balance-sheet grounds. The CEO will ask which it is.",
+     "evidence": "Slide 6 title: 'it costs value or the stress-case balance sheet'. Rec 1 why: 'only fps plan that keeps the balance sheet repaired in the stress case'.",
+     "fix": "Title: 'The 10-year fps kept the balance sheet safe with room to spare: net debt stayed at zero through the 2036 cash peak, even in a downturn'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 6,
+     "problem": "The case against a faster fps leads with its weakest reason. The CFO's own record says the downturn breach is small and could be closed by holding back cash. The real reason, schedule risk, appears only in the notes. The title is a compound sentence, and 'the 787 does not' is ambiguous. The table also leaves out the 7-year fps on its own, which beat the plan we played on value (+1.12 against +0.66) and on share. The CEO will spot it.",
+     "evidence": "dash_2050_obj_report.md line 621: 'If the Board retained the 2030-33 stress surplus (about $11B…), the 7-year's gap would close in fact', and the gap is 'small against the $10B of revolvers we keep undrawn'. Line 632: the 7-year has 'zero headroom against a slip prior of +2 to +5 years'. Line 630: 'The 10-year's 2040 date is the 7-year's central slip case.' plans_2030: 'fps 7-yr + 787: hold: ΔPV +1.12 … NB share 2040 44.0%, 2050 50.0%'.",
+     "fix": "Title: 'Only a faster fps wins back narrowbody share, and it only works if we hit 2037 to the year, which we have never done.' Lead with: 'Our clean-sheet record is a 3-year slip (the 787-8 was due in 2008 and delivered in 2011). 2040 already builds in that slip; 2037 does not.' Add the 7-year-only row, and say the downturn breach ($0.5-1.7B) is small and fixable.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "Rec 4's 'why' ('no plan open in 2030 reaches 50/50') looks contradicted by slide 6, which shows 50% by 2050 on the 7-year plans. Setting the goal at exactly the model's output (47%) will read as lowering the bar to fit.",
+     "evidence": "Slide 6 table: 'fps 7-year + … 44% / 50%'. The goal is defined as ≥50% in 2040, 2045 and 2050 (boeing_objectives).",
+     "fix": "Write: 'No 2030 plan reaches 50% by 2040. Parity by 2050 is possible only with the 7-year schedule bet. So set 47% by 2050 as the committed goal, with 50% as the stretch if the fps beats its date.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "Recs 2 and 3 are not fully straight and plain. Rec 2 says the Re-engine 'grows the widebody market we already lead', but it grows our share of that market, not the market. 'Announce it first' has no date or trigger. Rec 3 uses game terms with no explanation: 'Delay Tactics campaign', 'risk case' and 'Joint Venture engine'. The Joint Venture engine is first explained only on slide 8.",
+     "evidence": "Rec 2 why: 'it grows the widebody market we already lead'. Rec 3: 'a covert Airbus Delay Tactics campaign … in the risk case our value falls from +$2.86B to +$1.42B'.",
+     "fix": "Rec 2: 'Announce the 787 Re-engine publicly before Airbus's 2030 decision; it lifts our widebody share from 59% to 75%.' Rec 3: 'Airbus quietly tying up our shared suppliers and engine makers' in place of Delay Tactics, 'if Airbus slows our suppliers' in place of 'risk case', and 'the new Pratt & Whitney/Rolls-Royce engine' in place of 'Joint Venture engine'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 5,
+     "problem": "The slide never says what the 787 Re-engine costs or when it flies. Those are the first two questions a CEO asks about a new programme. The only cost figure in the deck is buried in slide 8's risk table ($66.52B against $60.32B).",
+     "evidence": "report line 621: 'Re-engine $5B at 2035 (+$1.2B strain beside the 10-year, 2033-35)'. re787_by_round: in service 2035.",
+     "fix": "Add a line: '$5B to develop, plus about $1.2B for running two programmes at once; in service 2035; adds about $2.2B of value after all costs.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 8,
+     "problem": "There is still jargon and there are unexplained numbers in the risk table. 'Strain' is a game term. Risk 1's cost cell gives '(value -5.54 against -1.96 …)' with no $ sign or meaning. Risk 4's '27% from 76%' is the whole market's engine share, not Boeing's fleet, so 'must carry the whole fleet' does not follow.",
+     "evidence": "Risk 2 cost: 'strain of $0.31B already counted'. Risk 1 cost: '$3.58B against holding the 787 (value -5.54 against -1.96 if NGSA also launches)'.",
+     "fix": "'Strain' becomes 'the extra cost of running two programmes at once ($0.31B, already in the numbers)'. Cut the -5.54/-1.96 parenthesis. Risk 4: 'If the new P&W/Rolls-Royce engine fails, every fps would need a CFM engine and we lose our second source.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "Nothing tells the CEO what to do between now (2026) and the 2030 decision. Yet every mitigation depends on it: committing first, separate teams, ready suppliers, no buybacks before the cash peak.",
+     "evidence": "Every recommendation is dated 2030 or later. Slide 8 mitigations include 'Commit first and in public in 2030' and 'no buybacks before the 2036 cash peak'. The latter is not among the recommendations.",
+     "fix": "Add one line or bullet: 'Before 2030: secure an engine partner for the 787 Re-engine, stand up a separate 787 team, sign fps engine terms with all three makers, and set a capital-return policy that holds cash through 2036.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 5,
+     "problem": "The table offers a 2035 Re-engine (+$0.65B) as if it were available. Under Boeing's own 2-year overlap rule it would not have been, because it overlaps the 10-year fps for 5 years.",
+     "evidence": "Report line 631: 'a Re-engine launched in 2035 would overlap 5 years (2035-40) and fail H4. The next H4-legal round is 2045.'",
+     "fix": "Footnote the 2035 row: 'breaks our 2-year overlap rule'. This also strengthens the argument for 2030.",
+     "severity": "nice"
+    },
+    {
+     "slide": 5,
+     "problem": "The lowest downturn cash flow gets better when a second programme is added ($2.69B against $2.52B). That looks wrong without an explanation.",
+     "evidence": "plans_2030: played lowest stress FCF $2.52B (2036); with the 787 Re-engine $2.69B (2034).",
+     "fix": "Add a few words: 'the Re-engine starts earning in 2035, before the fps cash peak'.",
+     "severity": "nice"
+    },
+    {
+     "slide": 3,
+     "problem": "The deck shows Airbus creating 35 times our value ($23.37B against $0.66B), but never says why in one line.",
+     "evidence": "Slide 1 stat and slide 3 bullet 4: 'In the same game Airbus created $23.37B.' The only explanation is airbus_profit doubling from 2037.",
+     "fix": "Add: 'Airbus started from 60% of the market and had the only new airplane from 2037 to 2040; its profit doubled three years before ours.'",
+     "severity": "nice"
+    }
+   ]
+  },
+  {
+   "reviewer": "logic",
+   "verdict": "The storyline mostly holds up. Its core logic matches the fact pack: Boeing lost the narrowbody race on the calendar, the fps launch was right (+$4.30B against Do Nothing), the balance sheet had room to spare, and a 2030 787 Re-engine was the largest unused lever (+$2.20B, and the same +$2.20B over holding in both the S2 and S5 columns). Nearly every number reconciles with factpack.md, boeing_fin.json and the 2030 ExCo record. Four errors must be fixed before the deck goes to executives. (1) The deck says the Re-engine \"fits our own one-development rule\". In fact it breaks three of Boeing's own 2030 rules: the one-development-at-a-time rule, the -$1B downside limit and the doctrine of no Re-engine before 2036. (2) Rec 1 says the 10-year fps is \"the only fps plan\" that keeps the stress-case balance sheet, but slide 6 shows another plan that also holds it. (3) \"Announce it first\" is not possible in the game: in 2030 all orders are sealed and submitted at the same time. (4) The main risk is understated. I replayed the game with the game master's engine, and a later A350 answer costs Boeing more than holding, not less: $4.0-4.8B, so the break-even chance of an answer is about 1 in 3, not 38%. Several should-fix items cover the trade-off framing, the cost of Boeing's own slip, the Delay Tactics case and risks the model does not price.",
+   "issues": [
+    {
+     "slide": 5,
+     "problem": "The deck says the 787 Re-engine 'fits our own one-development rule'. That is false. Launched in 2030, it breaks three of Boeing's own 2030 rules, and Rec 2 never says the CEO and Board must lift them.",
+     "evidence": "exco_result_r1.json, Boeing board_guidance: 'One development at a time. No 787 Re-engine this round: its value falls below -$1B whenever Airbus re-engines the A350'. Risk appetite: 'no second development'. CEO decision: held the Re-engine on four grounds, namely the Board's -$1B Downside limit, 'my one-development-at-a-time rule [BX-1239]', company doctrine ('no Re-engine before 2036') and the zero premium in his expected column (S4). Only H4, the 2-year overlap cap for 2033-35, is met.",
+     "fix": "Slide 5: replace the bullet with 'It stays within our 2-year overlap cap (2033-35). But it needs the Board to lift three 2030 rules: one development at a time, the -$1B downside limit (worst case -$5.54B) and no Re-engine before 2036.' Put the same line under Rec 2's 'why' on slide 7 and give the reason for lifting them: a +$2.20B gain over holding, with the balance sheet held in all five 2030 columns.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "Rec 1 says the 10-year fps 'is the only fps plan that keeps the balance sheet repaired in the stress case'. Slide 6 contradicts this.",
+     "evidence": "Slide 6 row 'fps 7-year + 737 rate increase: Held, 6 of 7'. plans_2030: 'fps 7-yr + 737 rate up + 787: hold ... stress debt line met (stress net debt end-2035 $0.0B)'. The speaker notes hedge ('without a rate increase'), but the slide face does not.",
+     "fix": "Reword to: 'It is the only fps plan that holds the stress-case debt line and still leaves room for the 787 Re-engine.' Alternatively: '...the only ramp that holds it without a 737 rate increase.'",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "'Announce it first' (Rec 2) and 'commit first and in public in 2030' (slide 8, risk 1) cannot be done within the game's 2030 levers. Airbus cannot see a 2030 Re-engine before it submits its own 2030 orders, so a same-round A350 answer, the $3.58B case, cannot be deterred. In the 2030 stage game, Airbus prefers the equilibrium in which it re-engines.",
+     "evidence": "rules.md: 'In each round all five players submit sealed orders at the same time.' Public statements are published in the bulletin after the round. stage_equilibria[1] has two pure equilibria: Boeing hold with Airbus NGSA + A350 Re-engine + Delay Tactics (Airbus +26.67), and Boeing Re-engine with Airbus A350 hold + Delay Tactics (Airbus +24.08). Airbus gains $2.59B in the first.",
+     "fix": "Replace 'announce it first' with 'launch in 2030; Airbus sees it in the 2035 bulletin, when answering no longer pays for Airbus' (see the next issue for the number). Say plainly that the same-round answer cannot be deterred, only priced. Its cost is $3.58B against holding.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 8,
+     "problem": "Risk 1 prices only a same-round A350 answer. The notes claim 'an answer that comes later would cost less than the same-round figure', but the model says the opposite. The 16-point widebody gain and the +$2.86B both assume Airbus never re-engines the A350 through 2050, and the deck does not say so. 'Airbus held it in all four rounds' is offered as comfort, but the game master scored those holds as Airbus errors.",
+     "evidence": "My replays use the method in make_factpack.replay_alt: Boeing's 2030 orders with re787 launched, everyone else as played, Airbus rea350 changed in one later round. Airbus answers in 2035: Boeing -4.83 against -0.80 if Boeing held, which is $4.03B worse; Boeing's widebody share stops at 63.8% from 2040, not 74.8%. Answer in 2045: -4.27 against +0.34 ($4.61B). Answer in 2050: -4.22 against +0.57 ($4.79B). Break-even: 2.20/(2.20+4.03) = 35%, down to 31%. In every case answering also costs Airbus: 22.51 to 21.22 in 2035, 21.80 in 2045, 21.82 in 2050. The game master's regret_airbus names the A350 Re-engine as Airbus's best move in 2035, 2045 and 2050 against Boeing's actual orders.",
+     "fix": "Add a later-answer line to risk 1: 'If Airbus answers in 2035, we end at -$4.8B (widebody share stalls at 64%). Break-even is about 1 in 3.' Replace 'Airbus held it in all four rounds' with the model's reason: an answer after our launch costs Airbus $0.7-1.3B. Label 74.8% and +$2.86B 'if Airbus never re-engines'. Add both replays to the fact pack before use. Name as a model limit that the board values any A350 answer, even one entering service in 2055, as wiping out the Re-engine's value.",
+     "severity": "must-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "The headline +$2.86B assumes Airbus also skips Delay Tactics, yet the 2030 equilibrium the deck cites as proof that Airbus will hold the A350 includes Delay Tactics, and there Boeing gets +$1.42B. Rec 3 treats the drop from +$2.86B to +$1.42B as what protecting the date secures. In the model, though, Delay Tactics take a fixed 5 points of share for 5 years from entry into service, which no Boeing lever prevents, and they do not move the date. The share effect of the risk case is never shown.",
+     "evidence": "stage_equilibria[1]: 'fps 10-yr + 787 Re-engine' with 'NGSA + A350: hold + Delay Tactics (one move)', at 1.42 / 24.08. regret_airbus round 1: best plan includes Delay Tactics. Grid S5: 10-yr + Re-engine +1.42 against 10-yr hold -0.78, a gain of +2.20. My replay of the Re-engine plus Delay Tactics: Boeing narrowbody share is 33% in 2040.",
+     "fix": "Present +$1.42B as the model's equilibrium outcome and +$2.86B as the as-played replay, and say the Re-engine's +$2.20B gain holds in both. In Rec 3, cite the risk case as a cost the model cannot mitigate: 33% narrowbody share in 2040 and -$1.44B. Do not present it as the payoff of protecting the date. In Rec 4, note that the 2037-41 dip could reach 33%.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 8,
+     "problem": "Boeing's own schedule slip is never quantified. Risk 3 ('The fps slips...') shows only the Delay Tactics cost, and the game has no lever for a Boeing slip. That leaves out the risk the deck itself raises on slide 6: the 787-8 was more than 3 years late.",
+     "evidence": "rules.md share rule: the long-run split shifts 1 point toward the leader for each year of lead. NGSA 2037 against fps 2040 gives 47/53. A 3-year slip to 2043 gives a 6-year lead, a long-run split of 44/56, and Boeing near 34% at entry into service. The cost in value is not in the fact pack.",
+     "fix": "Split risk 3 into two lines: our own slip (the share effect from the rule above, value not priced by the model, the 787-8 precedent) and covert Delay Tactics (+$1.42B, 33% in 2040). Alternatively, replay a 2043 entry into service and add it to the fact pack.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 6,
+     "problem": "The value against share against balance-sheet trade-off is measured only against the after-the-fact pick that includes the Re-engine. Against what Boeing actually did, faster share was cheap. The Board's $2B cap is a 2030 rule applied here to a hindsight comparison.",
+     "evidence": "plans_2030: 7-yr + 737 rate up + 787 hold scores +0.38 against +0.66 played, only $0.28B less, for +6 points of narrowbody share in 2040, +3 in 2050, and the incumbency goal met (6 of 7). The 7-yr fps alone scores +1.12, beating the played plan by $0.46B, and misses only the stress line ($0.47B). The 2030 Board guidance preferred the 7-year 'by our worst-column rule'.",
+     "fix": "Add the row 'fps 7-year + 787 hold: +1.12, 44% / 50%, missed by $0.47B, 5 of 7'. Add one plain line: 'Without the 787, the 7-year fps was the better plan on value and share; the 10-year bought only the stress-case line.' State that the $2.48B is measured against the hindsight pick.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 5,
+     "problem": "The 2035 launch row (+$0.65B) was not open under Boeing's own H4 rule once the 10-year fps was chosen. 'The prize shrank with every round we waited' implies otherwise.",
+     "evidence": "CEO 2030 decision: 'on the 10-year a 2035 Re-engine would overlap 5 years and break H4, so the next H4-legal round is 2045.' The Board's 2030 guidance says the same.",
+     "fix": "Footnote the 2035 row: 'breaks our 2-year overlap cap on the 10-year fps'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 3,
+     "problem": "The notes describe the -$4.73B 'debt penalty' as a financing charge 'for the debt the programme adds'. Slide 4 says net debt never rose above zero. A CFO will ask 'what debt?'",
+     "evidence": "pv_bridge debt penalty -4.73. net_debt shows $0.00 in every year from 2030, base and stress.",
+     "fix": "Add one plain line on slide 3: 'The model charges a cost of funding the programme. In practice the cash came from free cash flow (next slide), so net debt stayed at zero.' Rename it 'funding charge'.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 4,
+     "problem": "The bullet misattributes a number. '$325.7B to owners' is all cash returned to owners under the plan played, not what the fps returns.",
+     "evidence": "owners_cash: played 325.70 and Do Nothing 281.70 for 2027-2050, so the fps adds 44.0.",
+     "fix": "Reword to: 'From 2027 to 2050 the fps adds $44.0B of cash to owners ($325.7B against $281.7B with no fps), and pays back against Do Nothing in 2046.'",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 8,
+     "problem": "Risk 4 (engine concentration) has no cost and does not say the model leaves it unpriced. Rec 1's 'both supply goals met at no cost' hides that both goals rest on one new engine.",
+     "evidence": "nb_engine_share: from 2040 the Joint Venture engine (P&W 36.5% + RR 36.5%) powers 73% of narrowbody engines, on both the fps and NGSA (engine code 7 for both). The 'three makers' goal is met by two engine programmes.",
+     "fix": "Add: 'Not priced by the model. Exposure: 73% of narrowbody engines from 2040. If the Joint Venture engine stumbles, both supply goals fail together.' Add the same caveat to Rec 1's proof.",
+     "severity": "should-fix"
+    },
+    {
+     "slide": 7,
+     "problem": "The 'why' for Rec 2 leaves out its strongest argument: holding the 787 is not safe either.",
+     "evidence": "regret_airbus: an A350 Re-engine was Airbus's best move in 2035 against Boeing's actual orders. My replay of Boeing holding with an Airbus A350 Re-engine in 2035: Boeing -0.80, widebody share falls from 58.8% to 42.3% by 2050.",
+     "fix": "Add one line: 'If we hold, the model says Airbus should re-engine. We would fall to 42% of widebodies by 2050. Moving first is the defence.'",
+     "severity": "nice"
+    },
+    {
+     "slide": 1,
+     "problem": "Two small inaccuracies on the summary slide. In the stress case, net debt reached zero in 2030, not 2029. 'More than four times the value' is a ratio on a near-zero base (0.66).",
+     "evidence": "boeing_objectives: stress case 'reached in 2030'. 2.86 / 0.66 = 4.3.",
+     "fix": "Write 'zero in 2029 (2030 in the stress case)'. Use '+$2.2B more value' instead of 'four times'.",
+     "severity": "nice"
+    },
+    {
+     "slide": 8,
+     "problem": "Risk 2 could add a reassurance the data supports: the balance sheet holds even if Airbus answers.",
+     "evidence": "brief_r1_boeing.md objective metrics: 'fps 10-yr + 787 Re-engine' shows '2029 / yes / yes ($0.0B)' in all five columns S1-S5.",
+     "fix": "Add to risk 2 or Rec 2: 'Net debt stays at zero in every 2030 scenario, including an A350 answer.'",
+     "severity": "nice"
+    }
+   ]
+  }
+ ],
+ "final_check": {
+  "verdict": "The numbers are sound, but there is one provenance blocker and several should-fix claims. I checked every number against factpack.md/json, boeing_fin.json, brief_r1_boeing.md, exco_result_r1/r2.json, bulletin_r4.md, rules.md and the game report, using python. The rest checks out: shares (40/37/38/47, 63, 58.8, 74.8), value (+0.66, +2.86, +2.1973, +4.30, -3.64, the 23.37 bridge 20.30/-14.91/-4.73), profit (6.67, 14.32, 16.86, Airbus 8.82 to 18.26), cash and debt (22.53, 2029/2030, 8.44, 2.52, 2.69, 3.38, 19.83, 325.7/281.7/44.0, 136.6, payback 2046), plan rows (1.12, 2.39, 0.38, 0.47/1.74, 5 of 7 / 6 of 7 / 4 of 7), grid (3.58, 1.42, -0.78, -1.44), the 10.5% WACC, $5B/$1.2B, $4.68B, the 787-8 dates, the $10B revolvers, the 2033-35 and 5-year overlaps, the CEO's four reasons, and the 73% engine share. I re-ran the engine myself. It reproduces the debrief-only later-answer replays exactly: 2035 -4.8256 vs -0.7976; 2045 -4.2722 vs +0.3353; 2050 -4.2212 vs +0.5664; Airbus 21.22/21.80/21.82; 63.82% widebody from 2040; break-even 35/32/31%. It also confirms Delay Tactics gives 33% in 2040 and +1.42 / -0.78. Remaining errors: (1) the replay numbers are not yet in the fact pack; (2) \"leaves no room for the 787\" contradicts Boeing's own 2030 Board guidance; (3) \"needs 2037 to the year\" overstates what the 40% line needs; (4) the slide-1 notes compare the 787 Re-engine against the wrong baseline; (5) the speaker notes the executives see contain machine names (re787_by_round and other dataset ids); plus a few small wording points.",
+  "issues": [
+   {
+    "slide": 8,
+    "problem": "Unsupported numbers: the later-answer figures are not in the fact pack or any source it names. These are $4.0-4.8B (4.03/4.61/4.79), break-even 35/32/31% ('about 1 in 3'), 63.8% widebody share, and Airbus $0.7-1.3B (21.22/21.80/21.82). The evidence rules require every number to come from there, and the storyline's own numbers_used says 'NOT in factpack.md: add before the deck ships'.",
+    "evidence": "factpack.md has no row for an Airbus A350 Re-engine answering in 2035/2045/2050. I re-ran the engine (Boeing re787 launch in 2030, Airbus rea350 launch added in round 2/3/4, everyone else as played). Boeing -4.8256 vs -0.7976 (2035), -4.2722 vs +0.3353 (2045), -4.2212 vs +0.5664 (2050). Airbus 21.2244 / 21.7989 / 21.8213. Boeing widebody share 63.82% from 2040 (2035 answer). So the values are right; only the provenance is missing.",
+    "fix": "Add a 'later Airbus answer' dataset to make_factpack.py and factpack.md/json with these replay results, then cite it. Do not ship slide 8's cost cell, title basis or notes until it is there.",
+    "severity": "must-fix"
+   },
+   {
+    "slide": 6,
+    "problem": "Factual overstatement in the action title, repeated in slide 7 Rec 4's 'why': a 7-year fps 'leaves no room for the 787'. Boeing's own 2030 Board guidance says a 7-year fps leaves room for a Re-engine launched in 2035 within the 2-year cap. Only a 2030 Re-engine is ruled out (5-year overlap).",
+    "evidence": "exco_result_r1.json, Boeing board_guidance.recommendations[2]: 'A 7-year fps (development 2030-2037) leaves room for a Re-engine launched in 2035 with only a 2-year overlap. A 10-year fps (development 2033-2040) does not.'",
+    "fix": "Say 'leaves no room for the 787 in 2030' (title and Rec 4 why). The slide 6 notes already scope it correctly ('launched together').",
+    "severity": "should-fix"
+   },
+   {
+    "slide": 6,
+    "problem": "'It needs 2037 to the year' (bullet 2; also the takeaway and the notes) reads as a condition for holding the 40% line, which bullet 1 just claimed. Under the game's share rule, a 1-2 year slip still holds 40% in the 2040 test year. Only the 44% / 50% parity figures need 2037 exactly. The record's 3-year slip (to 2040, 38%) is what loses the line.",
+    "evidence": "rules.md, 'How the board sets market shares': the first EIS gains 1 pp a year while alone; from the second EIS shares move 1 pp a year toward 50/50 shifted 1 pp per year of lead. In the game the move applies in the EIS year itself (2039 37% to 2040 38%). So an fps in 2038 gives 39, 40, 41, 42% in 2037-40, and an fps in 2039 gives 39, 38, 39, 40%: both meet 'NB share >= 40% in 2040, 2045, 2050'.",
+    "fix": "Reword: 'Parity needs 2037 to the year; our clean-sheet record is a three-year slip (787-8), which would put it in 2040 at 38%, below the 40% line.'",
+    "severity": "should-fix"
+   },
+   {
+    "slide": 1,
+    "problem": "The speaker notes say 'A 787 Re-engine launched in 2030 was worth more than everything else we did.' Against what? The fps launch was worth +$4.30B against Do Nothing (slide 3 notes, slide 7 Rec 1 proof), so +$2.2B is not more than it. The claim only holds against the net +$0.66B value created, which is a different baseline (status quo).",
+    "evidence": "plans_2030: fps 10-yr + 787 hold +0.66 vs fps hold + 787 hold -3.64, so the launch is worth +4.30. The 787 Re-engine gain is 2.86 - 0.66 = 2.1973. The storyline itself uses +$4.30B in Rec 1.",
+    "fix": "Replace with 'A 787 Re-engine launched in 2030 would have added $2.2B, more than three times the $0.66B of value we created as played.'",
+    "severity": "should-fix"
+   },
+   {
+    "slide": 1,
+    "problem": "Forbidden machine names appear in speaker notes that the executives can see. The HTML renders the full notes, SOURCES included, under each slide (build_html.py line 248). 're787_by_round' contains the variable name 're787', which is explicitly banned. Other machine ids also appear (pv_bridge, dpv_all, plans_2030, nb_share, boeing_grid_2030, stage_equilibria, regret_airbus, tracker_inputs, boeing_fin.json, exco_result_r1.json).",
+    "evidence": "Agent definition, naming rules: 'Never a machine variable name (launch_10yr, re787, fps_engine_code, pv_delta and the like) in anything the executives see.' 're787_by_round' appears in the notes of slides 1, 5 and 7.",
+    "fix": "In the notes, cite sources in plain words ('the fact pack's 787 Re-engine by round table', 'Boeing's 2030 plans replayed', 'Boeing's 2030 payoff grid'). At minimum remove every 're787' token, or have the builders strip the SOURCES block from the HTML notes.",
+    "severity": "should-fix"
+   },
+   {
+    "slide": 8,
+    "problem": "The speaker notes say that if Airbus answers later 'our widebody share would stall at about 64%'. That is true only for a 2035 answer. Later answers stall it much higher.",
+    "evidence": "Engine replay (method as in make_factpack.py replay_alt). Answer in 2035: 63.8% from 2040. Answer in 2045: 64.8 / 69.8 / 73.8% in 2040 / 2045 / 2050-55. Answer in 2050: 74.8% in 2050, 78.8% in 2055. The rules (widebody: the first re-engine's gains stop when the second enters service) give the same.",
+    "fix": "Say 'if Airbus answers in 2035, our widebody share stalls at about 64%; a later answer stops it at 74-79%'.",
+    "severity": "should-fix"
+   },
+   {
+    "slide": 7,
+    "problem": "Wrong attribution: 'the Board ... three of its 2030 rules: one development at a time, the -$1B downside limit, and no Re-engine before 2036' (bullet 2, and the takeaway's 'its no-Re-engine-before-2036 doctrine'). The 2036 rule is company doctrine cited by the CEO from his profile, not a 2030 Board rule. The Board's 2030 rule was 'no 787 Re-engine this round'.",
+    "evidence": "exco_result_r1.json, Boeing decision.rationale: 'company doctrine (profile §11.4: keep the 787 a cash source, no Re-engine before 2036)'. board_guidance.priorities[3]: 'One development at a time. No 787 Re-engine this round: its value falls below -$1B...'.",
+    "fix": "Say 'lift two Board rules (one development at a time, the -$1B limit) and the company doctrine of no Re-engine before 2036', or call the third the Board's 'no Re-engine in 2030' rule.",
+    "severity": "nice"
+   },
+   {
+    "slide": 2,
+    "problem": "The speaker notes say 'Airbus chose a 7-year path'. Under the game rules NGSA has only one timing (EIS 7 years after launch); Airbus made no ramp choice. Slide 1's notes ('Airbus on a 7-year plan') are fine.",
+    "evidence": "rules.md order table: 'Airbus | Launch NGSA | ngsa: launch | EIS 7 years after launch' (Boeing alone has 7-year / 10-year / via Embraer options).",
+    "fix": "Say 'Airbus's NGSA, on its 7-year development, was in service in 2037.'",
+    "severity": "nice"
+   },
+   {
+    "slide": 7,
+    "problem": "The speaker notes say 'warn customers about the 2037-2041 dip, which could reach 33% in 2040 if Airbus uses Delay Tactics'. With Delay Tactics the dip also lasts longer, to 2044, not just deeper.",
+    "evidence": "Engine replay with Airbus delay_tactics in 2030 (otherwise as played): Boeing narrowbody share 33% (2040), 34% (2041), 37% (2044), 43% (2045). rules.md: 'Boeing loses 5 pp for 5 years from fps EIS.'",
+    "fix": "Say 'which could reach 33% in 2040 and last to 2044 if Airbus uses Delay Tactics'.",
+    "severity": "nice"
+   }
+  ]
+ }
+}

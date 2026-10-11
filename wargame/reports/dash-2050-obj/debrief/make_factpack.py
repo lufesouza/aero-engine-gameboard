@@ -48,6 +48,41 @@ for n in range(1, 5):
 # Airbus's response risk: from Boeing's own grids (both re-engine)
 G1 = json.load(open(f"{ROOT}/runs/dash-2050-obj/grids_r1.json"))["boeing"]
 
+
+def replay_mod(mods):
+    """Replay the whole game from the start with some orders changed: mods = {round: {side: {field: value}}}."""
+    s = states[0]
+    for n in range(1, 5):
+        rec = records[n - 1]
+        orders = {}
+        for side in M.SIDES:
+            o = dict(rec["orders"][side])
+            o.update(mods.get(n, {}).get(side, {}))
+            orders[side], _ = R.validate(s, side, rec["year"], o)
+        s, _ = R.adjudicate(s, rec["year"], orders)
+    v = M.value(s, covert=True, series=True)
+    yb = {r["year"]: r for r in v["_af_series"]["years"]}
+    return {"pv_boeing": v["boeing"]["pv_delta"], "pv_airbus": v["airbus"]["pv_delta"],
+            "nb_share": {y: yb[y]["boeing"]["nb_share"] for y in (2039, 2040, 2041, 2044, 2045, 2050)},
+            "wb_share": {y: yb[y]["boeing"]["wb_share"] for y in (2035, 2040, 2045, 2050, 2055)},
+            "re787_eis": (M.live(s, "re787") or {}).get("eis"), "rea350_eis": (M.live(s, "rea350") or {}).get("eis"),
+            "dt": s["dt"]}
+
+
+RE = {1: {"boeing": {"re787": "launch"}}}
+answer = {"as_played": replay_mod({}), "re787_2030": replay_mod(RE)}
+for n, yr in ((1, 2030), (2, 2035), (3, 2045), (4, 2050)):
+    a_only = replay_mod({n: {"airbus": {"rea350": "launch"}}})
+    both = replay_mod({**RE, n: {**RE.get(n, {}), "airbus": {"rea350": "launch"}}} if n != 1 else {1: {"boeing": {"re787": "launch"}, "airbus": {"rea350": "launch"}}})
+    gain = answer["re787_2030"]["pv_boeing"] - answer["as_played"]["pv_boeing"]
+    cost = a_only["pv_boeing"] - both["pv_boeing"]
+    answer[f"airbus_answers_{yr}"] = {"airbus_a350_reengine_only": a_only, "boeing_787_2030_and_airbus_a350": both,
+                                     "boeing_gain_if_no_answer": gain, "boeing_cost_if_answer": cost,
+                                     "break_even_answer_probability": gain / (gain + cost),
+                                     "airbus_cost_of_answering": answer["re787_2030"]["pv_airbus"] - both["pv_airbus"]}
+answer["delay_tactics_2030"] = replay_mod({1: {"airbus": {"delay_tactics": "bottleneck"}}})
+answer["delay_tactics_2030_with_787"] = replay_mod({1: {"airbus": {"delay_tactics": "bottleneck"}, "boeing": {"re787": "launch"}}})
+
 played = BF["alts"]
 plans = []
 for a in played:
@@ -101,6 +136,8 @@ datasets = {
     "boeing_objectives": {"title": "Boeing's objectives, final state", "rows": [[o["label"], o["met"], o["detail"]] for o in F["objectives"]["boeing"]]},
     "plans_2030": {"title": "Boeing's 2030 plans, replayed with everyone else as played", "rows": plans},
     "re787_by_round": {"title": "787 Re-engine in each round, replayed (Boeing's other orders and everyone else as played)", "rows": alts},
+    "airbus_answer": {"title": "Boeing's 787 Re-engine in 2030 against an Airbus A350 Re-engine in each round, and Airbus Delay Tactics "
+                               "(bottleneck) in 2030: whole-game replays, everyone else as played", "cases": answer},
     "boeing_grid_2030": {"title": "Boeing's 2030 payoff grid as its brief showed it: ΔPV $B by plan against what Airbus might do (nobody moves later)",
                          "scenarios": G1["scenarios"], "rows": [[r["plan"]] + [r2(c[0]) for c in r["cells"]] for r in G1["rows"]]},
 }
@@ -158,6 +195,23 @@ for did, ds in datasets.items():
             L.append(f"- {a['year']}, 787 Re-engine {a['re787']}: Boeing ΔPV {a['pv_boeing']:+.2f}, Airbus {a['pv_airbus']:+.2f}; 787 Re-engine in service "
                      f"{a['re787_eis']}; Boeing WB share 2040 {pct(a['wb_share'][2040])}, 2045 {pct(a['wb_share'][2045])}, 2050 {pct(a['wb_share'][2050])}; "
                      f"NB share 2050 {pct(a['nb_share'][2050])}")
+    elif did == "airbus_answer":
+        c = ds["cases"]
+        f = lambda x: (f"Boeing ΔPV {x['pv_boeing']:+.2f}, Airbus {x['pv_airbus']:+.2f}; Boeing NB share 2040 {pct(x['nb_share'][2040])}, "
+                       f"2044 {pct(x['nb_share'][2044])}, 2050 {pct(x['nb_share'][2050])}; Boeing WB share 2040 {pct(x['wb_share'][2040])}, "
+                       f"2045 {pct(x['wb_share'][2045])}, 2050 {pct(x['wb_share'][2050])}, 2055 {pct(x['wb_share'][2055])}; "
+                       f"787 Re-engine in service {x['re787_eis']}, A350 Re-engine in service {x['rea350_eis']}")
+        L.append(f"- As played: " + f(c["as_played"]))
+        L.append(f"- 787 Re-engine in 2030, Airbus never answers: " + f(c["re787_2030"]))
+        for yr in (2030, 2035, 2045, 2050):
+            x = c[f"airbus_answers_{yr}"]
+            L.append(f"- Airbus launches an A350 Re-engine in {yr}, Boeing holds the 787: " + f(x["airbus_a350_reengine_only"]))
+            L.append(f"- Airbus launches an A350 Re-engine in {yr}, Boeing launched the 787 Re-engine in 2030: " + f(x["boeing_787_2030_and_airbus_a350"]))
+            L.append(f"  - Boeing's gain from the 787 Re-engine if Airbus never answers {x['boeing_gain_if_no_answer']:+.2f}; its cost if Airbus answers in {yr} "
+                     f"{x['boeing_cost_if_answer']:.2f}; break-even chance of that answer {x['break_even_answer_probability'] * 100:.0f}%; "
+                     f"Airbus's own cost of answering in {yr} {x['airbus_cost_of_answering']:.2f}")
+        L.append("- Airbus Delay Tactics (bottleneck) in 2030, Boeing as played: " + f(c["delay_tactics_2030"]))
+        L.append("- Airbus Delay Tactics (bottleneck) in 2030, Boeing with the 787 Re-engine: " + f(c["delay_tactics_2030_with_787"]))
     elif did == "boeing_grid_2030":
         L.append("| Plan | " + " | ".join(f"S{i + 1} {sc}" for i, sc in enumerate(ds["scenarios"])) + " |")
         L.append("|---|" + "---:|" * len(ds["scenarios"]))

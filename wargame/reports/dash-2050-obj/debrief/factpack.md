@@ -101,6 +101,25 @@ Every number in the deck must come from here (or from a source file named in the
 - 2050, 787 Re-engine hold: Boeing ΔPV +0.66, Airbus +23.37; 787 Re-engine in service None; Boeing WB share 2040 58.8%, 2045 58.8%, 2050 58.8%; NB share 2050 47.0%
 - 2050, 787 Re-engine launch: Boeing ΔPV +0.71, Airbus +23.33; 787 Re-engine in service 2055; Boeing WB share 2040 58.8%, 2045 58.8%, 2050 58.8%; NB share 2050 47.0%
 
+## Dataset `airbus_answer`: Boeing's 787 Re-engine in 2030 against an Airbus A350 Re-engine in each round, and Airbus Delay Tactics (bottleneck) in 2030: whole-game replays, everyone else as played
+
+- As played: Boeing ΔPV +0.66, Airbus +23.37; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 58.8%, 2045 58.8%, 2050 58.8%, 2055 58.8%; 787 Re-engine in service None, A350 Re-engine in service None
+- 787 Re-engine in 2030, Airbus never answers: Boeing ΔPV +2.86, Airbus +22.51; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 64.8%, 2045 69.8%, 2050 74.8%, 2055 79.8%; 787 Re-engine in service 2035, A350 Re-engine in service None
+- Airbus launches an A350 Re-engine in 2030, Boeing holds the 787: Boeing ΔPV -1.96, Airbus +25.11; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 49.8%, 2045 42.3%, 2050 40.0%, 2055 40.0%; 787 Re-engine in service None, A350 Re-engine in service 2035
+- Airbus launches an A350 Re-engine in 2030, Boeing launched the 787 Re-engine in 2030: Boeing ΔPV -5.54, Airbus +20.36; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 58.8%, 2045 58.8%, 2050 58.8%, 2055 58.8%; 787 Re-engine in service 2035, A350 Re-engine in service 2035
+  - Boeing's gain from the 787 Re-engine if Airbus never answers +2.20; its cost if Airbus answers in 2030 3.58; break-even chance of that answer 38%; Airbus's own cost of answering in 2030 2.15
+- Airbus launches an A350 Re-engine in 2035, Boeing holds the 787: Boeing ΔPV -0.80, Airbus +24.91; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 57.3%, 2045 49.8%, 2050 42.3%, 2055 40.0%; 787 Re-engine in service None, A350 Re-engine in service 2040
+- Airbus launches an A350 Re-engine in 2035, Boeing launched the 787 Re-engine in 2030: Boeing ΔPV -4.83, Airbus +21.22; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 63.8%, 2045 63.8%, 2050 63.8%, 2055 63.8%; 787 Re-engine in service 2035, A350 Re-engine in service 2040
+  - Boeing's gain from the 787 Re-engine if Airbus never answers +2.20; its cost if Airbus answers in 2035 4.03; break-even chance of that answer 35%; Airbus's own cost of answering in 2035 1.28
+- Airbus launches an A350 Re-engine in 2045, Boeing holds the 787: Boeing ΔPV +0.34, Airbus +24.26; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 58.8%, 2045 58.8%, 2050 57.3%, 2055 49.8%; 787 Re-engine in service None, A350 Re-engine in service 2050
+- Airbus launches an A350 Re-engine in 2045, Boeing launched the 787 Re-engine in 2030: Boeing ΔPV -4.27, Airbus +21.80; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 64.8%, 2045 69.8%, 2050 73.8%, 2055 73.8%; 787 Re-engine in service 2035, A350 Re-engine in service 2050
+  - Boeing's gain from the 787 Re-engine if Airbus never answers +2.20; its cost if Airbus answers in 2045 4.61; break-even chance of that answer 32%; Airbus's own cost of answering in 2045 0.71
+- Airbus launches an A350 Re-engine in 2050, Boeing holds the 787: Boeing ΔPV +0.57, Airbus +23.94; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 58.8%, 2045 58.8%, 2050 58.8%, 2055 57.3%; 787 Re-engine in service None, A350 Re-engine in service 2055
+- Airbus launches an A350 Re-engine in 2050, Boeing launched the 787 Re-engine in 2030: Boeing ΔPV -4.22, Airbus +21.82; Boeing NB share 2040 38.0%, 2044 42.0%, 2050 47.0%; Boeing WB share 2040 64.8%, 2045 69.8%, 2050 74.8%, 2055 78.8%; 787 Re-engine in service 2035, A350 Re-engine in service 2055
+  - Boeing's gain from the 787 Re-engine if Airbus never answers +2.20; its cost if Airbus answers in 2050 4.79; break-even chance of that answer 31%; Airbus's own cost of answering in 2050 0.68
+- Airbus Delay Tactics (bottleneck) in 2030, Boeing as played: Boeing ΔPV -0.78, Airbus +24.94; Boeing NB share 2040 33.0%, 2044 37.0%, 2050 47.0%; Boeing WB share 2040 58.8%, 2045 58.8%, 2050 58.8%, 2055 58.8%; 787 Re-engine in service None, A350 Re-engine in service None
+- Airbus Delay Tactics (bottleneck) in 2030, Boeing with the 787 Re-engine: Boeing ΔPV +1.42, Airbus +24.08; Boeing NB share 2040 33.0%, 2044 37.0%, 2050 47.0%; Boeing WB share 2040 64.8%, 2045 69.8%, 2050 74.8%, 2055 79.8%; 787 Re-engine in service 2035, A350 Re-engine in service None
+
 ## Dataset `boeing_grid_2030`: Boeing's 2030 payoff grid as its brief showed it: ΔPV $B by plan against what Airbus might do (nobody moves later)
 
 | Plan | S1 Rivals hold | S2 Airbus launches NGSA | S3 Airbus launches A350 Re-engine | S4 Airbus launches NGSA + A350 Re-engine | S5 Risk case: NGSA + Airbus Delay Tactics (covert) |

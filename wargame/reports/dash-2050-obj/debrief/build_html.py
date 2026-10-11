@@ -18,6 +18,9 @@ COL = {"Boeing": ("--bb", False), "Airbus": ("--fl", False), "Game": ("--bb", Fa
 FALLBACK = [("--bb", False), ("--fl", False), ("--sp", False)]
 
 
+SHORT = {"Free cash flow, base": "Base FCF", "Free cash flow, stress": "Stress FCF", "fps programme cash": "",
+         "fps 10-year (played)": "Played", "No game (analysts' path)": "No game", "Do Nothing (no fps)": "Do Nothing"}
+
 def tipattr(rows):
     return esc(json.dumps([{"v": v, "l": l, "k": k} for v, l, k in rows]), quote=True)
 
@@ -42,7 +45,8 @@ def line_svg(v, FP):
     sx = lambda x: left + (x - xs[0]) / max(1, xs[-1] - xs[0]) * (w - left - right)
     sy = lambda val: top_ + (y_hi - val) / (y_hi - y_lo) * (h - top_ - bot)
     fmt = (lambda x: f"{x:.0f}%") if share else (lambda x: f"{x:,.0f}")
-    out = [f'<svg viewBox="0 0 {w} {h}" class="ch" role="img" aria-label="{esc(ds["title"], quote=True)}">']
+    aria = esc(ds["title"].replace("the GM's", "the game master's"), quote=True)
+    out = [f'<svg viewBox="0 0 {w} {h}" class="ch" role="img" aria-label="{aria}">']
     t = y_lo
     while t <= y_hi + 1e-9:
         out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(t):.1f}" y2="{sy(t):.1f}" class="grid"/>'
@@ -69,15 +73,21 @@ def line_svg(v, FP):
         placed[i] = y
         last = y
     for i, (n, val, var) in enumerate(ends):
-        short = n.split(" (")[0]
+        short = SHORT.get(n, n.split(" (")[0])
+        if not short:
+            continue
         out.append(f'<text x="{w - right + 8}" y="{placed[i] + 4:.1f}" class="endlab">{esc(short)} {fmt(val) if share else f"{val:.1f}"}</text>')
+    keys = []
     for a in v.get("annotations") or []:
         yr = a["year"]
         if yr not in xs or not names:
             continue
-        val = ds["series"][names[0]][yrs.index(yr)] * k
-        out.append(f'<circle cx="{sx(yr):.1f}" cy="{sy(val):.1f}" r="5" fill="var({COL.get(names[0], FALLBACK[0])[0]})" stroke="#fff" stroke-width="2"/>'
-                   f'<text x="{sx(yr):.1f}" y="{sy(val) - 12:.1f}" text-anchor="middle" class="ann">{esc(a["text"])}</text>')
+        sname = a.get("series") if a.get("series") in names else names[0]
+        val = ds["series"][sname][yrs.index(yr)] * k
+        keys.append(a["text"])
+        out.append(f'<circle cx="{sx(yr):.1f}" cy="{sy(val):.1f}" r="5" fill="var(--sp)" stroke="#fff" stroke-width="2"/>'
+                   f'<circle cx="{sx(yr):.1f}" cy="{sy(val) - 20:.1f}" r="10" fill="var(--sp)"/>'
+                   f'<text x="{sx(yr):.1f}" y="{sy(val) - 16:.1f}" text-anchor="middle" class="num">{len(keys)}</text>')
     # hover columns
     step_px = (w - left - right) / max(1, len(xs) - 1)
     for i in idx:
@@ -94,7 +104,8 @@ def line_svg(v, FP):
              + "".join("<tr><th>" + str(yrs[i]) + "</th>" + "".join(
                  f"<td>{(ds['series'][n][i] * 100):.1f}%</td>" if share else f"<td>{ds['series'][n][i]:.2f}</td>" for n in names) + "</tr>" for i in idx)
              + "</tbody></table></div></details>")
-    return f'<div class="legend">{legend}</div><div class="cw">{"".join(out)}</div><p class="unit">{unit}</p>{table}'
+    keyhtml = ("<ol class='akey'>" + "".join(f"<li>{esc(t)}</li>" for t in keys) + "</ol>") if keys else ""
+    return f'<div class="legend">{legend}</div><div class="cw">{"".join(out)}</div><p class="unit">{unit}</p>{keyhtml}{table}'
 
 
 def bridge_svg(FP):
@@ -126,7 +137,7 @@ def bridge_svg(FP):
         out.append(f'<rect x="{cx - bw / 2:.1f}" y="{top_px:.1f}" width="{bw:.1f}" height="{max(2, bot_px - top_px):.1f}" rx="3" fill="var({var})" '
                    f'tabindex="0" class="hit" data-tip="{tipattr([(val + " $B", lab, None)])}" aria-label="{esc(lab + " " + val, quote=True)}"/>'
                    f'<text x="{cx:.1f}" y="{top_px - 6:.1f}" text-anchor="middle" class="val">{val}</text>'
-                   f'<text x="{cx:.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick wrap">{esc(lab.split(" (")[0])}</text>')
+                   f'<text x="{cx:.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick wrap">{esc("Value created" if lab == "ΔPV" else lab.split(" (")[0])}</text>')
     out.append("</svg>")
     return f'<div class="cw">{"".join(out)}</div><p class="unit">$B, present value at 2026</p>'
 
@@ -176,6 +187,7 @@ body { margin: 0; background: var(--page); color: var(--ink); font: 16px/1.5 "Se
 .ev ul { margin: 0; padding-left: 20px; } .ev li { margin: 0 0 10px; }
 .ev li::marker { color: var(--bb); }
 .ev { border-left: 3px solid var(--line); padding-left: 16px; }
+.band { padding: 0 22px; } .band ul { margin: 4px 0 0; padding-left: 20px; columns: 2; column-gap: 32px; } .band li { margin: 0 0 8px; break-inside: avoid; } .band li::marker { color: var(--bb); }
 .take { background: var(--bb); color: #fff; margin: 16px 22px 0; padding: 12px 18px; border-radius: 4px; font-size: 1.05rem; }
 .take b { font-size: .8rem; letter-spacing: .08em; margin-right: 10px; }
 .src { color: var(--muted); font-style: italic; font-size: .8rem; margin: 10px 22px 6px; }
@@ -185,7 +197,8 @@ details.notes p { white-space: pre-line; margin: 8px 0 0; }
 .cw { overflow-x: auto; } svg.ch { width: 100%; height: auto; min-width: 520px; display: block; }
 svg .grid { stroke: var(--line); stroke-width: 1; } svg .tick { fill: var(--muted); font-size: 12px; }
 svg .endlab { fill: var(--ink); font-size: 13px; font-weight: 600; } svg .ann { fill: var(--sp); font-size: 12px; font-weight: 700; }
-svg .val { fill: var(--sp); font-size: 14px; font-weight: 700; } svg .hit { cursor: crosshair; } svg .hit:focus { outline: none; stroke: var(--sp); }
+svg .val { fill: var(--sp); font-size: 14px; font-weight: 700; } svg .num { fill: #fff; font-size: 12px; font-weight: 700; }
+ol.akey { margin: 6px 0 0; padding-left: 22px; font-size: .88rem; } ol.akey li::marker { color: var(--sp); font-weight: 700; } svg .hit { cursor: crosshair; } svg .hit:focus { outline: none; stroke: var(--sp); }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
 .legend i { display: inline-block; width: 16px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
 .unit { color: var(--muted); font-size: .78rem; font-style: italic; margin: 2px 0 0; }
@@ -209,7 +222,7 @@ ol.recs b { color: var(--sp); font-size: 1.05rem; } ol.recs em { color: var(--bb
 .cover h2 { font-size: 2.2rem; margin: 0 0 12px; line-height: 1.15; } .cover p { margin: 0 0 6px; font-size: 1.15rem; opacity: .95; }
 .tip { position: fixed; pointer-events: none; background: #0A2240; color: #fff; font-size: 13px; padding: 7px 10px; border-radius: 6px; z-index: 9; display: none; max-width: 280px; }
 .tip i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; }
-@media (max-width: 820px) { .body, .body.full.side { grid-template-columns: minmax(0, 1fr); } .at { font-size: 1.3rem; } .ev { border-left: 0; padding-left: 0; } }
+@media (max-width: 820px) { .body, .body.full.side { grid-template-columns: minmax(0, 1fr); } .at { font-size: 1.3rem; } .ev { border-left: 0; padding-left: 0; } .band ul { columns: 1; } }
 """
 
 JS = """
@@ -240,9 +253,11 @@ def main():
         side = charty or (bullets and v["type"] in ("table", "columns"))
         ev = ("<div class='ev'><ul>" + "".join(f"<li>{esc(b)}</li>" for b in bullets) + "</ul></div>") if (side and bullets) else ""
         cls = "body" if charty else ("body full side" if ev else "body full")
+        # recs and risks keep their bullets in a band under the visual, as in the deck
+        band = ("<div class='band'><ul>" + "".join(f"<li>{esc(b)}</li>" for b in bullets) + "</ul></div>") if (bullets and not side) else ""
         parts.append(f'''<section class="slide" id="s{i}"><div class="bar"><span>{esc(s["section"])}</span><span class="pn">{i + 1}</span></div>
 <h2 class="at">{esc(s["action_title"])}</h2>
-<div class="{cls}"><div class="vis">{visual(v, FP)}</div>{ev}</div>
+<div class="{cls}"><div class="vis">{visual(v, FP)}</div>{ev}</div>{band}
 <div class="take"><b>KEY TAKEAWAY</b>{esc(s["takeaway"])}</div>
 <p class="src">{esc(s["source"])}</p>
 <details class="notes"><summary>Speaker notes</summary><p>{esc(s["notes"])}</p></details>
