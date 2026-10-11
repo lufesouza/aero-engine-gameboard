@@ -12,7 +12,7 @@ sys.path.insert(0, HERE)
 import narrative as NAR  # noqa: E402
 import page_kit as K  # noqa: E402
 from make_game_html import (AF, EN, NAME, ROUNDS, FINAL, SIDES, YEARS, RYEARS, D, order_text, BRIDGE_LABEL, PEOPLE,  # noqa: E402
-                             chain_summary, SEAT, OLD, XV, lab_af)  # noqa: E402
+                             chain_summary, SEAT, OLD, XV, lab_af, plain, PLAIN_FIELD)  # noqa: E402
 
 M = K.MINUS
 
@@ -127,24 +127,24 @@ def round_md(r):
         ex = x.get("exco") or {}
         dec = ex.get("decision") or {}
         L += [f"**{NAME[s]}** ({', '.join(PEOPLE[s][:3])}; {PEOPLE[s][3]})", ""]
-        L += [tbl(["Step", "What happened"], [[a, b_.replace("|", "/")] for a, b_ in chain_summary(s, x)]), ""]
+        L += [tbl(["Step", "What happened"], [[a, plain(b_)] for a, b_ in chain_summary(s, x)]), ""]
         for seat in ("cfo", "ops"):
             m = ex.get(seat) or {}
             tests = m.get("tests") or []
             if tests:
                 L += [{"cfo": "CFO tests:", "ops": "Operating head tests:"}[seat], "",
                       tbl(["Test", "Threshold", "Result", "Numbers"],
-                          [[t.get("name", ""), t.get("threshold", "").replace("|", "/"), t.get("result", ""), t.get("numbers", "").replace("|", "/")]
+                          [[plain(t.get("name", "")), plain(t.get("threshold", "")), t.get("result", ""), plain(t.get("numbers", ""))]
                            for t in tests]), ""]
         rv = ex.get("board_review") or {}
         if rv.get("items"):
             L += ["Board review:", "", tbl(["Board item", "Value", "Decision", "Ground", "Alternatives"],
-                  [[i.get("order_field", ""), str(i.get("value", "")), i.get("decision", ""), i.get("ground", "").replace("|", "/"),
-                    "; ".join(i.get("acceptable_alternatives") or []) or "—"] for i in rv["items"]]), ""]
-        L += [f"- Decision rationale: {dec.get('rationale', '')}",
-              f"- Expected scenario: {x.get('expected_scenario', '')}. Best grid plan there: {x.get('best_grid_plan_in_expected_scenario', '')}. "
-              f"Premium {n2(x.get('premium_b', 0) or 0)} $B: {x.get('premium_reason', '')}",
-              f"- Predictions: {x.get('predictions', '')}",
+                  [[PLAIN_FIELD.get(i.get("order_field", ""), i.get("order_field", "")), plain(i.get("value", "")), i.get("decision", ""), plain(i.get("ground", "")),
+                    plain("; ".join(i.get("acceptable_alternatives") or [])) or "—"] for i in rv["items"]]), ""]
+        L += [f"- Decision rationale: {plain(dec.get('rationale', ''))}",
+              f"- Expected scenario: {plain(x.get('expected_scenario', ''))}. Best grid plan there: {plain(x.get('best_grid_plan_in_expected_scenario', ''))}. "
+              f"Premium {n2(x.get('premium_b', 0) or 0)} $B: {plain(x.get('premium_reason', ''))}",
+              f"- Predictions: {plain(x.get('predictions', ''))}",
               f"- Expected ΔPV {n2(x.get('expected_pv_b', 0) or 0)} $B; board after the round {n2(r['value'][s]['pv_delta'])} $B", ""]
         om = x.get("other_moves") or []
         if om:
@@ -180,8 +180,9 @@ def build(out):
             ex = ((r["returned"].get(s) or {}).get("exco")) or {}
             rows.append([f"R{r['round']} {NAME[s]}", ", ".join(SEAT.get(v, v) for v in ex.get("binding_vetoes") or []) or "—",
                          ", ".join(SEAT.get(v, v) for v in ex.get("red_line_flags") or []) or "—", "yes" if ex.get("revision") else "—",
-                         ", ".join(ex.get("board_items") or []) or "—", ", ".join(ex.get("board_vetoed") or []) or "—",
-                         ", ".join(ex.get("board_reverted") or []) or "—"])
+                         ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_items") or []) or "—",
+                         ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_vetoed") or []) or "—",
+                         ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_reverted") or []) or "—"])
     L += [tbl(["Round, company", "Binding ExCo vetoes", "Red-line flags", "ExCo revised", "Board items", "Board vetoed", "Reverted"], rows), ""]
     for t, x in NAR.GOV_POINTS:
         L += [f"**{t}**", strip(x), ""]

@@ -401,6 +401,37 @@ def regret_detail():
                                                   "Its final ΔPV", "Regret ex post", "Regret myopic"], rows, num_cols=[2, 4, 5, 6])
 
 
+# Order fields and values in plain words, for display only (the record keeps the agents' text verbatim)
+import re as _re
+PLAIN_FIELD = {"fps_engine_code": "fps engine code", "ngsa_engine_code": "NGSA engine code", "rate_737": "737 rate",
+               "re787": "787 Re-engine", "rea350": "A350 Re-engine", "delay_tactics": "Delay Tactics", "open_fan": "Open Fan",
+               "partner_embraer": "Embraer partnership", "lobby_emissions": "emissions lobbying", "gtf2_solo": "GTF2 Solo",
+               "jv_with_rr": "Joint Venture with RR", "jv_with_pw": "Joint Venture with P&W", "ultrafan_nb_solo": "UltraFan NB Solo",
+               "ultrafan_wb": "UltraFan WB", "t1000_upgrade": "Trent 1000 upgrade", "pv_delta": "ΔPV", "expected_pv_b": "expected ΔPV",
+               "premium_b": "premium", "ngsa": "NGSA", "genx": "GEnx", "ducted": "ducted engine", "fps": "fps"}
+PLAIN_VALUE = {"launch_7yr": "launch (7-year ramp-up)", "launch_10yr": "launch (10-year ramp-up)", "launch_via_embraer": "launch via Embraer",
+               "launch_if_selected": "launch if selected", "upgrade_genx9": "GEnx upgrade", "invest_genx": "GEnx investment"}
+_PLAIN = {**PLAIN_FIELD, **PLAIN_VALUE}
+_PLAIN_RE = _re.compile(r"(?<![\w/.-])(" + "|".join(sorted((_re.escape(k) for k in _PLAIN), key=len, reverse=True)) + r")(?![\w-])")
+_ONLY_AS_FIELD = {"ngsa", "genx", "ducted", "fps"}     # ordinary words too: replaced only when written as a field ("ngsa:")
+
+
+def plain(t):
+    """Agent text with order-field and value names in plain words (display only)."""
+    t = str(t if t is not None else "")
+
+    def rep(m):
+        k = m.group(1)
+        if k in _ONLY_AS_FIELD and t[m.end():m.end() + 1] != ":":
+            return k
+        return _PLAIN[k]
+    return _PLAIN_RE.sub(rep, t)
+
+
+def escp(t):
+    return esc(plain(t))
+
+
 SEAT = {"ceo": "CEO", "cfo": "CFO", "ops": "operating head"}
 PEOPLE = {"boeing": ("Kelly Ortberg", "Jay Malave", "Stephanie Pope", "Boeing Board"),
           "airbus": ("Guillaume Faury", "Thomas Toepfer", "Lars Wagner", "Airbus Board"),
@@ -411,22 +442,22 @@ PEOPLE = {"boeing": ("Kelly Ortberg", "Jay Malave", "Stephanie Pope", "Boeing Bo
 
 def _li(items):
     items = [i for i in (items or []) if i]
-    return ("<ul>" + "".join(f"<li>{esc(str(i))}</li>" for i in items) + "</ul>") if items else '<p class="muted">none</p>'
+    return ("<ul>" + "".join(f"<li>{escp(str(i))}</li>" for i in items) + "</ul>") if items else '<p class="muted">none</p>'
 
 
 def _orders_line(side, o):
-    return esc("; ".join(order_text(side, o or {})))
+    return escp("; ".join(order_text(side, o or {})))
 
 
 def tests_table(memo):
-    rows = [[esc(t.get("name", "")), esc(t.get("threshold", "")), esc(t.get("result", "")), esc(t.get("numbers", ""))]
+    rows = [[escp(t.get("name", "")), escp(t.get("threshold", "")), escp(t.get("result", "")), escp(t.get("numbers", ""))]
             for t in (memo or {}).get("tests") or []]
     return K.table(["Test", "Threshold", "Result", "Numbers"], rows) if rows else ""
 
 
 def review_table(rv):
-    rows = [[esc(i.get("order_field", "")), esc(str(i.get("value", ""))), esc(i.get("decision", "")), esc(i.get("ground", "")),
-             esc("; ".join(i.get("acceptable_alternatives") or []) or "—")] for i in (rv or {}).get("items") or []]
+    rows = [[escp(i.get("order_field", "")), escp(str(i.get("value", ""))), escp(i.get("decision", "")), escp(i.get("ground", "")),
+             escp("; ".join(i.get("acceptable_alternatives") or []) or "—")] for i in (rv or {}).get("items") or []]
     return K.table(["Board item", "Value", "Decision", "Ground", "Acceptable alternatives"], rows) if rows else ""
 
 
@@ -475,8 +506,8 @@ def chain_summary(side, x):
         out.append(("Board review", f"{board}: not called; every order is the default (a hold is never a Board item)"))
     elif rv:
         items = rv.get("items") or []
-        ap = [i["order_field"] for i in items if i.get("decision") == "approve"]
-        ve = [i["order_field"] for i in items if i.get("decision") == "veto"]
+        ap = [PLAIN_FIELD.get(i["order_field"], i["order_field"]) for i in items if i.get("decision") == "approve"]
+        ve = [PLAIN_FIELD.get(i["order_field"], i["order_field"]) for i in items if i.get("decision") == "veto"]
         out.append(("Board review", f"{board}: {rv.get('overall', '')}" + (f"; approved {', '.join(ap)}" if ap else "")
                     + (f"; vetoed {', '.join(ve)}" if ve else "") + ("" if items else " (no Board items)")))
     elif ex.get("board_items") == [] or (ex.get("board_items") is None and not rv):
@@ -487,7 +518,7 @@ def chain_summary(side, x):
         cf = ex["board_confirm"]
         out.append(("Board confirm", f"{board}: {cf.get('overall', '')}"))
     if ex.get("board_reverted"):
-        out.append(("Reverted to the default", ", ".join(ex["board_reverted"])))
+        out.append(("Reverted to the default", ", ".join(PLAIN_FIELD.get(f, f) for f in ex["board_reverted"])))
     return out
 
 
@@ -505,34 +536,34 @@ def chain_block(r):
         fr = ex.get("frame") or {}
         dec = ex.get("decision") or {}
         rv = ex.get("board_review") or {}
-        steps = K.table(["Step", "What happened"], [[esc(a), esc(b_)] for a, b_ in chain_summary(s, x)])
+        steps = K.table(["Step", "What happened"], [[escp(a), escp(b_)] for a, b_ in chain_summary(s, x)])
         om = x.get("other_moves") or []
-        oms = "".join(f'<li>{esc(m.get("move", ""))}{" (public)" if m.get("public") else " (private)"}{(": " + esc(m.get("detail", ""))) if m.get("detail") else ""}</li>' for m in om)
+        oms = "".join(f'<li>{escp(m.get("move", ""))}{" (public)" if m.get("public") else " (private)"}{(": " + escp(m.get("detail", ""))) if m.get("detail") else ""}</li>' for m in om)
         mw = x.get("memo_weighing") or {}
-        ovr = "".join(f"<li>{esc(o.get('veto', ''))}: {esc(o.get('reason', ''))}</li>" for o in x.get("overrides") or [])
-        br = "".join(f"<li><b>{esc(o.get('recommendation', ''))}</b> {esc(o.get('response', ''))}</li>" for o in x.get("board_response") or [])
-        out.append(f'''<details class="tv"><summary>{esc(NAME[s])}: the decision chain ({esc(ceo)}, {esc(cfo)}, {esc(ops)}; {esc(board)})</summary><div class="panel stack small chain">
+        ovr = "".join(f"<li>{escp(o.get('veto', ''))}: {escp(o.get('reason', ''))}</li>" for o in x.get("overrides") or [])
+        br = "".join(f"<li><b>{escp(o.get('recommendation', ''))}</b> {escp(o.get('response', ''))}</li>" for o in x.get("board_response") or [])
+        out.append(f'''<details class="tv"><summary>{escp(NAME[s])}: the decision chain ({escp(ceo)}, {escp(cfo)}, {escp(ops)}; {escp(board)})</summary><div class="panel stack small chain">
 {steps}
-<p class="label">Board guidance before the ExCo met</p><p><b>Priorities.</b></p>{_li(g.get("priorities"))}<p><b>Expects to see.</b> {esc(g.get("expect_to_see", ""))}</p>
+<p class="label">Board guidance before the ExCo met</p><p><b>Priorities.</b></p>{_li(g.get("priorities"))}<p><b>Expects to see.</b> {escp(g.get("expect_to_see", ""))}</p>
 <p><b>Would approve.</b></p>{_li(g.get("would_approve"))}<p><b>Would veto.</b></p>{_li(g.get("would_veto"))}
 <p><b>Recommendations.</b></p>{_li([i.get("text") for i in g.get("recommendations") or []])}
-<p class="label">{esc(ceo)} frames the round</p><p><b>Question.</b> {esc(fr.get("question", ""))}</p><p><b>Situation.</b> {esc(fr.get("situation", ""))}</p>
+<p class="label">{escp(ceo)} frames the round</p><p><b>Question.</b> {escp(fr.get("question", ""))}</p><p><b>Situation.</b> {escp(fr.get("situation", ""))}</p>
 <p><b>Options to test.</b></p>{_li(fr.get("options_to_test"))}<p><b>Red lines.</b></p>{_li(fr.get("red_lines"))}
-<p><b>Initial lean.</b> {esc(fr.get("initial_lean", ""))}</p>
-<p class="label">{esc(cfo)} (CFO) tests</p>{tests_table(ex.get("cfo"))}<p>{esc((ex.get("cfo") or {}).get("memo", ""))}</p>
-<p class="label">{esc(ops)} (operating head) tests</p>{tests_table(ex.get("ops"))}<p>{esc((ex.get("ops") or {}).get("memo", ""))}</p>
-<p class="label">{esc(ceo)} decides</p><p><b>Orders.</b> {_orders_line(s, dec.get("orders"))}</p><p><b>Rationale.</b> {esc(dec.get("rationale", ""))}</p>
-<p><b>Weighing the CFO.</b> {esc(((dec.get("memo_weighing") or {}).get("cfo", "")))}</p><p><b>Weighing the operating head.</b> {esc(((dec.get("memo_weighing") or {}).get("ops", "")))}</p>
+<p><b>Initial lean.</b> {escp(fr.get("initial_lean", ""))}</p>
+<p class="label">{escp(cfo)} (CFO) tests</p>{tests_table(ex.get("cfo"))}<p>{escp((ex.get("cfo") or {}).get("memo", ""))}</p>
+<p class="label">{escp(ops)} (operating head) tests</p>{tests_table(ex.get("ops"))}<p>{escp((ex.get("ops") or {}).get("memo", ""))}</p>
+<p class="label">{escp(ceo)} decides</p><p><b>Orders.</b> {_orders_line(s, dec.get("orders"))}</p><p><b>Rationale.</b> {escp(dec.get("rationale", ""))}</p>
+<p><b>Weighing the CFO.</b> {escp(((dec.get("memo_weighing") or {}).get("cfo", "")))}</p><p><b>Weighing the operating head.</b> {escp(((dec.get("memo_weighing") or {}).get("ops", "")))}</p>
 {("<p><b>Overrides.</b></p><ul>" + ovr + "</ul>") if ovr else ""}
-<p class="label">Board review</p>{review_table(rv) or NOT_CALLED}{('<p>' + esc(rv.get("note", "")) + '</p>') if rv.get("items") else ""}
+<p class="label">Board review</p>{review_table(rv) or NOT_CALLED}{('<p>' + escp(rv.get("note", "")) + '</p>') if rv.get("items") else ""}
 {(review_table(ex.get("board_confirm")) and '<p class="label">Board confirmation</p>' + review_table(ex.get("board_confirm"))) or ""}
 <p class="label">Final</p><p><b>Orders.</b> {_orders_line(s, x.get("orders"))}</p>
-<p><b>Expected scenario.</b> {esc(str(x.get("expected_scenario", "")))}</p>
-<p><b>Best grid plan in that scenario.</b> {esc(str(x.get("best_grid_plan_in_expected_scenario", "")))}. <b>Premium paid:</b> {esc(K.num(x.get("premium_b", 0) or 0))} $B. {esc(str(x.get("premium_reason", "")))}</p>
+<p><b>Expected scenario.</b> {escp(str(x.get("expected_scenario", "")))}</p>
+<p><b>Best grid plan in that scenario.</b> {escp(str(x.get("best_grid_plan_in_expected_scenario", "")))}. <b>Premium paid:</b> {escp(K.num(x.get("premium_b", 0) or 0))} $B. {escp(str(x.get("premium_reason", "")))}</p>
 {("<p><b>Answers to the Board.</b></p><ul>" + br + "</ul>") if br else ""}
-<p><b>Objective.</b> {esc(str(x.get("objective_note", "")))}</p>
-<p><b>Predictions.</b> {esc(str(x.get("predictions", "")))}</p>
-<p><b>Expected ΔPV.</b> {esc(K.num(x.get("expected_pv_b", 0) or 0))} $B (board after the round: {esc(K.num(r["value"][s]["pv_delta"]))} $B)</p>
+<p><b>Objective.</b> {escp(str(x.get("objective_note", "")))}</p>
+<p><b>Predictions.</b> {escp(str(x.get("predictions", "")))}</p>
+<p><b>Expected ΔPV.</b> {escp(K.num(x.get("expected_pv_b", 0) or 0))} $B (board after the round: {escp(K.num(r["value"][s]["pv_delta"]))} $B)</p>
 {("<p><b>Other moves.</b></p><ul>" + oms + "</ul>") if oms else ""}
 </div></details>''')
     return "".join(out)
@@ -545,13 +576,13 @@ def governance_table():
         for s in SIDES:
             ex = ((r["returned"].get(s) or {}).get("exco")) or {}
             items = ex.get("board_items") or []
-            rows.append([f"R{r['round']} {esc(NAME[s])}",
-                         esc(", ".join(SEAT.get(v, v) for v in ex.get("binding_vetoes") or []) or "—"),
-                         esc(", ".join(SEAT.get(v, v) for v in ex.get("red_line_flags") or []) or "—"),
+            rows.append([f"R{r['round']} {escp(NAME[s])}",
+                         escp(", ".join(SEAT.get(v, v) for v in ex.get("binding_vetoes") or []) or "—"),
+                         escp(", ".join(SEAT.get(v, v) for v in ex.get("red_line_flags") or []) or "—"),
                          "yes" if ex.get("revision") else "—",
-                         esc(", ".join(items) or "—"),
-                         esc(", ".join(ex.get("board_vetoed") or []) or "—"),
-                         esc(", ".join(ex.get("board_reverted") or []) or "—")])
+                         escp(", ".join(PLAIN_FIELD.get(f, f) for f in items) or "—"),
+                         escp(", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_vetoed") or []) or "—"),
+                         escp(", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_reverted") or []) or "—")])
     return K.table(["Round, company", "Binding ExCo vetoes", "Red-line flags", "ExCo revised", "Board items", "Board vetoed",
                     "Reverted to the default"], rows)
 
@@ -560,14 +591,14 @@ def round_section(r):
     n = r["round"]
     tl = r["timeline"]
     fit = tl["engine_fit"]
-    fit_rows = [[("fps" if k == "fps" else "NGSA"), esc(f["requested"]), esc(f["fitted_if_no_change"]), esc(f["note"] or "—")] for k, f in fit.items()]
+    fit_rows = [[("fps" if k == "fps" else "NGSA"), escp(f["requested"]), escp(f["fitted_if_no_change"]), escp(f["note"] or "—")] for k, f in fit.items()]
     covert = [f"{k} ordered {y}" for k, y in tl["delay_tactics"].items() if y]
     nar = NAR.ROUNDS.get(n, {})
-    return f'''<section id="r{n}"><p class="eyebrow">Round {n} · decision year {r["year"]}</p><h2>{esc(nar.get("title", f"Round {n}"))}</h2>
+    return f'''<section id="r{n}"><p class="eyebrow">Round {n} · decision year {r["year"]}</p><h2>{escp(nar.get("title", f"Round {n}"))}</h2>
 <p class="lede">{nar.get("lede", "")}</p>
 <div class="stack">
 <div class="panel"><p class="label">What each player ordered</p>{decisions_table(r)}
-{('<p class="cap"><b>Covert (revealed after the game):</b> Airbus Delay Tactics ' + esc(", ".join(covert)) + ".</p>") if covert else ""}</div>
+{('<p class="cap"><b>Covert (revealed after the game):</b> Airbus Delay Tactics ' + escp(", ".join(covert)) + ".</p>") if covert else ""}</div>
 <div class="grid2"><div class="panel"><p class="label">Value after the round (board; nobody moves later)</p>{value_table(r)}</div>
 <div class="panel"><p class="label">Engines on the new narrowbodies</p>{K.table(["Airframe", "Requested", "Fitted", "Note"], fit_rows) if fit_rows else '<p class="muted">No new narrowbody launched yet.</p>'}</div></div>
 <div class="panel"><p class="label">Market shares projected after the round</p>{shares_table(r)}</div>
