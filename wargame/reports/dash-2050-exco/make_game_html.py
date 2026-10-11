@@ -68,7 +68,14 @@ ORDER_TXT = {
 }
 
 
-def order_text(side, o):
+def order_text(side, o, prev_codes=None):
+    """Orders in words. An engine code restated unchanged from `prev_codes` (codes after the previous round) is not an
+    order and is left out."""
+    o = dict(o)
+    for k in ("fps_engine_code", "ngsa_engine_code"):
+        key = k[:-12]
+        if prev_codes and o.get(k) and str(prev_codes.get(key)) == str(o.get(k)) and not str(o.get(key, "")).startswith("launch"):
+            o[k] = None
     parts = []
     for k, v in o.items():
         if k.endswith("engine_code"):
@@ -254,11 +261,16 @@ def chart_money_old(side, key, sq_key, title):
 
 
 # ─────────────────────────────── tables ───────────────────────────────
+def prev_codes(rounds, r):
+    i = rounds.index(r)
+    return rounds[i - 1]["timeline"]["codes"] if i > 0 else None
+
+
 def decisions_table(r):
     rows = []
     for s in SIDES:
         o = r["orders"][s]
-        txt = order_text(s, o)
+        txt = order_text(s, o, prev_codes(ROUNDS, r))
         adj = r["adjustments"].get(s) or []
         cell = "<br>".join(esc(t) for t in txt)
         if adj:
@@ -394,7 +406,7 @@ def regret_detail():
     for n in range(1, len(ROUNDS) + 1):
         for s in SIDES:
             x = R[str(n)][s]
-            act = order_text(s, ROUNDS[n - 1]["orders"][s])
+            act = order_text(s, ROUNDS[n - 1]["orders"][s], prev_codes(ROUNDS, ROUNDS[n - 1]))
             rows.append([f"R{n} {esc(NAME[s])}", esc("; ".join(act)), K.num(x["actual_ex_post"]), esc(x["best_ex_post"]["plan"]),
                          K.num(x["best_ex_post"]["ex_post"]), K.num(x["regret_ex_post"]), K.num(x["regret_myopic"])])
     return K.tview("Regret by round and player", ["Round, player", "Actual orders", "Final ΔPV (actual)", "Best alternative (ex post)",
@@ -419,6 +431,7 @@ _ONLY_AS_FIELD = {"ngsa", "genx", "ducted", "fps"}     # ordinary words too: rep
 def plain(t):
     """Agent text with order-field and value names in plain words (display only)."""
     t = str(t if t is not None else "")
+    t = _re.sub(r"(engine[ _]code)(:?) None\b", r"\1\2 none", t)
 
     def rep(m):
         k = m.group(1)
@@ -429,7 +442,10 @@ def plain(t):
 
 
 def escp(t):
-    return esc(plain(t))
+    """Agent text for display: plain order names, HTML-escaped, the agents' markdown bold rendered, code ticks dropped."""
+    h = esc(plain(t))
+    h = _re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", h)
+    return h.replace("`", "")
 
 
 SEAT = {"ceo": "CEO", "cfo": "CFO", "ops": "operating head"}
@@ -445,8 +461,9 @@ def _li(items):
     return ("<ul>" + "".join(f"<li>{escp(str(i))}</li>" for i in items) + "</ul>") if items else '<p class="muted">none</p>'
 
 
-def _orders_line(side, o):
-    return escp("; ".join(order_text(side, o or {})))
+def _orders_line(side, o, prev=None):
+    """Orders in words, raw text (escape at render); engine codes restated unchanged from `prev` are left out."""
+    return "; ".join(order_text(side, o or {}, prev))
 
 
 def tests_table(memo):
@@ -467,7 +484,7 @@ def short(t, n=260):
     return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + " …"
 
 
-def chain_summary(side, x):
+def chain_summary(side, x, prev=None):
     """One line per step: what each seat did, from the ExCo record. Long free text is shortened (full text below)."""
     ex = x.get("exco") or {}
     ceo, cfo, ops, board = PEOPLE[side]
@@ -485,22 +502,23 @@ def chain_summary(side, x):
         if m:
             fails = [t.get("name", "") for t in m.get("tests") or [] if t.get("result") == "fail"]
             vet = [v.get("plan", "") + (" (binding)" if v.get("binding") else " (not binding)") for v in m.get("vetoes") or []]
-            out.append((f"Test ({SEAT[seat]})", f"{nm} recommends: {_orders_line(side, m.get('recommended_orders'))}"
+            out.append((f"Test ({SEAT[seat]})", f"{nm} recommends: {_orders_line(side, m.get('recommended_orders'), prev)}"
                         + (f". Options failing a test: {short('; '.join(fails), 300)}" if fails else ". No option failed a test")
                         + (f". Vetoes: {short('; '.join(vet), 300)}" if vet else "")))
     if dec:
-        out.append(("Decide", f"{ceo}: {_orders_line(side, dec.get('orders'))}"))
+        out.append(("Decide", f"{ceo}: {_orders_line(side, dec.get('orders'), prev)}"))
     for seat, nm in (("cfo", cfo), ("ops", ops)):
         v = vc.get(seat)
         if v:
             t = "concurs" if v.get("concur") else "does not concur"
-            if (v.get("veto") or {}).get("ground"):
-                t += f"; veto{' (binding)' if v['veto'].get('binding') else ' (not binding)'}: {short(v['veto']['ground'])}"
+            vg = (v.get("veto") or {}).get("ground") or ""
+            if vg and (v["veto"].get("binding") or not v.get("concur")) and not vg.lstrip().lower().startswith("none"):
+                t += f"; veto{' (binding)' if v['veto'].get('binding') else ' (not binding)'}: {short(vg)}"
             if v.get("red_line_breach"):
                 t += f"; red line: {short(v.get('red_line', ''))}"
             out.append((f"Veto check ({SEAT[seat]})", f"{nm} {t}"))
     if ex.get("revision"):
-        out.append(("Revise", f"{ceo}: {_orders_line(side, ex['revision'].get('orders'))}"))
+        out.append(("Revise", f"{ceo}: {_orders_line(side, ex['revision'].get('orders'), prev)}"))
     rv = ex.get("board_review")
     if rv and not (rv.get("items") or ex.get("board_items")):
         out.append(("Board review", f"{board}: not called; every order is the default (a hold is never a Board item)"))
@@ -513,7 +531,7 @@ def chain_summary(side, x):
     elif ex.get("board_items") == [] or (ex.get("board_items") is None and not rv):
         out.append(("Board review", f"{board}: no Board item (every order is the default)"))
     if ex.get("board_revision"):
-        out.append(("Board revise", f"{ceo}: {_orders_line(side, ex['board_revision'].get('orders'))}"))
+        out.append(("Board revise", f"{ceo}: {_orders_line(side, ex['board_revision'].get('orders'), prev)}"))
     if ex.get("board_confirm"):
         cf = ex["board_confirm"]
         out.append(("Board confirm", f"{board}: {cf.get('overall', '')}"))
@@ -536,7 +554,8 @@ def chain_block(r):
         fr = ex.get("frame") or {}
         dec = ex.get("decision") or {}
         rv = ex.get("board_review") or {}
-        steps = K.table(["Step", "What happened"], [[escp(a), escp(b_)] for a, b_ in chain_summary(s, x)])
+        pc = prev_codes(ROUNDS, r)
+        steps = K.table(["Step", "What happened"], [[escp(a), escp(b_)] for a, b_ in chain_summary(s, x, pc)])
         om = x.get("other_moves") or []
         oms = "".join(f'<li>{escp(m.get("move", ""))}{" (public)" if m.get("public") else " (private)"}{(": " + escp(m.get("detail", ""))) if m.get("detail") else ""}</li>' for m in om)
         mw = x.get("memo_weighing") or {}
@@ -552,12 +571,12 @@ def chain_block(r):
 <p><b>Initial lean.</b> {escp(fr.get("initial_lean", ""))}</p>
 <p class="label">{escp(cfo)} (CFO) tests</p>{tests_table(ex.get("cfo"))}<p>{escp((ex.get("cfo") or {}).get("memo", ""))}</p>
 <p class="label">{escp(ops)} (operating head) tests</p>{tests_table(ex.get("ops"))}<p>{escp((ex.get("ops") or {}).get("memo", ""))}</p>
-<p class="label">{escp(ceo)} decides</p><p><b>Orders.</b> {_orders_line(s, dec.get("orders"))}</p><p><b>Rationale.</b> {escp(dec.get("rationale", ""))}</p>
+<p class="label">{escp(ceo)} decides</p><p><b>Orders.</b> {esc(_orders_line(s, dec.get("orders"), pc))}</p><p><b>Rationale.</b> {escp(dec.get("rationale", ""))}</p>
 <p><b>Weighing the CFO.</b> {escp(((dec.get("memo_weighing") or {}).get("cfo", "")))}</p><p><b>Weighing the operating head.</b> {escp(((dec.get("memo_weighing") or {}).get("ops", "")))}</p>
 {("<p><b>Overrides.</b></p><ul>" + ovr + "</ul>") if ovr else ""}
 <p class="label">Board review</p>{review_table(rv) or NOT_CALLED}{('<p>' + escp(rv.get("note", "")) + '</p>') if rv.get("items") else ""}
 {(review_table(ex.get("board_confirm")) and '<p class="label">Board confirmation</p>' + review_table(ex.get("board_confirm"))) or ""}
-<p class="label">Final</p><p><b>Orders.</b> {_orders_line(s, x.get("orders"))}</p>
+<p class="label">Final</p><p><b>Orders.</b> {esc(_orders_line(s, x.get("orders"), pc))}</p>
 <p><b>Expected scenario.</b> {escp(str(x.get("expected_scenario", "")))}</p>
 <p><b>Best grid plan in that scenario.</b> {escp(str(x.get("best_grid_plan_in_expected_scenario", "")))}. <b>Premium paid:</b> {escp(K.num(x.get("premium_b", 0) or 0))} $B. {escp(str(x.get("premium_reason", "")))}</p>
 {("<p><b>Answers to the Board.</b></p><ul>" + br + "</ul>") if br else ""}
@@ -653,8 +672,8 @@ def compare_section():
     rows = []
     for i, (r_old, r_new) in enumerate(zip(OLD["rounds"], ROUNDS)):
         for s in SIDES:
-            rows.append([f"R{i + 1} {esc(NAME[s])}", "<br>".join(esc(t) for t in order_text(s, r_old["orders"][s])),
-                         "<br>".join(esc(t) for t in order_text(s, r_new["orders"][s]))])
+            rows.append([f"R{i + 1} {esc(NAME[s])}", "<br>".join(esc(t) for t in order_text(s, r_old["orders"][s], prev_codes(OLD["rounds"], r_old))),
+                         "<br>".join(esc(t) for t in order_text(s, r_new["orders"][s], prev_codes(ROUNDS, r_new)))])
     t1 = K.table(["Round, company", "Earlier game: one strategist agent, earlier board", "This game: ExCo and Board, new board"], rows)
     t2 = ""
     if XV:
@@ -683,7 +702,8 @@ def board_table():
             + f'<p class="cap">The board alone means evaluate_scenario() at the final entry-into-service dates ({", ".join(str(x) for x in bc["_engine_inputs"]["eis"])}: '
               'fps, NGSA, 787 Re-engine, A350 Re-engine) for the airframers, and simulate() with the final engine selections '
               f'(codes {bc["_engine_inputs"]["codes"][0]} and {bc["_engine_inputs"]["codes"][1]}) and moves at the board\'s fixed 50/50 split for the '
-              'engine makers. With a fixed 50/50 split the GM engine model gives the board\'s numbers exactly.</p>')
+              'engine makers. With a fixed 50/50 split the GM engine model gives the board\'s numbers exactly. Parts are rounded and may not '
+              'add exactly to the totals.</p>')
 
 
 def audit_table():

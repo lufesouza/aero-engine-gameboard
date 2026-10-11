@@ -12,7 +12,7 @@ sys.path.insert(0, HERE)
 import narrative as NAR  # noqa: E402
 import page_kit as K  # noqa: E402
 from make_game_html import (AF, EN, NAME, ROUNDS, FINAL, SIDES, YEARS, RYEARS, D, order_text, BRIDGE_LABEL, PEOPLE,  # noqa: E402
-                             chain_summary, SEAT, OLD, XV, lab_af, plain, PLAIN_FIELD)  # noqa: E402
+                             chain_summary, SEAT, OLD, XV, lab_af, plain, PLAIN_FIELD, prev_codes)  # noqa: E402
 
 M = K.MINUS
 
@@ -59,7 +59,7 @@ def round_md(r):
     L += ["### Orders (as adjudicated)", ""]
     rows = []
     for s in SIDES:
-        rows.append([NAME[s], "; ".join(order_text(s, r["orders"][s])), (r["public_statements"].get(s) or "").replace("|", "/")])
+        rows.append([NAME[s], "; ".join(order_text(s, r["orders"][s], prev_codes(ROUNDS, r))), (r["public_statements"].get(s) or "").replace("|", "/")])
     L += [tbl(["Player", "Orders", "Public statement"], rows), ""]
     cov = [f"{k} ordered {y}" for k, y in r["timeline"]["delay_tactics"].items() if y]
     if cov:
@@ -127,7 +127,7 @@ def round_md(r):
         ex = x.get("exco") or {}
         dec = ex.get("decision") or {}
         L += [f"**{NAME[s]}** ({', '.join(PEOPLE[s][:3])}; {PEOPLE[s][3]})", ""]
-        L += [tbl(["Step", "What happened"], [[a, plain(b_)] for a, b_ in chain_summary(s, x)]), ""]
+        L += [tbl(["Step", "What happened"], [[a, plain(b_)] for a, b_ in chain_summary(s, x, prev_codes(ROUNDS, r))]), ""]
         for seat in ("cfo", "ops"):
             m = ex.get(seat) or {}
             tests = m.get("tests") or []
@@ -216,7 +216,8 @@ def build(out):
     rows = []
     for i, (r_old, r_new) in enumerate(zip(OLD["rounds"], ROUNDS)):
         for s in SIDES:
-            rows.append([f"R{i + 1} {NAME[s]}", "; ".join(order_text(s, r_old["orders"][s])), "; ".join(order_text(s, r_new["orders"][s]))])
+            rows.append([f"R{i + 1} {NAME[s]}", "; ".join(order_text(s, r_old["orders"][s], prev_codes(OLD["rounds"], r_old))),
+                         "; ".join(order_text(s, r_new["orders"][s], prev_codes(ROUNDS, r_new)))])
     L += [tbl(["Round, company", "Earlier game (one strategist agent, earlier board)", "This game (ExCo and Board, new board)"], rows), ""]
     if XV:
         L += ["Final ΔPV, $B, each game's final state on both boards:", "",
