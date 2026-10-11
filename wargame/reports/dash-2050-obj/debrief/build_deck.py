@@ -1,0 +1,432 @@
+"""Boeing management debrief (dash-2050-obj): the consultant's 8-slide storyline as a BCG-style deck on the Boeing PD
+2026 template. Charts come straight from factpack.json by dataset id, so no chart number is retyped.
+
+Usage: python3 build_deck.py <PDPowerPointTemplate2026.pptx> storyline.json factpack.json <out.pptx>
+(python-pptx; the template is the mckinsey-to-pd skill's asset). Primitives follow wargame/reports/wg5-2045d/deck.
+"""
+import copy
+import json
+import sys
+
+from pptx import Presentation
+from pptx.chart.data import CategoryChartData
+from pptx.dml.color import RGBColor
+from pptx.enum.chart import XL_CHART_TYPE, XL_LEGEND_POSITION, XL_LABEL_POSITION, XL_TICK_MARK, XL_MARKER_STYLE
+from pptx.enum.dml import MSO_LINE_DASH_STYLE
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.text import PP_ALIGN
+from pptx.oxml.ns import qn
+from pptx.util import Inches, Pt
+
+BOEING_BLUE = RGBColor(0x00, 0x33, 0xA1)
+FLIGHT = RGBColor(0x00, 0x9B, 0xDF)
+SPACE = RGBColor(0x0A, 0x22, 0x40)
+LIFTOFF = RGBColor(0xF3, 0x71, 0x21)
+PRESERVE = RGBColor(0xBF, 0xD8, 0x57)
+WHITE = RGBColor(0xFF, 0xFF, 0xFF)
+GRAY = RGBColor(0x6B, 0x72, 0x78)
+GRAY_MID = RGBColor(0x9A, 0xA3, 0xAD)
+GRAY_LINE = RGBColor(0xC8, 0xCE, 0xD6)
+TINT = RGBColor(0xE8, 0xEE, 0xF7)
+INK = RGBColor(0x1F, 0x29, 0x37)
+LAYOUT_HEADER, LAYOUT_DIVIDER = 2, 12
+# series colours: entity first (Boeing is always Boeing Blue), then by role
+SERIES_COLOR = {"Boeing": (BOEING_BLUE, False), "Airbus": (FLIGHT, False), "Game": (BOEING_BLUE, False),
+                "Status quo": (GRAY_MID, True), "CFM/GE": (SPACE, False), "P&W (Joint Venture)": (BOEING_BLUE, False),
+                "Rolls-Royce (Joint Venture)": (FLIGHT, True), "fps programme cash": (SPACE, False),
+                "Free cash flow, base": (BOEING_BLUE, False), "Free cash flow, stress": (LIFTOFF, False),
+                "Base case": (BOEING_BLUE, False), "Stress case": (LIFTOFF, False), "No new programme": (GRAY_MID, True),
+                "fps 10-year (played)": (BOEING_BLUE, False), "Do Nothing (no fps)": (LIFTOFF, False),
+                "No game (analysts' path)": (GRAY_MID, True)}
+FALLBACK = [(BOEING_BLUE, False), (FLIGHT, False), (SPACE, False)]
+
+
+# ---------------------------------------------------------------- primitives
+def strip_slides(prs):
+    lst = prs.slides._sldIdLst
+    rids = [s.get(qn("r:id")) for s in list(lst)]
+    for s in list(lst):
+        lst.remove(s)
+    for rid in rids:
+        prs.part.drop_rel(rid)
+
+
+def text(slide, x, y, w, h, paras, anchor="t", align=PP_ALIGN.LEFT, line_spacing=None, margins=0.0, space=5):
+    """paras: list of paragraphs; each a list of (text, size, bold, color[, italic]) runs."""
+    tb = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
+    tf = tb.text_frame
+    tf.word_wrap = True
+    bp = tf._txBody.bodyPr
+    bp.set("anchor", anchor)
+    for tag in ("a:spAutoFit", "a:normAutofit"):
+        for el in bp.findall(qn(tag)):
+            bp.remove(el)
+    bp.append(bp.makeelement(qn("a:noAutofit"), {}))
+    for side in ("left", "right", "top", "bottom"):
+        setattr(tf, f"margin_{side}", Inches(margins))
+    for i, runs in enumerate(paras):
+        p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        p.alignment = align
+        if line_spacing:
+            p.line_spacing = line_spacing
+        if i:
+            p.space_before = Pt(space)
+        for r in runs:
+            t, size, bold, color = r[:4]
+            run = p.add_run()
+            run.text = t
+            run.font.size = Pt(size)
+            run.font.bold = bold
+            run.font.italic = r[4] if len(r) > 4 else False
+            run.font.color.rgb = color
+    return tb
+
+
+def rect(slide, x, y, w, h, fill=None, line=None, shape=MSO_SHAPE.RECTANGLE, line_w=1.0):
+    s = slide.shapes.add_shape(shape, Inches(x), Inches(y), Inches(w), Inches(h))
+    if fill is None:
+        s.fill.background()
+    else:
+        s.fill.solid()
+        s.fill.fore_color.rgb = fill
+    if line is None:
+        s.line.fill.background()
+    else:
+        s.line.color.rgb = line
+        s.line.width = Pt(line_w)
+    s.shadow.inherit = False
+    return s
+
+
+def numbered_circle(slide, x, y, n, d=0.46, fill=BOEING_BLUE, size=16):
+    c = rect(slide, x, y, d, d, fill=fill, shape=MSO_SHAPE.OVAL)
+    tf = c.text_frame
+    tf.margin_left = tf.margin_right = tf.margin_top = tf.margin_bottom = 0
+    tf._txBody.bodyPr.set("anchor", "ctr")
+    p = tf.paragraphs[0]
+    p.alignment = PP_ALIGN.CENTER
+    r = p.add_run()
+    r.text = str(n)
+    r.font.size = Pt(size)
+    r.font.bold = True
+    r.font.color.rgb = WHITE
+    return c
+
+
+def content_slide(prs, section, action_title, source, notes):
+    layout = prs.slide_masters[0].slide_layouts[LAYOUT_HEADER]
+    slide = prs.slides.add_slide(layout)
+    for ph in list(slide.placeholders):
+        if ph.placeholder_format.idx == 11:  # blue-bar label: the section name
+            ph.text_frame.text = section
+            for p in ph.text_frame.paragraphs:
+                for r in p.runs:
+                    r.font.size = Pt(18)
+                    r.font.bold = True
+                    r.font.color.rgb = WHITE
+        else:  # org name (13) and the big body title (15) are dropped
+            ph._element.getparent().remove(ph._element)
+    for sp in layout.placeholders:  # page number: clone the layout's slide-number placeholder
+        if "SLIDE_NUMBER" in str(sp.placeholder_format.type):
+            slide.shapes._spTree.append(copy.deepcopy(sp._element))
+    text(slide, 0.5, 0.86, 12.33, 1.04, [[(action_title, 28, True, SPACE)]], anchor="ctr", line_spacing=0.92)
+    text(slide, 0.5, 6.80, 10.5, 0.28, [[(source, 9, False, GRAY, True)]])
+    slide.notes_slide.notes_text_frame.text = notes
+    return slide
+
+
+def cover_slide(prs, title, subtitle, date_str):
+    layout = prs.slide_masters[0].slide_layouts[LAYOUT_DIVIDER]
+    slide = prs.slides.add_slide(layout)
+    for ph in list(slide.placeholders):
+        if ph.placeholder_format.idx == 0:
+            ph.text_frame.text = title
+            for p in ph.text_frame.paragraphs:
+                for r in p.runs:
+                    r.font.size = Pt(44)
+                    r.font.bold = True
+        else:
+            ph._element.getparent().remove(ph._element)
+    text(slide, 0.56, 4.95, 12.2, 1.2, [[(subtitle, 22, False, WHITE)], [(date_str, 16, False, WHITE)]], line_spacing=1.05, space=10)
+    return slide
+
+
+def takeaway_strip(slide, x, y, w, h, body, header="Key takeaway", size=16):
+    rect(slide, x, y, w, h, fill=BOEING_BLUE)
+    text(slide, x + 0.22, y + 0.1, w - 0.44, h - 0.2, [[(header.upper() + "   ", 12, True, WHITE), (body, size, False, WHITE)]],
+         anchor="ctr", line_spacing=1.0)
+
+
+def bullets_box(slide, x, y, w, h, bullets, size=15):
+    paras = [[("•  ", size, True, BOEING_BLUE), (b, size, False, INK)] for b in bullets]
+    text(slide, x, y, w, h, paras, line_spacing=1.04, space=9)
+
+
+def style_chart(chart, size=12):
+    chart.font.size = Pt(size)
+    chart.font.color.rgb = INK
+    chart.has_title = False
+
+
+# ---------------------------------------------------------------- visuals
+def visual_line(slide, v, FP, x, y, w, h):
+    ds = FP["datasets"][v["dataset"]]
+    yrs = ds["years"]
+    lo_y, hi_y = (v.get("years") or [yrs[0], yrs[-1]])[:2]
+    idx = [i for i, yy in enumerate(yrs) if lo_y <= yy <= hi_y]
+    names = v.get("series") or list(ds["series"])
+    names = [n for n in names if n in ds["series"]]
+    share = ds["unit"] == "share"
+    cd = CategoryChartData()
+    cd.categories = [str(yrs[i]) for i in idx]
+    for n in names:
+        cd.add_series(n, [ds["series"][n][i] * (100 if share else 1) for i in idx])
+    ch = slide.shapes.add_chart(XL_CHART_TYPE.LINE, Inches(x), Inches(y), Inches(w), Inches(h), cd).chart
+    style_chart(ch)
+    ch.has_legend = len(names) > 1
+    if ch.has_legend:
+        ch.legend.position = XL_LEGEND_POSITION.TOP
+        ch.legend.include_in_layout = False
+        ch.legend.font.size = Pt(13)
+    vals = [ds["series"][n][i] * (100 if share else 1) for n in names for i in idx]
+    va = ch.value_axis
+    if share:
+        va.minimum_scale, va.maximum_scale, va.major_unit = 0, 100 if max(vals) > 80 else 80, 20
+        va.tick_labels.number_format = '0"%"'
+    else:
+        top = max(vals)
+        step = 5 if top <= 30 else (50 if top <= 300 else 100)
+        va.minimum_scale = min(0, min(vals))
+        va.maximum_scale = step * (int(top / step) + 1)
+        va.major_unit = step
+        va.tick_labels.number_format = '0'
+    va.tick_labels.number_format_is_linked = False
+    va.tick_labels.font.size = Pt(12)
+    va.has_major_gridlines = True
+    va.major_gridlines.format.line.color.rgb = GRAY_LINE
+    va.format.line.fill.background()
+    ca = ch.category_axis
+    ca.major_tick_mark = XL_TICK_MARK.NONE
+    ca.format.line.color.rgb = GRAY_LINE
+    ca.tick_labels.font.size = Pt(12)
+    ca.tick_label_spacing = 5 if len(idx) > 12 else 1
+    for k, (ser, n) in enumerate(zip(ch.plots[0].series, names)):
+        color, dash = SERIES_COLOR.get(n, FALLBACK[k % 3])
+        ser.smooth = False
+        ser.format.line.color.rgb = color
+        ser.format.line.width = Pt(2.75)
+        if dash:
+            ser.format.line.dash_style = MSO_LINE_DASH_STYLE.DASH
+        ser.marker.style = XL_MARKER_STYLE.NONE
+    # annotations: a data label on the first series at the annotated year
+    first = ch.plots[0].series[0] if names else None
+    for a in v.get("annotations") or []:
+        yr = a["year"]
+        if first is None or str(yr) not in cd.categories:
+            continue
+        j = cd.categories.index(str(yr))
+        dl = first.points[j].data_label
+        dl.has_text_frame = True
+        dl.text_frame.text = a["text"]
+        dl.position = XL_LABEL_POSITION.ABOVE
+        for p in dl.text_frame.paragraphs:
+            for r in p.runs:
+                r.font.size = Pt(12)
+                r.font.bold = True
+                r.font.color.rgb = SPACE
+        pt = first.points[j]
+        pt.marker.style = XL_MARKER_STYLE.CIRCLE
+        pt.marker.size = 9
+        pt.marker.format.fill.solid()
+        pt.marker.format.fill.fore_color.rgb = SERIES_COLOR.get(names[0], FALLBACK[0])[0]
+        pt.marker.format.line.color.rgb = WHITE
+    unit = "% of deliveries" if share else ("$B" + (", 2026 dollars" if v["dataset"] in ("boeing_cash", "net_debt", "owners_cash") else ", 2026 prices"))
+    text(slide, x, y + h + 0.02, w, 0.26, [[(unit, 10, False, GRAY, True)]])
+
+
+def visual_bridge(slide, v, FP, x, y, w, h):
+    items = FP["datasets"]["pv_bridge"]["items"]
+    base, val, run = [], [], 0.0
+    for i, (n, d) in enumerate(items):
+        last = i == len(items) - 1
+        if last:
+            base.append(0.0); val.append(abs(d))
+        elif d >= 0:
+            base.append(run); val.append(d); run += d
+        else:
+            run += d; base.append(run); val.append(-d)
+    cd = CategoryChartData()
+    cd.categories = [n for n, _ in items]
+    cd.add_series("base", base)
+    cd.add_series("value", val)
+    ch = slide.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, Inches(x), Inches(y), Inches(w), Inches(h), cd).chart
+    style_chart(ch, 13)
+    ch.has_legend = False
+    b_ser, v_ser = ch.plots[0].series
+    b_ser.format.fill.background()
+    b_ser.format.line.fill.background()
+    ch.plots[0].gap_width = 60
+    for j, (n, d) in enumerate(items):
+        pt = v_ser.points[j]
+        pt.format.fill.solid()
+        pt.format.fill.fore_color.rgb = SPACE if j == len(items) - 1 else (BOEING_BLUE if d >= 0 else GRAY_MID)
+        dl = pt.data_label
+        dl.has_text_frame = True
+        dl.text_frame.text = f"{d:+.2f}".replace("-", "−")
+        dl.position = XL_LABEL_POSITION.INSIDE_END
+        for p in dl.text_frame.paragraphs:
+            for r in p.runs:
+                r.font.size = Pt(14)
+                r.font.bold = True
+                r.font.color.rgb = WHITE
+    va = ch.value_axis
+    va.minimum_scale, va.maximum_scale, va.major_unit = 0, 25, 5
+    va.has_major_gridlines = True
+    va.major_gridlines.format.line.color.rgb = GRAY_LINE
+    va.tick_labels.font.size = Pt(12)
+    va.format.line.fill.background()
+    ch.category_axis.tick_labels.font.size = Pt(12)
+    ch.category_axis.major_tick_mark = XL_TICK_MARK.NONE
+    text(slide, x, y + h + 0.02, w, 0.26, [[("$B, present value at 2026", 10, False, GRAY, True)]])
+
+
+def visual_stats(slide, v, x, y, w, h):
+    st = v["stats"]
+    n = len(st)
+    gap = 0.18
+    bw = (w - gap * (n - 1)) / n
+    for i, s in enumerate(st):
+        bx = x + i * (bw + gap)
+        rect(slide, bx, y, bw, h, fill=TINT)
+        rect(slide, bx, y, 0.08, h, fill=BOEING_BLUE)
+        text(slide, bx + 0.25, y + 0.25, bw - 0.4, 1.0, [[(s["value"], 40 if n <= 3 else 34, True, BOEING_BLUE)]])
+        text(slide, bx + 0.25, y + 1.3, bw - 0.4, h - 1.45, [[(s["label"], 15, False, INK)]], line_spacing=1.02)
+
+
+def visual_table(slide, v, x, y, w, h):
+    t = v["table"]
+    cols, rows = t["columns"], t["rows"]
+    shp = slide.shapes.add_table(len(rows) + 1, len(cols), Inches(x), Inches(y), Inches(w), Inches(min(h, 0.5 * (len(rows) + 1))))
+    tbl = shp.table
+    first_w = w * (0.34 if len(cols) > 3 else 0.4)
+    rest = (w - first_w) / max(1, len(cols) - 1)
+    for j in range(len(cols)):
+        tbl.columns[j].width = Inches(first_w if j == 0 else rest)
+    for j, c in enumerate(cols):
+        cell = tbl.cell(0, j)
+        cell.fill.solid()
+        cell.fill.fore_color.rgb = SPACE
+        cell.text = c
+        for p in cell.text_frame.paragraphs:
+            p.alignment = PP_ALIGN.LEFT if j == 0 else PP_ALIGN.CENTER
+            for r in p.runs:
+                r.font.size = Pt(13); r.font.bold = True; r.font.color.rgb = WHITE
+    for i, row in enumerate(rows):
+        for j, c in enumerate(row):
+            cell = tbl.cell(i + 1, j)
+            cell.fill.solid()
+            cell.fill.fore_color.rgb = TINT if i % 2 == 0 else WHITE
+            cell.text = str(c)
+            for p in cell.text_frame.paragraphs:
+                p.alignment = PP_ALIGN.LEFT if j == 0 else PP_ALIGN.CENTER
+                for r in p.runs:
+                    r.font.size = Pt(14); r.font.color.rgb = INK; r.font.bold = j == 0
+
+
+def visual_recs(slide, v, x, y, w, h):
+    recs = v["recs"]
+    n = len(recs)
+    rh = h / n
+    for i, r in enumerate(recs):
+        ry = y + i * rh
+        numbered_circle(slide, x, ry + 0.04, i + 1)
+        text(slide, x + 0.62, ry, w - 0.62, rh - 0.06,
+             [[(r["recommendation"], 16, True, SPACE)], [("Why: ", 14, True, BOEING_BLUE), (r["why"], 14, False, INK)],
+              [("Proof: ", 14, True, BOEING_BLUE), (r["proof"], 14, False, INK)]], line_spacing=1.0, space=2)
+
+
+def visual_risks(slide, v, x, y, w, h):
+    risks = v["risks"]
+    cols = [("Risk", 0.25), ("Trigger", 0.22), ("Cost", 0.2), ("Mitigation", 0.33)]
+    hy = 0.42
+    cx = x
+    for name, f in cols:
+        rect(slide, cx, y, w * f - 0.04, hy, fill=SPACE)
+        text(slide, cx + 0.1, y, w * f - 0.2, hy, [[(name, 14, True, WHITE)]], anchor="ctr")
+        cx += w * f
+    rh = (h - hy - 0.06) / len(risks)
+    for i, r in enumerate(risks):
+        ry = y + hy + 0.06 + i * rh
+        rect(slide, x, ry, w - 0.04, rh - 0.06, fill=TINT if i % 2 == 0 else WHITE, line=GRAY_LINE, line_w=0.5)
+        cx = x
+        for k, (name, f) in enumerate(cols):
+            key = name.lower()
+            text(slide, cx + 0.1, ry + 0.06, w * f - 0.22, rh - 0.16, [[(r[key], 13, k == 0, SPACE if k == 0 else INK)]], line_spacing=1.0)
+            cx += w * f
+
+
+def visual_columns(slide, v, x, y, w, h):
+    cols = v["columns"]
+    n = len(cols)
+    gap = 0.2
+    cw = (w - gap * (n - 1)) / n
+    for i, c in enumerate(cols):
+        cx = x + i * (cw + gap)
+        rect(slide, cx, y, cw, 0.5, fill=BOEING_BLUE if i == 0 else SPACE)
+        text(slide, cx + 0.15, y, cw - 0.3, 0.5, [[(c["header"], 17, True, WHITE)]], anchor="ctr")
+        rect(slide, cx, y + 0.5, cw, h - 0.5, fill=TINT)
+        bullets_box(slide, cx + 0.18, y + 0.66, cw - 0.36, h - 0.8, c["bullets"], size=15)
+
+
+CHARTY = {"line", "bridge", "stats"}
+
+
+def build_slide(prs, s, FP):
+    slide = content_slide(prs, s["section"], s["action_title"], s["source"], s["notes"])
+    v = s["visual"]
+    t = v["type"]
+    bullets = s.get("bullets") or []
+    if t in CHARTY:
+        # visual (left) + takeaway strip under it; evidence bullets in the right column
+        vx, vy, vw, vh = 0.5, 2.0, 7.95, 3.55
+        if t == "line":
+            visual_line(slide, v, FP, vx, vy, vw, vh)
+        elif t == "bridge":
+            visual_bridge(slide, v, FP, vx, vy, vw, vh)
+        else:
+            visual_stats(slide, v, vx, vy, vw, vh + 0.25)
+        takeaway_strip(slide, 0.5, 5.92, 7.95, 0.8, s["takeaway"])
+        rect(slide, 8.75, 2.0, 0.04, 4.72, fill=GRAY_LINE)
+        bullets_box(slide, 9.0, 2.0, 3.83, 4.72, bullets)
+    else:
+        side = bool(bullets) and t in ("table", "columns")
+        vw = 8.4 if side else 12.33
+        if t == "table":
+            visual_table(slide, v, 0.5, 2.0, vw, 3.75)
+        elif t == "recs":
+            visual_recs(slide, v, 0.5, 1.98, 12.33, 3.86)
+        elif t == "risks":
+            visual_risks(slide, v, 0.5, 1.98, 12.33, 3.86)
+        else:
+            visual_columns(slide, v, 0.5, 2.0, vw, 3.75)
+        if side:
+            bullets_box(slide, 9.15, 2.0, 3.68, 3.8, bullets)
+        takeaway_strip(slide, 0.5, 5.92, 12.33, 0.8, s["takeaway"])
+    return slide
+
+
+def main():
+    template, story_p, fp_p, out = sys.argv[1:5]
+    S = json.load(open(story_p))
+    FP = json.load(open(fp_p))
+    prs = Presentation(template)
+    strip_slides(prs)
+    cover_slide(prs, S["cover"]["title"], S["cover"]["subtitle"], "Debrief to Boeing executive leadership · October 2026")
+    for s in S["slides"]:
+        build_slide(prs, s, FP)
+    prs.save(out)
+    print("saved", out, len(prs.slides), "slides")
+
+
+if __name__ == "__main__":
+    main()

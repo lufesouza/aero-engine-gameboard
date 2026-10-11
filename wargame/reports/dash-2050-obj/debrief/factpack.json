@@ -1,0 +1,2621 @@
+{
+ "datasets": {
+  "nb_share": {
+   "title": "Narrowbody delivery share by year",
+   "unit": "share",
+   "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "Boeing": [
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.4,
+     0.39,
+     0.38,
+     0.37,
+     0.38,
+     0.39,
+     0.4,
+     0.41,
+     0.42,
+     0.43,
+     0.44,
+     0.45,
+     0.46,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47,
+     0.47
+    ],
+    "Airbus": [
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.6,
+     0.61,
+     0.62,
+     0.63,
+     0.62,
+     0.61,
+     0.6,
+     0.59,
+     0.58,
+     0.57,
+     0.56,
+     0.55,
+     0.54,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53,
+     0.53
+    ]
+   }
+  },
+  "wb_share": {
+   "title": "Widebody delivery share by year",
+   "unit": "share",
+   "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "Boeing": [
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882,
+     0.5882
+    ],
+    "Airbus": [
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118,
+     0.4118
+    ]
+   }
+  },
+  "nb_engine_share": {
+   "title": "Narrowbody engine share by year",
+   "unit": "share",
+   "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "CFM/GE": [
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.76,
+     0.5175,
+     0.5111,
+     0.5048,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698,
+     0.2698
+    ],
+    "P&W (Joint Venture)": [
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.24,
+     0.2413,
+     0.2444,
+     0.2476,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651
+    ],
+    "Rolls-Royce (Joint Venture)": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.2413,
+     0.2444,
+     0.2476,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651,
+     0.3651
+    ]
+   }
+  },
+  "boeing_profit": {
+   "title": "Boeing operating profit vs status quo, $B a year at 2026 prices (the dashboard)",
+   "unit": "$B",
+   "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "Game": [
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.5952,
+     6.5184,
+     6.4416,
+     14.3175,
+     14.5996,
+     14.8816,
+     15.1636,
+     15.4457,
+     15.7277,
+     16.0098,
+     16.2918,
+     16.5738,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559,
+     16.8559
+    ],
+    "Status quo": [
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672,
+     6.672
+    ]
+   }
+  },
+  "airbus_profit": {
+   "title": "Airbus operating profit vs status quo, $B a year (the dashboard)",
+   "unit": "$B",
+   "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "Game": [
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     18.2576,
+     18.5467,
+     18.8357,
+     18.5467,
+     18.2576,
+     17.9685,
+     17.6794,
+     17.3903,
+     17.1013,
+     16.8122,
+     16.5231,
+     16.234,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449,
+     15.9449
+    ],
+    "Status quo": [
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231,
+     8.8231
+    ]
+   }
+  },
+  "boeing_cash": {
+   "title": "Boeing fps programme cash and free cash flow, $B a year, 2026 dollars (the GM's tracker)",
+   "unit": "$B",
+   "years": [
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "fps programme cash": [
+     0,
+     0,
+     0,
+     3.016,
+     4.2224,
+     4.8256,
+     6.032,
+     6.6352,
+     7.2384,
+     8.4448,
+     7.8416,
+     6.6352,
+     5.4288,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "Free cash flow, base": [
+     5.551,
+     9.438,
+     12.203,
+     11.4064,
+     10.4533,
+     9.9768,
+     9.0237,
+     8.5472,
+     8.0707,
+     7.1176,
+     7.5335,
+     8.4258,
+     9.3182,
+     19.829,
+     20.0518,
+     20.2746,
+     20.4974,
+     20.7202,
+     20.943,
+     21.1658,
+     21.3886,
+     21.6115,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343,
+     21.8343
+    ],
+    "Free cash flow, stress": [
+     3.7009,
+     6.2923,
+     8.1357,
+     6.8105,
+     5.8574,
+     5.3809,
+     4.4278,
+     3.9513,
+     3.4748,
+     2.5217,
+     2.9376,
+     3.83,
+     4.7224,
+     15.2331,
+     15.4559,
+     15.6787,
+     15.9015,
+     16.1243,
+     16.3471,
+     16.57,
+     16.7928,
+     17.0156,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384,
+     17.2384
+    ]
+   }
+  },
+  "net_debt": {
+   "title": "Boeing net debt at year end, $B, 2026 dollars",
+   "unit": "$B",
+   "years": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "Base case": [
+     22.53,
+     16.494,
+     6.701,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "Stress case": [
+     22.53,
+     18.3442,
+     11.657,
+     3.2703,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "No new programme": [
+     22.53,
+     16.494,
+     6.701,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "owners_cash": {
+   "title": "Cumulative cash to Boeing's owners from 2027, $B, 2026 dollars, undiscounted",
+   "unit": "$B",
+   "years": [
+    2027,
+    2028,
+    2029,
+    2030,
+    2031,
+    2032,
+    2033,
+    2034,
+    2035,
+    2036,
+    2037,
+    2038,
+    2039,
+    2040,
+    2041,
+    2042,
+    2043,
+    2044,
+    2045,
+    2046,
+    2047,
+    2048,
+    2049,
+    2050,
+    2051,
+    2052,
+    2053,
+    2054,
+    2055,
+    2056,
+    2057,
+    2058,
+    2059,
+    2060
+   ],
+   "series": {
+    "fps 10-year (played)": [
+     0.0,
+     0.0,
+     5.6,
+     17.1,
+     27.5,
+     37.5,
+     46.5,
+     55.1,
+     63.1,
+     70.2,
+     77.8,
+     86.2,
+     95.5,
+     115.3,
+     135.4,
+     155.7,
+     176.2,
+     196.9,
+     217.8,
+     239.0,
+     260.4,
+     282.0,
+     303.8,
+     325.7,
+     347.5,
+     369.3,
+     391.2,
+     413.0,
+     434.8,
+     456.7,
+     478.5,
+     500.3,
+     522.2,
+     544.0
+    ],
+    "Do Nothing (no fps)": [
+     0.0,
+     0.0,
+     5.6,
+     19.4,
+     33.2,
+     47.0,
+     60.8,
+     74.6,
+     88.4,
+     102.2,
+     115.8,
+     129.2,
+     142.4,
+     155.5,
+     168.4,
+     181.1,
+     193.7,
+     206.2,
+     218.8,
+     231.4,
+     244.0,
+     256.5,
+     269.1,
+     281.7,
+     294.3,
+     306.8,
+     319.4,
+     332.0,
+     344.6,
+     357.1,
+     369.7,
+     382.3,
+     394.9,
+     407.4
+    ],
+    "No game (analysts' path)": [
+     0.0,
+     0.0,
+     5.6,
+     19.4,
+     33.2,
+     47.0,
+     60.8,
+     74.6,
+     88.4,
+     102.2,
+     116.0,
+     129.7,
+     143.5,
+     157.3,
+     171.1,
+     184.9,
+     198.7,
+     212.5,
+     226.3,
+     240.1,
+     253.8,
+     267.6,
+     281.4,
+     295.2,
+     309.0,
+     322.8,
+     336.6,
+     350.4,
+     364.2,
+     377.9,
+     391.7,
+     405.5,
+     419.3,
+     433.1
+    ]
+   }
+  },
+  "pv_bridge": {
+   "title": "Boeing \u0394PV bridge, $B at 2026",
+   "unit": "$B",
+   "items": [
+    [
+     "Narrowbody profit vs status quo",
+     20.3
+    ],
+    [
+     "fps bill ($60.32B charged in 2040)",
+     -14.91
+    ],
+    [
+     "Debt penalty",
+     -4.73
+    ],
+    [
+     "\u0394PV",
+     0.66
+    ]
+   ]
+  },
+  "dpv_all": {
+   "title": "Final \u0394PV by company, $B at 2026 (this game and the previous one)",
+   "unit": "$B",
+   "rows": [
+    [
+     "boeing",
+     0.66,
+     0.66
+    ],
+    [
+     "airbus",
+     23.37,
+     23.37
+    ],
+    [
+     "cfm",
+     -69.69,
+     -38.29
+    ],
+    [
+     "pratt_whitney",
+     8.88,
+     -2.93
+    ],
+    [
+     "rolls_royce",
+     32.35,
+     20.55
+    ]
+   ]
+  },
+  "boeing_objectives": {
+   "title": "Boeing's objectives, final state",
+   "rows": [
+    [
+     "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+     false,
+     "worst year 38.0% (2040 38.0%, 2045 43.0%, 2050 47.0%)"
+    ],
+    [
+     "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+     false,
+     "worst year 38.0%"
+    ],
+    [
+     "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+     true,
+     "reached in 2029; net debt end-2030 $0.0B; with no new programme it would be reached in 2029"
+    ],
+    [
+     "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+     true,
+     "2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2030"
+    ],
+    [
+     "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+     true,
+     "reached in 2030; 2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2031"
+    ],
+    [
+     "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+     true,
+     "2040 fps: CFM + P&W-RR Joint Venture (2); 2045 fps: CFM + P&W-RR Joint Venture (2); 2050 fps: CFM + P&W-RR Joint Venture (2)"
+    ],
+    [
+     "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+     true,
+     "2045 CFM, P&W, RR; 2050 CFM, P&W, RR"
+    ]
+   ]
+  },
+  "plans_2030": {
+   "title": "Boeing's 2030 plans, replayed with everyone else as played",
+   "rows": [
+    {
+     "plan": "fps: hold + 787: hold",
+     "pv": -3.64,
+     "fps_in_service": null,
+     "nb_share_2040": 0.28,
+     "nb_share_2050": 0.19999999999999996,
+     "peak_programme_cash": [
+      0,
+      null
+     ],
+     "programme_cash_total": 0,
+     "lowest_stress_fcf": [
+      7.98,
+      2043
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 281.7,
+     "owners_cash_2027_2060": 407.4,
+     "objectives_met": 4,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps: hold + 787 Re-engine",
+     "pv": -0.34,
+     "fps_in_service": null,
+     "nb_share_2040": 0.28,
+     "nb_share_2050": 0.19999999999999996,
+     "peak_programme_cash": [
+      1.35,
+      2033
+     ],
+     "programme_cash_total": 5.0,
+     "lowest_stress_fcf": [
+      8.13,
+      2033
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 297.9,
+     "owners_cash_2027_2060": 444.1,
+     "objectives_met": 4,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps: hold + 737 rate up + 787: hold",
+     "pv": -4.38,
+     "fps_in_service": null,
+     "nb_share_2040": 0.28,
+     "nb_share_2050": 0.19999999999999996,
+     "peak_programme_cash": [
+      0.98,
+      2032
+     ],
+     "programme_cash_total": 2.94,
+     "lowest_stress_fcf": [
+      7.98,
+      2043
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 280.9,
+     "owners_cash_2027_2060": 406.6,
+     "objectives_met": 4,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps: hold + 737 rate up + 787 Re-engine",
+     "pv": -1.08,
+     "fps_in_service": null,
+     "nb_share_2040": 0.28,
+     "nb_share_2050": 0.19999999999999996,
+     "peak_programme_cash": [
+      2.13,
+      2032
+     ],
+     "programme_cash_total": 7.94,
+     "lowest_stress_fcf": [
+      7.71,
+      2031
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 297.1,
+     "owners_cash_2027_2060": 443.3,
+     "objectives_met": 4,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 7-yr + 787: hold",
+     "pv": 1.12,
+     "fps_in_service": 2037,
+     "nb_share_2040": 0.44,
+     "nb_share_2050": 0.5,
+     "peak_programme_cash": [
+      12.54,
+      2034
+     ],
+     "programme_cash_total": 65.0,
+     "lowest_stress_fcf": [
+      -0.71,
+      2034
+     ],
+     "stress_line_met": false,
+     "stress_net_debt_2035": 0.47,
+     "owners_cash_2027_2050": 355.8,
+     "owners_cash_2027_2060": 580.9,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 7-yr + 787 Re-engine",
+     "pv": 2.39,
+     "fps_in_service": 2037,
+     "nb_share_2040": 0.44,
+     "nb_share_2050": 0.5,
+     "peak_programme_cash": [
+      14.14,
+      2034
+     ],
+     "programme_cash_total": 73.0,
+     "lowest_stress_fcf": [
+      -2.0,
+      2034
+     ],
+     "stress_line_met": false,
+     "stress_net_debt_2035": 1.74,
+     "owners_cash_2027_2050": 369.7,
+     "owners_cash_2027_2060": 615.2,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 7-yr + 737 rate up + 787: hold",
+     "pv": 0.38,
+     "fps_in_service": 2037,
+     "nb_share_2040": 0.44,
+     "nb_share_2050": 0.5,
+     "peak_programme_cash": [
+      12.54,
+      2034
+     ],
+     "programme_cash_total": 67.94,
+     "lowest_stress_fcf": [
+      -0.41,
+      2034
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 355.0,
+     "owners_cash_2027_2060": 580.1,
+     "objectives_met": 6,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 7-yr + 737 rate up + 787 Re-engine",
+     "pv": 1.65,
+     "fps_in_service": 2037,
+     "nb_share_2040": 0.44,
+     "nb_share_2050": 0.5,
+     "peak_programme_cash": [
+      14.14,
+      2034
+     ],
+     "programme_cash_total": 75.94,
+     "lowest_stress_fcf": [
+      -1.69,
+      2034
+     ],
+     "stress_line_met": false,
+     "stress_net_debt_2035": 0.82,
+     "owners_cash_2027_2050": 368.8,
+     "owners_cash_2027_2060": 614.4,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 10-yr + 787: hold",
+     "pv": 0.66,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      8.44,
+      2036
+     ],
+     "programme_cash_total": 60.32,
+     "lowest_stress_fcf": [
+      2.52,
+      2036
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 325.7,
+     "owners_cash_2027_2060": 544.0,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 10-yr + 787 Re-engine",
+     "pv": 2.86,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      8.44,
+      2036
+     ],
+     "programme_cash_total": 66.52,
+     "lowest_stress_fcf": [
+      2.69,
+      2034
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 340.9,
+     "owners_cash_2027_2060": 579.8,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 10-yr + 737 rate up + 787: hold",
+     "pv": -0.08,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      8.44,
+      2036
+     ],
+     "programme_cash_total": 63.26,
+     "lowest_stress_fcf": [
+      2.83,
+      2036
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 324.9,
+     "owners_cash_2027_2060": 543.2,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps 10-yr + 737 rate up + 787 Re-engine",
+     "pv": 2.12,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      8.44,
+      2036
+     ],
+     "programme_cash_total": 69.46,
+     "lowest_stress_fcf": [
+      2.99,
+      2034
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 340.1,
+     "owners_cash_2027_2060": 579.0,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps via Embraer + 787: hold",
+     "pv": -17.39,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      14.0,
+      2036
+     ],
+     "programme_cash_total": 100.0,
+     "lowest_stress_fcf": [
+      -1.88,
+      2036
+     ],
+     "stress_line_met": false,
+     "stress_net_debt_2035": 0.29,
+     "owners_cash_2027_2050": 294.3,
+     "owners_cash_2027_2060": 512.7,
+     "objectives_met": 4,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps via Embraer + 787 Re-engine",
+     "pv": -16.03,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      14.0,
+      2036
+     ],
+     "programme_cash_total": 106.2,
+     "lowest_stress_fcf": [
+      -1.02,
+      2036
+     ],
+     "stress_line_met": false,
+     "stress_net_debt_2035": 0.5,
+     "owners_cash_2027_2050": 309.6,
+     "owners_cash_2027_2060": 548.4,
+     "objectives_met": 4,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps via Embraer + 737 rate up + 787: hold",
+     "pv": -18.13,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      14.0,
+      2036
+     ],
+     "programme_cash_total": 102.94,
+     "lowest_stress_fcf": [
+      -1.56,
+      2036
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 293.5,
+     "owners_cash_2027_2060": 511.9,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    },
+    {
+     "plan": "fps via Embraer + 737 rate up + 787 Re-engine",
+     "pv": -16.77,
+     "fps_in_service": 2040,
+     "nb_share_2040": 0.38,
+     "nb_share_2050": 0.47,
+     "peak_programme_cash": [
+      14.0,
+      2036
+     ],
+     "programme_cash_total": 109.14,
+     "lowest_stress_fcf": [
+      -0.7,
+      2036
+     ],
+     "stress_line_met": true,
+     "stress_net_debt_2035": 0.0,
+     "owners_cash_2027_2050": 308.8,
+     "owners_cash_2027_2060": 547.6,
+     "objectives_met": 5,
+     "objectives": [
+      [
+       "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       false
+      ],
+      [
+       "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       false
+      ],
+      [
+       "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       true
+      ],
+      [
+       "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       true
+      ],
+      [
+       "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       true
+      ]
+     ]
+    }
+   ]
+  },
+  "re787_by_round": {
+   "title": "787 Re-engine in each round, replayed (Boeing's other orders and everyone else as played)",
+   "rows": [
+    {
+     "round": 1,
+     "year": 2030,
+     "re787": "hold",
+     "pv_boeing": 0.663208572464228,
+     "pv_airbus": 23.366586850527383,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.5882352941176471,
+      "2045": 0.5882352941176471,
+      "2050": 0.5882352941176471,
+      "2055": 0.5882352941176471
+     },
+     "re787_eis": null
+    },
+    {
+     "round": 1,
+     "year": 2030,
+     "re787": "launch",
+     "pv_boeing": 2.860473571442633,
+     "pv_airbus": 22.505105951649526,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.648235294117647,
+      "2045": 0.6982352941176471,
+      "2050": 0.7482352941176471,
+      "2055": 0.798235294117647
+     },
+     "re787_eis": 2035
+    },
+    {
+     "round": 2,
+     "year": 2035,
+     "re787": "hold",
+     "pv_boeing": 0.663208572464228,
+     "pv_airbus": 23.366586850527383,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.5882352941176471,
+      "2045": 0.5882352941176471,
+      "2050": 0.5882352941176471,
+      "2055": 0.5882352941176471
+     },
+     "re787_eis": null
+    },
+    {
+     "round": 2,
+     "year": 2035,
+     "re787": "launch",
+     "pv_boeing": 1.3089578813771428,
+     "pv_airbus": 22.881334582663484,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.5982352941176471,
+      "2045": 0.648235294117647,
+      "2050": 0.6982352941176471,
+      "2055": 0.7482352941176471
+     },
+     "re787_eis": 2040
+    },
+    {
+     "round": 3,
+     "year": 2045,
+     "re787": "hold",
+     "pv_boeing": 0.663208572464228,
+     "pv_airbus": 23.366586850527383,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.5882352941176471,
+      "2045": 0.5882352941176471,
+      "2050": 0.5882352941176471,
+      "2055": 0.5882352941176471
+     },
+     "re787_eis": null
+    },
+    {
+     "round": 3,
+     "year": 2045,
+     "re787": "launch",
+     "pv_boeing": 0.9565072993773747,
+     "pv_airbus": 23.257798161969333,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.5882352941176471,
+      "2045": 0.5882352941176471,
+      "2050": 0.5982352941176471,
+      "2055": 0.648235294117647
+     },
+     "re787_eis": 2050
+    },
+    {
+     "round": 4,
+     "year": 2050,
+     "re787": "hold",
+     "pv_boeing": 0.663208572464228,
+     "pv_airbus": 23.366586850527383,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.5882352941176471,
+      "2045": 0.5882352941176471,
+      "2050": 0.5882352941176471,
+      "2055": 0.5882352941176471
+     },
+     "re787_eis": null
+    },
+    {
+     "round": 4,
+     "year": 2050,
+     "re787": "launch",
+     "pv_boeing": 0.7057132695195989,
+     "pv_airbus": 23.3328228424882,
+     "nb_share": {
+      "2039": 0.37,
+      "2040": 0.38,
+      "2045": 0.43,
+      "2050": 0.47
+     },
+     "wb_share": {
+      "2040": 0.5882352941176471,
+      "2045": 0.5882352941176471,
+      "2050": 0.5882352941176471,
+      "2055": 0.5982352941176471
+     },
+     "re787_eis": 2055
+    }
+   ]
+  },
+  "boeing_grid_2030": {
+   "title": "Boeing's 2030 payoff grid as its brief showed it: \u0394PV $B by plan against what Airbus might do (nobody moves later)",
+   "scenarios": [
+    "Rivals hold",
+    "Airbus launches NGSA",
+    "Airbus launches A350 Re-engine",
+    "Airbus launches NGSA + A350 Re-engine",
+    "Risk case: NGSA + Airbus Delay Tactics (covert)"
+   ],
+   "rows": [
+    [
+     "fps: hold + 787: hold",
+     0.0,
+     -3.64,
+     -2.62,
+     -6.26,
+     -3.64
+    ],
+    [
+     "fps: hold + 787 Re-engine",
+     3.3,
+     -0.34,
+     -5.1,
+     -8.74,
+     -0.34
+    ],
+    [
+     "fps: hold + 737 rate up + 787: hold",
+     2.3,
+     -4.38,
+     -0.32,
+     -7.0,
+     -4.38
+    ],
+    [
+     "fps: hold + 737 rate up + 787 Re-engine",
+     5.6,
+     -1.08,
+     -2.8,
+     -9.48,
+     -1.08
+    ],
+    [
+     "fps 7-yr + 787: hold",
+     2.2,
+     1.12,
+     -0.42,
+     -1.5,
+     -0.83
+    ],
+    [
+     "fps 7-yr + 787 Re-engine",
+     3.47,
+     2.39,
+     -4.93,
+     -6.01,
+     0.45
+    ],
+    [
+     "fps 7-yr + 737 rate up + 787: hold",
+     1.46,
+     0.38,
+     -1.17,
+     -2.25,
+     -1.57
+    ],
+    [
+     "fps 7-yr + 737 rate up + 787 Re-engine",
+     2.73,
+     1.65,
+     -5.67,
+     -6.75,
+     -0.3
+    ],
+    [
+     "fps 10-yr + 787: hold",
+     3.5,
+     0.66,
+     0.88,
+     -1.96,
+     -0.78
+    ],
+    [
+     "fps 10-yr + 787 Re-engine",
+     5.7,
+     2.86,
+     -2.7,
+     -5.54,
+     1.42
+    ],
+    [
+     "fps 10-yr + 737 rate up + 787: hold",
+     2.76,
+     -0.08,
+     0.14,
+     -2.7,
+     -1.52
+    ],
+    [
+     "fps 10-yr + 737 rate up + 787 Re-engine",
+     4.96,
+     2.12,
+     -3.45,
+     -6.28,
+     0.68
+    ],
+    [
+     "fps via Embraer + 787: hold",
+     -14.55,
+     -17.39,
+     -17.18,
+     -20.01,
+     -18.83
+    ],
+    [
+     "fps via Embraer + 787 Re-engine",
+     -13.19,
+     -16.03,
+     -21.59,
+     -24.43,
+     -17.47
+    ],
+    [
+     "fps via Embraer + 737 rate up + 787: hold",
+     -15.3,
+     -18.13,
+     -17.92,
+     -20.76,
+     -19.58
+    ],
+    [
+     "fps via Embraer + 737 rate up + 787 Re-engine",
+     -13.93,
+     -16.77,
+     -22.33,
+     -25.17,
+     -18.21
+    ]
+   ]
+  }
+ },
+ "facts": {
+  "payback_year_vs_do_nothing": 2046,
+  "owners_cash_2027_2050": {
+   "played": 325.7,
+   "do_nothing": 281.7,
+   "no_game": 295.2
+  },
+  "owners_cash_2027_2060": {
+   "played": 544.0,
+   "do_nothing": 407.4,
+   "no_game": 433.1
+  },
+  "boeing_value": {
+   "nb_profit_vs_sq": 20.3,
+   "wb_profit_vs_sq": 0.0,
+   "programme_investment": -14.91,
+   "rate_hike": -0.0,
+   "delay_tactics_spend": -0.0,
+   "write_offs": 0,
+   "debt_penalty": -4.73,
+   "two_front_strain": -0.0,
+   "naked_fine": -0.0,
+   "pv_delta": 0.66,
+   "yield": 100.51
+  },
+  "airbus_value": 23.37,
+  "regret_boeing": {
+   "1": {
+    "best": "fps 10-yr + 787 Re-engine",
+    "regret": 2.2
+   },
+   "2": {
+    "best": "fps: hold + 787 Re-engine",
+    "regret": 0.65
+   },
+   "3": {
+    "best": "fps: hold + 787 Re-engine",
+    "regret": 0.29
+   },
+   "4": {
+    "best": "fps: hold + 787 Re-engine",
+    "regret": 0.04
+   }
+  },
+  "regret_airbus": {
+   "1": {
+    "best": "NGSA + A350 Re-engine + Delay Tactics (one move)",
+    "regret": 3.3
+   },
+   "2": {
+    "best": "NGSA: hold + A350 Re-engine + Delay Tactics (one move)",
+    "regret": 3.19
+   },
+   "3": {
+    "best": "NGSA: hold + A350 Re-engine",
+    "regret": 0.89
+   },
+   "4": {
+    "best": "NGSA: hold + A350 Re-engine",
+    "regret": 0.57
+   }
+  },
+  "stage_equilibria": {
+   "1": {
+    "pure": [
+     [
+      "fps 10-yr + 787: hold",
+      "NGSA + A350 Re-engine + Delay Tactics (one move)",
+      -3.4,
+      26.67
+     ],
+     [
+      "fps 10-yr + 787 Re-engine",
+      "NGSA + A350: hold + Delay Tactics (one move)",
+      1.42,
+      24.08
+     ]
+    ],
+    "played": [
+     "fps 10-yr + 787: hold",
+     "NGSA + A350: hold"
+    ],
+    "played_value": [
+     0.66,
+     23.37
+    ]
+   },
+   "2": {
+    "pure": [
+     [
+      "fps: hold + 787: hold",
+      "NGSA: hold + A350 Re-engine + Delay Tactics (one move)",
+      -2.24,
+      26.56
+     ],
+     [
+      "fps: hold + 787 Re-engine",
+      "NGSA: hold + A350: hold + Delay Tactics (one move)",
+      -0.13,
+      24.54
+     ]
+    ],
+    "played": [
+     "fps: hold + 787: hold",
+     "NGSA: hold + A350: hold"
+    ],
+    "played_value": [
+     0.66,
+     23.37
+    ]
+   },
+   "3": {
+    "pure": [
+     [
+      "fps: hold + 787: hold",
+      "NGSA: hold + A350 Re-engine",
+      0.34,
+      24.26
+     ],
+     [
+      "fps: hold + 787 Re-engine",
+      "NGSA: hold + A350: hold",
+      0.96,
+      23.26
+     ]
+    ],
+    "played": [
+     "fps: hold + 787: hold",
+     "NGSA: hold + A350: hold"
+    ],
+    "played_value": [
+     0.66,
+     23.37
+    ]
+   },
+   "4": {
+    "pure": [
+     [
+      "fps: hold + 787: hold",
+      "NGSA: hold + A350 Re-engine",
+      0.57,
+      23.94
+     ],
+     [
+      "fps: hold + 787 Re-engine",
+      "NGSA: hold + A350: hold",
+      0.71,
+      23.33
+     ]
+    ],
+    "played": [
+     "fps: hold + 787: hold",
+     "NGSA: hold + A350: hold"
+    ],
+    "played_value": [
+     0.66,
+     23.37
+    ]
+   }
+  },
+  "orders": {
+   "2030": {
+    "boeing": {
+     "fps": "launch_10yr",
+     "fps_engine_code": 7,
+     "rate_737": "hold",
+     "re787": "hold"
+    },
+    "airbus": {
+     "ngsa": "launch",
+     "ngsa_engine_code": 7,
+     "rea350": "hold",
+     "delay_tactics": "none"
+    }
+   },
+   "2035": {
+    "boeing": {
+     "fps": "hold",
+     "fps_engine_code": 7,
+     "rate_737": "hold",
+     "re787": "hold"
+    },
+    "airbus": {
+     "ngsa": "hold",
+     "ngsa_engine_code": 7,
+     "rea350": "hold",
+     "delay_tactics": "none"
+    }
+   },
+   "2045": {
+    "boeing": {
+     "fps": "hold",
+     "fps_engine_code": null,
+     "rate_737": "hold",
+     "re787": "hold"
+    },
+    "airbus": {
+     "ngsa": "hold",
+     "ngsa_engine_code": null,
+     "rea350": "hold",
+     "delay_tactics": "none"
+    }
+   },
+   "2050": {
+    "boeing": {
+     "fps": "hold",
+     "fps_engine_code": null,
+     "rate_737": "hold",
+     "re787": "hold"
+    },
+    "airbus": {
+     "ngsa": "hold",
+     "ngsa_engine_code": null,
+     "rea350": "hold",
+     "delay_tactics": "none"
+    }
+   }
+  },
+  "timeline": [
+   {
+    "key": "cfm_ducted",
+    "name": "CFM ducted engine",
+    "launch": 2030,
+    "due": 2036,
+    "due_kind": "ready",
+    "status": "ready since 2036",
+    "owner": "cfm"
+   },
+   {
+    "key": "cfm_embraer",
+    "name": "CFM-Embraer partnership",
+    "launch": 2030,
+    "due": 2037,
+    "due_kind": "ready",
+    "status": "ready since 2037",
+    "owner": "cfm"
+   },
+   {
+    "key": "cfm_genx",
+    "name": "GEnx (CFM/GE) \u2014 upgrade",
+    "launch": 2030,
+    "due": 2033,
+    "due_kind": "ready",
+    "status": "ready since 2033",
+    "owner": "cfm"
+   },
+   {
+    "key": "ngsa",
+    "name": "NGSA (Airbus)",
+    "launch": 2030,
+    "due": 2037,
+    "due_kind": "EIS",
+    "status": "in service since 2037",
+    "owner": "airbus"
+   },
+   {
+    "key": "pw_solo",
+    "name": "P&W GTF2 (Solo)",
+    "launch": 2030,
+    "due": 2036,
+    "due_kind": "ready",
+    "status": "folded into the Joint Venture 2035",
+    "owner": "pratt_whitney"
+   },
+   {
+    "key": "rr_solo",
+    "name": "RR UltraFan NB (Solo)",
+    "launch": 2030,
+    "due": 2037,
+    "due_kind": "ready",
+    "status": "folded into the Joint Venture 2035",
+    "owner": "rolls_royce"
+   },
+   {
+    "key": "fps",
+    "name": "fps (Boeing) \u2014 10-year ramp-up",
+    "launch": 2030,
+    "due": 2040,
+    "due_kind": "EIS",
+    "status": "in service since 2040",
+    "owner": "boeing"
+   },
+   {
+    "key": "jv",
+    "name": "P&W-RR Joint Venture NB engine",
+    "launch": 2035,
+    "due": 2036,
+    "due_kind": "ready",
+    "status": "ready since 2036",
+    "owner": "pratt_whitney+rolls_royce"
+   }
+  ],
+  "control2_sources_fps": [
+   "fps",
+   [
+    "CFM",
+    "P&W-RR Joint Venture"
+   ]
+  ],
+  "tracker_inputs": {
+   "start_debt_b": 22.53,
+   "historical_level_b": 0.0,
+   "target_year": 2030,
+   "hold_years": [
+    2035,
+    2040,
+    2045,
+    2050
+   ],
+   "base_fcf_b": {
+    "2027": 5.551,
+    "2028": 9.438,
+    "2029": 12.203,
+    "2030": 13.789
+   },
+   "base_fcf_after_b": 13.789,
+   "tax_rate": 0.21,
+   "real_rate": 0.03,
+   "cpi": 0.022,
+   "stress_fcf_scale": 0.6667
+  }
+ }
+}

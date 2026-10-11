@@ -179,7 +179,7 @@ def chart_profit():
     def tip_fn(i):
         r = PL[i]
         rows = [(f'{r["nb_profit"]:.2f} $B', "Narrowbody", "var(--s1)"), (f'{r["wb_profit"]:.2f} $B', "Widebody", "var(--s3)"),
-                (f'{r["profit"]:.2f} $B', "Total", None), (f'{r["sq_profit"]:.2f} $B', "Status quo", "var(--sq)"),
+                (f'{r["profit"]:.3f} $B', "Total", None), (f'{r["sq_profit"]:.3f} $B', "Status quo", "var(--sq)"),
                 (K.num(r["vs_sq"]) + " $B", "vs status quo", None)]
         if r["nonrecurring"]:
             rows.append((f'{r["nonrecurring"]:.2f} $B', "fps bill booked this year (outside operating profit)", None))
@@ -205,7 +205,7 @@ def chart_cash():
                      end_names={"fps cash": ""},
                      notes=[(2030, "R1"), (2035, "R2"), (2045, "R3"), (2050, "R4")])
     return (legend([("fps programme cash", "pos", "sq"), ("Free cash flow, base case", "s1", "ln"),
-                    ("Free cash flow, stress case (one-third lower)", "s2", "ln")]) + svg)
+                    ("Free cash flow, stress case (consensus cash flow one-third lower)", "s2", "ln")]) + svg)
 
 
 def chart_debt():
@@ -324,12 +324,12 @@ def alts_table():
 ANALYST = [
     ("Net debt, end-2026", "$22.53B", "consensus mean (5 estimates); GS $22.55B, MS $23.01B", "Consensus 'Net Debt'; GS BA BS r64; MS BA Balance_Sheet_Annual"),
     ("Net debt, end-2027 / end-2028", "$16.94B / $7.21B", "consensus; the tracker gives $16.49B / $6.70B in 2026 dollars against $16.57B / $6.90B deflated", "Consensus 'Net Debt'"),
-    ("Free cash flow 2026-2030", "$2.2B, $5.7B, $9.9B, $13.0B, $15.0B", "consensus; $45.8B in all. Boeing guides $1-3B for 2026", "Consensus 'Free Cash Flow'"),
+    ("Free cash flow 2026-2030", "$2.2B, $5.7B, $9.9B, $13.0B, $15.0B", "consensus; $45.8B in all (computed). Boeing guides $1-3B for 2026", "Consensus 'Free Cash Flow'; guidance rows 225/227"),
     ("Net debt 2010-2018", "average about −$0.6B", "a small net cash: the objective's historical level, rounded to $0", "GS BA BS r64"),
     ("Gross debt, mid-2026", "$45.9B", "the dashboard's $45B", "GS BA BS r63"),
     ("Commercial Airplanes revenue", "2026E $48.3B (MS) / $45.3B (GS); 2030E $62.8B / $84.9B", "2025A $41.5B; 2018A $57.5B", "MS BA BCA_Annual; GS BA SEG r36"),
     ("Commercial Airplanes operating profit", "2026E −$0.3B (MS) / −$1.2B (GS); 2030E $6.2B / $12.2B", "2025A −$7.1B; 2018A $7.8B", "MS BA BCA_Annual; GS BA SEG r168"),
-    ("Capital allocation 2027-2030", "GS $42B of buybacks; MS none", "GS ends 2030 at $17.4B net debt, MS at $16.2B net cash", "GS BA CFLO r45, BS r64; MS BA Cash_Flow_Annual r51"),
+    ("Capital allocation 2027-2030", "GS $42B of buybacks; MS none", "GS ends 2030 at $17.4B net debt, MS at $16.2B net cash", "GS BA CFLO r45, BS r64; MS BA Cash_Flow_Annual r51, Balance_Sheet_Annual 'Net Debt'"),
     ("A new airplane in the forecasts", "none", "every launch is on top of the analysts' cash flow", "analyst note, Boeing profile"),
 ]
 
@@ -343,7 +343,7 @@ def analyst_table():
 def tiles():
     t = [("ΔPV vs status quo", K.usd(V["pv_delta"], 2, True), f'Yield {K.rnd(V["yield"], 2):.2f}%; the same as the previous game'),
          ("fps, 10-year ramp", "$60.32B", f"launched 2030, in service 2040; cash peaks at ${SPEND[PEAK_Y]:.2f}B in {PEAK_Y}"),
-         ("Operating profit, 2050", f'${PY[2050]["profit"]:.2f}B', f'${PY[2050]["vs_sq"]:.2f}B a year above the status quo (${PY[2050]["sq_profit"]:.2f}B)'),
+         ("Operating profit, 2050", f'${PY[2050]["profit"]:.2f}B', f'${PY[2050]["vs_sq"]:.2f}B a year above the status quo (${PY[2050]["sq_profit"]:.3f}B)'),
          ("Narrowbody share", pct(PY[2050]["nb_share"]), f'40% today, a low of {pct(PY[2039]["nb_share"])} in 2039, 47% from 2049'),
          ("Net debt", "$0 from 2029", "from 2030 in the stress case; held through the fps spending peak"),
          ("Cash to owners, 2027-2050", f'${O50["play"]:.1f}B', f'${O50["play"] - O50["hold"]:.1f}B more than Do Nothing; the fps pays back in {PAYBACK}')]
@@ -369,21 +369,21 @@ def points():
          f"<li>The fps bill: the dashboard charges all $60.32B at entry into service in 2040, −${-V['bridge']['programme_investment']:.2f}B in PV.</li>"
          f"<li>The debt penalty: the board's α (0.3) on $45B of debt, rising by ${PEN_UNDISC:.2f}B undiscounted when the "
          f"bill is added, −${-V['bridge']['debt_penalty']:.2f}B in PV.</li></ul>"),
-        ("In cash, the fps costs the owners until 2045 and pays back from 2046.",
+        ("In cash, the fps costs the owners in 2030-2039 and pays back, cumulatively, in 2046.",
          f"<ul><li>The tracker spends the bill over 2030-2039 on the standard curve, from ${SPEND[2030]:.2f}B in 2030 to "
          f"${SPEND[PEAK_Y]:.2f}B in {PEAK_Y}. Free cash flow never goes negative: from 2030 at least ${MIN_BASE[0]:.2f}B in "
          f"the base case and ${MIN_STRESS[0]:.2f}B in the stress case ({MIN_STRESS[1]}).</li>"
          f"<li>Net debt is at its historical level from 2029 (2030 in the stress case), so the fps is paid from cash that "
          "would otherwise go to the owners.</li>"
-         f"<li>Against Do Nothing (no fps while Airbus launches NGSA) the owners receive less until {PAYBACK - 1} and more from "
-         f"{PAYBACK}: ${O50['play'] - O50['hold']:.1f}B more by 2050 and ${O60['play'] - O60['hold']:.1f}B more by 2060, in 2026 "
+         f"<li>Against Do Nothing (no fps while Airbus launches NGSA) the owners receive less each year in 2030-2039 and more "
+         f"from 2040; their cumulative cash trails until {PAYBACK - 1} and leads from {PAYBACK}: ${O50['play'] - O50['hold']:.1f}B more by 2050 and ${O60['play'] - O60['hold']:.1f}B more by 2060, in 2026 "
          "dollars, undiscounted.</li></ul>"),
-        ("Every plan on the 10-year ramp keeps the stress line; the 7-year keeps it only with the 737 rate increase.",
+        ("Every plan on the 10-year ramp keeps the stress line; the 7-year keeps it only with the 737 rate increase and no 787 Re-engine.",
          f"<ul><li>The 7-year ramp alone is worth ${ALTS['fps 7-yr + 787: hold']['pv'] - PLAY['pv']:.2f}B more and gives the "
          f"owners ${ALTS['fps 7-yr + 787: hold']['owners_2027_50'] - O50['play']:.1f}B more by 2050, but its spend peaks at "
          f"${ALTS['fps 7-yr + 787: hold']['peak_spend'][0]:.2f}B in 2034 and the stress case puts net debt back to "
          f"${ALTS['fps 7-yr + 787: hold']['stress_2035']:.2f}B at end-2035.</li>"
-         f"<li>With the 737 rate increase the 7-year keeps the line (net debt ${ALTS['fps 7-yr + 737 rate up + 787: hold']['stress_peak_after'][1]:.2f}B "
+         f"<li>With the 737 rate increase (and the 787 held) the 7-year keeps the line (net debt ${ALTS['fps 7-yr + 737 rate up + 787: hold']['stress_peak_after'][1]:.2f}B "
          f"at its 2034 peak, zero by end-2035), but it is then worth {K.num(ALTS['fps 7-yr + 737 rate up + 787: hold']['pv'])}, less "
          "than the 10-year's +0.66.</li>"
          f"<li>A 787 Re-engine beside the 10-year was worth ${ALTS['fps 10-yr + 787 Re-engine']['pv'] - PLAY['pv']:.2f}B more and "
@@ -436,11 +436,11 @@ the two-front strain are zero for Boeing in this game.</p></div></div></section>
 <section id="cash"><h2>Cash and net debt: the GM's tracker</h2>
 <p class="lede">Whole-company free cash flow and net debt in 2026 dollars. Base free cash flow is the analysts' consensus for
 2027-2030 (deflated at 2.2%), flat after; the stress case is one-third lower. The game adds 79% of (its profit change − fps cash),
-and 3% real interest on any debt it adds. Debt comes first; once net debt is at its historical level (about zero), the surplus is
+and charges 3% real interest on any debt it adds. Debt comes first; once net debt is at its historical level (about zero), the surplus is
 cash to the owners. This is how Control's balance-sheet objective is scored; it does not change the dashboard's payoff.</p><div class="stack">
 <div class="panel"><p class="ctitle">fps cash peaks at ${SPEND[PEAK_Y]:.2f}B in {PEAK_Y}; free cash flow stays positive, at least ${MIN_STRESS[0]:.2f}B in the stress case</p>{chart_cash()}</div>
 <div class="panel"><p class="ctitle">Net debt reaches $0 in 2029 (2030 in the stress case) and stays there</p>{chart_debt()}</div>
-<div class="panel"><p class="ctitle">Cash to owners: below Do Nothing until {PAYBACK - 1}, ahead from {PAYBACK}</p>{chart_owners()}</div>
+<div class="panel"><p class="ctitle">Cumulative cash to owners: behind Do Nothing until {PAYBACK - 1}, ahead from {PAYBACK}</p>{chart_owners()}</div>
 <div class="panel"><p class="label">Year by year</p>{cash_table()}
 <p class="cap">Cash to owners is free cash flow once net debt is at the historical level (in 2029, what is left after clearing
 the last of the debt). "No programme" is the analysts' path with no game at all; Do Nothing (in the chart and the next section)
@@ -457,7 +457,7 @@ regret table does. The fps engine code is kept at 7 (all three makers): it does 
 between (fps via Embraer with the rate increase peaks at $2.71B in 2037 and passes). Objectives met counts all seven of Boeing's,
 the two share objectives included.</p></div></div></section>
 
-<section id="analysts"><h2>The analysts' baseline (real world, July-August 2026)</h2>
+<section id="analysts"><h2>The analysts' baseline (real world: broker models July 2026, consensus October 2026)</h2>
 <p class="lede">The tracker starts from these. The dashboard's P&amp;L is a stylised model of the new-airplane business; it is not
 Boeing's reported Commercial Airplanes segment, which loses money in 2026 on the analysts' numbers.</p><div class="stack">
 <div class="panel">{analyst_table()}<p class="cap">MS = Morgan Stanley (29 July 2026), GS = Goldman Sachs (28 July 2026), consensus =
