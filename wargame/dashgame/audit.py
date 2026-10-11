@@ -56,7 +56,7 @@ def bash_paths(cmd, cwd):
             d = m.group(1)
             d = quoted[int(d[4:])] if d.startswith("QSTR") else d
             wd = os.path.realpath(d if d.startswith("/") else os.path.join(wd, d))
-            out.append(wd)
+            # a cd target is a working directory, not an access: relative paths after it are resolved against it
             continue
         for t in re.split(r"[\s<>]+", seg):
             if t.startswith("QSTR"):
