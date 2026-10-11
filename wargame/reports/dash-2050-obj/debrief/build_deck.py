@@ -169,77 +169,103 @@ def style_chart(chart, size=12):
 
 
 # ---------------------------------------------------------------- visuals
+def _manual_plot(chart, x, y, w, h):
+    """Pin the inner plot area (fractions of the chart frame) so overlays can be placed on data coordinates."""
+    pa = chart._chartSpace.chart.plotArea
+    old = pa.find(qn("c:layout"))
+    if old is not None:
+        pa.remove(old)
+    lay = pa.makeelement(qn("c:layout"), {})
+    ml = lay.makeelement(qn("c:manualLayout"), {})
+    for tag, val in (("c:layoutTarget", "inner"), ("c:xMode", "edge"), ("c:yMode", "edge"),
+                     ("c:x", f"{x}"), ("c:y", f"{y}"), ("c:w", f"{w}"), ("c:h", f"{h}")):
+        el = ml.makeelement(qn(tag), {"val": val})
+        ml.append(el)
+    lay.append(ml)
+    pa.insert(0, lay)
+
+
 def visual_line(slide, v, FP, x, y, w, h):
+    from pptx.chart.data import XyChartData
     ds = FP["datasets"][v["dataset"]]
     yrs = ds["years"]
     lo_y, hi_y = (v.get("years") or [yrs[0], yrs[-1]])[:2]
     idx = [i for i, yy in enumerate(yrs) if lo_y <= yy <= hi_y]
-    names = v.get("series") or list(ds["series"])
-    names = [n for n in names if n in ds["series"]]
+    names = [n for n in (v.get("series") or list(ds["series"])) if n in ds["series"]]
     share = ds["unit"] == "share"
-    cd = CategoryChartData()
-    cd.categories = [str(yrs[i]) for i in idx]
+    k = 100 if share else 1
+    cd = XyChartData()
     for n in names:
-        cd.add_series(n, [ds["series"][n][i] * (100 if share else 1) for i in idx])
-    ch = slide.shapes.add_chart(XL_CHART_TYPE.LINE, Inches(x), Inches(y), Inches(w), Inches(h), cd).chart
+        sr = cd.add_series(n)
+        for i in idx:
+            sr.add_data_point(yrs[i], ds["series"][n][i] * k)
+    ch = slide.shapes.add_chart(XL_CHART_TYPE.XY_SCATTER_LINES_NO_MARKERS, Inches(x), Inches(y), Inches(w), Inches(h), cd).chart
     style_chart(ch)
     ch.has_legend = len(names) > 1
     if ch.has_legend:
         ch.legend.position = XL_LEGEND_POSITION.TOP
         ch.legend.include_in_layout = False
         ch.legend.font.size = Pt(13)
-    vals = [ds["series"][n][i] * (100 if share else 1) for n in names for i in idx]
-    va = ch.value_axis
+    vals = [ds["series"][n][i] * k for n in names for i in idx]
     if share:
-        va.minimum_scale, va.maximum_scale, va.major_unit = 0, 100 if max(vals) > 80 else 80, 20
-        va.tick_labels.number_format = '0"%"'
+        y_lo, y_hi, step = 0, (100 if max(vals) > 80 else 80), 20
+        fmt = '0"%"'
     else:
         top = max(vals)
         step = 5 if top <= 30 else (50 if top <= 300 else 100)
-        va.minimum_scale = min(0, min(vals))
-        va.maximum_scale = step * (int(top / step) + 1)
-        va.major_unit = step
-        va.tick_labels.number_format = '0'
+        y_lo, y_hi = min(0, min(vals)), step * (int(top / step) + 1)
+        fmt = '0'
+    va = ch.value_axis
+    va.minimum_scale, va.maximum_scale, va.major_unit = y_lo, y_hi, step
+    va.tick_labels.number_format = fmt
     va.tick_labels.number_format_is_linked = False
     va.tick_labels.font.size = Pt(12)
     va.has_major_gridlines = True
     va.major_gridlines.format.line.color.rgb = GRAY_LINE
     va.format.line.fill.background()
-    ca = ch.category_axis
-    ca.major_tick_mark = XL_TICK_MARK.NONE
-    ca.format.line.color.rgb = GRAY_LINE
-    ca.tick_labels.font.size = Pt(12)
-    ca.tick_label_spacing = 5 if len(idx) > 12 else 1
-    for k, (ser, n) in enumerate(zip(ch.plots[0].series, names)):
-        color, dash = SERIES_COLOR.get(n, FALLBACK[k % 3])
+    xa = ch.category_axis
+    x_lo, x_hi = yrs[idx[0]], yrs[idx[-1]]
+    unit_x = 5 if x_hi - x_lo > 15 else (2 if x_hi - x_lo > 8 else 1)
+    x_lo -= x_lo % unit_x                     # ticks on round years (2025, 2030, ...)
+    xa.minimum_scale, xa.maximum_scale = x_lo, x_hi
+    xa.major_unit = unit_x
+    xa.tick_labels.number_format = '0'
+    xa.tick_labels.number_format_is_linked = False
+    xa.tick_labels.font.size = Pt(12)
+    xa.has_major_gridlines = False
+    xa.major_tick_mark = XL_TICK_MARK.NONE
+    xa.format.line.color.rgb = GRAY_LINE
+    for kk, (ser, n) in enumerate(zip(ch.plots[0].series, names)):
+        color, dash = SERIES_COLOR.get(n, FALLBACK[kk % 3])
         ser.smooth = False
         ser.format.line.color.rgb = color
         ser.format.line.width = Pt(2.75)
         if dash:
             ser.format.line.dash_style = MSO_LINE_DASH_STYLE.DASH
         ser.marker.style = XL_MARKER_STYLE.NONE
-    # annotations: a data label on the first series at the annotated year
-    first = ch.plots[0].series[0] if names else None
+    PX, PY, PW, PH = 0.085, 0.13, 0.70, 0.74
+    _manual_plot(ch, PX, PY, PW, PH)
+    to_x = lambda yr: x + w * (PX + PW * (yr - x_lo) / (x_hi - x_lo))
+    to_y = lambda val: y + h * (PY + PH * (y_hi - val) / (y_hi - y_lo))
+    # direct end labels, spread 0.26" apart
+    ends = sorted(((ds["series"][n][idx[-1]] * k, n) for n in names), reverse=True)
+    last = None
+    for val, n in ends:
+        yy = to_y(val) - 0.13
+        yy = yy if last is None else max(yy, last + 0.26)
+        last = yy
+        lab = f"{n.split(' (')[0]} {val:.0f}%" if share else f"{n.split(' (')[0]} {val:.1f}"
+        text(slide, to_x(x_hi) + 0.08, yy, w * (1 - PX - PW) - 0.1, 0.26,
+             [[(lab, 12, True, SERIES_COLOR.get(n, FALLBACK[0])[0])]])
+    # annotations: a marker on the first series and a label above it
     for a in v.get("annotations") or []:
         yr = a["year"]
-        if first is None or str(yr) not in cd.categories:
+        if not names or yr not in yrs[idx[0]: idx[-1] + 1]:
             continue
-        j = cd.categories.index(str(yr))
-        dl = first.points[j].data_label
-        dl.has_text_frame = True
-        dl.text_frame.text = a["text"]
-        dl.position = XL_LABEL_POSITION.ABOVE
-        for p in dl.text_frame.paragraphs:
-            for r in p.runs:
-                r.font.size = Pt(12)
-                r.font.bold = True
-                r.font.color.rgb = SPACE
-        pt = first.points[j]
-        pt.marker.style = XL_MARKER_STYLE.CIRCLE
-        pt.marker.size = 9
-        pt.marker.format.fill.solid()
-        pt.marker.format.fill.fore_color.rgb = SERIES_COLOR.get(names[0], FALLBACK[0])[0]
-        pt.marker.format.line.color.rgb = WHITE
+        val = ds["series"][names[0]][yrs.index(yr)] * k
+        cx, cy = to_x(yr), to_y(val)
+        rect(slide, cx - 0.07, cy - 0.07, 0.14, 0.14, fill=SPACE, line=WHITE, shape=MSO_SHAPE.OVAL, line_w=1.25)
+        text(slide, cx - 1.1, cy - 0.46, 2.2, 0.3, [[(a["text"], 12, True, SPACE)]], align=PP_ALIGN.CENTER)
     unit = "% of deliveries" if share else ("$B" + (", 2026 dollars" if v["dataset"] in ("boeing_cash", "net_debt", "owners_cash") else ", 2026 prices"))
     text(slide, x, y + h + 0.02, w, 0.26, [[(unit, 10, False, GRAY, True)]])
 
@@ -256,7 +282,7 @@ def visual_bridge(slide, v, FP, x, y, w, h):
         else:
             run += d; base.append(run); val.append(-d)
     cd = CategoryChartData()
-    cd.categories = [n for n, _ in items]
+    cd.categories = ["Value created" if n == "ΔPV" else n for n, _ in items]
     cd.add_series("base", base)
     cd.add_series("value", val)
     ch = slide.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, Inches(x), Inches(y), Inches(w), Inches(h), cd).chart
@@ -273,12 +299,13 @@ def visual_bridge(slide, v, FP, x, y, w, h):
         dl = pt.data_label
         dl.has_text_frame = True
         dl.text_frame.text = f"{d:+.2f}".replace("-", "−")
-        dl.position = XL_LABEL_POSITION.INSIDE_END
+        small = abs(d) < 2
+        dl.position = XL_LABEL_POSITION.INSIDE_BASE if small else XL_LABEL_POSITION.INSIDE_END
         for p in dl.text_frame.paragraphs:
             for r in p.runs:
                 r.font.size = Pt(14)
                 r.font.bold = True
-                r.font.color.rgb = WHITE
+                r.font.color.rgb = SPACE if small else WHITE
     va = ch.value_axis
     va.minimum_scale, va.maximum_scale, va.major_unit = 0, 25, 5
     va.has_major_gridlines = True
