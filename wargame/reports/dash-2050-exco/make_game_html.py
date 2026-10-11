@@ -467,7 +467,9 @@ def chain_summary(side, x):
     if ex.get("revision"):
         out.append(("Revise", f"{ceo}: {_orders_line(side, ex['revision'].get('orders'))}"))
     rv = ex.get("board_review")
-    if rv:
+    if rv and not (rv.get("items") or ex.get("board_items")):
+        out.append(("Board review", f"{board}: not called; every order is the default (a hold is never a Board item)"))
+    elif rv:
         items = rv.get("items") or []
         ap = [i["order_field"] for i in items if i.get("decision") == "approve"]
         ve = [i["order_field"] for i in items if i.get("decision") == "veto"]
@@ -483,6 +485,10 @@ def chain_summary(side, x):
     if ex.get("board_reverted"):
         out.append(("Reverted to the default", ", ".join(ex["board_reverted"])))
     return out
+
+
+NOT_CALLED = ('<p class="muted">Not called: every order is the default, and a hold is never a Board item. '
+              "The Board's guidance above stands as its view for the round.</p>")
 
 
 def chain_block(r):
@@ -514,7 +520,7 @@ def chain_block(r):
 <p class="label">{esc(ceo)} decides</p><p><b>Orders.</b> {_orders_line(s, dec.get("orders"))}</p><p><b>Rationale.</b> {esc(dec.get("rationale", ""))}</p>
 <p><b>Weighing the CFO.</b> {esc(((dec.get("memo_weighing") or {}).get("cfo", "")))}</p><p><b>Weighing the operating head.</b> {esc(((dec.get("memo_weighing") or {}).get("ops", "")))}</p>
 {("<p><b>Overrides.</b></p><ul>" + ovr + "</ul>") if ovr else ""}
-<p class="label">Board review</p>{review_table(rv) or '<p class="muted">No Board item: every order is the default.</p>'}<p>{esc(rv.get("note", ""))}</p>
+<p class="label">Board review</p>{review_table(rv) or NOT_CALLED}{('<p>' + esc(rv.get("note", "")) + '</p>') if rv.get("items") else ""}
 {(review_table(ex.get("board_confirm")) and '<p class="label">Board confirmation</p>' + review_table(ex.get("board_confirm"))) or ""}
 <p class="label">Final</p><p><b>Orders.</b> {_orders_line(s, x.get("orders"))}</p>
 <p><b>Expected scenario.</b> {esc(str(x.get("expected_scenario", "")))}</p>
