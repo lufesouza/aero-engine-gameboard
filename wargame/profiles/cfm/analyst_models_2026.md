@@ -18,7 +18,7 @@ This note sums up four bank company models of the two CFM partners. For GE Aeros
 | Dividends paid, MS | 1,452 | 1,966 | 2,282 | 2,637 | [MS GE Cash_Flow_Annual r45] |
 
 - **History.** Free cash flow rose from 3,058 (2022A) to 4,744 (2023A), 6,089 (2024A) and 7,694 (2025A) [MS GE Cash_Flow_Annual r91]. Net debt was 8,249 (2022A), 5,321 (2023A) and 5,654 (2024A), and 9,812 at 2Q26A [MS GE Balance_Sheet_Annual r78; Balance_Sheet_Qtr r78].
-- **Guidance.** GE guides 2026 free cash flow to 8.9-9.2bn [MS GE Cash_Flow_Qtr BJ91]. A 2028 outlook of 8.5bn in the MS file is stale [MS GE Cash_Flow_Annual AG91].
+- **Guidance.** GE guides 2026 free cash flow to USD 8.9-9.2bn [MS GE Cash_Flow_Qtr BJ91]. A 2028 outlook of USD 8.5bn in the MS file is stale [MS GE Cash_Flow_Annual AG91].
 - **Debt is held flat.** Gross debt was 20,494 in 2025A; MS holds it at 19,157 in 2026E-2030E, with no new issuance [MS GE Balance_Sheet_Annual r77].
 - **Payout.** MS has GE returning 124% of free cash flow in 2025A and 94% in 2030E [MS GE Cash_Flow_Annual r96]. Over 2026E-2030E, MS buybacks and dividends total about 54.2bn against free cash flow of about 55.6bn (inference: sum of [MS GE Cash_Flow_Annual r45, r47, r91]).
 - **Caveat.** GS models no dividends after 2026E [GS GE CFLO r42]. That is why GS reaches net cash of 6,868 by 2030E; it overstates the cash build against MS. The GS BS sheet labels 2025 as an estimate, but its values are year-end 2025 actuals.
@@ -94,30 +94,30 @@ Caveat: the GS decline after 2032E is hard-coded, and no successor engine is mod
 
 **Sourcing structure.**
 - **Sole source.** CFM has 100% of 737 MAX deliveries and GE has 100% of the 777 and 777X [MS GE CES Annual_Driver r51, r55].
-- **Dual source.** CFM has 72.8% of A320 and 41.6% of A321 deliveries, held flat from 2024A to 2030E; the rest is Pratt & Whitney's GTF [MS GE CES Annual_Driver r59, r60]. GE has 72.5% of 787 deliveries; the rest is the Rolls-Royce Trent 1000 [r56].
+- **Dual source.** CFM has 72.8% of A320 and 41.6% of A321 deliveries, held flat from 2024A to 2030E; the rest is Pratt & Whitney's GTF [MS GE CES Annual_Driver r59, r60]. GE has 72.5% of 787 deliveries, also held flat from 2024A; the rest is the Rolls-Royce Trent 1000 [MS GE CES Annual_Driver r56].
 - **The Safran models split the A320neo family differently.** LEAP share is 59.0% in 2025A and 55% from 2027E in MS [MS SAF Civil OE r184], and 52% (2025A) rising to 58% from 2028E in GS [GS SAF Propulsion r34]. Caveat: GS uses a flat 50% input for 2019-2024.
 - **Variants (MS split; Safran reports only the total).** LEAP-1B (737 MAX) was 976 engines and LEAP-1A (A320neo) 792 in 2025A; MS has 1,518 LEAP-1B a year from 2028E and 983 LEAP-1A by 2029E [MS SAF Civil OE r195, r185]. C919 deliveries (LEAP-1C) go from 16 aircraft (2025A) to 40 (2029E) [MS SAF Civil OE r147].
 - **Airframer rates in the models.** The 737 MAX goes from 395 (2025A) to 624 a year from 2028E in MS GE, but from 440 to 684 in MS Safran [MS GE CES Annual_Driver r5; MS SAF Civil OE r143]. The two MS models disagree even on 2025A. The 787 goes from 70 to 120 a year from 2027E [MS GE CES Annual_Driver r10].
 
-**Supply constraints: what the files show.** Only traces. Deliveries fell from 1,570 (2023A) to 1,407 (2024A), and 2Q24A was just 297 [MS SAF Quarterlies r196]. The 2019 peak was passed only in 2025. LEAP orders were 3,302 in 2025A against 1,802 deliveries, about 1.8 times [GS GE Aerospace r53] (ratio is inference). CES equipment backlog rose from 4,818 (2022A) to 13,754 (2025A) [MS GE CES_Annual r75].
+**Supply constraints: what the files show.** Only traces. Deliveries fell from 1,570 (2023A) to 1,407 (2024A), and 2Q24A was just 297 [MS SAF Civil OE r207; Quarterlies r196]. The 2019 peak was passed only in 2025. LEAP orders were 3,302 in 2025A against 1,802 deliveries, about 1.8 times [GS GE Aerospace r53] (ratio is inference). CES equipment backlog rose from 4,818 (2022A) to 13,754 (2025A) [MS GE CES_Annual r75].
 
-**Durability: proxies only.** MS Safran assumes LEAP restoration shop visits of 400 (2024A), 1,200 (2025A) and 2,150 (2030E) [MS SAF Civil AM r160]. GS Safran has all LEAP shop visits at 1,500 (2025A) and 3,630 (2031E) [GS SAF Propulsion r193]. MS GE counts only 296 LEAP shop visits in 2025A, rising to 919 (2030E) [MS GE CES Annual_Driver r263], so the models count on different bases (inference). GS keeps the LEAP spare-engine ratio at 12% in 2025-2026, easing to 10% by 2030E [GS SAF Propulsion r79]. The LEAP fleet grows from 10,968 engines (2025A) to 23,199 (2030E) [MS SAF Civil AM r83].
+**Durability: proxies only.** MS Safran assumes LEAP restoration shop visits of 400 (2024A), 1,200 (2025A) and 2,150 (2030E) [MS SAF Civil AM r160]. GS Safran assumes all LEAP shop visits at 1,500 (2025A) and 3,630 (2031E) [GS SAF Propulsion r193]. MS GE estimates only 296 LEAP shop visits in 2025A, rising to 919 (2030E) [MS GE CES Annual_Driver r263], so the models count on different bases (inference). GS assumes a LEAP spare-engine ratio of 12% in 2025-2026, easing to 10% by 2030E; this is a GS input even for 2025 [GS SAF Propulsion r79]. The LEAP fleet grows from 10,968 engines (2025A) to 23,199 (2030E) [MS SAF Civil AM r83].
 
-**What the files do not show.** None of the four models has data or commentary on turbine blade fixes, durability kits, time on wing, castings and forgings, supplier delays or tariffs.
+**What the files do not show.** None of the four models has data or commentary on turbine blade fixes, durability kits, time on wing, castings and forgings or supplier delays. The Safran models also have nothing on tariffs.
 
 ## Investment capacity and programme risk
 
 | R&D (self-funded) | 2025A | 2026E | 2030E | Share of sales | Source |
 |---|---|---|---|---|---|
 | GE Aerospace, MS (USD m) | 1,580 | 1,861 | 2,230 | 3.7% falling to 3.0% | [MS GE ProForma_IS_Annual r82, r92] |
-| GE Aerospace, GS (USD m) | 1,581 | 1,816 | 2,507 | 3.5% | [GS GE IS r13, r69] |
+| GE Aerospace, GS (USD m) | 1,581 | 1,816 | 2,507 | 3.5% (2026E-2030E) | [GS GE IS r13, r69] |
 | Safran Propulsion, MS (EUR m) | 676 | 862 | 1,131 | 4.3% rising to 4.5% | [MS SAF Propulsion r46, r47] |
 | Safran group, MS (EUR m) | 1,412 | 1,755 | 2,317 | n/a | [MS SAF Divisional r72] |
 | Safran group, GS definition (EUR m) | 1,563 | 1,828 | 2,503 | n/a | [GS SAF Income Statement r169] |
 
 - **No next engine in the numbers.** None of the four models has a line for RISE, the Open Fan or any next narrowbody engine, and none splits CFM's R&D. R&D simply tracks sales; no step-up for a launch is modelled (inference from the flat ratios).
-- **Precedent: LEAP new engines ran at a loss for years.** MS assumes a LEAP new-engine margin (Safran share, before R&D) of -35% (2019A), -10% (2022A), 0% (2023A) and 7.5% from 2026E [MS SAF Civil OE r129]. GS assumes -20% (2021A), 0% (2025A) and 1.8% (2031E) [GS SAF Propulsion r85]. These are bank inputs, even for actual years. GS also cuts GE's new-engine margin to 2% in 2026E-2028E for the LEAP and GE9X ramp [GS GE Revenue build r233]. With first LEAP deliveries in 2016A [MS GE CES Annual_Driver r170], that is seven to nine years to break even (inference).
-- **No charges on record.** No programme cost or durability charge appears in any of the four files.
+- **Precedent: the banks model LEAP new engines at a loss for years.** MS assumes a LEAP new-engine margin (Safran share, before R&D) of -35% (2019A), -10% (2022A), 0% (2023A) and 7.5% from 2026E [MS SAF Civil OE r129]. GS assumes -20% (2021A), 0% (2025A) and 1.8% (2031E) [GS SAF Propulsion r85]. These are bank inputs, even for actual years. GS also cuts GE's new-engine margin to 2% in 2026E-2028E for the LEAP and GE9X ramp [GS GE Revenue build r233]. With first LEAP deliveries in 2016A [MS GE CES Annual_Driver r170], that is seven to nine years to break even (inference).
+- **No charges in the extracted data.** None of the series or notes extracted from the four files shows a programme cost or durability charge.
 - **Who has room (inference).** Under MS, GE returns almost all its 2026E-2030E free cash flow [MS GE Cash_Flow_Annual r45, r47, r91], and gross debt stays flat [MS GE Balance_Sheet_Annual r77]. A large launch would come out of buybacks or new debt. Safran's MS net cash rises by about EUR 15.3bn between 2025A and 2030E [MS SAF CF r70], so Safran holds the unallocated cash.
 
 ## What this means for your decisions
@@ -125,17 +125,17 @@ Caveat: the GS decline after 2032E is hard-coded, and no successor engine is mod
 All points below are inference.
 - **Do Nothing is affordable to about 2030, not to 2050.** In 2025A the aftermarket carried 75% of GE CES revenue [MS GE CES_Annual r53] and 65% of Safran Propulsion revenue [MS SAF Propulsion r81], and LEAP aftermarket is still ramping. But GS GE has LEAP deliveries falling to 1,000 by 2040E with no successor [GS GE Revenue build r9]. By the 2035 and 2045 rounds, holding share needs a new engine's fleet to follow LEAP.
 - **A new engine launch (Ducted or Open Fan) is not in either partner's budget.** The cash is there: GE's free cash flow passes USD 10bn a year from 2028E in both banks' models [MS GE Cash_Flow_Annual r91; GS GE CFLO r54], and Safran heads for EUR 16-17bn net cash by 2030E [MS SAF CF r70; GS SAF Balance Sheet r93]. Spending it means GE cuts buybacks, and Safran, as the 50/50 partner, must agree.
-- **Timing: the payoff arrives a decade or more after launch.** LEAP new engines lost money for years, and the profit came later through shop visits. An engine launched in the 2030 round earns mostly in the 2040s, just as LEAP volumes fall in the GS view.
+- **Timing: the payoff arrives a decade or more after launch.** In the banks' models LEAP new engines lost money for years, and the profit came later through shop visits. An engine launched in the 2030 round earns mostly in the 2040s, just as LEAP volumes fall in the GS view.
 - **The Boeing slot matters most.** The 737 MAX is 100% CFM [MS GE CES Annual_Driver r51], while CFM holds 52-59% of the A320neo family against the GTF in 2025A [GS SAF Propulsion r34; MS SAF Civil OE r184]. Losing a new Boeing narrowbody to a rival, including a Pratt & Whitney and Rolls-Royce Joint Venture, costs more than losing an Airbus slot. A Ducted launch is the defence if a rival engine is selected.
 - **Delivery credibility is a real but unmeasured risk.** LEAP passed its 2019 peak only in 2025 [MS GE CES Annual_Driver r170], and 2025 orders were about 1.8 times deliveries [GS GE Aerospace r53]. The files hold no durability data, so judge that risk outside these models when airframers weigh a new engine.
-- **The GEnx widebody upgrade protects a shrinking line.** Widebody services were about two-thirds the size of narrowbody services in 2025A and grow more slowly [MS GE CES Annual_Driver r295, r284]. GS has GEnx falling to 50 engines by 2040E while GE9X grows to 205 [GS GE Revenue build r13, r14]. An upgrade pays only if an airframer chooses to Re-engine the 787. GE already holds 72.5% of 787 engines [MS GE CES Annual_Driver r56].
+- **The GEnx widebody upgrade protects a shrinking line.** Widebody services were about two-thirds the size of narrowbody services in 2025A and grow more slowly [MS GE CES Annual_Driver r295, r284]. GS has GEnx falling to 50 engines by 2040E while GE9X grows to 205 [GS GE Revenue build r13, r14]. An upgrade pays only if an airframer chooses to Re-engine the 787. GE already holds 72.5% of 787 deliveries in the MS model [MS GE CES Annual_Driver r56].
 - **Keep the two partners' numbers apart in ExCo.** GE reports in dollars and Safran in euros, on different models. The banks also disagree on LEAP volumes: 2,457 (MS GE) to 3,160 (GS GE) in 2030E [MS GE CES Annual_Driver r170; GS GE Revenue build r9].
 
 ## What the models do not cover
 
 - **No CFM International accounts.** There is no standalone profit and loss, cash flow, backlog or R&D split for the Joint Venture. Each partner books its own half.
 - **No next-generation engine spending.** None of the files covers RISE, the Open Fan or a next narrowbody engine.
-- **No durability or supply data.** There is nothing on turbine blades, time on wing, castings and forgings, supplier delays or tariffs; shop visits and spare ratios are proxies only.
+- **No durability or supply data.** There is nothing on turbine blades, time on wing, castings and forgings or supplier delays, and the Safran models have nothing on tariffs; shop visits and spare ratios are proxies only.
 - **Estimated splits.** The LEAP-1A/1B split, LEAP versus CFM56 revenue, and new-engine versus aftermarket margins are bank estimates, even for actual years.
 - **Short horizon.** Financial statements stop at 2030E-2031E. The GS GE revenue build reaches 2040E and the GS Safran valuation 2036E. Nothing covers the 2045 or 2050 rounds.
 - **Thin coverage elsewhere.** There is no Capital IQ consensus, no GE installed-base or departures series, no Safran engine order backlog after 2016 [MS SAF Propulsion r40-r42], and no Pratt & Whitney or Rolls-Royce data beyond implied shares.
