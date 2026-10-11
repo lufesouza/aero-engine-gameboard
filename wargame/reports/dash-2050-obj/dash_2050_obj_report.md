@@ -3880,17 +3880,17 @@ Before this game each company's profile gained a note on the July-August 2026 an
 |---|---|---|
 | Boeing | Net debt $22.53B at end-2026 (consensus mean, 5 estimates); GS $22.55B, MS $23.01B. Mid-2026 gross debt $45.9B. | Consensus 'Net Debt'; GS BA BS r63-r64; MS BA Balance_Sheet_Annual |
 | Boeing | Consensus free cash flow 2027-2030: $5.67B, $9.86B, $13.03B, $15.04B ($45.8B over 2026-2030). Free cash flow was negative in five of the seven years 2019-2025. | Consensus 'Free Cash Flow'; MS BA Cash_Flow_Annual r77 |
-| Boeing | Net debt averaged about −$0.6B in 2010-2018, a small net cash: the historical level the objective restores. | GS BA BS r64 |
+| Boeing | Net debt averaged about −$0.6B in 2010-2018, a small net cash; the objective's historical level is $0, rounded from it. | GS BA BS r64 |
 | Boeing | The brokers split on capital allocation: GS buys back $42B in 2027-2030 and ends 2030 with $17.4B of net debt; MS buys back none and ends with $16.2B of net cash. No new airplane is in any forecast. | GS BA CFLO r45, BS r64; MS BA Balance_Sheet_Annual 'Net Debt' |
 | Airbus | Net cash in every year from 2010A to 2030E; about EUR 31.8-33.1bn in 2030E, with free cash flow above EUR 10bn. Neither model includes an A320 successor. | MS CFS r86, r61; GS Balance Sheet r65; MS Airbus r38 |
-| CFM/GE | The 737 MAX is 100% CFM; CFM holds 52-59% of the A320neo family against the GTF (2025A). GS GE has LEAP deliveries falling to 1,000 by 2040E with no successor. | MS GE CES Annual_Driver r51; GS SAF Propulsion r34; GS GE Revenue build r9 |
+| CFM/GE | The 737 MAX is 100% CFM; CFM holds 52-59% of the A320neo family against the GTF (2025A). GS GE has LEAP deliveries falling to 1,000 by 2040E with no successor. | MS GE CES Annual_Driver r51; GS SAF Propulsion r34; MS SAF Civil OE r184; GS GE Revenue build r9 |
 | CFM/GE | The aftermarket carried 75% of GE CES revenue in 2025A; GE returns about 94-124% of free cash flow. | MS GE CES_Annual r53; MS GE Cash_Flow_Annual r96 |
 | P&amp;W | On the GS legacy model the GTF loses money on every new engine sold and turns net positive only in 2028E. The 2023 durability precedent cost $5.4bn of sales. | GS RTX GTF Analysis r14, r24; MS RTX P&W_Annual r29 |
-| P&amp;W | RTX net debt is below 1x EBITDA by 2030E; $10-16bn is left after shareholder returns over 2026E-2030E. | MS RTX Balance_Sheet_Annual r82; GS RTX BS r80 |
+| P&amp;W | RTX net debt is below 1x EBITDA by 2030E; $10-16bn is left after shareholder returns over 2026E-2030E. | MS RTX Balance_Sheet_Annual r82; GS RTX BS r80; calc. from MS RTX Cash_Flow_Annual r72/r40/r41 and GS RTX CFLO r47/r34/r35 |
 | Rolls-Royce | About half of group profit rests on widebody; 85% of Trent deliveries in 2025A were for airframes with no rival engine. Company-funded R&amp;D is only £0.6-0.9bn a year to 2030E. | MS Civil r14, Civil OE r82-r87; MS IS r129 |
 | Rolls-Royce | Neither bank models a Rolls-Royce narrowbody engine (GS narrowbody units zero to 2031E). The Trent ramp cost about £3.0bn of new-engine losses over nine years. | GS Civil Aerospace r61; MS Civil OE r52 |
 
-From the analyst notes in each company's profile (wargame/profiles/&lt;company&gt;/analyst_models_2026.md), each checked against the extracted model files. MS = Morgan Stanley, GS = Goldman Sachs; A = actual, E = estimate. Money is nominal in the reporting currency. The tracker's validation: with base cash flow only it gives Boeing net debt of $16.49B at end-2027 and $6.70B at end-2028 in 2026 dollars, against consensus $16.57B and $6.90B.
+From the analyst note in each company's profile folder (analyst_models_2026.md), each checked against the extracted model files. MS = Morgan Stanley, GS = Goldman Sachs; A = actual, E = estimate. Money is nominal in the reporting currency. The tracker's validation: with base cash flow only it gives Boeing net debt of $16.49B at end-2027 and $6.70B at end-2028 in 2026 dollars, against consensus $16.57B and $6.90B.
 
 **Boeing: the analysts' cash flow decided the debt objective before the game did.**
 - The tracker reproduces consensus net debt within $0.2B and reaches zero in 2029 with no new programme. The fps then competes with returns to owners, not with debt repair, as the note predicted: "Under debt first, programme money after 2029 comes out of what would otherwise go to owners." (GS models $42B of buybacks in 2027-2030.)
@@ -3901,7 +3901,7 @@ From the analyst notes in each company's profile (wargame/profiles/&lt;company&g
 - The banks show net cash above EUR 31bn in 2030E. Airbus's agents measured NGSA against one year's free cash flow instead: $5.07B a year against a $5.2B line, 97% used. That line, with its other rules, kept the A350 Re-engine and Delay Tactics out in 2030 and 2035.
 - "Keep two sources if the board allows it": NGSA flies two.
 
-**CFM/GE: the note named its biggest risk, and it came true.**
+**CFM/GE: the note named its biggest risk, and half of it came true: Boeing's slot was shared, not lost.**
 - "Losing a new Boeing narrowbody to a rival, including a Pratt & Whitney and Rolls-Royce Joint Venture, costs more than losing an Airbus slot." Sharing fps cost CFM/GE $31.40B against the previous game.
 - "A Ducted launch is the defence if a rival engine is selected": it was launched in 2030 and is worth 10 points before re-normalising, but it could not undo selections sealed in the same round.
 

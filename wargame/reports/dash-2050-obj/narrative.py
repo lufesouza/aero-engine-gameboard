@@ -228,7 +228,7 @@ MONEY_TITLES = {
     "airbus": ("Airbus operating profit: $9.43B a year above the status quo in 2037, peaking at $10.01B in 2039, then "
                "easing to $7.12B as fps gains share"),
     "cfm": "CFM/GE engine value: $7.37B below the status quo in 2037, $15.89B below in 2040 and $24.21B below by 2060",
-    "pratt_whitney": "P&W engine value: level with the status quo until fps enters service, then $4.06B above it in 2040 and $6.27B by 2060",
+    "pratt_whitney": "P&W engine value: just above the status quo in 2037-39 (NGSA), then $4.06B above it in 2040 (fps) and $6.27B by 2060",
     "rolls_royce": "Rolls-Royce engine value: $7.33B above the status quo in 2037, $11.84B in 2040 and $17.94B by 2060",
 }
 
@@ -253,7 +253,7 @@ ANALYST_TABLE = [
      "Consensus 'Net Debt'; GS BA BS r63-r64; MS BA Balance_Sheet_Annual"),
     ("Boeing", "Consensus free cash flow 2027-2030: $5.67B, $9.86B, $13.03B, $15.04B ($45.8B over 2026-2030). Free cash flow "
      "was negative in five of the seven years 2019-2025.", "Consensus 'Free Cash Flow'; MS BA Cash_Flow_Annual r77"),
-    ("Boeing", "Net debt averaged about −$0.6B in 2010-2018, a small net cash: the historical level the objective restores.",
+    ("Boeing", "Net debt averaged about −$0.6B in 2010-2018, a small net cash; the objective's historical level is $0, rounded from it.",
      "GS BA BS r64"),
     ("Boeing", "The brokers split on capital allocation: GS buys back $42B in 2027-2030 and ends 2030 with $17.4B of net debt; "
      "MS buys back none and ends with $16.2B of net cash. No new airplane is in any forecast.",
@@ -261,13 +261,13 @@ ANALYST_TABLE = [
     ("Airbus", "Net cash in every year from 2010A to 2030E; about EUR 31.8-33.1bn in 2030E, with free cash flow above "
      "EUR 10bn. Neither model includes an A320 successor.", "MS CFS r86, r61; GS Balance Sheet r65; MS Airbus r38"),
     ("CFM/GE", "The 737 MAX is 100% CFM; CFM holds 52-59% of the A320neo family against the GTF (2025A). GS GE has LEAP "
-     "deliveries falling to 1,000 by 2040E with no successor.", "MS GE CES Annual_Driver r51; GS SAF Propulsion r34; GS GE Revenue build r9"),
+     "deliveries falling to 1,000 by 2040E with no successor.", "MS GE CES Annual_Driver r51; GS SAF Propulsion r34; MS SAF Civil OE r184; GS GE Revenue build r9"),
     ("CFM/GE", "The aftermarket carried 75% of GE CES revenue in 2025A; GE returns about 94-124% of free cash flow.",
      "MS GE CES_Annual r53; MS GE Cash_Flow_Annual r96"),
     ("P&amp;W", "On the GS legacy model the GTF loses money on every new engine sold and turns net positive only in 2028E. The "
      "2023 durability precedent cost $5.4bn of sales.", "GS RTX GTF Analysis r14, r24; MS RTX P&W_Annual r29"),
     ("P&amp;W", "RTX net debt is below 1x EBITDA by 2030E; $10-16bn is left after shareholder returns over 2026E-2030E.",
-     "MS RTX Balance_Sheet_Annual r82; GS RTX BS r80"),
+     "MS RTX Balance_Sheet_Annual r82; GS RTX BS r80; calc. from MS RTX Cash_Flow_Annual r72/r40/r41 and GS RTX CFLO r47/r34/r35"),
     ("Rolls-Royce", "About half of group profit rests on widebody; 85% of Trent deliveries in 2025A were for airframes with no "
      "rival engine. Company-funded R&amp;D is only £0.6-0.9bn a year to 2030E.", "MS Civil r14, Civil OE r82-r87; MS IS r129"),
     ("Rolls-Royce", "Neither bank models a Rolls-Royce narrowbody engine (GS narrowbody units zero to 2031E). The Trent ramp "
@@ -294,7 +294,7 @@ ANALYST_POINTS = [
      "cash flow instead: $5.07B a year against a $5.2B line, 97% used. That line, with its other rules, kept the A350 "
      "Re-engine and Delay Tactics out in 2030 and 2035.</li>"
      "<li>\"Keep two sources if the board allows it\": NGSA flies two.</li></ul>"),
-    ("CFM/GE: the note named its biggest risk, and it came true.",
+    ("CFM/GE: the note named its biggest risk, and half of it came true: Boeing's slot was shared, not lost.",
      "<ul><li>\"Losing a new Boeing narrowbody to a rival, including a Pratt &amp; Whitney and Rolls-Royce Joint "
      "Venture, costs more than losing an Airbus slot.\" Sharing fps cost CFM/GE $31.40B against the previous game.</li>"
      "<li>\"A Ducted launch is the defence if a rival engine is selected\": it was launched in 2030 and is worth 10 "
