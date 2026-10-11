@@ -12,7 +12,8 @@ sys.path.insert(0, HERE)
 import narrative as NAR  # noqa: E402
 import page_kit as K  # noqa: E402
 from make_game_html import (AF, EN, NAME, ROUNDS, FINAL, SIDES, YEARS, RYEARS, D, order_text, BRIDGE_LABEL, PEOPLE,  # noqa: E402
-                             chain_summary, SEAT, OLD, XV, lab_af, plain, PLAIN_FIELD, prev_codes)  # noqa: E402
+                             chain_summary, SEAT, OLD, XV, lab_af, plain, PLAIN_FIELD, prev_codes,
+                             unchanged_since, memo_binding_count)  # noqa: E402
 
 M = K.MINUS
 
@@ -71,7 +72,7 @@ def round_md(r):
     if fit:
         L += [tbl(["Airframe", "Engines requested", "Engines fitted", "Note"],
                   [["fps" if k == "fps" else "NGSA", f["requested"], f["fitted_if_no_change"], f["note"] or "—"] for k, f in fit.items()]), ""]
-    L += ["### Value after the round (board valuation; nobody moves afterwards)", ""]
+    L += ["### Value after the round (GM valuation; nobody moves afterwards)", ""]
     keys = []
     for s in SIDES:
         for k in r["value"][s]["bridge"]:
@@ -85,7 +86,10 @@ def round_md(r):
     rows.append(["**ΔPV, $B at 2026**"] + [f"**{n2(r['value'][s]['pv_delta'])}**" for s in SIDES])
     rows.append(["Yield"] + [f"{K.rnd(r['value'][s]['yield'], 2):.2f}%" for s in SIDES])
     L += [tbl(["Component"] + [NAME[s] for s in SIDES], rows), ""]
-    L += ["### Market shares projected after the round", ""]
+    same = unchanged_since(r)
+    if same:
+        L += [f"Market shares, financials and the year-by-year tables are unchanged since round {same['round']} ({same['year']}).", ""]
+    L += [] if same else ["### Market shares projected after the round", ""]
     yrs = ["2030", "2035", "2040", "2045", "2050", "2055", "2060"]
     sn = r["snapshots"]
     rows = []
@@ -93,22 +97,25 @@ def round_md(r):
                         ("Airbus WB", "airbus", "wb_share"), ("CFM NB engines", "cfm", "nb_share"), ("P&W NB engines", "pratt_whitney", "nb_share"),
                         ("RR NB engines", "rolls_royce", "nb_share"), ("CFM/GE WB engines", "cfm", "wb_share"), ("RR WB engines", "rolls_royce", "wb_share")]:
         rows.append([label] + [pct(sn[y][s][k]) for y in yrs])
-    L += [tbl(["Share"] + yrs, rows), ""]
-    L += ["### Financials by period (nominal $B)", ""]
+    if not same:
+        L += [tbl(["Share"] + yrs, rows), ""]
+        L += ["### Financials by period (nominal $B)", ""]
     rows = []
     for s in AF:
         for p in r["periods"][s]:
             rows.append([f"{NAME[s]} {p['period']}", f"{p['nb_units']:,.0f}", f"{p['wb_units']:,.0f}", f"{p['revenue']:,.1f}", f"{p['profit']:,.1f}",
                          f"{p['sq_profit']:,.1f}", f"{p['nonrecurring']:,.1f}"])
-    L += [tbl(["Airframer", "NB deliveries", "WB deliveries", "Revenue", "Operating profit", "Status-quo profit", "Non-recurring"], rows), ""]
+    if not same:
+        L += [tbl(["Airframer", "NB deliveries", "WB deliveries", "Revenue", "Operating profit", "Status-quo profit", "Non-recurring"], rows), ""]
     rows = []
     for s in EN:
         for p in r["periods"][s]:
             rows.append([f"{NAME[s]} {p['period']}", f"{p['nb_units']:,.0f}", f"{p['wb_units']:,.0f}", f"{p['value']:,.1f}", f"{p['sq_value']:,.1f}",
                          f"{p['nonrecurring']:,.1f}"])
-    L += [tbl(["Engine maker", "NB engines", "WB engines", "Engine lifecycle value", "Status-quo value", "R&D and write-offs"], rows), ""]
-    L += ["### Year by year", ""]
-    for s in SIDES:
+    if not same:
+        L += [tbl(["Engine maker", "NB engines", "WB engines", "Engine lifecycle value", "Status-quo value", "R&D and write-offs"], rows), ""]
+        L += ["### Year by year", ""]
+    for s in ([] if same else SIDES):
         y = r["years"][s]
         L += [f"**{NAME[s]}**", ""]
         if s in AF:
@@ -145,7 +152,7 @@ def round_md(r):
               f"- Expected scenario: {plain(x.get('expected_scenario', ''))}. Best grid plan there: {plain(x.get('best_grid_plan_in_expected_scenario', ''))}. "
               f"Premium {n2(x.get('premium_b', 0) or 0)} $B: {plain(x.get('premium_reason', ''))}",
               f"- Predictions: {plain(x.get('predictions', ''))}",
-              f"- Expected ΔPV {n2(x.get('expected_pv_b', 0) or 0)} $B; board after the round {n2(r['value'][s]['pv_delta'])} $B", ""]
+              f"- Expected ΔPV {n2(x.get('expected_pv_b', 0) or 0)} $B; GM valuation after the round {n2(r['value'][s]['pv_delta'])} $B", ""]
         om = x.get("other_moves") or []
         if om:
             L += ["- Other moves: " + "; ".join(f"{m.get('move', '')} ({'public' if m.get('public') else 'private'})" for m in om), ""]
@@ -183,7 +190,8 @@ def build(out):
                          ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_items") or []) or "—",
                          ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_vetoed") or []) or "—",
                          ", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_reverted") or []) or "—"])
-    L += [tbl(["Round, company", "Binding ExCo vetoes", "Red-line flags", "ExCo revised", "Board items", "Board vetoed", "Reverted"], rows), ""]
+    L += [tbl(["Round, company", "Binding vetoes at the veto check", "Red-line flags", "ExCo revised", "Board items", "Board vetoed", "Reverted"], rows), "",
+          f"The binding vetoes in the CFOs' and operating heads' test memos ({memo_binding_count()} in all) fell on options the CEO did not choose.", ""]
     for t, x in NAR.GOV_POINTS:
         L += [f"**{t}**", strip(x), ""]
     # equilibria and the stage game
@@ -218,19 +226,19 @@ def build(out):
         for s in SIDES:
             rows.append([f"R{i + 1} {NAME[s]}", "; ".join(order_text(s, r_old["orders"][s], prev_codes(OLD["rounds"], r_old))),
                          "; ".join(order_text(s, r_new["orders"][s], prev_codes(ROUNDS, r_new)))])
-    L += [tbl(["Round, company", "Earlier game (one strategist agent, earlier board)", "This game (ExCo and Board, new board)"], rows), ""]
+    L += [tbl(["Round, company", "Earlier game (one strategist agent, earlier dashboard)", "This game (ExCo and Board agents, new dashboard)"], rows), ""]
     if XV:
-        L += ["Final ΔPV, $B, each game's final state on both boards:", "",
-              tbl(["Company", "Earlier game, earlier board (as played)", "Earlier game's state, new board", "This game, new board (as played)",
-                   "This game's state, earlier board"],
+        L += ["Final ΔPV, $B, each game's final state on both versions of the dashboard:", "",
+              tbl(["Company", "Earlier game, earlier dashboard (as played)", "Earlier game's state, new dashboard", "This game, new dashboard (as played)",
+                   "This game's state, earlier dashboard"],
                   [[NAME[s], n2(XV["earlier_v2"][s]), n2(XV["earlier_v3"][s]), n2(XV["this_v3"][s]), n2(XV["this_v2"][s])] for s in SIDES]), ""]
     for t, x in NAR.COMPARE_POINTS:
         L += [f"**{t}**", strip(x), ""]
     L += ["## Method", "", strip(NAR.METHOD), ""]
     bc = D.get("board_check")
     if bc:
-        L += ["### Your board alone against the GM valuation, final state", "",
-              tbl(["Player", "Board alone ΔPV $B", "GM valuation ΔPV $B", "Difference"],
+        L += ["### Your dashboard alone against the GM valuation, final state", "",
+              tbl(["Player", "Dashboard alone ΔPV $B", "GM valuation ΔPV $B", "GM minus dashboard"],
                   [[NAME[s], n2(bc[s]["board"]), n2(bc[s]["gm"]), n2(bc[s]["gm"] - bc[s]["board"])] for s in SIDES]), "",
               ] + [f"- {NAME[s]}: {NAR.BOARD_WHY.get(s, '')}" for s in SIDES] + ["",
               "With a fixed 50/50 split and the board's own engine moves, the GM engine model gives the board's numbers exactly.", ""]

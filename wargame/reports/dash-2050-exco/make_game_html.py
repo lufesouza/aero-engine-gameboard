@@ -203,7 +203,7 @@ def chart_gantt():
         x0, x1 = sx(p["launch"]), sx(end)
         out.append(f'<path d="{K.hbar_path(x0, max(x1, x0 + 3), y + 4, 14)}" class="{cls}" '
                    f'{K.mark_attrs((p["status"], p["name"] + ": launched " + str(p["launch"]) + ", " + p["due_kind"] + " " + str(end), None))}/>')
-        out.append(f'<text x="{max(x1, x0 + 3) + 5:.1f}" y="{y + 15}" class="val sm">{esc(p["due_kind"])} {end}{" (cancelled)" if cancelled else ""}</text>')
+        out.append(f'<text x="{max(x1, x0 + 3) + 5:.1f}" y="{y + 15}" class="val sm">{esc(p["due_kind"])} {end}{(" (folded into the Joint Venture " + p["status"].split()[-1] + ")") if "folded" in p["status"] else (" (cancelled)" if cancelled else "")}</text>')
     out.append("</svg>")
     legend = ('<div class="legend"><span><i class="bar" style="background:var(--pos)"></i>Airframe programme</span>'
               '<span><i class="bar" style="background:var(--s1)"></i>Engine programme</span>'
@@ -317,12 +317,12 @@ def periods_table(r):
                          f"{p['sq_value']:,.1f}", f"{p['nonrecurring']:,.1f}"])
     t2 = K.table(["Engine maker, period", "NB engines", "WB engines", "Engine lifecycle value $B", "Status-quo value $B",
                   "R&D and write-offs $B"], rows, num_cols=(1, 2, 3, 4, 5))
-    return t1 + '<p class="cap">Nominal $B, summed over each period. Non-recurring spend is booked as the board books it: each airframe programme in full at its entry into service.</p>' + t2
+    return t1 + '<p class="cap">Nominal $B, summed over each period. Non-recurring spend is booked as the dashboard books it: each airframe programme in full at its entry into service.</p>' + t2
 
 
 BRIDGE_LABEL = {"nb_profit_vs_sq": "NB operating profit vs status quo", "wb_profit_vs_sq": "WB operating profit vs status quo",
                 "programme_investment": "Programme investment", "rate_hike": "737 rate increase", "delay_tactics_spend": "Delay Tactics spend",
-                "write_offs": "Cancellation write-offs", "debt_penalty": "Debt penalty (α)", "two_front_strain": "Two-front strain",
+                "write_offs": "Write-offs (cancellation or fold-in)", "debt_penalty": "Debt penalty (α)", "two_front_strain": "Two-front strain",
                 "naked_fine": "Naked Delay Tactics fine", "engine_value_vs_sq": "Engine value vs status quo", "r_and_d": "R&D",
                 "strain": "Strain", }
 
@@ -396,7 +396,7 @@ def stage_table():
                      f"Airbus {esc(x['airbus_best_response_to_played_boeing'][0])} ({K.num(x['airbus_best_response_to_played_boeing'][1])})"])
     if not rows:
         return ""
-    return ('<p class="label">The airframer stage game on the board, each round (engine makers as played; nobody moves later; ΔPV $B Boeing / Airbus)</p>'
+    return ('<p class="label">The airframer stage game on the dashboard, each round (engine makers as played; nobody moves later; ΔPV $B Boeing / Airbus)</p>'
             + K.table(["Round", "Pure equilibria", "What was played", "Best reply to the other's actual play"], rows))
 
 
@@ -407,7 +407,8 @@ def regret_detail():
         for s in SIDES:
             x = R[str(n)][s]
             act = order_text(s, ROUNDS[n - 1]["orders"][s], prev_codes(ROUNDS, ROUNDS[n - 1]))
-            rows.append([f"R{n} {esc(NAME[s])}", esc("; ".join(act)), K.num(x["actual_ex_post"]), esc(x["best_ex_post"]["plan"]),
+            best = "the actual orders (tie)" if x["regret_ex_post"] < 0.005 else x["best_ex_post"]["plan"]
+            rows.append([f"R{n} {esc(NAME[s])}", esc("; ".join(act)), K.num(x["actual_ex_post"]), esc(best),
                          K.num(x["best_ex_post"]["ex_post"]), K.num(x["regret_ex_post"]), K.num(x["regret_myopic"])])
     return K.tview("Regret by round and player", ["Round, player", "Actual orders", "Final ΔPV (actual)", "Best alternative (ex post)",
                                                   "Its final ΔPV", "Regret ex post", "Regret myopic"], rows, num_cols=[2, 4, 5, 6])
@@ -472,6 +473,28 @@ def tests_table(memo):
     return K.table(["Test", "Threshold", "Result", "Numbers"], rows) if rows else ""
 
 
+def vetoes_table(memo):
+    rows = [[escp(v.get("plan", "")), escp(v.get("ground", "")), "binding" if v.get("binding") else "not binding"]
+            for v in (memo or {}).get("vetoes") or []]
+    return ('<p><b>Vetoes on options.</b></p>' + K.table(["Option", "Ground", "Status"], rows)) if rows else ""
+
+
+def vetocheck_block(vc, names):
+    out = []
+    for seat, nm in (("cfo", names[1]), ("ops", names[2])):
+        v = (vc or {}).get(seat)
+        if not v:
+            continue
+        vt = v.get("veto") or {}
+        line = f"<b>{escp(nm)} ({SEAT[seat]}):</b> {'concurs' if v.get('concur') else 'does not concur'}"
+        if vt.get("ground"):
+            line += f"; veto {'(binding)' if vt.get('binding') else '(not binding)'}: {escp(vt['ground'])}"
+        if v.get("red_line_breach"):
+            line += f"; red-line flag: {escp(v.get('red_line', ''))}"
+        out.append(f"<p>{line}</p><p>{escp(v.get('note', ''))}</p>")
+    return ('<p class="label">Veto check on the CEO\'s decision</p>' + "".join(out)) if out else ""
+
+
 def review_table(rv):
     rows = [[escp(i.get("order_field", "")), escp(str(i.get("value", ""))), escp(i.get("decision", "")), escp(i.get("ground", "")),
              escp("; ".join(i.get("acceptable_alternatives") or []) or "—")] for i in (rv or {}).get("items") or []]
@@ -485,7 +508,7 @@ def short(t, n=260):
 
 
 def chain_summary(side, x, prev=None):
-    """One line per step: what each seat did, from the ExCo record. Long free text is shortened (full text below)."""
+    """One line per step: what each seat did, from the ExCo record. Long free text is shortened; the panel below gives it in full."""
     ex = x.get("exco") or {}
     ceo, cfo, ops, board = PEOPLE[side]
     g = ex.get("board_guidance") or {}
@@ -503,10 +526,11 @@ def chain_summary(side, x, prev=None):
             fails = [t.get("name", "") for t in m.get("tests") or [] if t.get("result") == "fail"]
             vet = [v.get("plan", "") + (" (binding)" if v.get("binding") else " (not binding)") for v in m.get("vetoes") or []]
             out.append((f"Test ({SEAT[seat]})", f"{nm} recommends: {_orders_line(side, m.get('recommended_orders'), prev)}"
-                        + (f". Options failing a test: {short('; '.join(fails), 300)}" if fails else ". No option failed a test")
-                        + (f". Vetoes: {short('; '.join(vet), 300)}" if vet else "")))
+                        + (f". Tests failed: {short('; '.join(f.rstrip('.') for f in fails), 300)}" if fails else ". No test failed")
+                        + (f". Vetoes on options: {short('; '.join(vet), 300)}" if vet else "")))
     if dec:
-        out.append(("Decide", f"{ceo}: {_orders_line(side, dec.get('orders'), prev)}"))
+        ov = [o.get("veto", "") for o in dec.get("overrides") or []]
+        out.append(("Decide", f"{ceo}: {_orders_line(side, dec.get('orders'), prev)}" + (f"; overrides: {short('; '.join(ov), 200)}" if ov else "")))
     for seat, nm in (("cfo", cfo), ("ops", ops)):
         v = vc.get(seat)
         if v:
@@ -521,13 +545,15 @@ def chain_summary(side, x, prev=None):
         out.append(("Revise", f"{ceo}: {_orders_line(side, ex['revision'].get('orders'), prev)}"))
     rv = ex.get("board_review")
     if rv and not (rv.get("items") or ex.get("board_items")):
-        out.append(("Board review", f"{board}: not called; every order is the default (a hold is never a Board item)"))
+        out.append(("Board review", f"{board}: not called; no Board item (every launch, commit or cancel order at its default)"))
     elif rv:
         items = rv.get("items") or []
         ap = [PLAIN_FIELD.get(i["order_field"], i["order_field"]) for i in items if i.get("decision") == "approve"]
         ve = [PLAIN_FIELD.get(i["order_field"], i["order_field"]) for i in items if i.get("decision") == "veto"]
+        nrec = len(rv.get("recommendations") or [])
         out.append(("Board review", f"{board}: {rv.get('overall', '')}" + (f"; approved {', '.join(ap)}" if ap else "")
-                    + (f"; vetoed {', '.join(ve)}" if ve else "") + ("" if items else " (no Board items)")))
+                    + (f"; vetoed {', '.join(ve)}" if ve else "") + ("" if items else " (no Board items)")
+                    + (f"; {nrec} recommendation{'s' if nrec != 1 else ''}" if nrec else "")))
     elif ex.get("board_items") == [] or (ex.get("board_items") is None and not rv):
         out.append(("Board review", f"{board}: no Board item (every order is the default)"))
     if ex.get("board_revision"):
@@ -540,7 +566,7 @@ def chain_summary(side, x, prev=None):
     return out
 
 
-NOT_CALLED = ('<p class="muted">Not called: every order is the default, and a hold is never a Board item. '
+NOT_CALLED = ('<p class="muted">Not called: no Board item (every launch, commit or cancel order at its default). '
               "The Board's guidance above stands as its view for the round.</p>")
 
 
@@ -569,20 +595,22 @@ def chain_block(r):
 <p class="label">{escp(ceo)} frames the round</p><p><b>Question.</b> {escp(fr.get("question", ""))}</p><p><b>Situation.</b> {escp(fr.get("situation", ""))}</p>
 <p><b>Options to test.</b></p>{_li(fr.get("options_to_test"))}<p><b>Red lines.</b></p>{_li(fr.get("red_lines"))}
 <p><b>Initial lean.</b> {escp(fr.get("initial_lean", ""))}</p>
-<p class="label">{escp(cfo)} (CFO) tests</p>{tests_table(ex.get("cfo"))}<p>{escp((ex.get("cfo") or {}).get("memo", ""))}</p>
-<p class="label">{escp(ops)} (operating head) tests</p>{tests_table(ex.get("ops"))}<p>{escp((ex.get("ops") or {}).get("memo", ""))}</p>
+<p class="label">{escp(cfo)} (CFO) tests</p>{tests_table(ex.get("cfo"))}{vetoes_table(ex.get("cfo"))}<p>{escp((ex.get("cfo") or {}).get("memo", ""))}</p>
+<p class="label">{escp(ops)} (operating head) tests</p>{tests_table(ex.get("ops"))}{vetoes_table(ex.get("ops"))}<p>{escp((ex.get("ops") or {}).get("memo", ""))}</p>
 <p class="label">{escp(ceo)} decides</p><p><b>Orders.</b> {esc(_orders_line(s, dec.get("orders"), pc))}</p><p><b>Rationale.</b> {escp(dec.get("rationale", ""))}</p>
 <p><b>Weighing the CFO.</b> {escp(((dec.get("memo_weighing") or {}).get("cfo", "")))}</p><p><b>Weighing the operating head.</b> {escp(((dec.get("memo_weighing") or {}).get("ops", "")))}</p>
 {("<p><b>Overrides.</b></p><ul>" + ovr + "</ul>") if ovr else ""}
+{vetocheck_block(ex.get("veto_checks"), PEOPLE[s])}
 <p class="label">Board review</p>{review_table(rv) or NOT_CALLED}{('<p>' + escp(rv.get("note", "")) + '</p>') if rv.get("items") else ""}
+{("<p><b>The Board's recommendations at review.</b></p>" + _li([i.get("text") for i in rv.get("recommendations") or []])) if rv.get("recommendations") else ""}
 {(review_table(ex.get("board_confirm")) and '<p class="label">Board confirmation</p>' + review_table(ex.get("board_confirm"))) or ""}
-<p class="label">Final</p><p><b>Orders.</b> {esc(_orders_line(s, x.get("orders"), pc))}</p>
+<p class="label">Final</p><p><b>Orders (as adjudicated).</b> {esc(_orders_line(s, r["orders"][s], pc))}</p>
 <p><b>Expected scenario.</b> {escp(str(x.get("expected_scenario", "")))}</p>
-<p><b>Best grid plan in that scenario.</b> {escp(str(x.get("best_grid_plan_in_expected_scenario", "")))}. <b>Premium paid:</b> {escp(K.num(x.get("premium_b", 0) or 0))} $B. {escp(str(x.get("premium_reason", "")))}</p>
+<p><b>Best grid plan in that scenario.</b> {escp(str(x.get("best_grid_plan_in_expected_scenario", "")).rstrip(". "))}. <b>Premium paid:</b> {escp(K.num(x.get("premium_b", 0) or 0))} $B. {escp(str(x.get("premium_reason", "")))}</p>
 {("<p><b>Answers to the Board.</b></p><ul>" + br + "</ul>") if br else ""}
 <p><b>Objective.</b> {escp(str(x.get("objective_note", "")))}</p>
 <p><b>Predictions.</b> {escp(str(x.get("predictions", "")))}</p>
-<p><b>Expected ΔPV.</b> {escp(K.num(x.get("expected_pv_b", 0) or 0))} $B (board after the round: {escp(K.num(r["value"][s]["pv_delta"]))} $B)</p>
+<p><b>Expected ΔPV.</b> {escp(K.num(x.get("expected_pv_b", 0) or 0))} $B (GM valuation after the round: {escp(K.num(r["value"][s]["pv_delta"]))} $B)</p>
 {("<p><b>Other moves.</b></p><ul>" + oms + "</ul>") if oms else ""}
 </div></details>''')
     return "".join(out)
@@ -602,37 +630,65 @@ def governance_table():
                          escp(", ".join(PLAIN_FIELD.get(f, f) for f in items) or "—"),
                          escp(", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_vetoed") or []) or "—"),
                          escp(", ".join(PLAIN_FIELD.get(f, f) for f in ex.get("board_reverted") or []) or "—")])
-    return K.table(["Round, company", "Binding ExCo vetoes", "Red-line flags", "ExCo revised", "Board items", "Board vetoed",
+    return K.table(["Round, company", "Binding vetoes at the veto check", "Red-line flags", "ExCo revised", "Board items", "Board vetoed",
                     "Reverted to the default"], rows)
+
+
+def unchanged_since(r):
+    """The earliest earlier round whose valuation and year-by-year projection equal this round's, if any."""
+    i = ROUNDS.index(r)
+    j = i
+    while j > 0 and ROUNDS[j - 1]["years"] == r["years"] and all(
+            ROUNDS[j - 1]["value"][s]["pv_delta"] == r["value"][s]["pv_delta"] for s in SIDES):
+        j -= 1
+    return ROUNDS[j] if j < i else None
 
 
 def round_section(r):
     n = r["round"]
+    same = unchanged_since(r)
     tl = r["timeline"]
     fit = tl["engine_fit"]
-    fit_rows = [[("fps" if k == "fps" else "NGSA"), escp(f["requested"]), escp(f["fitted_if_no_change"]), escp(f["note"] or "—")] for k, f in fit.items()]
+    pw = lambda t: _re.sub(r"\bPW\b", "P&W", str(t))
+    fit_rows = [[("fps" if k == "fps" else "NGSA"), escp(pw(f["requested"])), escp(pw(f["fitted_if_no_change"])), escp(pw(f["note"] or "—"))] for k, f in fit.items()]
     covert = [f"{k} ordered {y}" for k, y in tl["delay_tactics"].items() if y]
     nar = NAR.ROUNDS.get(n, {})
+    if same:
+        body = (f'<div class="panel"><p class="muted">Market shares, financials and the ΔPV build are unchanged since round '
+                f'{same["round"]} ({same["year"]}): see that round and the Financials section.</p></div>')
+    else:
+        body = (f'<div class="panel"><p class="label">Market shares projected after the round</p>{shares_table(r)}</div>'
+                f'<div class="panel"><p class="label">Financials projected after the round</p>{periods_table(r)}'
+                "<p class=\"label\" style=\"margin-top:14px\">How each player's ΔPV is built</p>" + bridge_table(r)
+                + "".join(year_table(r, s) for s in SIDES) + '</div>')
     return f'''<section id="r{n}"><p class="eyebrow">Round {n} · decision year {r["year"]}</p><h2>{escp(nar.get("title", f"Round {n}"))}</h2>
 <p class="lede">{nar.get("lede", "")}</p>
 <div class="stack">
 <div class="panel"><p class="label">What each player ordered</p>{decisions_table(r)}
 {('<p class="cap"><b>Covert (revealed after the game):</b> Airbus Delay Tactics ' + escp(", ".join(covert)) + ".</p>") if covert else ""}</div>
-<div class="grid2"><div class="panel"><p class="label">Value after the round (board; nobody moves later)</p>{value_table(r)}</div>
+<div class="grid2"><div class="panel"><p class="label">Value after the round (GM valuation; nobody moves later)</p>{value_table(r)}</div>
 <div class="panel"><p class="label">Engines on the new narrowbodies</p>{K.table(["Airframe", "Requested", "Fitted", "Note"], fit_rows) if fit_rows else '<p class="muted">No new narrowbody launched yet.</p>'}</div></div>
-<div class="panel"><p class="label">Market shares projected after the round</p>{shares_table(r)}</div>
-<div class="panel"><p class="label">Financials projected after the round</p>{periods_table(r)}<p class="label" style="margin-top:14px">How each player's ΔPV is built</p>{bridge_table(r)}
-{"".join(year_table(r, s) for s in SIDES)}</div>
-<div class="panel"><p class="label">How each company decided: Board guidance, ExCo, Board review (private during the game)</p>{chain_block(r)}</div>
+{body}
+<div class="panel"><p class="label">How each company decided: Board guidance, ExCo, Board review (private during the game)</p>
+<p class="cap">In the agents' own words. S1, S2, … are the scenario columns of that company's own payoff grid in its brief (they differ by
+company); ids in brackets are the agents' evidence citations; order names are shown in plain words.</p>{chain_block(r)}</div>
 </div></section>'''
+
+
+def memo_binding_count():
+    """Binding vetoes marked in the CFOs' and operating heads' test memos, over the whole game."""
+    return sum(1 for r in ROUNDS for s in SIDES for seat in ("cfo", "ops")
+               for v in ((((r["returned"].get(s) or {}).get("exco") or {}).get(seat) or {}).get("vetoes") or []) if v.get("binding"))
 
 
 def governance_section():
     return (f'<section id="exco"><h2>How the companies decided</h2><p class="lede">{NAR.GOV_LEDE}</p><div class="stack">'
             f'<div class="panel"><p class="label">ExCo vetoes, revisions and Board votes, by round and company</p>{governance_table()}'
-            '<p class="cap">A Board item is any order that differs from the default (hold). A binding ExCo veto or a red-line flag '
-            'sends the decision back to the CEO for one revision; a Board veto sends it back once more, and a still-vetoed item '
-            'reverts to the default.</p></div>'
+            '<p class="cap">A Board item is any order that differs from its default (hold, or none for Delay Tactics); an engine code rides '
+            'with its launch and is never a Board item on its own. A binding veto or a red-line flag at the veto check (the CFO\'s and '
+            'operating head\'s check of the CEO\'s actual decision) sends it back to the CEO for one revision; a Board veto sends it back '
+            'once more, and a still-vetoed item reverts to the default. The binding vetoes in the CFOs\' and operating heads\' test memos '
+            f'({memo_binding_count()} in all) fell on options the CEO did not choose, so none appears here.</p></div>'
             f'<div class="bl">{"".join(f"<div class=panel><div><b>{esc(t)}</b>{x}</div></div>" for t, x in NAR.GOV_POINTS)}</div>'
             '</div></section>')
 
@@ -646,11 +702,13 @@ def equilibria_panel():
     t1 = K.table(["Snapshot (default dates)", "Airbus", "Boeing", "Yield Airbus / Boeing"], rows)
     rows = [[f"Pure Nash {i + 1}", esc(e["cfm"]), esc(e["pw"]), esc(e["rr"]), f'{e["yield_cfm"]}% / {e["yield_rr"]}%']
             for i, e in enumerate(bd.get("engine_pure") or [])]
-    t2 = K.table(["Snapshot engine game", "CFM/GE", "P&amp;W", "Rolls-Royce", "Yield CFM / RR"], rows)
+    t2 = K.table(["Snapshot engine game, engine selection (7, 6)", "CFM/GE", "P&amp;W", "Rolls-Royce", "Yield CFM / RR"], rows)
     inp = FINAL["board_inputs"]
     eis = inp["eis"]
     played = (f'<p class="cap">Where the game ended, as a board cell: Airbus {esc(lab_af(inp["a"]))}; Boeing {esc(lab_af(inp["b"]))}; '
-              f'at fps {eis[0]}, NGSA {eis[1]}, 787 Re-engine {eis[2]}, A350 Re-engine {eis[3]} (unlaunched Re-engines at the snapshot date).</p>')
+              f'at fps {eis[0]}, NGSA {eis[1]}, 787 Re-engine {eis[2]}, A350 Re-engine {eis[3]} (unlaunched Re-engines at the snapshot date); '
+              f'engine selection ({FINAL["timeline"]["codes"].get("fps")}, {FINAL["timeline"]["codes"].get("ngsa")}) with the P&amp;W-Rolls-Royce Joint Venture. '
+              'The engine moves listed are narrowbody; in the snapshot\'s engine Pure Nash both widebody engines Do Nothing (GEnx and Trent).</p>')
     return ('<p class="label">Your snapshot\'s equilibria (default dates: fps 2041, NGSA 2037, Re-engines 2042), solved on the board</p>'
             + t1 + f'<p class="cap">{bd.get("airframer_near_count", 0)} Near-Nash cells besides (ε 1%). Engine game: '
             f'{len(bd.get("engine_pure") or [])} Pure Nash and {bd.get("engine_near_count", 0)} Near-Nash (ε 5%).</p>' + t2 + played)
@@ -674,19 +732,31 @@ def compare_section():
         for s in SIDES:
             rows.append([f"R{i + 1} {esc(NAME[s])}", "<br>".join(esc(t) for t in order_text(s, r_old["orders"][s], prev_codes(OLD["rounds"], r_old))),
                          "<br>".join(esc(t) for t in order_text(s, r_new["orders"][s], prev_codes(ROUNDS, r_new)))])
-    t1 = K.table(["Round, company", "Earlier game: one strategist agent, earlier board", "This game: ExCo and Board, new board"], rows)
+    t1 = K.table(["Round, company", "Earlier game: one strategist agent, earlier dashboard", "This game: ExCo and Board agents, new dashboard"], rows)
     t2 = ""
     if XV:
         rows = [[esc(NAME[s]), K.num(XV["earlier_v2"][s]), K.num(XV["earlier_v3"][s]), K.num(XV["this_v3"][s]), K.num(XV["this_v2"][s])]
                 for s in SIDES]
-        t2 = ('<p class="label" style="margin-top:14px">Final ΔPV, $B: each game\'s final state valued on both boards</p>'
-              + K.table(["Company", "Earlier game on the earlier board (as played)", "Earlier game's state on the new board",
-                         "This game on the new board (as played)", "This game's state on the earlier board"], rows, num_cols=(1, 2, 3, 4))
-              + '<p class="cap">Reading across a row on one board isolates the decisions; reading the same game on both boards isolates '
-                'the board change. A state carries over as it stands: the same programmes, dates, engine selections and covert '
-                'moves, revalued.</p>')
+        t2 = ('<p class="label" style="margin-top:14px">Final ΔPV, $B: each game\'s final state valued on both versions of the dashboard</p>'
+              + K.table(["Company", "Earlier game on the earlier dashboard (as played)", "Earlier game's state on the new dashboard",
+                         "This game on the new dashboard (as played)", "This game's state on the earlier dashboard"], rows, num_cols=(1, 2, 3, 4))
+              + '<p class="cap">Reading across a row on one version isolates the decisions; reading the same game on both versions isolates '
+                'the dashboard change. A state carries over as it stands: the same programmes, dates, engine selections and covert '
+                'moves, revalued. Boeing\'s +0.66 and −0.66 are a coincidence (+0.663 and −0.662), not a sign error.</p>')
+    of, nf = OLD["rounds"][-1], FINAL
+    rows = []
+    for lab, side, key in (("Boeing narrowbody", "boeing", "nb_share"), ("CFM/GE narrowbody engines", "cfm", "nb_share"),
+                           ("P&amp;W narrowbody engines", "pratt_whitney", "nb_share"), ("Rolls-Royce narrowbody engines", "rolls_royce", "nb_share"),
+                           ("CFM/GE widebody engines", "cfm", "wb_share")):
+        rows.append([lab] + [f'{pct(g["snapshots"][str(y)][side][key])}' for y in (2040, 2045, 2050) for g in (of, nf)])
+    t3 = K.table(["Share", "2040 earlier", "2040 this", "2045 earlier", "2045 this", "2050 earlier", "2050 this"], rows, num_cols=tuple(range(1, 7)))
+    rows = [[esc(NAME[s]), f'{sum(o["met"] for o in of["objectives"][s])} of {len(of["objectives"][s])}',
+             f'{sum(o["met"] for o in nf["objectives"][s])} of {len(nf["objectives"][s])}'] for s in SIDES]
+    t4 = K.table(["Company", "Objectives met, earlier game", "Objectives met, this game"], rows)
     return (f'<section id="compare"><h2>Against the earlier game</h2><p class="lede">{NAR.COMPARE_LEDE}</p><div class="stack">'
             f'<div class="panel"><p class="label">Orders, round by round</p>{t1}</div><div class="panel">{t2}</div>'
+            f'<div class="panel"><p class="label">Market outcome of both games (final state)</p>{t3}{t4}'
+            '<p class="cap">The earlier game is run dash-2050, reported in wargame/reports/dash-2050/dash_2050_wargame.html.</p></div>'
             f'<div class="bl">{"".join(f"<div class=panel><div><b>{esc(t)}</b>{x}</div></div>" for t, x in NAR.COMPARE_POINTS)}</div>'
             '</div></section>')
 
@@ -697,13 +767,15 @@ def board_table():
         return ""
     why = NAR.BOARD_WHY
     rows = [[esc(NAME[s]), K.num(bc[s]["board"]), K.num(bc[s]["gm"]), K.num(bc[s]["gm"] - bc[s]["board"]), esc(why[s])] for s in SIDES]
-    return ('<h3>Your board alone against the GM valuation, final state</h3>'
-            + K.table(["Player", "Board alone, ΔPV $B", "GM valuation, ΔPV $B", "Difference", "Why"], rows, num_cols=(1, 2, 3))
-            + f'<p class="cap">The board alone means evaluate_scenario() at the final entry-into-service dates ({", ".join(str(x) for x in bc["_engine_inputs"]["eis"])}: '
-              'fps, NGSA, 787 Re-engine, A350 Re-engine) for the airframers, and simulate() with the final engine selections '
-              f'(codes {bc["_engine_inputs"]["codes"][0]} and {bc["_engine_inputs"]["codes"][1]}) and moves at the board\'s fixed 50/50 split for the '
-              'engine makers. With a fixed 50/50 split the GM engine model gives the board\'s numbers exactly. Parts are rounded and may not '
-              'add exactly to the totals.</p>')
+    return ('<h3>Your dashboard alone against the GM valuation, final state</h3>'
+            + K.table(["Player", "Dashboard alone, ΔPV $B", "GM valuation, ΔPV $B", "GM minus dashboard", "Why"], rows, num_cols=(1, 2, 3))
+            + f'<p class="cap">The dashboard alone means evaluate_scenario() at the game\'s dates (fps {bc["_engine_inputs"]["eis"][0]}, NGSA {bc["_engine_inputs"]["eis"][1]}; '
+              f'the unlaunched Re-engines at the dashboard default {bc["_engine_inputs"]["eis"][2]}) for the airframers, and simulate() with the final engine '
+              f'selections (codes {bc["_engine_inputs"]["codes"][0]} and {bc["_engine_inputs"]["codes"][1]}) and moves at the dashboard\'s fixed 50/50 split for the '
+              'engine makers. With every programme ready at the dashboard\'s entry-into-service dates and a fixed 50/50 split, the GM engine model '
+              'gives the dashboard\'s numbers exactly. The Joint Venture step here is measured from the dashboard-alone baseline (P&amp;W locked to '
+              'GTF2 Solo), so it differs from the Joint Venture\'s value quoted elsewhere (+$5.51B for P&amp;W, +$2.29B for Rolls-Royce, on the '
+              'game\'s year-by-year split). Parts are rounded and may not add exactly to the totals.</p>')
 
 
 def audit_table():

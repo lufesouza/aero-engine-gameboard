@@ -206,8 +206,8 @@ def programme_rows(state, year):
             status = "folded into the Joint Venture %d" % r["cancel"]
         due = r.get("eis", r.get("ready"))
         if status is None:
-            status = ("in service since %d" % due) if due <= year else ("in development; %s %d" % (
-                "EIS" if "eis" in r else "ready", due))
+            status = (("in service since %d" if "eis" in r else "ready since %d") % due) if due <= year else (
+                "in development; %s %d" % ("EIS" if "eis" in r else "ready", due))
         name = PROG_LABEL.get(base, base)
         if base == "fps":
             name += " — " + {"7yr": "7-year ramp-up", "10yr": "10-year ramp-up", "embraer": "via Embraer"}[r["variant"]]
@@ -322,7 +322,7 @@ def objective_status(side, state, v):
         out.append(("Hold the 50/50 NB split: Boeing NB share ≥ 50% in 2040, 2045, 2050",
                     w >= 0.5 - 1e-9, "worst year %s (%s)" % (pct(w), ", ".join("%d %s" % (y, pct(sh[y])) for y in (2040, 2045, 2050)))))
         w2 = min(sh.values())
-        out.append(("Defend incumbency: Boeing NB share ≥ 40% (status quo) in 2030-2050", w2 >= 0.4 - 1e-9,
+        out.append(("Defend incumbency: Boeing NB share ≥ 40% (status quo) in 2030, 2035, 2040, 2045 and 2050", w2 >= 0.4 - 1e-9,
                     "worst year %s" % pct(w2)))
     elif side == "airbus":
         sh = {y: af[y]["airbus"]["nb_share"] for y in (2030, 2035, 2040, 2045, 2050)}

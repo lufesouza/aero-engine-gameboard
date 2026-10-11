@@ -1,8 +1,8 @@
-# Airbus wins on value as NGSA leads fps by three years; Boeing settles at 47% of narrowbodies, and no veto stops a decision
+# Airbus wins on value as NGSA leads fps by three years; Boeing settles at 47% of narrowbodies, and no veto overturns a CEO's decision
 
 BOEING PROPRIETARY. Boeing Product Development war game on the narrowbody/widebody game-theory dashboard, played by ExCo and Board agents.
 
-Airbus won on value (ΔPV +$23.37B, against Boeing's +$0.66B). Rolls-Royce had the best yield (118.68%, ΔPV +$20.55B). CFM/GE lost most (−$38.29B); Pratt & Whitney (P&W) ended at −$2.93B. Why: Boeing launched fps in 2030 on the 10-year ramp-up, where its Board had recommended the 7-year, so NGSA (in service 2037) leads fps (2040) by three years, and Boeing settles at 47% of narrowbody deliveries from 2049. In 2035 P&W and Rolls-Royce formed a Joint Venture, on conditions both their Boards had set in 2030; it cost CFM/GE $7.09B. Twenty AI agents played four sealed rounds (2030, 2035, 2045 and 2050) on your dashboard, each company as an executive committee (ExCo) of CEO, CFO and operating head under a Board agent. No veto stopped a decision, and the Boards approved all nine orders put to them. The record shows the limits came earlier: each Board named in advance the orders it would veto, and no CEO ordered one. Whether those limits changed any choice is not observed: every final order was the CEO's opening lean.
+Airbus won on value (ΔPV +$23.37B, against Boeing's +$0.66B). Rolls-Royce had the best yield (118.68%, ΔPV +$20.55B). CFM/GE lost most (−$38.29B); Pratt & Whitney (P&W) ended at −$2.93B. Why: Boeing launched fps in 2030 on the 10-year ramp-up, where its Board had recommended the 7-year, so NGSA (in service 2037) leads fps (2040) by three years, and Boeing settles at 47% of narrowbody deliveries from 2049. In 2035 P&W and Rolls-Royce formed a Joint Venture, on conditions both their Boards had set in 2030; it cost CFM/GE $7.09B. Twenty AI agents played four sealed rounds (2030, 2035, 2045 and 2050) on your dashboard, each company as an executive committee (ExCo) of CEO, CFO and operating head under a Board agent. No veto overturned a CEO's decision, and the Boards approved all nine orders put to them. The limits came earlier: each Board named in advance the orders it would veto, and no CEO ordered one; the CFOs' and operating heads' binding vetoes (58 in their test memos) struck options before the CEOs chose. Whether those limits changed any choice is not observed: every final order was the CEO's opening lean.
 
 ## Summary
 
@@ -15,7 +15,7 @@ Airbus won on value (ΔPV +$23.37B, against Boeing's +$0.66B). Rolls-Royce had t
 | Rolls-Royce | +20.55 | 118.68% | 2 of 2 |
 
 **Boeing took the 10-year ramp-up against its Board's advice, and NGSA leads by three years.**
-On the dashboard the two ramps were $0.46B apart in Boeing's expected case, inside the $1B margin its rules treat as a tie, so the CEO chose on his stated preferences.
+On the dashboard the two ramps were $0.46B apart in Boeing's expected case, which was also its worst (Airbus re-engining the A350 beside NGSA): inside the $1B margin its rules treat as a tie. Where Airbus held, the 10-year led by $1.30B. The CEO chose on his stated preferences.
 - The Boeing Board recommended the 7-year ramp for its better worst case (−$1.50B against −$1.96B if Airbus re-engined the A350 beside NGSA), but said it would approve either.
 - The CEO agent, profiled on Kelly Ortberg, chose the 10-year: a bill $4.68B smaller ($60.32B against $65.00B) and about $6.0B a year of spend against $9.3B. He logged the $0.46B he gave up as a premium paid for that preference. His CFO (Jay Malave) and operating head (Stephanie Pope) recommended the same, and the Board approved his reasons.
 - Malave's own worst-column test preferred the 7-year, as the Board did. He set it aside on "balance sheet first", recommended the 10-year, and "would not veto the 7-year".
@@ -40,17 +40,18 @@ Boeing put fps on CFM alone. Airbus opened NGSA to all three makers, on its Boar
 - CFM/GE falls from 76% of narrowbody engines to 51.7% in 2037 and a low of 50.5% in 2039. It recovers to 56.8% from 2049 as Boeing's CFM-only fps gains share. It keeps a majority in every year, narrowly.
 - P&W and Rolls-Royce share the rest equally: 24.1% each in 2037, 21.6% from 2049. Rolls-Royce enters from 0%. P&W is above its status-quo 24% only in 2037-41.
 - CFM/GE ends −$38.29B: $32.29B of engine value lost against the status quo (the narrowbody loss net of the GEnx widebody gain), plus $4B of ducted-engine R&D and a $2B strain charge for three live programmes.
+- The Embraer partnership (a CFM engine offered for an Embraer airframe) adds 5 points to CFM/GE's narrowbody share before re-normalising, from 2037; it has no R&D on the dashboard.
 - P&W and Rolls-Royce launched only once NGSA selected them, so no engine was built without an airframe.
 
 **Nobody re-engined a widebody, and nobody used Delay Tactics.**
 Both airframers held, each on its own rules. In 2045 and 2050 neither Re-engine cleared its own company's $1B launch bar even if the rival held, and both CEOs said the hold did not rest on the rival.
-- Boeing: its rule allows one development at a time, and fps was in development until 2040. In 2045 and 2050 its Board would have vetoed the 787 Re-engine on its business case.
+- Boeing: in 2030 the CEO ruled out a second development beside fps in the first round; in 2035 a 787 Re-engine would have overlapped fps by 5 years, against its 2-year limit. In 2045 and 2050 its Board would have vetoed the 787 Re-engine on its business case.
 - Airbus: the A350 Re-engine fell short of the $1B bar, and its CFO and operating head each opposed it with a binding veto in their memos: Toepfer on his added-move test, Wagner because no widebody engine would be ready.
 - Rolls-Royce would spend nothing on a new widebody engine without a Re-engine on the record. With Wagner's readiness test, that is the one mutual wait in the record (observed).
-- Delay Tactics: the Airbus Board ruled out the bottleneck on integrity. In 2030 it ruled out poaching too: with no fps yet on the record, one move risked the $48.32B fine. In 2035 poaching was worth +$1.65B, but it took peak spend $0.07B over the Board's $5.2B cash line, and Faury kept the team's stricter condition, which on its own keeps poaching off.
+- Delay Tactics: the Airbus Board ruled out the bottleneck on integrity. In 2030 it ruled out poaching too: with no fps yet on the record, one move risked the $48.32B fine. In 2035 poaching was worth +$1.65B on Airbus's grid, but three things each barred it: it took peak spend $0.07B over the Board's $5.2B cash line, the CFO's memo vetoed it (binding), and Faury kept the team's stricter condition. He and the Board named cash as decisive.
 - Measured ex post, the 2030 holds cost Boeing $2.20B and Airbus $3.30B (regret table).
 
-**No veto stopped a decision: the Boards set their limits in advance, and no CEO crossed them.**
+**No veto overturned a CEO's decision: the Boards set their limits in advance, and no CEO crossed them.**
 The CFOs' and operating heads' binding vetoes ruled options out before the CEO chose, never his opening lean. Details under How the companies decided.
 - Nine orders went to a Board (seven in 2030, two in 2035), and the Boards approved all nine. The veto checks on the CEOs' decisions raised no binding veto or red-line flag, so nothing was revised or reverted.
 - Each Board's guidance named, with numbers, the orders it would veto. None of them was ordered: among them a 737 rate increase beside fps, Delay Tactics, an A350 Re-engine beside NGSA, and a 787 Re-engine in 2045.
@@ -78,7 +79,7 @@ The CFOs' and operating heads' binding vetoes ruled options out before the CEO c
 | Player | Metric | Status | Detail |
 |---|---|---|---|
 | Boeing | Hold the 50/50 NB split: Boeing NB share ≥ 50% in 2040, 2045, 2050 | not met | worst year 38.0% (2040 38.0%, 2045 43.0%, 2050 47.0%) |
-| Boeing | Defend incumbency: Boeing NB share ≥ 40% (status quo) in 2030-2050 | not met | worst year 38.0% |
+| Boeing | Defend incumbency: Boeing NB share ≥ 40% (status quo) in 2030, 2035, 2040, 2045 and 2050 | not met | worst year 38.0% |
 | Airbus | Defend the 60/40 edge: Airbus NB share ≥ 60% in 2040, 2045, 2050 | not met | worst year 53.0% (2040 62.0%, 2045 57.0%, 2050 53.0%) |
 | Airbus | Protect the A320 family: ≥ 60% in every listed year before NGSA enters service | met | worst counted year 60.0% |
 | CFM/GE | Dominate NB engines: CFM NB engine share ≥ 50% in 2040, 2045, 2050 | met | worst year 51.1% |
@@ -102,7 +103,7 @@ The CFOs' and operating heads' binding vetoes ruled options out before the CEO c
 
 The chain never needed its later steps: no binding veto at the veto check, red-line flag, revision, Board veto or reversion in 20 company-rounds. Each company ran the same chain every round. The Board gave guidance. The CEO framed the choice, and the CFO and operating head tested the options independently. The CEO decided; the CFO and operating head then ran a veto check on that decision, and the CEO could revise once. Any order other than hold then went to the Board, with one more revision and a reversion to the default if a Board veto stood. Two kinds of veto appear below. In their test memos the CFO and operating head could mark any option a veto, some binding; the CEOs treated the binding ones as ruling those options out before choosing. Only the veto check on the CEO's actual decision, or a Board review, could send a decision back, and neither did. The record shows what came earlier: each Board's guidance, and the tests the CEO wrote into his opening framing. Whether they changed any choice is not observed. Names below are the agents profiled on those executives, not the people.
 
-| Round, company | Binding ExCo vetoes | Red-line flags | ExCo revised | Board items | Board vetoed | Reverted |
+| Round, company | Binding vetoes at the veto check | Red-line flags | ExCo revised | Board items | Board vetoed | Reverted |
 |---|---:|---:|---:|---|---:|---:|
 | R1 Boeing | — | — | — | fps | — | — |
 | R1 Airbus | — | — | — | NGSA | — | — |
@@ -125,6 +126,8 @@ The chain never needed its later steps: no binding veto at the veto check, red-l
 | R4 Pratt & Whitney | — | — | — | — | — | — |
 | R4 Rolls-Royce | — | — | — | — | — | — |
 
+The binding vetoes in the CFOs' and operating heads' test memos (58 in all) fell on options the CEO did not choose.
+
 **The Boards set the limits in advance, with numbers.**
 - Each Board's guidance listed the orders it would veto and why, with the item's value in each case. No CEO submitted one of them.
 - The CEOs answered each Board recommendation in writing: 167 answers, of which one says "Not taken".
@@ -139,6 +142,7 @@ The chain never needed its later steps: no binding veto at the veto check, red-l
 
 **Boeing's ramp: the one open divergence from a Board.**
 - The Board: "We therefore recommend the ramp with the higher worst column", the 7-year, and "If you choose the 10-year, state why in the rationale."
+- The Board's guidance also said the 7-year was better by $0.05B in S5 (Airbus Delay Tactics). Its own plan rows show the opposite (10-year −$0.78B, 7-year −$0.83B), as Ortberg noted. Its case rested on the worst column, which this does not change.
 - Ortberg chose the 10-year, as he had leaned from the start. Entering service alongside a 2037 NGSA "would time our airplane to theirs, which I will not do."
 - Malave's own worst-column test preferred the 7-year, as the Board did. He set it aside: "Fully restoring the health of our balance sheet comes first", and "I would not veto the 7-year." Pope: "The 7-year also passes every test of mine."
 - The Board approved: "We recommended the 7-year ramp; the CEO answered with reasons, which is not a veto ground." It recorded the incumbency objective as not met, with Boeing below 40% for some years.
@@ -147,6 +151,7 @@ The chain never needed its later steps: no binding veto at the veto check, red-l
 **The Joint Venture: matching private conditions, one public trigger.**
 - 2030, the RTX Board (the Board of P&W's parent): "No Joint Venture commit until Rolls-Royce's commitment is on the record or a live airframe carries a Rolls-Royce code". The Rolls-Royce Board: a commitment "fails partner alignment" until the same holds for P&W. Both were private guidance.
 - 2035: NGSA's selection of all three makers met the airframe clause for both. Neil Mitchill, P&W's CFO, had opposed a commitment in his 2030 memo for booking unproven upside: "That condition is met, so the objection is cleared." Helen McCabe, Rolls-Royce's CFO, co-signed the commitment in her memo.
+- Chris Calio, P&W's CEO, had flagged his own red line at framing: a Joint Venture shares risk and investment, never the gear or core. In his decision he rebutted it, since GTF2 folds in, and wrote its condition into the terms: the gear and core stay one P&W module.
 - The RTX Board recommended the commitment in 2035. The Rolls-Royce Board "would approve a commit, but we do not press it". Its CEO's red line allowed one once a live airframe's engine selection included P&W, the Board's own partner test.
 - Both Boards approved: on their grids the commitment was never below holding.
 
@@ -193,24 +198,24 @@ Where the game ended, as a board cell: Airbus Launch NGSA + Do Nothing A350; Boe
 **The played outcome is on none of the snapshot's equilibrium lists.**
 - Your snapshot's four Pure Nash all pair fps on the 10-year ramp with NGSA plus one Delay Tactics move, with one airframer re-engining.
 - The game's cell, with no Delay Tactics and no Re-engine, is neither Pure nor Near-Nash: not at the snapshot's dates (Airbus +$25.05B, Boeing −$0.06B), and not at the game's own fps date of 2040 (+$23.37B, +$0.66B).
-- Moving fps from 2041 to 2040 cuts the Near-Nash from 12 to 8, and every remaining one has Delay Tactics. One Delay Tactics move is worth $1.45B to Airbus at 2041, inside the dashboard's Near-Nash band of 1% of value ($1.5B), and $1.57B at 2040, outside it.
+- Moving fps from 2041 to 2040 cuts the Near-Nash from 12 to 8, and every remaining one has Delay Tactics. In the snapshot's cell, one Delay Tactics move is worth $1.45B to Airbus at 2041, inside the dashboard's Near-Nash band of 1% of value ($1.5B), and $1.57B at 2040, outside it.
 
 **The stage game is Chicken on the widebody through 2050.**
 - In every round the two pure equilibria have one airframer re-engine and the other hold. Both survive to 2050 on this dashboard; on the earlier version only Airbus re-engining was left by 2050.
 - 2045: Boeing gains $0.29B by re-engining if Airbus holds, and loses $1.26B if Airbus re-engines too. Airbus gains $0.89B, or loses $0.50B.
 - 2050: Boeing gains $0.04B or loses $1.00B; Airbus gains $0.57B or loses $0.42B.
-- Both holding was within $1B of each side's best reply in 2045 and 2050, the only Near-Nash cell in those rounds. In 2030 and 2035 it was not: Airbus's best reply was worth $3.30B and $3.19B more.
+- Both holding was within $1B of each side's best reply in 2045 and 2050 (the stage game's $1B band; the dashboard's own Near-Nash band is 1% of value), the only such cell in those rounds. In 2030 and 2035 it was not: Airbus's best reply was worth $3.30B and $3.19B more.
 
 **Regret: Airbus gave up most, $3.30B in 2030, in a Delay Tactics move and the A350 Re-engine.**
 - Boeing: $2.20B in 2030, falling to $0.04B in 2050, all from the 787 Re-engine. It was kept out by the one-development-at-a-time rule and the Board's downside test in 2030, by the 2-year overlap limit in 2035, and in 2045 and 2050 by the Board's $1B business case (and its downside test in 2045) and Ortberg's tie-break toward doing less.
 - With Boeing's other orders as played, the 7-year ramp was worth $0.46B more, its logged premium. Regret counts the best full set of orders, a 787 Re-engine with the 10-year ramp (+$2.86B against +$2.39B with the 7-year), so the ramp does not appear in it.
-- Airbus: $3.30B in 2030 and $3.19B in 2035, from one Delay Tactics move and the A350 Re-engine together; either alone was worth about $1.5B to $1.7B. Then $0.89B and $0.57B for the A350 Re-engine.
+- Airbus: $3.30B in 2030 and $3.19B in 2035, from one Delay Tactics move and the A350 Re-engine together; on its 2030 and 2035 grids either alone was worth about $1.5B to $1.7B. Then $0.89B and $0.57B for the A350 Re-engine.
 - Rolls-Royce: $1.71B in 2030, exactly its fold-in write-off. Holding UltraFan NB in 2030 and joining in 2035 would have brought the same Joint Venture without it. Had no Joint Venture formed, holding would have left it at −$0.56B, so the conditional launch was right when made.
 - P&W's GTF2 had spent $1.67B by 2035, under its $2B Joint Venture share, so P&W wrote off nothing. Rolls-Royce had spent $5.71B against a $4B share.
 
 **Calibration: the airframers were exact on the case that came true; the engine makers missed by up to $19.21B in 2030.**
 - Airbus expected +$23.37B in 2030 and got +$23.37B. Boeing expected −$1.96B, in the case where Airbus also re-engined the A350, which the Airbus Board had ruled out in private guidance Boeing could not see. Its figure for the case that came true, +$0.66B, was exact.
-- The airframers' own logged premiums and the value their fixed rules cost match the game master's regret to within $0.01B in every round.
+- The airframers' own logged costs of their fixed rules (2030-35) and premiums (2045-50) each match the game master's regret to within $0.01B. Boeing's 2030 ramp premium is not regret (above).
 - The engine makers missed badly in 2030. CFM/GE expected −$50.41B and got −$31.20B; P&W +$3.15B against −$8.44B; Rolls-Royce +$3.37B against +$18.26B. The actual selection (fps on CFM alone, NGSA on all three) was not a case in P&W's or Rolls-Royce's grid.
 - In 2035 each put "rivals hold" first and under-weighted the other's Joint Venture commitment: P&W expected −$10.14B and got −$2.93B, Rolls-Royce +$15.99B against +$20.55B. From 2045 every company was within $1.31B, and all but CFM/GE within $0.05B.
 
@@ -248,12 +253,12 @@ Where the game ended, as a board cell: Airbus Launch NGSA + Do Nothing A350; Boe
 
 | Programme | Launched | Due | Status |
 |---|---:|---|---|
-| CFM ducted engine | 2030 | ready 2036 | in service since 2036 |
-| CFM-Embraer partnership | 2030 | ready 2037 | in service since 2037 |
-| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | in service since 2033 |
+| CFM ducted engine | 2030 | ready 2036 | ready since 2036 |
+| CFM-Embraer partnership | 2030 | ready 2037 | ready since 2037 |
+| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | ready since 2033 |
 | NGSA (Airbus) | 2030 | EIS 2037 | in service since 2037 |
-| P&W GTF2 (Solo) | 2030 | ready 2036 | in service since 2036 |
-| RR UltraFan NB (Solo) | 2030 | ready 2037 | in service since 2037 |
+| P&W GTF2 (Solo) | 2030 | ready 2036 | ready since 2036 |
+| RR UltraFan NB (Solo) | 2030 | ready 2037 | ready since 2037 |
 | fps (Boeing) — 10-year ramp-up | 2030 | EIS 2040 | in service since 2040 |
 
 | Airframe | Engines requested | Engines fitted | Note |
@@ -261,7 +266,7 @@ Where the game ended, as a board cell: Airbus Launch NGSA + Do Nothing A350; Boe
 | fps | CFM | CFM | — |
 | NGSA | RR, PW and CFM | CFM + PW + RR | — |
 
-### Value after the round (board valuation; nobody moves afterwards)
+### Value after the round (GM valuation; nobody moves afterwards)
 
 | Component | Boeing | Airbus | CFM/GE | Pratt & Whitney | Rolls-Royce |
 |---|---:|---:|---:|---:|---:|
@@ -531,12 +536,12 @@ Where the game ended, as a board cell: Airbus Launch NGSA + Do Nothing A350; Boe
 |---|---|
 | Board guidance | Boeing Board: risk appetite: 4.5 of 5, easing slowly: at most one Solo fps launch, and only with the H1 ruling and Pope's readiness results. Our limits: no Board item below -$1B in any of the five plausible columns, and no plan more than $2B below Do Nothing in S5. Nothing that leans on … |
 | Frame | Kelly Ortberg: initial lean: Orders I lean to: - fps: launch (10-year ramp-up); - fps engine code: 3 (CFM); - 737 rate: hold; - 787 Re-engine: hold. That is one Solo launch, standing alone. Why: - It beats Do Nothing by $2.86-4.30B in every column. That passes debt-first and doing less, better. - It sits … |
-| Test (CFO) | Jay Malave recommends: Launch fps, 10-year ramp-up (engines requested: CFM). Options failing a test: Buffer test (slip leg), plan H: every fps launch via Embraer row; Meet and beat: ramp, launch (10-year ramp-up) (B) against launch (7-year ramp-up) (C) (ask 4); Rate step: 737 Rate Increase (ask 6); 787 Re-engine beside fps: strain and downside (ask 5); via Embraer outside the grid (ask 7). Vetoes: Any plan with fps: launch via Embraer (all four rows: with holds, + 787 Re-engine, + 737 rate up, + both) (binding); 787 Re-engine: launch in Round 1 (beside either fps ramp, or alone) (not binding); 737 rate: increase beside any fps launch (not binding) |
-| Test (operating head) | Stephanie Pope recommends: Launch fps, 10-year ramp-up (engines requested: CFM). Options failing a test: Capacity follows demand: 737 Rate Increase (inference from one remark [BX-1329]). Vetoes: 737 rate: increase (any combination) (not binding); fps launch (7-year ramp-up) + 787 Re-engine launch (option G) (not binding); fps launch (10-year ramp-up) + 787 Re-engine launch (option F) (not binding); fps launch via Embraer (option H) (not binding) |
+| Test (CFO) | Jay Malave recommends: Launch fps, 10-year ramp-up (engines requested: CFM). Tests failed: Buffer test (slip leg), plan H: every fps launch via Embraer row; Meet and beat: ramp, launch (10-year ramp-up) (B) against launch (7-year ramp-up) (C) (ask 4); Rate step: 737 Rate Increase (ask 6); 787 Re-engine beside fps: strain and downside (ask 5); via Embraer outside the grid (ask 7). Vetoes on options: Any plan with fps: launch via Embraer (all four rows: with holds, + 787 Re-engine, + 737 rate up, + both) (binding); 787 Re-engine: launch in Round 1 (beside either fps ramp, or alone) (not binding); 737 rate: increase beside any fps launch (not binding) |
+| Test (operating head) | Stephanie Pope recommends: Launch fps, 10-year ramp-up (engines requested: CFM). Tests failed: Capacity follows demand: 737 Rate Increase (inference from one remark [BX-1329]). Vetoes on options: 737 rate: increase (any combination) (not binding); fps launch (7-year ramp-up) + 787 Re-engine launch (option G) (not binding); fps launch (10-year ramp-up) + 787 Re-engine launch (option F) (not binding); fps launch via Embraer (option H) (not binding) |
 | Decide | Kelly Ortberg: Launch fps, 10-year ramp-up (engines requested: CFM) |
 | Veto check (CFO) | Jay Malave concurs |
 | Veto check (operating head) | Stephanie Pope concurs |
-| Board review | Boeing Board: approve; approved fps |
+| Board review | Boeing Board: approve; approved fps; 7 recommendations |
 
 CFO tests:
 
@@ -646,7 +651,7 @@ Boeing on the board, under my orders:
 Round 2 (2035):
 - I expect to revisit the 787 Re-engine only if the A350 has not re-engined and the overlap stays within H4.
 - I expect no cancel of the fps under any column (H5).
-- Expected ΔPV −1.96 $B; board after the round +0.66 $B
+- Expected ΔPV −1.96 $B; GM valuation after the round +0.66 $B
 
 - Other moves: Conservative EIS disclosure at launch (public); No fixed-price development; risk-sharing supplier terms (public); Certify before building at rate (public); Fund from operations and debt capacity; keep deleveraging (public); Keep fragile suppliers funded and hot (private); Engine request: code 3 (CFM), durability first (private); Independent estimate check and early-warning rule (private); 787 Re-engine parked to 2035 on conditions; widebody growth from Charleston (private)
 
@@ -656,12 +661,12 @@ Round 2 (2035):
 |---|---|
 | Board guidance | Airbus Board: risk appetite: Averse (4 of 5) with a long horizon (4). The Board wants NGSA committed now, in the last year of its window. One programme only, peak spend inside $5.2B a year, no item losing more than $2B in any of S1 to S6, and no covert or integrity exposure while no … |
 | Frame | Guillaume Faury: initial lean: Orders: - NGSA: launch in 2030, entering service in 2037 (in public, "the second half of the 2030s"); - NGSA engine code: 7 provisionally, or 5 or 6 if Wagner's supply case favours it; - A350 Re-engine: hold; - Delay Tactics: none. That is one Board item, the NGSA … |
-| Test (CFO) | Thomas Toepfer recommends: Launch NGSA (engines requested: RR, P&W and CFM). Options failing a test: Peak annual cash: plan C (NGSA + A350 Re-engine, both 2030), with the earliest passing A350 Re-engine year; Delay Tactics cash (plan E rows, ordered 2030); Robustness: plan B (hold + hold, the order default and reference row); Robustness: plan C (the A350 Re-engine added to A); Robustness: plan D …. Vetoes: C. NGSA launch + A350 Re-engine launch (2030) (binding); E. Any Delay Tactics move this round (poaching, bottleneck or both), on any NGSA or A350 row (binding); D. NGSA hold + A350 Re-engine (binding); B. NGSA hold + A350 hold (the order default and reference row, not a Board item) (binding) |
-| Test (operating head) | Lars Wagner recommends: Launch NGSA (engines requested: RR, P&W and CFM). Options failing a test: Engineering capacity and rule 6, plan C (company red line; not overridable); A350F and Spirit absorption, plans C and D (soft veto); Delay Tactics, plan E (rule 4 red line and integrity pillar; not overridable). Vetoes: C. NGSA launch + A350 Re-engine launch (2030) (binding); D. NGSA hold + A350 Re-engine launch (2030) (binding); E. Any Delay Tactics move this round (bottleneck, poaching or both) (binding) |
+| Test (CFO) | Thomas Toepfer recommends: Launch NGSA (engines requested: RR, P&W and CFM). Tests failed: Peak annual cash: plan C (NGSA + A350 Re-engine, both 2030), with the earliest passing A350 Re-engine year; Delay Tactics cash (plan E rows, ordered 2030); Robustness: plan B (hold + hold, the order default and reference row); Robustness: plan C (the A350 Re-engine added to A); Robustness: plan D …. Vetoes on options: C. NGSA launch + A350 Re-engine launch (2030) (binding); E. Any Delay Tactics move this round (poaching, bottleneck or both), on any NGSA or A350 row (binding); D. NGSA hold + A350 Re-engine (binding); B. NGSA hold + A350 hold (the order default and reference row, not a Board item) (binding) |
+| Test (operating head) | Lars Wagner recommends: Launch NGSA (engines requested: RR, P&W and CFM). Tests failed: Engineering capacity and rule 6, plan C (company red line; not overridable); A350F and Spirit absorption, plans C and D (soft veto); Delay Tactics, plan E (rule 4 red line and integrity pillar; not overridable). Vetoes on options: C. NGSA launch + A350 Re-engine launch (2030) (binding); D. NGSA hold + A350 Re-engine launch (2030) (binding); E. Any Delay Tactics move this round (bottleneck, poaching or both) (binding) |
 | Decide | Guillaume Faury: Launch NGSA (engines requested: RR, P&W and CFM) |
 | Veto check (CFO) | Thomas Toepfer concurs |
 | Veto check (operating head) | Lars Wagner concurs |
-| Board review | Airbus Board: approve; approved NGSA |
+| Board review | Airbus Board: approve; approved NGSA; 9 recommendations |
 
 CFO tests:
 
@@ -804,7 +809,7 @@ Market: no narrowbody share change before 2037 unless Boeing raises its rate, in
 - the A350 Re-engine stays in reserve on cash.
 
 Expected ΔPV (S2, nobody moves after this round): +23.37. Range +17.28 (S3) to +45.82 (S1).
-- Expected ΔPV +23.37 $B; board after the round +23.37 $B
+- Expected ΔPV +23.37 $B; GM valuation after the round +23.37 $B
 
 - Other moves: NGSA engine competition open to all three makers (public); Secure NGSA supply first, by owning or locking it (public); Ring-fence the A320 ramp from NGSA development (private); Open recruitment for the Airbus of the 2030s (public); Gated NGSA cash control with the Audit Committee (private); Capital allocation inside the policy (private); A350 Re-engine kept in reserve (private); Zero-for-zero trade advocacy (public)
 
@@ -814,12 +819,12 @@ Expected ΔPV (S2, nobody moves after this round): +23.37. Range +17.28 (S3) to 
 |---|---|
 | Board guidance | GE Aerospace Board: risk appetite: Averse on risk (4 of 5), balanced on horizon (3 of 5). We will approve a defensive, staged Ducted whose worst column costs no more than its own bill (S1: -$4.00B alone, -$6.00B with the strain), and small orders that pay after the strain they add. We will … |
 | Frame | Larry Culp: initial lean: LEAN (to be tested, not decided): - ducted engine: launch, now, as a defence under H3. The trigger is the grid: S3 and S6 show a rival selection taking our slot. It is ready in 2036, one year ahead of a 2037 entry. Earlier is better, because a 2035 launch would be … |
-| Test (CFO) | Rahul Ghai recommends: Launch ducted engine; Partner with Embraer; GEnx upgrade. Options failing a test: Pays for itself: Open Fan and Lobby (held in the lean; tested to record why); Volumes first: Partner Embraer. Vetoes: Open Fan: launch, in any combination this round (option 7) (binding); emissions lobbying: launch with no live Open Fan (binding); GEnx: GEnx upgrade (or GEnx investment) as the second project beside a Ducted alone (option 6), including the case where Partner Embraer is struck from the package (binding); … |
-| Test (operating head) | Mohamed Ali recommends: Launch ducted engine; Partner with Embraer; GEnx upgrade. Options failing a test: Ready no later than the airframe: Open Fan (option 7, if launched; advice); Supply load: Ducted + GEnx upgrade (option 6). Vetoes: Open Fan: launch this round, alone or with emissions lobbying and/or GEnx (option 7) (not binding); GEnx: GEnx upgrade as the second project beside a Ducted alone (option 6) (not binding); Public statement and other moves (not yet written; I check them at step 4) (not binding) |
-| Decide | Larry Culp: Launch ducted engine; Partner with Embraer; GEnx upgrade |
+| Test (CFO) | Rahul Ghai recommends: Launch ducted engine; Partner with Embraer; GEnx upgrade. Tests failed: Pays for itself: Open Fan and Lobby (held in the lean; tested to record why); Volumes first: Partner Embraer. Vetoes on options: Open Fan: launch, in any combination this round (option 7) (binding); emissions lobbying: launch with no live Open Fan (binding); GEnx: GEnx upgrade (or GEnx investment) as the second project beside a Ducted alone (option 6), including the case where Partner Embraer is struck from the package (binding); … |
+| Test (operating head) | Mohamed Ali recommends: Launch ducted engine; Partner with Embraer; GEnx upgrade. Tests failed: Ready no later than the airframe: Open Fan (option 7, if launched; advice); Supply load: Ducted + GEnx upgrade (option 6). Vetoes on options: Open Fan: launch this round, alone or with emissions lobbying and/or GEnx (option 7) (not binding); GEnx: GEnx upgrade as the second project beside a Ducted alone (option 6) (not binding); Public statement and other moves (not yet written; I check them at step 4) (not binding) |
+| Decide | Larry Culp: Launch ducted engine; Partner with Embraer; GEnx upgrade; overrides: Ghai: Volumes first, Partner Embraer (test result: fail on the record column S1; his memo lists no binding veto on the package) |
 | Veto check (CFO) | Rahul Ghai concurs |
 | Veto check (operating head) | Mohamed Ali concurs |
-| Board review | GE Aerospace Board: approve; approved ducted engine, Embraer partnership, GEnx |
+| Board review | GE Aerospace Board: approve; approved ducted engine, Embraer partnership, GEnx; 7 recommendations |
 
 CFO tests:
 
@@ -934,7 +939,7 @@ On these weights:
 I book lower, at the equal-weight -50.41.
 
 Widebody: no re-engine expected this round, so the GEnx upgrade counts from 2042.
-- Expected ΔPV −50.41 $B; board after the round −31.20 $B
+- Expected ΔPV −50.41 $B; GM valuation after the round −31.20 $B
 
 - Other moves: RISE continues whole as technology, 50-50 with Safran (public); Cross-functional gate reviews on the ducted engine (private); Supplier readiness on the constrained base before the ducted development load lands (private); Private airframer dialogue: every new narrowbody is offered a CFM engine (the LEAP derivative or the new ducted engine) (private)
 
@@ -944,12 +949,12 @@ Widebody: no re-engine expected this round, so the GEnx upgrade counts from 2042
 |---|---|
 | Board guidance | RTX Board: risk appetite: At 3.5, strict on programmes. Approve launch if selected readily: it is never below hold. Approve an unconditional launch only as NGSA franchise defence with a weighted edge of at least +$0.50B over launch if selected and a cancel test written in for 2035. No … |
 | Frame | Chris Calio: initial lean: My lean is Option B: GTF2 Solo launch if selected, Joint Venture with RR hold, premium 0. Why. On the grid, launch if selected is never below hold, and it answers any selection that names us this round, codes 2, 6 or 7 (S2, S4, S5 are worth +50.49, +22.16 and +49.76 … |
-| Test (CFO) | Neil Mitchill recommends: Launch GTF2 if selected. Options failing a test: Unselected engine (veto ground 2): GTF2 Solo launch (unconditional), options C and E; Joint Venture. Vetoes: GTF2 Solo: launch (unconditional), as in Options C and E (binding); Joint Venture with RR: commit this round, as in Options D and E (applies only if ordered) (binding); Joint Venture with RR: commit this round (not binding) |
-| Test (operating head) | Shane Eddy recommends: Launch GTF2 if selected. No option failed a test. Vetoes: Not invoked. GTF2 Solo: launch (Option C, unconditional NGSA hedge). (not binding); Not invoked. Joint Venture with RR: commit (Options D and E). (not binding); Standing condition, not triggered by any option tested: any order or public statement that dates GTF2 earlier than 2036 (launch + 6), or a Joint … |
+| Test (CFO) | Neil Mitchill recommends: Launch GTF2 if selected. Tests failed: Unselected engine (veto ground 2): GTF2 Solo launch (unconditional), options C and E; Joint Venture. Vetoes on options: GTF2 Solo: launch (unconditional), as in Options C and E (binding); Joint Venture with RR: commit this round, as in Options D and E (applies only if ordered) (binding); Joint Venture with RR: commit this round (not binding) |
+| Test (operating head) | Shane Eddy recommends: Launch GTF2 if selected. No test failed. Vetoes on options: Not invoked. GTF2 Solo: launch (Option C, unconditional NGSA hedge). (not binding); Not invoked. Joint Venture with RR: commit (Options D and E). (not binding); Standing condition, not triggered by any option tested: any order or public statement that dates GTF2 earlier than 2036 (launch + 6), or a Joint … |
 | Decide | Chris Calio: Launch GTF2 if selected |
 | Veto check (CFO) | Neil Mitchill concurs |
 | Veto check (operating head) | Shane Eddy concurs |
-| Board review | RTX Board: approve; approved GTF2 Solo |
+| Board review | RTX Board: approve; approved GTF2 Solo; 7 recommendations |
 
 CFO tests:
 
@@ -1063,7 +1068,7 @@ Expected PV by plan:
 - launch / hold: +2.94
 - launch if selected / commit: +2.91
 - hold / hold: -14.02
-- Expected ΔPV +3.15 $B; board after the round −8.44 $B
+- Expected ΔPV +3.15 $B; GM valuation after the round −8.44 $B
 
 - Other moves: GTF durability kit (Hot Section) for the installed fleet (public); GTF2 readiness plan, held until a selection triggers it (private); Standing 2035 review (private)
 
@@ -1073,12 +1078,12 @@ Expected PV by plan:
 |---|---|
 | Board guidance | Rolls-Royce Board: risk appetite: Our risk aversion is 4 of 5 and our time horizon 2.5. This round we back only conditional, airframe-tied and partner-aligned items whose downside stays within their own bill. Nothing is on the public record, so no unconditional narrowbody, Joint Venture or … |
 | Frame | Tufan Erginbilgic: initial lean: Proposal: `UltraFan NB Solo: launch if selected`; `Joint Venture with P&W: hold`; `UltraFan WB: hold`; `Trent 1000 upgrade: hold`. On my weights the expected gain is +3.37 over hold and the worst column is 0. The premium is $0B: the order doctrine favours is also the best … |
-| Test (CFO) | Helen McCabe recommends: Launch UltraFan NB if selected. Options failing a test: Hurdle: UltraFan NB Solo launch (unconditional, option E); Hurdle: Joint Venture with P&W commit (option F); Hurdle: UltraFan WB launch (option G); Hurdle: Trent 1000 upgrade launch (options C and D); Unselected downside: rejected rows. Vetoes: UltraFan NB Solo: launch (unconditional) (binding); Joint Venture with P&W: commit (binding); UltraFan WB: launch (binding); Trent 1000 upgrade: launch beside launch if selected (option D) (binding); Trent 1000 upgrade: launch alone (option C) (binding); Balance-sheet vetoes (equity raise, leverage above about 1.5x, … |
-| Test (operating head) | Rob Watson recommends: Launch UltraFan NB if selected. No option failed a test. Vetoes: A: `UltraFan NB Solo: launch if selected`, with `Joint Venture with P&W`, `UltraFan WB` and `Trent 1000 upgrade` at hold (not binding); Draft public statement ("Entry into service no earlier than seven years from launch") (not binding); C and D: `Trent 1000 upgrade: launch` (D beside `launch if selected`) (not binding); … |
+| Test (CFO) | Helen McCabe recommends: Launch UltraFan NB if selected. Tests failed: Hurdle: UltraFan NB Solo launch (unconditional, option E); Hurdle: Joint Venture with P&W commit (option F); Hurdle: UltraFan WB launch (option G); Hurdle: Trent 1000 upgrade launch (options C and D); Unselected downside: rejected rows. Vetoes on options: UltraFan NB Solo: launch (unconditional) (binding); Joint Venture with P&W: commit (binding); UltraFan WB: launch (binding); Trent 1000 upgrade: launch beside launch if selected (option D) (binding); Trent 1000 upgrade: launch alone (option C) (binding); Balance-sheet vetoes (equity raise, leverage above about 1.5x, … |
+| Test (operating head) | Rob Watson recommends: Launch UltraFan NB if selected. No test failed. Vetoes on options: A: `UltraFan NB Solo: launch if selected`, with `Joint Venture with P&W`, `UltraFan WB` and `Trent 1000 upgrade` at hold (not binding); Draft public statement ("Entry into service no earlier than seven years from launch") (not binding); C and D: `Trent 1000 upgrade: launch` (D beside `launch if selected`) (not binding); … |
 | Decide | Tufan Erginbilgic: Launch UltraFan NB if selected |
 | Veto check (CFO) | Helen McCabe concurs |
 | Veto check (operating head) | Rob Watson concurs |
-| Board review | Rolls-Royce Board: approve; approved UltraFan NB Solo |
+| Board review | Rolls-Royce Board: approve; approved UltraFan NB Solo; 8 recommendations |
 
 CFO tests:
 
@@ -1169,7 +1174,7 @@ Reading of rivals, from the public record only: the airframers move first and th
 Next round:
 - If triggered: the programme is in development until 2037. Hold all widebody items and check that the selecting airframe keeps our code.
 - If not triggered: the same conditional discipline in 2035, and test a Joint Venture commit if P&W's commitment is on the record.
-- Expected ΔPV +3.37 $B; board after the round +18.26 $B
+- Expected ΔPV +3.37 $B; GM valuation after the round +18.26 $B
 
 - Other moves: UltraFan demonstrator path continues (public); Trent 1000 and Trent fleet durability (time on wing) continues as funded (public); Narrowbody support plan, ready to activate on trigger (Watson's plan, adopted) (private); Plan for failure on a triggered programme (private); Pricing discipline (private); Open door to Pratt & Whitney on aligned terms (public)
 
@@ -1197,27 +1202,27 @@ Next round:
 
 | Programme | Launched | Due | Status |
 |---|---:|---|---|
-| CFM ducted engine | 2030 | ready 2036 | in service since 2036 |
-| CFM-Embraer partnership | 2030 | ready 2037 | in service since 2037 |
-| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | in service since 2033 |
+| CFM ducted engine | 2030 | ready 2036 | ready since 2036 |
+| CFM-Embraer partnership | 2030 | ready 2037 | ready since 2037 |
+| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | ready since 2033 |
 | NGSA (Airbus) | 2030 | EIS 2037 | in service since 2037 |
 | P&W GTF2 (Solo) | 2030 | ready 2036 | folded into the Joint Venture 2035 |
 | RR UltraFan NB (Solo) | 2030 | ready 2037 | folded into the Joint Venture 2035 |
 | fps (Boeing) — 10-year ramp-up | 2030 | EIS 2040 | in service since 2040 |
-| P&W-RR Joint Venture NB engine | 2035 | ready 2036 | in service since 2036 |
+| P&W-RR Joint Venture NB engine | 2035 | ready 2036 | ready since 2036 |
 
 | Airframe | Engines requested | Engines fitted | Note |
 |---|---|---|---:|
 | fps | CFM | CFM | — |
 | NGSA | RR, PW and CFM | CFM + PW + RR | — |
 
-### Value after the round (board valuation; nobody moves afterwards)
+### Value after the round (GM valuation; nobody moves afterwards)
 
 | Component | Boeing | Airbus | CFM/GE | Pratt & Whitney | Rolls-Royce |
 |---|---:|---:|---:|---:|---:|
 | NB operating profit vs status quo | +20.30 | +39.13 | — | — | — |
 | Programme investment | −14.91 | −15.23 | — | — | — |
-| Cancellation write-offs | — | — | — | — | −1.71 |
+| Write-offs (cancellation or fold-in) | — | — | — | — | −1.71 |
 | Debt penalty (α) | −4.73 | −0.53 | — | — | — |
 | Engine value vs status quo | — | — | −32.29 | −0.93 | +26.26 |
 | R&D | — | — | −4.00 | −2.00 | −4.00 |
@@ -1482,12 +1487,12 @@ Next round:
 |---|---|
 | Board guidance | Boeing Board: risk appetite: 4.5 of 5, unchanged. Carry the launched fps whole to its 2040 EIS. No second development and no cancel this round. No Board item may have an item value below -$1B in any of S1, S2 or S3 (all three are plausible), and no plan may score below -2.78 in the … |
 | Frame | Kelly Ortberg: initial lean: **Orders I lean to:** Do Nothing. - fps: hold (we keep building the fps toward 2040); - fps engine code: 3 (CFM), unless Pope shows a second source adds supply security with durability shown before 2040; - 737 rate: hold; - 787 Re-engine: hold. Row: +0.66 / -0.80 / … |
-| Test (CFO) | Jay Malave recommends: Do Nothing. Options failing a test: Buffer test (slip leg), plans C and D: any fps cancel (ask 1); Cash path of each bill, plan B: Re-engine beside the fps (ask 4). Vetoes: C: fps cancel + 787 hold (row 'cancel fps + 787: hold') (binding); D: fps cancel + 787 Re-engine (row 'cancel fps + 787 Re-engine') (binding); B: fps hold + 787 Re-engine (not binding) |
-| Test (operating head) | Stephanie Pope recommends: Do Nothing. Options failing a test: Two-front strain (engineering capacity), row B: 787 Re-engine launched in 2035 (doctrine; CEO ask 3). Vetoes: 737 rate: increase (any combination) (not binding); fps: hold + 787 Re-engine: launch (row B) (not binding); fps: cancel, with or without 787 Re-engine: launch (rows C and D) (not binding); fps engine code: 4, 5, 6 or 7 (not binding) |
+| Test (CFO) | Jay Malave recommends: Do Nothing. Tests failed: Buffer test (slip leg), plans C and D: any fps cancel (ask 1); Cash path of each bill, plan B: Re-engine beside the fps (ask 4). Vetoes on options: C: fps cancel + 787 hold (row 'cancel fps + 787: hold') (binding); D: fps cancel + 787 Re-engine (row 'cancel fps + 787 Re-engine') (binding); B: fps hold + 787 Re-engine (not binding) |
+| Test (operating head) | Stephanie Pope recommends: Do Nothing. Tests failed: Two-front strain (engineering capacity), row B: 787 Re-engine launched in 2035 (doctrine; CEO ask 3). Vetoes on options: 737 rate: increase (any combination) (not binding); fps: hold + 787 Re-engine: launch (row B) (not binding); fps: cancel, with or without 787 Re-engine: launch (rows C and D) (not binding); fps engine code: 4, 5, 6 or 7 (not binding) |
 | Decide | Kelly Ortberg: Do Nothing |
 | Veto check (CFO) | Jay Malave concurs |
 | Veto check (operating head) | Stephanie Pope concurs |
-| Board review | Boeing Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Boeing Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -1615,7 +1620,7 @@ Boeing:
 - The 787 Re-engine is reconsidered in 2045 only if the A350 has not re-engined.
 - No fps reset expected, but the 2035-37 peak spend and the 2040-44 supply ramp are the watch items.
 - Expected ΔPV is +0.66 in S1; -0.80 and -0.78 in S2 and S3.
-- Expected ΔPV +0.66 $B; board after the round +0.66 $B
+- Expected ΔPV +0.66 $B; GM valuation after the round +0.66 $B
 
 - Other moves: Hold 2040 as a planning date with headroom; reset once and early (public); Certify before building at rate, written into the fps programme plan; Chief Engineer reports direct to the Aerospace Safety Committee (public); No fixed-price development; risk-sharing supplier terms continue (public); Yearly funding report to the Finance Committee: fund from operations and debt capacity, no new equity (private); Keep fragile suppliers funded and hot, and engineering teams in place, through 2044 (private); Engine request stays code 3 (CFM); allocation tracked (private); Independent estimate check continues; early-warning rule (private); 787 Re-engine parked to the 2045 window; widebody growth from Charleston (private); Hold the 737 MAX base through the gap, campaign by campaign (private)
 
@@ -1625,12 +1630,12 @@ Boeing:
 |---|---|
 | Board guidance | Airbus Board: risk appetite: Averse (4 of 5), with a long horizon (4 of 5). The Board wants a quiet round. NGSA continues on its 2037 clock. Nothing new is launched, and no covert money is spent, while NGSA spends $5.07B a year against the $5.2B line. The Board expects no Board item this … |
 | Frame | Guillaume Faury: initial lean: Plan A, the company default for this round, as the Board guides: - NGSA: hold. NGSA continues to entry into service in 2037; in public, "the second half of the 2030s". - NGSA engine code: 7, unchanged, pending Wagner's supply view. - A350 Re-engine: hold. - … |
-| Test (CFO) | Thomas Toepfer recommends: Do Nothing. Options failing a test: Peak annual cash and Delay Tactics cash: plan B (A + one poaching move); Peak annual cash: plan C (A + both moves); Peak annual cash: plan D (A + A350 Re-engine launched 2035); Peak annual cash: plan E (A + A350 Re-engine + one poaching move); Robustness, added move: plan C (both moves); …. Vetoes: B. Plan A + one poaching move (2035) (binding); D. Plan A + A350 Re-engine launched 2035 (binding); E. Plan A + A350 Re-engine + one poaching move (binding); C. Plan A + both Delay Tactics moves (binding); Bottleneck in place of poaching, on any row (binding); F. Cancel NGSA, on any row (binding) |
-| Test (operating head) | Lars Wagner recommends: Do Nothing. Options failing a test: Integrity and rule 4: bottleneck and both (plan C, the A350 Re-engine + both row, and bottleneck in place of poaching; five pillars and red line, no override); Cancel NGSA, plan F (rule 7, red line). Vetoes: C. Plan A + both Delay Tactics moves; also the A350 Re-engine + both row (binding); Bottleneck in place of poaching, on any row (binding); F. Cancel NGSA, every row (binding) |
+| Test (CFO) | Thomas Toepfer recommends: Do Nothing. Tests failed: Peak annual cash and Delay Tactics cash: plan B (A + one poaching move); Peak annual cash: plan C (A + both moves); Peak annual cash: plan D (A + A350 Re-engine launched 2035); Peak annual cash: plan E (A + A350 Re-engine + one poaching move); Robustness, added move: plan C (both moves); …. Vetoes on options: B. Plan A + one poaching move (2035) (binding); D. Plan A + A350 Re-engine launched 2035 (binding); E. Plan A + A350 Re-engine + one poaching move (binding); C. Plan A + both Delay Tactics moves (binding); Bottleneck in place of poaching, on any row (binding); F. Cancel NGSA, on any row (binding) |
+| Test (operating head) | Lars Wagner recommends: Do Nothing. Tests failed: Integrity and rule 4: bottleneck and both (plan C, the A350 Re-engine + both row, and bottleneck in place of poaching; five pillars and red line, no override); Cancel NGSA, plan F (rule 7, red line). Vetoes on options: C. Plan A + both Delay Tactics moves; also the A350 Re-engine + both row (binding); Bottleneck in place of poaching, on any row (binding); F. Cancel NGSA, every row (binding) |
 | Decide | Guillaume Faury: Do Nothing |
 | Veto check (CFO) | Thomas Toepfer concurs |
 | Veto check (operating head) | Lars Wagner concurs |
-| Board review | Airbus Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Airbus Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -1753,7 +1758,7 @@ Our board path if nobody moves:
 - ΔPV +23.37 in S1 and +22.88 in S2.
 
 The 2045 round: the A350 Re-engine comes back as a staged case only if no 787 Re-engine is on the record and a widebody engine can be ready by its entry into service.
-- Expected ΔPV +23.27 $B; board after the round +23.37 $B
+- Expected ΔPV +23.27 $B; GM valuation after the round +23.37 $B
 
 - Other moves: NGSA engine selection confirmed: CFM, Pratt & Whitney and Rolls-Royce (code 7 unchanged) (public); Secure supply for the NGSA ramp after entry into service (public); A320 ring-fence and quarterly ramp report, with a P&W new-build watch item (private); NGSA readiness report to the Board's twice-yearly safety review (private); Audit Committee cash gate, 2035-37 (private); Capital allocation inside the policy (private); Open European engineering recruitment continues (public); A350 Re-engine kept in reserve: staged widebody case for the 2045 round (private); Zero-for-zero trade advocacy (public)
 
@@ -1763,12 +1768,12 @@ The 2045 round: the A350 Re-engine comes back as a staged case only if no 787 Re
 |---|---|
 | Board guidance | GE Aerospace Board: risk appetite: Averse (4 of 5) with a balanced horizon (3 of 5). Hold everything is the best plan in every column, so we expect no Board items. We will keep the Ducted and Embraer whole, and we will fund nothing whose loss exceeds its own bill. That rules out an Open Fan or … |
 | Frame | Larry Culp: initial lean: LEAN (to be tested, not decided): hold on every field. - ducted engine: hold. Keep it; it's the defence we bought, and the trigger is now on the record. - Embraer partnership: hold. Keep it. - Open Fan: hold. - emissions lobbying: hold. - GEnx: hold. Hold is the best grid … |
-| Test (CFO) | Rahul Ghai recommends: Do Nothing. Options failing a test: Pays for itself: alternatives (Ducted cancel, Embraer cancel, Open Fan, Lobby, and their combinations). Vetoes: ducted engine: cancel, alone or in any combination (with or without Embraer partnership: cancel or Open Fan: launch) (binding); Embraer partnership: cancel (binding); Open Fan: launch, in any combination this round (with or without emissions lobbying: launch) (binding); emissions lobbying: launch with no live Open Fan … |
-| Test (operating head) | Mohamed Ali recommends: Do Nothing. Options failing a test: Ready no later than the airframe: Open Fan, if launched (advice). Vetoes: Open Fan: launch, alone or with emissions lobbying (options 4, 5 and 6) (not binding); ducted engine: cancel and/or Embraer partnership: cancel (options 2, 3 and 6) (not binding); Public statement and other moves (not yet written; I check them at step 4) (not binding) |
+| Test (CFO) | Rahul Ghai recommends: Do Nothing. Tests failed: Pays for itself: alternatives (Ducted cancel, Embraer cancel, Open Fan, Lobby, and their combinations). Vetoes on options: ducted engine: cancel, alone or in any combination (with or without Embraer partnership: cancel or Open Fan: launch) (binding); Embraer partnership: cancel (binding); Open Fan: launch, in any combination this round (with or without emissions lobbying: launch) (binding); emissions lobbying: launch with no live Open Fan … |
+| Test (operating head) | Mohamed Ali recommends: Do Nothing. Tests failed: Ready no later than the airframe: Open Fan, if launched (advice). Vetoes on options: Open Fan: launch, alone or with emissions lobbying (options 4, 5 and 6) (not binding); ducted engine: cancel and/or Embraer partnership: cancel (options 2, 3 and 6) (not binding); Public statement and other moves (not yet written; I check them at step 4) (not binding) |
 | Decide | Larry Culp: Do Nothing |
 | Veto check (CFO) | Rahul Ghai concurs |
 | Veto check (operating head) | Mohamed Ali concurs |
-| Board review | GE Aerospace Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | GE Aerospace Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -1863,7 +1868,7 @@ RISKS OUTSIDE THE COLUMNS (named, not booked):
 (d) Delay Tactics on the fps: Boeing -5 pp for 5 years from 2040, which cuts our fps slot in S1. It is covert, so we would see it only at game end. No reaction (doctrine).
 (e) Raw materials: titanium forgings and rare earths for the Ducted's ramp. Unpriced and unquantified (Ali's flag).
 (f) Codes lock after this round. The next bulletin tells us our column, and I raise the booking only then.
-- Expected ΔPV −56.00 $B; board after the round −38.29 $B
+- Expected ΔPV −56.00 $B; GM valuation after the round −38.29 $B
 
 - Other moves: LEAP delivery first: OE engines and spares on time on the A320neo and 737 (public); Ducted gate reported on test: not before 2036 (public); Supplier readiness at the 9 suppliers and 15 sites before the Ducted's 2036-37 production load (private); Private CFM offer to every airframer on standard terms, with Safran (private); RISE continues whole as technology, 50-50 with Safran (public); No reaction to rival or Joint Venture news (private)
 
@@ -1873,12 +1878,12 @@ RISKS OUTSIDE THE COLUMNS (named, not booked):
 |---|---|
 | Board guidance | RTX Board: risk appetite: At 3.5: strict on programmes. The Board protects the selected GTF2 and will not approve a cancel unless it beats hold in every plausible column, which it does in none but S2. It approves a Joint Venture commit on the live code-7 trigger, because the commit is … |
 | Frame | Chris Calio: initial lean: My lean is Option B: GTF2 Solo hold, Joint Venture with RR commit, premium 0. GTF2 Solo: HOLD - An airframer has named us. The Board does not cut a programme a customer has asked for, and neither do I. - My lever rule is to cancel only once no live airframe can still … |
-| Test (CFO) | Neil Mitchill recommends: Commit to Joint Venture with RR. No option failed a test. Vetoes: GTF2 Solo: cancel (Options C and D) (not binding); Joint Venture with RR: commit. These are standing conditions, not invoked on the CEO's draft (not binding) |
-| Test (operating head) | Shane Eddy recommends: Commit to Joint Venture with RR. No option failed a test. Vetoes: Not invoked. GTF2 Solo: cancel (rows C and D). (not binding); Not invoked. Row D in S4: Joint Venture engine is the folded UltraFan NB (ready 2037) against NGSA's 2037 EIS. (not binding); Standing condition, not triggered by row B or Calio's draft statement. It covers any order, term or statement … |
+| Test (CFO) | Neil Mitchill recommends: Commit to Joint Venture with RR. No test failed. Vetoes on options: GTF2 Solo: cancel (Options C and D) (not binding); Joint Venture with RR: commit. These are standing conditions, not invoked on the CEO's draft (not binding) |
+| Test (operating head) | Shane Eddy recommends: Commit to Joint Venture with RR. No test failed. Vetoes on options: Not invoked. GTF2 Solo: cancel (rows C and D). (not binding); Not invoked. Row D in S4: Joint Venture engine is the folded UltraFan NB (ready 2037) against NGSA's 2037 EIS. (not binding); Standing condition, not triggered by row B or Calio's draft statement. It covers any order, term or statement … |
 | Decide | Chris Calio: Commit to Joint Venture with RR |
 | Veto check (CFO) | Neil Mitchill concurs |
 | Veto check (operating head) | Shane Eddy concurs |
-| Board review | RTX Board: approve; approved Joint Venture with RR |
+| Board review | RTX Board: approve; approved Joint Venture with RR; 7 recommendations |
 
 CFO tests:
 
@@ -1998,7 +2003,7 @@ Expected PV by row on these weights:
 - hold/commit: -10.14
 - cancel: -29.42
 - cancel/commit: -26.94
-- Expected ΔPV −10.14 $B; board after the round −2.93 $B
+- Expected ΔPV −10.14 $B; GM valuation after the round −2.93 $B
 
 - Other moves: GTF durability kit (Hot Section) for the installed fleet (public); Joint Venture terms, published with the commit (public); GTF2 configuration freeze through certification (private); Order of call on pacing parts: the fleet and A320neo deliveries first (private); GTF2 readiness report to the Board each round (private); Standing 2045 review of the Joint Venture commitment (private)
 
@@ -2008,12 +2013,12 @@ Expected PV by row on these weights:
 |---|---|
 | Board guidance | Rolls-Royce Board: risk appetite: We are at 4 of 5 on risk aversion and 2.5 on time horizon. This round we protect what is already working: we keep the UltraFan NB programme that NGSA's code 7 carries, and we add nothing that can lose more than its own bill. We would accept one new item, a … |
 | Frame | Tufan Erginbilgic: initial lean: Proposal: `UltraFan NB Solo: hold` (kept to readiness, no cancel); `Joint Venture with P&W: commit`, on aligned terms; `UltraFan WB: hold`; `Trent 1000 upgrade: hold`. So, frankly, this round is about delivery, not new bets. UltraFan NB stays on its seven-year clock with the … |
-| Test (CFO) | Helen McCabe recommends: Commit to Joint Venture with P&W. Options failing a test: Hurdle: Trent 1000 upgrade launch; Hurdle: UltraFan WB launch; Unselected downside: rejected rows. Vetoes: Joint Venture with P&W: commit (with UltraFan NB Solo, UltraFan WB and Trent 1000 upgrade at hold) (not binding); Trent 1000 upgrade: launch (alone or beside the commit) (binding); UltraFan WB: launch (alone or beside the commit) (binding); Joint Venture with P&W: commit beside either widebody item (binding); UltraFan NB Solo: … |
-| Test (operating head) | Rob Watson recommends: Commit to Joint Venture with P&W. No option failed a test. Vetoes: A: `UltraFan NB Solo: hold` + `Joint Venture with P&W: commit`, with `UltraFan WB` and `Trent 1000 upgrade` at hold (not binding); Draft public statement ('ready in 2037, seven years from launch'; JV 'on aligned terms', no date) (not binding); C: `Trent 1000 upgrade: launch` (alone or beside the JV commit) (not … |
+| Test (CFO) | Helen McCabe recommends: Commit to Joint Venture with P&W. Tests failed: Hurdle: Trent 1000 upgrade launch; Hurdle: UltraFan WB launch; Unselected downside: rejected rows. Vetoes on options: Joint Venture with P&W: commit (with UltraFan NB Solo, UltraFan WB and Trent 1000 upgrade at hold) (not binding); Trent 1000 upgrade: launch (alone or beside the commit) (binding); UltraFan WB: launch (alone or beside the commit) (binding); Joint Venture with P&W: commit beside either widebody item (binding); UltraFan NB Solo: … |
+| Test (operating head) | Rob Watson recommends: Commit to Joint Venture with P&W. No test failed. Vetoes on options: A: `UltraFan NB Solo: hold` + `Joint Venture with P&W: commit`, with `UltraFan WB` and `Trent 1000 upgrade` at hold (not binding); Draft public statement ('ready in 2037, seven years from launch'; JV 'on aligned terms', no date) (not binding); C: `Trent 1000 upgrade: launch` (alone or beside the JV commit) (not … |
 | Decide | Tufan Erginbilgic: Commit to Joint Venture with P&W |
 | Veto check (CFO) | Helen McCabe concurs |
 | Veto check (operating head) | Rob Watson concurs |
-| Board review | Rolls-Royce Board: approve; approved Joint Venture with P&W |
+| Board review | Rolls-Royce Board: approve; approved Joint Venture with P&W; 7 recommendations |
 
 CFO tests:
 
@@ -2104,7 +2109,7 @@ No colleague flagged a red-line breach against these orders. The flags both rais
 - CFM continues the ducted engine and the Embraer partnership, with RISE as technology. GEnx stays in service.
 - RR: UltraFan NB ready 2037 on its clock, with nothing compressed. The 2036 readiness review clears gearbox durability, or the engine slips.
 Expected ΔPV of the chosen orders: +15.99 $B on my weights (+17.05 on the Board's case). S1 outcome +18.26.
-- Expected ΔPV +15.99 $B; board after the round +20.55 $B
+- Expected ΔPV +15.99 $B; GM valuation after the round +20.55 $B
 
 - Other moves: Joint Venture commitment to Pratt & Whitney on aligned terms (public); Joint Venture internal conditions (structure and maturity) (private); 2045 withdrawal review of the standing commitment (private); UltraFan NB test programme held to its seven-year clock (private); Narrowbody support build: 2035 contracting (Watson's plan, step 4 due) (private); Round-1 plan for failure retired (private); UltraFan demonstrator path and technology pull-through continue (public); Trent fleet durability (time on wing) continues as funded (public); Pricing discipline (private); Widebody franchise watch for 2045 (private)
 
@@ -2132,27 +2137,27 @@ Expected ΔPV of the chosen orders: +15.99 $B on my weights (+17.05 on the Board
 
 | Programme | Launched | Due | Status |
 |---|---:|---|---|
-| CFM ducted engine | 2030 | ready 2036 | in service since 2036 |
-| CFM-Embraer partnership | 2030 | ready 2037 | in service since 2037 |
-| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | in service since 2033 |
+| CFM ducted engine | 2030 | ready 2036 | ready since 2036 |
+| CFM-Embraer partnership | 2030 | ready 2037 | ready since 2037 |
+| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | ready since 2033 |
 | NGSA (Airbus) | 2030 | EIS 2037 | in service since 2037 |
 | P&W GTF2 (Solo) | 2030 | ready 2036 | folded into the Joint Venture 2035 |
 | RR UltraFan NB (Solo) | 2030 | ready 2037 | folded into the Joint Venture 2035 |
 | fps (Boeing) — 10-year ramp-up | 2030 | EIS 2040 | in service since 2040 |
-| P&W-RR Joint Venture NB engine | 2035 | ready 2036 | in service since 2036 |
+| P&W-RR Joint Venture NB engine | 2035 | ready 2036 | ready since 2036 |
 
 | Airframe | Engines requested | Engines fitted | Note |
 |---|---|---|---:|
 | fps | CFM | CFM | — |
 | NGSA | RR, PW and CFM | CFM + PW + RR | — |
 
-### Value after the round (board valuation; nobody moves afterwards)
+### Value after the round (GM valuation; nobody moves afterwards)
 
 | Component | Boeing | Airbus | CFM/GE | Pratt & Whitney | Rolls-Royce |
 |---|---:|---:|---:|---:|---:|
 | NB operating profit vs status quo | +20.30 | +39.13 | — | — | — |
 | Programme investment | −14.91 | −15.23 | — | — | — |
-| Cancellation write-offs | — | — | — | — | −1.71 |
+| Write-offs (cancellation or fold-in) | — | — | — | — | −1.71 |
 | Debt penalty (α) | −4.73 | −0.53 | — | — | — |
 | Engine value vs status quo | — | — | −32.29 | −0.93 | +26.26 |
 | R&D | — | — | −4.00 | −2.00 | −4.00 |
@@ -2160,254 +2165,7 @@ Expected ΔPV of the chosen orders: +15.99 $B on my weights (+17.05 on the Board
 | **ΔPV, $B at 2026** | **+0.66** | **+23.37** | **−38.29** | **−2.93** | **+20.55** |
 | Yield | 100.51% | 115.58% | 76.07% | 97.34% | 118.68% |
 
-### Market shares projected after the round
-
-| Share | 2030 | 2035 | 2040 | 2045 | 2050 | 2055 | 2060 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Boeing NB | 40.0% | 40.0% | 38.0% | 43.0% | 47.0% | 47.0% | 47.0% |
-| Airbus NB | 60.0% | 60.0% | 62.0% | 57.0% | 53.0% | 53.0% | 53.0% |
-| Boeing WB | 58.8% | 58.8% | 58.8% | 58.8% | 58.8% | 58.8% | 58.8% |
-| Airbus WB | 41.2% | 41.2% | 41.2% | 41.2% | 41.2% | 41.2% | 41.2% |
-| CFM NB engines | 76.0% | 76.0% | 51.1% | 54.3% | 56.8% | 56.8% | 56.8% |
-| P&W NB engines | 24.0% | 24.0% | 24.4% | 22.9% | 21.6% | 21.6% | 21.6% |
-| RR NB engines | 0.0% | 0.0% | 24.4% | 22.9% | 21.6% | 21.6% | 21.6% |
-| CFM/GE WB engines | 42.0% | 42.0% | 42.0% | 44.8% | 44.8% | 44.8% | 44.8% |
-| RR WB engines | 58.0% | 58.0% | 58.0% | 55.2% | 55.2% | 55.2% | 55.2% |
-
-### Financials by period (nominal $B)
-
-| Airframer | NB deliveries | WB deliveries | Revenue | Operating profit | Status-quo profit | Non-recurring |
-|---|---:|---:|---:|---:|---:|---:|
-| Boeing 2026-2030 | 4,000 | 500 | 282.0 | 33.4 | 33.4 | 0.0 |
-| Boeing 2031-2035 | 4,000 | 500 | 282.0 | 33.4 | 33.4 | 0.0 |
-| Boeing 2036-2045 | 7,940 | 1,000 | 595.1 | 116.4 | 66.7 | 60.3 |
-| Boeing 2046-2050 | 4,580 | 500 | 341.9 | 82.6 | 33.4 | 0.0 |
-| Boeing 2051-2060 | 9,400 | 1,000 | 697.0 | 168.6 | 66.7 | 0.0 |
-| Airbus 2026-2030 | 6,000 | 350 | 375.0 | 44.1 | 44.1 | 0.0 |
-| Airbus 2031-2035 | 6,000 | 350 | 375.0 | 44.1 | 44.1 | 0.0 |
-| Airbus 2036-2045 | 12,060 | 700 | 785.7 | 171.4 | 88.2 | 35.5 |
-| Airbus 2046-2050 | 5,420 | 350 | 361.1 | 81.5 | 44.1 | 0.0 |
-| Airbus 2051-2060 | 10,600 | 700 | 709.0 | 159.4 | 88.2 | 0.0 |
-
-| Engine maker | NB engines | WB engines | Engine lifecycle value | Status-quo value | R&D and write-offs |
-|---|---:|---:|---:|---:|---:|
-| CFM/GE 2026-2030 | 15,200 | 714 | 108.3 | 108.3 | 4.0 |
-| CFM/GE 2031-2035 | 15,200 | 714 | 120.8 | 120.8 | 0.0 |
-| CFM/GE 2036-2045 | 21,821 | 1,466 | 214.7 | 284.8 | 0.0 |
-| CFM/GE 2046-2050 | 11,213 | 761 | 130.3 | 167.4 | 0.0 |
-| CFM/GE 2051-2060 | 22,730 | 1,522 | 310.6 | 394.7 | 0.0 |
-| Pratt & Whitney 2026-2030 | 4,800 | 0 | 30.0 | 30.0 | 0.0 |
-| Pratt & Whitney 2031-2035 | 4,800 | 0 | 33.4 | 33.4 | 2.0 |
-| Pratt & Whitney 2036-2045 | 9,570 | 0 | 78.5 | 78.8 | 0.0 |
-| Pratt & Whitney 2046-2050 | 4,394 | 0 | 42.4 | 46.3 | 0.0 |
-| Pratt & Whitney 2051-2060 | 8,635 | 0 | 98.3 | 109.3 | 0.0 |
-| Rolls-Royce 2026-2030 | 0 | 986 | 18.5 | 18.5 | 0.0 |
-| Rolls-Royce 2031-2035 | 0 | 986 | 20.6 | 20.6 | 5.7 |
-| Rolls-Royce 2036-2045 | 8,610 | 1,934 | 118.9 | 48.5 | 0.0 |
-| Rolls-Royce 2046-2050 | 4,394 | 939 | 69.6 | 28.5 | 0.0 |
-| Rolls-Royce 2051-2060 | 8,635 | 1,878 | 162.3 | 67.3 | 0.0 |
-
-### Year by year
-
-**Boeing**
-
-| Year | NB share | WB share | NB deliveries | WB deliveries | Revenue $B | Operating profit $B | Status-quo $B | Non-recurring $B |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2027 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2028 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2029 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2030 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2031 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2032 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2033 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2034 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2035 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2036 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2037 | 39.0% | 58.8% | 780 | 100 | 55.4 | 6.60 | 6.67 | — |
-| 2038 | 38.0% | 58.8% | 760 | 100 | 54.5 | 6.52 | 6.67 | — |
-| 2039 | 37.0% | 58.8% | 740 | 100 | 53.5 | 6.44 | 6.67 | — |
-| 2040 | 38.0% | 58.8% | 760 | 100 | 59.8 | 14.32 | 6.67 | 60.32 |
-| 2041 | 39.0% | 58.8% | 780 | 100 | 60.9 | 14.60 | 6.67 | — |
-| 2042 | 40.0% | 58.8% | 800 | 100 | 62.0 | 14.88 | 6.67 | — |
-| 2043 | 41.0% | 58.8% | 820 | 100 | 63.1 | 15.16 | 6.67 | — |
-| 2044 | 42.0% | 58.8% | 840 | 100 | 64.2 | 15.45 | 6.67 | — |
-| 2045 | 43.0% | 58.8% | 860 | 100 | 65.3 | 15.73 | 6.67 | — |
-| 2046 | 44.0% | 58.8% | 880 | 100 | 66.4 | 16.01 | 6.67 | — |
-| 2047 | 45.0% | 58.8% | 900 | 100 | 67.5 | 16.29 | 6.67 | — |
-| 2048 | 46.0% | 58.8% | 920 | 100 | 68.6 | 16.57 | 6.67 | — |
-| 2049 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2050 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2051 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2052 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2053 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2054 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2055 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2056 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2057 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2058 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2059 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2060 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-
-**Airbus**
-
-| Year | NB share | WB share | NB deliveries | WB deliveries | Revenue $B | Operating profit $B | Status-quo $B | Non-recurring $B |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2027 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2028 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2029 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2030 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2031 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2032 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2033 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2034 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2035 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2036 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2037 | 61.0% | 41.2% | 1,220 | 70 | 79.7 | 18.26 | 8.82 | 35.52 |
-| 2038 | 62.0% | 41.2% | 1,240 | 70 | 80.8 | 18.55 | 8.82 | — |
-| 2039 | 63.0% | 41.2% | 1,260 | 70 | 81.9 | 18.84 | 8.82 | — |
-| 2040 | 62.0% | 41.2% | 1,240 | 70 | 80.8 | 18.55 | 8.82 | — |
-| 2041 | 61.0% | 41.2% | 1,220 | 70 | 79.7 | 18.26 | 8.82 | — |
-| 2042 | 60.0% | 41.2% | 1,200 | 70 | 78.6 | 17.97 | 8.82 | — |
-| 2043 | 59.0% | 41.2% | 1,180 | 70 | 77.5 | 17.68 | 8.82 | — |
-| 2044 | 58.0% | 41.2% | 1,160 | 70 | 76.4 | 17.39 | 8.82 | — |
-| 2045 | 57.0% | 41.2% | 1,140 | 70 | 75.3 | 17.10 | 8.82 | — |
-| 2046 | 56.0% | 41.2% | 1,120 | 70 | 74.2 | 16.81 | 8.82 | — |
-| 2047 | 55.0% | 41.2% | 1,100 | 70 | 73.1 | 16.52 | 8.82 | — |
-| 2048 | 54.0% | 41.2% | 1,080 | 70 | 72.0 | 16.23 | 8.82 | — |
-| 2049 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2050 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2051 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2052 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2053 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2054 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2055 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2056 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2057 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2058 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2059 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2060 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-
-**CFM/GE**
-
-| Year | NB engine share | WB engine share | NB engines | WB engines | Engine value $B | Status-quo $B | R&D, write-offs $B |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 76.0% | 42.0% | 3,040 | 143 | 20.73 | 20.73 | — |
-| 2027 | 76.0% | 42.0% | 3,040 | 143 | 21.19 | 21.19 | — |
-| 2028 | 76.0% | 42.0% | 3,040 | 143 | 21.65 | 21.65 | — |
-| 2029 | 76.0% | 42.0% | 3,040 | 143 | 22.13 | 22.13 | — |
-| 2030 | 76.0% | 42.0% | 3,040 | 143 | 22.62 | 22.62 | 4.00 |
-| 2031 | 76.0% | 42.0% | 3,040 | 143 | 23.11 | 23.11 | — |
-| 2032 | 76.0% | 42.0% | 3,040 | 143 | 23.62 | 23.62 | — |
-| 2033 | 76.0% | 42.0% | 3,040 | 143 | 24.14 | 24.14 | — |
-| 2034 | 76.0% | 42.0% | 3,040 | 143 | 24.67 | 24.67 | — |
-| 2035 | 76.0% | 42.0% | 3,040 | 143 | 25.22 | 25.22 | — |
-| 2036 | 76.0% | 42.0% | 3,040 | 143 | 25.77 | 25.77 | — |
-| 2037 | 51.7% | 42.0% | 2,070 | 143 | 18.97 | 26.34 | — |
-| 2038 | 51.1% | 42.0% | 2,044 | 143 | 19.19 | 26.92 | — |
-| 2039 | 50.5% | 42.0% | 2,019 | 143 | 19.41 | 27.51 | — |
-| 2040 | 51.1% | 42.0% | 2,044 | 143 | 20.04 | 28.11 | — |
-| 2041 | 51.7% | 42.0% | 2,070 | 143 | 20.69 | 28.73 | — |
-| 2042 | 52.4% | 44.8% | 2,095 | 152 | 21.60 | 29.36 | — |
-| 2043 | 53.0% | 44.8% | 2,121 | 152 | 22.30 | 30.01 | — |
-| 2044 | 53.7% | 44.8% | 2,146 | 152 | 23.01 | 30.67 | — |
-| 2045 | 54.3% | 44.8% | 2,171 | 152 | 23.75 | 31.35 | — |
-| 2046 | 54.9% | 44.8% | 2,197 | 152 | 24.51 | 32.03 | — |
-| 2047 | 55.6% | 44.8% | 2,222 | 152 | 25.29 | 32.74 | — |
-| 2048 | 56.2% | 44.8% | 2,248 | 152 | 26.09 | 33.46 | — |
-| 2049 | 56.8% | 44.8% | 2,273 | 152 | 26.91 | 34.20 | — |
-| 2050 | 56.8% | 44.8% | 2,273 | 152 | 27.50 | 34.95 | — |
-| 2051 | 56.8% | 44.8% | 2,273 | 152 | 28.11 | 35.72 | — |
-| 2052 | 56.8% | 44.8% | 2,273 | 152 | 28.73 | 36.50 | — |
-| 2053 | 56.8% | 44.8% | 2,273 | 152 | 29.36 | 37.31 | — |
-| 2054 | 56.8% | 44.8% | 2,273 | 152 | 30.00 | 38.13 | — |
-| 2055 | 56.8% | 44.8% | 2,273 | 152 | 30.66 | 38.97 | — |
-| 2056 | 56.8% | 44.8% | 2,273 | 152 | 31.34 | 39.82 | — |
-| 2057 | 56.8% | 44.8% | 2,273 | 152 | 32.03 | 40.70 | — |
-| 2058 | 56.8% | 44.8% | 2,273 | 152 | 32.73 | 41.59 | — |
-| 2059 | 56.8% | 44.8% | 2,273 | 152 | 33.45 | 42.51 | — |
-| 2060 | 56.8% | 44.8% | 2,273 | 152 | 34.19 | 43.44 | — |
-
-**Pratt & Whitney**
-
-| Year | NB engine share | WB engine share | NB engines | WB engines | Engine value $B | Status-quo $B | R&D, write-offs $B |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 24.0% | 0.0% | 960 | 0 | 5.74 | 5.74 | — |
-| 2027 | 24.0% | 0.0% | 960 | 0 | 5.86 | 5.86 | — |
-| 2028 | 24.0% | 0.0% | 960 | 0 | 5.99 | 5.99 | — |
-| 2029 | 24.0% | 0.0% | 960 | 0 | 6.13 | 6.13 | — |
-| 2030 | 24.0% | 0.0% | 960 | 0 | 6.26 | 6.26 | — |
-| 2031 | 24.0% | 0.0% | 960 | 0 | 6.40 | 6.40 | — |
-| 2032 | 24.0% | 0.0% | 960 | 0 | 6.54 | 6.54 | — |
-| 2033 | 24.0% | 0.0% | 960 | 0 | 6.68 | 6.68 | — |
-| 2034 | 24.0% | 0.0% | 960 | 0 | 6.83 | 6.83 | — |
-| 2035 | 24.0% | 0.0% | 960 | 0 | 6.98 | 6.98 | 2.00 |
-| 2036 | 24.0% | 0.0% | 960 | 0 | 7.13 | 7.13 | — |
-| 2037 | 24.1% | 0.0% | 965 | 0 | 7.33 | 7.29 | — |
-| 2038 | 24.4% | 0.0% | 978 | 0 | 7.59 | 7.45 | — |
-| 2039 | 24.8% | 0.0% | 990 | 0 | 7.86 | 7.61 | — |
-| 2040 | 24.4% | 0.0% | 978 | 0 | 7.93 | 7.78 | — |
-| 2041 | 24.1% | 0.0% | 965 | 0 | 8.00 | 7.95 | — |
-| 2042 | 23.8% | 0.0% | 952 | 0 | 8.06 | 8.13 | — |
-| 2043 | 23.5% | 0.0% | 940 | 0 | 8.13 | 8.31 | — |
-| 2044 | 23.2% | 0.0% | 927 | 0 | 8.20 | 8.49 | — |
-| 2045 | 22.9% | 0.0% | 914 | 0 | 8.26 | 8.68 | — |
-| 2046 | 22.5% | 0.0% | 902 | 0 | 8.33 | 8.87 | — |
-| 2047 | 22.2% | 0.0% | 889 | 0 | 8.39 | 9.06 | — |
-| 2048 | 21.9% | 0.0% | 876 | 0 | 8.45 | 9.26 | — |
-| 2049 | 21.6% | 0.0% | 863 | 0 | 8.51 | 9.47 | — |
-| 2050 | 21.6% | 0.0% | 863 | 0 | 8.70 | 9.67 | — |
-| 2051 | 21.6% | 0.0% | 863 | 0 | 8.89 | 9.89 | — |
-| 2052 | 21.6% | 0.0% | 863 | 0 | 9.09 | 10.10 | — |
-| 2053 | 21.6% | 0.0% | 863 | 0 | 9.29 | 10.33 | — |
-| 2054 | 21.6% | 0.0% | 863 | 0 | 9.49 | 10.55 | — |
-| 2055 | 21.6% | 0.0% | 863 | 0 | 9.70 | 10.79 | — |
-| 2056 | 21.6% | 0.0% | 863 | 0 | 9.92 | 11.02 | — |
-| 2057 | 21.6% | 0.0% | 863 | 0 | 10.13 | 11.27 | — |
-| 2058 | 21.6% | 0.0% | 863 | 0 | 10.36 | 11.51 | — |
-| 2059 | 21.6% | 0.0% | 863 | 0 | 10.58 | 11.77 | — |
-| 2060 | 21.6% | 0.0% | 863 | 0 | 10.82 | 12.03 | — |
-
-**Rolls-Royce**
-
-| Year | NB engine share | WB engine share | NB engines | WB engines | Engine value $B | Status-quo $B | R&D, write-offs $B |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 0.0% | 58.0% | 0 | 197 | 3.53 | 3.53 | — |
-| 2027 | 0.0% | 58.0% | 0 | 197 | 3.61 | 3.61 | — |
-| 2028 | 0.0% | 58.0% | 0 | 197 | 3.69 | 3.69 | — |
-| 2029 | 0.0% | 58.0% | 0 | 197 | 3.77 | 3.77 | — |
-| 2030 | 0.0% | 58.0% | 0 | 197 | 3.86 | 3.86 | — |
-| 2031 | 0.0% | 58.0% | 0 | 197 | 3.94 | 3.94 | — |
-| 2032 | 0.0% | 58.0% | 0 | 197 | 4.03 | 4.03 | — |
-| 2033 | 0.0% | 58.0% | 0 | 197 | 4.12 | 4.12 | — |
-| 2034 | 0.0% | 58.0% | 0 | 197 | 4.21 | 4.21 | — |
-| 2035 | 0.0% | 58.0% | 0 | 197 | 4.30 | 4.30 | 5.71 |
-| 2036 | 0.0% | 58.0% | 0 | 197 | 4.39 | 4.39 | — |
-| 2037 | 24.1% | 58.0% | 965 | 197 | 11.82 | 4.49 | — |
-| 2038 | 24.4% | 58.0% | 978 | 197 | 12.18 | 4.59 | — |
-| 2039 | 24.8% | 58.0% | 990 | 197 | 12.55 | 4.69 | — |
-| 2040 | 24.4% | 58.0% | 978 | 197 | 12.72 | 4.79 | — |
-| 2041 | 24.1% | 58.0% | 965 | 197 | 12.89 | 4.90 | — |
-| 2042 | 23.8% | 55.2% | 952 | 188 | 12.83 | 5.01 | — |
-| 2043 | 23.5% | 55.2% | 940 | 188 | 13.00 | 5.12 | — |
-| 2044 | 23.2% | 55.2% | 927 | 188 | 13.18 | 5.23 | — |
-| 2045 | 22.9% | 55.2% | 914 | 188 | 13.35 | 5.34 | — |
-| 2046 | 22.5% | 55.2% | 902 | 188 | 13.53 | 5.46 | — |
-| 2047 | 22.2% | 55.2% | 889 | 188 | 13.71 | 5.58 | — |
-| 2048 | 21.9% | 55.2% | 876 | 188 | 13.89 | 5.70 | — |
-| 2049 | 21.6% | 55.2% | 863 | 188 | 14.07 | 5.83 | — |
-| 2050 | 21.6% | 55.2% | 863 | 188 | 14.38 | 5.96 | — |
-| 2051 | 21.6% | 55.2% | 863 | 188 | 14.69 | 6.09 | — |
-| 2052 | 21.6% | 55.2% | 863 | 188 | 15.01 | 6.22 | — |
-| 2053 | 21.6% | 55.2% | 863 | 188 | 15.35 | 6.36 | — |
-| 2054 | 21.6% | 55.2% | 863 | 188 | 15.68 | 6.50 | — |
-| 2055 | 21.6% | 55.2% | 863 | 188 | 16.03 | 6.64 | — |
-| 2056 | 21.6% | 55.2% | 863 | 188 | 16.38 | 6.79 | — |
-| 2057 | 21.6% | 55.2% | 863 | 188 | 16.74 | 6.94 | — |
-| 2058 | 21.6% | 55.2% | 863 | 188 | 17.11 | 7.09 | — |
-| 2059 | 21.6% | 55.2% | 863 | 188 | 17.49 | 7.25 | — |
-| 2060 | 21.6% | 55.2% | 863 | 188 | 17.87 | 7.41 | — |
+Market shares, financials and the year-by-year tables are unchanged since round 2 (2035).
 
 ### How each company decided (private during the game)
 
@@ -2417,12 +2175,12 @@ Expected ΔPV of the chosen orders: +15.99 $B on my weights (+17.05 on the Board
 |---|---|
 | Board guidance | Boeing Board: risk appetite: 4.5 of 5, unchanged in our tests this round. We expect to ease toward 4 only once the Finance Committee sees debt back to a solidly investment-grade position; that is our inference. A launch must clear +$1B in the expected column, no Board item may fall below … |
 | Frame | Kelly Ortberg: initial lean: **Orders I lean to:** Do Nothing. - fps: hold - fps engine code: null - 737 rate: hold - 787 Re-engine: hold Row: +0.66 / +0.34. Every order is a hold, so no item goes to the Board. I will still answer each of its five recommendations in board_response. **Why:** - … |
-| Test (CFO) | Jay Malave recommends: Do Nothing. Options failing a test: Re-engine in the 2050 window, against the Board's bar (ask 5). Vetoes: B: fps hold + 787 Re-engine (row 'fps: hold + 787 Re-engine') (not binding) |
-| Test (operating head) | Stephanie Pope recommends: Do Nothing. Options failing a test: On-time, predictable delivery: 787 Re-engine with EIS 2050, row B (record [BX-1331] by inference; doctrine slip prior); Technology readiness for a 787 Re-engine (doctrine; CEO ask 5; not priced on the board). Vetoes: 737 rate: increase (any combination) (not binding); fps: hold + 787 Re-engine: launch (row B) (not binding) |
+| Test (CFO) | Jay Malave recommends: Do Nothing. Tests failed: Re-engine in the 2050 window, against the Board's bar (ask 5). Vetoes on options: B: fps hold + 787 Re-engine (row 'fps: hold + 787 Re-engine') (not binding) |
+| Test (operating head) | Stephanie Pope recommends: Do Nothing. Tests failed: On-time, predictable delivery: 787 Re-engine with EIS 2050, row B (record [BX-1331] by inference; doctrine slip prior); Technology readiness for a 787 Re-engine (doctrine; CEO ask 5; not priced on the board). Vetoes on options: 737 rate: increase (any combination) (not binding); fps: hold + 787 Re-engine: launch (row B) (not binding) |
 | Decide | Kelly Ortberg: Do Nothing |
 | Veto check (CFO) | Jay Malave concurs |
 | Veto check (operating head) | Stephanie Pope concurs |
-| Board review | Boeing Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Boeing Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -2558,7 +2316,7 @@ Malave notes that holding now very likely forgoes the Re-engine on this board: a
 - 2050 round: the 787 Re-engine likely shows about +0.04 in S1, below the Board's $1B bar, so it is not launched.
 
 **Expected ΔPV:** +0.66 in S1, +0.34 in S2.
-- Expected ΔPV +0.66 $B; board after the round +0.66 $B
+- Expected ΔPV +0.66 $B; GM valuation after the round +0.66 $B
 
 - Other moves: fps ramp stays KPI-gated, step by step with the FAA (public); Chief Engineer and Chief Aerospace Safety Officer report directly to the Aerospace Safety Committee each year (public); Certify before building at rate on any derivative; no fixed-price development (public); Supply base funded and hot through 2049 (private); CFM allocation tracked by airframer; delivery commitments contracted for the ramp (private); Yearly funding report to the Finance Committee; debt first, no new equity (private); 787 grows from Charleston; no Re-engine launch this round (public); Independent estimate check and early-warning rule continue (private); Customer slots quoted only against the KPI-gated ramp (private)
 
@@ -2568,12 +2326,12 @@ Malave notes that holding now very likely forgoes the Re-engine on this board: a
 |---|---|
 | Board guidance | Airbus Board: risk appetite: Averse (4 of 5), with a long horizon (4 of 5). NGSA is in service and its cash has rolled off. The Board can therefore carry one funded widebody derivative ($1.0B a year, $4.2B under the line) if the ExCo makes the case on its own tests, with rivals holding … |
 | Frame | Guillaume Faury: initial lean: My lean is plan A, the company default: - NGSA: hold; - NGSA engine code: none; - A350 Re-engine: hold; - Delay Tactics: none. That gives +23.37 in S1, my expected column at about 60%, and +23.26 in S2 at about 40%. There is no Board item. Expected PV is about … |
-| Test (CFO) | Thomas Toepfer recommends: Do Nothing. Options failing a test: Robustness, added move: plan B (my 2035 added-move gate; company A350 Re-engine launch test, profile section 6); Expected value and break-even: plan B (ask 3); Override arithmetic, for the record (ask 7); Staged widebody case (option C), CFO gates, for the record. Vetoes: B. Plan A + A350 Re-engine launched 2045 (entry into service 2050) (binding) |
-| Test (operating head) | Lars Wagner recommends: Do Nothing. Options failing a test: Production readiness: a widebody engine ready by the A350 Re-engine's entry into service, plan B (a soft-veto ground; not priced on the board). Vetoes: B. Plan A plus an A350 Re-engine launched in 2045 (entry into service 2050) (binding) |
+| Test (CFO) | Thomas Toepfer recommends: Do Nothing. Tests failed: Robustness, added move: plan B (my 2035 added-move gate; company A350 Re-engine launch test, profile section 6); Expected value and break-even: plan B (ask 3); Override arithmetic, for the record (ask 7); Staged widebody case (option C), CFO gates, for the record. Vetoes on options: B. Plan A + A350 Re-engine launched 2045 (entry into service 2050) (binding) |
+| Test (operating head) | Lars Wagner recommends: Do Nothing. Tests failed: Production readiness: a widebody engine ready by the A350 Re-engine's entry into service, plan B (a soft-veto ground; not priced on the board). Vetoes on options: B. Plan A plus an A350 Re-engine launched in 2045 (entry into service 2050) (binding) |
 | Decide | Guillaume Faury: Do Nothing |
 | Veto check (CFO) | Thomas Toepfer concurs |
 | Veto check (operating head) | Lars Wagner concurs |
-| Board review | Airbus Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Airbus Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -2702,7 +2460,7 @@ The best surviving plan, and the doctrine default within $1B, is NGSA hold + A35
 **2050 round**
 - If Boeing holds, the A350 Re-engine returns only as a staged case. I expect it to fail the $1B test (about +0.6 on Toepfer's discount) unless an engine is committed ahead of the airframe.
 - If Boeing launches a 787 Re-engine, the case is closed.
-- Expected ΔPV +23.33 $B; board after the round +23.37 $B
+- Expected ΔPV +23.33 $B; GM valuation after the round +23.37 $B
 
 - Other moves: Resize the NGSA and A320 supply agreements down to our own needs (public); Twice-yearly safety review: the NGSA ramp report and the A320neo transition report, taken together (private); A350 Re-engine kept as a staged widebody case, with gates for any re-test (private); Staged studies outside the board: an NGSA derivative, an A220 variant, and research and technology for the generation after NGSA (private); ECSC integrity review of supply sizing, hiring and pricing (private); Capital allocation inside the policy, with buybacks sized after programme cash (private); Open European engineering recruitment continues (public); Zero-for-zero trade advocacy (public)
 
@@ -2712,12 +2470,12 @@ The best surviving plan, and the doctrine default within $1B, is NGSA hold + A35
 |---|---|
 | Board guidance | GE Aerospace Board: risk appetite: Averse (4 of 5) with a balanced horizon (3 of 5). Hold is best in the only column by at least $21.89B, so we expect no Board items. We fund nothing that loses more than its own bill or waits on an airframe, and we keep the Ducted, Embraer, GEnx and RISE (as … |
 | Frame | Larry Culp: initial lean: LEAN (to be tested, not decided): hold on every field: ducted hold, Open Fan hold, Embraer partnership hold, emissions lobbying hold, genx hold. Hold is the best and only sensible row in the only column (-38.29). Nothing else is additive, so nothing else gets … |
-| Test (CFO) | Rahul Ghai recommends: Do Nothing. Options failing a test: Pays for itself: alternatives (Open Fan, Open Fan + Lobby, Lobby alone); Objective share check under an Open Fan (ask 2). Vetoes: Open Fan: launch (alone) (binding); Open Fan: launch with emissions lobbying: launch (binding); emissions lobbying: launch with no live Open Fan (binding); Any public statement or other move that offers launch-era pricing or a price concession, or talks CFM narrowbody price or terms without Safran. This … |
-| Test (operating head) | Mohamed Ali recommends: Do Nothing. Options failing a test: Ready no later than the airframe: Open Fan, if launched (advice). Vetoes: Open Fan: launch, alone or with emissions lobbying: launch (options 2 and 3) (not binding); Frame wording: 2055 is 'eight years after NGSA's entry, five after fps's' (not binding); Public statement: durability and RISE wording (checked at step 4) (not binding) |
+| Test (CFO) | Rahul Ghai recommends: Do Nothing. Tests failed: Pays for itself: alternatives (Open Fan, Open Fan + Lobby, Lobby alone); Objective share check under an Open Fan (ask 2). Vetoes on options: Open Fan: launch (alone) (binding); Open Fan: launch with emissions lobbying: launch (binding); emissions lobbying: launch with no live Open Fan (binding); Any public statement or other move that offers launch-era pricing or a price concession, or talks CFM narrowbody price or terms without Safran. This … |
+| Test (operating head) | Mohamed Ali recommends: Do Nothing. Tests failed: Ready no later than the airframe: Open Fan, if launched (advice). Vetoes on options: Open Fan: launch, alone or with emissions lobbying: launch (options 2 and 3) (not binding); Frame wording: 2055 is 'eight years after NGSA's entry, five after fps's' (not binding); Public statement: durability and RISE wording (checked at step 4) (not binding) |
 | Decide | Larry Culp: Do Nothing |
 | Veto check (CFO) | Rahul Ghai concurs |
 | Veto check (operating head) | Mohamed Ali concurs |
-| Board review | GE Aerospace Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | GE Aerospace Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -2826,7 +2584,7 @@ The signals: Boeing will look at the 787's next step once fps is in service, and
 (f) Supplier-dependent volumes, and macro (recession, tariffs) that the board's fixed narrowbody market leaves out.
 
 Upside is not booked. If the 2050 bulletin shows no widebody move, I raise toward -38.29, and not before.
-- Expected ΔPV −39.60 $B; board after the round −38.29 $B
+- Expected ΔPV −39.60 $B; GM valuation after the round −38.29 $B
 
 - Other moves: In-service safety and durability reporting on the Ducted, Embraer, LEAP and GEnx fleets, on field data (public); LEAP and Ducted OE engines and spares on time to every airframer (public); Answer to the airframer request for engine rate commitments with CFM as backstop: joint with Safran, on standard terms (private); Supplier and raw-materials review: titanium forgings and rare earths (private); RISE continues whole as technology, 50-50 with Safran (public); Private CFM offer to every airframer on standard terms, with Safran (private); No reaction to rival or Joint Venture news (private); GEnx 787 fleet support, GE alone; no move ahead of the airframer on the 787's next step (private)
 
@@ -2836,12 +2594,12 @@ Upside is not booked. If the 2050 bulletin shows no widebody move, I raise towar
 |---|---|
 | Board guidance | RTX Board: risk appetite: 3.5, unchanged, and easing as the trend expected. GTF2 is paid for and in service, so there is no programme risk to fund this round. The Board's appetite is hold/hold, premium 0, no envelope stretch, the dividend first, then debt, then buybacks as cash … |
 | Frame | Chris Calio: initial lean: MY LEAN: GTF2 Solo hold, Joint Venture with RR hold. premium 0; predictions S1 1.00; expected ΔPV -2.93; overrides empty. No Board item. WHY - It is the brief's only legal row, and it is right. - Safety and the fleet come first now that the engine is in service … |
-| Test (CFO) | Neil Mitchill recommends: Do Nothing. No option failed a test. Vetoes: other_moves: a share-recovery or pricing campaign to close the Capitalise gap (tested and rejected in the CEO's frame) (binding); GTF2 Solo: launch (unconditional) in 2050 with no live airframe outside service selecting P&W. This is a standing condition, not invoked this round (not binding); … |
-| Test (operating head) | Shane Eddy recommends: Do Nothing. No option failed a test. Vetoes: Not invoked: GTF2 Solo hold, Joint Venture with RR hold, and the other moves (the Hot Section kit, the order of call, the fleet report, the Joint Venture close-out, the NPV review, the 2050 rule) plus Calio's draft statement. (not binding); Standing condition, not triggered. It covers any statement or move … |
+| Test (CFO) | Neil Mitchill recommends: Do Nothing. No test failed. Vetoes on options: other_moves: a share-recovery or pricing campaign to close the Capitalise gap (tested and rejected in the CEO's frame) (binding); GTF2 Solo: launch (unconditional) in 2050 with no live airframe outside service selecting P&W. This is a standing condition, not invoked this round (not binding); … |
+| Test (operating head) | Shane Eddy recommends: Do Nothing. No test failed. Vetoes on options: Not invoked: GTF2 Solo hold, Joint Venture with RR hold, and the other moves (the Hot Section kit, the order of call, the fleet report, the Joint Venture close-out, the NPV review, the 2050 rule) plus Calio's draft statement. (not binding); Standing condition, not triggered. It covers any statement or move … |
 | Decide | Chris Calio: Do Nothing |
 | Veto check (CFO) | Neil Mitchill concurs |
 | Veto check (operating head) | Shane Eddy concurs |
-| Board review | RTX Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | RTX Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -2934,7 +2692,7 @@ I also added the conditional, dated offer for any future engine: after an airfra
 10. 2050. The standing rule is in other_moves. A 2050 unconditional launch would be ready in 2056 and fails Mitchill's ground 2 and the Board's tests. My 2050 default is hold unless a live airframe not yet in service selects P&W.
 - Expected scenario: S1 (rivals hold), the brief's only column, probability 1.00.. Best grid plan there: GTF2: hold (GTF2 Solo hold, Joint Venture with RR hold) at -2.93 $B (97.3%) in S1. It is the only row on the grid.. Premium +0.00 $B: No row differs from hold/hold, the brief's only legal row, so no doctrine or objective premium can arise. No PV is given up against the best expected PV, and the $1B team cap and the Board's $0.5B limit are both unused. The Capitalise gap (-2.93) is not chased with spend, discounts or terms. No grid order reaches it, and a pricing campaign fails Mitchill's ground 3 and my own value-not-share rule [PX-0055].
 - Predictions: S1 (rivals hold): 1.00. It is the brief's only column. Expected column: S1. Expected PV of hold/hold: -2.93 $B.
-- Expected ΔPV −2.93 $B; board after the round −2.93 $B
+- Expected ΔPV −2.93 $B; GM valuation after the round −2.93 $B
 
 - Other moves: GTF durability kit (Hot Section) for the installed fleet (public); Fleet report to the Board each round (replaces the GTF2 readiness report) (private); Order of call on pacing parts, shops and engineers (private); Joint Venture close-out note to the Board, and the derivative rule (private); Annual programme NPV review of GTF2 and the Joint Venture (Mitchill) (private); Capital order report (private); Standing 2050 rule (private)
 
@@ -2944,12 +2702,12 @@ I also added the conditional, dated offer for any future engine: after an airfra
 |---|---|
 | Board guidance | Rolls-Royce Board: risk appetite: Risk aversion is 4 of 5 and time horizon 2.5 of 5. This round is about harvesting and protecting. The Joint Venture engine is in service and both parts of the objective are met on hold. We accept no new programme that can lose more than its own bill, and none … |
 | Frame | Tufan Erginbilgic: initial lean: Proposal: all four at hold. `UltraFan NB Solo: hold`, `Joint Venture with P&W: hold` (the Joint Venture stands as formed), `UltraFan WB: hold`, `Trent 1000 upgrade: hold`. No Board item. Premium $0B. EV +20.58 on my weights (+20.59 on the Board's case); S1 outcome +20.55. So, … |
-| Test (CFO) | Helen McCabe recommends: Do Nothing. Options failing a test: Hurdle: Trent 1000 upgrade launch; Hurdle: UltraFan WB launch; Unselected downside: rejected rows. Vetoes: Trent 1000 upgrade: launch (binding); UltraFan WB: launch (binding); Balance-sheet vetoes (equity raise, leverage above about 1.5x, levering up for buybacks) (not binding) |
-| Test (operating head) | Rob Watson recommends: Do Nothing. Options failing a test: Ready by EIS: UltraFan WB (option C, if launched). Vetoes: A: all four at hold (`UltraFan NB Solo: hold`, `Joint Venture with P&W: hold`, `UltraFan WB: hold`, `Trent 1000 upgrade: hold`) (not binding); Draft public statement ('our narrowbody engine with Pratt & Whitney is in service ... no new widebody engine spend without a Re-engine ... not starting a new programme this … |
+| Test (CFO) | Helen McCabe recommends: Do Nothing. Tests failed: Hurdle: Trent 1000 upgrade launch; Hurdle: UltraFan WB launch; Unselected downside: rejected rows. Vetoes on options: Trent 1000 upgrade: launch (binding); UltraFan WB: launch (binding); Balance-sheet vetoes (equity raise, leverage above about 1.5x, levering up for buybacks) (not binding) |
+| Test (operating head) | Rob Watson recommends: Do Nothing. Tests failed: Ready by EIS: UltraFan WB (option C, if launched). Vetoes on options: A: all four at hold (`UltraFan NB Solo: hold`, `Joint Venture with P&W: hold`, `UltraFan WB: hold`, `Trent 1000 upgrade: hold`) (not binding); Draft public statement ('our narrowbody engine with Pratt & Whitney is in service ... no new widebody engine spend without a Re-engine ... not starting a new programme this … |
 | Decide | Tufan Erginbilgic: Do Nothing |
 | Veto check (CFO) | Helen McCabe concurs |
 | Veto check (operating head) | Rob Watson concurs |
-| Board review | Rolls-Royce Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Rolls-Royce Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -3046,7 +2804,7 @@ Operating head tests:
 - RR on hold: narrowbody share 21.6% from 2049; widebody 55.2% in 2045 and 2050. Both legs of the objective are met.
 - The $5B strain stays on any widebody item in 2050, to be confirmed from that grid.
 Expected ΔPV of the chosen orders: +20.58 $B on my weights (+20.59 on the Board's case). S1 outcome +20.55; S2 outcome +20.80.
-- Expected ΔPV +20.58 $B; board after the round +20.55 $B
+- Expected ΔPV +20.58 $B; GM valuation after the round +20.55 $B
 
 - Other moves: Joint Venture engine in service: safety, durability and support first (public); Trent fleet durability (time on wing) continues as funded (public); UltraFan technology continues as technology (public); Joint Venture in-service support plan (Watson) (private); Technical review rights and in-service reporting to the Board (private); Off-grid shared-risk sizing on the Joint Venture engine (McCabe) (private); Capital frame held: no new programme spend (private); Pricing discipline (private); Housekeeping: two 2035 plans formally closed (private); 2050 widebody watch (private)
 
@@ -3071,27 +2829,27 @@ Every company held, and no value has changed since 2035. A Re-engine ordered in 
 
 | Programme | Launched | Due | Status |
 |---|---:|---|---|
-| CFM ducted engine | 2030 | ready 2036 | in service since 2036 |
-| CFM-Embraer partnership | 2030 | ready 2037 | in service since 2037 |
-| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | in service since 2033 |
+| CFM ducted engine | 2030 | ready 2036 | ready since 2036 |
+| CFM-Embraer partnership | 2030 | ready 2037 | ready since 2037 |
+| GEnx (CFM/GE) — upgrade | 2030 | ready 2033 | ready since 2033 |
 | NGSA (Airbus) | 2030 | EIS 2037 | in service since 2037 |
 | P&W GTF2 (Solo) | 2030 | ready 2036 | folded into the Joint Venture 2035 |
 | RR UltraFan NB (Solo) | 2030 | ready 2037 | folded into the Joint Venture 2035 |
 | fps (Boeing) — 10-year ramp-up | 2030 | EIS 2040 | in service since 2040 |
-| P&W-RR Joint Venture NB engine | 2035 | ready 2036 | in service since 2036 |
+| P&W-RR Joint Venture NB engine | 2035 | ready 2036 | ready since 2036 |
 
 | Airframe | Engines requested | Engines fitted | Note |
 |---|---|---|---:|
 | fps | CFM | CFM | — |
 | NGSA | RR, PW and CFM | CFM + PW + RR | — |
 
-### Value after the round (board valuation; nobody moves afterwards)
+### Value after the round (GM valuation; nobody moves afterwards)
 
 | Component | Boeing | Airbus | CFM/GE | Pratt & Whitney | Rolls-Royce |
 |---|---:|---:|---:|---:|---:|
 | NB operating profit vs status quo | +20.30 | +39.13 | — | — | — |
 | Programme investment | −14.91 | −15.23 | — | — | — |
-| Cancellation write-offs | — | — | — | — | −1.71 |
+| Write-offs (cancellation or fold-in) | — | — | — | — | −1.71 |
 | Debt penalty (α) | −4.73 | −0.53 | — | — | — |
 | Engine value vs status quo | — | — | −32.29 | −0.93 | +26.26 |
 | R&D | — | — | −4.00 | −2.00 | −4.00 |
@@ -3099,254 +2857,7 @@ Every company held, and no value has changed since 2035. A Re-engine ordered in 
 | **ΔPV, $B at 2026** | **+0.66** | **+23.37** | **−38.29** | **−2.93** | **+20.55** |
 | Yield | 100.51% | 115.58% | 76.07% | 97.34% | 118.68% |
 
-### Market shares projected after the round
-
-| Share | 2030 | 2035 | 2040 | 2045 | 2050 | 2055 | 2060 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Boeing NB | 40.0% | 40.0% | 38.0% | 43.0% | 47.0% | 47.0% | 47.0% |
-| Airbus NB | 60.0% | 60.0% | 62.0% | 57.0% | 53.0% | 53.0% | 53.0% |
-| Boeing WB | 58.8% | 58.8% | 58.8% | 58.8% | 58.8% | 58.8% | 58.8% |
-| Airbus WB | 41.2% | 41.2% | 41.2% | 41.2% | 41.2% | 41.2% | 41.2% |
-| CFM NB engines | 76.0% | 76.0% | 51.1% | 54.3% | 56.8% | 56.8% | 56.8% |
-| P&W NB engines | 24.0% | 24.0% | 24.4% | 22.9% | 21.6% | 21.6% | 21.6% |
-| RR NB engines | 0.0% | 0.0% | 24.4% | 22.9% | 21.6% | 21.6% | 21.6% |
-| CFM/GE WB engines | 42.0% | 42.0% | 42.0% | 44.8% | 44.8% | 44.8% | 44.8% |
-| RR WB engines | 58.0% | 58.0% | 58.0% | 55.2% | 55.2% | 55.2% | 55.2% |
-
-### Financials by period (nominal $B)
-
-| Airframer | NB deliveries | WB deliveries | Revenue | Operating profit | Status-quo profit | Non-recurring |
-|---|---:|---:|---:|---:|---:|---:|
-| Boeing 2026-2030 | 4,000 | 500 | 282.0 | 33.4 | 33.4 | 0.0 |
-| Boeing 2031-2035 | 4,000 | 500 | 282.0 | 33.4 | 33.4 | 0.0 |
-| Boeing 2036-2045 | 7,940 | 1,000 | 595.1 | 116.4 | 66.7 | 60.3 |
-| Boeing 2046-2050 | 4,580 | 500 | 341.9 | 82.6 | 33.4 | 0.0 |
-| Boeing 2051-2060 | 9,400 | 1,000 | 697.0 | 168.6 | 66.7 | 0.0 |
-| Airbus 2026-2030 | 6,000 | 350 | 375.0 | 44.1 | 44.1 | 0.0 |
-| Airbus 2031-2035 | 6,000 | 350 | 375.0 | 44.1 | 44.1 | 0.0 |
-| Airbus 2036-2045 | 12,060 | 700 | 785.7 | 171.4 | 88.2 | 35.5 |
-| Airbus 2046-2050 | 5,420 | 350 | 361.1 | 81.5 | 44.1 | 0.0 |
-| Airbus 2051-2060 | 10,600 | 700 | 709.0 | 159.4 | 88.2 | 0.0 |
-
-| Engine maker | NB engines | WB engines | Engine lifecycle value | Status-quo value | R&D and write-offs |
-|---|---:|---:|---:|---:|---:|
-| CFM/GE 2026-2030 | 15,200 | 714 | 108.3 | 108.3 | 4.0 |
-| CFM/GE 2031-2035 | 15,200 | 714 | 120.8 | 120.8 | 0.0 |
-| CFM/GE 2036-2045 | 21,821 | 1,466 | 214.7 | 284.8 | 0.0 |
-| CFM/GE 2046-2050 | 11,213 | 761 | 130.3 | 167.4 | 0.0 |
-| CFM/GE 2051-2060 | 22,730 | 1,522 | 310.6 | 394.7 | 0.0 |
-| Pratt & Whitney 2026-2030 | 4,800 | 0 | 30.0 | 30.0 | 0.0 |
-| Pratt & Whitney 2031-2035 | 4,800 | 0 | 33.4 | 33.4 | 2.0 |
-| Pratt & Whitney 2036-2045 | 9,570 | 0 | 78.5 | 78.8 | 0.0 |
-| Pratt & Whitney 2046-2050 | 4,394 | 0 | 42.4 | 46.3 | 0.0 |
-| Pratt & Whitney 2051-2060 | 8,635 | 0 | 98.3 | 109.3 | 0.0 |
-| Rolls-Royce 2026-2030 | 0 | 986 | 18.5 | 18.5 | 0.0 |
-| Rolls-Royce 2031-2035 | 0 | 986 | 20.6 | 20.6 | 5.7 |
-| Rolls-Royce 2036-2045 | 8,610 | 1,934 | 118.9 | 48.5 | 0.0 |
-| Rolls-Royce 2046-2050 | 4,394 | 939 | 69.6 | 28.5 | 0.0 |
-| Rolls-Royce 2051-2060 | 8,635 | 1,878 | 162.3 | 67.3 | 0.0 |
-
-### Year by year
-
-**Boeing**
-
-| Year | NB share | WB share | NB deliveries | WB deliveries | Revenue $B | Operating profit $B | Status-quo $B | Non-recurring $B |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2027 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2028 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2029 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2030 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2031 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2032 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2033 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2034 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2035 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2036 | 40.0% | 58.8% | 800 | 100 | 56.4 | 6.67 | 6.67 | — |
-| 2037 | 39.0% | 58.8% | 780 | 100 | 55.4 | 6.60 | 6.67 | — |
-| 2038 | 38.0% | 58.8% | 760 | 100 | 54.5 | 6.52 | 6.67 | — |
-| 2039 | 37.0% | 58.8% | 740 | 100 | 53.5 | 6.44 | 6.67 | — |
-| 2040 | 38.0% | 58.8% | 760 | 100 | 59.8 | 14.32 | 6.67 | 60.32 |
-| 2041 | 39.0% | 58.8% | 780 | 100 | 60.9 | 14.60 | 6.67 | — |
-| 2042 | 40.0% | 58.8% | 800 | 100 | 62.0 | 14.88 | 6.67 | — |
-| 2043 | 41.0% | 58.8% | 820 | 100 | 63.1 | 15.16 | 6.67 | — |
-| 2044 | 42.0% | 58.8% | 840 | 100 | 64.2 | 15.45 | 6.67 | — |
-| 2045 | 43.0% | 58.8% | 860 | 100 | 65.3 | 15.73 | 6.67 | — |
-| 2046 | 44.0% | 58.8% | 880 | 100 | 66.4 | 16.01 | 6.67 | — |
-| 2047 | 45.0% | 58.8% | 900 | 100 | 67.5 | 16.29 | 6.67 | — |
-| 2048 | 46.0% | 58.8% | 920 | 100 | 68.6 | 16.57 | 6.67 | — |
-| 2049 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2050 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2051 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2052 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2053 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2054 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2055 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2056 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2057 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2058 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2059 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-| 2060 | 47.0% | 58.8% | 940 | 100 | 69.7 | 16.86 | 6.67 | — |
-
-**Airbus**
-
-| Year | NB share | WB share | NB deliveries | WB deliveries | Revenue $B | Operating profit $B | Status-quo $B | Non-recurring $B |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2027 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2028 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2029 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2030 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2031 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2032 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2033 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2034 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2035 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2036 | 60.0% | 41.2% | 1,200 | 70 | 75.0 | 8.82 | 8.82 | — |
-| 2037 | 61.0% | 41.2% | 1,220 | 70 | 79.7 | 18.26 | 8.82 | 35.52 |
-| 2038 | 62.0% | 41.2% | 1,240 | 70 | 80.8 | 18.55 | 8.82 | — |
-| 2039 | 63.0% | 41.2% | 1,260 | 70 | 81.9 | 18.84 | 8.82 | — |
-| 2040 | 62.0% | 41.2% | 1,240 | 70 | 80.8 | 18.55 | 8.82 | — |
-| 2041 | 61.0% | 41.2% | 1,220 | 70 | 79.7 | 18.26 | 8.82 | — |
-| 2042 | 60.0% | 41.2% | 1,200 | 70 | 78.6 | 17.97 | 8.82 | — |
-| 2043 | 59.0% | 41.2% | 1,180 | 70 | 77.5 | 17.68 | 8.82 | — |
-| 2044 | 58.0% | 41.2% | 1,160 | 70 | 76.4 | 17.39 | 8.82 | — |
-| 2045 | 57.0% | 41.2% | 1,140 | 70 | 75.3 | 17.10 | 8.82 | — |
-| 2046 | 56.0% | 41.2% | 1,120 | 70 | 74.2 | 16.81 | 8.82 | — |
-| 2047 | 55.0% | 41.2% | 1,100 | 70 | 73.1 | 16.52 | 8.82 | — |
-| 2048 | 54.0% | 41.2% | 1,080 | 70 | 72.0 | 16.23 | 8.82 | — |
-| 2049 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2050 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2051 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2052 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2053 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2054 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2055 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2056 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2057 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2058 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2059 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-| 2060 | 53.0% | 41.2% | 1,060 | 70 | 70.9 | 15.94 | 8.82 | — |
-
-**CFM/GE**
-
-| Year | NB engine share | WB engine share | NB engines | WB engines | Engine value $B | Status-quo $B | R&D, write-offs $B |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 76.0% | 42.0% | 3,040 | 143 | 20.73 | 20.73 | — |
-| 2027 | 76.0% | 42.0% | 3,040 | 143 | 21.19 | 21.19 | — |
-| 2028 | 76.0% | 42.0% | 3,040 | 143 | 21.65 | 21.65 | — |
-| 2029 | 76.0% | 42.0% | 3,040 | 143 | 22.13 | 22.13 | — |
-| 2030 | 76.0% | 42.0% | 3,040 | 143 | 22.62 | 22.62 | 4.00 |
-| 2031 | 76.0% | 42.0% | 3,040 | 143 | 23.11 | 23.11 | — |
-| 2032 | 76.0% | 42.0% | 3,040 | 143 | 23.62 | 23.62 | — |
-| 2033 | 76.0% | 42.0% | 3,040 | 143 | 24.14 | 24.14 | — |
-| 2034 | 76.0% | 42.0% | 3,040 | 143 | 24.67 | 24.67 | — |
-| 2035 | 76.0% | 42.0% | 3,040 | 143 | 25.22 | 25.22 | — |
-| 2036 | 76.0% | 42.0% | 3,040 | 143 | 25.77 | 25.77 | — |
-| 2037 | 51.7% | 42.0% | 2,070 | 143 | 18.97 | 26.34 | — |
-| 2038 | 51.1% | 42.0% | 2,044 | 143 | 19.19 | 26.92 | — |
-| 2039 | 50.5% | 42.0% | 2,019 | 143 | 19.41 | 27.51 | — |
-| 2040 | 51.1% | 42.0% | 2,044 | 143 | 20.04 | 28.11 | — |
-| 2041 | 51.7% | 42.0% | 2,070 | 143 | 20.69 | 28.73 | — |
-| 2042 | 52.4% | 44.8% | 2,095 | 152 | 21.60 | 29.36 | — |
-| 2043 | 53.0% | 44.8% | 2,121 | 152 | 22.30 | 30.01 | — |
-| 2044 | 53.7% | 44.8% | 2,146 | 152 | 23.01 | 30.67 | — |
-| 2045 | 54.3% | 44.8% | 2,171 | 152 | 23.75 | 31.35 | — |
-| 2046 | 54.9% | 44.8% | 2,197 | 152 | 24.51 | 32.03 | — |
-| 2047 | 55.6% | 44.8% | 2,222 | 152 | 25.29 | 32.74 | — |
-| 2048 | 56.2% | 44.8% | 2,248 | 152 | 26.09 | 33.46 | — |
-| 2049 | 56.8% | 44.8% | 2,273 | 152 | 26.91 | 34.20 | — |
-| 2050 | 56.8% | 44.8% | 2,273 | 152 | 27.50 | 34.95 | — |
-| 2051 | 56.8% | 44.8% | 2,273 | 152 | 28.11 | 35.72 | — |
-| 2052 | 56.8% | 44.8% | 2,273 | 152 | 28.73 | 36.50 | — |
-| 2053 | 56.8% | 44.8% | 2,273 | 152 | 29.36 | 37.31 | — |
-| 2054 | 56.8% | 44.8% | 2,273 | 152 | 30.00 | 38.13 | — |
-| 2055 | 56.8% | 44.8% | 2,273 | 152 | 30.66 | 38.97 | — |
-| 2056 | 56.8% | 44.8% | 2,273 | 152 | 31.34 | 39.82 | — |
-| 2057 | 56.8% | 44.8% | 2,273 | 152 | 32.03 | 40.70 | — |
-| 2058 | 56.8% | 44.8% | 2,273 | 152 | 32.73 | 41.59 | — |
-| 2059 | 56.8% | 44.8% | 2,273 | 152 | 33.45 | 42.51 | — |
-| 2060 | 56.8% | 44.8% | 2,273 | 152 | 34.19 | 43.44 | — |
-
-**Pratt & Whitney**
-
-| Year | NB engine share | WB engine share | NB engines | WB engines | Engine value $B | Status-quo $B | R&D, write-offs $B |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 24.0% | 0.0% | 960 | 0 | 5.74 | 5.74 | — |
-| 2027 | 24.0% | 0.0% | 960 | 0 | 5.86 | 5.86 | — |
-| 2028 | 24.0% | 0.0% | 960 | 0 | 5.99 | 5.99 | — |
-| 2029 | 24.0% | 0.0% | 960 | 0 | 6.13 | 6.13 | — |
-| 2030 | 24.0% | 0.0% | 960 | 0 | 6.26 | 6.26 | — |
-| 2031 | 24.0% | 0.0% | 960 | 0 | 6.40 | 6.40 | — |
-| 2032 | 24.0% | 0.0% | 960 | 0 | 6.54 | 6.54 | — |
-| 2033 | 24.0% | 0.0% | 960 | 0 | 6.68 | 6.68 | — |
-| 2034 | 24.0% | 0.0% | 960 | 0 | 6.83 | 6.83 | — |
-| 2035 | 24.0% | 0.0% | 960 | 0 | 6.98 | 6.98 | 2.00 |
-| 2036 | 24.0% | 0.0% | 960 | 0 | 7.13 | 7.13 | — |
-| 2037 | 24.1% | 0.0% | 965 | 0 | 7.33 | 7.29 | — |
-| 2038 | 24.4% | 0.0% | 978 | 0 | 7.59 | 7.45 | — |
-| 2039 | 24.8% | 0.0% | 990 | 0 | 7.86 | 7.61 | — |
-| 2040 | 24.4% | 0.0% | 978 | 0 | 7.93 | 7.78 | — |
-| 2041 | 24.1% | 0.0% | 965 | 0 | 8.00 | 7.95 | — |
-| 2042 | 23.8% | 0.0% | 952 | 0 | 8.06 | 8.13 | — |
-| 2043 | 23.5% | 0.0% | 940 | 0 | 8.13 | 8.31 | — |
-| 2044 | 23.2% | 0.0% | 927 | 0 | 8.20 | 8.49 | — |
-| 2045 | 22.9% | 0.0% | 914 | 0 | 8.26 | 8.68 | — |
-| 2046 | 22.5% | 0.0% | 902 | 0 | 8.33 | 8.87 | — |
-| 2047 | 22.2% | 0.0% | 889 | 0 | 8.39 | 9.06 | — |
-| 2048 | 21.9% | 0.0% | 876 | 0 | 8.45 | 9.26 | — |
-| 2049 | 21.6% | 0.0% | 863 | 0 | 8.51 | 9.47 | — |
-| 2050 | 21.6% | 0.0% | 863 | 0 | 8.70 | 9.67 | — |
-| 2051 | 21.6% | 0.0% | 863 | 0 | 8.89 | 9.89 | — |
-| 2052 | 21.6% | 0.0% | 863 | 0 | 9.09 | 10.10 | — |
-| 2053 | 21.6% | 0.0% | 863 | 0 | 9.29 | 10.33 | — |
-| 2054 | 21.6% | 0.0% | 863 | 0 | 9.49 | 10.55 | — |
-| 2055 | 21.6% | 0.0% | 863 | 0 | 9.70 | 10.79 | — |
-| 2056 | 21.6% | 0.0% | 863 | 0 | 9.92 | 11.02 | — |
-| 2057 | 21.6% | 0.0% | 863 | 0 | 10.13 | 11.27 | — |
-| 2058 | 21.6% | 0.0% | 863 | 0 | 10.36 | 11.51 | — |
-| 2059 | 21.6% | 0.0% | 863 | 0 | 10.58 | 11.77 | — |
-| 2060 | 21.6% | 0.0% | 863 | 0 | 10.82 | 12.03 | — |
-
-**Rolls-Royce**
-
-| Year | NB engine share | WB engine share | NB engines | WB engines | Engine value $B | Status-quo $B | R&D, write-offs $B |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 2026 | 0.0% | 58.0% | 0 | 197 | 3.53 | 3.53 | — |
-| 2027 | 0.0% | 58.0% | 0 | 197 | 3.61 | 3.61 | — |
-| 2028 | 0.0% | 58.0% | 0 | 197 | 3.69 | 3.69 | — |
-| 2029 | 0.0% | 58.0% | 0 | 197 | 3.77 | 3.77 | — |
-| 2030 | 0.0% | 58.0% | 0 | 197 | 3.86 | 3.86 | — |
-| 2031 | 0.0% | 58.0% | 0 | 197 | 3.94 | 3.94 | — |
-| 2032 | 0.0% | 58.0% | 0 | 197 | 4.03 | 4.03 | — |
-| 2033 | 0.0% | 58.0% | 0 | 197 | 4.12 | 4.12 | — |
-| 2034 | 0.0% | 58.0% | 0 | 197 | 4.21 | 4.21 | — |
-| 2035 | 0.0% | 58.0% | 0 | 197 | 4.30 | 4.30 | 5.71 |
-| 2036 | 0.0% | 58.0% | 0 | 197 | 4.39 | 4.39 | — |
-| 2037 | 24.1% | 58.0% | 965 | 197 | 11.82 | 4.49 | — |
-| 2038 | 24.4% | 58.0% | 978 | 197 | 12.18 | 4.59 | — |
-| 2039 | 24.8% | 58.0% | 990 | 197 | 12.55 | 4.69 | — |
-| 2040 | 24.4% | 58.0% | 978 | 197 | 12.72 | 4.79 | — |
-| 2041 | 24.1% | 58.0% | 965 | 197 | 12.89 | 4.90 | — |
-| 2042 | 23.8% | 55.2% | 952 | 188 | 12.83 | 5.01 | — |
-| 2043 | 23.5% | 55.2% | 940 | 188 | 13.00 | 5.12 | — |
-| 2044 | 23.2% | 55.2% | 927 | 188 | 13.18 | 5.23 | — |
-| 2045 | 22.9% | 55.2% | 914 | 188 | 13.35 | 5.34 | — |
-| 2046 | 22.5% | 55.2% | 902 | 188 | 13.53 | 5.46 | — |
-| 2047 | 22.2% | 55.2% | 889 | 188 | 13.71 | 5.58 | — |
-| 2048 | 21.9% | 55.2% | 876 | 188 | 13.89 | 5.70 | — |
-| 2049 | 21.6% | 55.2% | 863 | 188 | 14.07 | 5.83 | — |
-| 2050 | 21.6% | 55.2% | 863 | 188 | 14.38 | 5.96 | — |
-| 2051 | 21.6% | 55.2% | 863 | 188 | 14.69 | 6.09 | — |
-| 2052 | 21.6% | 55.2% | 863 | 188 | 15.01 | 6.22 | — |
-| 2053 | 21.6% | 55.2% | 863 | 188 | 15.35 | 6.36 | — |
-| 2054 | 21.6% | 55.2% | 863 | 188 | 15.68 | 6.50 | — |
-| 2055 | 21.6% | 55.2% | 863 | 188 | 16.03 | 6.64 | — |
-| 2056 | 21.6% | 55.2% | 863 | 188 | 16.38 | 6.79 | — |
-| 2057 | 21.6% | 55.2% | 863 | 188 | 16.74 | 6.94 | — |
-| 2058 | 21.6% | 55.2% | 863 | 188 | 17.11 | 7.09 | — |
-| 2059 | 21.6% | 55.2% | 863 | 188 | 17.49 | 7.25 | — |
-| 2060 | 21.6% | 55.2% | 863 | 188 | 17.87 | 7.41 | — |
+Market shares, financials and the year-by-year tables are unchanged since round 2 (2035).
 
 ### How each company decided (private during the game)
 
@@ -3356,12 +2867,12 @@ Every company held, and no value has changed since 2035. A Re-engine ordered in 
 |---|---|
 | Board guidance | Boeing Board: risk appetite: 4.5 of 5, unchanged in our tests for this final round. On Malave's conservative case, debt is not back to $45B until 2053, so we do not yet ease toward 4 (inference). The tests stand: a launch must clear +$1B in the expected column, and no Board item may fall … |
 | Frame | Kelly Ortberg: initial lean: **Orders I lean to: Do Nothing.** - fps: hold - fps engine code: null - 737 rate: hold - 787 Re-engine: hold Row: +0.66 / +0.57. Every order is a hold, so no item goes to the Board. I'll still answer every one of its recommendations in board_response, including those … |
-| Test (CFO) | Jay Malave recommends: Do Nothing. Options failing a test: Full cost of a slip: one year of certification slip on plan B, for scale (ask 3); Re-engine against the Board's business-case bar (advice to the Board). Vetoes: B: fps hold + 787 Re-engine (row 'fps: hold + 787 Re-engine', +0.71 / -0.43) (not binding) |
-| Test (operating head) | Stephanie Pope recommends: Do Nothing. Options failing a test: On-time, predictable delivery: 787 Re-engine with EIS 2055, row B (record [BX-1331] by inference; doctrine slip prior); Technology readiness for a 2055 EIS (doctrine; CEO ask 6; advice, not a veto ground, not priced on the board). Vetoes: 737 rate: increase (any combination) (not binding); fps: hold + 787 Re-engine: launch (row B) (not binding) |
+| Test (CFO) | Jay Malave recommends: Do Nothing. Tests failed: Full cost of a slip: one year of certification slip on plan B, for scale (ask 3); Re-engine against the Board's business-case bar (advice to the Board). Vetoes on options: B: fps hold + 787 Re-engine (row 'fps: hold + 787 Re-engine', +0.71 / -0.43) (not binding) |
+| Test (operating head) | Stephanie Pope recommends: Do Nothing. Tests failed: On-time, predictable delivery: 787 Re-engine with EIS 2055, row B (record [BX-1331] by inference; doctrine slip prior); Technology readiness for a 2055 EIS (doctrine; CEO ask 6; advice, not a veto ground, not priced on the board). Vetoes on options: 737 rate: increase (any combination) (not binding); fps: hold + 787 Re-engine: launch (row B) (not binding) |
 | Decide | Kelly Ortberg: Do Nothing |
 | Veto check (CFO) | Jay Malave concurs |
 | Veto check (operating head) | Stephanie Pope concurs |
-| Board review | Boeing Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Boeing Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -3504,7 +3015,7 @@ Hard-rule costs are logged apart:
 - Debt falls on Malave's conservative path, solidly investment grade during 2053, with 2052 as upside.
 
 **Final ΔPV:** +0.66 in S1, +0.57 in S2.
-- Expected ΔPV +0.66 $B; board after the round +0.66 $B
+- Expected ΔPV +0.66 $B; GM valuation after the round +0.66 $B
 
 - Other moves: fps line holds at 940 a year; any step above it is KPI-gated and agreed with the FAA (public); Chief Engineer and Chief Aerospace Safety Officer report directly to the Aerospace Safety Committee each year (public); Certify before building at rate on any derivative; no fixed-price development (public); Supply base funded and hot for 940 plus spares, not contracted above it (private); CFM allocation tracked by airframer (private); In-service support for the fps fleet (private); Close-out funding report to the Finance Committee; debt first, no new equity (private); 787 grows from Charleston; no Re-engine launch (public); Independent estimate check and early-warning rule continue (private); Customer slots quoted only against the KPI-gated line (private)
 
@@ -3514,12 +3025,12 @@ Hard-rule costs are logged apart:
 |---|---|
 | Board guidance | Airbus Board: risk appetite: Averse (4 of 5), with a long horizon (4 of 5). Cash is no constraint: $1.0B a year leaves $4.2B under the line. However, 2050 is the last decision year, so a launch is an unconditional commitment through its 2055 entry into service, and no engine is on the … |
 | Frame | Guillaume Faury: initial lean: My lean is plan A, the company default: - NGSA: hold; - NGSA engine code: none; - A350 Re-engine: hold; - Delay Tactics: none. That gives +23.37 in S1, my expected column at about 70%, and +23.33 in S2 at about 30%. Expected PV is about $23.36B, and there is no Board … |
-| Test (CFO) | Thomas Toepfer recommends: Do Nothing. Options failing a test: Robustness, added move: plan B (my added-move gate; the company's A350 Re-engine launch test, profile section 6); Expected value and break-even: plan B (ask 3); Override arithmetic, for the record (ask 7); Staged widebody case, CFO gates, closing record (option C). Vetoes: B. Plan A + A350 Re-engine launched 2050 (entry into service 2055) (binding) |
-| Test (operating head) | Lars Wagner recommends: Do Nothing. Options failing a test: Production readiness: a widebody engine ready by the A350 Re-engine's entry into service, plan B. This is a soft-veto ground; the board does not price it.. Vetoes: B. Plan A plus an A350 Re-engine launched in 2050 (entry into service 2055). (binding) |
+| Test (CFO) | Thomas Toepfer recommends: Do Nothing. Tests failed: Robustness, added move: plan B (my added-move gate; the company's A350 Re-engine launch test, profile section 6); Expected value and break-even: plan B (ask 3); Override arithmetic, for the record (ask 7); Staged widebody case, CFO gates, closing record (option C). Vetoes on options: B. Plan A + A350 Re-engine launched 2050 (entry into service 2055) (binding) |
+| Test (operating head) | Lars Wagner recommends: Do Nothing. Tests failed: Production readiness: a widebody engine ready by the A350 Re-engine's entry into service, plan B. This is a soft-veto ground; the board does not price it. Vetoes on options: B. Plan A plus an A350 Re-engine launched in 2050 (entry into service 2055). (binding) |
 | Decide | Guillaume Faury: Do Nothing |
 | Veto check (CFO) | Thomas Toepfer concurs |
 | Veto check (operating head) | Lars Wagner concurs |
-| Board review | Airbus Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Airbus Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -3619,7 +3130,7 @@ S2 stays the worst plausible column. The decision is the same at any probability
 - Narrowbody share holds at 53% and widebody at 41.2% (70 a year). Operating profit is $15.9B a year.
 - ΔPV is +23.37 in S1 and +23.33 in S2.
 - The Board confirms hold with no item to vote.
-- Expected ΔPV +23.36 $B; board after the round +23.37 $B
+- Expected ΔPV +23.36 $B; GM valuation after the round +23.37 $B
 
 - Other moves: Twice-yearly safety review: the NGSA line, the A320neo transition and the in-service durability record of both NGSA engine families, taken as one package (private); Supply agreements sized to our own needs: the ECSC reports the outcome of the 2045 resizing (public); Closing record of the staged A350 Re-engine case (private); Staged studies for the long view, outside the board (private); ECSC integrity review: supply sizing, hiring and pricing (private); Capital allocation inside the policy (private); Open European engineering recruitment continues (public); Zero-for-zero trade advocacy (public)
 
@@ -3629,12 +3140,12 @@ S2 stays the worst plausible column. The decision is the same at any probability
 |---|---|
 | Board guidance | GE Aerospace Board: risk appetite: Averse (4 of 5) with a balanced horizon (3 of 5), unchanged in the final round. Hold leads the next-best plan by $15.38B in the only column. We fund nothing that loses more than its own bill or waits on an airframe, and we make no end-of-game exception for … |
 | Frame | Larry Culp: initial lean: LEAN (to be tested, not decided): hold on every field: ducted hold, Open Fan hold, Embraer partnership hold, emissions lobbying hold, genx hold. Hold is the best row in the only column at -38.29. Nothing else is additive, so nothing else gets ordered [CX-0301]. That … |
-| Test (CFO) | Rahul Ghai recommends: Do Nothing. Options failing a test: Pays for itself: alternatives (Open Fan, Open Fan + Lobby, Lobby alone); Objective share check under an Open Fan (ask 2). Vetoes: Open Fan: launch (alone) (binding); Open Fan: launch with emissions lobbying: launch (binding); emissions lobbying: launch with no live Open Fan (binding); Any public statement or other move that offers launch-era pricing or a price concession, or that talks CFM narrowbody price, terms or capacity … |
-| Test (operating head) | Mohamed Ali recommends: Do Nothing. Options failing a test: Ready no later than the airframe: Open Fan, if launched (advice). Vetoes: Open Fan: launch, alone or with emissions lobbying: launch (options 2 and 3) (not binding); Closing public statement and other moves: cycle numbers, airframer rates, rival dates, RISE progress (checked at step 4) (not binding) |
+| Test (CFO) | Rahul Ghai recommends: Do Nothing. Tests failed: Pays for itself: alternatives (Open Fan, Open Fan + Lobby, Lobby alone); Objective share check under an Open Fan (ask 2). Vetoes on options: Open Fan: launch (alone) (binding); Open Fan: launch with emissions lobbying: launch (binding); emissions lobbying: launch with no live Open Fan (binding); Any public statement or other move that offers launch-era pricing or a price concession, or that talks CFM narrowbody price, terms or capacity … |
+| Test (operating head) | Mohamed Ali recommends: Do Nothing. Tests failed: Ready no later than the airframe: Open Fan, if launched (advice). Vetoes on options: Open Fan: launch, alone or with emissions lobbying: launch (options 2 and 3) (not binding); Closing public statement and other moves: cycle numbers, airframer rates, rival dates, RISE progress (checked at step 4) (not binding) |
 | Decide | Larry Culp: Do Nothing |
 | Veto check (CFO) | Rahul Ghai concurs |
 | Veto check (operating head) | Mohamed Ali concurs |
-| Board review | GE Aerospace Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | GE Aerospace Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -3749,7 +3260,7 @@ The larger of the two sets the $0.51B cushion. The signals point to none this ro
 (f) Supplier-dependent volumes, and macro factors (recession, tariffs) that the board's fixed narrowbody market leaves out.
 
 No upside is booked.
-- Expected ΔPV −38.80 $B; board after the round −38.29 $B
+- Expected ΔPV −38.80 $B; GM valuation after the round −38.29 $B
 
 - Other moves: In-service safety and durability reporting continues on field data: Ducted, Embraer, GEnx and LEAP fleets (public); Ali's in-service report to the Board, as promised in round 3: no flag raised, none cleared (private); Field data to Boeing's Aerospace Safety Committee review of CFM ducted durability in service (private); LEAP and Ducted OE engines and spares on time to every airframer (public); Answer to the airframers' supply signals (resized long-term engine agreements; support for rates): joint with Safran, on standard terms (private); Supplier and raw-materials contracts (titanium forgings, rare earths) sized to our own needs (private); RISE continues whole as technology, 50-50 with Safran, beyond the game window (public); GEnx 787 fleet support, GE alone (public); No reaction to rival or Joint Venture news (private)
 
@@ -3759,12 +3270,12 @@ No upside is booked.
 |---|---|
 | Board guidance | RTX Board: risk appetite: 3.5, unchanged and easing as the record expected. There is no programme risk left to fund, so the Board wants hold/hold, premium 0, no envelope stretch, and the capital order of dividend, then debt, then buybacks. It stays strict on any engine spend without … |
 | Frame | Chris Calio: initial lean: MY LEAN: GTF2 Solo hold, Joint Venture with RR hold. - premium 0; predictions S1 1.00, expected column S1; expected ΔPV -2.93; overrides empty. - No Board item. WHY - It is the brief's only legal row, and it is right. - The fleet comes first now that the engine is in … |
-| Test (CFO) | Neil Mitchill recommends: Do Nothing. No option failed a test. Vetoes: other_moves: any pricing, share-recovery or free-upgrade campaign to close the Capitalise gap (tested and rejected in the CEO's frame) (binding); GTF2 Solo: launch (unconditional) in 2050. The brief does not offer it; this is a standing condition for the record, not invoked (not binding); … |
-| Test (operating head) | Shane Eddy recommends: Do Nothing. No option failed a test. Vetoes: Not invoked. This covers: - the orders, GTF2 Solo hold and Joint Venture with RR hold; - the other moves: the Hot Section kit on standard terms, the fleet report, the order of call, the NPV review, the capital-order close and the Joint Venture discipline; - Calio's draft public statement. (not binding); … |
+| Test (CFO) | Neil Mitchill recommends: Do Nothing. No test failed. Vetoes on options: other_moves: any pricing, share-recovery or free-upgrade campaign to close the Capitalise gap (tested and rejected in the CEO's frame) (binding); GTF2 Solo: launch (unconditional) in 2050. The brief does not offer it; this is a standing condition for the record, not invoked (not binding); … |
+| Test (operating head) | Shane Eddy recommends: Do Nothing. No test failed. Vetoes on options: Not invoked. This covers: - the orders, GTF2 Solo hold and Joint Venture with RR hold; - the other moves: the Hot Section kit on standard terms, the fleet report, the order of call, the NPV review, the capital-order close and the Joint Venture discipline; - Calio's draft public statement. (not binding); … |
 | Decide | Chris Calio: Do Nothing |
 | Veto check (CFO) | Neil Mitchill concurs |
 | Veto check (operating head) | Shane Eddy concurs |
-| Board review | RTX Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | RTX Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -3876,7 +3387,7 @@ Qualitative expectations, which the board does not price:
 - P&W NB engine share holds at 21.6% to 2056, as the brief carries it.
 - No airframe code changes.
 - No new narrowbody, Re-engine or Joint Venture build standard is launched in 2050.
-- Expected ΔPV −2.93 $B; board after the round −2.93 $B
+- Expected ΔPV −2.93 $B; GM valuation after the round −2.93 $B
 
 - Other moves: GTF Hot Section durability kit for the installed fleet (public); Final fleet report to the Board: Joint Venture engine fleet on NGSA and the GTF fleet (Eddy's report, adopted) (private); Order of call on pacing parts, shops and engineers, and the 2050 parts result (private); Closing programme NPV review to the Board (Mitchill's review, adopted) (private); Capital-order close, and the after-game technology rule (private); Joint Venture and derivative discipline, standing after the game (private)
 
@@ -3886,12 +3397,12 @@ Qualitative expectations, which the board does not price:
 |---|---|
 | Board guidance | Rolls-Royce Board: risk appetite: Risk aversion is 4 of 5 and time horizon 2.5 of 5. In this last decision year we harvest and protect. We accept no new programme that can lose more than its own bill, and nothing on this grid passes that test: both widebody items fall below minus their bills … |
 | Frame | Tufan Erginbilgic: initial lean: Proposal: all four fields at hold. - `UltraFan NB Solo: hold` and `Joint Venture with P&W: hold`. These are the only legal values, and the Joint Venture stands as formed. - `UltraFan WB: hold` and `Trent 1000 upgrade: hold`. No Board item. Premium $0B. EV about +20.59 on 0.90 … |
-| Test (CFO) | Helen McCabe recommends: Do Nothing. Options failing a test: Hurdle: Trent 1000 upgrade launch; Hurdle: UltraFan WB launch; Unselected downside: rejected rows, and whether they can be recovered (CEO ask 3). Vetoes: Trent 1000 upgrade: launch (binding); UltraFan WB: launch (binding); Balance-sheet vetoes (equity raise, leverage above about 1.5x, levering up for buybacks) (not binding) |
-| Test (operating head) | Rob Watson recommends: Do Nothing. Options failing a test: Ready by EIS: UltraFan WB (option C, if launched). Vetoes: A: all four at hold (`UltraFan NB Solo: hold`, `Joint Venture with P&W: hold`, `UltraFan WB: hold`, `Trent 1000 upgrade: hold`) (not binding); CEO's draft public statement (not binding); B: `Trent 1000 upgrade: launch` (not binding); C: `UltraFan WB: launch` (not binding); Joint Venture engine in service (Board … |
+| Test (CFO) | Helen McCabe recommends: Do Nothing. Tests failed: Hurdle: Trent 1000 upgrade launch; Hurdle: UltraFan WB launch; Unselected downside: rejected rows, and whether they can be recovered (CEO ask 3). Vetoes on options: Trent 1000 upgrade: launch (binding); UltraFan WB: launch (binding); Balance-sheet vetoes (equity raise, leverage above about 1.5x, levering up for buybacks) (not binding) |
+| Test (operating head) | Rob Watson recommends: Do Nothing. Tests failed: Ready by EIS: UltraFan WB (option C, if launched). Vetoes on options: A: all four at hold (`UltraFan NB Solo: hold`, `Joint Venture with P&W: hold`, `UltraFan WB: hold`, `Trent 1000 upgrade: hold`) (not binding); CEO's draft public statement (not binding); B: `Trent 1000 upgrade: launch` (not binding); C: `UltraFan WB: launch` (not binding); Joint Venture engine in service (Board … |
 | Decide | Tufan Erginbilgic: Do Nothing |
 | Veto check (CFO) | Helen McCabe concurs |
 | Veto check (operating head) | Rob Watson concurs |
-| Board review | Rolls-Royce Board: not called; every order is the default (a hold is never a Board item) |
+| Board review | Rolls-Royce Board: not called; no Board item (every launch, commit or cancel order at its default) |
 
 CFO tests:
 
@@ -3975,7 +3486,7 @@ Closing account (R4-7).
 - No safety or durability flag on the Joint Venture engine reaches the record in 2050.
 - CFM keeps reporting durability on field data. The GEnx upgrade's 2.8 pp is already in the hold row.
 - Outcome: ΔPV +20.55 (S1) / +20.90 (S2). Both parts of the objective are met.
-- Expected ΔPV +20.59 $B; board after the round +20.55 $B
+- Expected ΔPV +20.59 $B; GM valuation after the round +20.55 $B
 
 - Other moves: Joint Venture engine in service: safety, durability and support first (public); Trent fleet durability (time on wing) continues as funded (public); UltraFan technology continues as technology (public); Watson's in-service report on the Joint Venture engine to the Board, with this package (private); Oversight under the shared-risk terms: technical review rights and gear-and-core module pool (private); Partner-shop support for the Joint Venture fleet (private); Supplier contracts sized to our own year table (private); Off-grid shared-risk sizing held (McCabe) (private); Capital frame held (private); Pricing discipline and widebody policy (private)
 
@@ -3984,7 +3495,7 @@ Closing account (R4-7).
 
 The orders differ in only four places, all in 2030 and 2035; in 2045 and 2050 every company held in both games. The earlier game had one strategist agent per company, deciding as its leadership team, on the earlier version of the dashboard. This game had four agents per company on the new version. Both changed at once, so the comparison alone cannot say what the ExCo-and-Board structure did. The decision records show why each order differs. The table below values each game's final state on both versions of the dashboard.
 
-| Round, company | Earlier game (one strategist agent, earlier board) | This game (ExCo and Board, new board) |
+| Round, company | Earlier game (one strategist agent, earlier dashboard) | This game (ExCo and Board agents, new dashboard) |
 |---|---|---|
 | R1 Boeing | Launch fps, 7-year ramp-up (engines requested: CFM); Increase 737 rate | Launch fps, 10-year ramp-up (engines requested: CFM) |
 | R1 Airbus | Launch NGSA (engines requested: RR, P&W and CFM) | Launch NGSA (engines requested: RR, P&W and CFM) |
@@ -4007,9 +3518,9 @@ The orders differ in only four places, all in 2030 and 2035; in 2045 and 2050 ev
 | R4 Pratt & Whitney | Do Nothing | Do Nothing |
 | R4 Rolls-Royce | Do Nothing | Do Nothing |
 
-Final ΔPV, $B, each game's final state on both boards:
+Final ΔPV, $B, each game's final state on both versions of the dashboard:
 
-| Company | Earlier game, earlier board (as played) | Earlier game's state, new board | This game, new board (as played) | This game's state, earlier board |
+| Company | Earlier game, earlier dashboard (as played) | Earlier game's state, new dashboard | This game, new dashboard (as played) | This game's state, earlier dashboard |
 |---|---:|---:|---:|---:|
 | Boeing | +1.85 | −1.57 | +0.66 | −0.66 |
 | Airbus | +15.61 | +17.58 | +23.37 | +32.09 |
@@ -4040,7 +3551,7 @@ Final ΔPV, $B, each game's final state on both boards:
 - One move was worth less here (+$1.65B against +$2.16B). The replay puts that on Boeing's 10-year ramp, not the dashboard: against a 7-year fps the move is worth $2.15B to $2.16B on either version.
 - The earlier strategist read the bottleneck as Airbus's "first claim on scarce capacity", the only form inside its integrity pillar. It read the team's stricter condition (the move must change who enters service first) as met, and passed its $5.2B cash guardrail at $4.8B of peak spend.
 - Here the Airbus Board, its CFO and its operating head barred the bottleneck on integrity. Faury kept the team's stricter condition, which on its own keeps poaching off, and the Board's cash line also ruled poaching out. NGSA's bill is larger on the new version ($35.52B against $30.07B), which left only $0.13B of headroom.
-- Effect of no Delay Tactics move: Boeing +$1.69B, Airbus −$1.90B, CFM/GE +$1.61B, P&W and Rolls-Royce −$0.66B each.
+- Effect of no Delay Tactics move, averaged over the 16-combination replay: Boeing +$1.69B, Airbus −$1.90B, CFM/GE +$1.61B, P&W and Rolls-Royce −$0.66B each.
 
 **The Joint Venture: a red-line clause taken from the Board's test.**
 - In both games a Rolls-Royce commitment in 2035 was worth +$2.29B, but only if P&W committed in the same round, which it did in both.
@@ -4114,8 +3625,10 @@ moves headroom, not any result. Malave flagged Boeing's old debt-penalty figures
 used.
 - From 2035 each company's prompts stated its own current figures. The engine makers' files had no changed
 figures.
-- Rounds. Four sealed, simultaneous rounds: 2030, 2035, 2045, 2050. Each round's value is the GM valuation of
-the state after that round, assuming nobody moves again. The final round's value is the game outcome.
+- Rounds. Four sealed, simultaneous rounds: 2030, 2035, 2045, 2050, the earlier game's decision years, kept so
+the two games compare. With no 2040 round, 2035 was the last chance to order Delay Tactics against an fps due in 2040. Each
+round's value is the GM valuation of the state after that round, assuming nobody moves again. The final round's value is
+the game outcome.
 Rules the GM added to the static dashboard (as in the earlier game)
 - Time. A programme enters service, or an engine is ready, after its development time from the decision year.
 - Airframes: fps 7 or 10 years, fps via Embraer 10, NGSA 7, Re-engines 5.
@@ -4143,14 +3656,18 @@ at each company's dashboard WACC: Boeing 10.5%, Airbus 8%, CFM/GE 8.5%, P&W and 
 - Dashboard conventions. Airframe programme spend is charged in full at entry into service. Engine R&D is
 undiscounted. Engine value is the lifetime value per engine delivered: price × 1.6, rising 2.2% a year.
 - Regret. The final ΔPV a company would have had with its best alternative orders in that round, holding every
-other order in the game as played (later rounds re-run), minus its actual final ΔPV.
+other order in the game as played (later rounds re-run), minus its actual final ΔPV. Myopic regret is the same comparison
+valued as if nobody moved after that round, which is the view each brief gave.
+- "Observed". Marks a pattern seen in the records that no single test, rule or order produced.
+- S1, S2, …. The scenario columns of each company's own payoff grid in that round's brief. They differ by company
+and round. Ids in brackets, such as [BX-1239], are the agents' evidence citations.
 - Your dashboard alone. The table below sets each final value next to your dashboard alone. The airframers
 match exactly. For the engine makers the dashboard fixes a 50/50 airframer split and locks P&W to GTF2 Solo for the
 engine selections in this game; the GM's Joint Venture and year-by-year split account for the difference.
 
-### Your board alone against the GM valuation, final state
+### Your dashboard alone against the GM valuation, final state
 
-| Player | Board alone ΔPV $B | GM valuation ΔPV $B | Difference |
+| Player | Dashboard alone ΔPV $B | GM valuation ΔPV $B | GM minus dashboard |
 |---|---:|---:|---:|
 | Boeing | +0.66 | +0.66 | +0.00 |
 | Airbus | +23.37 | +23.37 | +0.00 |

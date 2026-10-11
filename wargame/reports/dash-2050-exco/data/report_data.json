@@ -4822,7 +4822,7 @@
       "launch": 2030,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "cfm"
      },
      {
@@ -4831,7 +4831,7 @@
       "launch": 2030,
       "due": 2037,
       "due_kind": "ready",
-      "status": "in service since 2037",
+      "status": "ready since 2037",
       "owner": "cfm"
      },
      {
@@ -4840,7 +4840,7 @@
       "launch": 2030,
       "due": 2033,
       "due_kind": "ready",
-      "status": "in service since 2033",
+      "status": "ready since 2033",
       "owner": "cfm"
      },
      {
@@ -4858,7 +4858,7 @@
       "launch": 2030,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "pratt_whitney"
      },
      {
@@ -4867,7 +4867,7 @@
       "launch": 2030,
       "due": 2037,
       "due_kind": "ready",
-      "status": "in service since 2037",
+      "status": "ready since 2037",
       "owner": "rolls_royce"
      },
      {
@@ -7578,7 +7578,7 @@
       "detail": "worst year 38.0% (2040 38.0%, 2045 43.0%, 2050 47.0%)"
      },
      {
-      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030-2050",
+      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
       "met": false,
       "detail": "worst year 38.0%"
      }
@@ -12504,7 +12504,7 @@
       "launch": 2030,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "cfm"
      },
      {
@@ -12513,7 +12513,7 @@
       "launch": 2030,
       "due": 2037,
       "due_kind": "ready",
-      "status": "in service since 2037",
+      "status": "ready since 2037",
       "owner": "cfm"
      },
      {
@@ -12522,7 +12522,7 @@
       "launch": 2030,
       "due": 2033,
       "due_kind": "ready",
-      "status": "in service since 2033",
+      "status": "ready since 2033",
       "owner": "cfm"
      },
      {
@@ -12567,7 +12567,7 @@
       "launch": 2035,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "pratt_whitney+rolls_royce"
      }
     ],
@@ -15287,7 +15287,7 @@
       "detail": "worst year 38.0% (2040 38.0%, 2045 43.0%, 2050 47.0%)"
      },
      {
-      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030-2050",
+      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
       "met": false,
       "detail": "worst year 38.0%"
      }
@@ -19998,7 +19998,7 @@
       "launch": 2030,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "cfm"
      },
      {
@@ -20007,7 +20007,7 @@
       "launch": 2030,
       "due": 2037,
       "due_kind": "ready",
-      "status": "in service since 2037",
+      "status": "ready since 2037",
       "owner": "cfm"
      },
      {
@@ -20016,7 +20016,7 @@
       "launch": 2030,
       "due": 2033,
       "due_kind": "ready",
-      "status": "in service since 2033",
+      "status": "ready since 2033",
       "owner": "cfm"
      },
      {
@@ -20061,7 +20061,7 @@
       "launch": 2035,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "pratt_whitney+rolls_royce"
      }
     ],
@@ -22781,7 +22781,7 @@
       "detail": "worst year 38.0% (2040 38.0%, 2045 43.0%, 2050 47.0%)"
      },
      {
-      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030-2050",
+      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
       "met": false,
       "detail": "worst year 38.0%"
      }
@@ -27450,7 +27450,7 @@
       "launch": 2030,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "cfm"
      },
      {
@@ -27459,7 +27459,7 @@
       "launch": 2030,
       "due": 2037,
       "due_kind": "ready",
-      "status": "in service since 2037",
+      "status": "ready since 2037",
       "owner": "cfm"
      },
      {
@@ -27468,7 +27468,7 @@
       "launch": 2030,
       "due": 2033,
       "due_kind": "ready",
-      "status": "in service since 2033",
+      "status": "ready since 2033",
       "owner": "cfm"
      },
      {
@@ -27513,7 +27513,7 @@
       "launch": 2035,
       "due": 2036,
       "due_kind": "ready",
-      "status": "in service since 2036",
+      "status": "ready since 2036",
       "owner": "pratt_whitney+rolls_royce"
      }
     ],
@@ -30233,7 +30233,7 @@
       "detail": "worst year 38.0% (2040 38.0%, 2045 43.0%, 2050 47.0%)"
      },
      {
-      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030-2050",
+      "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
       "met": false,
       "detail": "worst year 38.0%"
      }
