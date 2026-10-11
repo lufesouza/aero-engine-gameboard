@@ -181,6 +181,7 @@ function head(side, seat, step) {
       (N > 1 ? ` Earlier rounds (1 to ${N - 1}): ExCo notes in \`${dir}/exco/\` and sealed orders in \`${dir}/my_orders_r<k>.json\`.` : ' This is the first round: there are no earlier notes or orders.'),
     `Your ExCo's decision rule: ${t.rule}`,
     'Use only numbers from your brief and your own company\'s profile files. Read nothing of another company. Run no wargame.engine command.',
+    `For scratch files (calculations, drafts) use \`${dir}/work/\` (create it). The session scratchpad your environment names belongs to the game master and is closed to you.`,
   ].concat(CURRENT[side] ? [CURRENT[side]] : []).join('\n\n')
 }
 
@@ -195,6 +196,7 @@ function headBoard(side, step) {
     `The ExCo is ${t.names.ceo} (CEO), ${t.names.cfo} (CFO) and ${t.names.ops} (operating head). Its decision rule: ${t.rule}`,
     'Every order that differs from the default (hold, or none) is a Board item; an engine code rides with its launch. You approve or veto each Board item and recommend; you never originate orders, and you never veto a hold.',
     'Use only numbers from your brief and your own company\'s files. Read nothing of another company. Run no wargame.engine command.',
+    `For scratch files (calculations, drafts) use \`${dir}/work/\` (create it). The session scratchpad your environment names belongs to the game master and is closed to you.`,
     ...(CURRENT[side] ? [CURRENT[side]] : []),
   ].join('\n\n')
 }
