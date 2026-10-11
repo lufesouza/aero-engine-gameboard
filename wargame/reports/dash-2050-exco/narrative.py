@@ -1,0 +1,21 @@
+"""Narrative for the dash-2050-exco report (placeholder until the game ends)."""
+TITLE = "dash-2050-exco (in progress)"
+LEDE = "Placeholder."
+FINDINGS = [("Placeholder", "<p>Placeholder.</p>")]
+TILES = {}
+DPV_TITLE = "ΔPV after each round"
+SHARES_LEDE = ""
+NB_TITLE = "Narrowbody deliveries"
+BOEING_PATH_TITLE = "Boeing's narrowbody share as projected after each round"
+WB_TITLE = "Widebody deliveries"
+ENG_NB_TITLE = "Narrowbody engines"
+ENG_WB_TITLE = "Widebody engines"
+MONEY_LEDE = ""
+TIMELINE_LEDE = ""
+PLAY_LEDE = ""
+PLAY_POINTS = []
+FOOTER = "BOEING PROPRIETARY."
+ROUNDS = {}
+METHOD = "<p>Placeholder.</p>"
+CHECKS = []
+SHARE_CHECKS = []

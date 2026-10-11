@@ -426,8 +426,14 @@ def review_table(rv):
     return K.table(["Board item", "Value", "Decision", "Ground", "Acceptable alternatives"], rows) if rows else ""
 
 
+def short(t, n=260):
+    """Collapse whitespace; cut at a word boundary (the full text is in the step's own panel)."""
+    t = " ".join(str(t or "").split())
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + " …"
+
+
 def chain_summary(side, x):
-    """One line per step: what each seat did, from the ExCo record."""
+    """One line per step: what each seat did, from the ExCo record. Long free text is shortened (full text below)."""
     ex = x.get("exco") or {}
     ceo, cfo, ops, board = PEOPLE[side]
     g = ex.get("board_guidance") or {}
@@ -435,18 +441,18 @@ def chain_summary(side, x):
     vc = ex.get("veto_checks") or {}
     out = []
     if g:
-        out.append(("Board guidance", f"{board}: risk appetite: {g.get('risk_appetite', '')}"))
+        out.append(("Board guidance", f"{board}: risk appetite: {short(g.get('risk_appetite', ''))}"))
     fr = ex.get("frame") or {}
     if fr:
-        out.append(("Frame", f"{ceo}: initial lean: {fr.get('initial_lean', '')}"))
+        out.append(("Frame", f"{ceo}: initial lean: {short(fr.get('initial_lean', ''))}"))
     for seat, nm in (("cfo", cfo), ("ops", ops)):
         m = ex.get(seat) or {}
         if m:
             fails = [t.get("name", "") for t in m.get("tests") or [] if t.get("result") == "fail"]
             vet = [v.get("plan", "") + (" (binding)" if v.get("binding") else " (not binding)") for v in m.get("vetoes") or []]
             out.append((f"Test ({SEAT[seat]})", f"{nm} recommends: {_orders_line(side, m.get('recommended_orders'))}"
-                        + (f". Failed tests: {'; '.join(fails)}" if fails else ". No failed test")
-                        + (f". Vetoes: {'; '.join(vet)}" if vet else "")))
+                        + (f". Options failing a test: {short('; '.join(fails), 300)}" if fails else ". No option failed a test")
+                        + (f". Vetoes: {short('; '.join(vet), 300)}" if vet else "")))
     if dec:
         out.append(("Decide", f"{ceo}: {_orders_line(side, dec.get('orders'))}"))
     for seat, nm in (("cfo", cfo), ("ops", ops)):
@@ -454,9 +460,9 @@ def chain_summary(side, x):
         if v:
             t = "concurs" if v.get("concur") else "does not concur"
             if (v.get("veto") or {}).get("ground"):
-                t += f"; veto{' (binding)' if v['veto'].get('binding') else ' (not binding)'}: {v['veto']['ground']}"
+                t += f"; veto{' (binding)' if v['veto'].get('binding') else ' (not binding)'}: {short(v['veto']['ground'])}"
             if v.get("red_line_breach"):
-                t += f"; red line: {v.get('red_line', '')}"
+                t += f"; red line: {short(v.get('red_line', ''))}"
             out.append((f"Veto check ({SEAT[seat]})", f"{nm} {t}"))
     if ex.get("revision"):
         out.append(("Revise", f"{ceo}: {_orders_line(side, ex['revision'].get('orders'))}"))
@@ -495,13 +501,14 @@ def chain_block(r):
         mw = x.get("memo_weighing") or {}
         ovr = "".join(f"<li>{esc(o.get('veto', ''))}: {esc(o.get('reason', ''))}</li>" for o in x.get("overrides") or [])
         br = "".join(f"<li><b>{esc(o.get('recommendation', ''))}</b> {esc(o.get('response', ''))}</li>" for o in x.get("board_response") or [])
-        out.append(f'''<details class="tv"><summary>{esc(NAME[s])}: the decision chain ({esc(ceo)}, {esc(cfo)}, {esc(ops)}; {esc(board)})</summary><div class="panel stack small">
+        out.append(f'''<details class="tv"><summary>{esc(NAME[s])}: the decision chain ({esc(ceo)}, {esc(cfo)}, {esc(ops)}; {esc(board)})</summary><div class="panel stack small chain">
 {steps}
 <p class="label">Board guidance before the ExCo met</p><p><b>Priorities.</b></p>{_li(g.get("priorities"))}<p><b>Expects to see.</b> {esc(g.get("expect_to_see", ""))}</p>
 <p><b>Would approve.</b></p>{_li(g.get("would_approve"))}<p><b>Would veto.</b></p>{_li(g.get("would_veto"))}
 <p><b>Recommendations.</b></p>{_li([i.get("text") for i in g.get("recommendations") or []])}
 <p class="label">{esc(ceo)} frames the round</p><p><b>Question.</b> {esc(fr.get("question", ""))}</p><p><b>Situation.</b> {esc(fr.get("situation", ""))}</p>
 <p><b>Options to test.</b></p>{_li(fr.get("options_to_test"))}<p><b>Red lines.</b></p>{_li(fr.get("red_lines"))}
+<p><b>Initial lean.</b> {esc(fr.get("initial_lean", ""))}</p>
 <p class="label">{esc(cfo)} (CFO) tests</p>{tests_table(ex.get("cfo"))}<p>{esc((ex.get("cfo") or {}).get("memo", ""))}</p>
 <p class="label">{esc(ops)} (operating head) tests</p>{tests_table(ex.get("ops"))}<p>{esc((ex.get("ops") or {}).get("memo", ""))}</p>
 <p class="label">{esc(ceo)} decides</p><p><b>Orders.</b> {_orders_line(s, dec.get("orders"))}</p><p><b>Rationale.</b> {esc(dec.get("rationale", ""))}</p>
@@ -632,6 +639,7 @@ def build(out_path):
 .chart.sm .tick { font-size: 12px; } .chart.sm .endlab { font-size: 12px; }
 .bl li b { display: inline; font: 600 1em var(--font-body); letter-spacing: 0; margin: 0; }
 .bl ul { margin: 6px 0 0; padding-left: 18px; } .bl li { margin-bottom: 4px; }
+.chain p { white-space: pre-line; } .chain .label { margin-top: 16px; } .chain ul { margin: 4px 0 8px; padding-left: 18px; }
 @media (max-width: 900px) { .grid3 { grid-template-columns: 1fr; } }
 @media (max-width: 760px) { .chart.sm { min-width: 0; } }
 """
@@ -690,4 +698,4 @@ def build(out_path):
 
 
 if __name__ == "__main__":
-    build(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "dash_2050_wargame.html"))
+    build(sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "dash_2050_exco_wargame.html"))

@@ -33,9 +33,18 @@ def strip(html_txt):
     return re.sub(r"\n\s*\n+", "\n", t).strip()
 
 
+def _numeric(c):
+    import re
+    c = str(c).replace("*", "").strip()
+    return c in ("—", "") or bool(re.fullmatch(r"[+\-\u2212]?\$?[\d,]*\.?\d+[%B]?", c))
+
+
 def tbl(head, rows):
-    out = ["| " + " | ".join(head) + " |", "|" + "|".join("---" if i == 0 else "---:" for i in range(len(head))) + "|"]
-    out += ["| " + " | ".join(str(c) for c in r) + " |" for r in rows]
+    """Markdown table: a column is right-aligned only if every cell in it is a number."""
+    right = [i > 0 and rows and all(_numeric(r[i]) for r in rows) for i in range(len(head))]
+    cell = lambda c: " ".join(str(c).split()).replace("|", "/")
+    out = ["| " + " | ".join(head) + " |", "|" + "|".join("---:" if right[i] else "---" for i in range(len(head))) + "|"]
+    out += ["| " + " | ".join(cell(c) for c in r) + " |" for r in rows]
     return "\n".join(out)
 
 
@@ -123,7 +132,7 @@ def round_md(r):
             m = ex.get(seat) or {}
             tests = m.get("tests") or []
             if tests:
-                L += [f"{SEAT[seat].capitalize()} tests:", "",
+                L += [{"cfo": "CFO tests:", "ops": "Operating head tests:"}[seat], "",
                       tbl(["Test", "Threshold", "Result", "Numbers"],
                           [[t.get("name", ""), t.get("threshold", "").replace("|", "/"), t.get("result", ""), t.get("numbers", "").replace("|", "/")]
                            for t in tests]), ""]
