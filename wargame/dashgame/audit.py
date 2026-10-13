@@ -58,9 +58,14 @@ def bash_paths(cmd, cwd):
             wd = os.path.realpath(d if d.startswith("/") else os.path.join(wd, d))
             # a cd target is a working directory, not an access: relative paths after it are resolved against it
             continue
-        for t in re.split(r"[\s<>]+", seg):
+        toks = re.split(r"[\s<>]+", seg)
+        # a bare "." after grep/sed/awk is a pattern (grep -c .), not the working directory
+        pattern_cmd = bool(toks) and os.path.basename(toks[0]) in ("grep", "egrep", "fgrep", "rg", "sed", "awk")
+        for t in toks:
             if t.startswith("QSTR"):
                 t = quoted[int(t[4:])]
+            if pattern_cmd and t in (".", ".."):
+                continue
             if t and not t.startswith("-") and re.fullmatch(r"[\w./~*?\[\]{}+-]+", t) and ("/" in t or t in (".", "..")):
                 out.append(os.path.realpath(t if t.startswith("/") else os.path.join(wd, t)))
     return out

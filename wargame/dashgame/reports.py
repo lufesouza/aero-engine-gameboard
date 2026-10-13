@@ -118,6 +118,29 @@ def control2_block(state, v):
             "rr_nb_exposure": B.rr_nb_exposure(state), "rr_strain": strain["rolls_royce"]}
 
 
+def sd_block(state, v):
+    """Supply and demand (runs with supply_demand.txt): demand, capacity by line, deliveries, the firm and waiting
+    backlogs, lost demand, preference and delivered shares, and the status quo's deliveries, year by year."""
+    import supply_demand as SD
+    rows = [r for r in v["_af_series"]["years"] if r["year"] <= M.REPORT_END]
+    out = {"year": [r["year"] for r in rows],
+           "replacement": [SD.demand(r["year"]) - SD.growth(r["year"]) for r in rows],
+           "growth": [SD.growth(r["year"]) for r in rows],
+           "plans": dict(zip(("a320_plan", "fps_site"), SD.plans(state))), "renton_share": SD.renton_share(state),
+           "costs": [list(c) for c in SD.costs(state)]}
+    for k in ("demand", "cap_max", "cap_fps", "cap_a320", "cap_ngsa", "lost", "backlog_b", "backlog_a", "firm_b",
+              "firm_a", "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa"):
+        out[k] = [r["sd"][k] for r in rows]
+    for k in ("delivered_b", "delivered_a", "lost", "dlv_max", "dlv_a320"):
+        out["sq_" + k] = [r["sd_sq"][k] for r in rows]
+    for side in ("boeing", "airbus"):
+        out[side] = {"pref_share": [r[side]["nb_pref_share"] for r in rows],
+                     "delivered_share": [r[side]["nb_delivered_share"] for r in rows],
+                     **{k: [r[side]["sd"][k] for r in rows] for k in ("wanted", "capacity", "spill_in", "sq_delivered",
+                                                                      "new_units", "old_units")}}
+    return out
+
+
 def round_block(n):
     rec = jl("record_r%d.json" % n)
     s = jl("state_r%d.json" % n)
@@ -137,6 +160,7 @@ def round_block(n):
                                for side in M.SIDES} for y in SNAP_YEARS},
         "objectives": objectives_block(s, v),
         "control2": control2_block(s, v) if B.objective_set() == "control2" else None,
+        "sd": sd_block(s, v) if M.SD_ON else None,
     }
 
 
@@ -237,6 +261,11 @@ def build(n_rounds=None):
     s0 = jl("state_r0.json")
     v0 = M.value(s0, covert=True, series=True)
     data["status_quo"]["years"] = years_block(v0)
+    if M.SD_ON:
+        data["status_quo"]["sd"] = sd_block(s0, v0)
+        import supply_demand as SD
+        data["sd_inputs"] = {k: SD.inputs()[k] for k in ("airbus", "boeing")}
+        data["sd_inputs"]["demand"] = {k: x for k, x in SD.inputs()["demand"].items() if k not in ("groups", "growth")}
     data["regret"] = regret(n_rounds)
     data["board_check"] = board_check(jl("state_r%d.json" % n_rounds))
     data["stage"] = {str(n): jl("stage_r%d.json" % n) for n in range(1, n_rounds + 1)
