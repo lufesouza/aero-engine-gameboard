@@ -6,7 +6,8 @@
    (the layer off), for the played states of dash-2050-obj and a few variants.
 2. The digitised Airbus chart: the Alt plan adds about 1,500 A320s (the chart says "+~1,500"); NGSA reaches 100 a
    month; the plans move with the NGSA date.
-3. Conservation every year: wanted + backlog in = delivered + backlog out + lost; deliveries never exceed capacity;
+3. Conservation every year: new demand + waiting backlog in + firm backlog in = delivered + waiting backlog out +
+   firm backlog out + lost; deliveries never exceed capacity;
    spill only into spare capacity.
 4. Orders: the supply-plan fields are legal only with the layer on, a missing field keeps the current plan, the plan
    locks at entry into service, and a change is logged in public.
@@ -93,8 +94,9 @@ worst = 0.0
 cap_ok = spill_ok = True
 for r in v["_af_series"]["years"]:
     b, a = r["boeing"]["sd"], r["airbus"]["sd"]
-    lhs = b["wanted"] + a["wanted"] + b["backlog_in"] + a["backlog_in"]
-    rhs = r["boeing"]["nb_units"] + r["airbus"]["nb_units"] + b["backlog_out"] + a["backlog_out"] + r["sd"]["lost"]
+    lhs = b["wanted"] + a["wanted"] + b["backlog_in"] + a["backlog_in"] + b["firm_in"] + a["firm_in"]
+    rhs = (r["boeing"]["nb_units"] + r["airbus"]["nb_units"] + b["backlog_out"] + a["backlog_out"] + b["firm_out"] + a["firm_out"]
+           + r["sd"]["lost"])
     worst = max(worst, abs(lhs - rhs))
     cap_ok &= r["boeing"]["nb_units"] <= b["capacity"] + 1e-6 and r["airbus"]["nb_units"] <= a["capacity"] + 1e-6
     spill_ok &= (b["spill_in"] <= 1e-9 or r["boeing"]["nb_units"] <= b["capacity"] + 1e-6)

@@ -3,12 +3,15 @@
 The board sells a fixed 2,000 narrowbodies a year, split by its share rules, and books every one. This layer keeps
 the board's shares as each customer's *preference*, but delivers only what the factories can build:
 
-  demand(y)        = growth + older types' replacement(y) + today's fleets' replacement(y)
-                     (supply_demand.json: growth is 56% of the board's 2,000 a year, Airbus GMF 2025; the older 737NG /
-                     A320ceo fleets' replacement runs down to nothing in 2050; today's MAX, A320neo and A220 fleets'
-                     replacement is the user's Cirium page; 2026-2045 averages the board's 2,000 a year)
-  wanted_X(y)      = preference share_X(y) x demand(y)
-  delivered_X(y)   = min(capacity_X(y), wanted_X(y) + backlog_X) + spill in
+  total demand     = replacement + growth
+  new demand(y)    = (growth(y) + replacement of today's fleets(y)) x 737/A320 class share
+                     (replacement: the user's Cirium page, MAX/A320neo/A220 retirements; growth, not in the user's data:
+                     the single-aisle fleet grows about 3.95% a year to 2044, Airbus GMF 2025 / Boeing CMO 2025, easing
+                     to 3% by 2060)
+  firm backlog     = the page's firm orders (MAX 4,769, A320neo family 7,330), delivered first; broadly the older
+                     737NG / A320ceo fleets' replacement
+  wanted_X(y)      = preference share_X(y) x new demand(y)
+  delivered_X(y)   = firm backlog first, then min(capacity left, wanted_X(y) + waiting backlog_X) + spill in
   spill X -> Y     = min(flex x unmet_X, spare_Y)   (flexible customers: airlines flying both types, lessors and
                                                      unannounced customers take the other maker's free slots)
   backlog_X(y+1)   = (unmet_X - spill out) x (1 - lapse)   (a tenth of the waiting customers drop out each year)
@@ -84,11 +87,23 @@ def _rundown(curve, shift, year):
 
 
 def demand(year):
+    """New narrowbody demand in `year` (737/A320 class): growth + replacement of today's fleets. The firm backlog
+    (firm_backlog) comes on top and is delivered first."""
     d = inputs()["demand"]
     ys, rep = d["years"], d["replacements"]
     y = min(max(year, ys[0]), ys[-1])          # after 2075 the replacement wave is held at its 2075 value
-    older = max(0.0, d["older_2026"] * (1.0 - (year - 2026) / (d["older_end_year"] - 2026)))
-    return d["growth_per_year"] + older + rep[ys.index(y)]
+    g = d["growth"].get(str(year), d["growth"][max(d["growth"], key=int)])
+    return (g + rep[ys.index(y)]) * d["class_share"]
+
+
+def growth(year):
+    d = inputs()["demand"]
+    return d["growth"].get(str(year), d["growth"][max(d["growth"], key=int)]) * d["class_share"]
+
+
+def firm_backlog():
+    f = inputs()["demand"]["firm_backlog"]
+    return float(f["boeing"]), float(f["airbus"])
 
 
 def flex():
@@ -152,18 +167,22 @@ def boeing_capacity(state, year):
     return mx, f
 
 
-def deliveries(b_pref, d, cap_b, cap_a, fx, back_b=0.0, back_a=0.0, lapse=0.0):
-    """One year's market: preference share of Boeing, demand, capacities, flexible share and the backlogs waiting
-    from earlier years -> delivered, spill and the backlogs carried into next year (after the lapse)."""
+def deliveries(b_pref, d, cap_b, cap_a, fx, back_b=0.0, back_a=0.0, lapse=0.0, firm_b=0.0, firm_a=0.0):
+    """One year's market: preference share of Boeing, new demand, capacities, flexible share, the firm backlog
+    (delivered first; never lapses or switches) and the waiting backlog of earlier years' unserved new demand ->
+    delivered, spill and both backlogs carried into next year (the waiting one after the lapse)."""
+    fb_, fa_ = min(firm_b, cap_b), min(firm_a, cap_a)
+    cb, ca = cap_b - fb_, cap_a - fa_
     wb, wa = b_pref * d, (1.0 - b_pref) * d
-    qb, qa = min(wb + back_b, cap_b), min(wa + back_a, cap_a)
+    qb, qa = min(wb + back_b, cb), min(wa + back_a, ca)
     ub, ua = wb + back_b - qb, wa + back_a - qa
-    to_b = min(fx * ua, cap_b - qb)
-    to_a = min(fx * ub, cap_a - qa)
+    to_b = min(fx * ua, cb - qb)
+    to_a = min(fx * ub, ca - qa)
     nb, na = (ub - to_a) * (1.0 - lapse), (ua - to_b) * (1.0 - lapse)
     return {"demand": d, "wanted_b": wb, "wanted_a": wa, "cap_b": cap_b, "cap_a": cap_a,
+            "firm_in_b": firm_b, "firm_in_a": firm_a, "firm_b": firm_b - fb_, "firm_a": firm_a - fa_,
             "backlog_in_b": back_b, "backlog_in_a": back_a,
-            "delivered_b": qb + to_b, "delivered_a": qa + to_a, "spill_to_b": to_b, "spill_to_a": to_a,
+            "delivered_b": fb_ + qb + to_b, "delivered_a": fa_ + qa + to_a, "spill_to_b": to_b, "spill_to_a": to_a,
             "backlog_b": nb, "backlog_a": na, "lost": (ub - to_a + ua - to_b) * lapse}
 
 
@@ -175,10 +194,12 @@ def year_rows(state, b_pref_by_year, years):
     out = {}
     fx, lapse = flex(), inputs()["demand"]["lapse_per_year"]
     bb, ba = 0.0, 0.0
+    kb, ka = firm_backlog()
     for y in sorted(years):
         mb, fb = boeing_capacity(state, y)
         a3, ng = airbus_capacity(state, y)
-        r = deliveries(b_pref_by_year[y], demand(y), mb + fb, a3 + ng, fx, bb, ba, lapse)
+        r = deliveries(b_pref_by_year[y], demand(y), mb + fb, a3 + ng, fx, bb, ba, lapse, kb, ka)
+        kb, ka = r["firm_b"], r["firm_a"]
         r.update({"cap_max": mb, "cap_fps": fb, "cap_a320": a3, "cap_ngsa": ng})
         # new types are delivered first, up to their own line's capacity; the rest are today's types
         r["dlv_fps"] = min(r["delivered_b"], fb)
@@ -245,11 +266,13 @@ def apply(state, rows, waccs):
             x["nb_share"] = x["nb_delivered_share"]                   # market share = share of deliveries
             x["sd"] = {"demand": s["demand"], "wanted": s["wanted_" + pre], "capacity": s["cap_" + pre],
                        "backlog_in": s["backlog_in_" + pre], "backlog_out": s["backlog_" + pre],
+                       "firm_in": s["firm_in_" + pre], "firm_out": s["firm_" + pre],
                        "spill_in": s["spill_to_" + pre], "sq_delivered": sq_dlv, "sq_capacity": q["cap_" + pre],
                        "new_units": n_new, "old_units": n_old}
             if x["nb_in_window"]:
                 adj[side] += ((x["nb_profit"] - x["board_nb_profit"]) - (x["sq_nb_profit"] - x["board_sq_nb_profit"])) * r["df_" + pre]
         r["sd"] = {k: s[k] for k in ("demand", "cap_max", "cap_fps", "cap_a320", "cap_ngsa", "lost", "backlog_b", "backlog_a",
+                                     "firm_b", "firm_a",
                                      "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa")}
         r["sd_sq"] = {"delivered_b": q["delivered_b"], "delivered_a": q["delivered_a"], "lost": q["lost"],
                       "dlv_max": q["dlv_max"], "dlv_a320": q["dlv_a320"]}
