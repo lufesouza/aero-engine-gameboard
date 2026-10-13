@@ -92,13 +92,27 @@ def programme_cash(state, F=None):
                 put(y, "Two-front strain", p["v_capex_strain_b"] * frac / (y1 - y0))
     if M.SD_ON:                                    # supply and demand: the Renton plan avoids new-site capex
         import supply_demand as SD
-        sh = SD.renton_share(state)
-        if sh > 0:
-            r = M.live(state, "fps")
-            save = SD.inputs()["boeing"]["renton_saving_b"] * sh
-            yrs = list(range(r["eis"] - SD.FAL_BUILD_YEARS, r["eis"]))
-            for y in yrs:                            # the new site would have been built in the last years before EIS
-                put(y, "Renton plan: new-site capex avoided", -save / len(yrs))
+        save = SD.inputs()["boeing"]["renton_saving_b"] / SD.FAL_BUILD_YEARS
+        hist = (state.get("sd") or {}).get("fps_site_hist") or []
+
+        def plan_at(y):                            # the site plan in force in year y (as decided, round by round)
+            p_ = "new_site"
+            for yy, v in hist:
+                if yy <= y:
+                    p_ = v
+            return p_
+        for k, r in state["prog"].items():         # every fps record, live or cancelled: played years stay as played
+            if (k.split("_")[2] if k.startswith("_cancelled_") else k) != "fps":
+                continue
+            stop = r["cancel"] if r.get("cancel") is not None else r["eis"]
+            booked = []
+            for y in range(max(r["launch"], r["eis"] - SD.FAL_BUILD_YEARS), r["eis"]):
+                if y < stop and plan_at(y) == "renton":   # the new site would have been built in these years
+                    put(y, "Renton plan: new-site capex avoided", -save)
+                    booked.append(y)
+            last = hist[-1] if hist else None
+            if r.get("cancel") is None and booked and last and last[1] == "new_site" and last[0] > max(booked):
+                put(last[0], "Renton plan dropped: capex saving paid back", save * len(booked))
     if state.get("rate737"):
         p = M.af_params()
         y0 = state["rate737"]["launch"]

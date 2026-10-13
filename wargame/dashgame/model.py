@@ -582,18 +582,28 @@ def nb_slots_at(state, yr, b_share):
     return [(bset, b_share), (aset, 1.0 - b_share)]
 
 
-def nb_type_slots(state, yr, lines):
-    """Engine slots by aircraft type under supply and demand: 737 MAX (LEAP-1B), fps (its fitted makers), A320neo
-    (P&W and CFM) and NGSA (its fitted makers), each weighted by its deliveries that year."""
+def sd_engine_shares(state, yr, lines, moves, jv, base_nb, start_wb, P):
+    """Narrowbody engine shares under supply and demand, after the first new narrowbody enters service: 737 MAX and
+    A320neo keep today's engines (CFM; CFM 60% / P&W 40%), and the engine moves shift share only on the new types
+    (fps, NGSA), starting from their fitted makers. Widebody shares as on the board."""
     mx, fp, a3, ng = lines
     tot = (mx + fp + a3 + ng) or 1.0
     fps, ngsa = live(state, "fps"), live(state, "ngsa")
-    out = [({"CFM"}, mx / tot), ({"PW", "CFM"}, a3 / tot)]
+    slots = []
     if fp > 0 and fps:
-        out.append((effective_code(state, "fps")[0], fp / tot))
+        slots.append((effective_code(state, "fps")[0], fp))
     if ng > 0 and ngsa:
-        out.append((effective_code(state, "ngsa")[0], ng / tot))
-    return out
+        slots.append((effective_code(state, "ngsa")[0], ng))
+    if slots:
+        n = sum(w for _, w in slots)
+        st = start_from_slots([(m, w / n) for m, w in slots], jv)
+    else:
+        st = base_nb
+    nb_new, wb_post = post_shares(moves[0], moves[1], moves[2], st, start_wb, P)
+    leg = legacy_engine_shares((mx, 0.0, a3, 0.0), base_nb)
+    old_units, new_units = mx + a3, fp + ng
+    nb = tuple((leg[i] * old_units + nb_new[i] * new_units) / tot for i in range(3))
+    return nb, wb_post
 
 
 def legacy_engine_shares(lines, base_nb):
@@ -641,11 +651,11 @@ def value_engines(state, b_nb_share, series=True, board_mode=None, nb_scale=None
             jv = "3-JV" in moves[1]
             if nb_lines is not None:      # supply and demand: each aircraft type keeps its own engines
                 ln = nb_lines[0].get(yr, nb_lines[0][max(nb_lines[0])])
-                slots = nb_type_slots(state, yr, ln)
+                nb_post, wb_post = sd_engine_shares(state, yr, ln, moves, jv, base_nb, start_wb, P)
             else:
                 slots = nb_slots_at(state, yr, bsh)
-            st_nb = start_from_slots(slots, jv) if nb_anchor_t is not None else base_nb
-            nb_post, wb_post = post_shares(moves[0], moves[1], moves[2], st_nb, start_wb, P)
+                st_nb = start_from_slots(slots, jv) if nb_anchor_t is not None else base_nb
+                nb_post, wb_post = post_shares(moves[0], moves[1], moves[2], st_nb, start_wb, P)
         nb_sh = base_nb if (nb_anchor_t is None or t < nb_anchor_t) else nb_post
         sq_nb = base_nb
         if nb_lines is not None and not board_mode:

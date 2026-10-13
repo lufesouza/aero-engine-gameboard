@@ -257,7 +257,9 @@ factory has the slots. The share objectives in your brief are measured on prefer
   board's prices and margins for each type.
 - The status quo runs the same rules with today's plans (A320 at 85 a month, the MAX path above), the same demand and
   firm backlog, and the 40/60 preference.
-- Engine makers sell engines on the aircraft actually delivered (two per aircraft), split as in the engine rules.
+- Engine makers sell engines on the aircraft actually delivered (two per aircraft). The 737 MAX keeps CFM (LEAP-1B)
+  and the A320neo keeps CFM 60% / P&W 40%; the engine moves in the table above shift share only on the new types (fps
+  and NGSA), starting from the makers fitted to each.
 
 **Your supply plan** (`fps_site` for Boeing, `a320_plan` for Airbus) is public. It applies to your new airframe once
 launched (you can choose it in the launch round) and can change in any round until that airframe enters service. A
@@ -1044,8 +1046,10 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
               "corrects it to the aircraft your factories can deliver, net of the same correction in the status quo."]
     if M.SD_ON and side not in ("boeing", "airbus"):
         L += ["", "Supply and demand is on: your narrowbody engine volumes follow the aircraft actually delivered (two "
-              "engines each), not the board's 2,000 a year, and each type keeps its own engines (737 MAX: CFM; A320neo: "
-              "P&W and CFM; fps and NGSA: their fitted makers). See the last section of rules.md."]
+              "engines each), not the board's 2,000 a year. The 737 MAX keeps CFM and the A320neo CFM 60% / P&W 40%; "
+              "engine moves shift share only on the fps and NGSA, from their fitted makers. While MAX and A320neo are "
+              "still built alongside a slowly ramping new type, your moves reach fewer engines. See the last section "
+              "of rules.md."]
     L += ["", ("Year by year ($B at 2026 prices: the airframer board does not escalate; shares of the market's "
                "deliveries):" if side in ("boeing", "airbus") else
                "Year by year (nominal $B; shares of the market's deliveries):"), ""]

@@ -1,7 +1,7 @@
 export const meta = {
   name: 'dash-exco-round',
   description: 'One dash-2050 round per company: Board guidance, then the ExCo (frame, test, decide, veto check, revise), then Board review, revise and confirm',
-  whenToUse: 'Game master only. Use a fresh run id (not the earlier dash-2050). After `DASH_RUN=<run> python3 gm.py brief N`, run with args {run: <run>, round: N, year}. Save the result with `DASH_RUN=<run> python3 exco.py save N result.json`, then `DASH_RUN=<run> python3 gm.py adjudicate N wargame/runs/<run>/orders_exco_rN.json`.',
+  whenToUse: 'Game master only. Use a fresh run id (not the earlier dash-2050). After `DASH_RUN=<run> python3 gm.py brief N`, run with args {run: <run>, round: N, year} (supply-and-demand runs: add plans, as gm.py brief prints them). Save the result with `DASH_RUN=<run> python3 exco.py save N result.json`, then `DASH_RUN=<run> python3 gm.py adjudicate N wargame/runs/<run>/orders_exco_rN.json`.',
   phases: [
     { title: 'Board guidance', detail: 'the Board recommends: priorities, risk appetite, what it would approve or veto' },
     { title: 'Frame', detail: 'CEO frames the round' },

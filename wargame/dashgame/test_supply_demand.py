@@ -75,7 +75,12 @@ for lab, s in states():
         M.SD_ON = True
     # engine makers: equal unless the board's pre-2037 preference leaves 40/60 (the 737 rate increase), where the layer
     # deliberately gives the extra 737s CFM engines only (the board's fixed base shares would hand P&W a quarter)
-    sides = M.SIDES if not s.get("rate737") else ["boeing", "airbus"]
+    # engines equal the board only where every post-entry-into-service aircraft is a new type and no engine move is live:
+    # the layer keeps MAX and A320neo on today's engines and applies engine moves to the new types only (by design)
+    en_live = any(M.live(s, k) for k in M.EN_SIDE)
+    nb_new = [k for k in ("fps", "ngsa") if M.live(s, k)]
+    same_eis = len(nb_new) == 2 and M.live(s, "fps")["eis"] == M.live(s, "ngsa")["eis"]
+    sides = M.SIDES if (not s.get("rate737") and not en_live and (not nb_new or same_eis)) else ["boeing", "airbus"]
     d = max(abs(on[k]["pv_delta"] - off[k]["pv_delta"]) for k in sides)
     check(d < 1e-9, "neutral case equals the board (%s; %s): max |ΔPV difference| %.2e" % (lab, "all five" if len(sides) == 5 else "airframers", d))
 
@@ -119,7 +124,7 @@ try:
 finally:
     M.SD_ON = True
 s1, log = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_10yr", "fps_site": "renton"}, "airbus": {"ngsa": "launch", "a320_plan": "alt"}})
-check(s1["sd"] == {"a320_plan": "alt", "fps_site": "renton", "fps_site_year": 2030} and any("Renton" in e for e in log) and any("Alt plan" in e for e in log),
+check(s1["sd"] == {"a320_plan": "alt", "fps_site": "renton", "fps_site_year": 2030, "fps_site_hist": [[2030, "renton"]]} and any("Renton" in e for e in log) and any("Alt plan" in e for e in log),
       "plans set and logged in public")
 clean, _ = R.validate(s1, "boeing", 2035, {})
 check(clean["fps_site"] == "renton", "a missing field keeps the current plan")
@@ -178,6 +183,29 @@ check(va["airbus"]["bridge"]["supply_plan"] < 0, "Alt plan books a cost (%.2f PV
 sr, _ = R.adjudicate(s0, 2030, {"boeing": {"rate_737": "increase"}})
 check(abs(SD.boeing_capacity(sr, 2032)[0] - SD.boeing_capacity(s0, 2032)[0] - 100) < 1e-9 and
       SD.boeing_capacity(sr, 2031)[0] == SD.boeing_capacity(s0, 2031)[0], "737 rate increase: +100 a year from 2032")
+
+# the debt tracker books the Renton credit as played
+def rc(st):
+    pc = FIN.programme_cash(st)
+    return {y: round(sum(x for k, x in pc[y].items() if "Renton" in k), 6) for y in pc if any("Renton" in k for k in pc[y])}
+a30, _ = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_7yr", "fps_site": "renton"}})        # EIS 2037: 2034-36
+a35c, _ = R.adjudicate(a30, 2035, {"boeing": {"fps": "cancel"}})
+a35s, _ = R.adjudicate(a30, 2035, {"boeing": {"fps_site": "new_site"}})
+n30, _ = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_7yr"}})
+n35, _ = R.adjudicate(n30, 2035, {"boeing": {"fps_site": "renton"}})
+check(rc(a30) == {2034: -1.0, 2035: -1.0, 2036: -1.0} and rc(a35c) == {2034: -1.0},
+      "tracker: a cancel keeps the played Renton credit (2034) and drops the rest: %s" % rc(a35c))
+check(rc(n35) == {2035: -1.0, 2036: -1.0}, "tracker: a late switch credits only the years from the switch: %s" % rc(n35))
+check(rc(a35s) == {2034: -1.0, 2035: 1.0}, "tracker: dropping Renton pays the played credit back in the switch year: %s" % rc(a35s))
+# engine moves reach only the new types
+cd, _ = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_10yr", "fps_engine_code": 3}, "cfm": {"ducted": "launch"}})
+ve = M.value(cd, covert=True, series=True)
+e40 = next(r for r in ve["_en_series"]["years"] if r["year"] == 2040)
+a40 = next(r for r in ve["_af_series"]["years"] if r["year"] == 2040)
+mx, fp, a3, ng = a40["sd"]["dlv_max"], a40["sd"]["dlv_fps"], a40["sd"]["dlv_a320"], a40["sd"]["dlv_ngsa"]
+pw_expect = 2 * a3 * 0.40            # the A320neo's P&W engines; the CFM-only fps and the MAX give P&W nothing
+check(abs(e40["pratt_whitney"]["nb_units"] - pw_expect) < 1e-6,
+      "engine moves reach new types only: P&W keeps its A320neo engines in 2040 (%.0f = %.0f)" % (e40["pratt_whitney"]["nb_units"], pw_expect))
 
 print("ALL CHECKS PASSED" if not fails else "%d FAILED" % len(fails))
 sys.exit(1 if fails else 0)

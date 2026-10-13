@@ -224,6 +224,7 @@ def adjudicate(state, year, orders):
                 s["sd"][field] = v
                 if field == "fps_site":
                     s["sd"]["fps_site_year"] = year
+                    s["sd"]["fps_site_hist"] = list(s["sd"].get("fps_site_hist") or []) + [[year, v]]
                 log.append({"fps_site": {"renton": "Boeing will build fps at Renton (MAX at Renton winds down as fps ramps up)",
                                          "new_site": "Boeing will build fps at new sites (the MAX carries on at Renton)"},
                             "a320_plan": {"alt": "Airbus adopts the Alt plan: A320 lines kept longer through the NGSA ramp-up",

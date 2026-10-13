@@ -84,6 +84,10 @@ def brief(n):
         grids[side] = {"scenarios": [x[0] for x in scen],
                        "rows": [{"plan": g[0], "orders": g[1], "cells": g[2]} for g in grid]}
         print(side, "brief written:", len(full), "chars;", len(grid), "plans x", len(scen), "scenarios")
+    if M.SD_ON:                            # the standing supply plans, for the round script (args.plans)
+        sd_ = s.get("sd") or {}
+        print("supply plans (pass as args.plans to workflows/exco_round.js):",
+              json.dumps({"boeing": {"fps_site": sd_.get("fps_site", "new_site")}, "airbus": {"a320_plan": sd_.get("a320_plan", "base")}}))
     jsave("grids_r%d.json" % n, grids)
 
 
