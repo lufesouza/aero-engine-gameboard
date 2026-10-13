@@ -219,12 +219,13 @@ replacement wave: {dem(2030)} (2030), {dem(2035)} (2035), {dem(2040)} (2040), {d
   (rate 50 about four years after EIS, 80 about six, 100 about eight). On the **Alt plan** (`a320_plan: alt`) the A320
   lines are kept longer (82, 62, 52, 42, then 14 a month, about eight years in all): about 1,500 more A320s for
   about ${a320_alt_cost():.2f}B. Without NGSA the A320 stays at 85 a month.
-- **Boeing:** 737 MAX at {b['max_rate']['2026']}, {b['max_rate']['2027']} and then {b['max_rate_after']:.0f} a month from 2028; the 737 rate
+- **Boeing:** 737 MAX at {b['max_rate']['2026']}, {b['max_rate']['2027']}, {b['max_rate']['2028']:.0f} and {b['max_rate']['2029']} a month in 2026-2029, then {b['max_rate_after']:.0f} from 2030; the 737 rate
   increase adds {b['rate_increase_per_year']:.0f} aircraft a year from {b['rate_increase_from']}. The fps ramps on the same shape as
   NGSA (rate 50 about four years after EIS, 100 about eight). On the **new-site plan** (`fps_site: new_site`, the
   default) the MAX carries on at Renton and Everett alongside the fps. On the **Renton plan** (`fps_site: renton`)
-  Renton is reassigned to the fps: its MAX lines wind down as the fps ramps up (like the A320 base plan) and only the
-  Everett line ({b['everett_rate']:.0f} a month) carries on; Boeing avoids about ${b['renton_saving_b']:.1f}B of new-site capex. With the fps in
+  Renton is reassigned to the fps: its three MAX lines ({b['renton_rate']:.0f} a month) wind down as the fps ramps up (like the
+  A320 base plan) and only the Everett North Line carries on (up to {b['everett_rate']:.0f} a month); Boeing avoids about ${b['renton_saving_b']:.1f}B of
+  new-site capex. With the fps in
   service by {b['max_last_year']}, the MAX stops after {b['max_last_year']}; without the fps it carries on.
 
 **Deliveries each year.**
@@ -233,7 +234,7 @@ replacement wave: {dem(2030)} (2030), {dem(2035)} (2035), {dem(2040)} (2040), {d
   unannounced customers) take the other maker's free slots; the rest wait in the backlog.
 - A fifth of the waiting backlog gives up each year (keeps old aircraft longer or defers growth).
 - Market share is the share of deliveries. Profit is earned on aircraft delivered, at the board's prices and margins.
-- The status quo runs the same rules with today's plans (A320 at 85 a month, MAX at 52) and the 40/60 preference.
+- The status quo runs the same rules with today's plans (A320 at 85 a month, the MAX path above) and the 40/60 preference.
 - Engine makers sell engines on the aircraft actually delivered (two per aircraft), split as in the engine rules.
 
 **Your supply plan** (`fps_site` for Boeing, `a320_plan` for Airbus) is public and can change in any round until your

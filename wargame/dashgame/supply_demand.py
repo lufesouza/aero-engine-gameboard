@@ -16,10 +16,10 @@ factories can build:
 Capacity, aircraft a year:
 - Airbus: A320 at 85 a month until NGSA enters service, then the Rev. B rundown (base or Alt) and the NGSA ramp to
   100 a month, both read off the user's chart and shifted with the NGSA date. No NGSA: A320 stays at 85.
-- Boeing: 737 MAX on the analysts' path (41.5, 48.2, then 52 a month); the 737 rate increase adds the board's 100 a
-  year from 2032. fps at new sites ramps like NGSA (the same chart shape, shifted to the fps date) while the MAX
-  carries on to 2050. With Renton reassigned to fps, the Renton MAX lines run down like the A320 base plan and the
-  Everett line carries on to 2050. With fps in service by 2050 the MAX stops after 2050; without fps it carries on.
+- Boeing: 737 MAX on Boeing's stated path (42.5, 49.5, 52, 54.5, then 57 a month from 2030); the 737 rate increase
+  adds the board's 100 a year from 2032. fps at new sites ramps like NGSA (the same chart shape, shifted to the fps date) while the MAX
+  carries on to 2050. With Renton reassigned to fps, the Renton MAX lines (47 a month) run down like the A320 base plan
+  and the Everett North Line carries on to 2050 at up to 15 a month. With fps in service by 2050 the MAX stops after 2050; without fps it carries on.
 
 The status quo (no new programme anywhere) runs the same rules with today's capacity and the board's 40/60 split.
 The value change is priced with the board's own per-year unit price and margin, inside the board's windows, so with
@@ -114,9 +114,10 @@ def boeing_capacity(state, year):
     shift = fps["eis"] - CHART_YEAR
     f = _annual("ngsa", shift, year) * b.get("fps_ramp_scale", 1.0)
     if plans(state)[1] == "renton":
-        ev = 12.0 * b["everett_rate"]
-        renton = max(0.0, m - ev) * _rundown("a320_base", shift, year) / (85 * 12.0)
-        m = min(m, ev) + renton
+        # Renton's MAX lines (up to renton_rate a month) wind down like the A320 base plan as the fps ramps up there;
+        # the Everett North Line carries on and can rise to its own capacity (everett_rate a month)
+        keep = _rundown("a320_base", shift, year) / (85 * 12.0)
+        m = max(min(m, 12.0 * b["everett_rate"]), m - min(m, 12.0 * b["renton_rate"]) * (1.0 - keep))
     mx = m + hike
     if fps["eis"] <= b["max_last_year"] and year > b["max_last_year"]:
         mx = 0.0

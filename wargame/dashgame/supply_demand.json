@@ -585,19 +585,28 @@
   "lapse_note": "a fifth of waiting customers give up each year (mean wait about five years, the page's 5-7 year lead time from commitment to first deliveries); the model starts in 2026 with no backlog: today's firm orders are part of the demand the factories already cannot meet"
  },
  "boeing": {
-  "_about": "Boeing supply inputs (provisional until the research notes in supply_demand_sources.md are in).",
+  "_about": "Boeing supply inputs, from the research notes (supply_demand_sources.md, October 2026).",
   "max_rate": {
-   "2026": 41.5,
-   "2027": 48.2
+   "2026": 42.5,
+   "2027": 49.5,
+   "2028": 52.0,
+   "2029": 54.5
   },
-  "max_rate_after": 52.0,
-  "max_rate_source": "Morgan Stanley BA model production path 41.5, 48.2, 52.0, 52.0, 52.0 a month over 2026E-30E, flat after 2028E (profiles/boeing/financials.md l.294)",
+  "max_rate_after": 57.0,
+  "max_rate_source": "Research base path: 47 a month cleared 27 May 2026 but not stable (actual 2026 output about 42-43 a month); 52 about mid-2027 with the Everett North Line (opened July 2026); 57, Boeing's stated goal, about mid-2029; flat after. Bounds: MS 52 flat (low), 63 by 2030 (high, the four-line ceiling).",
+  "renton_rate": 47.0,
+  "everett_rate": 15.0,
+  "site_source": "Renton: three final assembly lines, held at 47 a month (Boeing, July 2026); Everett North Line: about $1B, capacity about 15-16 a month (Leeham), takes the builds for 52 and beyond.",
   "rate_increase_per_year": 100.0,
   "rate_increase_from": 2032,
-  "rate_increase_note": "the board's 737 rate increase: +5 pp of its 2,000-aircraft market from 2032 = +100 aircraft a year",
-  "everett_rate": 10.0,
+  "rate_increase_note": "the board's 737 rate increase: +5 pp of its 2,000-aircraft market from 2032 = +100 aircraft a year (about 8 a month, to about 65: the four-line ceiling of 62-63 plus a second North Line)",
   "max_last_year": 2050,
   "renton_saving_b": 3.0,
+  "renton_saving_range_b": [
+   1.5,
+   5.5
+  ],
+  "renton_saving_source": "Research estimate (2025$): new-site capex for about 50 a month at about $80M per unit of monthly rate = $4.0B, less about $1.0B to convert Renton = $3.0B central ($1.5B-$5.5B). Booked at fps entry into service, as the board books bills.",
   "fps_ramp_scale": 1.0,
   "fps_ramp_note": "fps capacity ramps on the NGSA chart's shape (rate 50 about 4 years after EIS, 100 about 8 years after), shifted to the fps EIS"
  }
