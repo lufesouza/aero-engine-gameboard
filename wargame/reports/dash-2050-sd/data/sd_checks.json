@@ -1,0 +1,261 @@
+{
+ "rounds_played": 2,
+ "fps_2030": {
+  "board": [
+   {
+    "plan": "Do Nothing",
+    "boeing": -3.6398161040679113,
+    "airbus": 45.820300677345514,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, new sites",
+    "boeing": 0.663208572464228,
+    "airbus": 23.366586850527383,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, Renton",
+    "boeing": 0.663208572464228,
+    "airbus": 23.366586850527383,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "fps 7-year, new sites",
+    "boeing": 1.1189417874257863,
+    "airbus": 17.28469144103765,
+    "bridge": {
+     "nb_profit_vs_sq": 30.131243863152697,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -21.673462485569004,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -7.338839590157907,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "787 Re-engine",
+    "boeing": -0.33889724825546663,
+    "airbus": 44.95881977846766,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 5.581422460405179,
+     "programme_investment": -2.035679963957069,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.2448236406356652,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   }
+  ],
+  "with_sd": [
+   {
+    "plan": "Do Nothing",
+    "boeing": -1.0076074756747242,
+    "airbus": 13.714910912237233,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": 2.632208628393187,
+     "supply_plan": 0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, new sites",
+    "boeing": -4.364647395228737,
+    "airbus": 10.083891213514017,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -5.027855967692965,
+     "supply_plan": 0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, Renton",
+    "boeing": -3.735640439834504,
+    "airbus": 10.382578879269673,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -5.140243516586017,
+     "supply_plan": 0.7413945042872855
+    }
+   },
+   {
+    "plan": "fps 7-year, new sites",
+    "boeing": -8.541898414817878,
+    "airbus": 6.241923811742155,
+    "bridge": {
+     "nb_profit_vs_sq": 30.131243863152697,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -21.673462485569004,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -7.338839590157907,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -9.660840202243664,
+     "supply_plan": 0.0
+    }
+   },
+   {
+    "plan": "787 Re-engine",
+    "boeing": 2.2933113801377205,
+    "airbus": 12.853430013359375,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 5.581422460405179,
+     "programme_investment": -2.035679963957069,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.2448236406356652,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": 2.632208628393187,
+     "supply_plan": 0.0
+    }
+   }
+  ]
+ },
+ "demand_sensitivity": [
+  {
+   "case": "As played",
+   "boeing": -1.0076074756747242,
+   "airbus": 13.714910912237233,
+   "boeing_sd_line": 2.632208628393187,
+   "airbus_sd_line": -31.783727620605028,
+   "boeing_delivered_2026_2060": 21477.591263835067,
+   "airbus_delivered_2026_2060": 38174.11328070387,
+   "lapsed_2026_2060": 4577.497090207459
+  },
+  {
+   "case": "No growth (your replacement data only)",
+   "boeing": -1.0285715307779504,
+   "airbus": -0.8030912629221475,
+   "boeing_sd_line": 2.611244573289961,
+   "airbus_sd_line": -46.30172979576441,
+   "boeing_delivered_2026_2060": 7985.8328470474735,
+   "airbus_delivered_2026_2060": 18990.277990071216,
+   "lapsed_2026_2060": 12.716442881310002
+  },
+  {
+   "case": "Half the growth",
+   "boeing": -2.0998489139440935,
+   "airbus": 13.095688957264539,
+   "boeing_sd_line": 1.539967190123818,
+   "airbus_sd_line": -32.40294957557772,
+   "boeing_delivered_2026_2060": 12909.109778057615,
+   "airbus_delivered_2026_2060": 32956.20294203689,
+   "lapsed_2026_2060": 887.9243653055055
+  },
+  {
+   "case": "Growth x1.5",
+   "boeing": 0.0,
+   "airbus": 11.121843010810206,
+   "boeing_sd_line": 3.6398161040679113,
+   "airbus_sd_line": -34.376795522032054,
+   "boeing_delivered_2026_2060": 23586.0,
+   "airbus_delivered_2026_2060": 38465.54710848148,
+   "lapsed_2026_2060": 16093.91771178226
+  },
+  {
+   "case": "5% of waiting customers drop out a year",
+   "boeing": -0.790538411503575,
+   "airbus": 13.177037465599536,
+   "boeing_sd_line": 2.8492776925643364,
+   "airbus_sd_line": -32.321601067242725,
+   "boeing_delivered_2026_2060": 22004.81327400085,
+   "airbus_delivered_2026_2060": 38465.54710848148,
+   "lapsed_2026_2060": 2803.2304578677667
+  },
+  {
+   "case": "30% drop out a year",
+   "boeing": -1.0784615987186426,
+   "airbus": 13.714910912237233,
+   "boeing_sd_line": 2.561354505349269,
+   "airbus_sd_line": -31.783727620605028,
+   "boeing_delivered_2026_2060": 20697.10289195864,
+   "airbus_delivered_2026_2060": 37314.02814423609,
+   "lapsed_2026_2060": 7804.466340199132
+  },
+  {
+   "case": "Half the flexible customers",
+   "boeing": -1.2713428543899905,
+   "airbus": 13.714910912237233,
+   "boeing_sd_line": 2.368473249677921,
+   "airbus_sd_line": -31.783727620605028,
+   "boeing_delivered_2026_2060": 21051.919367655937,
+   "airbus_delivered_2026_2060": 38174.11328070387,
+   "lapsed_2026_2060": 4924.626469250997
+  },
+  {
+   "case": "No flexible customers",
+   "boeing": -2.519353498502417,
+   "airbus": 13.714910912237233,
+   "boeing_sd_line": 1.1204626055654945,
+   "airbus_sd_line": -31.783727620605028,
+   "boeing_delivered_2026_2060": 17191.552515441326,
+   "airbus_delivered_2026_2060": 38174.11328070387,
+   "lapsed_2026_2060": 7034.753467642605
+  }
+ ]
+}
