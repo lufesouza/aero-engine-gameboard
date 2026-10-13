@@ -55,14 +55,17 @@ RIB = {x["year"]: x["briefed"] for x in C["round_items"]}
 FM = C["fps_mechanism"]
 WACC_B = D["rounds"][0]["value"]["boeing"]["wacc"]
 _ry = sorted(RI)
-# change in the fps value from one round to the next, net of moving the same launch later (discounting only)
-REAL_GAIN = {y1: RI[y1]["fps_10yr_renton"] - RI[y0]["fps_10yr_renton"] / (1 + WACC_B) ** (y1 - y0) for y0, y1 in zip(_ry, _ry[1:])}
-_rise = RI[_ry[-1]]["fps_10yr_renton"] - RI[_ry[0]]["fps_10yr_renton"]
+# the better site for a 10-year fps each round (value against Do Nothing, everyone else's orders as played)
+FPS_BEST = {y: max((RI[y]["fps_10yr_renton"], "Renton"), (RI[y]["fps_10yr_new_site"], "new sites")) for y in _ry}
+# change in the best fps value from one round to the next, net of moving the same launch later (discounting only)
+REAL_GAIN = {y1: FPS_BEST[y1][0] - FPS_BEST[y0][0] / (1 + WACC_B) ** (y1 - y0) for y0, y1 in zip(_ry, _ry[1:])}
+_rise = FPS_BEST[_ry[-1]][0] - FPS_BEST[_ry[0]][0]
 _disc = 1 - sum(REAL_GAIN.values()) / _rise
 DISC_WORD = "Most" if _disc > 0.6 else ("About half" if _disc >= 0.4 else "Part")
 FPS_RAMP = [y["fps_units"] for y in FM["years"] if y["year"] >= FM["eis"]]
-_df = {y["year"]: y["df"] for y in FM["years"]}
-DF_LO, DF_HI = _df[FM["eis"] + 9] / _df[FM["eis"]], _df[FM["eis"] + 5] / _df[FM["eis"]]
+EARLY_BOOKED = sum(y["board_gain"] * y["df"] for y in FM["years"] if FM["eis"] <= y["year"] < FM["eis"] + 5)
+EARLY_EARNED = sum(y["delivered_gain"] * y["df"] for y in FM["years"] if FM["eis"] <= y["year"] < FM["eis"] + 5)
+CATCH_UP = next(y["year"] for y in FM["years"] if y["year"] >= FM["eis"] and y["delivered_gain"] >= y["board_gain"])
 SENS = {x["case"]: x for x in C["demand_sensitivity"]}
 REG = D["regret"]
 INP = D["sd_inputs"]
@@ -76,6 +79,12 @@ dlv_b = lambda a, z: tot("dlv_max", a, z) + tot("dlv_fps", a, z)
 FIRM_CLEAR = next(y for y, x, z in zip(Y, SD["firm_b"], SD["firm_a"]) if x < 1 and z < 1)
 SOLD_TO = max(y for y in Y if y < 2037 and abs(dlvb(y) - capb(y)) < 0.5 and abs(dlva(y) - capa(y)) < 0.5)
 SHORT_FROM = next(y for y in Y if y > 2040 and at("demand", y) > cap(y))
+lapsed_early = tot("lost", 2026, SOLD_TO)
+BOEING_BELOW = [y for y in Y if y > 2030 and dlvb(y) < capb(y) - 0.5]
+# demand in the players' briefs: growth was reduced by the class share twice
+_cs = INP["demand"]["class_share"]
+GROWTH_SHORT = 1 - _cs
+DEMAND_SHORT = sum(g * (1 - _cs) for g in SD["growth"]) / sum(SD["demand"])
 BOTH_SOLD = next(y for y in Y if y > 2040 and abs(dlvb(y) - capb(y)) < 0.5 and abs(dlva(y) - capa(y)) < 0.5)
 fps_d = lambda plan: FPS[plan]["boeing"] - FPS["Do Nothing"]["boeing"]
 fps_d0 = lambda plan: FPS0[plan]["boeing"] - FPS0["Do Nothing"]["boeing"]
@@ -84,12 +93,14 @@ PREF_LOW_FROM = next(y for y in Y if abs(at("pref_share", y, "boeing") - pref_af
 dl_after = at("delivered_share", 2050, "boeing")
 spill_b = sum(SD["boeing"]["spill_in"])
 lapsed = sum(SD["lost"])
-lapsed_early = tot("lost", 2026, 2035)
 ngsa_share = V["airbus"] / BC["airbus"]["board"]
 NGSA_RAMP = [x for x in SD["dlv_ngsa"] if x > 0.5]
 _a_bound = lambda y: at("backlog_a", y) > 1 and abs(dlva(y) - capa(y)) < 0.5
 AIRBUS_BOUND = next(y for y in Y if y > 2037 and _a_bound(y))
-AIRBUS_CEILING = next(y for y in Y if y > 2037 and at("cap_a320", y) < 1 and at("cap_ngsa", y) >= 1199 and _a_bound(y))
+NGSA_100 = next(y for y in Y if at("cap_ngsa", y) >= 1190)          # 2Q45 on the chart: 1,194 aircraft in 2045
+NGSA_FULL = next(y for y in Y if at("cap_ngsa", y) >= 1199.5)        # first full calendar year at 1,200
+CAPA_PEAK = max(capa(y) for y in Y)
+CAPA_PEAK_Y = max(Y, key=capa)
 BOEING_36 = next(y for y in Y if y > 2040 and abs(at("delivered_share", y, "boeing") - dl_after) < 5e-4)
 OVERFLOW = V["boeing"] - SENS["No flexible customers"]["boeing"]
 ALT_PV = -BR["airbus"]["supply_plan"]
@@ -103,8 +114,8 @@ LEDE = (f"We replayed the dash-2050-obj war game (ExCo and Board agents, Control
         f"plus fleet growth, which your data did not give, from Airbus's and Boeing's market forecasts. "
         f"<b>Supply</b> is your Airbus Rev. B plan and Boeing's plan: the 737 MAX, built to 2050 if an fps replaces it, "
         f"and the fps at new sites or at Renton. Boeing never launched the fps. Airbus's NGSA still paid, but at about "
-        f"{pc(ngsa_share)} of its value on the dashboard alone. From {SHORT_FROM}, the single-aisle market is short of "
-        f"capacity.")
+        f"{pc(ngsa_share)} of its value on the dashboard alone. Both makers were sold out through {SOLD_TO} while they "
+        f"cleared the firm backlog; from {SHORT_FROM}, new demand alone exceeds both makers' capacity.")
 
 TILES = {
     "boeing": "Never launched the fps; gains Airbus's overflow customers",
@@ -121,23 +132,27 @@ FINDINGS = [
      f"Renton). The dashboard books the fps's margin on every Boeing narrowbody from the day it enters service: about "
      f"${r(FM['fps_unit_profit_m'], 0):.0f}M of profit an aircraft, against about ${r(FM['max_unit_profit_m'], 0):.0f}M "
      f"for a 737 MAX. Here the fps ramps on the NGSA curve of your Rev. B chart: "
-     f"{', '.join(n0(u) for u in FPS_RAMP[:5])} aircraft in its first five years. Most of the margin arrives five to "
-     f"nine years later, when it is worth only {r(DF_LO * 100, 0):.0f}-{pc(DF_HI)} as much at 2026. That cuts the fps's discounted "
-     f"narrowbody gain from {b(FM['board_pv_gain'], 1, False)} to {b(FM['delivered_pv_gain'], 1, False)}. "
-     f"The 10-year fps at Renton then went from {b(RI[2030]['fps_10yr_renton'])} (2030) to "
-     f"{b(RI[2035]['fps_10yr_renton'])} (2035), {b(RI[2045]['fps_10yr_renton'])} (2045) and "
-     f"{b(RI[2050]['fps_10yr_renton'])} (2050). {DISC_WORD} of that rise is only discounting, because a later launch's "
-     f"loss is smaller at 2026. Like for like, rising demand added about {b(REAL_GAIN[2035], 2, False)}, "
+     f"{', '.join(n0(u) for u in FPS_RAMP[:5])} aircraft in its first five years. So in those five years it earns "
+     f"{b(EARLY_EARNED, 1, False)} (at 2026) of the {b(EARLY_BOOKED, 1, False)} the dashboard books for them, and its "
+     f"yearly margin catches up with the dashboard's only in {CATCH_UP}. The early margin is never made up. That cuts "
+     f"the fps's discounted narrowbody gain from {b(FM['board_pv_gain'], 1, False)} to "
+     f"{b(FM['delivered_pv_gain'], 1, False)}. The better 10-year fps was then worth "
+     + ", ".join(f"{b(FPS_BEST[y][0])} in {y} ({FPS_BEST[y][1]})" for y in _ry[:-1]) +
+     f" and {b(FPS_BEST[_ry[-1]][0])} in {_ry[-1]} ({FPS_BEST[_ry[-1]][1]}). {DISC_WORD} of that rise is only "
+     f"discounting, because a later launch's loss is smaller at 2026. Like for like, rising demand added about {b(REAL_GAIN[2035], 2, False)}, "
      f"{b(REAL_GAIN[2045], 2, False)} and {b(REAL_GAIN[2050], 2, False)} a round. It never came near the +$1B that "
      f"Boeing's Board requires of a launch in the most likely case."),
     (f"NGSA still paid, but at about {pc(ngsa_share)} of its dashboard value.",
      f" Airbus ends at {b(V['airbus'])}, against {b(BC['airbus']['board'])} for the same moves on the dashboard alone "
-     f"(the supply-and-demand line is {b(BR['airbus']['supply_demand'])}). Two things cut it. First, NGSA ramps on "
+     f"(the supply-and-demand line is {b(BR['airbus']['supply_demand'])} and the Alt plan's cost "
+     f"{b(BR['airbus']['supply_plan'])}). Two things cut it. First, NGSA ramps on "
      f"your chart ({', '.join(n0(u) for u in NGSA_RAMP[:5])} aircraft in its first five years), while the dashboard "
      f"books its margin on every Airbus narrowbody from entry into service. Second, the dashboard's share rule moves "
      f"Airbus from 60% to {pc(1 - pref_after)} of 2,000 aircraft a year ({n0(2000 * (1 - pref_after))}) by "
-     f"{PREF_LOW_FROM}, but its factories top out at 100 a month, 1,200. Airbus sells every aircraft it can build "
-     f"from {AIRBUS_BOUND}, and NGSA reaches 100 a month in {AIRBUS_CEILING}, when the last Alt-plan A320s end. The Alt "
+     f"{PREF_LOW_FROM}, but its factories settle at 100 a month, 1,200, once the A320 ends (briefly "
+     f"{n0(CAPA_PEAK)} in {CAPA_PEAK_Y}, while Alt-plan A320s overlap NGSA). Airbus sells every aircraft it can build "
+     f"from {AIRBUS_BOUND}. NGSA reaches 100 a month in {NGSA_100}, as the last Alt-plan A320s end, and builds 1,200 a "
+     f"year from {NGSA_FULL}. The Alt "
      f"plan was worth {b(RI[2030]['alt_vs_base'])} net of its $0.75B cost. Without fleet growth, NGSA would be worth "
      f"{b(SENS['No growth (your replacement data only)']['airbus'])}."),
     ("Boeing loses less than the dashboard says, mostly thanks to Airbus's overflow.",
@@ -163,7 +178,7 @@ FINDINGS = [
      f" In 2050 demand is {n0(at('demand', 2050))} aircraft against {n0(cap(2050))} of capacity. Waiting customers "
      f"reach {n0(at('backlog_b', 2050) + at('backlog_a', 2050))} in 2050 and "
      f"{n0(at('backlog_b', 2060) + at('backlog_a', 2060))} by 2060, and {n0(lapsed)} customers drop out over 2026-2060 "
-     f"({n0(lapsed_early)} of them in 2026-2035, while both makers were sold out). After 2030 no order raises an "
+     f"({n0(lapsed_early)} of them in 2026-{SOLD_TO}, while both makers were sold out). After 2030 no order raises an "
      f"existing line's rate: the 737 rate increase could be ordered only in 2030, and Boeing did not order it. New "
      f"capacity can come only from a new programme such as the fps, which would lift Boeing to 100 a month. Airbus's "
      f"ExCo said it was preparing a capacity step but did not commit it."),
@@ -203,13 +218,13 @@ MARKET_LEDE = (f"Three phases. Through {SOLD_TO} both makers are sold out: the f
                f"exceeds total capacity from {SHORT_FROM}, and both makers are sold out from {BOTH_SOLD}.")
 MARKET_TITLE = (f"Demand outgrows both makers' capacity from {SHORT_FROM}: in 2050 it is {n0(at('demand', 2050))} "
                 f"aircraft against {n0(cap(2050))}")
-BOEING_LINES_TITLE = ("With no fps, Boeing builds the 737 MAX at 57 a month through 2060, and delivers below that "
-                      "only in the NGSA ramp years")
+BOEING_LINES_TITLE = (f"With no fps, Boeing's 737 MAX line runs at 57 a month from 2030 to 2060, and Boeing delivers "
+                      f"below it only in the NGSA ramp years ({BOEING_BELOW[0]}-{BOEING_BELOW[-1]})")
 BOEING_LINES_CAP = ("Boeing's capacity is the 737 MAX path (42.5 to 57 a month by 2030). With an fps the MAX would "
                     "give way to it and end in 2050. Boeing did not order the 737 rate increase (100 a year from "
                     "2032), which was open only in 2030.")
 AIRBUS_LINES_TITLE = (f"Airbus's output dips in the NGSA transition; it sells all it can build from {AIRBUS_BOUND}, "
-                      f"and NGSA reaches 100 a month in {AIRBUS_CEILING}")
+                      f"and NGSA reaches 100 a month in {NGSA_100}")
 BACKLOG_TITLE = (f"Firm backlogs clear in {FIRM_CLEAR}; from the late 2040s Airbus's waiting customers pile up "
                  f"({n0(at('backlog_a', 2060))} by 2060)")
 BACKLOG_CAP = ("Firm orders never lapse or switch maker. Waiting customers are new demand that could not be served in "
@@ -227,12 +242,12 @@ ROUND_NOTES = [
     ("2035.",
      f" P&amp;W and Rolls-Royce formed the Joint Venture. In the same sealed round, CFM launched the ducted engine and "
      f"the Embraer partnership to defend its place against GTF2 and UltraFan NB, which NGSA had selected in 2030; it "
-     f"had not expected the Joint Venture. Boeing held again: the 10-year fps at Renton was "
-     f"{b(RI[2035]['fps_10yr_renton'])}. Airbus kept the A350 Re-engine ({b(RI[2035]['rea350'])}) off the table, "
+     f"had not expected the Joint Venture. Boeing held again: its better 10-year fps ({FPS_BEST[2035][1]}) was "
+     f"{b(FPS_BEST[2035][0])}. Airbus kept the A350 Re-engine ({b(RI[2035]['rea350'])}) off the table, "
      f"because its annual spending would have exceeded one year's free cash flow during NGSA's last development years."),
     ("2045 and 2050.",
-     f" Everyone held. Boeing's 10-year fps at Renton turned slightly positive ({b(RI[2045]['fps_10yr_renton'])}, then "
-     f"{b(RI[2050]['fps_10yr_renton'])}), far short of its Board's +$1B. The 787 Re-engine fell to "
+     f" Everyone held. Boeing's better 10-year fps turned slightly positive ({b(FPS_BEST[2045][0])} at "
+     f"{FPS_BEST[2045][1]}, then {b(FPS_BEST[2050][0])} at {FPS_BEST[2050][1]}), far short of its Board's +$1B. The 787 Re-engine fell to "
      f"{b(RI[2045]['re787'])} and {b(RI[2050]['re787'])}. Airbus's A350 Re-engine ({b(RI[2045]['rea350'])}, then "
      f"{b(RI[2050]['rea350'])}) was stopped inside its ExCo by the CFO's robustness test and the company's +$1B launch "
      f"test. Airbus said its factory ceiling now limits deliveries."),
@@ -241,8 +256,8 @@ VALUE_LEDE = ("ΔPV is each company's change in present value against the status
               "with the game master's adjustments and the supply-and-demand layer. The status quo (no new programme) "
               "runs through the same layer, on the published capacity plans (the 737 MAX rising to 57 a month, the "
               "A320 at 85 a month) and the dashboard's 40/60 split.")
-BRIDGE_CAP = (f"The dashboard lines are the dashboard's own numbers for these moves (Boeing {b(BC['boeing']['board'])}, "
-              f"Airbus {b(BC['airbus']['board'])}). The supply-and-demand line replaces the dashboard's "
+BRIDGE_CAP = (f"The lines above the supply-and-demand line are the dashboard's own numbers for these moves (they sum "
+              f"to Boeing {b(BC['boeing']['board'])} and Airbus {b(BC['airbus']['board'])}). The supply-and-demand line replaces the dashboard's "
               f"2,000-a-year deliveries with what was actually built and wanted, against the status quo run the same "
               f"way. New types (fps, NGSA) deliver first at the dashboard's new-type price and margin; the rest are "
               f"737 MAX or A320neo at today's. The supply-plan line is the Alt plan's $0.75B, booked at NGSA's 2037 "
@@ -272,7 +287,8 @@ COMPARE_POINTS = [
      f"decision (from {b(fps_d0('fps 10-year, new sites'))} to {b(fps_d('fps 10-year, new sites'))} against Do Nothing)."),
     ("Airbus.",
      f" Previous game {b(VO['airbus'])}. With no Boeing fps, the same NGSA is worth {b(NL['airbus'])} on the dashboard "
-     f"alone. The layer then takes {b(NL['airbus'] - V['airbus'], 1, False)} away, to {b(V['airbus'])}."),
+     f"alone. The layer then takes {b(NL['airbus'] - V['airbus'], 1, False)} away (deliveries "
+     f"{b(BR['airbus']['supply_demand'])}, the Alt plan's cost {b(BR['airbus']['supply_plan'])}), to {b(V['airbus'])}."),
     ("Engine makers.",
      f" CFM: previous {b(VO['cfm'])}, this game's moves on the dashboard alone {b(NL['cfm'])}, with the layer "
      f"{b(V['cfm'])}. Rolls-Royce: {b(VO['rolls_royce'])}, {b(NL['rolls_royce'])}, {b(V['rolls_royce'])}. "
@@ -317,13 +333,14 @@ _YR = {x["round"]: x["year"] for x in C["round_items"]}
 _exc = "; ".join(f"in {_YR[n]} {NAMES[s_]}'s best option is {_plain(new)} rather than {_plain(old)}" for n, s_, old, new in _changed)
 
 METHOD = (
-    "<p><b>The game.</b> Run dash-2050-sd: your combined_dash.py board (v3), run by the game master without its "
+    "<p><b>The game.</b> Run dash-2050-sd: your combined_dash.py dashboard (v3), run by the game master without its "
     "interface, with its adjustments, Control's objectives and the supply-and-demand layer. There were four sealed "
     "rounds (2030, 2035, 2045, 2050), each company deciding through its ExCo and Board agents. Each player saw only its "
     "own brief and the public bulletin. An audit of every file and tool output each agent touched found all four "
     "rounds clean (one false alarm in 2035, a fault in the audit script, was fixed).</p>"
     "<p><b>A correction after play.</b> After the game, a check found that growth had been reduced by the A220 share "
-    "twice instead of once, so the players were briefed on demand about 5% too low. This page uses the corrected "
+    f"twice instead of once, so the players were briefed on growth about {pc(GROWTH_SHORT)} too low (new demand about "
+    f"{pc(DEMAND_SHORT)} too low over 2026-2060). This page uses the corrected "
     "demand. We re-valued every round's options on it, with everyone else's orders as played. Each player's best "
     f"option is the same as when it decided{(', except that ' + _exc) if _changed else ''}. No decision changes "
     "against the players' own tests. The largest shift for Boeing's fps is in "

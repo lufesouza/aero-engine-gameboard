@@ -269,10 +269,10 @@ def chart_shares():
     obj = [x for x in OBJ["rounds"][-1]["years"]["boeing"]["nb_share"]][:len(YEARS)]
     series = [("Status quo", "sq", list(zip(YEARS, sq)), True), ("Previous game", "muted", list(zip(YEARS, obj)), True),
               ("Preferred", "s1", list(zip(YEARS, pref)), False), ("Delivered", "fg", list(zip(YEARS, dl)), False)]
-    svg = lines(series, .8, .1, "pct", "Boeing share of 737/A320-class deliveries", "Boeing narrowbody share: preferred and delivered",
+    svg = lines(series, .8, .1, "pct", "Boeing share of 737/A320-class demand (preferred) and deliveries", "Boeing narrowbody share: preferred and delivered",
                 refs=[(.5, "50/50", "above")])
     rows = [[str(y), pct(pref[i], 1), pct(dl[i], 1), pct(sq[i], 1), pct(obj[i], 1)] for i, y in enumerate(YEARS)]
-    return (legend([("What customers prefer (the board's share)", "s1", "ln"), ("What Boeing delivers", "fg", "ln"),
+    return (legend([("What customers prefer (the dashboard's share)", "s1", "ln"), ("What Boeing delivers", "fg", "ln"),
                     ("Status quo, delivered", "sq", "dash"), ("Previous game (no supply limits)", "muted", "dash")])
             + svg + K.tview("Boeing narrowbody share", ["Year", "Preferred", "Delivered", "Status quo delivered", "Previous game"], rows))
 
@@ -322,7 +322,7 @@ def value_table():
                    num_cols=tuple(range(1, len(RYEARS) + 3)))
 
 
-BRIDGE_LAB = {"nb_profit_vs_sq": "Narrowbody profit vs status quo (board)", "wb_profit_vs_sq": "Widebody profit vs status quo",
+BRIDGE_LAB = {"nb_profit_vs_sq": "Narrowbody profit vs status quo (dashboard)", "wb_profit_vs_sq": "Widebody profit vs status quo",
               "programme_investment": "Programme investment", "rate_hike": "737 rate increase", "delay_tactics_spend": "Delay Tactics spend",
               "write_offs": "Write-offs", "debt_penalty": "Debt penalty", "two_front_strain": "Two-front strain", "naked_fine": "Naked fine",
               "supply_demand": "Supply and demand: deliveries limited by capacity and demand", "supply_plan": "Supply plans (A320 Alt cost, Renton saving)"}
