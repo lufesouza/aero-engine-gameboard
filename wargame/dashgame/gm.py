@@ -1,6 +1,7 @@
 """Game-master command line for dash-2050 (the GM only; players are blocked from this folder and from wargame/runs).
 
-  python3 gm.py init [objective_set]     # new run: state_r0.json, public rules to each player's folder; e.g. control2
+  python3 gm.py init [objective_set] [--sd]  # new run: state_r0.json, public rules to each player's folder; e.g. control2;
+                                            # --sd switches on supply and demand (supply_demand.py) for the run
   python3 gm.py brief N                   # bulletin + private briefs for round N (from state after round N-1)
   python3 gm.py adjudicate N orders.json  # validate and adjudicate round N; writes state_rN.json and the record
 """
@@ -33,8 +34,13 @@ def jsave(name, obj):
         json.dump(obj, f, indent=1, default=str)
 
 
-def init(objective_set=None):
+def init(objective_set=None, sd=False):
     os.makedirs(RUN_DIR, exist_ok=True)
+    if sd:                                 # supply and demand (supply_demand.py) for this run; model.py reads the flag
+        with open(os.path.join(RUN_DIR, "supply_demand.txt"), "w") as f:
+            f.write("on\n")
+        if not M.SD_ON:
+            raise SystemExit("supply_demand.txt written: run init again so the model loads it")
     with open(os.path.join(RUN_DIR, "board.txt"), "w") as f:
         f.write(M.H.VERSION + "\n")       # the run keeps this board version (model.py reads it back)
     if objective_set:                      # e.g. control2: Control's added objectives (briefs.objective_set reads it)
@@ -126,7 +132,8 @@ def adjudicate(n, orders_path):
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "init":
-        init(sys.argv[2] if len(sys.argv) > 2 else None)
+        args = [a for a in sys.argv[2:] if a != "--sd"]
+        init(args[0] if args else None, sd="--sd" in sys.argv)
     elif cmd == "brief":
         brief(int(sys.argv[2]))
     elif cmd == "adjudicate":

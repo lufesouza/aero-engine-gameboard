@@ -25,8 +25,8 @@ export const meta = {
 // Mirrors wargame/dashgame/rules.py ORDER_FIELDS (`python3 exco.py check` compares them).
 // ORDER_FIELDS_BEGIN
 const ORDER_FIELDS = {
-  "boeing": {"fps": ["hold", "launch_7yr", "launch_10yr", "launch_via_embraer", "cancel"], "fps_engine_code": [null, 1, 2, 3, 4, 5, 6, 7], "rate_737": ["hold", "increase"], "re787": ["hold", "launch", "cancel"]},
-  "airbus": {"ngsa": ["hold", "launch", "cancel"], "ngsa_engine_code": [null, 1, 2, 3, 4, 5, 6, 7], "rea350": ["hold", "launch", "cancel"], "delay_tactics": ["none", "bottleneck", "poaching", "both"]},
+  "boeing": {"fps": ["hold", "launch_7yr", "launch_10yr", "launch_via_embraer", "cancel"], "fps_engine_code": [null, 1, 2, 3, 4, 5, 6, 7], "rate_737": ["hold", "increase"], "re787": ["hold", "launch", "cancel"], "fps_site": ["new_site", "renton"]},
+  "airbus": {"ngsa": ["hold", "launch", "cancel"], "ngsa_engine_code": [null, 1, 2, 3, 4, 5, 6, 7], "rea350": ["hold", "launch", "cancel"], "delay_tactics": ["none", "bottleneck", "poaching", "both"], "a320_plan": ["base", "alt"]},
   "cfm": {"ducted": ["hold", "launch", "cancel"], "open_fan": ["hold", "launch", "cancel"], "partner_embraer": ["hold", "launch", "cancel"], "lobby_emissions": ["hold", "launch"], "genx": ["hold", "upgrade_genx9", "invest_genx", "cancel"]},
   "pratt_whitney": {"gtf2_solo": ["hold", "launch", "launch_if_selected", "cancel"], "jv_with_rr": ["hold", "commit", "withdraw"]},
   "rolls_royce": {"ultrafan_nb_solo": ["hold", "launch", "launch_if_selected", "cancel"], "jv_with_pw": ["hold", "commit", "withdraw"], "ultrafan_wb": ["hold", "launch", "cancel"], "t1000_upgrade": ["hold", "launch", "cancel"]}

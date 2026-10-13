@@ -31,6 +31,11 @@ if _BF and os.path.exists(_BF):
         raise SystemExit("run %s uses board %s but DASH_BOARD=%s" % (_RUN, _V, os.environ["DASH_BOARD"]))
     os.environ["DASH_BOARD"] = _V
 import harness as H  # noqa: E402
+import supply_demand as SD  # noqa: E402
+
+# Supply and demand (supply_demand.py) is a per-run switch: runs/<run>/supply_demand.txt, or DASH_SD=1 / 0.
+SD_ON = (os.environ.get("DASH_SD") == "1") or (os.environ.get("DASH_SD") != "0" and bool(_RUN) and
+                                              os.path.exists(os.path.join(HERE, "..", "runs", _RUN or "", "supply_demand.txt")))
 
 Y0 = 2026
 REPORT_END = 2060                     # last calendar year shown in the year-by-year tables
@@ -349,7 +354,7 @@ def value_airframers(state, covert=True, series=True):
     """Board cell at the state's EIS dates plus GM adjustments. Returns {'boeing': {...}, 'airbus': {...}}."""
     p = af_params()
     eis, a, b, dt = af_inputs(state, covert)
-    cell = eval_cell(eis, a, b, trace=series)
+    cell = eval_cell(eis, a, b, trace=series or SD_ON)
     out = {}
     for side, pre, wacc, ev, debt in (("boeing", "b", p["WACC_B"], p["v_ev_boeing"], p["v_debt_boeing"]),
                                       ("airbus", "a", p["WACC_A"], p["v_ev_airbus"], p["v_debt_airbus"])):
@@ -404,8 +409,21 @@ def value_airframers(state, covert=True, series=True):
                      "board_yield": cell["yield_" + pre], "gm_adjustments": adj, "bridge": bridge, "ev": ev,
                      "wacc": wacc, "fine_year": fine_year if side == "airbus" else None}
     out["_inputs"] = {"eis": eis, "a": a, "b": b}
+    ser = af_series(state, cell, eis, dt) if (series or SD_ON) else None
+    if SD_ON:
+        adj, items, _, _ = SD.apply(state, ser["years"], {"boeing": p["WACC_B"], "airbus": p["WACC_A"]})
+        for side in ("boeing", "airbus"):
+            o = out[side]
+            for k, x in adj[side].items():
+                o["bridge"][k] = x
+                o["pv_delta"] += x
+            o["yield"] = 100.0 + o["pv_delta"] / o["ev"] * 100.0
+            o["supply_demand"] = adj[side]
+        for side, y, item, x in items:
+            ser["nonrecurring"][side].setdefault(y, {})
+            ser["nonrecurring"][side][y][item] = ser["nonrecurring"][side][y].get(item, 0.0) + x
     if series:
-        out["_series"] = af_series(state, cell, eis, dt)
+        out["_series"] = ser
     return out
 
 
@@ -421,7 +439,7 @@ def af_series(state, cell, eis, dt):
         yr = Y0 + t
         b_nb_u, a_nb_u = p["NB_PER_YR"] * r["b_sh_nb"], p["NB_PER_YR"] * r["a_sh_nb"]
         b_wb_u, a_wb_u = p["WB_PER_YR"] * r["b_sh_wb"], p["WB_PER_YR"] * r["a_sh_wb"]
-        row = {"year": yr,
+        row = {"year": yr, "df_b": r["df_b"], "df_a": r["df_a"],
                "boeing": {"nb_share": r["b_sh_nb"], "wb_share": r["b_sh_wb"], "nb_units": b_nb_u, "wb_units": b_wb_u,
                           "nb_price": r["b_p_nb"] * 1000, "nb_margin": r["b_m_nb"], "wb_margin": r["b_m_wb"],
                           "nb_revenue": b_nb_u * r["b_p_nb"], "wb_revenue": b_wb_u * p["PRICE_WB"],
@@ -562,7 +580,7 @@ def nb_slots_at(state, yr, b_share):
     return [(bset, b_share), (aset, 1.0 - b_share)]
 
 
-def value_engines(state, b_nb_share, series=True, board_mode=None):
+def value_engines(state, b_nb_share, series=True, board_mode=None, nb_scale=None):
     """Engine makers' PV deltas. b_nb_share: {year: Boeing NB share} from the airframer trace.
     board_mode = (f_nb tuple (cfm, pw, rr), nb_eis_t, wb_eis_t, move_a, move_b, move_c) reproduces simulate()."""
     P = engine_params()
@@ -603,12 +621,16 @@ def value_engines(state, b_nb_share, series=True, board_mode=None):
         wb_sh = (base_wb if t < wb_anchor_t else wb_post) if board_mode else wb_post
         g = P["gross_mult"] * ((1 + P["CPI"]) ** t)
         row = {"year": yr, "moves": moves, "nb_in_window": t <= nb_end, "wb_in_window": t <= wb_end}
+        k_nb, k_sq = 1.0, 1.0
+        if nb_scale is not None:
+            last = max(nb_scale[0])
+            k_nb, k_sq = nb_scale[0].get(yr, nb_scale[0][last]), nb_scale[1].get(yr, nb_scale[1][last])
         for i, side in enumerate(("cfm", "pratt_whitney", "rolls_royce")):
-            nb_u = P["NB_AC_PER_YR"] * P["ENGINES_PER_AC"] * nb_sh[i]
+            nb_u = P["NB_AC_PER_YR"] * P["ENGINES_PER_AC"] * nb_sh[i] * k_nb
             wb_u = P["WB_AC_PER_YR"] * P["ENGINES_PER_AC"] * wb_sh[i]
             nb_v = nb_u * nb_price * g / 1000.0
             wb_v = wb_u * wb_price * g / 1000.0
-            nb_b = P["NB_AC_PER_YR"] * P["ENGINES_PER_AC"] * base_nb[i] * nb_price * g / 1000.0
+            nb_b = P["NB_AC_PER_YR"] * P["ENGINES_PER_AC"] * base_nb[i] * nb_price * g / 1000.0 * k_sq
             wb_b = P["WB_AC_PER_YR"] * P["ENGINES_PER_AC"] * base_wb[i] * wb_price * g / 1000.0
             df = (1 + waccs[i]) ** t
             if t <= nb_end:
@@ -675,11 +697,21 @@ def engine_costs(state):
     return rd, strain, sunk, nr
 
 
+P_NB = 2000.0       # the board's narrowbody market, aircraft a year
+
+
 def value(state, covert=True, series=True):
     """Full valuation of a state for all five players."""
     af = value_airframers(state, covert=covert, series=True)
-    bshare = {r["year"]: r["boeing"]["nb_share"] for r in af["_series"]["years"]}
-    en = value_engines(state, bshare, series=series)
+    ys = af["_series"]["years"]
+    if SD_ON:      # engine makers sell on the aircraft actually delivered (supply_demand.py)
+        bshare = {r["year"]: r["boeing"]["nb_delivered_share"] for r in ys}
+        scale = {r["year"]: (r["boeing"]["nb_units"] + r["airbus"]["nb_units"]) / P_NB for r in ys}
+        scale_sq = {r["year"]: (r["sd_sq"]["delivered_b"] + r["sd_sq"]["delivered_a"]) / P_NB for r in ys}
+        en = value_engines(state, bshare, series=series, nb_scale=(scale, scale_sq))
+    else:
+        bshare = {r["year"]: r["boeing"]["nb_share"] for r in ys}
+        en = value_engines(state, bshare, series=series)
     out = {"boeing": af["boeing"], "airbus": af["airbus"], "cfm": en["cfm"], "pratt_whitney": en["pratt_whitney"],
            "rolls_royce": en["rolls_royce"], "_af_inputs": af["_inputs"], "_engine_timing": en["_timing"]}
     if series:

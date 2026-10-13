@@ -14,11 +14,13 @@ ORDER_FIELDS = {
     "boeing": {"fps": ["hold", "launch_7yr", "launch_10yr", "launch_via_embraer", "cancel"],
                "fps_engine_code": [None, 1, 2, 3, 4, 5, 6, 7],
                "rate_737": ["hold", "increase"],
-               "re787": ["hold", "launch", "cancel"]},
+               "re787": ["hold", "launch", "cancel"],
+               "fps_site": ["new_site", "renton"]},
     "airbus": {"ngsa": ["hold", "launch", "cancel"],
                "ngsa_engine_code": [None, 1, 2, 3, 4, 5, 6, 7],
                "rea350": ["hold", "launch", "cancel"],
-               "delay_tactics": ["none", "bottleneck", "poaching", "both"]},
+               "delay_tactics": ["none", "bottleneck", "poaching", "both"],
+               "a320_plan": ["base", "alt"]},
     "cfm": {"ducted": ["hold", "launch", "cancel"], "open_fan": ["hold", "launch", "cancel"],
             "partner_embraer": ["hold", "launch", "cancel"], "lobby_emissions": ["hold", "launch"],
             "genx": ["hold", "upgrade_genx9", "invest_genx", "cancel"]},
@@ -29,6 +31,13 @@ ORDER_FIELDS = {
                     "ultrafan_wb": ["hold", "launch", "cancel"], "t1000_upgrade": ["hold", "launch", "cancel"]},
 }
 DEFAULT_ORDER = {s: {k: v[0] for k, v in f.items()} for s, f in ORDER_FIELDS.items()}
+# Supply-and-demand fields (supply_demand.py): only in runs that switch the layer on; a missing value keeps the plan.
+SD_FIELDS = {"boeing": ("fps_site", "fps"), "airbus": ("a320_plan", "ngsa")}
+
+
+def sd_plan(state, side):
+    sd = state.get("sd") or {}
+    return sd.get(SD_FIELDS[side][0], ORDER_FIELDS[side][SD_FIELDS[side][0]][0])
 
 
 def in_service(state, key, year):
@@ -93,6 +102,15 @@ def legal_options(state, side, year):
             L["jv_with_pw"] = ["hold"]
         else:
             L["jv_with_pw"] = ["hold", "withdraw"] if state["jv_commit"]["rolls_royce"] else ["hold", "commit"]
+    if side in SD_FIELDS:
+        field, key = SD_FIELDS[side]
+        if not M.SD_ON:
+            L.pop(field, None)
+        else:
+            cur = sd_plan(state, side)
+            r = M.live(state, key)
+            open_ = r is None or r["eis"] > year                # the plan can change until the airframe enters service
+            L[field] = [cur] + [x for x in ORDER_FIELDS[side][field] if x != cur] if open_ else [cur]
     return L
 
 
@@ -101,7 +119,7 @@ def validate(state, side, year, orders):
     L = legal_options(state, side, year)
     clean, probs = {}, []
     for k, opts in L.items():
-        v = orders.get(k, DEFAULT_ORDER[side][k])
+        v = orders.get(k, opts[0] if (side in SD_FIELDS and k == SD_FIELDS[side][0]) else DEFAULT_ORDER[side][k])
         if k.endswith("engine_code") and v is not None:
             try:
                 v = int(v)
@@ -196,6 +214,17 @@ def adjudicate(state, year, orders):
     for x in ("bottleneck", "poaching"):
         if dt in (x, "both") and not s["dt"][x]:
             s["dt"][x] = year; log.append("Delay Tactics (%s) ordered in %d [covert]" % (x, year))
+    if M.SD_ON:                                          # supply plans (public)
+        s.setdefault("sd", {"a320_plan": "base", "fps_site": "new_site"})
+        for side, (field, key) in SD_FIELDS.items():
+            v = orders.get(side, {}).get(field)
+            r = M.live(s, key)
+            if v in ORDER_FIELDS[side][field] and v != s["sd"][field] and (r is None or r["eis"] > year):
+                s["sd"][field] = v
+                log.append({"fps_site": {"renton": "Boeing will build fps at Renton (MAX at Renton winds down as fps ramps up)",
+                                         "new_site": "Boeing will build fps at new sites (the MAX carries on at Renton)"},
+                            "a320_plan": {"alt": "Airbus adopts the Alt plan: A320 lines kept longer through the NGSA ramp-up",
+                                          "base": "Airbus returns to the base plan: A320 lines wind down as NGSA ramps up"}}[field][v])
     for side, key, field in (("boeing", "fps", "fps_engine_code"), ("airbus", "ngsa", "ngsa_engine_code")):
         r = M.live(s, key)
         if r and r["eis"] > year and o[side].get(field):

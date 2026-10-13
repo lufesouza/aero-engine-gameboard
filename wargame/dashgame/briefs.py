@@ -16,7 +16,8 @@ FIELD_LABEL = {
     "ngsa": "NGSA", "ngsa_engine_code": "NGSA engine code", "rea350": "A350 Re-engine", "delay_tactics": "Delay Tactics",
     "ducted": "Ducted", "open_fan": "Open Fan", "partner_embraer": "Partner Embraer", "lobby_emissions": "Lobby",
     "genx": "GEnx", "gtf2_solo": "GTF2 Solo", "jv_with_rr": "JV with RR", "ultrafan_nb_solo": "UltraFan NB Solo",
-    "jv_with_pw": "JV with PW", "ultrafan_wb": "UltraFan WB", "t1000_upgrade": "T1000 upgrade"}
+    "jv_with_pw": "JV with PW", "ultrafan_wb": "UltraFan WB", "t1000_upgrade": "T1000 upgrade",
+    "fps_site": "fps site", "a320_plan": "A320 plan"}
 PROG_LABEL = M.PROG_LABEL
 
 
@@ -190,7 +191,59 @@ Shares are floored at zero and re-normalised to 100%.
 - One or both moves give the same {p['v_sabotage_share']:.0f} pp effect, from fps EIS.
 - If Boeing never launches fps, the tactics are "naked" and draw a $48.32B fine.
 - They can be ordered in any round before fps enters service.
+""" + (sd_rules() if M.SD_ON else "")
+
+
+def sd_rules():
+    """Public rules of the supply-and-demand layer (supply_demand.py)."""
+    import supply_demand as SD
+    I = SD.inputs()
+    b, d = I["boeing"], I["demand"]
+    dem = lambda y: "%d" % round(SD.demand(y))
+    return f"""
+## Supply and demand
+
+The board's shares are what customers **want**. Aircraft are delivered only if a factory can build them.
+
+**Demand.** Narrowbody demand is {d['base_per_year']:,.0f} aircraft a year (growth and replacement of older types) plus
+the replacement of today's 737 MAX, A320neo-family and A220 fleets as they retire (Cirium fleet data, October 2026).
+It averages {round(sum(SD.demand(y) for y in range(2026, 2046)) / 20):,} a year over 2026-2045, the board's market, and then rises with the
+replacement wave: {dem(2030)} (2030), {dem(2035)} (2035), {dem(2040)} (2040), {dem(2045)} (2045), {dem(2050)} (2050),
+{dem(2055)} (2055), {dem(2060)} (2060).
+
+**Who customers want.** Each year's demand is split by the board's share rules above (the preference share).
+
+**Factories (public production plans, aircraft a month).**
+- **Airbus (Rev. B plan):** A320 family at 85 a month until NGSA enters service. Then, on the base plan, the A320
+  lines wind down (72, 52, 42, then 14 a month, and none about five years after NGSA EIS) while NGSA ramps up
+  (rate 50 about four years after EIS, 80 about six, 100 about eight). On the **Alt plan** (`a320_plan: alt`) the A320
+  lines are kept longer (82, 62, 52, 42, then 14 a month, about eight years in all): about 1,500 more A320s for
+  about ${a320_alt_cost():.2f}B. Without NGSA the A320 stays at 85 a month.
+- **Boeing:** 737 MAX at {b['max_rate']['2026']}, {b['max_rate']['2027']} and then {b['max_rate_after']:.0f} a month from 2028; the 737 rate
+  increase adds {b['rate_increase_per_year']:.0f} aircraft a year from {b['rate_increase_from']}. The fps ramps on the same shape as
+  NGSA (rate 50 about four years after EIS, 100 about eight). On the **new-site plan** (`fps_site: new_site`, the
+  default) the MAX carries on at Renton and Everett alongside the fps. On the **Renton plan** (`fps_site: renton`)
+  Renton is reassigned to the fps: its MAX lines wind down as the fps ramps up (like the A320 base plan) and only the
+  Everett line ({b['everett_rate']:.0f} a month) carries on; Boeing avoids about ${b['renton_saving_b']:.1f}B of new-site capex. With the fps in
+  service by {b['max_last_year']}, the MAX stops after {b['max_last_year']}; without the fps it carries on.
+
+**Deliveries each year.**
+- Each maker delivers what its customers want plus its waiting backlog, up to its capacity.
+- Customers its factories cannot serve: the flexible ones ({100 * d['flex_share']:.0f}%: airlines flying both types, lessors and
+  unannounced customers) take the other maker's free slots; the rest wait in the backlog.
+- A fifth of the waiting backlog gives up each year (keeps old aircraft longer or defers growth).
+- Market share is the share of deliveries. Profit is earned on aircraft delivered, at the board's prices and margins.
+- The status quo runs the same rules with today's plans (A320 at 85 a month, MAX at 52) and the 40/60 preference.
+- Engine makers sell engines on the aircraft actually delivered (two per aircraft), split as in the engine rules.
+
+**Your supply plan** (`fps_site` for Boeing, `a320_plan` for Airbus) is public and can change in any round until your
+new airframe enters service. A field you leave out keeps your current plan.
 """
+
+
+def a320_alt_cost():
+    import supply_demand as SD
+    return SD.inputs()["airbus"]["alt_cost_b"]
 
 
 # ─────────────────────────────── public record ───────────────────────────────
@@ -527,20 +580,36 @@ def own_options(state, side, year):
     out = []
     if side == "boeing":
         code = state["codes"].get("fps") or 7
-        for f, r, w in itertools.product(L["fps"], L["rate_737"], L["re787"]):
+        sites = L.get("fps_site", [None])
+        for f, r, w, site in itertools.product(L["fps"], L["rate_737"], L["re787"], sites):
+            fps_on = f.startswith("launch") or (M.live(state, "fps") and f != "cancel")
+            if site is not None and site != sites[0] and not fps_on:
+                continue                                   # the site only matters with an fps
             o = {"fps": f, "rate_737": r, "re787": w, "fps_engine_code": code if f.startswith("launch") else None}
+            if site is not None:
+                o["fps_site"] = site
             lab = [{"hold": "fps: hold", "launch_7yr": "fps 7-yr", "launch_10yr": "fps 10-yr",
                     "launch_via_embraer": "fps via Embraer", "cancel": "cancel fps"}[f]]
+            if site is not None and fps_on and (site == "renton" or site != sites[0]):
+                lab[-1] += {"renton": " at Renton", "new_site": " at new sites"}[site]
             if r == "increase": lab.append("737 rate up")
             lab.append({"hold": "787: hold", "launch": "787 Re-engine", "cancel": "cancel 787 Re-engine"}[w])
             out.append((" + ".join(lab), o))
     elif side == "airbus":
         code = state["codes"].get("ngsa") or 7
         dts = [d for d in L["delay_tactics"] if d != "poaching"]   # bottleneck and poaching are the same on the board
-        for n, a, d in itertools.product(L["ngsa"], L["rea350"], dts):
+        plans_ = L.get("a320_plan", [None])
+        for n, a, d, pl in itertools.product(L["ngsa"], L["rea350"], dts, plans_):
+            ngsa_on = n == "launch" or (M.live(state, "ngsa") and n != "cancel")
+            if pl is not None and pl != plans_[0] and not ngsa_on:
+                continue                                   # the A320 plan only matters with NGSA
             o = {"ngsa": n, "rea350": a, "delay_tactics": d, "ngsa_engine_code": code if n == "launch" else None}
+            if pl is not None:
+                o["a320_plan"] = pl
             lab = [{"hold": "NGSA: hold", "launch": "NGSA", "cancel": "cancel NGSA"}[n],
                    {"hold": "A350: hold", "launch": "A350 Re-engine", "cancel": "cancel A350 Re-engine"}[a]]
+            if pl is not None and ngsa_on and (pl == "alt" or pl != plans_[0]):
+                lab[0] += {"alt": " (A320 Alt plan)", "base": " (A320 base plan)"}[pl]
             if d != "none":
                 lab.append({"bottleneck": "Delay Tactics (one move)", "both": "Delay Tactics (both moves)"}[d])
             out.append((" + ".join(lab), o))
@@ -599,6 +668,8 @@ def rival_scenarios(state, side, year):
     if side == "boeing":
         if ngsa_free:
             sc.append(("Airbus launches NGSA", {"airbus": {"ngsa": "launch", "ngsa_engine_code": 6}}))
+            if M.SD_ON:
+                sc.append(("Airbus launches NGSA on the A320 Alt plan", {"airbus": {"ngsa": "launch", "ngsa_engine_code": 6, "a320_plan": "alt"}}))
         if M.live(state, "rea350") is None:
             sc.append(("Airbus launches A350 Re-engine", {"airbus": {"rea350": "launch"}}))
             if ngsa_free:
@@ -610,6 +681,8 @@ def rival_scenarios(state, side, year):
     elif side == "airbus":
         if fps_free:
             sc.append(("Boeing launches fps 10-yr", {"boeing": {"fps": "launch_10yr", "fps_engine_code": 7}}))
+            if M.SD_ON:
+                sc.append(("Boeing launches fps 10-yr at Renton", {"boeing": {"fps": "launch_10yr", "fps_engine_code": 7, "fps_site": "renton"}}))
             sc.append(("Boeing launches fps 7-yr", {"boeing": {"fps": "launch_7yr", "fps_engine_code": 7}}))
             sc.append(("Boeing launches fps via Embraer", {"boeing": {"fps": "launch_via_embraer", "fps_engine_code": 7}}))
         if M.live(state, "re787") is None:
@@ -817,7 +890,9 @@ BRIDGE_LABEL = {"nb_profit_vs_sq": "Narrowbody operating profit vs status quo", 
                 "delay_tactics_spend": "Delay Tactics spend", "write_offs": "Cancellation write-offs",
                 "debt_penalty": "Debt penalty (α)", "two_front_strain": "Two-front strain", "naked_fine": "Naked Delay Tactics fine",
                 "engine_value_vs_sq": "Engine value vs status quo", "r_and_d": "R&D (undiscounted, as the board)",
-                "strain": "Strain (concurrent programmes)"}
+                "strain": "Strain (concurrent programmes)",
+                "supply_demand": "Supply and demand: aircraft your factories can deliver, against the board's market",
+                "supply_plan": "Supply plan: A320 Alt plan cost or Renton capex saving"}
 
 
 def projection_rows(side, v):
@@ -847,6 +922,35 @@ def projection_rows(side, v):
         head = ["Year", "NB engine share", "WB engine share", "NB engines", "WB engines", "Engine lifecycle value $B",
                 "Status-quo value $B", "R&D and write-offs $B"]
     return head, rows
+
+
+SD_YEARS = [2027, 2030, 2033, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2047, 2050, 2053, 2055, 2060]
+
+
+def sd_outlook(side, state, v):
+    """Supply and demand for an airframer if nobody moves again: demand, what customers want from you, your backlog,
+    your factories (public plans), deliveries and the other maker's capacity (also a public plan)."""
+    import supply_demand as SD
+    pre, other = ("b", "a") if side == "boeing" else ("a", "b")
+    a3, ng = SD.plans(state)
+    plan = ("fps site: %s" % {"new_site": "new sites", "renton": "Renton"}[ng]) if side == "boeing" else (
+        "A320 plan: %s" % a3)
+    L = ["", "**Supply and demand if nobody moves again** (aircraft a year; your %s; capacities are the public "
+         "production plans):" % plan, ""]
+    rows = []
+    for r in v["_af_series"]["years"]:
+        y = r["year"]
+        if y not in SD_YEARS:
+            continue
+        x, o = r[side], r["airbus" if side == "boeing" else "boeing"]
+        cap = (r["sd"]["cap_max"], r["sd"]["cap_fps"]) if side == "boeing" else (r["sd"]["cap_a320"], r["sd"]["cap_ngsa"])
+        rows.append([y, "%d" % round(r["sd"]["demand"]), "%d" % round(x["sd"]["wanted"]), "%d" % round(x["sd"]["backlog_in"]),
+                     "%d + %d" % (round(cap[0]), round(cap[1])), "%d" % round(x["nb_units"]), "%d" % round(x["sd"]["spill_in"]),
+                     pct(x["nb_pref_share"]), pct(x["nb_share"]), "%d" % round(o["sd"]["capacity"]), "%d" % round(x["sd"]["sq_delivered"])])
+    L += table(["Year", "Market demand", "Want you", "Your backlog", "Your capacity (%s)" % ("MAX + fps" if side == "boeing" else "A320 + NGSA"),
+                "You deliver", "From rival's customers", "Preference share", "Delivered share", "Rival capacity",
+                "You deliver in the status quo"], rows)
+    return L
 
 
 def table(head, rows):
@@ -892,6 +996,8 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
                "Year by year (nominal $B; shares of the market's deliveries):"), ""]
     head, prow = projection_rows(side, v)
     L += table(head, prow)
+    if side in ("boeing", "airbus") and M.SD_ON:
+        L += sd_outlook(side, state, v)
     if side in ("boeing", "airbus"):
         L += ["", "The board counts each programme's market for 20 years from its EIS (unlaunched programmes use the "
               "snapshot dates fps %d, NGSA %d, Re-engines %d), so years after that window add nothing to ΔPV." % (

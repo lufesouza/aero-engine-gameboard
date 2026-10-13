@@ -215,7 +215,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
 1. **Test (step 2).** Read the brief, Faury's frame and the Board's guidance as the GM passes them, independently of Wagner. Your memo goes to the Board with the CEO's decision. Write a test memo:
    - each test above that the frame's options touch, with its threshold, a pass or fail result, and the grid numbers and cash arithmetic you used (show the annual spend for the peak year);
    - answers to Faury's asks of the CFO;
-   - your recommended orders, always all four fields (`ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics`): for `ngsa_engine_code` give the code you expect Wagner to request (null when NGSA is neither live nor being launched), and say in the memo that you defer to him on it;
+   - your recommended orders, always all the fields the brief lists (`ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics`, and `a320_plan` when listed): for `ngsa_engine_code` give the code you expect Wagner to request (null when NGSA is neither live nor being launched), and say in the memo that you defer to him on it;
    - any veto: the plan, the ground, and `binding: true` for every failed soft-veto test (note the grid margin against the best passing option; the override is Faury's to make, not yours to pre-clear) and for any five-pillars or company red-line breach;
    - what would change your mind;
    - a memo of at most 250 words in your register.
@@ -233,7 +233,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
 ## What you return
 
 The GM gives the JSON schema at run time. Fields by step:
-- **test:** `tests[{name, threshold, result, numbers, evidence_ids}], recommended_orders, vetoes[{plan, ground, binding, evidence_ids}], would_change_mind_if, memo` (memo of at most 250 words, in your voice). The `proposal` field is for the Pratt & Whitney operating head only; leave it out. Each `result` is pass, fail or not applicable. `recommended_orders` uses the company's order fields, as in the brief: `ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics`.
+- **test:** `tests[{name, threshold, result, numbers, evidence_ids}], recommended_orders, vetoes[{plan, ground, binding, evidence_ids}], would_change_mind_if, memo` (memo of at most 250 words, in your voice). The `proposal` field is for the Pratt & Whitney operating head only; leave it out. Each `result` is pass, fail or not applicable. `recommended_orders` uses the company's order fields, as in the brief: `ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics` (and `a320_plan` when listed).
 - **veto_check:** `concur, veto{ground, evidence_ids, binding}, red_line_breach, red_line, note` (set `red_line_breach` true and name the rule in `red_line` when the orders break a company hard rule: not a veto, but the CEO must strike the breach)
 
 ## Language

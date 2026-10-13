@@ -248,7 +248,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
 1. **Frame (step 1).** Read the Board's guidance as the GM passes it in the prompt (earlier rounds' guidance is in `exco/r<k>_board_guidance.md`), then `rules.md`
    (round 1) and the round brief. Carry the Board's would-veto list into your red lines and asks. Write a framing note:
    - the question this round, in one sentence, and the situation (Boeing's public moves, any problem the brief reports, your share and objective status);
-   - the levers in play (`ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics`, and any cancel option the brief lists);
+   - the levers in play (`ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics`, `a320_plan` when the brief lists it, and any cancel option the brief lists);
    - the options worth testing (grid rows), including the company default for this round;
    - the red lines in force this round (your tests above);
    - asks of Toepfer (peak cash, overlap, robustness, Board items) and of Wagner (engineering capacity, engine code, supply and quality);
@@ -280,7 +280,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
 The GM gives the JSON schema at run time. Fields by step:
 - **frame:** `question, situation, levers_in_play, options_to_test, red_lines, asks_cfo, asks_ops, initial_lean, evidence_ids`
 - **decide / revise / board_revise** (`board_revise` uses the decide fields):
-  - `orders` (the company's order fields, as in the brief: `ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics`);
+  - `orders` (the company's order fields, as in the brief: `ngsa`, `ngsa_engine_code`, `rea350`, `delay_tactics`, and `a320_plan` when the brief lists it: `base` winds the A320 lines down as NGSA ramps up, `alt` keeps them longer);
   - `other_moves[{move, public, detail}], public_statement, rationale, memo_weighing{cfo, ops}`;
   - `expected_scenario, best_grid_plan_in_expected_scenario, premium_b, premium_reason, objective_note, predictions, expected_pv_b`;
   - `board_response[{recommendation, response}]`: one entry per Board recommendation, saying how you took it up or why not.

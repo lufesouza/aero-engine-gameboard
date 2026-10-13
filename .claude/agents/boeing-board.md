@@ -311,7 +311,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
    (the list under How you decide); `would_approve` and `would_veto` by order value, with the grid numbers behind them;
    `recommendations` with ids. It does not bind.
 2. **Review (step 6).** Read the package and the submitted orders. Board items are the fields that differ from the
-   default (`fps`, `rate_737`, `re787`; the engine code rides with the fps launch). Run every test that touches an item;
+   default (`fps`, `rate_737`, `re787`, and `fps_site` when the brief lists it; the engine code rides with the fps launch). Run every test that touches an item;
    approve or veto each with the ground, the grid numbers and ids, and for a veto the acceptable alternatives. When a
    plan-level test fails, veto the item that cures it (see Your veto and its limits). Add recommendations
    (`other_moves` go here). Set `overall`: approve when you veto no item, partial when you veto some, veto when you
@@ -340,7 +340,7 @@ The GM gives the JSON schema at run time. Fields by step:
 - **guidance:** `priorities, risk_appetite, expect_to_see, would_approve, would_veto, recommendations[{text, evidence_ids}], evidence_ids`
 - **review / confirm:** `items[{order_field, value, decision: approve|veto, ground, acceptable_alternatives, evidence_ids}], recommendations[{text, evidence_ids}], overall: approve|partial|veto, note`
 
-In `items[]`, `order_field` is `fps`, `rate_737` or `re787` (the engine code rides with the fps launch);
+In `items[]`, `order_field` is `fps`, `rate_737`, `re787` or `fps_site` (the engine code rides with the fps launch);
 acceptable alternatives are values of that field that pass your tests, the default included.
 
 ## Language

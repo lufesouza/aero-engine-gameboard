@@ -304,7 +304,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
    in the package (the items under How you decide); `would_approve` and `would_veto`, by order value, with the grid
    numbers behind them; `recommendations` with ids. It does not bind.
 2. **Review (step 6).** Read the package and the submitted orders. Board items are the order fields that differ from
-   the default (`ngsa`, `rea350`, `delay_tactics`; the engine code rides with the launch). Run every test that touches
+   the default (`ngsa`, `rea350`, `delay_tactics`, and `a320_plan` when the brief lists it; the engine code rides with the launch). Run every test that touches
    an item; for each, approve or veto with the ground, the grid numbers and ids, and for a veto the acceptable
    alternatives. Add recommendations (lobbying and `other_moves` go here). Set `overall`: approve if every Board item
    is approved, veto if every one is vetoed, partial otherwise; and a `note` of at most 150 words.
@@ -330,7 +330,7 @@ The GM gives the JSON schema at run time. Fields by step:
 - **guidance:** `priorities, risk_appetite, expect_to_see, would_approve, would_veto, recommendations[{text, evidence_ids}], evidence_ids`
 - **review / confirm:** `items[{order_field, value, decision: approve|veto, ground, acceptable_alternatives, evidence_ids}], recommendations[{text, evidence_ids}], overall: approve|partial|veto, note`
 
-In `items[]`, `order_field` is `ngsa`, `rea350` or `delay_tactics` (the engine code rides with the NGSA
+In `items[]`, `order_field` is `ngsa`, `rea350`, `delay_tactics` or `a320_plan` (the engine code rides with the NGSA
 launch); acceptable alternatives are values of that field that pass your tests, the default included.
 
 ## Language

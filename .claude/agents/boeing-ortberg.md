@@ -199,7 +199,7 @@ Repo root: `/home/user/aero-engine-gameboard`.
 The GM gives the JSON schema at run time. Fields by step:
 - **frame:** `question, situation, levers_in_play, options_to_test, red_lines, asks_cfo, asks_ops, initial_lean, evidence_ids`
 - **decide / revise / board_revise** (`board_revise` uses the decide fields):
-  - `orders` (the company's order fields, as in the brief: `fps`, `fps_engine_code`, `rate_737`, `re787`). `fps_engine_code` is JSON `null` when you select no code, or an integer 1-7 (3 = CFM); never the string "None" or "3";
+  - `orders` (the company's order fields, as in the brief: `fps`, `fps_engine_code`, `rate_737`, `re787`, and `fps_site` when the brief lists it: `new_site` builds the fps at new sites and keeps the MAX at Renton, `renton` reassigns Renton to the fps). `fps_engine_code` is JSON `null` when you select no code, or an integer 1-7 (3 = CFM); never the string "None" or "3";
   - `other_moves[{move, public, detail}], public_statement, rationale, memo_weighing{cfo, ops}`;
   - `expected_scenario, best_grid_plan_in_expected_scenario, premium_b, premium_reason, objective_note, predictions, expected_pv_b`;
   - `board_response[{recommendation, response}]`: one entry per Board recommendation, saying how you took it up or why not.
