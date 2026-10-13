@@ -1,0 +1,140 @@
+{
+ "_about": "Each player's best option per round as valued when the game was played (growth reduced by the A220 share twice; superseded). Kept to show that the correction changes no decision. Myopic: everyone else's orders as played, nobody moves after the round.",
+ "rounds": {
+  "1": {
+   "boeing": {
+    "actual": -1.0076074756747242,
+    "best_plan": "fps: hold + 787 Re-engine",
+    "best": 2.2933113801377205,
+    "gain": 3.3009188558124447
+   },
+   "airbus": {
+    "actual": 13.714910912237233,
+    "best_plan": "NGSA (A320 Alt plan) + A350 Re-engine",
+    "best": 15.460135184209204,
+    "gain": 1.7452242719719706
+   },
+   "cfm": {
+    "actual": -22.889498566914,
+    "best_plan": "Ducted + Partner Embraer + GEnx upgrade",
+    "best": -21.138550878985853,
+    "gain": 1.7509476879281465
+   },
+   "pratt_whitney": {
+    "actual": 0.4816291485124893,
+    "best_plan": "GTF2 Solo",
+    "best": 0.4816291485124893,
+    "gain": 0.0
+   },
+   "rolls_royce": {
+    "actual": 10.097274512351767,
+    "best_plan": "UltraFan NB Solo",
+    "best": 10.097274512351767,
+    "gain": 0.0
+   }
+  },
+  "2": {
+   "boeing": {
+    "actual": -1.0076074756747242,
+    "best_plan": "fps: hold + 787 Re-engine",
+    "best": 0.9960498952678407,
+    "gain": 2.003657370942565
+   },
+   "airbus": {
+    "actual": 13.714910912237233,
+    "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "best": 15.26036732124506,
+    "gain": 1.5454564090078264
+   },
+   "cfm": {
+    "actual": -24.293090439064457,
+    "best_plan": "Ducted + Partner Embraer",
+    "best": -24.293090439064457,
+    "gain": 0.0
+   },
+   "pratt_whitney": {
+    "actual": -0.13809294915585468,
+    "best_plan": "GTF2: hold + commit to JV",
+    "best": -0.13809294915585468,
+    "gain": 0.0
+   },
+   "rolls_royce": {
+    "actual": 9.610097402435244,
+    "best_plan": "UltraFan NB: hold + commit to JV",
+    "best": 9.610097402435244,
+    "gain": 0.0
+   }
+  },
+  "3": {
+   "boeing": {
+    "actual": -1.0076074756747242,
+    "best_plan": "fps: hold + 787 Re-engine",
+    "best": -0.2693621970027422,
+    "gain": 0.738245278671982
+   },
+   "airbus": {
+    "actual": 13.714910912237233,
+    "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "best": 14.605267878683502,
+    "gain": 0.8903569664462694
+   },
+   "cfm": {
+    "actual": -24.293090439064457,
+    "best_plan": "hold everything",
+    "best": -24.293090439064457,
+    "gain": 0.0
+   },
+   "pratt_whitney": {
+    "actual": -0.13809294915585468,
+    "best_plan": "GTF2: hold",
+    "best": -0.13809294915585468,
+    "gain": 0.0
+   },
+   "rolls_royce": {
+    "actual": 9.610097402435244,
+    "best_plan": "UltraFan NB: hold",
+    "best": 9.610097402435244,
+    "gain": 0.0
+   }
+  },
+  "4": {
+   "boeing": {
+    "actual": -1.0076074756747242,
+    "best_plan": "fps 10-yr at Renton + 787 Re-engine",
+    "best": -0.36198978026627804,
+    "gain": 0.6456176954084462
+   },
+   "airbus": {
+    "actual": 13.714910912237233,
+    "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "best": 14.286473740768077,
+    "gain": 0.5715628285308441
+   },
+   "cfm": {
+    "actual": -24.293090439064457,
+    "best_plan": "hold everything",
+    "best": -24.293090439064457,
+    "gain": 0.0
+   },
+   "pratt_whitney": {
+    "actual": -0.13809294915585468,
+    "best_plan": "GTF2: hold",
+    "best": -0.13809294915585468,
+    "gain": 0.0
+   },
+   "rolls_royce": {
+    "actual": 9.610097402435244,
+    "best_plan": "UltraFan NB: hold",
+    "best": 9.610097402435244,
+    "gain": 0.0
+   }
+  }
+ },
+ "final_pv": {
+  "boeing": -1.0076074756747242,
+  "airbus": 13.714910912237233,
+  "cfm": -24.293090439064457,
+  "pratt_whitney": -0.13809294915585468,
+  "rolls_royce": 9.610097402435244
+ }
+}

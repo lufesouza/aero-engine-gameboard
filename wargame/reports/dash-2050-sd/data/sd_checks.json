@@ -1,5 +1,5 @@
 {
- "rounds_played": 2,
+ "rounds_played": 4,
  "fps_2030": {
   "board": [
    {
@@ -86,8 +86,8 @@
   "with_sd": [
    {
     "plan": "Do Nothing",
-    "boeing": -1.0076074756747242,
-    "airbus": 13.714910912237233,
+    "boeing": -0.767291941752474,
+    "airbus": 13.24909402669827,
     "bridge": {
      "nb_profit_vs_sq": -3.6398161040679113,
      "wb_profit_vs_sq": 0.0,
@@ -98,14 +98,14 @@
      "debt_penalty": -0.0,
      "two_front_strain": -0.0,
      "naked_fine": -0.0,
-     "supply_demand": 2.632208628393187,
+     "supply_demand": 2.8725241623154374,
      "supply_plan": 0.0
     }
    },
    {
     "plan": "fps 10-year, new sites",
-    "boeing": -4.364647395228737,
-    "airbus": 10.083891213514017,
+    "boeing": -3.5110474977705186,
+    "airbus": 10.737700736400292,
     "bridge": {
      "nb_profit_vs_sq": 20.29543575032945,
      "wb_profit_vs_sq": 0.0,
@@ -116,14 +116,14 @@
      "debt_penalty": -4.725255011662201,
      "two_front_strain": -0.0,
      "naked_fine": -0.0,
-     "supply_demand": -5.027855967692965,
+     "supply_demand": -4.174256070234747,
      "supply_plan": 0.0
     }
    },
    {
     "plan": "fps 10-year, Renton",
-    "boeing": -3.735640439834504,
-    "airbus": 10.382578879269673,
+    "boeing": -2.96011591322484,
+    "airbus": 11.215658145855729,
     "bridge": {
      "nb_profit_vs_sq": 20.29543575032945,
      "wb_profit_vs_sq": 0.0,
@@ -134,14 +134,14 @@
      "debt_penalty": -4.725255011662201,
      "two_front_strain": -0.0,
      "naked_fine": -0.0,
-     "supply_demand": -5.140243516586017,
+     "supply_demand": -4.364718989976353,
      "supply_plan": 0.7413945042872855
     }
    },
    {
     "plan": "fps 7-year, new sites",
-    "boeing": -8.541898414817878,
-    "airbus": 6.241923811742155,
+    "boeing": -7.841585431163136,
+    "airbus": 7.422531943312447,
     "bridge": {
      "nb_profit_vs_sq": 30.131243863152697,
      "wb_profit_vs_sq": 0.0,
@@ -152,14 +152,14 @@
      "debt_penalty": -7.338839590157907,
      "two_front_strain": -0.0,
      "naked_fine": -0.0,
-     "supply_demand": -9.660840202243664,
+     "supply_demand": -8.960527218588922,
      "supply_plan": 0.0
     }
    },
    {
     "plan": "787 Re-engine",
-    "boeing": 2.2933113801377205,
-    "airbus": 12.853430013359375,
+    "boeing": 2.5336269140599708,
+    "airbus": 12.387613127820412,
     "bridge": {
      "nb_profit_vs_sq": -3.6398161040679113,
      "wb_profit_vs_sq": 5.581422460405179,
@@ -170,22 +170,602 @@
      "debt_penalty": -0.2448236406356652,
      "two_front_strain": -0.0,
      "naked_fine": -0.0,
-     "supply_demand": 2.632208628393187,
+     "supply_demand": 2.8725241623154374,
      "supply_plan": 0.0
     }
    }
   ]
  },
+ "fps_mechanism": {
+  "eis": 2040,
+  "board_pv_gain": 23.883720238267674,
+  "delivered_pv_gain": 16.88847162184716,
+  "fps_unit_profit_m": 14.102,
+  "max_unit_profit_m": 3.8400000000000007,
+  "years": [
+   {
+    "year": 2026,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 510.0,
+    "df": 1.0
+   },
+   {
+    "year": 2027,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 594.0,
+    "df": 0.9049773755656109
+   },
+   {
+    "year": 2028,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 624.0,
+    "df": 0.8189840502856207
+   },
+   {
+    "year": 2029,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 654.0,
+    "df": 0.7411620364575753
+   },
+   {
+    "year": 2030,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.6707348746222401
+   },
+   {
+    "year": 2031,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.6069998865359639
+   },
+   {
+    "year": 2032,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.5493211642859402
+   },
+   {
+    "year": 2033,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.49712322559813593
+   },
+   {
+    "year": 2034,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.4498852720345122
+   },
+   {
+    "year": 2035,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.4071359927914137
+   },
+   {
+    "year": 2036,
+    "board_gain": 0.0,
+    "delivered_gain": 0.0,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.36844886225467305
+   },
+   {
+    "year": 2037,
+    "board_gain": 0.15359999999999996,
+    "delivered_gain": 0.04055840236185748,
+    "fps_units": 0.0,
+    "max_units": 684.0,
+    "df": 0.3334378843933693
+   },
+   {
+    "year": 2038,
+    "board_gain": 0.3071999999999999,
+    "delivered_gain": 0.17114903315128127,
+    "fps_units": 0.0,
+    "max_units": 484.21877893363194,
+    "df": 0.3017537415324609
+   },
+   {
+    "year": 2039,
+    "board_gain": 0.4607999999999999,
+    "delivered_gain": 0.13751435951379776,
+    "fps_units": 0.0,
+    "max_units": 503.6679290598312,
+    "df": 0.27308030907915015
+   },
+   {
+    "year": 2040,
+    "board_gain": 8.567120000000001,
+    "delivered_gain": 0.28560091352119055,
+    "fps_units": 8.100694444445242,
+    "max_units": 559.5233365155183,
+    "df": 0.24713150142909515
+   },
+   {
+    "year": 2041,
+    "board_gain": 9.07956,
+    "delivered_gain": 0.7374868343074388,
+    "fps_units": 26.700000000001637,
+    "max_units": 562.4592170879984,
+    "df": 0.22364841758289156
+   },
+   {
+    "year": 2042,
+    "board_gain": 9.592,
+    "delivered_gain": 1.618541475993608,
+    "fps_units": 92.63802083333717,
+    "max_units": 543.141369126663,
+    "df": 0.20239675799356702
+   },
+   {
+    "year": 2043,
+    "board_gain": 10.027640000000002,
+    "delivered_gain": 3.742871645488991,
+    "fps_units": 293.1583333333388,
+    "max_units": 404.4922737316612,
+    "df": 0.18316448687200634
+   },
+   {
+    "year": 2044,
+    "board_gain": 10.309680000000002,
+    "delivered_gain": 6.56349222801156,
+    "fps_units": 551.336033950635,
+    "max_units": 201.525670693365,
+    "df": 0.1657597166262501
+   },
+   {
+    "year": 2045,
+    "board_gain": 10.59172,
+    "delivered_gain": 9.044124321996279,
+    "fps_units": 798.179800724638,
+    "max_units": 5.697636951362028,
+    "df": 0.15000879332692318
+   },
+   {
+    "year": 2046,
+    "board_gain": 10.87376,
+    "delivered_gain": 9.689333672746173,
+    "fps_units": 872.425530768,
+    "max_units": 0.0,
+    "df": 0.13575456409676304
+   },
+   {
+    "year": 2047,
+    "board_gain": 11.155800000000001,
+    "delivered_gain": 10.362434557838313,
+    "fps_units": 921.074638905,
+    "max_units": 0.0,
+    "df": 0.12285480913734213
+   },
+   {
+    "year": 2048,
+    "board_gain": 11.43784,
+    "delivered_gain": 11.041855855987732,
+    "fps_units": 969.2537126640001,
+    "max_units": 0.0,
+    "df": 0.11118082274872593
+   },
+   {
+    "year": 2049,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 12.292704179964872,
+    "fps_units": 1057.953778185,
+    "max_units": 0.0,
+    "df": 0.10061612918436734
+   },
+   {
+    "year": 2050,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 12.661716129898588,
+    "fps_units": 1080.0,
+    "max_units": 15.134408827756715,
+    "df": 0.09105532052883922
+   },
+   {
+    "year": 2051,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 13.319247186155357,
+    "fps_units": 1130.747921298777,
+    "max_units": 0.0,
+    "df": 0.08240300500347442
+   },
+   {
+    "year": 2052,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 13.640941816325496,
+    "fps_units": 1153.559907553928,
+    "max_units": 0.0,
+    "df": 0.07457285520676418
+   },
+   {
+    "year": 2053,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 13.82381217239294,
+    "fps_units": 1166.5275969644686,
+    "max_units": 0.0,
+    "df": 0.06748674679345175
+   },
+   {
+    "year": 2054,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 13.791219758279608,
+    "fps_units": 1164.2164060615237,
+    "max_units": 0.0,
+    "df": 0.06107397899859886
+   },
+   {
+    "year": 2055,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 13.643120248141313,
+    "fps_units": 1153.7143843526671,
+    "max_units": 0.0,
+    "df": 0.055270569229501236
+   },
+   {
+    "year": 2056,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 13.425665234572095,
+    "fps_units": 1138.2942302206845,
+    "max_units": 0.0,
+    "df": 0.05001861468733144
+   },
+   {
+    "year": 2057,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 13.115045439818367,
+    "fps_units": 1116.267581890396,
+    "max_units": 0.0,
+    "df": 0.04526571464916872
+   },
+   {
+    "year": 2058,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 12.721572886615187,
+    "fps_units": 1088.3656847691948,
+    "max_units": 0.0,
+    "df": 0.04096444764630653
+   },
+   {
+    "year": 2059,
+    "board_gain": 11.719880000000002,
+    "delivered_gain": 12.305373209608497,
+    "fps_units": 1058.8521634951421,
+    "max_units": 0.0,
+    "df": 0.03707189832244935
+   }
+  ]
+ },
+ "round_items": [
+  {
+   "round": 1,
+   "year": 2030,
+   "briefed": {
+    "boeing_do_nothing": -1.0076074756747242,
+    "fps_10yr_new_site": -3.3570399195540124,
+    "fps_10yr_renton": -2.72803296415978,
+    "fps_7yr_new_site": -7.534290939143153,
+    "re787": 3.3009188558124447,
+    "airbus_played": 13.714910912237233,
+    "alt_vs_base": 2.6926755065714225,
+    "rea350": 1.7452242719719706,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 3.3009188558124447,
+    "airbus_best": "NGSA (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.7452242719719706
+   },
+   "now": {
+    "boeing_do_nothing": -0.767291941752474,
+    "fps_10yr_new_site": -2.7437555560180447,
+    "fps_10yr_renton": -2.192823971472366,
+    "fps_7yr_new_site": -7.074293489410662,
+    "re787": 3.3009188558124447,
+    "airbus_played": 13.24909402669827,
+    "alt_vs_base": 2.7212790964403872,
+    "rea350": 1.7452242719719706,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 3.3009188558124447,
+    "airbus_best": "NGSA (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.7452242719719706
+   }
+  },
+  {
+   "round": 2,
+   "year": 2035,
+   "briefed": {
+    "boeing_do_nothing": -1.0076074756747242,
+    "fps_10yr_new_site": -1.5788599118783466,
+    "fps_10yr_renton": -1.2024981898871068,
+    "fps_7yr_new_site": -4.100188891316989,
+    "re787": 2.003657370942565,
+    "airbus_played": 13.714910912237233,
+    "alt_vs_base": 2.6926755065714225,
+    "rea350": 1.5454564090078264,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 2.003657370942565,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.5454564090078264
+   },
+   "now": {
+    "boeing_do_nothing": -0.767291941752474,
+    "fps_10yr_new_site": -1.0105027452751552,
+    "fps_10yr_renton": -0.7530739998885045,
+    "fps_7yr_new_site": -3.4133677055701033,
+    "re787": 2.003657370942565,
+    "airbus_played": 13.24909402669827,
+    "alt_vs_base": 2.7212790964403872,
+    "rea350": 1.5454564090078264,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 2.003657370942565,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.5454564090078264
+   }
+  },
+  {
+   "round": 3,
+   "year": 2045,
+   "briefed": {
+    "boeing_do_nothing": -1.0076074756747242,
+    "fps_10yr_new_site": -0.08215413729752363,
+    "fps_10yr_renton": 0.06360820690853486,
+    "fps_7yr_new_site": -1.0135968368981527,
+    "re787": 0.738245278671982,
+    "airbus_played": 13.714910912237233,
+    "alt_vs_base": null,
+    "rea350": 0.8903569664462694,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 0.738245278671982,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.8903569664462694
+   },
+   "now": {
+    "boeing_do_nothing": -0.767291941752474,
+    "fps_10yr_new_site": 0.10850684987163817,
+    "fps_10yr_renton": 0.08918612416613247,
+    "fps_7yr_new_site": -0.6886812917808767,
+    "re787": 0.738245278671982,
+    "airbus_played": 13.24909402669827,
+    "alt_vs_base": null,
+    "rea350": 0.8903569664462694,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 0.738245278671982,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.8903569664462694
+   }
+  },
+  {
+   "round": 4,
+   "year": 2050,
+   "briefed": {
+    "boeing_do_nothing": -1.0076074756747242,
+    "fps_10yr_new_site": 0.3188872170642578,
+    "fps_10yr_renton": 0.3473289432670611,
+    "fps_7yr_new_site": -0.23445358966553753,
+    "re787": 0.44811480038960116,
+    "airbus_played": 13.714910912237233,
+    "alt_vs_base": null,
+    "rea350": 0.5715628285308441,
+    "boeing_best": "fps 10-yr at Renton + 787 Re-engine",
+    "boeing_best_gain": 0.6456176954084462,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.5715628285308441
+   },
+   "now": {
+    "boeing_do_nothing": -0.767291941752474,
+    "fps_10yr_new_site": 0.24268378160376303,
+    "fps_10yr_renton": 0.19225102867387112,
+    "fps_7yr_new_site": -0.13792224418443322,
+    "re787": 0.44811480038960116,
+    "airbus_played": 13.24909402669827,
+    "alt_vs_base": null,
+    "rea350": 0.5715628285308441,
+    "boeing_best": "fps 10-yr + 787 Re-engine",
+    "boeing_best_gain": 0.5409725337451481,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.5715628285308441
+   }
+  }
+ ],
+ "decisions_now": [
+  {
+   "round": 1,
+   "side": "boeing",
+   "actual": -0.767291941752474,
+   "best_plan": "fps: hold + 787 Re-engine",
+   "best": 2.5336269140599708,
+   "gain": 3.3009188558124447
+  },
+  {
+   "round": 1,
+   "side": "airbus",
+   "actual": 13.24909402669827,
+   "best_plan": "NGSA (A320 Alt plan) + A350 Re-engine",
+   "best": 14.99431829867024,
+   "gain": 1.7452242719719706
+  },
+  {
+   "round": 1,
+   "side": "cfm",
+   "actual": -22.069349397449884,
+   "best_plan": "Ducted + Partner Embraer + GEnx upgrade",
+   "best": -20.31840170952171,
+   "gain": 1.750947687928175
+  },
+  {
+   "round": 1,
+   "side": "pratt_whitney",
+   "actual": 0.13931769293830598,
+   "best_plan": "GTF2 Solo",
+   "best": 0.13931769293830598,
+   "gain": 0.0
+  },
+  {
+   "round": 1,
+   "side": "rolls_royce",
+   "actual": 10.097274512351767,
+   "best_plan": "UltraFan NB Solo",
+   "best": 10.097274512351767,
+   "gain": 0.0
+  },
+  {
+   "round": 2,
+   "side": "boeing",
+   "actual": -0.767291941752474,
+   "best_plan": "fps: hold + 787 Re-engine",
+   "best": 1.236365429190091,
+   "gain": 2.003657370942565
+  },
+  {
+   "round": 2,
+   "side": "airbus",
+   "actual": 13.24909402669827,
+   "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   "best": 14.794550435706096,
+   "gain": 1.5454564090078264
+  },
+  {
+   "round": 2,
+   "side": "cfm",
+   "actual": -23.47294126960037,
+   "best_plan": "Ducted + Partner Embraer",
+   "best": -23.47294126960037,
+   "gain": 0.0
+  },
+  {
+   "round": 2,
+   "side": "pratt_whitney",
+   "actual": -0.480404404730038,
+   "best_plan": "GTF2: hold + commit to JV",
+   "best": -0.480404404730038,
+   "gain": 0.0
+  },
+  {
+   "round": 2,
+   "side": "rolls_royce",
+   "actual": 9.610097402435244,
+   "best_plan": "UltraFan NB: hold + commit to JV",
+   "best": 9.610097402435244,
+   "gain": 0.0
+  },
+  {
+   "round": 3,
+   "side": "boeing",
+   "actual": -0.767291941752474,
+   "best_plan": "fps: hold + 787 Re-engine",
+   "best": -0.029046663080491975,
+   "gain": 0.738245278671982
+  },
+  {
+   "round": 3,
+   "side": "airbus",
+   "actual": 13.24909402669827,
+   "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   "best": 14.13945099314454,
+   "gain": 0.8903569664462694
+  },
+  {
+   "round": 3,
+   "side": "cfm",
+   "actual": -23.47294126960037,
+   "best_plan": "hold everything",
+   "best": -23.47294126960037,
+   "gain": 0.0
+  },
+  {
+   "round": 3,
+   "side": "pratt_whitney",
+   "actual": -0.480404404730038,
+   "best_plan": "GTF2: hold",
+   "best": -0.480404404730038,
+   "gain": 0.0
+  },
+  {
+   "round": 3,
+   "side": "rolls_royce",
+   "actual": 9.610097402435244,
+   "best_plan": "UltraFan NB: hold",
+   "best": 9.610097402435244,
+   "gain": 0.0
+  },
+  {
+   "round": 4,
+   "side": "boeing",
+   "actual": -0.767291941752474,
+   "best_plan": "fps 10-yr + 787 Re-engine",
+   "best": -0.22631940800732586,
+   "gain": 0.5409725337451481
+  },
+  {
+   "round": 4,
+   "side": "airbus",
+   "actual": 13.24909402669827,
+   "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   "best": 13.820656855229114,
+   "gain": 0.5715628285308441
+  },
+  {
+   "round": 4,
+   "side": "cfm",
+   "actual": -23.47294126960037,
+   "best_plan": "hold everything",
+   "best": -23.47294126960037,
+   "gain": 0.0
+  },
+  {
+   "round": 4,
+   "side": "pratt_whitney",
+   "actual": -0.480404404730038,
+   "best_plan": "GTF2: hold",
+   "best": -0.480404404730038,
+   "gain": 0.0
+  },
+  {
+   "round": 4,
+   "side": "rolls_royce",
+   "actual": 9.610097402435244,
+   "best_plan": "UltraFan NB: hold",
+   "best": 9.610097402435244,
+   "gain": 0.0
+  }
+ ],
+ "no_layer": {
+  "boeing": -3.6398161040679113,
+  "airbus": 45.820300677345514,
+  "cfm": -61.16903560030332,
+  "pratt_whitney": 5.924341211287469,
+  "rolls_royce": 29.403903069283942
+ },
  "demand_sensitivity": [
   {
    "case": "As played",
-   "boeing": -1.0076074756747242,
-   "airbus": 13.714910912237233,
-   "boeing_sd_line": 2.632208628393187,
-   "airbus_sd_line": -31.783727620605028,
-   "boeing_delivered_2026_2060": 21477.591263835067,
-   "airbus_delivered_2026_2060": 38174.11328070387,
-   "lapsed_2026_2060": 4577.497090207459
+   "boeing": -0.767291941752474,
+   "airbus": 13.24909402669827,
+   "boeing_sd_line": 2.8725241623154374,
+   "airbus_sd_line": -32.24954450614399,
+   "boeing_delivered_2026_2060": 22057.852208949753,
+   "airbus_delivered_2026_2060": 38371.30417763194,
+   "lapsed_2026_2060": 5378.421048756482
   },
   {
    "case": "No growth (your replacement data only)",
@@ -199,13 +779,13 @@
   },
   {
    "case": "Half the growth",
-   "boeing": -2.0998489139440935,
-   "airbus": 13.095688957264539,
-   "boeing_sd_line": 1.539967190123818,
-   "airbus_sd_line": -32.40294957557772,
-   "boeing_delivered_2026_2060": 12909.109778057615,
-   "airbus_delivered_2026_2060": 32956.20294203689,
-   "lapsed_2026_2060": 887.9243653055055
+   "boeing": -2.1044128036017646,
+   "airbus": 13.36234476990342,
+   "boeing_sd_line": 1.535403300466147,
+   "airbus_sd_line": -32.13629376293884,
+   "boeing_delivered_2026_2060": 13379.537911798505,
+   "airbus_delivered_2026_2060": 33487.66675494854,
+   "lapsed_2026_2060": 963.5705358529628
   },
   {
    "case": "Growth x1.5",
@@ -215,47 +795,47 @@
    "airbus_sd_line": -34.376795522032054,
    "boeing_delivered_2026_2060": 23586.0,
    "airbus_delivered_2026_2060": 38465.54710848148,
-   "lapsed_2026_2060": 16093.91771178226
+   "lapsed_2026_2060": 18322.08574140174
   },
   {
    "case": "5% of waiting customers drop out a year",
-   "boeing": -0.790538411503575,
-   "airbus": 13.177037465599536,
-   "boeing_sd_line": 2.8492776925643364,
-   "airbus_sd_line": -32.321601067242725,
-   "boeing_delivered_2026_2060": 22004.81327400085,
+   "boeing": -0.3832351173713424,
+   "airbus": 12.13905664658709,
+   "boeing_sd_line": 3.256580986696569,
+   "airbus_sd_line": -33.35958188625517,
+   "boeing_delivered_2026_2060": 22802.081510114353,
    "airbus_delivered_2026_2060": 38465.54710848148,
-   "lapsed_2026_2060": 2803.2304578677667
+   "lapsed_2026_2060": 3348.1587862124156
   },
   {
    "case": "30% drop out a year",
-   "boeing": -1.0784615987186426,
-   "airbus": 13.714910912237233,
-   "boeing_sd_line": 2.561354505349269,
-   "airbus_sd_line": -31.783727620605028,
-   "boeing_delivered_2026_2060": 20697.10289195864,
-   "airbus_delivered_2026_2060": 37314.02814423609,
-   "lapsed_2026_2060": 7804.466340199132
+   "boeing": -0.8715197959216816,
+   "airbus": 13.284076913169468,
+   "boeing_sd_line": 2.7682963081462297,
+   "airbus_sd_line": -32.21456161967279,
+   "boeing_delivered_2026_2060": 21270.562953668377,
+   "airbus_delivered_2026_2060": 37437.00461036463,
+   "lapsed_2026_2060": 9066.869867516047
   },
   {
    "case": "Half the flexible customers",
-   "boeing": -1.2713428543899905,
-   "airbus": 13.714910912237233,
-   "boeing_sd_line": 2.368473249677921,
-   "airbus_sd_line": -31.783727620605028,
-   "boeing_delivered_2026_2060": 21051.919367655937,
-   "airbus_delivered_2026_2060": 38174.11328070387,
-   "lapsed_2026_2060": 4924.626469250997
+   "boeing": -1.0719846872319483,
+   "airbus": 13.266585469933869,
+   "boeing_sd_line": 2.567831416835963,
+   "airbus_sd_line": -32.23205306290839,
+   "boeing_delivered_2026_2060": 21626.37341937657,
+   "airbus_delivered_2026_2060": 38371.30417763194,
+   "lapsed_2026_2060": 5739.39463294069
   },
   {
    "case": "No flexible customers",
-   "boeing": -2.519353498502417,
-   "airbus": 13.714910912237233,
-   "boeing_sd_line": 1.1204626055654945,
-   "airbus_sd_line": -31.783727620605028,
-   "boeing_delivered_2026_2060": 17191.552515441326,
-   "airbus_delivered_2026_2060": 38174.11328070387,
-   "lapsed_2026_2060": 7034.753467642605
+   "boeing": -2.4743986725775837,
+   "airbus": 13.284076913169468,
+   "boeing_sd_line": 1.1654174314903278,
+   "airbus_sd_line": -32.21456161967279,
+   "boeing_delivered_2026_2060": 17667.9727223746,
+   "airbus_delivered_2026_2060": 38371.30417763194,
+   "lapsed_2026_2060": 8003.394804364018
   }
  ]
 }

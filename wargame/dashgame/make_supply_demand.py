@@ -80,7 +80,7 @@ def main(page):
     for y in range(2025, 2101):
         gr = g44 if y <= 2044 else g44 + (GROWTH_2060 - g44) * min(1.0, (y - 2044) / (2060 - 2044))
         fleet[y] = fleet[y - 1] * (1 + gr)
-        growth[y] = (fleet[y] - fleet[y - 1]) * class_share
+        growth[y] = fleet[y] - fleet[y - 1]           # whole single-aisle fleet; the class share is applied once, in demand()
     g = R["groups"]
     lo, hi = 2030, 2060
     idx = [i for i, y in enumerate(yrs) if lo <= y <= hi]
@@ -121,7 +121,7 @@ def main(page):
     nd = lambda y: (growth[y] + rep[yrs.index(min(max(y, yrs[0]), yrs[-1]))]) * class_share
     print("growth %.4f a year to 2044; class share %.4f; flex share %.3f" % (g44, class_share, out["demand"]["flex_share"]))
     print("new demand 2026/2030/2035/2040/2045/2050/2055/2060:", [round(nd(y)) for y in (2026, 2030, 2035, 2040, 2045, 2050, 2055, 2060)])
-    print("growth 2026/2035/2044/2050/2060:", [round(growth[y] * class_share) for y in (2026, 2035, 2044, 2050, 2060)])
+    print("growth 2026/2035/2044/2050/2060 (737/A320 class):", [round(growth[y] * class_share) for y in (2026, 2035, 2044, 2050, 2060)])
     print("2025-2044 total: growth %.0f + replacement %.0f + firm backlog %d" % (
         sum(growth[y] for y in range(2025, 2045)) * class_share, sum(rep[yrs.index(y)] for y in range(2026, 2045)) * class_share,
         sc["max"]["ord"] + sc["neo"]["ord"]))

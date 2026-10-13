@@ -219,8 +219,10 @@ def regret(n_rounds):
                 alts.append(alt)
             act_my = M.value(states[n], covert=True, series=True)[side]["pv_delta"]
             act_ep = M.value(states[n_rounds], covert=True, series=True)[side]["pv_delta"]
-            bm = max(alts, key=lambda a: a["myopic"])
-            be = max(alts, key=lambda a: a["ex_post"])
+            # ties (to 1e-9) go to the plan that keeps the side's own supply plan as played
+            same = lambda a: all(a["orders"].get(f) == actual.get(f) for f in ("a320_plan", "fps_site") if f in actual)
+            bm = max(alts, key=lambda a: (round(a["myopic"], 9), same(a)))
+            be = max(alts, key=lambda a: (round(a["ex_post"], 9), same(a)))
             out[str(n)][side] = {"actual_myopic": act_my, "actual_ex_post": act_ep,
                                  "best_myopic": bm, "best_ex_post": be,
                                  "regret_myopic": bm["myopic"] - act_my, "regret_ex_post": be["ex_post"] - act_ep,

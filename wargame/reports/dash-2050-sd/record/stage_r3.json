@@ -1,0 +1,169 @@
+{
+ "round": 3,
+ "year": 2045,
+ "pure": [
+  [
+   "fps: hold + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold",
+   -0.029046663080491975,
+   13.14030533814022
+  ],
+  [
+   "fps 10-yr + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -0.9866535901554259,
+   13.775459550066973
+  ]
+ ],
+ "near_within_1b": [
+  [
+   "fps: hold + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350: hold",
+   -0.767291941752474,
+   13.24909402669827
+  ],
+  [
+   "fps: hold + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -1.095160440027064,
+   14.13945099314454
+  ],
+  [
+   "fps: hold + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -1.9078856591282318,
+   12.639964310491568
+  ],
+  [
+   "fps 7-yr + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -1.7838417318079407,
+   13.775459550066973
+  ],
+  [
+   "fps 7-yr + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+   -1.783841731807947,
+   13.557283267113082
+  ],
+  [
+   "fps 7-yr + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+   -1.783841731807947,
+   13.338113695098212
+  ],
+  [
+   "fps 7-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -1.7135485904943828,
+   13.775459550066973
+  ],
+  [
+   "fps 7-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+   -1.7135485904943886,
+   13.557283267113082
+  ],
+  [
+   "fps 7-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+   -1.7135485904943886,
+   13.338113695098212
+  ],
+  [
+   "fps 10-yr + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350: hold",
+   -0.6587850918808358,
+   12.885102583620704
+  ],
+  [
+   "fps 10-yr + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+   -0.986653590155433,
+   13.583681981626892
+  ],
+  [
+   "fps 10-yr + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+   -0.986653590155433,
+   13.390988050872604
+  ],
+  [
+   "fps 10-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350: hold",
+   -0.6781058175863415,
+   12.885102583620704
+  ],
+  [
+   "fps 10-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -1.0059743158609316,
+   13.775459550066973
+  ],
+  [
+   "fps 10-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+   -1.0059743158609382,
+   13.583681981626892
+  ],
+  [
+   "fps 10-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+   -1.0059743158609382,
+   13.390988050872604
+  ],
+  [
+   "fps 10-yr + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold",
+   -0.1673702518490412,
+   12.776313895062653
+  ],
+  [
+   "fps 10-yr + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (one move)",
+   -0.1673702518490483,
+   12.58890383707703
+  ],
+  [
+   "fps 10-yr + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (both moves)",
+   -0.1673702518490483,
+   12.400641331630819
+  ],
+  [
+   "fps 10-yr at Renton + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold",
+   -0.18669097755454692,
+   12.776313895062653
+  ],
+  [
+   "fps 10-yr at Renton + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (one move)",
+   -0.18669097755455358,
+   12.58890383707703
+  ],
+  [
+   "fps 10-yr at Renton + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (both moves)",
+   -0.18669097755455358,
+   12.400641331630819
+  ]
+ ],
+ "played": [
+  "fps: hold + 787: hold",
+  "NGSA: hold (A320 Alt plan) + A350: hold"
+ ],
+ "played_value": [
+  -0.767291941752474,
+  13.24909402669827
+ ],
+ "eps_b": 1.0,
+ "boeing_best_response_to_played_airbus": [
+  "fps: hold + 787 Re-engine",
+  -0.029046663080491975
+ ],
+ "airbus_best_response_to_played_boeing": [
+  "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+  14.13945099314454
+ ]
+}

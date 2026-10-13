@@ -122,7 +122,7 @@ def lines(series, y_hi, step, fmt, label, aria, refs=(), notes=None, x_lo=2026, 
     sy = lambda v: top + (y_hi - v) / y_hi * (h - top - bot)
     tick = (lambda v: f"{v * 100:.0f}%") if fmt == "pct" else (lambda v: f"{v:,.0f}")
     end_fmt = end_fmt or ((lambda v: pct(v)) if fmt == "pct" else n0)
-    notes = [(y, f"R{j + 1}") for j, y in enumerate(RYEARS)] if notes is None else notes
+    notes = [(y, f"Round {j + 1}") for j, y in enumerate(RYEARS)] if notes is None else notes
     out = [f'<svg viewBox="0 0 {w} {h}" class="chart xh" role="img" aria-label="{esc(aria, quote=True)}. Use the arrow keys to read values by year." tabindex="0">']
     t = 0
     while t <= y_hi + 1e-9:
@@ -189,7 +189,7 @@ def chart_airbus_plan():
               ("A320 base", "s2", base, True), ("NGSA", "s3", ng, False)]
     svg = lines(series, 1400, 200, "int", "Airbus single-aisle aircraft a year (chart dates: NGSA in service mid-2037)",
                 "Airbus Rev. B plan: A320 base and Alt rundown and NGSA ramp, aircraft a year",
-                notes=[(2037, "NGSA EIS")], x_hi=2050)
+                notes=[(2037, "NGSA enters service")], x_hi=2050)
     rows = [[str(y), n0(a), n0(c), n0(n), n0(a + n), n0(c + n)] for (y, a), (_, c), (_, n) in zip(base, alt, ng)]
     return svg + K.tview("Airbus Rev. B plan, aircraft a year", ["Year", "A320 base", "A320 Alt", "NGSA", "Total base", "Total Alt"], rows)
 
@@ -305,9 +305,11 @@ def moves_table():
 
 def obj_moves_table():
     rows = []
+    prev_codes = {}
     for r in OBJ["rounds"]:
-        cells = ["<br>".join(esc(t) for t in order_text(s, r["orders"][s] or {}, None, None)) for s in SIDES]
+        cells = ["<br>".join(esc(t) for t in order_text(s, r["orders"][s] or {}, None, prev_codes)) for s in SIDES]
         rows.append([f'{r["year"]}'] + cells)
+        prev_codes = dict(r["timeline"]["codes"])
     return K.table(["Round"] + [esc(NAME[s]) for s in SIDES], rows)
 
 
@@ -328,9 +330,42 @@ BRIDGE_LAB = {"nb_profit_vs_sq": "Narrowbody profit vs status quo (board)", "wb_
 
 def bridge_table():
     keys = [k for k in BRIDGE_LAB if any(abs(FINAL["value"][s]["bridge"].get(k, 0) or 0) > 5e-3 for s in ("boeing", "airbus"))]
-    rows = [[esc(BRIDGE_LAB[k])] + [K.num(FINAL["value"][s]["bridge"].get(k, 0) or 0) for s in ("boeing", "airbus")] for k in keys]
+    z = lambda v: "0.00" if abs(v) < 5e-3 else K.num(v)
+    rows = [[esc(BRIDGE_LAB[k])] + [z(FINAL["value"][s]["bridge"].get(k, 0) or 0) for s in ("boeing", "airbus")] for k in keys]
     rows.append(["<b>ΔPV</b>"] + [f'<b>{K.num(FINAL["value"][s]["pv_delta"])}</b>' for s in ("boeing", "airbus")])
     return K.table(["Line, $B PV at 2026", "Boeing", "Airbus"], rows, num_cols=(1, 2))
+
+
+def plain_plan(label, rnd):
+    """Grid plan labels in the page's words."""
+    parts = []
+    for p in label.split(" + "):
+        p = p.strip()
+        if p == "fps: hold":
+            p = "no fps"
+        elif p == "787: hold":
+            p = "no 787 Re-engine"
+        elif p == "A350: hold":
+            p = "no A350 Re-engine"
+        elif p == "737 rate up":
+            p = "737 rate increase"
+        elif p.startswith("fps 10-yr") or p.startswith("fps 7-yr"):
+            p = p.replace("fps 10-yr", "10-year fps").replace("fps 7-yr", "7-year fps")
+            p = p if "Renton" in p else p + " at new sites"
+        elif p.startswith("NGSA"):
+            plan = "Alt plan" if "Alt" in p else "base plan"
+            if rnd == 1:
+                p = "no NGSA" if p.startswith("NGSA: hold") else f"NGSA launch ({plan})"
+            else:
+                p = "NGSA cancelled" if "cancel" in p else f"NGSA continues ({plan})"
+        elif p == "hold everything":
+            p = "Do Nothing"
+        elif p in ("GTF2: hold", "UltraFan NB: hold"):
+            p = "no " + p.split(":")[0] + " order"
+        elif p == "commit to JV":
+            p = "commit to the Joint Venture"
+        parts.append(p)
+    return " + ".join(parts)
 
 
 def stage_table():
@@ -339,10 +374,12 @@ def stage_table():
         st = D["stage"].get(str(r["round"]))
         if not st:
             continue
-        pure = "<br>".join(f"{esc(b_)} / {esc(a)} ({K.num(vb)}, {K.num(va)})" for b_, a, vb, va in st["pure"]) or "none"
-        played = f'{esc(st["played"][0])} / {esc(st["played"][1])} ({K.num(st["played_value"][0])}, {K.num(st["played_value"][1])})'
-        brb = f'{esc(st["boeing_best_response_to_played_airbus"][0])} ({K.num(st["boeing_best_response_to_played_airbus"][1])})'
-        bra = f'{esc(st["airbus_best_response_to_played_boeing"][0])} ({K.num(st["airbus_best_response_to_played_boeing"][1])})'
+        n = r["round"]
+        pp = lambda x: esc(plain_plan(x, n))
+        pure = "<br>".join(f"{pp(b_)} / {pp(a)} ({K.num(vb)}, {K.num(va)})" for b_, a, vb, va in st["pure"]) or "none"
+        played = f'{pp(st["played"][0])} / {pp(st["played"][1])} ({K.num(st["played_value"][0])}, {K.num(st["played_value"][1])})'
+        brb = f'{pp(st["boeing_best_response_to_played_airbus"][0])} ({K.num(st["boeing_best_response_to_played_airbus"][1])})'
+        bra = f'{pp(st["airbus_best_response_to_played_boeing"][0])} ({K.num(st["airbus_best_response_to_played_boeing"][1])})'
         rows.append([str(r["year"]), pure, played, brb, bra])
     return K.table(["Round", "Pure Nash equilibria of the round (Boeing / Airbus, ΔPV $B)", "Played", "Boeing's best reply", "Airbus's best reply"], rows)
 
@@ -367,7 +404,7 @@ def regret_detail():
         for s in SIDES:
             x = R[str(r["round"])][s]
             if x["regret_ex_post"] > 0.05:
-                items.append(f'<li><b>{r["year"]}, {esc(NAME[s])}</b>: best alternative {esc(x["best_ex_post"]["plan"])} '
+                items.append(f'<li><b>{r["year"]}, {esc(NAME[s])}</b>: best alternative {esc(plain_plan(x["best_ex_post"]["plan"], r["round"]))} '
                              f'({K.num(x["best_ex_post"]["ex_post"])} against {K.num(x["actual_ex_post"])}, regret {K.num(x["regret_ex_post"])})</li>')
     return '<ul class="cav">' + "".join(items) + "</ul>" if items else ""
 
@@ -398,23 +435,30 @@ def inputs_table():
         ["Waiting customers who drop out", "Share of unserved new demand lost each year (not calibrated)", pct(d["lapse_per_year"])],
         ["Airbus", "Your Rev. B chart: A320 at 85 a month to NGSA, then the base or Alt rundown; NGSA ramp to 100 a month; "
          "both move with the NGSA date. Alt plan cost", f"${INP['airbus']['alt_cost_b']:.2f}B"],
-        ["Boeing 737 MAX", "42.5, 49.5, 52, 54.5 a month (2026-29), then 57; built to 2050; the rate increase adds 100 a year from 2032",
-         f"{bo['max_rate_after'] * 12:,.0f} a year"],
-        ["Boeing fps", "Ramps on the NGSA curve from its entry into service; Boeing capped at 100 a month with a MAX tail of 10 a month to 2050",
+        ["Boeing 737 MAX", "42.5, 49.5, 52, 54.5 a month (2026-29), then 57. With an fps it gives way to it, down to a "
+         "10-a-month tail, and ends in 2050; with no fps it carries on. The 737 rate increase (orderable in 2030 only) adds "
+         "100 a year from 2032", f"{bo['max_rate_after'] * 12:,.0f} a year"],
+        ["Boeing fps", "Ramps on the NGSA curve from its entry into service; Boeing's single-aisle total is capped at 100 a month",
          f"{bo['total_rate_cap'] * 12:,.0f} a year cap"],
         ["fps site", "New sites (default), or Renton reassigned: Renton's MAX lines (47 a month) wind down as the fps ramps and "
-         "Everett carries on at up to 15 a month; saves the new-site capex, pro-rated if chosen less than 3 years before EIS",
-         f"${bo['renton_saving_b']:.1f}B saving"],
+         "Everett carries on at up to 15 a month. Saves the new-site capex, pro-rated if chosen less than 3 years before "
+         "entry into service", f"${bo['renton_saving_b']:.1f}B saving"],
     ]
-    return K.table(["Input", "What it is", "Value"], rows, num_cols=(2,))
+    return K.table(["Input", "What it is", "Value"], rows)
+
+
+def check_narrative():
+    bad = [(side, v, FINAL["value"][side]["pv_delta"]) for side, v in NAR.CHECKS if abs(K.rnd(FINAL["value"][side]["pv_delta"], 2) - v) > 1e-9]
+    assert not bad, bad
 
 
 def build(out_path):
+    check_narrative()
     css = K.CSS.replace("--pos: #3b4a5e; --neg: #8792a3;", "--pos: #3b4a5e; --neg: #8792a3; --sq: #8a95a5;")
     css = css.replace("--pos: #c9d3e0; --neg: #5d6a7c; color-scheme: dark; }", "--pos: #c9d3e0; --neg: #5d6a7c; --sq: #6f7b8d; color-scheme: dark; }")
     css += """
 .bl li b { display: inline; font: 600 1em var(--font-body); letter-spacing: 0; margin: 0; }
-td br + br { display: none; }
+p, li, footer { overflow-wrap: break-word; }
 """
     page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Supply and Demand Game</title>

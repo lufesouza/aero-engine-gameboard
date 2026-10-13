@@ -1,0 +1,55 @@
+{
+ "round": 2,
+ "year": 2035,
+ "pure": [
+  [
+   "fps: hold + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -2.2281254742804593,
+   14.794550435706096
+  ],
+  [
+   "fps: hold + 787 Re-engine",
+   "NGSA: hold (A320 Alt plan) + A350: hold",
+   1.236365429190091,
+   12.76384175883437
+  ]
+ ],
+ "near_within_1b": [
+  [
+   "fps 10-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   -2.981199474168964,
+   14.430558992628576
+  ],
+  [
+   "fps 10-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+   -3.002935230451063,
+   14.044944569971111
+  ],
+  [
+   "fps 10-yr at Renton + 787: hold",
+   "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+   -3.002935230451063,
+   13.657726408708488
+  ]
+ ],
+ "played": [
+  "fps: hold + 787: hold",
+  "NGSA: hold (A320 Alt plan) + A350: hold"
+ ],
+ "played_value": [
+  -0.767291941752474,
+  13.24909402669827
+ ],
+ "eps_b": 1.0,
+ "boeing_best_response_to_played_airbus": [
+  "fps: hold + 787 Re-engine",
+  1.236365429190091
+ ],
+ "airbus_best_response_to_played_boeing": [
+  "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+  14.794550435706096
+ ]
+}

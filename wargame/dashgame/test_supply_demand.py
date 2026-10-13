@@ -91,6 +91,15 @@ check(abs(SD._annual("ngsa", 0, 2046) - 1200) < 1e-6, "NGSA at 100 a month from 
 check(abs(SD._rundown("a320_base", 5, 2041) - 1020) < 1e-6 and SD._rundown("a320_base", 5, 2045) < 1020,
       "a later NGSA (EIS 2042) moves the A320 rundown five years later")
 
+# 2b. demand = replacement + growth, the 737/A320 class share applied once to each
+import make_supply_demand as MK  # noqa: E402
+cs = SD.inputs()["demand"]["class_share"]
+g_sum = sum(SD.growth(y) for y in range(2025, 2045))
+g_want = (MK.FLEET_2044 * MK.SA_SHARE_2044 - MK.FLEET_2024 * MK.SA_SHARE_2024) * cs
+check(abs(g_sum - g_want) < 1.0, "growth 2025-2044 = single-aisle fleet increase x class share, applied once (%.0f = %.0f)" % (g_sum, g_want))
+ys, rep = SD.inputs()["demand"]["years"], SD.inputs()["demand"]["replacements"]
+check(abs(SD.demand(2040) - SD.growth(2040) - rep[ys.index(2040)] * cs) < 1e-9, "demand = growth + replacement x class share")
+
 # 3. conservation
 s4 = json.load(open(os.path.join(RUN, "state_r4.json")))
 v = M.value(s4, covert=True, series=True)
