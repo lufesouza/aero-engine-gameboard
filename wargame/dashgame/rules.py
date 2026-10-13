@@ -215,12 +215,15 @@ def adjudicate(state, year, orders):
         if dt in (x, "both") and not s["dt"][x]:
             s["dt"][x] = year; log.append("Delay Tactics (%s) ordered in %d [covert]" % (x, year))
     if M.SD_ON:                                          # supply plans (public)
-        s.setdefault("sd", {"a320_plan": "base", "fps_site": "new_site"})
+        s["sd"] = dict({"a320_plan": "base", "fps_site": "new_site"}, **(s.get("sd") or {}))
         for side, (field, key) in SD_FIELDS.items():
             v = orders.get(side, {}).get(field)
             r = M.live(s, key)
-            if v in ORDER_FIELDS[side][field] and v != s["sd"][field] and (r is None or r["eis"] > year):
+            # a plan applies to a live airframe not yet in service (launched this round or earlier)
+            if v in ORDER_FIELDS[side][field] and v != s["sd"][field] and r is not None and r["eis"] > year:
                 s["sd"][field] = v
+                if field == "fps_site":
+                    s["sd"]["fps_site_year"] = year
                 log.append({"fps_site": {"renton": "Boeing will build fps at Renton (MAX at Renton winds down as fps ramps up)",
                                          "new_site": "Boeing will build fps at new sites (the MAX carries on at Renton)"},
                             "a320_plan": {"alt": "Airbus adopts the Alt plan: A320 lines kept longer through the NGSA ramp-up",

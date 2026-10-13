@@ -16,6 +16,7 @@ export const meta = {
 }
 
 // args: {run: 'dash-2050-exco', round: 1, year: 2030, sides: ['boeing', ...] (optional, default all five),
+//        plans: {boeing: {fps_site}, airbus: {a320_plan}} (supply-and-demand runs: the standing supply plans),
 //        board: true (optional; false runs the ExCo alone)}
 // `run` must equal the DASH_RUN that gm.py used to write the briefs, and must not be the earlier game's dash-2050.
 // Each executive sees only its own company's brief and what the GM passes from its colleagues. Nothing crosses
@@ -216,6 +217,10 @@ function headBoard(side, step) {
 
 // Board items: every order field that differs from its default; engine codes ride with their launch.
 const DEFAULTS = Object.fromEntries(Object.entries(ORDER_FIELDS).map(([sd, f]) => [sd, Object.fromEntries(Object.entries(f).map(([k, v]) => [k, v[0]]))]))
+// Supply-and-demand runs: the game master passes each airframer's standing supply plan in args.plans (e.g.
+// {boeing: {fps_site: 'renton'}, airbus: {a320_plan: 'base'}}). The standing plan is the default: keeping it is not a
+// Board item, changing it is, and a vetoed change reverts to it.
+for (const [sd, f] of Object.entries(A.plans || {})) for (const [k, v] of Object.entries(f)) if (DEFAULTS[sd] && k in DEFAULTS[sd]) DEFAULTS[sd][k] = v
 const isCode = k => k.endsWith('_engine_code')
 function boardItems(side, orders) {
   return Object.keys(ORDER_FIELDS[side]).filter(k => !isCode(k) && orders && orders[k] !== undefined && orders[k] !== DEFAULTS[side][k])

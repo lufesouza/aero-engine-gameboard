@@ -10,7 +10,8 @@ Sources:
 - Demand: the user's page "Single-Aisle Replacement Demand" (Cirium fleet data, 5 and 7 Oct 2026): replacements a
   year of today's 737 MAX, A320neo-family and A220 fleets, firm orders included, on the page's default schedule
   (delivery streams, historical pace, history start), and the split of those replacements by customer group.
-- Boeing supply: 737 MAX path and site split from the research notes in supply_demand_sources.md.
+- Demand level: the board's 2,000 a year over 2026-2045; growth share from Airbus GMF 2025.
+- Boeing supply: 737 MAX path and site split from the research notes in supply_demand_sources.md (kept on rebuild).
 """
 import json
 import os
@@ -18,6 +19,8 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+GROWTH_SHARE = 0.56          # Airbus GMF 2025
+LAPSE = 0.10
 
 # ── Airbus chart (Rev. B), x read off the axis: year = 2029.5 + (px - 391) / 62 (labels at mid-year; the
 #    "End of 2029" marker at px 419 reads 2029.95 and "NGSA EIS (Mid 2037)" at px 882 reads 2037.45) ──
@@ -54,8 +57,16 @@ def main(page):
     # long-run demand: the board's 2,000 a year is its 20-year market (40,000 aircraft, 2026-2045). Demand = a
     # constant (growth plus replacement of older types) + the replacement of today's fleets from the page, with the
     # constant set so that 2026-2045 averages 2,000 a year.
+    # Demand = growth + replacement of older types (737 Classic/NG, A320ceo family) + replacement of today's fleets
+    # (the page). Growth is the Airbus GMF 2025 share of deliveries (56%: 24,490 of 43,420 to 2044; Boeing's CMO 2025
+    # says "nearly half" are replacements) of the board's 2,000 a year. The older fleets' replacement runs down in a
+    # straight line to nothing in 2050 (the last ceos and NGs, delivered around 2020, reach 25-30 years), sized so that
+    # 2026-2045 still averages the board's 2,000 a year.
     w = [r for y, r in zip(yrs, rep) if 2026 <= y <= 2045]
-    base = 2000.0 - sum(w) / len(w)
+    growth = GROWTH_SHARE * 2000.0
+    older_end = 2050
+    shape = [max(0.0, 1.0 - (y - 2026) / (older_end - 2026)) for y in range(2026, 2046)]
+    older_2026 = (2000.0 - growth - sum(w) / len(w)) / (sum(shape) / len(shape))
     g = R["groups"]
     lo, hi = 2030, 2060
     idx = [i for i, y in enumerate(yrs) if lo <= y <= hi]
@@ -67,21 +78,33 @@ def main(page):
                    "a320_rate_no_ngsa": 85, "milestones": MILESTONES,
                    "alt_cost_b": 0.75, "alt_cost_note": "midpoint of the chart's '+ ~$700-800M' for the Alt plan, "
                    "booked in the NGSA entry-into-service year"},
-        "demand": {"years": yrs, "replacements": rep, "groups": g, "base_per_year": round(base, 2),
+        "demand": {"years": yrs, "replacements": rep, "groups": g,
+                   "growth_per_year": round(growth, 2), "growth_share": GROWTH_SHARE,
+                   "growth_source": "Airbus GMF 2025: 43,420 new aircraft to 2044, 18,930 (44%) replacing older models, "
+                                    "so 56% growth; Boeing CMO 2025: nearly half of 43,600 deliveries are replacements",
+                   "older_2026": round(older_2026, 2), "older_end_year": older_end,
                    "flex_share": round(flex_num / tot, 4), "flex_window": [lo, hi],
-                   "note": "demand(y) = base_per_year + replacements(y); base set so 2026-2045 averages the "
-                           "board's 2,000 a year. flex_share: customers flying both types, lessors and unannounced "
-                           "customers, as a share of replacements over the flex window; they take the other "
-                           "maker's spare slots when their first choice cannot deliver; single-fleet customers wait "
-                           "(their unmet demand is lost to the year)."},
+                   "lapse_per_year": LAPSE, "lapse_range": [0.05, 0.3],
+                   "lapse_note": "share of the still-unserved customers who drop out each year (they keep old aircraft "
+                                 "longer, defer growth or cancel). Not calibrated: firm-order cancellations run about "
+                                 "2-5% a year (more in a crisis) and unplaced demand lapses faster. The model starts in "
+                                 "2026 with no backlog.",
+                   "note": "demand(y) = growth + older(y) + replacements(y), older(y) = older_2026 x (1 - (y - 2026) / "
+                           "(older_end_year - 2026)), floored at 0; 2026-2045 averages the board's 2,000 a year. "
+                           "Replacements after 2075 are held at the 2075 value. flex_share: customers flying both types, "
+                           "lessors and unannounced customers, as a share of replacements over the flex window; when "
+                           "their first choice cannot deliver they take the other maker's free slots (each year, from "
+                           "the waiting backlog too)."},
     }
     path = os.path.join(HERE, "supply_demand.json")
     old = json.load(open(path)) if os.path.exists(path) else {}
     if "boeing" in old:                             # Boeing inputs are set by hand from the research notes
         out["boeing"] = old["boeing"]
     json.dump(out, open(path, "w"), indent=1)
-    print("base per year %.1f, flex share %.3f" % (base, out["demand"]["flex_share"]))
-    print("demand 2030/2040/2050/2060:", [round(base + rep[yrs.index(y)]) for y in (2030, 2040, 2050, 2060)])
+    dem = lambda y: growth + max(0.0, older_2026 * (1 - (y - 2026) / (older_end - 2026))) + rep[yrs.index(y)]
+    print("growth %.0f, older in 2026 %.0f, flex share %.3f" % (growth, older_2026, out["demand"]["flex_share"]))
+    print("demand 2026/2030/2035/2040/2045/2050/2055/2060:", [round(dem(y)) for y in (2026, 2030, 2035, 2040, 2045, 2050, 2055, 2060)])
+    print("mean 2026-2045: %.1f" % (sum(dem(y) for y in range(2026, 2046)) / 20))
 
 
 if __name__ == "__main__":

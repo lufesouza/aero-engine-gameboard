@@ -51,8 +51,13 @@ def states():
 # 1. neutral case
 def neutral(fn):
     keep = (SD.boeing_capacity, SD.airbus_capacity, SD.demand)
-    SD.boeing_capacity = lambda s, y: (1e9, 0.0)
-    SD.airbus_capacity = lambda s, y: (1e9, 0.0)
+    def unlimited(key):                      # all capacity on the type the board sells that year
+        def f(s, y):
+            r = SD._live(s, key)
+            return (0.0, 1e9) if (r and y >= r["eis"]) else (1e9, 0.0)
+        return f
+    SD.boeing_capacity = unlimited("fps")
+    SD.airbus_capacity = unlimited("ngsa")
     SD.demand = lambda y: 2000.0
     try:
         return fn()
@@ -67,8 +72,11 @@ for lab, s in states():
         off = M.value(s, covert=True, series=False)
     finally:
         M.SD_ON = True
-    d = max(abs(on[k]["pv_delta"] - off[k]["pv_delta"]) for k in M.SIDES)
-    check(d < 1e-9, "neutral case equals the board (%s): max |ΔPV difference| %.2e" % (lab, d))
+    # engine makers: equal unless the board's pre-2037 preference leaves 40/60 (the 737 rate increase), where the layer
+    # deliberately gives the extra 737s CFM engines only (the board's fixed base shares would hand P&W a quarter)
+    sides = M.SIDES if not s.get("rate737") else ["boeing", "airbus"]
+    d = max(abs(on[k]["pv_delta"] - off[k]["pv_delta"]) for k in sides)
+    check(d < 1e-9, "neutral case equals the board (%s; %s): max |ΔPV difference| %.2e" % (lab, "all five" if len(sides) == 5 else "airframers", d))
 
 # 2. the chart
 alt = sum(SD._rundown("a320_alt", 0, y) - SD._rundown("a320_base", 0, y) for y in range(2030, 2050))
@@ -109,7 +117,7 @@ try:
 finally:
     M.SD_ON = True
 s1, log = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_10yr", "fps_site": "renton"}, "airbus": {"ngsa": "launch", "a320_plan": "alt"}})
-check(s1["sd"] == {"a320_plan": "alt", "fps_site": "renton"} and any("Renton" in e for e in log) and any("Alt plan" in e for e in log),
+check(s1["sd"] == {"a320_plan": "alt", "fps_site": "renton", "fps_site_year": 2030} and any("Renton" in e for e in log) and any("Alt plan" in e for e in log),
       "plans set and logged in public")
 clean, _ = R.validate(s1, "boeing", 2035, {})
 check(clean["fps_site"] == "renton", "a missing field keeps the current plan")
@@ -127,7 +135,40 @@ fn, _ = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_10yr"}})
 fr, _ = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_10yr", "fps_site": "renton"}})
 check(SD.boeing_capacity(fr, 2045)[0] < SD.boeing_capacity(fn, 2045)[0] and SD.boeing_capacity(fr, 2045)[1] == SD.boeing_capacity(fn, 2045)[1],
       "Renton: less MAX capacity in 2045 (%.0f vs %.0f), same fps ramp" % (SD.boeing_capacity(fr, 2045)[0], SD.boeing_capacity(fn, 2045)[0]))
-check(SD.boeing_capacity(fn, 2051)[0] == 0 and SD.boeing_capacity(sb, 2051)[0] > 0, "MAX stops after 2050 only with the fps in service")
+check(SD.boeing_capacity(fn, 2051)[0] == 0 and SD.boeing_capacity(sb, 2051)[0] > 0, "MAX stops after 2050 once the fps is at full rate; without an fps it carries on")
+late, _ = R.adjudicate(json.load(open(os.path.join(RUN, "state_r0.json"))), 2030, {})
+late, _ = R.adjudicate(dict(late, year=2030), 2045, {"boeing": {"fps": "launch_7yr"}})          # EIS 2052
+m51, f51 = SD.boeing_capacity(late, 2051)
+m53, f53 = SD.boeing_capacity(late, 2053)
+check(m51 > 0 and abs(m53 + f53 - min(12 * SD.inputs()["boeing"]["total_rate_cap"], SD.fps_full())) < 1e-6 or (m53 + f53) <= 1200 + 1e-6,
+      "an fps entering service in 2052: the MAX carries on after 2050 and tops Boeing up while the fps ramps (2051 MAX %.0f; 2053 MAX %.0f + fps %.0f)" % (m51, m53, f53))
+tot_ok = all(sum(SD.boeing_capacity(fn, y)) <= 12 * SD.inputs()["boeing"]["total_rate_cap"] + 1e-6 for y in range(2040, 2061))
+check(tot_ok, "Boeing's single-aisle total stays within its cap once the fps ramps")
+fr2, _ = R.adjudicate(fn, 2035, {"boeing": {"fps_site": "renton"}})                            # switched with 5 years left
+fr3 = copy.deepcopy(fn); fr3["sd"] = {"fps_site": "renton", "a320_plan": "base", "fps_site_year": 2039}
+check(abs(SD.renton_share(fr) - 1) < 1e-9 and abs(SD.renton_share(fr2) - 1) < 1e-9 and abs(SD.renton_share(fr3) - 1 / 3) < 1e-9,
+      "Renton saving: full if chosen 3+ years before EIS, pro-rated later (%.2f / %.2f / %.2f)" % (SD.renton_share(fr), SD.renton_share(fr2), SD.renton_share(fr3)))
+import finance as FIN
+pc = FIN.programme_cash(fr)
+check(abs(sum(x for y in pc for k, x in pc[y].items() if "Renton" in k) + SD.inputs()["boeing"]["renton_saving_b"]) < 1e-9,
+      "the debt tracker books the Renton saving as negative programme cash")
+# pricing by type: old types at the legacy unit, new types at the board's new-type unit
+both, _ = R.adjudicate(s0, 2030, {"boeing": {"fps": "launch_7yr"}, "airbus": {"ngsa": "launch"}})
+vb = M.value(both, covert=True, series=True)
+r40 = next(r for r in vb["_af_series"]["years"] if r["year"] == 2040)
+p_ = M.af_params()
+want = r40["boeing"]["nb_units_new"] * p_["PRICE_fps"] * p_["v_margin_fps"] + r40["boeing"]["nb_units_old"] * p_["PRICE_737"] * p_["v_margin_737"]
+check(abs(r40["boeing"]["nb_profit"] - want) < 1e-9 and r40["boeing"]["nb_units_old"] > 0,
+      "2040: Boeing profit = fps units at fps margin + MAX units at MAX margin (%.0f fps, %.0f MAX)" % (r40["boeing"]["nb_units_new"], r40["boeing"]["nb_units_old"]))
+# engines: a MAX still built after the fps enters service flies CFM only
+e40 = next(r for r in vb["_en_series"]["years"] if r["year"] == 2040)
+check(e40["cfm"]["nb_units"] > 0, "engine units follow deliveries by type (CFM %.0f engines in 2040)" % e40["cfm"]["nb_units"])
+v0 = M.value(s0, covert=True, series=False)
+check(max(abs(v0[k]["pv_delta"]) for k in M.SIDES) < 1e-9, "the status quo is worth exactly zero to everyone")
+# objectives on preference share
+import briefs as B
+st = B.objective_status("boeing", s0, M.value(s0, covert=True, series=True))
+check(st[1][1] is True, "Boeing's incumbency objective (40% preference) holds in the status quo")
 vr = M.value(fr, covert=True, series=False)
 check(vr["boeing"]["bridge"]["supply_plan"] > 0, "Renton books a saving (%.2f PV)" % vr["boeing"]["bridge"]["supply_plan"])
 va = M.value(sa, covert=True, series=False)

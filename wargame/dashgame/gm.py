@@ -36,11 +36,14 @@ def jsave(name, obj):
 
 def init(objective_set=None, sd=False):
     os.makedirs(RUN_DIR, exist_ok=True)
+    flag = os.path.join(RUN_DIR, "supply_demand.txt")
     if sd:                                 # supply and demand (supply_demand.py) for this run; model.py reads the flag
-        with open(os.path.join(RUN_DIR, "supply_demand.txt"), "w") as f:
+        with open(flag, "w") as f:
             f.write("on\n")
-        if not M.SD_ON:
-            raise SystemExit("supply_demand.txt written: run init again so the model loads it")
+        M.SD_ON = True                     # this process too (model.py read the flag before it existed)
+    elif os.path.exists(flag):
+        os.remove(flag)
+        M.SD_ON = False
     with open(os.path.join(RUN_DIR, "board.txt"), "w") as f:
         f.write(M.H.VERSION + "\n")       # the run keeps this board version (model.py reads it back)
     if objective_set:                      # e.g. control2: Control's added objectives (briefs.objective_set reads it)

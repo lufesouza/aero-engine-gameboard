@@ -442,11 +442,13 @@ def af_series(state, cell, eis, dt):
         row = {"year": yr, "df_b": r["df_b"], "df_a": r["df_a"],
                "boeing": {"nb_share": r["b_sh_nb"], "wb_share": r["b_sh_wb"], "nb_units": b_nb_u, "wb_units": b_wb_u,
                           "nb_price": r["b_p_nb"] * 1000, "nb_margin": r["b_m_nb"], "wb_margin": r["b_m_wb"],
+                          "legacy_nb_price": p["PRICE_737"] * 1000,
                           "nb_revenue": b_nb_u * r["b_p_nb"], "wb_revenue": b_wb_u * p["PRICE_WB"],
                           "nb_profit": b_nb_u * r["b_p_nb"] * r["b_m_nb"], "wb_profit": b_wb_u * p["PRICE_WB"] * r["b_m_wb"],
                           "nb_in_window": r["b_nb_in"], "wb_in_window": r["b_wb_in"]},
                "airbus": {"nb_share": r["a_sh_nb"], "wb_share": r["a_sh_wb"], "nb_units": a_nb_u, "wb_units": a_wb_u,
                           "nb_price": r["a_p_nb"] * 1000, "nb_margin": r["a_m_nb"], "wb_margin": r["a_m_wb"],
+                          "legacy_nb_price": p["PRICE_A320"] * 1000,
                           "nb_revenue": a_nb_u * r["a_p_nb"], "wb_revenue": a_wb_u * p["PRICE_WB"],
                           "nb_profit": a_nb_u * r["a_p_nb"] * r["a_m_nb"], "wb_profit": a_wb_u * p["PRICE_WB"] * r["a_m_wb"],
                           "nb_in_window": r["a_nb_in"], "wb_in_window": r["a_wb_in"]}}
@@ -580,7 +582,30 @@ def nb_slots_at(state, yr, b_share):
     return [(bset, b_share), (aset, 1.0 - b_share)]
 
 
-def value_engines(state, b_nb_share, series=True, board_mode=None, nb_scale=None):
+def nb_type_slots(state, yr, lines):
+    """Engine slots by aircraft type under supply and demand: 737 MAX (LEAP-1B), fps (its fitted makers), A320neo
+    (P&W and CFM) and NGSA (its fitted makers), each weighted by its deliveries that year."""
+    mx, fp, a3, ng = lines
+    tot = (mx + fp + a3 + ng) or 1.0
+    fps, ngsa = live(state, "fps"), live(state, "ngsa")
+    out = [({"CFM"}, mx / tot), ({"PW", "CFM"}, a3 / tot)]
+    if fp > 0 and fps:
+        out.append((effective_code(state, "fps")[0], fp / tot))
+    if ng > 0 and ngsa:
+        out.append((effective_code(state, "ngsa")[0], ng / tot))
+    return out
+
+
+def legacy_engine_shares(lines, base_nb):
+    """Before any new narrowbody: the 737 MAX flies CFM only and the A320neo is split as the board's status quo
+    implies at 40/60 (CFM 60%, P&W 40% of A320neo engines), so the status-quo mix gives the board's base shares."""
+    mx, fp, a3, ng = lines
+    tot = (mx + a3) or 1.0
+    a_cfm = (base_nb[0] - 0.40) / 0.60
+    return ((mx + a3 * a_cfm) / tot, a3 * (1.0 - a_cfm) / tot, 0.0)
+
+
+def value_engines(state, b_nb_share, series=True, board_mode=None, nb_scale=None, nb_lines=None):
     """Engine makers' PV deltas. b_nb_share: {year: Boeing NB share} from the airframer trace.
     board_mode = (f_nb tuple (cfm, pw, rr), nb_eis_t, wb_eis_t, move_a, move_b, move_c) reproduces simulate()."""
     P = engine_params()
@@ -614,9 +639,19 @@ def value_engines(state, b_nb_share, series=True, board_mode=None, nb_scale=None
             moves = engine_moves_at(state, start, yr)
             bsh = b_nb_share.get(yr, b_nb_share[max(b_nb_share)])
             jv = "3-JV" in moves[1]
-            st_nb = start_from_slots(nb_slots_at(state, yr, bsh), jv) if nb_anchor_t is not None else base_nb
+            if nb_lines is not None:      # supply and demand: each aircraft type keeps its own engines
+                ln = nb_lines[0].get(yr, nb_lines[0][max(nb_lines[0])])
+                slots = nb_type_slots(state, yr, ln)
+            else:
+                slots = nb_slots_at(state, yr, bsh)
+            st_nb = start_from_slots(slots, jv) if nb_anchor_t is not None else base_nb
             nb_post, wb_post = post_shares(moves[0], moves[1], moves[2], st_nb, start_wb, P)
         nb_sh = base_nb if (nb_anchor_t is None or t < nb_anchor_t) else nb_post
+        sq_nb = base_nb
+        if nb_lines is not None and not board_mode:
+            if nb_anchor_t is None or t < nb_anchor_t:
+                nb_sh = legacy_engine_shares(nb_lines[0].get(yr, nb_lines[0][max(nb_lines[0])]), base_nb)
+            sq_nb = legacy_engine_shares(nb_lines[1].get(yr, nb_lines[1][max(nb_lines[1])]), base_nb)
         # board mode switches WB at the board's anchor; in the game each WB move has its own start year (above)
         wb_sh = (base_wb if t < wb_anchor_t else wb_post) if board_mode else wb_post
         g = P["gross_mult"] * ((1 + P["CPI"]) ** t)
@@ -630,16 +665,16 @@ def value_engines(state, b_nb_share, series=True, board_mode=None, nb_scale=None
             wb_u = P["WB_AC_PER_YR"] * P["ENGINES_PER_AC"] * wb_sh[i]
             nb_v = nb_u * nb_price * g / 1000.0
             wb_v = wb_u * wb_price * g / 1000.0
-            nb_b = P["NB_AC_PER_YR"] * P["ENGINES_PER_AC"] * base_nb[i] * nb_price * g / 1000.0 * k_sq
+            nb_b = P["NB_AC_PER_YR"] * P["ENGINES_PER_AC"] * sq_nb[i] * nb_price * g / 1000.0 * k_sq
             wb_b = P["WB_AC_PER_YR"] * P["ENGINES_PER_AC"] * base_wb[i] * wb_price * g / 1000.0
             df = (1 + waccs[i]) ** t
             if t <= nb_end:
-                new[i] += (nb_v if nb_sh[i] > 0 else 0.0) / df; old[i] += (nb_b if base_nb[i] > 0 else 0.0) / df
+                new[i] += (nb_v if nb_sh[i] > 0 else 0.0) / df; old[i] += (nb_b if sq_nb[i] > 0 else 0.0) / df
             if t <= wb_end:
                 new[i] += (wb_v if wb_sh[i] > 0 else 0.0) / df; old[i] += (wb_b if base_wb[i] > 0 else 0.0) / df
             row[side] = {"nb_share": nb_sh[i], "wb_share": wb_sh[i], "nb_units": nb_u, "wb_units": wb_u,
                          "nb_value": nb_v, "wb_value": wb_v, "sq_nb_value": nb_b, "sq_wb_value": wb_b,
-                         "nb_share_sq": base_nb[i], "wb_share_sq": base_wb[i]}
+                         "nb_share_sq": sq_nb[i], "wb_share_sq": base_wb[i]}
         rows.append(row)
     out = {}
     if board_mode:
@@ -708,7 +743,9 @@ def value(state, covert=True, series=True):
         bshare = {r["year"]: r["boeing"]["nb_delivered_share"] for r in ys}
         scale = {r["year"]: (r["boeing"]["nb_units"] + r["airbus"]["nb_units"]) / P_NB for r in ys}
         scale_sq = {r["year"]: (r["sd_sq"]["delivered_b"] + r["sd_sq"]["delivered_a"]) / P_NB for r in ys}
-        en = value_engines(state, bshare, series=series, nb_scale=(scale, scale_sq))
+        lines = {r["year"]: (r["sd"]["dlv_max"], r["sd"]["dlv_fps"], r["sd"]["dlv_a320"], r["sd"]["dlv_ngsa"]) for r in ys}
+        lines_sq = {r["year"]: (r["sd_sq"]["dlv_max"], 0.0, r["sd_sq"]["dlv_a320"], 0.0) for r in ys}
+        en = value_engines(state, bshare, series=series, nb_scale=(scale, scale_sq), nb_lines=(lines, lines_sq))
     else:
         bshare = {r["year"]: r["boeing"]["nb_share"] for r in ys}
         en = value_engines(state, bshare, series=series)

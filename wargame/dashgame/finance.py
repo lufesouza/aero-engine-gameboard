@@ -90,6 +90,15 @@ def programme_cash(state, F=None):
         if frac > 0:
             for y in range(y0, y1):
                 put(y, "Two-front strain", p["v_capex_strain_b"] * frac / (y1 - y0))
+    if M.SD_ON:                                    # supply and demand: the Renton plan avoids new-site capex
+        import supply_demand as SD
+        sh = SD.renton_share(state)
+        if sh > 0:
+            r = M.live(state, "fps")
+            save = SD.inputs()["boeing"]["renton_saving_b"] * sh
+            yrs = list(range(r["eis"] - SD.FAL_BUILD_YEARS, r["eis"]))
+            for y in yrs:                            # the new site would have been built in the last years before EIS
+                put(y, "Renton plan: new-site capex avoided", -save / len(yrs))
     if state.get("rate737"):
         p = M.af_params()
         y0 = state["rate737"]["launch"]

@@ -77,7 +77,9 @@ same time. The GM adjudicates them and publishes a bulletin before the next roun
 - Widebody (WB): {p['WB_PER_YR']} aircraft a year. Status quo: Boeing 787 58.8% (100/170), Airbus A350 41.2%.
 - NB engines (two per aircraft): status quo CFM 76%, P&W 24%, RR 0%.
 - WB engines: status quo CFM/GE (GEnx) 42%, RR (Trent) 58%.
-
+""" + ("""- **Supply and demand is on in this game:** the narrowbody market is limited by what the factories can build; see the
+  last section.
+""" if M.SD_ON else "") + f"""
 ## Moves and timing
 
 | Player | Move (the briefing's wording) | Order field and value | Timing |
@@ -205,13 +207,16 @@ def sd_rules():
 
 The board's shares are what customers **want**. Aircraft are delivered only if a factory can build them.
 
-**Demand.** Narrowbody demand is {d['base_per_year']:,.0f} aircraft a year (growth and replacement of older types) plus
-the replacement of today's 737 MAX, A320neo-family and A220 fleets as they retire (Cirium fleet data, October 2026).
-It averages {round(sum(SD.demand(y) for y in range(2026, 2046)) / 20):,} a year over 2026-2045, the board's market, and then rises with the
-replacement wave: {dem(2030)} (2030), {dem(2035)} (2035), {dem(2040)} (2040), {dem(2045)} (2045), {dem(2050)} (2050),
-{dem(2055)} (2055), {dem(2060)} (2060).
+**Demand.** Narrowbody demand is growth ({d['growth_per_year']:,.0f} aircraft a year, 56% of the board's market as in
+Airbus's 2025 forecast) plus the replacement of retiring aircraft: the older 737 Classic/NG and A320ceo fleets (about
+{d['older_2026']:,.0f} a year in 2026, running down to none in {d['older_end_year']}) and today's 737 MAX, A320neo-family and A220
+fleets as they retire (Cirium fleet data, October 2026). It averages {round(sum(SD.demand(y) for y in range(2026, 2046)) / 20):,} a year over 2026-2045,
+the board's market: {dem(2026)} (2026), {dem(2030)} (2030), {dem(2035)} (2035), {dem(2040)} (2040), {dem(2045)} (2045),
+{dem(2050)} (2050), {dem(2055)} (2055), {dem(2060)} (2060).
 
-**Who customers want.** Each year's demand is split by the board's share rules above (the preference share).
+**Who customers want.** Each year's demand is split by the board's share rules above: the **preference share**. The
+fps, NGSA, the 737 rate increase's +5 pp and Delay Tactics all move preference; they move deliveries only where a
+factory has the slots. The share objectives in your brief are measured on preference, as in earlier games.
 
 **Factories (public production plans, aircraft a month).**
 - **Airbus (Rev. B plan):** A320 family at 85 a month until NGSA enters service. Then, on the base plan, the A320
@@ -219,26 +224,35 @@ replacement wave: {dem(2030)} (2030), {dem(2035)} (2035), {dem(2040)} (2040), {d
   (rate 50 about four years after EIS, 80 about six, 100 about eight). On the **Alt plan** (`a320_plan: alt`) the A320
   lines are kept longer (82, 62, 52, 42, then 14 a month, about eight years in all): about 1,500 more A320s for
   about ${a320_alt_cost():.2f}B. Without NGSA the A320 stays at 85 a month.
-- **Boeing:** 737 MAX at {b['max_rate']['2026']}, {b['max_rate']['2027']}, {b['max_rate']['2028']:.0f} and {b['max_rate']['2029']} a month in 2026-2029, then {b['max_rate_after']:.0f} from 2030; the 737 rate
-  increase adds {b['rate_increase_per_year']:.0f} aircraft a year from {b['rate_increase_from']}. The fps ramps on the same shape as
-  NGSA (rate 50 about four years after EIS, 100 about eight). On the **new-site plan** (`fps_site: new_site`, the
-  default) the MAX carries on at Renton and Everett alongside the fps. On the **Renton plan** (`fps_site: renton`)
-  Renton is reassigned to the fps: its three MAX lines ({b['renton_rate']:.0f} a month) wind down as the fps ramps up (like the
-  A320 base plan) and only the Everett North Line carries on (up to {b['everett_rate']:.0f} a month); Boeing avoids about ${b['renton_saving_b']:.1f}B of
-  new-site capex. With the fps in
-  service by {b['max_last_year']}, the MAX stops after {b['max_last_year']}; without the fps it carries on.
+- **Boeing:** 737 MAX at {b['max_rate']['2026']}, {b['max_rate']['2027']}, {b['max_rate']['2028']:.0f} and {b['max_rate']['2029']} a month in 2026-2029, then {b['max_rate_after']:.0f} from 2030
+  (Renton's three lines at {b['renton_rate']:.0f} plus the Everett North Line); the 737 rate increase adds {b['rate_increase_per_year']:.0f} aircraft a year from
+  {b['rate_increase_from']} while the MAX is built. The fps ramps on the same shape as NGSA (rate 50 about four years after EIS, 100
+  about eight). Boeing's single-aisle total is capped at {b['total_rate_cap']:.0f} a month: as the fps fills it, the MAX gives way,
+  down to an Everett tail of {b['max_tail_rate']:.0f} a month. On the **new-site plan** (`fps_site: new_site`, the default) the fps is
+  built at new sites and the MAX carries on at Renton and Everett. On the **Renton plan** (`fps_site: renton`) Renton is
+  reassigned to the fps: its MAX lines (with the rate increase that rides on them) wind down as the fps ramps up, like
+  the A320 base plan, and only the Everett North Line carries on (up to {b['everett_rate']:.0f} a month); Boeing avoids about
+  ${b['renton_saving_b']:.1f}B of new-site capex, in full if Renton is chosen at least three years before the fps enters service
+  (pro-rated if later). After {b['max_last_year']} the MAX builds only what the fps cannot yet: it tops Boeing up to the fps's full
+  rate while the fps ramps. Without an fps the MAX carries on.
 
 **Deliveries each year.**
 - Each maker delivers what its customers want plus its waiting backlog, up to its capacity.
 - Customers its factories cannot serve: the flexible ones ({100 * d['flex_share']:.0f}%: airlines flying both types, lessors and
-  unannounced customers) take the other maker's free slots; the rest wait in the backlog.
-- A fifth of the waiting backlog gives up each year (keeps old aircraft longer or defers growth).
-- Market share is the share of deliveries. Profit is earned on aircraft delivered, at the board's prices and margins.
+  unannounced customers) take the other maker's free slots, this year or in any later year when slots open; the rest
+  wait in the backlog for their first choice.
+- A tenth of the waiting backlog drops out each year (keeps old aircraft longer, defers growth or cancels).
+- New types are delivered first, up to their line's capacity; the rest are 737 MAX or A320neo, at today's price and
+  margin.
+- Market share in the observed tables is the share of deliveries. Profit is earned on aircraft delivered, at the
+  board's prices and margins for each type.
 - The status quo runs the same rules with today's plans (A320 at 85 a month, the MAX path above) and the 40/60 preference.
 - Engine makers sell engines on the aircraft actually delivered (two per aircraft), split as in the engine rules.
 
-**Your supply plan** (`fps_site` for Boeing, `a320_plan` for Airbus) is public and can change in any round until your
-new airframe enters service. A field you leave out keeps your current plan.
+**Your supply plan** (`fps_site` for Boeing, `a320_plan` for Airbus) is public. It applies to your new airframe once
+launched (you can choose it in the launch round) and can change in any round until that airframe enters service. A
+field you leave out keeps your current plan. Supply-plan costs and savings are valued at your cost of capital (no debt
+penalty).
 """
 
 
@@ -340,6 +354,16 @@ def bulletin(state, year, round_no, statements=None, public_other=None, notes=No
             for it in items:
                 L.append("- **%s:** %s%s" % (M.NAMES[s], it.get("move", ""), (" — " + it["detail"]) if it.get("detail") else ""))
         L.append("")
+    if M.SD_ON:
+        import supply_demand as SD
+        a3, site = SD.plans(state)
+        L += ["## Production plans (public)", "",
+              "- **Airbus:** A320 %s plan (%s)." % (a3, "lines kept longer through the NGSA ramp-up" if a3 == "alt" else
+                                                    "lines wind down as NGSA ramps up") +
+              ("" if M.live(state, "ngsa") else " It applies once NGSA is launched; until then the A320 runs at 85 a month."),
+              "- **Boeing:** fps %s%s." % ("at Renton (the Renton MAX lines wind down as the fps ramps up)" if site == "renton" else
+                                          "at new sites (the MAX carries on at Renton and Everett)",
+                                          "" if M.live(state, "fps") else "; it applies once the fps is launched"), ""]
     sf = unexplained_shortfall(state, year)
     if sf:
         L += ["**Market observation.** In %d-%d Boeing's narrowbody deliveries ran %s below what the published rules "
@@ -348,11 +372,12 @@ def bulletin(state, year, round_no, statements=None, public_other=None, notes=No
     obs = observed(state, year)
     L += ["## Observed market, %d-%d" % (2026, year - 1), "",
           "Shares of deliveries. Engine shares are of all engines delivered on narrowbody and widebody aircraft.", "",
-          "| Year | NB Boeing | NB Airbus | WB Boeing | WB Airbus | NB engines CFM / P&W / RR | WB engines CFM / P&W / RR |",
-          "|---:|---:|---:|---:|---:|---|---|"]
+          "| Year | NB Boeing | NB Airbus | NB deliveries Boeing / Airbus | WB Boeing | WB Airbus | NB engines CFM / P&W / RR | WB engines CFM / P&W / RR |",
+          "|---:|---:|---:|---:|---:|---:|---|---|"]
     for o in obs:
-        L.append("| %d | %s | %s | %s | %s | %s | %s |" % (
-            o["year"], pct(o["nb_boeing"]), pct(o["nb_airbus"]), pct(o["wb_boeing"]), pct(o["wb_airbus"]),
+        L.append("| %d | %s | %s | %d / %d | %s | %s | %s | %s |" % (
+            o["year"], pct(o["nb_boeing"]), pct(o["nb_airbus"]), round(o["nb_units_boeing"]), round(o["nb_units_airbus"]),
+            pct(o["wb_boeing"]), pct(o["wb_airbus"]),
             " / ".join(pct(x) for x in o["eng_nb"]), " / ".join(pct(x) for x in o["eng_wb"])))
     L.append("")
     return "\n".join(L)
@@ -455,7 +480,7 @@ def objective_status(side, state, v, covert=True):
     en = {r["year"]: r for r in v["_en_series"]["years"]}
     out = []
     if side == "boeing":
-        sh = {y: af[y]["boeing"]["nb_share"] for y in (2030, 2035, 2040, 2045, 2050)}
+        sh = {y: af[y]["boeing"].get("nb_pref_share", af[y]["boeing"]["nb_share"]) for y in (2030, 2035, 2040, 2045, 2050)}
         w = min(sh[y] for y in (2040, 2045, 2050))
         out.append(("Hold the 50/50 NB split: Boeing NB share ≥ 50% in 2040, 2045, 2050",
                     w >= 0.5 - 1e-9, "worst year %s (%s)" % (pct(w), ", ".join("%d %s" % (y, pct(sh[y])) for y in (2040, 2045, 2050)))))
@@ -463,7 +488,7 @@ def objective_status(side, state, v, covert=True):
         out.append(("Defend incumbency: Boeing NB share ≥ 40% (status quo) in 2030, 2035, 2040, 2045 and 2050", w2 >= 0.4 - 1e-9,
                     "worst year %s" % pct(w2)))
     elif side == "airbus":
-        sh = {y: af[y]["airbus"]["nb_share"] for y in (2030, 2035, 2040, 2045, 2050)}
+        sh = {y: af[y]["airbus"].get("nb_pref_share", af[y]["airbus"]["nb_share"]) for y in (2030, 2035, 2040, 2045, 2050)}
         w = min(sh[y] for y in (2040, 2045, 2050))
         out.append(("Defend the 60/40 edge: Airbus NB share ≥ 60% in 2040, 2045, 2050", w >= 0.6 - 1e-9,
                     "worst year %s (%s)" % (pct(w), ", ".join("%d %s" % (y, pct(sh[y])) for y in (2040, 2045, 2050)))))
@@ -671,6 +696,13 @@ def rival_scenarios(state, side, year):
             sc.append(("Airbus launches NGSA", {"airbus": {"ngsa": "launch", "ngsa_engine_code": 6}}))
             if M.SD_ON:
                 sc.append(("Airbus launches NGSA on the A320 Alt plan", {"airbus": {"ngsa": "launch", "ngsa_engine_code": 6, "a320_plan": "alt"}}))
+        ng = M.live(state, "ngsa")
+        if M.SD_ON and ng and ng["eis"] > year:
+            import supply_demand as SD
+            if SD.plans(state)[0] == "base":
+                sc.append(("Airbus switches to the A320 Alt plan", {"airbus": {"a320_plan": "alt"}}))
+            else:
+                sc.append(("Airbus returns to the A320 base plan", {"airbus": {"a320_plan": "base"}}))
         if M.live(state, "rea350") is None:
             sc.append(("Airbus launches A350 Re-engine", {"airbus": {"rea350": "launch"}}))
             if ngsa_free:
@@ -893,7 +925,8 @@ BRIDGE_LABEL = {"nb_profit_vs_sq": "Narrowbody operating profit vs status quo", 
                 "engine_value_vs_sq": "Engine value vs status quo", "r_and_d": "R&D (undiscounted, as the board)",
                 "strain": "Strain (concurrent programmes)",
                 "supply_demand": "Supply and demand: aircraft your factories can deliver, against the board's market",
-                "supply_plan": "Supply plan: A320 Alt plan cost or Renton capex saving"}
+                "supply_plan": "Supply plan cost or saving (your plan)"}
+SUPPLY_PLAN_LABEL = {"boeing": "Supply plan: new-site capex avoided at Renton", "airbus": "Supply plan: A320 Alt plan cost"}
 
 
 def projection_rows(side, v):
@@ -948,9 +981,12 @@ def sd_outlook(side, state, v):
         rows.append([y, "%d" % round(r["sd"]["demand"]), "%d" % round(x["sd"]["wanted"]), "%d" % round(x["sd"]["backlog_in"]),
                      "%d + %d" % (round(cap[0]), round(cap[1])), "%d" % round(x["nb_units"]), "%d" % round(x["sd"]["spill_in"]),
                      pct(x["nb_pref_share"]), pct(x["nb_share"]), "%d" % round(o["sd"]["capacity"]), "%d" % round(x["sd"]["sq_delivered"])])
-    L += table(["Year", "Market demand", "Want you", "Your backlog", "Your capacity (%s)" % ("MAX + fps" if side == "boeing" else "A320 + NGSA"),
-                "You deliver", "From rival's customers", "Preference share", "Delivered share", "Rival capacity",
-                "You deliver in the status quo"], rows)
+    L += table(["Year", "Market demand", "New demand for you (preference)", "Your waiting backlog",
+                "Your capacity (%s)" % ("MAX + fps" if side == "boeing" else "A320 + NGSA"),
+                "You deliver", "of which the rival's flexible customers", "Preference share", "Delivered share",
+                "Rival capacity", "You deliver in the status quo"], rows)
+    L += ["", "Status quo: nobody launches anything (A320 at 85 a month, the MAX path, 40/60 preference); your payoff "
+          "is measured against it."]
     return L
 
 
@@ -991,7 +1027,15 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
         "; your covert moves included" if side == "airbus" else ""), "",
           "- ΔPV against the status quo: **%s $B** (PV at 2026, your WACC %.1f%%). Yield **%.2f%%** (enterprise value $%.0fB)." % (
               money(me["pv_delta"]), 100 * me["wacc"], me["yield"], me["ev"]), ""]
-    L += table(["Component", "$B (PV at 2026)"], [[BRIDGE_LABEL[k], money(x)] for k, x in me["bridge"].items() if abs(x) > 1e-12])
+    L += table(["Component", "$B (PV at 2026)"], [[SUPPLY_PLAN_LABEL.get(side, BRIDGE_LABEL[k]) if k == "supply_plan" else BRIDGE_LABEL[k],
+                                                  money(x)] for k, x in me["bridge"].items() if abs(x) > 1e-12])
+    if M.SD_ON and side in ("boeing", "airbus") and "supply_demand" in me["bridge"]:
+        L += ["", "The narrowbody line is the board's (2,000 a year, every aircraft delivered); the supply-and-demand line "
+              "corrects it to the aircraft your factories can deliver, net of the same correction in the status quo."]
+    if M.SD_ON and side not in ("boeing", "airbus"):
+        L += ["", "Supply and demand is on: your narrowbody engine volumes follow the aircraft actually delivered (two "
+              "engines each), not the board's 2,000 a year, and each type keeps its own engines (737 MAX: CFM; A320neo: "
+              "P&W and CFM; fps and NGSA: their fitted makers). See the last section of rules.md."]
     L += ["", ("Year by year ($B at 2026 prices: the airframer board does not escalate; shares of the market's "
                "deliveries):" if side in ("boeing", "airbus") else
                "Year by year (nominal $B; shares of the market's deliveries):"), ""]
@@ -1043,5 +1087,6 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
     L += ["", "## 4. What to return", "",
           "Return your sealed orders as the JSON object your task specifies: one value for each order field above, "
           "plus `other_moves`, `public_statement`, `rationale` (with your ExCo deliberation), `predictions` and "
-          "`expected_pv_b`. Fields you leave out are read as `hold`."]
+          "`expected_pv_b`. Fields you leave out are read as `hold`%s." % (
+              " (a supply-plan field you leave out keeps your current plan)" if (M.SD_ON and side in ("boeing", "airbus")) else "")]
     return "\n".join(L), grid, scen
