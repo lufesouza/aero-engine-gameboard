@@ -57,21 +57,7 @@
    "fps_new_site": 15102.642437190763
   },
   {
-   "step": "+ your conservative demand curve (firm orders on top)",
-   "dn": -0.24909634424058025,
-   "renton": -5.127721766421674,
-   "new_site": -5.425704507623494,
-   "item_renton": -4.878625422181093,
-   "item_new_site": -5.176608163382914,
-   "dlv_dn": 12462.330607632293,
-   "fps_dn": 0.0,
-   "dlv_renton": 16367.121954379554,
-   "fps_renton": 13693.412763203092,
-   "dlv_new_site": 17360.10945393928,
-   "fps_new_site": 13332.303173229942
-  },
-  {
-   "step": "+ firm orders inside demand (option B)",
+   "step": "+ your conservative demand curve, firm orders inside it (option B)",
    "dn": -0.4163347384720826,
    "renton": -6.007626747583275,
    "new_site": -6.467434998779769,
@@ -171,7 +157,57 @@
    "demand": -0.12370576890655312,
    "rules": 0.9281119267193739,
    "response": -0.24076396329382266
+  },
+  "first": {
+   "renton": {
+    "boeing": -7.61147522626322,
+    "airbus": -0.8670204079283588,
+    "demand": -1.9902934345017518,
+    "rules": -1.6508874126503694,
+    "response": 0.0
+   },
+   "new_site": {
+    "boeing": -7.047007225741981,
+    "airbus": -0.8670204079283588,
+    "demand": -1.9902934345017522,
+    "rules": -1.6508874126503694,
+    "response": 0.0
+   }
+  },
+  "last": {
+   "renton": {
+    "boeing": -7.071531456116137,
+    "airbus": 0.0446685857248621,
+    "demand": -1.5930930423328018,
+    "rules": -0.15179412253021063,
+    "response": 0.0899808128188706
+   },
+   "new_site": {
+    "boeing": -6.697231610858829,
+    "airbus": -0.10615405389600774,
+    "demand": -1.718820020318831,
+    "rules": -0.09383426785894144,
+    "response": 0.3497380442403024
+   }
+  },
+  "dn_first": {
+   "boeing": 1.3864898968360215,
+   "airbus": 2.552780114413299,
+   "demand": 0.31794100249849944,
+   "rules": 1.6508874126503694,
+   "response": 0.0
+  },
+  "dn_last": {
+   "boeing": 0.22916396587624321,
+   "airbus": 0.4255089486629209,
+   "demand": -0.4073139176220866,
+   "rules": 0.2005069271640929,
+   "response": -0.4592456545268746
   }
+ },
+ "firm_on_top": {
+  "item_renton": -4.612716876516472,
+  "item_new_site": -5.046715215166972
  },
  "obj_game_brief": {
   "columns": [

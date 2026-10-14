@@ -9,11 +9,10 @@ user's rules) gives back exactly the same values (checked). Then one change at a
   2. Boeing's real factories: the fps ramps on the NGSA curve, the 737 MAX path to 57 a month, the 100-a-month cap,
      the Renton wind-down
   3. Airbus's real factories: the Rev. B plan on the Alt plan
-  4. the user's conservative demand curve, firm orders on top
-  5. firm orders inside demand (option B)
-  6. Boeing loses 1 point a year after NGSA
-  7. Airbus's slack goes to Boeing
-  8. Airbus adds 1% capacity a year when short  (= this game)
+  4. the user's conservative demand curve with the firm orders inside it (option B)
+  5. Boeing loses 1 point a year after NGSA
+  6. Airbus's slack goes to Boeing
+  7. Airbus adds 1% capacity a year when short  (= this game)
 Each step reports the fps case, Do Nothing (both against the status quo) and the item (fps minus Do Nothing). The order
 matters, so a Shapley split over five groups (Boeing's factories, Airbus's factories, demand, the share rules, the
 capacity response) is reported too. Writes bridge.json next to this file.
@@ -67,8 +66,7 @@ STEPS = [
     ("Supply-and-demand layer with every limit off", {"neutral": ("boeing", "airbus", "demand", "firm"), "options": opts()}, True),
     ("+ Boeing's real factories", {"neutral": ("airbus", "demand", "firm"), "options": opts()}, True),
     ("+ Airbus's real factories", {"neutral": ("demand", "firm"), "options": opts()}, True),
-    ("+ your conservative demand curve (firm orders on top)", {"options": opts(demand_curve=1)}, True),
-    ("+ firm orders inside demand (option B)", {"options": opts(demand_curve=1, firm_backlog=1)}, True),
+    ("+ your conservative demand curve, firm orders inside it (option B)", {"options": opts(demand_curve=1, firm_backlog=1)}, True),
     ("+ Boeing loses 1 point a year after NGSA", {"options": opts(demand_curve=1, firm_backlog=1, boeing_pp_after_ngsa=1)}, True),
     ("+ Airbus's slack goes to Boeing", {"options": opts(demand_curve=1, firm_backlog=1, boeing_pp_after_ngsa=1, boeing_takes_airbus_slack=1)}, True),
     ("+ Airbus adds 1% capacity a year when short (this game)", {}, True),
@@ -127,7 +125,12 @@ def main():
         assert abs(sum(sh[site].values()) - (full[k_] - none[k_])) < 1e-9
     out["shapley"] = {"groups": GROUPS, "shares": sh, "none": {k: none[k] for k in ("dn", "renton", "new_site", "item_renton", "item_new_site")},
                       "full": {k: full[k] for k in ("dn", "renton", "new_site", "item_renton", "item_new_site")},
-                      "dn_shares": None}
+                      "dn_shares": None,
+                      # each group added first (from the dashboard's world) and last (into this game)
+                      "first": {s_: {c: val[frozenset([c])]["item_" + s_] - none["item_" + s_] for c in keys} for s_ in ("renton", "new_site")},
+                      "last": {s_: {c: full["item_" + s_] - val[frozenset(keys) - {c}]["item_" + s_] for c in keys} for s_ in ("renton", "new_site")},
+                      "dn_first": {c: val[frozenset([c])]["dn"] - none["dn"] for c in keys},
+                      "dn_last": {c: full["dn"] - val[frozenset(keys) - {c}]["dn"] for c in keys}}
     # the same split for Do Nothing alone (how much better Do Nothing looks once deliveries are real)
     shd = {}
     for c in keys:
@@ -141,6 +144,11 @@ def main():
     out["shapley"]["dn_shares"] = shd
     for site in sh:
         print(site, {GROUPS[c]: round(x, 2) for c, x in sh[site].items()})
+        print("  first", {c: round(x, 2) for c, x in out["shapley"]["first"][site].items()}, "last", {c: round(x, 2) for c, x in out["shapley"]["last"][site].items()})
+    # firm orders on top of demand instead (the user's option A), this game otherwise
+    with L.patched(options={"firm_backlog": None}):
+        out["firm_on_top"] = {"item_renton": L.played_item(L.F10, "renton"), "item_new_site": L.played_item(L.F10, "new_site")}
+    print("firm on top", out["firm_on_top"])
     print("Do Nothing", {GROUPS[c]: round(x, 2) for c, x in shd.items()})
     # the dashboard-only game as played (dash-2050-obj, round 1 brief): the same decision, its six columns
     g = json.load(open(os.path.join(HERE, "..", "..", "..", "dash-2050-obj", "record", "grids_r1.json")))["boeing"]
