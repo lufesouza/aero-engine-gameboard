@@ -157,7 +157,10 @@ def _units(tag):
     neg = [(y, d) for y, d in ramp if d < -0.5]
     sd_line = o["fps_renton"]["bridge"]["supply_demand"] - o["do_nothing"]["bridge"]["supply_demand"]
     board = o["fps_renton"]["bridge"]["nb_profit_vs_sq"] - o["do_nothing"]["bridge"]["nb_profit_vs_sq"]
-    return {"eis": eis, "gain": gain, "neg": neg, "neg_sum": sum(d for _, d in neg), "sd": sd_line, "board": board}
+    pos = [(y, d) for y, d in ramp if d > 0.5]
+    site = o["fps_renton"]["bridge"].get("supply_plan", 0.0) - o["do_nothing"]["bridge"].get("supply_plan", 0.0)
+    return {"eis": eis, "gain": gain, "neg": neg, "neg_sum": sum(d for _, d in neg), "pos": pos,
+            "pos_sum": sum(d for _, d in pos), "sd": sd_line, "board": board, "site": site}
 
 
 UT, UP = _units("this_game"), _units("previous_market")
@@ -186,6 +189,15 @@ def re787_if_a350(n):
 RE787_A350 = {n: re787_if_a350(n) for n in (1, 2)}
 DIP_YEARS = [y for y in Y if y >= NGSA_EIS and capa(y) < 0.9 * capa(NGSA_EIS - 1)]
 B_SH = [at("delivered_share", y, "boeing") for y in Y if FIRST_NEW <= y <= B_SOLD_RUN[-1]]
+FAC_STEPS = sum(1 for a, c in zip(FAC, FAC[1:]) if c > a + 1e-9)
+FAC_AT_FADE = FAC[Y.index(B_FADE_FROM)]
+_ua = [y for y in Y if y < FIRST_NEW and dlva(y) < capa(y) - 0.5]
+_ub = [y for y in Y if y < FIRST_NEW and dlvb(y) < capb(y) - 0.5]
+BOTH_UNDER_TO = max(set(_ua) & set(_ub))
+B_UNDER_ONLY = [y for y in _ub if y > BOTH_UNDER_TO]
+assert _ua == list(range(Y[0], BOTH_UNDER_TO + 1)) and _ub == list(range(Y[0], UNDER_TO + 1))
+CR = C["cfm_response"]
+assert abs(CR["delta"] - (CAP_RESP["cfm"] - NO_RESP["cfm"])) < 1e-6
 assert not UP["neg"], "the fps cost deliveries in the previous market too: rewrite FPS_CAP"
 assert all(abs(RI[y]["re787"] - RIP[y]["re787"]) < 5e-3 for y in RYEARS), "787 Re-engine value moved"
 
@@ -217,13 +229,16 @@ FINDINGS = [
      "partnership. Everyone held in 2045 and 2050. "
      + ("Each company's best alternative in every round is also the same as before: for Boeing the 787 Re-engine, for "
         "Airbus the A350 Re-engine. The same tests stopped both." if SAME_BEST else
-        "The same tests stopped Boeing's 787 Re-engine and Airbus's A350 Re-engine.")),
+        "The same tests stopped Boeing's 787 Re-engine. Airbus's A350 Re-engine failed the same CFO tests as "
+        "before; in 2045 and 2050 its operating head also vetoed it, because no A350 engine would be mature in time. "
+        "In the previous game that was only a warning.")),
     ("The fps case got much worse: the conservative curve is the main reason.",
      f" In 2030 a 10-year fps was worth {b(fps_d('fps 10-year, Renton'))} against Do Nothing at Renton and "
      f"{b(fps_d('fps 10-year, new sites'))} at new sites, against {b(FPS_REN_P[2030])} and "
      f"{b(RIP[2030]['fps_10yr_new_site'])} in the previous game. On the dashboard alone it is worth "
-     f"{b(fps_d0('fps 10-year, Renton'))}. Deliveries take {b(-UT['sd'], 2, False)} off the fps here, against "
-     f"{b(-UP['sd'], 2, False)} before. Your curve is smaller where the fps would sell: {n0(AVG_THIS)} aircraft a year "
+     f"{b(fps_d0('fps 10-year, Renton'))} at either site. At Renton, deliveries take {b(-UT['sd'], 2, False)} off it "
+     f"here (against {b(-UP['sd'], 2, False)} before), and building at Renton saves {b(UT['site'], 2, False)} of "
+     f"new-site capex. Your curve is smaller where the fps would sell: {n0(AVG_THIS)} aircraft a year "
      f"on average over 2040-{Y[-1]}, against {n0(AVG_PREV)} in the previous game's market. Stepping from the previous "
      f"market to this one, the curve alone moves the Renton case by {b(STEP_D[0][1])} and putting the firm orders "
      f"inside demand by {b(STEP_D[1][1])}. Your three share and capacity rules together move it by "
@@ -239,8 +254,8 @@ FINDINGS = [
      f"transition cuts Airbus's capacity to {n0(A_DIP)} in {A_DIP_Y}, and Boeing's preference rises to "
      f"{pc(PREF_PEAK, 1)} that year. So the 737 MAX sells all the 684 aircraft it can build every year in "
      f"{span(B_SOLD_RUN)}, with up to {n0(WAIT_PEAK)} customers waiting for a Boeing slot ({WAIT_PEAK_Y}). Airbus's "
-     f"capacity rises 1% a year from {FAC_FIRST}, {pc(FAC_END - 1, 1)} by {FAC_STOP}. From {B_FADE_FROM} "
-     f"Airbus can build nearly all its customers want, and Boeing's line runs below capacity: {n0(dlvb(B_FADE_FROM))} "
+     f"capacity rises 1% after each year it is short: {FAC_STEPS} steps from {FAC_FIRST} to {FAC_STOP}, "
+     f"{pc(FAC_END - 1, 1)} in all. From {B_FADE_FROM} Airbus can build nearly all its customers want, and Boeing's line runs below capacity: {n0(dlvb(B_FADE_FROM))} "
      f"aircraft in {B_FADE_FROM} and {n0(dlvb(Y[-1]))} in {Y[-1]}. In the status quo Boeing builds 684 a year to {SQ_B_FULL_TO} and {n0(at('sq_delivered_b', Y[-1]))} in "
      f"{Y[-1]}. Boeing's ΔPV is only {b(V['boeing'])} ({b(BC['boeing']['board'])} on the dashboard alone), because "
      f"the decline comes late and is heavily discounted."),
@@ -250,8 +265,11 @@ FINDINGS = [
      f"they end at {b(CAP_RESP['airbus'])} and {b(CAP_RESP['boeing'])}, and at 2% a year at "
      f"{b(AS['Airbus capacity response 2% a year']['final_airbus'])} and "
      f"{b(AS['Airbus capacity response 2% a year']['final_boeing'])}. CFM loses most from it "
-     f"({b(CAP_RESP['cfm'] - NO_RESP['cfm'])}): it is sole source on the 737 MAX, and the NGSAs that displace "
-     f"MAXs carry it on only a third of their engines. Rolls-Royce gains {b(CAP_RESP['rolls_royce'] - NO_RESP['rolls_royce'], 2, False)}. Airbus ends at "
+     f"({b(CR['delta'])}). In the status quo Airbus's extra aircraft are A320neos, 60% of them on CFM engines, "
+     f"which raises CFM's yardstick by {b(CR['yardstick'], 2, False)}. In the game they are mostly NGSAs, on which "
+     f"CFM has about {pc(CR['cfm_share_of_ngsa_engines_2050'])} of the engines. From {CR['displaced_years'][0]} "
+     f"they also replace CFM-only 737 MAXs, which costs CFM {b(-CR['game_displacement'], 2, False)}, offset by "
+     f"{b(CR['game_before_displacement'], 2, False)} gained from Airbus's extra output before then. Rolls-Royce gains {b(CAP_RESP['rolls_royce'] - NO_RESP['rolls_royce'], 2, False)}. Airbus ends at "
      f"{b(V['airbus'])}, against {b(VP['airbus'])} in the previous game; on the dashboard alone it would be "
      f"{b(BC['airbus']['board'])}."),
     ("The largest money left on the table is still the 787 Re-engine.",
@@ -282,7 +300,8 @@ DEMAND_CAP = (f"The curve is the smoothest annual fit to your table (see the dem
               f"{INP['demand']['firm_backlog']['airbus']:,}) are part of this demand, not extra. Each year's demand is "
               f"served from them first, split by each maker's remaining orders, until the last are delivered in "
               f"{FIRM_CLEAR}" + (", the year new customers start." if FIRM_CLEAR == FIRST_NEW else f"; new customers start in {FIRST_NEW}.") + f" Through {UNDER_TO} demand is below what the two makers plan to build "
-              f"({n0(gross(Y[0]))} against {n0(cap(Y[0]))} in {Y[0]}), so both run below plan, in the status quo too. "
+              f"({n0(gross(Y[0]))} against {n0(cap(Y[0]))} in {Y[0]}), so both run below plan through {BOTH_UNDER_TO}"
+              f"{', and Boeing in ' + span(B_UNDER_ONLY) if B_UNDER_ONLY else ''}, in the status quo too. "
               f"The dashed line is the previous game's new demand (replacement plus growth), on top of which its firm "
               f"orders came.")
 PREF_TITLE = (f"Boeing's preference: 40% less 1 point a year from NGSA's {NGSA_EIS} entry into service, lifted to "
@@ -302,11 +321,12 @@ AIRBUS_CAP = ("The plan is your Airbus Rev. B chart on the Alt plan, which Airbu
 MARKET_LEDE = (f"Four phases. Through {UNDER_TO} demand is below the factories' plans and the firm orders are "
                f"delivered as demand calls them. From {FIRST_NEW} new customers arrive and the market is short: Boeing "
                f"sells all it can build, and the slack Airbus cannot cover waits for Boeing. In {span(DIP_YEARS)}, "
-               f"NGSA's transition cuts Airbus's output. From {B_FADE_FROM} Airbus, 1% larger "
-               f"each year, catches up with its customers, and Boeing's line runs below capacity as its preference "
-               f"keeps falling.")
-MARKET_TITLE = (f"Demand runs below the factories' plans through {UNDER_TO}; from {B_FADE_FROM} Airbus catches up "
-                f"and Boeing's deliveries fall")
+               f"NGSA's transition cuts Airbus's output. From {B_FADE_FROM} Airbus, now {pc(FAC_AT_FADE - 1)} above its "
+               f"plan, can build nearly all its customers want (it is short again only in "
+               f"{runs([y for y in FLOOR_YEARS if y > B_FADE_FROM])}), and Boeing's line runs below capacity as its "
+               f"preference keeps falling.")
+MARKET_TITLE = (f"Demand runs below the factories' plans through {UNDER_TO}; from {B_FADE_FROM} Airbus nearly "
+                f"catches up and Boeing's deliveries fall")
 BOEING_LINES_TITLE = (f"With Do Nothing, Boeing's 737 MAX sells all 684 aircraft a year it can build in "
                       f"{span(B_SOLD_RUN)}, then falls to {n0(dlvb(Y[-1]))} by {Y[-1]}")
 BOEING_LINES_CAP = ("Boeing's capacity is the 737 MAX path (42.5 to 57 a month by 2030). Boeing did not order the 737 "
@@ -354,8 +374,12 @@ ROUND_NOTES = [
 FPS_LEDE = (f"Boeing's fps decision each round: the value of each launch against Do Nothing, with everyone else's "
             f"orders as played and nobody moving after the round, here and in the previous game. Boeing's Board "
             f"requires more than +$1B in the expected case and never more than −$1B in any plausible column.")
-FPS_TITLE = (f"A 10-year fps at Renton from 2030 adds {n0(UT['gain'])} Boeing deliveries over {UT['eis']}-{Y[-1]} "
-             f"(previous market {n0(UP['gain'])}), and costs {n0(-UT['neg_sum'])} in its ramp-up years")
+FPS_TABLE_NOTE = (f"Airbus's column is the A350 Re-engine added to the moves Airbus played; in 2030 that is beside its "
+                  f"NGSA launch on the Alt plan. Boeing's columns are each launch against Boeing doing nothing.")
+FPS_TITLE = (f"A 10-year fps at Renton from 2030 adds a net {n0(UT['gain'])} Boeing deliveries over "
+             f"{UT['eis']}-{Y[-1]} (previous market {n0(UP['gain'])}): {n0(-UT['neg_sum'])} fewer in "
+             f"{runs([y for y, _ in UT['neg']])} as Renton's MAX lines wind down, then {n0(UT['pos_sum'])} more in "
+             f"{runs([y for y, _ in UT['pos']])}")
 FPS_CAP = (f"Boeing's deliveries with Do Nothing and with a 10-year fps at Renton launched in 2030 (in service "
            f"{UT['eis']}), everyone else's round-1 orders as played. At Renton the MAX lines wind down as the fps "
            f"ramps. With Do Nothing the MAX sells everything it builds in those years, because Airbus is short. "
@@ -379,8 +403,8 @@ SHARES_LEDE = ("Control's 50/50 and incumbency objectives are scored on customer
                f"preference for Boeing. What Boeing delivers falls to {pc(SHARE_END)} by {Y[-1]}. In the previous "
                f"game Boeing delivered {pc(PSD['boeing']['delivered_share'][-1])} in {PSD['year'][-1]}, with flexible "
                f"customers spilling over from a short Airbus.")
-SHARES_TITLE = (f"Boeing delivers {pc(min(B_SH))}-{pc(max(B_SH))} of the market while Airbus is short, then "
-                f"{pc(SHARE_END)} by {Y[-1]}")
+SHARES_TITLE = (f"Boeing delivers {pc(min(B_SH))}-{pc(max(B_SH))} of the market while its line is full "
+                f"({span(B_SOLD_RUN)}), then {pc(SHARE_END)} by {Y[-1]}")
 PLAY_LEDE = ("The round game is the airframers' options for that round, with everyone else's orders as played and no "
              "later moves. As before, neither airframer played a pure equilibrium of the round. Each side's best reply "
              "included a Re-engine that its own tests ruled out. Regret is the final ΔPV of a side's best alternative "
@@ -394,7 +418,7 @@ COMPARE_LEDE = (f"The previous game (dash-2050-sd) had the same agents, objectiv
 SENS_LEDE = ("How much the answer depends on each of your assumptions: the 2030 fps decision (against Do Nothing, "
              "round-1 orders as played) and the final ΔPVs, with one assumption changed and the rest as played.")
 
-_p2, _p3, _nf = AS["Boeing loses 2 points a year"], AS["Boeing loses 3 points a year"], AS["No slack floor (the overflow rule only)"]
+_p2, _p3, _nf = AS["Boeing loses 2 points a year"], AS["Boeing loses 3 points a year"], AS["No slack floor (flexible customers' overflow only)"]
 _same23 = _p2["dlv_b"] == _p3["dlv_b"] and abs(_p2["airbus_capacity_factor_end"] - _p3["airbus_capacity_factor_end"]) < 1e-12
 assert _same23 and _p2["floor_years_from_ngsa"] == _p2["years_from_ngsa"] and _p3["floor_years_from_ngsa"] == _p3["years_from_ngsa"]
 SENS_NOTE = (f"Losing 2 or 3 points a year gives the same result. In both cases Airbus is short in every year from NGSA's "

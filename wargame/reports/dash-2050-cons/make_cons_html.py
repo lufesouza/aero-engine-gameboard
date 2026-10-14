@@ -317,7 +317,7 @@ def chart_fps():
     assert yy == YEARS
     t_dn, t_f = tot(U["this_game"]["do_nothing"]), tot(U["this_game"]["fps_renton"])
     p_dn, p_f = tot(U["previous_market"]["do_nothing"]), tot(U["previous_market"]["fps_renton"])
-    series = [("Before: DN", "sq", list(zip(yy, p_dn)), True), ("Before: fps", "s3", list(zip(yy, p_f)), True),
+    series = [("Was: Do Nothing", "sq", list(zip(yy, p_dn)), True), ("Was: fps", "s3", list(zip(yy, p_f)), True),
               ("Do Nothing", "fg", list(zip(yy, t_dn)), False), ("fps, Renton", "s3", list(zip(yy, t_f)), False)]
     svg = lines(series, 1400, 200, "int", "Boeing aircraft delivered a year, everyone else's round-1 orders as played",
                 "Boeing deliveries: Do Nothing against a 10-year fps at Renton from 2030, in this market and the previous one",
@@ -372,7 +372,7 @@ def fps_table():
         rows.append([str(y), z(a["fps_10yr_renton"]), z(p["fps_10yr_renton"]), z(a["fps_10yr_new_site"]), z(p["fps_10yr_new_site"]),
                      z(a["fps_7yr_new_site"]), z(a["re787"]), z(a["rea350"])])
     return K.table(["Round", "10-year fps at Renton", "Previous game", "10-year fps, new sites", "Previous game",
-                    "7-year fps, new sites", "787 Re-engine", "Airbus: A350 Re-engine"], rows, num_cols=tuple(range(1, 8)))
+                    "7-year fps, new sites", "787 Re-engine", "Airbus: A350 Re-engine, added to its moves"], rows, num_cols=tuple(range(1, 8)))
 
 
 def value_table():
@@ -567,7 +567,7 @@ p, li, footer { overflow-wrap: break-word; }
 {panels(NAR.ROUND_NOTES)}</section>
 
 <section id="fps"><h2>The fps decision</h2><p class="lede">{NAR.FPS_LEDE}</p><div class="stack">
-<div class="panel"><p class="label">Value against Do Nothing by round, $B PV at 2026 (everyone else's orders as played, nobody moves after the round)</p>{fps_table()}</div>
+<div class="panel"><p class="label">Value against Do Nothing by round, $B PV at 2026 (everyone else's orders as played, nobody moves after the round)</p>{fps_table()}<p class="cap">{NAR.FPS_TABLE_NOTE}</p></div>
 <div class="panel"><p class="ctitle">{esc(NAR.FPS_TITLE)}</p>{chart_fps()}<p class="cap">{NAR.FPS_CAP}</p></div>
 </div></section>
 

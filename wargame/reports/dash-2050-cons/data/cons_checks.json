@@ -695,7 +695,7 @@
    ]
   },
   {
-   "case": "Board share rule (Airbus +3 points a year to 80%)",
+   "case": "Dashboard share rule after NGSA (Airbus +3 points a year to 80%)",
    "options": {
     "boeing_pp_after_ngsa": null
    },
@@ -748,7 +748,7 @@
    ]
   },
   {
-   "case": "No slack floor (the overflow rule only)",
+   "case": "No slack floor (flexible customers' overflow only)",
    "options": {
     "boeing_takes_airbus_slack": null
    },
@@ -907,7 +907,7 @@
    ]
   },
   {
-   "case": "Firm orders on top of demand (not netted)",
+   "case": "Firm orders on top of demand (not part of it)",
    "options": {
     "firm_backlog": null
    },
@@ -2025,5 +2025,28 @@
    },
    "fps_eis": 2040
   }
+ },
+ "cfm_response": {
+  "delta": -4.429615742221188,
+  "yardstick": 2.70654572258789,
+  "game": -1.7230700196332975,
+  "game_before_displacement": 1.30573075639334,
+  "game_displacement": -3.0288007760266558,
+  "displaced_years": [
+   2048,
+   2049,
+   2050,
+   2051,
+   2052,
+   2053,
+   2054,
+   2055,
+   2056,
+   2057,
+   2058,
+   2059,
+   2060
+  ],
+  "cfm_share_of_ngsa_engines_2050": 0.2698412698412698
  }
 }

@@ -11,6 +11,7 @@
 4. The same values stepping from the previous game's market (dash-2050-sd: no options) to this game's, one assumption
    added at a time.
 5. Boeing's deliveries by year with Do Nothing and with a 10-year fps at Renton from 2030, in both markets.
+6. CFM's loss from Airbus's capacity response, split between its yardstick (the status quo) and the game.
 
   DASH_RUN=dash-2050-cons python3 make_cons_checks.py
 """
@@ -129,11 +130,11 @@ VARIANTS = [("As played", {}),
             ("Boeing loses 0.5 points a year", {"boeing_pp_after_ngsa": 0.5}),
             ("Boeing loses 2 points a year", {"boeing_pp_after_ngsa": 2.0}),
             ("Boeing loses 3 points a year", {"boeing_pp_after_ngsa": 3.0}),
-            ("Board share rule (Airbus +3 points a year to 80%)", {"boeing_pp_after_ngsa": None}),
-            ("No slack floor (the overflow rule only)", {"boeing_takes_airbus_slack": None}),
+            ("Dashboard share rule after NGSA (Airbus +3 points a year to 80%)", {"boeing_pp_after_ngsa": None}),
+            ("No slack floor (flexible customers' overflow only)", {"boeing_takes_airbus_slack": None}),
             ("No Airbus capacity response", {"airbus_capacity_response": None}),
             ("Airbus capacity response 2% a year", {"airbus_capacity_response": 0.02}),
-            ("Firm orders on top of demand (not netted)", {"firm_backlog": None})]
+            ("Firm orders on top of demand (not part of it)", {"firm_backlog": None})]
 
 
 def assumption_sensitivity(n_last):
@@ -209,11 +210,47 @@ def fps_units():
     return out
 
 
+def cfm_response(n_last):
+    """CFM's change in ΔPV from Airbus's capacity response (final state, with and without it), split into its yardstick
+    (the status quo, where Airbus's extra aircraft are A320neos) and the game: Airbus's extra output in the years Boeing
+    still delivers as before, and the years Airbus's extra NGSAs displace 737 MAXs."""
+    s = RP.jl("state_r%d.json" % n_last)
+    R = {}
+    for lab, kw in (("without", {"airbus_capacity_response": None}), ("with", {})):
+        set_options(**kw)
+        R[lab] = M.value(s, covert=True, series=True)
+    reset_options()
+    w = R["with"]["cfm"]["wacc"]
+    en = {k: {x["year"]: x for x in R[k]["_en_series"]["years"]} for k in R}
+    af = {k: {x["year"]: x for x in R[k]["_af_series"]["years"]} for k in R}
+    bd = lambda k, y: af[k][y]["sd"]["dlv_max"] + af[k][y]["sd"]["dlv_fps"]
+    displaced = [y for y in sorted(af["with"]) if y <= M.REPORT_END and bd("with", y) < bd("without", y) - 0.5]
+    early = late = 0.0
+    for y in sorted(en["with"]):
+        if not en["with"][y]["nb_in_window"]:
+            continue
+        d = (en["with"][y]["cfm"]["nb_value"] - en["without"][y]["cfm"]["nb_value"]) / (1 + w) ** (y - M.Y0)
+        if y in displaced:
+            late += d
+        else:
+            early += d
+    y = 2050
+    sd = af["with"][y]["sd"]
+    mx, ng = sd["dlv_max"] + sd["dlv_fps"], sd["dlv_a320"] + sd["dlv_ngsa"]
+    ngsa_cfm = (en["with"][y]["cfm"]["nb_share"] * (mx + ng) - mx) / ng     # CFM's share of NGSA engines (MAX is all CFM)
+    out = {"delta": R["with"]["cfm"]["pv_delta"] - R["without"]["cfm"]["pv_delta"],
+           "yardstick": R["with"]["cfm"]["pv_sq"] - R["without"]["cfm"]["pv_sq"],
+           "game": R["with"]["cfm"]["pv_new"] - R["without"]["cfm"]["pv_new"], "game_before_displacement": early,
+           "game_displacement": late, "displaced_years": displaced, "cfm_share_of_ngsa_engines_2050": ngsa_cfm}
+    assert abs(out["delta"] - (out["game"] - out["yardstick"])) < 1e-6 and abs(out["game"] - early - late) < 1e-6
+    return out
+
+
 def main():
     n = RP.rounds_played()
     out = {"rounds_played": n, "options": BASE_OPTIONS, "fps_2030": fps_2030(), "round_items": round_items(n),
            "decisions_now": decisions_now(n), "no_layer": no_layer(n), "assumptions": assumption_sensitivity(n),
-           "steps": assumption_steps(n), "fps_units": fps_units()}
+           "steps": assumption_steps(n), "fps_units": fps_units(), "cfm_response": cfm_response(n)}
     path = os.path.join(HERE, "data", "cons_checks.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=1)
