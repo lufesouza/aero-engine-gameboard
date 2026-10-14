@@ -1,0 +1,410 @@
+{
+ "As played": {
+  "site": "Renton",
+  "item": -2.192823971472366,
+  "item_other_site": -2.7437555560180447,
+  "fps": -2.96011591322484,
+  "do_nothing": -0.767291941752474,
+  "fps_a_month_2040_2051": [
+   0.7,
+   2.2,
+   7.7,
+   24.4,
+   45.9,
+   66.5,
+   79.9,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 3808.94740272759,
+    "fps_units": 1770.112883286396,
+    "boeing_dlv_do_nothing": 3050.2807699361747,
+    "new_demand": 9892.8410355,
+    "pv_profit_gain": 3.502865326135614
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 4915.8420693497565,
+    "fps_units": 4900.707660522,
+    "boeing_dlv_do_nothing": 3416.627906808377,
+    "new_demand": 10694.3546268,
+    "pv_profit_gain": 6.2058497401243695
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10170.545876606782,
+    "fps_units": 10170.545876606782,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 20995.2112203,
+    "pv_profit_gain": 6.886572603055743
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -7.237243152291791,
+   "supply_plan": 0.7413945042872855
+  }
+ },
+ "fps ramp twice as fast": {
+  "site": "Renton",
+  "item": 0.6538489593472577,
+  "item_other_site": -0.09876197684994925,
+  "fps": -0.11344298240521622,
+  "do_nothing": -0.767291941752474,
+  "fps_a_month_2040_2051": [
+   1.5,
+   16.1,
+   56.2,
+   85.7,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 4033.778230924193,
+    "fps_units": 3111.758958951161,
+    "boeing_dlv_do_nothing": 3050.2807699361747,
+    "new_demand": 9892.8410355,
+    "pv_profit_gain": 6.349538256955239
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 4915.8420693497565,
+    "fps_units": 4900.707660522,
+    "boeing_dlv_do_nothing": 3416.627906808377,
+    "new_demand": 10694.3546268,
+    "pv_profit_gain": 6.2058497401243695
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10170.545876606782,
+    "fps_units": 10170.545876606782,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 20995.2112203,
+    "pv_profit_gain": 6.886572603055743
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -4.390570221472167,
+   "supply_plan": 0.7413945042872855
+  }
+ },
+ "fps ramp three times as fast": {
+  "site": "Renton",
+  "item": 1.520207849211558,
+  "item_other_site": 0.7788133449242727,
+  "fps": 0.7529159074590842,
+  "do_nothing": -0.767291941752474,
+  "fps_a_month_2040_2051": [
+   3.5,
+   45.6,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 4046.952387392964,
+    "fps_units": 3480.206767107132,
+    "boeing_dlv_do_nothing": 3050.2807699361747,
+    "new_demand": 9892.8410355,
+    "pv_profit_gain": 7.2158971468195405
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 4915.8420693497565,
+    "fps_units": 4900.707660522,
+    "boeing_dlv_do_nothing": 3416.627906808377,
+    "new_demand": 10694.3546268,
+    "pv_profit_gain": 6.2058497401243695
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10170.545876606782,
+    "fps_units": 10170.545876606782,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 20995.2112203,
+    "pv_profit_gain": 6.886572603055743
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -3.5242113316078667,
+   "supply_plan": 0.7413945042872855
+  }
+ },
+ "fps at full rate from entry into service": {
+  "site": "Renton",
+  "item": 2.9474855227680816,
+  "item_other_site": 2.2060910184807963,
+  "fps": 2.1801935810156077,
+  "do_nothing": -0.767291941752474,
+  "fps_a_month_2040_2051": [
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 4046.952387392964,
+    "fps_units": 4046.952387392964,
+    "boeing_dlv_do_nothing": 3050.2807699361747,
+    "new_demand": 9892.8410355,
+    "pv_profit_gain": 8.643174820376062
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 4915.8420693497565,
+    "fps_units": 4900.707660522,
+    "boeing_dlv_do_nothing": 3416.627906808377,
+    "new_demand": 10694.3546268,
+    "pv_profit_gain": 6.2058497401243695
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10170.545876606782,
+    "fps_units": 10170.545876606782,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 20995.2112203,
+    "pv_profit_gain": 6.886572603055743
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -2.096933658051343,
+   "supply_plan": 0.7413945042872855
+  }
+ },
+ "50% more growth": {
+  "site": "new sites",
+  "item": -1.1898990307251909,
+  "item_other_site": -1.561398532531583,
+  "fps": -1.1898990307251909,
+  "do_nothing": 0.0,
+  "fps_a_month_2040_2051": [
+   0.7,
+   2.2,
+   7.7,
+   24.4,
+   45.9,
+   66.5,
+   79.9,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 5556.597048611123,
+    "fps_units": 1770.112883286396,
+    "boeing_dlv_do_nothing": 4104.0,
+    "new_demand": 13506.04658325,
+    "pv_profit_gain": 3.926294875190324
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 6000.0,
+    "fps_units": 5278.677884615388,
+    "boeing_dlv_do_nothing": 3420.0,
+    "new_demand": 14184.950200200003,
+    "pv_profit_gain": 7.166144067044959
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10800.0,
+    "fps_units": 10800.0,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 28096.432965450003,
+    "pv_profit_gain": 7.349889204904732
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -5.49292370725733
+  }
+ },
+ "Ramp twice as fast plus 50% more growth": {
+  "site": "Renton",
+  "item": 4.034825023314011,
+  "item_other_site": 3.945504808386934,
+  "fps": 4.034825023314011,
+  "do_nothing": 0.0,
+  "fps_a_month_2040_2051": [
+   1.5,
+   16.1,
+   56.2,
+   85.7,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   90.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 5599.79322499784,
+    "fps_units": 4073.395383950892,
+    "boeing_dlv_do_nothing": 4104.0,
+    "new_demand": 13506.04658325,
+    "pv_profit_gain": 8.240608967955882
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 6000.0,
+    "fps_units": 5400.0,
+    "boeing_dlv_do_nothing": 3420.0,
+    "new_demand": 14184.950200200003,
+    "pv_profit_gain": 7.335159524031315
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10800.0,
+    "fps_units": 10800.0,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 28096.432965450003,
+    "pv_profit_gain": 7.349889204904732
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -1.0095941575054144,
+   "supply_plan": 0.7413945042872855
+  }
+ },
+ "Boeing cap of 120 a month": {
+  "site": "Renton",
+  "item": -2.1786822330710387,
+  "item_other_site": -2.7296138176167175,
+  "fps": -2.9459741748235126,
+  "do_nothing": -0.767291941752474,
+  "fps_a_month_2040_2051": [
+   0.7,
+   2.2,
+   7.7,
+   24.4,
+   45.9,
+   66.5,
+   79.9,
+   91.5,
+   99.5,
+   100.0,
+   100.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 3808.94740272759,
+    "fps_units": 1770.112883286396,
+    "boeing_dlv_do_nothing": 3050.2807699361747,
+    "new_demand": 9892.8410355,
+    "pv_profit_gain": 3.502865326135614
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 4915.8420693497565,
+    "fps_units": 4915.8420693497565,
+    "boeing_dlv_do_nothing": 3416.627906808377,
+    "new_demand": 10694.3546268,
+    "pv_profit_gain": 6.219991478525698
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10170.545876606782,
+    "fps_units": 10170.545876606782,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 20995.2112203,
+    "pv_profit_gain": 6.886572603055743
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -7.223101413890463,
+   "supply_plan": 0.7413945042872855
+  }
+ },
+ "No MAX tail": {
+  "site": "Renton",
+  "item": -2.1786822330710387,
+  "item_other_site": -2.7296138176167175,
+  "fps": -2.9459741748235126,
+  "do_nothing": -0.767291941752474,
+  "fps_a_month_2040_2051": [
+   0.7,
+   2.2,
+   7.7,
+   24.4,
+   45.9,
+   66.5,
+   79.9,
+   91.5,
+   99.5,
+   100.0,
+   100.0,
+   100.0
+  ],
+  "periods": {
+   "2040-2045": {
+    "boeing_dlv_fps_case": 3808.94740272759,
+    "fps_units": 1770.112883286396,
+    "boeing_dlv_do_nothing": 3050.2807699361747,
+    "new_demand": 9892.8410355,
+    "pv_profit_gain": 3.502865326135614
+   },
+   "2046-2050": {
+    "boeing_dlv_fps_case": 4915.8420693497565,
+    "fps_units": 4915.8420693497565,
+    "boeing_dlv_do_nothing": 3416.627906808377,
+    "new_demand": 10694.3546268,
+    "pv_profit_gain": 6.219991478525698
+   },
+   "2051-2059": {
+    "boeing_dlv_fps_case": 10170.545876606782,
+    "fps_units": 10170.545876606782,
+    "boeing_dlv_do_nothing": 6156.0,
+    "new_demand": 20995.2112203,
+    "pv_profit_gain": 6.886572603055743
+   }
+  },
+  "bridge_delta": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -7.223101413890463,
+   "supply_plan": 0.7413945042872855
+  }
+ },
+ "_k1_check": 0.0
+}
