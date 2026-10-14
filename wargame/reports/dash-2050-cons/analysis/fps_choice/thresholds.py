@@ -257,6 +257,20 @@ def main():
                 later.append({"round": n, "year": L.RP.jl("record_r%d.json" % n)["year"], "site": site, "columns": g["scenarios"],
                               "items": items, "best": max(items), "worst": min(items)})
     out["later_rounds"] = later
+    # Boeing's other 2030 tests: fundable (net debt held in the stress case) for each plan in each column, and the
+    # 787 Re-engine's item values (its downside), from the brief's own cells
+    fund = {}
+    for key, plan in (("renton", L.PLAN_REN), ("new_site", L.PLAN_NEW), ("do_nothing", L.PLAN_DN)):
+        cols = []
+        for st, cv in L.grid_states(plan):
+            v = M.value(st, covert=cv, series=True)
+            m = L.B.plan_metrics("boeing", st, v, cv)
+            cols.append({"held_ok": m["held_ok"], "stress_ok": m["stress_ok"], "stress_peak": m["stress_peak"]})
+        fund[key] = cols
+    out["fundable"] = fund
+    out["re787"] = {"items": L.grid_items(L.PLAN_787)[0]}
+    print("fundable renton", [(c["stress_ok"], round(c["stress_peak"], 2)) for c in fund["renton"]])
+    print("787 items", [round(x, 2) for x in out["re787"]["items"]])
     json.dump(out, open(os.path.join(HERE, "thresholds.json"), "w"), indent=1, default=str)
     print("wrote thresholds.json")
 

@@ -1534,5 +1534,113 @@
    "best": -0.9532193691614013,
    "worst": -1.0129438751209494
   }
- ]
+ ],
+ "fundable": {
+  "renton": [
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   }
+  ],
+  "new_site": [
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   }
+  ],
+  "do_nothing": [
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   },
+   {
+    "held_ok": true,
+    "stress_ok": true,
+    "stress_peak": 0.0
+   }
+  ]
+ },
+ "re787": {
+  "items": [
+   3.3009188558124447,
+   3.3009188558124447,
+   3.3009188558124447,
+   -2.4776265490947473,
+   -2.4776265490947473,
+   3.3009188558124447
+  ]
+ }
 }
