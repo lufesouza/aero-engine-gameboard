@@ -1,0 +1,319 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Narrowbody Share Assumptions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f6f9; --surface: #ffffff; --sunk: #eef2f7; --line: #d5dce6; --grid: #e3e8ef;
+  --fg: #141c28; --muted: #556275; --faint: #8a95a5;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #17a06f;
+  --pos: #3b4a5e; --neg: #8792a3;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 8px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --pos: #c9d3e0; --neg: #5d6a7c; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --pos: #c9d3e0; --neg: #5d6a7c; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font-body); }
+a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 2px; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px 56px; }
+header.top { padding: 34px 0 10px; }
+.eyebrow { font: 500 .74rem/1.4 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(2.1rem, 5vw, 3.2rem)/1.02 var(--font-display); margin: 10px 0 12px; letter-spacing: .01em; }
+h2 { font: 700 1.9rem/1.1 var(--font-display); margin: 0 0 10px; }
+h3 { font: 600 1.3rem/1.2 var(--font-display); margin: 0 0 8px; letter-spacing: .02em; }
+p { margin: 0 0 10px; }
+.lede { font-size: 1.08rem; max-width: 80ch; }
+.muted { color: var(--muted); } .small { font-size: .86rem; }
+.nw { white-space: nowrap; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 6px; font-size: .9rem; }
+nav.toc a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+nav.toc a:hover { color: var(--fg); }
+section { margin-top: 44px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; }
+.stack > * + * { margin-top: 14px; }
+.label { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.ctitle { font: 600 1.05rem/1.3 var(--font-body); margin: 0 0 4px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(196px, 1fr)); gap: 12px; margin-top: 18px; }
+.tile .k { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tile .v { font: 600 1.45rem/1.2 var(--font-body); margin: 6px 0 4px; letter-spacing: -.01em; text-wrap: balance; }
+.tile .d { font-size: .86rem; color: var(--muted); line-height: 1.4; }
+.gloss { margin-top: 12px; font-size: .88rem; color: var(--muted); max-width: 110ch; }
+.gloss b { color: var(--fg); font-weight: 600; }
+.bl { display: grid; gap: 10px; margin-top: 14px; counter-reset: bl; }
+.bl .panel { display: grid; grid-template-columns: 34px 1fr; gap: 4px 12px; }
+.bl .panel::before { counter-increment: bl; content: counter(bl); font: 700 1.5rem/1 var(--font-display); color: var(--muted); }
+.bl b { display: block; font: 600 1.15rem/1.25 var(--font-display); letter-spacing: .02em; margin-bottom: 2px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid2 > * { min-width: 0; }
+.cw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.only-narrow { display: none; }
+.chart .grid { stroke: var(--grid); } .chart .zero { stroke: var(--muted); }
+.chart .ref { stroke: var(--muted); stroke-width: 1; }
+.chart .reflab { fill: var(--muted); font: 500 11px var(--font-mono); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.chart .tick { fill: var(--muted); font: 11px var(--font-mono); }
+.chart .tick.strong { fill: var(--fg); font-weight: 600; }
+.chart .rowlab { fill: var(--fg); font: 600 14px var(--font-body); }
+.chart .rowlab.sm { font: 500 12.5px var(--font-body); }
+.chart .rowlab.strong { font-weight: 700; }
+.chart .grp { fill: var(--muted); font: 500 10.5px var(--font-mono); letter-spacing: .1em; }
+.chart .val { fill: var(--fg); font: 500 12.5px var(--font-mono); paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; }
+.chart .val.muted { fill: var(--muted); }
+.chart .val.sm { font-size: 11px; }
+.chart .ann { fill: var(--muted); font: 600 11px var(--font-mono); letter-spacing: .04em; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.chart .zlab { fill: var(--muted); font: 500 11px var(--font-mono); }
+.chart .zone { fill: var(--sunk); }
+.chart .endlab { fill: var(--fg); font: 500 12px var(--font-mono); }
+.chart .leader { stroke: var(--faint); stroke-width: 1; }
+.chart .bracket { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+.chart .b.pos { fill: var(--pos); } .chart .b.neg { fill: var(--neg); } .chart .b.t41 { fill: var(--s1); } .chart .b.t44 { fill: var(--s2); }
+.chart .b.hl { stroke: var(--fg); stroke-width: 1.5; }
+.chart .eqy { fill: var(--fg); } .chart .eqn { fill: none; stroke: var(--faint); stroke-width: 1.5; }
+.chart .ring { stroke: var(--surface); stroke-width: 2; }
+.chart .mark { fill: none; stroke: var(--fg); stroke-width: 1.5; }
+.chart .hollow { fill: var(--surface); stroke: var(--fg); stroke-width: 2; }
+.chart .filled { fill: var(--fg); stroke: var(--surface); stroke-width: 2; }
+.chart .conn { stroke: var(--faint); stroke-width: 2; }
+.chart .hit, .chart .xhit { fill: transparent; }
+.chart .hit:hover { fill: var(--fg); fill-opacity: .05; }
+.chart .hit:focus { outline: none; }
+.chart .hit:focus-visible { fill: var(--fg); fill-opacity: .08; stroke: var(--fg); stroke-width: 1.5; }
+.chart .cross { stroke: var(--muted); stroke-width: 1; }
+.chart.xh:focus { outline: none; }
+.chart.xh:focus-visible { outline: none; }
+.cw:has(> .chart.xh:focus-visible) { outline: 2px solid var(--fg); outline-offset: 2px; border-radius: 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .85rem; color: var(--muted); margin: 6px 0 6px; }
+.legend i { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.legend i.ln { width: 16px; height: 2px; border-radius: 1px; }
+.legend i.sq { width: 11px; height: 11px; border-radius: 3px; }
+.legend i.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--fg); }
+.legend i.ring { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--fg); }
+.legend i.ringf { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--faint); }
+.legend i.bar { width: 14px; height: 10px; border-radius: 2px; }
+.cap { font-size: .88rem; color: var(--muted); margin: 8px 0 0; }
+.cap b { color: var(--fg); }
+.tip { position: fixed; z-index: 20; pointer-events: none; display: none; max-width: 320px; background: var(--surface); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: .82rem; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+.tip div { display: flex; align-items: baseline; gap: 6px; line-height: 1.35; }
+.tip b { font: 600 .86rem var(--font-mono); white-space: nowrap; }
+.tip span.l { color: var(--muted); flex: 1 1 auto; min-width: 0; }
+.tip .k { display: inline-block; width: 12px; height: 2px; border-radius: 1px; flex: none; align-self: center; }
+.tip .yr { font: 600 .78rem var(--font-mono); color: var(--muted); margin-bottom: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+details.tv { margin-top: 8px; font-size: .88rem; }
+details.tv summary { cursor: pointer; color: var(--muted); }
+details.tv table { margin-top: 8px; }
+.loop { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; margin: 12px 0 6px; padding: 0; list-style: none; counter-reset: lp; }
+.loop li { flex: 1 1 150px; border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; background: var(--sunk); font-size: .9rem; }
+.loop li::before { counter-increment: lp; content: counter(lp); font: 600 .78rem var(--font-mono); color: var(--muted); display: block; }
+.zkey { margin: 8px 0 0; padding-left: 20px; font-size: .86rem; color: var(--muted); }
+.loop li.back { background: var(--surface); border-style: dashed; color: var(--muted); }
+.dcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; }
+.dcard h3 { margin-bottom: 10px; }
+.dcard p { font-size: .9rem; }
+ul.probs { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 5px; }
+ul.probs li { display: grid; grid-template-columns: minmax(0, 1fr) 90px 38px; gap: 8px; align-items: center; font-size: .88rem; }
+ul.probs li.top .ol { font-weight: 600; }
+.pb { height: 8px; background: var(--sunk); border-radius: 2px; overflow: hidden; }
+.pf { display: block; height: 100%; background: var(--pos); border-radius: 0 2px 2px 0; }
+.pv { font: 500 .82rem var(--font-mono); text-align: right; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: .92rem; }
+thead th { font: 500 .72rem/1.25 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--sunk); vertical-align: bottom; }
+thead th:first-child { border-top-left-radius: var(--r); } thead th:last-child { border-top-right-radius: var(--r); }
+thead th.n { text-align: right; }
+tbody th { font-weight: 500; }
+td.n { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tbody tr:last-child > * { border-bottom: 0; }
+.callout { border-left: 4px solid var(--fg); }
+ul.cav { margin: 0; padding-left: 18px; } ul.cav li { margin-bottom: 6px; }
+.facts { margin: 0; padding-left: 18px; } .facts li { margin-bottom: 4px; }
+.src { columns: 2 300px; column-gap: 28px; font-size: .86rem; }
+.src h3 { font-size: 1.05rem; margin: 0 0 4px; break-after: avoid; }
+.src ul { margin: 0 0 12px; padding-left: 18px; break-inside: avoid; } .src li { margin-bottom: 3px; }
+.lede, .bl .panel, .dcard p, .facts li, ul.cav li, .cap, .gloss { text-wrap: pretty; }
+footer { margin-top: 40px; font-size: .82rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px 48px; }
+  .grid2, .dcards { grid-template-columns: 1fr; }
+  .panel { padding: 14px; }
+  .only-wide { display: none; } .only-narrow { display: block; }
+  .chart { min-width: 620px; } .chart.narrow { min-width: 0; }
+  ul.probs li { grid-template-columns: minmax(0, 1fr) 60px 36px; }
+  .chart .tick, .chart .reflab, .chart .ann { font-size: 13px; }
+  .chart .val, .chart .endlab, .chart .rowlab.sm { font-size: 14px; }
+  .chart .grp { font-size: 12px; } .chart .val.sm { font-size: 12.5px; }
+  .chart.narrow .tick { font-size: 12px; } .chart.narrow .val, .chart.narrow .rowlab.sm { font-size: 13px; }
+  th, td { padding: 7px 6px; font-size: .86rem; }
+  thead th { white-space: normal; letter-spacing: .02em; }
+  tbody th { min-width: 7rem; }
+}
+@media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: no-preference) { a { transition: color .15s; } }
+
+p, li, footer, td { overflow-wrap: break-word; }
+.tiles { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+</style></head><body><div class="wrap">
+<header class="top"><p class="eyebrow">Boeing Product Development · supply-and-demand war game (dash-2050-sd) · BOEING PROPRIETARY</p>
+<h1>Narrowbody market shares: Do Nothing and fps</h1>
+<p class="lede">The fps business case rests on two shares. The first is an assumption: the share of new 737/A320-class orders
+customers want to give Boeing, set by the dashboard's share rule. The second is the outcome: Boeing's share of what is actually
+delivered, once the game has served the firm backlog and limited each maker to what it can build. With Do Nothing, customers'
+preference for Boeing falls to 20%, but Boeing still delivers 36% of the market, because Airbus cannot build
+the rest. With the fps, preference recovers to 47% and deliveries follow it. Both cases: Airbus's 2030 orders as played
+(NGSA in service 2037, A320 Alt plan); the fps launched in 2030, in service 2040, at Renton.</p>
+<nav class="toc"><a href="#pref">The assumption</a><a href="#rule">The rule</a><a href="#delivered">The outcome</a><a href="#table">Year by year</a><a href="#notes">Notes</a></nav></header>
+
+<section style="margin-top:22px"><div class="tiles"><div class="panel tile"><div class="k">Customers prefer Boeing, Do Nothing</div><div class="v">20%</div><div class="d">From 2043: NGSA alone takes Airbus to its 80% cap.</div></div><div class="panel tile"><div class="k">Customers prefer Boeing, fps</div><div class="v">47%</div><div class="d">From 2049: the 50/50 balance point less NGSA&#x27;s 3-year lead.</div></div><div class="panel tile"><div class="k">Boeing delivers, Do Nothing</div><div class="v">36%</div><div class="d">From 2046: Airbus cannot build 80% of the market, so its overflow buys 737 MAX (29%-38% in 2038-2045).</div></div><div class="panel tile"><div class="k">Boeing delivers, fps</div><div class="v">48%</div><div class="d">In 2050: 1,095 aircraft against 684 with Do Nothing.</div></div></div></section>
+
+<section id="pref"><h2>The assumption: customer preference</h2><p class="lede">Until a new narrowbody enters service,
+customers split 40/60 between Boeing and Airbus. NGSA enters service in 2037. With Do Nothing, Airbus then gains 3 points a
+year until it holds 80%. With the fps, Airbus gains only 1 point a year while NGSA is alone, and from 2040 Boeing wins back
+1 point a year until it reaches 47% in 2049.</p><div class="stack">
+<div class="panel"><p class="ctitle">Customers' preference for Boeing falls to 20% with Do Nothing and recovers to 47% with the fps</p>
+<div class="legend"><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s1)" stroke-width="2"/></svg>fps</span><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s2)" stroke-width="2"/></svg>Do Nothing</span></div><div class="cw"><svg viewBox="0 0 760 346" class="chart xh" role="img" aria-label="Boeing customer-preference share, fps against Do Nothing. Use the arrow keys to read values by year." tabindex="0"><line x1="58" x2="588" y1="300.0" y2="300.0" class="grid"/><text x="50" y="304.0" text-anchor="end" class="tick">0%</text><line x1="58" x2="588" y1="254.3" y2="254.3" class="grid"/><text x="50" y="258.3" text-anchor="end" class="tick">10%</text><line x1="58" x2="588" y1="208.7" y2="208.7" class="grid"/><text x="50" y="212.7" text-anchor="end" class="tick">20%</text><line x1="58" x2="588" y1="163.0" y2="163.0" class="grid"/><text x="50" y="167.0" text-anchor="end" class="tick">30%</text><line x1="58" x2="588" y1="117.3" y2="117.3" class="grid"/><text x="50" y="121.3" text-anchor="end" class="tick">40%</text><line x1="58" x2="588" y1="71.7" y2="71.7" class="grid"/><text x="50" y="75.7" text-anchor="end" class="tick">50%</text><line x1="58" x2="588" y1="26.0" y2="26.0" class="grid"/><text x="50" y="30.0" text-anchor="end" class="tick">60%</text><text x="120.4" y="318" text-anchor="middle" class="tick">2030</text><text x="198.3" y="318" text-anchor="middle" class="tick">2035</text><text x="276.2" y="318" text-anchor="middle" class="tick">2040</text><text x="354.2" y="318" text-anchor="middle" class="tick">2045</text><text x="432.1" y="318" text-anchor="middle" class="tick">2050</text><text x="510.1" y="318" text-anchor="middle" class="tick">2055</text><text x="588.0" y="318" text-anchor="middle" class="tick">2060</text><line x1="229.5" x2="229.5" y1="26" y2="300" class="leader"/><text x="234.5" y="37" class="ann">NGSA</text><line x1="276.2" x2="276.2" y1="26" y2="300" class="leader"/><text x="281.2" y="37" class="ann">fps</text><path d="M58.0,117.3 L73.6,117.3 L89.2,117.3 L104.8,117.3 L120.4,117.3 L135.9,117.3 L151.5,117.3 L167.1,117.3 L182.7,117.3 L198.3,117.3 L213.9,117.3 L229.5,121.9 L245.1,126.5 L260.6,131.0 L276.2,126.5 L291.8,121.9 L307.4,117.3 L323.0,112.8 L338.6,108.2 L354.2,103.6 L369.8,99.1 L385.4,94.5 L400.9,89.9 L416.5,85.4 L432.1,85.4 L447.7,85.4 L463.3,85.4 L478.9,85.4 L494.5,85.4 L510.1,85.4 L525.6,85.4 L541.2,85.4 L556.8,85.4 L572.4,85.4 L588.0,85.4" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,117.3 L73.6,117.3 L89.2,117.3 L104.8,117.3 L120.4,117.3 L135.9,117.3 L151.5,117.3 L167.1,117.3 L182.7,117.3 L198.3,117.3 L213.9,117.3 L229.5,131.0 L245.1,144.7 L260.6,158.4 L276.2,172.1 L291.8,185.8 L307.4,199.5 L323.0,208.7 L338.6,208.7 L354.2,208.7 L369.8,208.7 L385.4,208.7 L400.9,208.7 L416.5,208.7 L432.1,208.7 L447.7,208.7 L463.3,208.7 L478.9,208.7 L494.5,208.7 L510.1,208.7 L525.6,208.7 L541.2,208.7 L556.8,208.7 L572.4,208.7 L588.0,208.7" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="588.0" cy="85.4" r="4" fill="var(--s1)" class="ring"/><text x="596" y="89.4" class="endlab">fps 47%</text><circle cx="588.0" cy="208.7" r="4" fill="var(--s2)" class="ring"/><text x="596" y="212.7" class="endlab">Do Nothing 20%</text><line class="cross" x1="0" x2="0" y1="26" y2="300" visibility="hidden"/><rect x="58" y="26" width="530" height="274" class="xhit" data-cross="{&quot;x0&quot;: 58, &quot;x1&quot;: 588, &quot;xlo&quot;: 2026, &quot;xhi&quot;: 2060, &quot;w&quot;: 760, &quot;fmt&quot;: &quot;pct&quot;, &quot;years&quot;: [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060], &quot;series&quot;: [{&quot;name&quot;: &quot;fps&quot;, &quot;k&quot;: &quot;var(--s1)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.4, &quot;2027&quot;: 0.4, &quot;2028&quot;: 0.4, &quot;2029&quot;: 0.4, &quot;2030&quot;: 0.4, &quot;2031&quot;: 0.4, &quot;2032&quot;: 0.4, &quot;2033&quot;: 0.4, &quot;2034&quot;: 0.4, &quot;2035&quot;: 0.4, &quot;2036&quot;: 0.4, &quot;2037&quot;: 0.39, &quot;2038&quot;: 0.38, &quot;2039&quot;: 0.37, &quot;2040&quot;: 0.38, &quot;2041&quot;: 0.39, &quot;2042&quot;: 0.4, &quot;2043&quot;: 0.41, &quot;2044&quot;: 0.42, &quot;2045&quot;: 0.43, &quot;2046&quot;: 0.44, &quot;2047&quot;: 0.45, &quot;2048&quot;: 0.45999999999999996, &quot;2049&quot;: 0.47, &quot;2050&quot;: 0.47, &quot;2051&quot;: 0.47, &quot;2052&quot;: 0.47, &quot;2053&quot;: 0.47, &quot;2054&quot;: 0.47, &quot;2055&quot;: 0.47, &quot;2056&quot;: 0.47, &quot;2057&quot;: 0.47, &quot;2058&quot;: 0.47, &quot;2059&quot;: 0.47, &quot;2060&quot;: 0.47}}, {&quot;name&quot;: &quot;Do Nothing&quot;, &quot;k&quot;: &quot;var(--s2)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.4, &quot;2027&quot;: 0.4, &quot;2028&quot;: 0.4, &quot;2029&quot;: 0.4, &quot;2030&quot;: 0.4, &quot;2031&quot;: 0.4, &quot;2032&quot;: 0.4, &quot;2033&quot;: 0.4, &quot;2034&quot;: 0.4, &quot;2035&quot;: 0.4, &quot;2036&quot;: 0.4, &quot;2037&quot;: 0.37, &quot;2038&quot;: 0.3400000000000001, &quot;2039&quot;: 0.31000000000000005, &quot;2040&quot;: 0.28, &quot;2041&quot;: 0.25, &quot;2042&quot;: 0.21999999999999997, &quot;2043&quot;: 0.19999999999999996, &quot;2044&quot;: 0.19999999999999996, &quot;2045&quot;: 0.19999999999999996, &quot;2046&quot;: 0.19999999999999996, &quot;2047&quot;: 0.19999999999999996, &quot;2048&quot;: 0.19999999999999996, &quot;2049&quot;: 0.19999999999999996, &quot;2050&quot;: 0.19999999999999996, &quot;2051&quot;: 0.19999999999999996, &quot;2052&quot;: 0.19999999999999996, &quot;2053&quot;: 0.19999999999999996, &quot;2054&quot;: 0.19999999999999996, &quot;2055&quot;: 0.19999999999999996, &quot;2056&quot;: 0.19999999999999996, &quot;2057&quot;: 0.19999999999999996, &quot;2058&quot;: 0.19999999999999996, &quot;2059&quot;: 0.19999999999999996, &quot;2060&quot;: 0.19999999999999996}}]}"/><text x="58" y="341" class="tick">Boeing share of new 737/A320-class orders customers want (Airbus has the rest)</text></svg></div>
+<p class="cap">Vertical lines: NGSA enters service in 2037, the fps in 2040. Status quo 40%. The two cases part in 2037, three years before the fps flies: the fps case is
+2, 4, 6 points ahead in 2037-2039 only because an fps has been launched.</p></div>
+</div></section>
+
+<section id="rule"><h2>The rule behind it</h2><p class="lede">The dashboard's share rule (board v3), with this game's settings. Only Boeing's
+share is shown; Airbus has the rest. No other share moves apply in either case: no 737 rate increase and no Delay Tactics.</p>
+<div class="stack"><div class="panel"><div class="scroll"><table><thead><tr><th scope="col">Year</th><th scope="col">Do Nothing (only Airbus launches)</th><th scope="col">fps (both launch, NGSA 3 years first)</th></tr></thead><tbody><tr><th scope="row">2026–2036</th><td><b>40%</b> · status quo</td><td><b>40%</b> · status quo</td></tr><tr><th scope="row">2037</th><td><b>37%</b> · NGSA alone in service: Airbus +3 points a year (1 × 3)</td><td><b>39%</b> · NGSA leads: Airbus +1 point a year of lead (1 × 1)</td></tr><tr><th scope="row">2038</th><td><b>34%</b> · NGSA alone in service: Airbus +3 points a year (2 × 3)</td><td><b>38%</b> · NGSA leads: Airbus +1 point a year of lead (2 × 1)</td></tr><tr><th scope="row">2039</th><td><b>31%</b> · NGSA alone in service: Airbus +3 points a year (3 × 3)</td><td><b>37%</b> · NGSA leads: Airbus +1 point a year of lead (3 × 1)</td></tr><tr><th scope="row">2040</th><td><b>28%</b> · NGSA alone in service: Airbus +3 points a year (4 × 3)</td><td><b>38%</b> · fps in service: Boeing +1 point a year from 37% (1 × 1)</td></tr><tr><th scope="row">2041</th><td><b>25%</b> · NGSA alone in service: Airbus +3 points a year (5 × 3)</td><td><b>39%</b> · fps in service: Boeing +1 point a year from 37% (2 × 1)</td></tr><tr><th scope="row">2042</th><td><b>22%</b> · NGSA alone in service: Airbus +3 points a year (6 × 3)</td><td><b>40%</b> · fps in service: Boeing +1 point a year from 37% (3 × 1)</td></tr><tr><th scope="row">2043</th><td><b>20%</b> · Airbus at its 80% cap</td><td><b>41%</b> · fps in service: Boeing +1 point a year from 37% (4 × 1)</td></tr><tr><th scope="row">2048</th><td><b>20%</b> · Airbus at its 80% cap</td><td><b>46%</b> · fps in service: Boeing +1 point a year from 37% (9 × 1)</td></tr><tr><th scope="row">2049</th><td><b>20%</b> · Airbus at its 80% cap</td><td><b>47%</b> · long-run split reached: 50% less 1 point × 3 years of NGSA lead</td></tr><tr><th scope="row">2060+</th><td><b>20%</b> · Airbus at its 80% cap</td><td><b>47%</b> · long-run split reached: 50% less 1 point × 3 years of NGSA lead</td></tr></tbody></table></div></div>
+<div class="panel"><p class="label">Settings and where they come from</p><ul class="cav">
+<li><b>Status quo: Boeing 40%, Airbus 60%</b> until the first new narrowbody enters service. Dashboard constant.</li>
+<li><b>One new narrowbody alone: +3 points a year to 80%.</b> Fixed in the dashboard, not a slider. Here NGSA alone: Boeing 37% in 2037, falling to 20% from 2043.</li>
+<li><b>Both launch: the leader's edge, 1 point a year of lead</b> (slider "NB edge per year of EIS lead", 1.0). While NGSA is alone in service, Airbus gains 1 point a year: Boeing 39%, 38%, 37% in 2037-2039.</li>
+<li><b>Long-run split: the balance point less the leader's edge.</b> Balance point 50/50 (slider "post-2037 NB market share when both launch"), shifted
+1 point per year of lead toward the first new narrowbody in service: 50% − 1 × 3 = 47% for Boeing.</li>
+<li><b>Recovery speed: 1 point a year</b> (slider "fps capture speed", 10-year option, 1.0): Boeing climbs from 37% in 2039 to 47% in 2049.</li>
+</ul><p class="cap">Source: board v3 (combined_dash.py, the unified narrowbody share rule) and the Game v3 snapshot. The dashboard alone sells
+these shares of a fixed 2,000 aircraft a year; the game uses them to split real demand.</p></div></div></section>
+
+<section id="delivered"><h2>The outcome: what Boeing delivers</h2><p class="lede">The supply-and-demand layer turns preference into
+deliveries. Each year the firm backlog is delivered first (737 MAX 4,769, A320neo family
+7,330 at the start). New demand (replacement plus fleet growth, 752
+aircraft in 2030 and 2,307 in 2050) is split by preference. Each maker delivers what it can build:
+48.7% of customers it cannot serve take the other maker's free slots, and 10%
+of those still waiting drop out each year.</p><div class="stack">
+<div class="panel"><p class="ctitle">Do Nothing: customers want 20% Boeing, but Boeing delivers 36%</p>
+<div class="legend"><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s2)" stroke-width="2"/></svg>Delivered share</span><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s2)" stroke-width="2" stroke-dasharray="6 4"/></svg>Preferred share</span></div><div class="cw"><svg viewBox="0 0 760 346" class="chart xh" role="img" aria-label="Boeing preferred and delivered share, Do Nothing. Use the arrow keys to read values by year." tabindex="0"><line x1="58" x2="588" y1="300.0" y2="300.0" class="grid"/><text x="50" y="304.0" text-anchor="end" class="tick">0%</text><line x1="58" x2="588" y1="254.3" y2="254.3" class="grid"/><text x="50" y="258.3" text-anchor="end" class="tick">10%</text><line x1="58" x2="588" y1="208.7" y2="208.7" class="grid"/><text x="50" y="212.7" text-anchor="end" class="tick">20%</text><line x1="58" x2="588" y1="163.0" y2="163.0" class="grid"/><text x="50" y="167.0" text-anchor="end" class="tick">30%</text><line x1="58" x2="588" y1="117.3" y2="117.3" class="grid"/><text x="50" y="121.3" text-anchor="end" class="tick">40%</text><line x1="58" x2="588" y1="71.7" y2="71.7" class="grid"/><text x="50" y="75.7" text-anchor="end" class="tick">50%</text><line x1="58" x2="588" y1="26.0" y2="26.0" class="grid"/><text x="50" y="30.0" text-anchor="end" class="tick">60%</text><text x="120.4" y="318" text-anchor="middle" class="tick">2030</text><text x="198.3" y="318" text-anchor="middle" class="tick">2035</text><text x="276.2" y="318" text-anchor="middle" class="tick">2040</text><text x="354.2" y="318" text-anchor="middle" class="tick">2045</text><text x="432.1" y="318" text-anchor="middle" class="tick">2050</text><text x="510.1" y="318" text-anchor="middle" class="tick">2055</text><text x="588.0" y="318" text-anchor="middle" class="tick">2060</text><line x1="229.5" x2="229.5" y1="26" y2="300" class="leader"/><text x="234.5" y="37" class="ann">NGSA</text><path d="M58.0,147.8 L73.6,131.9 L89.2,126.7 L104.8,121.6 L120.4,116.7 L135.9,116.7 L151.5,116.7 L167.1,116.7 L182.7,116.7 L198.3,116.7 L213.9,116.7 L229.5,105.9 L245.1,138.9 L260.6,135.0 L276.2,126.9 L291.8,159.6 L307.4,164.6 L323.0,158.4 L338.6,167.6 L354.2,152.5 L369.8,134.7 L385.4,134.2 L400.9,134.2 L416.5,134.2 L432.1,134.2 L447.7,134.2 L463.3,134.2 L478.9,134.2 L494.5,134.2 L510.1,134.2 L525.6,134.2 L541.2,134.2 L556.8,134.2 L572.4,134.2 L588.0,134.2" fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,117.3 L73.6,117.3 L89.2,117.3 L104.8,117.3 L120.4,117.3 L135.9,117.3 L151.5,117.3 L167.1,117.3 L182.7,117.3 L198.3,117.3 L213.9,117.3 L229.5,131.0 L245.1,144.7 L260.6,158.4 L276.2,172.1 L291.8,185.8 L307.4,199.5 L323.0,208.7 L338.6,208.7 L354.2,208.7 L369.8,208.7 L385.4,208.7 L400.9,208.7 L416.5,208.7 L432.1,208.7 L447.7,208.7 L463.3,208.7 L478.9,208.7 L494.5,208.7 L510.1,208.7 L525.6,208.7 L541.2,208.7 L556.8,208.7 L572.4,208.7 L588.0,208.7" fill="none" stroke="var(--s2)" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="588.0" cy="134.2" r="4" fill="var(--s2)" class="ring"/><text x="596" y="138.2" class="endlab">Delivered 36%</text><circle cx="588.0" cy="208.7" r="4" fill="var(--s2)" class="ring"/><text x="596" y="212.7" class="endlab">Preferred 20%</text><line class="cross" x1="0" x2="0" y1="26" y2="300" visibility="hidden"/><rect x="58" y="26" width="530" height="274" class="xhit" data-cross="{&quot;x0&quot;: 58, &quot;x1&quot;: 588, &quot;xlo&quot;: 2026, &quot;xhi&quot;: 2060, &quot;w&quot;: 760, &quot;fmt&quot;: &quot;pct&quot;, &quot;years&quot;: [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060], &quot;series&quot;: [{&quot;name&quot;: &quot;Delivered&quot;, &quot;k&quot;: &quot;var(--s2)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.3333333333333333, &quot;2027&quot;: 0.3680297397769517, &quot;2028&quot;: 0.3795620437956204, &quot;2029&quot;: 0.3906810035842294, &quot;2030&quot;: 0.4014084507042254, &quot;2031&quot;: 0.4014084507042254, &quot;2032&quot;: 0.4014084507042254, &quot;2033&quot;: 0.4014084507042254, &quot;2034&quot;: 0.4014084507042254, &quot;2035&quot;: 0.4014084507042254, &quot;2036&quot;: 0.4014084507042254, &quot;2037&quot;: 0.42493674402356735, &quot;2038&quot;: 0.35273757207147843, &quot;2039&quot;: 0.36130412546950574, &quot;2040&quot;: 0.3790847439095004, &quot;2041&quot;: 0.3074288342656629, &quot;2042&quot;: 0.29655364418135993, &quot;2043&quot;: 0.310080677330539, &quot;2044&quot;: 0.2899635505360108, &quot;2045&quot;: 0.3229958363349712, &quot;2046&quot;: 0.361915243490922, &quot;2047&quot;: 0.3630573248407643, &quot;2048&quot;: 0.3630573248407643, &quot;2049&quot;: 0.3630573248407643, &quot;2050&quot;: 0.3630573248407643, &quot;2051&quot;: 0.3630573248407643, &quot;2052&quot;: 0.3630573248407643, &quot;2053&quot;: 0.3630573248407643, &quot;2054&quot;: 0.3630573248407643, &quot;2055&quot;: 0.3630573248407643, &quot;2056&quot;: 0.3630573248407643, &quot;2057&quot;: 0.3630573248407643, &quot;2058&quot;: 0.3630573248407643, &quot;2059&quot;: 0.3630573248407643, &quot;2060&quot;: 0.3630573248407643}}, {&quot;name&quot;: &quot;Preferred&quot;, &quot;k&quot;: &quot;var(--s2)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.4, &quot;2027&quot;: 0.4, &quot;2028&quot;: 0.4, &quot;2029&quot;: 0.4, &quot;2030&quot;: 0.4, &quot;2031&quot;: 0.4, &quot;2032&quot;: 0.4, &quot;2033&quot;: 0.4, &quot;2034&quot;: 0.4, &quot;2035&quot;: 0.4, &quot;2036&quot;: 0.4, &quot;2037&quot;: 0.37, &quot;2038&quot;: 0.3400000000000001, &quot;2039&quot;: 0.31000000000000005, &quot;2040&quot;: 0.28, &quot;2041&quot;: 0.25, &quot;2042&quot;: 0.21999999999999997, &quot;2043&quot;: 0.19999999999999996, &quot;2044&quot;: 0.19999999999999996, &quot;2045&quot;: 0.19999999999999996, &quot;2046&quot;: 0.19999999999999996, &quot;2047&quot;: 0.19999999999999996, &quot;2048&quot;: 0.19999999999999996, &quot;2049&quot;: 0.19999999999999996, &quot;2050&quot;: 0.19999999999999996, &quot;2051&quot;: 0.19999999999999996, &quot;2052&quot;: 0.19999999999999996, &quot;2053&quot;: 0.19999999999999996, &quot;2054&quot;: 0.19999999999999996, &quot;2055&quot;: 0.19999999999999996, &quot;2056&quot;: 0.19999999999999996, &quot;2057&quot;: 0.19999999999999996, &quot;2058&quot;: 0.19999999999999996, &quot;2059&quot;: 0.19999999999999996, &quot;2060&quot;: 0.19999999999999996}}]}"/><text x="58" y="341" class="tick">Boeing share of 737/A320-class orders (dashed) and deliveries (solid)</text></svg></div>
+<p class="cap">From 2038 Airbus sells all it can build: 807-843 a year in 2038-2040 while it switches from the A320 to NGSA, and at most
+1,200 a year from 2046 (NGSA at 100 a month). Customers want
+1,845 Airbus aircraft in 2050, so 223 of them buy 737 MAX instead and 125 drop out.
+Boeing sells all 684 MAX it can build from 2047. Before 2037 both makers sell out, so delivered shares follow capacity, not preference;
+the 2037 peak is the last 241 customers who had been waiting for a 737 MAX.</p></div>
+<div class="panel"><p class="ctitle">fps: deliveries follow preference once the fps is at rate</p>
+<div class="legend"><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s1)" stroke-width="2"/></svg>Delivered share</span><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s1)" stroke-width="2" stroke-dasharray="6 4"/></svg>Preferred share</span></div><div class="cw"><svg viewBox="0 0 760 346" class="chart xh" role="img" aria-label="Boeing preferred and delivered share, fps. Use the arrow keys to read values by year." tabindex="0"><line x1="58" x2="588" y1="300.0" y2="300.0" class="grid"/><text x="50" y="304.0" text-anchor="end" class="tick">0%</text><line x1="58" x2="588" y1="254.3" y2="254.3" class="grid"/><text x="50" y="258.3" text-anchor="end" class="tick">10%</text><line x1="58" x2="588" y1="208.7" y2="208.7" class="grid"/><text x="50" y="212.7" text-anchor="end" class="tick">20%</text><line x1="58" x2="588" y1="163.0" y2="163.0" class="grid"/><text x="50" y="167.0" text-anchor="end" class="tick">30%</text><line x1="58" x2="588" y1="117.3" y2="117.3" class="grid"/><text x="50" y="121.3" text-anchor="end" class="tick">40%</text><line x1="58" x2="588" y1="71.7" y2="71.7" class="grid"/><text x="50" y="75.7" text-anchor="end" class="tick">50%</text><line x1="58" x2="588" y1="26.0" y2="26.0" class="grid"/><text x="50" y="30.0" text-anchor="end" class="tick">60%</text><text x="120.4" y="318" text-anchor="middle" class="tick">2030</text><text x="198.3" y="318" text-anchor="middle" class="tick">2035</text><text x="276.2" y="318" text-anchor="middle" class="tick">2040</text><text x="354.2" y="318" text-anchor="middle" class="tick">2045</text><text x="432.1" y="318" text-anchor="middle" class="tick">2050</text><text x="510.1" y="318" text-anchor="middle" class="tick">2055</text><text x="588.0" y="318" text-anchor="middle" class="tick">2060</text><line x1="229.5" x2="229.5" y1="26" y2="300" class="leader"/><text x="234.5" y="37" class="ann">NGSA</text><line x1="276.2" x2="276.2" y1="26" y2="300" class="leader"/><text x="281.2" y="37" class="ann">fps</text><path d="M58.0,147.8 L73.6,131.9 L89.2,126.7 L104.8,121.6 L120.4,116.7 L135.9,116.7 L151.5,116.7 L167.1,116.7 L182.7,116.7 L198.3,116.7 L213.9,116.7 L229.5,102.1 L245.1,125.1 L260.6,127.2 L276.2,116.3 L291.8,143.6 L307.4,138.7 L323.0,141.9 L338.6,110.1 L354.2,99.2 L369.8,99.1 L385.4,94.5 L400.9,89.9 L416.5,85.4 L432.1,82.1 L447.7,78.5 L463.3,76.2 L478.9,74.9 L494.5,75.1 L510.1,76.2 L525.6,77.7 L541.2,79.9 L556.8,82.8 L572.4,85.9 L588.0,85.7" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,117.3 L73.6,117.3 L89.2,117.3 L104.8,117.3 L120.4,117.3 L135.9,117.3 L151.5,117.3 L167.1,117.3 L182.7,117.3 L198.3,117.3 L213.9,117.3 L229.5,121.9 L245.1,126.5 L260.6,131.0 L276.2,126.5 L291.8,121.9 L307.4,117.3 L323.0,112.8 L338.6,108.2 L354.2,103.6 L369.8,99.1 L385.4,94.5 L400.9,89.9 L416.5,85.4 L432.1,85.4 L447.7,85.4 L463.3,85.4 L478.9,85.4 L494.5,85.4 L510.1,85.4 L525.6,85.4 L541.2,85.4 L556.8,85.4 L572.4,85.4 L588.0,85.4" fill="none" stroke="var(--s1)" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="588.0" cy="85.7" r="4" fill="var(--s1)" class="ring"/><line x1="594.0" x2="593.0" y1="85.7" y2="103.4" class="leader"/><text x="596" y="107.4" class="endlab">Delivered 47%</text><circle cx="588.0" cy="85.4" r="4" fill="var(--s1)" class="ring"/><text x="596" y="89.4" class="endlab">Preferred 47%</text><line class="cross" x1="0" x2="0" y1="26" y2="300" visibility="hidden"/><rect x="58" y="26" width="530" height="274" class="xhit" data-cross="{&quot;x0&quot;: 58, &quot;x1&quot;: 588, &quot;xlo&quot;: 2026, &quot;xhi&quot;: 2060, &quot;w&quot;: 760, &quot;fmt&quot;: &quot;pct&quot;, &quot;years&quot;: [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060], &quot;series&quot;: [{&quot;name&quot;: &quot;Delivered&quot;, &quot;k&quot;: &quot;var(--s1)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.3333333333333333, &quot;2027&quot;: 0.3680297397769517, &quot;2028&quot;: 0.3795620437956204, &quot;2029&quot;: 0.3906810035842294, &quot;2030&quot;: 0.4014084507042254, &quot;2031&quot;: 0.4014084507042254, &quot;2032&quot;: 0.4014084507042254, &quot;2033&quot;: 0.4014084507042254, &quot;2034&quot;: 0.4014084507042254, &quot;2035&quot;: 0.4014084507042254, &quot;2036&quot;: 0.4014084507042254, &quot;2037&quot;: 0.43339841894876496, &quot;2038&quot;: 0.382899486960823, &quot;2039&quot;: 0.3784920484495166, &quot;2040&quot;: 0.4022875784473558, &quot;2041&quot;: 0.34243691874261173, &quot;2042&quot;: 0.3531571723333819, &quot;2043&quot;: 0.3462384492028049, &quot;2044&quot;: 0.4158283533319805, &quot;2045&quot;: 0.43964085654470514, &quot;2046&quot;: 0.43999999999999995, &quot;2047&quot;: 0.44999999999999996, &quot;2048&quot;: 0.45999999999999996, &quot;2049&quot;: 0.47, &quot;2050&quot;: 0.4771548039258835, &quot;2051&quot;: 0.4851438076875698, &quot;2052&quot;: 0.490134074705934, &quot;2053&quot;: 0.49292794998916, &quot;2054&quot;: 0.49243225073501473, &quot;2055&quot;: 0.4901675377532982, &quot;2056&quot;: 0.4868053880940612, &quot;2057&quot;: 0.48192514138602527, &quot;2058&quot;: 0.4756082876146466, &quot;2059&quot;: 0.4687567343304002, &quot;2060&quot;: 0.4693219800031995}}, {&quot;name&quot;: &quot;Preferred&quot;, &quot;k&quot;: &quot;var(--s1)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.4, &quot;2027&quot;: 0.4, &quot;2028&quot;: 0.4, &quot;2029&quot;: 0.4, &quot;2030&quot;: 0.4, &quot;2031&quot;: 0.4, &quot;2032&quot;: 0.4, &quot;2033&quot;: 0.4, &quot;2034&quot;: 0.4, &quot;2035&quot;: 0.4, &quot;2036&quot;: 0.4, &quot;2037&quot;: 0.39, &quot;2038&quot;: 0.38, &quot;2039&quot;: 0.37, &quot;2040&quot;: 0.38, &quot;2041&quot;: 0.39, &quot;2042&quot;: 0.4, &quot;2043&quot;: 0.41, &quot;2044&quot;: 0.42, &quot;2045&quot;: 0.43, &quot;2046&quot;: 0.44, &quot;2047&quot;: 0.45, &quot;2048&quot;: 0.45999999999999996, &quot;2049&quot;: 0.47, &quot;2050&quot;: 0.47, &quot;2051&quot;: 0.47, &quot;2052&quot;: 0.47, &quot;2053&quot;: 0.47, &quot;2054&quot;: 0.47, &quot;2055&quot;: 0.47, &quot;2056&quot;: 0.47, &quot;2057&quot;: 0.47, &quot;2058&quot;: 0.47, &quot;2059&quot;: 0.47, &quot;2060&quot;: 0.47}}]}"/><text x="58" y="341" class="tick">Boeing share of 737/A320-class orders (dashed) and deliveries (solid)</text></svg></div>
+<p class="cap">In 2041-2043 Boeing delivers less than customers want (512-577 aircraft against
+589-698 wanted): the fps is still ramping up and Renton's 737 MAX lines are winding down. From 2050
+NGSA's customers overflow to the fps, so Boeing delivers slightly more than its preference.</p></div>
+</div></section>
+
+<section id="table"><h2>Year by year</h2><p class="lede">Boeing shares and aircraft a year, 737/A320 class. Preferred share is the
+assumption; delivered share and aircraft are the game's outcome. The fps case is at Renton.</p><div class="panel"><div class="scroll"><table><thead><tr><th scope="col">Year</th><th scope="col" class=n>Preferred: Do Nothing</th><th scope="col" class=n>Preferred: fps</th><th scope="col" class=n>Delivered: Do Nothing</th><th scope="col" class=n>Delivered: fps</th><th scope="col" class=n>Boeing aircraft: Do Nothing</th><th scope="col" class=n>Boeing aircraft: fps</th><th scope="col" class=n>of which fps</th><th scope="col" class=n>Airbus aircraft: Do Nothing</th><th scope="col" class=n>Airbus aircraft: fps</th><th scope="col" class=n>New demand</th><th scope="col" class=n>Overflow to Boeing: Do Nothing</th><th scope="col" class=n>Overflow to Boeing: fps</th></tr></thead><tbody><tr><th scope="row">2026</th><td class=n>40%</td><td class=n>40%</td><td class=n>33.3%</td><td class=n>33.3%</td><td class=n>510</td><td class=n>510</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>636</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2027</th><td class=n>40%</td><td class=n>40%</td><td class=n>36.8%</td><td class=n>36.8%</td><td class=n>594</td><td class=n>594</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>661</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2028</th><td class=n>40%</td><td class=n>40%</td><td class=n>38.0%</td><td class=n>38.0%</td><td class=n>624</td><td class=n>624</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>689</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2029</th><td class=n>40%</td><td class=n>40%</td><td class=n>39.1%</td><td class=n>39.1%</td><td class=n>654</td><td class=n>654</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>721</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2030</th><td class=n>40%</td><td class=n>40%</td><td class=n>40.1%</td><td class=n>40.1%</td><td class=n>684</td><td class=n>684</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>752</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2031</th><td class=n>40%</td><td class=n>40%</td><td class=n>40.1%</td><td class=n>40.1%</td><td class=n>684</td><td class=n>684</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>792</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2032</th><td class=n>40%</td><td class=n>40%</td><td class=n>40.1%</td><td class=n>40.1%</td><td class=n>684</td><td class=n>684</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>832</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2033</th><td class=n>40%</td><td class=n>40%</td><td class=n>40.1%</td><td class=n>40.1%</td><td class=n>684</td><td class=n>684</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>880</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2034</th><td class=n>40%</td><td class=n>40%</td><td class=n>40.1%</td><td class=n>40.1%</td><td class=n>684</td><td class=n>684</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>938</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2035</th><td class=n>40%</td><td class=n>40%</td><td class=n>40.1%</td><td class=n>40.1%</td><td class=n>684</td><td class=n>684</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>1,015</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2036</th><td class=n>40%</td><td class=n>40%</td><td class=n>40.1%</td><td class=n>40.1%</td><td class=n>684</td><td class=n>684</td><td class=n>0</td><td class=n>1,020</td><td class=n>1,020</td><td class=n>1,092</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2037</th><td class=n>37%</td><td class=n>39%</td><td class=n>42.5%</td><td class=n>43.3%</td><td class=n>673</td><td class=n>684</td><td class=n>0</td><td class=n>911</td><td class=n>894</td><td class=n>1,169</td><td class=n>0</td><td class=n>0</td></tr><tr><th scope="row">2038</th><td class=n>34%</td><td class=n>38%</td><td class=n>35.3%</td><td class=n>38.3%</td><td class=n>440</td><td class=n>484</td><td class=n>0</td><td class=n>807</td><td class=n>780</td><td class=n>1,259</td><td class=n>12</td><td class=n>0</td></tr><tr><th scope="row">2039</th><td class=n>31%</td><td class=n>37%</td><td class=n>36.1%</td><td class=n>37.8%</td><td class=n>468</td><td class=n>504</td><td class=n>0</td><td class=n>827</td><td class=n>827</td><td class=n>1,339</td><td class=n>53</td><td class=n>8</td></tr><tr><th scope="row">2040</th><td class=n>28%</td><td class=n>38%</td><td class=n>37.9%</td><td class=n>40.2%</td><td class=n>515</td><td class=n>568</td><td class=n>8</td><td class=n>843</td><td class=n>843</td><td class=n>1,429</td><td class=n>115</td><td class=n>25</td></tr><tr><th scope="row">2041</th><td class=n>25%</td><td class=n>39%</td><td class=n>30.7%</td><td class=n>34.2%</td><td class=n>468</td><td class=n>512</td><td class=n>27</td><td class=n>1,055</td><td class=n>983</td><td class=n>1,511</td><td class=n>91</td><td class=n>0</td></tr><tr><th scope="row">2042</th><td class=n>22%</td><td class=n>40%</td><td class=n>29.7%</td><td class=n>35.3%</td><td class=n>462</td><td class=n>552</td><td class=n>93</td><td class=n>1,096</td><td class=n>1,012</td><td class=n>1,589</td><td class=n>112</td><td class=n>0</td></tr><tr><th scope="row">2043</th><td class=n>20%</td><td class=n>41%</td><td class=n>31.0%</td><td class=n>34.6%</td><td class=n>506</td><td class=n>577</td><td class=n>293</td><td class=n>1,127</td><td class=n>1,090</td><td class=n>1,702</td><td class=n>166</td><td class=n>0</td></tr><tr><th scope="row">2044</th><td class=n>20%</td><td class=n>42%</td><td class=n>29.0%</td><td class=n>41.6%</td><td class=n>517</td><td class=n>764</td><td class=n>551</td><td class=n>1,266</td><td class=n>1,074</td><td class=n>1,793</td><td class=n>159</td><td class=n>0</td></tr><tr><th scope="row">2045</th><td class=n>20%</td><td class=n>43%</td><td class=n>32.3%</td><td class=n>44.0%</td><td class=n>582</td><td class=n>836</td><td class=n>798</td><td class=n>1,219</td><td class=n>1,066</td><td class=n>1,869</td><td class=n>208</td><td class=n>0</td></tr><tr><th scope="row">2046</th><td class=n>20%</td><td class=n>44%</td><td class=n>36.2%</td><td class=n>44.0%</td><td class=n>681</td><td class=n>872</td><td class=n>872</td><td class=n>1,200</td><td class=n>1,110</td><td class=n>1,983</td><td class=n>284</td><td class=n>0</td></tr><tr><th scope="row">2047</th><td class=n>20%</td><td class=n>45%</td><td class=n>36.3%</td><td class=n>45.0%</td><td class=n>684</td><td class=n>921</td><td class=n>921</td><td class=n>1,200</td><td class=n>1,126</td><td class=n>2,047</td><td class=n>275</td><td class=n>0</td></tr><tr><th scope="row">2048</th><td class=n>20%</td><td class=n>46%</td><td class=n>36.3%</td><td class=n>46.0%</td><td class=n>684</td><td class=n>969</td><td class=n>969</td><td class=n>1,200</td><td class=n>1,138</td><td class=n>2,107</td><td class=n>263</td><td class=n>0</td></tr><tr><th scope="row">2049</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>47.0%</td><td class=n>684</td><td class=n>1,058</td><td class=n>1,058</td><td class=n>1,200</td><td class=n>1,193</td><td class=n>2,251</td><td class=n>234</td><td class=n>0</td></tr><tr><th scope="row">2050</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>47.7%</td><td class=n>684</td><td class=n>1,095</td><td class=n>1,080</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,307</td><td class=n>223</td><td class=n>11</td></tr><tr><th scope="row">2051</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>48.5%</td><td class=n>684</td><td class=n>1,131</td><td class=n>1,131</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,349</td><td class=n>214</td><td class=n>27</td></tr><tr><th scope="row">2052</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>49.0%</td><td class=n>684</td><td class=n>1,154</td><td class=n>1,154</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,370</td><td class=n>210</td><td class=n>40</td></tr><tr><th scope="row">2053</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>49.3%</td><td class=n>684</td><td class=n>1,167</td><td class=n>1,167</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,380</td><td class=n>208</td><td class=n>48</td></tr><tr><th scope="row">2054</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>49.2%</td><td class=n>684</td><td class=n>1,164</td><td class=n>1,164</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,371</td><td class=n>210</td><td class=n>50</td></tr><tr><th scope="row">2055</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>49.0%</td><td class=n>684</td><td class=n>1,154</td><td class=n>1,154</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,356</td><td class=n>213</td><td class=n>47</td></tr><tr><th scope="row">2056</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>48.7%</td><td class=n>684</td><td class=n>1,138</td><td class=n>1,138</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,336</td><td class=n>217</td><td class=n>40</td></tr><tr><th scope="row">2057</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>48.2%</td><td class=n>684</td><td class=n>1,116</td><td class=n>1,116</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,310</td><td class=n>222</td><td class=n>30</td></tr><tr><th scope="row">2058</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>47.6%</td><td class=n>684</td><td class=n>1,088</td><td class=n>1,088</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,278</td><td class=n>228</td><td class=n>18</td></tr><tr><th scope="row">2059</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>46.9%</td><td class=n>684</td><td class=n>1,059</td><td class=n>1,059</td><td class=n>1,200</td><td class=n>1,200</td><td class=n>2,246</td><td class=n>235</td><td class=n>3</td></tr><tr><th scope="row">2060</th><td class=n>20%</td><td class=n>47%</td><td class=n>36.3%</td><td class=n>46.9%</td><td class=n>684</td><td class=n>1,042</td><td class=n>1,042</td><td class=n>1,200</td><td class=n>1,178</td><td class=n>2,216</td><td class=n>241</td><td class=n>0</td></tr></tbody></table></div></div></section>
+
+<section id="notes"><h2>Notes</h2><div class="panel"><ul class="cav">
+<li><b>Why this matters for the business case.</b> On the dashboard alone, the long-run gap in preference (20% against 47%) is
+540 aircraft a year of the fixed 2,000. In the game the 2050 gap is 411 aircraft (684 against 1,095):
+Do Nothing keeps more than its preference because Airbus's overflow buys 737 MAX, which is the Do Nothing benefit the business case nets out.</li>
+<li><b>The three years before the fps flies.</b> The fps case is ahead in preference from 2037 only because the rule slows Airbus from 3 points a
+year to 1 once Boeing has launched. That earns the fps case <span class="nw">$0.35B</span> of operating profit in 2037-2039 (<span class="nw">$0.10B</span> at 2026)
+before a single fps is delivered. It is a dashboard assumption, not a market observation.</li>
+<li><b>What is the dashboard's and what is ours.</b> The share rule and its settings are the dashboard's. Demand, the firm backlog, capacities,
+the overflow and drop-out rates are game-master assumptions (supply_demand.json and supply_demand_sources.md).</li>
+<li><b>Source.</b> analysis/market_shares/shares.py writes shares.json from the game engine; it checks that the shares close and that the
+two cases reproduce the business case's <span class="nw">−$2.19B</span>.</li>
+</ul></div></section>
+<footer>BOEING PROPRIETARY. Built by make_market_shares_html.py from analysis/market_shares/shares.json (run dash-2050-sd, corrected demand).</footer></div>
+<script>
+(() => {
+  const tip = document.createElement('div'); tip.className = 'tip'; tip.setAttribute('aria-hidden', 'true'); document.body.appendChild(tip);
+  const live = document.createElement('div'); live.className = 'sr'; live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite'); document.body.appendChild(live);
+  let lastKey = null;
+  const place = (x, y) => {
+    const r = tip.getBoundingClientRect(), pad = 12;
+    let left = x + 14, top = y + 14;
+    if (left + r.width > innerWidth - pad) left = x - r.width - 14;
+    if (top + r.height > innerHeight - pad) top = y - r.height - 14;
+    tip.style.left = Math.max(pad, left) + 'px'; tip.style.top = Math.max(pad, top) + 'px';
+  };
+  const show = (key, rows, x, y, head) => {
+    if (key !== lastKey) {
+      tip.replaceChildren();
+      if (head) { const h = document.createElement('div'); h.className = 'yr'; h.textContent = head; tip.appendChild(h); }
+      for (const r of rows) {
+        const d = document.createElement('div');
+        if (r.k) { const k = document.createElement('span'); k.className = 'k'; k.style.background = r.k; d.appendChild(k); }
+        if (r.v) { const v = document.createElement('b'); v.textContent = r.v; d.appendChild(v); }
+        if (r.l) { const l = document.createElement('span'); l.className = 'l'; l.textContent = r.l; d.appendChild(l); }
+        tip.appendChild(d);
+      }
+      lastKey = key;
+    }
+    tip.style.display = 'block'; place(x, y);
+  };
+  const hide = () => { tip.style.display = 'none'; lastKey = null; };
+  let n = 0;
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    const rows = JSON.parse(el.dataset.tip), key = 'm' + (n++);
+    el.addEventListener('pointermove', e => show(key, rows, e.clientX, e.clientY));
+    el.addEventListener('pointerleave', hide);
+    el.addEventListener('focus', () => { const r = el.getBoundingClientRect(); show(key, rows, r.left + r.width / 2, r.top + r.height / 2); });
+    el.addEventListener('blur', hide);
+  });
+  document.querySelectorAll('rect[data-cross]').forEach((hit, c) => {
+    const P = JSON.parse(hit.dataset.cross), svg = hit.ownerSVGElement, line = svg.querySelector('.cross'), box = svg.parentElement;
+    const fmt = v => P.fmt === 'pct' ? Math.round(v * 100) + '%' : Math.round(v).toLocaleString('en-US');
+    const xOf = yr => P.x0 + (yr - P.xlo) / (P.xhi - P.xlo) * (P.x1 - P.x0);
+    let idx = Math.floor(P.years.length / 2);
+    const rowsAt = yr => P.series.filter(s => s.vals[yr] !== undefined).map(s => ({ v: fmt(s.vals[yr]), l: s.name, k: s.k }));
+    const render = (cx, cy, announce) => {
+      const yr = P.years[idx], x = xOf(yr);
+      line.setAttribute('x1', x); line.setAttribute('x2', x); line.setAttribute('visibility', 'visible');
+      const rows = rowsAt(yr);
+      show('x' + c + '-' + yr, rows, cx, cy, String(yr));
+      if (announce) live.textContent = yr + ': ' + rows.map(r => r.l + ' ' + r.v).join(', ');
+    };
+    const follow = () => {   // keep the crosshair in view when the chart scrolls inside its panel
+      const scale = svg.getBoundingClientRect().width / P.w, px = xOf(P.years[idx]) * scale;
+      if (px < box.scrollLeft + 20 || px > box.scrollLeft + box.clientWidth - 20) box.scrollLeft = px - box.clientWidth / 2;
+    };
+    const fromEvent = e => {
+      const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const yr = P.xlo + (p.x - P.x0) / (P.x1 - P.x0) * (P.xhi - P.xlo);
+      let best = 0; P.years.forEach((y, i) => { if (Math.abs(y - yr) < Math.abs(P.years[best] - yr)) best = i; });
+      idx = best; render(e.clientX, e.clientY, false);
+    };
+    hit.addEventListener('pointermove', fromEvent);
+    hit.addEventListener('pointerdown', fromEvent);
+    hit.addEventListener('pointerleave', () => { line.setAttribute('visibility', 'hidden'); hide(); });
+    const keyRender = () => { follow(); const r = svg.getBoundingClientRect(); render(r.left + xOf(P.years[idx]) * r.width / P.w, r.top + 24, true); };
+    svg.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault(); idx = Math.max(0, Math.min(P.years.length - 1, idx + (e.key === 'ArrowRight' ? 1 : -1))); keyRender();
+    });
+    svg.addEventListener('focus', keyRender);
+    svg.addEventListener('blur', () => { line.setAttribute('visibility', 'hidden'); hide(); });
+  });
+  // charts that scroll on phones open on their point of interest
+  document.querySelectorAll('.cw[data-focus]').forEach(box => {
+    const svg = box.querySelector('svg'); if (!svg || box.scrollWidth <= box.clientWidth) return;
+    const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+    box.scrollLeft = Math.max(0, +box.dataset.focus * scale - box.clientWidth / 2);
+  });
+})();
+</script></body></html>
