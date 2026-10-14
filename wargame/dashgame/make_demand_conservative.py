@@ -5,15 +5,16 @@ The table gives eleven years (2026, 2030, 2035, 2040, 2045, 2050, 2051, 2055, 20
 replacement of old-generation aircraft, replacement of today's 737 MAX / A320neo / A220 fleets, replacement of aircraft
 delivered after 2026, and fleet growth, with the fleet at year end, plus four period totals (2026-45, 2046-55,
 2056-65, 2066-70). The game needs every year. This script finds the smoothest annual curve (least squared second
-differences, component by component) that
+differences, component by component, over the whole 2026-2070 range) that
   - passes exactly through every component value of the table,
   - matches the four period totals exactly,
-  - keeps the year-end fleet (19.7k in 2026 plus each year's growth) close to the table's fleet column (soft,
-    the column is rounded to 0.1k),
-  - ends old-generation replacement after 2045: the table has 336 in 2045 and 0 in 2050, and the 2046-55 total
-    (18.7k) is met only if the old-generation fleet is used up by 2046 (a straight run-down to 2050 would add about
-    650 aircraft to that period),
-  - has no replacement of post-2026 deliveries before 2046 (the table has 0 to 2045).
+  - keeps every value at zero or above,
+  - keeps the year-end fleet (19.7k in 2026 plus each year's growth) within +/-50 aircraft of the table's fleet column
+    (its rounding to 0.1k),
+  - holds old-generation replacement at 0 from 2050 and post-2026 replacement at 0 to 2045, as the table has them.
+The table does not fix how old-generation replacement runs from 336 in 2045 to 0 in 2050: the roughness counts the run
+into those zeros, and with the 2046-55 total (18.7k) the fit tapers it off over 2046-2049. That shape is the fit's
+choice, not something the table forces (a stop after 2045 also meets the totals).
 Values are whole single-aisle market (A220 included), before the game's 737/A320 class share. After 2070 the game
 holds the 2070 values.
 
