@@ -1,0 +1,22 @@
+{
+ "7-year": {
+  "item": -7.074293489410662,
+  "bridge": {
+   "nb_profit_vs_sq": 33.77105996722061,
+   "programme_investment": -21.673462485569004,
+   "debt_penalty": -7.338839590157907,
+   "supply_demand": -11.83305138090436
+  },
+  "dashboard_item": 4.758757891493698
+ },
+ "10-year": {
+  "item": -2.7437555560180447,
+  "bridge": {
+   "nb_profit_vs_sq": 23.93525185439736,
+   "programme_investment": -14.90697216620302,
+   "debt_penalty": -4.725255011662201,
+   "supply_demand": -7.046780232550184
+  },
+  "dashboard_item": 4.303024676532139
+ }
+}

@@ -1,0 +1,199 @@
+{
+ "waterfall": [
+  {
+   "step": "Dashboard alone",
+   "fps_minus_hold": 4.303024676532139,
+   "fps": 0.663208572464228,
+   "hold": -3.6398161040679113
+  },
+  {
+   "step": "Layer, neutral (2,000 a year, unlimited capacity)",
+   "fps_minus_hold": 4.30302467653214,
+   "fps": 0.6632085724642288,
+   "hold": -3.6398161040679113
+  },
+  {
+   "step": "+ real new demand (replacement + growth), capacity unlimited",
+   "fps_minus_hold": 3.5848808755666677,
+   "fps": 0.16674040533891438,
+   "hold": -3.4181404702277534
+  },
+  {
+   "step": "+ firm backlog and today's lines (MAX path, A320 at 85) until the new types; new types instant and unlimited",
+   "fps_minus_hold": 3.549234186203835,
+   "fps": 1.0869585436428066,
+   "hold": -2.4622756425610284
+  },
+  {
+   "step": "+ Airbus's real plan (Rev. B: A320 rundown, NGSA ramp, 100 a month)",
+   "fps_minus_hold": 2.2202327568821234,
+   "fps": 1.4529408151296495,
+   "hold": -0.767291941752474
+  },
+  {
+   "step": "+ Boeing's real plan (fps ramp, MAX gives way, 100 a month) = the game",
+   "fps_minus_hold": -2.7437555560180447,
+   "fps": -3.5110474977705186,
+   "hold": -0.767291941752474
+  }
+ ],
+ "bridge_delta": {
+  "nb_profit_vs_sq": 23.93525185439736,
+  "wb_profit_vs_sq": 0.0,
+  "programme_investment": -14.90697216620302,
+  "rate_hike": 0.0,
+  "delay_tactics_spend": 0.0,
+  "write_offs": 0,
+  "debt_penalty": -4.725255011662201,
+  "two_front_strain": 0.0,
+  "naked_fine": 0.0,
+  "supply_demand": -7.046780232550184,
+  "supply_plan": 0.0
+ },
+ "periods": [
+  {
+   "period": "2026-2036",
+   "boeing_dlv_fps_case": 7170.0,
+   "boeing_dlv_hold": 7170.0,
+   "fps_units": 0.0,
+   "board_units_fps_case": 8800.0,
+   "board_units_hold": 8800.0,
+   "pref_fps_case": 0.4,
+   "pref_hold": 0.4,
+   "dlv_share_fps_case": 0.4014084507042254,
+   "dlv_share_hold": 0.4014084507042254,
+   "pv_profit_gain_board": 0.0,
+   "pv_profit_gain_delivered": 0.0
+  },
+  {
+   "period": "2037-2039",
+   "boeing_dlv_fps_case": 1671.886707993463,
+   "boeing_dlv_hold": 1580.9435322051984,
+   "fps_units": 0.0,
+   "board_units_fps_case": 2280.0,
+   "board_units_hold": 2040.0,
+   "pref_fps_case": 0.37,
+   "pref_hold": 0.31000000000000005,
+   "dlv_share_fps_case": 0.3784920484495166,
+   "dlv_share_hold": 0.36130412546950574,
+   "pv_profit_gain_board": 0.26975021486526585,
+   "pv_profit_gain_delivered": 0.10272103278982436
+  },
+  {
+   "period": "2040-2045",
+   "boeing_dlv_fps_case": 4046.952387392964,
+   "boeing_dlv_hold": 3050.2807699361747,
+   "fps_units": 1770.112883286396,
+   "board_units_fps_case": 4860.0,
+   "board_units_hold": 2700.0,
+   "pref_fps_case": 0.43,
+   "pref_hold": 0.19999999999999996,
+   "dlv_share_fps_case": 0.43,
+   "dlv_share_hold": 0.3229958363349712,
+   "pv_profit_gain_board": 11.223712464447608,
+   "pv_profit_gain_delivered": 3.69332824587722
+  },
+  {
+   "period": "2046-2050",
+   "boeing_dlv_fps_case": 4915.8420693497565,
+   "boeing_dlv_hold": 3416.627906808377,
+   "fps_units": 4900.707660522,
+   "board_units_fps_case": 4580.0,
+   "board_units_hold": 1999.9999999999995,
+   "pref_fps_case": 0.47,
+   "pref_hold": 0.19999999999999996,
+   "dlv_share_fps_case": 0.4771548039258835,
+   "dlv_share_hold": 0.3630573248407643,
+   "pv_profit_gain_board": 6.364741080400282,
+   "pv_profit_gain_delivered": 6.2058497401243695
+  },
+  {
+   "period": "2051-2059",
+   "boeing_dlv_fps_case": 10170.545876606782,
+   "boeing_dlv_hold": 6156.0,
+   "fps_units": 10170.545876606782,
+   "board_units_fps_case": 8460.0,
+   "board_units_hold": 3599.9999999999995,
+   "pref_fps_case": 0.47,
+   "pref_hold": 0.19999999999999996,
+   "dlv_share_fps_case": 0.4687567343304002,
+   "dlv_share_hold": 0.3630573248407643,
+   "pv_profit_gain_board": 6.025516478554521,
+   "pv_profit_gain_delivered": 6.886572603055743
+  }
+ ],
+ "spare_boeing_hold": {
+  "2036": 0.0,
+  "2037": 10.562083948400414,
+  "2038": 244.3512817828476,
+  "2039": 216.1431020635536,
+  "2040": 169.10294485573786,
+  "2041": 215.54167726289114,
+  "2042": 222.15032519674514,
+  "2043": 177.62044210746552,
+  "2044": 166.9929431711414,
+  "2045": 102.31089746984458,
+  "2046": 3.372093191623435,
+  "2047": 0.0,
+  "2048": 0.0,
+  "2049": 0.0
+ },
+ "levers": [
+  {
+   "lever": "As played (corrected demand)",
+   "item": -2.192823971472366,
+   "site": "Renton"
+  },
+  {
+   "lever": "fps ramp twice as fast",
+   "item": 0.21355445920549065,
+   "site": "Renton"
+  },
+  {
+   "lever": "fps ramp three times as fast",
+   "item": 0.8491531033113865,
+   "site": "Renton"
+  },
+  {
+   "lever": "fps at full rate from entry into service",
+   "item": 1.5284988297248354,
+   "site": "Renton"
+  },
+  {
+   "lever": "No MAX tail (fps can use the full 100 a month at once)",
+   "item": -2.1786822330710387,
+   "site": "Renton"
+  },
+  {
+   "lever": "Boeing cap 120 a month (fps up to 120)",
+   "item": -2.1786822330710387,
+   "site": "Renton"
+  },
+  {
+   "lever": "Growth x1.5",
+   "item": -1.1898990307251909,
+   "site": "new sites"
+  },
+  {
+   "lever": "No flexible customers (no Airbus overflow to Boeing)",
+   "item": -0.6601184705091789,
+   "site": "Renton"
+  },
+  {
+   "lever": "5% of waiting customers drop out a year",
+   "item": -2.4386543441773605,
+   "site": "Renton"
+  },
+  {
+   "lever": "Ramp twice as fast + growth x1.5",
+   "item": 3.9509960794748538,
+   "site": "Renton"
+  },
+  {
+   "lever": "Ramp twice as fast + Boeing cap 120",
+   "item": 0.2276961976068178,
+   "site": "Renton"
+  }
+ ],
+ "fps7": -7.074293489410662
+}

@@ -1,0 +1,108 @@
+{
+ "shapley_f10": {
+  "neutral": 4.30302467653214,
+  "full": -2.7437555560180447,
+  "shares": {
+   "demand": -0.23149263556293254,
+   "firm": 0.07108551693621053,
+   "airbus": -1.263248377860784,
+   "boeing": -5.62312473606268
+  },
+  "demand_effect_range": [
+   -2.2447143301014467,
+   1.420304026366232
+  ]
+ },
+ "shapley_f7": {
+  "neutral": 4.758757891493701,
+  "full": -7.074293489410662,
+  "shares": {
+   "demand": -2.85845991792599,
+   "firm": 0.0723678447046907,
+   "airbus": -1.1262216330822252,
+   "boeing": -7.92073767460084
+  },
+  "demand_effect_range": [
+   -6.812294183382167,
+   0.22951048517919403
+  ]
+ },
+ "by_round": [
+  {
+   "round": 1,
+   "year": 2030,
+   "dashboard": 4.303024676532139,
+   "layer": -2.192823971472366,
+   "penalty": -6.495848648004506
+  },
+  {
+   "round": 2,
+   "year": 2035,
+   "dashboard": 1.609990703472663,
+   "layer": -0.7530739998885045,
+   "penalty": -2.3630647033611676
+  },
+  {
+   "round": 3,
+   "year": 2045,
+   "dashboard": 0.12969803598135865,
+   "layer": 0.10850684987163817,
+   "penalty": -0.021191186109720483
+  },
+  {
+   "round": 4,
+   "year": 2050,
+   "dashboard": 0.28206296674130904,
+   "layer": 0.24268378160376303,
+   "penalty": -0.03937918513754601
+  }
+ ],
+ "k1_check_max_abs_diff": 0.0,
+ "levers": [
+  {
+   "lever": "As played",
+   "item": -2.192823971472366,
+   "site": "Renton"
+  },
+  {
+   "lever": "ramp twice as fast",
+   "item": 0.6538489593472577,
+   "site": "Renton"
+  },
+  {
+   "lever": "ramp three times as fast",
+   "item": 1.520207849211558,
+   "site": "Renton"
+  },
+  {
+   "lever": "full rate from entry into service (under the 100-a-month cap)",
+   "item": 2.9474855227680816,
+   "site": "Renton"
+  },
+  {
+   "lever": "growth x1.5",
+   "item": -1.1898990307251909,
+   "site": "new sites"
+  },
+  {
+   "lever": "ramp twice as fast + growth x1.5",
+   "item": 4.034825023314011,
+   "site": "Renton"
+  }
+ ],
+ "airbus_cases": {
+  "no ceiling (NGSA unlimited once at 100 a month)": {
+   "fps_minus_hold": -1.990599741037205,
+   "hold": -1.7820625650098783
+  },
+  "no transition dip (Airbus at least 85 a month to 2045)": {
+   "fps_minus_hold": -2.527337738034492,
+   "hold": -1.0155401258191668
+  },
+  "neither": {
+   "fps_minus_hold": -1.7747379206251601,
+   "hold": -2.029754751505063
+  }
+ },
+ "no_extra_capacity_item": -8.582887345361346
+}
