@@ -10,6 +10,7 @@
    Boeing's share loss a year after NGSA EIS, the slack floor, Airbus's capacity response, the firm-order netting.
 4. The same values stepping from the previous game's market (dash-2050-sd: no options) to this game's, one assumption
    added at a time.
+5. Boeing's deliveries by year with Do Nothing and with a 10-year fps at Renton from 2030, in both markets.
 
   DASH_RUN=dash-2050-cons python3 make_cons_checks.py
 """
@@ -143,9 +144,17 @@ def assumption_sensitivity(n_last):
     for lab, kw in VARIANTS:
         set_options(**kw)
         vb = {k: M.value(st, covert=True, series=False)["boeing"]["pv_delta"] for k, st in (("dn", dn), ("new", f_new), ("ren", f_ren))}
-        vf = M.value(s_final, covert=True, series=False)
+        vf = M.value(s_final, covert=True, series=True)
+        rows = [r for r in vf["_af_series"]["years"] if r["year"] <= M.REPORT_END]
+        ngsa = s_final["prog"]["ngsa"]["eis"]
         out.append({"case": lab, "options": kw, "do_nothing_2030": vb["dn"], "fps_new_site": vb["new"] - vb["dn"],
-                    "fps_renton": vb["ren"] - vb["dn"], "final_boeing": vf["boeing"]["pv_delta"], "final_airbus": vf["airbus"]["pv_delta"]})
+                    "fps_renton": vb["ren"] - vb["dn"], "final_boeing": vf["boeing"]["pv_delta"], "final_airbus": vf["airbus"]["pv_delta"],
+                    "floor_years_from_ngsa": sum(1 for r in rows if r["year"] >= ngsa and r["boeing"]["nb_pref_share"] > r["sd"]["pref_b_base"] + 1e-6),
+                    "years_from_ngsa": sum(1 for r in rows if r["year"] >= ngsa),
+                    "spill_b": sum(r["boeing"]["sd"]["spill_in"] for r in rows),
+                    "airbus_capacity_factor_end": rows[-1]["sd"]["airbus_capacity_factor"],
+                    "pref_b_end": rows[-1]["boeing"]["nb_pref_share"],
+                    "dlv_b": [r["sd"]["dlv_max"] + r["sd"]["dlv_fps"] for r in rows]})
     reset_options()
     return out
 
@@ -178,11 +187,33 @@ def assumption_steps(n_last):
     return out
 
 
+def fps_units():
+    """Boeing's deliveries year by year with Do Nothing and with a 10-year fps at Renton launched in 2030 (round-1
+    orders as played), in this game's market and in the previous game's, with the value bridge of each."""
+    dn, fr = build_2030({}), build_2030({"fps": "launch_10yr", "fps_engine_code": 7}, "renton")
+    out = {}
+    for tag, kw in (("this_game", {}), ("previous_market", STEPS[0][1])):
+        set_options(**kw)
+        o = {}
+        for k, st in (("do_nothing", dn), ("fps_renton", fr)):
+            v = M.value(st, covert=True, series=True)
+            rows = [r for r in v["_af_series"]["years"] if r["year"] <= M.REPORT_END]
+            o[k] = {"pv": v["boeing"]["pv_delta"], "bridge": v["boeing"]["bridge"], "year": [r["year"] for r in rows],
+                    "dlv_max": [r["sd"]["dlv_max"] for r in rows], "dlv_fps": [r["sd"]["dlv_fps"] for r in rows],
+                    "cap_b": [r["sd"]["cap_max"] + r["sd"]["cap_fps"] for r in rows],
+                    "dlv_a": [r["sd"]["dlv_a320"] + r["sd"]["dlv_ngsa"] for r in rows],
+                    "pref_b": [r["boeing"]["nb_pref_share"] for r in rows]}
+        o["fps_eis"] = fr["prog"]["fps"]["eis"]
+        out[tag] = o
+    reset_options()
+    return out
+
+
 def main():
     n = RP.rounds_played()
     out = {"rounds_played": n, "options": BASE_OPTIONS, "fps_2030": fps_2030(), "round_items": round_items(n),
            "decisions_now": decisions_now(n), "no_layer": no_layer(n), "assumptions": assumption_sensitivity(n),
-           "steps": assumption_steps(n)}
+           "steps": assumption_steps(n), "fps_units": fps_units()}
     path = os.path.join(HERE, "data", "cons_checks.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=1)
