@@ -1,0 +1,206 @@
+{
+ "steps": [
+  {
+   "step": "Dashboard alone (the game without supply and demand)",
+   "dn": -3.6398161040679113,
+   "renton": 0.663208572464228,
+   "new_site": 0.663208572464228,
+   "item_renton": 4.303024676532139,
+   "item_new_site": 4.303024676532139,
+   "dlv_dn": 8300.0,
+   "fps_dn": 0.0,
+   "dlv_renton": 17900.0,
+   "fps_renton": 17900.0,
+   "dlv_new_site": 17900.0,
+   "fps_new_site": 17900.0
+  },
+  {
+   "step": "Supply-and-demand layer with every limit off",
+   "dn": -3.6398161040679113,
+   "renton": 1.4046030767515143,
+   "new_site": 0.6632085724642288,
+   "item_renton": 5.044419180819426,
+   "item_new_site": 4.30302467653214,
+   "dlv_dn": 8300.0,
+   "fps_dn": 0.0,
+   "dlv_renton": 17900.0,
+   "fps_renton": 17900.0,
+   "dlv_new_site": 17900.0,
+   "fps_new_site": 17900.0
+  },
+  {
+   "step": "+ Boeing's real factories",
+   "dn": -2.25332620723189,
+   "renton": -4.820382252675684,
+   "new_site": -4.997308756441731,
+   "item_renton": -2.5670560454437945,
+   "item_new_site": -2.743982549209841,
+   "dlv_dn": 8300.0,
+   "fps_dn": 0.0,
+   "dlv_renton": 17067.90676973698,
+   "fps_renton": 14814.197578560517,
+   "dlv_new_site": 17777.67866245756,
+   "fps_new_site": 14810.112883286396
+  },
+  {
+   "step": "+ Airbus's real factories",
+   "dn": 0.0,
+   "renton": -3.6355416240861587,
+   "new_site": -3.837875190106221,
+   "item_renton": -3.6355416240861587,
+   "item_new_site": -3.837875190106221,
+   "dlv_dn": 13680.0,
+   "fps_dn": 0.0,
+   "dlv_renton": 18163.904428782196,
+   "fps_renton": 15404.550340618182,
+   "dlv_new_site": 19150.47400237094,
+   "fps_new_site": 15102.642437190763
+  },
+  {
+   "step": "+ your conservative demand curve (firm orders on top)",
+   "dn": -0.24909634424058025,
+   "renton": -5.127721766421674,
+   "new_site": -5.425704507623494,
+   "item_renton": -4.878625422181093,
+   "item_new_site": -5.176608163382914,
+   "dlv_dn": 12462.330607632293,
+   "fps_dn": 0.0,
+   "dlv_renton": 16367.121954379554,
+   "fps_renton": 13693.412763203092,
+   "dlv_new_site": 17360.10945393928,
+   "fps_new_site": 13332.303173229942
+  },
+  {
+   "step": "+ firm orders inside demand (option B)",
+   "dn": -0.4163347384720826,
+   "renton": -6.007626747583275,
+   "new_site": -6.467434998779769,
+   "item_renton": -5.591292009111193,
+   "item_new_site": -6.051100260307686,
+   "dlv_dn": 11753.909863279603,
+   "fps_dn": 0.0,
+   "dlv_renton": 15644.556134625,
+   "fps_renton": 13210.846943448536,
+   "dlv_new_site": 16292.427077030667,
+   "fps_new_site": 12979.953432936396
+  },
+  {
+   "step": "+ Boeing loses 1 point a year after NGSA",
+   "dn": -0.4093905550666155,
+   "renton": -6.007626747583275,
+   "new_site": -6.467434998779769,
+   "item_renton": -5.59823619251666,
+   "item_new_site": -6.058044443713154,
+   "dlv_dn": 11748.602472755063,
+   "fps_dn": 0.0,
+   "dlv_renton": 15644.556134625,
+   "fps_renton": 13210.846943448536,
+   "dlv_new_site": 16292.427077030667,
+   "fps_new_site": 12979.953432936396
+  },
+  {
+   "step": "+ Airbus's slack goes to Boeing",
+   "dn": -0.3744423992141841,
+   "renton": -5.725408438129626,
+   "new_site": -6.352260328581035,
+   "item_renton": -5.350966038915441,
+   "item_new_site": -5.97781792936685,
+   "dlv_dn": 11903.818023668337,
+   "fps_dn": 0.0,
+   "dlv_renton": 15838.516316079353,
+   "fps_renton": 13362.119825291786,
+   "dlv_new_site": 16472.909701889213,
+   "fps_new_site": 12979.953432936396
+  },
+  {
+   "step": "+ Airbus adds 1% capacity a year when short (this game)",
+   "dn": -0.8336880537410587,
+   "renton": -6.09467327983763,
+   "new_site": -6.461767938867607,
+   "item_renton": -5.260985226096571,
+   "item_new_site": -5.628079885126548,
+   "dlv_dn": 10211.474205520639,
+   "fps_dn": 0.0,
+   "dlv_renton": 15579.916456143788,
+   "fps_renton": 13146.207264967326,
+   "dlv_new_site": 16258.04095902116,
+   "fps_new_site": 12979.953432936396
+  }
+ ],
+ "shapley": {
+  "groups": {
+   "boeing": "Boeing's real factories",
+   "airbus": "Airbus's real factories",
+   "demand": "Your demand (curve and firm orders)",
+   "rules": "Your share rules (1 point a year, slack floor)",
+   "response": "Airbus's capacity response"
+  },
+  "shares": {
+   "renton": {
+    "boeing": -7.311251509971627,
+    "airbus": -0.4119023730255365,
+    "demand": -1.7598628118101767,
+    "rules": -0.9156700664410169,
+    "response": 0.09328235433235964
+   },
+   "new_site": {
+    "boeing": -6.849190278554882,
+    "airbus": -0.49463638430850093,
+    "demand": -1.8215643346009622,
+    "rules": -0.9044258609987414,
+    "response": 0.1387122968043984
+   }
+  },
+  "none": {
+   "dn": -3.6398161040679113,
+   "renton": 1.4046030767515143,
+   "new_site": 0.6632085724642288,
+   "item_renton": 5.044419180819426,
+   "item_new_site": 4.30302467653214
+  },
+  "full": {
+   "dn": -0.8336880537410587,
+   "renton": -6.09467327983763,
+   "new_site": -6.461767938867607,
+   "item_renton": -5.260985226096571,
+   "item_new_site": -5.628079885126548
+  },
+  "dn_shares": {
+   "boeing": 0.7634442622634187,
+   "airbus": 1.479041593544436,
+   "demand": -0.12370576890655312,
+   "rules": 0.9281119267193739,
+   "response": -0.24076396329382266
+  }
+ },
+ "obj_game_brief": {
+  "columns": [
+   "Rivals hold",
+   "Airbus launches NGSA",
+   "Airbus launches A350 Re-engine",
+   "Airbus launches NGSA + A350 Re-engine",
+   "Risk case: NGSA + Airbus Delay Tactics (covert)"
+  ],
+  "item_10yr": [
+   3.500385825418185,
+   4.303024676532139,
+   3.500385825418185,
+   4.303024676532139,
+   2.8616580148456663
+  ],
+  "do_nothing": [
+   0.0,
+   -3.6398161040679113,
+   -2.622314374712701,
+   -6.2621304787806125,
+   -3.6398161040679113
+  ],
+  "fps_10yr": [
+   3.500385825418185,
+   0.663208572464228,
+   0.8780714507054839,
+   -1.959105802248473,
+   -0.778158089222245
+  ]
+ }
+}
