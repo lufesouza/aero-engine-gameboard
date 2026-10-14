@@ -107,6 +107,8 @@ PREF_MAX_Y = next(y for y in range(EIS + 1, Y_HI + 1) if abs(BY[y]["pref_fps_cas
 DASH_UNITS = ST[0]["fps_renton"]
 GAME_UNITS = ST[-1]["fps_renton"]
 DN_DASH, DN_GAME = ST[0]["dn"], ST[-1]["dn"]
+B_SOLD_FROM = min(y for y, d, c in zip(SDF["year"], [a + b_ for a, b_ in zip(SDF["dlv_max"], SDF["dlv_fps"])], SDF["cap_max"])
+                  if 2030 <= y <= 2050 and abs(d - c) < 0.5)
 B_SOLD_TO = max(y for y, d, c in zip(SDF["year"], [a + b_ for a, b_ in zip(SDF["dlv_max"], SDF["dlv_fps"])], SDF["cap_max"])
                 if 2035 <= y <= 2050 and abs(d - c) < 0.5)
 UNIT_FPS = P["price_fps_m"] * P["margin_fps"]
@@ -431,7 +433,7 @@ def shapley_table():
     g = SH["groups"]
     sh, fi, la, dn = SH["shares"]["renton"], SH["first"]["renton"], SH["last"]["renton"], SH["dn_shares"]
     site = ST[1]["item_renton"] - ST[0]["item_renton"]
-    rows = [["Renton site saving (no site choice on the dashboard)", K.num(site), K.num(site), K.num(site), "0.00", "0.00"]]
+    rows = [["Renton site saving (no site choice on the dashboard)", K.num(site), K.num(site), K.num(site), K.num(0.0), K.num(0.0)]]
     rows += [[esc(g[k]), K.num(fi[k]), K.num(la[k]), K.num(sh[k]), K.num(SH["shares"]["new_site"][k]), K.num(dn[k])]
              for k in sorted(g, key=lambda k: sh[k])]
     tot = site + sum(sh.values())
@@ -639,7 +641,7 @@ def build(out_path):
                       f"the first year. In this game Boeing's factories build the fps up slowly, on your NGSA chart's ramp (our assumption, not one of "
                       f"yours): {n0(first5(GAME_RAMP))} in its first five years and {n0(GAME_UNITS)} "
                       f"over {EIS}-{Y_HI}. And Do Nothing is not the disaster the dashboard thinks ({b(DN_GAME)} against {b(DN_DASH)}), because Airbus "
-                      f"cannot build the share it wins, so Boeing sells every 737 MAX it can build until {B_SOLD_TO}."),
+                      f"cannot build the share it wins, so Boeing sells every 737 MAX it can build from {B_SOLD_FROM} to {B_SOLD_TO}."),
         ("What would make it Boeing's choice.", f" On its own, any one of these: the fps ramping up {ramp_r['threshold']:.1f} times as fast "
                       f"(90 a month by {R90(THR_RAMP)} instead of {R90(GAME_RAMP)}); a {pc(ar['margin']['threshold'])} margin instead of "
                       f"{pc(ar['margin']['base'])}; a ${ar['price']['threshold']:.0f}M price instead of ${ar['price']['base']:.0f}M; or a "
@@ -671,7 +673,7 @@ your NGSA ramp, so the fps adds little profit until {EIS + 3}. In {" and ".join(
 profit: at Renton the 737 MAX lines wind down as the fps ramps up, while with Do Nothing the MAX would have sold all it
 can build. Cumulative cash bottoms out at {b(R["peak_funding_cash"], 1)} in {R["peak_funding_cash_year"]} and turns positive
 in {R["payback_cash"]}. Discounted at {pc(P["WACC_B"])}, it never does within the {P["post_eis_years"]} years the game counts.</p><div class="stack">
-<div class="panel"><p class="ctitle">Spend {b(P["bill_10yr"], 1, False)} in {Y_LO}-{EIS - 1}; incremental profit peaks at {b(op_peak, 1, False)} in {op_peak_y}, then runs {b(op_after[0], 1, False)}-{b(op_after[1], 1, False)} a year</p>{chart_annual()}</div>
+<div class="panel"><p class="ctitle">Spend {b(P["bill_10yr"], 1, False)} in {Y_LO}-{EIS - 1}; incremental profit peaks at {b(op_peak, 1, False)} in {op_peak_y}, then runs {b(op_after[0], 1, False)}-{b(op_after[1], 1, False)} a year to {Y_HI}</p>{chart_annual()}<p class="cap">The {Y_END} bar ({b(X_DN, 1)}) is Do Nothing's last counted year, booked as a gain to the fps; the fps itself is counted to {Y_HI}.</p></div>
 <div class="panel"><p class="ctitle">Cash comes back in {R["payback_cash"]}; in present value the fps ends {b(-R["cash_npv"], 1, False)} short (cash view) or {b(-R["game_npv"], 1, False)} short (game view)</p>{chart_cumulative()}
 <p class="cap">The game view books the whole bill, and the debt penalty, in {EIS}; that is why its line is flat until then and then drops. The cash view spends the bill as it goes out, so it is further below zero in present value.</p></div>
 </div></section>
@@ -704,14 +706,15 @@ same. This one change takes {b(-d_boeing, 2, False)} off the fps ({b(-SH["shares
 order of the changes). It is the main reason, and the one a faster ramp would fix.</li>
 <li><b>Do Nothing is not the disaster the dashboard thinks.</b> On the dashboard, once NGSA flies Boeing's share falls 3
 points a year to 20%, and Do Nothing is worth {b(DN_DASH)}. In your world Airbus cannot build the share it wins: its
-factories make {n0(min(CAPA))}-{n0(max(CAPA))} aircraft a year in 2038-2059. The customers it cannot serve buy 737 MAXs, and Boeing sells every MAX it builds
-until {B_SOLD_TO}. Do Nothing is worth {b(DN_GAME)}. But Airbus's limits help the fps case too: averaged over every order of
+factories make {n0(min(CAPA))}-{n0(max(CAPA))} aircraft a year in 2038-2059. The customers it cannot serve buy 737 MAXs, and Boeing sells every MAX it can build (684 a year)
+from {B_SOLD_FROM} to {B_SOLD_TO}. Do Nothing is worth {b(DN_GAME)}. But Airbus's limits help the fps case too: averaged over every order of
 the changes they make Do Nothing {b(SH["dn_shares"]["airbus"], 2, False)} better yet move the comparison by only
 {b(SH["shares"]["renton"]["airbus"])} ({b(d_airbus)} in the order the chart shows).</li>
 <li><b>Your demand is smaller when the fps would sell.</b> Your conservative curve averages {n0(DEM_AVG)} aircraft a year
 over 2040-2059, against the dashboard's 2,000. With fewer customers there is less for the fps to win: {b(d_demand)}
 in the chart's order ({b(SH["shares"]["renton"]["demand"])} averaged over every order). Option B adds no aircraft beyond your
-curve. Had the 12,099 firm orders come on top as extra aircraft, the fps would be {b(firm_top, 2, False)} better.</li>
+curve. Had the 12,099 firm orders come on top as extra aircraft, the fps would be {b(firm_top, 2, False)} better in the case
+Airbus played.</li>
 <li><b>Your share rules barely matter in your world.</b> Losing 1 point a year instead of the dashboard's 3 makes Do Nothing
 better, which counts against the fps: {b(FIRST["rules"])} if the rules came first, from the dashboard's world, and
 {b(sh["rules"])} averaged over every order. But in your world Airbus's real factories already cap how much of the market it

@@ -193,6 +193,8 @@ for kw, name, lab in (({"ramp": L.compressed(3)}, "fps ramp (NGSA Rev. B curve)"
     sens[-1]["best_site"] = {"site": "Renton" if it >= other else "new sites", "game": max(it, other)}
 last = [r for r in rows if r["in_window_fps"]][-1]
 tv = sum(last["op_profit_inc"] * df(y) for y in range(last["year"] + 1, last["year"] + 11))
+# rows after the fps window already in the value (Do Nothing counted a year longer) are replaced, not added to
+tv -= sum(r["op_profit_inc"] * r["df"] for r in rows if last["year"] < r["year"] <= last["year"] + 10)
 add("Horizon (20 years from entry into service)", "as booked", g, c, "+10 years at the 2059 profit", g + tv, c + tv, "outside the game's convention")
 out["sensitivities"] = sens
 out["base_for_sensitivities"] = {"site": "renton", "game_npv": g, "cash_npv": c}
