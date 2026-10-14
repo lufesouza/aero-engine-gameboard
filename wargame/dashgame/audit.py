@@ -47,7 +47,7 @@ def bash_paths(cmd, cwd):
     def _q(m):
         quoted.append(m.group(0)[1:-1])
         return " QSTR%d " % (len(quoted) - 1)
-    bare = re.sub(r"'[^']*'|\"(?:[^\"\\\\]|\\\\.)*\"", _q, body)
+    bare = re.sub(r"'[^']*'|\"(?:[^\"\\]|\\.)*\"", _q, body)       # single quotes literal; \" escapes inside double
     wd, out = cwd or REPO, []
     for seg in re.split(r"\s*(?:&&|\|\||;|\|)\s*", bare):
         seg = seg.strip()
