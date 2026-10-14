@@ -1,0 +1,691 @@
+{
+ "rounds_played": 4,
+ "options": {
+  "demand_curve": "demand_conservative.json",
+  "firm_backlog": "netted",
+  "boeing_pp_after_ngsa": 1.0,
+  "boeing_takes_airbus_slack": true,
+  "airbus_capacity_response": 0.01,
+  "_note": "User's assumptions of 14 Oct 2026: demand = the conservative-case curve with the firm orders as its first slice (option B); Boeing loses 1 point of share a year after NGSA EIS (while it has no new narrowbody in service) down to the point where Airbus sells all it can and Boeing captures only the slack; Airbus raises capacity 1% a year until it meets its demand."
+ },
+ "fps_2030": {
+  "board": [
+   {
+    "plan": "Do Nothing",
+    "boeing": -3.6398161040679113,
+    "airbus": 45.820300677345514,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, new sites",
+    "boeing": 0.663208572464228,
+    "airbus": 23.366586850527383,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, Renton",
+    "boeing": 0.663208572464228,
+    "airbus": 23.366586850527383,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "fps 7-year, new sites",
+    "boeing": 1.1189417874257863,
+    "airbus": 17.28469144103765,
+    "bridge": {
+     "nb_profit_vs_sq": 30.131243863152697,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -21.673462485569004,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -7.338839590157907,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   },
+   {
+    "plan": "787 Re-engine",
+    "boeing": -0.33889724825546663,
+    "airbus": 44.95881977846766,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 5.581422460405179,
+     "programme_investment": -2.035679963957069,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.2448236406356652,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0
+    }
+   }
+  ],
+  "with_sd": [
+   {
+    "plan": "Do Nothing",
+    "boeing": -0.8336880537410587,
+    "airbus": 14.089159810850319,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": 2.8061280503268526,
+     "supply_plan": 0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, new sites",
+    "boeing": -6.461767938867607,
+    "airbus": 4.463838615183392,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -7.124976511331835,
+     "supply_plan": 0.0
+    }
+   },
+   {
+    "plan": "fps 10-year, Renton",
+    "boeing": -6.09467327983763,
+    "airbus": 5.42833099534757,
+    "bridge": {
+     "nb_profit_vs_sq": 20.29543575032945,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -14.90697216620302,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -4.725255011662201,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -7.499276356589143,
+     "supply_plan": 0.7413945042872855
+    }
+   },
+   {
+    "plan": "fps 7-year, new sites",
+    "boeing": -9.190026076176911,
+    "airbus": 1.0350858432935057,
+    "bridge": {
+     "nb_profit_vs_sq": 30.131243863152697,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -21.673462485569004,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -7.338839590157907,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -10.308967863602698,
+     "supply_plan": 0.0
+    }
+   },
+   {
+    "plan": "787 Re-engine",
+    "boeing": 2.467230802071386,
+    "airbus": 13.227678911972461,
+    "bridge": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 5.581422460405179,
+     "programme_investment": -2.035679963957069,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.2448236406356652,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": 2.8061280503268526,
+     "supply_plan": 0.0
+    }
+   }
+  ]
+ },
+ "round_items": [
+  {
+   "round": 1,
+   "year": 2030,
+   "briefed": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -5.628079885126548,
+    "fps_10yr_renton": -5.260985226096571,
+    "fps_7yr_new_site": -8.356338022435853,
+    "re787": 3.3009188558124447,
+    "airbus_played_plan": "NGSA (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 1.7452242719719706,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 3.3009188558124447,
+    "airbus_best": "NGSA (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.7452242719719706
+   },
+   "now": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -5.628079885126548,
+    "fps_10yr_renton": -5.260985226096571,
+    "fps_7yr_new_site": -8.356338022435853,
+    "re787": 3.3009188558124447,
+    "airbus_played_plan": "NGSA (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 1.7452242719719706,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 3.3009188558124447,
+    "airbus_best": "NGSA (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.7452242719719706
+   }
+  },
+  {
+   "round": 2,
+   "year": 2035,
+   "briefed": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -4.54583721541912,
+    "fps_10yr_renton": -4.286408149845023,
+    "fps_7yr_new_site": -6.880248654081591,
+    "re787": 2.003657370942565,
+    "airbus_played_plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 1.5454564090078264,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 2.003657370942565,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.5454564090078264
+   },
+   "now": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -4.54583721541912,
+    "fps_10yr_renton": -4.286408149845023,
+    "fps_7yr_new_site": -6.880248654081591,
+    "re787": 2.003657370942565,
+    "airbus_played_plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 1.5454564090078264,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 2.003657370942565,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 1.5454564090078264
+   }
+  },
+  {
+   "round": 3,
+   "year": 2045,
+   "briefed": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -1.9396311296514792,
+    "fps_10yr_renton": -1.7738194219629757,
+    "fps_7yr_new_site": -3.2094749973095866,
+    "re787": 0.738245278671982,
+    "airbus_played_plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 0.8903569664462694,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 0.738245278671982,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.8903569664462694
+   },
+   "now": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -1.9396311296514792,
+    "fps_10yr_renton": -1.7738194219629757,
+    "fps_7yr_new_site": -3.2094749973095866,
+    "re787": 0.738245278671982,
+    "airbus_played_plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 0.8903569664462694,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 0.738245278671982,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.8903569664462694
+   }
+  },
+  {
+   "round": 4,
+   "year": 2050,
+   "briefed": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -0.9532193691614013,
+    "fps_10yr_renton": -0.8525716814081452,
+    "fps_7yr_new_site": -1.8636719123553402,
+    "re787": 0.44811480038960116,
+    "airbus_played_plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 0.5715628285308441,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 0.44811480038960116,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.5715628285308441
+   },
+   "now": {
+    "boeing_do_nothing": -0.8336880537410587,
+    "fps_10yr_new_site": -0.9532193691614013,
+    "fps_10yr_renton": -0.8525716814081452,
+    "fps_7yr_new_site": -1.8636719123553402,
+    "re787": 0.44811480038960116,
+    "airbus_played_plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+    "airbus_played": 14.089159810850319,
+    "rea350": 0.5715628285308441,
+    "boeing_best": "fps: hold + 787 Re-engine",
+    "boeing_best_gain": 0.44811480038960116,
+    "airbus_best": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "airbus_best_gain": 0.5715628285308441
+   }
+  }
+ ],
+ "decisions_now": [
+  {
+   "round": 1,
+   "side": "boeing",
+   "actual": -0.8336880537410587,
+   "best_plan": "fps: hold + 787 Re-engine",
+   "best": 2.467230802071386,
+   "gain": 3.3009188558124447
+  },
+  {
+   "round": 1,
+   "side": "airbus",
+   "actual": 14.089159810850319,
+   "best_plan": "NGSA (A320 Alt plan) + A350 Re-engine",
+   "best": 15.83438408282229,
+   "gain": 1.7452242719719706
+  },
+  {
+   "round": 1,
+   "side": "cfm",
+   "actual": -27.06928876467552,
+   "best_plan": "Ducted + Partner Embraer + GEnx upgrade",
+   "best": -24.61976366447712,
+   "gain": 2.4495251001984
+  },
+  {
+   "round": 1,
+   "side": "pratt_whitney",
+   "actual": -0.9697195282656708,
+   "best_plan": "GTF2 Solo",
+   "best": -0.9697195282656708,
+   "gain": 0.0
+  },
+  {
+   "round": 1,
+   "side": "rolls_royce",
+   "actual": 11.770272707489688,
+   "best_plan": "UltraFan NB Solo",
+   "best": 11.770272707489688,
+   "gain": 0.0
+  },
+  {
+   "round": 2,
+   "side": "boeing",
+   "actual": -0.8336880537410587,
+   "best_plan": "fps: hold + 787 Re-engine",
+   "best": 1.1699693172015062,
+   "gain": 2.003657370942565
+  },
+  {
+   "round": 2,
+   "side": "airbus",
+   "actual": 14.089159810850319,
+   "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   "best": 15.634616219858145,
+   "gain": 1.5454564090078264
+  },
+  {
+   "round": 2,
+   "side": "cfm",
+   "actual": -28.04251821779073,
+   "best_plan": "Ducted + Partner Embraer",
+   "best": -28.04251821779073,
+   "gain": 0.0
+  },
+  {
+   "round": 2,
+   "side": "pratt_whitney",
+   "actual": -1.651590516162436,
+   "best_plan": "GTF2: hold + commit to JV",
+   "best": -1.651590516162436,
+   "gain": 0.0
+  },
+  {
+   "round": 2,
+   "side": "rolls_royce",
+   "actual": 11.027908454059585,
+   "best_plan": "UltraFan NB: hold + commit to JV",
+   "best": 11.027908454059585,
+   "gain": 0.0
+  },
+  {
+   "round": 3,
+   "side": "boeing",
+   "actual": -0.8336880537410587,
+   "best_plan": "fps: hold + 787 Re-engine",
+   "best": -0.09544277506907672,
+   "gain": 0.738245278671982
+  },
+  {
+   "round": 3,
+   "side": "airbus",
+   "actual": 14.089159810850319,
+   "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   "best": 14.979516777296588,
+   "gain": 0.8903569664462694
+  },
+  {
+   "round": 3,
+   "side": "cfm",
+   "actual": -28.04251821779073,
+   "best_plan": "hold everything",
+   "best": -28.04251821779073,
+   "gain": 0.0
+  },
+  {
+   "round": 3,
+   "side": "pratt_whitney",
+   "actual": -1.651590516162436,
+   "best_plan": "GTF2: hold",
+   "best": -1.651590516162436,
+   "gain": 0.0
+  },
+  {
+   "round": 3,
+   "side": "rolls_royce",
+   "actual": 11.027908454059585,
+   "best_plan": "UltraFan NB: hold",
+   "best": 11.027908454059585,
+   "gain": 0.0
+  },
+  {
+   "round": 4,
+   "side": "boeing",
+   "actual": -0.8336880537410587,
+   "best_plan": "fps: hold + 787 Re-engine",
+   "best": -0.38557325335145753,
+   "gain": 0.44811480038960116
+  },
+  {
+   "round": 4,
+   "side": "airbus",
+   "actual": 14.089159810850319,
+   "best_plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+   "best": 14.660722639381163,
+   "gain": 0.5715628285308441
+  },
+  {
+   "round": 4,
+   "side": "cfm",
+   "actual": -28.04251821779073,
+   "best_plan": "hold everything",
+   "best": -28.04251821779073,
+   "gain": 0.0
+  },
+  {
+   "round": 4,
+   "side": "pratt_whitney",
+   "actual": -1.651590516162436,
+   "best_plan": "GTF2: hold",
+   "best": -1.651590516162436,
+   "gain": 0.0
+  },
+  {
+   "round": 4,
+   "side": "rolls_royce",
+   "actual": 11.027908454059585,
+   "best_plan": "UltraFan NB: hold",
+   "best": 11.027908454059585,
+   "gain": 0.0
+  }
+ ],
+ "no_layer": {
+  "boeing": -3.6398161040679113,
+  "airbus": 45.820300677345514,
+  "cfm": -61.16903560030332,
+  "pratt_whitney": 5.924341211287469,
+  "rolls_royce": 29.403903069283942
+ },
+ "assumptions": [
+  {
+   "case": "As played",
+   "options": {},
+   "do_nothing_2030": -0.8336880537410587,
+   "fps_new_site": -5.628079885126548,
+   "fps_renton": -5.260985226096571,
+   "final_boeing": -0.8336880537410587,
+   "final_airbus": 14.089159810850319
+  },
+  {
+   "case": "Boeing loses 0.5 points a year",
+   "options": {
+    "boeing_pp_after_ngsa": 0.5
+   },
+   "do_nothing_2030": -0.37702873252032765,
+   "fps_new_site": -6.08473920634728,
+   "fps_renton": -5.7176445473173025,
+   "final_boeing": -0.37702873252032765,
+   "final_airbus": 11.67542021719736
+  },
+  {
+   "case": "Boeing loses 2 points a year",
+   "options": {
+    "boeing_pp_after_ngsa": 2.0
+   },
+   "do_nothing_2030": -1.2509561950463537,
+   "fps_new_site": -5.210811743821253,
+   "fps_renton": -4.843717084791276,
+   "final_boeing": -1.2509561950463537,
+   "final_airbus": 16.06550328914302
+  },
+  {
+   "case": "Boeing loses 3 points a year",
+   "options": {
+    "boeing_pp_after_ngsa": 3.0
+   },
+   "do_nothing_2030": -1.2509561950463537,
+   "fps_new_site": -5.210811743821253,
+   "fps_renton": -4.843717084791276,
+   "final_boeing": -1.2509561950463537,
+   "final_airbus": 16.06550328914302
+  },
+  {
+   "case": "Board share rule (Airbus +3 points a year to 80%)",
+   "options": {
+    "boeing_pp_after_ngsa": null
+   },
+   "do_nothing_2030": -0.9756893265582711,
+   "fps_new_site": -5.486078612309336,
+   "fps_renton": -5.118983953279359,
+   "final_boeing": -0.9756893265582711,
+   "final_airbus": 15.200802372712563
+  },
+  {
+   "case": "No slack floor (the overflow rule only)",
+   "options": {
+    "boeing_takes_airbus_slack": null
+   },
+   "do_nothing_2030": -0.9052850670207975,
+   "fps_new_site": -5.663155531151961,
+   "fps_renton": -5.238101017450713,
+   "final_boeing": -0.9052850670207975,
+   "final_airbus": 14.426985577939263
+  },
+  {
+   "case": "No Airbus capacity response",
+   "options": {
+    "airbus_capacity_response": null
+   },
+   "do_nothing_2030": -0.3744423992141841,
+   "fps_new_site": -5.97781792936685,
+   "fps_renton": -5.350966038915441,
+   "final_boeing": -0.3744423992141841,
+   "final_airbus": 11.121843010810206
+  },
+  {
+   "case": "Airbus capacity response 2% a year",
+   "options": {
+    "airbus_capacity_response": 0.02
+   },
+   "do_nothing_2030": -0.958558578548625,
+   "fps_new_site": -5.563821127992287,
+   "fps_renton": -5.243883189227117,
+   "final_boeing": -0.958558578548625,
+   "final_airbus": 14.863821406556863
+  },
+  {
+   "case": "Firm orders on top of demand (not netted)",
+   "options": {
+    "firm_backlog": null
+   },
+   "do_nothing_2030": -0.6336965112173116,
+   "fps_new_site": -5.046715215166972,
+   "fps_renton": -4.612716876516472,
+   "final_boeing": -0.6336965112173116,
+   "final_airbus": 15.074230167386439
+  }
+ ],
+ "steps": [
+  {
+   "step": "Previous game's market",
+   "options": {
+    "demand_curve": null,
+    "firm_backlog": null,
+    "boeing_pp_after_ngsa": null,
+    "boeing_takes_airbus_slack": null,
+    "airbus_capacity_response": null
+   },
+   "do_nothing_2030": -0.767291941752474,
+   "fps_new_site": -2.7437555560180447,
+   "fps_renton": -2.192823971472366,
+   "final": {
+    "boeing": -0.767291941752474,
+    "airbus": 13.24909402669827,
+    "cfm": -23.47294126960037,
+    "pratt_whitney": -0.480404404730038,
+    "rolls_royce": 9.610097402435244
+   }
+  },
+  {
+   "step": "+ conservative demand curve (firm orders on top)",
+   "options": {
+    "firm_backlog": null,
+    "boeing_pp_after_ngsa": null,
+    "boeing_takes_airbus_slack": null,
+    "airbus_capacity_response": null
+   },
+   "do_nothing_2030": -0.24909634424058025,
+   "fps_new_site": -5.176608163382914,
+   "fps_renton": -4.878625422181093,
+   "final": {
+    "boeing": -0.24909634424058025,
+    "airbus": 11.121843010810206,
+    "cfm": -22.523000575687064,
+    "pratt_whitney": -2.0375054549999163,
+    "rolls_royce": 9.610097402435244
+   }
+  },
+  {
+   "step": "+ firm orders part of demand (option B)",
+   "options": {
+    "boeing_pp_after_ngsa": null,
+    "boeing_takes_airbus_slack": null,
+    "airbus_capacity_response": null
+   },
+   "do_nothing_2030": -0.4163347384720826,
+   "fps_new_site": -6.051100260307686,
+   "fps_renton": -5.591292009111193,
+   "final": {
+    "boeing": -0.4163347384720826,
+    "airbus": 11.121843010810206,
+    "cfm": -24.094169056850717,
+    "pratt_whitney": -2.0375054549999234,
+    "rolls_royce": 9.610097402435244
+   }
+  },
+  {
+   "step": "+ Boeing loses 1 point a year after NGSA",
+   "options": {
+    "boeing_takes_airbus_slack": null,
+    "airbus_capacity_response": null
+   },
+   "do_nothing_2030": -0.4093905550666155,
+   "fps_new_site": -6.058044443713154,
+   "fps_renton": -5.59823619251666,
+   "final": {
+    "boeing": -0.4093905550666155,
+    "airbus": 11.121843010810206,
+    "cfm": -23.967118277587844,
+    "pratt_whitney": -2.0375054549999234,
+    "rolls_royce": 9.610097402435244
+   }
+  },
+  {
+   "step": "+ Airbus's slack goes to Boeing",
+   "options": {
+    "airbus_capacity_response": null
+   },
+   "do_nothing_2030": -0.3744423992141841,
+   "fps_new_site": -5.97781792936685,
+   "fps_renton": -5.350966038915441,
+   "final": {
+    "boeing": -0.3744423992141841,
+    "airbus": 11.121843010810206,
+    "cfm": -23.61290247556954,
+    "pratt_whitney": -2.0375054549999234,
+    "rolls_royce": 9.610097402435244
+   }
+  },
+  {
+   "step": "+ Airbus adds 1% capacity a year when short (this game)",
+   "options": {},
+   "do_nothing_2030": -0.8336880537410587,
+   "fps_new_site": -5.628079885126548,
+   "fps_renton": -5.260985226096571,
+   "final": {
+    "boeing": -0.8336880537410587,
+    "airbus": 14.089159810850319,
+    "cfm": -28.04251821779073,
+    "pratt_whitney": -1.651590516162436,
+    "rolls_royce": 11.027908454059585
+   }
+  }
+ ]
+}

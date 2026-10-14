@@ -1,0 +1,49 @@
+{
+ "round": 1,
+ "year": 2030,
+ "pure": [
+  [
+   "fps: hold + 787: hold",
+   "NGSA (A320 Alt plan) + A350 Re-engine",
+   -3.45600242845376,
+   15.83438408282229
+  ],
+  [
+   "fps: hold + 787 Re-engine",
+   "NGSA (A320 Alt plan) + A350: hold",
+   2.467230802071386,
+   13.227678911972461
+  ]
+ ],
+ "near_within_1b": [
+  [
+   "fps: hold + 737 rate up + 787: hold",
+   "NGSA (A320 Alt plan) + A350 Re-engine",
+   -4.277686139381735,
+   14.554251997889907
+  ],
+  [
+   "fps: hold + 737 rate up + 787 Re-engine",
+   "NGSA (A320 Alt plan) + A350: hold",
+   1.6455470911434107,
+   11.947546827040078
+  ]
+ ],
+ "played": [
+  "fps: hold + 787: hold",
+  "NGSA (A320 Alt plan) + A350: hold"
+ ],
+ "played_value": [
+  -0.8336880537410587,
+  14.089159810850319
+ ],
+ "eps_b": 1.0,
+ "boeing_best_response_to_played_airbus": [
+  "fps: hold + 787 Re-engine",
+  2.467230802071386
+ ],
+ "airbus_best_response_to_played_boeing": [
+  "NGSA (A320 Alt plan) + A350 Re-engine",
+  15.83438408282229
+ ]
+}

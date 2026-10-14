@@ -8,6 +8,8 @@
 3. The user's assumptions, one at a time: the 2030 fps business case (10-year fps at Renton and at new sites, minus
    Do Nothing, round-1 orders as played) and the final state's ΔPV for Boeing and Airbus when one assumption moves:
    Boeing's share loss a year after NGSA EIS, the slack floor, Airbus's capacity response, the firm-order netting.
+4. The same values stepping from the previous game's market (dash-2050-sd: no options) to this game's, one assumption
+   added at a time.
 
   DASH_RUN=dash-2050-cons python3 make_cons_checks.py
 """
@@ -148,10 +150,39 @@ def assumption_sensitivity(n_last):
     return out
 
 
+# From the previous game's market (no options: replacement + growth demand, firm orders on top, the board's share
+# rule, flexible customers only) to this game's, one assumption added at a time, in this order.
+STEPS = [("Previous game's market", {"demand_curve": None, "firm_backlog": None, "boeing_pp_after_ngsa": None,
+                                     "boeing_takes_airbus_slack": None, "airbus_capacity_response": None}),
+         ("+ conservative demand curve (firm orders on top)", {"firm_backlog": None, "boeing_pp_after_ngsa": None,
+                                                               "boeing_takes_airbus_slack": None, "airbus_capacity_response": None}),
+         ("+ firm orders part of demand (option B)", {"boeing_pp_after_ngsa": None, "boeing_takes_airbus_slack": None,
+                                                      "airbus_capacity_response": None}),
+         ("+ Boeing loses 1 point a year after NGSA", {"boeing_takes_airbus_slack": None, "airbus_capacity_response": None}),
+         ("+ Airbus's slack goes to Boeing", {"airbus_capacity_response": None}),
+         ("+ Airbus adds 1% capacity a year when short (this game)", {})]
+
+
+def assumption_steps(n_last):
+    s_final = RP.jl("state_r%d.json" % n_last)
+    dn, f_new, f_ren = build_2030({}), build_2030({"fps": "launch_10yr", "fps_engine_code": 7}), \
+        build_2030({"fps": "launch_10yr", "fps_engine_code": 7}, "renton")
+    out = []
+    for lab, kw in STEPS:
+        set_options(**kw)
+        vb = {k: M.value(st, covert=True, series=False)["boeing"]["pv_delta"] for k, st in (("dn", dn), ("new", f_new), ("ren", f_ren))}
+        vf = M.value(s_final, covert=True, series=False)
+        out.append({"step": lab, "options": kw, "do_nothing_2030": vb["dn"], "fps_new_site": vb["new"] - vb["dn"],
+                    "fps_renton": vb["ren"] - vb["dn"], "final": {s: vf[s]["pv_delta"] for s in M.SIDES}})
+    reset_options()
+    return out
+
+
 def main():
     n = RP.rounds_played()
     out = {"rounds_played": n, "options": BASE_OPTIONS, "fps_2030": fps_2030(), "round_items": round_items(n),
-           "decisions_now": decisions_now(n), "no_layer": no_layer(n), "assumptions": assumption_sensitivity(n)}
+           "decisions_now": decisions_now(n), "no_layer": no_layer(n), "assumptions": assumption_sensitivity(n),
+           "steps": assumption_steps(n)}
     path = os.path.join(HERE, "data", "cons_checks.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=1)
@@ -164,6 +195,9 @@ def main():
     for r in out["assumptions"]:
         print("%-52s DN %6.2f  fps new %6.2f  Renton %6.2f | final B %6.2f A %6.2f" % (
             r["case"], r["do_nothing_2030"], r["fps_new_site"], r["fps_renton"], r["final_boeing"], r["final_airbus"]))
+    for r in out["steps"]:
+        print("%-58s DN %6.2f  fps new %6.2f  Renton %6.2f | final %s" % (
+            r["step"], r["do_nothing_2030"], r["fps_new_site"], r["fps_renton"], {k: round(x, 2) for k, x in r["final"].items()}))
     print("wrote", path)
 
 
