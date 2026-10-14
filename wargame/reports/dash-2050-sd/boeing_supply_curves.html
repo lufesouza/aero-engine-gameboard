@@ -1,0 +1,271 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boeing Supply Curves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f6f9; --surface: #ffffff; --sunk: #eef2f7; --line: #d5dce6; --grid: #e3e8ef;
+  --fg: #141c28; --muted: #556275; --faint: #8a95a5;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #17a06f;
+  --pos: #3b4a5e; --neg: #8792a3; --sq: #8a95a5;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 8px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --pos: #c9d3e0; --neg: #5d6a7c; --sq: #6f7b8d; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --pos: #c9d3e0; --neg: #5d6a7c; --sq: #6f7b8d; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font-body); }
+a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 2px; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px 56px; }
+header.top { padding: 34px 0 10px; }
+.eyebrow { font: 500 .74rem/1.4 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(2.1rem, 5vw, 3.2rem)/1.02 var(--font-display); margin: 10px 0 12px; letter-spacing: .01em; }
+h2 { font: 700 1.9rem/1.1 var(--font-display); margin: 0 0 10px; }
+h3 { font: 600 1.3rem/1.2 var(--font-display); margin: 0 0 8px; letter-spacing: .02em; }
+p { margin: 0 0 10px; }
+.lede { font-size: 1.08rem; max-width: 80ch; }
+.muted { color: var(--muted); } .small { font-size: .86rem; }
+.nw { white-space: nowrap; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 6px; font-size: .9rem; }
+nav.toc a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+nav.toc a:hover { color: var(--fg); }
+section { margin-top: 44px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; }
+.stack > * + * { margin-top: 14px; }
+.label { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.ctitle { font: 600 1.05rem/1.3 var(--font-body); margin: 0 0 4px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(196px, 1fr)); gap: 12px; margin-top: 18px; }
+.tile .k { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tile .v { font: 600 1.45rem/1.2 var(--font-body); margin: 6px 0 4px; letter-spacing: -.01em; text-wrap: balance; }
+.tile .d { font-size: .86rem; color: var(--muted); line-height: 1.4; }
+.gloss { margin-top: 12px; font-size: .88rem; color: var(--muted); max-width: 110ch; }
+.gloss b { color: var(--fg); font-weight: 600; }
+.bl { display: grid; gap: 10px; margin-top: 14px; counter-reset: bl; }
+.bl .panel { display: grid; grid-template-columns: 34px 1fr; gap: 4px 12px; }
+.bl .panel::before { counter-increment: bl; content: counter(bl); font: 700 1.5rem/1 var(--font-display); color: var(--muted); }
+.bl b { display: block; font: 600 1.15rem/1.25 var(--font-display); letter-spacing: .02em; margin-bottom: 2px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid2 > * { min-width: 0; }
+.cw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.only-narrow { display: none; }
+.chart .grid { stroke: var(--grid); } .chart .zero { stroke: var(--muted); }
+.chart .ref { stroke: var(--muted); stroke-width: 1; }
+.chart .reflab { fill: var(--muted); font: 500 11px var(--font-mono); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.chart .tick { fill: var(--muted); font: 11px var(--font-mono); }
+.chart .tick.strong { fill: var(--fg); font-weight: 600; }
+.chart .rowlab { fill: var(--fg); font: 600 14px var(--font-body); }
+.chart .rowlab.sm { font: 500 12.5px var(--font-body); }
+.chart .rowlab.strong { font-weight: 700; }
+.chart .grp { fill: var(--muted); font: 500 10.5px var(--font-mono); letter-spacing: .1em; }
+.chart .val { fill: var(--fg); font: 500 12.5px var(--font-mono); paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; }
+.chart .val.muted { fill: var(--muted); }
+.chart .val.sm { font-size: 11px; }
+.chart .ann { fill: var(--muted); font: 600 11px var(--font-mono); letter-spacing: .04em; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.chart .zlab { fill: var(--muted); font: 500 11px var(--font-mono); }
+.chart .zone { fill: var(--sunk); }
+.chart .endlab { fill: var(--fg); font: 500 12px var(--font-mono); }
+.chart .leader { stroke: var(--faint); stroke-width: 1; }
+.chart .bracket { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+.chart .b.pos { fill: var(--pos); } .chart .b.neg { fill: var(--neg); } .chart .b.t41 { fill: var(--s1); } .chart .b.t44 { fill: var(--s2); }
+.chart .b.hl { stroke: var(--fg); stroke-width: 1.5; }
+.chart .eqy { fill: var(--fg); } .chart .eqn { fill: none; stroke: var(--faint); stroke-width: 1.5; }
+.chart .ring { stroke: var(--surface); stroke-width: 2; }
+.chart .mark { fill: none; stroke: var(--fg); stroke-width: 1.5; }
+.chart .hollow { fill: var(--surface); stroke: var(--fg); stroke-width: 2; }
+.chart .filled { fill: var(--fg); stroke: var(--surface); stroke-width: 2; }
+.chart .conn { stroke: var(--faint); stroke-width: 2; }
+.chart .hit, .chart .xhit { fill: transparent; }
+.chart .hit:hover { fill: var(--fg); fill-opacity: .05; }
+.chart .hit:focus { outline: none; }
+.chart .hit:focus-visible { fill: var(--fg); fill-opacity: .08; stroke: var(--fg); stroke-width: 1.5; }
+.chart .cross { stroke: var(--muted); stroke-width: 1; }
+.chart.xh:focus { outline: none; }
+.chart.xh:focus-visible { outline: none; }
+.cw:has(> .chart.xh:focus-visible) { outline: 2px solid var(--fg); outline-offset: 2px; border-radius: 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .85rem; color: var(--muted); margin: 6px 0 6px; }
+.legend i { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.legend i.ln { width: 16px; height: 2px; border-radius: 1px; }
+.legend i.sq { width: 11px; height: 11px; border-radius: 3px; }
+.legend i.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--fg); }
+.legend i.ring { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--fg); }
+.legend i.ringf { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--faint); }
+.legend i.bar { width: 14px; height: 10px; border-radius: 2px; }
+.cap { font-size: .88rem; color: var(--muted); margin: 8px 0 0; }
+.cap b { color: var(--fg); }
+.tip { position: fixed; z-index: 20; pointer-events: none; display: none; max-width: 320px; background: var(--surface); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: .82rem; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+.tip div { display: flex; align-items: baseline; gap: 6px; line-height: 1.35; }
+.tip b { font: 600 .86rem var(--font-mono); white-space: nowrap; }
+.tip span.l { color: var(--muted); flex: 1 1 auto; min-width: 0; }
+.tip .k { display: inline-block; width: 12px; height: 2px; border-radius: 1px; flex: none; align-self: center; }
+.tip .yr { font: 600 .78rem var(--font-mono); color: var(--muted); margin-bottom: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+details.tv { margin-top: 8px; font-size: .88rem; }
+details.tv summary { cursor: pointer; color: var(--muted); }
+details.tv table { margin-top: 8px; }
+.loop { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; margin: 12px 0 6px; padding: 0; list-style: none; counter-reset: lp; }
+.loop li { flex: 1 1 150px; border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; background: var(--sunk); font-size: .9rem; }
+.loop li::before { counter-increment: lp; content: counter(lp); font: 600 .78rem var(--font-mono); color: var(--muted); display: block; }
+.zkey { margin: 8px 0 0; padding-left: 20px; font-size: .86rem; color: var(--muted); }
+.loop li.back { background: var(--surface); border-style: dashed; color: var(--muted); }
+.dcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; }
+.dcard h3 { margin-bottom: 10px; }
+.dcard p { font-size: .9rem; }
+ul.probs { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 5px; }
+ul.probs li { display: grid; grid-template-columns: minmax(0, 1fr) 90px 38px; gap: 8px; align-items: center; font-size: .88rem; }
+ul.probs li.top .ol { font-weight: 600; }
+.pb { height: 8px; background: var(--sunk); border-radius: 2px; overflow: hidden; }
+.pf { display: block; height: 100%; background: var(--pos); border-radius: 0 2px 2px 0; }
+.pv { font: 500 .82rem var(--font-mono); text-align: right; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: .92rem; }
+thead th { font: 500 .72rem/1.25 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--sunk); vertical-align: bottom; }
+thead th:first-child { border-top-left-radius: var(--r); } thead th:last-child { border-top-right-radius: var(--r); }
+thead th.n { text-align: right; }
+tbody th { font-weight: 500; }
+td.n { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tbody tr:last-child > * { border-bottom: 0; }
+.callout { border-left: 4px solid var(--fg); }
+ul.cav { margin: 0; padding-left: 18px; } ul.cav li { margin-bottom: 6px; }
+.facts { margin: 0; padding-left: 18px; } .facts li { margin-bottom: 4px; }
+.src { columns: 2 300px; column-gap: 28px; font-size: .86rem; }
+.src h3 { font-size: 1.05rem; margin: 0 0 4px; break-after: avoid; }
+.src ul { margin: 0 0 12px; padding-left: 18px; break-inside: avoid; } .src li { margin-bottom: 3px; }
+.lede, .bl .panel, .dcard p, .facts li, ul.cav li, .cap, .gloss { text-wrap: pretty; }
+footer { margin-top: 40px; font-size: .82rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px 48px; }
+  .grid2, .dcards { grid-template-columns: 1fr; }
+  .panel { padding: 14px; }
+  .only-wide { display: none; } .only-narrow { display: block; }
+  .chart { min-width: 620px; } .chart.narrow { min-width: 0; }
+  ul.probs li { grid-template-columns: minmax(0, 1fr) 60px 36px; }
+  .chart .tick, .chart .reflab, .chart .ann { font-size: 13px; }
+  .chart .val, .chart .endlab, .chart .rowlab.sm { font-size: 14px; }
+  .chart .grp { font-size: 12px; } .chart .val.sm { font-size: 12.5px; }
+  .chart.narrow .tick { font-size: 12px; } .chart.narrow .val, .chart.narrow .rowlab.sm { font-size: 13px; }
+  th, td { padding: 7px 6px; font-size: .86rem; }
+  thead th { white-space: normal; letter-spacing: .02em; }
+  tbody th { min-width: 7rem; }
+}
+@media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: no-preference) { a { transition: color .15s; } }
+
+p, li, footer { overflow-wrap: break-word; }
+</style></head><body><div class="wrap">
+<header class="top"><p class="eyebrow">Boeing Product Development · supply-and-demand war game (dash-2050-sd) · BOEING PROPRIETARY</p>
+<h1>Boeing supply curves in the game</h1>
+<p class="lede">The fps ramps on the NGSA curve of your Airbus Rev. B chart, moved to the fps's entry into service:
+1, 2, 8, 24, 46, 67, 80 a month in its first 7 years. The curve goes on to
+92 and 100, but the fps is held to 90 a month until 2050
+and runs at 100 from 2051. The 7-year and 10-year options share that ramp; they
+differ only in when the fps enters service (7 or 10 years after launch). As the fps ramps, the 737 MAX gives way, keeping a
+tail of 10 a month until 2050, so Boeing never builds more than 100
+a month in total. Shown for a launch in 2030, the game's first decision year.</p></header>
+<section style="margin-top:20px"><div class="stack"><div class="legend"><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s3)" stroke-width="2"/></svg>fps</span><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s1)" stroke-width="2"/></svg>737 MAX, fps at new sites (default)</span><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--s1)" stroke-width="2" stroke-dasharray="6 4"/></svg>737 MAX, Renton reassigned to the fps</span><span><svg width="24" height="4" aria-hidden="true" style="vertical-align:middle;margin-right:6px"><line x1="0" y1="2" x2="24" y2="2" stroke="var(--sq)" stroke-width="2" stroke-dasharray="6 4"/></svg>737 MAX with no fps</span></div><div class="panel"><p class="ctitle">fps 7-year: launched 2030, in service 2037, 90 a month by 2044 and 100 a month from 2051</p><div class="cw"><svg viewBox="0 0 760 346" class="chart xh" role="img" aria-label="Boeing single-aisle supply with the fps 7-year option. Use the arrow keys to read values by year." tabindex="0"><line x1="58" x2="588" y1="300.0" y2="300.0" class="grid"/><text x="50" y="304.0" text-anchor="end" class="tick">0</text><line x1="58" x2="588" y1="250.2" y2="250.2" class="grid"/><text x="50" y="254.2" text-anchor="end" class="tick">20</text><line x1="58" x2="588" y1="200.4" y2="200.4" class="grid"/><text x="50" y="204.4" text-anchor="end" class="tick">40</text><line x1="58" x2="588" y1="150.5" y2="150.5" class="grid"/><text x="50" y="154.5" text-anchor="end" class="tick">60</text><line x1="58" x2="588" y1="100.7" y2="100.7" class="grid"/><text x="50" y="104.7" text-anchor="end" class="tick">80</text><line x1="58" x2="588" y1="50.9" y2="50.9" class="grid"/><text x="50" y="54.9" text-anchor="end" class="tick">100</text><text x="120.4" y="318" text-anchor="middle" class="tick">2030</text><text x="198.3" y="318" text-anchor="middle" class="tick">2035</text><text x="276.2" y="318" text-anchor="middle" class="tick">2040</text><text x="354.2" y="318" text-anchor="middle" class="tick">2045</text><text x="432.1" y="318" text-anchor="middle" class="tick">2050</text><text x="510.1" y="318" text-anchor="middle" class="tick">2055</text><text x="588.0" y="318" text-anchor="middle" class="tick">2060</text><line x1="120.4" x2="120.4" y1="26" y2="300" class="leader"/><text x="125.4" y="37" class="ann">launch</text><line x1="229.5" x2="229.5" y1="26" y2="300" class="leader"/><text x="234.5" y="37" class="ann">in service</text><line x1="432.1" x2="432.1" y1="26" y2="300" class="leader"/><text x="437.1" y="37" class="ann">MAX ends</text><path d="M58.0,194.1 L73.6,176.7 L89.2,170.5 L104.8,164.2 L120.4,158.0 L135.9,158.0 L151.5,158.0 L167.1,158.0 L182.7,158.0 L198.3,158.0 L213.9,158.0 L229.5,158.0 L245.1,158.0 L260.6,158.0 L276.2,158.0 L291.8,158.0 L307.4,158.0 L323.0,158.0 L338.6,158.0 L354.2,158.0 L369.8,158.0 L385.4,158.0 L400.9,158.0 L416.5,158.0 L432.1,158.0 L447.7,158.0 L463.3,158.0 L478.9,158.0 L494.5,158.0 L510.1,158.0 L525.6,158.0 L541.2,158.0 L556.8,158.0 L572.4,158.0 L588.0,158.0" fill="none" stroke="var(--sq)" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,194.1 L73.6,176.7 L89.2,170.5 L104.8,164.2 L120.4,158.0 L135.9,158.0 L151.5,158.0 L167.1,158.0 L182.7,158.0 L198.3,158.0 L213.9,158.0 L229.5,168.8 L245.1,199.3 L260.6,204.6 L276.2,241.1 L291.8,255.8 L307.4,262.6 L323.0,262.6 L338.6,275.1 L354.2,275.1 L369.8,275.1 L385.4,275.1 L400.9,275.1 L416.5,275.1 L432.1,275.1 L447.7,300.0 L463.3,300.0 L478.9,300.0 L494.5,300.0 L510.1,300.0 L525.6,300.0 L541.2,300.0 L556.8,300.0 L572.4,300.0 L588.0,300.0" fill="none" stroke="var(--s1)" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,194.1 L73.6,176.7 L89.2,170.5 L104.8,164.2 L120.4,158.0 L135.9,158.0 L151.5,158.0 L167.1,158.0 L182.7,158.0 L198.3,158.0 L213.9,158.0 L229.5,158.0 L245.1,158.0 L260.6,158.0 L276.2,158.0 L291.8,165.4 L307.4,216.6 L323.0,249.9 L338.6,275.1 L354.2,275.1 L369.8,275.1 L385.4,275.1 L400.9,275.1 L416.5,275.1 L432.1,275.1 L447.7,300.0 L463.3,300.0 L478.9,300.0 L494.5,300.0 L510.1,300.0 L525.6,300.0 L541.2,300.0 L556.8,300.0 L572.4,300.0 L588.0,300.0" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,300.0 L73.6,300.0 L89.2,300.0 L104.8,300.0 L120.4,300.0 L135.9,300.0 L151.5,300.0 L167.1,300.0 L182.7,300.0 L198.3,300.0 L213.9,300.0 L229.5,298.3 L245.1,294.5 L260.6,280.8 L276.2,239.1 L291.8,185.6 L307.4,134.3 L323.0,101.0 L338.6,75.8 L354.2,75.8 L369.8,75.8 L385.4,75.8 L400.9,75.8 L416.5,75.8 L432.1,75.8 L447.7,50.9 L463.3,50.9 L478.9,50.9 L494.5,50.9 L510.1,50.9 L525.6,50.9 L541.2,50.9 L556.8,50.9 L572.4,50.9 L588.0,50.9" fill="none" stroke="var(--s3)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="588.0" cy="158.0" r="4" fill="var(--sq)" class="ring"/><text x="596" y="162.0" class="endlab">MAX, no fps 57</text><circle cx="588.0" cy="300.0" r="4" fill="var(--s1)" class="ring"/><line x1="594.0" x2="593.0" y1="300.0" y2="268.0" class="leader"/><text x="596" y="272.0" class="endlab">MAX, Renton 0</text><circle cx="588.0" cy="300.0" r="4" fill="var(--s1)" class="ring"/><line x1="594.0" x2="593.0" y1="300.0" y2="286.0" class="leader"/><text x="596" y="290.0" class="endlab">MAX 0</text><circle cx="588.0" cy="50.9" r="4" fill="var(--s3)" class="ring"/><text x="596" y="54.9" class="endlab">fps 100</text><line class="cross" x1="0" x2="0" y1="26" y2="300" visibility="hidden"/><rect x="58" y="26" width="530" height="274" class="xhit" data-cross="{&quot;x0&quot;: 58, &quot;x1&quot;: 588, &quot;xlo&quot;: 2026, &quot;xhi&quot;: 2060, &quot;w&quot;: 760, &quot;fmt&quot;: &quot;int&quot;, &quot;years&quot;: [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060], &quot;series&quot;: [{&quot;name&quot;: &quot;MAX, no fps&quot;, &quot;k&quot;: &quot;var(--sq)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 42.5, &quot;2027&quot;: 49.5, &quot;2028&quot;: 52.0, &quot;2029&quot;: 54.5, &quot;2030&quot;: 57.0, &quot;2031&quot;: 57.0, &quot;2032&quot;: 57.0, &quot;2033&quot;: 57.0, &quot;2034&quot;: 57.0, &quot;2035&quot;: 57.0, &quot;2036&quot;: 57.0, &quot;2037&quot;: 57.0, &quot;2038&quot;: 57.0, &quot;2039&quot;: 57.0, &quot;2040&quot;: 57.0, &quot;2041&quot;: 57.0, &quot;2042&quot;: 57.0, &quot;2043&quot;: 57.0, &quot;2044&quot;: 57.0, &quot;2045&quot;: 57.0, &quot;2046&quot;: 57.0, &quot;2047&quot;: 57.0, &quot;2048&quot;: 57.0, &quot;2049&quot;: 57.0, &quot;2050&quot;: 57.0, &quot;2051&quot;: 57.0, &quot;2052&quot;: 57.0, &quot;2053&quot;: 57.0, &quot;2054&quot;: 57.0, &quot;2055&quot;: 57.0, &quot;2056&quot;: 57.0, &quot;2057&quot;: 57.0, &quot;2058&quot;: 57.0, &quot;2059&quot;: 57.0, &quot;2060&quot;: 57.0}}, {&quot;name&quot;: &quot;MAX, Renton&quot;, &quot;k&quot;: &quot;var(--s1)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 42.5, &quot;2027&quot;: 49.5, &quot;2028&quot;: 52.0, &quot;2029&quot;: 54.5, &quot;2030&quot;: 57.0, &quot;2031&quot;: 57.0, &quot;2032&quot;: 57.0, &quot;2033&quot;: 57.0, &quot;2034&quot;: 57.0, &quot;2035&quot;: 57.0, &quot;2036&quot;: 57.0, &quot;2037&quot;: 52.68830678104563, &quot;2038&quot;: 40.41368464052261, &quot;2039&quot;: 38.311356209150155, &quot;2040&quot;: 23.654575163398537, &quot;2041&quot;: 17.741176470588233, &quot;2042&quot;: 15.0, &quot;2043&quot;: 15.0, &quot;2044&quot;: 10.0, &quot;2045&quot;: 10.0, &quot;2046&quot;: 10.0, &quot;2047&quot;: 10.0, &quot;2048&quot;: 10.0, &quot;2049&quot;: 10.0, &quot;2050&quot;: 10.0, &quot;2051&quot;: 0.0, &quot;2052&quot;: 0.0, &quot;2053&quot;: 0.0, &quot;2054&quot;: 0.0, &quot;2055&quot;: 0.0, &quot;2056&quot;: 0.0, &quot;2057&quot;: 0.0, &quot;2058&quot;: 0.0, &quot;2059&quot;: 0.0, &quot;2060&quot;: 0.0}}, {&quot;name&quot;: &quot;MAX&quot;, &quot;k&quot;: &quot;var(--s1)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 42.5, &quot;2027&quot;: 49.5, &quot;2028&quot;: 52.0, &quot;2029&quot;: 54.5, &quot;2030&quot;: 57.0, &quot;2031&quot;: 57.0, &quot;2032&quot;: 57.0, &quot;2033&quot;: 57.0, &quot;2034&quot;: 57.0, &quot;2035&quot;: 57.0, &quot;2036&quot;: 57.0, &quot;2037&quot;: 57.0, &quot;2038&quot;: 57.0, &quot;2039&quot;: 57.0, &quot;2040&quot;: 57.0, &quot;2041&quot;: 54.05533050411375, &quot;2042&quot;: 33.48501660628017, &quot;2043&quot;: 20.11017628205097, &quot;2044&quot;: 10.0, &quot;2045&quot;: 10.0, &quot;2046&quot;: 10.0, &quot;2047&quot;: 10.0, &quot;2048&quot;: 10.0, &quot;2049&quot;: 10.0, &quot;2050&quot;: 10.0, &quot;2051&quot;: 0.0, &quot;2052&quot;: 0.0, &quot;2053&quot;: 0.0, &quot;2054&quot;: 0.0, &quot;2055&quot;: 0.0, &quot;2056&quot;: 0.0, &quot;2057&quot;: 0.0, &quot;2058&quot;: 0.0, &quot;2059&quot;: 0.0, &quot;2060&quot;: 0.0}}, {&quot;name&quot;: &quot;fps&quot;, &quot;k&quot;: &quot;var(--s3)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.0, &quot;2027&quot;: 0.0, &quot;2028&quot;: 0.0, &quot;2029&quot;: 0.0, &quot;2030&quot;: 0.0, &quot;2031&quot;: 0.0, &quot;2032&quot;: 0.0, &quot;2033&quot;: 0.0, &quot;2034&quot;: 0.0, &quot;2035&quot;: 0.0, &quot;2036&quot;: 0.0, &quot;2037&quot;: 0.6750578703704369, &quot;2038&quot;: 2.2250000000001364, &quot;2039&quot;: 7.7198350694447635, &quot;2040&quot;: 24.429861111111567, &quot;2041&quot;: 45.94466949588625, &quot;2042&quot;: 66.51498339371983, &quot;2043&quot;: 79.88982371794903, &quot;2044&quot;: 90.0, &quot;2045&quot;: 90.0, &quot;2046&quot;: 90.0, &quot;2047&quot;: 90.0, &quot;2048&quot;: 90.0, &quot;2049&quot;: 90.0, &quot;2050&quot;: 90.0, &quot;2051&quot;: 100.0, &quot;2052&quot;: 100.0, &quot;2053&quot;: 100.0, &quot;2054&quot;: 100.0, &quot;2055&quot;: 100.0, &quot;2056&quot;: 100.0, &quot;2057&quot;: 100.0, &quot;2058&quot;: 100.0, &quot;2059&quot;: 100.0, &quot;2060&quot;: 100.0}}]}"/><text x="58" y="341" class="tick">Aircraft a month</text></svg></div><details class="tv"><summary>Table view: fps 7-year, aircraft a month</summary><div class="scroll"><table><thead><tr><th scope="col">Year</th><th scope="col" class=n>fps</th><th scope="col" class=n>MAX (new sites)</th><th scope="col" class=n>MAX (Renton reassigned)</th><th scope="col" class=n>MAX, no fps</th></tr></thead><tbody><tr><th scope="row">2026</th><td class=n>0.0</td><td class=n>42.5</td><td class=n>42.5</td><td class=n>42.5</td></tr><tr><th scope="row">2027</th><td class=n>0.0</td><td class=n>49.5</td><td class=n>49.5</td><td class=n>49.5</td></tr><tr><th scope="row">2028</th><td class=n>0.0</td><td class=n>52.0</td><td class=n>52.0</td><td class=n>52.0</td></tr><tr><th scope="row">2029</th><td class=n>0.0</td><td class=n>54.5</td><td class=n>54.5</td><td class=n>54.5</td></tr><tr><th scope="row">2030</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2031</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2032</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2033</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2034</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2035</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2036</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2037</th><td class=n>0.7</td><td class=n>57.0</td><td class=n>52.7</td><td class=n>57.0</td></tr><tr><th scope="row">2038</th><td class=n>2.2</td><td class=n>57.0</td><td class=n>40.4</td><td class=n>57.0</td></tr><tr><th scope="row">2039</th><td class=n>7.7</td><td class=n>57.0</td><td class=n>38.3</td><td class=n>57.0</td></tr><tr><th scope="row">2040</th><td class=n>24.4</td><td class=n>57.0</td><td class=n>23.7</td><td class=n>57.0</td></tr><tr><th scope="row">2041</th><td class=n>45.9</td><td class=n>54.1</td><td class=n>17.7</td><td class=n>57.0</td></tr><tr><th scope="row">2042</th><td class=n>66.5</td><td class=n>33.5</td><td class=n>15.0</td><td class=n>57.0</td></tr><tr><th scope="row">2043</th><td class=n>79.9</td><td class=n>20.1</td><td class=n>15.0</td><td class=n>57.0</td></tr><tr><th scope="row">2044</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2045</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2046</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2047</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2048</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2049</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2050</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2051</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2052</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2053</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2054</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2055</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2056</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2057</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2058</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2059</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2060</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr></tbody></table></div></details></div><div class="panel"><p class="ctitle">fps 10-year: launched 2030, in service 2040, 90 a month by 2047 and 100 a month from 2051</p><div class="cw"><svg viewBox="0 0 760 346" class="chart xh" role="img" aria-label="Boeing single-aisle supply with the fps 10-year option. Use the arrow keys to read values by year." tabindex="0"><line x1="58" x2="588" y1="300.0" y2="300.0" class="grid"/><text x="50" y="304.0" text-anchor="end" class="tick">0</text><line x1="58" x2="588" y1="250.2" y2="250.2" class="grid"/><text x="50" y="254.2" text-anchor="end" class="tick">20</text><line x1="58" x2="588" y1="200.4" y2="200.4" class="grid"/><text x="50" y="204.4" text-anchor="end" class="tick">40</text><line x1="58" x2="588" y1="150.5" y2="150.5" class="grid"/><text x="50" y="154.5" text-anchor="end" class="tick">60</text><line x1="58" x2="588" y1="100.7" y2="100.7" class="grid"/><text x="50" y="104.7" text-anchor="end" class="tick">80</text><line x1="58" x2="588" y1="50.9" y2="50.9" class="grid"/><text x="50" y="54.9" text-anchor="end" class="tick">100</text><text x="120.4" y="318" text-anchor="middle" class="tick">2030</text><text x="198.3" y="318" text-anchor="middle" class="tick">2035</text><text x="276.2" y="318" text-anchor="middle" class="tick">2040</text><text x="354.2" y="318" text-anchor="middle" class="tick">2045</text><text x="432.1" y="318" text-anchor="middle" class="tick">2050</text><text x="510.1" y="318" text-anchor="middle" class="tick">2055</text><text x="588.0" y="318" text-anchor="middle" class="tick">2060</text><line x1="120.4" x2="120.4" y1="26" y2="300" class="leader"/><text x="125.4" y="37" class="ann">launch</text><line x1="276.2" x2="276.2" y1="26" y2="300" class="leader"/><text x="281.2" y="37" class="ann">in service</text><line x1="432.1" x2="432.1" y1="26" y2="300" class="leader"/><text x="437.1" y="37" class="ann">MAX ends</text><path d="M58.0,194.1 L73.6,176.7 L89.2,170.5 L104.8,164.2 L120.4,158.0 L135.9,158.0 L151.5,158.0 L167.1,158.0 L182.7,158.0 L198.3,158.0 L213.9,158.0 L229.5,158.0 L245.1,158.0 L260.6,158.0 L276.2,158.0 L291.8,158.0 L307.4,158.0 L323.0,158.0 L338.6,158.0 L354.2,158.0 L369.8,158.0 L385.4,158.0 L400.9,158.0 L416.5,158.0 L432.1,158.0 L447.7,158.0 L463.3,158.0 L478.9,158.0 L494.5,158.0 L510.1,158.0 L525.6,158.0 L541.2,158.0 L556.8,158.0 L572.4,158.0 L588.0,158.0" fill="none" stroke="var(--sq)" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,194.1 L73.6,176.7 L89.2,170.5 L104.8,164.2 L120.4,158.0 L135.9,158.0 L151.5,158.0 L167.1,158.0 L182.7,158.0 L198.3,158.0 L213.9,158.0 L229.5,158.0 L245.1,158.0 L260.6,158.0 L276.2,168.8 L291.8,199.3 L307.4,204.6 L323.0,241.1 L338.6,255.8 L354.2,262.6 L369.8,262.6 L385.4,275.1 L400.9,275.1 L416.5,275.1 L432.1,275.1 L447.7,300.0 L463.3,300.0 L478.9,300.0 L494.5,300.0 L510.1,300.0 L525.6,300.0 L541.2,300.0 L556.8,300.0 L572.4,300.0 L588.0,300.0" fill="none" stroke="var(--s1)" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,194.1 L73.6,176.7 L89.2,170.5 L104.8,164.2 L120.4,158.0 L135.9,158.0 L151.5,158.0 L167.1,158.0 L182.7,158.0 L198.3,158.0 L213.9,158.0 L229.5,158.0 L245.1,158.0 L260.6,158.0 L276.2,158.0 L291.8,158.0 L307.4,158.0 L323.0,158.0 L338.6,165.4 L354.2,216.6 L369.8,249.9 L385.4,275.1 L400.9,275.1 L416.5,275.1 L432.1,275.1 L447.7,300.0 L463.3,300.0 L478.9,300.0 L494.5,300.0 L510.1,300.0 L525.6,300.0 L541.2,300.0 L556.8,300.0 L572.4,300.0 L588.0,300.0" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M58.0,300.0 L73.6,300.0 L89.2,300.0 L104.8,300.0 L120.4,300.0 L135.9,300.0 L151.5,300.0 L167.1,300.0 L182.7,300.0 L198.3,300.0 L213.9,300.0 L229.5,300.0 L245.1,300.0 L260.6,300.0 L276.2,298.3 L291.8,294.5 L307.4,280.8 L323.0,239.1 L338.6,185.6 L354.2,134.3 L369.8,101.0 L385.4,75.8 L400.9,75.8 L416.5,75.8 L432.1,75.8 L447.7,50.9 L463.3,50.9 L478.9,50.9 L494.5,50.9 L510.1,50.9 L525.6,50.9 L541.2,50.9 L556.8,50.9 L572.4,50.9 L588.0,50.9" fill="none" stroke="var(--s3)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="588.0" cy="158.0" r="4" fill="var(--sq)" class="ring"/><text x="596" y="162.0" class="endlab">MAX, no fps 57</text><circle cx="588.0" cy="300.0" r="4" fill="var(--s1)" class="ring"/><line x1="594.0" x2="593.0" y1="300.0" y2="268.0" class="leader"/><text x="596" y="272.0" class="endlab">MAX, Renton 0</text><circle cx="588.0" cy="300.0" r="4" fill="var(--s1)" class="ring"/><line x1="594.0" x2="593.0" y1="300.0" y2="286.0" class="leader"/><text x="596" y="290.0" class="endlab">MAX 0</text><circle cx="588.0" cy="50.9" r="4" fill="var(--s3)" class="ring"/><text x="596" y="54.9" class="endlab">fps 100</text><line class="cross" x1="0" x2="0" y1="26" y2="300" visibility="hidden"/><rect x="58" y="26" width="530" height="274" class="xhit" data-cross="{&quot;x0&quot;: 58, &quot;x1&quot;: 588, &quot;xlo&quot;: 2026, &quot;xhi&quot;: 2060, &quot;w&quot;: 760, &quot;fmt&quot;: &quot;int&quot;, &quot;years&quot;: [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060], &quot;series&quot;: [{&quot;name&quot;: &quot;MAX, no fps&quot;, &quot;k&quot;: &quot;var(--sq)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 42.5, &quot;2027&quot;: 49.5, &quot;2028&quot;: 52.0, &quot;2029&quot;: 54.5, &quot;2030&quot;: 57.0, &quot;2031&quot;: 57.0, &quot;2032&quot;: 57.0, &quot;2033&quot;: 57.0, &quot;2034&quot;: 57.0, &quot;2035&quot;: 57.0, &quot;2036&quot;: 57.0, &quot;2037&quot;: 57.0, &quot;2038&quot;: 57.0, &quot;2039&quot;: 57.0, &quot;2040&quot;: 57.0, &quot;2041&quot;: 57.0, &quot;2042&quot;: 57.0, &quot;2043&quot;: 57.0, &quot;2044&quot;: 57.0, &quot;2045&quot;: 57.0, &quot;2046&quot;: 57.0, &quot;2047&quot;: 57.0, &quot;2048&quot;: 57.0, &quot;2049&quot;: 57.0, &quot;2050&quot;: 57.0, &quot;2051&quot;: 57.0, &quot;2052&quot;: 57.0, &quot;2053&quot;: 57.0, &quot;2054&quot;: 57.0, &quot;2055&quot;: 57.0, &quot;2056&quot;: 57.0, &quot;2057&quot;: 57.0, &quot;2058&quot;: 57.0, &quot;2059&quot;: 57.0, &quot;2060&quot;: 57.0}}, {&quot;name&quot;: &quot;MAX, Renton&quot;, &quot;k&quot;: &quot;var(--s1)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 42.5, &quot;2027&quot;: 49.5, &quot;2028&quot;: 52.0, &quot;2029&quot;: 54.5, &quot;2030&quot;: 57.0, &quot;2031&quot;: 57.0, &quot;2032&quot;: 57.0, &quot;2033&quot;: 57.0, &quot;2034&quot;: 57.0, &quot;2035&quot;: 57.0, &quot;2036&quot;: 57.0, &quot;2037&quot;: 57.0, &quot;2038&quot;: 57.0, &quot;2039&quot;: 57.0, &quot;2040&quot;: 52.68830678104563, &quot;2041&quot;: 40.41368464052261, &quot;2042&quot;: 38.311356209150155, &quot;2043&quot;: 23.654575163398537, &quot;2044&quot;: 17.741176470588233, &quot;2045&quot;: 15.0, &quot;2046&quot;: 15.0, &quot;2047&quot;: 10.0, &quot;2048&quot;: 10.0, &quot;2049&quot;: 10.0, &quot;2050&quot;: 10.0, &quot;2051&quot;: 0.0, &quot;2052&quot;: 0.0, &quot;2053&quot;: 0.0, &quot;2054&quot;: 0.0, &quot;2055&quot;: 0.0, &quot;2056&quot;: 0.0, &quot;2057&quot;: 0.0, &quot;2058&quot;: 0.0, &quot;2059&quot;: 0.0, &quot;2060&quot;: 0.0}}, {&quot;name&quot;: &quot;MAX&quot;, &quot;k&quot;: &quot;var(--s1)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 42.5, &quot;2027&quot;: 49.5, &quot;2028&quot;: 52.0, &quot;2029&quot;: 54.5, &quot;2030&quot;: 57.0, &quot;2031&quot;: 57.0, &quot;2032&quot;: 57.0, &quot;2033&quot;: 57.0, &quot;2034&quot;: 57.0, &quot;2035&quot;: 57.0, &quot;2036&quot;: 57.0, &quot;2037&quot;: 57.0, &quot;2038&quot;: 57.0, &quot;2039&quot;: 57.0, &quot;2040&quot;: 57.0, &quot;2041&quot;: 57.0, &quot;2042&quot;: 57.0, &quot;2043&quot;: 57.0, &quot;2044&quot;: 54.05533050411375, &quot;2045&quot;: 33.48501660628017, &quot;2046&quot;: 20.11017628205097, &quot;2047&quot;: 10.0, &quot;2048&quot;: 10.0, &quot;2049&quot;: 10.0, &quot;2050&quot;: 10.0, &quot;2051&quot;: 0.0, &quot;2052&quot;: 0.0, &quot;2053&quot;: 0.0, &quot;2054&quot;: 0.0, &quot;2055&quot;: 0.0, &quot;2056&quot;: 0.0, &quot;2057&quot;: 0.0, &quot;2058&quot;: 0.0, &quot;2059&quot;: 0.0, &quot;2060&quot;: 0.0}}, {&quot;name&quot;: &quot;fps&quot;, &quot;k&quot;: &quot;var(--s3)&quot;, &quot;vals&quot;: {&quot;2026&quot;: 0.0, &quot;2027&quot;: 0.0, &quot;2028&quot;: 0.0, &quot;2029&quot;: 0.0, &quot;2030&quot;: 0.0, &quot;2031&quot;: 0.0, &quot;2032&quot;: 0.0, &quot;2033&quot;: 0.0, &quot;2034&quot;: 0.0, &quot;2035&quot;: 0.0, &quot;2036&quot;: 0.0, &quot;2037&quot;: 0.0, &quot;2038&quot;: 0.0, &quot;2039&quot;: 0.0, &quot;2040&quot;: 0.6750578703704369, &quot;2041&quot;: 2.2250000000001364, &quot;2042&quot;: 7.7198350694447635, &quot;2043&quot;: 24.429861111111567, &quot;2044&quot;: 45.94466949588625, &quot;2045&quot;: 66.51498339371983, &quot;2046&quot;: 79.88982371794903, &quot;2047&quot;: 90.0, &quot;2048&quot;: 90.0, &quot;2049&quot;: 90.0, &quot;2050&quot;: 90.0, &quot;2051&quot;: 100.0, &quot;2052&quot;: 100.0, &quot;2053&quot;: 100.0, &quot;2054&quot;: 100.0, &quot;2055&quot;: 100.0, &quot;2056&quot;: 100.0, &quot;2057&quot;: 100.0, &quot;2058&quot;: 100.0, &quot;2059&quot;: 100.0, &quot;2060&quot;: 100.0}}]}"/><text x="58" y="341" class="tick">Aircraft a month</text></svg></div><details class="tv"><summary>Table view: fps 10-year, aircraft a month</summary><div class="scroll"><table><thead><tr><th scope="col">Year</th><th scope="col" class=n>fps</th><th scope="col" class=n>MAX (new sites)</th><th scope="col" class=n>MAX (Renton reassigned)</th><th scope="col" class=n>MAX, no fps</th></tr></thead><tbody><tr><th scope="row">2026</th><td class=n>0.0</td><td class=n>42.5</td><td class=n>42.5</td><td class=n>42.5</td></tr><tr><th scope="row">2027</th><td class=n>0.0</td><td class=n>49.5</td><td class=n>49.5</td><td class=n>49.5</td></tr><tr><th scope="row">2028</th><td class=n>0.0</td><td class=n>52.0</td><td class=n>52.0</td><td class=n>52.0</td></tr><tr><th scope="row">2029</th><td class=n>0.0</td><td class=n>54.5</td><td class=n>54.5</td><td class=n>54.5</td></tr><tr><th scope="row">2030</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2031</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2032</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2033</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2034</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2035</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2036</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2037</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2038</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2039</th><td class=n>0.0</td><td class=n>57.0</td><td class=n>57.0</td><td class=n>57.0</td></tr><tr><th scope="row">2040</th><td class=n>0.7</td><td class=n>57.0</td><td class=n>52.7</td><td class=n>57.0</td></tr><tr><th scope="row">2041</th><td class=n>2.2</td><td class=n>57.0</td><td class=n>40.4</td><td class=n>57.0</td></tr><tr><th scope="row">2042</th><td class=n>7.7</td><td class=n>57.0</td><td class=n>38.3</td><td class=n>57.0</td></tr><tr><th scope="row">2043</th><td class=n>24.4</td><td class=n>57.0</td><td class=n>23.7</td><td class=n>57.0</td></tr><tr><th scope="row">2044</th><td class=n>45.9</td><td class=n>54.1</td><td class=n>17.7</td><td class=n>57.0</td></tr><tr><th scope="row">2045</th><td class=n>66.5</td><td class=n>33.5</td><td class=n>15.0</td><td class=n>57.0</td></tr><tr><th scope="row">2046</th><td class=n>79.9</td><td class=n>20.1</td><td class=n>15.0</td><td class=n>57.0</td></tr><tr><th scope="row">2047</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2048</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2049</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2050</th><td class=n>90.0</td><td class=n>10.0</td><td class=n>10.0</td><td class=n>57.0</td></tr><tr><th scope="row">2051</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2052</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2053</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2054</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2055</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2056</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2057</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2058</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2059</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr><tr><th scope="row">2060</th><td class=n>100.0</td><td class=n>0.0</td><td class=n>0.0</td><td class=n>57.0</td></tr></tbody></table></div></details></div>
+<div class="panel"><p class="label">The rules behind the curves</p><ul class="cav">
+<li><b>737 MAX.</b> 42.5, 49.5, 52, 54.5 a month in 2026-2029, then 57. With no fps it
+carries on at 57 a month. The 737 rate increase (+100 aircraft a year from 2032) is not shown; it could be ordered only in 2030.</li>
+<li><b>fps.</b> Annual output on the NGSA curve of your chart (rate 50 about four years after entry into service, 100 about eight years after), moved to the fps date.
+Until 2050 it is held to 90 a month so the MAX keeps its tail; from 2051 the MAX ends and the fps runs at 100.</li>
+<li><b>New sites (default).</b> The MAX carries on at Renton and Everett and gives way only to Boeing's 100-a-month total.</li>
+<li><b>Renton reassigned.</b> Renton's MAX lines (47 a month) wind down as the fps ramps there, on the shape of the A320's base rundown on your chart;
+the Everett North Line carries on at up to 15 a month. This saves about $3.0B of new-site capex, net of the cost of
+converting Renton (range $1.5B-$5.5B), pro-rated if Renton is chosen less than three years before entry into service.</li>
+</ul><p class="cap">These are capacities; deliveries fall below them when demand does. In the game Boeing did not launch the fps, and its
+deliveries fell below the 57-a-month MAX-only capacity in 2037-2046, while NGSA entered service and ramped up.
+Sources: supply_demand.json and supply_demand_sources.md (Boeing rate path and sites: research notes, October 2026).</p></div>
+</div></section>
+<footer>BOEING PROPRIETARY. Curves computed by make_supply_curves.py from wargame/dashgame/supply_demand.py (boeing_capacity).</footer></div>
+<script>
+(() => {
+  const tip = document.createElement('div'); tip.className = 'tip'; tip.setAttribute('aria-hidden', 'true'); document.body.appendChild(tip);
+  const live = document.createElement('div'); live.className = 'sr'; live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite'); document.body.appendChild(live);
+  let lastKey = null;
+  const place = (x, y) => {
+    const r = tip.getBoundingClientRect(), pad = 12;
+    let left = x + 14, top = y + 14;
+    if (left + r.width > innerWidth - pad) left = x - r.width - 14;
+    if (top + r.height > innerHeight - pad) top = y - r.height - 14;
+    tip.style.left = Math.max(pad, left) + 'px'; tip.style.top = Math.max(pad, top) + 'px';
+  };
+  const show = (key, rows, x, y, head) => {
+    if (key !== lastKey) {
+      tip.replaceChildren();
+      if (head) { const h = document.createElement('div'); h.className = 'yr'; h.textContent = head; tip.appendChild(h); }
+      for (const r of rows) {
+        const d = document.createElement('div');
+        if (r.k) { const k = document.createElement('span'); k.className = 'k'; k.style.background = r.k; d.appendChild(k); }
+        if (r.v) { const v = document.createElement('b'); v.textContent = r.v; d.appendChild(v); }
+        if (r.l) { const l = document.createElement('span'); l.className = 'l'; l.textContent = r.l; d.appendChild(l); }
+        tip.appendChild(d);
+      }
+      lastKey = key;
+    }
+    tip.style.display = 'block'; place(x, y);
+  };
+  const hide = () => { tip.style.display = 'none'; lastKey = null; };
+  let n = 0;
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    const rows = JSON.parse(el.dataset.tip), key = 'm' + (n++);
+    el.addEventListener('pointermove', e => show(key, rows, e.clientX, e.clientY));
+    el.addEventListener('pointerleave', hide);
+    el.addEventListener('focus', () => { const r = el.getBoundingClientRect(); show(key, rows, r.left + r.width / 2, r.top + r.height / 2); });
+    el.addEventListener('blur', hide);
+  });
+  document.querySelectorAll('rect[data-cross]').forEach((hit, c) => {
+    const P = JSON.parse(hit.dataset.cross), svg = hit.ownerSVGElement, line = svg.querySelector('.cross'), box = svg.parentElement;
+    const fmt = v => P.fmt === 'pct' ? Math.round(v * 100) + '%' : Math.round(v).toLocaleString('en-US');
+    const xOf = yr => P.x0 + (yr - P.xlo) / (P.xhi - P.xlo) * (P.x1 - P.x0);
+    let idx = Math.floor(P.years.length / 2);
+    const rowsAt = yr => P.series.filter(s => s.vals[yr] !== undefined).map(s => ({ v: fmt(s.vals[yr]), l: s.name, k: s.k }));
+    const render = (cx, cy, announce) => {
+      const yr = P.years[idx], x = xOf(yr);
+      line.setAttribute('x1', x); line.setAttribute('x2', x); line.setAttribute('visibility', 'visible');
+      const rows = rowsAt(yr);
+      show('x' + c + '-' + yr, rows, cx, cy, String(yr));
+      if (announce) live.textContent = yr + ': ' + rows.map(r => r.l + ' ' + r.v).join(', ');
+    };
+    const follow = () => {   // keep the crosshair in view when the chart scrolls inside its panel
+      const scale = svg.getBoundingClientRect().width / P.w, px = xOf(P.years[idx]) * scale;
+      if (px < box.scrollLeft + 20 || px > box.scrollLeft + box.clientWidth - 20) box.scrollLeft = px - box.clientWidth / 2;
+    };
+    const fromEvent = e => {
+      const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const yr = P.xlo + (p.x - P.x0) / (P.x1 - P.x0) * (P.xhi - P.xlo);
+      let best = 0; P.years.forEach((y, i) => { if (Math.abs(y - yr) < Math.abs(P.years[best] - yr)) best = i; });
+      idx = best; render(e.clientX, e.clientY, false);
+    };
+    hit.addEventListener('pointermove', fromEvent);
+    hit.addEventListener('pointerdown', fromEvent);
+    hit.addEventListener('pointerleave', () => { line.setAttribute('visibility', 'hidden'); hide(); });
+    const keyRender = () => { follow(); const r = svg.getBoundingClientRect(); render(r.left + xOf(P.years[idx]) * r.width / P.w, r.top + 24, true); };
+    svg.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault(); idx = Math.max(0, Math.min(P.years.length - 1, idx + (e.key === 'ArrowRight' ? 1 : -1))); keyRender();
+    });
+    svg.addEventListener('focus', keyRender);
+    svg.addEventListener('blur', () => { line.setAttribute('visibility', 'hidden'); hide(); });
+  });
+  // charts that scroll on phones open on their point of interest
+  document.querySelectorAll('.cw[data-focus]').forEach(box => {
+    const svg = box.querySelector('svg'); if (!svg || box.scrollWidth <= box.clientWidth) return;
+    const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+    box.scrollLeft = Math.max(0, +box.dataset.focus * scale - box.clientWidth / 2);
+  });
+})();
+</script></body></html>
