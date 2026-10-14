@@ -54,11 +54,14 @@ dn_trans = (min(D[y]["dlv_share_b"] for y in range(EIS_N + 1, dn_full - 1)), max
 assert all(abs(D[y]["dlv_share_b"] - D[X_HI]["dlv_share_b"]) < 0.005 for y in range(dn_full - 1, X_HI + 1))
 a_dip = [D[y]["cap_a"] for y in range(EIS_N + 1, EIS_F + 1)]
 assert all(abs(D[y]["airbus_dlv"] - D[y]["cap_a"]) < 0.5 for y in range(EIS_N + 1, X_HI + 1))   # Airbus sells out from 2038
-wait_2037 = D[EIS_N]["boeing_dlv"] - D[EIS_N]["wanted_b"]
+assert abs(D[EIS_N]["boeing_dlv"] - D[EIS_N]["wanted_b"] - D[EIS_N - 1]["backlog_b"]) < 0.5      # 2037: new + all waiting
+assert D[EIS_N]["airbus_dlv"] < D[EIS_N]["cap_a"] - 0.5 and D[EIS_N]["boeing_dlv"] < D[EIS_N]["cap_b"] - 0.5
+assert D[EIS_N]["airbus_dlv"] < D[EIS_N - 1]["airbus_dlv"] and D[EIS_N]["boeing_dlv"] <= D[EIS_N - 1]["boeing_dlv"]
 spill_dn = [D[y]["spill_to_b"] for y in range(EIS_N + 1, X_HI + 1)]
 lost_dn_2050 = D[2050]["lost"]
 f_short = [y for y in range(EIS_F, EIS_F + 6) if F[y]["dlv_share_b"] < F[y]["pref_b"] - 0.005]
 f_above = [y for y in range(2050, X_HI + 1) if F[y]["dlv_share_b"] > F[y]["pref_b"] + 0.005]
+assert f_above[0] == 2050 and F[2050]["spill_to_b"] > 0 and F[2050]["max"] > 0 and F[2051]["max"] < 0.5 and F[2051]["spill_to_b"] > 0
 
 
 # ─────────────────────────────── charts ───────────────────────────────
@@ -161,11 +164,12 @@ share is shown; Airbus has the rest. No other share moves apply in either case: 
 <div class="stack"><div class="panel">{rule_table()}</div>
 <div class="panel"><p class="label">Settings and where they come from</p><ul class="cav">
 <li><b>Status quo: Boeing 40%, Airbus 60%</b> until the first new narrowbody enters service. Dashboard constant.</li>
-<li><b>One new narrowbody alone: +3 points a year to 80%.</b> Fixed in the dashboard, not a slider. Here NGSA alone: Boeing {pc(sq_b + dn_step)} in {EIS_N}, falling to {pc(floor_d)} from {y_floor}.</li>
-<li><b>Both launch: the leader's edge, 1 point a year of lead</b> (slider "NB edge per year of EIS lead", 1.0). While NGSA is alone in service, Airbus gains 1 point a year: Boeing {pc(pref_f[EIS_N])}, {pc(pref_f[EIS_N + 1])}, {pc(pref_f[EIS_N + 2])} in {EIS_N}-{EIS_F - 1}.</li>
-<li><b>Long-run split: the balance point less the leader's edge.</b> Balance point 50/50 (slider "post-2037 NB market share when both launch"), shifted
+<li><b>NGSA alone (Boeing does not launch): Airbus +3 points a year to 80%.</b> Fixed in the dashboard, not a slider (an fps alone would
+instead climb at the Boeing capture speed below). Here: Boeing {pc(sq_b + dn_step)} in {EIS_N}, falling to {pc(floor_d)} from {y_floor}.</li>
+<li><b>Both launch: the leader's edge, 1 point a year of lead</b> (slider "NB share edge per year of EIS lead (pp)", 1.0). While NGSA is alone in service, Airbus gains 1 point a year: Boeing {pc(pref_f[EIS_N])}, {pc(pref_f[EIS_N + 1])}, {pc(pref_f[EIS_N + 2])} in {EIS_N}-{EIS_F - 1}.</li>
+<li><b>Long-run split: the balance point less the leader's edge.</b> Balance point 50/50 (slider "Boeing fps share of post-2037 NB market (%)", 50), shifted
 1 point per year of lead toward the first new narrowbody in service: 50% − 1 × {lead} = {pc(long_f)} for Boeing.</li>
-<li><b>Recovery speed: 1 point a year</b> (slider "fps capture speed", 10-year option, 1.0): Boeing climbs from {pc(sq_b + lead_edge * lead)} in {EIS_F - 1} to {pc(long_f)} in {y_long}.</li>
+<li><b>Boeing's capture speed: 1 point a year</b> (slider "Boeing share capture (pp/yr) — 10-yr ramp", 1.0; "fps capture speed" in the snapshot): Boeing climbs from {pc(sq_b + lead_edge * lead)} in {EIS_F - 1} to {pc(long_f)} in {y_long}.</li>
 </ul><p class="cap">Source: board v3 (combined_dash.py, the unified narrowbody share rule) and the Game v3 snapshot. The dashboard alone sells
 these shares of a fixed {n0(BOARD_NB)} aircraft a year; the game uses them to split real demand.</p></div></div></section>
 
@@ -178,15 +182,19 @@ of those still waiting drop out each year.</p><div class="stack">
 <div class="panel"><p class="ctitle">Do Nothing: customers want {pc(floor_d)} Boeing, but Boeing delivers {pc(D[2050]["dlv_share_b"])}</p>
 {legend([("Delivered share", "s2", "ln"), ("Preferred share", "s2", "dash")])}{chart_case(D, "Do Nothing")}
 <p class="cap">From {EIS_N + 1} Airbus sells all it can build: {n0(min(a_dip))}-{n0(max(a_dip))} a year in {EIS_N + 1}-{EIS_F} while it switches from the A320 to NGSA, and at most
-{n0(D[2050]["cap_a"])} a year from 2046 (NGSA at 100 a month). Customers want
-{n0(D[2050]["wanted_a"])} Airbus aircraft in 2050, so {n0(D[2050]["spill_to_b"])} of them buy 737 MAX instead and {n0(lost_dn_2050)} drop out.
-Boeing sells all {n0(D[2050]["cap_b"])} MAX it can build from {dn_full}. Before {EIS_N} both makers sell out, so delivered shares follow capacity, not preference;
-the {EIS_N} peak is the last {n0(wait_2037)} customers who had been waiting for a 737 MAX.</p></div>
+{n0(D[2050]["cap_a"])} a year from 2046 (NGSA at 100 a month). In 2050, {n0(D[2050]["wanted_a"])} new customers want an Airbus and {n0(D[2049]["backlog_a"])} are still waiting from
+earlier years. Airbus builds {n0(D[2050]["cap_a"])}, {n0(D[2050]["spill_to_b"])} take every 737 MAX slot Boeing has free, {n0(lost_dn_2050)} drop out, and
+{n0(D[2050]["backlog_a"])} are still waiting at year end ({n0(D[X_HI]["backlog_a"])} by {X_HI}).
+Boeing sells all {n0(D[2050]["cap_b"])} MAX it can build from {dn_full}. Before {EIS_N} both makers sell out, so delivered shares follow capacity, not preference. In {EIS_N} neither sells out: Boeing delivers its last
+{n0(D[EIS_N - 1]["backlog_b"])} waiting customers on top of {n0(D[EIS_N]["wanted_b"])} new ones ({n0(D[EIS_N]["boeing_dlv"])} of {n0(D[EIS_N]["cap_b"])}), while Airbus, with only
+{n0(D[EIS_N - 1]["backlog_a"])} customers still waiting, delivers {n0(D[EIS_N]["airbus_dlv"])} of {n0(D[EIS_N]["cap_a"])}. Airbus delivering less is what lifts Boeing's
+delivered share to its {pc(D[EIS_N]["dlv_share_b"], 1)} peak.</p></div>
 <div class="panel"><p class="ctitle">fps: deliveries follow preference once the fps is at rate</p>
 {legend([("Delivered share", "s1", "ln"), ("Preferred share", "s1", "dash")])}{chart_case(F, "fps")}
 <p class="cap">In {f_short[0]}-{f_short[-1]} Boeing delivers less than customers want ({n0(F[f_short[0]]["boeing_dlv"])}-{n0(F[f_short[-1]]["boeing_dlv"])} aircraft against
-{n0(F[f_short[0]]["wanted_b"])}-{n0(F[f_short[-1]]["wanted_b"])} wanted): the fps is still ramping up and Renton's 737 MAX lines are winding down. From {f_above[0] if f_above else 2050}
-NGSA's customers overflow to the fps, so Boeing delivers slightly more than its preference.</p></div>
+{n0(F[f_short[0]]["wanted_b"])}-{n0(F[f_short[-1]]["wanted_b"])} wanted): the fps is still ramping up and Renton's 737 MAX lines are winding down. From {f_above[0]}
+NGSA's customers overflow to Boeing, so Boeing delivers slightly more than its preference. In {f_above[0]} they get 737 MAX
+({n0(F[f_above[0]]["max"])}), because the fps line is held at {n0(F[f_above[0]]["fps"])} a year while the last MAX are built at Everett; from {f_above[0] + 1} they get the fps.</p></div>
 </div></section>
 
 <section id="table"><h2>Year by year</h2><p class="lede">Boeing shares and aircraft a year, 737/A320 class. Preferred share is the
