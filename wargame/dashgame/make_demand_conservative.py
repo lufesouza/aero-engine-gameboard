@@ -35,42 +35,56 @@ TABLE = {2026: (125, 0, 0, 125, 638, 763, .16, 19.7), 2030: (735, 20, 0, 755, 72
          2070: (0, 180, 1801, 1981, 550, 2531, .78, 55.6)}
 PERIODS = [((2026, 2045), 33700), ((2046, 2055), 18700), ((2056, 2065), 18100), ((2066, 2070), 12200)]
 Y0, Y1 = 2026, 2070
-OLD_LAST = 2045                     # last year of old-generation replacement
-POST_FIRST = 2046                   # first year of post-2026 replacement
-FLEET_WEIGHT = 1.0                  # soft weight on the fleet column (per aircraft squared), against roughness
+OLD_ZERO_FROM = 2050                # old-generation replacement is 0 from here (the table: 0 in 2050 and after)
+POST_ZERO_TO = 2045                 # post-2026 replacement is 0 up to here (the table: 0 to 2045)
+FLEET_TOL = 50.0                    # the fleet column is rounded to 0.1k: the curve's fleet stays within +/-50
 COMPS = ["old_gen", "max_neo_a220", "post_2026", "growth"]
 COL = {"old_gen": 0, "max_neo_a220": 1, "post_2026": 2, "growth": 4}
 
 
-def solve(zeros=()):
-    """zeros: (component, year) pairs held at 0 (the non-negativity active set)."""
+def problem():
+    """Variables, the roughness matrix, equality constraints (anchors, period totals) and inequality constraints
+    (non-negativity, fleet band). Every component is a full 2026-2070 series; values the table fixes at zero are
+    constants, so the roughness also counts how a component runs into and out of them."""
     years = list(range(Y0, Y1 + 1))
-    n = len(years)
-    free = {"old_gen": [y for y in years if y <= OLD_LAST], "max_neo_a220": years,
-            "post_2026": [y for y in years if y >= POST_FIRST], "growth": years}
+    fixed0 = {("old_gen", y) for y in years if y >= OLD_ZERO_FROM} | {("post_2026", y) for y in years if y <= POST_ZERO_TO}
     idx, k = {}, 0
     for c in COMPS:
-        for y in free[c]:
-            idx[(c, y)] = k
-            k += 1
+        for y in years:
+            if (c, y) not in fixed0:
+                idx[(c, y)] = k
+                k += 1
     m = k
-    # roughness: squared second differences inside each component's free range; post-2026 also against the zeros
-    # before it (it starts from nothing), old-gen not across its end (the fleet is used up)
     rows = []
     for c in COMPS:
-        ys = free[c]
-        if c == "post_2026":
-            ys = [POST_FIRST - 2, POST_FIRST - 1] + ys
-        for a, b, cc in zip(ys, ys[1:], ys[2:]):
-            r = np.zeros(m + 1)
+        for a, b, cc in zip(years, years[1:], years[2:]):
+            r = np.zeros(m)
             for yy, w in ((a, 1.0), (b, -2.0), (cc, 1.0)):
                 if (c, yy) in idx:
                     r[idx[(c, yy)]] += w
-            rows.append(r)
+            if r.any():
+                rows.append(r)
     R = np.array(rows)
-    Q = R[:, :m].T @ R[:, :m]
-    q = np.zeros(m)
-    # soft fleet: fleet(y) = 19.7k + sum of growth 2027..y, against the table at each table year after 2026
+    Q = R.T @ R
+    E, e = [], []
+    for y, t in TABLE.items():
+        for c in COMPS:
+            if (c, y) in idx:
+                a = np.zeros(m); a[idx[(c, y)]] = 1.0
+                E.append(a); e.append(float(t[COL[c]]))
+            else:
+                assert t[COL[c]] == 0, (c, y)
+    for (lo, hi), tot in PERIODS:
+        a = np.zeros(m)
+        for c in COMPS:
+            for y in range(lo, hi + 1):
+                if (c, y) in idx:
+                    a[idx[(c, y)]] = 1.0
+        E.append(a); e.append(float(tot))
+    G, g = [], []                                     # G x >= g
+    for key, i in idx.items():
+        a = np.zeros(m); a[i] = 1.0
+        G.append(a); g.append(0.0)
     for y, t in TABLE.items():
         if y == Y0:
             continue
@@ -78,50 +92,47 @@ def solve(zeros=()):
         for yy in range(Y0 + 1, y + 1):
             a[idx[("growth", yy)]] = 1.0
         target = t[7] * 1000 - TABLE[Y0][7] * 1000
-        Q += FLEET_WEIGHT * np.outer(a, a)
-        q -= FLEET_WEIGHT * a * target
-    # hard constraints: anchors and period totals
-    A, b = [], []
-    for y, t in TABLE.items():
-        for c in COMPS:
-            if (c, y) in idx:
-                a = np.zeros(m); a[idx[(c, y)]] = 1.0
-                A.append(a); b.append(float(t[COL[c]]))
-            else:
-                assert t[COL[c]] == 0, (c, y)          # outside a component's range the table must be zero
-    for (lo, hi), tot in PERIODS:
-        a = np.zeros(m)
-        for c in COMPS:
-            for y in range(lo, hi + 1):
-                if (c, y) in idx:
-                    a[idx[(c, y)]] = 1.0
-        A.append(a); b.append(float(tot))
-    for c, y in zeros:
-        a = np.zeros(m); a[idx[(c, y)]] = 1.0
-        A.append(a); b.append(0.0)
-    A, b = np.array(A), np.array(b)
-    K = np.block([[2 * Q, A.T], [A, np.zeros((len(b), len(b)))]])
-    rhs = np.concatenate([-2 * q, b])
-    x = np.linalg.solve(K, rhs)[:m]
-    out = {c: [float(x[idx[(c, y)]]) if (c, y) in idx else 0.0 for y in years] for c in COMPS}
-    return years, out
+        G.append(a.copy()); g.append(target - FLEET_TOL)
+        G.append(-a); g.append(-(target + FLEET_TOL))
+    return years, idx, Q, np.array(E), np.array(e), np.array(G), np.array(g)
 
 
-def solve_nonneg():
-    """Non-negativity by an active set: hold every value that comes out negative at 0 and solve again."""
-    zeros = set()
-    for _ in range(200):
-        years, comp = solve(sorted(zeros))
-        neg = {(c, y) for c in COMPS for y, v in zip(years, comp[c]) if v < -1e-9}
-        if not neg:
-            return years, comp, sorted(zeros)
-        zeros |= neg
+def solve_qp(Q, E, e, G, g, tol=1e-7, max_iter=500):
+    """min x'Qx  s.t.  E x = e,  G x >= g, by a primal-dual active set: active inequalities are solved as equalities;
+    the most violated inactive one is added, an active one with a multiplier of the wrong sign is dropped."""
+    n = Q.shape[0]
+    W = []
+    for _ in range(max_iter):
+        A = np.vstack([E] + [G[W]]) if W else E
+        b = np.concatenate([e, g[W]]) if W else e
+        K = np.block([[2 * Q, A.T], [A, np.zeros((A.shape[0], A.shape[0]))]])
+        sol = np.linalg.lstsq(K, np.concatenate([np.zeros(n), b]), rcond=None)[0]
+        x, lam = sol[:n], sol[n:]
+        mu = -lam[len(e):]                           # multipliers of the active inequalities (must be >= 0)
+        if W and mu.min() < -tol:
+            W.pop(int(np.argmin(mu)))
+            continue
+        viol = g - G @ x
+        viol[W] = -np.inf
+        j = int(np.argmax(viol))
+        if viol[j] <= tol:
+            return x, W
+        W.append(j)
     raise RuntimeError("active set did not settle")
 
 
+def solve():
+    years, idx, Q, E, e, G, g = problem()
+    x, W = solve_qp(Q, E, e, G, g)
+    n_bounds = len(idx)
+    held = sorted([key for key, i in idx.items() if i in W])
+    fleet_bound = len([w for w in W if w >= n_bounds])
+    out = {c: [max(0.0, float(x[idx[(c, y)]])) if (c, y) in idx else 0.0 for y in years] for c in COMPS}
+    return years, out, held, fleet_bound, float(x @ Q @ x)
+
+
 def main():
-    years, comp, held = solve_nonneg()
-    comp = {c: [max(0.0, v) for v in vals] for c, vals in comp.items()}      # held values come out as -1e-12
+    years, comp, held, fleet_bound, rough = solve()
     rep = [comp["old_gen"][i] + comp["max_neo_a220"][i] + comp["post_2026"][i] for i in range(len(years))]
     tot = [rep[i] + comp["growth"][i] for i in range(len(years))]
     fleet = [TABLE[Y0][7] * 1000]
@@ -133,13 +144,13 @@ def main():
         i = years.index(y)
         for c in COMPS:
             checks["anchors_max_abs_error"] = max(checks["anchors_max_abs_error"], abs(comp[c][i] - t[COL[c]]))
-        checks["fleet"].append({"year": y, "table_k": t[7], "curve_k": round(fleet[i] / 1000, 3)})
+        checks["fleet"].append({"year": y, "table_k": t[7], "curve_k": round(fleet[i] / 1000, 4)})
     for (lo, hi), target in PERIODS:
         s = sum(tot[years.index(y)] for y in range(lo, hi + 1))
         checks["periods"].append({"period": f"{lo}-{hi}", "table": target, "curve": round(s, 1)})
     assert checks["anchors_max_abs_error"] < 1e-6
     assert all(abs(p["curve"] - p["table"]) < 1e-6 for p in checks["periods"])
-    assert all(abs(f["curve_k"] - f["table_k"]) <= 0.05 + 1e-9 for f in checks["fleet"]), checks["fleet"]
+    assert all(abs(f["curve_k"] - f["table_k"]) <= FLEET_TOL / 1000 + 1e-9 for f in checks["fleet"]), checks["fleet"]
     assert checks["min_value"] > -1e-6, checks["min_value"]
     out = {"source": SOURCE, "about": __doc__, "years": years,
            "components": {c: [round(v, 2) for v in comp[c]] for c in COMPS},
@@ -148,19 +159,21 @@ def main():
            "table": {str(y): dict(zip(["old_gen", "max_neo_a220", "post_2026", "total_replacement", "growth", "total",
                                        "replacement_share", "fleet_k"], t)) for y, t in TABLE.items()},
            "periods_table": {f"{lo}-{hi}": v for (lo, hi), v in PERIODS},
-           "method": {"objective": "least squared second differences, each component", "old_gen_last_year": OLD_LAST,
-                      "held_at_zero": [f"{c} {y}" for c, y in held],
-                      "post_2026_first_year": POST_FIRST, "fleet_weight": FLEET_WEIGHT,
+           "method": {"objective": "least squared second differences, each component, over 2026-2070",
+                      "old_gen_zero_from": OLD_ZERO_FROM, "post_2026_zero_to": POST_ZERO_TO, "fleet_tolerance": FLEET_TOL,
+                      "held_at_zero": [f"{c} {y}" for c, y in held], "fleet_bounds_active": fleet_bound,
+                      "roughness": rough, "solver": "primal-dual active set (exact KKT)",
                       "after_last_year": "the game holds the 2070 values"},
            "checks": checks,
            "note": "whole single-aisle market, A220 included; the game applies its 737/A320 class share once, in "
-                   "supply_demand.demand(). The table's 2045 total (2,130) is one above its parts (936 + 1,193): rounding."}
+                   "supply_demand.demand(). Two table totals are one above their parts (2045: 2,130 against 936 + 1,193; "
+                   "2051: 1,957 against 934 + 1,022): rounding; the curve keeps the parts."}
     path = os.path.join(HERE, "demand_conservative.json")
     json.dump(out, open(path, "w"), indent=1)
     print("wrote", path)
     print("periods", [(p["period"], p["table"], p["curve"]) for p in checks["periods"]])
     print("fleet", [(f["year"], f["table_k"], f["curve_k"]) for f in checks["fleet"]])
-    print("min value %.2f; held at zero: %s" % (checks["min_value"], held))
+    print("min value %.2f; held at zero: %s; fleet bounds active %d; roughness %.1f" % (checks["min_value"], held, fleet_bound, rough))
     for y in years:
         i = years.index(y)
         print(y, " ".join("%7.1f" % comp[c][i] for c in COMPS), " | repl %7.1f total %7.1f fleet %7.0f" % (rep[i], tot[i], fleet[i]))

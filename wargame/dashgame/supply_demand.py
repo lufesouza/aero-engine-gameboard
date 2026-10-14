@@ -50,9 +50,45 @@ def inputs():
         return json.load(f)
 
 
+@functools.lru_cache(maxsize=None)
+def options():
+    """Per-run options, runs/<run>/sd_options.json (absent: the rules above, as played in dash-2050-sd):
+      demand_curve      file in this folder with an annual whole-market curve (years, replacements, growth), used
+                        instead of supply_demand.json's replacement and growth (the class share still applies)
+      firm_backlog      "netted": the firm orders are part of that demand, not extra to it: each year's demand is
+                        served first from the firm orders still open (split between the makers in proportion to what
+                        each has left), and only the rest is new customers split by preference; new customers start
+                        once the firm orders are used up
+      boeing_pp_after_ngsa   while NGSA is in service and Boeing has no new narrowbody in service, Boeing's
+                        preference falls this many points a year from 40% (instead of the board's rule)
+      boeing_takes_airbus_slack   Boeing's preference is never below the share Airbus cannot supply that year
+                        (customers Airbus cannot serve buy from Boeing)
+      airbus_capacity_response   Airbus raises its capacity by this fraction a year (compounding) in every year its
+                        customers want more than it can build, until it can meet them"""
+    run = os.environ.get("DASH_RUN")
+    path = os.path.join(HERE, "..", "runs", run, "sd_options.json") if run else None
+    if path and os.path.exists(path):
+        with open(path) as f:
+            return json.load(f)
+    return {}
+
+
+@functools.lru_cache(maxsize=None)
+def _curve():
+    """The annual demand curve named by options()['demand_curve'], or None."""
+    name = options().get("demand_curve")
+    if not name:
+        return None
+    with open(os.path.join(HERE, name)) as f:
+        c = json.load(f)
+    return {y: (r, g) for y, r, g in zip(c["years"], c["replacements"], c["growth"])}
+
+
 def reload():
     """Forget cached inputs and curves (for in-process sensitivities that edit supply_demand.json)."""
     inputs.cache_clear()
+    options.cache_clear()
+    _curve.cache_clear()
     _annual.cache_clear()
 
 
@@ -88,8 +124,13 @@ def _rundown(curve, shift, year):
 
 def demand(year):
     """New narrowbody demand in `year` (737/A320 class): growth + replacement of today's fleets. The firm backlog
-    (firm_backlog) comes on top and is delivered first."""
+    (firm_backlog) comes on top and is delivered first (with options()['firm_backlog'] == 'netted' it is the first
+    part of this demand instead: see new_demand)."""
     d = inputs()["demand"]
+    cv = _curve()
+    if cv:                                     # a run's own curve; after its last year the last value is held
+        r, g = cv[min(max(year, min(cv)), max(cv))]
+        return (r + g) * d["class_share"]
     ys, rep = d["years"], d["replacements"]
     y = min(max(year, ys[0]), ys[-1])          # after 2075 the replacement wave is held at its 2075 value
     g = d["growth"].get(str(year), d["growth"][max(d["growth"], key=int)])
@@ -98,6 +139,9 @@ def demand(year):
 
 def growth(year):
     d = inputs()["demand"]
+    cv = _curve()
+    if cv:
+        return cv[min(max(year, min(cv)), max(cv))][1] * d["class_share"]
     return d["growth"].get(str(year), d["growth"][max(d["growth"], key=int)]) * d["class_share"]
 
 
@@ -190,16 +234,62 @@ def sq_state():
     return {"prog": {}, "rate737": None, "sd": {}}
 
 
+def boeing_base_pref(state, year, board_pref):
+    """Boeing's preference share before the slack floor: the board's, or with options()['boeing_pp_after_ngsa'] a
+    fall of that many points a year from 40% while NGSA is in service and Boeing has no new narrowbody in service.
+    (With both programmes launched and NGSA first, the board already moves 1 point a year, the lead edge.)"""
+    pp = options().get("boeing_pp_after_ngsa")
+    if pp is None:
+        return board_pref
+    ngsa, fps = _live(state, "ngsa"), _live(state, "fps")
+    if ngsa and year >= ngsa["eis"] and not (fps and year >= fps["eis"]):
+        return max(0.0, 0.40 - pp / 100.0 * (year - ngsa["eis"] + 1))
+    return board_pref
+
+
 def year_rows(state, b_pref_by_year, years):
+    o = options()
     out = {}
     fx, lapse = flex(), inputs()["demand"]["lapse_per_year"]
     bb, ba = 0.0, 0.0
     kb, ka = firm_backlog()
-    for y in sorted(years):
+    netted = o.get("firm_backlog") == "netted"
+    cb, ca = 0.0, 0.0                           # netted: firm orders already called by demand but not yet delivered
+    resp = float(o.get("airbus_capacity_response") or 0.0)
+    m_a = 1.0                                   # Airbus capacity against its plan (capacity response)
+    ys = sorted(years)
+    if netted:
+        assert ys[0] == 2026, "netting the firm backlog needs every year from 2026"
+    for y in ys:
         mb, fb = boeing_capacity(state, y)
         a3, ng = airbus_capacity(state, y)
-        r = deliveries(b_pref_by_year[y], demand(y), mb + fb, a3 + ng, fx, bb, ba, lapse, kb, ka)
-        kb, ka = r["firm_b"], r["firm_a"]
+        a3, ng = a3 * m_a, ng * m_a
+        gross = demand(y)
+        if netted:                              # this year's demand is served first from the firm orders still open
+            need = min(gross, kb + ka)          # (kb, ka: not yet called by demand)
+            nb_ = need * kb / (kb + ka) if kb + ka > 0 else 0.0
+            na_ = need - nb_
+            open_b, open_a = kb + cb, ka + ca
+            kb, ka = kb - nb_, ka - na_
+            fb_in, fa_in = cb + nb_, ca + na_   # firm orders to deliver this year: called earlier and called now
+            d = gross - need
+        else:
+            fb_in, fa_in, d = kb, ka, gross
+        base = boeing_base_pref(state, y, b_pref_by_year[y])
+        free_a = max(0.0, a3 + ng - min(fa_in, a3 + ng) - ba)   # Airbus slots left for new customers this year
+        pref = base
+        if o.get("boeing_takes_airbus_slack") and d > 0:
+            pref = min(1.0, max(base, 1.0 - free_a / d))     # customers Airbus cannot serve buy from Boeing
+        r = deliveries(pref, d, mb + fb, a3 + ng, fx, bb, ba, lapse, fb_in, fa_in)
+        r.update({"demand_gross": gross, "pref_b": pref, "pref_b_base": base, "airbus_capacity_factor": m_a})
+        if netted:                              # called firm orders not delivered wait (never lapse); uncalled stay open
+            cb, ca = r["firm_b"], r["firm_a"]
+            r["firm_in_b"], r["firm_in_a"] = open_b, open_a
+            r["firm_b"], r["firm_a"] = kb + cb, ka + ca
+        if resp and (1.0 - base) * d > free_a + 1e-9:          # Airbus short at its customers' own preference
+            m_a *= 1.0 + resp
+        if not netted:
+            kb, ka = r["firm_b"], r["firm_a"]
         r.update({"cap_max": mb, "cap_fps": fb, "cap_a320": a3, "cap_ngsa": ng})
         # new types are delivered first, up to their own line's capacity; the rest are today's types
         r["dlv_fps"] = min(r["delivered_b"], fb)
@@ -262,7 +352,7 @@ def apply(state, rows, waccs):
             x["sq_nb_units"] = sq_dlv
             x["sq_nb_profit"] = sq_dlv * sq_unit
             x["nb_delivered_share"] = (n_new + n_old) / max(1e-9, s["delivered_a"] + s["delivered_b"])
-            x["nb_pref_share"] = x["nb_share"]                        # the board's share: what customers want
+            x["nb_pref_share"] = s["pref_b"] if side == "boeing" else 1.0 - s["pref_b"]   # what customers want
             x["nb_share"] = x["nb_delivered_share"]                   # market share = share of deliveries
             x["sd"] = {"demand": s["demand"], "wanted": s["wanted_" + pre], "capacity": s["cap_" + pre],
                        "backlog_in": s["backlog_in_" + pre], "backlog_out": s["backlog_" + pre],
@@ -271,8 +361,8 @@ def apply(state, rows, waccs):
                        "new_units": n_new, "old_units": n_old}
             if x["nb_in_window"]:
                 adj[side] += ((x["nb_profit"] - x["board_nb_profit"]) - (x["sq_nb_profit"] - x["board_sq_nb_profit"])) * r["df_" + pre]
-        r["sd"] = {k: s[k] for k in ("demand", "cap_max", "cap_fps", "cap_a320", "cap_ngsa", "lost", "backlog_b", "backlog_a",
-                                     "firm_b", "firm_a",
+        r["sd"] = {k: s[k] for k in ("demand", "demand_gross", "pref_b_base", "airbus_capacity_factor", "cap_max", "cap_fps", "cap_a320",
+                                     "cap_ngsa", "lost", "backlog_b", "backlog_a", "firm_b", "firm_a",
                                      "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa")}
         r["sd_sq"] = {"delivered_b": q["delivered_b"], "delivered_a": q["delivered_a"], "lost": q["lost"],
                       "dlv_max": q["dlv_max"], "dlv_a320": q["dlv_a320"]}

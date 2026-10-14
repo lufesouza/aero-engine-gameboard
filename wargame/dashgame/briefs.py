@@ -33,6 +33,18 @@ def pct(x):
     return "%.1f%%" % (100 * x)
 
 
+def ngsa_alone_rule():
+    """The NGSA-alone line of the share rule: the board's, or the run's own (supply_demand options)."""
+    if M.SD_ON:
+        import supply_demand as SD
+        pp = SD.options().get("boeing_pp_after_ngsa")
+        if pp is not None:
+            return (f"- **NGSA in service and no fps in service (none launched, or not yet in service):** Boeing loses {pp:.0f} pp a year\n"
+                    f"  from 40%, from NGSA EIS (this game's rule; it replaces the board's +3 pp a year for Airbus). Once an fps\n"
+                    f"  enters service, the rules below apply.\n")
+    return "- **Only NGSA launched:** Airbus gains 3 pp a year from NGSA EIS (cap 80%).\n"
+
+
 def nb_rules(p):
     """The narrowbody share rule of the board in use, in plain words (public)."""
     if M.H.VERSION == "v2":
@@ -45,7 +57,7 @@ def nb_rules(p):
                 f"- **fps 7-year ramp-up:** Boeing gets +{p['v_fps_7yr_advantage']:.0f} pp for 10 years from fps EIS.\n")
     bal = p["boeing_share_pct"]
     return (f"- Nothing changes until a new airframe enters service.\n"
-            f"- **Only NGSA launched:** Airbus gains 3 pp a year from NGSA EIS (cap 80%).\n"
+            + ngsa_alone_rule() +
             f"- **Only fps launched:** Boeing gains {p['v_ramp10_b_pp']:.1f} pp a year from fps EIS (cap 80%).\n"
             f"- **Both launched, different EIS years:** the first one to enter service gains {p['v_eis_lead_pp']:.1f} pp a year while it\n"
             f"  is alone (cap 80%). From the second EIS, shares move toward a long-run split at {p['v_ramp10_b_pp']:.1f} pp a year\n"
@@ -196,6 +208,23 @@ Shares are floored at zero and re-normalised to 100%.
 """ + (sd_rules() if M.SD_ON else "")
 
 
+def sd_option_rules():
+    """Delivery rules a run adds through supply_demand options (empty for runs without them)."""
+    import supply_demand as SD
+    o = SD.options()
+    out = ""
+    if o.get("boeing_takes_airbus_slack"):
+        out += ("\n- **Airbus's slack goes to Boeing:** customers Airbus cannot serve buy from Boeing. Boeing's preference share is\n"
+                "  never below the share of the year's new customers that Airbus cannot supply (after its firm orders and its\n"
+                "  waiting customers), so Boeing captures that slack, up to its own capacity.")
+    r = o.get("airbus_capacity_response")
+    if r:
+        out += (f"\n- **Airbus adds capacity when it is short:** in every year its customers want more than it can build, Airbus raises\n"
+                f"  its capacity by {100 * r:.0f}% (compounding, on top of its production plan, from the next year), until it can meet them.\n"
+                f"  The status quo runs the same rules.")
+    return out
+
+
 def sd_rules():
     """Public rules of the supply-and-demand layer (supply_demand.py)."""
     import supply_demand as SD
@@ -205,12 +234,38 @@ def sd_rules():
     rep = lambda y: "%d" % round(SD.demand(y) - SD.growth(y))
     gro = lambda y: "%d" % round(SD.growth(y))
     fb = SD.firm_backlog()
+    o = SD.options()
+    if o.get("demand_curve"):
+        cv = json.load(open(os.path.join(os.path.dirname(os.path.abspath(SD.__file__)), o["demand_curve"])))
+        cs = d["class_share"]
+        comp = lambda k, y: f'{round(cv["components"][k][cv["years"].index(y)] * cs):,}'
+        dem = lambda y: f"{round(SD.demand(y)):,}"
+        netted = o.get("firm_backlog") == "netted"
+        demand_txt = f"""**Demand = replacement + growth** (this game's demand curve: a conservative case for the whole single-aisle market, on
+the 737/A320 class here, {100 * cs:.1f}% of it; aircraft a year).
+- **Replacement of old-generation aircraft** (737NG, A320ceo): {comp("old_gen", 2030)} in 2030, {comp("old_gen", 2035)} in 2035, {comp("old_gen", 2040)} in 2040,
+  {comp("old_gen", 2045)} in 2045, then none: that fleet is used up by 2046.
+- **Replacement of today's 737 MAX, A320neo and A220 fleets:** {comp("max_neo_a220", 2035)} in 2035, {comp("max_neo_a220", 2045)} in 2045, {comp("max_neo_a220", 2051)} in 2051 (the peak),
+  {comp("max_neo_a220", 2060)} in 2060.
+- **Replacement of aircraft delivered after 2026:** from 2049; {comp("post_2026", 2055)} in 2055, {comp("post_2026", 2060)} in 2060, {comp("post_2026", 2065)} in 2065.
+- **Growth:** {comp("growth", 2030)} in 2030, {comp("growth", 2040)} in 2040, {comp("growth", 2045)} in 2045 (the peak), {comp("growth", 2050)} in 2050, {comp("growth", 2055)} in 2055, about
+  {comp("growth", 2060)} a year from 2060.
+- **Total demand:** {dem(2026)} (2026), {dem(2030)} (2030), {dem(2035)} (2035), {dem(2040)} (2040), {dem(2045)} (2045), {dem(2046)} (2046),
+  {dem(2050)} (2050), {dem(2055)} (2055), {dem(2060)} (2060), {dem(2065)} (2065); after {max(cv["years"])} it stays at the {max(cv["years"])} level.
+- **Firm backlog:** {fb[0]:,.0f} 737 MAX and {fb[1]:,.0f} A320neo-family aircraft on firm order (October 2026). """ + (
+            """They are **part of this demand, not
+  extra to it**: each year's demand is served first from the firm orders still open, split between the makers in
+  proportion to what each has left; only the rest is new customers, split by preference. The firm orders last until
+  about 2035; from then all demand is new customers. Firm orders never switch maker or lapse.""" if netted else
+            "They are delivered first and never switch maker or lapse.")
+    else:
+        demand_txt = None
     return f"""
 ## Supply and demand
 
 The board's shares are what customers **want**. Aircraft are delivered only if a factory can build them.
 
-**Demand = replacement + growth.**
+""" + (demand_txt + "\n" if demand_txt else "") + ("" if demand_txt else f"""**Demand = replacement + growth.**
 - **Replacement:** the retirement of today's 737 MAX, A320neo-family and A220 fleets (Cirium fleet data, October
   2026): {rep(2035)} a year in 2035, {rep(2045)} in 2045, {rep(2050)} in 2050.
 - **Growth:** the single-aisle fleet grows about {100 * d['fleet_growth_2025_44']:.1f}% a year to 2044 (Airbus and Boeing 2025 market
@@ -220,7 +275,7 @@ The board's shares are what customers **want**. Aircraft are delivered only if a
   replacement of the older 737NG and A320ceo fleets. They are delivered first and never switch maker or lapse.
 - New demand (replacement + growth, 737/A320 class): {dem(2026)} (2026), {dem(2030)} (2030), {dem(2035)} (2035),
   {dem(2040)} (2040), {dem(2045)} (2045), {dem(2050)} (2050), {dem(2055)} (2055), {dem(2060)} (2060), on top of the firm backlog.
-
+""") + f"""
 **Who customers want.** Each year's new demand is split by the board's share rules above: the **preference share**. The
 fps, NGSA, the 737 rate increase's +5 pp and Delay Tactics all move preference; they move deliveries only where a
 factory has the slots. The share objectives in your brief are measured on preference, as in earlier games.
@@ -244,13 +299,13 @@ factory has the slots. The share objectives in your brief are measured on prefer
   rate while the fps ramps. Without an fps the MAX carries on.
 
 **Deliveries each year.**
-- Each maker delivers its firm backlog first, then what its new customers want plus its waiting backlog, up to its
+- Each maker delivers """ + ("the firm orders that this year's demand calls on" if SD.options().get("firm_backlog") == "netted" else "its firm backlog") + f""" first, then what its new customers want plus its waiting backlog, up to its
   capacity.
 - Customers its factories cannot serve: the flexible ones ({100 * d['flex_share']:.0f}%: airlines flying both types, lessors and
   unannounced customers) take the other maker's free slots, this year or in any later year when slots open; the rest
   wait in the backlog for their first choice.
 - A tenth of the waiting backlog (not the firm backlog) drops out each year (keeps old aircraft longer, defers growth
-  or cancels).
+  or cancels).""" + sd_option_rules() + f"""
 - New types are delivered first, up to their line's capacity; the rest are 737 MAX or A320neo, at today's price and
   margin.
 - Market share in the observed tables is the share of deliveries. Profit is earned on aircraft delivered, at the
@@ -979,6 +1034,7 @@ def sd_outlook(side, state, v):
     import supply_demand as SD
     pre, other = ("b", "a") if side == "boeing" else ("a", "b")
     a3, ng = SD.plans(state)
+    netted = SD.options().get("firm_backlog") == "netted"
     plan = ("fps site: %s" % {"new_site": "new sites", "renton": "Renton"}[ng]) if side == "boeing" else (
         "A320 plan: %s" % a3)
     L = ["", "**Supply and demand if nobody moves again** (aircraft a year; your %s; capacities are the public "
@@ -990,10 +1046,10 @@ def sd_outlook(side, state, v):
             continue
         x, o = r[side], r["airbus" if side == "boeing" else "boeing"]
         cap = (r["sd"]["cap_max"], r["sd"]["cap_fps"]) if side == "boeing" else (r["sd"]["cap_a320"], r["sd"]["cap_ngsa"])
-        rows.append([y, "%d" % round(r["sd"]["demand"]), "%d" % round(x["sd"]["firm_in"]), "%d" % round(x["sd"]["wanted"]), "%d" % round(x["sd"]["backlog_in"]),
+        rows.append([y, "%d" % round(r["sd"]["demand_gross"] if netted else r["sd"]["demand"]), "%d" % round(x["sd"]["firm_in"]), "%d" % round(x["sd"]["wanted"]), "%d" % round(x["sd"]["backlog_in"]),
                      "%d + %d" % (round(cap[0]), round(cap[1])), "%d" % round(x["nb_units"]), "%d" % round(x["sd"]["spill_in"]),
                      pct(x["nb_pref_share"]), pct(x["nb_share"]), "%d" % round(o["sd"]["capacity"]), "%d" % round(x["sd"]["sq_delivered"])])
-    L += table(["Year", "New market demand", "Your firm backlog", "New demand for you (preference)", "Your waiting backlog",
+    L += table(["Year", "Market demand (firm orders + new customers)" if netted else "New market demand", "Your firm backlog", "New demand for you (preference)", "Your waiting backlog",
                 "Your capacity (%s)" % ("MAX + fps" if side == "boeing" else "A320 + NGSA"),
                 "You deliver", "of which the rival's flexible customers", "Preference share", "Delivered share",
                 "Rival capacity", "You deliver in the status quo"], rows)

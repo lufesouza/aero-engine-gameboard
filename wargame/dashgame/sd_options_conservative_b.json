@@ -1,0 +1,8 @@
+{
+ "demand_curve": "demand_conservative.json",
+ "firm_backlog": "netted",
+ "boeing_pp_after_ngsa": 1.0,
+ "boeing_takes_airbus_slack": true,
+ "airbus_capacity_response": 0.01,
+ "_note": "User's assumptions of 14 Oct 2026: demand = the conservative-case curve with the firm orders as its first slice (option B); Boeing loses 1 point of share a year after NGSA EIS (while it has no new narrowbody in service) down to the point where Airbus sells all it can and Boeing captures only the slack; Airbus raises capacity 1% a year until it meets its demand."
+}

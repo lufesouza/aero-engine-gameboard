@@ -1,7 +1,9 @@
 """Game-master command line for dash-2050 (the GM only; players are blocked from this folder and from wargame/runs).
 
-  python3 gm.py init [objective_set] [--sd]  # new run: state_r0.json, public rules to each player's folder; e.g. control2;
-                                            # --sd switches on supply and demand (supply_demand.py) for the run
+  python3 gm.py init [objective_set] [--sd] [--sd-options=FILE]
+                                          # new run: state_r0.json, public rules to each player's folder; e.g. control2;
+                                          # --sd switches on supply and demand (supply_demand.py) for the run;
+                                          # --sd-options copies FILE to the run's sd_options.json (supply_demand.options)
   python3 gm.py brief N                   # bulletin + private briefs for round N (from state after round N-1)
   python3 gm.py adjudicate N orders.json  # validate and adjudicate round N; writes state_rN.json and the record
 """
@@ -34,8 +36,17 @@ def jsave(name, obj):
         json.dump(obj, f, indent=1, default=str)
 
 
-def init(objective_set=None, sd=False):
+def init(objective_set=None, sd=False, sd_options=None):
     os.makedirs(RUN_DIR, exist_ok=True)
+    opt = os.path.join(RUN_DIR, "sd_options.json")
+    if sd_options:                         # the run's own supply-and-demand options, before the rules are written
+        with open(sd_options) as f:
+            x = json.load(f)
+        with open(opt, "w") as f:
+            json.dump(x, f, indent=1)
+    elif os.path.exists(opt):
+        os.remove(opt)
+    M.SD.reload()
     flag = os.path.join(RUN_DIR, "supply_demand.txt")
     if sd:                                 # supply and demand (supply_demand.py) for this run; model.py reads the flag
         with open(flag, "w") as f:
@@ -139,8 +150,9 @@ def adjudicate(n, orders_path):
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "init":
-        args = [a for a in sys.argv[2:] if a != "--sd"]
-        init(args[0] if args else None, sd="--sd" in sys.argv)
+        args = [a for a in sys.argv[2:] if not a.startswith("--sd")]
+        so = [a.split("=", 1)[1] for a in sys.argv[2:] if a.startswith("--sd-options=")]
+        init(args[0] if args else None, sd="--sd" in sys.argv, sd_options=so[0] if so else None)
     elif cmd == "brief":
         brief(int(sys.argv[2]))
     elif cmd == "adjudicate":
