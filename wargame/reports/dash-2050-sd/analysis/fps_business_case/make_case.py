@@ -40,18 +40,23 @@ F10 = {"fps": "launch_10yr", "fps_engine_code": 7}
 
 def series(sf, sh):
     vf, vh = M.value(sf, covert=True, series=True), M.value(sh, covert=True, series=True)
+    # Do Nothing looked up by year: a later entry into service (the slip) runs the fps series past Do Nothing's, and a
+    # year missing from Do Nothing's series is outside its window.
+    dn = {r["year"]: r for r in vh["_af_series"]["years"]}
+    assert set(dn) <= {r["year"] for r in vf["_af_series"]["years"]}, "Do Nothing series runs past the fps series"
     rows = []
-    for rf, rh in zip(vf["_af_series"]["years"], vh["_af_series"]["years"]):
-        bf, bh = rf["boeing"], rh["boeing"]
+    for rf in vf["_af_series"]["years"]:
         y = rf["year"]
-        inf, inh = bf["nb_in_window"], bh["nb_in_window"]
+        rh = dn.get(y)
+        bf, bh = rf["boeing"], (rh["boeing"] if rh else None)
+        inf, inh = bf["nb_in_window"], bool(bh and bh["nb_in_window"])
         op = ((bf["nb_profit"] - bf["sq_nb_profit"]) if inf else 0.0) - ((bh["nb_profit"] - bh["sq_nb_profit"]) if inh else 0.0)
         op_board = ((bf["board_nb_profit"] - bf["board_sq_nb_profit"]) if inf else 0.0) - ((bh["board_nb_profit"] - bh["board_sq_nb_profit"]) if inh else 0.0)
         rows.append({"year": y, "df": rf["df_b"], "in_window_fps": inf, "in_window_dn": inh,
                      "fps_units": rf["sd"]["dlv_fps"], "max_units_fps_case": rf["sd"]["dlv_max"], "boeing_units_fps_case": bf["nb_units"],
-                     "boeing_units_dn": bh["nb_units"], "pref_fps_case": bf["nb_pref_share"], "pref_dn": bh["nb_pref_share"],
+                     "boeing_units_dn": bh["nb_units"] if bh else None, "pref_fps_case": bf["nb_pref_share"], "pref_dn": bh["nb_pref_share"] if bh else None,
                      "new_demand": rf["sd"]["demand"], "fps_capacity": rf["sd"]["cap_fps"], "max_capacity_fps_case": rf["sd"]["cap_max"],
-                     "revenue_fps_case": bf["nb_revenue"], "revenue_dn": bh["nb_revenue"],
+                     "revenue_fps_case": bf["nb_revenue"], "revenue_dn": bh["nb_revenue"] if bh else None,
                      "op_profit_inc": op, "op_profit_inc_dashboard": op_board})
     return vf, vh, rows
 
@@ -131,7 +136,8 @@ def case(site):
             "irr_cash": irr(cash), "irr_game": irr(game), "payback_cash": pb_c, "payback_cash_discounted": pbd_c,
             "peak_funding_cash": peak_c, "peak_funding_cash_year": peak_cy, "payback_game": pb_g,
             "dpv_fps": vf["boeing"]["pv_delta"], "dpv_dn": vh["boeing"]["pv_delta"],
-            "dashboard_alone_item": None}
+            "dashboard_alone_item": None, "engines": R.engine_fit(sf)["fps"]["fitted_if_no_change"],
+            "engine_programmes": {k: v["launch"] for k, v in sf["prog"].items() if k in ("pw_solo", "pw_jv", "rr_solo", "rr_jv", "jv")}}
 
 
 out = {"params": {"WACC_B": W, "price_fps_m": P["PRICE_fps"] * 1000, "margin_fps": P["v_margin_fps"], "price_737_m": P["PRICE_737"] * 1000,
@@ -160,9 +166,9 @@ def add(name, low_label, low_g, low_c, high_label, high_g, high_c, note=""):
     sens.append({"factor": name, "low_label": low_label, "low": low_g, "low_cash": low_c,
                  "high_label": high_label, "high": high_g, "high_cash": high_c, "note": note})
 dm = fps_units_pv * P["PRICE_fps"] * 0.05
-add("fps margin (25.6%)", "20.6%", g - dm, c - dm, "30.6%", g + dm, c + dm, "deliveries do not depend on margin: exact")
+add("fps margin (25.6%)", "20.6%", g - dm, c - dm, "30.6%", g + dm, c + dm, "computed from the base case: deliveries do not depend on margin")
 dp = fps_units_pv * 0.005 * P["v_margin_fps"]
-add("fps price ($55M)", "$50M", g - dp, c - dp, "$60M", g + dp, c + dp, "deliveries do not depend on price: exact")
+add("fps price ($55M)", "$50M", g - dp, c - dp, "$60M", g + dp, c + dp, "computed from the base case: deliveries do not depend on price")
 def game_with_bill(k):
     nom = base["bill"] * k
     pv_b = nom * df(base["eis"])
@@ -178,11 +184,12 @@ lv = json.load(open(os.path.join(HERE, "..", "why_no_fps", "levers.json")))
 for key, name, lab in (("fps ramp three times as fast", "fps ramp (NGSA Rev. B curve)", "three times as fast"),
                        ("50% more growth", "Fleet growth (3.95% a year to 2044)", "50% more growth")):
     x = lv[key]
-    site = "renton" if x["site"] == "Renton" else "new_site"
-    add(name, "as assumed", g, c, lab, x["item"], x["item"] + adj[site], f"best site ({x['site']}); levers.py")
+    it = x["item"] if x["site"] == "Renton" else x["item_other_site"]      # at Renton, so only the one factor moves
+    add(name, "as assumed", g, c, lab, it, it + adj["renton"], "at Renton; game run (levers.py)")
+    sens[-1]["best_site"] = {"site": x["site"], "game": x["item"]}
 last = [r for r in rows if r["in_window_fps"]][-1]
 tv = sum(last["op_profit_inc"] * df(y) for y in range(last["year"] + 1, last["year"] + 11))
-add("Horizon (20 years after entry into service)", "as booked", g, c, "+10 years at the 2059 profit", g + tv, c + tv, "outside the game's convention")
+add("Horizon (20 years from entry into service)", "as booked", g, c, "+10 years at the 2059 profit", g + tv, c + tv, "outside the game's convention")
 out["sensitivities"] = sens
 out["base_for_sensitivities"] = {"site": "renton", "game_npv": g, "cash_npv": c}
 out["fps_units_pv"] = fps_units_pv
@@ -200,6 +207,8 @@ pc = FN.programme_cash(sf, Fi)
 spend = {y: sum(v for k, v in d.items() if "fps (" in k) for y, d in pc.items()}
 rcash = {y: -sum(v for k, v in d.items() if "Renton" in k) for y, d in pc.items()}
 op = {r["year"]: r["op_profit_inc"] for r in srows}
+bfs, bhs = vf["boeing"]["bridge"], vh["boeing"]["bridge"]
+assert abs(npv(op) - ((bfs["nb_profit_vs_sq"] + bfs.get("supply_demand", 0)) - (bhs["nb_profit_vs_sq"] + bhs.get("supply_demand", 0)))) < 1e-9
 slip_cash = npv(op) - npv(spend) + npv(rcash)
 risks.append({"risk": "3-year slip (in service 2043), same bill", "game": slip_game, "cash": slip_cash,
               "note": "the game books the bill at entry into service and charges nothing for a slip, so its value rises; in cash the bill is spent over 13 years and profit comes later"})

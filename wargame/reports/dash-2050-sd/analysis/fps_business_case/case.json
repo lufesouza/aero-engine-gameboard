@@ -1049,7 +1049,12 @@
    "payback_game": 2050,
    "dpv_fps": -2.96011591322484,
    "dpv_dn": -0.767291941752474,
-   "dashboard_alone_item": null
+   "dashboard_alone_item": null,
+   "engines": "CFM + PW + RR",
+   "engine_programmes": {
+    "pw_solo": 2030,
+    "rr_solo": 2030
+   }
   },
   "new_site": {
    "site": "new_site",
@@ -2046,7 +2051,12 @@
    "payback_game": 2051,
    "dpv_fps": -3.5110474977705186,
    "dpv_dn": -0.767291941752474,
-   "dashboard_alone_item": null
+   "dashboard_alone_item": null,
+   "engines": "CFM + PW + RR",
+   "engine_programmes": {
+    "pw_solo": 2030,
+    "rr_solo": 2030
+   }
   }
  },
  "dashboard_alone_item": 4.303024676532139,
@@ -2059,7 +2069,7 @@
    "high_label": "30.6%",
    "high": 1.7115841714953781,
    "high_cash": -3.8676456310751677,
-   "note": "deliveries do not depend on margin: exact"
+   "note": "computed from the base case: deliveries do not depend on margin"
   },
   {
    "factor": "fps price ($55M)",
@@ -2069,7 +2079,7 @@
    "high_label": "$60M",
    "high": -0.3726598844597777,
    "high_cash": -5.951889687030324,
-   "note": "deliveries do not depend on price: exact"
+   "note": "computed from the base case: deliveries do not depend on price"
   },
   {
    "factor": "Development bill ($60.3B)",
@@ -2099,7 +2109,11 @@
    "high_label": "three times as fast",
    "high": 1.520207849211558,
    "high_cash": -4.059021953358988,
-   "note": "best site (Renton); levers.py"
+   "note": "at Renton; game run (levers.py)",
+   "best_site": {
+    "site": "Renton",
+    "game": 1.520207849211558
+   }
   },
   {
    "factor": "Fleet growth (3.95% a year to 2044)",
@@ -2107,12 +2121,16 @@
    "low": -2.1928239714723867,
    "low_cash": -7.7720537740429325,
    "high_label": "50% more growth",
-   "high": -1.1898990307251909,
-   "high_cash": -6.936006264013434,
-   "note": "best site (new sites); levers.py"
+   "high": -1.561398532531583,
+   "high_cash": -7.140628335102129,
+   "note": "at Renton; game run (levers.py)",
+   "best_site": {
+    "site": "new sites",
+    "game": -1.1898990307251909
+   }
   },
   {
-   "factor": "Horizon (20 years after entry into service)",
+   "factor": "Horizon (20 years from entry into service)",
    "low_label": "as booked",
    "low": -2.1928239714723867,
    "low_cash": -7.7720537740429325,
@@ -2132,7 +2150,7 @@
   {
    "risk": "3-year slip (in service 2043), same bill",
    "game": -1.0801790068774553,
-   "cash": -8.777070589345609,
+   "cash": -8.451933293320764,
    "note": "the game books the bill at entry into service and charges nothing for a slip, so its value rises; in cash the bill is spent over 13 years and profit comes later"
   },
   {
