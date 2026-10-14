@@ -128,8 +128,8 @@ def sd_block(state, v):
            "growth": [SD.growth(r["year"]) for r in rows],
            "plans": dict(zip(("a320_plan", "fps_site"), SD.plans(state))), "renton_share": SD.renton_share(state),
            "costs": [list(c) for c in SD.costs(state)]}
-    for k in ("demand", "cap_max", "cap_fps", "cap_a320", "cap_ngsa", "lost", "backlog_b", "backlog_a", "firm_b",
-              "firm_a", "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa"):
+    for k in ("demand", "demand_gross", "pref_b_base", "airbus_capacity_factor", "cap_max", "cap_fps", "cap_a320",
+              "cap_ngsa", "lost", "backlog_b", "backlog_a", "firm_b", "firm_a", "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa"):
         out[k] = [r["sd"][k] for r in rows]
     for k in ("delivered_b", "delivered_a", "lost", "dlv_max", "dlv_a320"):
         out["sq_" + k] = [r["sd_sq"][k] for r in rows]
@@ -268,6 +268,7 @@ def build(n_rounds=None):
         import supply_demand as SD
         data["sd_inputs"] = {k: SD.inputs()[k] for k in ("airbus", "boeing")}
         data["sd_inputs"]["demand"] = {k: x for k, x in SD.inputs()["demand"].items() if k not in ("groups", "growth")}
+        data["sd_inputs"]["options"] = SD.options()
     data["regret"] = regret(n_rounds)
     data["board_check"] = board_check(jl("state_r%d.json" % n_rounds))
     data["stage"] = {str(n): jl("stage_r%d.json" % n) for n in range(1, n_rounds + 1)
