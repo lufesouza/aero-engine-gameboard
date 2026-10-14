@@ -281,7 +281,7 @@ def assumptions():
             ("Renton", f"${sd['renton_saving_b']:.1f}B of new-site capex avoided (range ${sd['renton_saving_range_b'][0]:.1f}B-${sd['renton_saving_range_b'][1]:.1f}B): in 2040 in the game view, $1.0B a year in 2037-2039 in the cash view."),
         ]),
         ("Financing and valuation", [
-            ("Debt penalty (game view only)", f"The dashboard adds a leverage haircut as if the whole bill were added to Boeing's ${P['debt_boeing']:.0f}B gross debt: α × ((D+bill)³ − D³) / EV², with α {P['alpha']}, EV ${P['ev_boeing']:.0f}B. That is ${R['debt_penalty_nominal']:.1f}B booked in 2040, {b(-R['debt_penalty_pv'])} at 2026. It is not a cash flow; the game's balance-sheet tracker has Boeing's net debt (debt less cash) back at zero, its historical level, from 2029 either way."),
+            ("Debt penalty (game view only)", f"The dashboard adds a leverage haircut as if the whole bill were added to Boeing's ${P['debt_boeing']:.0f}B gross debt: α × ((D+bill)³ − D³) / EV², with α {P['alpha']}, EV ${P['ev_boeing']:.0f}B. That is ${R['debt_penalty_nominal']:.1f}B booked in 2040, {b(R['debt_penalty_pv'], 2, False)} in present value at 2026. It is not a cash flow; the game's balance-sheet tracker has Boeing's net debt (debt less cash) back at zero, its historical level, from 2029 either way."),
             ("Discount rate", f"Boeing's WACC, {pc(P['WACC_B'], 1)}, to 2026. It is applied to constant-2026-dollar flows, so it is conservative if read as a nominal rate."),
             ("Horizon", f"The dashboard counts {P['post_eis_years']} years from entry into service (to 2059). Nothing is counted after that, though the fps still earns about $12B a year in 2060."),
             ("Basis", "Pre-tax operating profit. No tax, working capital, recurring capex or support revenue. Widebody unaffected (no 787 Re-engine in either case)."),
@@ -325,7 +325,7 @@ def build(out_path):
 <p class="lede">The decision Boeing faced in 2030: launch a 10-year fps (in service 2040) or Do Nothing, given Airbus's 2030
 orders as played (NGSA launched the same year on the A320 Alt plan). The fps adds about {b(R["op_profit_undiscounted"], 0, False)} of operating profit over 2037-2059, but it
 needs {b(P["bill_10yr"], 1, False)} first, and its margin arrives late as production ramps up. As the game values it, the fps
-is worth {b(R["game_npv"])} at Renton against Do Nothing; with the bill spent as it would really go out, {b(R["cash_npv"])}.
+is worth {b(R["game_npv"])} at Renton against Do Nothing; with the bill spent as it would really go out and no debt penalty (a valuation haircut, not cash), {b(R["cash_npv"])}.
 Either way it is short of the +$1B Boeing's Board requires.</p>
 <nav class="toc"><a href="#cash">Cash flow</a><a href="#table">Year by year</a><a href="#value">From cash flow to value</a><a href="#assumptions">Key assumptions</a><a href="#sens">Sensitivities</a><a href="#notes">Notes</a></nav></header>
 
@@ -342,7 +342,7 @@ follows your NGSA Rev. B ramp, so the fps adds little profit until 2043. Cumulat
 
 <section id="table"><h2>Year by year (cash view, fps at Renton)</h2><p class="lede">Aircraft and $B, pre-tax, constant 2026
 dollars. Incremental operating profit is the fps case minus Do Nothing, each against the status quo, as delivered. The game
-counts it to 2059 (20 years from entry into service, 2040-2059). $B figures are rounded to one decimal; totals and the
+counts it to 2059 (20 years from entry into service, 2040-2059). $B flows are rounded to one decimal and present values to two; totals and the
 cumulative column use unrounded values, so they may not add exactly.</p><div class="panel">{cash_table()}
 <p class="cap">The 2037-2039 profit comes before the fps flies: with an fps announced, the dashboard's share rule lets NGSA gain only 1 point a year instead of 3, so the 737 MAX keeps more customers. In 2040 the game view also books the {b(P["bill_10yr"], 2, False)} bill, the {b(R["debt_penalty_nominal"], 2, False)} debt penalty and the {b(R["renton_saving"], 1, False)} Renton saving.</p></div></section>
 
@@ -360,7 +360,7 @@ the ramp delivers {b(early_dlv, 1, False)}. That {b(gap, 2, False)} gap is the w
 <section id="sens"><h2>Sensitivities</h2><p class="lede">What moves the value, one factor at a time from the Renton base case.
 The {top3[0].lower()}, the {top3[1].lower()} and the {top3[2].lower()} matter most. Only a much faster ramp, a much cheaper bill, a better margin or a lower discount
 rate clears the Board's +$1B in the game view; nothing shown clears zero in the cash view.</p><div class="stack">
-<div class="panel"><p class="ctitle">The {top3[0].lower()}, the {top3[1]} and the {top3[2].lower()} move the value most</p>{chart_tornado()}</div>
+<div class="panel"><p class="ctitle">The {top3[0].lower()}, the {top3[1].lower()} and the {top3[2].lower()} move the value most</p>{chart_tornado()}</div>
 <div class="panel"><p class="label">The same changes in both views</p>{sens_table()}
 <p class="cap">Margin and price change only the fps's profit an aircraft: deliveries in the game do not depend on them, so these rows are exact. The ramp and growth rows are game runs from the levers analysis, both at Renton; with 50% more growth, new sites would do slightly better ({b(next(s for s in C["sensitivities"] if s["factor"].startswith("Fleet"))["best_site"]["game"])} game view). The horizon row adds ten years of profit at the 2059 level, which the game does not count.</p></div>
 <div class="panel"><p class="label">Two risks the tornado leaves out</p>{risk_table()}</div>

@@ -175,7 +175,7 @@ def game_with_bill(k):
     pen_pv = M.true_cost(nom, pv_b, P["v_debt_boeing"], P["v_ev_boeing"], P["v_alpha"]) - pv_b
     return g + base["bill_pv_game"] + base["debt_penalty_pv"] - pv_b - pen_pv
 add("Development bill ($60.3B)", "+20% ($72.4B)", game_with_bill(1.2), c - 0.2 * base["bill_pv_cash"],
-    "-20% ($48.3B)", game_with_bill(0.8), c + 0.2 * base["bill_pv_cash"], "game view recomputes the debt penalty")
+    "−20% ($48.3B)", game_with_bill(0.8), c + 0.2 * base["bill_pv_cash"], "game view recomputes the debt penalty")
 fg = {r["year"]: r["net_game"] for r in rows}; fc = {r["year"]: r["net_cash"] for r in rows}
 for y, v in base["spend"].items():
     fc.setdefault(y, 0.0)

@@ -2086,7 +2086,7 @@
    "low_label": "+20% ($72.4B)",
    "low": -7.144806624069332,
    "low_cash": -12.847720656273626,
-   "high_label": "-20% ($48.3B)",
+   "high_label": "\u221220% ($48.3B)",
    "high": 2.3556922417102886,
    "high_cash": -2.6963868918122387,
    "note": "game view recomputes the debt penalty"
