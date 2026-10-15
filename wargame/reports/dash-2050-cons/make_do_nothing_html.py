@@ -103,7 +103,7 @@ def lines(series, y_lo, y_hi, step, fmt, label, aria, notes=(), x_lo=2026, x_hi=
             out.append(f'<line x1="{sx(x) + 6:.1f}" x2="{lx - 3:.1f}" y1="{sy(v):.1f}" y2="{sy(v) + dy:.1f}" class="leader"/>')
         out.append(f'<text x="{lx}" y="{sy(v) + dy + 4:.1f}" class="endlab">{esc(name)} {endf(v)}</text>')
     years = sorted({x for _, _, d, _ in series for x, _ in d})
-    payload = {"x0": left, "x1": w - right, "xlo": x_lo, "xhi": x_hi, "w": w, "fmt": "pct" if fmt == "pct" else "int", "years": years,
+    payload = {"x0": left, "x1": w - right, "xlo": x_lo, "xhi": x_hi, "w": w, "fmt": fmt, "years": years,
                "series": [{"name": n, "k": f"var(--{c})", "vals": {str(x): (v if fmt == "pct" else round(v, 2)) for x, v in d}} for n, c, d, _ in series]}
     out.append(f'<line class="cross" x1="0" x2="0" y1="{top}" y2="{h - bot}" visibility="hidden"/>')
     out.append(f'<rect x="{left}" y="{top}" width="{w - left - right}" height="{h - top - bot}" class="xhit" data-cross="{esc(json.dumps(payload), quote=True)}"/>')
@@ -131,6 +131,8 @@ BGAP_B = {r["year"]: r["board_profit_b"] - r["board_sq_profit_b"] for r in ROWS}
 FIRST_LOSS = next(y for y in YEARS if GAP_B[y] < -1e-6)
 assert all(abs(GAP_B[y]) < 1e-6 for y in YEARS if y < FIRST_LOSS)
 U = {k: x["unit_profit_m"] for k, x in PR.items()}
+CS = J["inputs"]["demand"]["class_share"]
+SQP_MAX = max(((r["year"], r["sq_pref_b"]) for r in ROWS), key=lambda t: t[1])
 FIRM_SHARE = J["inputs"]["demand"]["firm_backlog"]["boeing"] / (J["inputs"]["demand"]["firm_backlog"]["boeing"] + J["inputs"]["demand"]["firm_backlog"]["airbus"])
 A_DIP = min((r for r in ROWS if r["year"] >= NGSA), key=lambda r: r["dlv_a"])
 A_STEADY = [GAP_A[y] for y in YEARS if 2044 <= y <= WIN_A[1]]
@@ -140,12 +142,12 @@ BR_B, BR_A = V["boeing"]["bridge"], V["airbus"]["bridge"]
 
 def chart_share(side):
     if side == "boeing":
-        sr = [("Status quo", "sq", ser("sq_delivered_share_b"), True), ("Dashboard", "muted", ser("board_share_b"), True),
+        sr = [("Status quo", "sq", ser("sq_delivered_share_b"), True), ("SQ preference", "sq", ser("sq_pref_b"), False), ("Dashboard", "muted", ser("board_share_b"), True),
               ("Your rule", "s1", ser("base_pref_b"), True), ("Preference", "s1", ser("pref_b"), False),
               ("Delivered", "fg", ser("delivered_share_b"), False)]
         lo, hi = 0.0, 0.6
     else:
-        sr = [("Status quo", "sq", ser("sq_delivered_share_a"), True), ("Dashboard", "muted", ser("board_share_a"), True),
+        sr = [("Status quo", "sq", ser("sq_delivered_share_a"), True), ("SQ preference", "sq", ser("sq_pref_b", lambda v: 1 - v), False), ("Dashboard", "muted", ser("board_share_a"), True),
               ("Your rule", "s2", ser("base_pref_b", lambda v: 1 - v), True), ("Preference", "s2", ser("pref_a"), False),
               ("Delivered", "fg", ser("delivered_share_a"), False)]
         lo, hi = 0.4, 1.0
@@ -154,12 +156,12 @@ def chart_share(side):
     col = "s1" if side == "boeing" else "s2"
     lg = legend([("Dashboard's share rule (what the dashboard alone books)", "muted", "dash"), ("Your rule: 1 point a year after NGSA", col, "dash"),
                  ("Preference after Airbus's slack (what the game uses)", col, "ln"), ("Share of deliveries", "fg", "ln"),
-                 ("Status quo, share of deliveries", "sq", "dash")])
+                 ("Status quo, preference after the slack", "sq", "ln"), ("Status quo, share of deliveries", "sq", "dash")])
     k = "b" if side == "boeing" else "a"
     rows = [[str(r["year"]), pc(r[f"board_share_{k}"], 1), pc(r["base_pref_b"] if k == "b" else 1 - r["base_pref_b"], 1), pc(r[f"pref_{k}"], 1),
-             pc(r[f"delivered_share_{k}"], 1), pc(r[f"sq_delivered_share_{k}"], 1)] for r in ROWS]
+             pc(r[f"delivered_share_{k}"], 1), pc(r["sq_pref_b"] if k == "b" else 1 - r["sq_pref_b"], 1), pc(r[f"sq_delivered_share_{k}"], 1)] for r in ROWS]
     return lg + svg + K.tview(f"{'Boeing' if side == 'boeing' else 'Airbus'} narrowbody share", ["Year", "Dashboard", "Your rule", "Preference",
-                                                                                                "Delivered", "Status quo delivered"], rows)
+                                                                                                "Delivered", "Status quo preference", "Status quo delivered"], rows)
 
 
 def chart_volumes(side):
@@ -217,13 +219,15 @@ def rules_table():
          f"waiting customers. It lifts Boeing in {len(FLOOR)} years, most in {PEAK['year']} ({pc(PEAK['pref_b'], 1)}), when NGSA's transition cuts Airbus's output.", "Yours"],
         ["Airbus adds capacity when short", f"+{pc(o['airbus_capacity_response'])} after each year its customers want more than it can build; "
          f"{pc(BY[2060]['airbus_capacity_factor'] - 1, 1)} above its plan by 2060.", "Yours"],
+        ["Market measured", f"Your conservative curve (whole single-aisle market) times the 737/A320 class share, {pc(CS, 2)}: the A220 is "
+         "taken out. Every share here is a share of 737/A320-class customers or deliveries.", "Yours (curve); game master (class share)"],
         ["Firm orders (option B)", f"The {d['firm_backlog']['boeing'] + d['firm_backlog']['airbus']:,} open firm orders are the first slice of each year's demand, split by "
          f"each maker's remaining orders: Boeing {d['firm_backlog']['boeing']:,} ({pc(FIRM_SHARE, 1)}), Airbus {d['firm_backlog']['airbus']:,}. That is why "
          f"Boeing's delivered share is {pc(FIRM_SHARE, 1)} until new customers start in 2035.", "Yours"],
         ["Customers who cannot be served", f"{pc(d['flex_share'], 1)} of them take the other maker's free slots; {pc(d['lapse_per_year'])} of those still "
          "waiting drop out each year.", "Game master"],
         ["Status quo", "Nobody launches anything. Boeing's base preference stays at 40% and Airbus's at 60%; the same slack floor and capacity "
-         "response apply, so the status quo also runs into Airbus's limits.", "Game master"],
+         f"response apply, so the status quo also runs into Airbus's limits (Boeing's preference up to {pc(SQP_MAX[1], 1)} in {SQP_MAX[0]}).", "Game master"],
     ]
     return K.table(["Rule", "What it does in Do Nothing", "Source"], rows)
 
@@ -256,9 +260,9 @@ def bridge_table():
 
 
 def year_table():
-    head = ["Year", "Demand", "Boeing: dashboard", "Boeing: your rule", "Boeing: preference", "Boeing: delivered share", "Boeing delivered",
-            "Status quo", "Boeing profit vs status quo", "Airbus: preference", "Airbus: delivered share", "A320neo", "NGSA", "Status quo",
-            "Airbus profit vs status quo"]
+    head = ["Year", "Demand", "Boeing: dashboard", "Boeing: your rule", "Boeing: preference", "Boeing: delivered share", "Boeing: delivered",
+            "Boeing: status quo delivered", "Boeing profit vs status quo", "Airbus: preference", "Airbus: delivered share", "Airbus: A320neo delivered",
+            "Airbus: NGSA delivered", "Airbus: status quo delivered", "Airbus profit vs status quo"]
     rows = []
     for r in ROWS:
         rows.append([str(r["year"]), n0(r["demand_gross"]), pc(r["board_share_b"]), pc(r["base_pref_b"]), pc(r["pref_b"], 1), pc(r["delivered_share_b"], 1),
@@ -280,6 +284,9 @@ def build(out_path):
     css = K.CSS.replace("--pos: #3b4a5e; --neg: #8792a3;", "--pos: #3b4a5e; --neg: #8792a3; --sq: #8a95a5;")
     css = css.replace("--pos: #c9d3e0; --neg: #5d6a7c; color-scheme: dark; }", "--pos: #c9d3e0; --neg: #5d6a7c; --sq: #6f7b8d; color-scheme: dark; }")
     assert css.count("--sq:") >= 2
+    old = "const fmt = v => P.fmt === 'pct' ? Math.round(v * 100) + '%' : Math.round(v).toLocaleString('en-US');"
+    assert K.JS.count(old) == 1
+    JS = K.JS.replace(old, "const fmt = v => P.fmt === 'pct' ? Math.round(v * 100) + '%' : P.fmt === 'usd' ? (v < -0.005 ? '\\u2212' : (v > 0.005 ? '+' : '')) + '$' + Math.abs(v).toFixed(2) + 'B' : Math.round(v).toLocaleString('en-US');")
     css += "\np, li, footer, td { overflow-wrap: break-word; }\n.tiles { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }\n"
     gap_b = [GAP_B[y] for y in YEARS if y >= FIRST_LOSS and BY[y]["in_window_b"]]
     dash_floor = BGAP_B[DASH20]
@@ -293,8 +300,8 @@ def build(out_path):
          f"discounted: {b(V['boeing']['pv_delta'])} in all."),
         ("The dashboard alone sees a much bigger loss.",
          f" It sells 2,000 narrowbodies a year and moves Airbus 3 points a year from NGSA's entry into service, so Boeing falls to 20% (400 "
-         f"aircraft) from {DASH20}, against 800 in the status quo. At ${U['737 MAX']:.2f}M an aircraft that is {bp(dash_floor, 2)} a year, from "
-         f"the late 2030s: {b(DA['boeing'])} in all."),
+         f"aircraft) from {DASH20}, against 800 in the status quo. At ${U['737 MAX']:.2f}M an aircraft that is {bp(dash_floor, 2)} a year from "
+         f"{DASH20}, after a ramp from {bp(BGAP_B[NGSA], 2)} in {NGSA}: {b(DA['boeing'])} in all."),
         ("Airbus's gain is NGSA's margin.",
          f" NGSA earns ${U['NGSA']:.2f}M an aircraft against ${U['A320neo family']:.2f}M for an A320neo, and Airbus builds "
          f"{n0(BY[2050]['dlv_a'])} a year by 2050 against {n0(BY[2050]['sq_dlv_a'])} in the status quo. From 2044 that is "
@@ -326,7 +333,8 @@ and sells, once demand, the firm orders and both makers' factories are applied. 
 <div class="panel"><p class="ctitle">Airbus: preference rises from 60% to {pc(BY[2060]['pref_a'])}; it delivers {pc(BY[2060]['delivered_share_a'])} of the market by 2060, against {pc(BY[2060]['sq_delivered_share_a'])} in the status quo</p>{chart_share("airbus")}</div>
 </div></section>
 
-<section id="volumes"><h2>Volumes</h2><p class="lede">Your conservative demand curve sets the market: {n0(BY[2026]['demand_gross'])}
+<section id="volumes"><h2>Volumes</h2><p class="lede">Your conservative demand curve sets the market, times the 737/A320 class
+share ({pc(CS, 2)}: the A220 is taken out, so every share on this page is a share of the 737/A320 class): {n0(BY[2026]['demand_gross'])}
 aircraft in 2026, a peak of {n0(max(r['demand_gross'] for r in ROWS))} in {max(ROWS, key=lambda r: r['demand_gross'])['year']}, {n0(BY[2060]['demand_gross'])}
 in 2060 (737/A320 class). The firm orders are delivered first, as each year's demand calls them; new customers start in 2035.</p><div class="stack">
 <div class="panel"><p class="ctitle">Boeing builds 684 a year from 2035 in both cases until {SOLD_RUN[-1]}; then its line runs below capacity</p>{chart_volumes("boeing")}</div>
@@ -353,12 +361,12 @@ dollars) against the status quo. Airbus's profit is counted to {WIN_A[1]}.</p><d
 
 <section id="notes"><h2>Notes</h2><div class="panel"><ul class="cav">
 <li><b>Same case as the business case.</b> This is the Do Nothing the fps is measured against on the fps business case page, and the state Boeing actually ended in.</li>
-<li><b>The status quo runs into Airbus's limits too.</b> With Boeing's preference held at 40%, Airbus is short in the status quo as well; its capacity grows {pc(BY[2060]['sq_capacity_factor_a'] - 1, 1)} by 2060 and the slack keeps Boeing's line full until demand falls in the late 2050s.</li>
-<li><b>What is yours, what is ours.</b> The demand curve, option B, the 1-point rule, the slack floor and the 1% response are yours; the prices, margins, bills and the dashboard's share rule are your dashboard's; the 737 MAX path, the flexible and drop-out rates and the Airbus plan's digitisation are the game master's.</li>
+<li><b>The status quo runs into Airbus's limits too.</b> Boeing's base preference stays at 40%, but Airbus is short in the status quo as well, so the slack lifts Boeing's preference to as much as {pc(SQP_MAX[1], 1)} ({SQP_MAX[0]}); its capacity grows {pc(BY[2060]['sq_capacity_factor_a'] - 1, 1)} by 2060 and the slack keeps Boeing's line full until demand falls in the late 2050s.</li>
+<li><b>What is yours, what is ours.</b> The demand curve, option B, the 1-point rule, the slack floor and the 1% response are yours; the prices, margins, bills and the dashboard's share rule are your dashboard's; the 737/A320 class share, the 737 MAX path, the flexible and drop-out rates and the Airbus plan's digitisation are the game master's.</li>
 <li><b>Source.</b> analysis/do_nothing/do_nothing.py writes do_nothing.json; it checks that the layer's rows are the ones the valuation used, that the prices are the ones applied, and that both makers' narrowbody lines add up to the game's ΔPV.</li>
 </ul></div></section>
 <footer>BOEING PROPRIETARY. Built by make_do_nothing_html.py from analysis/do_nothing/do_nothing.json (run dash-2050-cons).</footer></div>
-<script>{K.JS}</script></body></html>'''
+<script>{JS}</script></body></html>'''
     with open(out_path, "w") as f:
         f.write(page)
     print("wrote", out_path, len(page))
