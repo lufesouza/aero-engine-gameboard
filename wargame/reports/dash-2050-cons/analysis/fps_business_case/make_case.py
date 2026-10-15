@@ -37,6 +37,7 @@ def build(bo, site="new_site", airbus=None, s_start=None, year=LAUNCH, recd=None
 
 
 F10 = {"fps": "launch_10yr", "fps_engine_code": 7}
+F7 = {"fps": "launch_7yr", "fps_engine_code": 7}
 
 
 def series(sf, sh):
@@ -89,12 +90,12 @@ def payback(flows, discounted=False):
     return out, peak, peak_y
 
 
-def case(site):
-    sf, sh = build(F10, site), build({}, "new_site")
+def case(site, bo=F10, variant="10yr"):
+    sf, sh = build(bo, site), build({}, "new_site")
     vf, vh, rows = series(sf, sh)
     bf, bh = vf["boeing"]["bridge"], vh["boeing"]["bridge"]
     inc_bridge = {k: bf.get(k, 0) - bh.get(k, 0) for k in bf}
-    bill = M.af_bill("fps", "10yr")
+    bill = M.af_bill("fps", variant)
     eis = sf["prog"]["fps"]["eis"]
     eis_inp, a_s, b_s, _ = M.af_inputs(sf)
     cell = M.eval_cell(eis_inp, a_s, b_s)
@@ -149,6 +150,8 @@ out = {"params": {"WACC_B": W, "price_fps_m": P["PRICE_fps"] * 1000, "margin_fps
        "cases": {}}
 for site in ("renton", "new_site"):
     out["cases"][site] = case(site)
+# the 7-year fps (in service 2037), the same way
+out["cases_7yr"] = {site: case(site, F7, "7yr") for site in ("renton", "new_site")}
 # dashboard alone (no supply-and-demand layer), same decision
 M.SD_ON = False
 sf, sh = build(F10, "new_site"), build({}, "new_site")
