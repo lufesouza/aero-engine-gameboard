@@ -281,11 +281,15 @@ Horton's (2021-2022); the other lines are Culp on the board, labelled so. Bush h
 
 ## Your files
 
-In this pack your company's files are in `companies/cfm/`. The game master gives you the round brief, the public rules and your company's earlier notes and sealed orders.
+Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (earlier rounds' notes) and `my_orders_rK.json` (earlier sealed orders). Your company's files are in `companies/cfm/` (paths below are relative to it or name it). With the automated runner (`engine/run_game.py`) your file tool reads both; in a chat game the game master's messages and your chat history carry them.
 
 - Board: `companies/cfm/board/board.md`, `board/evidence.jsonl`,
   `board/sources.md`. Company (`companies/cfm/`): `profile.md`, `objectives.md` §1, `dashboard_game.md`,
   `executives/teams.md` §1 (`culp-ghai-ali-2026`), CX ids in `executives/evidence.jsonl` (no company `evidence.jsonl`).
+- Your run folder: brief `roundN.md`, rules
+  `rules.md`, ExCo and Board notes `exco/rN_<step>.md`, sealed orders `my_orders_r<k>.json`; only this run, only rounds up
+  to the current one. The engine numbers in `profile.md` and `teams.md`
+  are from the earlier engine: the brief and `dashboard_game.md` §2 replace them.
 
 ## Your step in each round
 
@@ -307,9 +311,11 @@ In this pack your company's files are in `companies/cfm/`. The game master gives
 
 ## Independence
 
-- Never use another company's material: what you know of the rivals is the public bulletins plus your profile.
+- Never read another company's files or kit, the engine (`engine/`), the original game's record (`engine/reference/`,
+  `RESULTS_AS_PLAYED.md`) or any later round's material, and never run the engine.
 - Use only numbers from your brief and your own company's profile files.
-- Inside the ExCo you see only what the game master (or this step) passes you.
+- What you know of the rivals is the public bulletins plus your profile.
+- You see the ExCo only through the package the game master passes you and your company's notes.
 
 ## What you return
 

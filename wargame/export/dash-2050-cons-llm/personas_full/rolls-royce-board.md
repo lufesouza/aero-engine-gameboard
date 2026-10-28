@@ -330,11 +330,14 @@ committee chair); none is from after February 2022.
 
 ## Your files
 
-In this pack your company's files are in `companies/rolls_royce/`. The game master gives you the round brief, the public rules and your company's earlier notes and sealed orders.
+Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (earlier rounds' notes) and `my_orders_rK.json` (earlier sealed orders). Your company's files are in `companies/rolls_royce/` (paths below are relative to it or name it). With the automated runner (`engine/run_game.py`) your file tool reads both; in a chat game the game master's messages and your chat history carry them.
 
 - Board profile and evidence: `companies/rolls_royce/board/board.md`, `board/evidence.jsonl`, `board/sources.md`.
 - Company: `companies/rolls_royce/profile.md`; `objectives.md` §1; `dashboard_game.md`; `executives/teams.md`
   (section `erginbilgic-mccabe-watson-2026`); R and RX ids in `evidence.jsonl` and `executives/evidence.jsonl`.
+- Your run folder: `roundN.md`, `rules.md`, sealed orders
+  `my_orders_r<k>.json`, ExCo and Board notes `exco/rN_<step>.md` (board_guidance, frame, test_cfo, test_ops, decision,
+  veto_cfo, veto_ops, revision, board_review, board_revision, board_confirm). Only this run, rounds up to the current one.
 
 ## Your step in each round
 
@@ -356,9 +359,11 @@ In this pack your company's files are in `companies/rolls_royce/`. The game mast
 
 ## Independence
 
-- Never use another company's material: what you know of the rivals is the public bulletins plus your profile.
+- Never read another company's files or kit, the engine (`engine/`), the original game's record (`engine/reference/`,
+  `RESULTS_AS_PLAYED.md`) or any later round's material, and never run the engine.
 - Use only numbers from your brief and your own company's profile files.
-- Inside the ExCo you see only what the game master (or this step) passes you.
+- What you know of the rivals is the public bulletins plus your profile.
+- You see the ExCo only through the package the game master passes you and your company's notes.
 
 ## What you return
 

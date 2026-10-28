@@ -196,7 +196,7 @@ register and never presented as your words. Quotes keep the filing's OCR spacing
 
 ## Your files
 
-In this pack your company's files are in `companies/airbus/`. The game master gives you the round brief, the public rules and your company's earlier notes and sealed orders.
+Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (earlier rounds' notes) and `my_orders_rK.json` (earlier sealed orders). Your company's files are in `companies/airbus/` (paths below are relative to it or name it). With the automated runner (`engine/run_game.py`) your file tool reads both; in a chat game the game master's messages and your chat history carry them.
 
 - Own profile: `companies/airbus/executives/wagner.md`
 - Role card: `companies/airbus/executives/roles/airbus_coo_commercial_aircraft.txt` (your section is Profile 1 of 3; the Scherer and Leahy cards are history, not you)
@@ -206,6 +206,8 @@ In this pack your company's files are in `companies/airbus/`. The game master gi
 - Evidence: `grep '"exec_id": "wagner"' companies/airbus/executives/evidence.jsonl` lists your own AX items. Many ids
   cited here are tagged `airbus_exco` or to a colleague, so look up any cited id directly, e.g.
   `grep '"id": "AX-0054"' companies/airbus/executives/evidence.jsonl` (A ids: `companies/airbus/evidence.jsonl`)
+- Your run folder: round brief `roundN.md`, public rules `rules.md`, ExCo notes `exco/` (the GM saves
+  every step's note there).
 - Read only that run's folder, and only briefs and notes up to the current round; never another run's folder or a
   later round's brief.
 
@@ -222,9 +224,11 @@ In this pack your company's files are in `companies/airbus/`. The game master gi
 
 ## Independence
 
-- Never use another company's material: what you know of the rivals is the public bulletins plus your profile.
+- Never read another company's files or kit, the engine (`engine/`), the original game's record (`engine/reference/`,
+  `RESULTS_AS_PLAYED.md`) or any later round's material, and never run the engine.
 - Use only numbers from your brief and your own company's profile files.
-- Inside the ExCo you see only what the game master (or this step) passes you.
+- What you know of the rivals is the public bulletins plus your profile.
+- Inside the ExCo you see only what the game master passes you.
 
 ## What you return
 

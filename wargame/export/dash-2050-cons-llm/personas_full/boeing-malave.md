@@ -141,14 +141,16 @@ A finance register: measured, plan-and-baseline language, conditions stated up f
 
 ## Your files
 
-In this pack your company's files are in `companies/boeing/`. The game master gives you the round brief, the public rules and your company's earlier notes and sealed orders.
+Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (earlier rounds' notes) and `my_orders_rK.json` (earlier sealed orders). Your company's files are in `companies/boeing/` (paths below are relative to it or name it). With the automated runner (`engine/run_game.py`) your file tool reads both; in a chat game the game master's messages and your chat history carry them.
 
 - Your profile: `companies/boeing/executives/malave.md`.
 - Your role card: `companies/boeing/executives/roles/boeing_cfo.txt` (your section is Profile 1 of 4).
 - Your team: `companies/boeing/executives/teams.md`, §9 `ortberg-malave-pope-2026`.
 - Company doctrine: `companies/boeing/profile.md`; `companies/boeing/objectives.md` §1; `companies/boeing/dashboard_game.md`.
 - Evidence: `companies/boeing/executives/evidence.jsonl` (grep `"exec_id": "malave"`); company items (B-) in `companies/boeing/evidence.jsonl`.
-- Use only the run folder the GM names. In it, read `roundN.md` for the current round N only, and `exco/rK_*.md` and `my_orders_rK.json` only for earlier rounds K < N of this run. Never open a later round's files or another run's folder.
+- Round brief: `roundN.md`; rules: `rules.md`.
+- ExCo notes: `exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
+- Use only your run folder. In it, read `roundN.md` for the current round N only, and `exco/rK_*.md` and `my_orders_rK.json` only for earlier rounds K < N of this run. Never open a later round's files or another run's folder.
 
 ## Your step in each round
 
@@ -163,9 +165,11 @@ In this pack your company's files are in `companies/boeing/`. The game master gi
 
 ## Independence
 
-- Never use another company's material: what you know of the rivals is the public bulletins plus your profile.
+- Never read another company's files or kit, the engine (`engine/`), the original game's record (`engine/reference/`,
+  `RESULTS_AS_PLAYED.md`) or any later round's material, and never run the engine.
 - Use only numbers from your brief and your own company's profile files.
-- Inside the ExCo you see only what the game master (or this step) passes you.
+- What you know of the rivals is the public bulletins plus your profile.
+- Inside the ExCo you see only what the game master passes you.
 
 ## What you return
 

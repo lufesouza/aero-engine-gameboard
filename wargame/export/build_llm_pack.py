@@ -16,6 +16,7 @@ import json
 import os
 import re
 import shutil
+import sys
 import zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -55,6 +56,8 @@ def engine():
         shutil.copy(os.path.join(DG, f), os.path.join(e, "dashgame", f))
     patch(os.path.join(e, "dashgame", "gm.py"), 'return "/tmp/wargame-%s/%s" % (side, RUN)',
           'return os.path.join(RUN_DIR, "players", side)')
+    patch(os.path.join(e, "dashgame", "gm.py"), '"supply plans (pass as args.plans to workflows/exco_round.js):"',
+          '"standing supply plans (the defaults of fps_site and a320_plan this round):"')
     st = os.path.join(e, "runs", "dash-2050-cons-start")
     os.makedirs(st, exist_ok=True)
     for f in START_FILES:
@@ -65,7 +68,11 @@ def engine():
     open(os.path.join(e, "_stubs", "plotly", "graph_objects.py"), "w").write(
         "class _Any:\n    def __init__(self, *a, **k): pass\n    def __call__(self, *a, **k): return _Any()\n"
         "    def __getattr__(self, n): return _Any()\n\n\ndef __getattr__(name):\n    return _Any\n")
-    shutil.copy(os.path.join(SRC, "play.py"), os.path.join(e, "play.py"))
+    for f in ("play.py", "run_game.py"):
+        shutil.copy(os.path.join(SRC, f), os.path.join(e, f))
+    open(os.path.join(e, "requirements.txt"), "w").write(
+        "# The engine was played and tested with these versions; others work, but a different numpy can print a few\n"
+        "# +/-0.00 signs or last digits differently (play.py selftest reports it).\nnumpy==2.4.6\npandas>=3.0,<3.2\n")
 
 
 def reference():
@@ -165,54 +172,85 @@ def _demote_from(md, level):
 
 INDEPENDENCE = """## Independence
 
-- Never use another company's material: what you know of the rivals is the public bulletins plus your profile.
+- Never read another company's files or kit, the engine (`engine/`), the original game's record (`engine/reference/`,
+  `RESULTS_AS_PLAYED.md`) or any later round's material, and never run the engine.
 - Use only numbers from your brief and your own company's profile files.
-- Inside the ExCo you see only what the game master (or this step) passes you."""
-
-
-def _bullets(text):
-    """Split a markdown section body into blocks: each bullet with its continuation lines, or a plain line."""
-    blocks = []
-    for l in text.splitlines():
-        if blocks and l.startswith("  ") and not l.lstrip().startswith("- ") and blocks[-1].lstrip().startswith("- "):
-            blocks[-1] += "\n" + l
-        elif blocks and l.startswith("  ") and blocks[-1].lstrip().startswith("- ") and l.startswith("   "):
-            blocks[-1] += "\n" + l
-        else:
-            blocks.append(l)
-    return blocks
-
-
-RUN_REF = re.compile(r"/tmp/wargame-|`<run>`|<run>|wargame/runs|wargame/reports|wargame/dashgame|wargame\.engine|"
-                     r"A hook enforces|archived and closed|Repo root")
+- What you know of the rivals is the public bulletins plus your profile.
+- %s"""
+SEE_EXEC = "Inside the ExCo you see only what the game master passes you."
+SEE_BOARD = "You see the ExCo only through the package the game master passes you and your company's notes."
+FILES_NOTE = ("Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (earlier rounds' notes) and "
+              "`my_orders_rK.json` (earlier sealed orders). Your company's files are in `companies/%s/` (paths below are "
+              "relative to it or name it). With the automated runner (`engine/run_game.py`) your file tool reads both; in "
+              "a chat game the game master's messages and your chat history carry them.")
+RUN_SUBS = [
+    (r"Repo root:? `/home/user/aero-engine-gameboard`\.\s*", ""),
+    (r"Run folder:? `/tmp/wargame-[a-z_]+/<run>/`,? (?:\(the run the GM names(?:: a fresh run)?\)|where `<run>` is the run the "
+     r"GM's prompt names \(a fresh run; the earlier\s+dash-2050 game's files are archived and closed to you\))", "Your run folder"),
+    (r"`/tmp/wargame-[a-z_]+/<run>/([^`]*)`", r"`\1`"),
+    (r"`<run>/([^`]*)`", r"`\1`"),
+    (r"`<run>` is the run id the GM's prompt names: a fresh run\. ", ""),
+    (r"The earlier dash-2050 game's files are archived and closed to you\. ", ""),
+    (r"(?m)^- The earlier dash-2050 game's files are archived and closed to you\.[ \t]*\n", ""),
+    (r"Read only that folder; the earlier dash-2050 game's files are archived and closed to you\.", "Read only your run folder."),
+    (r";\s+the earlier dash-2050 game's files are archived and closed to you", ""),
+    (r"Use only the run folder the GM names\.", "Use only your run folder."),
+]
+LEFT = re.compile(r"/tmp/|wargame/|/home/user|<run>|\bhook\b|archived")
 
 
 def adapt_agent(side, name):
-    """The original agent definition, adapted to the pack: no frontmatter, file paths into companies/<side>/, the
-    run-folder and isolation instructions replaced by the pack's (the game master hands each seat its brief, the rules
-    and its company's earlier notes)."""
+    """The original agent definition, adapted to the pack: no frontmatter; company file paths point into
+    companies/<side>/; run-folder paths are relative to the seat's run folder (roundN.md, rules.md, exco/,
+    my_orders_rK.json), which the automated runner's file tool serves; the Independence section is the pack's."""
     src = open(os.path.join(AGENT_DIR, name + ".md"), encoding="utf-8").read()
     m = re.match(r"---\n(.*?)\n---\n", src, re.S)
     front, body = m.group(1), src[m.end():]
     desc = re.search(r"^description: (.*)$", front, re.M).group(1)
     body = body.replace("wargame/profiles/%s/" % side, "companies/%s/" % side)
-    # Your files: keep the company-file bullets, drop the run-folder ones
-    m = re.search(r"## Your files\n(.*?)(?=\n## )", body, re.S)
-    if m:
-        keep = []
-        for b in _bullets(m.group(1)):
-            if RUN_REF.search(b):
-                b2 = re.sub(r"Repo root:? `/home/user/aero-engine-gameboard`\.\s*", "", b)
-                if RUN_REF.search(b2):
-                    continue
-                b = b2
-            keep.append(b)
-        files = ("## Your files\n\nIn this pack your company's files are in `companies/%s/`. The game master gives you the round "
-                 "brief, the public rules and your company's earlier notes and sealed orders.\n\n" % side) + "\n".join(keep).strip() + "\n"
-        body = body[:m.start()] + files + body[m.end():]
-    body = re.sub(r"## Independence\n.*?(?=\n## )", INDEPENDENCE + "\n", body, flags=re.S)
-    left = [l for l in body.splitlines() if re.search(r"/tmp/|wargame/|/home/user|<run>|hook", l)]
+    for pat, rep in RUN_SUBS:
+        body = re.sub(pat, rep, body)
+    if "## Your files" in body:
+        body = body.replace("## Your files\n", "## Your files\n\n" + FILES_NOTE % side + "\n", 1)
+    see = SEE_BOARD if name.endswith("-board") else SEE_EXEC
+    body, k = re.subn(r"## Independence\n.*?(?=\n## )", (INDEPENDENCE % see) + "\n", body, flags=re.S)
+    assert k == 1, name
+    left = [l for l in body.splitlines() if LEFT.search(l)]
     return "> Agent definition used in the original game: %s\n\n%s" % (desc, body.strip()), left
+
+
+FACTS = r"""
+import json, os, sys
+sys.path.insert(0, '.')
+import model as M, briefs as B, rules as R
+st = lambda k: json.load(open(os.path.join('..', 'runs', 'dash-2050-cons', 'state_r%d.json' % k)))
+standing = {}
+for n in (1, 2, 3, 4):
+    s = st(n - 1)
+    sd = s.get('sd') or {}
+    standing[str(n)] = {}
+    for side, f in R.ORDER_FIELDS.items():
+        o = {k: v[0] for k, v in f.items()}
+        if side == 'boeing':
+            o['fps_site'] = sd.get('fps_site', 'new_site')
+            if M.live(s, 'fps'): o['fps_engine_code'] = s['codes'].get('fps')
+        if side == 'airbus':
+            o['a320_plan'] = sd.get('a320_plan', 'base')
+            if M.live(s, 'ngsa'): o['ngsa_engine_code'] = s['codes'].get('ngsa')
+        standing[str(n)][side] = o
+s4 = st(4)
+v = M.value(s4, covert=True, series=True)
+final = {side: [[lab, ok, det] for lab, ok, det in B.objective_status(side, s4, v)] for side in M.SIDES}
+print(json.dumps({'standing': standing, 'final_status': final}))
+"""
+
+
+def game_facts():
+    """From the original run: each company's standing position before each round, and Control's objectives at the end."""
+    import subprocess
+    r = subprocess.run([sys.executable, "-c", FACTS], cwd=DG, capture_output=True, text=True, check=True,
+                       env=dict(os.environ, DASH_RUN="dash-2050-cons"))
+    return json.loads(r.stdout.strip().splitlines()[-1])
 
 
 COMPANY_SKIP = ("citation_audit.md", "evidence.rejected.jsonl")
@@ -230,14 +268,25 @@ def companies():
                 shutil.copy(os.path.join(root, f), os.path.join(dst, rel))
 
 
-def zip_pack():
-    z = os.path.join(HERE, "dash-2050-cons-llm.zip")
+SPOILERS = ("RESULTS_AS_PLAYED.md", os.path.join("engine", "reference"))
+
+
+def zip_pack(players=False):
+    """The full pack (for the operator), or the players' pack: the same without the original game's record. Games
+    played inside the built folder (engine/runs/<game>) are never zipped; the starting position is."""
+    z = os.path.join(HERE, "dash-2050-cons-llm%s.zip" % ("-players" if players else ""))
+    keep_runs = os.path.join("engine", "runs", "dash-2050-cons-start") + os.sep
     with zipfile.ZipFile(z, "w", zipfile.ZIP_DEFLATED) as zf:
         for root, dirs, files in os.walk(OUT):
-            dirs[:] = [d for d in dirs if d != "__pycache__"]
+            dirs[:] = sorted(d for d in dirs if d != "__pycache__")
             for f in sorted(files):
                 p = os.path.join(root, f)
-                zf.write(p, os.path.join("dash-2050-cons-llm", os.path.relpath(p, OUT)))
+                rel = os.path.relpath(p, OUT)
+                if rel.startswith(os.path.join("engine", "runs") + os.sep) and not rel.startswith(keep_runs):
+                    continue
+                if players and rel.startswith(SPOILERS):
+                    continue
+                zf.write(p, os.path.join("dash-2050-cons-llm", rel))
     return z
 
 
@@ -254,9 +303,11 @@ def main():
     for n, x in played["rounds"].items():
         print(" round", n, x["year"], {s: round(v, 2) for s, v in x["value"].items()})
     consts = protocol()
+    shutil.copy(os.path.join(SRC, "protocol.json"), os.path.join(OUT, "engine", "protocol.json"))
     ctx = {"consts": consts, "rules_md": open(rec_path("rules.md"), encoding="utf-8").read(), "doctrine": doctrine(),
            "agents": AGENTS, "played": played,
            "decisions": json.load(open(os.path.join(OUT, "engine", "reference", "played_decisions.json"), encoding="utf-8"))}
+    ctx.update(game_facts())
     ctx["cards"], ctx["full"] = {}, {}
     os.makedirs(os.path.join(OUT, "personas"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "personas_full"), exist_ok=True)
@@ -265,8 +316,7 @@ def main():
             card = open(os.path.join(SRC, "personas", a + ".md"), encoding="utf-8").read().strip()
             ctx["cards"][a] = card
             ctx["full"][a], left = adapt_agent(side, a)
-            for l in left:
-                print("  check %s: %s" % (a, l.strip()[:150]))
+            assert not left, (a, left)
             open(os.path.join(OUT, "personas", a + ".md"), "w", encoding="utf-8").write(card + "\n")
             open(os.path.join(OUT, "personas_full", a + ".md"), "w", encoding="utf-8").write(ctx["full"][a] + "\n")
     companies()
@@ -277,13 +327,15 @@ def main():
     open(os.path.join(OUT, "RESULTS_AS_PLAYED.md"), "w", encoding="utf-8").write(T.results_md(ctx))
     open(os.path.join(OUT, "README.md"), "w", encoding="utf-8").write(T.readme_md(ctx))
     z = zip_pack()
+    zp = zip_pack(players=True)
     for f in ("GAME_SCRIPT.md", "README.md", "RESULTS_AS_PLAYED.md"):
         p = os.path.join(OUT, f)
         print("%-24s %7d words" % (f, len(open(p, encoding="utf-8").read().split())))
     for side in SIDES:
         p = os.path.join(OUT, "kits", "COMPANY_%s.md" % side)
         print("kits/COMPANY_%-14s %7d words" % (side + ".md", len(open(p, encoding="utf-8").read().split())))
-    print("zip", z, os.path.getsize(z) // 1024, "KB")
+    for x in (z, zp):
+        print("zip", x, os.path.getsize(x) // 1024, "KB")
 
 
 if __name__ == "__main__":
