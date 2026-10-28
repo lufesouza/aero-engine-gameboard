@@ -280,8 +280,9 @@ private brief). Company keys: `boeing`, `airbus`, `cfm`, `pratt_whitney`, `rolls
    public rules, section 3, to every company.)
 2. **Play each company's round** by the protocol in section 6: steps 0-8, from Board guidance to Board confirmation.
    The five companies play independently and at the same time: nothing of one company's deliberation reaches another.
-   - Set-up A: paste the brief into the company's chat and ask it to run the protocol and return its final orders
-     block (its kit tells it how).
+   - Set-up A: in the company's chat, send: *"Round N (year YYYY). Your brief follows. Run steps 0 to 8 by your kit
+     and end with your orders block."* followed by the whole of its `roundN.md`. In round 2 and later, also tell it
+     if the engine adjusted any of its orders (its brief says so too).
    - Set-ups B and C: run the steps yourself, one seat at a time (1.4).
 3. **Collect the sealed orders** in the shape of `orders-template` (per company: `orders`, `public_statement`,
    `other_moves`): one file for all five, or each company's final block (`{{"boeing": {{...}}}}`) in its own file. One
@@ -407,8 +408,10 @@ originate orders or veto a hold.
 # 7. Company doctrine
 
 Each company's doctrine as its players had it: the quick card of its behavioural profile (its hard rules and
-reaction function) and its mapping to this game. Where a figure here differs from the brief or from section 5, the
-brief and section 5 govern.
+reaction function), then its mapping to this game ("the dashboard war game"). The quick cards were written for an
+earlier version of the game, with turns from 2026 and another engine; the mapping that follows each one says what
+still applies here and governs where they differ. Where a figure differs from the brief or from section 5, the brief
+and section 5 govern. Tags such as [NOW], [HIST], [ENGINE] and [RULES] mark the kind of source.
 
 {doctrine}
 
@@ -491,6 +494,10 @@ persona points to a file you do not have, follow its card's own statement of the
 {_demote(ctx['rules_md'], 2)}
 
 ## Your company doctrine
+
+The quick card of your behavioural profile, then its mapping to this game ("the dashboard war game"). The quick card
+was written for an earlier version of the game, with turns from 2026; the mapping says what still applies here and
+governs where they differ. Where a figure differs from your brief{' or from the Board figures above' if side in ('boeing', 'airbus') else ''}, {'those govern' if side in ('boeing', 'airbus') else 'your brief governs'}.
 
 {ctx['doctrine'][side]}
 

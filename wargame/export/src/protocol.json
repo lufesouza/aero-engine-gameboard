@@ -1,0 +1,1971 @@
+{
+ "ORDER_FIELDS": {
+  "boeing": {
+   "fps": [
+    "hold",
+    "launch_7yr",
+    "launch_10yr",
+    "launch_via_embraer",
+    "cancel"
+   ],
+   "fps_engine_code": [
+    null,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "rate_737": [
+    "hold",
+    "increase"
+   ],
+   "re787": [
+    "hold",
+    "launch",
+    "cancel"
+   ],
+   "fps_site": [
+    "new_site",
+    "renton"
+   ]
+  },
+  "airbus": {
+   "ngsa": [
+    "hold",
+    "launch",
+    "cancel"
+   ],
+   "ngsa_engine_code": [
+    null,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "rea350": [
+    "hold",
+    "launch",
+    "cancel"
+   ],
+   "delay_tactics": [
+    "none",
+    "bottleneck",
+    "poaching",
+    "both"
+   ],
+   "a320_plan": [
+    "base",
+    "alt"
+   ]
+  },
+  "cfm": {
+   "ducted": [
+    "hold",
+    "launch",
+    "cancel"
+   ],
+   "open_fan": [
+    "hold",
+    "launch",
+    "cancel"
+   ],
+   "partner_embraer": [
+    "hold",
+    "launch",
+    "cancel"
+   ],
+   "lobby_emissions": [
+    "hold",
+    "launch"
+   ],
+   "genx": [
+    "hold",
+    "upgrade_genx9",
+    "invest_genx",
+    "cancel"
+   ]
+  },
+  "pratt_whitney": {
+   "gtf2_solo": [
+    "hold",
+    "launch",
+    "launch_if_selected",
+    "cancel"
+   ],
+   "jv_with_rr": [
+    "hold",
+    "commit",
+    "withdraw"
+   ]
+  },
+  "rolls_royce": {
+   "ultrafan_nb_solo": [
+    "hold",
+    "launch",
+    "launch_if_selected",
+    "cancel"
+   ],
+   "jv_with_pw": [
+    "hold",
+    "commit",
+    "withdraw"
+   ],
+   "ultrafan_wb": [
+    "hold",
+    "launch",
+    "cancel"
+   ],
+   "t1000_upgrade": [
+    "hold",
+    "launch",
+    "cancel"
+   ]
+  }
+ },
+ "TEAMS": {
+  "boeing": {
+   "board": "boeing-board",
+   "boardName": "the Boeing Board of Directors",
+   "company": "Boeing",
+   "ceo": "boeing-ortberg",
+   "cfo": "boeing-malave",
+   "ops": "boeing-pope",
+   "names": {
+    "ceo": "Kelly Ortberg",
+    "cfo": "Jay Malave",
+    "ops": "Stephanie Pope"
+   },
+   "rule": "Ortberg proposes and decides. Malave is his independent check on programme estimates: he can veto any plan that fails his buffer test (the slip leg). Rates are KPI-gated: the KPI doctrine (Pope's seat) vetoes a 737 Rate Increase while a quality, FAA or supply-chain problem is live (the game board has no injects, so it binds only if the brief reports one). Ortberg decides everything else. (teams.md §9; both vetoes are inferences from the evidence.)",
+   "veto": {
+    "cfo": {
+     "ground": "any plan that fails your buffer test (the slip leg)",
+     "binding": true
+    },
+    "ops": {
+     "ground": "a 737 Rate Increase while the brief reports a live quality, FAA or supply-chain problem (the KPI doctrine)",
+     "binding": true
+    }
+   }
+  },
+  "airbus": {
+   "board": "airbus-board",
+   "boardName": "the Airbus SE Board of Directors",
+   "company": "Airbus",
+   "ceo": "airbus-faury",
+   "cfo": "airbus-toepfer",
+   "ops": "airbus-wagner",
+   "names": {
+    "ceo": "Guillaume Faury",
+    "cfo": "Thomas Toepfer",
+    "ops": "Lars Wagner"
+   },
+   "rule": "The CEO leads the ExCo and takes the final call. The CFO and the CEO of Commercial Aircraft hold tests, not formal vetoes: a failed test is a soft veto, which the CEO can override only when the plan is at least $1B better (ΔPV on the brief's grid) than the best option that passes, and the override is recorded as a Board item. The five pillars (safety, quality, integrity, compliance, security) cannot be overridden. NGSA launch, A350 Re-engine, any cancellation and Delay Tactics are Board items; the Board of Directors applies its own tests and may veto. (teams.md; the soft veto is an inference.)",
+   "veto": {
+    "cfo": {
+     "ground": "a failed financial test: a soft veto, binding unless the CEO records an override for a plan at least $1B better than the best option that passes, as a Board item; a five-pillars breach is binding with no override",
+     "binding": "soft"
+    },
+    "ops": {
+     "ground": "a failed industrial or programme test: a soft veto, binding unless the CEO records an override for a plan at least $1B better than the best option that passes, as a Board item; a five-pillars breach is binding with no override",
+     "binding": "soft"
+    }
+   }
+  },
+  "cfm": {
+   "board": "cfm-board",
+   "boardName": "the GE Aerospace Board of Directors (with Safran's consent on CFM programmes)",
+   "company": "CFM/GE",
+   "ceo": "cfm-culp",
+   "cfo": "cfm-ghai",
+   "ops": "cfm-ali",
+   "names": {
+    "ceo": "Larry Culp",
+    "cfo": "Rahul Ghai",
+    "ops": "Mohamed Ali"
+   },
+   "rule": "Culp proposes and decides. Ghai tests terms and capex: price/cost positive and no number before the airframer's volumes are agreed (veto tests); capex within 2-3% of revenue is advice (an analogy for R&D). Ali tests dates: confidence from real testing, not analysis. Whether either test is a formal veto is not shown; in this game (the script's inference) a failed test binds unless Culp answers it with evidence. Tie-break: \"safety, quality, delivery and cost, always in that order\". Culp's red lines: a next engine needs at least 20% better fuel burn, and durability is not traded for fuel burn. The Safran gate: narrowbody price, capacity and RISE go to the partner; expect consent (inference).",
+   "veto": {
+    "cfo": {
+     "ground": "terms or capex that fail your tests (inference: binds unless Culp answers it with evidence)",
+     "binding": "inference"
+    },
+    "ops": {
+     "ground": "dates not backed by real testing (inference: binds unless Culp answers it with evidence)",
+     "binding": "inference"
+    }
+   }
+  },
+  "pratt_whitney": {
+   "board": "pratt-whitney-board",
+   "boardName": "the RTX Board of Directors",
+   "company": "Pratt & Whitney",
+   "ceo": "pratt-whitney-calio",
+   "cfo": "pratt-whitney-mitchill",
+   "ops": "pratt-whitney-eddy",
+   "names": {
+    "ceo": "Chris Calio",
+    "cfo": "Neil Mitchill",
+    "ops": "Shane Eddy"
+   },
+   "rule": "Eddy proposes the engine orders (on this board GTF2 and the Joint Venture with Rolls-Royce; an inference from the evidence); Calio frames the turn and proposes the disclosure. Every capital order passes Mitchill's payback and return gate; he can veto on four grounds: the dividend or the debt path, carrying an unselected engine, aggressive terms, booking upside before it is proven. Eddy can veto on technical grounds: durability not proven before entry into service, parts and capacity short of the fleet's needs. Calio decides, setting the safety and durability constraint first. Tie-breaks: the fleet beats a new engine; \"if you miss a cycle\" beats \"we'll cross that bridge\" only on visible demand; a rival's discount never moves the answer.",
+   "proposes": "ops",
+   "veto": {
+    "cfo": {
+     "ground": "one of your four grounds: the dividend or debt path, carrying an unselected engine, aggressive terms, booking upside before it is proven",
+     "binding": true
+    },
+    "ops": {
+     "ground": "durability not proven before entry into service, or parts and capacity short of the fleet's needs",
+     "binding": true
+    }
+   }
+  },
+  "rolls_royce": {
+   "board": "rolls-royce-board",
+   "boardName": "the Rolls-Royce Holdings plc Board",
+   "company": "Rolls-Royce",
+   "ceo": "rolls-royce-erginbilgic",
+   "cfo": "rolls-royce-mccabe",
+   "ops": "rolls-royce-watson",
+   "names": {
+    "ceo": "Tufan Erginbilgic",
+    "cfo": "Helen McCabe",
+    "ops": "Rob Watson"
+   },
+   "rule": "The CEO proposes and decides. Any launch and any aggressive terms need joint CEO-CFO sign-off against mid-to-high-teens hurdles. CFO vetoes: an equity raise, leverage above about 1.5x net debt to EBITDA, levering up for buybacks; in the game her real check is the hurdle and the unselected downside (inference). Civil veto: any compressed maturity, or a disclosed entry into service earlier than launch plus development time, or no support in place before entry into service. Tie-break: the CEO.",
+   "veto": {
+    "cfo": {
+     "ground": "withholding your joint sign-off on a launch or aggressive terms (hurdle, unselected downside), or a balance-sheet veto",
+     "binding": true
+    },
+    "ops": {
+     "ground": "compressed maturity, a disclosed entry into service earlier than launch plus development time, or no support in place before entry into service",
+     "binding": true
+    }
+   }
+  }
+ },
+ "schemas": {
+  "frame": {
+   "type": "object",
+   "properties": {
+    "question": {
+     "type": "string"
+    },
+    "situation": {
+     "type": "string"
+    },
+    "levers_in_play": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "options_to_test": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_lines": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "asks_cfo": {
+     "type": "string"
+    },
+    "asks_ops": {
+     "type": "string"
+    },
+    "initial_lean": {
+     "type": "string"
+    },
+    "evidence_ids": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "question",
+    "situation",
+    "levers_in_play",
+    "options_to_test",
+    "red_lines",
+    "asks_cfo",
+    "asks_ops",
+    "initial_lean",
+    "evidence_ids"
+   ]
+  },
+  "test": {
+   "boeing": {
+    "type": "object",
+    "properties": {
+     "tests": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "threshold": {
+         "type": "string"
+        },
+        "result": {
+         "enum": [
+          "pass",
+          "fail",
+          "not applicable"
+         ]
+        },
+        "numbers": {
+         "type": "string"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "name",
+        "threshold",
+        "result",
+        "numbers"
+       ]
+      }
+     },
+     "recommended_orders": {
+      "type": "object",
+      "properties": {
+       "fps": {
+        "enum": [
+         "hold",
+         "launch_7yr",
+         "launch_10yr",
+         "launch_via_embraer",
+         "cancel"
+        ]
+       },
+       "fps_engine_code": {
+        "enum": [
+         null,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ]
+       },
+       "rate_737": {
+        "enum": [
+         "hold",
+         "increase"
+        ]
+       },
+       "re787": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "fps_site": {
+        "enum": [
+         "new_site",
+         "renton"
+        ]
+       }
+      },
+      "required": [
+       "fps",
+       "fps_engine_code",
+       "rate_737",
+       "re787",
+       "fps_site"
+      ]
+     },
+     "proposal": {
+      "type": "string"
+     },
+     "vetoes": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "plan": {
+         "type": "string"
+        },
+        "ground": {
+         "type": "string"
+        },
+        "binding": {
+         "type": "boolean"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "plan",
+        "ground",
+        "binding"
+       ]
+      }
+     },
+     "would_change_mind_if": {
+      "type": "string"
+     },
+     "memo": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "tests",
+     "recommended_orders",
+     "vetoes",
+     "would_change_mind_if",
+     "memo"
+    ]
+   },
+   "airbus": {
+    "type": "object",
+    "properties": {
+     "tests": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "threshold": {
+         "type": "string"
+        },
+        "result": {
+         "enum": [
+          "pass",
+          "fail",
+          "not applicable"
+         ]
+        },
+        "numbers": {
+         "type": "string"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "name",
+        "threshold",
+        "result",
+        "numbers"
+       ]
+      }
+     },
+     "recommended_orders": {
+      "type": "object",
+      "properties": {
+       "ngsa": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "ngsa_engine_code": {
+        "enum": [
+         null,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ]
+       },
+       "rea350": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "delay_tactics": {
+        "enum": [
+         "none",
+         "bottleneck",
+         "poaching",
+         "both"
+        ]
+       },
+       "a320_plan": {
+        "enum": [
+         "base",
+         "alt"
+        ]
+       }
+      },
+      "required": [
+       "ngsa",
+       "ngsa_engine_code",
+       "rea350",
+       "delay_tactics",
+       "a320_plan"
+      ]
+     },
+     "proposal": {
+      "type": "string"
+     },
+     "vetoes": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "plan": {
+         "type": "string"
+        },
+        "ground": {
+         "type": "string"
+        },
+        "binding": {
+         "type": "boolean"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "plan",
+        "ground",
+        "binding"
+       ]
+      }
+     },
+     "would_change_mind_if": {
+      "type": "string"
+     },
+     "memo": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "tests",
+     "recommended_orders",
+     "vetoes",
+     "would_change_mind_if",
+     "memo"
+    ]
+   },
+   "cfm": {
+    "type": "object",
+    "properties": {
+     "tests": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "threshold": {
+         "type": "string"
+        },
+        "result": {
+         "enum": [
+          "pass",
+          "fail",
+          "not applicable"
+         ]
+        },
+        "numbers": {
+         "type": "string"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "name",
+        "threshold",
+        "result",
+        "numbers"
+       ]
+      }
+     },
+     "recommended_orders": {
+      "type": "object",
+      "properties": {
+       "ducted": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "open_fan": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "partner_embraer": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "lobby_emissions": {
+        "enum": [
+         "hold",
+         "launch"
+        ]
+       },
+       "genx": {
+        "enum": [
+         "hold",
+         "upgrade_genx9",
+         "invest_genx",
+         "cancel"
+        ]
+       }
+      },
+      "required": [
+       "ducted",
+       "open_fan",
+       "partner_embraer",
+       "lobby_emissions",
+       "genx"
+      ]
+     },
+     "proposal": {
+      "type": "string"
+     },
+     "vetoes": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "plan": {
+         "type": "string"
+        },
+        "ground": {
+         "type": "string"
+        },
+        "binding": {
+         "type": "boolean"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "plan",
+        "ground",
+        "binding"
+       ]
+      }
+     },
+     "would_change_mind_if": {
+      "type": "string"
+     },
+     "memo": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "tests",
+     "recommended_orders",
+     "vetoes",
+     "would_change_mind_if",
+     "memo"
+    ]
+   },
+   "pratt_whitney": {
+    "type": "object",
+    "properties": {
+     "tests": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "threshold": {
+         "type": "string"
+        },
+        "result": {
+         "enum": [
+          "pass",
+          "fail",
+          "not applicable"
+         ]
+        },
+        "numbers": {
+         "type": "string"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "name",
+        "threshold",
+        "result",
+        "numbers"
+       ]
+      }
+     },
+     "recommended_orders": {
+      "type": "object",
+      "properties": {
+       "gtf2_solo": {
+        "enum": [
+         "hold",
+         "launch",
+         "launch_if_selected",
+         "cancel"
+        ]
+       },
+       "jv_with_rr": {
+        "enum": [
+         "hold",
+         "commit",
+         "withdraw"
+        ]
+       }
+      },
+      "required": [
+       "gtf2_solo",
+       "jv_with_rr"
+      ]
+     },
+     "proposal": {
+      "type": "string"
+     },
+     "vetoes": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "plan": {
+         "type": "string"
+        },
+        "ground": {
+         "type": "string"
+        },
+        "binding": {
+         "type": "boolean"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "plan",
+        "ground",
+        "binding"
+       ]
+      }
+     },
+     "would_change_mind_if": {
+      "type": "string"
+     },
+     "memo": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "tests",
+     "recommended_orders",
+     "vetoes",
+     "would_change_mind_if",
+     "memo"
+    ]
+   },
+   "rolls_royce": {
+    "type": "object",
+    "properties": {
+     "tests": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "name": {
+         "type": "string"
+        },
+        "threshold": {
+         "type": "string"
+        },
+        "result": {
+         "enum": [
+          "pass",
+          "fail",
+          "not applicable"
+         ]
+        },
+        "numbers": {
+         "type": "string"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "name",
+        "threshold",
+        "result",
+        "numbers"
+       ]
+      }
+     },
+     "recommended_orders": {
+      "type": "object",
+      "properties": {
+       "ultrafan_nb_solo": {
+        "enum": [
+         "hold",
+         "launch",
+         "launch_if_selected",
+         "cancel"
+        ]
+       },
+       "jv_with_pw": {
+        "enum": [
+         "hold",
+         "commit",
+         "withdraw"
+        ]
+       },
+       "ultrafan_wb": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "t1000_upgrade": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       }
+      },
+      "required": [
+       "ultrafan_nb_solo",
+       "jv_with_pw",
+       "ultrafan_wb",
+       "t1000_upgrade"
+      ]
+     },
+     "proposal": {
+      "type": "string"
+     },
+     "vetoes": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "plan": {
+         "type": "string"
+        },
+        "ground": {
+         "type": "string"
+        },
+        "binding": {
+         "type": "boolean"
+        },
+        "evidence_ids": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "plan",
+        "ground",
+        "binding"
+       ]
+      }
+     },
+     "would_change_mind_if": {
+      "type": "string"
+     },
+     "memo": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "tests",
+     "recommended_orders",
+     "vetoes",
+     "would_change_mind_if",
+     "memo"
+    ]
+   }
+  },
+  "decide": {
+   "boeing": {
+    "type": "object",
+    "properties": {
+     "orders": {
+      "type": "object",
+      "properties": {
+       "fps": {
+        "enum": [
+         "hold",
+         "launch_7yr",
+         "launch_10yr",
+         "launch_via_embraer",
+         "cancel"
+        ]
+       },
+       "fps_engine_code": {
+        "enum": [
+         null,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ]
+       },
+       "rate_737": {
+        "enum": [
+         "hold",
+         "increase"
+        ]
+       },
+       "re787": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "fps_site": {
+        "enum": [
+         "new_site",
+         "renton"
+        ]
+       }
+      },
+      "required": [
+       "fps",
+       "fps_engine_code",
+       "rate_737",
+       "re787",
+       "fps_site"
+      ]
+     },
+     "other_moves": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "move": {
+         "type": "string"
+        },
+        "public": {
+         "type": "boolean"
+        },
+        "detail": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "move",
+        "public"
+       ]
+      }
+     },
+     "public_statement": {
+      "type": "string"
+     },
+     "rationale": {
+      "type": "string"
+     },
+     "memo_weighing": {
+      "type": "object",
+      "properties": {
+       "cfo": {
+        "type": "string"
+       },
+       "ops": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "cfo",
+       "ops"
+      ]
+     },
+     "overrides": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "veto": {
+         "type": "string"
+        },
+        "reason": {
+         "type": "string"
+        },
+        "recorded_as": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "veto",
+        "reason"
+       ]
+      }
+     },
+     "board_response": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "recommendation": {
+         "type": "string"
+        },
+        "response": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "recommendation",
+        "response"
+       ]
+      }
+     },
+     "expected_scenario": {
+      "type": "string"
+     },
+     "best_grid_plan_in_expected_scenario": {
+      "type": "string"
+     },
+     "premium_b": {
+      "type": "number"
+     },
+     "premium_reason": {
+      "type": "string"
+     },
+     "objective_note": {
+      "type": "string"
+     },
+     "predictions": {
+      "type": "string"
+     },
+     "expected_pv_b": {
+      "type": "number"
+     }
+    },
+    "required": [
+     "orders",
+     "other_moves",
+     "public_statement",
+     "rationale",
+     "memo_weighing",
+     "expected_scenario",
+     "best_grid_plan_in_expected_scenario",
+     "premium_b",
+     "premium_reason",
+     "objective_note",
+     "predictions",
+     "expected_pv_b"
+    ]
+   },
+   "airbus": {
+    "type": "object",
+    "properties": {
+     "orders": {
+      "type": "object",
+      "properties": {
+       "ngsa": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "ngsa_engine_code": {
+        "enum": [
+         null,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ]
+       },
+       "rea350": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "delay_tactics": {
+        "enum": [
+         "none",
+         "bottleneck",
+         "poaching",
+         "both"
+        ]
+       },
+       "a320_plan": {
+        "enum": [
+         "base",
+         "alt"
+        ]
+       }
+      },
+      "required": [
+       "ngsa",
+       "ngsa_engine_code",
+       "rea350",
+       "delay_tactics",
+       "a320_plan"
+      ]
+     },
+     "other_moves": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "move": {
+         "type": "string"
+        },
+        "public": {
+         "type": "boolean"
+        },
+        "detail": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "move",
+        "public"
+       ]
+      }
+     },
+     "public_statement": {
+      "type": "string"
+     },
+     "rationale": {
+      "type": "string"
+     },
+     "memo_weighing": {
+      "type": "object",
+      "properties": {
+       "cfo": {
+        "type": "string"
+       },
+       "ops": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "cfo",
+       "ops"
+      ]
+     },
+     "overrides": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "veto": {
+         "type": "string"
+        },
+        "reason": {
+         "type": "string"
+        },
+        "recorded_as": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "veto",
+        "reason"
+       ]
+      }
+     },
+     "board_response": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "recommendation": {
+         "type": "string"
+        },
+        "response": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "recommendation",
+        "response"
+       ]
+      }
+     },
+     "expected_scenario": {
+      "type": "string"
+     },
+     "best_grid_plan_in_expected_scenario": {
+      "type": "string"
+     },
+     "premium_b": {
+      "type": "number"
+     },
+     "premium_reason": {
+      "type": "string"
+     },
+     "objective_note": {
+      "type": "string"
+     },
+     "predictions": {
+      "type": "string"
+     },
+     "expected_pv_b": {
+      "type": "number"
+     }
+    },
+    "required": [
+     "orders",
+     "other_moves",
+     "public_statement",
+     "rationale",
+     "memo_weighing",
+     "expected_scenario",
+     "best_grid_plan_in_expected_scenario",
+     "premium_b",
+     "premium_reason",
+     "objective_note",
+     "predictions",
+     "expected_pv_b"
+    ]
+   },
+   "cfm": {
+    "type": "object",
+    "properties": {
+     "orders": {
+      "type": "object",
+      "properties": {
+       "ducted": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "open_fan": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "partner_embraer": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "lobby_emissions": {
+        "enum": [
+         "hold",
+         "launch"
+        ]
+       },
+       "genx": {
+        "enum": [
+         "hold",
+         "upgrade_genx9",
+         "invest_genx",
+         "cancel"
+        ]
+       }
+      },
+      "required": [
+       "ducted",
+       "open_fan",
+       "partner_embraer",
+       "lobby_emissions",
+       "genx"
+      ]
+     },
+     "other_moves": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "move": {
+         "type": "string"
+        },
+        "public": {
+         "type": "boolean"
+        },
+        "detail": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "move",
+        "public"
+       ]
+      }
+     },
+     "public_statement": {
+      "type": "string"
+     },
+     "rationale": {
+      "type": "string"
+     },
+     "memo_weighing": {
+      "type": "object",
+      "properties": {
+       "cfo": {
+        "type": "string"
+       },
+       "ops": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "cfo",
+       "ops"
+      ]
+     },
+     "overrides": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "veto": {
+         "type": "string"
+        },
+        "reason": {
+         "type": "string"
+        },
+        "recorded_as": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "veto",
+        "reason"
+       ]
+      }
+     },
+     "board_response": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "recommendation": {
+         "type": "string"
+        },
+        "response": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "recommendation",
+        "response"
+       ]
+      }
+     },
+     "expected_scenario": {
+      "type": "string"
+     },
+     "best_grid_plan_in_expected_scenario": {
+      "type": "string"
+     },
+     "premium_b": {
+      "type": "number"
+     },
+     "premium_reason": {
+      "type": "string"
+     },
+     "objective_note": {
+      "type": "string"
+     },
+     "predictions": {
+      "type": "string"
+     },
+     "expected_pv_b": {
+      "type": "number"
+     }
+    },
+    "required": [
+     "orders",
+     "other_moves",
+     "public_statement",
+     "rationale",
+     "memo_weighing",
+     "expected_scenario",
+     "best_grid_plan_in_expected_scenario",
+     "premium_b",
+     "premium_reason",
+     "objective_note",
+     "predictions",
+     "expected_pv_b"
+    ]
+   },
+   "pratt_whitney": {
+    "type": "object",
+    "properties": {
+     "orders": {
+      "type": "object",
+      "properties": {
+       "gtf2_solo": {
+        "enum": [
+         "hold",
+         "launch",
+         "launch_if_selected",
+         "cancel"
+        ]
+       },
+       "jv_with_rr": {
+        "enum": [
+         "hold",
+         "commit",
+         "withdraw"
+        ]
+       }
+      },
+      "required": [
+       "gtf2_solo",
+       "jv_with_rr"
+      ]
+     },
+     "other_moves": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "move": {
+         "type": "string"
+        },
+        "public": {
+         "type": "boolean"
+        },
+        "detail": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "move",
+        "public"
+       ]
+      }
+     },
+     "public_statement": {
+      "type": "string"
+     },
+     "rationale": {
+      "type": "string"
+     },
+     "memo_weighing": {
+      "type": "object",
+      "properties": {
+       "cfo": {
+        "type": "string"
+       },
+       "ops": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "cfo",
+       "ops"
+      ]
+     },
+     "overrides": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "veto": {
+         "type": "string"
+        },
+        "reason": {
+         "type": "string"
+        },
+        "recorded_as": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "veto",
+        "reason"
+       ]
+      }
+     },
+     "board_response": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "recommendation": {
+         "type": "string"
+        },
+        "response": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "recommendation",
+        "response"
+       ]
+      }
+     },
+     "expected_scenario": {
+      "type": "string"
+     },
+     "best_grid_plan_in_expected_scenario": {
+      "type": "string"
+     },
+     "premium_b": {
+      "type": "number"
+     },
+     "premium_reason": {
+      "type": "string"
+     },
+     "objective_note": {
+      "type": "string"
+     },
+     "predictions": {
+      "type": "string"
+     },
+     "expected_pv_b": {
+      "type": "number"
+     }
+    },
+    "required": [
+     "orders",
+     "other_moves",
+     "public_statement",
+     "rationale",
+     "memo_weighing",
+     "expected_scenario",
+     "best_grid_plan_in_expected_scenario",
+     "premium_b",
+     "premium_reason",
+     "objective_note",
+     "predictions",
+     "expected_pv_b"
+    ]
+   },
+   "rolls_royce": {
+    "type": "object",
+    "properties": {
+     "orders": {
+      "type": "object",
+      "properties": {
+       "ultrafan_nb_solo": {
+        "enum": [
+         "hold",
+         "launch",
+         "launch_if_selected",
+         "cancel"
+        ]
+       },
+       "jv_with_pw": {
+        "enum": [
+         "hold",
+         "commit",
+         "withdraw"
+        ]
+       },
+       "ultrafan_wb": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       },
+       "t1000_upgrade": {
+        "enum": [
+         "hold",
+         "launch",
+         "cancel"
+        ]
+       }
+      },
+      "required": [
+       "ultrafan_nb_solo",
+       "jv_with_pw",
+       "ultrafan_wb",
+       "t1000_upgrade"
+      ]
+     },
+     "other_moves": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "move": {
+         "type": "string"
+        },
+        "public": {
+         "type": "boolean"
+        },
+        "detail": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "move",
+        "public"
+       ]
+      }
+     },
+     "public_statement": {
+      "type": "string"
+     },
+     "rationale": {
+      "type": "string"
+     },
+     "memo_weighing": {
+      "type": "object",
+      "properties": {
+       "cfo": {
+        "type": "string"
+       },
+       "ops": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "cfo",
+       "ops"
+      ]
+     },
+     "overrides": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "veto": {
+         "type": "string"
+        },
+        "reason": {
+         "type": "string"
+        },
+        "recorded_as": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "veto",
+        "reason"
+       ]
+      }
+     },
+     "board_response": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "recommendation": {
+         "type": "string"
+        },
+        "response": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "recommendation",
+        "response"
+       ]
+      }
+     },
+     "expected_scenario": {
+      "type": "string"
+     },
+     "best_grid_plan_in_expected_scenario": {
+      "type": "string"
+     },
+     "premium_b": {
+      "type": "number"
+     },
+     "premium_reason": {
+      "type": "string"
+     },
+     "objective_note": {
+      "type": "string"
+     },
+     "predictions": {
+      "type": "string"
+     },
+     "expected_pv_b": {
+      "type": "number"
+     }
+    },
+    "required": [
+     "orders",
+     "other_moves",
+     "public_statement",
+     "rationale",
+     "memo_weighing",
+     "expected_scenario",
+     "best_grid_plan_in_expected_scenario",
+     "premium_b",
+     "premium_reason",
+     "objective_note",
+     "predictions",
+     "expected_pv_b"
+    ]
+   }
+  },
+  "guidance": {
+   "type": "object",
+   "properties": {
+    "priorities": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "risk_appetite": {
+     "type": "string"
+    },
+    "expect_to_see": {
+     "type": "string"
+    },
+    "would_approve": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "would_veto": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "recommendations": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "text": {
+        "type": "string"
+       },
+       "evidence_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "text"
+      ]
+     }
+    },
+    "evidence_ids": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "priorities",
+    "risk_appetite",
+    "expect_to_see",
+    "would_approve",
+    "would_veto",
+    "recommendations",
+    "evidence_ids"
+   ]
+  },
+  "review": {
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "order_field": {
+        "type": "string"
+       },
+       "value": {
+        "type": "string"
+       },
+       "decision": {
+        "enum": [
+         "approve",
+         "veto"
+        ]
+       },
+       "ground": {
+        "type": "string"
+       },
+       "acceptable_alternatives": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       },
+       "evidence_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "order_field",
+       "value",
+       "decision",
+       "ground"
+      ]
+     }
+    },
+    "recommendations": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "text": {
+        "type": "string"
+       },
+       "evidence_ids": {
+        "type": "array",
+        "items": {
+         "type": "string"
+        }
+       }
+      },
+      "required": [
+       "text"
+      ]
+     }
+    },
+    "overall": {
+     "enum": [
+      "approve",
+      "partial",
+      "veto"
+     ]
+    },
+    "note": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "items",
+    "recommendations",
+    "overall",
+    "note"
+   ]
+  },
+  "veto": {
+   "type": "object",
+   "properties": {
+    "concur": {
+     "type": "boolean"
+    },
+    "veto": {
+     "type": "object",
+     "properties": {
+      "ground": {
+       "type": "string"
+      },
+      "evidence_ids": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "binding": {
+       "type": "boolean"
+      }
+     }
+    },
+    "red_line_breach": {
+     "type": "boolean"
+    },
+    "red_line": {
+     "type": "string"
+    },
+    "note": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "concur",
+    "red_line_breach",
+    "note"
+   ]
+  }
+ },
+ "CURRENT": {
+  "boeing": "Board figures: where your agent file quotes an older figure, these govern (they match your brief and dashboard_game.md): fps 7-year $65.00B and 10-year $60.32B at EIS; undiscounted debt penalty 7-year fps $22.0B, 10-year $19.1B, via Embraer $52.5B, 787 Re-engine alone $0.6B. The fps 7-year share bonus is gone: every fps move follows the EIS-lead rule in rules.md. An unlaunched Re-engine sits at 2042 on the board.",
+  "airbus": "Board figures: where your agent file quotes an older figure, these govern (they match your brief and dashboard_game.md): NGSA $35.52B at EIS, about $5.07B a year over 7 years in a cash view, so NGSA alone passes a $5.2B peak-cash line narrowly and NGSA with an overlapping A350 Re-engine (about $6.67B a year with strain) does not. The fps 7-year share bonus is gone: every fps move follows the EIS-lead rule in rules.md. An unlaunched Re-engine sits at 2042 on the board."
+ },
+ "OBJECTIVES": {
+  "boeing": "Control has added to your mission for this game (the GM scores it alongside ΔPV; it never changes the payoff, and any PV you give up for it is objective premium under H8): (1) **Repair the balance sheet: bring debt back to historical levels.** The level, the deadline and your year-by-year debt path (the GM's balance-sheet tracker, built from the July-August 2026 analyst models) are in your brief §2; the \"objective metrics by plan\" table under your payoff grid shows how every plan scores. (2) **Enabler: a stable supply of parts, above all engines.** You want dual or even triple engine sources on your narrowbody, and three narrowbody engine makers in the market rather than two. Engine codes still do not change your payoff on the board, but they decide this enabler, and your selection can trigger P&W's and Rolls-Royce's conditional engine launches; your brief lists the sources each code gives. Your company's 2026 analyst-model baseline is in `wargame/profiles/boeing/analyst_models_2026.md`.",
+  "airbus": "Control has added to your mission for this game (the GM scores it alongside ΔPV; it never changes the payoff): **Enabler: a stable supply of parts, above all engines.** You want dual or even triple engine sources on your narrowbody (the A320neo has two today: CFM and P&W GTF), and three narrowbody engine makers in the market rather than two. Engine codes still do not change your payoff on the board, but they decide this enabler, and your selection can trigger P&W's and Rolls-Royce's conditional engine launches; your brief lists the sources each code gives and the metrics for every plan. Your company's 2026 analyst-model baseline is in `wargame/profiles/airbus/analyst_models_2026.md`.",
+  "rolls_royce": "Control has added to your mission for this game (the GM scores it alongside ΔPV; it never changes the payoff): **Protect the widebody cash cow.** Your widebody engines (the only engine on the A350 and the A330neo, one of two on the 787) carry the company's profit and cash. A narrowbody engine is a new product with its own risks, so a heavy narrowbody investment could put the widebody franchise at risk. Measured: your own narrowbody development money, committed or written off, stays within $4B (the Joint Venture share; an UltraFan NB Solo is $8B, and a Solo later folded into the Joint Venture counts its spend to date); and you never hold a narrowbody engine programme and a widebody programme (UltraFan WB or Trent 1000 upgrade) at the same time (the board charges a one-off $5B strain whenever both are on record, whatever their dates). Your objective to enter the narrowbody market stands; this sets the terms. Your brief shows the metrics for every plan. Your company's 2026 analyst-model baseline is in `wargame/profiles/rolls_royce/analyst_models_2026.md`.",
+  "cfm": "Your objectives are unchanged in this game. Your company's 2026 analyst-model baseline (GE Aerospace and Safran, from the Morgan Stanley and Goldman Sachs models) is in `wargame/profiles/cfm/analyst_models_2026.md`.",
+  "pratt_whitney": "Your objectives are unchanged in this game. Your company's 2026 analyst-model baseline (RTX and Pratt & Whitney, from the Morgan Stanley and Goldman Sachs models) is in `wargame/profiles/pratt_whitney/analyst_models_2026.md`."
+ }
+}

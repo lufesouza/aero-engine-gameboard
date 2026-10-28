@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 wargame/runs/
 wargame/profiles/build/work/
+
+# LLM pack: the zip carries everything; these unzipped folders duplicate files already in the repo (rebuilt by wargame/export/build_llm_pack.py)
+wargame/export/dash-2050-cons-llm/companies/
+wargame/export/dash-2050-cons-llm/engine/
