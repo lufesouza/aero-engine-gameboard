@@ -26,8 +26,13 @@ bulletin and your profile.
 6. Next round, the operator pastes your new brief, which also tells you if any of your orders were adjusted. Your
    earlier rounds' notes stay in this chat; use them.
 
+7. When the operator says "stop" after a step, stop and wait: the operator may run the CFO's and the operating
+   head's steps in fresh chats and paste their outputs ("Step 2: <name>"); take those as the seats' outputs.
+
 Your personas cite your company's files (`companies/boeing/...`). If the operator uploaded that folder, read them as
-your persona says; if not, follow the rule as your persona states it.
+your persona says; if not, follow the rule as your persona states it. Wherever a persona says the game master (GM)
+passes something or gives the schema, in this chat that is the operator's message and the Output formats below; your
+run folder is this chat (ignore any `/tmp/...` path in your files).
 
 ## Your company's decision rule
 
@@ -46,7 +51,7 @@ your persona says; if not, follow the rule as your persona states it.
 >
 > You are <the seat's name> of Boeing. Follow your agent file: "Your step in each round", "Your tests", "Your vetoes and red lines", "Your voice".
 >
-> Your company's run folder holds your brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round: there are no earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`.
+> Your company's run folder (use it instead of any other run folder your agent file names) holds your brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round: there are no earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`.
 >
 > Your ExCo's decision rule: Ortberg proposes and decides. Malave is his independent check on programme estimates: he can veto any plan that fails his buffer test (the slip leg). Rates are KPI-gated: the KPI doctrine (Pope's seat) vetoes a 737 Rate Increase while a quality, FAA or supply-chain problem is live (the game board has no injects, so it binds only if the brief reports one). Ortberg decides everything else. (teams.md §9; both vetoes are inferences from the evidence.)
 >
@@ -60,7 +65,7 @@ your persona says; if not, follow the rule as your persona states it.
 >
 > You are the Boeing Board of Directors. Follow your agent file: "Your step in each round", "Your culture", "Your tests", "Your veto and its limits", "Your recommendations".
 >
-> Your company's run folder holds the brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round: there are no earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`.
+> Your company's run folder (use it instead of any other run folder your agent file names) holds the brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round. Later rounds: Earlier rounds (1 to N-1): the ExCo's and your notes in `exco/` and the sealed orders in `my_orders_r<k>.json`.
 >
 > The ExCo is Kelly Ortberg (CEO), Jay Malave (CFO) and Stephanie Pope (operating head). Its decision rule: Ortberg proposes and decides. Malave is his independent check on programme estimates: he can veto any plan that fails his buffer test (the slip leg). Rates are KPI-gated: the KPI doctrine (Pope's seat) vetoes a 737 Rate Increase while a quality, FAA or supply-chain problem is live (the game board has no injects, so it binds only if the brief reports one). Ortberg decides everything else. (teams.md §9; both vetoes are inferences from the evidence.)
 >
@@ -584,24 +589,24 @@ governs where they differ. The public rules govern over both. Where a figure dif
 - Tags: [NOW] is current doctrine; [HIST] is history; [ENGINE] is a base-scenario whatif to re-run (see Reading conventions).
 
 **Ranked objectives [NOW].**
-1. Stable, safe production, gated on KPIs and supervised by the FAA.
-2. Balance sheet: pay debt down to "solidly investment grade".
-3. Free cash flow, driven by the 737 rate.
-4. Finish the 737-7, 737-10 and 777X.
-5. Hold the narrowbody franchise, but not at any price: compete campaign by campaign and track deliveries against Airbus; price for scarcity, not share.
-6. A new airplane (fps) once market, money and technology converge.
-7. Shareholder returns: off; debt comes first.
+1. Stable, safe production, gated on KPIs and supervised by the FAA [B-2221, B-2236, B-2297].
+2. Balance sheet: pay debt down to "solidly investment grade" [B-2327, B-2186].
+3. Free cash flow, driven by the 737 rate [B-2298, B-2314].
+4. Finish the 737-7, 737-10 and 777X [B-2276].
+5. Hold the narrowbody franchise, but not at any price: compete campaign by campaign and track deliveries against Airbus [B-2179, B-2537]; price for scarcity, not share [B-2331].
+6. A new airplane (fps) once market, money and technology converge [B-2303, B-2316].
+7. Shareholder returns: off; debt comes first [B-2259, B-2327].
 
 **Hard rules and red lines.** These are never traded for PV.
-- **H1. No fps order in Turn 1**.
-  - Sole exception **(inference)**: the Turn-1 brief already shows NGSA launched, and whatif (nominal or slip test) shows the exception beating the Turn-2 plan by more than ε. Then launch fps as a Joint Venture, with launch year 2028. Precedent: Boeing moves early when waiting puts "meaningful market share at risk"; no precedent covers the Joint Venture form.
+- **H1. No fps order in Turn 1** [B-2276, B-2313, B-2316, B-2327].
+  - Sole exception **(inference)**: the Turn-1 brief already shows NGSA launched, and whatif (nominal or slip test) shows the exception beating the Turn-2 plan by more than ε. Then launch fps as a Joint Venture, with launch year 2028. Precedent: Boeing moves early when waiting puts "meaningful market share at risk" [B-0422]; no precedent covers the Joint Venture form.
   - Known cost of this rule: about $2.1-2.4B [ENGINE].
-- **H2. fps launch year = max(first year of the turn, tech_ready_year − dev_years (7) − engine eis_add).** Never plan an EIS before tech_ready_year. `cfm_open_fan` cannot enter service before 2045 [RULES], so with it the year is 2037; an earlier launch only waits (§6).
-- **H3. No 787 Re-engine in Turn 1**: the 777X comes first. **None at all once Airbus has launched the A350 Re-engine (inference)**: following costs about $5.5B [ENGINE]. The only precedent is Boeing launching no product against the A330neo, when its 787 was the newer airplane.
-- **H4. One major development at a time**; a new program "feathers in" only as the last one rolls off. The limits are **(inference)** from the engine's strain rule [RULES]: a Solo fps and the 787 Re-engine may overlap for at most 2 years, and a longer overlap is allowed only with the fps as a Joint Venture.
-- **H5. Never cancel a launched fps or 787 Re-engine** because of slips, charges, a supplier bottleneck or Airbus entering service first.
-- **H6. No Rate Increase** as a response to Airbus, or in a turn with a live quality-escape, FAA-scrutiny or supply-chain-crunch inject.
-- **H7. No fps launch while a Boeing crisis inject is live** (quality escape, FAA certification scrutiny). Exception **(inference)**: if NGSA is in development, launch it as a Joint Venture; the precedent is only that Boeing moves when share is at risk.
+- **H2. fps launch year = max(first year of the turn, tech_ready_year − dev_years (7) − engine eis_add).** Never plan an EIS before tech_ready_year [B-2061, B-2164]. `cfm_open_fan` cannot enter service before 2045 [RULES], so with it the year is 2037; an earlier launch only waits (§6).
+- **H3. No 787 Re-engine in Turn 1**: the 777X comes first [B-2276]. **None at all once Airbus has launched the A350 Re-engine (inference)**: following costs about $5.5B [ENGINE]. The only precedent is Boeing launching no product against the A330neo, when its 787 was the newer airplane [B-0858, B-0917].
+- **H4. One major development at a time** [B-0341, B-1526]; a new program "feathers in" only as the last one rolls off [B-1393]. The limits are **(inference)** from the engine's strain rule [RULES]: a Solo fps and the 787 Re-engine may overlap for at most 2 years, and a longer overlap is allowed only with the fps as a Joint Venture.
+- **H5. Never cancel a launched fps or 787 Re-engine** because of slips, charges, a supplier bottleneck or Airbus entering service first [B-1812, B-2244, B-0192].
+- **H6. No Rate Increase** as a response to Airbus, or in a turn with a live quality-escape, FAA-scrutiny or supply-chain-crunch inject [B-1802, B-2148, B-2308].
+- **H7. No fps launch while a Boeing crisis inject is live** (quality escape, FAA certification scrutiny) [B-1593, B-1613]. Exception **(inference)**: if NGSA is in development, launch it as a Joint Venture; the precedent is only that Boeing moves when share is at risk [B-0422].
 - **H8. Money rule.** Engine gaps within ε ($1B) are ties that doctrine decides. Give up at most $2B for a soft doctrine choice **(inference)**. Log every doctrine premium.
 
 **Default plan.**
@@ -614,14 +619,14 @@ governs where they differ. The public rules govern over both. Where a figure dif
 | T4 2035-37 | Continue. The same 787 Re-engine test for 2035-36. No fps launch unless it beats Do Nothing by more than ε |
 
 **Top triggers → orders (lag).**
-- **NGSA in development:** fps no later than the next turn; this turn say "doesn't change our plans" (1 turn).
-- **A350 Re-engine launched:** no 787 Re-engine, ever (same turn) **(inference; see H3)**. Precedent: no product against the A330neo.
-- **fps "supplier bottleneck":** continue, re-baseline once, and launch no overlapping Re-engine (same turn).
-- **Delay Tactics exposed, or trade action:** a level-playing-field complaint only (same turn).
-- **Poaching:** absorb it; hire and redeploy.
-- **Quality escape or FAA scrutiny:** no Rate Increase; apply H7 (this turn).
-- **Demand shock:** keep the plan.
-- **Airbus rate, price or variant moves:** no order change.
+- **NGSA in development:** fps no later than the next turn; this turn say "doesn't change our plans" (1 turn) [B-0413, B-1308].
+- **A350 Re-engine launched:** no 787 Re-engine, ever (same turn) **(inference; see H3)**. Precedent: no product against the A330neo [B-0917, B-0921].
+- **fps "supplier bottleneck":** continue, re-baseline once, and launch no overlapping Re-engine (same turn) [B-2097, B-2342].
+- **Delay Tactics exposed, or trade action:** a level-playing-field complaint only (same turn) [B-1339, B-0174].
+- **Poaching:** absorb it; hire and redeploy [B-1941, B-0729].
+- **Quality escape or FAA scrutiny:** no Rate Increase; apply H7 (this turn) [B-2148, B-2133].
+- **Demand shock:** keep the plan [B-2287, B-2292].
+- **Airbus rate, price or variant moves:** no order change [B-1802, B-1868, B-2063].
 
 **Biases to display** (only when triggered; never at a cost above $2B): optimistic public dates with a private slip budget (B1); deny, then reverse (B5); wait until the rival is "real" (B7); sunk-cost persistence (B9); control, i.e. Solo (B6).
 

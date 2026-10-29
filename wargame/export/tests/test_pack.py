@@ -68,7 +68,36 @@ def main():
         api = code == 0 and "round 1 2030 adjudicated" in out and "r1_boeing_frame_1.json" in calls
         print("4 API path (tools, JSON in prose, retry):", api)
         ok &= api
+        # 6: an API error on one step stops the round before adjudicating; the same command then resumes it
+        flag = os.path.join(tmp, "fail.flag")
+        open(flag, "w").close()
+        srv = subprocess.Popen([sys.executable, os.path.join(HERE, "fake_llm_server.py"), str(port), eng], stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL, env=dict(os.environ, FAKE_FAIL="veto_check:boeing", FAKE_FAIL_FLAG=flag))
+        time.sleep(1.5)
+        cmd = [sys.executable, "engine/run_game.py", "--game", "errtest", "--base-url", "http://127.0.0.1:%d/v1" % port,
+               "--model", "fake", "--rounds", "1", "--companies", "boeing,pratt_whitney", "--retries", "0"]
+        c1, o1 = run(cmd, pack, env=env)
+        stopped = c1 != 0 and "NOT adjudicated" in o1 and not os.path.exists(os.path.join(eng, "runs", "errtest", "record_r1.json"))
+        os.remove(flag)
+        c2, o2 = run(cmd, pack, env=env)
+        resumed = c2 == 0 and "round 1 2030 adjudicated" in o2
+        srv.terminate()
+        print("6 an API error stops before adjudicating:", stopped, "| the same command resumes:", resumed)
+        ok &= stopped and resumed
+        # 7: Anthropic's rule (no tool history without tools) and a spent tool budget
+        srv = subprocess.Popen([sys.executable, os.path.join(HERE, "fake_llm_server.py"), str(port), eng], stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL, env=dict(os.environ, FAKE_ANTHROPIC="1"))
+        time.sleep(1.5)
+        c3, o3 = run([sys.executable, "engine/run_game.py", "--game", "anthtest", "--base-url", "http://127.0.0.1:%d/v1" % port,
+                      "--model", "fake", "--rounds", "1", "--companies", "airbus", "--max-tool-calls", "0"], pack, env=env)
+        srv.terminate()
+        anth = c3 == 0 and "round 1 2030 adjudicated" in o3
+        print("7 tool-budget fallback under Anthropic's tool-history rule:", anth)
+        ok &= anth
     # 3
+    code, out = run([sys.executable, os.path.join(HERE, "test_runner_units.py")], HERE)
+    print("3a runner unit checks (isolation, parsing, concurrency):", code == 0, "|", out.strip().splitlines()[-1])
+    ok &= code == 0
     code, out = run([sys.executable, os.path.join(HERE, "test_runner_vs_js.py")], HERE)
     print("3 runner logic = original round script:", code == 0, "|", out.strip().splitlines()[-1])
     ok &= code == 0

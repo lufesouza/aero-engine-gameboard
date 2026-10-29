@@ -55,12 +55,12 @@ already on record). Delay Tactics were never ordered.
 | 2 (2035) | Pratt & Whitney | `jv_with_rr`: `commit` | -1.65 |
 | 2 (2035) | Rolls-Royce | `jv_with_pw`: `commit` | +11.03 |
 | 3 (2045) | Boeing | no change | -0.83 |
-| 3 (2045) | Airbus | `ngsa_engine_code`: `null` | +14.09 |
+| 3 (2045) | Airbus | no change | +14.09 |
 | 3 (2045) | CFM/GE | no change | -28.04 |
 | 3 (2045) | Pratt & Whitney | no change | -1.65 |
 | 3 (2045) | Rolls-Royce | no change | +11.03 |
 | 4 (2050) | Boeing | no change | -0.83 |
-| 4 (2050) | Airbus | `ngsa_engine_code`: `null` | +14.09 |
+| 4 (2050) | Airbus | no change | +14.09 |
 | 4 (2050) | CFM/GE | no change | -28.04 |
 | 4 (2050) | Pratt & Whitney | no change | -1.65 |
 | 4 (2050) | Rolls-Royce | no change | +11.03 |

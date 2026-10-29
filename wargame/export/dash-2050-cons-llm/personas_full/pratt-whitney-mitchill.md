@@ -167,7 +167,7 @@ Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (ear
 - Evidence: `companies/pratt_whitney/executives/evidence.jsonl` (grep `"exec_id": "mitchill"`); company items (P-) in `companies/pratt_whitney/evidence.jsonl`.
 - Round brief: `roundN.md`; rules: `rules.md`.
 - ExCo notes: `exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- Read only that folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
+- Read only your run folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
 
 ## Your step in each round
 

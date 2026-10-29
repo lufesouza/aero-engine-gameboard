@@ -51,7 +51,15 @@ FIELDS = {"boeing": ["fps", "fps_engine_code", "rate_737", "re787", "fps_site"],
           "cfm": ["ducted", "open_fan", "partner_embraer", "lobby_emissions", "genx"],
           "pratt_whitney": ["gtf2_solo", "jv_with_rr"],
           "rolls_royce": ["ultrafan_nb_solo", "jv_with_pw", "ultrafan_wb", "t1000_upgrade"]}
-ME = "python3 " + os.path.relpath(os.path.abspath(__file__))
+try:
+    ME = "python3 " + os.path.relpath(os.path.abspath(__file__))
+except ValueError:                      # Windows: the pack is on another drive
+    ME = "python3 " + os.path.abspath(__file__)
+for _stream in (sys.stdout, sys.stderr):  # the briefs and values print Δ, −, ≥: never fail on a narrow console
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
 
 # Runs a snippet inside the engine with DASH_RUN set (the engine reads it when it loads). The plotly stub goes at the
 # END of the module path, so a real plotly is used when one is installed.
@@ -110,8 +118,8 @@ def _load_json(path):
 
 
 def new(game, force=False):
-    if game == START or game.startswith("-") or not re.match(r"^[A-Za-z0-9_.-]+$", game):
-        sys.exit("choose a game name of letters, digits, '-', '_' or '.' (not %r)" % game)
+    if game == START or not re.match(r"^[A-Za-z0-9][A-Za-z0-9_.-]*$", game):
+        sys.exit("choose a game name that starts with a letter or digit, then letters, digits, '-', '_' or '.' (not %r)" % game)
     d = _rd(game)
     if os.path.exists(d):
         if not force:
@@ -268,7 +276,7 @@ def check(game, n, paths, quiet=False):
 
 def adjudicate(game, n, paths):
     _game(game)
-    if not _exists(game, "brief_r%d_boeing.md" % n):
+    if not _exists(game, "grids_r%d.json" % n):         # the briefing writes it last
         sys.exit("write the round's briefs first: %s brief %s %d" % (ME, game, n))
     if _exists(game, "record_r%d.json" % n):
         sys.exit("round %d of %s is already adjudicated (to take it back: %s undo %s %d)" % (n, game, ME, game, n))

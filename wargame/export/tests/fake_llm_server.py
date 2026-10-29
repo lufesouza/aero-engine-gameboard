@@ -5,6 +5,7 @@ each company comes back malformed, to exercise the format retry. Answers hold ev
   python3 fake_llm_server.py <port> <path to engine/>
 """
 import json
+import os
 import re
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -30,9 +31,26 @@ class H(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
 
+    def fail(self, code, msg):
+        out = json.dumps({"error": {"message": msg}}).encode()
+        self.send_response(code)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(out)))
+        self.end_headers()
+        self.wfile.write(out)
+
     def do_POST(self):
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
         msgs = body["messages"]
+        # FAKE_FAIL=<step>:<company>: that step gets HTTP 400 while the file FAKE_FAIL_FLAG exists
+        ff = os.environ.get("FAKE_FAIL")
+        if ff and os.path.exists(os.environ.get("FAKE_FAIL_FLAG", "")):
+            step_, side_ = ff.split(":")
+            if ("Your step: **%s**" % step_) in msgs[1]["content"] and side_of(msgs) == side_:
+                return self.fail(400, "bad request (simulated)")
+        # FAKE_ANTHROPIC=1: tool history without tool definitions is refused, as Anthropic's API does
+        if os.environ.get("FAKE_ANTHROPIC") and not body.get("tools") and any(m.get("role") == "tool" or m.get("tool_calls") for m in msgs):
+            return self.fail(400, "Requests which include tool_use or tool_result blocks must define tools.")
         SEEN["calls"] += 1
         user = msgs[1]["content"]
         step = re.search(r"Your step: \*\*([a-z_]+)\*\*", user).group(1)

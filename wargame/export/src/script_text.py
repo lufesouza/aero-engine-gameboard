@@ -68,9 +68,13 @@ def preamble_md(consts, side):
     t = consts["TEAMS"][side]
     cur = consts["CURRENT"].get(side)
     tail = ("\n> " + cur) if cur else ""
-    run = ("Your company's run folder holds your brief for this round (`roundN.md`) and the public rules (`rules.md`). "
-           "Round 1: This is the first round: there are no earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): "
-           "ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`.")
+    run = ("Your company's run folder (use it instead of any other run folder your agent file names) holds your brief "
+           "for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round: there are no "
+           "earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): ExCo notes in `exco/` and sealed orders in "
+           "`my_orders_r<k>.json`.")
+    run_b = ("Your company's run folder (use it instead of any other run folder your agent file names) holds the brief for "
+             "this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round. Later rounds: "
+             "Earlier rounds (1 to N-1): the ExCo's and your notes in `exco/` and the sealed orders in `my_orders_r<k>.json`.")
     ex = ("> War game run `<game>`, round N (decision year YYYY). Your step: **<step>**.\n>\n"
           "> You are <the seat's name> of %s. Follow your agent file: \"Your step in each round\", \"Your tests\", "
           "\"Your vetoes and red lines\", \"Your voice\".\n>\n> %s\n>\n> Your ExCo's decision rule: %s\n>\n"
@@ -83,7 +87,7 @@ def preamble_md(consts, side):
           "engine code rides with its launch. You approve or veto each Board item and recommend; you never originate orders, "
           "and you never veto a hold.\n>\n> Use only numbers from your brief and your own company's files. Read nothing of "
           "another company. Run no wargame.engine command.%s" % (
-              t["boardName"], run.replace("your brief", "the brief"), t["names"]["ceo"], t["names"]["cfo"], t["names"]["ops"],
+              t["boardName"], run_b, t["names"]["ceo"], t["names"]["cfo"], t["names"]["ops"],
               t["rule"], ("\n>" + tail) if cur else ""))
     return ("**Every executive seat** (CEO, CFO, operating head) is told, before its task:\n\n" + ex +
             "\n\n**The Board** is told, before its task:\n\n" + bd)
@@ -244,7 +248,7 @@ def defaults_md(consts):
 # ───────────────────────────── GAME_SCRIPT.md ─────────────────────────────
 def game_script(ctx):
     c = ctx["consts"]
-    teams = "\n\n".join("### %s\n\n%s\n%s" % (NAMES[s], team_md(c, s), preamble_md(c, s)) for s in SIDES)
+    teams = "\n\n".join("## %s\n\n%s\n%s" % (NAMES[s], team_md(c, s), preamble_md(c, s)) for s in SIDES)
     seats = "\n".join("| %s | %s | %s | %s | %s | `kits/COMPANY_%s.md` |" % (
         NAMES[s], *["`%s`" % a for a in ctx["agents"][s]], s) for s in SIDES)
     return f"""# Boeing vs Airbus, 2030-2050: the war game "dash-2050-cons", scripted for any LLM
@@ -281,49 +285,67 @@ playing LLM the players' pack, and open the results only after the replay.
 
 | Set-up | What it needs | Fidelity to the original |
 |---|---|---|
-| **1. Automated runner** (recommended) | Python 3.9+ with numpy and pandas, and an API key for any OpenAI-compatible endpoint (OpenAI, Google Gemini, Anthropic, Mistral, a local model) | Closest: every seat-step is a fresh call with only what that seat received in the original; formats checked; Board items, reverts and missing steps handled in code, as in the original |
-| **2. Six chats + an operator** | A chat app with code execution for the game master (GM), five more chats (one per company), and a person to carry text between them | Good, if the operator runs each test (step 2) and veto check (step 4) in a fresh chat; otherwise the four seats of a company share one context |
+| **1. Automated runner** (recommended) | Python 3.9+ with numpy and pandas, and an API key for any OpenAI-compatible endpoint (OpenAI, Google Gemini, Anthropic, Mistral, a local model with a 128k-token context) | Closest: every seat-step is a fresh call with only what that seat had in the original; formats checked; Board items, merges, reverts and missing steps handled in code, as in the original |
+| **2. Six chats + an operator** | A chat app with code execution for the game master (GM), five more chats (one per company) with at least about 60k tokens of context, and a person to carry text between them | Good, if the operator runs each test (step 2) and veto check (step 4) in a fresh chat; otherwise the four seats of a company share one context |
 | **3. One chat** | A chat with code execution and a very large context | Weakest: one context holds every company's deliberation, so sealed orders are not really sealed; use only to explore |
-| **4. No code execution** | This script, the kits and the five round-1 briefs | Round 1 only is exact (its starting position is fixed); later rounds need the engine |
+| **4. No code execution** | The five kits and the five round-1 briefs, one company per chat | Round 1 only is exact (its starting position is fixed); later rounds need the engine |
 
-Before any set-up, the operator runs the engine's self-test from the full pack, once, outside any playing chat:
-`python3 engine/play.py selftest` (from the pack's top folder). It prints only PASS or FAIL per round.
+The operator runs the engine's self-test once, from the full pack, on their own computer or in a code chat that is
+never used for play (with chat memory off): `python3 engine/play.py selftest`, from the pack's top folder. It prints
+only PASS or FAIL per round. Operators without Python can skip it.
 
 ---
 
 # 2. Set-up 1: the automated runner
 
-From the pack's top folder (the players' pack is enough):
+Unzip the **players' pack** into its own folder (not inside the full pack), `cd dash-2050-cons-llm`, install the
+engine's needs (`pip install -r engine/requirements.txt`) and run:
 
 ```
 export LLM_API_KEY=...                       # the key for your endpoint
 python3 engine/run_game.py --game mygame --base-url https://api.openai.com/v1 --model <model>
 ```
 
-Other endpoints, for example: Google Gemini `--base-url https://generativelanguage.googleapis.com/v1beta/openai`;
-Anthropic `--base-url https://api.anthropic.com/v1`; a local Ollama `--base-url http://localhost:11434/v1`; Azure
-OpenAI `--auth-header api-key --auth-prefix ''` with your deployment's URL. Options: `--seat-model board=<model>` (a
-different model per seat), `--temperature`, `--max-tokens` (`--max-tokens-field max_completion_tokens` for newer
-OpenAI models), `--no-tools` (APIs without function calling), `--history full` (every earlier note in each prompt),
-`--persona card` (the condensed persona cards instead of the full definitions), `--rounds 1` (one round at a time),
-`--companies boeing,airbus` (the others hold). `python3 engine/run_game.py --help` lists them all.
+- **Endpoints.** Google Gemini `--base-url https://generativelanguage.googleapis.com/v1beta/openai`; Anthropic
+  `--base-url https://api.anthropic.com/v1`; Azure OpenAI `--base-url https://<resource>.openai.azure.com/openai/v1
+  --auth-header api-key --auth-prefix ''` (or a deployment URL with `--url-query api-version=<version>`); a local
+  Ollama `--base-url http://localhost:11434/v1`, after raising its context window (`OLLAMA_CONTEXT_LENGTH=131072`, or
+  `num_ctx` in a Modelfile): its default of a few thousand tokens silently cuts every prompt.
+- **Model settings.** No temperature is sent unless you give `--temperature` (reasoning models refuse non-default
+  values). For reasoning or thinking models give room for the answer: `--max-tokens 32000` (with
+  `--max-tokens-field max_completion_tokens` for newer OpenAI models). `--seat-model board=<model>` uses a different
+  model for one seat (ceo, cfo, ops or board).
+- **Running and resuming.** The command plays rounds 1 to 4; `--rounds 1` plays round 1 only and `--rounds 2-4` the
+  rest. To resume after an error, Ctrl-C or a closed laptop, run the same command again: finished steps are kept. A
+  round is adjudicated only when all five companies have finished it. When the API still fails after its retries (rate
+  limits and network errors are retried with backoff), the runner stops before adjudicating and tells you; fix the
+  cause (key, model name, endpoint, quota) and run it again. `--on-api-error missing` instead treats such a step as
+  missing (section 7.3), as the original treated an agent that died. `--parallel 1` plays one company at a time (for
+  low rate limits).
+- **Other options.** `--no-tools` for APIs without function calling (the seats then get their company's doctrine
+  inline but cannot read the rest of their company's files, a departure from the original), `--history full` (every
+  earlier note in each prompt), `--persona card` (the condensed persona cards), `--companies boeing,airbus` (the
+  others hold). `python3 engine/run_game.py --help` lists them all.
 
-What it does, round by round: writes the briefs; plays the nine steps for the five companies in parallel (each
-seat-step one call: the seat's agent definition as the system prompt; the preamble and task of section 7 and 8; the
-company's rules, brief and earlier decisions; tools to read its own company's files and earlier notes and to do exact
-arithmetic, as the original agents could); applies the merge, revert and missing-step rules; adjudicates; prints the
-public events and every value. A stopped run resumes where it stopped. Every call is logged in
+What it does, round by round: writes the briefs; plays the nine steps for the five companies in parallel. Each
+seat-step is a fresh conversation: the seat's agent definition as the system prompt; the preamble (section 8) and the
+step's task (section 7); the company's rules, brief and earlier decisions; and tools to read its own company's files
+and its run folder (earlier rounds only) and to do exact arithmetic, as the original agents could. Notes of the round
+in progress are closed to the seats, so a CFO never sees the operating head's memo. Then it applies the merge, revert
+and missing-step rules, adjudicates, and prints the public events and every value. Every request is logged in
 `engine/runs/<game>/calls/`, every step's output in `engine/runs/<game>/players/<company>/exco/`.
 
-Size: about 45-55 calls a round (11 per company at most), each with 15-40k tokens of input; a full game is roughly
-5-10 million input tokens. Checks without an LLM: `--provider replay` feeds back the original agents' own answers and
-must reproduce the original game exactly (full pack only); `--provider mock` makes every seat hold.
+Size: up to 11 seat-steps per company per round, each one or more requests (a request per tool use, plus up to two
+format corrections). Prompts run from about 15k tokens in round 1 to 60-90k in round 4, and each tool use resends
+them: count on 400-1,000 requests and 20-60 million input tokens for a full game, depending on how much the model
+reads. Checks without an LLM: `--provider replay` feeds back the original agents' own answers and must reproduce the
+original game exactly (full pack only); `--provider mock` makes every seat hold.
 
 ---
 
 # 3. Set-ups 2-4: playing in chat apps
 
-## 3.1 Roles
+## 3.1 Roles and isolation
 
 - **The operator** is a person. A chat cannot send messages to another chat, so the operator carries text: briefs
   from the GM chat to the company chats, and each company's final orders block back. The operator also keeps the
@@ -331,30 +353,48 @@ must reproduce the original game exactly (full pack only); `--provider mock` mak
 - **The game master (GM)** is the chat that runs the engine (it needs code execution). It is neutral, never advises a
   company, never shows one company another's private material, and never adds anything to a bulletin.
 - **A company** is a chat (or, for the most faithful play, one chat per seat-step) that plays the company's four
-  seats by the protocol in section 7, from its kit `kits/COMPANY_<company>.md`.
+  seats by the protocol in section 7, from its kit `kits/COMPANY_<company>.md` and nothing else of the pack.
+- **Isolation in chat apps.** Turn off saved memory and chat-history reference (or use temporary chats, or a separate
+  account or project per company) for the GM and every company chat: otherwise the app can carry one company's chat
+  into another. Never open the full pack, `RESULTS_AS_PLAYED.md` or another company's kit in a chat on the same
+  account before the replay ends.
 
 ## 3.2 Set-up 2, step by step
 
-1. **GM chat.** Upload the players' pack and say: *"Unzip this. You are the game master of the war game in
-   GAME_SCRIPT.md; read sections 3, 4, 6 and 7. Run `python3 engine/play.py new mygame`, then
-   `python3 engine/play.py brief mygame 1`, and give me each company's `engine/runs/mygame/players/<company>/round1.md`
-   as a file to download."* After every adjudication, ask the GM to run `python3 engine/play.py save mygame` and give
-   you `mygame.zip`: chat sandboxes are reset after a while, and `python3 engine/play.py load mygame.zip` restores the
-   game.
-2. **Company chats.** In each of five chats, paste (or upload, and confirm it was read in full) the company's kit,
-   and upload its folder `companies/<company>/` if the app takes files. Then send: *"Round 1 (year 2030). Your brief
-   follows. Run steps 0 to 8 by your kit and end with your orders block."* and the whole of its `round1.md`. Let the
-   chat give one step per reply if it needs to (say "continue"). Tell it to use code or a calculator for every sum.
-3. For the most faithful play, run each **step-2 test and step-4 veto check in a fresh chat** that gets the seat's
-   persona (from the kit), the brief, the rules, the company's earlier notes and only that step's inputs (section 7),
-   and paste its output back into the company chat.
+1. **GM chat.** Upload the players' pack and say: *"Unzip this and cd into dash-2050-cons-llm. You are the game master
+   of the war game in GAME_SCRIPT.md; read sections 3, 4, 6, 7 and 9. Run `python3 engine/play.py new mygame`, then
+   `python3 engine/play.py brief mygame 1` and `python3 engine/play.py save mygame`, and give me `mygame.zip` and
+   each company's `engine/runs/mygame/players/<company>/round1.md` as files to download."*
+2. **Company chats.** In each of five chats, paste the company's kit (or upload it, then check it was read: ask the
+   chat to quote the last line of the kit and the first row of "Your orders"), and upload its folder
+   `companies/<company>/` if the app takes files. A kit is 35-40k tokens; with a brief and the round's notes a company
+   chat needs about 60k tokens of context in round 1 and more later. If the app's context is smaller, start a fresh
+   company chat each round with the kit, the new brief and the company's earlier notes (the operator keeps a copy of
+   each company's step outputs).
+3. **Play the round in each company chat**, in one of two ways:
+   - *Plain:* send *"Round 1 (year 2030). Your brief follows. Run steps 0 to 8 by your kit and end with your orders
+     block."* and the whole of its `round1.md`. Say "continue" if it stops between steps. Tell it to use code or a
+     calculator for every sum.
+   - *Most faithful (fresh seats for steps 2 and 4):* send the brief with *"Run steps 0 and 1, then stop."* Open two
+     fresh chats, one per tester (CFO, operating head). Give each: the seat's persona (its full definition in the
+     kit, under "Your four personas"); "What every seat is told before its task" (the executive block); the step-2
+     task with its brackets filled in (the step-1 frame and the step-0 guidance); the seat's veto ground; the step-2
+     output format; the brief, the public rules and the company's earlier notes. Paste both memos back into the
+     company chat, labelled "Step 2: <name>", with *"Continue with step 3, then stop."* Do the same for the two step-4
+     veto checks (each gets its own step-2 memo and the step-3 decision), then send *"Continue from step 5 to the
+     end."*
 4. **Back to the GM.** Paste the five orders blocks (or upload them as files). Ask the GM to run
-   `python3 engine/play.py check mygame 1 <files>`, then `python3 engine/play.py adjudicate mygame 1 <files>`, then
-   `python3 engine/play.py brief mygame 2`. A company with no block holds everything. If an orders block was wrong,
-   `python3 engine/play.py undo mygame 1` takes the round back.
-5. Carry each company's round-2 brief to its chat (it also says if any of its orders were adjusted), and repeat to
-   round 4. Then ask the GM for `python3 engine/play.py status mygame` (values, yields and Control's objectives) and
+   `python3 engine/play.py check mygame 1 <files>`, `python3 engine/play.py adjudicate mygame 1 <files>`,
+   `python3 engine/play.py brief mygame 2` and `python3 engine/play.py save mygame`, and give you `mygame.zip` and the
+   five round-2 briefs. A company with no block holds everything. Adjustments `check` reports in a company's block
+   stand, as in the original (the company is told in its next brief); use `python3 engine/play.py undo mygame 1` only
+   for the operator's own copying mistakes.
+5. Carry each company's round-2 brief to its chat, and repeat to round 4. Then ask the GM for
+   `python3 engine/play.py status mygame` (values, yields and Control's objectives) and
    `python3 engine/play.py reveal mygame` (covert Delay Tactics), and open `RESULTS_AS_PLAYED.md`.
+6. **If the GM's sandbox is reset** (files gone): upload the players' pack and the latest `mygame.zip` again, unzip the
+   pack, cd into it and run `python3 engine/play.py load <path to mygame.zip>`. Before the first save, just run `new`
+   and `brief mygame 1` again: the start is fixed.
 
 The GM chat never sees a company's deliberation, so each company chat applies the protocol's own rules (Board items,
 the step-7 merge, reverts and missing steps) and outputs only its final orders. The GM applies only the engine's
@@ -366,18 +406,19 @@ reveal a covert order.
 Upload the players' pack to one chat with code execution. The chat is the GM and plays every seat. Play one company
 at a time, one seat at a time; before each step, restate the seat and what it receives (section 7) and use nothing
 else; play each seat from its full definition in its kit. Because one context holds everything, rivals' sealed orders
-and private briefs are in view: this set-up cannot reproduce the original's isolation. For a better result, start a
-fresh chat for each company-round with this script's sections 5-8, the company's kit, its brief and its earlier notes.
+and private briefs are in view: this set-up cannot reproduce the original's isolation. For a better result, play each
+company-round in a fresh chat given only that company's kit, its brief and its earlier notes (that is set-up 2 without
+a separate GM chat).
 
 ## 3.4 Set-up 4: no code execution
 
-Give the chat (or six chats) this script, the kits and the five round-1 briefs
-(`engine/reference/briefs/round1_<company>.md`, from the full pack; the starting position is fixed, so they are the
-briefs of any replay). Play round 1 by section 7. The operator, not the chat, then compares the replay's orders with
-the original's (`RESULTS_AS_PLAYED.md`, the orders table): if every company's orders change the game in the same way
-as the original's (the same launches, cancellations, commitments, supply-plan changes and engine codes), the original
-round-2 briefs apply, once the operator replaces their "Public statements (last round)" and "Other moves made public"
-sections with the replay's own. Otherwise the replay needs the engine: continue in set-up 2 or 1.
+One chat per company, each given only its own kit and its own round-1 brief (`engine/reference/briefs/round1_<company>.md`,
+from the full pack; the starting position is fixed, so these are the briefs of any replay); this script stays with the
+operator. Play round 1 by the kit. The operator then compares each company's orders with the original's
+(`RESULTS_AS_PLAYED.md`, the orders table), field by field: every order field of section 6 counts, including Boeing's
+`rate_737` and Airbus's covert `delay_tactics`. If every company's orders match, the original round-2 briefs apply,
+once the operator replaces their "Public statements (last round)" and "Other moves made public" sections with the
+replay's own. Otherwise the replay needs the engine: continue in set-up 2 or 1.
 
 ---
 
@@ -459,9 +500,11 @@ The original players had these too. Do not pass this section to the companies: i
 they see. Where texts conflict, the public rules and the brief govern, as they did in the original.
 
 - **Doctrine written for an earlier game.** Each company's behavioural-profile quick card (in its kit) was written
-  for an earlier version, with turns from 2026, another engine and other share rules; the "dashboard war game" mapping
-  that follows it says what still applies. Where a quick card's share rule, figures or turn plan differ from the public
-  rules or the brief, those govern.
+  for an earlier version, with turns from 2026, another engine and other share rules. The "dashboard war game"
+  mapping that follows it updates much of it, but not all.
+- **The NGSA-alone share rule.** Boeing's and Airbus's game mappings still give the board's rule "Only NGSA launched:
+  Airbus gains 3 pp a year (cap 80%)". This game replaces it: Boeing loses 1 pp of preference a year from 40% from
+  NGSA's entry into service while no fps is in service, never below the share Airbus cannot supply (the public rules).
 - **Market size.** Some persona and doctrine texts say the narrowbody market is fixed at 2,000 aircraft (4,000
   engines) a year. In this game supply and demand govern (section 5, last part).
 - **Boeing's H4 overlap.** Boeing's game mapping says a Solo fps launched with the 787 Re-engine in the same round
@@ -471,9 +514,21 @@ they see. Where texts conflict, the public rules and the brief govern, as they d
 - **`launch_if_selected`.** The engine launches the engine when, after this round's orders, a live airframe
   (launched this round or earlier, not cancelled, not yet in service) carries an engine code that includes the maker,
   new or standing, and the engine would be ready by that airframe's EIS. The rules' wording ("selected you this
-  round") is narrower; the Pratt & Whitney personas describe the engine's behaviour.
+  round") is narrower; the Pratt & Whitney personas describe this behaviour.
+- **Engine code 4 without a Joint Venture.** The rules say code 4 needs a formed Joint Venture engine ready by EIS.
+  In the engine, code 4 without one behaves like Rolls-Royce and P&W solo: the makers whose solo engine is ready by
+  EIS are fitted (CFM if neither is), and it triggers both makers' `launch_if_selected`. The P&W and Rolls-Royce texts
+  count code 4 only with a formed Joint Venture.
 - **GEnx timing.** Some CFM texts say a GEnx package counts from launch plus 3 years and not before 2035; the rules say
   it counts 3 years after launch, and widebody engine shares move only from the first re-engine (or 2042).
+- **Old run folders.** Each company's game mapping names an earlier run's folder (`/tmp/wargame-<company>/dash-2050/`)
+  for the brief and rules. The preamble's "use it instead of any other run folder your agent file names" covers it,
+  and the runner's file tool maps such paths to the seat's run folder.
+- **The Board's confirm step.** The Airbus, CFM/GE and Pratt & Whitney Board definitions say the step-8 prompt does
+  not pass the package (Airbus: nor the review) again, and Airbus's adds that this round's notes are saved only after
+  the round. The step-8 task (section 7.2) does include the Board's guidance, the package and its review, as the
+  Boeing and Rolls-Royce definitions say. The runner saves each step's note as it finishes (so a stopped run
+  can resume), but the seats cannot open this round's notes.
 - **Engine code `None`.** The briefs print the no-code option as `None`; in orders it is JSON `null`.
 - **Pratt & Whitney's round-1 brief** shows its status-quo ΔPV as −0.00 (floating-point noise) and its "ΔPV ≥ 0"
   objective as not met; the original players saw the same. The status-quo component tables in round-1 briefs are
@@ -545,8 +600,13 @@ bulletin and your profile.
 6. Next round, the operator pastes your new brief, which also tells you if any of your orders were adjusted. Your
    earlier rounds' notes stay in this chat; use them.
 
+7. When the operator says "stop" after a step, stop and wait: the operator may run the CFO's and the operating
+   head's steps in fresh chats and paste their outputs ("Step 2: <name>"); take those as the seats' outputs.
+
 Your personas cite your company's files (`companies/{side}/...`). If the operator uploaded that folder, read them as
-your persona says; if not, follow the rule as your persona states it.
+your persona says; if not, follow the rule as your persona states it. Wherever a persona says the game master (GM)
+passes something or gives the schema, in this chat that is the operator's message and the Output formats below; your
+run folder is this chat (ignore any `/tmp/...` path in your files).
 
 ## Your company's decision rule
 
@@ -615,7 +675,7 @@ def results_md(ctx):
         for s in SIDES:
             o = r["orders_file"][s]["orders"]
             base = prev[n][s]
-            ch = {k: v for k, v in o.items() if v != base.get(k)}
+            ch = {k: v for k, v in o.items() if v != base.get(k) and not (k.endswith("_engine_code") and v is None)}
             rows.append("| %s (%d) | %s | %s | %+.2f |" % (n, r["year"], NAMES[s],
                                                           ", ".join("`%s`: `%s`" % (k, "null" if v is None else v) for k, v in ch.items()) or "no change",
                                                           r["value"][s]))
@@ -688,7 +748,7 @@ def readme_md(ctx):
 |---|---|---|
 | `GAME_SCRIPT.md` | The full script: set-ups, the runner, the operator's and game master's steps, rules, protocol, known inconsistencies | The operator and the game master |
 | `engine/run_game.py` | The automated runner: plays all twenty seats through any OpenAI-compatible API | The operator (set-up 1) |
-| `engine/play.py` | The engine's commands (new game, briefs, check, adjudicate, undo, status, save, load, self-test) | The game master |
+| `engine/play.py` | The engine's commands: new, brief, orders-template, check, adjudicate, undo, status, reveal, save, load, selftest | The game master |
 | `kits/COMPANY_<company>.md` | One company's kit: how its chat works, its decision rule, what each seat is told and receives, the nine steps, formats, orders, rules, doctrine and its four full agent definitions | That company only |
 | `companies/<company>/` | That company's source files: behavioural profile, objectives, game doctrine, 2026 analyst-model baseline, executive and Board profiles, role cards, evidence | That company only |
 | `personas_full/`, `personas/` | All twenty agent definitions (full, and condensed cards) | Never a company (each company's four are in its kit); the runner uses them |
@@ -700,9 +760,10 @@ every command from inside it.
 
 ## Quick start
 
-1. Unzip the full pack, `cd dash-2050-cons-llm`, install the engine's needs (`pip install -r engine/requirements.txt`)
-   and run `python3 engine/play.py selftest`. It prints PASS or FAIL per round and nothing about the original game.
-2. **Automated (recommended):** with the players' pack and an API key,
+1. Unzip the full pack into its own folder, `cd dash-2050-cons-llm`, install the engine's needs
+   (`pip install -r engine/requirements.txt`) and run `python3 engine/play.py selftest`. It prints PASS or FAIL per
+   round and nothing about the original game.
+2. **Automated (recommended):** unzip the players' pack into another folder and, with an API key,
    `python3 engine/run_game.py --game mygame --base-url <endpoint> --model <model>` (GAME_SCRIPT.md section 2).
 3. **In chat apps:** follow GAME_SCRIPT.md section 3 (six chats and an operator; one chat; or no code execution).
 
@@ -711,6 +772,7 @@ every command from inside it.
 - The pack contains extracts from company filings, earnings-call transcripts and analyst models (Goldman Sachs,
   Morgan Stanley, S&P Capital IQ) in `companies/`, the kits and the briefs. Check that your licences and your
   organisation's rules allow sharing them with the LLM provider you use.
-- Sizes: `GAME_SCRIPT.md` is about 20k tokens; a company kit about 35-40k; a brief 4-9k.
+- Sizes: `GAME_SCRIPT.md` is about 20k tokens; a company kit about 35-40k; a brief 4-9k. A full automated game is
+  roughly 400-1,000 API requests and 20-60 million input tokens.
 - Built by `wargame/export/build_llm_pack.py` from the repository's game files.
 """

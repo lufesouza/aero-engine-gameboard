@@ -26,8 +26,13 @@ bulletin and your profile.
 6. Next round, the operator pastes your new brief, which also tells you if any of your orders were adjusted. Your
    earlier rounds' notes stay in this chat; use them.
 
+7. When the operator says "stop" after a step, stop and wait: the operator may run the CFO's and the operating
+   head's steps in fresh chats and paste their outputs ("Step 2: <name>"); take those as the seats' outputs.
+
 Your personas cite your company's files (`companies/pratt_whitney/...`). If the operator uploaded that folder, read them as
-your persona says; if not, follow the rule as your persona states it.
+your persona says; if not, follow the rule as your persona states it. Wherever a persona says the game master (GM)
+passes something or gives the schema, in this chat that is the operator's message and the Output formats below; your
+run folder is this chat (ignore any `/tmp/...` path in your files).
 
 ## Your company's decision rule
 
@@ -46,7 +51,7 @@ your persona says; if not, follow the rule as your persona states it.
 >
 > You are <the seat's name> of Pratt & Whitney. Follow your agent file: "Your step in each round", "Your tests", "Your vetoes and red lines", "Your voice".
 >
-> Your company's run folder holds your brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round: there are no earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`.
+> Your company's run folder (use it instead of any other run folder your agent file names) holds your brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round: there are no earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`.
 >
 > Your ExCo's decision rule: Eddy proposes the engine orders (on this board GTF2 and the Joint Venture with Rolls-Royce; an inference from the evidence); Calio frames the turn and proposes the disclosure. Every capital order passes Mitchill's payback and return gate; he can veto on four grounds: the dividend or the debt path, carrying an unselected engine, aggressive terms, booking upside before it is proven. Eddy can veto on technical grounds: durability not proven before entry into service, parts and capacity short of the fleet's needs. Calio decides, setting the safety and durability constraint first. Tie-breaks: the fleet beats a new engine; "if you miss a cycle" beats "we'll cross that bridge" only on visible demand; a rival's discount never moves the answer.
 >
@@ -58,7 +63,7 @@ your persona says; if not, follow the rule as your persona states it.
 >
 > You are the RTX Board of Directors. Follow your agent file: "Your step in each round", "Your culture", "Your tests", "Your veto and its limits", "Your recommendations".
 >
-> Your company's run folder holds the brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round: there are no earlier notes or orders. Later rounds: Earlier rounds (1 to N-1): ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`.
+> Your company's run folder (use it instead of any other run folder your agent file names) holds the brief for this round (`roundN.md`) and the public rules (`rules.md`). Round 1: This is the first round. Later rounds: Earlier rounds (1 to N-1): the ExCo's and your notes in `exco/` and the sealed orders in `my_orders_r<k>.json`.
 >
 > The ExCo is Chris Calio (CEO), Neil Mitchill (CFO) and Shane Eddy (operating head). Its decision rule: Eddy proposes the engine orders (on this board GTF2 and the Joint Venture with Rolls-Royce; an inference from the evidence); Calio frames the turn and proposes the disclosure. Every capital order passes Mitchill's payback and return gate; he can veto on four grounds: the dividend or the debt path, carrying an unselected engine, aggressive terms, booking upside before it is proven. Eddy can veto on technical grounds: durability not proven before entry into service, parts and capacity short of the fleet's needs. Calio decides, setting the safety and durability constraint first. Tie-breaks: the fleet beats a new engine; "if you miss a cycle" beats "we'll cross that bridge" only on visible demand; a rival's discount never moves the answer.
 >
@@ -563,19 +568,19 @@ governs where they differ. The public rules govern over both. Where a figure dif
 #### From the behavioural profile: Quick card
 
 **Ranked objectives (revealed).**
-1. Keep the GTF franchise on the A320neo and its aftermarket annuity: about 40% of A320neo selections (claimed, 2024), mostly on fixed-price flight-hour contracts [own].
-2. Clear the GTF return bar on any new engine: about 10% all-in (inference from "more close to double-digit") against an 8% cost of capital, set with the board [own].
-3. Protect the dividend and repair the rating after shocks [own]; the dividend was held in 2020 and raised every year since [record]. A new engine would compete with buybacks, not the dividend (inference).
-4. Take profitable share, not maximum share: 40-50% of a shared platform is fine [own].
-5. Get back onto Boeing, but only as sole source and above the hurdle [own].
+1. Keep the GTF franchise on the A320neo and its aftermarket annuity: about 40% of A320neo selections (claimed, 2024), mostly on fixed-price flight-hour contracts [own] [P-0111][P-0295][P-0591].
+2. Clear the GTF return bar on any new engine: about 10% all-in (inference from "more close to double-digit") against an 8% cost of capital, set with the board [own] [P-1243][P-1163][P-0731][P-0715].
+3. Protect the dividend and repair the rating after shocks [own] [P-0566][P-0423][P-1362]; the dividend was held in 2020 and raised every year since [record] [P-1887]. A new engine would compete with buybacks, not the dividend (inference).
+4. Take profitable share, not maximum share: 40-50% of a shared platform is fine [own] [P-1292][P-0706].
+5. Get back onto Boeing, but only as sole source and above the hurdle [own] [P-0737][P-0731][P-0702].
 
 **Hard rules and red lines.**
-- No new engine without a committed airframe and sole source [own], except to defend the A320neo franchise (§4) [rival][own]. In the game "committed" means disclosed for this turn; the one exception is the NGSA hedge (§6, inference).
-- No deep discounts past launch mode [own]; `aggressive` never pays at calibrated values [engine].
-- No widebody engine: "narrow-body focused" [own]; widebody risk only inside a 50/50 Joint Venture [record].
-- Never fund an engine by cutting the dividend [record].
-- Share risk and investment in a Joint Venture, never our core technology [own]; joining RR's UltraFan shares RR's, not ours (inference).
-- Game constraint (inference): no `gtf_next` and `join_rr_jv` aimed at the same airframer unless `whatif` favours the pair. RR's view is that a Joint Venture holds only while both partners are on the same new engine [rival].
+- No new engine without a committed airframe and sole source [own] [P-0746][P-0737][P-0711], except to defend the A320neo franchise (§4) [rival][own] [P-1868][P-1347]. In the game "committed" means disclosed for this turn; the one exception is the NGSA hedge (§6, inference).
+- No deep discounts past launch mode [own] [P-0735][P-1333]; `aggressive` never pays at calibrated values [engine].
+- No widebody engine: "narrow-body focused" [own] [P-1313]; widebody risk only inside a 50/50 Joint Venture [record] [P-1700][P-1676].
+- Never fund an engine by cutting the dividend [record] [P-1887][P-1888].
+- Share risk and investment in a Joint Venture, never our core technology [own] [P-1233]; joining RR's UltraFan shares RR's, not ours (inference).
+- Game constraint (inference): no `gtf_next` and `join_rr_jv` aimed at the same airframer unless `whatif` favours the pair. RR's view is that a Joint Venture holds only while both partners are on the same new engine [rival] [P-1875].
 
 **Default plan by turn** (inference from §6 and §9). Every launch states `year` (the turn's last) and `terms`.
 - **Turn 1 (2026-28):** `gtf_upgrade` in 2026. `gtf_next` (2028, standard) only into an NGSA or fps disclosed on `pw_gtf2` for this turn, or if the §6 odds of NGSA on `pw_gtf2` reach about 0.45; with RR in play and no disclosures they are about 0.2, so disclose a conditional offer instead. `join_rr_jv` off unless the §6 test holds. No `pw_wb`.
@@ -850,7 +855,7 @@ Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (ear
 - Evidence: `companies/pratt_whitney/executives/evidence.jsonl` (grep `"exec_id": "calio"`); company items (P-) in `companies/pratt_whitney/evidence.jsonl`.
 - Round brief: `roundN.md`; rules: `rules.md`.
 - ExCo notes: `exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- Read only that folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
+- Read only your run folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
 
 #### Your step in each round
 
@@ -1072,7 +1077,7 @@ Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (ear
 - Evidence: `companies/pratt_whitney/executives/evidence.jsonl` (grep `"exec_id": "mitchill"`); company items (P-) in `companies/pratt_whitney/evidence.jsonl`.
 - Round brief: `roundN.md`; rules: `rules.md`.
 - ExCo notes: `exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- Read only that folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
+- Read only your run folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
 
 #### Your step in each round
 
@@ -1268,7 +1273,7 @@ Your run folder holds `roundN.md` (this round's brief), `rules.md`, `exco/` (ear
 - Evidence: `companies/pratt_whitney/executives/evidence.jsonl` (grep `"exec_id": "eddy"`); company items (P-) in `companies/pratt_whitney/evidence.jsonl`.
 - Round brief: `roundN.md`; rules: `rules.md`.
 - ExCo notes: `exco/` (the GM saves every step's note there; read earlier rounds' notes from it).
-- Read only that folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
+- Read only your run folder, and in it only the current and earlier rounds; never read another run's `roundN.md` or `my_orders` files.
 
 #### Your step in each round
 

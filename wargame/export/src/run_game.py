@@ -14,23 +14,30 @@ engine adjudicates the round and writes the next briefs.
   export LLM_API_KEY=...
   python3 run_game.py --game mygame --base-url https://api.openai.com/v1 --model gpt-4.1
   python3 run_game.py --game mygame --base-url https://generativelanguage.googleapis.com/v1beta/openai --model gemini-2.5-pro
-  python3 run_game.py --game mygame --base-url http://localhost:11434/v1 --model llama3.1:70b --no-tools
+  python3 run_game.py --game mygame --base-url http://localhost:11434/v1 --model qwen2.5:72b
+      # Ollama: raise its context window first (OLLAMA_CONTEXT_LENGTH=131072, or num_ctx in a Modelfile); its default
+      # of a few thousand tokens silently cuts every prompt. Prompts run to 60-90k tokens, so use a model with a
+      # context of at least 128k tokens.
 
   # checks without an LLM
   python3 run_game.py --game replaycheck --provider replay   # feeds back the original agents' answers: must reproduce
                                                              # the original game exactly (needs reference/)
   python3 run_game.py --game dry --provider mock             # plumbing test: every seat holds
 
-A stopped game resumes where it stopped: finished steps are read back from runs/<game>/players/<company>/exco/ and
-finished rounds from the engine's files. Each call's prompt and reply are logged in runs/<game>/calls/.
+To resume a stopped game (an API error, Ctrl-C, a closed laptop), run the same command again: finished steps are read
+back from runs/<game>/players/<company>/exco/ and finished rounds from the engine's files. A round is adjudicated only
+when all five companies finished it; if the API keeps failing, the runner stops before adjudicating. --rounds 1 plays
+round 1 only; --rounds 2-4 then plays the rest. Each request and reply is logged in runs/<game>/calls/.
 Python 3.9+, numpy and pandas (the engine's needs); no other package.
 """
 import argparse
 import ast
 import concurrent.futures as cf
+import http.client
 import json
 import operator
 import os
+import random
 import re
 import subprocess
 import sys
@@ -55,6 +62,7 @@ NOTE_TITLES = {"board_guidance": "Board guidance", "frame": "CEO framing note", 
 
 
 _PRINT = threading.Lock()
+STOP = threading.Event()       # set on Ctrl-C or a fatal API error: no new calls start
 
 
 def say(msg):
@@ -73,12 +81,37 @@ def read(path):
 
 
 # ───────────────────────────── JSON formats ─────────────────────────────
+def _enum_has(enum, v):
+    """v is in the enum, type-strictly: JSON true is not the number 1."""
+    for e in enum:
+        if isinstance(v, bool) or isinstance(e, bool):
+            if isinstance(v, bool) and isinstance(e, bool) and v == e:
+                return True
+        elif v == e and (v is None) == (e is None):
+            return True
+    return False
+
+
+STRICT = ("orders", "recommended_orders")      # order objects: no field the engine would refuse
+
+
+def clean(schema, v):
+    """Drop optional fields given as null (a model's way of leaving them out)."""
+    if isinstance(v, dict) and schema.get("type") == "object":
+        req = set(schema.get("required", []))
+        props = schema.get("properties", {})
+        return {k: (clean(props[k], x) if k in props else x) for k, x in v.items() if not (x is None and k not in req and k in props)}
+    if isinstance(v, list) and schema.get("type") == "array":
+        return [clean(schema["items"], x) for x in v]
+    return v
+
+
 def check(schema, v, path="$"):
     """Errors of value v against the step's schema (the subset the protocol uses)."""
     errs = []
     if "enum" in schema:
-        if v not in schema["enum"]:
-            errs.append("%s: %r is not one of %s" % (path, v, schema["enum"]))
+        if not _enum_has(schema["enum"], v):
+            errs.append("%s: %r is not one of %s" % (path, v, ["null" if e is None else e for e in schema["enum"]]))
         return errs
     t = schema.get("type")
     if t == "object":
@@ -87,7 +120,12 @@ def check(schema, v, path="$"):
         for k in schema.get("required", []):
             if k not in v:
                 errs.append("%s: missing field %r" % (path, k))
-        for k, sub in schema.get("properties", {}).items():
+        props = schema.get("properties", {})
+        if path.split(".")[-1] in STRICT:
+            for k in v:
+                if k not in props:
+                    errs.append("%s: unknown order field %r (the fields are %s)" % (path, k, ", ".join(props)))
+        for k, sub in props.items():
             if k in v:
                 errs += check(sub, v[k], "%s.%s" % (path, k))
     elif t == "array":
@@ -122,44 +160,71 @@ def skeleton(schema, ind=0):
     return {"string": "\"text\"", "number": "number", "boolean": "true | false"}.get(t, "value")
 
 
-def extract_json(text):
-    """The first JSON object in a reply (bare, or inside a ```json fence)."""
-    if not text:
-        return None
-    t = text.strip()
-    m = re.search(r"```(?:json)?\s*(\{.*\})\s*```", t, re.S)
-    for cand in ([m.group(1)] if m else []) + [t]:
-        try:
-            x = json.loads(cand)
-            if isinstance(x, dict):
-                return x
-        except ValueError:
-            pass
-    i = t.find("{")
-    while i >= 0:
-        depth, instr, esc = 0, False, False
-        for j in range(i, len(t)):
+def text_of(content):
+    """A message's text: a string, or the text parts of a list of content parts."""
+    if isinstance(content, list):
+        return "".join(p.get("text", "") if isinstance(p, dict) else str(p) for p in content)
+    return content or ""
+
+
+def _objects(t):
+    """Every balanced top-level {...} in t that parses as a JSON object, in order."""
+    out, i, n = [], 0, len(t)
+    while i < n:
+        if t[i] != "{":
+            i += 1
+            continue
+        depth, instr, esc, j = 0, False, False, i
+        while j < n:
             c = t[j]
             if instr:
-                esc = (c == "\\" and not esc)
-                if c == '"' and not esc:
+                if esc:
+                    esc = False
+                elif c == "\\":
+                    esc = True
+                elif c == '"':
                     instr = False
-                continue
-            if c == '"':
+            elif c == '"':
                 instr = True
             elif c == "{":
                 depth += 1
             elif c == "}":
                 depth -= 1
                 if depth == 0:
-                    try:
-                        x = json.loads(t[i:j + 1])
-                        if isinstance(x, dict):
-                            return x
-                    except ValueError:
-                        break
-        i = t.find("{", i + 1)
-    return None
+                    break
+            j += 1
+        if depth == 0 and j < n:
+            try:
+                x = json.loads(t[i:j + 1])
+                if isinstance(x, dict):
+                    out.append(x)
+                    i = j + 1
+                    continue
+            except ValueError:
+                pass
+        i += 1
+    return out
+
+
+def extract_json(text):
+    """The answer in a reply: the last fenced JSON block, else the last top-level JSON object; reasoning in
+    <think>...</think> is ignored."""
+    t = re.sub(r"<think>.*?</think>", "", text_of(text), flags=re.S).strip()
+    if not t:
+        return None
+    try:
+        x = json.loads(t)
+        if isinstance(x, dict):
+            return x
+    except ValueError:
+        pass
+    fences = re.findall(r"```(?:json)?\s*\n?(.*?)```", t, re.S)
+    for f in reversed(fences):
+        objs = _objects(f)
+        if objs:
+            return objs[-1]
+    objs = _objects(t)
+    return objs[-1] if objs else None
 
 
 # ───────────────────────────── tools for the seats ─────────────────────────────
@@ -208,61 +273,93 @@ TOOLS = [
                        "Example: 0.5*(-4.39) + 0.5*(-4.80) - 1.0",
         "parameters": {"type": "object", "properties": {"expression": {"type": "string"}}, "required": ["expression"]}}},
 ]
-CHUNK = 60000
+CHUNK = 20000          # characters per read_file call
+KEEP_TOOL_RESULTS = 8  # earlier tool results beyond this are replaced by a stub, to bound the context
 
 
 class Files:
-    """A seat's view of the files: its company's folder and its run folder, nothing else; rounds after the current
-    one are closed."""
+    """A seat's view of the files: its run folder (this round's and earlier briefs, the rules, earlier rounds' notes
+    and sealed orders) and its company's folder, nothing else. This round's notes (its colleagues' memos) and later
+    rounds' files are closed."""
     def __init__(self, game, side, n):
-        self.roots = [os.path.join(RUNS, game, "players", side), os.path.join(PACK, "companies", side)]
+        self.run = os.path.realpath(os.path.join(RUNS, game, "players", side))
+        self.comp = os.path.realpath(os.path.join(PACK, "companies", side))
         self.side, self.n = side, n
 
+    def _open(self, rel_run):
+        """Whether a run-folder path (relative, '/'-separated) is open this round."""
+        m = re.match(r"^(?:round(\d+)\.md|exco/r(\d+)_.*|my_orders_r(\d+)\.json|rules\.md|exco)$", rel_run)
+        if not m:
+            return False
+        if m.group(1):
+            return int(m.group(1)) <= self.n
+        k = m.group(2) or m.group(3)
+        return k is None or int(k) < self.n
+
     def _resolve(self, path):
-        p = (path or "").strip().lstrip("/")
+        p = (path or "").strip().replace("\\", "/")
+        p = re.sub(r"^/?tmp/wargame-[a-z_]+/[^/]+/", "", p)         # an old run folder some texts still name
         for pre in ("companies/%s/" % self.side, "wargame/profiles/%s/" % self.side):
             if p.startswith(pre):
                 p = p[len(pre):]
-        m = re.match(r"(?:round|exco/r|my_orders_r)(\d+)", p)
-        if m and int(m.group(1)) > self.n:
-            raise ValueError("a later round's file is closed to you")
-        if m and p.startswith(("exco/r", "my_orders_r")) and int(m.group(1)) >= self.n:
-            raise ValueError("only earlier rounds' notes and orders are open")
-        for root in self.roots:
+        p = p.lstrip("/")
+        hits = []
+        for root, kind in ((self.run, "run"), (self.comp, "company")):
             full = os.path.realpath(os.path.join(root, p))
-            if (full + os.sep).startswith(os.path.realpath(root) + os.sep) or full == os.path.realpath(root):
+            if full != root and not full.startswith(root + os.sep):
+                continue
+            rel = os.path.relpath(full, root).replace(os.sep, "/")
+            if kind == "run" and rel != "." and not self._open(rel):
                 if os.path.exists(full):
-                    return full
-        raise ValueError("no such file in your folders: %s" % path)
+                    raise ValueError("that file is closed to you this round")
+                continue
+            if os.path.exists(full):
+                hits.append((full, kind, rel))
+        if not hits:
+            raise ValueError("no such file in your folders: %s" % path)
+        return hits[0]
+
+    def listing(self, full, kind, rel):
+        items = sorted(os.listdir(full))
+        if kind == "run":
+            items = [x for x in items if self._open((x if rel == "." else rel + "/" + x))]
+        return [x + ("/" if os.path.isdir(os.path.join(full, x)) else "") for x in items]
 
     def read(self, path, offset=0):
-        full = self._resolve(path)
+        if (path or "").strip() in ("", ".", "/"):
+            run = self.listing(self.run, "run", ".")
+            comp = self.listing(self.comp, "company", ".")
+            return "Your run folder:\n" + "\n".join(run) + "\n\nYour company's files:\n" + "\n".join(comp)
+        full, kind, rel = self._resolve(path)
         if os.path.isdir(full):
-            items = sorted(os.listdir(full))
-            return "\n".join(x + ("/" if os.path.isdir(os.path.join(full, x)) else "") for x in items)
+            return "\n".join(self.listing(full, kind, rel))
         txt = read(full)
-        off = int(offset or 0)
+        off = max(0, int(offset or 0))
         part = txt[off:off + CHUNK]
         more = "" if off + CHUNK >= len(txt) else "\n[... %d more characters: read again with offset=%d]" % (len(txt) - off - CHUNK, off + CHUNK)
         return part + more
 
     def search(self, path, text):
-        full = self._resolve(path)
+        full, kind, rel = self._resolve(path)
+        if os.path.isdir(full):
+            raise ValueError("%s is a folder: search one file" % path)
         out = ["%d: %s" % (i + 1, l[:400]) for i, l in enumerate(read(full).splitlines()) if text.lower() in l.lower()]
         return "\n".join(out[:200]) or "no line contains %r" % text
 
-    def root_listing(self):
-        return self.read("")
-
 
 # ───────────────────────────── providers ─────────────────────────────
+class ApiError(RuntimeError):
+    """The API could not be used (after retries): stop the game before adjudicating, so it can be resumed."""
+
+
 class OpenAICompatible:
     def __init__(self, a):
-        self.url = a.base_url.rstrip("/") + "/chat/completions"
+        self.url = a.base_url.rstrip("/") + "/chat/completions" + (("?" + a.url_query) if a.url_query else "")
         self.key = os.environ.get(a.api_key_env, "")
         self.a = a
-        self.tools_ok = not a.no_tools
+        self.tools_ok = not a.no_tools          # switched off for good only when the API rejects the tools parameter
         self.json_ok = a.json_mode != "off"
+        self.lock = threading.Lock()
         self.models = dict(x.split("=", 1) for x in (a.seat_model or []))
 
     def _post(self, body):
@@ -270,78 +367,139 @@ class OpenAICompatible:
         if self.key:
             headers[self.a.auth_header] = (self.a.auth_prefix + self.key) if self.a.auth_prefix else self.key
         data = json.dumps(body).encode("utf-8")
-        for attempt in range(6):
+        last = ""
+        for attempt in range(self.a.retries + 1):
+            if STOP.is_set():
+                raise ApiError("stopped")
+            wait = min(90.0, 4.0 * 2 ** attempt) * (0.5 + random.random())
             req = urllib.request.Request(self.url, data=data, headers=headers)
             try:
                 with urllib.request.urlopen(req, timeout=self.a.timeout) as r:
-                    return json.loads(r.read().decode("utf-8"))
+                    raw = r.read().decode("utf-8")
+                try:
+                    out = json.loads(raw)
+                except ValueError:
+                    last = "a reply that is not JSON: %r" % raw[:200]
+                    time.sleep(wait)
+                    continue
+                if not isinstance(out, dict) or not out.get("choices"):
+                    last = "a reply without choices: %s" % raw[:300]
+                    time.sleep(wait)
+                    continue
+                return out
             except urllib.error.HTTPError as e:
-                msg = e.read().decode("utf-8", "replace")[:600]
-                if e.code in (429, 500, 502, 503, 504, 529) and attempt < 5:
-                    time.sleep(min(60, 4 * 2 ** attempt))
+                msg = e.read().decode("utf-8", "replace")[:800]
+                if e.code in (408, 409, 429, 500, 502, 503, 504, 529):
+                    ra = e.headers.get("Retry-After") if e.headers else None
+                    try:
+                        wait = max(wait, float(ra)) if ra else wait
+                    except ValueError:
+                        pass
+                    last = "HTTP %d: %s" % (e.code, msg)
+                    time.sleep(wait)
                     continue
-                raise RuntimeError("HTTP %d from the API: %s" % (e.code, msg))
-            except (urllib.error.URLError, TimeoutError) as e:
-                if attempt < 5:
-                    time.sleep(min(60, 4 * 2 ** attempt))
-                    continue
-                raise RuntimeError("cannot reach the API: %s" % e)
+                raise ApiError("HTTP %d from the API: %s" % (e.code, msg))
+            except (urllib.error.URLError, OSError, http.client.HTTPException) as e:
+                last = "cannot reach the API: %s" % e
+                time.sleep(wait)
+        raise ApiError("the API failed after %d tries: %s" % (self.a.retries + 1, last))
+
+    def _body(self, model, msgs, use_tools, want_json):
+        body = {"model": model, "messages": msgs}
+        if self.a.temperature is not None:
+            body["temperature"] = self.a.temperature
+        if self.a.max_tokens:
+            body[self.a.max_tokens_field] = self.a.max_tokens
+        if use_tools:
+            body["tools"] = TOOLS
+        elif want_json and self.json_ok:
+            body["response_format"] = {"type": "json_object"}
+        if self.a.extra_body:
+            body.update(json.loads(self.a.extra_body))
+        return body
+
+    @staticmethod
+    def _flatten(msgs):
+        """The same conversation without tool messages (for a call without tools: some APIs refuse tool history
+        when no tools are defined)."""
+        out = []
+        for m in msgs:
+            if m.get("role") == "tool":
+                out.append({"role": "user", "content": "[tool result]\n" + text_of(m.get("content"))})
+            elif m.get("role") == "assistant" and m.get("tool_calls"):
+                calls = "; ".join("%s(%s)" % (c.get("function", {}).get("name"), c.get("function", {}).get("arguments")) for c in m["tool_calls"])
+                out.append({"role": "assistant", "content": (text_of(m.get("content")) + "\n[I called: %s]" % calls).strip()})
+            else:
+                out.append(m)
+        return out
+
+    @staticmethod
+    def _trim(msgs, keep):
+        """Replace all but the last `keep` tool results by a stub, to bound the context."""
+        idx = [i for i, m in enumerate(msgs) if m.get("role") == "tool"]
+        for i in idx[:-keep] if keep else idx:
+            if not str(msgs[i].get("content", "")).startswith("[earlier tool output removed"):
+                msgs[i] = dict(msgs[i], content="[earlier tool output removed to save context; read it again if needed]")
+        return msgs
 
     def complete(self, messages, seat, files, want_json):
-        """One seat-step: a tool loop, then a JSON reply. Returns (text, transcript)."""
+        """One seat-step: a tool loop, then a JSON reply. Returns (text, transcript). Raises ApiError."""
         model = self.models.get(seat, self.a.model)
         msgs = list(messages)
-        for _ in range(self.a.max_tool_calls + 1):
-            body = {"model": model, "messages": msgs}
-            if self.a.temperature is not None:
-                body["temperature"] = self.a.temperature
-            if self.a.max_tokens:
-                body[self.a.max_tokens_field] = self.a.max_tokens
-            if self.a.extra_body:
-                body.update(json.loads(self.a.extra_body))
-            use_tools = self.tools_ok
-            if use_tools:
-                body["tools"] = TOOLS
-            elif want_json and self.json_ok:
-                body["response_format"] = {"type": "json_object"}
+        use_tools = self.tools_ok
+        trimmed = False
+        for rounds in range(self.a.max_tool_calls + 2):
+            if rounds > self.a.max_tool_calls and use_tools:     # tool budget spent: answer now, without tools
+                use_tools = False
+                msgs = self._flatten(msgs) + [{"role": "user", "content": "Stop using tools now and return only the JSON object."}]
+            body = self._body(model, msgs if use_tools else self._flatten(msgs), use_tools, want_json)
             try:
                 r = self._post(body)
-            except RuntimeError as e:
-                s = str(e)
-                if use_tools and "HTTP 400" in s and "tool" in s.lower():
-                    self.tools_ok = False
-                    say("  the API rejected tools; continuing without them")
+            except ApiError as e:
+                txt = str(e).lower()
+                if use_tools and "http 400" in txt and ("tools" in txt or "function" in txt) and "context" not in txt:
+                    with self.lock:
+                        if self.tools_ok:
+                            self.tools_ok = False
+                            say("  the API rejected tools; the game continues without them (seats get their company's doctrine inline)")
+                    use_tools = False
                     continue
-                if not use_tools and "HTTP 400" in s and "response_format" in s:
-                    self.json_ok = False
+                if not use_tools and "http 400" in txt and "response_format" in txt:
+                    with self.lock:
+                        self.json_ok = False
+                    continue
+                if "http 400" in txt and any(w in txt for w in ("context", "too long", "maximum", "token")) and not trimmed:
+                    trimmed = True
+                    msgs = self._trim(msgs, 2)
                     continue
                 raise
-            m = r["choices"][0]["message"]
+            m = r["choices"][0].get("message") or {}
             calls = m.get("tool_calls") or []
-            if not calls:
-                return m.get("content") or "", msgs + [{"role": "assistant", "content": m.get("content") or ""}]
-            msgs.append({"role": "assistant", "content": m.get("content") or "", "tool_calls": calls})
+            if not calls or not use_tools:
+                content = text_of(m.get("content"))
+                return content, msgs + [{"role": "assistant", "content": content}]
+            for k, c in enumerate(calls):
+                c.setdefault("id", "call_%d_%d" % (rounds, k))
+                c.setdefault("type", "function")
+            msgs.append({"role": "assistant", "content": text_of(m.get("content")), "tool_calls": calls})
             for c in calls:
-                fn = c["function"]["name"]
+                fn = (c.get("function") or {}).get("name")
                 try:
-                    args = json.loads(c["function"].get("arguments") or "{}")
+                    raw = (c.get("function") or {}).get("arguments") or "{}"
+                    args = raw if isinstance(raw, dict) else json.loads(raw)
                     if fn == "read_file":
                         out = files.read(args.get("path", ""), args.get("offset", 0))
                     elif fn == "search_file":
                         out = files.search(args.get("path", ""), args.get("text", ""))
                     elif fn == "calculate":
-                        out = repr(calculate(args.get("expression", "")))
+                        out = repr(calculate(str(args.get("expression", ""))))
                     else:
                         out = "unknown tool %s" % fn
                 except Exception as e:      # the seat sees the error and can try again
                     out = "error: %s" % e
                 msgs.append({"role": "tool", "tool_call_id": c["id"], "content": out})
-        msgs.append({"role": "user", "content": "Stop using tools now and return only the JSON object."})
-        self.tools_ok, saved = False, self.tools_ok
-        try:
-            return self.complete(msgs, seat, files, want_json)
-        finally:
-            self.tools_ok = saved
+            msgs = self._trim(msgs, KEEP_TOOL_RESULTS)
+        raise ApiError("no answer after the tool budget")
 
 
 class Replay:
@@ -424,17 +582,29 @@ class Company:
             if hist:
                 parts.append("### Your company's earlier rounds\n\n" + "\n\n".join(hist) +
                              ("\n\nAll earlier notes are in exco/ (your file tool reads them)." if self.llm_tools() else ""))
+        if isinstance(self.llm, OpenAICompatible) and not self.llm.tools_ok:
+            parts.append(self.doctrine())
         return "\n\n".join(parts)
 
     def llm_tools(self):
         return isinstance(self.llm, OpenAICompatible) and self.llm.tools_ok
+
+    def doctrine(self):
+        """The company's doctrine as its kit gives it (the profile's quick card and the game mapping), for seats that
+        cannot read their company's files."""
+        d = os.path.join(PACK, "companies", self.side)
+        prof = read(os.path.join(d, "profile.md"))
+        m = re.search(r"^## Quick card.*?(?=^## )", prof, re.S | re.M)
+        return ("### Your company doctrine (from profile.md and dashboard_game.md; you have no file tool, so the rest of "
+                "your company's files is not available)\n\n" + (m.group(0) if m else "") + "\n\n" +
+                read(os.path.join(d, "dashboard_game.md")))
 
     def head(self, seat, step):
         t = self.t
         if seat == "board":
             lines = ["War game run `%s`, round %d (decision year %d). Your step: **%s**." % (self.game, self.n, self.year, step),
                      "You are %s. Follow your agent file: \"Your step in each round\", \"Your culture\", \"Your tests\", \"Your veto and its limits\", \"Your recommendations\"." % t["boardName"],
-                     "Your company's run folder holds the brief for this round (`round%d.md`) and the public rules (`rules.md`)." % self.n +
+                     "Your company's run folder (use it instead of any other run folder your agent file names) holds the brief for this round (`round%d.md`) and the public rules (`rules.md`)." % self.n +
                      (" Earlier rounds (1 to %d): the ExCo's and your notes in `exco/` and the sealed orders in `my_orders_r<k>.json`." % (self.n - 1) if self.n > 1 else " This is the first round."),
                      "The ExCo is %s (CEO), %s (CFO) and %s (operating head). Its decision rule: %s" % (t["names"]["ceo"], t["names"]["cfo"], t["names"]["ops"], t["rule"]),
                      "Every order that differs from the default (hold, or none) is a Board item; an engine code rides with its launch. You approve or veto each Board item and recommend; you never originate orders, and you never veto a hold.",
@@ -442,7 +612,7 @@ class Company:
         else:
             lines = ["War game run `%s`, round %d (decision year %d). Your step: **%s**." % (self.game, self.n, self.year, step),
                      "You are %s of %s. Follow your agent file: \"Your step in each round\", \"Your tests\", \"Your vetoes and red lines\", \"Your voice\"." % (t["names"][seat], t["company"]),
-                     "Your company's run folder holds your brief for this round (`round%d.md`) and the public rules (`rules.md`)." % self.n +
+                     "Your company's run folder (use it instead of any other run folder your agent file names) holds your brief for this round (`round%d.md`) and the public rules (`rules.md`)." % self.n +
                      (" Earlier rounds (1 to %d): ExCo notes in `exco/` and sealed orders in `my_orders_r<k>.json`." % (self.n - 1) if self.n > 1 else " This is the first round: there are no earlier notes or orders."),
                      "Your ExCo's decision rule: %s" % t["rule"],
                      "Use only numbers from your brief and your own company's profile files. Read nothing of another company. Run no wargame.engine command."]
@@ -462,7 +632,12 @@ class Company:
         """One seat-step, with resume: a saved note is read back instead of calling again."""
         saved = os.path.join(self.notes, "r%d_%s.json" % (self.n, note_key))
         if os.path.exists(saved):
-            return json.load(open(saved, encoding="utf-8"))
+            try:
+                return json.load(open(saved, encoding="utf-8"))
+            except ValueError:
+                self.log("%s: the saved note is unreadable; asking again" % note_key)
+        if STOP.is_set():
+            raise ApiError("stopped")
         if isinstance(self.llm, Replay):
             out = self.llm.answer(self.n, self.side, key)
         elif isinstance(self.llm, Mock):
@@ -473,25 +648,39 @@ class Company:
                 "text fields are strings; engine codes are JSON null or an integer 1-7):\n\n" + skeleton(schema)
             msgs = [{"role": "system", "content": self.persona(seat)}, {"role": "user", "content": user}]
             out = None
-            for attempt in range(self.a.json_retries + 1):
-                text, transcript = self.llm.complete(msgs, seat, self.files, True)
-                cand = extract_json(text)
-                errs = check(schema, cand) if cand is not None else ["the reply holds no JSON object"]
-                self._log_call(note_key, attempt, transcript, text, errs)
-                if not errs:
-                    out = cand
-                    break
-                msgs = transcript + [{"role": "user", "content": "Your reply does not match the format: " + "; ".join(errs[:12]) +
-                                      ". Reply again with only the corrected JSON object."}]
+            try:
+                for attempt in range(self.a.json_retries + 1):
+                    text, transcript = self.llm.complete(msgs, seat, self.files, True)
+                    cand = extract_json(text)
+                    cand = clean(schema, cand) if cand is not None else None
+                    errs = check(schema, cand) if cand is not None else ["the reply holds no JSON object"]
+                    self._log_call(note_key, attempt, transcript, text, errs)
+                    if not errs:
+                        out = cand
+                        break
+                    msgs = transcript + [{"role": "user", "content": "Your reply does not match the format: " + "; ".join(errs[:12]) +
+                                          ". Reply again with only the corrected JSON object."}]
+            except ApiError as e:
+                if self.a.on_api_error == "stop":
+                    STOP.set()
+                    raise
+                self.log("%s: API error, treated as a missing step: %s" % (note_key, e))
+                out = None
             if out is None:
-                self.log("%s: no valid reply after %d tries (treated as missing)" % (note_key, self.a.json_retries + 1))
+                self.log("%s: no valid reply (treated as missing)" % note_key)
         if out is not None:
-            with open(saved, "w", encoding="utf-8") as f:
-                json.dump(out, f, indent=1, ensure_ascii=False)
-            with open(os.path.join(self.notes, "r%d_%s.md" % (self.n, note_key)), "w", encoding="utf-8") as f:
-                f.write("# Round %d: %s\n\n%s\n" % (self.n, NOTE_TITLES[note_key], js(out)))
+            self.save(note_key, out)
         self.log("%-16s %s" % (note_key, "done" if out is not None else "MISSING"))
         return out
+
+    def save(self, note_key, out):
+        """The step's note, as JSON and as markdown (as the original's exco.py save wrote it); written atomically."""
+        for name, txt in (("r%d_%s.json" % (self.n, note_key), json.dumps(out, indent=1, ensure_ascii=False)),
+                          ("r%d_%s.md" % (self.n, note_key), "# Round %d: %s\n\n%s\n" % (self.n, NOTE_TITLES[note_key], js(out)))):
+            tmp = os.path.join(self.notes, name + ".tmp")
+            with open(tmp, "w", encoding="utf-8") as f:
+                f.write(txt)
+            os.replace(tmp, os.path.join(self.notes, name))
 
     def _log_call(self, note_key, attempt, transcript, text, errs):
         p = os.path.join(RUNS, self.game, "calls", "r%d_%s_%s_%d.json" % (self.n, self.side, note_key, attempt))
@@ -575,7 +764,7 @@ class Company:
                 parts.append("Binding veto(es) from your ExCo:\n\n" + "\n\n".join("%s: %s" % (nm[x], js(vc[x])) for x in binding))
             if flags:
                 parts.append("Company red-line breach(es) flagged by your ExCo:\n\n" + "\n\n".join(
-                    "%s: %s" % (nm[x], js({"red_line": vc[x].get("red_line"), "note": vc[x].get("note")})) for x in flags))
+                    "%s: %s" % (nm[x], js({k: vc[x][k] for k in ("red_line", "note") if k in vc[x]})) for x in flags))
             revision = self.call("revise", "ceo", "revise",
                                  "Your decision:\n%s\n\n%s\n\nRevise your orders once. Stay within each binding veto, or override "
                                  "only where the team rule allows it and record each override in `overrides`. Strike every flagged "
@@ -588,6 +777,7 @@ class Company:
                 "binding_vetoes": binding, "red_line_flags": flags, "revision": revision, "board_items": items}
         if not items:
             rv = {"items": [], "recommendations": [], "overall": "approve", "note": "No Board items: every order is the default."}
+            self.save("board_review", rv)
         else:
             pkg = {"frame": fr, "cfo_memo": cfo, "ops_memo": ops, "decision": dec, "veto_checks": vc, "revision": revision}
             rv = self.call("board_review", "board", "review",
@@ -598,7 +788,9 @@ class Company:
             if rv is None:      # fail closed: no Board approval, no Board item
                 self.log("no Board review: its items revert to the default: %s" % ", ".join(items))
                 orders = self.revert(final["orders"], items)
-                exco.update({"board_review": {"failed": True}, "board_vetoed": items, "board_revision": None,
+                failed = {"failed": True, "items": [], "recommendations": [], "overall": "veto", "note": "No review returned: failed closed."}
+                self.save("board_review", failed)
+                exco.update({"board_review": failed, "board_vetoed": items, "board_revision": None,
                              "board_confirm": None, "board_reverted": items})
                 return dict(final, orders=orders, exco=exco)
         exco["board_review"] = rv
@@ -642,7 +834,7 @@ class Company:
 # ───────────────────────────── the game ─────────────────────────────
 def engine(game, *args, quiet=False):
     r = subprocess.run([sys.executable, os.path.join(HERE, "play.py")] + list(args), capture_output=quiet, text=True,
-                       env=dict(os.environ, PYTHONUTF8="1"))
+                       encoding="utf-8", errors="replace", env=dict(os.environ, PYTHONUTF8="1", PYTHONIOENCODING="utf-8"))
     if r.returncode:
         if quiet:
             sys.stdout.write(r.stdout or "")
@@ -671,7 +863,13 @@ def main():
     ap.add_argument("--temperature", type=float, default=None)
     ap.add_argument("--max-tokens", type=int, default=None)
     ap.add_argument("--max-tokens-field", default="max_tokens", help="or max_completion_tokens (newer OpenAI models)")
-    ap.add_argument("--timeout", type=int, default=900)
+    ap.add_argument("--timeout", type=int, default=900, help="seconds per API request")
+    ap.add_argument("--retries", type=int, default=6, help="retries per request on rate limits and network errors")
+    ap.add_argument("--url-query", help="query string added to every request URL (Azure: api-version=...)")
+    ap.add_argument("--on-api-error", choices=["stop", "missing"], default="stop",
+                    help="when the API still fails after its retries: stop before adjudicating, so the same command "
+                         "resumes the game (stop, default), or treat that step as missing, as the original treated an "
+                         "agent that died (missing)")
     ap.add_argument("--no-tools", action="store_true", help="no file and calculator tools (for APIs without function calling)")
     ap.add_argument("--max-tool-calls", type=int, default=24)
     ap.add_argument("--json-mode", choices=["auto", "off"], default="auto")
@@ -702,20 +900,34 @@ def main():
             continue
         if not os.path.exists(os.path.join(gdir, "state_r%d.json" % (n - 1))):
             sys.exit("round %d needs round %d first" % (n, n - 1))
-        if not os.path.exists(os.path.join(gdir, "brief_r%d_boeing.md" % n)):
+        if not os.path.exists(os.path.join(gdir, "grids_r%d.json" % n)):       # written last by the briefing
             engine(a.game, "brief", a.game, str(n), quiet=True)
         plans = standing_plans(a.game, n)
         print("round %d (%d): playing %s" % (n, YEARS[n], ", ".join(playing)), flush=True)
         comps = {s: Company(a.game, n, s, llm, a, plans) for s in playing}
-        with cf.ThreadPoolExecutor(max(1, a.parallel)) as ex:
-            futs = {s: ex.submit(comps[s].play) for s in playing}
-            results = {}
+        ex = cf.ThreadPoolExecutor(max(1, a.parallel))
+        futs = {s: ex.submit(comps[s].play) for s in playing}
+        results, failed = {}, {}
+        try:
             for s, f in futs.items():
                 try:
                     results[s] = f.result()
-                except Exception as e:      # a company whose round fails holds, as in the original
-                    say("  r%d %-14s FAILED: %s (it holds this round)" % (n, s, e))
-                    results[s] = None
+                except ApiError as e:
+                    failed[s] = "API: %s" % e
+                except Exception as e:      # a bug or a broken file: stop rather than adjudicate a wrong round
+                    failed[s] = "%s: %s" % (type(e).__name__, e)
+                    STOP.set()
+        except KeyboardInterrupt:
+            STOP.set()
+            ex.shutdown(wait=False, cancel_futures=True)
+            sys.exit("\nstopped. Finished steps are saved: run the same command to resume.")
+        ex.shutdown(wait=True)
+        if failed:
+            for s, e in failed.items():
+                say("  r%d %-14s stopped: %s" % (n, s, e))
+            sys.exit("round %d was NOT adjudicated. Fix the cause (key, model name, endpoint, rate limits), then run the "
+                     "same command: finished steps are kept. To treat failing steps as missing instead, add "
+                     "--on-api-error missing." % n)
         orders = {}
         for s in SIDES:
             r = results.get(s)
@@ -724,8 +936,9 @@ def main():
                              "other_moves": r.get("other_moves") or [],
                              **{k: v for k, v in r.items() if k not in ("orders", "public_statement", "other_moves")}}
         path = os.path.join(gdir, "orders_exco_r%d.json" % n)
-        with open(path, "w", encoding="utf-8") as f:
+        with open(path + ".tmp", "w", encoding="utf-8") as f:
             json.dump(orders, f, indent=1, ensure_ascii=False)
+        os.replace(path + ".tmp", path)
         out = engine(a.game, "adjudicate", a.game, str(n), path, quiet=True)
         print("\n".join(l for l in out.splitlines() if l.startswith(("round", "  -", "  !", "note"))))
         if n < 4:

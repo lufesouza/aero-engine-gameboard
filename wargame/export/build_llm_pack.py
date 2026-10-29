@@ -152,7 +152,7 @@ def doctrine():
         qc = section(prof, "Quick card")
         txt = ("#### From the behavioural profile: " + qc.split("\n", 1)[0][3:] + "\n\n" + qc.split("\n", 1)[1].strip() +
                "\n\n#### " + dg.split("\n", 1)[0].lstrip("# ") + "\n\n" + _demote_from(dg.split("\n", 1)[1].strip(), 3))
-        out[side] = EVID.sub("", txt)
+        out[side] = txt          # evidence ids kept: the original seats read them (companies/<side>/ has the evidence)
     return out
 
 
@@ -195,6 +195,7 @@ RUN_SUBS = [
     (r"Read only that folder; the earlier dash-2050 game's files are archived and closed to you\.", "Read only your run folder."),
     (r";\s+the earlier dash-2050 game's files are archived and closed to you", ""),
     (r"Use only the run folder the GM names\.", "Use only your run folder."),
+    (r"Read only that folder, and in it", "Read only your run folder, and in it"),
 ]
 LEFT = re.compile(r"/tmp/|wargame/|/home/user|<run>|\bhook\b|archived")
 
