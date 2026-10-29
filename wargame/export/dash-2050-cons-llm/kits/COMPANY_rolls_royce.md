@@ -27,7 +27,8 @@ bulletin and your profile.
    earlier rounds' notes stay in this chat; use them.
 
 7. When the operator says "stop" after a step, stop and wait: the operator may run the CFO's and the operating
-   head's steps in fresh chats and paste their outputs ("Step 2: <name>"); take those as the seats' outputs.
+   head's steps in fresh chats and paste their outputs ("Step 2: <name>" for the tests, "Step 4: <name>" for the veto
+   checks); take those as the seats' outputs and continue from where the operator says.
 
 Your personas cite your company's files (`companies/rolls_royce/...`). If the operator uploaded that folder, read them as
 your persona says; if not, follow the rule as your persona states it. Wherever a persona says the game master (GM)
@@ -131,7 +132,7 @@ where the team rule allows it and record each override in `overrides`. Strike ev
 revision replaces the decision, as returned.
 
 **Step 6. Board review** (the Board). Runs only when there are Board items: the order fields, other than engine codes,
-whose value differs from the default (section 6). With none, the review is an automatic approval ("No Board items:
+whose value differs from the default (see "Your orders": the first value listed is the default). With none, the review is an automatic approval ("No Board items:
 every order is the default"). Task: *Your guidance this round: [step 0]. The ExCo's package, passed by the game master:
 [the framing note, both test memos, the decision, both veto checks and the revision, if any]. The orders it submits:
 [the orders]. The Board items: [fields]. For each, approve or veto, with the ground and evidence; for a veto you may

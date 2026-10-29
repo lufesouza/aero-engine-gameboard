@@ -71,8 +71,10 @@ def engine():
     for f in ("play.py", "run_game.py"):
         shutil.copy(os.path.join(SRC, f), os.path.join(e, f))
     open(os.path.join(e, "requirements.txt"), "w").write(
-        "# The engine was played and tested with these versions; others work, but a different numpy can print a few\n"
-        "# +/-0.00 signs or last digits differently (play.py selftest reports it).\nnumpy==2.4.6\npandas>=3.0,<3.2\n")
+        "# The original game ran on Python 3.11 with numpy 2.4.6 and pandas 3.0. Other versions work, but a different numpy\n"
+        "# can print a value of exactly zero as -0.00 or +0.00 differently (play.py env and play.py selftest report it).\n"
+        "numpy==2.4.6; python_version >= \"3.11\"\nnumpy>=1.24; python_version < \"3.11\"\n"
+        "pandas>=3.0,<3.2; python_version >= \"3.11\"\npandas>=1.5; python_version < \"3.11\"\n")
 
 
 def reference():

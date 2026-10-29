@@ -113,5 +113,27 @@ ts = [threading.Thread(target=P.complete, args=([{"role": "system", "content": "
 [t.start() for t in ts]
 [t.join() for t in ts]
 ok(P.tools_ok, "the shared tools flag is still on after 8 concurrent tool-budget fallbacks")
+# 6. third-round cases: drafts before a bare final answer, a lone </think>, company-folder forms, basenames
+ok(RG.extract_json('Draft:\n```json\n{"a": 1}\n```\nFinal answer:\n{"a": 2}') == {"a": 2}, "a bare final answer after a fenced draft wins")
+ok(RG.extract_json('reasoning {"a": 1} ... </think>\n\n{"a": 2}') == {"a": 2}, "reasoning before a lone </think> is dropped")
+sch = {"type": "object", "properties": {"q": {"type": "string"}}, "required": ["q"]}
+ok(RG.extract_json('{"q": "final"} and a note {"x": 1}', sch) == {"q": "final"}, "the last object that matches the format wins")
+tmp = tempfile.mkdtemp()
+RG.RUNS = tmp
+os.makedirs(os.path.join(tmp, "g", "players", "boeing", "exco"))
+open(os.path.join(tmp, "g", "players", "boeing", "round1.md"), "w").write("b")
+F = RG.Files("g", "boeing", 1)
+for p_ in ("companies/boeing", "companies/boeing/", "wargame/profiles/boeing/", "teams.md", "./"):
+    try:
+        out = F.read(p_)
+        ok("profile.md" in out or "teams" in out.lower() or "Your company's files" in out, "company folder form: %r" % p_)
+    except ValueError as e:
+        ok(False, "company folder form: %r (%s)" % (p_, e))
+try:
+    F.read("/tmp/wargame-airbus/dash-2050/round1.md")
+    ok(False, "another company's old run folder is not mapped to the seat's brief")
+except ValueError:
+    ok(True, "another company's old run folder is not mapped to the seat's brief")
+shutil.rmtree(tmp)
 print("ALL UNIT CHECKS PASSED" if not bad else "%d UNIT CHECK(S) FAILED" % len(bad))
 sys.exit(1 if bad else 0)

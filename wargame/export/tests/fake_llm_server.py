@@ -70,6 +70,23 @@ class H(BaseHTTPRequestHandler):
                 assert "error" not in tool_out[0][:20], tool_out[0][:200]
                 assert abs(float(tool_out[1]) - (-4.595)) < 1e-9, tool_out[1]
             ans = RG.Mock(None).answer(1, side, step, sch)
+            if os.environ.get("FAKE_BOEING_LAUNCH") and side == "boeing" and step == "decide":
+                ans["orders"] = dict(ans["orders"], fps="launch_10yr", fps_engine_code=7)
+            if step == "review" and side == os.environ.get("FAKE_REVIEW_VETO"):
+                items = re.search(r"The Board items: ([a-z_0-9, ]+)\.", msgs[1]["content"]).group(1).split(", ")
+                ans["items"] = [{"order_field": f, "value": "v", "decision": "veto", "ground": "test",
+                                 "acceptable_alternatives": []} for f in items]
+            jk = os.environ.get("FAKE_JUNK")
+            if jk and os.path.exists(os.environ.get("FAKE_JUNK_FLAG", "")) and ("Your step: **%s**" % jk.split(":")[0]) in msgs[1]["content"] \
+                    and side == jk.split(":")[1]:
+                msg = {"role": "assistant", "content": "I cannot decide."}
+                out = json.dumps({"choices": [{"message": msg}]}).encode()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(out)))
+                self.end_headers()
+                self.wfile.write(out)
+                return
             if step == "frame" and side not in SEEN["frame"] and not any("does not match the format" in (m.get("content") or "") for m in msgs):
                 SEEN["frame"].add(side)
                 ans = {k: v for k, v in ans.items() if k != "question"}       # malformed on purpose

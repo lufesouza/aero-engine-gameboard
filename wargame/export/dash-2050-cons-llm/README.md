@@ -6,15 +6,16 @@
 |---|---|---|
 | `GAME_SCRIPT.md` | The full script: set-ups, the runner, the operator's and game master's steps, rules, protocol, known inconsistencies | The operator and the game master |
 | `engine/run_game.py` | The automated runner: plays all twenty seats through any OpenAI-compatible API | The operator (set-up 1) |
-| `engine/play.py` | The engine's commands: new, brief, orders-template, check, adjudicate, undo, status, reveal, save, load, selftest | The game master |
+| `engine/play.py` | The engine's commands: new, brief, orders-template, check, adjudicate, undo, status, reveal, save, load, env, selftest | The game master |
 | `kits/COMPANY_<company>.md` | One company's kit: how its chat works, its decision rule, what each seat is told and receives, the nine steps, formats, orders, rules, doctrine and its four full agent definitions | That company only |
 | `companies/<company>/` | That company's source files: behavioural profile, objectives, game doctrine, 2026 analyst-model baseline, executive and Board profiles, role cards, evidence | That company only |
 | `personas_full/`, `personas/` | All twenty agent definitions (full, and condensed cards) | Never a company (each company's four are in its kit); the runner uses them |
 | `RESULTS_AS_PLAYED.md`, `engine/reference/` | The original game: orders, values, statements, every step's notes, the briefs and bulletins (full pack only) | Nobody until the replay ends; the operator for the self-test and set-up 4 |
 
 Two zips: `dash-2050-cons-llm.zip` (everything, for the operator) and `dash-2050-cons-llm-players.zip` (the same
-without the original game's record, safe to give a playing LLM). Each unzips to a folder `dash-2050-cons-llm/`; run
-every command from inside it.
+without the original game's record: for the runner, the GM chat and set-up 3; a company chat gets only its own kit and
+its own `companies/<company>/` folder, never a zip). Each unzips to a folder `dash-2050-cons-llm/`: unzip them into
+separate folders, and run every command from inside one.
 
 ## Quick start
 

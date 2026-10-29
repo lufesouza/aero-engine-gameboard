@@ -4,7 +4,10 @@
    company's orders and value each round, and all 24 briefs and bulletins;
 3. the runner's round logic matches the original round script on scripted answers (test_runner_vs_js.py);
 4. the runner's API path works against a fake OpenAI-compatible server (tools, JSON in prose, a format retry);
-5. the players' zip has no spoilers and refuses the self-test and the replay.
+5. the players' zip has no spoilers and refuses the self-test and the replay;
+6. an API error stops a round before adjudicating, and the same command resumes it;
+7. the tool-budget fallback works under Anthropic's rule on tool history;
+8. a resumed round re-asks a Board review that had failed closed (and never reads back a placeholder review).
 
   python3 test_pack.py
 """
@@ -94,6 +97,31 @@ def main():
         anth = c3 == 0 and "round 1 2030 adjudicated" in o3
         print("7 tool-budget fallback under Anthropic's tool-history rule:", anth)
         ok &= anth
+        # 8: resume never reads back a placeholder Board review. Run 1: Boeing launches the fps, its Board review is
+        # malformed (fail closed) and Airbus's frame hits an API error, so the round stops. Run 2: the Board vetoes;
+        # the fps must revert to hold (reading the placeholder back would let it through).
+        junk, fail = os.path.join(tmp, "junk.flag"), os.path.join(tmp, "fail2.flag")
+        open(junk, "w").close()
+        open(fail, "w").close()
+        e8 = dict(os.environ, FAKE_BOEING_LAUNCH="1", FAKE_REVIEW_VETO="boeing", FAKE_JUNK="review:boeing", FAKE_JUNK_FLAG=junk,
+                  FAKE_FAIL="frame:airbus", FAKE_FAIL_FLAG=fail)
+        srv = subprocess.Popen([sys.executable, os.path.join(HERE, "fake_llm_server.py"), str(port), eng], stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL, env=e8)
+        time.sleep(1.5)
+        cmd = [sys.executable, "engine/run_game.py", "--game", "resumetest", "--base-url", "http://127.0.0.1:%d/v1" % port,
+               "--model", "fake", "--rounds", "1", "--companies", "boeing,airbus", "--retries", "0", "--json-retries", "1",
+               "--parallel", "1"]                       # Boeing finishes (with the failed review) before Airbus fails
+        c1, o1 = run(cmd, pack, env=env)
+        os.remove(junk)
+        os.remove(fail)
+        c2, o2 = run(cmd, pack, env=env)
+        srv.terminate()
+        rec = os.path.join(eng, "runs", "resumetest", "record_r1.json")
+        fps = json.load(open(rec, encoding="utf-8"))["orders"]["boeing"]["fps"] if os.path.exists(rec) else None
+        reviewed = "board_review" in o1 and "no Board review" in o1          # run 1 reached the review and failed it closed
+        good = c1 != 0 and c2 == 0 and fps == "hold" and reviewed
+        print("8 resume re-asks a failed Board review (fps vetoed -> hold):", good, "| fps =", fps)
+        ok &= good
     # 3
     code, out = run([sys.executable, os.path.join(HERE, "test_runner_units.py")], HERE)
     print("3a runner unit checks (isolation, parsing, concurrency):", code == 0, "|", out.strip().splitlines()[-1])

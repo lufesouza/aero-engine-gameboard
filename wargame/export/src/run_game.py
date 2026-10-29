@@ -206,10 +206,13 @@ def _objects(t):
     return out
 
 
-def extract_json(text):
-    """The answer in a reply: the last fenced JSON block, else the last top-level JSON object; reasoning in
-    <think>...</think> is ignored."""
-    t = re.sub(r"<think>.*?</think>", "", text_of(text), flags=re.S).strip()
+def extract_json(text, schema=None):
+    """The answer in a reply: reasoning up to the last </think> is dropped; of the JSON objects left (fenced or bare),
+    the last one that matches the step's format, else the last one."""
+    t = text_of(text)
+    if "</think>" in t:
+        t = t.rsplit("</think>", 1)[1]
+    t = re.sub(r"<think>.*?(</think>|$)", "", t, flags=re.S).strip()
     if not t:
         return None
     try:
@@ -218,12 +221,11 @@ def extract_json(text):
             return x
     except ValueError:
         pass
-    fences = re.findall(r"```(?:json)?\s*\n?(.*?)```", t, re.S)
-    for f in reversed(fences):
-        objs = _objects(f)
-        if objs:
-            return objs[-1]
     objs = _objects(t)
+    if schema is not None:
+        good = [o for o in objs if not check(schema, clean(schema, o))]
+        if good:
+            return good[-1]
     return objs[-1] if objs else None
 
 
@@ -298,13 +300,15 @@ class Files:
 
     def _resolve(self, path):
         p = (path or "").strip().replace("\\", "/")
-        p = re.sub(r"^/?tmp/wargame-[a-z_]+/[^/]+/", "", p)         # an old run folder some texts still name
-        for pre in ("companies/%s/" % self.side, "wargame/profiles/%s/" % self.side):
-            if p.startswith(pre):
+        p = re.sub(r"^/?tmp/wargame-%s/[^/]+/" % re.escape(self.side), "", p)    # an old run folder some texts still name
+        roots = [(self.run, "run"), (self.comp, "company")]
+        for pre in ("companies/%s" % self.side, "wargame/profiles/%s" % self.side):
+            if p == pre or p.startswith(pre + "/"):
                 p = p[len(pre):]
+                roots = [(self.comp, "company")]       # the company's folder, named as such
         p = p.lstrip("/")
         hits = []
-        for root, kind in ((self.run, "run"), (self.comp, "company")):
+        for root, kind in roots:
             full = os.path.realpath(os.path.join(root, p))
             if full != root and not full.startswith(root + os.sep):
                 continue
@@ -315,8 +319,15 @@ class Files:
                 continue
             if os.path.exists(full):
                 hits.append((full, kind, rel))
+        if not hits and p and "/" not in p:           # a bare file name the personas use, e.g. teams.md
+            found = []
+            for dp, dn, fn in os.walk(self.comp):
+                found += [os.path.join(dp, f) for f in fn if f == p]
+            if len(found) == 1:
+                full = os.path.realpath(found[0])
+                hits.append((full, "company", os.path.relpath(full, self.comp).replace(os.sep, "/")))
         if not hits:
-            raise ValueError("no such file in your folders: %s" % path)
+            raise ValueError("no such file in your folders: %s (list them with read_file(''))" % path)
         return hits[0]
 
     def listing(self, full, kind, rel):
@@ -326,7 +337,7 @@ class Files:
         return [x + ("/" if os.path.isdir(os.path.join(full, x)) else "") for x in items]
 
     def read(self, path, offset=0):
-        if (path or "").strip() in ("", ".", "/"):
+        if (path or "").strip() in ("", ".", "/", "./"):
             run = self.listing(self.run, "run", ".")
             comp = self.listing(self.comp, "company", ".")
             return "Your run folder:\n" + "\n".join(run) + "\n\nYour company's files:\n" + "\n".join(comp)
@@ -348,6 +359,16 @@ class Files:
 
 
 # ───────────────────────────── providers ─────────────────────────────
+def _nap(seconds):
+    """Sleep, waking early when the game is stopped."""
+    end = time.time() + seconds
+    while time.time() < end and not STOP.is_set():
+        time.sleep(min(1.0, end - time.time()))
+
+
+TOOLS_REFUSED = ("tools", "function", "tool choice", "tool_choice", "tool-call", "tool call")
+
+
 class ApiError(RuntimeError):
     """The API could not be used (after retries): stop the game before adjudicating, so it can be resumed."""
 
@@ -380,11 +401,11 @@ class OpenAICompatible:
                     out = json.loads(raw)
                 except ValueError:
                     last = "a reply that is not JSON: %r" % raw[:200]
-                    time.sleep(wait)
+                    _nap(wait)
                     continue
                 if not isinstance(out, dict) or not out.get("choices"):
                     last = "a reply without choices: %s" % raw[:300]
-                    time.sleep(wait)
+                    _nap(wait)
                     continue
                 return out
             except urllib.error.HTTPError as e:
@@ -392,16 +413,16 @@ class OpenAICompatible:
                 if e.code in (408, 409, 429, 500, 502, 503, 504, 529):
                     ra = e.headers.get("Retry-After") if e.headers else None
                     try:
-                        wait = max(wait, float(ra)) if ra else wait
+                        wait = min(120.0, max(wait, float(ra))) if ra else wait
                     except ValueError:
                         pass
                     last = "HTTP %d: %s" % (e.code, msg)
-                    time.sleep(wait)
+                    _nap(wait)
                     continue
                 raise ApiError("HTTP %d from the API: %s" % (e.code, msg))
             except (urllib.error.URLError, OSError, http.client.HTTPException) as e:
                 last = "cannot reach the API: %s" % e
-                time.sleep(wait)
+                _nap(wait)
         raise ApiError("the API failed after %d tries: %s" % (self.a.retries + 1, last))
 
     def _body(self, model, msgs, use_tools, want_json):
@@ -436,10 +457,13 @@ class OpenAICompatible:
     @staticmethod
     def _trim(msgs, keep):
         """Replace all but the last `keep` tool results by a stub, to bound the context."""
-        idx = [i for i, m in enumerate(msgs) if m.get("role") == "tool"]
+        idx = [i for i, m in enumerate(msgs) if m.get("role") == "tool" or
+               (m.get("role") == "user" and str(m.get("content", "")).startswith("[tool result]"))]
         for i in idx[:-keep] if keep else idx:
-            if not str(msgs[i].get("content", "")).startswith("[earlier tool output removed"):
-                msgs[i] = dict(msgs[i], content="[earlier tool output removed to save context; read it again if needed]")
+            c = str(msgs[i].get("content", ""))
+            if "[earlier tool output removed" not in c:
+                stub = "[earlier tool output removed to save context; read it again if needed]"
+                msgs[i] = dict(msgs[i], content=("[tool result]\n" + stub) if c.startswith("[tool result]") else stub)
         return msgs
 
     def complete(self, messages, seat, files, want_json):
@@ -447,17 +471,22 @@ class OpenAICompatible:
         model = self.models.get(seat, self.a.model)
         msgs = list(messages)
         use_tools = self.tools_ok
-        trimmed = False
-        for rounds in range(self.a.max_tool_calls + 2):
-            if rounds > self.a.max_tool_calls and use_tools:     # tool budget spent: answer now, without tools
+        tool_rounds, fallbacks, trimmed, budget_note = 0, 0, False, False
+        while True:
+            if use_tools and tool_rounds >= self.a.max_tool_calls:   # tool budget spent: answer now, without tools
                 use_tools = False
+            if not use_tools and tool_rounds and not budget_note:
+                budget_note = True
                 msgs = self._flatten(msgs) + [{"role": "user", "content": "Stop using tools now and return only the JSON object."}]
             body = self._body(model, msgs if use_tools else self._flatten(msgs), use_tools, want_json)
             try:
                 r = self._post(body)
             except ApiError as e:
                 txt = str(e).lower()
-                if use_tools and "http 400" in txt and ("tools" in txt or "function" in txt) and "context" not in txt:
+                fallbacks += 1
+                if fallbacks > 4:
+                    raise
+                if use_tools and "http 400" in txt and any(w in txt for w in TOOLS_REFUSED) and "context" not in txt:
                     with self.lock:
                         if self.tools_ok:
                             self.tools_ok = False
@@ -477,9 +506,10 @@ class OpenAICompatible:
             calls = m.get("tool_calls") or []
             if not calls or not use_tools:
                 content = text_of(m.get("content"))
-                return content, msgs + [{"role": "assistant", "content": content}]
+                return content, msgs + [{"role": "assistant", "content": content or "(no answer)"}]
+            tool_rounds += 1
             for k, c in enumerate(calls):
-                c.setdefault("id", "call_%d_%d" % (rounds, k))
+                c.setdefault("id", "call_%d_%d" % (tool_rounds, k))
                 c.setdefault("type", "function")
             msgs.append({"role": "assistant", "content": text_of(m.get("content")), "tool_calls": calls})
             for c in calls:
@@ -499,7 +529,6 @@ class OpenAICompatible:
                     out = "error: %s" % e
                 msgs.append({"role": "tool", "tool_call_id": c["id"], "content": out})
             msgs = self._trim(msgs, KEEP_TOOL_RESULTS)
-        raise ApiError("no answer after the tool budget")
 
 
 class Replay:
@@ -555,6 +584,8 @@ class Company:
         self.defaults = {k: v[0] for k, v in ORDER_FIELDS[side].items()}
         self.defaults.update(plans.get(side, {}))
         self.files = Files(game, side, n)
+        self.fresh = False                       # becomes True at the first step asked (not read back) this run
+        self.stats = {"calls": 0, "api_errors": 0}
 
     def log(self, msg):
         say("  r%d %-14s %s" % (self.n, self.side, msg))
@@ -629,13 +660,19 @@ class Company:
         return read(os.path.join(PACK, "personas_full", agent + ".md"))
 
     def call(self, key, seat, step, task, schema, note_key):
-        """One seat-step, with resume: a saved note is read back instead of calling again."""
+        """One seat-step. On resume a saved note is read back, but only along an unbroken run of saved steps: once a
+        step has to be asked again, every later step of this company's round is asked again too (its inputs may have
+        changed)."""
         saved = os.path.join(self.notes, "r%d_%s.json" % (self.n, note_key))
-        if os.path.exists(saved):
+        if not self.fresh and os.path.exists(saved):
             try:
-                return json.load(open(saved, encoding="utf-8"))
+                out = json.load(open(saved, encoding="utf-8"))
+                if not os.path.exists(saved[:-5] + ".md"):
+                    self.save(note_key, out)
+                return out
             except ValueError:
                 self.log("%s: the saved note is unreadable; asking again" % note_key)
+        self.fresh = True
         if STOP.is_set():
             raise ApiError("stopped")
         if isinstance(self.llm, Replay):
@@ -651,19 +688,21 @@ class Company:
             try:
                 for attempt in range(self.a.json_retries + 1):
                     text, transcript = self.llm.complete(msgs, seat, self.files, True)
-                    cand = extract_json(text)
+                    cand = extract_json(text, schema)
                     cand = clean(schema, cand) if cand is not None else None
                     errs = check(schema, cand) if cand is not None else ["the reply holds no JSON object"]
                     self._log_call(note_key, attempt, transcript, text, errs)
+                    self.stats["calls"] += 1
                     if not errs:
                         out = cand
                         break
                     msgs = transcript + [{"role": "user", "content": "Your reply does not match the format: " + "; ".join(errs[:12]) +
                                           ". Reply again with only the corrected JSON object."}]
             except ApiError as e:
-                if self.a.on_api_error == "stop":
+                if self.a.on_api_error == "stop" or str(e) == "stopped" or STOP.is_set():
                     STOP.set()
                     raise
+                self.stats["api_errors"] += 1
                 self.log("%s: API error, treated as a missing step: %s" % (note_key, e))
                 out = None
             if out is None:
@@ -673,14 +712,26 @@ class Company:
         self.log("%-16s %s" % (note_key, "done" if out is not None else "MISSING"))
         return out
 
-    def save(self, note_key, out):
-        """The step's note, as JSON and as markdown (as the original's exco.py save wrote it); written atomically."""
-        for name, txt in (("r%d_%s.json" % (self.n, note_key), json.dumps(out, indent=1, ensure_ascii=False)),
-                          ("r%d_%s.md" % (self.n, note_key), "# Round %d: %s\n\n%s\n" % (self.n, NOTE_TITLES[note_key], js(out)))):
+    def save(self, note_key, out, md_only=False):
+        """The step's note as markdown (what the original's exco.py save wrote, and what later prompts quote) and as
+        JSON (read back on resume; not for the placeholder reviews, which are rebuilt). Written atomically, .md first."""
+        files = [("r%d_%s.md" % (self.n, note_key), "# Round %d: %s\n\n%s\n" % (self.n, NOTE_TITLES[note_key], js(out)))]
+        if not md_only:
+            files.append(("r%d_%s.json" % (self.n, note_key), json.dumps(out, indent=1, ensure_ascii=False)))
+        for name, txt in files:
             tmp = os.path.join(self.notes, name + ".tmp")
             with open(tmp, "w", encoding="utf-8") as f:
                 f.write(txt)
             os.replace(tmp, os.path.join(self.notes, name))
+
+    def discard_round_notes(self):
+        """A company whose round failed (no frame or no decision) holds, and the original kept no notes of it: move
+        this round's notes out of exco/ (to exco_failed/, for the operator)."""
+        dst = os.path.join(self.dir, "exco_failed")
+        os.makedirs(dst, exist_ok=True)
+        for f in os.listdir(self.notes):
+            if f.startswith("r%d_" % self.n):
+                os.replace(os.path.join(self.notes, f), os.path.join(dst, f))
 
     def _log_call(self, note_key, attempt, transcript, text, errs):
         p = os.path.join(RUNS, self.game, "calls", "r%d_%s_%s_%d.json" % (self.n, self.side, note_key, attempt))
@@ -715,6 +766,7 @@ class Company:
                        "testing, the red lines in force, what you ask of your CFO and of your operating head, and your initial "
                        "lean. Your colleagues see only what you return here.", S["frame"], "frame")
         if fr is None:
+            self.discard_round_notes()
             return None
         # 2 Test (independently, in parallel)
         def one_test(seat):
@@ -740,6 +792,7 @@ class Company:
                         "must be allowed by the rule.%s" % (js(fr), gg, nm["cfo"], js(cfo), nm["ops"], js(ops), br),
                         S["decide"][s], "decision")
         if dec is None:
+            self.discard_round_notes()
             return None
         # 4 Veto check (independently, in parallel)
         memos = {"cfo": cfo, "ops": ops}
@@ -777,7 +830,7 @@ class Company:
                 "binding_vetoes": binding, "red_line_flags": flags, "revision": revision, "board_items": items}
         if not items:
             rv = {"items": [], "recommendations": [], "overall": "approve", "note": "No Board items: every order is the default."}
-            self.save("board_review", rv)
+            self.save("board_review", rv, md_only=True)
         else:
             pkg = {"frame": fr, "cfo_memo": cfo, "ops_memo": ops, "decision": dec, "veto_checks": vc, "revision": revision}
             rv = self.call("board_review", "board", "review",
@@ -789,7 +842,7 @@ class Company:
                 self.log("no Board review: its items revert to the default: %s" % ", ".join(items))
                 orders = self.revert(final["orders"], items)
                 failed = {"failed": True, "items": [], "recommendations": [], "overall": "veto", "note": "No review returned: failed closed."}
-                self.save("board_review", failed)
+                self.save("board_review", failed, md_only=True)
                 exco.update({"board_review": failed, "board_vetoed": items, "board_revision": None,
                              "board_confirm": None, "board_reverted": items})
                 return dict(final, orders=orders, exco=exco)
@@ -905,7 +958,7 @@ def main():
         plans = standing_plans(a.game, n)
         print("round %d (%d): playing %s" % (n, YEARS[n], ", ".join(playing)), flush=True)
         comps = {s: Company(a.game, n, s, llm, a, plans) for s in playing}
-        ex = cf.ThreadPoolExecutor(max(1, a.parallel))
+        ex = cf.ThreadPoolExecutor(max(1, a.parallel), thread_name_prefix="company")
         futs = {s: ex.submit(comps[s].play) for s in playing}
         results, failed = {}, {}
         try:
@@ -920,8 +973,20 @@ def main():
         except KeyboardInterrupt:
             STOP.set()
             ex.shutdown(wait=False, cancel_futures=True)
-            sys.exit("\nstopped. Finished steps are saved: run the same command to resume.")
+            say("\nstopping: finished steps are saved; run the same command to resume (Ctrl-C again to quit at once).")
+            try:
+                for f in futs.values():
+                    try:
+                        f.result()
+                    except Exception:
+                        pass
+            except KeyboardInterrupt:
+                os._exit(130)
+            sys.exit(130)
         ex.shutdown(wait=True)
+        live = [c for c in comps.values() if c.stats["calls"] or c.stats["api_errors"]]
+        if live and all(c.stats["calls"] == 0 for c in live) and not failed:
+            failed = {c.side: "every request failed (%d API errors)" % c.stats["api_errors"] for c in live}
         if failed:
             for s, e in failed.items():
                 say("  r%d %-14s stopped: %s" % (n, s, e))
@@ -940,7 +1005,7 @@ def main():
             json.dump(orders, f, indent=1, ensure_ascii=False)
         os.replace(path + ".tmp", path)
         out = engine(a.game, "adjudicate", a.game, str(n), path, quiet=True)
-        print("\n".join(l for l in out.splitlines() if l.startswith(("round", "  -", "  !", "note"))))
+        print("\n".join(l for l in out.splitlines() if l.startswith(("round", "  -", "  !", "note")) or "ΔPV" in l))
         if n < 4:
             engine(a.game, "brief", a.game, str(n + 1), quiet=True)
     if os.path.exists(os.path.join(gdir, "record_r%d.json" % hi)):

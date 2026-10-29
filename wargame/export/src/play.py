@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Game engine for the Boeing vs Airbus war game "dash-2050-cons" (portable copy).
 
-Needs Python 3.9+ with numpy and pandas (tested: Python 3.11-3.13, numpy 2.4.6, pandas 3.0-3.1; see requirements.txt).
+Needs Python 3.9+ with numpy and pandas (the original ran on Python 3.11, numpy 2.4.6, pandas 3.0; see requirements.txt
+and `play.py env`).
 plotly is optional (a stub is used if it is missing). No network. Every game lives in runs/<game>/ next to this file;
 each company's own copy of what it may see is in runs/<game>/players/<company>/.
 Companies: boeing, airbus, cfm, pratt_whitney, rolls_royce. Rounds: 1 = 2030, 2 = 2035, 3 = 2045, 4 = 2050.
@@ -12,7 +13,8 @@ Companies: boeing, airbus, cfm, pratt_whitney, rolls_royce. Rounds: 1 = 2030, 2 
                                                  an orders file to fill in (GAME MASTER ONLY: its legal values can
                                                  reveal a covert order)
   python3 play.py check <game> <round> <orders.json> [more.json ...]
-                                                 validate orders without adjudicating; shows every adjustment
+                                                 validate orders without adjudicating; shows every adjustment the
+                                                 engine would make (each company's own, and the engine-code pair rule)
   python3 play.py adjudicate <game> <round> <orders.json> [more.json ...]
                                                  validate and adjudicate (one file for all five companies, or one
                                                  file per company); prints the public events and every value
@@ -23,6 +25,7 @@ Companies: boeing, airbus, cfm, pratt_whitney, rolls_royce. Rounds: 1 = 2030, 2 
   python3 play.py save <game>                    zip the game to <game>.zip in the current folder (keep it safe
                                                  between rounds: chat sandboxes are reset)
   python3 play.py load <game.zip>                restore a saved game
+  python3 play.py env                            the Python, numpy and pandas in use, against the original's
   python3 play.py selftest                       replays the original game and checks the engine (needs reference/,
                                                  which is in the full pack only); prints PASS or FAIL per round and
                                                  nothing about the original game
@@ -243,11 +246,18 @@ def _engine_check(game, n, x):
 import json, rules as R
 n = int(sys.argv[1]); x = json.loads(sys.argv[2])
 s = json.load(open(os.path.join('..', 'runs', os.environ['DASH_RUN'], 'state_r%d.json' % (n - 1)), encoding='utf-8'))
+import copy
+cleaned = {}
 for side in R.ORDER_FIELDS:
     o = (x.get(side) or {}).get('orders', {})
     clean, probs = R.validate(s, side, R.ROUNDS[n - 1], o)
+    cleaned[side] = clean
     for p in probs:
         print('  ! %s: %s' % (side, p))
+_, log = R.adjudicate(copy.deepcopy(s), R.ROUNDS[n - 1], cleaned)
+for e in log:
+    if 'not allowed together' in e:
+        print('  ! %s' % e)
 """
     only = {side: {"orders": (b or {}).get("orders", {})} for side, b in x.items()}
     return _py(game, code, [str(n), json.dumps(only)], quiet=True)
@@ -371,6 +381,19 @@ def load(path):
     status(game)
 
 
+def env():
+    """The Python, numpy and pandas in use, against the versions the original game ran on."""
+    code = r"""
+import platform, numpy, pandas
+print('Python %s, numpy %s, pandas %s' % (platform.python_version(), numpy.__version__, pandas.__version__))
+same = numpy.__version__.startswith('2.4.')
+print('numpy matches the original (2.4.x): %s' % ('yes' if same else 'no: a value of exactly zero can print as -0.00 or +0.00 '
+      'differently from the original, which can flip a met/not met that turns on it (GAME_SCRIPT.md section 9)'))
+"""
+    r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, encoding="utf-8")
+    print((r.stdout or r.stderr).rstrip())
+
+
 def _same(a, b):
     """Equal, or equal once every number is masked (floating-point rounding: the sign of a ±0.00 or a last digit,
     and a met/not met that turns on it)."""
@@ -455,6 +478,8 @@ def main(a):
         load(args[0])
     elif cmd == "selftest":
         selftest()
+    elif cmd == "env":
+        env()
     else:
         print(__doc__)
         sys.exit(2)
