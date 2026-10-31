@@ -185,6 +185,32 @@ PRE = {n: sum(DEM[n][y] for y in range(2026, 2038)) for n in NS}
 GAME_PRE = sum(GD[y] for y in range(2026, 2038))
 TWICE = {n: sum(GREP[y] for y in range(2026, 2038)) - sum(DEM[n][y] / 2.0 for y in range(2026, 2038)) for n in NS}
 FIRM_LEFT = D["firm_left_2038"]["page_from_2026"]
+# launch year: the margin needed for each date by programme length (7 and 10 years: the game's bills; 8 and 9: interpolated)
+MBY = {e: [an(case(n, e))["margin_by_years"] for n in NS] for e in EIS}
+LAUNCH = {}                                  # launch year -> {eis: (years, [margin by N])}
+for e in EIS:
+    for yrs in (10, 9, 8, 7):
+        LAUNCH.setdefault(e - yrs, {})[e] = (yrs, [m[str(yrs)] for m in MBY[e]])
+STEP = [m[str(k - 1)] - m[str(k)] for e in EIS for m in MBY[e] for k in (10, 9, 8)]      # one year later, same date
+TIE = [max(abs(a - b) for a, b in zip(LAUNCH[y][2039][1], LAUNCH[y][2041][1])) for y in (2031, 2032)]
+assert max(TIE) < 0.006, TIE
+assert all(a < b for a, b in zip(LAUNCH[2034][2041][1], LAUNCH[2034][2044][1]))
+assert all(case(n, 2039)["margin_needed"] < x for n in NS for y in LAUNCH for e, (k, v) in LAUNCH[y].items() if (y, e) != (2029, 2039)
+           for x in [v[NS.index(n)]])
+MATCH = {e: {k: [case(n, e)["pref_to_match"][k] for n in NS] for k in ("10", "9")} for e in (2041, 2044)}
+SW_LEAD = [sorted(SWX[e][i] for e in EIS)[-1] - sorted(SWX[e][i] for e in EIS)[-2] for i in range(len(NS))]
+MOVE = {e: max(case(n, e)["margin_needed"] for n in NS) - min(case(n, e)["margin_needed"] for n in NS) for e in EIS}
+MOVE_SW = {e: max(sw(n, e)["margin_needed"] for n in NS) - min(sw(n, e)["margin_needed"] for n in NS) for e in EIS}
+assert LEAST_BRIEF["1"] == 2039
+PREF_ORDER = [max(EIS, key=lambda e: PREFMAX[e][i]) for i in range(len(NS))]
+assert all(x == 2044 for x in PREF_ORDER)
+ALONE_MAX30 = min(min(case(n, e)["margin_needed"] for n in NS) for e in EIS)
+assert ALONE_MAX30 > 0.30
+
+
+def pts(v):
+    """A margin difference in percentage points."""
+    return f"{K.rnd(v * 100, 1):.1f}"
 
 
 def nw(x):
@@ -351,11 +377,16 @@ def ramp_txt(c):
     return f"{k:.1f}×<br><span class=\"muted small\">90/mo by year {t}</span>"
 
 
+def floor_pc(v):
+    """A maximum, rounded down: one decimal under 10%, whole points above."""
+    import math
+    return f"{math.floor(v * 1000) / 10:.1f}%" if v < 0.1 else f"{math.floor(v * 100):.0f}%"
+
+
 def partner_txt(x):
     if not x["passes_free"]:
-        return f'{pc(x["margin_free"])}<br><span class="muted small">fails even free</span>'
-    v = x["max_profit_share"]
-    return f'passes<br><span class="muted small">if it takes ≤{pc(v, 1 if v < 0.1 else 0)} of fps profit</span>'
+        return f'{pc(x["margin_free"])}<br><span class="muted small">margin needed; fails at the current margin even free</span>'
+    return f'passes<br><span class="muted small">if it takes back ≤{floor_pc(x["max_profit_share"])} of fps profit</span>'
 
 
 def levers_table(e):
@@ -370,19 +401,41 @@ def levers_table(e):
         row("<b>Ramp-up speed</b> (alone)", f"1×<br><span class=\"muted small\">90/mo by year {GAME_TO90}</span>", [ramp_txt(c) for c in cs]),
         row("<b>Customer preference</b> (alone): best it can do", "—",
             [f'{bp(c["pref_sweep"]["100.0"]["expected"])}<br><span class="muted small">never passes</span>' for c in cs]),
-        row("A partner pays 25% of the bill and takes no profit: margin needed", pc(M0, 2), [partner_txt(an(c)["partner"]["0.25"]) for c in cs]),
-        row("A partner pays 50% of the bill and takes no profit: margin needed", pc(M0, 2), [partner_txt(an(c)["partner"]["0.5"]) for c in cs]),
+        row("A partner pays 25% of the bill: the most fps profit it can take back (or, if it fails even free, the margin needed)", pc(M0, 2),
+            [partner_txt(an(c)["partner"]["0.25"]) for c in cs]),
+        row("A partner pays 50% of the bill: the most fps profit it can take back (or the margin needed)", pc(M0, 2),
+            [partner_txt(an(c)["partner"]["0.5"]) for c in cs]),
         row("A partner pays 25% and takes 25% of fps profit: margin needed", pc(M0, 2), [pc(an(c)["partner"]["0.25"]["margin_fair"]) for c in cs]),
         row("1.5× ramp (90/mo by year %d): margin needed" % case("0", e)["ramp_profiles"]["x1.5"]["to_90"], pc(M0, 2),
             [pc(c["ramp15"]["margin_needed"]) for c in cs]),
-        row("1.5× ramp and a partner paying 25%, taking no profit", pc(M0, 2), [partner_txt(c["package"]) for c in cs]),
+        row("1.5× ramp and a partner paying 25%: the most fps profit it can take back (or the margin needed)", pc(M0, 2), [partner_txt(c["package"]) for c in cs]),
         row("Customers preferring the fps by 10 more points: margin needed", pc(M0, 2),
             [pc(c["pref10_margin"]) + ('' if c["pref10_site"] == "renton" else '<br><span class="muted small">at new sites</span>') for c in cs]),
     ]
     if e == 2039:
-        rows += [row("A 9-year programme from 2030 (bill $%.1fB): margin needed" % BILL9, pc(M0, 2), [pc(c["margin_bill9"]) for c in cs]),
+        rows += [row("A 9-year programme from 2030 (bill $%.1fB, interpolated): margin needed" % BILL9, pc(M0, 2), [pc(c["margin_bill9"]) for c in cs]),
                  row("The game's 7-year fps launched in 2032 (bill $%.1fB): margin needed" % BILL7, pc(M0, 2), [pc(c["margin_bill7"]) for c in cs])]
     return '<div class="lev">' + K.table(head, rows, num_cols=tuple(range(1, 2 + len(NS)))) + "</div>"
+
+
+def launch_table():
+    head = ["Launch in", "In service 2039", "In service 2041", "In service 2044"]
+    rows = []
+    for y in sorted(LAUNCH):
+        r = [str(y)]
+        lows = {e: min(v) for e, (k, v) in LAUNCH[y].items()}
+        for e in EIS:
+            if e not in LAUNCH[y]:
+                r.append('<span class="muted">—</span>')
+                continue
+            k, v = LAUNCH[y][e]
+            bill = {10: B0, 9: BILL9, 8: BASE["bill9"] + (BILL7 - BILL9) / 2, 7: BILL7}[k]
+            cell = f'{rng(v, pc)}<br><span class="muted small">{k}-year programme, ${bill:.1f}B{"" if k in (7, 10) else " (interpolated)"}</span>'
+            if len(lows) > 1 and lows[e] == min(lows.values()):
+                cell = f"<b>{cell}</b>"
+            r.append(cell)
+        rows.append(r)
+    return K.table(head, rows, num_cols=(1, 2, 3))
 
 
 LINE_LAB = {"nb_profit_vs_sq": "Boeing narrowbody profit (fps and 737) on the dashboard's own market: 2,000 a year, every sale built",
@@ -415,7 +468,7 @@ def sens_table():
                 f'<br><span class="muted small">bill {rng(bl, lambda v: f"${K.rnd(v, 1):.1f}B")}</span>')
     head = ["World (range over the five retirement timings)"] + [f"In service {e}" for e in EIS]
     rows = [["<b>Main case</b>: your demand from 2038, the game's supply, the brief's counting"] + [cell([case(n, e) for n in NS]) for e in EIS],
-            ["Do Nothing counted over the same years as each fps"] + [cell([sw(n, e) for n in NS]) for e in EIS],
+            ["Do Nothing counted over the same years as each fps (2026 to entry into service + 19)"] + [cell([sw(n, e) for n in NS]) for e in EIS],
             ["Your page's own demand from 2026 (no splice)"] + [cell([sens("page_from_2026", n, e) for n in NS]) for e in EIS],
             ["Your demand's tail after 2055 replaced by the game's curve"] + [cell([sens("tail", n, e) for n in NS]) for e in EIS],
             ["Tianjin building 20 a month on top of Airbus's plan, 2035-2050"] + [cell([sens("tianjin", n, e) for n in NS]) for e in EIS],
@@ -441,35 +494,40 @@ QUOTES = [
      "development cost, that would be the bill lever; management did not say so."),
     ("Q3 2026 earnings call, 27 Oct 2026 (Kelly Ortberg, Jesus Malave)",
      "“Nothing has changed on our outlook on new airplane. We've got a team working in our product development right now, trying "
-     "to define … what that looks like and what the market timing is.” Investment is “contemplated in our cash outlook”, mostly "
+     "to define what that … looks like and what the market timing is.” Investment is “contemplated in our cash outlook”, mostly "
      "“R&D tech development”; after the 777X, “a shift of resources and spending from those development programs to new programs.”",
      "No launch is planned yet. A 10-year programme launched in 2031 or 2034 enters service in 2041 or 2044; the game's 7-year fps "
      "launched in 2032 enters service in 2039."),
     ("Company conference, 17 Mar 2026 (Jesus Malave)",
      "“There will be a day where we have to enter into a new program. That day is not today, and it's not any time near.” Three "
      "conditions: the market, the technology and The Boeing Company must be ready.",
-     "2039 at about the 10-year bill needs a launch by 2029-2030, earlier than this stance suggests."),
+     "Our reading: each year of waiting adds about a point to the margin a launch needs, whatever the date."),
     ("Q3 2026 call and May 2026 conference (Ortberg, Malave)",
-     "Rate 52 “in the back half of 2027”; deliveries in 2029 give “runway to deliver at a rate 63”; “we'd like to get some day "
-     "to 63 a month.”",
-     "The ramp lever: a production system that can add the fps quickly. In the game the 737 stays at 57 a month from 2030 (Boeing did "
-     "not order the rate increase)."),
+     "Rate 52 “in the back half of 2027”, and “it's more important that we do this ramp right than what particular month we achieve "
+     "a rate break”; deliveries in 2029 give “runway to deliver at a rate 63”; “we'd like to get some day to 63 a month rate.”",
+     "The ramp lever needs a factory that fills the fps line fast (for 2039, 90 a month by year 3 or 4 after entry into service, against "
+     "year 7 on the game's ramp). Management wants more capacity but at a disciplined pace, so these remarks do not support a faster "
+     "ramp. In the game the 737 stays at 57 a month from 2030 (Boeing did not order the rate increase)."),
 ]
 
 
 def tiles():
     def tr(vals, f):
         return nw(rng(vals, f).replace(" to ", "–"))
-    t = [("Which date", "2039 if launched by 2030; otherwise 2041",
-          "2039 needs the smallest margin, price, bill and ramp change in every timing, but only at about the 10-year bill. "
-          "Reached with the game's 7-year fps from 2032, it needs more margin than 2041."),
+    t = [("Which date", "2039, the earliest Boeing can reach",
+          f"At the same bill it needs the smallest margin, price, bill and ramp change in every timing; 2044 the most. "
+          f"Launching later costs about {pts(min(STEP))}-{pts(max(STEP))} points of margin a year, whatever the date."),
          ("fps against Do Nothing", f"{nw(bp(LO_EXP))} to {nw(bp(HI_EXP))}",
           f"Boeing's expected case, all 15 combinations; none passes, all at least {bp(GAP_ALL, 2, False)} short of the Board's +$1B. "
-          f"Launched as they stand, 2044 loses least by up to {bp(SW_SPREAD, 2, False)} when Do Nothing is counted over the same years."),
+          f"Launched as they stand, the dates are within {bp(SW_SPREAD, 2, False)}; counted over the same years, 2044 loses least "
+          f"(by {rng(SW_LEAD, lambda v: bp(v, 2, False))} over the next date)."),
          ("Margin needed (alone)", " · ".join(tr([case(n, e)["margin_needed"] for n in NS], pc) for e in EIS),
           f"For 2039 · 2041 · 2044, against {pc(M0, 2)} today (${UNIT_FPS:.1f}M of profit an aircraft)."),
          ("Bill needed (alone)", " · ".join(tr([case(n, e)["bill_needed"] for n in NS], lambda v: f"${K.rnd(v, 1):.1f}B") for e in EIS),
-          f"For 2039 · 2041 · 2044, against ${B0:.1f}B today. A partner's share counts only if it takes almost none of the profit back.")]
+          f"For 2039 · 2041 · 2044, against ${B0:.1f}B today. A partner paying a quarter works only for 2039, and only if it takes back under "
+          f"{floor_pc(min(x['max_profit_share'] for x in PT[2039]['0.25']))} of the profit; one paying half can take back up to "
+          f"{floor_pc(min(x['max_profit_share'] for x in PT[2039]['0.5']))} (2039), {floor_pc(min(x['max_profit_share'] for x in PT[2041]['0.5']))} (2041) "
+          f"or {floor_pc(min(x['max_profit_share'] for x in PT[2044]['0.5']))} (2044).")]
     return '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{v if "<" in v else esc(v)}</div><div class="d">{esc(d)}</div></div>' for k, v, d in t) + "</div>"
 
 
@@ -479,17 +537,18 @@ def build(out_path):
     m39_p = [case(n, 2039)["pref10_margin"] for n in NS]
     pk44_short = [x["margin_free"] for n, x in zip(NS, PKG[2044]) if not x["passes_free"]]
     answers = [
-        ("Which date is more advantageous for Boeing.",
+        ("Which date is more advantageous for Boeing: 2039.",
          f" None makes the fps pay on your demand: in Boeing's expected case it is worth {bp(LO_EXP)} to {bp(HI_EXP)} against Do Nothing in every "
          f"combination, at least {bp(GAP_ALL, 2, False)} short of the Board's +$1B. Launched as they stand, the dates lose about the same: within "
-         f"{bp(SPREAD, 2, False)} as Boeing's brief counts them, and 2044 loses least in every timing (by up to {bp(SW_SPREAD, 2, False)}) when Do Nothing is "
-         f"counted over the same years as each fps. But a date is only worth aiming for if it can become a launch, and there "
-         f"<strong>2039 needs the least</strong>: a {mrange(2039)} margin against {mrange(2041)} for 2041 and {mrange(2044)} for 2044, or a bill of "
-         f"{brange(2039)} against {brange(2041)} and {brange(2044)}. That holds in all five timings, under both counting conventions and in every "
-         f"sensitivity. The catch is timing: 2039 at about the 10-year bill means launching by 2029-2030 (a 9-year programme still needs only "
-         f"{rng([case(n, 2039)['margin_bill9'] for n in NS], pc)}). Reached with the game's 7-year fps launched in 2032 ($65.0B), 2039 needs "
-         f"{rng([case(n, 2039)['margin_bill7'] for n in NS], pc)}, more than 2041. So: <strong>2039 if Boeing can commit by about 2030; otherwise 2041</strong>. "
-         f"2044 is the hardest to make work."),
+         f"{bp(SPREAD, 2, False)} as Boeing's brief counts them, and counted over the same years 2044 loses least by "
+         f"{rng(SW_LEAD, lambda v: bp(v, 2, False))}. But a date is only worth aiming for if it can become a launch, and there "
+         f"<strong>2039 needs the least</strong>: at the same bill, a {mrange(2039)} margin against {mrange(2041)} for 2041 and {mrange(2044)} for 2044, or a "
+         f"bill of {brange(2039)} against {brange(2041)} and {brange(2044)}, in all five timings, under both countings and in every sensitivity. "
+         f"What really drives it is <strong>when Boeing launches</strong>: each year later costs about {pts(min(STEP))} to {pts(max(STEP))} points of margin, "
+         f"whatever the date. 2039 at the 10-year bill means launching in 2029; launched in 2030 (a 9-year programme) it needs "
+         f"{rng([case(n, 2039)['margin_bill9'] for n in NS], pc)}, and as the game's 7-year fps launched in 2032 {rng([case(n, 2039)['margin_bill7'] for n in NS], pc)}. "
+         f"For a launch in 2031 or 2032, 2039 and 2041 need about the same (within {pts(max(TIE))} points); for 2034, 2041 beats 2044. "
+         f"So: <strong>the earliest date Boeing can commit to, which is 2039 for a launch by about 2032; 2044 is the hardest to make work.</strong>"),
         ("Why the later dates need more.",
          f" The game counts each fps for 20 years from entry into service, discounted at 10.5%. A later fps sells its aircraft later, so each point "
          f"of margin is worth less at 2026: one more point is worth {bp(PER_POINT[2039][0], 2, False)} for 2039 and {bp(PER_POINT[2044][0], 2, False)} for 2044 "
@@ -500,20 +559,29 @@ def build(out_path):
         ("The retirement timing matters little.",
          f" Every timing gives about the same demand over 2038-2060 ({n0(min(SUM3860.values()))} to {n0(max(SUM3860.values()))} aircraft); "
          f"later retirement moves the peak from {PEAK['0']} to {PEAK['4']}. That moves the fps by at most "
-         f"{bp(max(max(EXP[e]) - min(EXP[e]) for e in EIS), 2, False)} and the margin needed by under a point and a half. Which date loses least as "
+         f"{bp(max(max(EXP[e]) - min(EXP[e]) for e in EIS), 2, False)} and the margin needed by {pts(MOVE[2039])} points for 2039, {pts(MOVE[2041])} for 2041 "
+         f"and {pts(MOVE[2044])} for 2044 ({pts(MOVE_SW[2044])} counted over the same years). Which date loses least as "
          f"launched is not a robust result: it depends on how Do Nothing is counted and on the demand assumed before 2038. Which date needs the "
          f"least to become a launch does not."),
         ("How Boeing could make each date a launch.",
-         f" <strong>2039:</strong> any one of a {mrange(2039)} margin (${K.rnd(P0 * min(case(n, 2039)['margin_needed'] for n in NS), 1):.1f}M of profit "
+         f" <strong>2039:</strong> any one of a {mrange(2039)} margin ({rng([P0 * case(n, 2039)['margin_needed'] for n in NS], lambda v: f'${K.rnd(v, 1):.1f}M')} of profit "
          f"an aircraft instead of ${UNIT_FPS:.1f}M; at today's cost per aircraft, a price of about ${K.rnd(min(case(n, 2039)['price_cost_held'] for n in NS), 0):.0f}M), a bill of "
          f"{brange(2039)}, or a ramp {min(r39):.1f} to {max(r39):.1f} times as fast (90 a month by year {rng(TO90[2039], str)} after entry into service instead of "
          f"year {GAME_TO90}). A partner paying a quarter of the bill is enough only if it takes back at most "
-         f"{rng([x['max_profit_share'] for x in PT[2039]['0.25']], lambda v: pc(v))} of the fps's profit; one paying half can take up to "
-         f"{rng([x['max_profit_share'] for x in PT[2039]['0.5']], lambda v: pc(v, 0))}. Customers preferring the fps by 10 more points cut the margin "
+         f"{rng([x['max_profit_share'] for x in PT[2039]['0.25']], floor_pc)} of the fps's profit; one paying half can take up to "
+         f"{rng([x['max_profit_share'] for x in PT[2039]['0.5']], floor_pc)}. Customers preferring the fps by 10 more points cut the margin "
          f"needed to {rng(m39_p, pc)}. <strong>2041:</strong> a {mrange(2041)} margin or a {brange(2041)} bill; a 1.5× ramp plus a partner paying a quarter "
-         f"(taking at most {rng([x['max_profit_share'] for x in PKG[2041]], lambda v: pc(v, 0))} of the profit) passes. <strong>2044:</strong> a "
+         f"(taking back at most {rng([x['max_profit_share'] for x in PKG[2041]], floor_pc)} of the profit) passes. <strong>2044:</strong> a "
          f"{mrange(2044)} margin or a {brange(2044)} bill; a 1.5× ramp plus a free quarter of the bill passes only if aircraft retire 2-4 years later, and "
-         f"otherwise still needs {rng(pk44_short, pc)}. A faster ramp alone would have to be near-instant."),
+         f"otherwise still needs {rng(pk44_short, pc)}. A faster ramp alone would have to be near-instant. More customer preference "
+         f"helps every date but makes none a launch on its own; it is the one lever on which 2044 comes closest."),
+        ("A caveat: the same aircraft at every date.",
+         f" Only the entry into service moves; the aircraft, its price, margin and appeal do not. A later fps could be a better aircraft (management's "
+         f"'technology has to be ready'). 2039's lead is thin: if two more years made the 2041 fps preferred by "
+         f"{rng(MATCH[2041]['9'], lambda v: f'{K.rnd(v, 1):.1f}')} more points of customer preference, it would need no more margin than a 2039 fps launched in 2030 "
+         f"({rng(MATCH[2041]['10'], lambda v: f'{K.rnd(v, 1):.1f}')} points to match 2039 at the 10-year bill). 2044 would need "
+         f"{K.rnd(min(MATCH[2044]['9']), 0):.0f} to {K.rnd(max(MATCH[2044]['10']), 0):.0f} points. If the later aircraft would be that much better, "
+         f"waiting can pay; if not, earlier is better."),
     ]
     panels = '<div class="bl">' + "".join(f'<div class="panel"><div><b>{esc(t)}</b>{x}</div></div>' for t, x in answers) + "</div>"
     page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -549,18 +617,25 @@ so a sensitivity below hands that tail back to the game's curve.</p></div>
 
 <section id="which"><h2>Which date is better for Boeing</h2><p class="lede">Launched as they stand, every date loses about the
 same, {bp(LO_EXP)} to {bp(HI_EXP)} against Do Nothing in Boeing's expected case. Which loses least is not robust. Boeing's brief counts
-Do Nothing to 2060 whatever the fps date; on that count 2039 loses least when aircraft retire as chapter 1 sets out and 2044 when they retire 2-4
-years later. Counted over the same years as each fps, or with your page's own demand before 2038, 2044 loses least in every timing.
-Turning the fps into a launch is another matter: 2039 needs the least in every timing and on every count, 2044 by far the most.</p><div class="stack">
+Do Nothing to 2060 whatever the fps date; on that count 2039 loses least when aircraft retire as chapter 1 sets out or 1 year later (a near-tie at
+1 year) and 2044 when they retire 2-4 years later. Counted over the same years as each fps (2026 to its entry into service + 19), or with your page's
+own demand before 2038, 2044 loses least in every timing. Turning the fps into a launch is another matter: at the same bill, 2039 needs the least
+margin, price, bill or ramp change in every timing and on every count, 2044 by far the most. Preference is the exception (below). And the launch
+year matters more than the date: see the table.</p><div class="stack">
 {legend_dates()}
 <div class="panel"><p class="ctitle">2039 needs a {mrange(2039)} margin to become a launch; 2044 needs {mrange(2044)}</p><div class="cw" data-focus="560">{chart_margin()}</div></div>
 <div class="panel"><p class="ctitle">As they stand, all 15 lose {bp(-HI_EXP, 2, False)} to {bp(-LO_EXP, 2, False)} against Do Nothing, at least {bp(GAP_ALL, 2, False)} short of the Board's +$1B</p><div class="cw" data-focus="460">{chart_value()}</div>
 <p class="cap">Zoomed axis, Boeing's brief counting: the dates differ by at most {bp(SPREAD, 2, False)} in any timing. Do Nothing is at $0 and the Board's line at +$1B, far to the right.</p></div>
 {tview_dots()}
+<div class="panel"><p class="ctitle">The launch year decides it: each year later costs about {pts(min(STEP))} to {pts(max(STEP))} points of margin, and at the same launch year the earliest reachable date needs about the same or less</p><div class="lev">{launch_table()}</div>
+<p class="cap">Margin needed alone, better site, range over the five timings; bold: the least for that launch year. The game has a 10-year fps
+(${B0:.2f}B) and a 7-year fps (${BILL7:.1f}B); the 8- and 9-year bills are straight-line between them (our assumption). The game books the bill at
+entry into service, so only the date and the bill matter, not the launch year itself. In 2031 and 2032 the 2039 and 2041 routes are within
+{pts(max(TIE))} points of each other, either way round.</p></div>
 <div class="panel"><p class="label">fps against Do Nothing, Boeing's expected case (better site), with the worst and risk cases</p>{matrix_table()}
 <p class="cap">The expected case is Airbus launching NGSA, with or without an A350 Re-engine, at even odds, as Boeing's CEO
 expected in 2030. The tests: more than +$1B there, no case below {MINUS}$1B, and the risk case (NGSA with Airbus's Delay Tactics)
-no more than $2B below Do Nothing. "Same years": Do Nothing counted over the same years as the fps rather than to 2060. Renton is the better site
+no more than $2B below Do Nothing. "Same years": Do Nothing counted over the same years as the fps (2026 to its entry into service + 19) rather than to 2060. Renton is the better site
 in every combination. The game's own curve is shown for reference.</p></div>
 </div></section>
 
@@ -580,8 +655,9 @@ binds is always the business case.</p><div class="stack">
 <div class="panel"><p class="ctitle">In service 2039: a {mrange(2039)} margin, a {brange(2039)} bill, or a ramp {min(r39):.1f}-{max(r39):.1f} times as fast</p>{levers_table(2039)}</div>
 <div class="panel"><p class="ctitle">In service 2041: a {mrange(2041)} margin or a {brange(2041)} bill; a 1.5× ramp plus a partner paying a quarter passes</p>{levers_table(2041)}</div>
 <div class="panel"><p class="ctitle">In service 2044: a {mrange(2044)} margin or a {brange(2044)} bill; a 1.5× ramp plus a partner paying a quarter passes only if aircraft retire 2-4 years later</p>{levers_table(2044)}
-<p class="cap">Ramp: the game's fps ramp (your NGSA chart moved to the fps date: about 50 a month 4 years after entry into service and 100 about 8 years after)
-run that many times as fast; "90/mo by year N" is the first calendar year after entry into service averaging 90 a month (year {GAME_TO90} on the game's ramp).
+<p class="cap">Ramp: the game's fps ramp (your NGSA chart moved to the fps date) run that many times as fast. "90/mo by year N" is the first calendar
+year after entry into service averaging 90 a month: on the game's ramp about 50 a month in year {GAME_TO50} and 90 in year {GAME_TO90}; until 2050 the fps then
+stays at 90, because Boeing's total is capped at 100 a month and the 737 keeps a 10-a-month tail.
 "Over 12×": not reached at 12 times as fast; at full rate from entry into service the 2044 fps would reach {rng([case(n, 2044)["ramp_instant"]["expected"] for n in NS], bp)}.</p></div>
 <div class="panel"><p class="label">Reading the levers</p><ul class="cav">
 <li><b>Margin is unit profit.</b> Today ${P0:.0f}M at {pc(M0, 2)} is ${UNIT_FPS:.1f}M an aircraft (the 737 MAX makes ${UNIT_737:.2f}M). A launch at 2039 needs about
@@ -591,30 +667,31 @@ price), it would take about ${K.rnd(min(case(n, 2039)["price_needed"] for n in N
 <li><b>The bill is the dashboard's ${B0:.1f}B for a 10-year fps.</b> A partner's share is counted first as free money. Real partners (an engine maker, a structures
 partner, a venture) are paid back through prices or a share of the profit: one that takes the same share of the fps's profit as it pays of the bill makes
 the launch harder, not easier (at 2039 a quarter-for-a-quarter partner raises the margin needed to {rng([x['margin_fair'] for x in PT[2039]['0.25']], pc)}),
-because Boeing still loses the 737 profit the fps replaces. Moving the same spend into earlier R&D does not help either.</li>
+because Boeing still loses the 737 profit the fps replaces. Spending the same money earlier would cost more in today's money (10.5% a year), not less.</li>
 <li><b>Ramp is how fast the fps fills its line.</b> 2039 needs 90 a month by year {rng(TO90[2039], str)} after entry into service, against year {GAME_TO90} on the game's ramp. At 2044 only a near-instant ramp is enough.</li>
 <li><b>Preference is a strong lever with a ceiling.</b> At today's preference Boeing uses only {rng(USED0, lambda v: pc(v, 0))} of its narrowbody capacity over the
 fps's 20 years: it is short only while the fps ramps up. More preference fills the rest: 10 more points is worth {rng(PREF10[2039], lambda v: bp(v, 1, False))} for 2039,
-{rng(PREF10[2041], lambda v: bp(v, 1, False))} for 2041 and {rng(PREF10[2044], lambda v: bp(v, 1, False))} for 2044. It stops helping once the factories are full every year;
-at that ceiling the fps reaches {rng(PREFMAX[2039], bp)} (2039), {rng(PREFMAX[2041], bp)} (2041) and {rng(PREFMAX[2044], bp)} (2044), still short of +$1B.</li>
+{rng(PREF10[2041], lambda v: bp(v, 1, False))} for 2041 and {rng(PREF10[2044], lambda v: bp(v, 1, False))} for 2044. It stops helping once Boeing builds everything
+customers want or its factories are full; at that ceiling the fps reaches {rng(PREFMAX[2039], bp)} (2039), {rng(PREFMAX[2041], bp)} (2041) and {rng(PREFMAX[2044], bp)} (2044),
+still short of +$1B. Here the order reverses: the 2044 fps has the most room to fill, so it comes closest.</li>
 <li><b>Fundable.</b> Boeing's cash test holds in every combination: in the game's cash view net debt is repaid by 2030 and stays repaid even in the stress case.</li></ul></div>
 </div></section>
 
 <section id="said"><h2>What Boeing has said in 2026</h2><p class="lede">From the 2026 earnings calls and conferences you uploaded
 (S&amp;P Global transcripts). Management points at the margin lever: a bigger share of the value chain's profit on the next airplane, through a little
 more vertical integration and different partnerships, ventures and supplier relationships. Partners of that kind could also carry part of the bill,
-as risk-sharing partners do, but that is our reading, not something management said. Its timing points to a launch after 2030, which favours 2041
-over 2039.</p>{quotes()}</section>
+as risk-sharing partners do, but that is our reading, not something management said. No launch year is given. Our reading: no launch soon, which
+makes 2039 tight (it needs a launch by about 2032) and every year of waiting costs margin.</p>{quotes()}</section>
 
-<section id="sens"><h2>Sensitivities</h2><p class="lede">The ranking holds in every world below: 2039 always needs the least margin and the least
-bill cut, 2044 the most; no date passes.</p><div class="stack">
+<section id="sens"><h2>Sensitivities</h2><p class="lede">The ranking holds in every case in the first table: 2039 always needs the least margin and the
+least bill cut, 2044 the most; no date passes.</p><div class="stack">
 <div class="panel"><p class="label">fps against Do Nothing (expected case), margin needed and bill needed, range over the five retirement timings</p>{sens_table()}
 <p class="cap">Same years: Do Nothing counted over the fps's own 20 years; Boeing's Do Nothing profit year by year is unchanged (checked), only which
 years count. Your page's demand from 2026: your page understates demand before 2038 by its own account, so the firm orders are not used up by 2038
 ({n0(min(FIRM_LEFT.values()))} to {n0(max(FIRM_LEFT.values()))} still open at the end of 2038, against none with the splice). Tianjin: your chart 4.1 adds 20 a month on top of
 Airbus's plan; in the game it also scales with Airbus's capacity response and slows it. It mostly helps Airbus: the fps is worse in {TJ_WORSE} of the 15
 combinations. Your page's supply makes the fps better in every combination: its fps ramps faster in the first years (a straight line to 80 a month in
-7 years), its 737 winds down more gradually after the fps enters service than the game's Renton plan, and without the fps the 737 stays at 52 a month,
+7 years), for 2039 and 2041 its 737 winds down more gradually after the fps enters service than the game's Renton plan, and without the fps the 737 stays at 52 a month,
 below the game's 57.</p></div>
 <div class="panel"><p class="label">Worlds Boeing does not control</p>{worlds_table()}
 <p class="cap">Faster erosion of Boeing's preference makes Do Nothing worse, but Airbus cannot build the share it wins. Customers it cannot serve
@@ -631,10 +708,11 @@ NGSA flies alone, Boeing taking Airbus's slack, Airbus adding 1% capacity a year
 <li><b>Counting.</b> Boeing's brief counts each plan from 2026 to its fps's entry into service + 19, and Do Nothing to 2060 (the default fps date, 2041, + 19). The
 dashboard itself compares a plan with its baseline over the same years; the "same years" figures do that. Both are shown; the lever ranking is the same.</li>
 <li><b>The tests</b> are Boeing's 2030 Board tests, applied to the six rival cases of Boeing's 2030 brief, as in the earlier fps pages.</li>
-<li><b>Beyond the dashboard's sliders.</b> Every margin threshold here is above 30%, the top of the dashboard's fps margin slider. The headless solve does not clamp
-it, so the thresholds are exact in the dashboard's arithmetic, but you cannot set them on the dashboard itself.</li>
+<li><b>Beyond the dashboard's sliders.</b> Every margin a lever needs on its own ({pc(ALONE_MAX30)} or more), and the fair-partner, 9-, 8- and 7-year margins, are above 30%,
+the top of the dashboard's fps margin slider. The headless solve does not clamp it, so they are exact in the dashboard's arithmetic, but you cannot set them on the
+dashboard itself. The package margins below 30% can be set.</li>
 <li><b>Checks:</b> with the game's own curve and the fps in 2040, the analysis gives back Boeing's 2030 brief exactly ({b(D["game_curve"]["2040"]["renton"]["expected"])} at Renton). Every
-margin, price, bill, partner, package, 9- and 7-year, same-years and sensitivity threshold was re-checked on a re-solved dashboard. The line-by-line values add to the total exactly.</li>
+margin, price, bill, partner, package, 9-, 8- and 7-year, same-years and sensitivity threshold was re-checked on a re-solved dashboard. The line-by-line values add to the total exactly.</li>
 <li><b>Dollars:</b> PV at 2026, constant 2026 dollars, Boeing's 10.5% WACC, as the dashboard does.</li>
 <li><b>Source:</b> analysis/demand_scenarios/make_page_demand.py reads your page's data, and demand_scenarios.py runs the game (demand_scenarios.json).</li>
 </ul></div></section>

@@ -47,6 +47,7 @@ FROM = PAGE["drawn_from"]
 COST0 = PRICE0 * (1.0 - M0)              # $M cost per fps today (the dashboard's price less its margin)
 BILL7 = P["v_capex_fps_7yr"]
 BILL9 = BILL0 + (BILL7 - BILL0) * (10 - 9) / (10 - 7)      # a 9-year programme: between the 7- and 10-year bills
+BILLS = {10: BILL0, 9: BILL9, 8: BILL0 + (BILL7 - BILL0) * (10 - 8) / (10 - 7), 7: BILL7}   # by programme length (8, 9: interpolated)
 
 
 # ─────────────────────────────── demand curves ───────────────────────────────
@@ -248,6 +249,7 @@ def analytic(eis, ev, kw=None, tj=False, page=False, ramp_k=None):
             res[site] = {"margin": m, "price": p, "bill": bl, "at_zero_bill": L.margin(shifted(base, tm, bill=1e-9)),
                          "price_cost_held": None if m is None else COST0 + PRICE0 * m,
                          "margin_bill9": at_bill(BILL9), "margin_bill7": at_bill(BILL7),
+                         "margin_by_years": {str(k): at_bill(v) for k, v in BILLS.items()},
                          "partner": share,
                          "per_point": [t["U"] / 100.0 for t in tm],      # $B per margin point, each column
                          "per_10m_price": [t["V"] * 10.0 for t in tm],
@@ -418,15 +420,23 @@ def firm_left(kw, year=2038):
 
 
 def check_dn_window(n, e):
-    """Moving Do Nothing's window changes no year's Boeing narrowbody profit up to 2060 (only which years count)."""
+    """Moving Do Nothing's window changes no year's Boeing profit up to 2060 and no bridge line other than the two
+    window-driven profit lines, in any of the six columns (only which years count)."""
+    worst = 0.0
     with L.patched(**demand_kw(n)):
-        rows = []
-        for w in (None, e):
-            with dn_window(w):
-                st, cv = L.grid_states(L.PLAN_DN)[1]
-                v = M.value(st, covert=cv, series=True)
-                rows.append({r["year"]: r["boeing"]["nb_profit"] for r in v["_af_series"]["years"] if r["year"] <= 2060})
-    return max(abs(rows[0][y] - rows[1][y]) for y in rows[0])
+        for col in range(len(L.SCEN)):
+            rows, brs = [], []
+            for w in (None, e):
+                with dn_window(w):
+                    st, cv = L.grid_states(L.PLAN_DN)[col]
+                    v = M.value(st, covert=cv, series=True)
+                    rows.append({r["year"]: (r["boeing"]["nb_profit"], r["boeing"]["sq_nb_profit"], r["boeing"]["nb_units"])
+                                 for r in v["_af_series"]["years"] if r["year"] <= 2060})
+                    brs.append(v["boeing"]["bridge"])
+            worst = max(worst, max(abs(a - b) for y in rows[0] for a, b in zip(rows[0][y], rows[1][y])))
+            worst = max(worst, max(abs(brs[0].get(k, 0.0) - brs[1].get(k, 0.0)) for k in LINES
+                                   if k not in ("nb_profit_vs_sq", "supply_demand")))
+    return worst
 
 
 def margin_case(eis, kw, tj=False, page=False, sw=False):
@@ -505,6 +515,8 @@ def main():
                   "bill": confirm(e, kw, rec["bill_site"], af_cx_fps10=rec["bill_needed"]),
                   "bill9": confirm(e, kw, rec["bill9_site"], af_cx_fps10=BILL9, af_m_fps=100.0 * rec["margin_bill9"]),
                   "bill7": confirm(e, kw, rec["bill7_site"], af_cx_fps10=BILL7, af_m_fps=100.0 * rec["margin_bill7"])}
+            for yrs in ("8",):
+                ck["bill" + yrs] = confirm(e, kw, s_, af_cx_fps10=BILLS[int(yrs)], af_m_fps=100.0 * a_["margin_by_years"][yrs])
             for paid in ("0.25", "0.5"):
                 pt = a_["partner"][paid]
                 ck["partner" + paid] = confirm(e, kw, s_, af_cx_fps10=BILL0 * (1 - float(paid)), af_m_fps=100.0 * pt["margin_free"])
@@ -556,6 +568,17 @@ def main():
                 w = evaluate_post(e, kk, post) if post else evaluate(e, kk)
                 rec["worlds"][lab] = {"best": w["best"], **{k: w[w["best"]][k] for k in ("items", "expected", "worst", "risk_case", "margin", "passes")}}
             cases["N%s/%d" % (n, e)] = rec
+            if not quick and e != EIS[0]:
+                # how much more customers would have to prefer this later fps (a better product) for it to need no more
+                # margin than the 2039 fps at the 10-year bill and at a 9-year bill
+                c39 = cases["N%s/%d" % (n, EIS[0])]
+                rec["pref_to_match"] = {}
+                for lab, target in (("10", c39["margin_needed"]), ("9", c39["margin_bill9"])):
+                    def f(x, kw=kw):
+                        kx = dict(kw, fps_pref_pp=x)
+                        a = analytic(e, evaluate(e, kx), kx)
+                        return target - min(a[s]["margin"] for s in PLANS)
+                    rec["pref_to_match"][lab] = L.bisect(f, 0.0, 40.0, 0.0, tol=1e-3)
             b = ev[s_]
             sw = rec["same_window"]
             print("N=%s fps %d: %-8s exp %+6.2f (same window %+6.2f) | margin %.1f%% price $%.0fM (cost held $%.1fM) bill $%.1fB | "
