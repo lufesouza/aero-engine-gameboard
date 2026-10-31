@@ -13,8 +13,15 @@ is unchanged. Each plan is valued exactly as Boeing's 2030 brief values it (lib.
 Boeing's three 2030 tests (lib.tests). For every scenario and date: the item at both sites, and what would make it pass:
 the fps margin, price or bill alone (exact: linear in each column's fps deliveries, the bill with its debt penalty), the
 ramp-up speed and the preference uplift alone (bisection on the brief's own valuation), and launch packages (a partner
-paying part of the bill, a faster ramp) with the margin they still need. Sensitivities: the page's demand tail after
-2055 replaced by the game's curve; Tianjin building 20 a month on top of Airbus's plan; the page's own Boeing supply.
+paying part of the bill, a faster ramp) with the margin they still need. A partner's money is counted first as free, then
+with the largest share of the fps's profit it could take back before the pass is lost. The price lever is reported both
+with the margin % held (cost per aircraft rises with price) and with today's cost per aircraft held. For 2039 (a 9-year
+programme from 2030 or a 2029 launch) the margin needed is also given at a 9-year bill (between the 7- and 10-year
+bills) and at the 7-year bill (exactly the game's own 7-year fps launched in 2032; checked). Counting convention: Boeing's brief counts Do Nothing to 2060 (its fps reference date,
+2041, + 19) whatever the fps date; the same-window variant counts Do Nothing over the same years as each fps.
+Sensitivities: the page's demand tail after 2055 replaced by the game's curve; the page's own demand from 2026 (no
+splice); Tianjin building 20 a month on top of Airbus's plan; the page's own Boeing supply. Every pass line (each lever
+alone, the packages, the 9-year bill, the same-window and sensitivity margins) is re-checked on a re-solved dashboard.
 Writes demand_scenarios.json next to this file.
 
   python3 demand_scenarios.py
@@ -37,19 +44,22 @@ NS = ("0", "1", "2", "3", "4")
 PLANS = {"renton": L.PLAN_REN, "new_site": L.PLAN_NEW}
 BILL0, M0, PRICE0 = P["v_capex_fps_10yr"], P["v_margin_fps"], P["PRICE_fps"] * 1000.0
 FROM = PAGE["drawn_from"]
+COST0 = PRICE0 * (1.0 - M0)              # $M cost per fps today (the dashboard's price less its margin)
+BILL7 = P["v_capex_fps_7yr"]
+BILL9 = BILL0 + (BILL7 - BILL0) * (10 - 9) / (10 - 7)      # a 9-year programme: between the 7- and 10-year bills
 
 
 # ─────────────────────────────── demand curves ───────────────────────────────
-def write_curve(name, n, tail_from=None):
-    """Game curve before 2038, the page's scenario n from 2038 (the game's again from tail_from, if given); returns the
-    path supply_demand reads (relative to dashgame)."""
+def write_curve(name, n, tail_from=None, page_from=FROM):
+    """Game curve before page_from (2038), the page's scenario n from then on (the game's again from tail_from, if
+    given); returns the path supply_demand reads (relative to dashgame)."""
     game = {y: (r, g) for y, r, g in zip(GAME["years"], GAME["replacements"], GAME["growth"])}
     gl = max(game)
     s = PAGE["retire_later"][n]
     page = {y: (o + w, o + w) for y, o, w in zip(PAGE["years"], s["old"], s["new"])}
     years, rep, gro = [], [], []
     for y in PAGE["years"]:
-        if y < FROM or (tail_from and y >= tail_from):
+        if y < page_from or (tail_from and y >= tail_from):
             r, g = game[min(y, gl)]
         else:
             r, g = page[y]
@@ -60,8 +70,11 @@ def write_curve(name, n, tail_from=None):
     path = os.path.join(HERE, "curves", name + ".json")
     about = ("the user's page, chart 4.1, every aircraft retiring %s years later: replacement (old + new) and growth (as much "
              "again) from %d%s; the game's conservative curve (demand_conservative.json) before %d%s. Whole single-aisle "
-             "market, before the game's class share." % (n, FROM, (" to %d" % (tail_from - 1)) if tail_from else "", FROM,
+             "market, before the game's class share." % (n, page_from, (" to %d" % (tail_from - 1)) if tail_from else "", page_from,
                                                         (" and from %d" % tail_from) if tail_from else ""))
+    if page_from <= PAGE["years"][0]:
+        about = ("the user's page, chart 4.1, every aircraft retiring %s years later: replacement (old + new) and growth (as "
+                 "much again) in every year (no splice). Whole single-aisle market, before the game's class share." % n)
     with open(path, "w") as f:
         json.dump({"about": about, "years": years, "replacements": rep, "growth": gro}, f, separators=(",", ":"))
     return os.path.relpath(path, L.DASHGAME)
@@ -69,10 +82,11 @@ def write_curve(name, n, tail_from=None):
 
 CURVE = {n: write_curve("page_N%s" % n, n) for n in NS}
 CURVE_TAIL = {n: write_curve("page_N%s_tail2056" % n, n, tail_from=2056) for n in NS}
+CURVE_ALL = {n: write_curve("page_N%s_from2026" % n, n, page_from=PAGE["years"][0]) for n in NS}
 
 
-def demand_kw(n, tail=False):
-    return {"options": {"demand_curve": (CURVE_TAIL if tail else CURVE)[n]}}
+def demand_kw(n, tail=False, whole=False):
+    return {"options": {"demand_curve": (CURVE_ALL if whole else CURVE_TAIL if tail else CURVE)[n]}}
 
 
 # ─────────────────────────────── supply patches ───────────────────────────────
@@ -144,10 +158,28 @@ def states(plan, eis):
     return L.grid_states(plan, at_eis(eis))
 
 
-def evaluate(eis, kw=None, tj=False, page=False):
+class dn_window:
+    """Do Nothing counted over the same years as an fps entering service in `eis`: Do Nothing's fps reference date (the
+    board's default fps EIS, which sets its counting window) moved to `eis`. Only the window changes: Boeing's Do Nothing
+    profit year by year is the same (checked in main)."""
+    def __init__(self, eis):
+        self.eis = eis
+
+    def __enter__(self):
+        self.saved = M.DEFAULT_EIS["fps"]
+        if self.eis is not None:
+            M.DEFAULT_EIS["fps"] = self.eis
+
+    def __exit__(self, *a):
+        M.DEFAULT_EIS["fps"] = self.saved
+
+
+def evaluate(eis, kw=None, tj=False, page=False, sw=False):
+    """Both sites' items in the six columns, Boeing's tests and the better site. sw: Do Nothing on the same window."""
     out = {}
     with L.patched(**(kw or {})), supply(tj, page):
-        dn = L.grid_row(L.PLAN_DN)
+        with dn_window(eis if sw else None):
+            dn = L.grid_row(L.PLAN_DN)
         for site, plan in PLANS.items():
             row = L.grid_row(plan, at_eis(eis))
             items = [a - b for a, b in zip(row, dn)]
@@ -211,17 +243,25 @@ def analytic(eis, ev, kw=None, tj=False, page=False, ramp_k=None):
             m = L.bisect(fm, M0, 1.0, 0.0, tol=1e-7)
             p = L.bisect(fp, PRICE0, 400.0, 0.0, tol=1e-5)
             bl = L.bisect(fb, BILL0, 0.0, 0.0, tol=1e-5)
-            share = {}
-            for paid in (0.25, 0.5):       # a partner pays this share of the bill
-                x = BILL0 * (1 - paid)
-                share[str(paid)] = L.bisect(lambda mm: L.margin(shifted(base, tm, margin=mm, bill=x)), 0.0, 1.0, 0.0, tol=1e-7) \
-                    if L.margin(shifted(base, tm, bill=x)) < 0 else "passes"
+            at_bill = lambda x: L.bisect(lambda mm: L.margin(shifted(base, tm, margin=mm, bill=x)), 0.0, 1.0, 0.0, tol=1e-7)
+            share = {str(paid): partner(at_bill(BILL0 * (1 - paid)), paid) for paid in (0.25, 0.5)}
             res[site] = {"margin": m, "price": p, "bill": bl, "at_zero_bill": L.margin(shifted(base, tm, bill=1e-9)),
-                         "margin_with_partner": share,
+                         "price_cost_held": None if m is None else COST0 + PRICE0 * m,
+                         "margin_bill9": at_bill(BILL9), "margin_bill7": at_bill(BILL7),
+                         "partner": share,
                          "per_point": [t["U"] / 100.0 for t in tm],      # $B per margin point, each column
                          "per_10m_price": [t["V"] * 10.0 for t in tm],
                          "df": tm[0]["df"]}
     return res
+
+
+def partner(m_free, paid):
+    """A partner pays `paid` of the bill. m_free: the fps margin Boeing needs if the money is free. The most of the fps's
+    operating profit the partner can take back before the pass is lost (1 - m_free / today's margin; negative: it fails
+    even free), and the margin needed if the partner takes the same share of the profit as it pays of the bill."""
+    return {"paid": paid, "margin_free": m_free, "passes_free": m_free is not None and m_free <= M0,
+            "max_profit_share": None if m_free is None else 1.0 - m_free / M0,
+            "margin_fair": None if m_free is None else m_free / (1.0 - paid)}
 
 
 def best_of(res, key, better):
@@ -242,7 +282,7 @@ def lever(eis, mk, lo, hi, tol, kw=None):
     return L.bisect(f, lo, hi, 0.0, tol=tol)
 
 
-def context(eis, kw=None, tj=False, page=False):
+def context(eis, kw=None, tj=False, page=False):  # noqa: C901
     """Deliveries and shares behind the expected columns (S2: NGSA; S5: NGSA + A350 Re-engine; the fps at Renton)."""
     out = {}
     with L.patched(**(kw or {})), supply(tj, page):
@@ -259,6 +299,10 @@ def context(eis, kw=None, tj=False, page=False):
                 "share": {y: b[y]["nb_share"] for y in (2040, 2045, 2050, 2055, 2060) if y in b},
                 "pref": {y: b[y].get("nb_pref_share") for y in (2040, 2045, 2050, 2055, 2060) if y in b},
                 "lost_2038_60": sum(sd[y].get("lost", 0.0) for y in ys if 2038 <= y <= 2060),
+                "capacity_window": sum(sd[y]["cap_max"] + sd[y]["cap_fps"] for y in win if y >= eis),
+                "delivered_window": sum(b[y]["nb_units"] for y in win if y >= eis),
+                "full_years": sum(1 for y in win if y >= eis and b[y]["nb_units"] >= sd[y]["cap_max"] + sd[y]["cap_fps"] - 1.0),
+                "spare_by_year": {y: sd[y]["cap_max"] + sd[y]["cap_fps"] - b[y]["nb_units"] for y in win if y >= eis},
                 "demand_2038_60": sum(sd[y].get("demand_gross", 0.0) for y in ys if 2038 <= y <= 2060),
                 "window_end": max(win)}
     return out
@@ -296,10 +340,10 @@ class board:
         M.af_board = self.saved
 
 
-def confirm(eis, kw, site, **over):
+def confirm(eis, kw, site, tj=False, page=False, sw=False, **over):
     """Boeing's test margin for `site` with the board re-solved at `over` (0 at a pass line)."""
     with board(**over):
-        return evaluate(eis, kw)[site]["margin"]
+        return evaluate(eis, kw, tj, page, sw)[site]["margin"]
 
 
 LINES = ("nb_profit_vs_sq", "supply_demand", "programme_investment", "debt_penalty", "supply_plan", "rate_hike",
@@ -364,12 +408,46 @@ def round_all(x, d=4):
     return x
 
 
+def firm_left(kw, year=2038):
+    """Firm orders still open at the end of `year` (Do Nothing, column S2)."""
+    with L.patched(**kw):
+        st, cv = L.grid_states(L.PLAN_DN)[1]
+        v = M.value(st, covert=cv, series=True)
+        r = next(r for r in v["_af_series"]["years"] if r["year"] == year)
+        return r["sd"]["firm_b"] + r["sd"]["firm_a"]
+
+
+def check_dn_window(n, e):
+    """Moving Do Nothing's window changes no year's Boeing narrowbody profit up to 2060 (only which years count)."""
+    with L.patched(**demand_kw(n)):
+        rows = []
+        for w in (None, e):
+            with dn_window(w):
+                st, cv = L.grid_states(L.PLAN_DN)[1]
+                v = M.value(st, covert=cv, series=True)
+                rows.append({r["year"]: r["boeing"]["nb_profit"] for r in v["_af_series"]["years"] if r["year"] <= 2060})
+    return max(abs(rows[0][y] - rows[1][y]) for y in rows[0])
+
+
+def margin_case(eis, kw, tj=False, page=False, sw=False):
+    """Evaluate, then the margin and bill needed at the better site, each re-checked on a re-solved dashboard."""
+    ev = evaluate(eis, kw, tj, page, sw)
+    an = analytic(eis, ev, kw, tj, page)
+    mn, ms = best_of(an, "margin", min)
+    bn, bs = best_of(an, "bill", max)
+    ck = {"margin": confirm(eis, kw, ms, tj, page, sw, af_m_fps=100.0 * mn),
+          "bill": confirm(eis, kw, bs, tj, page, sw, af_cx_fps10=bn)}
+    assert all(abs(v) < 1e-5 for v in ck.values()), ck
+    return {"eval": ev, "analytic": an, "margin_needed": mn, "margin_site": ms, "bill_needed": bn, "bill_site": bs, "confirm": ck}
+
+
 def main():
     t0 = time.time()
     quick = "--quick" in sys.argv
     out = {"tests": {"business_case": L.BUSINESS_CASE, "downside": L.DOWNSIDE, "buffer": L.BUFFER,
                      "expected_weights": {L.SCEN_LABELS[i]: w for i, w in L.EXPECTED.items()}},
-           "columns": L.SCEN_LABELS, "eis": EIS, "scenarios": NS, "base": {"bill": BILL0, "margin": M0, "price": PRICE0},
+           "columns": L.SCEN_LABELS, "eis": EIS, "scenarios": NS,
+           "base": {"bill": BILL0, "margin": M0, "price": PRICE0, "cost": COST0, "bill7": BILL7, "bill9": BILL9},
            "curves": {n: CURVE[n] for n in NS}}
     # the game's own curve, for the check against the stored brief (fps 10-yr in 2040 at Renton: -4.80 expected)
     ref = evaluate(2040)
@@ -380,6 +458,20 @@ def main():
     out["game_curve_analytic"] = {str(e): analytic(e, out["game_curve"][str(e)]) for e in EIS}
     print("game curve: fps 2040 reproduces the stored brief; expected (Renton) by EIS",
           {e: round(out["game_curve"][e]["renton"]["expected"], 2) for e in out["game_curve"]}, "%.0fs" % (time.time() - t0))
+    # the game's own 7-year fps entering service in 2039 (launched 2032) is the 10-year fps at the 7-year bill, exactly
+    P7 = {"renton": "fps 7-yr at Renton + 787: hold", "new_site": L.PLAN_7}
+    for n in ("0", "4"):
+        kw = demand_kw(n)
+        ev10 = evaluate(2039, kw)
+        for s_, p7 in P7.items():
+            with L.patched(**kw):
+                dn = L.grid_row(L.PLAN_DN)
+                row = L.grid_row(p7, at_eis(2039))
+                tm = terms(PLANS[s_], 2039)
+            gap = max(abs((a - b) - c) for a, b, c in zip(row, dn, shifted(ev10[s_]["items"], tm, bill=BILL7)))
+            assert gap < 1e-9, (n, s_, gap)
+    out["dn_window_check"] = max(check_dn_window(n, e) for n in ("0", "4") for e in EIS)
+    assert out["dn_window_check"] < 1e-9, out["dn_window_check"]
     # demand of each scenario as the game sees it (class share applied)
     dem = {}
     for n in NS:
@@ -388,6 +480,8 @@ def main():
     with L.patched():
         dem["game"] = {y: SD.demand(y) for y in range(2026, 2071)}
     out["demand"] = dem
+    out["firm_left_2038"] = {"splice": {n: firm_left(demand_kw(n)) for n in NS},
+                             "page_from_2026": {n: firm_left(demand_kw(n, whole=True)) for n in NS}}
     cases = {}
     for n in NS:
         for e in EIS:
@@ -397,7 +491,23 @@ def main():
             rec = {"eval": ev, "analytic": an, "context": context(e, kw)}
             rec["margin_needed"], rec["margin_site"] = best_of(an, "margin", min)
             rec["price_needed"], rec["price_site"] = best_of(an, "price", min)
+            rec["price_cost_held"], _ = best_of(an, "price_cost_held", min)
             rec["bill_needed"], rec["bill_site"] = best_of(an, "bill", max)
+            rec["margin_bill9"], rec["bill9_site"] = best_of(an, "margin_bill9", min)
+            rec["margin_bill7"], rec["bill7_site"] = best_of(an, "margin_bill7", min)
+            s_ = ev["best"]
+            a_ = an[s_]
+            # the pass lines re-checked on a re-solved dashboard
+            ck = {"margin": confirm(e, kw, rec["margin_site"], af_m_fps=100.0 * rec["margin_needed"]),
+                  "price": confirm(e, kw, rec["price_site"], af_price_fps=rec["price_needed"]),
+                  "price_cost_held": confirm(e, kw, rec["margin_site"], af_price_fps=rec["price_cost_held"],
+                                             af_m_fps=100.0 * (rec["price_cost_held"] - COST0) / rec["price_cost_held"]),
+                  "bill": confirm(e, kw, rec["bill_site"], af_cx_fps10=rec["bill_needed"]),
+                  "bill9": confirm(e, kw, rec["bill9_site"], af_cx_fps10=BILL9, af_m_fps=100.0 * rec["margin_bill9"]),
+                  "bill7": confirm(e, kw, rec["bill7_site"], af_cx_fps10=BILL7, af_m_fps=100.0 * rec["margin_bill7"])}
+            for paid in ("0.25", "0.5"):
+                pt = a_["partner"][paid]
+                ck["partner" + paid] = confirm(e, kw, s_, af_cx_fps10=BILL0 * (1 - float(paid)), af_m_fps=100.0 * pt["margin_free"])
             if not quick:
                 rec["ramp_needed"] = lever(e, lambda k: {"ramp": L.compressed(k)}, 1.0, 12.0, 1e-3, kw)
                 inst = evaluate(e, dict(kw, ramp=L.instant))
@@ -405,41 +515,40 @@ def main():
                 if rec["ramp_needed"]:
                     rec["ramp_profiles"]["needed"] = ramp_profile(rec["ramp_needed"], e)
                 rec["ramp_instant"] = {"best": inst["best"], "expected": inst[inst["best"]]["expected"], "margin": inst[inst["best"]]["margin"]}
-                rec["pref_needed"] = lever(e, lambda x: {"fps_pref_pp": x}, 0.0, 60.0, 1e-3, kw)
+                rec["pref_needed"] = lever(e, lambda x: {"fps_pref_pp": x}, 0.0, 100.0, 1e-3, kw)
                 rec["pref_sweep"] = {}
-                for x in (10.0, 20.0, 60.0):
-                    w = evaluate(e, dict(kw, fps_pref_pp=x))
-                    rec["pref_sweep"][str(x)] = {"best": w["best"], "expected": w[w["best"]]["expected"], "margin": w[w["best"]]["margin"]}
+                for x in (0.0, 10.0, 20.0, 40.0, 60.0, 100.0):
+                    kx = dict(kw, fps_pref_pp=x)
+                    w = evaluate(e, kx)
+                    c = context(e, kx)["fps"]
+                    rec["pref_sweep"][str(x)] = {"best": w["best"], "expected": w[w["best"]]["expected"], "margin": w[w["best"]]["margin"],
+                                                 "used": c["delivered_window"] / c["capacity_window"], "full_years": c["full_years"],
+                                                 "spare_by_year": c["spare_by_year"]}
                 # package: customers' preference +10 points once the fps flies; the margin still needed
                 kp = dict(kw, fps_pref_pp=10.0)
                 evp = evaluate(e, kp)
                 anp = analytic(e, evp, kp)
                 rec["pref10_margin"], rec["pref10_site"] = best_of(anp, "margin", min)
-                # packages: a faster ramp (1.5x: rate 50 in under 3 years) and the margin still needed
+                ck["pref10"] = confirm(e, kp, rec["pref10_site"], af_m_fps=100.0 * rec["pref10_margin"])
+                # packages: a faster ramp (1.5x) alone, and with a partner paying a quarter of the bill
                 k15 = dict(kw, ramp=L.compressed(1.5))
                 ev15 = evaluate(e, k15)
                 an15 = analytic(e, ev15, k15)
+                m15, s15 = best_of(an15, "margin", min)
                 rec["ramp15"] = {"eval": {s: {kk: ev15[s][kk] for kk in ("items", "expected", "worst", "risk_case", "margin", "passes")}
-                                          for s in PLANS}, "analytic": an15}
+                                          for s in PLANS}, "analytic": an15, "margin_needed": m15, "site": s15}
+                ck["ramp15"] = confirm(e, k15, s15, af_m_fps=100.0 * m15)
+                pk = {s: an15[s]["partner"]["0.25"] for s in PLANS}
+                ps = min(PLANS, key=lambda s: pk[s]["margin_free"])
+                rec["package"] = {"site": ps, **pk[ps]}
+                ck["package"] = confirm(e, k15, ps, af_cx_fps10=BILL0 * 0.75, af_m_fps=100.0 * pk[ps]["margin_free"])
                 rec["fundable"] = fundable(e, kw)
-                # packages: a partner pays a quarter of the bill and the ramp is 1.5x; the margin still needed
-                part = {}
-                for site in PLANS:
-                    base, x = ev15[site]["items"], BILL0 * 0.75
-                    with L.patched(**k15):
-                        tm = terms(PLANS[site], e)
-                    f = lambda mm: L.margin(shifted(base, tm, margin=mm, bill=x))
-                    part[site] = "passes" if f(M0) >= 0 else L.bisect(f, M0, 1.0, 0.0, tol=1e-7)
-                rec["package"] = part
-            rec["bridge"] = bridge(e, kw, ev["best"])
-            assert abs(sum(rec["bridge"].values()) - ev[ev["best"]]["expected"]) < 1e-9
-            # the pass lines re-checked on a re-solved dashboard (margin, price, bill each alone)
-            s_ = ev["best"]
-            a_ = an[s_]
-            rec["confirm"] = {"margin": confirm(e, kw, s_, af_m_fps=100.0 * a_["margin"]),
-                              "price": confirm(e, kw, s_, af_price_fps=a_["price"]),
-                              "bill": confirm(e, kw, s_, af_cx_fps10=a_["bill"])}
-            assert all(abs(v) < 1e-5 for v in rec["confirm"].values()), rec["confirm"]
+            assert all(abs(v) < 1e-5 for v in ck.values()), ck
+            rec["confirm"] = ck
+            rec["bridge"] = bridge(e, kw, s_)
+            assert abs(sum(rec["bridge"].values()) - ev[s_]["expected"]) < 1e-9
+            # counting convention: Do Nothing over the same years as this fps
+            rec["same_window"] = margin_case(e, kw, sw=True)
             # worlds (not Boeing's levers): Boeing loses 3 points a year while NGSA flies alone; NGSA 3 years late
             rec["worlds"] = {}
             for lab, kk, post in (("erosion3", dict(kw, options=dict(kw["options"], boeing_pp_after_ngsa=3.0)), None),
@@ -447,28 +556,27 @@ def main():
                 w = evaluate_post(e, kk, post) if post else evaluate(e, kk)
                 rec["worlds"][lab] = {"best": w["best"], **{k: w[w["best"]][k] for k in ("items", "expected", "worst", "risk_case", "margin", "passes")}}
             cases["N%s/%d" % (n, e)] = rec
-            b = ev[ev["best"]]
-            print("N=%s fps %d: best %-8s exp %+6.2f worst %+6.2f risk %+6.2f | margin %.1f%% price $%.0fM bill $%sB ramp %s pref %s  %.0fs" % (
-                n, e, ev["best"], b["expected"], b["worst"], b["risk_case"], 100 * (rec["margin_needed"] or 0), rec["price_needed"] or 0,
-                None if rec["bill_needed"] is None else round(rec["bill_needed"], 1), rec.get("ramp_needed") and round(rec["ramp_needed"], 2),
-                rec.get("pref_needed") and round(rec["pref_needed"], 1), time.time() - t0))
+            b = ev[s_]
+            sw = rec["same_window"]
+            print("N=%s fps %d: %-8s exp %+6.2f (same window %+6.2f) | margin %.1f%% price $%.0fM (cost held $%.1fM) bill $%.1fB | "
+                  "bill9 %.1f%% ramp %s pref %s  %.0fs" % (
+                      n, e, s_, b["expected"], sw["eval"][sw["eval"]["best"]]["expected"], 100 * rec["margin_needed"], rec["price_needed"],
+                      rec["price_cost_held"], rec["bill_needed"], 100 * rec["margin_bill9"], rec.get("ramp_needed") and round(rec["ramp_needed"], 2),
+                      rec.get("pref_needed") and round(rec["pref_needed"], 1), time.time() - t0))
     out["cases"] = cases
-    # sensitivities (the item and the margin needed; both sites)
+    # sensitivities (the item and the margin and bill needed, both re-checked)
     sens = {}
     for lab, kwf, tj, page in (("tail", lambda n: demand_kw(n, tail=True), False, False),
+                               ("page_from_2026", lambda n: demand_kw(n, whole=True), False, False),
                                ("tianjin", lambda n: demand_kw(n), True, False),
                                ("page_supply", lambda n: demand_kw(n), True, True)):
         for n in NS:
             for e in EIS:
-                ev = evaluate(e, kwf(n), tj, page)
-                an = analytic(e, ev, kwf(n), tj, page)
-                mn, ms = best_of(an, "margin", min)
-                bn, bs = best_of(an, "bill", max)
-                sens["%s/N%s/%d" % (lab, n, e)] = {"eval": ev, "margin_needed": mn, "margin_site": ms, "bill_needed": bn,
-                                                   "bill_site": bs, "analytic": an}
-                b = ev[ev["best"]]
-                print("%-11s N=%s fps %d: best %-8s exp %+6.2f worst %+6.2f risk %+6.2f margin %.1f%%" % (
-                    lab, n, e, ev["best"], b["expected"], b["worst"], b["risk_case"], 100 * (mn or 0)))
+                r = margin_case(e, kwf(n), tj, page)
+                sens["%s/N%s/%d" % (lab, n, e)] = r
+                b = r["eval"][r["eval"]["best"]]
+                print("%-14s N=%s fps %d: best %-8s exp %+6.2f worst %+6.2f risk %+6.2f margin %.1f%% bill $%.1fB" % (
+                    lab, n, e, r["eval"]["best"], b["expected"], b["worst"], b["risk_case"], 100 * r["margin_needed"], r["bill_needed"]))
     out["sensitivities"] = sens
     with L.patched(), supply(page=True):
         out["page_supply_check"] = {str(e): {y: page_boeing({"prog": {"fps": {"eis": e}}}, y) for y in range(2036, 2053)} for e in EIS}
