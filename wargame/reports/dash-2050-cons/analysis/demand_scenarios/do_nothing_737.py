@@ -1,6 +1,8 @@
 """737s Boeing sells each year under Do Nothing, on the user's page demand (chart 4.1, retirement 0-4 years later), run
 dash-2050-cons. The case is Airbus launching NGSA (in service 2037), the narrowbody market in Boeing's expected case; the
-A350 Re-engine column has the same narrowbody market. Writes do_nothing_737.json and do_nothing_737.png next to this file.
+A350 Re-engine column has the same narrowbody market. Writes do_nothing_737.json and do_nothing_737.png next to this file,
+and do_nothing_supply.png: the supply side alone (737, A320neo family and NGSA capacity a year, aircraft retiring as chapter
+1 sets out; the other timings differ only through Airbus's 1%-a-year capacity response, by under 2.5%).
 
   python3 do_nothing_737.py
 """
@@ -24,15 +26,17 @@ def series(kw):
     for r in rows.values():                                # Do Nothing: every Boeing narrowbody is a 737
         assert r["boeing"].get("nb_units_new", 0.0) == 0.0
     return ({y: rows[y]["boeing"]["nb_units"] for y in rows}, {y: rows[y]["sd"]["cap_max"] for y in rows},
-            {y: rows[y]["boeing"]["sd"]["sq_delivered"] for y in rows})
+            {y: (rows[y]["sd"]["cap_a320"], rows[y]["sd"]["cap_ngsa"]) for y in rows})
 
 
 def main():
     out = {"case": "Do Nothing, Airbus launches NGSA (2037)", "years": list(range(Y0, Y1 + 1)), "sold": {}, "capacity": None}
+    out["airbus_capacity"] = {}
     for n in D.NS:
-        sold, cap, sq = series(D.demand_kw(n))
+        sold, cap, ab = series(D.demand_kw(n))
         out["sold"][n] = [sold[y] for y in out["years"]]
         out["capacity"] = [cap[y] for y in out["years"]]
+        out["airbus_capacity"][n] = {"a320": [ab[y][0] for y in out["years"]], "ngsa": [ab[y][1] for y in out["years"]]}
     sold, _, _ = series({})
     out["sold"]["game"] = [sold[y] for y in out["years"]]
     json.dump(out, open(os.path.join(HERE, "do_nothing_737.json"), "w"), indent=1)
@@ -63,11 +67,43 @@ def main():
              "conservative curve before. BOEING PROPRIETARY.", fontsize=7.5, color="#556275")
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     fig.savefig(os.path.join(HERE, "do_nothing_737.png"))
+    supply_chart(out)
     for n in list(D.NS) + ["game"]:
         s = dict(zip(ys, out["sold"][n]))
         full = [y for y in ys if s[y] >= out["capacity"][ys.index(y)] - 1]
         print(n, "sold 2038-60 %.0f" % sum(s[y] for y in ys if y >= 2038), "| at capacity", full[:1], "..", full[-1:],
               "| 2045 %.0f 2050 %.0f 2055 %.0f 2060 %.0f" % (s[2045], s[2050], s[2055], s[2060]))
+
+
+def supply_chart(out):
+    import matplotlib.pyplot as plt
+    ys, b = out["years"], out["capacity"]
+    a3, ng = out["airbus_capacity"]["0"]["a320"], out["airbus_capacity"]["0"]["ngsa"]
+    fig, ax = plt.subplots(figsize=(10, 5.2), dpi=150)
+    ax.bar(ys, b, width=0.8, color="#2a78d6", label="Boeing 737 MAX", edgecolor="white", linewidth=0.6)
+    ax.bar(ys, a3, width=0.8, bottom=b, color="#eb6834", label="Airbus A320neo family", edgecolor="white", linewidth=0.6)
+    ax.bar(ys, ng, width=0.8, bottom=[x + y for x, y in zip(b, a3)], color="#17a06f", label="Airbus NGSA", edgecolor="white", linewidth=0.6)
+    tot = [x + y + z for x, y, z in zip(b, a3, ng)]
+    for y in (2030, 2040, 2045, 2050, 2060):
+        i = ys.index(y)
+        ax.text(y, tot[i] + 25, f"{tot[i]:,.0f}", ha="center", fontsize=8.5, color="#141c28")
+    i40 = ys.index(2040)
+    ax.annotate(f"Airbus {a3[i40] + ng[i40]:,.0f}: A320 runs down\nbefore NGSA reaches rate", xy=(2040, tot[i40]), xytext=(2032.2, 1930),
+                fontsize=8.5, color="#556275", arrowprops=dict(arrowstyle="-", color="#8a95a5", lw=0.8))
+    ax.set_xlim(Y0 - 0.6, Y1 + 0.6)
+    ax.set_ylim(0, 2400)
+    ax.set_ylabel("Aircraft a year (capacity)")
+    ax.grid(axis="y", color="#e3e8ef")
+    ax.set_axisbelow(True)
+    for sp in ("top", "right"):
+        ax.spines[sp].set_visible(False)
+    ax.set_title("Do Nothing supply: the 737 is flat at 684 a year from 2030; Airbus dips in 2039-41, then NGSA takes it past 1,300",
+                 loc="left", fontsize=11, fontweight="bold")
+    ax.legend(frameon=False, fontsize=9, loc="upper left", ncol=3)
+    fig.text(0.01, 0.01, "Capacity a year, Do Nothing, Airbus launches NGSA (in service 2037). Airbus includes the game's 1%-a-year capacity "
+             "response; aircraft retiring as chapter 1 sets out. BOEING PROPRIETARY.", fontsize=7.5, color="#556275")
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    fig.savefig(os.path.join(HERE, "do_nothing_supply.png"))
 
 
 if __name__ == "__main__":
