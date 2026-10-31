@@ -11,21 +11,15 @@
   },
   "comac_a_year": {
    "2026": 28,
-   "2028": 59,
    "2030": 93,
    "2035": 150,
-   "2040": 180,
    "2045": 200,
-   "2050": 250,
-   "2060": 250
+   "2050": 250
   },
   "entrant_a_year": {
-   "2039": 0,
-   "2040": 12,
-   "2043": 120,
-   "2046": 240,
-   "2050": 240,
-   "2060": 240
+   "eis": 2040,
+   "peak_a_month": 20.0,
+   "years_to_peak": 6
   },
   "willing": 1.0,
   "demand": "user's page chart 4.1, retiring as chapter 1 sets out (game curve before 2038), class share applied",
@@ -512,7 +506,7 @@
    "cap_max": 594.0,
    "cap_airbus": 1020.0,
    "cap_extra": 0.0,
-   "cap_comac": 43.5,
+   "cap_comac": 44.25,
    "cap_entrant": 0.0
   },
   "2028": {
@@ -525,7 +519,7 @@
    "cap_max": 624.0,
    "cap_airbus": 1020.0,
    "cap_extra": 0.0,
-   "cap_comac": 59.0,
+   "cap_comac": 60.5,
    "cap_entrant": 0.0
   },
   "2029": {
@@ -538,7 +532,7 @@
    "cap_max": 654.0,
    "cap_airbus": 1020.0,
    "cap_extra": 0.0,
-   "cap_comac": 76.0,
+   "cap_comac": 76.75,
    "cap_entrant": 0.0
   },
   "2030": {
@@ -629,7 +623,7 @@
    "cap_max": 684.0,
    "cap_airbus": 1030.2,
    "cap_extra": 0.0,
-   "cap_comac": 156.0,
+   "cap_comac": 155.0,
    "cap_entrant": 0.0
   },
   "2037": {
@@ -642,7 +636,7 @@
    "cap_max": 684.0,
    "cap_airbus": 953.3117861111093,
    "cap_extra": 0.0,
-   "cap_comac": 162.0,
+   "cap_comac": 160.0,
    "cap_entrant": 0.0
   },
   "2038": {
@@ -655,99 +649,99 @@
    "cap_max": 684.0,
    "cap_airbus": 707.5506259083292,
    "cap_extra": 0.0,
-   "cap_comac": 168.0,
+   "cap_comac": 165.0,
    "cap_entrant": 0.0
   },
   "2039": {
    "demand": 1930.7388,
    "max": 684.0,
    "airbus": 735.7639431017969,
-   "comac": 174.0,
+   "comac": 170.0,
    "entrant": 0.0,
-   "lost": 33.697485689820304,
+   "lost": 34.0974856898203,
    "cap_max": 684.0,
    "cap_airbus": 735.7639431017969,
    "cap_extra": 0.0,
-   "cap_comac": 174.0,
+   "cap_comac": 170.0,
    "cap_entrant": 0.0
   },
   "2040": {
    "demand": 1972.4640000000002,
    "max": 684.0,
    "airbus": 619.5616661168681,
-   "comac": 180.0,
-   "entrant": 12.0,
-   "lost": 78.01797050915148,
+   "comac": 175.0,
+   "entrant": 40.0,
+   "lost": 76.07797050915148,
    "cap_max": 684.0,
    "cap_airbus": 619.5616661168681,
    "cap_extra": 0.0,
-   "cap_comac": 180.0,
-   "cap_entrant": 12.0
+   "cap_comac": 175.0,
+   "cap_entrant": 40.0
   },
   "2041": {
    "demand": 2046.4314000000002,
    "max": 684.0,
    "airbus": 763.5896950920041,
-   "comac": 184.0,
-   "entrant": 48.0,
-   "lost": 106.90034394903591,
+   "comac": 180.0,
+   "entrant": 80.0,
+   "lost": 102.35434394903596,
    "cap_max": 684.0,
    "cap_airbus": 763.5896950920041,
    "cap_extra": 0.0,
-   "cap_comac": 184.0,
-   "cap_entrant": 48.0
+   "cap_comac": 180.0,
+   "cap_entrant": 80.0
   },
   "2042": {
    "demand": 2090.0532000000003,
    "max": 684.0,
    "airbus": 925.10276818728,
-   "comac": 188.0,
-   "entrant": 84.0,
-   "lost": 117.10535273540437,
+   "comac": 185.0,
+   "entrant": 120.0,
+   "lost": 109.71395273540439,
    "cap_max": 684.0,
    "cap_airbus": 925.10276818728,
    "cap_extra": 0.0,
-   "cap_comac": 188.0,
-   "cap_entrant": 84.0
+   "cap_comac": 185.0,
+   "cap_entrant": 120.0
   },
   "2043": {
    "demand": 1938.3252,
    "max": 684.0,
    "airbus": 1038.1107758931162,
-   "comac": 192.0,
-   "entrant": 120.0,
-   "lost": 95.81625987255232,
+   "comac": 190.0,
+   "entrant": 160.0,
+   "lost": 85.36399987255231,
    "cap_max": 684.0,
    "cap_airbus": 1038.1107758931162,
    "cap_extra": 0.0,
-   "cap_comac": 192.0,
-   "cap_entrant": 120.0
+   "cap_comac": 190.0,
+   "cap_entrant": 160.0
   },
   "2044": {
    "demand": 1824.5292000000002,
    "max": 684.0,
    "airbus": 1200.8664294074283,
-   "comac": 196.0,
-   "entrant": 160.0,
-   "lost": 44.60091094455427,
+   "comac": 195.0,
+   "entrant": 200.0,
+   "lost": 31.29387694455428,
    "cap_max": 684.0,
    "cap_airbus": 1200.8664294074283,
    "cap_extra": 0.0,
-   "cap_comac": 196.0,
-   "cap_entrant": 160.0
+   "cap_comac": 195.0,
+   "cap_entrant": 200.0
   },
   "2045": {
    "demand": 1847.2884000000001,
    "max": 641.25,
-   "airbus": 1378.9188177409783,
-   "comac": 114.26389038000508,
-   "entrant": 114.26389038000508,
+   "airbus": 1378.4290492552816,
+   "comac": 49.66101965713951,
+   "entrant": 59.59322358856742,
    "lost": 0.0,
    "cap_max": 641.25,
    "cap_airbus": 1378.9188177409783,
    "cap_extra": 60.0,
    "cap_comac": 200.0,
-   "cap_entrant": 200.0
+   "cap_entrant": 240.0
   },
   "2046": {
    "demand": 1904.1864,
@@ -1863,9 +1857,9 @@
  },
  "shift_2045_60": {
   "max": -2988.200594928735,
-  "airbus": 1289.1673606079858,
-  "comac": 558.8261866299771,
-  "entrant": 542.1937521159429,
+  "airbus": 1288.6775921222907,
+  "comac": 494.22331590711156,
+  "entrant": 487.5230853245051,
   "lost": -578.3936134971992
  },
  "max_profit_lost_pv": 0.8619861799764146

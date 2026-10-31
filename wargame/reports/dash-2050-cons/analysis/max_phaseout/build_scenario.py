@@ -33,9 +33,9 @@ YEARS = list(range(2026, 2061))
 # ─────────────────────────────── the scenario's assumptions (edit here) ───────────────────────────────
 MAX_PHASE = {"start": 2045, "gone": 2060}            # full rate to 2044, straight line down, none in 2060
 AIRBUS_EXTRA = {"from": 2045, "step_per_year": 5.0, "cap": 20.0}   # extra a month on top of the game's plan
-COMAC = {2026: 28, 2028: 59, 2030: 93, 2035: 150, 2040: 180, 2045: 200, 2050: 250, 2060: 250}   # a year (IBA to 2030;
-#   COMAC's 150-a-year goal reached in 2035; about 10% of the class market by 2050)
-ENTRANT = {2039: 0, 2040: 12, 2043: 120, 2046: 240, 2050: 240, 2060: 240}     # a year: in service 2040, 20 a month by 2046
+COMAC = {2026: 28, 2030: 93, 2035: 150, 2045: 200, 2050: 250}      # a year, straight lines between (IBA to 2030; COMAC's
+#   150-a-year goal reached in 2035; 250 a year, about an eighth of the class market, from 2050)
+ENTRANT = {"eis": 2040, "peak_a_month": 20.0, "years_to_peak": 6}  # Embraer-like: in service 2040, 20 a month six years on
 WILLING = 1.0                                        # share of unserved customers who take a COMAC or entrant aircraft
 
 
@@ -49,6 +49,11 @@ def interp(pts, y):
         if a <= y <= b:
             return pts[a] + (pts[b] - pts[a]) * (y - a) / (b - a)
     return 0.0
+
+
+def entrant_cap(y):
+    e = ENTRANT
+    return 0.0 if y < e["eis"] else 12.0 * e["peak_a_month"] * min(1.0, (y - e["eis"] + 1) / e["years_to_peak"])
 
 
 def max_cap(y, base):
@@ -102,7 +107,7 @@ def year_rows(state, b_pref_by_year, years, phase=False, extra=False, third=Fals
         r.update({"demand_gross": gross, "pref_b": pref, "cap_max": mb, "cap_a320": a3, "cap_ngsa": ng, "cap_extra": xa})
         # third tier: customers still unserved after the overflow between Boeing and Airbus
         cc = interp(COMAC, y) if third else 0.0
-        ce = interp(ENTRANT, y) if third else 0.0
+        ce = entrant_cap(y) if third else 0.0
         ub, ua = r["backlog_b"] / (1.0 - lapse), r["backlog_a"] / (1.0 - lapse)     # unserved, before the drop-out
         take = min(WILLING * (ub + ua), cc + ce)
         tb = take * ub / (ub + ua) if ub + ua > 0 else 0.0
