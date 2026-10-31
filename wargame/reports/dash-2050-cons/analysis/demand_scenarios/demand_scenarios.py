@@ -17,7 +17,8 @@ paying part of the bill, a faster ramp) with the margin they still need. A partn
 with the largest share of the fps's profit it could take back before the pass is lost. The price lever is reported both
 with the margin % held (cost per aircraft rises with price) and with today's cost per aircraft held. For 2039 (a 9-year
 programme from 2030 or a 2029 launch) the margin needed is also given at a 9-year bill (between the 7- and 10-year
-bills) and at the 7-year bill (exactly the game's own 7-year fps launched in 2032; checked). Counting convention: Boeing's brief counts Do Nothing to 2060 (its fps reference date,
+bills) and at the 7-year bill (exactly the game's own 7-year fps launched in 2032; checked). The margin by programme length is also
+given with the bill spent over the development years on the game's cash phasing curve instead of booked at entry into service. Counting convention: Boeing's brief counts Do Nothing to 2060 (its fps reference date,
 2041, + 19) whatever the fps date; the same-window variant counts Do Nothing over the same years as each fps.
 Sensitivities: the page's demand tail after 2055 replaced by the game's curve; the page's own demand from 2026 (no
 splice); Tianjin building 20 a month on top of Airbus's plan; the page's own Boeing supply. Every pass line (each lever
@@ -34,6 +35,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, ".."))
 import lib as L  # noqa: E402
+import finance as FIN  # noqa: E402
 
 M, SD = L.M, L.SD
 P = M.af_params()
@@ -220,6 +222,19 @@ def terms(plan, eis):
     return out
 
 
+def bill_cost(bill, eis, launch=None):
+    """Present value at 2026 of a programme bill plus the dashboard's debt penalty on it. launch None: booked as one lump
+    at entry into service, as Boeing's brief books it; otherwise spent over launch..eis-1 on the game's cash phasing curve
+    (finance.programme_cash), the debt penalty kept (the dashboard's formula on that present value)."""
+    w = P["WACC_B"]
+    if launch is None:
+        df = 1.0 / (1 + w) ** (eis - 2026)
+        return bill * df + pen_pv(bill, df)
+    shares = FIN.stretch(FIN.inputs()["phasing_curve"], eis - launch)
+    pv = sum(bill * sh / (1 + w) ** (launch + k - 2026) for k, sh in enumerate(shares))
+    return M.true_cost(bill, pv, P["v_debt_boeing"], P["v_ev_boeing"], P["v_alpha"])
+
+
 def shifted(base, tm, margin=M0, price=PRICE0, bill=BILL0):
     """The six items with the fps margin, price and bill changed (exact: the dashboard's unit profit is price x margin
     on every fps delivered in the window; the bill is a lump at entry into service with its debt penalty)."""
@@ -245,11 +260,16 @@ def analytic(eis, ev, kw=None, tj=False, page=False, ramp_k=None):
             p = L.bisect(fp, PRICE0, 400.0, 0.0, tol=1e-5)
             bl = L.bisect(fb, BILL0, 0.0, 0.0, tol=1e-5)
             at_bill = lambda x: L.bisect(lambda mm: L.margin(shifted(base, tm, margin=mm, bill=x)), 0.0, 1.0, 0.0, tol=1e-7)
+            # the margin needed when the bill costs `extra` $B more (PV) than the 10-year lump at entry into service
+            at_cost = lambda extra: L.bisect(lambda mm: L.margin([v - extra for v in shifted(base, tm, margin=mm)]), 0.0, 1.0, 0.0, tol=1e-7)
+            for k, v in BILLS.items():         # the lump route through bill_cost gives back the shortcut's own margins
+                assert abs(at_cost(bill_cost(v, eis) - bill_cost(BILL0, eis)) - at_bill(v)) < 1e-6
             share = {str(paid): partner(at_bill(BILL0 * (1 - paid)), paid) for paid in (0.25, 0.5)}
             res[site] = {"margin": m, "price": p, "bill": bl, "at_zero_bill": L.margin(shifted(base, tm, bill=1e-9)),
                          "price_cost_held": None if m is None else COST0 + PRICE0 * m,
                          "margin_bill9": at_bill(BILL9), "margin_bill7": at_bill(BILL7),
                          "margin_by_years": {str(k): at_bill(v) for k, v in BILLS.items()},
+                         "margin_by_years_phased": {str(k): at_cost(bill_cost(v, eis, eis - k) - bill_cost(BILL0, eis)) for k, v in BILLS.items()},
                          "partner": share,
                          "per_point": [t["U"] / 100.0 for t in tm],      # $B per margin point, each column
                          "per_10m_price": [t["V"] * 10.0 for t in tm],
