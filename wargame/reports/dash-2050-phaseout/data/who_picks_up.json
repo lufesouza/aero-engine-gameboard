@@ -9,21 +9,24 @@
    "airbus": 18390.665044376005,
    "comac": 3850.0,
    "entrant": 489.5359716240001,
-   "lost": 0.0
+   "lost": 0.0,
+   "waiting_end_2044": 0.0
   },
   "no phase-out": {
    "boeing": 5747.891514000002,
    "airbus": 17925.567686000002,
    "comac": 3850.0,
    "entrant": 0.0,
-   "lost": 0.0
+   "lost": 0.0,
+   "waiting_end_2044": 0.0
   },
   "no COMAC": {
    "boeing": 5092.619808,
    "airbus": 21618.514194943073,
    "comac": 0.0,
    "entrant": 917.5020235031659,
-   "lost": 0.0
+   "lost": 0.0,
+   "waiting_end_2044": 105.17682644623868
   }
  },
  "effect_of_phase_out": {
@@ -31,13 +34,15 @@
   "airbus": 465.0973583760024,
   "comac": 0.0,
   "entrant": 489.5359716240001,
-  "lost": 0.0
+  "lost": 0.0,
+  "waiting_end_2044": 0.0
  },
  "effect_of_comac": {
   "boeing": -299.3616240000001,
   "airbus": -3227.849150567068,
   "comac": 3850.0,
   "entrant": -427.9660518791658,
-  "lost": 0.0
+  "lost": 0.0,
+  "waiting_end_2044": -105.17682644623868
  }
 }

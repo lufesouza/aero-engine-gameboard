@@ -61,7 +61,7 @@ def nw(s):
 
 
 # ─────────────────────────────── the orders ───────────────────────────────
-CODE_TXT = {7: "CFM, Pratt & Whitney and Rolls-Royce"}
+CODE_TXT = {7: "CFM/GE, Pratt & Whitney and Rolls-Royce"}
 LABEL = {"ngsa": "NGSA", "a320_plan": "A320 plan", "genx": "GEnx", "gtf2_solo": "GTF2 Solo", "ultrafan_nb_solo": "UltraFan NB Solo",
          "ducted": "ducted engine", "partner_embraer": "Embraer partnership", "jv_with_rr": "Joint Venture with Rolls-Royce",
          "jv_with_pw": "Joint Venture with Pratt & Whitney", "fps": "fps", "re787": "787 Re-engine", "rate_737": "737 rate",
@@ -116,6 +116,10 @@ RE_P, _ = re787_item("dash-2050-phaseout", 1)
 RE_C, _ = re787_item("dash-2050-cons", 1)
 assert all(abs(a - c) < 1e-9 for a, c in zip(RE_P, RE_C))
 RE_UP, RE_DOWN = max(RE_P), min(RE_P)
+RE30_EVEN = 0.5 * RE_P[1] + 0.5 * RE_P[4]                     # conservative-case CEO: S2 and S5 at even odds
+RE30_W = sum(RE_P[i] * w for i, w in CEO_W[2030].items())     # this game's CEO: S5 at about a third
+assert RE30_EVEN < 1.0 < RE30_W and RE_DOWN < -1.0
+assert "40%" in REC("dash-2050-cons", 2)["decision"]["expected_scenario"]
 # 2035: inside $1B on the CEO's weighted column, not if Airbus held; 2045 and 2050: inside $1B in every column
 RE35, COLS35 = re787_item("dash-2050-phaseout", 2)
 RE35_W = sum(RE35[i] * w for i, w in CEO_W[2035].items())
@@ -221,11 +225,15 @@ SUM = lambda m, k, a, z: sum(m[y][k] or 0.0 for y in range(a, z + 1))
 B45P, B45C = SUM(MP, "boeing", 2045, 2060), SUM(MC, "boeing", 2045, 2060)
 A45P, A45C = SUM(MP, "airbus", 2045, 2060), SUM(MC, "airbus", 2045, 2060)
 CO45, EN45 = SUM(MP, "comac", 2045, 2060), SUM(MP, "entrant", 2045, 2060)
+CO_YRS = [y for y in range(2026, 2061) if (MP[y]["comac"] or 0) > 0.5]
+assert CO_YRS[0] == 2035 and MP[2060]["boeing"] < 0.5 and A45P > 0.6 * SUM(MP, "demand", 2045, 2060)
 DEM_P, DEM_C = SUM(MP, "demand", 2026, 2060), SUM(MC, "demand", 2026, 2060)
 assert abs(DEM_P / DEM_C - 1) < 0.002
 assert all(abs(MP[y]["demand"] - MC[y]["demand"]) < 1e-6 for y in range(2026, 2038)) and MP[2038]["demand"] < MC[2038]["demand"] - 250
 assert all(MP[y]["demand"] < MC[y]["demand"] for y in range(2057, 2061))
 EP, EC = WP["effect_of_phase_out"], WP["effect_of_comac"]
+WAIT = WP["cases"]["no COMAC"]["waiting_end_2044"] - WP["cases"]["as run"]["waiting_end_2044"]
+assert abs(-(EC["boeing"] + EC["airbus"] + EC["comac"] + EC["entrant"] + EC["lost"]) - WAIT) < 1.0 and WAIT > 0
 assert abs(WP["cases"]["as run"]["boeing"] - B45P) < 1e-6 and abs(WP["cases"]["as run"]["comac"] - CO45) < 1e-6
 assert abs(EP["comac"]) < 0.5 and EP["boeing"] < 0 < EP["airbus"] and EP["entrant"] > 0 and abs(EP["lost"]) < 0.5
 assert abs(EP["boeing"] + EP["airbus"] + EP["entrant"]) < 1.0         # the MAX's lost customers all land somewhere
@@ -243,23 +251,29 @@ assert all(abs(MP[y]["boeing"] - TAB[y]["boeing"]) <= 0.5 + 1e-6 for y in range(
 FEWER_TXT = ", ".join(f"{y} ({n0(MP[y]['boeing'])} against {n0(TAB[y]['boeing'])})" for y in FEWER[:-1]) + \
     f" and {FEWER[-1]} ({n0(MP[FEWER[-1]]['boeing'])} against {n0(TAB[FEWER[-1]]['boeing'])})"
 assert any(MP[y]["boeing"] + MP[y]["airbus"] + MP[y]["comac"] + MP[y]["entrant"] > MP[y]["demand"] + 1 for y in range(2026, 2061))
-B_ALL = SUM(MC, "boeing", 2026, 2060) - SUM(MP, "boeing", 2026, 2060)
+B_ALL = sum(K.rnd(SUM(MC, "boeing", a, z), 0) - K.rnd(SUM(MP, "boeing", a, z), 0) for a, z in ((2026, 2044), (2045, 2060)))
+_c50 = S50["columns"].index(REAL[2050])
+DN50 = [x["dn_vs_sq"][_c50] for x in S50["steps"]]
+assert abs(DN50[0] - C["final_value"]["boeing"]) < 1e-9 and abs(DN50[-1] - P["final_value"]["boeing"]) < 1e-9
+V_PH = DN50[I_PH] - DN50[I_DEM]
+V_REST = (DN50[-1] - DN50[0]) - V_PH
+assert V_PH > 0 and abs(V_REST) < 0.1 * V_PH
 assert B_ALL > 0
 
 
 # ─────────────────────────────── charts and tables ───────────────────────────────
-def gap_chart():
-    w, h, left, right, top, bot = 760, 300, 64, 196, 24, 44
+def gap_chart(narrow=False):
+    w, h, left, right, top, bot = (360, 300, 46, 80, 24, 44) if narrow else (760, 300, 64, 196, 24, 44)
     lo, hi = -7.0, 1.5
-    pad = 30
+    pad = 18 if narrow else 30
     sx = lambda y: left + pad + (y - YEARS[0]) / (YEARS[-1] - YEARS[0]) * (w - left - right - pad)
     sy = lambda v: top + (hi - v) / (hi - lo) * (h - top - bot)
-    out = [K.svg_open(w, h, "Boeing's 10-year fps at Renton against Do Nothing, by round, in both games")]
+    out = [K.svg_open(w, h, "Boeing's 10-year fps at Renton against Do Nothing, by round, in both games", "chart narrow" if narrow else "chart")]
     v = lo
     while v <= hi + 1e-9:
         out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(v):.1f}" y2="{sy(v):.1f}" class="grid"/><text x="{left - 8}" y="{sy(v) + 4:.1f}" text-anchor="end" class="tick">{bp(v, 0, False)}</text>')
         v += 1.0
-    out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(1):.1f}" y2="{sy(1):.1f}" class="ref"/><text x="{left + 6}" y="{sy(1) - 6:.1f}" class="reflab">The Board needs more than +$1B</text>')
+    out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(1):.1f}" y2="{sy(1):.1f}" class="ref"/><text x="{left + 6}" y="{sy(1) - 6:.1f}" class="reflab">{"Board needs +$1B" if narrow else "The Board needs more than +$1B"}</text>')
     for y in YEARS:
         out.append(f'<text x="{sx(y):.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick">{y}</text>')
     for vals, col, dash, lab in ((GAP_C, "var(--muted)", ' stroke-dasharray="6 4"', "Conservative-case game"), (GAP_P, "var(--s1)", "", "MAX phase-out game")):
@@ -267,20 +281,21 @@ def gap_chart():
         out.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="2"{dash}/>')
         for i, v in enumerate(vals):
             out.append(f'<circle cx="{sx(YEARS[i]):.1f}" cy="{sy(v):.1f}" r="5" fill="{col}" class="ring" {K.mark_attrs((bp(v), f"{lab}, {YEARS[i]} brief", col))}/>')
-        out.append(f'<text x="{w - right + 10}" y="{sy(vals[-1]) + 4:.1f}" class="endlab">{esc(lab.replace("-case game", "").replace(" game", ""))} {bp(vals[-1])}</text>')
-    out.append(f'<text x="{left}" y="{h - 6}" class="tick">The brief column that matches what Airbus then did; $B PV at 2026</text></svg>')
+        name = "" if narrow else esc(lab.replace("-case game", "").replace(" game", "")) + " "
+        out.append(f'<text x="{w - right + 8}" y="{sy(vals[-1]) + 4:.1f}" class="endlab">{name}{bp(vals[-1])}</text>')
+    out.append(f'<text x="{left}" y="{h - 6}" class="tick">{"$B PV at 2026" if narrow else "The brief column that matches what Airbus then did; $B PV at 2026"}</text></svg>')
     return "".join(out)
 
 
-def market_chart():
-    w, h, left, right, top, bot = 760, 330, 54, 16, 20, 44
+def market_chart(narrow=False):
+    w, h, left, right, top, bot = (360, 300, 44, 22, 20, 44) if narrow else (760, 330, 54, 16, 20, 44)
     ys = list(range(2026, 2061))
     top_v = max(max(MP[y]["demand"] or 0, MP[y]["boeing"] + MP[y]["airbus"] + MP[y]["comac"] + MP[y]["entrant"]) for y in ys)
     hi = (int(top_v / 500) + 1) * 500
     bw = (w - left - right) / len(ys)
     sx = lambda y: left + (y - ys[0] + 0.5) * bw
     sy = lambda v: top + (hi - v) / hi * (h - top - bot)
-    out = [K.svg_open(w, h, "Aircraft delivered each year by maker, MAX phase-out game, final state")]
+    out = [K.svg_open(w, h, "Aircraft delivered each year by maker, MAX phase-out game, final state", "chart narrow" if narrow else "chart")]
     v = 0
     while v <= hi:
         out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(v):.1f}" y2="{sy(v):.1f}" class="grid"/><text x="{left - 6}" y="{sy(v) + 4:.1f}" text-anchor="end" class="tick">{n0(v)}</text>')
@@ -305,16 +320,16 @@ def market_chart():
     d = "M" + " L".join(f"{sx(y):.1f},{sy(MP[y]['demand'] or 0):.1f}" for y in ys)
     out.append(f'<path d="{d}" fill="none" stroke="var(--fg)" stroke-width="2" pointer-events="none"/>')
     for y in ys:
-        if y % 5 == 0:
+        if y % (10 if narrow else 5) == 0:
             out.append(f'<text x="{sx(y):.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick">{y}</text>')
-    out.append(f'<text x="{left}" y="{h - 6}" class="tick">737/A320-class aircraft delivered a year, final state of the MAX phase-out game</text></svg>')
+    out.append(f'<text x="{left}" y="{h - 6}" class="tick">{"Aircraft a year, final state" if narrow else "737/A320-class aircraft delivered a year, final state of the MAX phase-out game"}</text></svg>')
     return "".join(out)
 
 
 def moves_table():
     head = ["Round"] + [NAME[s] for s in SIDES]
     rows = [[str(r["year"])] + [move_txt(r["orders"][s]) for s in SIDES] for r in P["rounds"]]
-    return K.table(head, rows)
+    return K.table(head, rows).replace("<table>", '<table class="moves">', 1)
 
 
 def gap_table():
@@ -378,6 +393,17 @@ CSS_EXTRA = """
 :root[data-theme="dark"] { --comac: #9b6fd6; }
 ul.cav li, footer { overflow-wrap: anywhere; }
 .legend .dash { display: inline-block; width: 18px; height: 0; border-top: 2px dashed var(--muted); vertical-align: middle; margin-right: 6px; }
+@media (max-width: 760px) {
+  .moves thead { display: none; }
+  .moves, .moves tbody, .moves tr, .moves th, .moves td { display: block; width: auto; }
+  .moves tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+  .moves tbody th { min-width: 0; font-weight: 600; border: 0; }
+  .moves td { border: 0; padding: 2px 0; }
+  .moves td::before { display: block; font: 600 11px var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .moves td:nth-of-type(1)::before { content: "Boeing"; } .moves td:nth-of-type(2)::before { content: "Airbus"; }
+  .moves td:nth-of-type(3)::before { content: "CFM/GE"; } .moves td:nth-of-type(4)::before { content: "Pratt & Whitney"; }
+  .moves td:nth-of-type(5)::before { content: "Rolls-Royce"; }
+}
 .legend .solid { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--s1); vertical-align: middle; margin-right: 6px; }
 """
 
@@ -385,48 +411,55 @@ ul.cav li, footer { overflow-wrap: anywhere; }
 def build(out_path):
     tp = OPT["third_party"]
     tiles = [("Outcome", "Same orders, no fps", "All five companies' final orders match the conservative-case game, round by round. Boeing held the fps in all four rounds."),
-             ("10-year fps against Do Nothing, 2050", bp(GAP_P[-1]), f"at Renton, against {bp(GAP_C[-1])} in the conservative-case game. The Board needs more than +$1B."),
+             ("10-year fps against Do Nothing, 2050", bp(GAP_P[-1]), f"at Renton, against {b(GAP_C[-1])} in the conservative-case game. The Board needs more than +$1B."),
              ("737 MAX delivered 2045-60", n0(B45P), f"against {n0(B45C)} in the conservative-case game. COMAC delivers {n0(CO45)} and the new entrant {n0(EN45)} in those years."),
-             ("Board's +$1B test", "Not met", f"in any round, whatever demand does after 2060. The closest any fps launch comes is {bp(BEST_ANY[0])} (2050, conservative curve after 2060).")]
-    tiles_html = '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div><div class="d">{esc(d)}</div></div>' for k, v, d in tiles) + "</div>"
+             ("Board's +$1B test", "Not met", f"in any round, under all three demand curves tested after 2060 (the highest rising to {n0(_gtop)} a year). The closest any fps launch comes is {b(BEST_ANY[0])} (2050).")]
+    tiles_html = '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div><div class="d">{d}</div></div>' for k, v, d in tiles) + "</div>"
     page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MAX Phase-out Game</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>{K.CSS + CSS_EXTRA}</style></head><body><div class="wrap">
-<header class="top"><p class="eyebrow">Boeing Product Development · war game rerun (dash-2050-phaseout) · BOEING PROPRIETARY</p>
+<header class="top"><p class="eyebrow">Boeing Product Development · war game rerun · MAX phase-out world · BOEING PROPRIETARY</p>
 <h1>The MAX phase-out game: same orders, no fps, and a weaker fps case in every round</h1>
-<p class="lede">The game replayed in the world you set in the Do Nothing tuner. It differs from the conservative-case game in five ways.
+<p class="lede">The game replayed in the world you set in the Do Nothing tuner. It differs from the conservative-case game (the earlier play of the same game on the conservative demand curve) in five ways.
 <b>Demand</b> follows the conservative curve to 2037 and your Single-Aisle Replacement Story page from 2038. That page counts replacement of today's fleet plus as much again for growth.
 Over 2026-60 the two curves total about the same ({n0(DEM_P)} against {n0(DEM_C)} aircraft). Yours dips where they join in 2038 ({n0(MP[2038]["demand"])} against {n0(MC[2038]["demand"])}), and it falls away in the late 2050s and after 2060.
 <b>The 737 MAX</b> phases out from {OPT["max_phaseout"]["start"]}, with none built from {OPT["max_phaseout"]["gone"]}.
 <b>Airbus</b> adds extra lines from {OPT["airbus_extra"]["from"]}, up to {OPT["airbus_extra"]["cap"]:.0f} more aircraft a month.
 <b>COMAC</b> sells its capacity first, to its own customers: 150 a year in 2035, rising to 250 from 2050.
 <b>A new entrant</b> enters service in {tp["entrant"]["eis"]} and sells to customers left waiting: those who cannot get the aircraft they want and do not switch.
-Every company played as before, through its Board and ExCo, round by round.</p></header>
+Every company played as before, through its Board and ExCo, in the same four rounds: 2030, 2035, 2045 and 2050.</p>
+<p class="gloss"><b>How to read the figures.</b> Values are $B, PV at 2026, against the <b>status quo</b>, in which nobody launches anything.
+<b>Do Nothing</b> is not the status quo: Boeing launches nothing, but Airbus and the engine makers still move.
+Each round Boeing's ExCo gets a <b>brief</b>: a grid that values every Boeing plan against each move Airbus could make that round, one <b>column</b> per move.
+Where the page quotes one figure, it uses the column for what Airbus then did. The <b>10-year fps at Renton</b> is the fps on a 10-year development, built at Renton.
+The brief counts each programme's sales for 20 years from its entry into service, and Do Nothing's to 2060.
+Boeing's Board approves a launch only if it adds more than +$1B in the column its CEO expects, and vetoes any order that could lose more than $1B in any column it thinks plausible (its <b>downside test</b>).</p></header>
 <section style="margin-top:18px">{tiles_html}</section>
 
 <section><h2>What each company did</h2><div class="panel">{moves_table()}
 <p class="cap">All five companies' final orders match the conservative-case game, round by round, and Boeing held the fps in all four rounds.
 The one difference is how Boeing got there in 2030. The 787 Re-engine scored the same in both games: {b(RE_UP)} against Do Nothing, or {b(RE_DOWN)} if Airbus
-re-engines the A350 in the same round. The conservative-case CEO put even odds on that A350 move and held the Re-engine back. This game's CEO put the odds at about a third
-and proposed the Re-engine, and the Board vetoed it on its downside test. In 2035 the CFO put the odds of an A350 Re-engine at 30%. On that weighting the Re-engine's
-expected lead ({b(RE35_W)}) was inside the $1B margin, so the CEO held it back. It would have led by {b(RE35_HOLD)} if Airbus held, as it did. In 2045 and 2050
+re-engines the A350 in the same round. The conservative-case CEO put even odds on that A350 move, which made the Re-engine worth {b(RE30_EVEN)}, inside the $1B margin, and held it back.
+This game's CEO put the odds at about a third, which made it worth {b(RE30_W)}, and proposed it. The Board vetoed it on its downside test, because it loses {b(-RE_DOWN, 2, False)} if Airbus does re-engine.
+In 2035 this game's CEO adopted the CFO's 30% odds of an A350 Re-engine (the conservative-case CEO used 40%). On that weighting the Re-engine's
+expected lead ({b(RE35_W)}) was inside the $1B margin, so the CEO held it back; it would have led by {b(RE35_HOLD)} if Airbus held, as it did. In 2045 and 2050
 its lead was inside $1B in every column. Airbus launched NGSA in 2030 on its Alt plan, which keeps the A320 longer. NGSA's engine choice set off Pratt &amp; Whitney's
 GTF2 and Rolls-Royce's UltraFan NB launches in 2030, and CFM/GE upgraded the GEnx. In 2035 those two engines folded into the Pratt &amp; Whitney-Rolls-Royce
-Joint Venture, and CFM launched its ducted engine and an Embraer partnership.</p></div></section>
+Joint Venture, and CFM/GE launched its ducted engine and an Embraer partnership.</p></div></section>
 
 <section><h2>Boeing's fps case, round by round</h2><div class="stack">
 <div class="panel"><p class="ctitle">The fps case is {bp(min(WIDER), 1, False)}-{bp(max(WIDER), 1, False)} weaker than in the conservative-case game in every round, and never near the Board's +$1B</p>
 <div class="legend"><span><i class="solid"></i>MAX phase-out game</span><span><i class="dash"></i>Conservative-case game</span></div>
-<div class="cw">{gap_chart()}</div>
+<div class="cw only-wide">{gap_chart()}</div><div class="cw only-narrow">{gap_chart(True)}</div>
 <p class="cap">Each round's brief: the 10-year fps at Renton against Do Nothing, in the column that matches what Airbus then did.
 In both games the fps's shortfall against Do Nothing shrinks round by round. The difference between the games does not.</p></div>
 <div class="panel">{gap_table()}</div>
 <div class="panel"><p class="label">Why the case is weaker: your assumptions switched on one at a time</p>{steps_table()}
 <p class="cap"><b>2030:</b> the biggest step is COMAC selling its capacity first ({b(CH30[I_CO])}). Under Do Nothing, in the years the brief counts, COMAC takes {n0(CU_DN["to_2060"])} aircraft
-from Boeing. {n0(CU_DN["by_period"][2])} of them fall in 2045-49, and none from 2050, when the shrinking MAX line is sold out anyway.
-From the fps plan it takes {n0(CU_F["to_2059"])}, {n0(CU_F["by_period"][2] + CU_F["by_period"][3])} of them in 2045-59, when an fps would have aircraft to sell.
+from Boeing: {n0(CU_DN["by_period"][0])} in 2035-39, {n0(CU_DN["by_period"][2])} in 2045-49, and none from 2050, when the shrinking MAX line is sold out anyway.
+From the fps plan it takes {n0(CU_F["to_2059"])}: the same {n0(CU_F["by_period"][0])} in 2035-39 and {n0(CU_F["by_period"][2] + CU_F["by_period"][3])} in 2045-59, when an fps would have aircraft to sell.
 Measured against its own status quo, Do Nothing loses only {b(-CO_DN, 2, False)} at this step and the fps plan {b(-CO_FPS, 2, False)}.
 The phase-out helps the fps case ({b(CH30[I_PH])}). The status quo also loses its MAX, and measured against it the fps plan gains {b(PH_FPS, 2, False)} and Do Nothing only {b(PH_DN, 2, False)}.
 <b>2050:</b> the biggest step is the demand curve ({b(CH50[I_DEM])}). The brief counts an fps's sales for 20 years from its entry into service. An fps launched in 2050
@@ -444,29 +477,32 @@ The other companies were not replayed under these curves.</p></div>
 </div></section>
 
 <section><h2>The market in the final state</h2><div class="stack">
-<div class="panel"><p class="ctitle">The MAX's lost customers go to Airbus and the new entrant; COMAC's sales come mostly out of Airbus's</p>
+<div class="panel"><p class="ctitle">The MAX runs down to none by 2060; Airbus delivers most of the market, and COMAC 150-250 a year from 2035</p>
 <div class="legend"><span><i class="sq" style="background:var(--s1)"></i>Boeing 737 MAX</span><span><i class="sq" style="background:var(--s2)"></i>Airbus</span><span><i class="sq" style="background:var(--comac)"></i>COMAC</span><span><i class="sq" style="background:var(--s3)"></i>New entrant</span><span><i class="ln" style="background:var(--fg);width:16px;height:2px;display:inline-block;vertical-align:middle"></i> Demand</span></div>
-<div class="cw">{market_chart()}</div>
+<div class="cw only-wide">{market_chart()}</div><div class="cw only-narrow">{market_chart(True)}</div>
 <p class="cap">Over 2045-60 Boeing delivers {n0(B45C - B45P)} fewer 737s than in the conservative-case game, and Airbus {n0(A45C - A45P)} fewer.
-COMAC delivers {n0(CO45)} and the new entrant {n0(EN45)}. The table below splits that inside this world. The phase-out costs Boeing {n0(-EP["boeing"])} aircraft:
-{n0(EP["airbus"])} of those customers switch to Airbus and {n0(EP["entrant"])} buy from the new entrant. COMAC sells its {n0(EC["comac"])} first, off the top of each year's demand, so it
-sells them with or without the phase-out. Without COMAC, {n0(-EC["airbus"])} of those customers would have bought from Airbus and {n0(-EC["boeing"])} from Boeing.
+COMAC delivers {n0(CO45)} and the new entrant {n0(EN45)}. Those gaps mix all five assumptions, which overlap. The table below takes the two that move the MAX's
+customers, inside this world. The phase-out costs Boeing {n0(-EP["boeing"])} aircraft: {n0(EP["airbus"])} of those customers switch to Airbus and {n0(EP["entrant"])} buy from the new entrant.
+COMAC sells its {n0(EC["comac"])} first, off the top of each year's demand, so it sells them with or without the phase-out. Without COMAC, Airbus would deliver {n0(-EC["airbus"])} more,
+the new entrant {n0(-EC["entrant"])} more and Boeing {n0(-EC["boeing"])} more; that is {n0(WAIT)} more than COMAC's {n0(EC["comac"])}, because without COMAC {n0(WAIT)} customers are still waiting at the end of 2044 and are delivered later.
 The final state is not quite your tuner table, because Airbus played its Alt plan (the A320 kept longer). That gives it more capacity in {MORE_CAP[0]}-{str(MORE_CAP[-1])[2:]} than the
 base plan your table shows. As a result Boeing delivers fewer 737s than your table in {FEWER_TXT}. In every other year Boeing's deliveries match your table.
 In some years the bars rise above that year's demand: customers left unserved in earlier years wait, and a tenth of them give up each year.</p></div>
-<div class="panel"><p class="label">Who picks up what, inside this world: the final state with each assumption, against the same state with only that assumption switched off</p>{who_table()}</div>
+<div class="panel"><p class="label">The MAX's lost customers go to Airbus and the new entrant; COMAC's sales come mostly out of Airbus's</p>{who_table()}
+<p class="cap">The final state of this game with each assumption, against the same state with only that assumption switched off, 2045-60.</p></div>
 <div class="panel">{market_table()}</div>
 </div></section>
 
 <section><h2>Value at the end of the game</h2><div class="panel">{value_table()}
-<p class="cap">Each company's moves, measured against the status quo of its own world, PV at 2026. The two columns are measured from different starting points, so they
-should not be subtracted. Boeing's {bp(P["final_value"]["boeing"])} is a smaller loss than its {bp(C["final_value"]["boeing"])} only because its status quo here already loses most of
-the MAX's late sales. In absolute terms Boeing delivers {n0(B_ALL)} fewer 737s over 2026-60 in this world.</p></div></section>
+<p class="cap">What the final state, after all five companies' moves, is worth to each company against the status quo of its own world, PV at 2026. Boeing held everything
+in both games, so its figures are what the other companies' moves cost it. The two columns are measured from different starting points, so they should not be subtracted.
+Boeing's {b(P["final_value"]["boeing"])} is a smaller loss than its {b(C["final_value"]["boeing"])} mainly because its status quo here also loses the MAX's late sales: that alone is worth
+{b(V_PH)} to the comparison, and the other assumptions together {b(V_REST)}. In absolute terms Boeing delivers {n0(B_ALL)} fewer 737s over 2026-60 in this world (the two periods in the table above).</p></div></section>
 
 <section><h2>Notes</h2><div class="panel"><ul class="cav">
 <li><b>The world</b> is the settings behind your Do Nothing tuner table (1 Nov 2026), in sd_options_phaseout.json. With Airbus on its base A320 plan the game gives back your table to the aircraft (test_phaseout.py).</li>
 <li><b>The phase-out applies to every Boeing plan</b>, not only Do Nothing, because the MAX ages either way. COMAC and the new entrant compete in every plan too.</li>
-<li><b>Everything else</b> is the conservative-case game. Firm orders, Boards, ExCos and objectives are the same. So are the market rules: Boeing's share drifts down 1 point a year while NGSA flies alone, Boeing can sell into Airbus's spare capacity, and Airbus adds 1% capacity a year when it is short.</li>
+<li><b>Everything else</b> is the conservative-case game. Firm orders, Boards, ExCos and objectives are the same. So are the market rules: Boeing's share drifts down 1 point a year while NGSA flies alone, Boeing sells to the customers Airbus cannot build for, and Airbus adds 1% capacity a year when it is short.</li>
 <li><b>The step tables</b> (steps.py) switch your assumptions on in the order shown. Another order would split the total differently but give the same total. The first and last steps give back each game's own brief, every column, to the cent. Changes are shown as the differences of the rounded figures.</li>
 <li><b>The demand curves after 2060</b> (tail.py) re-value every Boeing plan in every column of every round, from the state each round started in. The "as run" curve gives back the run's own briefs to the cent.</li>
 <li><b>Source:</b> extract.py, steps.py, tail.py, comac_units.py, who_picks_up.py and make_phaseout_html.py. The round records are in record/.</li>
