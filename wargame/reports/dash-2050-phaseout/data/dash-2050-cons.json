@@ -1,0 +1,867 @@
+{
+ "run": "dash-2050-cons",
+ "rounds": [
+  {
+   "round": 1,
+   "year": 2030,
+   "orders": {
+    "boeing": {
+     "fps": "hold",
+     "fps_engine_code": null,
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_site": "new_site"
+    },
+    "airbus": {
+     "ngsa": "launch",
+     "ngsa_engine_code": 7,
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "a320_plan": "alt"
+    },
+    "cfm": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "upgrade_genx9"
+    },
+    "pratt_whitney": {
+     "gtf2_solo": "launch_if_selected",
+     "jv_with_rr": "hold"
+    },
+    "rolls_royce": {
+     "ultrafan_nb_solo": "launch_if_selected",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    }
+   },
+   "log": [
+    "NGSA (Airbus) launched in 2030",
+    "Airbus adopts the Alt plan: A320 lines kept longer through the NGSA ramp-up",
+    "NGSA engine selection: RR, PW and CFM",
+    "P&W GTF2 (Solo) launched in 2030",
+    "pw_solo: conditional launch triggered by ngsa",
+    "RR UltraFan NB (Solo) launched in 2030",
+    "rr_solo: conditional launch triggered by ngsa",
+    "GEnx (CFM/GE) launched in 2030"
+   ],
+   "value": {
+    "boeing": -0.8336880537410587,
+    "airbus": 14.089159810850319,
+    "cfm": -27.06928876467552,
+    "pratt_whitney": -0.9697195282656708,
+    "rolls_royce": 11.770272707489688
+   },
+   "fps_vs_dn": {
+    "fps 10-yr at Renton + 787: hold": [
+     -4.389019462640146,
+     -4.802655459627466,
+     -5.260985226096571,
+     -4.389019462640146,
+     -4.802655459627466,
+     -4.818856430011812
+    ],
+    "fps 10-yr + 787: hold": [
+     -4.974739244942045,
+     -5.268416622639709,
+     -5.628079885126548,
+     -4.974739244942045,
+     -5.268416622639709,
+     -5.274543297938433
+    ],
+    "fps 7-yr at Renton + 787: hold": [
+     -7.910317923746446,
+     -7.5447694998288135,
+     -7.921884492953808,
+     -7.910317923746446,
+     -7.5447694998288135,
+     -7.544769499828819
+    ],
+    "fps via Embraer at Renton + 787: hold": [
+     -22.44434625271193,
+     -22.857982249699248,
+     -23.316312016168354,
+     -22.44434625271193,
+     -22.857982249699248,
+     -22.874183220083594
+    ]
+   },
+   "columns": [
+    "Rivals hold",
+    "Airbus launches NGSA",
+    "Airbus launches NGSA on the A320 Alt plan",
+    "Airbus launches A350 Re-engine",
+    "Airbus launches NGSA + A350 Re-engine",
+    "Risk case: NGSA + Airbus Delay Tactics (covert)"
+   ],
+   "dn_row": [
+    0.0,
+    -0.6352713985522396,
+    -0.8336880537410587,
+    -2.622314374712701,
+    -3.2575857732649407,
+    -0.6352713985522396
+   ]
+  },
+  {
+   "round": 2,
+   "year": 2035,
+   "orders": {
+    "boeing": {
+     "fps": "hold",
+     "fps_engine_code": null,
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_site": "new_site"
+    },
+    "airbus": {
+     "ngsa": "hold",
+     "ngsa_engine_code": 7,
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "a320_plan": "alt"
+    },
+    "cfm": {
+     "ducted": "launch",
+     "open_fan": "hold",
+     "partner_embraer": "launch",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "pratt_whitney": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "commit"
+    },
+    "rolls_royce": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "commit",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    }
+   },
+   "log": [
+    "Pratt & Whitney commits to the Joint Venture",
+    "Rolls-Royce commits to the Joint Venture",
+    "P&W GTF2 (Solo) folded into the Joint Venture",
+    "RR UltraFan NB (Solo) folded into the Joint Venture",
+    "P&W-RR Joint Venture NB engine launched in 2035",
+    "Joint Venture engine ready 2036 (inherits a folded solo programme's schedule)",
+    "CFM ducted engine launched in 2035",
+    "CFM-Embraer partnership launched in 2035"
+   ],
+   "value": {
+    "boeing": -0.8336880537410587,
+    "airbus": 14.089159810850319,
+    "cfm": -28.04251821779073,
+    "pratt_whitney": -1.651590516162436,
+    "rolls_royce": 11.027908454059585
+   },
+   "fps_vs_dn": {
+    "fps 10-yr at Renton + 787: hold": [
+     -4.286408149845023,
+     -4.240291948352217,
+     -4.286408149845023,
+     -4.347912521632255
+    ],
+    "fps 10-yr + 787: hold": [
+     -4.54583721541912,
+     -4.553150431018299,
+     -4.54583721541912,
+     -4.635926924937612
+    ],
+    "fps 7-yr at Renton + 787: hold": [
+     -6.467082595106637,
+     -6.201101881713113,
+     -6.467082595106639,
+     -6.467082595106637
+    ],
+    "fps via Embraer at Renton + 787: hold": [
+     -15.245989462788353,
+     -15.199873261295549,
+     -15.245989462788353,
+     -15.307493834575586
+    ]
+   },
+   "columns": [
+    "Rivals hold",
+    "Airbus returns to the A320 base plan",
+    "Airbus launches A350 Re-engine",
+    "Risk case: Airbus Delay Tactics (covert)"
+   ],
+   "dn_row": [
+    -0.8336880537410587,
+    -0.6352713985522396,
+    -2.294521586269044,
+    -0.8336880537410587
+   ]
+  },
+  {
+   "round": 3,
+   "year": 2045,
+   "orders": {
+    "boeing": {
+     "fps": "hold",
+     "fps_engine_code": null,
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_site": "new_site"
+    },
+    "airbus": {
+     "ngsa": "hold",
+     "ngsa_engine_code": null,
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "a320_plan": "alt"
+    },
+    "cfm": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "pratt_whitney": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "hold"
+    },
+    "rolls_royce": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    }
+   },
+   "log": [],
+   "value": {
+    "boeing": -0.8336880537410587,
+    "airbus": 14.089159810850319,
+    "cfm": -28.04251821779073,
+    "pratt_whitney": -1.651590516162436,
+    "rolls_royce": 11.027908454059585
+   },
+   "fps_vs_dn": {
+    "fps 10-yr at Renton + 787: hold": [
+     -1.7738194219629757,
+     -1.7738194219629757,
+     -1.8736263210083504
+    ],
+    "fps 10-yr + 787: hold": [
+     -1.9396311296514792,
+     -1.9396311296514792,
+     -2.039438028696854
+    ],
+    "fps 7-yr at Renton + 787: hold": [
+     -2.985756431689294,
+     -2.985756431689294,
+     -3.1354677675104363
+    ],
+    "fps via Embraer at Renton + 787: hold": [
+     -5.811864687504521,
+     -5.811864687504521,
+     -5.911671586549895
+    ]
+   },
+   "columns": [
+    "Rivals hold",
+    "Airbus launches A350 Re-engine",
+    "Risk case: Airbus Delay Tactics (covert)"
+   ],
+   "dn_row": [
+    -0.8336880537410587,
+    -1.1615565520156488,
+    -0.8336880537410587
+   ]
+  },
+  {
+   "round": 4,
+   "year": 2050,
+   "orders": {
+    "boeing": {
+     "fps": "hold",
+     "fps_engine_code": null,
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_site": "new_site"
+    },
+    "airbus": {
+     "ngsa": "hold",
+     "ngsa_engine_code": null,
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "a320_plan": "alt"
+    },
+    "cfm": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "pratt_whitney": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "hold"
+    },
+    "rolls_royce": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    }
+   },
+   "log": [],
+   "value": {
+    "boeing": -0.8336880537410587,
+    "airbus": 14.089159810850319,
+    "cfm": -28.04251821779073,
+    "pratt_whitney": -1.651590516162436,
+    "rolls_royce": 11.027908454059585
+   },
+   "fps_vs_dn": {
+    "fps 10-yr at Renton + 787: hold": [
+     -0.8525716814081452,
+     -0.8525716814081452,
+     -0.9122961873676934
+    ],
+    "fps 10-yr + 787: hold": [
+     -0.9532193691614013,
+     -0.9532193691614013,
+     -1.0129438751209494
+    ],
+    "fps 7-yr at Renton + 787: hold": [
+     -1.7278747684078342,
+     -1.7278747684078342,
+     -1.8098660444400334
+    ],
+    "fps via Embraer at Renton + 787: hold": [
+     -3.3036646994189485,
+     -3.3036646994189485,
+     -3.3633892053784966
+    ]
+   },
+   "columns": [
+    "Rivals hold",
+    "Airbus launches A350 Re-engine",
+    "Risk case: Airbus Delay Tactics (covert)"
+   ],
+   "dn_row": [
+    -0.8336880537410587,
+    -0.930458716608991,
+    -0.8336880537410587
+   ]
+  }
+ ],
+ "market": [
+  {
+   "year": 2026,
+   "demand": 723.5529,
+   "boeing": 285.1990891891892,
+   "airbus": 438.35381081081084,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 510.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.3941648070088437,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2027,
+   "demand": 905.0859690000001,
+   "boeing": 356.7530362972973,
+   "airbus": 548.3329327027028,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 594.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.39416480700884365,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2028,
+   "demand": 1084.1913900000002,
+   "boeing": 427.3500900000001,
+   "airbus": 656.8413,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 624.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.3941648070088437,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2029,
+   "demand": 1257.16131,
+   "boeing": 495.52874513513507,
+   "airbus": 761.6325648648649,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 654.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.39416480700884365,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2030,
+   "demand": 1406.3289,
+   "boeing": 554.3253594594595,
+   "airbus": 852.0035405405405,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.3941648070088437,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2031,
+   "demand": 1500.0968040000002,
+   "boeing": 591.2853672432433,
+   "airbus": 908.811436756757,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.39416480700884365,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2032,
+   "demand": 1569.066663,
+   "boeing": 618.4708584054055,
+   "airbus": 950.5958045945946,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.3941648070088437,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2033,
+   "demand": 1629.881142,
+   "boeing": 642.4417857837839,
+   "airbus": 987.4393562162161,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.39416480700884376,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2034,
+   "demand": 1685.271345,
+   "boeing": 664.2746544594595,
+   "airbus": 1020.0,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.3943980589511677,
+   "boeing_pref": 0.4,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2035,
+   "demand": 1724.0094000000001,
+   "boeing": 684.0,
+   "airbus": 1020.0,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 2.1006090540540754,
+   "cap_max": 684.0,
+   "cap_airbus": 1020.0,
+   "boeing_share": 0.4014084507042254,
+   "boeing_pref": 0.4125405403206802,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2036,
+   "demand": 1720.97484,
+   "boeing": 684.0,
+   "airbus": 1030.2,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 2.568032148648672,
+   "cap_max": 684.0,
+   "cap_airbus": 1030.2,
+   "boeing_share": 0.3990199509975499,
+   "boeing_pref": 0.40138578667425495,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2037,
+   "demand": 1712.089269,
+   "boeing": 684.0,
+   "airbus": 1025.8132684027787,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 2.5388289935059447,
+   "cap_max": 684.0,
+   "cap_airbus": 1025.8132684027787,
+   "boeing_share": 0.4000436846761391,
+   "boeing_pref": 0.4008412487732387,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2038,
+   "demand": 1719.372213,
+   "boeing": 684.0,
+   "airbus": 831.186745908329,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 22.703492803322458,
+   "cap_max": 684.0,
+   "cap_airbus": 831.186745908329,
+   "boeing_share": 0.45142950322598907,
+   "boeing_pref": 0.5165754456051983,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2039,
+   "demand": 1750.9031880000002,
+   "boeing": 684.0,
+   "airbus": 860.636424301797,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 41.05981989281054,
+   "cap_max": 684.0,
+   "cap_airbus": 860.636424301797,
+   "boeing_share": 0.44282265343391736,
+   "boeing_pref": 0.5084614442418864,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2040,
+   "demand": 1800.8217,
+   "boeing": 684.0,
+   "airbus": 886.3868425860068,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 59.9973236449288,
+   "cap_max": 684.0,
+   "cap_airbus": 886.3868425860068,
+   "boeing_share": 0.43556146896495584,
+   "boeing_pref": 0.5077875602087609,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2041,
+   "demand": 1849.336728,
+   "boeing": 684.0,
+   "airbus": 1120.2604656939402,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 58.505217511041906,
+   "cap_max": 684.0,
+   "cap_airbus": 1120.2604656939402,
+   "boeing_share": 0.37910269221407866,
+   "boeing_pref": 0.3942366207664805,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2042,
+   "demand": 1907.837355,
+   "boeing": 684.0,
+   "airbus": 1174.567493833925,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 57.58168187654519,
+   "cap_max": 684.0,
+   "cap_airbus": 1174.567493833925,
+   "boeing_share": 0.36802537560205484,
+   "boeing_pref": 0.3843461075150585,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2043,
+   "demand": 1971.847605,
+   "boeing": 684.0,
+   "airbus": 1220.0307024386336,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 58.605203945027284,
+   "cap_max": 684.0,
+   "cap_airbus": 1220.0307024386336,
+   "boeing_share": 0.3592379046850192,
+   "boeing_pref": 0.3812753585292238,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2044,
+   "demand": 2020.9600619999999,
+   "boeing": 684.0,
+   "airbus": 1384.605555218401,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 47.98013422868444,
+   "cap_max": 684.0,
+   "cap_airbus": 1384.605555218401,
+   "boeing_share": 0.33065752834052703,
+   "boeing_pref": 0.32,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2045,
+   "demand": 2018.9307000000001,
+   "boeing": 684.0,
+   "airbus": 1333.4529836105564,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 43.32989244476037,
+   "cap_max": 684.0,
+   "cap_airbus": 1333.4529836105564,
+   "boeing_share": 0.3390413583645811,
+   "boeing_pref": 0.3395251339679186,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2046,
+   "demand": 1913.6030190000001,
+   "boeing": 684.0,
+   "airbus": 1325.5465504934455,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 29.402550050939794,
+   "cap_max": 684.0,
+   "cap_airbus": 1325.5465504934455,
+   "boeing_share": 0.3403752950296391,
+   "boeing_pref": 0.3073032717171704,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2047,
+   "demand": 1810.058142,
+   "boeing": 684.0,
+   "airbus": 1336.560277050257,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 5.412081540820138,
+   "cap_max": 684.0,
+   "cap_airbus": 1338.8020159983798,
+   "boeing_share": 0.33851996783711247,
+   "boeing_pref": 0.29000000000000004,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2048,
+   "demand": 1765.421661,
+   "boeing": 543.0267989473813,
+   "airbus": 1271.10359592,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1338.8020159983798,
+   "boeing_share": 0.2993317351849332,
+   "boeing_pref": 0.28,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2049,
+   "demand": 1789.555896,
+   "boeing": 483.18009192000005,
+   "airbus": 1306.37580408,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1338.8020159983798,
+   "boeing_share": 0.27,
+   "boeing_pref": 0.27,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2050,
+   "demand": 1852.0299,
+   "boeing": 513.2278840016202,
+   "airbus": 1338.8020159983798,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1338.8020159983798,
+   "boeing_share": 0.27711641372616075,
+   "boeing_pref": 0.2771164137261608,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2051,
+   "demand": 1854.8748,
+   "boeing": 502.68476384163637,
+   "airbus": 1352.1900361583637,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1352.1900361583637,
+   "boeing_share": 0.2710073821918527,
+   "boeing_pref": 0.2710073821918527,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2052,
+   "demand": 1768.996752,
+   "boeing": 424.55922048,
+   "airbus": 1344.43753152,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.24000000000000002,
+   "boeing_pref": 0.24000000000000002,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2053,
+   "demand": 1685.185998,
+   "boeing": 387.59277954,
+   "airbus": 1297.59321846,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.23,
+   "boeing_pref": 0.23,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2054,
+   "demand": 1646.2962150000003,
+   "boeing": 362.1851673000001,
+   "airbus": 1284.1110477000002,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.22000000000000003,
+   "boeing_pref": 0.22000000000000003,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2055,
+   "demand": 1647.1971,
+   "boeing": 345.91139100000004,
+   "airbus": 1301.2857090000002,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.21,
+   "boeing_pref": 0.21000000000000002,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2056,
+   "demand": 1634.8028190000002,
+   "boeing": 326.96056380000005,
+   "airbus": 1307.8422552000002,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.2,
+   "boeing_pref": 0.2,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2057,
+   "demand": 1606.8659010000001,
+   "boeing": 305.30452119000006,
+   "airbus": 1301.56137981,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.19000000000000003,
+   "boeing_pref": 0.19000000000000003,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2058,
+   "demand": 1570.460664,
+   "boeing": 282.68291952000004,
+   "airbus": 1287.77774448,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.18000000000000002,
+   "boeing_pref": 0.18000000000000002,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2059,
+   "demand": 1542.106494,
+   "boeing": 262.15810398,
+   "airbus": 1279.94839002,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.17,
+   "boeing_pref": 0.17,
+   "boeing_wb_share": 0.5882352941176471
+  },
+  {
+   "year": 2060,
+   "demand": 1547.6256,
+   "boeing": 247.62009600000005,
+   "airbus": 1300.005504,
+   "comac": 0.0,
+   "entrant": 0.0,
+   "lost": 0.0,
+   "cap_max": 684.0,
+   "cap_airbus": 1365.7119365199474,
+   "boeing_share": 0.16000000000000003,
+   "boeing_pref": 0.16000000000000003,
+   "boeing_wb_share": 0.5882352941176471
+  }
+ ],
+ "final_value": {
+  "boeing": -0.8336880537410587,
+  "airbus": 14.089159810850319,
+  "cfm": -28.04251821779073,
+  "pratt_whitney": -1.651590516162436,
+  "rolls_royce": 11.027908454059585
+ },
+ "boeing_bridge": {
+  "nb_profit_vs_sq": -3.6398161040679113,
+  "wb_profit_vs_sq": 0.0,
+  "programme_investment": -0.0,
+  "rate_hike": -0.0,
+  "delay_tactics_spend": -0.0,
+  "write_offs": 0,
+  "debt_penalty": -0.0,
+  "two_front_strain": -0.0,
+  "naked_fine": -0.0,
+  "supply_demand": 2.8061280503268526,
+  "supply_plan": 0.0
+ }
+}

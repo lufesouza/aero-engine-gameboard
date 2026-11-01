@@ -1,0 +1,49 @@
+{
+ "plan": "fps 10-yr at Renton + 787: hold, against Do Nothing",
+ "round": 1,
+ "year": 2030,
+ "steps": [
+  {
+   "step": "Conservative-case game (as played)",
+   "item": -4.802655459627466,
+   "change": 0.0,
+   "fps_vs_sq": -6.749084045536057,
+   "dn_vs_sq": -1.9464285859085901
+  },
+  {
+   "step": "+ your page's demand",
+   "item": -4.586992059530695,
+   "change": 0.21566340009677099,
+   "fps_vs_sq": -6.184226347580022,
+   "dn_vs_sq": -1.5972342880493269
+  },
+  {
+   "step": "+ MAX phase-out 2045-2060",
+   "item": -3.800969413481144,
+   "change": 0.7860226460495516,
+   "fps_vs_sq": -4.981986177140118,
+   "dn_vs_sq": -1.181016763658974
+  },
+  {
+   "step": "+ Airbus extra lines from 2045",
+   "item": -3.9142858418637267,
+   "change": -0.11331642838258293,
+   "fps_vs_sq": -5.095302605522701,
+   "dn_vs_sq": -1.181016763658974
+  },
+  {
+   "step": "+ COMAC selling its capacity first",
+   "item": -5.974875598403978,
+   "change": -2.060589756540251,
+   "fps_vs_sq": -7.234530138151312,
+   "dn_vs_sq": -1.2596545397473347
+  },
+  {
+   "step": "+ new entrant from 2040 (takes leftovers)",
+   "item": -6.367393578265329,
+   "change": -0.39251797986135095,
+   "fps_vs_sq": -7.710013919163494,
+   "dn_vs_sq": -1.3426203408981645
+  }
+ ]
+}
