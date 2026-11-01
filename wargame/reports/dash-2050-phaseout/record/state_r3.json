@@ -1,0 +1,107 @@
+{
+ "year": 2045,
+ "prog": {
+  "ngsa": {
+   "launch": 2030,
+   "cancel": null,
+   "eis": 2037
+  },
+  "cfm_genx": {
+   "launch": 2030,
+   "cancel": null,
+   "kind": "genx9",
+   "ready": 2033
+  },
+  "_folded_pw_solo": {
+   "launch": 2030,
+   "cancel": 2035,
+   "ready": 2036
+  },
+  "_folded_rr_solo": {
+   "launch": 2030,
+   "cancel": 2035,
+   "ready": 2037
+  },
+  "jv": {
+   "launch": 2035,
+   "cancel": null,
+   "ready": 2036
+  },
+  "cfm_ducted": {
+   "launch": 2035,
+   "cancel": null,
+   "ready": 2041
+  },
+  "cfm_embraer": {
+   "launch": 2035,
+   "cancel": null,
+   "ready": 2042
+  }
+ },
+ "rate737": null,
+ "dt": {
+  "bottleneck": null,
+  "poaching": null
+ },
+ "dead": [
+  {
+   "key": "pw_solo",
+   "side": "pratt_whitney",
+   "launch": 2030,
+   "cancel": 2035,
+   "sunk_nom": 0.0,
+   "label": "pw_solo (folded into JV)"
+  },
+  {
+   "key": "rr_solo",
+   "side": "rolls_royce",
+   "launch": 2030,
+   "cancel": 2035,
+   "sunk_nom": 1.7142857142857144,
+   "label": "rr_solo (folded into JV)"
+  }
+ ],
+ "jv_commit": {
+  "pratt_whitney": 2035,
+  "rolls_royce": 2035
+ },
+ "codes": {
+  "ngsa": 7
+ },
+ "log": [
+  {
+   "year": 2030,
+   "events": [
+    "NGSA (Airbus) launched in 2030",
+    "Airbus adopts the Alt plan: A320 lines kept longer through the NGSA ramp-up",
+    "NGSA engine selection: RR, PW and CFM",
+    "P&W GTF2 (Solo) launched in 2030",
+    "pw_solo: conditional launch triggered by ngsa",
+    "RR UltraFan NB (Solo) launched in 2030",
+    "rr_solo: conditional launch triggered by ngsa",
+    "GEnx (CFM/GE) launched in 2030"
+   ]
+  },
+  {
+   "year": 2035,
+   "events": [
+    "Pratt & Whitney commits to the Joint Venture",
+    "Rolls-Royce commits to the Joint Venture",
+    "P&W GTF2 (Solo) folded into the Joint Venture",
+    "RR UltraFan NB (Solo) folded into the Joint Venture",
+    "P&W-RR Joint Venture NB engine launched in 2035",
+    "Joint Venture engine ready 2036 (inherits a folded solo programme's schedule)",
+    "CFM ducted engine launched in 2035",
+    "CFM-Embraer partnership launched in 2035"
+   ]
+  },
+  {
+   "year": 2045,
+   "events": []
+  }
+ ],
+ "sd": {
+  "a320_plan": "alt",
+  "fps_site": "new_site"
+ }
+}

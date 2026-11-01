@@ -1,0 +1,784 @@
+{
+ "boeing": {
+  "scenarios": [
+   "Rivals hold",
+   "Airbus launches A350 Re-engine",
+   "Risk case: Airbus Delay Tactics (covert)"
+  ],
+  "rows": [
+   {
+    "plan": "fps: hold + 787: hold",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": null,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      -0.2799407920007333,
+      99.7846609292302
+     ],
+     [
+      -0.6078092902753234,
+      99.5324543920959
+     ],
+     [
+      -0.2799407920007333,
+      99.7846609292302
+     ]
+    ]
+   },
+   {
+    "plan": "fps: hold + 787 Re-engine",
+    "orders": {
+     "fps": "hold",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": null,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      0.4583044866712487,
+      100.35254191282404
+     ],
+     [
+      -1.4205345093764912,
+      98.90728114663347
+     ],
+     [
+      0.4583044866712487,
+      100.35254191282404
+     ]
+    ]
+   },
+   {
+    "plan": "fps 7-yr + 787: hold",
+    "orders": {
+     "fps": "launch_7yr",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": 7,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      -4.984682917026428,
+      96.16562852536428
+     ],
+     [
+      -5.3125514153010185,
+      95.91342198822998
+     ],
+     [
+      -5.048457024228373,
+      96.11657151982433
+     ]
+    ]
+   },
+   {
+    "plan": "fps 7-yr at Renton + 787: hold",
+    "orders": {
+     "fps": "launch_7yr",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": 7,
+     "fps_site": "renton"
+    },
+    "cells": [
+     [
+      -4.815257374237077,
+      96.29595586597148
+     ],
+     [
+      -5.143125872511667,
+      96.04374932883718
+     ],
+     [
+      -4.879031481439021,
+      96.24689886043153
+     ]
+    ]
+   },
+   {
+    "plan": "fps 7-yr + 787 Re-engine",
+    "orders": {
+     "fps": "launch_7yr",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": 7,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      -4.700166746696099,
+      96.38448711792608
+     ],
+     [
+      -6.579005742743839,
+      94.93922635173551
+     ],
+     [
+      -4.763940853898044,
+      96.33543011238612
+     ]
+    ]
+   },
+   {
+    "plan": "fps 7-yr at Renton + 787 Re-engine",
+    "orders": {
+     "fps": "launch_7yr",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": 7,
+     "fps_site": "renton"
+    },
+    "cells": [
+     [
+      -4.530741203906747,
+      96.51481445853327
+     ],
+     [
+      -6.409580199954488,
+      95.06955369234271
+     ],
+     [
+      -4.594515311108692,
+      96.46575745299332
+     ]
+    ]
+   },
+   {
+    "plan": "fps 10-yr + 787: hold",
+    "orders": {
+     "fps": "launch_10yr",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": 7,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      -3.7507537410989604,
+      97.11480481453926
+     ],
+     [
+      -4.0786222393735505,
+      96.86259827740496
+     ],
+     [
+      -3.806486548862435,
+      97.07193342395198
+     ]
+    ]
+   },
+   {
+    "plan": "fps 10-yr at Renton + 787: hold",
+    "orders": {
+     "fps": "launch_10yr",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": 7,
+     "fps_site": "renton"
+    },
+    "cells": [
+     [
+      -3.5891038341212145,
+      97.23915089682984
+     ],
+     [
+      -3.916972332395804,
+      96.98694435969554
+     ],
+     [
+      -3.644836641884689,
+      97.19627950624255
+     ]
+    ]
+   },
+   {
+    "plan": "fps 10-yr + 787 Re-engine",
+    "orders": {
+     "fps": "launch_10yr",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": 7,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      -3.259338901067166,
+      97.49281622994833
+     ],
+     [
+      -5.138177897114906,
+      96.04755546375776
+     ],
+     [
+      -3.3150717088306405,
+      97.44994483936105
+     ]
+    ]
+   },
+   {
+    "plan": "fps 10-yr at Renton + 787 Re-engine",
+    "orders": {
+     "fps": "launch_10yr",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": 7,
+     "fps_site": "renton"
+    },
+    "cells": [
+     [
+      -3.09768899408942,
+      97.6171623122389
+     ],
+     [
+      -4.976527990137159,
+      96.17190154604833
+     ],
+     [
+      -3.1534218018528946,
+      97.57429092165162
+     ]
+    ]
+   },
+   {
+    "plan": "fps via Embraer + 787: hold",
+    "orders": {
+     "fps": "launch_via_embraer",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": 7,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      -7.788799006640506,
+      94.00861614873807
+     ],
+     [
+      -8.116667504915096,
+      93.75640961160377
+     ],
+     [
+      -7.844531814403981,
+      93.96574475815078
+     ]
+    ]
+   },
+   {
+    "plan": "fps via Embraer at Renton + 787: hold",
+    "orders": {
+     "fps": "launch_via_embraer",
+     "rate_737": "hold",
+     "re787": "hold",
+     "fps_engine_code": 7,
+     "fps_site": "renton"
+    },
+    "cells": [
+     [
+      -7.627149099662759,
+      94.13296223102864
+     ],
+     [
+      -7.95501759793735,
+      93.88075569389434
+     ],
+     [
+      -7.682881907426234,
+      94.09009084044136
+     ]
+    ]
+   },
+   {
+    "plan": "fps via Embraer + 787 Re-engine",
+    "orders": {
+     "fps": "launch_via_embraer",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": 7,
+     "fps_site": "new_site"
+    },
+    "cells": [
+     [
+      -7.48372100901315,
+      94.24329153152834
+     ],
+     [
+      -9.36256000506089,
+      92.79803076533777
+     ],
+     [
+      -7.539453816776625,
+      94.20042014094106
+     ]
+    ]
+   },
+   {
+    "plan": "fps via Embraer at Renton + 787 Re-engine",
+    "orders": {
+     "fps": "launch_via_embraer",
+     "rate_737": "hold",
+     "re787": "launch",
+     "fps_engine_code": 7,
+     "fps_site": "renton"
+    },
+    "cells": [
+     [
+      -7.3220711020354035,
+      94.36763761381891
+     ],
+     [
+      -9.200910098083146,
+      92.92237684762834
+     ],
+     [
+      -7.377803909798878,
+      94.32476622323163
+     ]
+    ]
+   }
+  ]
+ },
+ "airbus": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches fps 10-yr",
+   "Boeing launches fps 10-yr at Renton",
+   "Boeing launches fps 7-yr",
+   "Boeing launches fps via Embraer",
+   "Boeing launches 787 Re-engine",
+   "Boeing launches fps 10-yr + 787 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null,
+     "a320_plan": "alt"
+    },
+    "cells": [
+     [
+      11.624057676035289,
+      107.74937178402352
+     ],
+     [
+      11.53574853815152,
+      107.69049902543435
+     ],
+     [
+      11.550569027349397,
+      107.70037935156627
+     ],
+     [
+      10.825497118982941,
+      107.21699807932197
+     ],
+     [
+      11.53574853815152,
+      107.69049902543435
+     ],
+     [
+      11.515268987477238,
+      107.67684599165149
+     ],
+     [
+      11.42695984959347,
+      107.61797323306232
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (one move)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "bottleneck",
+     "ngsa_engine_code": null,
+     "a320_plan": "alt"
+    },
+    "cells": [
+     [
+      0.16686023630001479,
+      100.11124015753335
+     ],
+     [
+      11.456577687133247,
+      107.63771845808883
+     ],
+     [
+      11.471398176331125,
+      107.64759878422075
+     ],
+     [
+      11.05112402167089,
+      107.36741601444726
+     ],
+     [
+      11.456577687133247,
+      107.63771845808883
+     ],
+     [
+      0.058071547741964546,
+      100.03871436516131
+     ],
+     [
+      11.347788998575197,
+      107.5651926657168
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (both moves)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "hold",
+     "delay_tactics": "both",
+     "ngsa_engine_code": null,
+     "a320_plan": "alt"
+    },
+    "cells": [
+     [
+      -0.0950593709248394,
+      99.93662708605011
+     ],
+     [
+      11.268315181687036,
+      107.5122101211247
+     ],
+     [
+      11.283135670884914,
+      107.5220904472566
+     ],
+     [
+      10.836574819034322,
+      107.22438321268955
+     ],
+     [
+      11.268315181687036,
+      107.5122101211247
+     ],
+     [
+      -0.20384805948288964,
+      99.86410129367808
+     ],
+     [
+      11.159526493128986,
+      107.43968432875266
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "none",
+     "ngsa_engine_code": null,
+     "a320_plan": "alt"
+    },
+    "cells": [
+     [
+      12.514414642481558,
+      108.3429430949877
+     ],
+     [
+      12.426105504597789,
+      108.28407033639853
+     ],
+     [
+      12.440925993795666,
+      108.29395066253045
+     ],
+     [
+      11.71585408542921,
+      107.81056939028613
+     ],
+     [
+      12.426105504597789,
+      108.28407033639853
+     ],
+     [
+      11.014927959828587,
+      107.34328530655239
+     ],
+     [
+      10.926618821944817,
+      107.28441254796321
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "bottleneck",
+     "ngsa_engine_code": null,
+     "a320_plan": "alt"
+    },
+    "cells": [
+     [
+      1.0523391598480716,
+      100.70155943989872
+     ],
+     [
+      12.34256714312506,
+      108.2283780954167
+     ],
+     [
+      12.357387632322936,
+      108.23825842154862
+     ],
+     [
+      11.936931279185824,
+      107.95795418612389
+     ],
+     [
+      12.34256714312506,
+      108.2283780954167
+     ],
+     [
+      -0.4471475228049001,
+      99.7019016514634
+     ],
+     [
+      10.843080460472088,
+      107.22872030698139
+     ]
+    ]
+   },
+   {
+    "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+    "orders": {
+     "ngsa": "hold",
+     "rea350": "launch",
+     "delay_tactics": "both",
+     "ngsa_engine_code": null,
+     "a320_plan": "alt"
+    },
+    "cells": [
+     [
+      0.7854586932629503,
+      100.52363912884196
+     ],
+     [
+      12.149873212370771,
+      108.09991547491384
+     ],
+     [
+      12.164693701568648,
+      108.10979580104576
+     ],
+     [
+      11.717761707170954,
+      107.81184113811396
+     ],
+     [
+      12.149873212370771,
+      108.09991547491384
+     ],
+     [
+      -0.7140279893900213,
+      99.52398134040665
+     ],
+     [
+      10.6503865297178,
+      107.10025768647853
+     ]
+    ]
+   }
+  ]
+ },
+ "cfm": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches fps 10-yr, selects you (code 7)"
+  ],
+  "rows": [
+   {
+    "plan": "hold everything",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "hold",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -24.408883217775326,
+      84.74444798889041
+     ],
+     [
+      -24.422733889537483,
+      84.73579131903907
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "hold",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -43.63475363104044,
+      72.72827898059973
+     ],
+     [
+      -43.63475363104044,
+      72.72827898059973
+     ]
+    ]
+   },
+   {
+    "plan": "Open Fan + Lobby",
+    "orders": {
+     "ducted": "hold",
+     "open_fan": "launch",
+     "partner_embraer": "hold",
+     "lobby_emissions": "launch",
+     "genx": "hold"
+    },
+    "cells": [
+     [
+      -41.33302703890362,
+      74.16685810068523
+     ],
+     [
+      -41.3371007658925,
+      74.16431202131719
+     ]
+    ]
+   }
+  ]
+ },
+ "pratt_whitney": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches fps 10-yr, selects you (code 7)"
+  ],
+  "rows": [
+   {
+    "plan": "GTF2: hold",
+    "orders": {
+     "gtf2_solo": "hold",
+     "jv_with_rr": "hold"
+    },
+    "cells": [
+     [
+      -2.1616464731697747,
+      98.03486684257294
+     ],
+     [
+      -2.174134700769642,
+      98.02351390839124
+     ]
+    ]
+   }
+  ]
+ },
+ "rolls_royce": {
+  "scenarios": [
+   "Rivals hold",
+   "Boeing launches fps 10-yr, selects you (code 5)",
+   "Boeing launches 787 Re-engine",
+   "Boeing launches 787 Re-engine and Airbus A350 Re-engine"
+  ],
+  "rows": [
+   {
+    "plan": "UltraFan NB: hold",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      9.982238682071078,
+      109.07476243824644
+     ],
+     [
+      9.96605088474859,
+      109.06004625886236
+     ],
+     [
+      9.982238682071078,
+      109.07476243824644
+     ],
+     [
+      10.23288338721872,
+      109.30262126110793
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + T1000 upgrade",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "hold",
+     "t1000_upgrade": "launch"
+    },
+    "cells": [
+     [
+      3.5038005453409804,
+      103.18527322303726
+     ],
+     [
+      3.487612748018493,
+      103.17055704365318
+     ],
+     [
+      3.5038005453409804,
+      103.18527322303726
+     ],
+     [
+      3.772334016256459,
+      103.42939456023315
+     ]
+    ]
+   },
+   {
+    "plan": "UltraFan NB: hold + UltraFan WB",
+    "orders": {
+     "ultrafan_nb_solo": "hold",
+     "jv_with_pw": "hold",
+     "ultrafan_wb": "launch",
+     "t1000_upgrade": "hold"
+    },
+    "cells": [
+     [
+      0.9822386820710785,
+      100.89294425642825
+     ],
+     [
+      0.9660508847485909,
+      100.87822807704417
+     ],
+     [
+      1.7040921948478465,
+      101.54917472258896
+     ],
+     [
+      2.2124673969359288,
+      102.01133399721448
+     ]
+    ]
+   }
+  ]
+ }
+}
