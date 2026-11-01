@@ -64,7 +64,20 @@ def options():
       boeing_takes_airbus_slack   Boeing's preference is never below the share Airbus cannot supply that year
                         (customers Airbus cannot serve buy from Boeing)
       airbus_capacity_response   Airbus raises its capacity by this fraction a year (compounding) in every year its
-                        customers want more than it can build, until it can meet them"""
+                        customers want more than it can build, until it can meet them
+      max_phaseout      {"start": year, "gone": year}: the 737 MAX (in every plan, and the status quo) builds its full
+                        rate to start - 1, then a straight line down to none in `gone` (the MAX is phased out)
+      airbus_extra      {"from": year, "step_per_year": a month, "cap": a month}: Airbus adds extra lines on top of its
+                        plan (not scaled by the capacity response): step_per_year more a month each year from `from`, up
+                        to `cap` a month; the extra builds NGSA once NGSA is in service, else the A320neo family
+      third_party       {"comac": {year: aircraft a year, ...}, "comac_first": share, "entrant": {"eis": year,
+                        "peak_a_month": rate, "years_to_peak": n}, "entrant_share": share, "willing": share}: COMAC
+                        and a new entrant build 737/A320-class aircraft too (capacity: straight lines between COMAC's
+                        points; the entrant rises in a straight line to its peak). COMAC sells comac_first of its
+                        capacity first, off the top of each year's new customers (its home market), and the entrant
+                        wins entrant_share of them, up to its capacity; then Boeing and Airbus split the rest as usual,
+                        and of the customers neither can serve (after the overflow between them) `willing` take a free
+                        COMAC or entrant slot, split by free capacity. What is left waits, as before"""
     run = os.environ.get("DASH_RUN")
     path = os.path.join(HERE, "..", "runs", run, "sd_options.json") if run else None
     if path and os.path.exists(path):
@@ -164,6 +177,47 @@ def plans(state):
     return sd.get("a320_plan", "base"), sd.get("fps_site", "new_site")
 
 
+def max_phase_factor(year):
+    """Share of the 737 MAX's capacity left in `year` under options()['max_phaseout'] (1 without it)."""
+    ph = options().get("max_phaseout")
+    if not ph or year < ph["start"]:
+        return 1.0
+    return max(0.0, (ph["gone"] - year) / (ph["gone"] - ph["start"] + 1))
+
+
+def airbus_extra(year):
+    """Airbus's extra capacity in `year`, aircraft a year (options()['airbus_extra'])."""
+    x = options().get("airbus_extra")
+    if not x or year < x["from"]:
+        return 0.0
+    return 12.0 * min(x["cap"], x["step_per_year"] * (year - x["from"] + 1))
+
+
+def _points(pts, year):
+    ks = sorted(int(k) for k in pts)
+    v = {int(k): float(x) for k, x in pts.items()}
+    if year < ks[0]:
+        return 0.0
+    if year >= ks[-1]:
+        return v[ks[-1]]
+    for a, b in zip(ks, ks[1:]):
+        if a <= year <= b:
+            return v[a] + (v[b] - v[a]) * (year - a) / (b - a)
+    return 0.0
+
+
+def third_capacity(year):
+    """(COMAC, entrant) capacity in `year`, aircraft a year (options()['third_party']; zeros without it)."""
+    t = options().get("third_party")
+    if not t:
+        return 0.0, 0.0
+    e = t.get("entrant") or {}
+    ce = 0.0
+    if e and year >= e["eis"]:
+        ce = 12.0 * e["peak_a_month"] * min(1.0, (year - e["eis"] + 1) / e["years_to_peak"])
+    return _points(t.get("comac") or {"2026": 0}, year), ce
+
+
 def airbus_capacity(state, year):
     """(A320, NGSA) aircraft in `year`."""
     ngsa = _live(state, "ngsa")
@@ -187,8 +241,9 @@ def fps_full():
 def boeing_capacity(state, year):
     """(737 MAX, fps) aircraft in `year`."""
     b = inputs()["boeing"]
-    m = max_path(year)
-    hike = b["rate_increase_per_year"] if (state.get("rate737") and year >= b["rate_increase_from"]) else 0.0
+    k = max_phase_factor(year)                 # the MAX phase-out (a run option), on the path and the rate increase
+    m = max_path(year) * k
+    hike = (b["rate_increase_per_year"] if (state.get("rate737") and year >= b["rate_increase_from"]) else 0.0) * k
     fps = _live(state, "fps")
     if not fps:
         return m + hike, 0.0
@@ -257,6 +312,8 @@ def year_rows(state, b_pref_by_year, years):
     cb, ca = 0.0, 0.0                           # netted: firm orders already called by demand but not yet delivered
     resp = float(o.get("airbus_capacity_response") or 0.0)
     m_a = 1.0                                   # Airbus capacity against its plan (capacity response)
+    tp = o.get("third_party") or {}
+    ngsa_live = _live(state, "ngsa")
     ys = sorted(years)
     if netted:
         assert ys[0] == 2026, "netting the firm backlog needs every year from 2026"
@@ -264,6 +321,11 @@ def year_rows(state, b_pref_by_year, years):
         mb, fb = boeing_capacity(state, y)
         a3, ng = airbus_capacity(state, y)
         a3, ng = a3 * m_a, ng * m_a
+        xa = airbus_extra(y)                    # Airbus's extra lines: NGSA once in service, else A320neo family
+        if ngsa_live and y >= ngsa_live["eis"]:
+            ng += xa
+        else:
+            a3 += xa
         gross = demand(y)
         if netted:                              # this year's demand is served first from the firm orders still open
             need = min(gross, kb + ka)          # (kb, ka: not yet called by demand)
@@ -275,6 +337,11 @@ def year_rows(state, b_pref_by_year, years):
             d = gross - need
         else:
             fb_in, fa_in, d = kb, ka, gross
+        cc, ce = third_capacity(y)              # COMAC's home sales and the entrant's won share come off the top
+        pc = min(cc * float(tp.get("comac_first", 0.0)), d)
+        d -= pc
+        pe = min(ce, d * float(tp.get("entrant_share", 0.0)))
+        d -= pe
         base = boeing_base_pref(state, y, b_pref_by_year[y])
         free_a = max(0.0, a3 + ng - min(fa_in, a3 + ng) - ba)   # Airbus slots left for new customers this year
         pref = base
@@ -282,6 +349,19 @@ def year_rows(state, b_pref_by_year, years):
             pref = min(1.0, max(base, 1.0 - free_a / d))     # customers Airbus cannot serve buy from Boeing
         r = deliveries(pref, d, mb + fb, a3 + ng, fx, bb, ba, lapse, fb_in, fa_in)
         r.update({"demand_gross": gross, "pref_b": pref, "pref_b_base": base, "airbus_capacity_factor": m_a})
+        # customers neither maker can serve (after the overflow) take a free COMAC or entrant slot
+        rem_c, rem_e = max(0.0, cc - pc), max(0.0, ce - pe)
+        tc = te = 0.0
+        if rem_c + rem_e > 0:
+            ub, ua = r["backlog_b"] / (1.0 - lapse), r["backlog_a"] / (1.0 - lapse)
+            take = min(float(tp.get("willing", 1.0)) * (ub + ua), rem_c + rem_e)
+            tb = take * ub / (ub + ua) if ub + ua > 0 else 0.0
+            ta = take - tb
+            tc = take * rem_c / (rem_c + rem_e)
+            te = take - tc
+            r["backlog_b"], r["backlog_a"] = (ub - tb) * (1.0 - lapse), (ua - ta) * (1.0 - lapse)
+            r["lost"] = (ub - tb + ua - ta) * lapse
+        r.update({"cap_comac": cc, "cap_entrant": ce, "dlv_comac": pc + tc, "dlv_entrant": pe + te, "cap_airbus_extra": xa})
         if netted:                              # called firm orders not delivered wait (never lapse); uncalled stay open
             cb, ca = r["firm_b"], r["firm_a"]
             r["firm_in_b"], r["firm_in_a"] = open_b, open_a
@@ -351,7 +431,7 @@ def apply(state, rows, waccs):
             sq_dlv = q["delivered_" + pre]
             x["sq_nb_units"] = sq_dlv
             x["sq_nb_profit"] = sq_dlv * sq_unit
-            x["nb_delivered_share"] = (n_new + n_old) / max(1e-9, s["delivered_a"] + s["delivered_b"])
+            x["nb_delivered_share"] = (n_new + n_old) / max(1e-9, s["delivered_a"] + s["delivered_b"] + s["dlv_comac"] + s["dlv_entrant"])
             x["nb_pref_share"] = s["pref_b"] if side == "boeing" else 1.0 - s["pref_b"]   # what customers want
             x["nb_share"] = x["nb_delivered_share"]                   # market share = share of deliveries
             x["sd"] = {"demand": s["demand"], "wanted": s["wanted_" + pre], "capacity": s["cap_" + pre],
@@ -363,7 +443,8 @@ def apply(state, rows, waccs):
                 adj[side] += ((x["nb_profit"] - x["board_nb_profit"]) - (x["sq_nb_profit"] - x["board_sq_nb_profit"])) * r["df_" + pre]
         r["sd"] = {k: s[k] for k in ("demand", "demand_gross", "pref_b_base", "airbus_capacity_factor", "cap_max", "cap_fps", "cap_a320",
                                      "cap_ngsa", "lost", "backlog_b", "backlog_a", "firm_b", "firm_a",
-                                     "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa")}
+                                     "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa", "dlv_comac", "dlv_entrant", "cap_comac",
+                                     "cap_entrant", "cap_airbus_extra")}
         r["sd_sq"] = {"delivered_b": q["delivered_b"], "delivered_a": q["delivered_a"], "lost": q["lost"],
                       "dlv_max": q["dlv_max"], "dlv_a320": q["dlv_a320"]}
     plan = {"boeing": 0.0, "airbus": 0.0}

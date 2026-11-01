@@ -217,6 +217,23 @@ def sd_option_rules():
         out += ("\n- **Airbus's slack goes to Boeing:** customers Airbus cannot serve buy from Boeing. Boeing's preference share is\n"
                 "  never below the share of the year's new customers that Airbus cannot supply (after its firm orders and its\n"
                 "  waiting customers), so Boeing captures that slack, up to its own capacity.")
+    t = o.get("third_party")
+    if t:
+        ce = t.get("entrant") or {}
+        pts = sorted((int(k), v) for k, v in (t.get("comac") or {}).items())
+        out += ("\n- **COMAC and a new entrant build 737/A320-class aircraft too.** COMAC's capacity: "
+                + ", ".join(f"{v:,.0f} a year in {k}" for k, v in pts) + " (straight lines between; flat after). "
+                + (f"COMAC sells {100 * float(t.get('comac_first', 0)):.0f}% of its capacity first, off the top of each year's new customers (its\n"
+                   f"  home market), before Boeing and Airbus split the rest. " if t.get("comac_first") else "")
+                + (f"A new entrant (Embraer-like) enters service in {ce['eis']} and rises to {ce['peak_a_month']:.0f} a month\n"
+                   f"  {ce['years_to_peak']} years later" if ce else "")
+                + (f"; it wins {100 * float(t.get('entrant_share', 0)):.0f}% of new customers, up to its capacity" if t.get("entrant_share") else "")
+                + f". Customers neither Boeing nor Airbus can serve (after the overflow between them) take a free COMAC or entrant\n"
+                  f"  slot ({100 * float(t.get('willing', 1.0)):.0f}% of them). The status quo runs the same rules.")
+    x = o.get("airbus_extra")
+    if x:
+        out += (f"\n- **Airbus adds extra lines from {x['from']}:** {x['step_per_year']:.0f} a month more each year, up to {x['cap']:.0f} a month on top of its plan\n"
+                f"  (NGSA once in service, else the A320neo family). The status quo runs the same rules.")
     r = o.get("airbus_capacity_response")
     if r:
         out += (f"\n- **Airbus adds capacity when it is short:** in every year its customers want more than it can build, Airbus raises\n"
@@ -241,7 +258,24 @@ def sd_rules():
         comp = lambda k, y: f'{round(cv["components"][k][cv["years"].index(y)] * cs):,}'
         dem = lambda y: f"{round(SD.demand(y)):,}"
         netted = o.get("firm_backlog") == "netted"
-        demand_txt = f"""**Demand = replacement + growth** (this game's demand curve: a conservative case for the whole single-aisle market, on
+        if "components" not in cv:                  # a replacement-story curve: today's fleet replaced, plus as much again
+            demand_txt = f"""**Demand = replacement + growth** (this game's demand curve, on the 737/A320 class, {100 * cs:.1f}% of the single-aisle
+market; aircraft a year). From 2038: the replacement of today's fleet (the 737NG and A320ceo still flying, and today's
+737 MAX, A320neo and A220 as they retire), plus as much again for growth. Before 2038: the conservative-case curve.
+- **Replacement:** {round(SD.demand(2040) - SD.growth(2040)):,} in 2040, {round(SD.demand(2045) - SD.growth(2045)):,} in 2045, {round(SD.demand(2050) - SD.growth(2050)):,} in 2050, {round(SD.demand(2055) - SD.growth(2055)):,} in 2055, {round(SD.demand(2060) - SD.growth(2060)):,} in 2060
+  (it falls after the mid-2050s: aircraft delivered after 2026 are not yet due).
+- **Total demand:** {dem(2026)} (2026), {dem(2030)} (2030), {dem(2035)} (2035), {dem(2038)} (2038), {dem(2040)} (2040), {dem(2042)} (2042, about the
+  peak), {dem(2045)} (2045), {dem(2050)} (2050), {dem(2055)} (2055), {dem(2060)} (2060).
+- **Firm backlog:** {fb[0]:,.0f} 737 MAX and {fb[1]:,.0f} A320neo-family aircraft on firm order (October 2026). """ + (
+                """They are **part of this demand, not
+  extra to it**: each year's demand is served first from the firm orders still open, split between the makers in
+  proportion to what each has left; only the rest is new customers, split by preference. The firm orders last until
+  about 2035; from then all demand is new customers. Firm orders never switch maker or lapse.""" if netted else
+                "They are delivered first and never switch maker or lapse.")
+        else:
+            demand_txt = None
+        if demand_txt is None:
+            demand_txt = f"""**Demand = replacement + growth** (this game's demand curve: a conservative case for the whole single-aisle market, on
 the 737/A320 class here, {100 * cs:.1f}% of it; aircraft a year).
 - **Replacement of old-generation aircraft** (737NG, A320ceo): {comp("old_gen", 2030)} in 2030, {comp("old_gen", 2035)} in 2035, {comp("old_gen", 2040)} in 2040,
   {comp("old_gen", 2045)} in 2045, then none: that fleet is used up by 2046.
@@ -296,7 +330,10 @@ factory has the slots. The share objectives in your brief are measured on prefer
   the A320 base plan, and only the Everett North Line carries on (up to {b['everett_rate']:.0f} a month); Boeing avoids about
   ${b['renton_saving_b']:.1f}B of new-site capex, in full if Renton is chosen at least three years before the fps enters service
   (pro-rated if later). After {b['max_last_year']} the MAX builds only what the fps cannot yet: it tops Boeing up to the fps's full
-  rate while the fps ramps. Without an fps the MAX carries on.
+  rate while the fps ramps. Without an fps the MAX carries on.""" + (f"""
+- **The 737 MAX is phased out** (this game's assumption): it builds its full rate to {SD.options()['max_phaseout']['start'] - 1}, then less each year in a
+  straight line, and none from {SD.options()['max_phaseout']['gone']}, whatever Boeing orders (the rate increase too). The status quo runs the
+  same rule.""" if SD.options().get("max_phaseout") else "") + f"""
 
 **Deliveries each year.**
 - Each maker delivers """ + ("the firm orders that this year's demand calls on" if SD.options().get("firm_backlog") == "netted" else "its firm backlog") + f""" first, then what its new customers want plus its waiting backlog, up to its

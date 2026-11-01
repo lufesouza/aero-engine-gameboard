@@ -1,0 +1,34 @@
+{
+ "demand_curve": "demand_page_n0.json",
+ "firm_backlog": "netted",
+ "boeing_pp_after_ngsa": 1.0,
+ "boeing_takes_airbus_slack": true,
+ "airbus_capacity_response": 0.01,
+ "max_phaseout": {
+  "start": 2045,
+  "gone": 2060
+ },
+ "airbus_extra": {
+  "from": 2045,
+  "step_per_year": 5.0,
+  "cap": 20.0
+ },
+ "third_party": {
+  "comac": {
+   "2026": 28,
+   "2030": 93,
+   "2035": 150,
+   "2045": 200,
+   "2050": 250
+  },
+  "comac_first": 1.0,
+  "entrant": {
+   "eis": 2040,
+   "peak_a_month": 20.0,
+   "years_to_peak": 6
+  },
+  "entrant_share": 0.0,
+  "willing": 1.0
+ },
+ "_note": "User's MAX phase-out scenario (1 Nov 2026, set in the Do Nothing tuner): demand from the user's page (chart 4.1, retiring as chapter 1 sets out; the game's conservative curve before 2038); the 737 MAX phased out from 2045, none built from 2060; Airbus adds 5 a month of extra capacity each year from 2045, up to 20 a month; COMAC (28 a year in 2026, 93 in 2030, 150 in 2035, 200 in 2045, 250 from 2050) sells all it builds to its own customers first; a new entrant (in service 2040, 20 a month by 2045) sells to customers nobody else can serve. Otherwise as dash-2050-cons: firm orders inside demand, Boeing loses 1 point a year while NGSA flies alone, Boeing takes Airbus's slack, Airbus adds 1% capacity a year when short."
+}
