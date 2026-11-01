@@ -16,7 +16,9 @@ import lib as L  # noqa: E402
 O = json.load(open(os.path.join(HERE, "..", "..", "dashgame", "sd_options_phaseout.json")))
 PRE = {"demand_curve": "demand_page_n0.json", "max_phaseout": O["max_phaseout"], "airbus_extra": O["airbus_extra"]}
 POST = dict(PRE, third_party={"comac": O["third_party"]["comac"], "comac_first": 1.0, "willing": 1.0})
-PERIODS = [(2035, 2039), (2040, 2044), (2045, 2049), (2050, 2059), (2060, 2079)]
+# the 2030 brief values the fps plan's 737/A320-class sales to 2059 (20 years from its 2040 entry into service) and Do
+# Nothing's to 2060; the value series runs to 2061, so the last period holds only 2060-61
+PERIODS = [(2035, 2039), (2040, 2044), (2045, 2049), (2050, 2059), (2060, 2061)]
 
 
 def units(opts, plan, ci):
@@ -33,8 +35,10 @@ def main():
         a, z = units(PRE, plan, ci), units(POST, plan, ci)
         taken = {y: a[y] - z[y] for y in a}
         assert min(taken.values()) > -1e-6, plan          # COMAC never adds to Boeing's sales
+        assert max(taken) == 2061, max(taken)
         out["plans"][plan] = {"by_period": [sum(taken.get(y, 0.0) for y in range(p, q + 1)) for p, q in PERIODS],
-                              "total": sum(taken.values())}
+                              "total": sum(taken.values()), "to_2059": sum(v for y, v in taken.items() if y <= 2059),
+                              "to_2060": sum(v for y, v in taken.items() if y <= 2060)}
         print(plan, [round(x) for x in out["plans"][plan]["by_period"]], round(out["plans"][plan]["total"]))
     json.dump(out, open(os.path.join(HERE, "data", "comac_units.json"), "w"), indent=1)
     print("wrote data/comac_units.json")
