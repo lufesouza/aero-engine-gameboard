@@ -1,0 +1,374 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Politics, Brand and Rivals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f4f6f9; --surface: #ffffff; --sunk: #eef2f7; --line: #d5dce6; --grid: #e3e8ef;
+  --fg: #141c28; --muted: #556275; --faint: #8a95a5;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #17a06f;
+  --pos: #3b4a5e; --neg: #8792a3;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r: 8px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --pos: #c9d3e0; --neg: #5d6a7c; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f141c; --surface: #161d28; --sunk: #1d2633; --line: #2b3646; --grid: #222c3a;
+  --fg: #e7ecf3; --muted: #a3aebe; --faint: #6f7b8d;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --pos: #c9d3e0; --neg: #5d6a7c; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 var(--font-body); }
+a { color: inherit; text-decoration-color: var(--faint); text-underline-offset: 2px; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px 56px; }
+header.top { padding: 34px 0 10px; }
+.eyebrow { font: 500 .74rem/1.4 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(2.1rem, 5vw, 3.2rem)/1.02 var(--font-display); margin: 10px 0 12px; letter-spacing: .01em; }
+h2 { font: 700 1.9rem/1.1 var(--font-display); margin: 0 0 10px; }
+h3 { font: 600 1.3rem/1.2 var(--font-display); margin: 0 0 8px; letter-spacing: .02em; }
+p { margin: 0 0 10px; }
+.lede { font-size: 1.08rem; max-width: 80ch; }
+.muted { color: var(--muted); } .small { font-size: .86rem; }
+.nw { white-space: nowrap; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 14px 0 6px; font-size: .9rem; }
+nav.toc a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+nav.toc a:hover { color: var(--fg); }
+section { margin-top: 44px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; }
+.stack > * + * { margin-top: 14px; }
+.label { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.ctitle { font: 600 1.05rem/1.3 var(--font-body); margin: 0 0 4px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(196px, 1fr)); gap: 12px; margin-top: 18px; }
+.tile .k { font: 500 .72rem/1.3 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tile .v { font: 600 1.45rem/1.2 var(--font-body); margin: 6px 0 4px; letter-spacing: -.01em; text-wrap: balance; }
+.tile .d { font-size: .86rem; color: var(--muted); line-height: 1.4; }
+.gloss { margin-top: 12px; font-size: .88rem; color: var(--muted); max-width: 110ch; }
+.gloss b { color: var(--fg); font-weight: 600; }
+.bl { display: grid; gap: 10px; margin-top: 14px; counter-reset: bl; }
+.bl .panel { display: grid; grid-template-columns: 34px 1fr; gap: 4px 12px; }
+.bl .panel::before { counter-increment: bl; content: counter(bl); font: 700 1.5rem/1 var(--font-display); color: var(--muted); }
+.bl b { display: block; font: 600 1.15rem/1.25 var(--font-display); letter-spacing: .02em; margin-bottom: 2px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid2 > * { min-width: 0; }
+.cw { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; }
+.only-narrow { display: none; }
+.chart .grid { stroke: var(--grid); } .chart .zero { stroke: var(--muted); }
+.chart .ref { stroke: var(--muted); stroke-width: 1; }
+.chart .reflab { fill: var(--muted); font: 500 11px var(--font-mono); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.chart .tick { fill: var(--muted); font: 11px var(--font-mono); }
+.chart .tick.strong { fill: var(--fg); font-weight: 600; }
+.chart .rowlab { fill: var(--fg); font: 600 14px var(--font-body); }
+.chart .rowlab.sm { font: 500 12.5px var(--font-body); }
+.chart .rowlab.strong { font-weight: 700; }
+.chart .grp { fill: var(--muted); font: 500 10.5px var(--font-mono); letter-spacing: .1em; }
+.chart .val { fill: var(--fg); font: 500 12.5px var(--font-mono); paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; }
+.chart .val.muted { fill: var(--muted); }
+.chart .val.sm { font-size: 11px; }
+.chart .ann { fill: var(--muted); font: 600 11px var(--font-mono); letter-spacing: .04em; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.chart .zlab { fill: var(--muted); font: 500 11px var(--font-mono); }
+.chart .zone { fill: var(--sunk); }
+.chart .endlab { fill: var(--fg); font: 500 12px var(--font-mono); }
+.chart .leader { stroke: var(--faint); stroke-width: 1; }
+.chart .bracket { fill: none; stroke: var(--muted); stroke-width: 1.2; }
+.chart .b.pos { fill: var(--pos); } .chart .b.neg { fill: var(--neg); } .chart .b.t41 { fill: var(--s1); } .chart .b.t44 { fill: var(--s2); }
+.chart .b.hl { stroke: var(--fg); stroke-width: 1.5; }
+.chart .eqy { fill: var(--fg); } .chart .eqn { fill: none; stroke: var(--faint); stroke-width: 1.5; }
+.chart .ring { stroke: var(--surface); stroke-width: 2; }
+.chart .mark { fill: none; stroke: var(--fg); stroke-width: 1.5; }
+.chart .hollow { fill: var(--surface); stroke: var(--fg); stroke-width: 2; }
+.chart .filled { fill: var(--fg); stroke: var(--surface); stroke-width: 2; }
+.chart .conn { stroke: var(--faint); stroke-width: 2; }
+.chart .hit, .chart .xhit { fill: transparent; }
+.chart .hit:hover { fill: var(--fg); fill-opacity: .05; }
+.chart .hit:focus { outline: none; }
+.chart .hit:focus-visible { fill: var(--fg); fill-opacity: .08; stroke: var(--fg); stroke-width: 1.5; }
+.chart .cross { stroke: var(--muted); stroke-width: 1; }
+.chart.xh:focus { outline: none; }
+.chart.xh:focus-visible { outline: none; }
+.cw:has(> .chart.xh:focus-visible) { outline: 2px solid var(--fg); outline-offset: 2px; border-radius: 4px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .85rem; color: var(--muted); margin: 6px 0 6px; }
+.legend i { display: inline-block; vertical-align: middle; margin-right: 6px; }
+.legend i.ln { width: 16px; height: 2px; border-radius: 1px; }
+.legend i.sq { width: 11px; height: 11px; border-radius: 3px; }
+.legend i.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--fg); }
+.legend i.ring { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--fg); }
+.legend i.ringf { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--faint); }
+.legend i.bar { width: 14px; height: 10px; border-radius: 2px; }
+.cap { font-size: .88rem; color: var(--muted); margin: 8px 0 0; }
+.cap b { color: var(--fg); }
+.tip { position: fixed; z-index: 20; pointer-events: none; display: none; max-width: 320px; background: var(--surface); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: .82rem; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+.tip div { display: flex; align-items: baseline; gap: 6px; line-height: 1.35; }
+.tip b { font: 600 .86rem var(--font-mono); white-space: nowrap; }
+.tip span.l { color: var(--muted); flex: 1 1 auto; min-width: 0; }
+.tip .k { display: inline-block; width: 12px; height: 2px; border-radius: 1px; flex: none; align-self: center; }
+.tip .yr { font: 600 .78rem var(--font-mono); color: var(--muted); margin-bottom: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+details.tv { margin-top: 8px; font-size: .88rem; }
+details.tv summary { cursor: pointer; color: var(--muted); }
+details.tv table { margin-top: 8px; }
+.loop { display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; margin: 12px 0 6px; padding: 0; list-style: none; counter-reset: lp; }
+.loop li { flex: 1 1 150px; border: 1px solid var(--line); border-radius: 6px; padding: 9px 11px; background: var(--sunk); font-size: .9rem; }
+.loop li::before { counter-increment: lp; content: counter(lp); font: 600 .78rem var(--font-mono); color: var(--muted); display: block; }
+.zkey { margin: 8px 0 0; padding-left: 20px; font-size: .86rem; color: var(--muted); }
+.loop li.back { background: var(--surface); border-style: dashed; color: var(--muted); }
+.dcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 12px; }
+.dcard h3 { margin-bottom: 10px; }
+.dcard p { font-size: .9rem; }
+ul.probs { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 5px; }
+ul.probs li { display: grid; grid-template-columns: minmax(0, 1fr) 90px 38px; gap: 8px; align-items: center; font-size: .88rem; }
+ul.probs li.top .ol { font-weight: 600; }
+.pb { height: 8px; background: var(--sunk); border-radius: 2px; overflow: hidden; }
+.pf { display: block; height: 100%; background: var(--pos); border-radius: 0 2px 2px 0; }
+.pv { font: 500 .82rem var(--font-mono); text-align: right; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: .92rem; }
+thead th { font: 500 .72rem/1.25 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--sunk); vertical-align: bottom; }
+thead th:first-child { border-top-left-radius: var(--r); } thead th:last-child { border-top-right-radius: var(--r); }
+thead th.n { text-align: right; }
+tbody th { font-weight: 500; }
+td.n { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tbody tr:last-child > * { border-bottom: 0; }
+.callout { border-left: 4px solid var(--fg); }
+ul.cav { margin: 0; padding-left: 18px; } ul.cav li { margin-bottom: 6px; }
+.facts { margin: 0; padding-left: 18px; } .facts li { margin-bottom: 4px; }
+.src { columns: 2 300px; column-gap: 28px; font-size: .86rem; }
+.src h3 { font-size: 1.05rem; margin: 0 0 4px; break-after: avoid; }
+.src ul { margin: 0 0 12px; padding-left: 18px; break-inside: avoid; } .src li { margin-bottom: 3px; }
+.lede, .bl .panel, .dcard p, .facts li, ul.cav li, .cap, .gloss { text-wrap: pretty; }
+footer { margin-top: 40px; font-size: .82rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px 48px; }
+  .grid2, .dcards { grid-template-columns: 1fr; }
+  .panel { padding: 14px; }
+  .only-wide { display: none; } .only-narrow { display: block; }
+  .chart { min-width: 620px; } .chart.narrow { min-width: 0; }
+  ul.probs li { grid-template-columns: minmax(0, 1fr) 60px 36px; }
+  .chart .tick, .chart .reflab, .chart .ann { font-size: 13px; }
+  .chart .val, .chart .endlab, .chart .rowlab.sm { font-size: 14px; }
+  .chart .grp { font-size: 12px; } .chart .val.sm { font-size: 12.5px; }
+  .chart.narrow .tick { font-size: 12px; } .chart.narrow .val, .chart.narrow .rowlab.sm { font-size: 13px; }
+  th, td { padding: 7px 6px; font-size: .86rem; }
+  thead th { white-space: normal; letter-spacing: .02em; }
+  tbody th { min-width: 7rem; }
+}
+@media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: no-preference) { a { transition: color .15s; } }
+
+table.cards tr.grp th { background: var(--sunk); font: 600 .78rem/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+table.cards.wide td.txt, table.cards td.txt { font-size: .88rem; }
+table.cards td.txt { min-width: 14rem; }
+.legend i.sw { width: 14px; height: 10px; border-radius: 5px; }
+.ev { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.ev h3 { font: 600 1.02rem/1.3 var(--font-body); margin: 0 0 6px; }
+.ev ul { margin: 0; padding-left: 18px; font-size: .9rem; } .ev li { margin-bottom: 6px; text-wrap: pretty; }
+.chart .rowlab.sm.strong { font-weight: 700; }
+.chart.narrow .rowlab { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+ul.cav li, footer, td.txt { overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  table.cards { min-width: 0 !important; }
+  table.cards thead { display: none; }
+  table.cards, table.cards tbody, table.cards tr, table.cards th, table.cards td { display: block; width: auto; }
+  table.cards tr { border-bottom: 1px solid var(--line); padding: 8px 10px; }
+  table.cards tr.grp { padding: 0; }
+  table.cards tr.grp th { padding: 7px 10px; }
+  table.cards tbody th { min-width: 0; border: 0; padding: 0 0 4px; font-weight: 600; }
+  table.cards td { border: 0; padding: 3px 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; text-align: right; white-space: normal; min-width: 0; }
+  table.cards td::before { content: attr(data-label); flex: 1 1 0; min-width: 0; font: 600 11px var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: .03em; text-align: left; }
+  table.cards td.txt { display: block; text-align: left; }
+  table.cards td.txt::before { display: block; margin-bottom: 2px; }
+}
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 900px) { .two { grid-template-columns: 1fr; } }
+</style></head><body><div class="wrap">
+<header class="top"><p class="eyebrow">Boeing Product Development · war game rerun · MAX phase-out world · BOEING PROPRIETARY</p>
+<h1>Jobs, Washington, brand and China: can they launch the fps when the numbers say no?</h1>
+<p class="lede">Leaving the narrowbody market would put the weight of Washington, of hundreds of thousands of jobs and of Boeing's identity as an engineering company on the decision,
+and would leave the market to Airbus and, in time, COMAC. This page looks at how Boeing has behaved when that kind of pressure was on it, sizes what can be sized
+(government money and a political cost of leaving), and asks how much weight the Board would have to put on staying in to launch the fps, against what Boeing has actually paid for such reasons.</p>
+<p class="gloss"><b>Basis.</b> The franchise page's full view (the brief plus continuing value, services, stranded overhead, widebody erosion and closing costs), constant 2026 $B, against Do Nothing,
+in the columns the CEO expected each round, at the game's 10.5% and at 8.1%. Rivals' moves are held as the game played them. The weight is added to every plan with an fps in every column, and found as the
+smallest amount at which Boeing's decision rule launches one. The rule as re-implemented here gives back every one of the 922 decisions stored by the franchise model.</p></header>
+<section style="margin-top:18px"><div class="tiles"><div class="panel tile"><div class="k">What Boeing has paid to stay in a commercial market</div><div class="v">about $0</div><div class="d">the 757, 717, 747, NMA, the 100-150-seat segment and Embraer were left on the numbers. Pressure changed where and on what terms Boeing built, not whether.</div></div><div class="panel tile"><div class="k">Weight needed to launch in 2030, at 10.5%</div><div class="v">$5.5B</div><div class="d">today&#x27;s money ($8.2B in 2030 money), on top of the franchise terms, US co-funding and the cost of leaving. None is enough if the Board&#x27;s rating test counts cash only.</div></div><div class="panel tile"><div class="k">The same at 8.1%</div><div class="v">$0.5B</div><div class="d">($0.7B in 2030 money): inside the Board&#x27;s $2B cap for soft choices. Here it is a new airplane against a 787 Re-engine, and Boeing&#x27;s identity could decide it.</div></div><div class="panel tile"><div class="k">Government money Boeing could expect</div><div class="v">about 2% of the bill</div><div class="d">a 2030 launch would need a government to carry 25.5% of it at 10.5% (3.6% at 8.1%). No US airliner launch has had federal money since the SST.</div></div></div></section>
+
+<section><h2>The answer</h2><div class="bl">
+<div class="panel"><div><b>Pressure has changed where and how Boeing builds, not whether</b>
+Washington, jobs and reputation have moved Boeing on government contracts it could not walk away from, on safety, on where it builds and on what terms, and on keeping the 737 line together through the grounding.
+They have not made it launch, or keep, a commercial programme whose numbers failed: it cut jobs, moved the 787 out of Washington state, shelved the NMA, left the 100-150-seat segment and walked away from Embraer.
+Boeing has never been tested on leaving its core 737 market, so the record bounds the answer rather than settling it.</div></div>
+<div class="panel"><div><b>At 10.5% the weight needed is 2 to 6 times the most Boeing has paid</b>
+To launch in 2030 the Board would have to value staying in at <span class="nw">$5.48B</span> today, <span class="nw">$8.2B</span> in 2030 money, after the franchise terms, about 2% government co-funding and a political cost of leaving
+(<span class="nw">$0.12B</span> today). Later rounds need less in today's money but more in their own: <span class="nw">$10.1B</span> in 2035, <span class="nw">$20.2B</span> in 2045, <span class="nw">$25.6B</span> in 2050.
+The most Boeing has paid for such reasons is about <span class="nw">$4.0B</span> in 2026 dollars (keeping the 737 line in 2020, mostly ordinary value; Air Force One's losses, about $3.4B), and to stay in a commercial segment about nothing. And if the Board's rating test reads cash only, as a balance-sheet test should,
+no weight of any size launches the fps in 2030, 2035 or 2045: the balance sheet, not the will, binds.</div></div>
+<div class="panel"><div><b>At 8.1% it is within reach, and it is a choice between airplanes, not about leaving</b>
+In 2030 at 8.1% the weight needed is <span class="nw">$0.50B</span> (<span class="nw">$0.68B</span> in 2030 money), inside the Board's $2B cap for soft choices. The fps already beats Do Nothing here; what it has to beat is a 787 Re-engine,
+which the CEO prefers and the Board then vetoes on its downside test. "Boeing's an airplane company ... we need to develop a new airplane" (Ortberg, 2024) is the kind of weight that could tip it.
+If the CEO anticipates that veto instead of proposing the Re-engine, Boeing launches the 7-year fps at Renton with no premium at all.</div></div>
+<div class="panel"><div><b>Exit pressure bites at the point of no return, and there it would buy a late launch at most</b>
+Not launching in 2030 is not leaving: Boeing can still launch in 2035, 2045 or 2050, and a 10-year fps launched in 2050 enters service as the last MAX is built. The weight of leaving falls on the 2050 decision,
+where it would have to be worth <span class="nw">$25.6B</span> in 2050 money at 10.5% (<span class="nw">$20.6B</span> at 8.1%), or a government would have to carry 78.0% of the bill (52.3%).
+That fits Boeing's record: jobs and politics have bought delay, not reversal.</div></div>
+<div class="panel"><div><b>China raises the political stakes and lowers the commercial case; Brazil is not an adversary</b>
+China is a competitor in US strategy, not a declared enemy (the December 2025 National Security Strategy frames it mainly as an economic, "near-peer" competitor), and the Pentagon listed COMAC as a
+Chinese military company in January 2025. Brazil has been a US Major Non-NATO Ally since July 2019, civil aircraft were exempt from the 2025 tariffs on Brazil, and Embraer builds with more than 40% US content.
+If COMAC grows to serve all of China's single-aisle demand by 2050, the fps is worth less (<span class="nw">−$4.99B</span> against Do Nothing in 2030, from <span class="nw">−$4.07B</span>) and the weight needed rises
+(to <span class="nw">$6.30B</span> at 10.5% and <span class="nw">$2.17B</span> at 8.1%), even with Washington's stakes raised.</div></div>
+</div></section>
+
+<section><h2>How Boeing has behaved under pressure</h2><div class="two">
+<div class="panel"><p class="ctitle">Where pressure changed the decision</p><ul class="cav"><li><b>Air Force One (2018).</b> A fixed-price deal of about $4B accepted under presidential pressure; about $3.1B of losses since. Calhoun: &quot;risks that Boeing probably shouldn&#x27;t have taken&quot; (BX-0314).</li><li><b>Keeping the 737 line (2019-21).</b> Kept building the grounded MAX in 2019, citing &quot;600-some suppliers, hundreds of thousands of jobs&quot; (Muilenburg, B-1584), then paid about $4B to keep the workforce through the 2020 suspension (B-1618, B-1675).</li><li><b>Safety under Senate pressure (2024).</b> Withdrew the MAX 7 exemption request (B-2140).</li><li><b>Terms, through site competitions.</b> Washington&#x27;s $8.7B for the 777X (2013); South Carolina&#x27;s 2009 package for the second 787 line.</li><li><b>Selling through Washington (2025-26).</b> Trade-deal orders, and a 200-aircraft China commitment in May 2026. Ortberg: &quot;my primary objective was to reopen that market to our narrowbody airplanes&quot; (Transcript Digest (4)).</li></ul></div>
+<div class="panel"><p class="ctitle">Where it did not</p><ul class="cav"><li><b>Jobs.</b> About 10,000 cut in 2009 (B-0147), 26,000 in 2020 (B-1767) and 17,000 in 2024 (B-2206).</li><li><b>Washington state.</b> The second 787 line went to South Carolina in 2009 (B-0218) and all 787 production in 2020, which Governor Inslee called &quot;an insult&quot;.</li><li><b>Segments.</b> The 757 (2004), 717 (2005), 747 (2023) and 767 freighter (2027) ended; the NMA was shelved in 2020 (B-1620); the 100-150-seat segment was left to the A220 and E2 (B-1666).</li><li><b>Embraer (2020).</b> Walked away from the $4.2B joint venture when cash was at risk (B-1674); the 2024 settlement was $150M.</li><li><b>Government money with strings.</b> Raised $25B of bonds rather than take CARES Act loans (2020, BX-1636), and $24B of public equity in 2024 (B-2258).</li><li><b>China.</b> Taken out of guidance: &quot;our $10 billion in &#x27;25, &#x27;26 ... has no China&quot; (Calhoun, 2023, B-2052).</li><li><b>The next airplane.</b> &quot;That day is not today, and it&#x27;s not any time near&quot; (Malave, March 2026); &quot;nothing has changed&quot; (Ortberg, 27 October 2026).</li></ul></div>
+</div>
+<div class="panel" style="margin-top:14px"><p class="ctitle">What Boeing's leaders say about the next airplane</p>
+<p>"Boeing's an airplane company. And at the right time in the future, we need to develop a new airplane" (Ortberg, October 2024, B-2217). "We'll do one" (Calhoun, 2020, B-1620). Always on three conditions:
+"when is the market ready? ... when are we ready, both financially and from a capacity perspective? ... when is the technology ready?" (Ortberg, 2025, B-2303). And earlier: "It will not be based on market share" (Muilenburg, 2016, B-1131).</p></div></section>
+
+<section><h2>Washington and jobs</h2><div class="panel"><ul class="cav">
+<li><b>The jobs.</b> About 172,000 employees at the end of 2024 (15% outside the US) and about 182,000 at the end of 2025, about 65,000 of them in Washington state; IAM 751 represents more than 30,000 machinists, and 33,000 struck for 53 days in 2024. Boeing says it supports about 1.5 million US jobs and the Commerce Department says 1.8 million: multiplier estimates, not headcount.</li>
+<li><b>The leverage.</b> The US government provided 35-51% of Boeing's revenue in 2020-25; Boeing won both sixth-generation fighter awards (F-47 in 2025, F/A-XX in 2026); the FAA sets the 737 rate cap (38, then 42, then 47 a month); the 737 MAX criminal case ended in a non-prosecution agreement and was dismissed in November 2025.</li>
+<li><b>Washington as salesman.</b> In 2025 Boeing and GE made up about $215B of the $244B of foreign deals the Commerce Department helped win, and the May 2026 Trump-Xi summit brought a 200-aircraft China commitment.</li>
+<li><b>Washington as shareholder.</b> Since 2025 the government has taken equity in strategic firms (Intel 9.9%, MP Materials about 15%, a golden share in US Steel); in August 2025 the Commerce Secretary named Boeing among defence firms where stakes were discussed (one report; no stake taken). Boeing has funded itself privately each time.</li>
+<li><b>What leaving would leave behind.</b> Airbus already builds A320s and A220s in Mobile, Alabama (three lines, more than 2,000 staff), so not all final-assembly jobs would leave the US. No US official or member of Congress was found asking for a 737 successor in the searches; that may be a gap in the searches.</li>
+</ul></div></section>
+
+<section><h2>Brand and engineering identity</h2><div class="panel"><ul class="cav">
+<li><b>Since 1997, finance has won almost every product decision:</b> the Sonic Cruiser cancelled (2002), the MAX chosen over the clean sheet its engineers wanted (2011), the NMA shelved (2020), and $43B of buybacks in 2013-19, about twice R&D. The exception was 2011, when share was at risk, and even then Boeing took the cheapest option.</li>
+<li><b>Boeing's reputation costs came from failing to execute, not from declining to launch.</b> The MAX crisis cost about $20B directly, Boeing's market value fell from about $240B to about $112B, and it needed a $24B equity raise. Buyers came back once supply did: 1,173 net orders in 2025 against Airbus's 889, and Brand Finance put the brand up 34% in 2026, with no new airplane. Only about 3% of passengers rank aircraft type first.</li>
+<li><b>Talent cuts both ways.</b> Boeing hired 10,000 engineers in 2022 without a new airliner, and the F-47 and F/A-XX give engineers frontier work. What erodes without a programme is design experience: engineer tenure fell from about 16 to about 13 years, and design starts per team fell from about 2.5 a decade to about one every two decades (RAND).</li>
+<li><b>The brand risk runs both ways.</b> A launch that fails costs more reputation than a launch deferred: the 787's overruns and the MAX show the downside a brand premium would have to be set against.</li>
+</ul></div></section>
+
+<section><h2>China and COMAC</h2><div class="panel"><ul class="cav">
+<li><b>The weight.</b> China was 21.5% of Commercial Airplanes revenue in 2018 and about 10% of the commercial backlog in April 2025 (B-2292). Boeing's 2026 China outlook has 7,215 single-aisle deliveries in 2026-45, about 21% of world single-aisle demand and about 360 a year.</li>
+<li><b>Boeing's behaviour.</b> Since 2023 it plans without China (B-2052). When China stopped deliveries (2019-24, and April-May 2025) it waited and remarketed aircraft (B-2293). Ortberg calls the 2026 China order "100% dependent" on the US-China talks.</li>
+<li><b>Washington's behaviour is transactional.</b> Export licences for COMAC were suspended in May 2025, restored in July 2025 and capped in October 2026 as leverage; the May 2026 deal paired Boeing orders with US "strict supply guarantees" for aircraft engine parts (which COMAC needs; the link to COMAC is an inference). A July 2026 Section 232 finding said aircraft imports threaten national security but set no tariffs.</li>
+<li><b>COMAC is slow but backed by the state.</b> About 13-15 C919 deliveries in 2025 against a target of 75; a target of 200 a year by 2029; no Western approval before about 2028-31; LEAP engines until China's CJ-1000A arrives around 2030; $49-72B of state support (CSIS estimate). Calhoun in 2023: "even in an optimistic case, maybe in 2050, they get to be a 10% player" (BX-0380).</li>
+<li><b>In the game</b> COMAC sells 250 a year from 2050 to its home market first, and gains none of the 955 deliveries Boeing gives up when the MAX ends in 2045-60: they go to Airbus (465) and an unnamed entrant (490). The scenario below lets COMAC follow its own plan to about 360 a year by 2050.</li>
+</ul></div>
+<div class="panel" style="margin-top:14px"><p class="ctitle">A stronger COMAC makes the fps worth less and the premium needed larger</p><div class="scroll"><table class="cards"><thead><tr><th scope="col"></th><th scope="col" class=n>fps against Do Nothing, the game's market</th><th scope="col" class=n>With COMAC on its own plan</th><th scope="col" class=n>Premium needed, the game's market</th><th scope="col" class=n>With COMAC on its own plan</th></tr></thead><tbody><tr class="grp"><th scope="rowgroup" colspan="5">At 10.5%, 10-year fps at Renton</th></tr><tr><th scope="row">2030 brief</th><td class=n data-label="fps against Do Nothing, the game&#x27;s market"><span class="nw">−$4.07B</span></td><td class=n data-label="With COMAC on its own plan"><span class="nw">−$4.99B</span></td><td class=n data-label="Premium needed, the game&#x27;s market">$5.48B</td><td class=n data-label="With COMAC on its own plan">$6.30B</td></tr><tr><th scope="row">2035 brief</th><td class=n data-label="fps against Do Nothing, the game&#x27;s market"><span class="nw">−$3.54B</span></td><td class=n data-label="With COMAC on its own plan"><span class="nw">−$4.10B</span></td><td class=n data-label="Premium needed, the game&#x27;s market">$4.13B</td><td class=n data-label="With COMAC on its own plan">$4.52B</td></tr><tr class="grp"><th scope="rowgroup" colspan="5">At 8.1%, 10-year fps at Renton</th></tr><tr><th scope="row">2030 brief</th><td class=n data-label="fps against Do Nothing, the game&#x27;s market"><span class="nw">+$0.86B</span></td><td class=n data-label="With COMAC on its own plan"><span class="nw">−$0.94B</span></td><td class=n data-label="Premium needed, the game&#x27;s market">$0.50B</td><td class=n data-label="With COMAC on its own plan">$2.17B</td></tr><tr><th scope="row">2035 brief</th><td class=n data-label="fps against Do Nothing, the game&#x27;s market"><span class="nw">−$1.75B</span></td><td class=n data-label="With COMAC on its own plan"><span class="nw">−$2.97B</span></td><td class=n data-label="Premium needed, the game&#x27;s market">$2.10B–4.00B</td><td class=n data-label="With COMAC on its own plan">$3.01B–4.91B</td></tr></tbody></table></div>
+<p class="cap">COMAC on its own plan: 120 a year in 2030, 200 in 2032, 280 in 2040, 330 in 2045 and 360 in 2050 (all of China's single-aisle demand in Boeing's outlook), sold to its home market first. The brief and the franchise terms are re-run in that market,
+and the political cost of leaving is raised (a 50% chance instead of 20%). COMAC takes demand from both Boeing options, but an fps has more years in that market than the MAX run-out.</p></div></section>
+
+<section><h2>Brazil and Embraer</h2><div class="panel"><ul class="cav">
+<li><b>Not an adversary.</b> Brazil has been a US Major Non-NATO Ally since 31 July 2019. The July 2025 US tariffs on Brazil were over the Bolsonaro prosecution, and civil aircraft and parts were exempt (Embraer paid $54M at the 10% baseline in 2025); the Supreme Court struck down those tariffs on 20 February 2026.</li>
+<li><b>Tied into the US.</b> Embraer's jets carry more than 40% US content and Pratt & Whitney engines on the E2; it employs about 2,500 people in the US and sells the C-390 to NATO air forces.</li>
+<li><b>Small next to the 737.</b> 78 commercial deliveries in 2025 against about 564 737s a year at rate 47; no narrowbody decision before about 2030; it has sounded out Saudi, Turkish, Indian and Korean partners (2024 report, exploratory).</li>
+<li><b>Boeing's own record with Embraer</b> is the clearest case of strategy giving way to cash: $4.2B for 80% of its commercial business agreed in 2018, terminated in April 2020, settled for $150M in 2024.</li>
+<li><b>In the game</b> Embraer matters as a limit, not a threat: the "fps via Embraer" plan has Embraer paying 35% of the bill, $21-23B, about three times its 2025 revenue.</li>
+</ul></div></section>
+
+<section><h2>How these enter the decision</h2><div class="panel"><div class="scroll"><table class="cards wide"><thead><tr><th scope="col">Term</th><th scope="col">How it enters</th><th scope="col">Base (low / high)</th><th scope="col">Evidence</th></tr></thead><tbody><tr><th scope="row"><b>Government co-funding</b></th><td class=txt data-label="How it enters">Cash: state siting incentives and federal technology money, as a cut in Boeing&#x27;s share of the fps bill (the bill&#x27;s debt penalty falls with it)</td><td class=txt data-label="Base (low / high)">2% of the bill (0 / 5%)</td><td class=txt data-label="Evidence">No federal money has launched a US airliner since the SST was cancelled in 1971. Washington&#x27;s 2013 package for the 777X ($8.7B on paper, about $1.5B in present value) and South Carolina&#x27;s 2009 package ($450-900M) were won by site competitions; NASA put $425M into the X-66, paused in 2025. Boeing itself backed &#x27;market terms&#x27; for all future support (2021, B-1825), and the WTO let the EU tariff $4B a year of US goods over one Washington tax break (B-1761). Airbus-style launch aid (up to a third of a programme) is not US practice</td></tr><tr><th scope="row"><b>Political cost of leaving</b></th><td class=txt data-label="How it enters">Cash-like goodwill: a chance that Washington makes Boeing pay for leaving, through defence, export finance or the FAA&#x27;s rate approvals, on the plans without an fps; kept out of the Board&#x27;s rating test</td><td class=txt data-label="Base (low / high)">20% x $0.44B a year of defence profit for 20 years from 2045 (0 / 50% x $0.66B from 2040)</td><td class=txt data-label="Evidence">Washington&#x27;s leverage is real: 35-51% of Boeing&#x27;s revenue came from the US government in 2020-25, the FAA sets the 737 rate cap, and in 2025-26 the administration sold Boeing jets in trade deals. But no precedent shows a penalty for a commercial product choice: Boeing&#x27;s own exits, job cuts and moves out of Washington state passed without one. The size is judgement</td></tr><tr><th scope="row"><b>Strategic premium</b></th><td class=txt data-label="How it enters">The weight the Board would put on staying in: identity as an engineering company, engineering talent, standing as the last US airliner maker. Added to every fps plan in every column and solved for the amount that launches</td><td class=txt data-label="Base (low / high)">Solved, then compared with what Boeing has paid</td><td class=txt data-label="Evidence">Subjective by construction. It leaves out everything the franchise terms already count (continuing value, services, overhead, widebody erosion, closing costs)</td></tr><tr><th scope="row"><b>Not added</b></th><td class=txt data-label="How it enters">Military 737s (P-8, E-7) after the line ends, Washington&#x27;s help selling jets (both options keep it while the MAX sells), China market access (Boeing plans without China), a federal safety net under the Board&#x27;s tests (Boeing funded itself privately in 2020 and 2024)</td><td class=txt data-label="Base (low / high)">Zero</td><td class=txt data-label="Evidence">Military 737s are worth about $0.03B today; Boeing took China out of its guidance in 2023 (B-2052); it raised $25B of bonds rather than take CARES Act loans (BX-1636)</td></tr><tr><th scope="row"><b>Counter-weight</b></th><td class=txt data-label="How it enters">The brand risk of launching and failing: the MAX crisis cost about $20B directly and halved Boeing&#x27;s market value; the 787 ran far over budget</td><td class=txt data-label="Base (low / high)">Shown, not added</td><td class=txt data-label="Evidence">The game&#x27;s bill is the planning value; adding an overrun would only widen the gap</td></tr></tbody></table></div></div></section>
+
+<section><h2>The weight needed, round by round</h2><div class="stack">
+<div class="panel"><p class="ctitle">At 10.5% the weight needed is 2 to 6 times the most Boeing has paid; at 8.1% in 2030 it is within the Board's cap</p>
+<div class="legend"><span><i class="sw" style="background:var(--s1)"></i>at 10.5%</span><span><i class="sw" style="background:var(--s2)"></i>at 8.1%</span><span>in the decision year's money; log scale</span></div>
+<div class="cw only-wide"><svg viewBox="0 0 760 276" class="chart" role="group" aria-label="Premium Boeing would need to launch the fps, by round, against the premiums Boeing has paid"><line x1="120.0" x2="120.0" y1="64" y2="252" class="grid"/><text x="120.0" y="268" text-anchor="middle" class="tick">$0.1B</text><line x1="224.5" x2="224.5" y1="64" y2="252" class="grid"/><text x="224.5" y="268" text-anchor="middle" class="tick">$0.3B</text><line x1="339.1" x2="339.1" y1="64" y2="252" class="grid"/><text x="339.1" y="268" text-anchor="middle" class="tick">$1B</text><line x1="443.6" x2="443.6" y1="64" y2="252" class="grid"/><text x="443.6" y="268" text-anchor="middle" class="tick">$3B</text><line x1="558.1" x2="558.1" y1="64" y2="252" class="grid"/><text x="558.1" y="268" text-anchor="middle" class="tick">$10B</text><line x1="662.6" x2="662.6" y1="64" y2="252" class="grid"/><text x="662.6" y="268" text-anchor="middle" class="tick">$30B</text><line x1="330.1" x2="330.1" y1="12" y2="252" class="ref" stroke-dasharray="4 3"/><text x="334.1" y="20" class="reflab">T-X/MQ-25 $0.9B</text><line x1="405.0" x2="405.0" y1="28" y2="252" class="ref" stroke-dasharray="4 3"/><text x="409.0" y="36" class="reflab">Board cap $2B</text><line x1="455.5" x2="455.5" y1="44" y2="252" class="ref" stroke-dasharray="4 3"/><text x="459.5" y="52" class="reflab">Air Force One $3.4B</text><rect x="120" y="72.0" width="419.0" height="10" rx="3" fill="var(--s1)"/><text x="545.0" y="81.0" class="val sm">$8.2B</text><rect x="120" y="87.0" width="182.5" height="10" rx="3" fill="var(--s2)"/><text x="308.5" y="96.0" class="val sm">$0.7B</text><text x="110" y="86" text-anchor="end" class="rowlab sm">2030 brief</text><rect x="0" y="64" width="760" height="46" class="hit" tabindex="0" role="img" aria-label="2030 brief; at 10.5%, in 2030 money: $8.2B; at 8.1%: $0.7B" data-tip="[{&quot;v&quot;: &quot;2030 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$8.2B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2030 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$0.7B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/><rect x="120" y="118.0" width="439.5" height="10" rx="3" fill="var(--s1)"/><text x="565.5" y="127.0" class="val sm">$10.1B</text><rect x="120" y="133.0" width="356.6" height="10" rx="3" fill="var(--s2)"/><text x="482.6" y="142.0" class="val sm">$4.2B</text><text x="110" y="132" text-anchor="end" class="rowlab sm">2035 brief</text><rect x="0" y="110" width="760" height="46" class="hit" tabindex="0" role="img" aria-label="2035 brief; at 10.5%, in 2035 money: $10.1B; at 8.1%: $4.2B" data-tip="[{&quot;v&quot;: &quot;2035 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$10.1B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2035 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$4.2B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/><rect x="120" y="164.0" width="504.9" height="10" rx="3" fill="var(--s1)"/><text x="630.9" y="173.0" class="val sm">$20.2B</text><rect x="120" y="179.0" width="484.7" height="10" rx="3" fill="var(--s2)"/><text x="610.7" y="188.0" class="val sm">$16.3B</text><text x="110" y="178" text-anchor="end" class="rowlab sm">2045 brief</text><rect x="0" y="156" width="760" height="46" class="hit" tabindex="0" role="img" aria-label="2045 brief; at 10.5%, in 2045 money: $20.2B; at 8.1%: $16.3B" data-tip="[{&quot;v&quot;: &quot;2045 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$20.2B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2045 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$16.3B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/><rect x="120" y="210.0" width="527.7" height="10" rx="3" fill="var(--s1)"/><text x="653.7" y="219.0" class="val sm">$25.6B</text><rect x="120" y="225.0" width="506.8" height="10" rx="3" fill="var(--s2)"/><text x="632.8" y="234.0" class="val sm">$20.6B</text><text x="110" y="224" text-anchor="end" class="rowlab sm">2050 brief</text><rect x="0" y="202" width="760" height="46" class="hit" tabindex="0" role="img" aria-label="2050 brief; at 10.5%, in 2050 money: $25.6B; at 8.1%: $20.6B" data-tip="[{&quot;v&quot;: &quot;2050 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$25.6B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2050 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$20.6B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/></svg></div><div class="cw only-narrow"><svg viewBox="0 0 400 324" class="chart narrow" role="group" aria-label="Premium Boeing would need to launch the fps, by round, against the premiums Boeing has paid"><line x1="26.0" x2="26.0" y1="64" y2="300" class="grid"/><text x="26.0" y="316" text-anchor="middle" class="tick">$0.1B</text><line x1="92.4" x2="92.4" y1="64" y2="300" class="grid"/><text x="92.4" y="316" text-anchor="middle" class="tick">$0.3B</text><line x1="165.1" x2="165.1" y1="64" y2="300" class="grid"/><text x="165.1" y="316" text-anchor="middle" class="tick">$1B</text><line x1="231.5" x2="231.5" y1="64" y2="300" class="grid"/><text x="231.5" y="316" text-anchor="middle" class="tick">$3B</text><line x1="304.2" x2="304.2" y1="64" y2="300" class="grid"/><text x="304.2" y="316" text-anchor="middle" class="tick">$10B</text><line x1="370.6" x2="370.6" y1="64" y2="300" class="grid"/><text x="370.6" y="316" text-anchor="middle" class="tick">$30B</text><line x1="159.4" x2="159.4" y1="12" y2="300" class="ref" stroke-dasharray="4 3"/><text x="163.4" y="20" class="reflab">T-X/MQ-25 $0.9B</text><line x1="207.0" x2="207.0" y1="28" y2="300" class="ref" stroke-dasharray="4 3"/><text x="211.0" y="36" class="reflab">Board cap $2B</text><line x1="239.1" x2="239.1" y1="44" y2="300" class="ref" stroke-dasharray="4 3"/><text x="243.1" y="52" class="reflab">Air Force One $3.4B</text><rect x="26" y="86.0" width="266.1" height="10" rx="3" fill="var(--s1)"/><rect x="26" y="101.0" width="115.9" height="10" rx="3" fill="var(--s2)"/><text x="12" y="78" class="rowlab sm">2030 brief</text><text x="388" y="78" text-anchor="end" class="val sm">$8.2B · $0.7B</text><rect x="0" y="64" width="400" height="58" class="hit" tabindex="0" role="img" aria-label="2030 brief; at 10.5%, in 2030 money: $8.2B; at 8.1%: $0.7B" data-tip="[{&quot;v&quot;: &quot;2030 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$8.2B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2030 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$0.7B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/><rect x="26" y="144.0" width="279.1" height="10" rx="3" fill="var(--s1)"/><rect x="26" y="159.0" width="226.5" height="10" rx="3" fill="var(--s2)"/><text x="12" y="136" class="rowlab sm">2035 brief</text><text x="388" y="136" text-anchor="end" class="val sm">$10.1B · $4.2B</text><rect x="0" y="122" width="400" height="58" class="hit" tabindex="0" role="img" aria-label="2035 brief; at 10.5%, in 2035 money: $10.1B; at 8.1%: $4.2B" data-tip="[{&quot;v&quot;: &quot;2035 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$10.1B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2035 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$4.2B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/><rect x="26" y="202.0" width="320.6" height="10" rx="3" fill="var(--s1)"/><rect x="26" y="217.0" width="307.8" height="10" rx="3" fill="var(--s2)"/><text x="12" y="194" class="rowlab sm">2045 brief</text><text x="388" y="194" text-anchor="end" class="val sm">$20.2B · $16.3B</text><rect x="0" y="180" width="400" height="58" class="hit" tabindex="0" role="img" aria-label="2045 brief; at 10.5%, in 2045 money: $20.2B; at 8.1%: $16.3B" data-tip="[{&quot;v&quot;: &quot;2045 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$20.2B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2045 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$16.3B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/><rect x="26" y="260.0" width="335.1" height="10" rx="3" fill="var(--s1)"/><rect x="26" y="275.0" width="321.9" height="10" rx="3" fill="var(--s2)"/><text x="12" y="252" class="rowlab sm">2050 brief</text><text x="388" y="252" text-anchor="end" class="val sm">$25.6B · $20.6B</text><rect x="0" y="238" width="400" height="58" class="hit" tabindex="0" role="img" aria-label="2050 brief; at 10.5%, in 2050 money: $25.6B; at 8.1%: $20.6B" data-tip="[{&quot;v&quot;: &quot;2050 brief&quot;, &quot;l&quot;: &quot;&quot;, &quot;k&quot;: null}, {&quot;v&quot;: &quot;$25.6B&quot;, &quot;l&quot;: &quot;at 10.5%, in 2050 money&quot;, &quot;k&quot;: &quot;var(--s1)&quot;}, {&quot;v&quot;: &quot;$20.6B&quot;, &quot;l&quot;: &quot;at 8.1%&quot;, &quot;k&quot;: &quot;var(--s2)&quot;}]"/></svg></div>
+<p class="cap">Premium the Board would have to put on an fps for its rule to launch one, in money of the decision year (constant 2026 dollars), with the franchise terms and the base government terms on. Dashed lines: what Boeing has paid, in 2026 dollars.</p></div>
+<div class="panel"><div class="scroll"><table class="cards"><thead><tr><th scope="col"></th><th scope="col" class=n>Premium needed, today's money</th><th scope="col" class=n>In the decision year's money</th><th scope="col" class=n>Rating test on cash only</th><th scope="col" class=n>CEO anticipates the Board</th><th scope="col" class=n>Government share of the bill instead</th></tr></thead><tbody><tr class="grp"><th scope="rowgroup" colspan="6">At 10.5%</th></tr><tr><th scope="row">2030 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$5.48B</td><td class=n data-label="In the decision year&#x27;s money">$8.2B</td><td class=n data-label="Rating test on cash only">none launches</td><td class=n data-label="CEO anticipates the Board">$4.40B</td><td class=n data-label="Government share of the bill instead">25.5%</td></tr><tr><th scope="row">2035 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$4.13B</td><td class=n data-label="In the decision year&#x27;s money">$10.1B</td><td class=n data-label="Rating test on cash only">none launches</td><td class=n data-label="CEO anticipates the Board">same</td><td class=n data-label="Government share of the bill instead">31.2%</td></tr><tr><th scope="row">2045 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$3.03B</td><td class=n data-label="In the decision year&#x27;s money">$20.2B</td><td class=n data-label="Rating test on cash only">none launches</td><td class=n data-label="CEO anticipates the Board">same</td><td class=n data-label="Government share of the bill instead">60.8%</td></tr><tr><th scope="row">2050 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$2.33B</td><td class=n data-label="In the decision year&#x27;s money">$25.6B</td><td class=n data-label="Rating test on cash only">same</td><td class=n data-label="CEO anticipates the Board">same</td><td class=n data-label="Government share of the bill instead">78.0%</td></tr><tr class="grp"><th scope="rowgroup" colspan="6">At 8.1%</th></tr><tr><th scope="row">2030 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$0.50B</td><td class=n data-label="In the decision year&#x27;s money">$0.7B</td><td class=n data-label="Rating test on cash only">same</td><td class=n data-label="CEO anticipates the Board">no premium needed (7-year at Renton)</td><td class=n data-label="Government share of the bill instead">3.6%</td></tr><tr><th scope="row">2035 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$2.10B–4.00B</td><td class=n data-label="In the decision year&#x27;s money">$4.2B–8.1B</td><td class=n data-label="Rating test on cash only">same</td><td class=n data-label="CEO anticipates the Board">$2.10B</td><td class=n data-label="Government share of the bill instead">16.0%</td></tr><tr><th scope="row">2045 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$3.70B–4.73B</td><td class=n data-label="In the decision year&#x27;s money">$16.3B–20.9B</td><td class=n data-label="Rating test on cash only">none launches</td><td class=n data-label="CEO anticipates the Board">$3.70B</td><td class=n data-label="Government share of the bill instead">46.0%</td></tr><tr><th scope="row">2050 brief</th><td class=n data-label="Premium needed, today&#x27;s money">$3.16B</td><td class=n data-label="In the decision year&#x27;s money">$20.6B</td><td class=n data-label="Rating test on cash only">none launches</td><td class=n data-label="CEO anticipates the Board">same</td><td class=n data-label="Government share of the bill instead">52.3%</td></tr></tbody></table></div>
+<p class="cap">Premium needed, as the game's rule is written, and two other readings: the Board's rating test reading cash only (a brand or political weight does not make spend affordable), and a CEO who proposes only what the Board would approve
+(the Board vetoes the 787 Re-engine alone in every round here, as it did in the game's 2030 round). Government share: the share of Boeing's fps bill a government would have to carry instead, with no premium, rounded up. At 8.1% the bill weighs more in today's money,
+so the rating test also binds in 2045 and 2050.</p></div>
+<div class="panel"><p class="ctitle">What Boeing has paid for strategic or political reasons</p><div class="scroll"><table class="cards"><thead><tr><th scope="col">What Boeing paid</th><th scope="col" class=n>2026 dollars</th><th scope="col">What it bought</th><th scope="col">Evidence</th></tr></thead><tbody><tr><th scope="row">Commercial segments left or walked away from</th><td class=n data-label="2026 dollars">$0</td><td class=txt data-label="What it bought">757, 717, 747, NMA, the 100-150-seat segment, Embraer: nothing paid to stay in</td><td class=txt data-label="Evidence">B-1620, B-1666, B-1674, 10-K FY2020</td></tr><tr><th scope="row">T-X and MQ-25 bids (2018)</th><td class=n data-label="2026 dollars"><span class="nw">$0.9B</span></td><td class=txt data-label="What it bought">$0.69B pre-tax charges taken up front, by choice, to win two long-lived defence franchises: franchise logic, as in continuing value</td><td class=txt data-label="Evidence">B-1458, BX-1545</td></tr><tr><th scope="row">The Board&#x27;s cap on soft choices</th><td class=n data-label="2026 dollars"><span class="nw">$2.0B</span></td><td class=txt data-label="What it bought">a rule of the game (H8), not evidence about Boeing</td><td class=txt data-label="Evidence">profile.md H8</td></tr><tr><th scope="row">VC-25B, Air Force One (2018)</th><td class=n data-label="2026 dollars"><span class="nw">$3.4B</span></td><td class=txt data-label="What it bought">a fixed-price deal accepted under presidential pressure; about $3.1B of losses to 2026. &quot;Risks that Boeing probably shouldn&#x27;t have taken&quot; (Calhoun)</td><td class=txt data-label="Evidence">BX-0314; 10-Ks FY2020-24; FQ2 2026 call</td></tr><tr><th scope="row">Keeping the 737 line in the 2020 suspension</th><td class=n data-label="2026 dollars"><span class="nw">$4.0B</span></td><td class=txt data-label="What it bought">about $4B of abnormal costs (the pre-COVID estimate) to keep the workforce and 600-plus suppliers: mostly ordinary value for a programme that would restart</td><td class=txt data-label="Evidence">B-1618, B-1675, B-1584</td></tr></tbody></table></div>
+<p class="cap">Only the T-X and MQ-25 bids were chosen up front, and they bought future franchise value, which the franchise terms already credit to the fps. Air Force One was a loss on a contract accepted under pressure, which Boeing regrets; keeping the 737 line was mostly ordinary value.</p></div>
+</div></section>
+
+<section><h2>Notes</h2><div class="panel"><ul class="cav">
+<li><b>The point of no return.</b> The weight is solved round by round, but only the 2050 decision is an exit: before that, not launching keeps the option to launch later. A premium that is real only at the point of no return pushes a launch to the last round, where it is cheapest in today's money.</li>
+<li><b>The Board's dollar tests</b> are in 2026 money in the game. Stated in the decision year's money instead, the 2030 premium at 10.5% would be <span class="nw">$5.15B</span> today and the 2050 one <span class="nw">$1.57B</span>.</li>
+<li><b>Readings.</b> "As played" is the game's rule with its four readings, as on the main report; the rating-on-cash and anticipating readings are this page's, not the game's.</li>
+<li><b>Sizes.</b> Government co-funding and the political cost of leaving are inferences from precedents, labelled so in the research file; the political cost is small in any case (<span class="nw">$0.12B</span> today at 10.5%) because it falls after 2045.</li>
+<li><b>Framing checked against sources:</b> Brazil's Major Non-NATO Ally designation (31 July 2019, <a href="https://www.govinfo.gov/content/pkg/FR-2019-08-19/html/2019-17998.htm">Federal Register</a>); the China wording of the December 2025 National Security Strategy (<a href="https://www.brookings.edu/articles/how-china-reads-the-2025-u-s-national-security-strategy">Brookings</a>, <a href="https://www.cfr.org/expert-brief/unpacking-trump-twist-national-security-strategy">CFR</a>); COMAC's listing as a Chinese military company (January 2025, <a href="https://aviationweek.com/defense/budget-policy-operations/pentagon-identifies-comac-chinese-military-contractor">Aviation Week</a>); the Supreme Court's IEEPA ruling (20 February 2026, <a href="https://www.thompsoncoburn.com/insights/65-february-20-2026-supreme-court-issues-ruling-on-ieepa-tariffs/">Thompson Coburn</a>).</li>
+<li><b>Sources:</b> 209 findings from six research sweeps (Washington and jobs, brand, China, Brazil and Embraer, governments and national champions, decision practice), with the model design and two adversarial checks, in data/politics_research.json. Many web facts rest on search excerpts because the hosts blocked fetching; the file marks each finding's confidence.</li>
+<li><b>Files:</b> politics.py writes data/politics.json; make_politics_html.py builds this page and asserts its claims against it.</li>
+</ul></div></section>
+<footer>BOEING PROPRIETARY. Built by make_politics_html.py from run dash-2050-phaseout.</footer></div>
+<script>
+(() => {
+  const tip = document.createElement('div'); tip.className = 'tip'; tip.setAttribute('aria-hidden', 'true'); document.body.appendChild(tip);
+  const live = document.createElement('div'); live.className = 'sr'; live.setAttribute('role', 'status'); live.setAttribute('aria-live', 'polite'); document.body.appendChild(live);
+  let lastKey = null;
+  const place = (x, y) => {
+    const r = tip.getBoundingClientRect(), pad = 12;
+    let left = x + 14, top = y + 14;
+    if (left + r.width > innerWidth - pad) left = x - r.width - 14;
+    if (top + r.height > innerHeight - pad) top = y - r.height - 14;
+    tip.style.left = Math.max(pad, left) + 'px'; tip.style.top = Math.max(pad, top) + 'px';
+  };
+  const show = (key, rows, x, y, head) => {
+    if (key !== lastKey) {
+      tip.replaceChildren();
+      if (head) { const h = document.createElement('div'); h.className = 'yr'; h.textContent = head; tip.appendChild(h); }
+      for (const r of rows) {
+        const d = document.createElement('div');
+        if (r.k) { const k = document.createElement('span'); k.className = 'k'; k.style.background = r.k; d.appendChild(k); }
+        if (r.v) { const v = document.createElement('b'); v.textContent = r.v; d.appendChild(v); }
+        if (r.l) { const l = document.createElement('span'); l.className = 'l'; l.textContent = r.l; d.appendChild(l); }
+        tip.appendChild(d);
+      }
+      lastKey = key;
+    }
+    tip.style.display = 'block'; place(x, y);
+  };
+  const hide = () => { tip.style.display = 'none'; lastKey = null; };
+  let n = 0;
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    const rows = JSON.parse(el.dataset.tip), key = 'm' + (n++);
+    el.addEventListener('pointermove', e => show(key, rows, e.clientX, e.clientY));
+    el.addEventListener('pointerleave', hide);
+    el.addEventListener('focus', () => { const r = el.getBoundingClientRect(); show(key, rows, r.left + r.width / 2, r.top + r.height / 2); });
+    el.addEventListener('blur', hide);
+  });
+  document.querySelectorAll('rect[data-cross]').forEach((hit, c) => {
+    const P = JSON.parse(hit.dataset.cross), svg = hit.ownerSVGElement, line = svg.querySelector('.cross'), box = svg.parentElement;
+    const fmt = v => P.fmt === 'pct' ? Math.round(v * 100) + '%' : Math.round(v).toLocaleString('en-US');
+    const xOf = yr => P.x0 + (yr - P.xlo) / (P.xhi - P.xlo) * (P.x1 - P.x0);
+    let idx = Math.floor(P.years.length / 2);
+    const rowsAt = yr => P.series.filter(s => s.vals[yr] !== undefined).map(s => ({ v: fmt(s.vals[yr]), l: s.name, k: s.k }));
+    const render = (cx, cy, announce) => {
+      const yr = P.years[idx], x = xOf(yr);
+      line.setAttribute('x1', x); line.setAttribute('x2', x); line.setAttribute('visibility', 'visible');
+      const rows = rowsAt(yr);
+      show('x' + c + '-' + yr, rows, cx, cy, String(yr));
+      if (announce) live.textContent = yr + ': ' + rows.map(r => r.l + ' ' + r.v).join(', ');
+    };
+    const follow = () => {   // keep the crosshair in view when the chart scrolls inside its panel
+      const scale = svg.getBoundingClientRect().width / P.w, px = xOf(P.years[idx]) * scale;
+      if (px < box.scrollLeft + 20 || px > box.scrollLeft + box.clientWidth - 20) box.scrollLeft = px - box.clientWidth / 2;
+    };
+    const fromEvent = e => {
+      const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+      const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const yr = P.xlo + (p.x - P.x0) / (P.x1 - P.x0) * (P.xhi - P.xlo);
+      let best = 0; P.years.forEach((y, i) => { if (Math.abs(y - yr) < Math.abs(P.years[best] - yr)) best = i; });
+      idx = best; render(e.clientX, e.clientY, false);
+    };
+    hit.addEventListener('pointermove', fromEvent);
+    hit.addEventListener('pointerdown', fromEvent);
+    hit.addEventListener('pointerleave', () => { line.setAttribute('visibility', 'hidden'); hide(); });
+    const keyRender = () => { follow(); const r = svg.getBoundingClientRect(); render(r.left + xOf(P.years[idx]) * r.width / P.w, r.top + 24, true); };
+    svg.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault(); idx = Math.max(0, Math.min(P.years.length - 1, idx + (e.key === 'ArrowRight' ? 1 : -1))); keyRender();
+    });
+    svg.addEventListener('focus', keyRender);
+    svg.addEventListener('blur', () => { line.setAttribute('visibility', 'hidden'); hide(); });
+  });
+  // charts that scroll on phones open on their point of interest
+  document.querySelectorAll('.cw[data-focus]').forEach(box => {
+    const svg = box.querySelector('svg'); if (!svg || box.scrollWidth <= box.clientWidth) return;
+    const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+    box.scrollLeft = Math.max(0, +box.dataset.focus * scale - box.clientWidth / 2);
+  });
+})();
+</script></body></html>

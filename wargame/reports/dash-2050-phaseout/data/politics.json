@@ -1,0 +1,3818 @@
+{
+ "cash": {
+  "c_gov": {
+   "low": 0.0,
+   "base": 0.02,
+   "high": 0.05
+  },
+  "exit_p": {
+   "low": 0.0,
+   "base": 0.2,
+   "high": 0.5
+  },
+  "exit_L": {
+   "low": 0.0,
+   "base": 0.44,
+   "high": 0.66
+  },
+  "exit_from": {
+   "low": 2045,
+   "base": 2045,
+   "high": 2040
+  }
+ },
+ "readings": [
+  "as played",
+  "cash rating",
+  "anticipating"
+ ],
+ "comac_plan": {
+  "2026": 28,
+  "2030": 120,
+  "2032": 200,
+  "2040": 280,
+  "2045": 330,
+  "2050": 360
+ },
+ "decide2_checked": 922,
+ "worlds": {
+  "base": {
+   "1": {
+    "year": 2030,
+    "cases": {
+     "base|game|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 8.471054077148438,
+         "S_decision_year": 12.629511894575872,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 8.471054077148438,
+         "S_decision_year": 12.629511894575872,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 8.471054077148438,
+         "S_decision_year": 12.629511894575872,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 8.471054077148438,
+         "S_decision_year": 12.629511894575872,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 7.367401123046875,
+         "S_decision_year": 10.984073442127514,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 6.0972900390625,
+         "S_decision_year": 9.090462222493667,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 6.0972900390625,
+         "S_decision_year": 9.090462222493667,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 6.0972900390625,
+         "S_decision_year": 9.090462222493667,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 6.0972900390625,
+         "S_decision_year": 9.090462222493667,
+         "plan": "10-year, new sites"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.9936370849609375,
+         "S_decision_year": 7.445023770045308,
+         "plan": "10-year, new sites"
+        }
+       }
+      }
+     },
+     "base|full|cash base|10.5%": {
+      "exit_cost_pv": 0.12006307535690335,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 5.48370361328125,
+         "S_decision_year": 8.175664962060736,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 5.48370361328125,
+         "S_decision_year": 8.175664962060736,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 5.48370361328125,
+         "S_decision_year": 8.175664962060736,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 5.48370361328125,
+         "S_decision_year": 8.175664962060736,
+         "plan": "10-year, new sites"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.401329040527344,
+         "S_decision_year": 6.56195049199758,
+         "plan": "10-year, new sites"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 5.154441833496094,
+       "S_decision_year": 7.68476789938661,
+       "plan": "10-year, new sites"
+      },
+      "cut_needed": 0.2545334197998047
+     },
+     "high|full|cash high|10.5%": {
+      "exit_cost_pv": 0.7417407195210598,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 1.6821823120117188,
+         "S_decision_year": 2.5079690585033747,
+         "plan": "10-year, new sites"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.6312637329101562,
+         "S_decision_year": 0.9411523938809442,
+         "plan": "10-year, new sites"
+        }
+       }
+      }
+     },
+     "low|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.886100769042969,
+         "S_decision_year": 11.75740380800155,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 7.886100769042969,
+         "S_decision_year": 11.75740380800155,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 7.886100769042969,
+         "S_decision_year": 11.75740380800155,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 7.886100769042969,
+         "S_decision_year": 11.75740380800155,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.782447814941406,
+         "S_decision_year": 10.111965355553192,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|game|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.169731140136719,
+         "S_decision_year": 9.798247359080175,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 7.169731140136719,
+         "S_decision_year": 9.798247359080175,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 7.169731140136719,
+         "S_decision_year": 9.798247359080175,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 7.169731140136719,
+         "S_decision_year": 9.798247359080175,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 5.7407989501953125,
+         "S_decision_year": 7.845450136598684,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 1.3760604858398438,
+         "S_decision_year": 1.880542067447417,
+         "plan": "10-year, new sites"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|8.1%": {
+      "exit_cost_pv": 0.20998893750792946,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 0.49828338623046875,
+         "S_decision_year": 0.680960523871627,
+         "plan": "10-year, new sites"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 0.23001861572265625,
+       "S_decision_year": 0.3143464169007622,
+       "plan": "10-year, new sites"
+      },
+      "cut_needed": 0.035036949462890626
+     },
+     "high|full|cash high|8.1%": {
+      "exit_cost_pv": 1.1635487795700128,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year, new sites"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 5.8159332275390625,
+         "S_decision_year": 7.948129612323872,
+         "plan": "10-year, new sites"
+        },
+        "pairwise": {
+         "S": 5.8159332275390625,
+         "S_decision_year": 7.948129612323872,
+         "plan": "10-year, new sites"
+        },
+        "worst_first": {
+         "S": 5.8159332275390625,
+         "S_decision_year": 7.948129612323872,
+         "plan": "10-year, new sites"
+        },
+        "premium": {
+         "S": 5.8159332275390625,
+         "S_decision_year": 7.948129612323872,
+         "plan": "10-year, new sites"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.6781692504882812,
+         "S_decision_year": 5.026633696638096,
+         "plan": "7-year at Renton"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "game|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 3.300918855812456,
+      "10-year at Renton": -6.367393578265343,
+      "10-year, new sites": -6.48138121248806,
+      "7-year at Renton": -8.708505368606303,
+      "7-year, new sites": -9.694423371619163,
+      "10-year at Renton + Re-engine": -4.170128579286931,
+      "10-year, new sites + Re-engine": -4.284116213509641
+     },
+     "full|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 3.300918855812456,
+      "10-year at Renton": -4.070613074643608,
+      "10-year, new sites": -3.9936315710656496,
+      "7-year at Renton": -5.427072198787973,
+      "7-year, new sites": -6.269562648657431,
+      "10-year at Renton + Re-engine": -1.873348075665197,
+      "10-year, new sites + Re-engine": -1.7963665720872308
+     },
+     "game|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 5.328658791238132,
+      "10-year at Renton": -4.740794389257308,
+      "10-year, new sites": -4.869543180679491,
+      "7-year at Renton": -5.386676664969679,
+      "7-year, new sites": -6.757508820399357,
+      "10-year at Renton + Re-engine": -0.8410694235064179,
+      "10-year, new sites + Re-engine": -0.9698182149286079
+     },
+     "full|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 5.328658791238132,
+      "10-year at Renton": 0.8649297045769093,
+      "10-year, new sites": 1.0528801038687314,
+      "7-year at Renton": 2.1327568774418606,
+      "7-year, new sites": 0.9994782708998531,
+      "10-year at Renton + Re-engine": 4.764654670327799,
+      "10-year, new sites + Re-engine": 4.952605069619613
+     }
+    }
+   },
+   "2": {
+    "year": 2035,
+    "cases": {
+     "base|game|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 6.2018585205078125,
+         "S_decision_year": 15.232891786320609,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 6.2018585205078125,
+         "S_decision_year": 15.232891786320609,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.2018585205078125,
+         "S_decision_year": 15.232891786320609,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.2018585205078125,
+         "S_decision_year": 15.232891786320609,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.2018585205078125,
+         "S_decision_year": 15.232891786320609,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.536170959472656,
+         "S_decision_year": 11.141660378321436,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.536170959472656,
+         "S_decision_year": 11.141660378321436,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 4.536170959472656,
+         "S_decision_year": 11.141660378321436,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 4.536170959472656,
+         "S_decision_year": 11.141660378321436,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.536170959472656,
+         "S_decision_year": 11.141660378321436,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|10.5%": {
+      "exit_cost_pv": 0.12006307535690335,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.12945556640625,
+         "S_decision_year": 10.142693447694949,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.12945556640625,
+         "S_decision_year": 10.142693447694949,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 4.12945556640625,
+         "S_decision_year": 10.142693447694949,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 4.12945556640625,
+         "S_decision_year": 10.142693447694949,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.12945556640625,
+         "S_decision_year": 10.142693447694949,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 4.193595886230469,
+       "S_decision_year": 10.300233731432721,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.3110399670410157
+     },
+     "high|full|cash high|10.5%": {
+      "exit_cost_pv": 0.7417407195210598,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 1.0636138916015625,
+         "S_decision_year": 2.612429041974875,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 6.048011779785156,
+         "S_decision_year": 14.855016227670417,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 6.048011779785156,
+         "S_decision_year": 14.855016227670417,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.048011779785156,
+         "S_decision_year": 14.855016227670417,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.048011779785156,
+         "S_decision_year": 14.855016227670417,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.048011779785156,
+         "S_decision_year": 14.855016227670417,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|game|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.900848388671875,
+         "S_decision_year": 15.954241734972655,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 8.834312438964844,
+         "S_decision_year": 17.839192613239558,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.933784484863281,
+         "S_decision_year": 14.001442423363258,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.933784484863281,
+         "S_decision_year": 14.001442423363258,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.933784484863281,
+         "S_decision_year": 14.001442423363258,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.7125167846679688,
+         "S_decision_year": 7.496712671092372,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.6459808349609375,
+         "S_decision_year": 9.381663549359276,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.745452880859375,
+         "S_decision_year": 5.543913359482976,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.745452880859375,
+         "S_decision_year": 5.543913359482976,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 3.7125167846679688,
+         "S_decision_year": 7.496712671092372,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.6459808349609375,
+         "S_decision_year": 9.381663549359276,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.745452880859375,
+         "S_decision_year": 5.543913359482976,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.745452880859375,
+         "S_decision_year": 5.543913359482976,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 2.745452880859375,
+         "S_decision_year": 5.543913359482976,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|8.1%": {
+      "exit_cost_pv": 0.20998893750792946,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.0505905151367188,
+         "S_decision_year": 6.16008004693371,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.002555847167969,
+         "S_decision_year": 8.08239070059924,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.1020278930664062,
+         "S_decision_year": 4.244640510722939,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.1020278930664062,
+         "S_decision_year": 4.244640510722939,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 3.0505905151367188,
+         "S_decision_year": 6.16008004693371,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.002555847167969,
+         "S_decision_year": 8.08239070059924,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.1020278930664062,
+         "S_decision_year": 4.244640510722939,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.1020278930664062,
+         "S_decision_year": 4.244640510722939,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 2.1020278930664062,
+         "S_decision_year": 4.244640510722939,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 2.545806884765625,
+       "S_decision_year": 5.140766719222673,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.15967354064941405
+     },
+     "high|full|cash high|8.1%": {
+      "exit_cost_pv": 1.1635487795700128,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.575263977050781,
+         "S_decision_year": 15.296786718421584,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 8.50872802734375,
+         "S_decision_year": 17.18173759668849,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.6082000732421875,
+         "S_decision_year": 13.343987406812188,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.6082000732421875,
+         "S_decision_year": 13.343987406812188,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.6082000732421875,
+         "S_decision_year": 13.343987406812188,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "game|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.9121111507908328,
+      "10-year at Renton": -5.201856563560125,
+      "10-year, new sites": -5.443716279413777,
+      "7-year at Renton": -7.394560270334131,
+      "7-year, new sites": -7.705585100904814,
+      "10-year at Renton + Re-engine": -4.9596631786425345,
+      "10-year, new sites + Re-engine": -5.201522894496184
+     },
+     "full|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.9121111507908319,
+      "10-year at Renton": -3.536166884673595,
+      "10-year, new sites": -3.6927067914342766,
+      "7-year at Renton": -5.39387665299855,
+      "7-year, new sites": -5.589896302550596,
+      "10-year at Renton + Re-engine": -3.293973499756005,
+      "10-year, new sites + Re-engine": -3.450513406516685
+     },
+     "game|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 1.9005308002318966,
+      "10-year at Renton": -5.933779430752605,
+      "10-year, new sites": -6.28614569214035,
+      "7-year at Renton": -7.475195614294815,
+      "7-year, new sites": -7.902062342963647,
+      "10-year at Renton + Re-engine": -5.000312606646276,
+      "10-year, new sites + Re-engine": -5.3526788680340225
+     },
+     "full|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 1.9005308002318966,
+      "10-year at Renton": -1.7454479866315196,
+      "10-year, new sites": -1.9505085981666062,
+      "7-year at Renton": -2.548292955510209,
+      "7-year, new sites": -2.789849134547893,
+      "10-year at Renton + Re-engine": -0.8119811625251914,
+      "10-year, new sites + Re-engine": -1.0170417740602784
+     }
+    }
+   },
+   "3": {
+    "year": 2045,
+    "cases": {
+     "base|game|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.309165954589844,
+         "S_decision_year": 28.726089044651,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.309165954589844,
+         "S_decision_year": 28.726089044651,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 4.309165954589844,
+         "S_decision_year": 28.726089044651,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 4.309165954589844,
+         "S_decision_year": 28.726089044651,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.309165954589844,
+         "S_decision_year": 28.726089044651,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.2516098022460938,
+         "S_decision_year": 21.676127979775597,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.2516098022460938,
+         "S_decision_year": 21.676127979775597,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.2516098022460938,
+         "S_decision_year": 21.676127979775597,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.2516098022460938,
+         "S_decision_year": 21.676127979775597,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.2516098022460938,
+         "S_decision_year": 21.676127979775597,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|10.5%": {
+      "exit_cost_pv": 0.12006307535690335,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.0259323120117188,
+         "S_decision_year": 20.1716995710853,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.0259323120117188,
+         "S_decision_year": 20.1716995710853,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.0259323120117188,
+         "S_decision_year": 20.1716995710853,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.0259323120117188,
+         "S_decision_year": 20.1716995710853,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.0259323120117188,
+         "S_decision_year": 20.1716995710853,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 2.4180145263671875,
+       "S_decision_year": 16.11915190263189,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.6070485937500001
+     },
+     "high|full|cash high|10.5%": {
+      "exit_cost_pv": 0.45023653258838753,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 1.3072662353515625,
+         "S_decision_year": 8.714597366986073,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.287742614746094,
+         "S_decision_year": 28.583275151087705,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.287742614746094,
+         "S_decision_year": 28.583275151087705,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 4.287742614746094,
+         "S_decision_year": 28.583275151087705,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 4.287742614746094,
+         "S_decision_year": 28.583275151087705,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.287742614746094,
+         "S_decision_year": 28.583275151087705,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|game|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.415290832519531,
+         "S_decision_year": 32.692222892530694,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 8.003280639648438,
+         "S_decision_year": 35.28452766753612,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.97235107421875,
+         "S_decision_year": 30.739408682894002,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.97235107421875,
+         "S_decision_year": 30.739408682894002,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.97235107421875,
+         "S_decision_year": 30.739408682894002,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.552299499511719,
+         "S_decision_year": 20.069986905830646,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 5.140289306640625,
+         "S_decision_year": 22.66229168083607,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 4.1093597412109375,
+         "S_decision_year": 18.117172696193958,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 4.1093597412109375,
+         "S_decision_year": 18.117172696193958,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.1093597412109375,
+         "S_decision_year": 18.117172696193958,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|8.1%": {
+      "exit_cost_pv": 0.20998893750792946,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.13531494140625,
+         "S_decision_year": 18.231602893089836,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.731773376464844,
+         "S_decision_year": 20.861243799357585,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.7008514404296875,
+         "S_decision_year": 16.31615845086976,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.7008514404296875,
+         "S_decision_year": 16.31615845086976,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.7008514404296875,
+         "S_decision_year": 16.31615845086976,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 3.3621368408203125,
+       "S_decision_year": 14.822847744993975,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.4595528045654297
+     },
+     "high|full|cash high|8.1%": {
+      "exit_cost_pv": 0.7874585156547355,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.45145416259765625,
+         "S_decision_year": 1.9903521578247547,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.45145416259765625,
+         "S_decision_year": 1.9903521578247547,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.4325408935546875,
+         "S_decision_year": 32.76827423738124,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 8.020530700683594,
+         "S_decision_year": 35.36057901238667,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.989601135253906,
+         "S_decision_year": 30.815460027744557,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.989601135253906,
+         "S_decision_year": 30.815460027744557,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.989601135253906,
+         "S_decision_year": 30.815460027744557,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "game|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.42805117911735524,
+      "10-year at Renton": -3.3091630421204905,
+      "10-year, new sites": -3.4708129490982365,
+      "7-year at Renton": -4.535316582236362,
+      "7-year, new sites": -4.704742125025713,
+      "10-year at Renton + Re-engine": -3.1279423016433228,
+      "10-year, new sites + Re-engine": -3.2895922086210687
+     },
+     "full|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.42805117911735485,
+      "10-year at Renton": -2.2516068446049546,
+      "10-year, new sites": -2.411550983545279,
+      "7-year at Renton": -3.359837386465905,
+      "7-year, new sites": -3.5070102291774603,
+      "10-year at Renton + Re-engine": -2.0703861041277873,
+      "10-year, new sites + Re-engine": -2.230330243068111
+     },
+     "game|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 1.030924141989624,
+      "10-year at Renton": -5.972349668342726,
+      "10-year, new sites": -6.276194208753925,
+      "7-year at Renton": -7.477074140911244,
+      "7-year, new sites": -7.772942238045624,
+      "10-year at Renton + Re-engine": -5.3843619385874755,
+      "10-year, new sites + Re-engine": -5.688206478998673
+     },
+     "full|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 1.0309241419896242,
+      "10-year at Renton": -3.109358677794715,
+      "10-year, new sites": -3.4096910625117323,
+      "7-year at Renton": -4.351488841812723,
+      "7-year, new sites": -4.603327619921716,
+      "10-year at Renton + Re-engine": -2.521370948039464,
+      "10-year, new sites + Re-engine": -2.821703332756481
+     }
+    }
+   },
+   "4": {
+    "year": 2050,
+    "cases": {
+     "base|game|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.2984237670898438,
+         "S_decision_year": 36.22439356572426,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.2984237670898438,
+         "S_decision_year": 36.22439356572426,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.2984237670898438,
+         "S_decision_year": 36.22439356572426,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.2984237670898438,
+         "S_decision_year": 36.22439356572426,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.2984237670898438,
+         "S_decision_year": 36.22439356572426,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 2.4708709716796875,
+         "S_decision_year": 27.135931841534823,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|10.5%": {
+      "exit_cost_pv": 0.07287827311879921,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 2.3338851928710938,
+         "S_decision_year": 25.631508178941626,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 1.5718765258789062,
+       "S_decision_year": 17.262874006149463,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.7799821765136719
+     },
+     "high|full|cash high|10.5%": {
+      "exit_cost_pv": 0.2732935241954971,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 1.1364517211914062,
+         "S_decision_year": 12.480893094341116,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.2717742919921875,
+         "S_decision_year": 35.93172011245564,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.2717742919921875,
+         "S_decision_year": 35.93172011245564,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.2717742919921875,
+         "S_decision_year": 35.93172011245564,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.2717742919921875,
+         "S_decision_year": 35.93172011245564,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.2717742919921875,
+         "S_decision_year": 35.93172011245564,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|game|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 5.757118225097656,
+         "S_decision_year": 37.50406315421966,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 5.757118225097656,
+         "S_decision_year": 37.50406315421966,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 5.757118225097656,
+         "S_decision_year": 37.50406315421966,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 5.757118225097656,
+         "S_decision_year": 37.50406315421966,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 5.757118225097656,
+         "S_decision_year": 37.50406315421966,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.4376068115234375,
+         "S_decision_year": 22.393881438237056,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.4376068115234375,
+         "S_decision_year": 22.393881438237056,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.4376068115234375,
+         "S_decision_year": 22.393881438237056,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.4376068115234375,
+         "S_decision_year": 22.393881438237056,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.4376068115234375,
+         "S_decision_year": 22.393881438237056,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|8.1%": {
+      "exit_cost_pv": 0.1421148644021755,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.1611404418945312,
+         "S_decision_year": 20.592874097206735,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.1611404418945312,
+         "S_decision_year": 20.592874097206735,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.1611404418945312,
+         "S_decision_year": 20.592874097206735,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.1611404418945312,
+         "S_decision_year": 20.592874097206735,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.1611404418945312,
+         "S_decision_year": 20.592874097206735,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 2.6086807250976562,
+       "S_decision_year": 16.99394086380751,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.5221665197753906
+     },
+     "high|full|cash high|8.1%": {
+      "exit_cost_pv": 0.5329307415081581,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 5.756797790527344,
+         "S_decision_year": 37.50197572125547,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 5.756797790527344,
+         "S_decision_year": 37.50197572125547,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 5.756797790527344,
+         "S_decision_year": 37.50197572125547,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 5.756797790527344,
+         "S_decision_year": 37.50197572125547,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 5.756797790527344,
+         "S_decision_year": 37.50197572125547,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "game|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.2393779214791296,
+      "10-year at Renton": -2.298423150149926,
+      "10-year, new sites": -2.3990708379031824,
+      "7-year at Renton": -3.240055485474116,
+      "7-year, new sites": -3.3758526294216225,
+      "10-year at Renton + Re-engine": -2.208871276919013,
+      "10-year, new sites + Re-engine": -2.309518964672269
+     },
+     "full|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.23937792147912967,
+      "10-year at Renton": -1.470869190546389,
+      "10-year, new sites": -1.5715168782996447,
+      "7-year at Renton": -2.2697296852760953,
+      "7-year, new sites": -2.4055268292236014,
+      "10-year at Renton + Re-engine": -1.381317317315476,
+      "10-year, new sites + Re-engine": -1.4819650050687319
+     },
+     "game|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.6509242354103999,
+      "10-year at Renton": -4.757117621117785,
+      "10-year, new sites": -4.968045632979473,
+      "7-year at Renton": -6.2179998740854225,
+      "7-year, new sites": -6.4846049451512675,
+      "10-year at Renton + Re-engine": -4.405960834938357,
+      "10-year, new sites + Re-engine": -4.6168888468000455
+     },
+     "full|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.6509242354103999,
+      "10-year at Renton": -2.437604834712693,
+      "10-year, new sites": -2.6485328465743816,
+      "7-year at Renton": -3.563967659604828,
+      "7-year, new sites": -3.8305727306706734,
+      "10-year at Renton + Re-engine": -2.086448048533266,
+      "10-year, new sites + Re-engine": -2.297376060394954
+     }
+    }
+   }
+  },
+  "comac on plan": {
+   "1": {
+    "year": 2030,
+    "cases": {
+     "base|game|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 9.194854736328125,
+         "S_decision_year": 13.708627781590595,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 9.194854736328125,
+         "S_decision_year": 13.708627781590595,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 9.194854736328125,
+         "S_decision_year": 13.708627781590595,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 9.194854736328125,
+         "S_decision_year": 13.708627781590595,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 8.091201782226562,
+         "S_decision_year": 12.063189329142237,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.091087341308594,
+         "S_decision_year": 10.572116658317961,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 7.091087341308594,
+         "S_decision_year": 10.572116658317961,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 7.091087341308594,
+         "S_decision_year": 10.572116658317961,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 7.091087341308594,
+         "S_decision_year": 10.572116658317961,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 5.987434387207031,
+         "S_decision_year": 8.926678205869603,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|10.5%": {
+      "exit_cost_pv": 0.3001576883922583,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 6.2974090576171875,
+         "S_decision_year": 9.388820077625914,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 6.2974090576171875,
+         "S_decision_year": 9.388820077625914,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.2974090576171875,
+         "S_decision_year": 9.388820077625914,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.2974090576171875,
+         "S_decision_year": 9.388820077625914,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 5.21502685546875,
+         "S_decision_year": 7.775094232882804,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 5.9681396484375,
+       "S_decision_year": 8.897911640271834,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.29139349548339843
+     },
+     "high|full|cash high|10.5%": {
+      "exit_cost_pv": 0.7417407195210598,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.8231277465820312,
+         "S_decision_year": 4.209006946555485,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 1.7722091674804688,
+         "S_decision_year": 2.6421902819330545,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 8.752449035644531,
+         "S_decision_year": 13.049044215233234,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 8.752449035644531,
+         "S_decision_year": 13.049044215233234,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 8.752449035644531,
+         "S_decision_year": 13.049044215233234,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 8.752449035644531,
+         "S_decision_year": 13.049044215233234,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 7.648796081542969,
+         "S_decision_year": 11.403605762784876,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|game|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 8.427627563476562,
+         "S_decision_year": 11.517304889562551,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 8.427627563476562,
+         "S_decision_year": 11.517304889562551,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 8.427627563476562,
+         "S_decision_year": 11.517304889562551,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 8.427627563476562,
+         "S_decision_year": 11.517304889562551,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.998695373535156,
+         "S_decision_year": 9.56450766708106,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.366485595703125,
+         "S_decision_year": 4.600682780533189,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 1.9375534057617188,
+         "S_decision_year": 2.6478855580516987,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|8.1%": {
+      "exit_cost_pv": 0.5249723437698236,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 2.1737289428710938,
+         "S_decision_year": 2.970646103395823,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.6088790893554688,
+         "S_decision_year": 0.832102042973204,
+         "plan": "7-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 1.9054641723632812,
+       "S_decision_year": 2.604031996424958,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.08631862426757814
+     },
+     "high|full|cash high|8.1%": {
+      "exit_cost_pv": 1.1635487795700128,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 7.431816101074219,
+         "S_decision_year": 10.156416058319785,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 7.431816101074219,
+         "S_decision_year": 10.156416058319785,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 7.431816101074219,
+         "S_decision_year": 10.156416058319785,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 7.431816101074219,
+         "S_decision_year": 10.156416058319785,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.0028839111328125,
+         "S_decision_year": 8.203618835838293,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "game|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 3.300918855812455,
+      "10-year at Renton": -7.0911966010502745,
+      "10-year, new sites": -7.510786673811715,
+      "7-year at Renton": -10.222410594595749,
+      "7-year, new sites": -10.919589596733013,
+      "10-year at Renton + Re-engine": -4.893931602071861,
+      "10-year, new sites + Re-engine": -5.313521674833302
+     },
+     "full|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 3.3009188558124545,
+      "10-year at Renton": -4.987428464806667,
+      "10-year, new sites": -5.254783912409819,
+      "7-year at Renton": -7.247429241198284,
+      "7-year, new sites": -7.806191729600884,
+      "10-year at Renton + Re-engine": -2.7901634658282535,
+      "10-year, new sites + Re-engine": -3.0575189134314047
+     },
+     "game|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 5.328658791238132,
+      "10-year at Renton": -5.998690734030501,
+      "10-year, new sites": -6.580579041497541,
+      "7-year at Renton": -7.793161599365026,
+      "7-year, new sites": -8.70951096245414,
+      "10-year at Renton + Re-engine": -2.0989657682796174,
+      "10-year, new sites + Re-engine": -2.6808540757466535
+     },
+     "full|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 5.328658791238131,
+      "10-year at Renton": -0.9375495401120864,
+      "10-year, new sites": -1.2725495600117187,
+      "7-year at Renton": -1.0352339996193318,
+      "7-year, new sites": -1.7285498022105386,
+      "10-year at Renton + Re-engine": 2.9621754256387964,
+      "10-year, new sites + Re-engine": 2.6271754057391687
+     }
+    }
+   },
+   "2": {
+    "year": 2035,
+    "cases": {
+     "base|game|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 6.622589111328125,
+         "S_decision_year": 16.26628259005597,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 6.622589111328125,
+         "S_decision_year": 16.26628259005597,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.622589111328125,
+         "S_decision_year": 16.26628259005597,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.622589111328125,
+         "S_decision_year": 16.26628259005597,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.622589111328125,
+         "S_decision_year": 16.26628259005597,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 5.103973388671875,
+         "S_decision_year": 12.536286349133402,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 5.103973388671875,
+         "S_decision_year": 12.536286349133402,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 5.103973388671875,
+         "S_decision_year": 12.536286349133402,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 5.103973388671875,
+         "S_decision_year": 12.536286349133402,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 5.103973388671875,
+         "S_decision_year": 12.536286349133402,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|10.5%": {
+      "exit_cost_pv": 0.3001576883922583,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.5171661376953125,
+         "S_decision_year": 11.094981081688776,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.5171661376953125,
+         "S_decision_year": 11.094981081688776,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 4.5171661376953125,
+         "S_decision_year": 11.094981081688776,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 4.5171661376953125,
+         "S_decision_year": 11.094981081688776,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 4.5171661376953125,
+         "S_decision_year": 11.094981081688776,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 4.581306457519531,
+       "S_decision_year": 11.252521365426546,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.33417232910156247
+     },
+     "high|full|cash high|10.5%": {
+      "exit_cost_pv": 0.7417407195210598,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 1.6613922119140625,
+         "S_decision_year": 4.08068124982808,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|10.5%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 6.545356750488281,
+         "S_decision_year": 16.07658587395302,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 6.545356750488281,
+         "S_decision_year": 16.07658587395302,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 6.545356750488281,
+         "S_decision_year": 16.07658587395302,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 6.545356750488281,
+         "S_decision_year": 16.07658587395302,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 6.545356750488281,
+         "S_decision_year": 16.07658587395302,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|game|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 8.716484069824219,
+         "S_decision_year": 17.601260913752395,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 9.649955749511719,
+         "S_decision_year": 19.486227198112246,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 7.749420166015625,
+         "S_decision_year": 15.648461602142998,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 7.749420166015625,
+         "S_decision_year": 15.648461602142998,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 7.749420166015625,
+         "S_decision_year": 15.648461602142998,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 4.938133239746094,
+         "S_decision_year": 9.971609066612706,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 5.871604919433594,
+         "S_decision_year": 11.856575350972557,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.9710693359375,
+         "S_decision_year": 8.018809755003309,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.9710693359375,
+         "S_decision_year": 8.018809755003309,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.9710693359375,
+         "S_decision_year": 8.018809755003309,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     },
+     "base|full|cash base|8.1%": {
+      "exit_cost_pv": 0.5249723437698236,
+      "c_gov": 0.02,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 3.9612274169921875,
+         "S_decision_year": 7.998935895100535,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 4.913200378417969,
+         "S_decision_year": 9.921261954859013,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 3.012664794921875,
+         "S_decision_year": 6.083496358889764,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 3.012664794921875,
+         "S_decision_year": 6.083496358889764,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 3.012664794921875,
+         "S_decision_year": 6.083496358889764,
+         "plan": "10-year at Renton"
+        }
+       }
+      },
+      "deflated_tests": {
+       "S": 3.4564437866210938,
+       "S_decision_year": 6.979622567389498,
+       "plan": "10-year at Renton"
+      },
+      "cut_needed": 0.2030237017822266
+     },
+     "high|full|cash high|8.1%": {
+      "exit_cost_pv": 1.1635487795700128,
+      "c_gov": 0.05,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "pairwise": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        },
+        "worst_first": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 0.0,
+         "S_decision_year": 0.0,
+         "plan": "7-year at Renton"
+        }
+       }
+      }
+     },
+     "low|full|cash low|8.1%": {
+      "exit_cost_pv": 0.0,
+      "c_gov": 0.0,
+      "readings": {
+       "as played": {
+        "rule": {
+         "S": 8.579574584960938,
+         "S_decision_year": 17.324798575802564,
+         "plan": "10-year at Renton"
+        },
+        "pairwise": {
+         "S": 9.513038635253906,
+         "S_decision_year": 19.209749454069467,
+         "plan": "10-year at Renton"
+        },
+        "worst_first": {
+         "S": 7.612510681152344,
+         "S_decision_year": 15.371999264193168,
+         "plan": "10-year at Renton"
+        },
+        "premium": {
+         "S": 7.612510681152344,
+         "S_decision_year": 15.371999264193168,
+         "plan": "10-year at Renton"
+        }
+       },
+       "cash rating": {
+        "rule": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "pairwise": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "worst_first": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        },
+        "premium": {
+         "S": null,
+         "S_decision_year": null,
+         "plan": null
+        }
+       },
+       "anticipating": {
+        "rule": {
+         "S": 7.612510681152344,
+         "S_decision_year": 15.371999264193168,
+         "plan": "10-year at Renton"
+        }
+       }
+      }
+     }
+    },
+    "items": {
+     "game|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.9121111507908325,
+      "10-year at Renton": -5.622587964201091,
+      "10-year, new sites": -5.925060495004255,
+      "7-year at Renton": -7.869103817198466,
+      "7-year, new sites": -8.326781116993352,
+      "10-year at Renton + Re-engine": -5.3803945792835,
+      "10-year, new sites + Re-engine": -5.682867110086665
+     },
+     "full|10.5%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 0.9121111507908319,
+      "10-year at Renton": -4.103971024824022,
+      "10-year, new sites": -4.3459666954365535,
+      "7-year at Renton": -6.006762486385747,
+      "7-year, new sites": -6.404762353828298,
+      "10-year at Renton + Re-engine": -3.8617776399064336,
+      "10-year, new sites + Re-engine": -4.103773310518965
+     },
+     "game|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 1.900530800231897,
+      "10-year at Renton": -6.749418471894753,
+      "10-year, new sites": -7.197382378442521,
+      "7-year at Renton": -8.380590750116804,
+      "7-year, new sites": -9.022956787289424,
+      "10-year at Renton + Re-engine": -5.815951647788424,
+      "10-year, new sites + Re-engine": -6.263915554336192
+     },
+     "full|8.1%": {
+      "Do Nothing": 0.0,
+      "Re-engine": 1.9005308002318975,
+      "10-year at Renton": -2.971069171743035,
+      "10-year, new sites": -3.314647822066938,
+      "7-year at Renton": -3.883139260004909,
+      "7-year, new sites": -4.430027974682735,
+      "10-year at Renton + Re-engine": -2.0376023476367044,
+      "10-year, new sites + Re-engine": -2.381180997960608
+     }
+    }
+   }
+  }
+ }
+}
