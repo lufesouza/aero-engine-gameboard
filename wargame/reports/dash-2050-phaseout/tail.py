@@ -29,8 +29,8 @@ YEARS = {1: 2030, 2: 2035, 3: 2045, 4: 2050}
 CUT = 2060
 DN = "fps: hold + 787: hold"
 # Boeing's expected column, per round, as its CEO weighted it (record/exco_result_rN.json, decision/expected_scenario):
-# 2030 S2 with a same-round A350 Re-engine (S5) at about a third; 2035 S1 70% / S3 30%; 2045 and 2050 S1 80% / S2 20%
-EXPECTED = {1: {1: 2 / 3, 4: 1 / 3}, 2: {0: 0.7, 2: 0.3}, 3: {0: 0.8, 1: 0.2}, 4: {0: 0.8, 1: 0.2}}
+# 2030 S2 alone (his expected column; the third on an A350 Re-engine was his downside view, not his column); 2035 S1 70% / S3 30%; 2045 and 2050 S1 80% / S2 20%
+EXPECTED = {1: {1: 1.0}, 2: {0: 0.7, 2: 0.3}, 3: {0: 0.8, 1: 0.2}, 4: {0: 0.8, 1: 0.2}}
 
 
 def curve(name, tail):

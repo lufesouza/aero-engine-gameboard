@@ -1,27 +1,40 @@
 """What fps margin and/or Boeing investment would have changed Boeing's decision in the MAX phase-out game.
 
-For each round (2030, 2035, 2045, 2050), from the state the round started in (record/state_r{n-1}.json), with the
-run's own world (sd_options_phaseout.json), each Solo fps plan is valued exactly as Boeing's brief valued it: the plan
-against Do Nothing in every rival column. It is then held to the Board's three value tests, the same in every round's
-guidance (record/exco_result_rN.json, board_guidance):
-  business case - more than +$1B in the expected column (the CEO's own weighting of Airbus's options that round);
-  downside      - no worse than -$1B in any column (the Board treats every column as plausible in every round);
-  rating first  - the plan's risk-case column no more than $2B below Do Nothing's (item >= -$2B there).
-The CEO's own rule (lead Do Nothing by more than the $1B margin in the expected column) is the business-case test.
+For each round (2030, 2035, 2045, 2050), from the state the round started in (record/state_r{n-1}.json), in the run's
+own world (sd_options_phaseout.json), every plan that could compete is valued exactly as Boeing's brief valued it, in
+every rival column: Do Nothing, the 787 Re-engine alone, the four Solo fps plans (10-year and 7-year, at Renton and at
+new sites) alone, and the 10-year plans beside the Re-engine (the 7-year beside the Re-engine overlaps 5 years and is
+struck by the One-development-at-a-time rule, H4; the 737 Rate Increase and via-Embraer plans are checked to stay out of
+contention). Then Boeing's process decides, as the round records show it working:
 
-Levers, each alone and together:
-  margin     - the fps operating margin on every fps delivered (price held at $55M): exact, because each column's value
-               moves by its discounted fps deliveries x price x the margin change;
-  investment - Boeing's fps bill (10-year $60.32B, 7-year $65.0B), booked as a lump at entry into service with the
-               dashboard's debt penalty, as the brief books it: exact, the bill and penalty lines are the dashboard's own
-               formula (checked column by column).
-Every threshold of the best plan in each round is re-checked on a re-solved dashboard (margin, investment and the
-combined frontier's 50% point), with Boeing's stress-case net debt at that point. Also: 2045 and 2050 again with the
-conservative demand curve after 2060 (data/curves/page_n0_game2061.json, tail.py). Writes data/thresholds.json.
+  the CEO      - takes the plan with the most value in the column he expected (2030: S2 alone, as both he and the Board
+                 used it; 2035: S1 70% / S3 30%; 2045 and 2050: S1 80% / S2 20%). Among plans within the $1B margin
+                 of that best plan, the one with the least to execute wins (Do Nothing < Re-engine < an fps < an fps with
+                 the Re-engine).
+  the Board    - judges each order as an item: the submitted plan minus the same plan with that order held. It approves
+                 an fps launch only if the item adds more than +$1B in the CEO's column (business case), loses no more
+                 than $1B in any column (downside), and the plan's risk-case column is no more than $2B below Do
+                 Nothing's (rating first). A vetoed order reverts to hold; the CEO cannot add a launch after a veto.
+                 (A Re-engine beside an approved fps that fails its own item tests is vetoed and the fps goes ahead
+                 alone; rating first is then checked again on that plan.)
+  Two readings:
+  "rule"       - the above, with no premium: the fps launches only if the CEO's pick contains it and the Board
+                 approves it.
+  "premium"    - the CEO may also give up to $2B of value against the best plan (his H8 cap) to choose an fps for an
+                 objective (the 50/50 split); the fps launches if some fps plan passes the Board and sits within $2B of
+                 the best plan.
 
-  python3 thresholds.py            (about 30 minutes: the re-checks re-solve the dashboard)
-  python3 thresholds.py frontier   (only the fine frontier, from data/thresholds.json)
-  python3 thresholds.py confirm10  (only the 10-year at Renton's re-checks)
+Levers: the fps operating margin (on every fps delivered, price held at $55M) and Boeing's fps bill (10-year $60.32B,
+7-year $65.0B, both scaled by the same share), each alone and together. Exact: each column moves by its discounted fps
+deliveries x price x the margin change, and the bill change goes through the dashboard's own joint true-cost formula
+(the debt penalty on all of Boeing's programmes together, which is why an fps beside the Re-engine costs more than the
+two apart), with the two-front strain of a paired plan priced, as the dashboard prices it, at the PV factor of Boeing's
+whole spend. The thresholds of the "rule" reading are re-checked on a re-solved dashboard: every competing row, every
+column, against the shortcut. Also: 2045 and 2050 again with the conservative demand curve after 2060
+(data/curves/page_n0_game2061.json, tail.py). Writes data/thresholds.json.
+
+  python3 thresholds.py            (about an hour: the re-checks re-solve the dashboard)
+  python3 thresholds.py fast       (no re-checks)
 """
 import functools
 import json
@@ -36,17 +49,25 @@ M, R, B, SD = L.M, L.R, L.B, L.SD
 P = M.af_params()
 M0, PRICE0 = P["v_margin_fps"], P["PRICE_fps"] * 1000.0
 BILL0 = {"10yr": P["v_capex_fps_10yr"], "7yr": P["v_capex_fps_7yr"]}
-CX_KEY = {"10yr": "af_cx_fps10", "7yr": "af_cx_fps7"}
 O = {k: v for k, v in json.load(open(os.path.join(HERE, "..", "..", "dashgame", "sd_options_phaseout.json"))).items() if not k.startswith("_")}
 GAME_TAIL = dict(O, demand_curve=os.path.abspath(os.path.join(HERE, "data", "curves", "page_n0_game2061.json")))
 REC = os.path.join(HERE, "record")
 YEARS = {1: 2030, 2: 2035, 3: 2045, 4: 2050}
-CEO_W = {1: {1: 2 / 3, 4: 1 / 3}, 2: {0: 0.7, 2: 0.3}, 3: {0: 0.8, 1: 0.2}, 4: {0: 0.8, 1: 0.2}}
+CEO_W = {1: {1: 1.0}, 2: {0: 0.7, 2: 0.3}, 3: {0: 0.8, 1: 0.2}, 4: {0: 0.8, 1: 0.2}}
+EPS, H8 = 1.0, 2.0
 BUSINESS, DOWNSIDE, BUFFER = 1.0, -1.0, -2.0
-DN = "fps: hold + 787: hold"
-PLANS = {"10-year at Renton": ("fps 10-yr at Renton + 787: hold", "10yr"), "10-year, new sites": ("fps 10-yr + 787: hold", "10yr"),
-         "7-year at Renton": ("fps 7-yr at Renton + 787: hold", "7yr"), "7-year, new sites": ("fps 7-yr + 787: hold", "7yr")}
-FRACTIONS = (1.0, 0.75, 0.5, 0.25, 0.0)
+DN, RE = "fps: hold + 787: hold", "fps: hold + 787 Re-engine"
+SOLO = {"10-year at Renton": ("fps 10-yr at Renton + 787: hold", "10yr"), "10-year, new sites": ("fps 10-yr + 787: hold", "10yr"),
+        "7-year at Renton": ("fps 7-yr at Renton + 787: hold", "7yr"), "7-year, new sites": ("fps 7-yr + 787: hold", "7yr")}
+PAIRS = {"10-year at Renton + Re-engine": ("fps 10-yr at Renton + 787 Re-engine", "10yr"),
+         "10-year, new sites + Re-engine": ("fps 10-yr + 787 Re-engine", "10yr")}
+FINE = [k / 20 for k in range(21)]
+SIZE = {"Do Nothing": 0, "Re-engine": 1}
+SIZE.update({k: 2 for k in SOLO})
+SIZE.update({k: 3 for k in PAIRS})
+WITHOUT_FPS = {k: "Do Nothing" for k in SOLO}
+WITHOUT_FPS.update({k: "Re-engine" for k in PAIRS})
+ALONE = {"10-year at Renton + Re-engine": "10-year at Renton", "10-year, new sites + Re-engine": "10-year, new sites"}
 
 
 class board:
@@ -69,9 +90,8 @@ class board:
         M.af_board = self.saved
 
 
-def pen_pv(bill, df):
-    pv = bill * df
-    return M.true_cost(bill, pv, P["v_debt_boeing"], P["v_ev_boeing"], P["v_alpha"]) - pv
+def tc(nom, pv):
+    return M.true_cost(nom, pv, P["v_debt_boeing"], P["v_ev_boeing"], P["v_alpha"])
 
 
 def start(n):
@@ -92,201 +112,237 @@ def column_states(n, plan):
     return out
 
 
-def grid(n, plans, check=True):
-    """Items (plan minus Do Nothing) per column, with each column's fps terms: Q (discounted fps deliveries in the
-    window), df (discount factor at entry into service), and the fps entry into service."""
-    dn = [M.value(s, covert=c, series=False)["boeing"]["pv_delta"] for _, s, c in column_states(n, DN)]
-    res = {}
-    for name in plans:
-        plan, var = PLANS[name]
-        items, terms, labels = [], [], []
-        for (slab, s, c), d in zip(column_states(n, plan), dn):
-            v = M.value(s, covert=c, series=True)
-            Q = 0.0
-            for r in v["_af_series"]["years"]:
-                x = r["boeing"]
-                if x["nb_in_window"]:
-                    q = x.get("nb_units_new", 0.0)
-                    if q and check:
-                        assert abs(x["nb_price"] - PRICE0) < 1e-9 and abs(x["nb_margin"] - M0) < 1e-12, (r["year"], x["nb_price"], x["nb_margin"])
-                    Q += q * r["df_b"]
-            eis = s["prog"]["fps"]["eis"]
-            df = 1.0 / (1 + P["WACC_B"]) ** (eis - 2026)
-            br = v["boeing"]["bridge"]
-            if check:
-                assert abs(br["programme_investment"] + BILL0[var] * df) < 1e-6, (br["programme_investment"], BILL0[var] * df)
-                assert abs(br["debt_penalty"] + pen_pv(BILL0[var], df)) < 1e-6, (br["debt_penalty"], pen_pv(BILL0[var], df))
-            items.append(v["boeing"]["pv_delta"] - d)
-            terms.append({"Q": Q, "df": df, "eis": eis})
-            labels.append(slab)
-        res[name] = {"items": items, "terms": terms, "columns": labels, "dn": dn, "var": var}
-    return res
+def row(n, plan, var, base=True):
+    """One plan's columns: value, discounted fps deliveries in the window (Q), the fps discount factor at entry into
+    service, and Boeing's programme spend (nominal and PV) that the joint true cost is charged on."""
+    cols = []
+    for slab, s, c in column_states(n, plan):
+        v = M.value(s, covert=c, series=True)
+        Q = 0.0
+        for r in v["_af_series"]["years"]:
+            x = r["boeing"]
+            if x["nb_in_window"]:
+                q = x.get("nb_units_new", 0.0)
+                if q and base:
+                    assert abs(x["nb_price"] - PRICE0) < 1e-9 and abs(x["nb_margin"] - M0) < 1e-12, (r["year"], x["nb_price"], x["nb_margin"])
+                Q += q * r["df_b"]
+        eis, a, b, dt = M.af_inputs(s, c)
+        cell = M.eval_cell(eis, a, b)
+        t, strain = cell["b_tc_data"], -cell["b_strain"]
+        br = v["boeing"]["bridge"]
+        if base:    # the two-front strain is the bridge's own line (Boeing has no Delay Tactics adjustment)
+            assert abs(br["two_front_strain"] + strain) < 1e-9, (plan, slab)
+        if base:    # the joint true cost is the bridge's own investment and debt penalty lines
+            assert not [d for d in s["dead"] if d["side"] == "boeing"] and abs((br["programme_investment"] + br["debt_penalty"]) + tc(t.get("nom_capex", 0.0), t.get("pv_capex", 0.0))) < 1e-6, (plan, slab)
+        fps = s["prog"].get("fps")
+        cols.append({"label": slab, "v": v["boeing"]["pv_delta"], "Q": Q, "nom": t.get("nom_capex", 0.0), "pv": t.get("pv_capex", 0.0), "strain": strain,
+                     "df": (1.0 / (1 + P["WACC_B"]) ** (fps["eis"] - 2026)) if fps else None, "eis": fps["eis"] if fps else None})
+    return {"plan": plan, "var": var, "cols": cols}
 
 
-def shifted(g, margin=M0, bill=None):
-    b0 = BILL0[g["var"]]
-    bill = b0 if bill is None else bill
-    out = []
-    for it, t in zip(g["items"], g["terms"]):
-        dv = t["Q"] * PRICE0 * (margin - M0) / 1000.0
-        dv -= (bill - b0) * t["df"] + (pen_pv(bill, t["df"]) - pen_pv(b0, t["df"]))
-        out.append(it + dv)
+def rows(n, base=True):
+    out = {"Do Nothing": row(n, DN, None, base), "Re-engine": row(n, RE, None, base)}
+    for k, (plan, var) in SOLO.items():
+        out[k] = row(n, plan, var, base)
+    for k, (plan, var) in PAIRS.items():
+        out[k] = row(n, plan, var, base)
     return out
 
 
-def tests(n, items, columns):
-    risk = next(i for i, s in enumerate(columns) if s.startswith("Risk case"))
-    e = sum(items[i] * w for i, w in CEO_W[n].items())
-    parts = {"business case": e - BUSINESS, "downside": min(items) - DOWNSIDE, "rating first": items[risk] - BUFFER}
-    return {"expected": e, "worst": min(items), "risk_case": items[risk], "slack": min(parts.values()),
-            "binding": min(parts, key=parts.get), "passes": e > BUSINESS and min(items) >= DOWNSIDE and items[risk] >= BUFFER}
+def values(rw, m=M0, k=1.0):
+    """Each column's value at fps margin m and with Boeing paying share k of its fps bill (exact)."""
+    out = []
+    for c in rw["cols"]:
+        v = c["v"]
+        if rw["var"]:
+            d = (k - 1.0) * BILL0[rw["var"]]
+            v += c["Q"] * PRICE0 * (m - M0) / 1000.0
+            nom, pv = c["nom"] + d, c["pv"] + d * c["df"]
+            v -= tc(nom, pv) - tc(c["nom"], c["pv"])
+            if c["strain"]:     # the dashboard prices the strain at the PV factor of Boeing's whole spend
+                v -= c["strain"] * (pv / nom) / (c["pv"] / c["nom"]) - c["strain"]
+        out.append(v)
+    return out
 
 
-def solve(n, g):
-    f = lambda **kw: tests(n, shifted(g, **kw), g["columns"])["slack"]
-    m = L.bisect(lambda x: f(margin=x), M0, 3.0, 0.0, tol=1e-7)
-    b0 = BILL0[g["var"]]
-    bl = L.bisect(lambda x: f(bill=x), b0, 0.0, 0.0, tol=1e-6) if f(bill=1e-9) >= 0 else None
-    front = {}
-    for k in FRACTIONS:
-        x = b0 * k if k > 0 else 1e-9
-        front[str(k)] = L.bisect(lambda mm: f(margin=mm, bill=x), 0.0, 3.0, 0.0, tol=1e-7)
-    base = tests(n, g["items"], g["columns"])
-    return {"base": base, "margin": m, "bill": bl, "at_zero_bill": tests(n, shifted(g, bill=1e-9), g["columns"]),
-            "frontier": front, "per_point": sum(t["Q"] * PRICE0 / 1000.0 / 100.0 * CEO_W[n].get(i, 0.0) for i, t in enumerate(g["terms"])),
-            "per_10b": None, "eis": g["terms"][0]["eis"], "Q_expected": sum(t["Q"] * CEO_W[n].get(i, 0.0) for i, t in enumerate(g["terms"])),
-            "margin_tests": tests(n, shifted(g, margin=m), g["columns"]) if m else None,
-            "bill_tests": tests(n, shifted(g, bill=bl), g["columns"]) if bl is not None else None}
+def decide(n, rws, m=M0, k=1.0, vals=None):
+    """Boeing's decision at margin m and bill share k: the launched plan under each reading (None: no launch), the
+    CEO's pick, the best plan and each plan's value against Do Nothing in the CEO's column."""
+    w = CEO_W[n]
+    cols = rws["Do Nothing"]["cols"]
+    risk = next(i for i, c in enumerate(cols) if c["label"].startswith("Risk case"))
+    V = vals or {name: values(rw, m, k) for name, rw in rws.items()}
+    dn = V["Do Nothing"]
+    item = lambda a, b: [x - y for x, y in zip(V[a], V[b])]
+    E = lambda xs: sum(xs[i] * wt for i, wt in w.items())
+    e = {name: E(item(name, "Do Nothing")) for name in V}
+    passes = lambda it: E(it) > BUSINESS and min(it) >= DOWNSIDE
+    rating = lambda name: V[name][risk] - dn[risk] >= BUFFER
+
+    def board(plan):
+        """The launched plan after the Board's review of `plan`, or None."""
+        if plan not in WITHOUT_FPS:
+            return None
+        if not (passes(item(plan, WITHOUT_FPS[plan])) and rating(plan)):
+            return None
+        if plan in ALONE and not passes(item(plan, ALONE[plan])):      # the Re-engine beside it is vetoed
+            plan = ALONE[plan]
+            if not rating(plan):
+                return None
+        return plan
+
+    best = max(e, key=e.get)
+    cands = [p for p in e if e[p] >= e[best] - EPS]
+    pick = min(cands, key=lambda p: (SIZE[p], -e[p]))
+    rule = board(pick)
+    prem = rule
+    if prem is None:
+        ok = [p for p in WITHOUT_FPS if e[p] >= e[best] - H8 and board(p)]
+        prem = board(max(ok, key=lambda p: e[p])) if ok else None
+    return {"rule": rule, "premium": prem, "pick": pick, "best": best, "e": e}
 
 
-def confirm(n, name, margin=None, bill=None):
-    """Boeing's test slack for one plan on a dashboard re-solved at the given margin and/or bill (0 at a pass line), and
-    the stress-case net debt there."""
-    var = PLANS[name][1]
+def first(f, lo, hi, steps=400, tol=1e-7):
+    """Smallest x in [lo, hi] with f(x) true, scanning then bisecting; and whether f stays true on the scan above it."""
+    if f(lo):
+        return lo, True
+    xs = [lo + (hi - lo) * i / steps for i in range(steps + 1)]
+    hit = next((i for i, x in enumerate(xs) if f(x)), None)
+    if hit is None:
+        return None, True
+    a, b = xs[hit - 1], xs[hit]
+    while b - a > tol:
+        c = (a + b) / 2
+        a, b = (a, c) if f(c) else (c, b)
+    stays = all(f(x) for x in xs[hit:])
+    return b, stays
+
+
+def solve(n, rws):
+    out = {}
+    for mode in ("rule", "premium"):
+        launched = lambda m, k: decide(n, rws, m, k)[mode] is not None
+        m, m_ok = first(lambda x: launched(x, 1.0), M0, 3.0)
+        cut, c_ok = first(lambda s: launched(M0, max(1e-9, 1.0 - s)), 0.0, 1.0)     # s: the cut in Boeing's share of the bill
+        fine = [first(lambda mm: launched(mm, max(1e-9, frac)), 0.0, 3.0)[0] for frac in FINE]
+        out[mode] = {"margin": m, "margin_monotone": m_ok, "cut": cut, "cut_monotone": c_ok,
+                     "plan_at_margin": decide(n, rws, m, 1.0)[mode] if m is not None else None,
+                     "plan_at_cut": decide(n, rws, M0, max(1e-9, 1.0 - cut))[mode] if cut is not None else None,
+                     "frontier": {"fractions": FINE, "margin": fine}}
+    base = decide(n, rws)
+    out["base"] = {"pick": base["pick"], "best": base["best"], "e": base["e"], "rule": base["rule"], "premium": base["premium"]}
+    out["per_point"] = {name: sum(rw["cols"][i]["Q"] * PRICE0 / 1000.0 / 100.0 * wt for i, wt in CEO_W[n].items()) for name, rw in rws.items() if rw["var"]}
+    return out
+
+
+def others_out_of_contention(n):
+    """The 737 Rate Increase plans never beat the best of Do Nothing and the Re-engine; the via-Embraer plans trail the
+    Solo 10-year at Renton by more than $2B (so neither reaches the CEO's pick or the H8 premium)."""
+    st, year = start(n), YEARS[n]
+    own = dict(B.own_options(st, "boeing", year))
+    w = CEO_W[n]
+    val = lambda plan: [M.value(s, covert=c, series=False)["boeing"]["pv_delta"] for _, s, c in column_states(n, plan)]
+    dn = val(DN)
+    E = lambda plan: sum((val(plan)[i] - dn[i]) * wt for i, wt in w.items())
+    e_re = E(RE)
+    for plan in own:
+        if "737 rate up" in plan and plan.startswith("fps: hold"):
+            assert E(plan) <= max(0.0, e_re) + 1e-9, (n, plan)
+    e10 = E(SOLO["10-year at Renton"][0])
+    for p in own:
+        if "Embraer" in p and "rate up" not in p and "Re-engine" not in p:
+            assert E(p) < e10 - H8, (n, p)
+    return True
+
+
+def confirm(n, m=None, k=None):
+    """Every competing row re-valued on a dashboard re-solved at margin m and/or bill share k, against the shortcut (the
+    largest gap), the decision there, and Boeing's stress-case net debt on the launched plan."""
     over = {}
-    if margin is not None:
-        over["af_m_fps"] = 100.0 * margin
-    if bill is not None:
-        over[CX_KEY[var]] = bill
+    if m is not None:
+        over["af_m_fps"] = 100.0 * m
+    if k is not None:
+        over["af_cx_fps10"] = BILL0["10yr"] * k
+        over["af_cx_fps7"] = BILL0["7yr"] * k
+    base = rows(n)
     with board(**over):
-        g = grid(n, [name], check=False)[name]
-        st = column_states(n, PLANS[name][0])
+        new = rows(n, base=False)
+        dec = decide(n, new, vals={name: [c["v"] for c in rw["cols"]] for name, rw in new.items()})
         mets = []
-        for _, s, c in st:
-            v = M.value(s, covert=c, series=True)
-            m = B.plan_metrics("boeing", s, v, c)
-            mets.append({"stress_ok": m["stress_ok"], "stress_peak": m["stress_peak"]})
-    return tests(n, g["items"], g["columns"])["slack"], mets
+        if dec["rule"]:
+            plan = (SOLO.get(dec["rule"]) or PAIRS[dec["rule"]])[0]
+            for _, s, c in column_states(n, plan):
+                v = M.value(s, covert=c, series=True)
+                mt = B.plan_metrics("boeing", s, v, c)
+                mets.append({"stress_ok": mt["stress_ok"], "stress_peak": mt["stress_peak"]})
+    gap = 0.0
+    for name in base:
+        a = values(base[name], m if m is not None else M0, k if k is not None else 1.0)
+        b = [c["v"] for c in new[name]["cols"]]
+        gap = max(gap, max(abs(x - y) for x, y in zip(a, b)))
+    return {"gap": gap, "decision": dec["rule"], "pick": dec["pick"], "metrics": mets}
 
 
 def run(n, opts, do_confirm):
     with L.patched(options=opts):
-        g = grid(n, list(PLANS))
+        rws = rows(n)
         if opts is O:                      # the run's own world gives back the run's own brief, every plan and column
             rec = json.load(open(os.path.join(REC, "grids_r%d.json" % n)))["boeing"]
-            rows = {x["plan"]: [c[0] for c in x["cells"]] for x in rec["rows"]}
-            for name, (plan, _) in PLANS.items():
-                want = [a - b for a, b in zip(rows[plan], rows[DN])]
-                assert max(abs(a - b) for a, b in zip(want, g[name]["items"])) < 1e-9, (n, name)
-        out = {"year": YEARS[n], "columns": g[next(iter(PLANS))]["columns"], "weights": CEO_W[n], "plans": {}}
-        for name in PLANS:
-            out["plans"][name] = dict(solve(n, g[name]), items=g[name]["items"], terms=g[name]["terms"])
-        # the plan that needs the least margin (and, separately, the least investment cut)
-        ms = {k: v["margin"] for k, v in out["plans"].items() if v["margin"] is not None}
-        out["best_margin_plan"] = min(ms, key=ms.get) if ms else max(out["plans"], key=lambda k: out["plans"][k]["at_zero_bill"]["slack"])
-        bs = {k: v["bill"] / BILL0[PLANS[k][1]] for k, v in out["plans"].items() if v["bill"] is not None}
-        out["best_bill_plan"] = max(bs, key=bs.get) if bs else None
+            g = {x["plan"]: [c[0] for c in x["cells"]] for x in rec["rows"]}
+            for name, rw in rws.items():
+                assert max(abs(c["v"] - x) for c, x in zip(rw["cols"], g[rw["plan"]])) < 1e-9, (n, name)
+            others_out_of_contention(n)
+        dn = values(rws["Do Nothing"])
+        out = {"year": YEARS[n], "columns": [c["label"] for c in rws["Do Nothing"]["cols"]], "weights": CEO_W[n],
+               "rows": {name: {"plan": rw["plan"], "var": rw["var"], "items": [a - b for a, b in zip(values(rw), dn)],
+                               "eis": rw["cols"][0]["eis"]} for name, rw in rws.items()}}
+        out.update(solve(n, rws))
         if do_confirm:
-            name = out["best_margin_plan"]
-            p = out["plans"][name]
             ck = {}
-            if p["margin"] is not None:
-                ck["margin"] = confirm(n, name, margin=p["margin"])
-            if p["bill"] is not None:
-                ck["bill"] = confirm(n, name, bill=p["bill"])
-            if p["frontier"]["0.5"] is not None:
-                ck["half_bill"] = confirm(n, name, margin=p["frontier"]["0.5"], bill=BILL0[PLANS[name][1]] * 0.5)
-            for k, (slack, mets) in ck.items():
-                assert abs(slack) < 1e-4, (n, name, k, slack)
-            out["confirm"] = {k: {"slack": s, "metrics": m} for k, (s, m) in ck.items()}
+            r = out["rule"]
+            if r["margin"] is not None and r["margin"] <= 1.0:
+                ck["margin"] = confirm(n, m=r["margin"] + 1e-6)
+            if r["cut"] is not None:
+                ck["cut"] = confirm(n, k=1.0 - r["cut"] - 1e-6)
+            half = r["frontier"]["margin"][FINE.index(0.5)]
+            if half is not None and half <= 1.0:
+                ck["half"] = confirm(n, m=half + 1e-6, k=0.5)
+            for key, c in ck.items():
+                assert c["gap"] < 1e-5 and c["decision"] is not None, (n, key, c)
+                assert all(x["stress_ok"] for x in c["metrics"]), (n, key)
+            out["confirm"] = ck
     return out
 
 
-def main():
-    res = {"base": {"margin": M0, "price_musd": PRICE0, "bill": BILL0}, "tests": {"business_case": BUSINESS, "downside": DOWNSIDE, "buffer": BUFFER},
-           "rounds": {}, "game_tail": {}}
+def show(r):
+    y = r["year"]
+    print("%d base: pick %s, best %s, e %s" % (y, r["base"]["pick"], r["base"]["best"], {k: round(v, 2) for k, v in r["base"]["e"].items()}))
+    for mode in ("rule", "premium"):
+        x = r[mode]
+        fm = x["frontier"]["margin"]
+        print("%d %-7s margin %s (%s%s) | cut %s (%s%s) | frontier 75/50/25/0: %s" % (
+            y, mode, "-" if x["margin"] is None else "%.2f%%" % (100 * x["margin"]), x["plan_at_margin"], "" if x["margin_monotone"] else ", NOT MONOTONE",
+            "-" if x["cut"] is None else "%.1f%%" % (100 * x["cut"]), x["plan_at_cut"], "" if x["cut_monotone"] else ", NOT MONOTONE",
+            [None if fm[FINE.index(f)] is None else round(100 * fm[FINE.index(f)], 1) for f in (0.75, 0.5, 0.25, 0.0)]))
+
+
+def main(do_confirm=True):
+    res = {"base": {"margin": M0, "price_musd": PRICE0, "bill": BILL0}, "eps": EPS, "h8": H8,
+           "tests": {"business_case": BUSINESS, "downside": DOWNSIDE, "buffer": BUFFER}, "rounds": {}, "game_tail": {}}
     for n in YEARS:
-        r = run(n, O, do_confirm=True)
+        r = run(n, O, do_confirm)
         res["rounds"][str(n)] = r
-        for name, p in r["plans"].items():
-            print("%d %-20s base exp %+6.2f worst %+6.2f | margin %s | bill %s | at zero bill slack %+.2f | frontier %s" % (
-                YEARS[n], name, p["base"]["expected"], p["base"]["worst"],
-                "-" if p["margin"] is None else "%.1f%%" % (100 * p["margin"]), "-" if p["bill"] is None else "%.1f" % p["bill"],
-                p["at_zero_bill"]["slack"], {k: (None if v is None else round(100 * v, 1)) for k, v in p["frontier"].items()}))
-        print("   confirmed", {k: round(v["slack"], 6) for k, v in r.get("confirm", {}).items()})
+        show(r)
+        if "confirm" in r:
+            print("   confirmed", {k: (round(v["gap"], 8), v["decision"]) for k, v in r["confirm"].items()})
     for n in (3, 4):
-        r = run(n, GAME_TAIL, do_confirm=False)
+        r = run(n, GAME_TAIL, False)
         res["game_tail"][str(n)] = r
-        p = r["plans"][r["best_margin_plan"]]
-        print("%d conservative tail: %s margin %s bill %s frontier %s" % (YEARS[n], r["best_margin_plan"], p["margin"],
-              p["bill"], {k: (None if v is None else round(100 * v, 1)) for k, v in p["frontier"].items()}))
+        print("conservative tail:", end=" ")
+        show(r)
     json.dump(res, open(os.path.join(HERE, "data", "thresholds.json"), "w"), indent=1)
     print("wrote data/thresholds.json")
 
 
-FINE = [k / 20 for k in range(21)]          # Boeing's investment, 0% to 100% of today's bill in 5% steps
-
-
-def add_fine_frontier():
-    """From data/thresholds.json alone (no re-solve): the margin needed at every 5% of today's bill, for every plan,
-    round and tail, with the same exact shortcut (the stored items and per-column terms)."""
-    path = os.path.join(HERE, "data", "thresholds.json")
-    res = json.load(open(path))
-    for key in ("rounds", "game_tail"):
-        for n, r in res[key].items():
-            for name, p in r["plans"].items():
-                g = {"items": p["items"], "terms": p["terms"], "var": PLANS[name][1], "columns": r["columns"]}
-                f = lambda **kw: tests(int(n), shifted(g, **kw), g["columns"])["slack"]
-                b0 = BILL0[g["var"]]
-                fine = []
-                for k in FINE:
-                    x = b0 * k if k > 0 else 1e-9
-                    fine.append(L.bisect(lambda mm: f(margin=mm, bill=x), 0.0, 3.0, 0.0, tol=1e-7))
-                for k in FRACTIONS:                 # agrees with the coarse frontier
-                    a, c = fine[FINE.index(k)], p["frontier"][str(k)]
-                    assert (a is None and c is None) or abs(a - c) < 1e-6, (key, n, name, k, a, c)
-                p["fine_frontier"] = {"fractions": FINE, "margin": fine}
-    json.dump(res, open(path, "w"), indent=1)
-    print("added fine frontiers to data/thresholds.json")
-
-
-def confirm_ten():
-    """Re-check the 10-year at Renton's margin and investment thresholds (2030-45, where they exist) on a re-solved
-    dashboard, with the stress-case net debt there, and store them under confirm_10yr in data/thresholds.json."""
-    path = os.path.join(HERE, "data", "thresholds.json")
-    res = json.load(open(path))
-    name = "10-year at Renton"
-    with L.patched(options=O):
-        for n in (1, 2, 3):
-            p = res["rounds"][str(n)]["plans"][name]
-            ck = {}
-            if p["margin"] is not None and p["margin"] <= 1.0:
-                ck["margin"] = confirm(n, name, margin=p["margin"])
-            if p["bill"] is not None:
-                ck["bill"] = confirm(n, name, bill=p["bill"])
-            for k, (slack, mets) in ck.items():
-                assert abs(slack) < 1e-4, (n, k, slack)
-                print(YEARS[n], name, k, "slack %.2e" % slack, "stress ok" if all(m["stress_ok"] for m in mets) else "STRESS FAILS")
-            res["rounds"][str(n)]["confirm_10yr"] = {k: {"slack": sl, "metrics": m} for k, (sl, m) in ck.items()}
-    json.dump(res, open(path, "w"), indent=1)
-
-
 if __name__ == "__main__":
-    if sys.argv[1:] == ["frontier"]:
-        add_fine_frontier()
-    elif sys.argv[1:] == ["confirm10"]:
-        confirm_ten()
-    else:
-        main()
-        add_fine_frontier()
-        confirm_ten()
+    main(do_confirm=sys.argv[1:] != ["fast"])

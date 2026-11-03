@@ -243,7 +243,7 @@
      "ren_worst": -6.513019253447071,
      "ren_expected": -6.367393578265329,
      "best_expected_plan": "fps 10-yr at Renton + 787 Re-engine",
-     "best_expected": -6.096310380922653,
+     "best_expected": -4.1701285792869225,
      "best_worst_plan": "fps 10-yr at Renton + 787: hold",
      "best_worst": -6.513019253447071,
      "any_fps_passes_business_case": false
@@ -486,7 +486,7 @@
      "ren_worst": -6.513019253447071,
      "ren_expected": -6.367393578265329,
      "best_expected_plan": "fps 10-yr at Renton + 787 Re-engine",
-     "best_expected": -6.096310380922653,
+     "best_expected": -4.1701285792869225,
      "best_worst_plan": "fps 10-yr at Renton + 787: hold",
      "best_worst": -6.513019253447071,
      "any_fps_passes_business_case": false
@@ -729,7 +729,7 @@
      "ren_worst": -6.513019253447071,
      "ren_expected": -6.367393578265329,
      "best_expected_plan": "fps 10-yr at Renton + 787 Re-engine",
-     "best_expected": -6.096310380922653,
+     "best_expected": -4.1701285792869225,
      "best_worst_plan": "fps 10-yr at Renton + 787: hold",
      "best_worst": -6.513019253447071,
      "any_fps_passes_business_case": false
