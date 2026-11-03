@@ -223,7 +223,7 @@ def write_csv(path):
                 wr.writerow([name, r["year"], int(bool(r["in_window"])), round(r["max_units"], 3), round(r["fps_units"], 3),
                              round(r["max_unit_profit"] * 1000, 4), round(r["fps_unit_profit"] * 1000, 4), round(r["nb_vs_sq"], 6),
                              round(r["bill"], 6), round(r["penalty"], 6), round(r["renton"], 6), round(r["net"], 6), round(r["df"], 6),
-                             round(r["pv"], 6), round(-r["cash_spend"], 6), round(-r["cash_other"], 6),
+                             round(r["pv"], 6), round(-r["cash_spend"], 6) + 0.0, round(-r["cash_other"], 6) + 0.0,
                              "" if r["net_debt"] is None else round(r["net_debt"], 4), "" if r["net_debt_stress"] is None else round(r["net_debt_stress"], 4)])
 
 
