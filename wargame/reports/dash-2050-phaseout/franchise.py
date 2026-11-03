@@ -4,34 +4,40 @@ beyond what Boeing's brief counts, built from Boeing's history and how analysts 
 
 The game values each plan on its own counted window (an fps for 20 years from entry into service, Do Nothing to 2060),
 in constant 2026 dollars at 10.5%, against the status quo. This module rebuilds every plan's yearly flows (the game's
-own lines, asserted to give back the brief's value of every plan in every column to the cent) and adds six terms, each
-plan counted to the same end year in a round (the latest fps entry into service + 50):
+own lines, asserted to give back the brief's value of every plan in every column to the cent) and adds these terms,
+every plan in a round counted to the same end year (the latest fps entry into service + 49):
 
-  C1 continuing value  - narrowbody profit against the status quo after the plan's counted window: the fps to 50 years
-                         from entry into service (Boeing's "50-year product"), its margin fading toward the game's
-                         A320neo margin (Mauboussin's fade of excess returns), less a sustaining derivative (a share of
-                         the fps bill at entry into service + 27, with the game's debt penalty). Deliveries after the
-                         game's last year come from the game's own supply-and-demand engine run on, with Boeing's board
-                         share held at its last value, on one of three demand tails (as run, held at 2060, rising).
-                         Do Nothing has none here: the MAX is gone from 2060 in every plan and in the status quo.
+  demand after 2060    - every year after 2060 comes from the game's own supply-and-demand engine run on one of three
+                         demand tails (as run, held at its 2060 value, rising on the conservative curve's shape), with
+                         Boeing's board share held at its last value in the game. The tails follow the run's curve to
+                         2060, so each tail is one world from 2061 for every plan and every year, counted or not.
+  C0 counted years     - the brief's own counted years after 2060 restated on the tail (zero on the run's own curve and
+                         for every 2030 plan; it matters for launches from 2035, whose counted years run past 2060).
+  C1 continuing value  - narrowbody profit against the status quo after the plan's counted window: the fps to its 50th
+                         year in service (Boeing's "50-year product"), its margin fading toward the game's A320neo margin
+                         (Mauboussin's fade of excess returns), less a sustaining derivative (a share of the fps bill at
+                         entry into service + 27, with the game's debt penalty). Do Nothing has none here: the MAX is
+                         gone from 2060 in every plan and in the status quo.
   C2 services          - OEM services profit on every Boeing narrowbody delivered to the end year, by age, over its life.
   C3 stranded overhead - shared BCA overhead carried by narrowbody volume: it falls only so fast (alpha x F a year) and
                          never below a residual (rho x F). Two readings, because the repo does not document the margins'
                          basis: "fully loaded" (the game's margins already absorb overhead per aircraft, so only the
                          unabsorbed part is extra; used in the views) and "programme" (the game never charges overhead,
-                         so each plan carries all it keeps; shown as a sensitivity: it works against the fps).
+                         so each plan carries all it keeps; a sensitivity: it works against the fps).
   C4 widebody erosion  - widebody share lost while Boeing has no new narrowbody in service, in proportion to the MAX's
                          run-off (judgement; the last view only).
   C5 MAX price fade    - Do Nothing's MAX conceding price against NGSA (sensitivity only: it conflicts with the game's
                          own supply-and-demand state, per the logic check).
-  C6 closing costs     - half when the MAX ends (every plan; earlier with Renton, where the fps takes over its lines), half
-                         when Boeing's narrowbody business ends (Do Nothing when the MAX ends; an fps after its 50th year).
+  C6 closing costs     - half when the MAX ends (every plan; about 2042-45 with an fps, as its buyers move to the fps),
+                         half when Boeing's narrowbody business ends (Do Nothing when the MAX ends; an fps after its 50th
+                         year). Held at $3.0B in the low and high cases: it costs the fps in 2030-35 and helps it later.
 
-Views: game (none), core (C1, C2, C6), core+overhead (+ C3 fully loaded), full (+ C4). Rival moves are held as the game
-played them (an overlay on Boeing's valuation, not a replay). Each plan is valued in every column of every round's brief,
-Boeing's decision (thresholds.decide, all four readings) is re-run with the terms on, at 10.5% and at 8.1% (10.5% read as
-nominal), and the game-only thresholds are asserted equal to thresholds.json. The derivative is always bought (in the
-low case it can cost more than the late-life profit it sustains).
+Views: game (none), core (C0, C1, C2, C6), core+overhead (+ C3 fully loaded), full (+ C4); sensitivities full+programme
+and full+price. Rival moves are held as the game played them (an overlay on Boeing's valuation, not a replay). Each plan
+is valued in every column of every round's brief, Boeing's decision (thresholds.decide, all four readings) is re-run
+with the terms on, at 10.5% and at 8.1% (10.5% read as nominal), and the game-only thresholds are asserted equal to
+thresholds.json. The derivative is always bought (in the low case it can cost more than the late-life profit it
+sustains).
 
   python3 franchise.py            writes data/franchise.json
 """
@@ -70,7 +76,8 @@ PARAMS = {
     "alpha": {"low": 0.25, "base": 0.15, "high": 0.10},          # share of it removable per year
     "dsh": {"low": 0.0, "base": 5.0, "high": 15.0},              # widebody share points lost when no longer full-line
     "c_price": {"low": 0.0, "base": 0.015, "high": 0.03},        # Do Nothing MAX price concession at full effect
-    "c_exit": {"low": 1.5, "base": 3.0, "high": 4.5},            # $B, half exit-only, half MAX-end
+    "c_exit": {"low": 3.0, "base": 3.0, "high": 3.0},            # $B (precedents $1-3B today); held in the combined cases,
+                                                                 # because it costs the fps in 2030-35 and helps it later
 }
 AGE_MULT = [(1, 3, 0.4), (4, 8, 0.8), (9, 20, 1.2), (21, 25, 0.9), (26, 30, 0.5), (31, 40, 0.3)]
 
@@ -120,6 +127,8 @@ def tail_curve(kind):
 
 
 TAILS = ("as run", "held", "rising")
+TAIL_START = 2060          # the tails follow the run's curve to 2060 and apply to every year after it, counted or not
+LIFE = 50                  # years in service counted for an fps: entry into service to EIS + 49 (the brief: EIS to EIS + 19)
 
 
 # ─────────────────────────────── one plan in one column: its yearly flows ───────────────────────────────
@@ -171,7 +180,7 @@ def flows(n, name, j, horizon):
                 assert abs(rows[y]["dlv_fps"] - x["fps"]) < 1e-6 and abs(rows[y]["dlv_max"] - x["max"]) < 1e-6, (name, j, kind, y)
                 assert abs(sq[y]["dlv_max"] * MAX_UNIT - x["sq"]) < 1e-6, (name, j, kind, y)
         ext[kind] = {y: {"fps": rows[y]["dlv_fps"], "max": rows[y]["dlv_max"], "sq": sq[y]["dlv_max"] * MAX_UNIT}
-                     for y in ys if y > last}
+                     for y in ys if y > TAIL_START}
     out["ext"] = ext
     out["window_end"] = max(y for y, r in out["years"].items() if r["in_nb"])
     return out
@@ -221,18 +230,19 @@ def margin_at(y, f, m, prm):
     if fy == 0:
         return m
     T_end = f["window_end"]
-    span = fy if fy else (f["fps_eis"] + 50 - T_end)
+    span = fy if fy else (f["fps_eis"] + LIFE - 1 - T_end)
     w = min(1.0, max(0.0, (y - T_end) / span))
     return m + (A320NEO_MARGIN - m) * w
 
 
 def nb_series(f, tail, horizon):
-    """Deliveries (MAX, fps in its 50-year life) and status-quo MAX profit by year to `horizon`: the game's rows, then
-    the engine run on. The fps is counted only to 50 years from entry into service (no successor is assumed)."""
-    out = {y: (x["max"], x["fps"], x["sq"]) for y, x in f["years"].items()}
+    """Deliveries (MAX, fps in its 50 years in service) and status-quo MAX profit by year to `horizon`: the game's rows
+    to 2060, then the engine run on the tail (for the run's own curve these are the game's rows where they overlap).
+    The fps is counted to its 50th year in service only (no successor is assumed)."""
+    out = {y: (x["max"], x["fps"], x["sq"]) for y, x in f["years"].items() if y <= TAIL_START}
     for y, x in f["ext"][tail].items():
         out[y] = (x["max"], x["fps"], x["sq"])
-    life = f["fps_eis"] + 50 if f["fps_eis"] else None
+    life = f["fps_eis"] + LIFE - 1 if f["fps_eis"] else None
     return {y: (mx, fp if (life and y <= life) else 0.0, sq) for y, (mx, fp, sq) in out.items() if y <= horizon}
 
 
@@ -244,6 +254,15 @@ def terms(f, r, m, prm, horizon):
     ns = nb_series(f, tail, horizon)
     is_fps = bool(f["fps_eis"])
     out = {}
+    # C0: the brief's own counted years after 2060 on the same demand tail (zero for the run's own curve), so each tail
+    # is one world: without it, an fps whose counted years run past 2060 would sell on the run's falling curve to the
+    # end of its window and on the tail only after it
+    c0 = 0.0
+    for y, x in f["years"].items():
+        if x["in_nb"] and y > TAIL_START:
+            mx, fp, sq = ns[y]
+            c0 += ((fp - x["fps"]) * PRICE * m + (mx - x["max"]) * MAX_UNIT - (sq - x["sq"])) * df(y, r)
+    out["C0"] = c0
     # C1: narrowbody profit against the status quo after the plan's counted window, to the round's common end year;
     # the fps margin fades toward the A320neo margin; less the sustaining derivative at entry into service + 27
     c1 = 0.0
@@ -295,10 +314,14 @@ def terms(f, r, m, prm, horizon):
     last_max = max((y for y, (mx, fp, sq) in ns.items() if mx > 0.5), default=Y0)
     last_nb = max((y for y, (mx, fp, sq) in ns.items() if mx + fp > 0.5), default=Y0)
     if is_fps:
-        last_nb = max(last_nb, f["fps_eis"] + 50)
+        last_nb = max(last_nb, f["fps_eis"] + LIFE - 1)
     out["C6"] = -0.5 * prm["c_exit"] * (df(last_max + 1, r) + df(last_nb + 1, r))
     out["_years"] = {"last_max": last_max, "last_nb": last_nb}
     return out
+
+
+def tail_is_run(prm):
+    return prm["tail"] == "as run"
 
 
 def prm_set(level):
@@ -307,12 +330,12 @@ def prm_set(level):
 
 SCENARIOS = {                 # which terms count in each view
     "game": (),
-    "core": ("C1", "C2", "C6"),
-    "core+overhead": ("C1", "C2", "C6", "C3_loaded"),
-    "full": ("C1", "C2", "C6", "C3_loaded", "C4"),
-    # sensitivities: the other reading of the overhead, and the MAX price concession on top of the full view
-    "core+programme": ("C1", "C2", "C6", "C3_programme"),
-    "full+price": ("C1", "C2", "C6", "C3_loaded", "C4", "C5"),
+    "core": ("C0", "C1", "C2", "C6"),
+    "core+overhead": ("C0", "C1", "C2", "C6", "C3_loaded"),
+    "full": ("C0", "C1", "C2", "C6", "C3_loaded", "C4"),
+    # sensitivities on the full view: the other reading of the overhead, and the MAX price concession
+    "full+programme": ("C0", "C1", "C2", "C6", "C3_programme", "C4"),
+    "full+price": ("C0", "C1", "C2", "C6", "C3_loaded", "C4", "C5"),
 }
 
 
@@ -323,7 +346,7 @@ def round_flows(n):
     ncol = len(B.rival_scenarios(st, "boeing", year))
     probe = {name: flows(n, name, 0, None) for name in ROWS}
     eis_max = max((f["fps_eis"] for f in probe.values() if f["fps_eis"]), default=year + 10)
-    horizon = eis_max + 50
+    horizon = eis_max + LIFE - 1
     fl = {name: [flows(n, name, j, horizon) for j in range(ncol)] for name in ROWS}
     # the game's lines give back the brief's values to the cent, every row and column
     rec = json.load(open(os.path.join(HERE, "record", "grids_r%d.json" % n)))["boeing"]
@@ -344,6 +367,9 @@ def term_table(fl, horizon, r, prm):
             t0 = terms(f, r, M0, prm, horizon)
             t1 = terms(f, r, M0 + 0.1, prm, horizon)
             t0["C1_slope"] = (t1["C1"] - t0["C1"]) / 0.1
+            t0["C0_slope"] = (t1["C0"] - t0["C0"]) / 0.1
+            if tail_is_run(prm):
+                assert abs(t0["C0"]) < 1e-9 and abs(t1["C0"]) < 1e-9
             for c in ("C2", "C3_loaded", "C3_programme", "C4", "C5", "C6"):
                 assert t1[c] == t0[c]
             cols.append(t0)
@@ -359,7 +385,7 @@ def values_at(fl, tt, r, m, k, scen):
         for f, t in zip(fl[name], tt[name]):
             v = game_pv(f, r, m, k)
             for c in scen:
-                v += t[c] + (t["C1_slope"] * (m - M0) if c == "C1" else 0.0)
+                v += t[c] + (t[c + "_slope"] * (m - M0) if c in ("C0", "C1") else 0.0)
             vals.append(v)
         out[name] = vals
     return out
@@ -386,6 +412,18 @@ def thresholds_with(n, fl, tt, r, scen):
                      "plan_at_cut": dec(M0, max(1e-9, 1.0 - cut - 1e-7))[mode] if cut is not None else None}
     base = dec(M0, 1.0)
     out["base"] = {k: base[k] for k in ("pick", "pick_pairwise", "pick_worst_first", "best", "e") + T.MODES}
+    # every row's value in every column at the base, just past the rule reading's margin and cut thresholds, with the
+    # decision there (so the page can say what the CEO picks and what the Board's tests do)
+    pts = {"base": (M0, 1.0)}
+    if out["rule"]["margin"] is not None:
+        pts["rule_margin"] = (out["rule"]["margin"] + 1e-7, 1.0)
+    if out["rule"]["cut"] is not None:
+        pts["rule_cut"] = (M0, max(1e-9, 1.0 - out["rule"]["cut"] - 1e-7))
+    out["points"] = {}
+    for key, (m, k) in pts.items():
+        d = dec(m, k)
+        out["points"][key] = {"m": m, "k": k, "values": values_at(fl, tt, r, m, k, scen),
+                              "decision": {c: d[c] for c in ("pick", "pick_pairwise", "pick_worst_first", "best", "e") + T.MODES}}
     return out
 
 
