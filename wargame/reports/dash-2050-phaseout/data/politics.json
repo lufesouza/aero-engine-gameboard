@@ -211,11 +211,20 @@
        }
       },
       "deflated_tests": {
-       "S": 5.154441833496094,
-       "S_decision_year": 7.68476789938661,
+       "S": 5.48370361328125,
+       "S_decision_year": 8.175664962060736,
        "plan": "10-year, new sites"
       },
-      "cut_needed": 0.2545334197998047
+      "cut_needed_by_reading": {
+       "rule": 0.2545334197998047,
+       "pairwise": 0.2545334197998047,
+       "worst_first": 0.2545334197998047,
+       "premium": 0.1937739276123047
+      },
+      "cut_needed": [
+       0.1937739276123047,
+       0.2545334197998047
+      ]
      },
      "high|full|cash high|10.5%": {
       "exit_cost_pv": 0.7417407195210598,
@@ -502,11 +511,20 @@
        }
       },
       "deflated_tests": {
-       "S": 0.23001861572265625,
-       "S_decision_year": 0.3143464169007622,
+       "S": 0.49828338623046875,
+       "S_decision_year": 0.680960523871627,
        "plan": "10-year, new sites"
       },
-      "cut_needed": 0.035036949462890626
+      "cut_needed_by_reading": {
+       "rule": 0.035036949462890626,
+       "pairwise": 0.035036949462890626,
+       "worst_first": 0.035036949462890626,
+       "premium": 0.035036949462890626
+      },
+      "cut_needed": [
+       0.035036949462890626,
+       0.035036949462890626
+      ]
      },
      "high|full|cash high|8.1%": {
       "exit_cost_pv": 1.1635487795700128,
@@ -840,11 +858,20 @@
        }
       },
       "deflated_tests": {
-       "S": 4.193595886230469,
-       "S_decision_year": 10.300233731432721,
+       "S": 3.8743438720703125,
+       "S_decision_year": 9.51609275688686,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.3110399670410157
+      "cut_needed_by_reading": {
+       "rule": 0.3110399670410157,
+       "pairwise": 0.3110399670410157,
+       "worst_first": 0.3110399670410157,
+       "premium": 0.3110399670410157
+      },
+      "cut_needed": [
+       0.3110399670410157,
+       0.3110399670410157
+      ]
      },
      "high|full|cash high|10.5%": {
       "exit_cost_pv": 0.7417407195210598,
@@ -1131,11 +1158,20 @@
        }
       },
       "deflated_tests": {
-       "S": 2.545806884765625,
-       "S_decision_year": 5.140766719222673,
+       "S": 3.0505905151367188,
+       "S_decision_year": 6.16008004693371,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.15967354064941405
+      "cut_needed_by_reading": {
+       "rule": 0.15967354064941405,
+       "pairwise": 0.1780462628173828,
+       "worst_first": 0.11177105163574219,
+       "premium": 0.11177105163574219
+      },
+      "cut_needed": [
+       0.11177105163574219,
+       0.1780462628173828
+      ]
      },
      "high|full|cash high|8.1%": {
       "exit_cost_pv": 1.1635487795700128,
@@ -1469,11 +1505,20 @@
        }
       },
       "deflated_tests": {
-       "S": 2.4180145263671875,
-       "S_decision_year": 16.11915190263189,
+       "S": 2.8399505615234375,
+       "S_decision_year": 18.93189391460648,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.6070485937500001
+      "cut_needed_by_reading": {
+       "rule": 0.6070485937500001,
+       "pairwise": 0.6070485937500001,
+       "worst_first": 0.6070485937500001,
+       "premium": 0.6070485937500001
+      },
+      "cut_needed": [
+       0.6070485937500001,
+       0.6070485937500001
+      ]
      },
      "high|full|cash high|10.5%": {
       "exit_cost_pv": 0.45023653258838753,
@@ -1760,11 +1805,20 @@
        }
       },
       "deflated_tests": {
-       "S": 3.3621368408203125,
-       "S_decision_year": 14.822847744993975,
+       "S": 4.13531494140625,
+       "S_decision_year": 18.231602893089836,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.4595528045654297
+      "cut_needed_by_reading": {
+       "rule": 0.4595528045654297,
+       "pairwise": 0.4900154754638672,
+       "worst_first": 0.4005487573242187,
+       "premium": 0.4005487573242187
+      },
+      "cut_needed": [
+       0.4005487573242187,
+       0.4900154754638672
+      ]
      },
      "high|full|cash high|8.1%": {
       "exit_cost_pv": 0.7874585156547355,
@@ -2098,11 +2152,20 @@
        }
       },
       "deflated_tests": {
-       "S": 1.5718765258789062,
-       "S_decision_year": 17.262874006149463,
+       "S": 2.2414474487304688,
+       "S_decision_year": 24.616325940234905,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.7799821765136719
+      "cut_needed_by_reading": {
+       "rule": 0.7799821765136719,
+       "pairwise": 0.7799821765136719,
+       "worst_first": 0.7799821765136719,
+       "premium": 0.7799821765136719
+      },
+      "cut_needed": [
+       0.7799821765136719,
+       0.7799821765136719
+      ]
      },
      "high|full|cash high|10.5%": {
       "exit_cost_pv": 0.2732935241954971,
@@ -2389,11 +2452,20 @@
        }
       },
       "deflated_tests": {
-       "S": 2.6086807250976562,
-       "S_decision_year": 16.99394086380751,
+       "S": 2.8042449951171875,
+       "S_decision_year": 18.267921082165273,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.5221665197753906
+      "cut_needed_by_reading": {
+       "rule": 0.5221665197753906,
+       "pairwise": 0.5221665197753906,
+       "worst_first": 0.5221665197753906,
+       "premium": 0.5221665197753906
+      },
+      "cut_needed": [
+       0.5221665197753906,
+       0.5221665197753906
+      ]
      },
      "high|full|cash high|8.1%": {
       "exit_cost_pv": 0.5329307415081581,
@@ -2554,7 +2626,7 @@
     }
    }
   },
-  "comac on plan": {
+  "comac takes china": {
    "1": {
     "year": 2030,
     "cases": {
@@ -2729,11 +2801,20 @@
        }
       },
       "deflated_tests": {
-       "S": 5.9681396484375,
-       "S_decision_year": 8.897911640271834,
+       "S": 6.2974090576171875,
+       "S_decision_year": 9.388820077625914,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.29139349548339843
+      "cut_needed_by_reading": {
+       "rule": 0.29139349548339843,
+       "pairwise": 0.29139349548339843,
+       "worst_first": 0.29139349548339843,
+       "premium": 0.24462390563964845
+      },
+      "cut_needed": [
+       0.24462390563964845,
+       0.29139349548339843
+      ]
      },
      "high|full|cash high|10.5%": {
       "exit_cost_pv": 0.7417407195210598,
@@ -3020,11 +3101,20 @@
        }
       },
       "deflated_tests": {
-       "S": 1.9054641723632812,
-       "S_decision_year": 2.604031996424958,
+       "S": 2.1737289428710938,
+       "S_decision_year": 2.970646103395823,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.08631862426757814
+      "cut_needed_by_reading": {
+       "rule": 0.08631862426757814,
+       "pairwise": 0.08631862426757814,
+       "worst_first": 0.08631862426757814,
+       "premium": 0.08631862426757814
+      },
+      "cut_needed": [
+       0.08631862426757814,
+       0.08631862426757814
+      ]
      },
      "high|full|cash high|8.1%": {
       "exit_cost_pv": 1.1635487795700128,
@@ -3358,11 +3448,20 @@
        }
       },
       "deflated_tests": {
-       "S": 4.581306457519531,
-       "S_decision_year": 11.252521365426546,
+       "S": 4.262054443359375,
+       "S_decision_year": 10.468380390880684,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.33417232910156247
+      "cut_needed_by_reading": {
+       "rule": 0.33417232910156247,
+       "pairwise": 0.33417232910156247,
+       "worst_first": 0.33417232910156247,
+       "premium": 0.33417232910156247
+      },
+      "cut_needed": [
+       0.33417232910156247,
+       0.33417232910156247
+      ]
      },
      "high|full|cash high|10.5%": {
       "exit_cost_pv": 0.7417407195210598,
@@ -3649,11 +3748,20 @@
        }
       },
       "deflated_tests": {
-       "S": 3.4564437866210938,
-       "S_decision_year": 6.979622567389498,
+       "S": 3.9612274169921875,
+       "S_decision_year": 7.998935895100535,
        "plan": "10-year at Renton"
       },
-      "cut_needed": 0.2030237017822266
+      "cut_needed_by_reading": {
+       "rule": 0.2030237017822266,
+       "pairwise": 0.214443544921875,
+       "worst_first": 0.14708848205566408,
+       "premium": 0.14708848205566408
+      },
+      "cut_needed": [
+       0.14708848205566408,
+       0.214443544921875
+      ]
      },
      "high|full|cash high|8.1%": {
       "exit_cost_pv": 1.1635487795700128,

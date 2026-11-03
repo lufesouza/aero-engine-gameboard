@@ -7,14 +7,17 @@ Two blocks, kept apart:
   cash-like terms, sized from what governments and Boeing have actually done
     government co-funding  - state siting incentives and federal technology money, as a cut in Boeing's share of the fps
                              bill (k = 1 - c in the game's own valuation, so the bill's debt penalty falls with it).
-                             US precedent: no federal launch money for an airliner since the SST (cancelled 1971); state
-                             packages (Washington 2003 and 2013, South Carolina 2009) and NASA's X-66 ($425M, paused
-                             2025) are worth about $1-3B in present value, and Boeing pledged in 2021 that future support
-                             be "on market terms". Base 2% of the bill (0 / 5%).
+                             US precedent: no direct federal launch funding for an airliner since the SST (cancelled
+                             1971); federal help has come as research money (the WTO found NASA and DoD R&D helped the
+                             787) and demonstrators (NASA's X-66, $425M, paused 2025); state packages (Washington 2003 and
+                             2013, South Carolina 2009) are worth about $1-3B in present value; and Boeing backed "market
+                             terms" for all future support in 2021. Base 2% of the bill (0 / 5%).
     political cost of exit - a probability that Washington makes Boeing pay for leaving (defence, export finance, the
-                             FAA), times defence profit at risk, from the year the MAX ends (2045) or the decision year if
-                             later, for 20 years. Charged to the plans without an fps. It is goodwill, so it is kept out
-                             of the Board's rating test. Base p 0.2 x $0.44B a year (0 / 0.5 x $0.66B from 2040).
+                             FAA), times defence profit at risk, for 20 years from 2045, when the MAX phase-out starts
+                             (the last MAX is built in 2060), or from the decision year if later. Charged to the plans
+                             without an fps in every round, as the brief's Do Nothing never launches (only 2050 is a real
+                             exit). It is goodwill, so the cash-rating reading keeps it out of the rating test; as played
+                             it is in it. Base p 0.2 x $0.44B a year (0 / 0.5 x $0.66B from 2040).
   a subjective strategic premium S
     the weight Boeing would put on staying in (identity, engineering, standing as the last US airliner maker), added
     to every fps plan in every column; found as the smallest S at which each reading of the CEO's rule launches an fps.
@@ -25,17 +28,20 @@ Three ways of applying the rule (thresholds.decide):
                  the franchise terms and co-funding): a brand or political weight does not make spend affordable.
   anticipating - the CEO picks among the outcomes the Board would approve (the Board's tests apply to the 787
                  Re-engine alone too, as it vetoed it in the game's 2030 round), rather than proposing and being vetoed.
-S is reported in money of 2026 and of the decision year. A sensitivity states the Board's dollar tests in decision-year
-money instead of 2026 money.
+S is reported in money of 2026 and of the decision year (today's value carried forward at the rate to the year of the
+decision). A sensitivity states the Board's three dollar tests ($1B business case, -$1B downside, -$2B rating buffer) in
+decision-year money instead of 2026 money; the CEO's $1B margin and $2B allowance stay as the game has them.
 
-Scenario: COMAC on its own plan, serving all of China's single-aisle demand by 2050 (Boeing's own China outlook: about
-360 a year), with the political cost of exit raised (p 0.5). It changes the market, so the brief and franchise terms
-are re-run in that world.
+Scenario: COMAC takes all of China's single-aisle demand by 2050 (Boeing's own China outlook: about 360 a year), its
+200-a-year target reached in 2032 rather than 2029; COMAC still sells only its own capacity, off the top, so it gains
+none of the share Boeing gives up. The political cost of exit is raised (p 0.5, an assumption). The market changes, so
+the brief and franchise terms are re-run in that world.
 
   python3 politics.py           writes data/politics.json
 """
 import json
 import os
+import random
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -60,7 +66,7 @@ def annuity(r, years):
 
 
 def exit_cost(level, r, year):
-    """PV-2026 of the political cost of leaving: p x L a year for 20 years from max(exit year, decision year)."""
+    """PV-2026 of the political cost of leaving: p x L a year for 20 years from max(start of the MAX phase-out, decision year)."""
     p, L, t0 = CASH["exit_p"][level], CASH["exit_L"][level], max(CASH["exit_from"][level], year)
     return p * L * annuity(r, 20) * (1 + r) ** -(t0 - 2026)
 
@@ -73,7 +79,8 @@ def decide2(n, V, RV=None, anticipate=False, scale=1.0):
     w = T.CEO_W[n]
     cols = FL[n]["Do Nothing"]
     risk = next(i for i, f in enumerate(cols) if f["label"].startswith("Risk case"))
-    EPS, H8, BUS, DOWN, BUF = (x * scale for x in (T.EPS, T.H8, T.BUSINESS, T.DOWNSIDE, T.BUFFER))
+    EPS, H8 = T.EPS, T.H8                                   # the CEO's margin and allowance stay as the game has them
+    BUS, DOWN, BUF = (x * scale for x in (T.BUSINESS, T.DOWNSIDE, T.BUFFER))
     item = lambda a, b: [x - y for x, y in zip(V[a], V[b])]
     E = lambda xs: sum(xs[i] * wt for i, wt in w.items())
     e = {name: E(item(name, "Do Nothing")) for name in V}
@@ -178,11 +185,13 @@ def s_needed(n, level, rname, view, cash_level, reading, md, scale=1.0):
 
 def cut_needed(n, level, rname, view, cash_level, S=0.0):
     """Share of the fps bill a government would have to carry (with the political cost of exit on and premium S) for
-    the rule reading, as played, to launch."""
+    each reading of the rule, as played, to launch."""
     X = exit_cost(cash_level, RATES[rname], T.YEARS[n])
-    f = lambda c: launches(n, level, rname, view, c, S, X, "as played", "rule") is not None
-    c, _ = T.first(f, 0.0, 0.999, steps=200, tol=1e-6)
-    return c
+    out = {}
+    for md in T.MODES:
+        f = lambda c: launches(n, level, rname, view, c, S, X, "as played", md) is not None
+        out[md], _ = T.first(f, 0.0, 0.999, steps=200, tol=1e-6)
+    return out
 
 
 def run_world(world):
@@ -213,10 +222,12 @@ def run_world(world):
                 if level == "base" and view == "full" and cash_level == "base":
                     s, plan = s_needed(n, level, rname, view, cash_level, "as played", "rule", scale=dfy)
                     case["deflated_tests"] = {"S": s, "S_decision_year": None if s is None else s / dfy, "plan": plan}
-                    case["cut_needed"] = cut_needed(n, level, rname, view, cash_level)
+                    case["cut_needed_by_reading"] = cut_needed(n, level, rname, view, cash_level)
+                    cs = [c for c in case["cut_needed_by_reading"].values() if c is not None]
+                    case["cut_needed"] = [min(cs), max(cs)] if len(cs) == len(T.MODES) else None
                 rr["cases"][key] = case
                 print(world, n, key, {rd: {md: (None if v["S"] is None else round(v["S"], 2), v["plan"]) for md, v in case["readings"][rd].items()} for rd in READINGS},
-                      "cut" if "cut_needed" in case else "", round(case.get("cut_needed") or 0, 4), flush=True)
+                      "cut", case.get("cut_needed"), flush=True)
         out[str(n)] = rr
     return out
 
@@ -233,6 +244,32 @@ def main():
                 assert all(d[md] == p["decision"][md] for md in T.MODES) and d["pick"] == p["decision"]["pick"], (n, key, at)
                 checked += 1
     print("decide2 reproduces", checked, "stored decision points")
+    # and random values, which reach the veto branches the stored points do not (downside, rating, the solo's rating
+    # after the Re-engine beside it is vetoed); with RV = V the cash-rating option changes nothing
+    rnd = random.Random(0)
+    hits = {"downside": 0, "rating": 0, "solo rating": 0}
+    for n in T.YEARS:
+        cols = FL[n]["Do Nothing"]
+        risk = next(i for i, c in enumerate(cols) if c["label"].startswith("Risk case"))
+        rws = {"Do Nothing": {"cols": cols}}
+        for _ in range(3000):
+            base = rnd.uniform(-8, 8)
+            V = {nm: [base + rnd.uniform(-4, 4) for _ in cols] for nm in FPS + list(NON_FPS)}
+            V["Do Nothing"] = [0.0] * len(cols)
+            a, b2 = decide2(n, V), T.decide(n, rws, vals=V)
+            assert all(a[md] == b2[md] for md in T.MODES) and a["pick"] == b2["pick"]
+            c = decide2(n, V, RV=V)
+            assert all(c[md] == a[md] for md in T.MODES)
+            for p in FPS:
+                it = [x - y for x, y in zip(V[p], V[T.WITHOUT_FPS[p]])]
+                if min(it) < T.DOWNSIDE:
+                    hits["downside"] += 1
+                if V[p][risk] < T.BUFFER:
+                    hits["rating"] += 1
+                if p in T.ALONE and V[T.ALONE[p]][risk] < T.BUFFER:
+                    hits["solo rating"] += 1
+    assert all(v > 1000 for v in hits.values()), hits
+    print("decide2 equals thresholds.decide on 12,000 random cases; veto branches reached", hits)
     res = {"cash": CASH, "readings": READINGS, "comac_plan": COMAC_PLAN, "decide2_checked": checked, "worlds": {}}
     res["worlds"]["base"] = run_world("base")
     # COMAC on its own plan: the market changes, so the brief is re-run in that world (rounds 2030 and 2035)
@@ -244,7 +281,7 @@ def main():
     try:
         CASH_SAVED = json.loads(json.dumps(CASH))
         CASH["exit_p"]["base"] = 0.5                       # leaving the market to COMAC raises the political stakes
-        res["worlds"]["comac on plan"] = run_world("comac")
+        res["worlds"]["comac takes china"] = run_world("comac")
     finally:
         T.O = saved
         CASH.clear()
