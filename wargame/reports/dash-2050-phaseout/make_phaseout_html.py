@@ -4,7 +4,7 @@ the market in the final state and who picks up what, and each company's value.
 
 Reads data/dash-2050-phaseout.json and data/dash-2050-cons.json (extract.py, one run each), data/steps_2030.json and
 data/steps_2050.json (steps.py), data/tail.json (tail.py), data/comac_units.json (comac_units.py) and
-data/who_picks_up.json (who_picks_up.py), dashgame/demand_page_n0.json and demand_conservative.json, and the round
+data/who_picks_up.json (who_picks_up.py), data/thresholds.json (thresholds.py), dashgame/demand_page_n0.json and demand_conservative.json, and the round
 records under record/. Every figure on the page comes from those files; the claims in the copy are asserted against
 them below.
 
@@ -23,7 +23,7 @@ import page_kit as K  # noqa: E402
 esc = K.esc
 D = lambda n: json.load(open(os.path.join(HERE, "data", n)))
 P, C, S30, S50, T = D("dash-2050-phaseout.json"), D("dash-2050-cons.json"), D("steps_2030.json"), D("steps_2050.json"), D("tail.json")
-CU, WP = D("comac_units.json"), D("who_picks_up.json")
+CU, WP, TH = D("comac_units.json"), D("who_picks_up.json"), D("thresholds.json")
 OPT = json.load(open(os.path.join(DG, "sd_options_phaseout.json")))
 CLASS = json.load(open(os.path.join(DG, "supply_demand.json")))["demand"]["class_share"]
 REC = lambda run, n: json.load(open(os.path.join(HERE, "..", run, "record", "exco_result_r%d.json" % n)))["sides"]["boeing"]
@@ -261,6 +261,53 @@ assert V_PH > 0 and abs(V_REST) < 0.1 * V_PH
 assert B_ALL > 0
 
 
+# what would change Boeing's decision (thresholds.py)
+M0 = TH["base"]["margin"]
+PRICE = TH["base"]["price_musd"]
+BILL10, BILL7 = TH["base"]["bill"]["10yr"], TH["base"]["bill"]["7yr"]
+THR = {int(n): r for n, r in TH["rounds"].items()}
+THG = {int(n): r for n, r in TH["game_tail"].items()}
+TP10, TP7 = "10-year at Renton", "7-year at Renton"
+for n, r in THR.items():
+    assert r["year"] == YEARS[n - 1] and r["weights"] == {str(k): v for k, v in CEO_W[r["year"]].items()}
+    assert r["best_margin_plan"] == TP7 and r["best_bill_plan"] in (TP7, None)
+    for name, p in r["plans"].items():
+        for t in (p["margin_tests"], p["bill_tests"]):
+            assert t is None or (t["binding"] == "business case" and abs(t["slack"]) < 1e-5)
+    for k, c in list(r["confirm"].items()) + list(r.get("confirm_10yr", {}).items()):
+        assert abs(c["slack"]) < 1e-5 and all(m["stress_ok"] and m["stress_peak"] < 1e-9 for m in c["metrics"]), (n, k)
+    assert abs(r["plans"][TP10]["items"][r["columns"].index(REAL[r["year"]])] - GAP_P[n - 1]) < 1e-9
+assert all(set(THR[n]["confirm_10yr"]) == ({"margin", "bill"} if n < 3 else {"bill"}) for n in (1, 2, 3))
+assert THR[4]["plans"][TP10]["bill"] is None and THR[4]["plans"][TP7]["bill"] is None and THR[4]["plans"][TP10]["margin"] is None
+assert all(THG[n]["best_margin_plan"] == TP10 for n in (3, 4))
+
+
+def mpct(m, dp=1):
+    """A margin as a percentage of price; above 100% it cannot be reached (profit above the price)."""
+    if m is None or m > 1.0:
+        return '<span class="muted">over 100%</span>'
+    return nw(f"{K.rnd(100 * m, dp):.{dp}f}%")
+
+
+def bill_txt(x, b0):
+    if x is None:
+        return '<span class="muted">fails even at $0</span>'
+    return nw(f"${x:.1f}B") + f' <span class="muted">({K.MINUS}{K.rnd(100 * (1 - x / b0), 0):.0f}%)</span>'
+
+
+def cost(m):
+    return PRICE * (1 - m)
+
+
+CUT30 = 1 - THR[1]["plans"][TP10]["bill"] / BILL10
+_ff45 = THR[3]["plans"][TP10]["fine_frontier"]
+CROSS45 = next(k for k, m in zip(_ff45["fractions"], _ff45["margin"]) if m is not None and m > 1.0)
+assert 0.5 < CROSS45 <= 0.75
+assert THR[1]["plans"][TP7]["per_point"] > THR[1]["plans"][TP10]["per_point"] and THR[1]["plans"][TP7]["eis"] == THR[1]["plans"][TP10]["eis"] - 3
+F75_30 = THR[1]["plans"][TP10]["frontier"]["0.75"]
+assert 0.3 < CUT30 < 0.35 and F75_30 - M0 < 0.04
+
+
 # ─────────────────────────────── charts and tables ───────────────────────────────
 def gap_chart(narrow=False):
     w, h, left, right, top, bot = (360, 300, 46, 80, 24, 44) if narrow else (760, 300, 64, 196, 24, 44)
@@ -324,6 +371,64 @@ def market_chart(narrow=False):
             out.append(f'<text x="{sx(y):.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick">{y}</text>')
     out.append(f'<text x="{left}" y="{h - 6}" class="tick">{"Aircraft a year, final state" if narrow else "737/A320-class aircraft delivered a year, final state of the MAX phase-out game"}</text></svg>')
     return "".join(out)
+
+
+def frontier_chart(narrow=False):
+    w, h, left, right, top, bot = (360, 330, 44, 64, 20, 48) if narrow else (760, 340, 56, 170, 20, 48)
+    lo, hi = 0.0, 1.0
+    pad = 14
+    sx = lambda k: left + pad + k * (w - left - right - pad)
+    sy = lambda m: top + (hi - m) / (hi - lo) * (h - top - bot)
+    out = [K.svg_open(w, h, "fps margin Boeing needs against the share of today's investment it pays, by round", "chart narrow" if narrow else "chart")]
+    cid = "fclip-n" if narrow else "fclip-w"
+    out.append(f'<defs><clipPath id="{cid}"><rect x="{left}" y="{top}" width="{w - left - right}" height="{h - top - bot}"/></clipPath></defs>')
+    for v in (0.0, 0.2, 0.4, 0.6, 0.8, 1.0):
+        out.append(f'<line x1="{left}" x2="{w - right}" y1="{sy(v):.1f}" y2="{sy(v):.1f}" class="grid"/><text x="{left - 6}" y="{sy(v) + 4:.1f}" text-anchor="end" class="tick">{K.rnd(100 * v, 0):.0f}%</text>')
+    for k in (0.0, 0.25, 0.5, 0.75, 1.0):
+        out.append(f'<text x="{sx(k):.1f}" y="{h - bot + 18}" text-anchor="middle" class="tick">{K.rnd(100 * k, 0):.0f}%</text>')
+    styles = {1: ("var(--s1)", ""), 2: ("var(--s1)", ' stroke-dasharray="7 4"'), 3: ("var(--muted)", ""), 4: ("var(--muted)", ' stroke-dasharray="7 4"')}
+    for n, r in THR.items():
+        ff = r["plans"][TP10]["fine_frontier"]
+        pts = [(k, m) for k, m in zip(ff["fractions"], ff["margin"]) if m is not None]
+        col, dash = styles[n]
+        d = "M" + " L".join(f"{sx(k):.1f},{sy(m):.1f}" for k, m in pts)
+        out.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="2.2"{dash} clip-path="url(#{cid})"/>')
+        for k, m in pts:
+            if k in (0.0, 0.25, 0.5, 0.75, 1.0) and m <= hi:
+                val = "%.1f%%" % K.rnd(100 * m, 1)
+                tip = "%d: margin needed paying %.0f%% of today's investment" % (r["year"], K.rnd(100 * k, 0))
+                out.append(f'<circle cx="{sx(k):.1f}" cy="{sy(m):.1f}" r="4" fill="{col}" class="ring" {K.mark_attrs((val, tip, col))}/>')
+        # label where the line leaves the plot or at its right end
+        inside = [(k, m) for k, m in pts if m <= hi]
+        k_end, m_end = inside[-1] if inside else (0.0, hi)
+        lab = str(r["year"])
+        if k_end == 1.0:
+            out.append(f'<text x="{sx(k_end) + 8:.1f}" y="{sy(m_end) + 4:.1f}" class="endlab">{lab}</text>')
+        else:                              # the line leaves the top of the chart: label it where it does
+            out.append(f'<text x="{sx(k_end) + 8:.1f}" y="{sy(hi) + 16:.1f}" class="endlab">{lab}</text>')
+    # today's point
+    out.append(f'<circle cx="{sx(1.0):.1f}" cy="{sy(M0):.1f}" r="6" fill="var(--fg)" class="ring" {K.mark_attrs((f"{K.rnd(100 * M0, 1):.1f}%", "Today: margin with the full investment", "var(--fg)"))}/>')
+    out.append(f'<text x="{sx(1.0) + 10:.1f}" y="{sy(M0) + 4:.1f}" class="endlab">{"Today" if narrow else "Today: " + f"{K.rnd(100 * M0, 1):.1f}%"}</text>')
+    note = "Boeing pays, % of today" if narrow else "Investment Boeing pays, % of today's bill; fps margin needed on the vertical axis"
+    out.append(f'<text x="{left}" y="{h - 6}" class="tick">{esc(note)}</text></svg>')
+    return "".join(out)
+
+
+def thr_table():
+    head = ["Round and plan", "Margin needed, today's investment", "Investment needed, today's margin", "Margin needed paying 75%",
+            "paying 50%", "paying nothing"]
+    rows = []
+    for n, r in THR.items():
+        for name, b0 in ((TP10, BILL10), (TP7, BILL7)):
+            p = r["plans"][name]
+            fr = p["frontier"]
+            rows.append([f'{r["year"]}, {name[0].lower() + name[1:]}', mpct(p["margin"]), bill_txt(p["bill"], b0), mpct(fr["0.75"]), mpct(fr["0.5"]), mpct(fr["0.0"])])
+    for n, r in THG.items():
+        p = r["plans"][TP10]
+        fr = p["frontier"]
+        rows.append([f'<span class="muted">{r["year"]}, 10-year at Renton, conservative curve after 2060</span>', mpct(p["margin"]), bill_txt(p["bill"], BILL10),
+                     mpct(fr["0.75"]), mpct(fr["0.5"]), mpct(fr["0.0"])])
+    return K.table(head, rows, num_cols=(1, 2, 3, 4, 5))
 
 
 def moves_table():
@@ -476,6 +581,28 @@ conservative-case game's {b(GAP_C[-1])}. Boeing's decision does not change under
 The other companies were not replayed under these curves.</p></div>
 </div></section>
 
+<section><h2>What would change Boeing's decision</h2><div class="stack">
+<div class="panel"><p class="ctitle">Only an early launch can be bought: in 2030, {mpct(THR[1]["plans"][TP10]["margin"])} margin or a third less investment; from 2045 nothing realistic</p>
+<div class="legend"><span><i class="solid"></i>2030</span><span><i class="dash" style="border-top-color:var(--s1)"></i>2035</span><span><i class="solid" style="border-top-color:var(--muted)"></i>2045</span><span><i class="dash"></i>2050</span><span><i class="sq" style="background:var(--fg);border-radius:50%"></i>Today</span></div>
+<div class="cw only-wide">{frontier_chart()}</div><div class="cw only-narrow">{frontier_chart(True)}</div>
+<p class="cap">Each line is the 10-year fps at Renton in that round: the operating margin it needs on every fps delivered, for each share of today's
+{nw(f"${BILL10:.2f}B")} investment that Boeing pays. Anywhere above a round's line, the fps passes all of the Board's tests and would have been launched in that round;
+today's {K.rnd(100 * M0, 1):.1f}% margin with the full bill sits below every line. 2045 leaves the chart above 100% margin before Boeing pays three quarters of the bill,
+and 2050 needs {mpct(THR[4]["plans"][TP10]["frontier"]["0.0"])} even if Boeing pays nothing.</p></div>
+<div class="panel">{thr_table()}
+<p class="cap">Each round taken alone, from the state it started in, in this game's world. The test that binds every time is the business case: more than +$1B against
+Do Nothing in the column the CEO expected. At that point the downside and rating-first tests also pass, and Boeing's stress-case net debt stays at $0 (checked on a
+re-solved dashboard at each threshold of both plans in 2030-45). The 7-year at Renton needs a little less margin than the 10-year: it enters service three years earlier, so
+each point of its margin is worth more today ({b(THR[1]["plans"][TP7]["per_point"], 2, False)} against {b(THR[1]["plans"][TP10]["per_point"], 2, False)} a point in 2030).
+<b>Margin</b> is on every fps delivered, the {nw(f"${PRICE:.0f}M")} price held: today {K.rnd(100 * M0, 1):.1f}% is {nw(f"${PRICE * M0:.1f}M")} of profit on a {nw(f"${cost(M0):.1f}M")} cost; {mpct(THR[1]["plans"][TP10]["margin"])} would mean a
+cost of {nw(f"${cost(THR[1]['plans'][TP10]['margin']):.1f}M")}. <b>Investment</b> is Boeing's bill (10-year {nw(f"${BILL10:.2f}B")}, 7-year {nw(f"${BILL7:.1f}B")}), booked at entry into service with its debt
+penalty, as the brief books it; a partner that pays part of the bill and takes no share of the profit counts the same.
+In 2030 a quarter less investment would need only {mpct(F75_30)} margin, {K.rnd(100 * (F75_30 - M0), 1):.1f} points above today.
+Each point of margin is worth {b(THR[1]["plans"][TP10]["per_point"], 2, False)} in the CEO's expected column in 2030 but {b(THR[4]["plans"][TP10]["per_point"], 2, False)} in 2050: a later fps sells for fewer counted years, further
+in the future, and from 2045 mostly after 2060, where your page's demand falls away. With the conservative curve after 2060 (grey rows) the late rounds
+need about 55% margin, or 60-70% less investment.</p></div>
+</div></section>
+
 <section><h2>The market in the final state</h2><div class="stack">
 <div class="panel"><p class="ctitle">The MAX runs down to none by 2060; Airbus delivers most of the market, and COMAC 150-250 a year from 2035</p>
 <div class="legend"><span><i class="sq" style="background:var(--s1)"></i>Boeing 737 MAX</span><span><i class="sq" style="background:var(--s2)"></i>Airbus</span><span><i class="sq" style="background:var(--comac)"></i>COMAC</span><span><i class="sq" style="background:var(--s3)"></i>New entrant</span><span><i class="ln" style="background:var(--fg);width:16px;height:2px;display:inline-block;vertical-align:middle"></i> Demand</span></div>
@@ -505,7 +632,8 @@ Boeing's {b(P["final_value"]["boeing"])} is a smaller loss than its {b(C["final_
 <li><b>Everything else</b> is the conservative-case game. Firm orders, Boards, ExCos and objectives are the same. So are the market rules: Boeing's share drifts down 1 point a year while NGSA flies alone, Boeing sells to the customers Airbus cannot build for, and Airbus adds 1% capacity a year when it is short.</li>
 <li><b>The step tables</b> (steps.py) switch your assumptions on in the order shown. Another order would split the total differently but give the same total. The first and last steps give back each game's own brief, every column, to the cent. Changes are shown as the differences of the rounded figures.</li>
 <li><b>The demand curves after 2060</b> (tail.py) re-value every Boeing plan in every column of every round, from the state each round started in. The "as run" curve gives back the run's own briefs to the cent.</li>
-<li><b>Source:</b> extract.py, steps.py, tail.py, comac_units.py, who_picks_up.py and make_phaseout_html.py. The round records are in record/.</li>
+<li><b>What would change the decision</b> (thresholds.py) values each fps plan as the brief does and moves only the fps margin and Boeing's bill. The value moves exactly with the margin (fps deliveries, discounted, times price times the margin change), and the bill is the dashboard's own formula, so the thresholds are exact. Each one is re-checked on a re-solved dashboard to within $0.00001B.</li>
+<li><b>Source:</b> extract.py, steps.py, tail.py, comac_units.py, who_picks_up.py, thresholds.py and make_phaseout_html.py. The round records are in record/.</li>
 </ul></div></section>
 <footer>BOEING PROPRIETARY. Built by make_phaseout_html.py from runs dash-2050-phaseout and dash-2050-cons.</footer></div>
 <script>{K.JS}</script></body></html>'''
