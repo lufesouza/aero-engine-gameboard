@@ -325,9 +325,10 @@ Not launching in 2030 is not leaving: Boeing can still launch in 2035, 2045 or 2
 where the premium would have to be worth {b(SY[(4, R10)][0], 1, False)} in 2050 money at 10.5% ({b(SY[(4, R8)][0], 1, False)} at 8.1%). The game's $1B tests are in 2026 money, about {b(BIZ50, 0, False)} in 2050 money;
 stated in 2050 money instead, the premium would be {b(DFL[(4, R10)]["S_decision_year"], 1, False)}. Or a government would have to carry {MF.cut_pct(CUT[(4, R10)][0])} of the bill ({MF.cut_pct(CUT[(4, R8)][0])} at 8.1%).
 That fits Boeing's record: jobs and politics have bought delay, not reversal.</div></div>
-<div class="panel"><div><b>A stronger COMAC lowers the commercial case; Brazil is not an adversary</b>
+<div class="panel"><div><b>A stronger COMAC lowers the commercial case; Brazil is at odds with Washington, and Embraer could become a third maker</b>
 China is a competitor in US strategy, not a declared enemy (the December 2025 National Security Strategy frames it mainly as an economic, "near-peer" competitor), and the Pentagon listed COMAC as a
-Chinese military company in January 2025. Brazil has been a US Major Non-NATO Ally since July 2019, civil aircraft were exempt from the additional tariff on Brazil in 2025 (only the 10% baseline applied), and Embraer builds with more than 40% US content.
+Chinese military company in January 2025. Brazil is still formally a US Major Non-NATO Ally (since July 2019), but its government and Washington are at loggerheads: a 25% US tariff on most Brazilian goods since July 2026 (civil aircraft exempt),
+and Lula, re-elected on 25 October 2026, ran against US pressure. Korea's president has asked Brazil to build a next-generation airliner together; <a href="fps_embraer.html">the Embraer page</a> prices Embraer as a third maker, on price and share.
 If COMAC grows to take all of China's single-aisle demand by 2050, the fps is worth less ({b(ITEM(1, R10, TEN, WC))} against Do Nothing in 2030, from {b(ITEM(1, R10, TEN))}) and the premium needed rises
 (to {b(sc10, 2, False)} at 10.5% and {b(sc8, 2, False)} at 8.1%), even with a higher chance that Washington makes Boeing pay for leaving (an assumption).</div></div>
 </div></section>
@@ -369,11 +370,11 @@ The brief and the franchise terms are re-run in that market. COMAC still sells o
 Value columns: the franchise view, without co-funding or the cost of leaving.</p></div></section>
 
 <section><h2>Brazil and Embraer</h2><div class="panel"><ul class="cav">
-<li><b>Not an adversary.</b> Brazil has been a US Major Non-NATO Ally since 31 July 2019. The July 2025 US tariffs on Brazil were over the Bolsonaro prosecution, and civil aircraft and parts were exempt from the additional duty (Embraer paid $54M at the 10% baseline in 2025); the Supreme Court struck down those tariffs on 20 February 2026.</li>
+<li><b>Allied on paper, at odds in practice.</b> Brazil has been a US Major Non-NATO Ally since 31 July 2019. The July 2025 US tariffs on Brazil were over the Bolsonaro prosecution; civil aircraft and parts were exempt from the additional duty, but Brazilian jets still paid the 10% baseline until the Supreme Court struck those tariffs down on 20 February 2026, while EU, UK and Japanese aircraft were back at zero (Embraer \"was the only manufacturer to pay tariffs on aircraft exports\", March 2026). A 25% Section 301 tariff on most Brazilian goods followed in July 2026 (aircraft exempt), and Lula won re-election on 25 October 2026 running against US pressure (search extracts; see the Embraer page).</li>
 <li><b>Tied into the US.</b> Embraer's jets carry more than 40% US content and Pratt & Whitney engines on the E2; it employs about 2,500 people in the US and sells the C-390 to NATO air forces.</li>
-<li><b>Small next to the 737.</b> 78 commercial deliveries in 2025 against about 564 737s a year at rate 47; no narrowbody decision before about 2030; it has sounded out Saudi, Turkish, Indian and Korean partners (2024 report, exploratory).</li>
+<li><b>Small next to the 737, but courted.</b> 78 commercial deliveries in 2025 against about 564 737s a year at rate 47; no narrowbody decision before about 2030; it sounded out Saudi, Turkish, Indian and Korean partners (2024 report, exploratory), and in July 2026 Korea's president proposed building a next-generation airliner together and KAI and Embraer signed a non-binding memorandum.</li>
 <li><b>Boeing's own record with Embraer</b> is the clearest case of strategy giving way to cash: $4.2B for 80% of its commercial business agreed in 2018, terminated in April 2020, settled for $150M in 2024.</li>
-<li><b>In the game</b> Embraer matters as a limit, not a threat: the "fps via Embraer" plan has Embraer paying 35% of the bill, $21-23B, about three times its 2025 revenue.</li>
+<li><b>In the game</b> the "fps via Embraer" plan carries a $100B bill on the board, so it never competes, and the game's Embraer-like entrant sells only to customers nobody else can serve. <a href="fps_embraer.html">The Embraer page</a> prices Embraer as a competitor and partners for the bill.</li>
 </ul></div></section>
 
 <section><h2>How these enter the decision</h2><div class="panel">{terms_table()}</div></section>
