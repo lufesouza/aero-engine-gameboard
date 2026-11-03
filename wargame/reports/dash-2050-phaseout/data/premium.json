@@ -1,0 +1,1248 @@
+{
+ "about": "The strategic premium that would flip Boeing's fps decision in the MAX phase-out game: a value the numbers do not\ncount (the weight of jobs and Washington, Boeing's brand as an engineering company, not leaving the narrowbody market\nto Airbus and COMAC), added to every plan with an fps in every column of a round's brief, and found as the smallest\namount at which Boeing's decision rule (thresholds.decide, each of its four readings) launches an fps.",
+ "fps_plans": [
+  "10-year at Renton",
+  "10-year, new sites",
+  "7-year at Renton",
+  "7-year, new sites",
+  "10-year at Renton + Re-engine",
+  "10-year, new sites + Re-engine"
+ ],
+ "rounds": {
+  "1": {
+   "year": 2030,
+   "weights": {
+    "1": 1.0
+   },
+   "cases": {
+    "base|game|10.5%": {
+     "rule": {
+      "S": 8.471047973632814,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 12.629502794831913
+     },
+     "pairwise": {
+      "S": 8.471047973632814,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 12.629502794831913
+     },
+     "worst_first": {
+      "S": 8.471047973632814,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 12.629502794831913
+     },
+     "premium": {
+      "S": 8.471047973632814,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 12.629502794831913
+     }
+    },
+    "base|game|8.1%": {
+     "rule": {
+      "S": 7.169728851318361,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 9.798244231151386
+     },
+     "pairwise": {
+      "S": 7.169728851318361,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 9.798244231151386
+     },
+     "worst_first": {
+      "S": 7.169728851318361,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 9.798244231151386
+     },
+     "premium": {
+      "S": 7.169728851318361,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 9.798244231151386
+     }
+    },
+    "base|full|10.5%": {
+     "rule": {
+      "S": 6.0972854614257805,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 9.090455397685695
+     },
+     "pairwise": {
+      "S": 6.0972854614257805,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 9.090455397685695
+     },
+     "worst_first": {
+      "S": 6.0972854614257805,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 9.090455397685695
+     },
+     "premium": {
+      "S": 6.0972854614257805,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 9.090455397685695
+     }
+    },
+    "base|full|8.1%": {
+     "rule": {
+      "S": 1.3760543823242184,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 1.880533726303978
+     },
+     "pairwise": {
+      "S": 1.3760543823242184,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 1.880533726303978
+     },
+     "worst_first": {
+      "S": 1.3760543823242184,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 1.880533726303978
+     },
+     "premium": {
+      "S": 1.3760543823242184,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 1.880533726303978
+     }
+    },
+    "low|full|10.5%": {
+     "rule": {
+      "S": 7.886094665527343,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 11.75739470825759
+     },
+     "pairwise": {
+      "S": 7.886094665527343,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 11.75739470825759
+     },
+     "worst_first": {
+      "S": 7.886094665527343,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 11.75739470825759
+     },
+     "premium": {
+      "S": 7.886094665527343,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton + Re-engine",
+      "S_decision_year": 11.75739470825759
+     }
+    },
+    "low|full|8.1%": {
+     "rule": {
+      "S": 5.815926361083984,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 7.948120228537504
+     },
+     "pairwise": {
+      "S": 5.815926361083984,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 7.948120228537504
+     },
+     "worst_first": {
+      "S": 5.815926361083984,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 7.948120228537504
+     },
+     "premium": {
+      "S": 5.815926361083984,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 7.948120228537504
+     }
+    },
+    "high|full|10.5%": {
+     "rule": {
+      "S": 3.6498046875000005,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.441501292974488
+     },
+     "pairwise": {
+      "S": 3.6498046875000005,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.441501292974488
+     },
+     "worst_first": {
+      "S": 3.6498046875000005,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.441501292974488
+     },
+     "premium": {
+      "S": 3.6498046875000005,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.441501292974488
+     }
+    },
+    "high|full|8.1%": {
+     "rule": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 0.0
+     },
+     "pairwise": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 0.0
+     },
+     "worst_first": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 0.0
+     },
+     "premium": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 0.0
+     }
+    },
+    "tail as run|full|10.5%": {
+     "rule": {
+      "S": 7.043392944335937,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 10.501008984068104
+     },
+     "pairwise": {
+      "S": 7.043392944335937,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 10.501008984068104
+     },
+     "worst_first": {
+      "S": 7.043392944335937,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 10.501008984068104
+     },
+     "premium": {
+      "S": 7.043392944335937,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 10.501008984068104
+     }
+    },
+    "tail as run|full|8.1%": {
+     "rule": {
+      "S": 3.986943054199218,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.448607972608804
+     },
+     "pairwise": {
+      "S": 3.986943054199218,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.448607972608804
+     },
+     "worst_first": {
+      "S": 3.986943054199218,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.448607972608804
+     },
+     "premium": {
+      "S": 3.986943054199218,
+      "monotone": true,
+      "plan": "10-year, new sites",
+      "pick": "10-year, new sites + Re-engine",
+      "S_decision_year": 5.448607972608804
+     }
+    }
+   }
+  },
+  "2": {
+   "year": 2035,
+   "weights": {
+    "0": 0.7,
+    "2": 0.3
+   },
+   "cases": {
+    "base|game|10.5%": {
+     "rule": {
+      "S": 6.201856994628905,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 15.232888038484665
+     },
+     "pairwise": {
+      "S": 6.201856994628905,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 15.232888038484665
+     },
+     "worst_first": {
+      "S": 6.201856994628905,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 15.232888038484665
+     },
+     "premium": {
+      "S": 6.201856994628905,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 15.232888038484665
+     }
+    },
+    "base|game|8.1%": {
+     "rule": {
+      "S": 7.900843811035157,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 15.954232491316889
+     },
+     "pairwise": {
+      "S": 8.83431091308594,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 17.839189532020974
+     },
+     "worst_first": {
+      "S": 6.933779907226563,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 14.00143317970749
+     },
+     "premium": {
+      "S": 6.933779907226563,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 14.00143317970749
+     }
+    },
+    "base|full|10.5%": {
+     "rule": {
+      "S": 4.53616714477539,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 11.141651008731584
+     },
+     "pairwise": {
+      "S": 4.53616714477539,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 11.141651008731584
+     },
+     "worst_first": {
+      "S": 4.53616714477539,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 11.141651008731584
+     },
+     "premium": {
+      "S": 4.53616714477539,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 11.141651008731584
+     }
+    },
+    "base|full|8.1%": {
+     "rule": {
+      "S": 3.71251220703125,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 7.496703427436604
+     },
+     "pairwise": {
+      "S": 4.645979309082032,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 9.381660468140687
+     },
+     "worst_first": {
+      "S": 2.745448303222656,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 5.543904115827206
+     },
+     "premium": {
+      "S": 2.745448303222656,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 5.543904115827206
+     }
+    },
+    "low|full|10.5%": {
+     "rule": {
+      "S": 6.048005676269531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 14.855001236326656
+     },
+     "pairwise": {
+      "S": 6.048005676269531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 14.855001236326656
+     },
+     "worst_first": {
+      "S": 6.048005676269531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 14.855001236326656
+     },
+     "premium": {
+      "S": 6.048005676269531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 14.855001236326656
+     }
+    },
+    "low|full|8.1%": {
+     "rule": {
+      "S": 7.575257873535156,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 15.296774393547226
+     },
+     "pairwise": {
+      "S": 8.508724212646484,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 17.181729893642014
+     },
+     "worst_first": {
+      "S": 6.608193206787109,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 13.343973541328534
+     },
+     "premium": {
+      "S": 6.608193206787109,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 13.343973541328534
+     }
+    },
+    "high|full|10.5%": {
+     "rule": {
+      "S": 2.5174560546875,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 6.1833296472445705
+     },
+     "pairwise": {
+      "S": 2.5174560546875,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 6.1833296472445705
+     },
+     "worst_first": {
+      "S": 2.5174560546875,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 6.1833296472445705
+     },
+     "premium": {
+      "S": 2.5174560546875,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 6.1833296472445705
+     }
+    },
+    "high|full|8.1%": {
+     "rule": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 0.0
+     },
+     "pairwise": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 0.0
+     },
+     "worst_first": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 0.0
+     },
+     "premium": {
+      "S": 0.0,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 0.0
+     }
+    },
+    "tail as run|full|10.5%": {
+     "rule": {
+      "S": 5.482403564453126,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.465779644940168
+     },
+     "pairwise": {
+      "S": 5.482403564453126,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.465779644940168
+     },
+     "worst_first": {
+      "S": 5.482403564453126,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.465779644940168
+     },
+     "premium": {
+      "S": 5.482403564453126,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.465779644940168
+     }
+    },
+    "tail as run|full|8.1%": {
+     "rule": {
+      "S": 6.364170837402343,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 12.851217361436845
+     },
+     "pairwise": {
+      "S": 7.297637176513672,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 14.736172861531635
+     },
+     "worst_first": {
+      "S": 5.397106933593751,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 10.898418049827454
+     },
+     "premium": {
+      "S": 5.397106933593751,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 10.898418049827454
+     }
+    }
+   }
+  },
+  "3": {
+   "year": 2045,
+   "weights": {
+    "0": 0.8,
+    "1": 0.2
+   },
+   "cases": {
+    "base|game|10.5%": {
+     "rule": {
+      "S": 4.309163665771485,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.726073786756395
+     },
+     "pairwise": {
+      "S": 4.309163665771485,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.726073786756395
+     },
+     "worst_first": {
+      "S": 4.309163665771485,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.726073786756395
+     },
+     "premium": {
+      "S": 4.309163665771485,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.726073786756395
+     }
+    },
+    "base|game|8.1%": {
+     "rule": {
+      "S": 7.415286254882814,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 32.692202710838124
+     },
+     "pairwise": {
+      "S": 8.003274536132814,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.28450075861269
+     },
+     "worst_first": {
+      "S": 6.972350311279298,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 30.73940531927858
+     },
+     "premium": {
+      "S": 6.972350311279298,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 30.73940531927858
+     }
+    },
+    "base|full|10.5%": {
+     "rule": {
+      "S": 3.251607513427734,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 21.676112721880983
+     },
+     "pairwise": {
+      "S": 3.251607513427734,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 21.676112721880983
+     },
+     "worst_first": {
+      "S": 3.251607513427734,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 21.676112721880983
+     },
+     "premium": {
+      "S": 3.251607513427734,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 21.676112721880983
+     }
+    },
+    "base|full|8.1%": {
+     "rule": {
+      "S": 4.552295684814452,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 20.069970087753497
+     },
+     "pairwise": {
+      "S": 5.1402832031250005,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 22.66226477191264
+     },
+     "worst_first": {
+      "S": 4.1093589782714846,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 18.117169332578527
+     },
+     "premium": {
+      "S": 4.1093589782714846,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 18.117169332578527
+     }
+    },
+    "low|full|10.5%": {
+     "rule": {
+      "S": 4.28773956298828,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.583254807228215
+     },
+     "pairwise": {
+      "S": 4.28773956298828,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.583254807228215
+     },
+     "worst_first": {
+      "S": 4.28773956298828,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.583254807228215
+     },
+     "premium": {
+      "S": 4.28773956298828,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 28.583254807228215
+     }
+    },
+    "low|full|8.1%": {
+     "rule": {
+      "S": 7.432537078857423,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 32.7682574193041
+     },
+     "pairwise": {
+      "S": 8.020524597167968,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.360552103463235
+     },
+     "worst_first": {
+      "S": 6.989600372314452,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 30.815456664129123
+     },
+     "premium": {
+      "S": 6.989600372314452,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 30.815456664129123
+     }
+    },
+    "high|full|10.5%": {
+     "rule": {
+      "S": 2.0198707580566397,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.46501570514346
+     },
+     "pairwise": {
+      "S": 2.0198707580566397,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.46501570514346
+     },
+     "worst_first": {
+      "S": 2.0198707580566397,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.46501570514346
+     },
+     "premium": {
+      "S": 2.0198707580566397,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 13.46501570514346
+     }
+    },
+    "high|full|8.1%": {
+     "rule": {
+      "S": 1.1440879821777343,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 5.044007061461626
+     },
+     "pairwise": {
+      "S": 1.7320762634277345,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 7.636305109236193
+     },
+     "worst_first": {
+      "S": 0.7011520385742188,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 3.0912096699020823
+     },
+     "premium": {
+      "S": 0.7011520385742188,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 3.0912096699020823
+     }
+    },
+    "tail as run|full|10.5%": {
+     "rule": {
+      "S": 4.0698486328125,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.13073375600612
+     },
+     "pairwise": {
+      "S": 4.0698486328125,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.13073375600612
+     },
+     "worst_first": {
+      "S": 4.0698486328125,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.13073375600612
+     },
+     "premium": {
+      "S": 4.0698486328125,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.13073375600612
+     }
+    },
+    "tail as run|full|8.1%": {
+     "rule": {
+      "S": 6.906281280517578,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 30.448122950354726
+     },
+     "pairwise": {
+      "S": 7.494268798828125,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 33.040417634513865
+     },
+     "worst_first": {
+      "S": 6.46334457397461,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 28.495322195179757
+     },
+     "premium": {
+      "S": 6.46334457397461,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "Re-engine",
+      "S_decision_year": 28.495322195179757
+     }
+    }
+   }
+  },
+  "4": {
+   "year": 2050,
+   "weights": {
+    "0": 0.8,
+    "1": 0.2
+   },
+   "cases": {
+    "base|game|10.5%": {
+     "rule": {
+      "S": 3.2984237670898433,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 36.224393565724256
+     },
+     "pairwise": {
+      "S": 3.2984237670898433,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 36.224393565724256
+     },
+     "worst_first": {
+      "S": 3.2984237670898433,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 36.224393565724256
+     },
+     "premium": {
+      "S": 3.2984237670898433,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 36.224393565724256
+     }
+    },
+    "base|game|8.1%": {
+     "rule": {
+      "S": 5.757118225097656,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50406315421966
+     },
+     "pairwise": {
+      "S": 5.757118225097656,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50406315421966
+     },
+     "worst_first": {
+      "S": 5.757118225097656,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50406315421966
+     },
+     "premium": {
+      "S": 5.757118225097656,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50406315421966
+     }
+    },
+    "base|full|10.5%": {
+     "rule": {
+      "S": 2.470869445800781,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.135915083822066
+     },
+     "pairwise": {
+      "S": 2.470869445800781,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.135915083822066
+     },
+     "worst_first": {
+      "S": 2.470869445800781,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.135915083822066
+     },
+     "premium": {
+      "S": 2.470869445800781,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 27.135915083822066
+     }
+    },
+    "base|full|8.1%": {
+     "rule": {
+      "S": 3.437605285644531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 22.393871498080085
+     },
+     "pairwise": {
+      "S": 3.437605285644531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 22.393871498080085
+     },
+     "worst_first": {
+      "S": 3.437605285644531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 22.393871498080085
+     },
+     "premium": {
+      "S": 3.437605285644531,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 22.393871498080085
+     }
+    },
+    "low|full|10.5%": {
+     "rule": {
+      "S": 3.271768951416015,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.931661460460994
+     },
+     "pairwise": {
+      "S": 3.271768951416015,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.931661460460994
+     },
+     "worst_first": {
+      "S": 3.271768951416015,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.931661460460994
+     },
+     "premium": {
+      "S": 3.271768951416015,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.931661460460994
+     }
+    },
+    "low|full|8.1%": {
+     "rule": {
+      "S": 5.756792449951171,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50194093070606
+     },
+     "pairwise": {
+      "S": 5.756792449951171,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50194093070606
+     },
+     "worst_first": {
+      "S": 5.756792449951171,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50194093070606
+     },
+     "premium": {
+      "S": 5.756792449951171,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 37.50194093070606
+     }
+    },
+    "high|full|10.5%": {
+     "rule": {
+      "S": 1.569000244140625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 17.231285717606013
+     },
+     "pairwise": {
+      "S": 1.569000244140625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 17.231285717606013
+     },
+     "worst_first": {
+      "S": 1.569000244140625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 17.231285717606013
+     },
+     "premium": {
+      "S": 1.569000244140625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 17.231285717606013
+     }
+    },
+    "high|full|8.1%": {
+     "rule": {
+      "S": 0.8248916625976562,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 5.373658799394724
+     },
+     "pairwise": {
+      "S": 0.8248916625976562,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 5.373658799394724
+     },
+     "worst_first": {
+      "S": 0.8248916625976562,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 5.373658799394724
+     },
+     "premium": {
+      "S": 0.8248916625976562,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 5.373658799394724
+     }
+    },
+    "tail as run|full|10.5%": {
+     "rule": {
+      "S": 3.1558372497558596,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 34.65846071846331
+     },
+     "pairwise": {
+      "S": 3.1558372497558596,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 34.65846071846331
+     },
+     "worst_first": {
+      "S": 3.1558372497558596,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 34.65846071846331
+     },
+     "premium": {
+      "S": 3.1558372497558596,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 34.65846071846331
+     }
+    },
+    "tail as run|full|8.1%": {
+     "rule": {
+      "S": 5.449072265625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.49733432449014
+     },
+     "pairwise": {
+      "S": 5.449072265625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.49733432449014
+     },
+     "worst_first": {
+      "S": 5.449072265625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.49733432449014
+     },
+     "premium": {
+      "S": 5.449072265625,
+      "monotone": true,
+      "plan": "10-year at Renton",
+      "pick": "10-year at Renton",
+      "S_decision_year": 35.49733432449014
+     }
+    }
+   }
+  }
+ }
+}
