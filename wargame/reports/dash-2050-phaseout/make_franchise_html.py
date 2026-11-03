@@ -9,6 +9,7 @@ the parameters). Every figure on the page comes from those files; the claims in 
   python3 make_franchise_html.py
 """
 import json
+import math
 import os
 import re
 import sys
@@ -57,6 +58,10 @@ def nw(s):
     return f'<span class="nw">{s}</span>'
 
 
+def n0(v):
+    return f"{K.rnd(v, 0):,.0f}"
+
+
 # ─────────────────────────────── the numbers ───────────────────────────────
 def item(n, key, name, c, src="terms"):
     """A term (or the game's value) for `name` against Do Nothing in the CEO's expected columns of round n."""
@@ -90,7 +95,12 @@ def rtxt(lo, hi, f=pct, none="not reached"):
 def cut_txt(lo, hi):
     if lo is None:
         return "no cut is enough"
-    return rtxt(lo, hi, lambda x: pct(x, 0))
+    return rtxt(lo, hi, cut_pct)
+
+
+def cut_pct(x):
+    """A bill cut, rounded up to a tenth of a point: a cut just under the threshold does not launch."""
+    return f"{math.ceil(1000 * x - 1e-9) / 10:.1f}%"
 
 
 def launched(n, key):
@@ -204,6 +214,17 @@ assert 1.5 < min(SP10) and max(SP10) < 2.5 and 2.5 < min(SP8) and max(SP8) < 5.5
 M3, M4 = rng(3, "base|full|10.5%"), rng(4, "base|full|10.5%")
 M3R, M4R = rng(3, "tail as run|full|10.5%"), rng(4, "tail as run|full|10.5%")
 assert M3[0] > 0.6 and M4[0] > 0.9 and M3R[0] > 0.95 and M4R[0] > 2.0
+# how the 2045 and 2050 fall splits: franchise terms on held demand (as run -> full without the counted years), and the
+# counted years restated (-> full)
+M3X, M4X = rng(3, "base|full-C0|10.5%"), rng(4, "base|full-C0|10.5%")
+SPLIT = {n: (100 * (r_[0] - x[0]), 100 * (x[0] - m[0])) for n, r_, x, m in ((3, M3R, M3X, M3), (4, M4R, M4X, M4))}
+assert 0.6 < SPLIT[3][0] / SPLIT[3][1] < 1.6 and SPLIT[4][1] > SPLIT[4][0]
+CUT34 = {(n, k): rng(n, k, "cut") for n in (3, 4) for k in ("base|full|10.5%", "base|full|8.1%", "high|full|8.1%")}
+assert all(CUT34[(n, "base|full|10.5%")][0] > 0.6 for n in (3, 4)) and all(CUT34[(n, "high|full|8.1%")][1] < 0.2 for n in (3, 4))
+# delay at 8.1%: a later fps sells fewer aircraft in its counted years, mostly because its mature years fall in a
+# falling market, and at a lower share
+UNITS = {n: RND[str(n)]["plans"][TEN][int(max(RND[str(n)]["weights"], key=RND[str(n)]["weights"].get))]["fps_units"]["held"] for n in (1, 2, 3)}
+assert UNITS[1] > UNITS[2] > UNITS[3]
 # closing costs: held at $3.0B in the combined cases; +-$1.5B moves the 2030 10-year item by half its closing-cost line
 C6_10 = item(1, "base|10.5%", TEN, "C6")
 assert C6_10 < 0 and abs(0.5 * C6_10) < 0.1
@@ -229,6 +250,7 @@ DEM = {"as run": curve(os.path.join(DG, "demand_page_n0.json")),
        "held": curve(os.path.join(HERE, "data", "curves", "franchise_held.json")),
        "rising": curve(os.path.join(HERE, "data", "curves", "franchise_rising.json"))}
 assert abs(DEM["as run"][2060] - DEM["held"][2075]) < 1e-9 and DEM["as run"][2075] < 200 < 1700 < DEM["rising"][2070]
+assert DEM["as run"][2050] > 1800 > 1200 > DEM["as run"][2060]
 
 
 # ─────────────────────────────── charts ───────────────────────────────
@@ -418,7 +440,7 @@ PARAM_ROWS = [
     ("Widebody erosion",
      "Widebody share Boeing loses while it has no new narrowbody in service, phased in as the MAX runs off (package and single-supplier campaigns lost).",
      "5 points of the 170-a-year widebody market (0 / 15)",
-     "Weak, judgement: no source sizes it. The 15-point case is by analogy with McDonnell Douglas, whose order share fell to 3-4% once it stopped launching new aircraft and which the FTC found no longer a meaningful competitive force (1997); the MD-11 ended after the merger"),
+     "Weak, judgement: no source sizes it. The 15-point case is by analogy with McDonnell Douglas, whose order share fell to 3-4% once it stopped developing new large aircraft and which the FTC found no longer a meaningful competitive force (1997); the MD-11 ended after the merger"),
     ("Closing costs",
      "Half when the MAX ends (every plan; about 2042-45 with an fps, as its buyers move to the fps), half when Boeing leaves narrowbodies (Do Nothing by 2060). The option to come back is valued at zero.",
      "$3.0B, in every case (it costs the fps in 2030-35 and helps it later, so it is not moved with the others)",
@@ -453,9 +475,9 @@ HISTORY = [
      "BX-1033, BX-1545, B-1457"),
     ("2019-21", "Pays to keep the capability",
      "Kept the 737 workforce and supply chain through the grounding: about $5B of abnormal production costs, a revealed price for not losing the line.",
-     "B-1618, FY2020 10-K"),
+     "B-1618, B-1794, FY2020 10-K"),
     ("2025-26", "Today: a successor will come, on three conditions",
-     "Market, technology and Boeing's own financial and capacity readiness, \"not now on all 3\" (Ortberg, 2025). \"There will be a day where we have to enter into a new program. That day is not today, and it's not any time near\" (Malave, 2026). The CFO before him called it a 50-year product.",
+     "Market, technology and Boeing's own financial and capacity readiness, \"not now on all 3\" (Ortberg, 2025). \"There will be a day where we have to enter into a new program. That day is not today, and it's not any time near\" (Malave, CFO, 2026). The previous CFO, Brian West, called it a 50-year product (2025).",
      "BX-1296, B-2278; Transcript Digest (4) p.100"),
 ]
 
@@ -469,7 +491,7 @@ OTHERS = [
       "When customers rejected the first A350, Airbus committed about EUR 11.6bn to the A350 XWB (EADS launch budget, 2006) rather than cede the segment.",
       "Faury on the next single-aisle: \"If we move first, the supply chain will come to us.\""]),
     ("Leaving is close to permanent",
-     ["McDonnell Douglas took 3-4% of 1996 world orders, against a 12% ten-year average share in the EEA (EC M.877), once it stopped launching new aircraft; the FTC found it \"no longer ... a meaningful competitive force\".",
+     ["McDonnell Douglas took 3-4% of 1996 world orders, against a 12% ten-year average share in the EEA (EC M.877), once it stopped developing new large aircraft (the MD-12 found no buyers and the MD-XX was dropped in 1996); the FTC found it \"no longer ... a meaningful competitive force\".",
       "None of eight airliner makers that left the market since 1962 came back: three large-jet makers (Convair, Lockheed, Douglas) and five regional and small-jet makers (Fokker to Bombardier).",
       "Exits cost more than a year's losses (Saab's SKr4bn after-tax provision was about four years of its average loss; Douglas $1.4B pre-tax; BAE £250M for the RJ, plus £150M for other commercial activities), and the installed base outlives the exit: Rolls-Royce sold its IAE stake for $1.5bn plus flight-hour payments, and says its installed base \"is where the majority of the value of the business lies\"."]),
     ("Other industries say the same",
@@ -484,7 +506,7 @@ def calib_table():
     head = ["", "The brief", "Analysts and practice"]
     rows = [["Do Nothing's 737 MAX profit, 2026-2060", f"{b(dn, 1, False)} today", "Morningstar: about half of Boeing's enterprise value comes from the 737 line, about $65B on the game's $130B enterprise value for Boeing (analyst estimate)"],
             ["One narrowbody share point", f"{b(CAL['share_point_pv_10yr'], 2, False)} today (20 fps a year, {CAL['eis_10yr']}-{CAL['eis_10yr'] + 19})", "Barclays: about $2.4B (the industry's $238B, 2019 dollars; analyst estimate)"],
-            ["Discount rate", "10.5% on constant 2026 dollars, about 12.9% nominal", "8-10% nominal: Morningstar Boeing 8.6%, Goldman Sachs Airbus 9%, Rolls-Royce 8.46%"],
+            ["Discount rate", "10.5% on constant 2026 dollars, about 12.9% nominal", "8-10% nominal: Morningstar Boeing 8.6%; Goldman Sachs Airbus 9% and Rolls-Royce 8.46% (analyst estimates)"],
             ["Horizon", "20 years from entry into service; Do Nothing to 2060; nothing after", "Explicit forecast, then a fade, then a perpetuity"]]
     assert 19.5 < dn < 20.5 and 0.6 < CAL["share_point_pv_10yr"] < 0.66
     return ctable(head, rows, txt_cols=(1, 2))
@@ -499,6 +521,7 @@ table.cards td.txt { min-width: 14rem; }
 .ev h3 { font: 600 1.02rem/1.3 var(--font-body); margin: 0 0 6px; }
 .ev ul { margin: 0; padding-left: 18px; font-size: .9rem; } .ev li { margin-bottom: 6px; text-wrap: pretty; }
 .chart .rowlab.sm.strong { font-weight: 700; }
+.chart.narrow .rowlab { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
 ul.cav li, footer, td.txt { overflow-wrap: anywhere; }
 @media (max-width: 640px) {
   table.cards { min-width: 0 !important; }
@@ -521,7 +544,7 @@ def build(out_path):
     tiles = [
         ("2030 margin needed, the brief", rtxt(*GM30), f"the fps margin at which Boeing launches in 2030, across the four readings of the CEO's rule. The game's fps earns {pct(M0, 2)}."),
         ("With the franchise, 10.5%", rtxt(*FM30), f"all five terms at their base values: about {K.rnd(100 * (GM30[0] - FM30[0]), 0):.0f} points lower, still {K.rnd(100 * (FM30[0] - M0), 0):.0f}-{K.rnd(100 * (FM30[1] - M0), 0):.0f} points short. No launch."),
-        ("With the franchise, 8.1%", rtxt(*FM30_8), f"the fps now beats Do Nothing ({bp(G10_8 + F10_8, 1)} to {bp(G7_8 + F7_8, 1)}) but not the 787 Re-engine alone ({bp(RE_8, 1)}), which the CEO picks and the Board vetoes, as in the game: Do Nothing. A {pct(FC30_8[0], 0)} cut in Boeing's share of the bill launches the 10-year fps on new sites."),
+        ("With the franchise, 8.1%", rtxt(*FM30_8), f"the fps now beats Do Nothing ({bp(G10_8 + F10_8, 1)} to {bp(G7_8 + F7_8, 1)}) but not the 787 Re-engine alone ({bp(RE_8, 1)}), which the CEO picks and the Board vetoes, as in the game: Do Nothing. A cut of {cut_pct(FC30_8[0])} in Boeing's share of the bill launches the 10-year fps on new sites."),
         ("What waiting costs, at 8.1%", " → ".join(nw(esc(bp(LW8[n], 1))) for n in (1, 2, 3)), "the 10-year fps at Renton with the franchise, against Do Nothing, launched in 2030, 2035 or 2045, in today's money. At 10.5% it is behind on every date."),
     ]
     tiles_html = '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{v if v.startswith("<") else esc(v)}</div><div class="d">{esc(d)}</div></div>' for k, v, d in tiles) + "</div>"
@@ -551,22 +574,25 @@ to the cent, and every decision threshold on the main report.</p></header>
 <section style="margin-top:18px">{tiles_html}</section>
 
 <section><h2>The answer</h2><div class="bl">
-<div class="panel"><div><b>The franchise is worth about a third of the fps's gap to Do Nothing</b>
+<div class="panel"><div><b>At the game's 10.5%, the franchise is worth about a third of the fps's gap to Do Nothing</b>
 In 2030 the terms add {b(F10)} to the 10-year fps at Renton and {b(F7)} to the 7-year. The brief has them {b(-G10, 2, False)} and {b(-G7, 2, False)} behind Do Nothing; with the franchise they are
-still {b(-(G10 + F10), 2, False)} and {b(-(G7 + F7), 2, False)} behind. Continuing value is the biggest term ({b(c1_10)} for the 10-year).</div></div>
+still {b(-(G10 + F10), 2, False)} and {b(-(G7 + F7), 2, False)} behind. Continuing value is the biggest term ({b(c1_10)} for the 10-year). At 8.1% the same terms ({b(F10_8)} and {b(F7_8)})
+more than close the brief's gaps ({b(-G10_8, 2, False)} and {b(-G7_8, 2, False)}).</div></div>
 <div class="panel"><div><b>At the game's 10.5%, no case changes any decision</b>
 The margin Boeing needs falls in every round: 2030 from {rtxt(*GM30)} to {rtxt(*FM30)} (high case {rtxt(*HM30)}), 2035 to {rtxt(*m2)}. It never reaches {pct(M0, 2)}.
-2045 and 2050 stay out of reach ({rtxt(*M3)} and {rtxt(*M4)}). Most of that fall is demand, not franchise: a 2045 or 2050 fps's own counted years run past 2060, where the run's curve collapses,
-and the base holds that demand up. On the run's own curve the margin needed is {rtxt(*M3R)} and {rtxt(*M4R)}.</div></div>
+2045 and 2050 stay out of reach ({rtxt(*M3)} and {rtxt(*M4)}). Most of that fall rests on holding demand up after 2060: on the run's own curve, which collapses after 2060, the margin needed is
+{rtxt(*M3R)} and {rtxt(*M4R)}. Holding demand lifts both the brief's own counted years that run past 2060 and the franchise terms after them: in 2045 the two are about equal
+({K.rnd(SPLIT[3][1], 0):.0f} and {K.rnd(SPLIT[3][0], 0):.0f} points); in 2050 the counted years are most of it ({K.rnd(SPLIT[4][1], 0):.0f} of {K.rnd(SPLIT[4][0] + SPLIT[4][1], 0):.0f} points).</div></div>
 <div class="panel"><div><b>At 8.1% the fps comes close; it launches only in the high case or if demand rises</b>
 Most of the franchise is earned after 2060, when a dollar is worth {K.rnd(DF60 * 100, 0):.0f} cents today at 10.5%. At 8.1% the brief's own 2030 threshold drops to {rtxt(*GM30_8)} and the franchise
 takes it to {rtxt(*FM30_8)}. The fps then beats Do Nothing, but the 787 Re-engine alone is worth more, so the CEO picks the Re-engine; the Board vetoes it on its downside test
 ({b(RE_MIN[R8])} in the two A350 Re-engine columns), as it did in the game's 2030 round at 10.5% ({b(RE_MIN[R10])}), and Boeing does nothing.
-In the high case, or if demand rises after 2061, the CEO picks the 10-year fps on new sites with the Re-engine; the Board vetoes the Re-engine beside it (about {b(vh["pair_vs_alone"], 1)} in the A350 Re-engine column)
+In the high case, or if demand rises after 2060, the CEO picks the 10-year fps on new sites with the Re-engine; the Board vetoes the Re-engine beside it (about {b(vh["pair_vs_alone"], 1)} in the A350 Re-engine column)
 and the fps goes ahead alone, at {b(vh["alone"], 1)} against Do Nothing in the high case and {b(vr["alone"], 1)} with rising demand. The high case also launches the 10-year at Renton in the 2035 brief.</div></div>
 <div class="panel"><div><b>At 8.1%, only a 2030 launch beats never launching</b>
-With the franchise, the 10-year at Renton is {b(LW8[1])} against Do Nothing launched in 2030, {b(LW8[2])} in 2035 and {b(LW8[3])} in 2045. Delay costs share: Boeing's preference at the end of the game's years
-falls from {sh(1)} for a 2030 launch to {sh(2)} for 2035 and {sh(3)} for 2045. At 10.5% discounting outweighs that: each delay makes the fps less bad ({b(LW10[1])}, {b(LW10[2])}, {b(LW10[3])}) but never good,
+With the franchise, the 10-year at Renton is {b(LW8[1])} against Do Nothing launched in 2030, {b(LW8[2])} in 2035 and {b(LW8[3])} in 2045. Delay costs volume: its 20 counted years deliver {n0(UNITS[1])} fps for a 2030 launch, {n0(UNITS[2])} for 2035 and {n0(UNITS[3])} for 2045,
+mostly because a later fps sells its mature years into the run's falling market (about {n0(DEM["as run"][2050])} a year in 2050, {n0(DEM["as run"][2060])} in 2060, where the base holds it),
+and partly at a lower share (Boeing's preference at the end of the game's years is {sh(1)}, {sh(2)} and {sh(3)}). At 10.5% discounting outweighs that: each delay makes the fps less bad ({b(LW10[1])}, {b(LW10[2])}, {b(LW10[3])}) but never good,
 while the margin it needs rises ({rtxt(*FM30)} in 2030, {rtxt(*m2)} in 2035). The franchise terms themselves fall from {b(FV[1])} to {b(FV[3])} between a 2030 and a 2045 launch, about what fifteen more years of discounting give.</div></div>
 </div></section>
 
@@ -583,7 +609,7 @@ and, in its own programme decisions, counted franchise value that the war game's
 <div class="panel"><p>Each term is a yearly flow for every plan in every column of every round, discounted like the brief and counted to the same end year within a round
 (the latest fps's 50th year in service). After 2060, every year, counted by the brief or not, comes from the game's own supply-and-demand engine run on one of three demand tails,
 with Boeing's preference held where the game left it, so each tail is one consistent world. In this world the 737 MAX is gone from 2060 in every plan and in the status quo,
-so Do Nothing earns no narrowbody profit after 2060.</p>
+so Do Nothing sells no narrowbodies after 2060 (services on the MAX fleet it has delivered still count, under Services).</p>
 <p class="cap">Views used below: <b>core</b> is continuing value, services and closing costs (with the brief's counted years after 2060 put on the same demand, which is zero for a 2030 launch); then <b>+ overhead</b> adds stranded overhead;
 then <b>+ widebody</b> adds widebody erosion (judgement). The high and low cases move every parameter together toward or against the fps, except closing costs.</p></div>
 <div class="panel">{param_table()}</div>
@@ -602,7 +628,7 @@ has to be worth more than $1B above it; the worst-column and premium readings se
 </div></section>
 
 <section><h2>Does it change the decision?</h2><div class="stack">
-<div class="panel"><p class="ctitle">The margin Boeing needs falls by {K.rnd(min(DROP), 0):.0f}-{K.rnd(max(DROP), 0):.0f} points in 2030; among these views only the high case at 8.1% reaches the fps's margin (rising demand after 2061 does too, below)</p>
+<div class="panel"><p class="ctitle">The margin Boeing needs falls by {K.rnd(min(DROP), 0):.0f}-{K.rnd(max(DROP), 0):.0f} points in 2030; among these views only the high case at 8.1% reaches the fps's margin (rising demand after 2060 does too, below)</p>
 <div class="legend"><span><i class="sw" style="background:var(--s1)"></i>at 10.5%</span><span><i class="sw" style="background:var(--s2)"></i>at 8.1%</span><span>bars span the four readings of the CEO's rule</span></div>
 <p class="label">2030 brief</p>
 <div class="cw only-wide">{margin_chart(1)}</div><div class="cw only-narrow">{margin_chart(1, True)}</div>
@@ -611,7 +637,8 @@ has to be worth more than $1B above it; the worst-column and premium readings se
 <p class="cap">Margin the fps needs for Boeing to launch, with the bill as briefed. The game's fps earns {pct(M0, 2)} (dashed line). Below it, Boeing launches.</p></div>
 <div class="panel">{threshold_table()}
 <p class="cap">Bill cut: the share of Boeing's fps bill someone else would have to carry (partners, customers or government) for Boeing to launch at the game's margin. The four readings of the CEO's rule are those on the main report;
-where they differ, the range is shown. In 2045 and 2050 the fps enters service so late that others would have to carry most of the bill. At 8.1% the 2030 cut launches the 10-year fps on new sites alone,
+where they differ, the range is shown. In 2045 and 2050 the fps enters service so late that, at 10.5%, others would have to carry most of the bill ({cut_pct(min(CUT34[(n, "base|full|10.5%")][0] for n in (3, 4)))}–{cut_pct(max(CUT34[(n, "base|full|10.5%")][1] for n in (3, 4)))} with all terms);
+at 8.1% it is {cut_pct(min(CUT34[(n, "base|full|8.1%")][0] for n in (3, 4)))}–{cut_pct(max(CUT34[(n, "base|full|8.1%")][1] for n in (3, 4)))}, and {cut_pct(min(CUT34[(n, "high|full|8.1%")][0] for n in (3, 4)))}–{cut_pct(max(CUT34[(n, "high|full|8.1%")][1] for n in (3, 4)))} in the high case. Cuts are rounded up to a tenth of a point. At 8.1% the 2030 cut launches the 10-year fps on new sites alone,
 at {b(vc["alone"], 1)} against Do Nothing, after the Board vetoes the Re-engine beside it.</p></div>
 </div></section>
 
@@ -635,7 +662,7 @@ It is left out because it conflicts with the game's own supply-and-demand state,
 </div></section>
 
 <section><h2>Notes</h2><div class="panel"><ul class="cav">
-<li><b>Not counted:</b> anything after the fps's 50th year in service (no successor, no perpetuity), tax and working capital, a probability that the franchise case fails (the MAX grounding cost about $18.6B; a 20% failure chance would cut continuing value and services by a fifth), and the option to come back after leaving (valued at zero).</li>
+<li><b>Not counted:</b> deliveries after the fps's 50th year in service (no successor, no perpetuity; services on aircraft already delivered, and the final closing cost, still count), tax and working capital, a probability that the franchise case fails (the MAX grounding cost about $18.6B on Boeing's January 2020 estimate; a 20% failure chance would cut continuing value and services by a fifth), and the option to come back after leaving (valued at zero).</li>
 <li><b>Overlay, not a replay:</b> rivals do not react to Boeing's valuation, and the CEO's and the Board's rules (the $1B business-case test, the −$1B downside test, the $2B rating buffer and the $1B tie rule) are applied unchanged.</li>
 <li><b>Derivative:</b> the sustaining derivative is always bought. In the low case (25% of the bill) it can cost more than the late-life profit it sustains: at 8.1% the low case needs a slightly higher margin than the brief for a 2045 or 2050 launch.</li>
 <li><b>Rates:</b> at 8.1% every line of the brief is re-discounted and the debt penalty re-priced at the new present value; the dashboard's debt logic is not re-run.</li>

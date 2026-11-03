@@ -32,8 +32,8 @@ every plan in a round counted to the same end year (the latest fps entry into se
                          half when Boeing's narrowbody business ends (Do Nothing when the MAX ends; an fps after its 50th
                          year). Held at $3.0B in the low and high cases: it costs the fps in 2030-35 and helps it later.
 
-Views: game (none), core (C0, C1, C2, C6), core+overhead (+ C3 fully loaded), full (+ C4); sensitivities full+programme
-and full+price. Rival moves are held as the game played them (an overlay on Boeing's valuation, not a replay). Each plan
+Views: game (none), core (C0, C1, C2, C6), core+overhead (+ C3 fully loaded), full (+ C4); sensitivities full+programme,
+full+price and full-C0. Rival moves are held as the game played them (an overlay on Boeing's valuation, not a replay). Each plan
 is valued in every column of every round's brief, Boeing's decision (thresholds.decide, all four readings) is re-run
 with the terms on, at 10.5% and at 8.1% (10.5% read as nominal), and the game-only thresholds are asserted equal to
 thresholds.json. The derivative is always bought (in the low case it can cost more than the late-life profit it
@@ -336,6 +336,7 @@ SCENARIOS = {                 # which terms count in each view
     # sensitivities on the full view: the other reading of the overhead, and the MAX price concession
     "full+programme": ("C0", "C1", "C2", "C6", "C3_programme", "C4"),
     "full+price": ("C0", "C1", "C2", "C6", "C3_loaded", "C4", "C5"),
+    "full-C0": ("C1", "C2", "C6", "C3_loaded", "C4"),          # the full view without restating the counted years
 }
 
 
@@ -454,7 +455,9 @@ def main():
                 "share_point_pv_10yr": 0.01 * P["NB_PER_YR"] * PRICE * M0 * sum(df(y, r0) for y in range(ten["fps_eis"], ten["fps_eis"] + 20)),
                 "nb_per_yr": P["NB_PER_YR"], "eis_10yr": ten["fps_eis"]}
         rr = {"year": T.YEARS[n], "horizon": horizon, "weights": T.CEO_W[n], "columns": [f["label"] for f in fl["Do Nothing"]],
-              "plans": {name: [{"fps_eis": f["fps_eis"], "window_end": f["window_end"], "pref_last": f["pref_last"]} for f in fl[name]]
+              "plans": {name: [{"fps_eis": f["fps_eis"], "window_end": f["window_end"], "pref_last": f["pref_last"],
+                                "fps_units": {t: sum(nb_series(f, t, horizon)[y][1] for y in range(f["fps_eis"], f["window_end"] + 1)) if f["fps_eis"] else 0.0
+                                              for t in TAILS}} for f in fl[name]]
                         for name in ROWS},
               "terms": {}, "tails": {}, "thresholds": {}, "launch_when": {}}
         tts = {}
