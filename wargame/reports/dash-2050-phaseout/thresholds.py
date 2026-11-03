@@ -7,22 +7,25 @@ new sites) alone, and the 10-year plans beside the Re-engine (the 7-year beside 
 struck by the One-development-at-a-time rule, H4; the 737 Rate Increase and via-Embraer plans are checked to stay out of
 contention). Then Boeing's process decides, as the round records show it working:
 
-  the CEO      - takes the plan with the most value in the column he expected (2030: S2 alone, as both he and the Board
-                 used it; 2035: S1 70% / S3 30%; 2045 and 2050: S1 80% / S2 20%). Among plans within the $1B margin
-                 of that best plan, the one with the least to execute wins (Do Nothing < Re-engine < an fps < an fps with
-                 the Re-engine).
+  the CEO      - takes the plan with the most value in the column the CEO expected (2030: S2 alone, as both the CEO and
+                 the Board used it; 2035: S1 70% / S3 30%; 2045 and 2050: S1 80% / S2 20%). The 787 Re-engine alone is
+                 a candidate only if it adds more than the $1B margin (the CEO's own lever rule; it held the Re-engine
+                 on that ground in 2035, 2045 and 2050). Among plans within the $1B margin of the best plan, a tie-break
+                 picks: "doing less" (Do Nothing < Re-engine < an fps < an fps with the Re-engine), or the better worst
+                 column (the CEO's third tie-breaker in the record).
   the Board    - judges each order as an item: the submitted plan minus the same plan with that order held. It approves
                  an fps launch only if the item adds more than +$1B in the CEO's column (business case), loses no more
                  than $1B in any column (downside), and the plan's risk-case column is no more than $2B below Do
                  Nothing's (rating first). A vetoed order reverts to hold; the CEO cannot add a launch after a veto.
                  (A Re-engine beside an approved fps that fails its own item tests is vetoed and the fps goes ahead
                  alone; rating first is then checked again on that plan.)
-  Two readings:
-  "rule"       - the above, with no premium: the fps launches only if the CEO's pick contains it and the Board
-                 approves it.
-  "premium"    - the CEO may also give up to $2B of value against the best plan (his H8 cap) to choose an fps for an
-                 objective (the 50/50 split); the fps launches if some fps plan passes the Board and sits within $2B of
-                 the best plan.
+  Four readings, which bracket what the record allows:
+  "rule"       - doing less among the plans within $1B of the best plan; the fps launches only if the CEO's pick
+                 contains it and the Board approves it.
+  "pairwise"   - doing less applied again to the pick against each smaller plan, until none is within $1B of it.
+  "worst_first"- among the plans within $1B of the best, the better worst column wins (ties: doing less).
+  "premium"    - the rule, but the CEO may also give up to $2B of value against the best plan (the H8 cap) to choose
+                 an fps for an objective (the 50/50 split).
 
 Levers: the fps operating margin (on every fps delivered, price held at $55M) and Boeing's fps bill (10-year $60.32B,
 7-year $65.0B, both scaled by the same share), each alone and together. Exact: each column moves by its discounted fps
@@ -62,6 +65,7 @@ SOLO = {"10-year at Renton": ("fps 10-yr at Renton + 787: hold", "10yr"), "10-ye
 PAIRS = {"10-year at Renton + Re-engine": ("fps 10-yr at Renton + 787 Re-engine", "10yr"),
          "10-year, new sites + Re-engine": ("fps 10-yr + 787 Re-engine", "10yr")}
 FINE = [k / 20 for k in range(21)]
+MODES = ("rule", "pairwise", "worst_first", "premium")
 SIZE = {"Do Nothing": 0, "Re-engine": 1}
 SIZE.update({k: 2 for k in SOLO})
 SIZE.update({k: 3 for k in PAIRS})
@@ -191,15 +195,25 @@ def decide(n, rws, m=M0, k=1.0, vals=None):
                 return None
         return plan
 
-    best = max(e, key=e.get)
-    cands = [p for p in e if e[p] >= e[best] - EPS]
+    elig = [p for p in e if not (p == "Re-engine" and e[p] <= EPS)]      # the CEO's lever rule for the Re-engine
+    best = max(elig, key=e.get)
+    cands = [p for p in elig if e[p] >= e[best] - EPS]
     pick = min(cands, key=lambda p: (SIZE[p], -e[p]))
+    pick2 = pick
+    while True:                       # the pick weighed again against each smaller plan: within $1B the smaller wins
+        smaller = [p for p in elig if SIZE[p] < SIZE[pick2] and e[p] >= e[pick2] - EPS]
+        if not smaller:
+            break
+        pick2 = min(smaller, key=lambda p: (SIZE[p], -e[p]))
+    worst = {p: min(item(p, "Do Nothing")) for p in cands}
+    pick3 = max(cands, key=lambda p: (round(worst[p], 9), -SIZE[p], e[p]))
     rule = board(pick)
     prem = rule
     if prem is None:
-        ok = [p for p in WITHOUT_FPS if e[p] >= e[best] - H8 and board(p)]
+        ok = [p for p in WITHOUT_FPS if p in elig and e[p] >= e[best] - H8 and board(p)]
         prem = board(max(ok, key=lambda p: e[p])) if ok else None
-    return {"rule": rule, "premium": prem, "pick": pick, "best": best, "e": e}
+    return {"rule": rule, "pairwise": board(pick2), "worst_first": board(pick3), "premium": prem,
+            "pick": pick, "pick_pairwise": pick2, "pick_worst_first": pick3, "best": best, "e": e}
 
 
 def first(f, lo, hi, steps=400, tol=1e-7):
@@ -220,17 +234,29 @@ def first(f, lo, hi, steps=400, tol=1e-7):
 
 def solve(n, rws):
     out = {}
-    for mode in ("rule", "premium"):
+    for mode in MODES:
         launched = lambda m, k: decide(n, rws, m, k)[mode] is not None
         m, m_ok = first(lambda x: launched(x, 1.0), M0, 3.0)
         cut, c_ok = first(lambda s: launched(M0, max(1e-9, 1.0 - s)), 0.0, 1.0)     # s: the cut in Boeing's share of the bill
-        fine = [first(lambda mm: launched(mm, max(1e-9, frac)), 0.0, 3.0)[0] for frac in FINE]
+        fine = [first(lambda mm: launched(mm, max(1e-9, frac)), 0.0, 3.0) for frac in FINE]
+        plans = [decide(n, rws, x + 1e-7, max(1e-9, frac))[mode] if x is not None else None for (x, _), frac in zip(fine, FINE)]
+        # the largest share of the bill Boeing can pay and still launch at a 100% margin
+        c100, _ = first(lambda s: launched(1.0, max(1e-9, 1.0 - s)), 0.0, 1.0)
         out[mode] = {"margin": m, "margin_monotone": m_ok, "cut": cut, "cut_monotone": c_ok,
-                     "plan_at_margin": decide(n, rws, m, 1.0)[mode] if m is not None else None,
-                     "plan_at_cut": decide(n, rws, M0, max(1e-9, 1.0 - cut))[mode] if cut is not None else None,
-                     "frontier": {"fractions": FINE, "margin": fine}}
+                     "plan_at_margin": decide(n, rws, m + 1e-7, 1.0)[mode] if m is not None else None,
+                     "plan_at_cut": decide(n, rws, M0, max(1e-9, 1.0 - cut - 1e-7))[mode] if cut is not None else None,
+                     "frontier": {"fractions": FINE, "margin": [x for x, _ in fine], "monotone": [ok for _, ok in fine], "plan": plans},
+                     "share_at_100": None if c100 is None else 1.0 - c100}
     base = decide(n, rws)
-    out["base"] = {"pick": base["pick"], "best": base["best"], "e": base["e"], "rule": base["rule"], "premium": base["premium"]}
+    out["base"] = {k: base[k] for k in ("pick", "pick_pairwise", "pick_worst_first", "best", "e") + MODES}
+    # the range across the readings: the low and high ends, and the plan that launches at each
+    lo_hi = {}
+    for key in ("margin", "cut"):
+        vals = [(out[md][key], md) for md in MODES]
+        known = [(v, md) for v, md in vals if v is not None]
+        lo_hi[key] = {"low": min(known)[0] if known else None, "low_mode": min(known)[1] if known else None,
+                      "high": None if any(v is None for v, _ in vals) else max(vals)[0], "high_mode": None if any(v is None for v, _ in vals) else max(vals)[1]}
+    out["range"] = lo_hi
     out["per_point"] = {name: sum(rw["cols"][i]["Q"] * PRICE0 / 1000.0 / 100.0 * wt for i, wt in CEO_W[n].items()) for name, rw in rws.items() if rw["var"]}
     return out
 
@@ -269,8 +295,9 @@ def confirm(n, m=None, k=None):
         new = rows(n, base=False)
         dec = decide(n, new, vals={name: [c["v"] for c in rw["cols"]] for name, rw in new.items()})
         mets = []
-        if dec["rule"]:
-            plan = (SOLO.get(dec["rule"]) or PAIRS[dec["rule"]])[0]
+        launched = [dec[md] for md in MODES if dec[md]]
+        if launched:
+            plan = (SOLO.get(launched[0]) or PAIRS[launched[0]])[0]
             for _, s, c in column_states(n, plan):
                 v = M.value(s, covert=c, series=True)
                 mt = B.plan_metrics("boeing", s, v, c)
@@ -280,7 +307,7 @@ def confirm(n, m=None, k=None):
         a = values(base[name], m if m is not None else M0, k if k is not None else 1.0)
         b = [c["v"] for c in new[name]["cols"]]
         gap = max(gap, max(abs(x - y) for x, y in zip(a, b)))
-    return {"gap": gap, "decision": dec["rule"], "pick": dec["pick"], "metrics": mets}
+    return {"gap": gap, "decisions": {md: dec[md] for md in MODES}, "pick": dec["pick"], "metrics": mets}
 
 
 def run(n, opts, do_confirm):
@@ -299,16 +326,18 @@ def run(n, opts, do_confirm):
         out.update(solve(n, rws))
         if do_confirm:
             ck = {}
-            r = out["rule"]
-            if r["margin"] is not None and r["margin"] <= 1.0:
-                ck["margin"] = confirm(n, m=r["margin"] + 1e-6)
-            if r["cut"] is not None:
-                ck["cut"] = confirm(n, k=1.0 - r["cut"] - 1e-6)
-            half = r["frontier"]["margin"][FINE.index(0.5)]
+            for end in ("low", "high"):
+                m = out["range"]["margin"][end]
+                if m is not None and m <= 1.0:
+                    ck["margin_" + end] = confirm(n, m=m + 1e-6)
+                c = out["range"]["cut"][end]
+                if c is not None:
+                    ck["cut_" + end] = confirm(n, k=1.0 - c - 1e-6)
+            half = out["rule"]["frontier"]["margin"][FINE.index(0.5)]
             if half is not None and half <= 1.0:
-                ck["half"] = confirm(n, m=half + 1e-6, k=0.5)
+                ck["half_rule"] = confirm(n, m=half + 1e-6, k=0.5)
             for key, c in ck.items():
-                assert c["gap"] < 1e-5 and c["decision"] is not None, (n, key, c)
+                assert c["gap"] < 1e-5, (n, key, c)
                 assert all(x["stress_ok"] for x in c["metrics"]), (n, key)
             out["confirm"] = ck
     return out
@@ -317,10 +346,10 @@ def run(n, opts, do_confirm):
 def show(r):
     y = r["year"]
     print("%d base: pick %s, best %s, e %s" % (y, r["base"]["pick"], r["base"]["best"], {k: round(v, 2) for k, v in r["base"]["e"].items()}))
-    for mode in ("rule", "premium"):
+    for mode in MODES:
         x = r[mode]
         fm = x["frontier"]["margin"]
-        print("%d %-7s margin %s (%s%s) | cut %s (%s%s) | frontier 75/50/25/0: %s" % (
+        print("%d %-11s margin %s (%s%s) | cut %s (%s%s) | frontier 75/50/25/0: %s" % (
             y, mode, "-" if x["margin"] is None else "%.2f%%" % (100 * x["margin"]), x["plan_at_margin"], "" if x["margin_monotone"] else ", NOT MONOTONE",
             "-" if x["cut"] is None else "%.1f%%" % (100 * x["cut"]), x["plan_at_cut"], "" if x["cut_monotone"] else ", NOT MONOTONE",
             [None if fm[FINE.index(f)] is None else round(100 * fm[FINE.index(f)], 1) for f in (0.75, 0.5, 0.25, 0.0)]))
@@ -334,7 +363,7 @@ def main(do_confirm=True):
         res["rounds"][str(n)] = r
         show(r)
         if "confirm" in r:
-            print("   confirmed", {k: (round(v["gap"], 8), v["decision"]) for k, v in r["confirm"].items()})
+            print("   confirmed", {k: (round(v["gap"], 8), v["decisions"]) for k, v in r["confirm"].items()})
     for n in (3, 4):
         r = run(n, GAME_TAIL, False)
         res["game_tail"][str(n)] = r

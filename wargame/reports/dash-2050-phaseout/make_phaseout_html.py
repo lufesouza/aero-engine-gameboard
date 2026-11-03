@@ -270,37 +270,63 @@ BILL10, BILL7 = TH["base"]["bill"]["10yr"], TH["base"]["bill"]["7yr"]
 THR = {int(n): r for n, r in TH["rounds"].items()}
 THG = {int(n): r for n, r in TH["game_tail"].items()}
 TP10, TP7 = "10-year at Renton", "7-year at Renton"
+MODES = ("rule", "pairwise", "worst_first", "premium")
 FR = TH["rounds"]["1"]["rule"]["frontier"]["fractions"]
-fr = lambda r, mode, k: r[mode]["frontier"]["margin"][FR.index(k)]
 assert TH["eps"] == 1.0 and TH["h8"] == 2.0
+
+
+def fr_all(r, k):
+    """The margin needed at Boeing's bill share k under each reading."""
+    return [r[md]["frontier"]["margin"][FR.index(k)] for md in MODES]
+
+
+def lowest(xs):
+    return None if all(x is None for x in xs) else min(x for x in xs if x is not None)
+
+
+def highest(xs):
+    return None if any(x is None for x in xs) else max(xs)
+
+
 for n, r in THR.items():
     y = r["year"]
     assert y == YEARS[n - 1] and r["weights"] == {str(k): v for k, v in CEO_W[y].items()}
-    assert r["base"]["rule"] is None and r["base"]["premium"] is None                 # nothing launches in the base case
+    assert all(r["base"][md] is None for md in MODES)                                    # nothing launches in the base case
     assert r["base"]["pick"] == ("Re-engine" if n == 1 else "Do Nothing")              # the CEO's decision in the record
     assert abs(r["rows"][TP10]["items"][r["columns"].index(REAL[y])] - GAP_P[n - 1]) < 1e-9
-    for mode in ("rule", "premium"):
-        assert r[mode]["margin_monotone"] and r[mode]["cut_monotone"]
-    assert r["premium"]["margin"] <= r["rule"]["margin"] + 1e-9
-    assert r["rule"]["cut"] is None or r["premium"]["cut"] <= r["rule"]["cut"] + 1e-9
+    for md in MODES:
+        assert r[md]["margin_monotone"] and r[md]["cut_monotone"] and all(r[md]["frontier"]["monotone"]), (n, md)
+        assert r[md]["plan_at_margin"] == TP7 and r[md]["plan_at_cut"] in (TP7, None)
+    if n > 1:                                   # the Re-engine is not a candidate after 2030: the readings agree
+        for key in ("margin", "cut"):
+            assert len({r[md][key] for md in MODES}) == 1
     for k, c in r["confirm"].items():
-        assert c["gap"] < 1e-5 and c["decision"] and all(m["stress_ok"] and m["stress_peak"] < 1e-9 for m in c["metrics"]), (n, k)
-    assert r["rule"]["plan_at_margin"] == TP7
-assert set(THR[1]["confirm"]) == set(THR[2]["confirm"]) == {"margin", "cut", "half"} and set(THR[3]["confirm"]) == {"cut", "half"}
-assert THR[4]["rule"]["cut"] is None and THR[4]["premium"]["cut"] is None and THR[3]["premium"]["margin"] > 1.0
+        assert c["gap"] < 1e-5 and any(c["decisions"].values()) and all(m["stress_ok"] and m["stress_peak"] < 1e-9 for m in c["metrics"]), (n, k)
+assert set(THR[1]["confirm"]) == set(THR[2]["confirm"]) == {"margin_low", "margin_high", "cut_low", "cut_high", "half_rule"}
+assert set(THR[3]["confirm"]) == {"cut_low", "cut_high", "half_rule"}
+assert THR[4]["range"]["cut"]["low"] is None and THR[3]["range"]["margin"]["low"] > 1.0
 assert all(THG[n]["rule"]["plan_at_margin"] == TP10 for n in (3, 4))
 R30, R35 = THR[1], THR[2]
+RG = lambda r, key: (r["range"][key]["low"], r["range"][key]["high"])
 _r7 = R30["rows"][TP7]["items"]
 PP7 = R30["per_point"][TP7]
 BOARD_ONLY_30 = M0 + (1.0 - sum(_r7[i] * w for i, w in CEO_W[2030].items())) / (100 * PP7)   # the Board's +$1B alone, 7-year
-assert BOARD_ONLY_30 < R30["premium"]["margin"] < R30["rule"]["margin"]
-P25 = fr(R30, "rule", 0.75) / 0.75          # a partner taking the same share of profit as it pays of the bill
-P50 = fr(R30, "rule", 0.5) / 0.5
-assert P25 > R30["rule"]["margin"] and P50 > P25
-_f45 = THR[3]["rule"]["frontier"]["margin"]
-LAST45 = max(k for k, m in zip(FR, _f45) if m is not None and m <= 1.0)     # the largest share of the bill 2045 can bear
-assert 0.5 <= LAST45 < 1.0 and all(m is not None and m > 1.0 for k, m in zip(FR, _f45) if k > LAST45)
+assert BOARD_ONLY_30 < R30["range"]["margin"]["low"]
+# a partner that takes the same share of the profit as it pays of the bill: the margin needed is frontier(1 - s) / (1 - s)
+P25 = [x / 0.75 for x in fr_all(R30, 0.75)]
+P50 = [x / 0.5 for x in fr_all(R30, 0.5)]
+_m30 = [R30[md]["margin"] for md in MODES]
+assert all(a > m - 0.002 for a, m in zip(P25, _m30)) and all(a > m for a, m in zip(P50, _m30))   # barely helps / worse
+SH45 = THR[3]["rule"]["share_at_100"]
+assert all(THR[3][md]["share_at_100"] == SH45 for md in MODES) and 0.9 < SH45 < 1.0
 assert R30["per_point"][TP7] > R30["per_point"][TP10] and R30["rows"][TP7]["eis"] == R30["rows"][TP10]["eis"] - 3
+# which fps crosses first along the 2030 frontier (normal rule): the 10-year when others pay much of the bill
+PLAN30 = dict(zip(FR, R30["rule"]["frontier"]["plan"]))
+TEN30 = [k for k in FR if PLAN30[k] and PLAN30[k].startswith("10-year")]
+assert PLAN30[1.0] == TP7 and TEN30 and max(TEN30) < 1.0
+assert all(PLAN30[k] and PLAN30[k].startswith("10-year") for k in FR if k <= max(TEN30))     # the 10-year below that share
+# at the 2030 margin threshold (normal rule) the plan that clears the Re-engine by $1B is the 10-year beside it
+RE30_PAIR = "10-year at Renton + Re-engine"
 
 
 def pctv(m, dp=1):
@@ -311,9 +337,9 @@ def mtxt(m):
     return None if (m is None or m > 1.0) else pctv(m) + "%"
 
 
-def rng(lo, hi):
-    """A threshold as premium-rule; over 100% margin cannot be reached (the unit cost would be negative)."""
-    a, c = mtxt(lo), mtxt(hi)
+def rng(a_, c_):
+    """A threshold across the readings; over 100% margin cannot be reached (the unit cost would be negative)."""
+    a, c = mtxt(a_), mtxt(c_)
     if a is None and c is None:
         return '<span class="muted">impossible</span>'
     if c is None:
@@ -321,10 +347,10 @@ def rng(lo, hi):
     return nw(a if a == c else f"{a[:-1]}\u2013{c}")
 
 
-def cut_rng(lo, hi):
-    if lo is None and hi is None:
+def cut_rng(a_, c_):
+    if a_ is None and c_ is None:
         return '<span class="muted">fails even at $0</span>'
-    a, c = K.rnd(100 * lo, 0), K.rnd(100 * hi, 0)
+    a, c = K.rnd(100 * a_, 0), K.rnd(100 * c_, 0)
     return nw(f"{a:.0f}%" if a == c else f"{a:.0f}\u2013{c:.0f}%")
 
 
@@ -413,7 +439,8 @@ def frontier_chart(narrow=False):
     styles = {1: ("var(--s1)", ""), 2: ("var(--s1)", ' stroke-dasharray="7 4"'), 3: ("var(--muted)", ""), 4: ("var(--muted)", ' stroke-dasharray="7 4"')}
     labels = []
     for n, r in THR.items():
-        pts = [(k, m) for k, m in zip(FR, r["rule"]["frontier"]["margin"]) if m is not None]
+        pts = [(k, highest(fr_all(r, k))) for k in FR]
+        pts = [(k, m) for k, m in pts if m is not None]
         col, dash = styles[n]
         d = "M" + " L".join(f"{sx(k):.1f},{sy(m):.1f}" for k, m in pts)
         out.append(f'<path d="{d}" fill="none" stroke="{col}" stroke-width="2.2"{dash} clip-path="url(#{cid})"/>')
@@ -448,13 +475,13 @@ def thr_table():
     for grp, muted in ((THR, False), (THG, True)):
         for n, r in grp.items():
             lab = str(r["year"]) + (", conservative curve after 2060" if muted else "")
-            cells = [rng(r["premium"]["margin"], r["rule"]["margin"]), cut_rng(r["premium"]["cut"], r["rule"]["cut"])]
-            cells += [rng(fr(r, "premium", k), fr(r, "rule", k)) for k in (0.75, 0.5, 0.0)]
+            cells = [rng(*RG(r, "margin")), cut_rng(*RG(r, "cut"))]
+            cells += [rng(lowest(fr_all(r, k)), highest(fr_all(r, k))) for k in (0.75, 0.5, 0.0)]
             if muted:
                 lab = f'<span class="muted">{lab}</span>'
                 cells = [f'<span class="muted">{c}</span>' for c in cells]
             rows.append([lab] + cells)
-    return K.table(head, rows, num_cols=(1, 2, 3, 4, 5))
+    return K.table(head, rows, num_cols=(1, 2, 3, 4, 5)).replace("<table>", '<table class="thr">', 1)
 
 
 def moves_table():
@@ -541,6 +568,19 @@ ul.cav li, footer { overflow-wrap: anywhere; }
   .moves td:nth-of-type(3)::before { content: "CFM/GE"; } .moves td:nth-of-type(4)::before { content: "Pratt & Whitney"; }
   .moves td:nth-of-type(5)::before { content: "Rolls-Royce"; }
 }
+@media (max-width: 760px) {
+  .thr thead { display: none; }
+  .thr, .thr tbody, .thr tr, .thr th, .thr td { display: block; width: auto; text-align: left; }
+  .thr { min-width: 0 !important; width: 100%; }
+  .thr tr { border-bottom: 1px solid var(--line); padding: 8px 10px; }
+  .thr tbody th { min-width: 0; font-weight: 600; border: 0; }
+  .thr td { border: 0; padding: 3px 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .thr td > span { flex: none; }
+  .thr td::before { flex: 1 1 0; min-width: 0; font: 600 11px var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: .03em; text-align: left; }
+  .thr td:nth-of-type(1)::before { content: "Margin, full investment"; } .thr td:nth-of-type(2)::before { content: "Investment cut, base margin"; }
+  .thr td:nth-of-type(3)::before { content: "Margin, Boeing pays 75%"; } .thr td:nth-of-type(4)::before { content: "Margin, Boeing pays 50%"; }
+  .thr td:nth-of-type(5)::before { content: "Margin, Boeing pays nothing"; }
+}
 .legend .solid { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--s1); vertical-align: middle; margin-right: 6px; }
 """
 
@@ -615,33 +655,39 @@ The other companies were not replayed under these curves.</p></div>
 </div></section>
 
 <section><h2>What would change Boeing's decision</h2><div class="stack">
-<div class="panel"><p class="ctitle">Only an early launch can be bought: in 2030 about {pctv(R30["rule"]["margin"], 0)}% fps margin, or {cut_rng(R30["premium"]["cut"], R30["rule"]["cut"])} less investment; from 2045 nothing realistic</p>
+<div class="panel"><p class="ctitle">Only an early launch can be bought: in 2030 about {pctv(RG(R30, "margin")[0], 0)}\u2013{pctv(RG(R30, "margin")[1], 0)}% fps margin, or {cut_rng(*RG(R30, "cut"))} less investment; from 2045 nothing realistic</p>
 <div class="legend"><span><i class="solid"></i>2030</span><span><i class="dash" style="border-top-color:var(--s1)"></i>2035</span><span><i class="solid" style="border-top-color:var(--muted)"></i>2045</span><span><i class="dash"></i>2050</span><span><i class="sq" style="background:var(--fg);border-radius:50%"></i>Base case</span></div>
 <div class="cw only-wide">{frontier_chart()}</div><div class="cw only-narrow">{frontier_chart(True)}</div>
 <p class="cap">Each line is one round: the fps operating margin needed, for each share of its fps investment that Boeing pays, before an fps launch becomes Boeing's decision
-(under the CEO's normal rule; the table below also gives the lower figure if the CEO uses the premium allowance). Above a round's line Boeing launches the fps that round. The game's base case,
-{pctv(M0)}% margin with the full investment, sits below every line. 2045 needs more than 100% margin once Boeing pays more than {K.rnd(100 * LAST45, 0):.0f}% of the bill, and 2050 needs
-{mtxt(fr(THR[4], "rule", 0.0))} even if Boeing pays nothing.</p></div>
+under every reading of the CEO's tie-break (the table gives the full range). Above a round's line Boeing launches the fps that round. The game's base case,
+{pctv(M0)}% margin with the full investment, sits below every line. In 2045 even a 100% margin is not quite enough with the full investment ({pctv(THR[3]["range"]["margin"]["low"], 0)}% is needed), so only a deep cut in
+investment works ({cut_rng(*RG(THR[3], "cut"))}); 2050 needs {mtxt(highest(fr_all(THR[4], 0.0)))} margin even if Boeing pays nothing.</p></div>
 <div class="panel">{thr_table()}
-<p class="cap"><b>How the decision is taken.</b> An fps launches only if it is the CEO's pick and the Board approves it. The CEO takes the plan worth most in the column the CEO expects,
-and among plans within the CEO's $1B margin of it, the one with less to execute. The Board then judges each order on its own: an fps must add more than +$1B in that column,
-lose no more than $1B in any column, and leave the plan's risk case no more than $2B below Do Nothing. A vetoed order reverts to hold, and the CEO cannot add an fps afterwards.
-In 2030 the CEO's pick was the 787 Re-engine, worth {b(RE30_S2)} in the CEO's column, so the fps has to beat it by that margin, not just clear the Board's +$1B: the Board's tests alone
-would ask {pctv(BOARD_ONLY_30)}% of the 7-year, the CEO's rule asks {pctv(R30["rule"]["margin"])}%. The <b>lower figure</b> in each range is what is needed if the CEO uses the allowance to give up
-to $2B of value to pick the fps for its objective (the 50/50 split with Airbus); the <b>higher figure</b> is the CEO's normal rule. Each round is taken alone, from the state it started in.
-<b>Which fps.</b> The first plan to cross is the 7-year at Renton in every round of this game: it enters service three years earlier, so each point of its margin is worth more
-({b(R30["per_point"][TP7], 2, False)} against {b(R30["per_point"][TP10], 2, False)} a point for the 10-year in 2030). Renton saves new-site capex, and the Board made it conditional on Pope's
-readiness result for winding down Renton's MAX lines; at new sites a little more is needed.
+<p class="cap"><b>How the decision is taken.</b> An fps launches only if it is the CEO's pick and the Board approves it. The CEO takes the plan worth most in the column the CEO expects;
+the 787 Re-engine counts only if it adds more than the CEO's $1B margin (it did in 2030, not after). Among plans within $1B of the best one, a tie-break decides.
+The Board then judges each order on its own: an fps must add more than +$1B in that column, lose no more than $1B in any column, and leave the plan's risk case no more than
+$2B below Do Nothing. A vetoed order reverts to hold, and the CEO cannot add an fps afterwards. The Board's tests alone would ask {pctv(BOARD_ONLY_30)}% margin of the 7-year in 2030.
+But that year the CEO's pick was the 787 Re-engine, worth {b(RE30_S2)} in the CEO's column, and an fps launches only once a plan with it leads the Re-engine by more than $1B:
+at {pctv(R30["rule"]["margin"])}% the 10-year at Renton beside the Re-engine does, and the CEO then takes the smaller 7-year at Renton, within $1B of it.
+<b>The ranges</b> cover the tie-breaks the record allows. Doing less, weighed against each smaller plan in turn, gives the high end ({pctv(R30["pairwise"]["margin"])}% margin, a {pctv(R30["pairwise"]["cut"], 0)}% cut in 2030);
+ranking the better worst column first gives {pctv(R30["worst_first"]["margin"])}% or a {pctv(R30["worst_first"]["cut"], 0)}% cut; the low end is the CEO using the allowance to give up to $2B of value
+to pick the fps for its objective, the 50/50 split with Airbus ({pctv(R30["premium"]["margin"])}% or a {pctv(R30["premium"]["cut"], 0)}% cut). From 2035 the readings agree. Each round is taken alone, from the state it started in.
+<b>Which fps.</b> With the full investment, or at the base margin, the first plan to cross is the 7-year at Renton in every round of this game: it enters service three years earlier, so
+each point of its margin is worth more ({b(R30["per_point"][TP7], 2, False)} against {b(R30["per_point"][TP10], 2, False)} a point for the 10-year in 2030). When others pay {pctv(1 - max(TEN30), 0)}% or more of the bill in 2030
+(Boeing paying {pctv(max(TEN30), 0)}% or less), it is the 10-year, and on the conservative curve after 2060 it is the 10-year at Renton at the full investment. Renton saves new-site capex, and the Board made it conditional on Pope's readiness result
+for winding down Renton's MAX lines; at new sites more is needed, and there the 7-year breaks Boeing's stress-case net-debt line in the briefs, so it would be the 10-year.
+The 7-year beside the Re-engine is barred by Boeing's one-development-at-a-time rule; the 737 Rate Increase and via-Embraer plans never come close.
 <b>Margin</b> is on every fps delivered, the {nw(f"${PRICE:.0f}M")} price held. The base {pctv(M0)}% is {nw(f"${PRICE * M0:.1f}M")} of profit on a {nw(f"${cost(M0):.1f}M")} cost;
 {pctv(R30["rule"]["margin"])}% means a {nw(f"${cost(R30['rule']['margin']):.1f}M")} cost, 60% about {nw(f"${cost(0.6):.0f}M")} (about half the base cost), and over 100% a negative cost, which is impossible.
 <b>Investment</b> is Boeing's fps bill (10-year {nw(f"${BILL10:.2f}B")}, 7-year {nw(f"${BILL7:.1f}B")}), counted as the brief counts it: at entry into service, with its debt penalty.
-The "Boeing pays" columns assume the rest is a grant that takes no share of the profit. A partner that takes the same share of the profit as it pays of the bill does not help:
-in 2030 it would need {pctv(P25)}% with a 25% partner and {pctv(P50)}% with a 50/50 partner, against {pctv(R30["rule"]["margin"])}% alone. A budget spent through the development years,
+The "Boeing pays" columns assume the rest is a grant that takes no share of the profit. A partner that takes the same share of the profit as it pays of the bill barely helps (a tenth of a point at most), and a 50/50 one makes it worse:
+in 2030 it would need {rng(min(P25), max(P25))} with a 25% partner and {rng(min(P50), max(P50))} with a 50/50 partner, against {rng(*RG(R30, "margin"))} alone. A budget spent through the development years,
 rather than counted at entry into service, would need more margin or a deeper cut than shown.
 <b>Why late rounds cannot be bought.</b> A point of margin is worth {b(R30["per_point"][TP10], 2, False)} for the 10-year in 2030 but {b(THR[4]["per_point"][TP10], 2, False)} in 2050: a later fps
 sells far fewer aircraft in its 20 counted years, and further in the future; from 2045 mostly after 2060, where your page's demand falls away. With the conservative curve
-after 2060 (grey rows) the late rounds need {pctv(min(THG[n]["premium"]["margin"] for n in THG), 0)}-{pctv(max(THG[n]["rule"]["margin"] for n in THG), 0)}% margin, or {K.rnd(100 * min(THG[n]["premium"]["cut"] for n in THG), 0):.0f}-{K.rnd(100 * max(THG[n]["rule"]["cut"] for n in THG), 0):.0f}% less investment.
-Every threshold of the normal rule in 2030-45 is re-checked on a re-solved dashboard (every competing plan, every column), and Boeing's stress-case net debt stays at $0 there.</p></div>
+after 2060 (grey rows) the late rounds need {pctv(min(THG[n]["range"]["margin"]["low"] for n in THG), 0)}\u2013{pctv(max(THG[n]["range"]["margin"]["high"] for n in THG), 0)}% margin, or {K.rnd(100 * min(THG[n]["range"]["cut"]["low"] for n in THG), 0):.0f}\u2013{K.rnd(100 * max(THG[n]["range"]["cut"]["high"] for n in THG), 0):.0f}% less investment.
+The low and high ends of the full-investment margin and the base-margin cut, and the normal rule with Boeing paying half, are re-checked on a re-solved dashboard in 2030-45
+(every competing plan, every column), and Boeing's stress-case net debt stays at $0 there.</p></div>
 </div></section>
 
 <section><h2>The market in the final state</h2><div class="stack">
@@ -673,7 +719,7 @@ Boeing's {b(P["final_value"]["boeing"])} is a smaller loss than its {b(C["final_
 <li><b>Everything else</b> is the conservative-case game. Firm orders, Boards, ExCos and objectives are the same. So are the market rules: Boeing's share drifts down 1 point a year while NGSA flies alone, Boeing sells to the customers Airbus cannot build for, and Airbus adds 1% capacity a year when it is short.</li>
 <li><b>The step tables</b> (steps.py) switch your assumptions on in the order shown. Another order would split the total differently but give the same total. The first and last steps give back each game's own brief, every column, to the cent. Changes are shown as the differences of the rounded figures.</li>
 <li><b>The demand curves after 2060</b> (tail.py) re-value every Boeing plan in every column of every round, from the state each round started in. The "as run" curve gives back the run's own briefs to the cent.</li>
-<li><b>What would change the decision</b> (thresholds.py) values each fps plan as the brief does and moves only the fps margin and Boeing's bill. The value moves exactly with the margin (fps deliveries, discounted, times price times the margin change), and the bill is the dashboard's own formula, so the thresholds are exact. Each one is re-checked on a re-solved dashboard to within $0.00001B.</li>
+<li><b>What would change the decision</b> (thresholds.py) values every competing plan as the brief does and moves only the fps margin and Boeing's bill. The value moves exactly with the margin (fps deliveries, discounted, times price times the margin change), and the bill goes through the dashboard's own formulas (the debt penalty on all of Boeing's programmes together, and the two-front strain), so the thresholds are exact. The checked thresholds match a re-solved dashboard to within $0.00001B. Near the thresholds the 7-year and 10-year can sit within $1B of each other; the record's ramp rule would then put forward the 10-year, and the 7-year would launch as the alternative the Board names.</li>
 <li><b>Source:</b> extract.py, steps.py, tail.py, comac_units.py, who_picks_up.py, thresholds.py and make_phaseout_html.py. The round records are in record/.</li>
 </ul></div></section>
 <footer>BOEING PROPRIETARY. Built by make_phaseout_html.py from runs dash-2050-phaseout and dash-2050-cons.</footer></div>
