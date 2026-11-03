@@ -77,7 +77,15 @@ def options():
                         capacity first, off the top of each year's new customers (its home market), and the entrant
                         wins entrant_share of them, up to its capacity; then Boeing and Airbus split the rest as usual,
                         and of the customers neither can serve (after the overflow between them) `willing` take a free
-                        COMAC or entrant slot, split by free capacity. What is left waits, as before"""
+                        COMAC or entrant slot, split by free capacity. What is left waits, as before.
+                        "entrant_share_no_fps": share (optional) - the entrant's share in the years Boeing has no new
+                        narrowbody in service (customers who want a second source to Airbus); entrant_share applies
+                        once an fps is in service. Absent: entrant_share in every year
+      price_pressure    {"from": year, "ramp_years": n, "cut": share, "cut_boeing_no_fps": share (optional)}: a third
+                        supplier's campaigns cut the price of every new single-aisle delivered (both makers, every type,
+                        the status quo too) by cut x price, from `from`, rising in a straight line over ramp_years; cost
+                        is unchanged, so profit falls by the whole cut. cut_boeing_no_fps replaces cut on Boeing's
+                        aircraft in the years Boeing has no new narrowbody in service (the status quo in every year)"""
     run = os.environ.get("DASH_RUN")
     path = os.path.join(HERE, "..", "runs", run, "sd_options.json") if run else None
     if path and os.path.exists(path):
@@ -314,6 +322,7 @@ def year_rows(state, b_pref_by_year, years):
     m_a = 1.0                                   # Airbus capacity against its plan (capacity response)
     tp = o.get("third_party") or {}
     ngsa_live = _live(state, "ngsa")
+    fps_live = _live(state, "fps")
     ys = sorted(years)
     if netted:
         assert ys[0] == 2026, "netting the firm backlog needs every year from 2026"
@@ -340,7 +349,10 @@ def year_rows(state, b_pref_by_year, years):
         cc, ce = third_capacity(y)              # COMAC's home sales and the entrant's won share come off the top
         pc = min(cc * float(tp.get("comac_first", 0.0)), d)
         d -= pc
-        pe = min(ce, d * float(tp.get("entrant_share", 0.0)))
+        sh_e = float(tp.get("entrant_share", 0.0))
+        if "entrant_share_no_fps" in tp and not (fps_live and y >= fps_live["eis"]):
+            sh_e = float(tp["entrant_share_no_fps"])       # no new Boeing narrowbody in service: the second-source share
+        pe = min(ce, d * sh_e)
         d -= pe
         base = boeing_base_pref(state, y, b_pref_by_year[y])
         free_a = max(0.0, a3 + ng - min(fa_in, a3 + ng) - ba)   # Airbus slots left for new customers this year
@@ -405,6 +417,20 @@ def costs(state):
     return out
 
 
+def price_cut(state, side, year):
+    """Share of the price a third supplier's campaigns take off each new single-aisle `side` delivers in `year`
+    (options()['price_pressure']; 0 without it)."""
+    pp = options().get("price_pressure")
+    if not pp or year < pp["from"]:
+        return 0.0
+    c = float(pp["cut"])
+    if side == "boeing" and "cut_boeing_no_fps" in pp:
+        fps = _live(state, "fps")
+        if not (fps and year >= fps["eis"]):
+            c = float(pp["cut_boeing_no_fps"])
+    return c * min(1.0, (year - pp["from"] + 1) / float(pp["ramp_years"]))
+
+
 def apply(state, rows, waccs):
     """Re-deliver the airframer series rows (from model.af_series) under supply and demand, in place.
     Returns ({side: {"supply_demand": PV $B, "supply_plan": PV $B}}, cost items, scenario rows, status-quo rows)."""
@@ -424,13 +450,15 @@ def apply(state, rows, waccs):
             x["board_nb_units"], x["board_nb_profit"], x["board_sq_nb_profit"] = x["nb_units"], x["nb_profit"], x["sq_nb_profit"]
             x["board_nb_revenue"] = x["nb_revenue"]
             legacy_price = x["legacy_nb_price"]                         # $M per aircraft
+            cut, cut_sq = price_cut(state, side, y), price_cut(sq_state(), side, y)
             x["nb_units"] = n_new + n_old
             x["nb_units_new"], x["nb_units_old"] = n_new, n_old
-            x["nb_revenue"] = (n_new * x["nb_price"] + n_old * legacy_price) / 1000.0
-            x["nb_profit"] = n_new * new_unit + n_old * sq_unit
+            x["nb_revenue"] = (n_new * x["nb_price"] + n_old * legacy_price) / 1000.0 * (1.0 - cut)
+            x["nb_profit"] = n_new * (new_unit - cut * x["nb_price"] / 1000.0) + n_old * (sq_unit - cut * legacy_price / 1000.0)
             sq_dlv = q["delivered_" + pre]
             x["sq_nb_units"] = sq_dlv
-            x["sq_nb_profit"] = sq_dlv * sq_unit
+            x["sq_nb_profit"] = sq_dlv * (sq_unit - cut_sq * legacy_price / 1000.0)
+            x["price_cut"], x["sq_price_cut"] = cut, cut_sq
             x["nb_delivered_share"] = (n_new + n_old) / max(1e-9, s["delivered_a"] + s["delivered_b"] + s["dlv_comac"] + s["dlv_entrant"])
             x["nb_pref_share"] = s["pref_b"] if side == "boeing" else 1.0 - s["pref_b"]   # what customers want
             x["nb_share"] = x["nb_delivered_share"]                   # market share = share of deliveries

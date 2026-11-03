@@ -228,8 +228,18 @@ def sd_option_rules():
                 + (f"A new entrant (Embraer-like) enters service in {ce['eis']} and rises to {ce['peak_a_month']:.0f} a month\n"
                    f"  {ce['years_to_peak']} years later" if ce else "")
                 + (f"; it wins {100 * float(t.get('entrant_share', 0)):.0f}% of new customers, up to its capacity" if t.get("entrant_share") else "")
+                + (f" ({100 * float(t['entrant_share_no_fps']):.0f}% in the years Boeing has no new narrowbody in service: customers\n"
+                   f"  who want a second source to Airbus)" if "entrant_share_no_fps" in t else "")
                 + f". Customers neither Boeing nor Airbus can serve (after the overflow between them) take a free COMAC or entrant\n"
                   f"  slot ({100 * float(t.get('willing', 1.0)):.0f}% of them). The status quo runs the same rules.")
+    pp = o.get("price_pressure")
+    if pp:
+        out += (f"\n- **A third supplier cuts single-aisle prices:** from {pp['from']}, the price of every new single-aisle delivered (Boeing and\n"
+                f"  Airbus, every type) falls by up to {100 * float(pp['cut']):.1f}%, rising in a straight line over {pp['ramp_years']} years; costs do not change, so\n"
+                f"  profit falls by the whole cut"
+                + (f" ({100 * float(pp['cut_boeing_no_fps']):.1f}% on Boeing's aircraft in the years Boeing has no new narrowbody in service)"
+                   if "cut_boeing_no_fps" in pp else "")
+                + ". The status quo runs the same rules.")
     x = o.get("airbus_extra")
     if x:
         out += (f"\n- **Airbus adds extra lines from {x['from']}:** {x['step_per_year']:.0f} a month more each year, up to {x['cap']:.0f} a month on top of its plan\n"
