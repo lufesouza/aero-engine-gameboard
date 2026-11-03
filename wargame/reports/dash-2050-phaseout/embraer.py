@@ -19,8 +19,8 @@ fps plans are valued in the game's own world against the status quo with Embraer
 the Embraer world.
 
 Part 2, a partner for the bill. A partner (a risk-sharing supplier or a state-backed investor) pays share p of the fps
-bill, spent evenly over the development years, and takes back share s of the fps's operating profit (after any price
-cut) for as long as the view counts the fps: the counted window in the brief, the fps's 50 years in the franchise view.
+bill, booked at entry into service as the game books Boeing's bill (spent over the development years as a sensitivity),
+and takes back share s of the fps's operating profit (after any price cut) for as long as the view counts the fps: the counted window in the brief, the fps's 50 years in the franchise view.
 s is set where the partner breaks even at its own rate in the CEO's expected columns, so the partner bears the column
 risk. Boeing gets the game's own saving on the bill (with the debt penalty, as k = 1 - p) and gives up s of the fps
 profit. A partner whose rate equals Boeing's leaves Boeing only the debt-penalty saving; one with a lower rate (state
@@ -50,6 +50,7 @@ RATES = F.RATES
 INFL = 0.022
 FPS = list(T.SOLO) + list(T.PAIRS)
 DEV = {"10yr": 10, "7yr": 7}
+TEN_R = "10-year at Renton"
 VAR = {**{k: v[1] for k, v in T.SOLO.items()}, **{k: v[1] for k, v in T.PAIRS.items()}}
 
 # ─────────────────────────────── Embraer-Korea (low / base / high threat to Boeing) ───────────────────────────────
@@ -59,7 +60,11 @@ EMB = {
     "years_to_peak": {"low": 12, "base": 8, "high": 5},
     "share_fps": {"low": 0.02, "base": 0.06, "high": 0.10},        # of new customers, once an fps is in service
     "share_no_fps": {"low": 0.05, "base": 0.09, "high": 0.18},     # while Boeing has no new narrowbody in service
-    "cut": {"low": 0.02, "base": 0.05, "high": 0.10},              # market-average share of the price, at full effect
+    "cut": {"low": 0.01, "base": 0.02, "high": 0.04},              # market-average share of the price, at full effect, with
+                                                                   # an fps in service: the research's competition model gives
+                                                                   # about 1.5-2% at the ~5% share Embraer reaches then
+    "no_fps_mult": {"low": 1.0, "base": 1.3, "high": 1.8},         # on Boeing's MAX while it has no new narrowbody (research:
+                                                                   # Embraer's share is larger then)
     "lead": {"low": -1, "base": 1, "high": 3},                     # deliveries feel it this many years before Embraer's
                                                                    # EIS (deals about 4 years before, deliveries ~3 later)
     "ramp": {"low": 8, "base": 7, "high": 8},                      # years to the full cut (deals: full about 3 years after EIS)
@@ -67,20 +72,22 @@ EMB = {
 P_LAUNCH = {"low": 0.08, "base": 0.20, "high": 0.40}               # chance Embraer-Korea launches (by about 2032): the
                                                                   # research said 35% (15-60%); its verifier, on Embraer's
                                                                   # May 2026 call (segment not chosen), 20% (8-40%)
-P_LAUNCH_IF_BOEING = {"base": 0.10}                                # ... if Boeing launches an fps in 2030: Korea's chance of
-                                                                  # backing Embraer falls from 25% to 12% (research), so the
-                                                                  # chance is about halved
+P_LAUNCH_IF_BOEING = {"base": 0.10}                                # ... if Boeing launches an fps in 2030, and if it does
+P_LAUNCH_IF_NOT = {"base": 0.36}                                   # not: Korea backs Embraer 25% unconditionally, 12% after
+                                                                  # a Boeing launch, 45% without one (research), so the 20%
+                                                                  # scales to about 10% and 36%
 PARTNER_RATES = (0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08)        # partners' own rates, as stated (10.5% reading)
 P_MAX = 0.6                                                       # the largest share of the bill searched
-PACKAGES = {"Japan and Korea at their past scale": (0.11, 0.06),     # research: Japan about 8% of the bill at about 5.5%,
-            "Japan and Korea, high": (0.23, 0.045),                 # Korea about 3% at about 7%; high 15% + 8%
-            "787-style work share with state loans": (0.35, 0.04)}  # partners fund their work share (about 35% of the
-                                                                  # structure) with state loans for most of it
+PACKAGES = {"Japan at its 787 scale, plus Korea": (0.11, 0.06),     # research: Japan's 787 package in dollars is about 8%
+            "A large Asian package": (0.21, 0.045),                 # of the bill at about 5.5%, Korea about 3% at 7%
+            "A 35% state-loan package": (0.35, 0.04)}               # (judgement); high 15% + 6%; a 35% package is about
+                                                                  # four times Japan's 787 package in dollars
 FIXED = {"repo Joint Venture terms": (0.35, 0.25),                 # wargame/config/default.json: the partner pays 35% of the
-                                                                  # capex and takes 25% of the margin
-         "777/787-style package, pro rata": (0.20, 0.20),          # research: partners fund about 20% (8-35%) for about a
-         "777/787-style package, risk premium": (0.20, 0.24),      # pro-rata share of the profit or more (1.0-1.5x)
-         "large state-backed package, pro rata": (0.35, 0.35)}
+                                                                  # capex and takes 25% of the margin (its strain relief is
+                                                                  # not modelled: no solo fps plan carries strain in 2030)
+         "a 20% package, pro rata": (0.20, 0.20),                  # research: partners take about a pro-rata share of the
+         "a 20% package, 1.2x the profit share": (0.20, 0.24),     # profit (0.7-1.5x)
+         "a 35% package, pro rata": (0.35, 0.35)}
 
 
 def emb(level):
@@ -88,12 +95,13 @@ def emb(level):
 
 
 def world_options(level, share=True):
-    """The run's engine options with Embraer as the entrant (share on), or the run's own (share off: price only)."""
+    """The run's engine options with Embraer-Korea's line as the entrant: winning customers (share True), or, like the
+    game's own entrant, only customers nobody else can serve (share False: the line alone)."""
     o = copy.deepcopy(T.O)
+    e = emb(level)
+    tp = o["third_party"]
+    tp["entrant"] = {"eis": e["eis"], "peak_a_month": e["peak_a_month"], "years_to_peak": e["years_to_peak"]}
     if share:
-        e = emb(level)
-        tp = o["third_party"]
-        tp["entrant"] = {"eis": e["eis"], "peak_a_month": e["peak_a_month"], "years_to_peak": e["years_to_peak"]}
         tp["entrant_share"] = e["share_fps"]
         tp["entrant_share_no_fps"] = e["share_no_fps"]
     return o
@@ -101,14 +109,18 @@ def world_options(level, share=True):
 
 def price_options(level):
     e = emb(level)
-    return {"from": e["eis"] - e["lead"], "ramp_years": e["ramp"], "cut": e["cut"]}
+    return {"from": e["eis"] - e["lead"], "ramp_years": e["ramp"], "cut": e["cut"], "cut_boeing_no_fps": e["cut"] * e["no_fps_mult"]}
 
 
-def cut_at(pp, y):
-    """The engine's own price cut (SD.price_cut without the no-fps variant): pp is a price_pressure option or None."""
+def cut_at(pp, y, fps_eis=None):
+    """The engine's own price cut on Boeing's aircraft (SD.price_cut): pp is a price_pressure option or None; fps_eis
+    the plan's fps entry into service (None: no fps, as in Do Nothing and the status quo)."""
     if not pp or y < pp["from"]:
         return 0.0
-    return pp["cut"] * min(1.0, (y - pp["from"] + 1) / float(pp["ramp_years"]))
+    c = pp["cut"]
+    if "cut_boeing_no_fps" in pp and not (fps_eis and y >= fps_eis):
+        c = pp["cut_boeing_no_fps"]
+    return c * min(1.0, (y - pp["from"] + 1) / float(pp["ramp_years"]))
 
 
 # ─────────────────────────────── worlds ───────────────────────────────
@@ -138,7 +150,7 @@ def hybrid(base_key, emb_key, n):
     for name in F.ROWS:
         if name in FPS:
             cols = []
-            for f, g in zip(fb[name], fe["Do Nothing"]):
+            for f, g in zip(fb[name], fe[name]):         # the status quo is the same line in every plan of a world
                 h = copy.deepcopy(f)
                 for y in h["years"]:
                     h["years"][y]["sq"] = g["years"][y]["sq"]
@@ -167,7 +179,7 @@ def price_term(f, r, view, horizon, pp_plan, pp_sq):
     """PV (2026) of the price cut on Boeing's deliveries against the status quo's."""
     v = 0.0
     for y, (mx, fp, sq) in series(f, view, horizon).items():
-        v -= ((fp * PRICE + mx * PRICE_737) * cut_at(pp_plan, y) - sq * PRICE_737 * cut_at(pp_sq, y)) * F.df(y, r)
+        v -= ((fp * PRICE + mx * PRICE_737) * cut_at(pp_plan, y, f["fps_eis"]) - sq * PRICE_737 * cut_at(pp_sq, y)) * F.df(y, r)
     return v
 
 
@@ -180,7 +192,7 @@ def fps_profit(f, r, view, horizon, pp_plan):
     for y, (mx, fp, sq) in series(f, view, horizon).items():
         if fp > 0:
             m = M0 if (view == "game" or y <= f["window_end"]) else F.margin_at(y, f, M0, prm)
-            v += fp * PRICE * (m - cut_at(pp_plan, y)) * F.df(y, r)
+            v += fp * PRICE * (m - cut_at(pp_plan, y, f["fps_eis"])) * F.df(y, r)
     return v
 
 
@@ -391,7 +403,7 @@ def summarize(rd, spends=("eis",)):
     for key, (p, rp) in PACKAGES.items():
         d2, info = rd.decide(partner=(p, partner_rate(rp, rd.rname), "eis"))
         out["packages"][key] = {"p": p, "rate": rp, "decision": {k: d2[k] for k in READS + ("pick",)}, "e": d2["e"],
-                                "s": {name: info[name]["s"] for name in FPS}}
+                                "s": {name: info[name]["s"] for name in FPS}, "s_over_p": {name: info[name]["s"] / p for name in FPS}}
     out["fixed"] = {}
     for key, (p, s) in FIXED.items():
         d2, info = rd.decide(fixed=(p, s))
@@ -402,7 +414,8 @@ def summarize(rd, spends=("eis",)):
                              "implied_rate_nominal": {name: (None if info[name]["implied_rate"] is None else
                                                              (info[name]["implied_rate"] if rd.rname == "10.5%" else (1 + info[name]["implied_rate"]) * (1 + INFL) - 1))
                                                       for name in FPS},
-                             "boeing_gain": {name: sum((V1[name][i] - V0[name][i]) * wt for i, wt in rd.w.items()) for name in FPS}}
+                             "boeing_gain": {name: sum((V1[name][i] - V0[name][i]) * wt for i, wt in rd.w.items()) for name in FPS},
+                             "implied_rate_spread": {name: rd.implied_rate(name, p, s, "spread") for name in (TEN_R,)}}
     return out
 
 
@@ -465,30 +478,31 @@ def check_partner_at_boeing_rate():
             nom1 = f["fps_bill"] * (1 - p) + f["re_bill"]
             pv1 = f["fps_bill"] * (1 - p) * F.df(f["fps_eis"], rd.r) + (f["re_bill"] * F.df(f["re_eis"], rd.r) if f["re_eis"] else 0.0)
             debt = (F.tc(nom0, pv0) - pv0) - (F.tc(nom1, pv1) - pv1)
-            strain = sum((rd.rows[name][i]["inv"](1.0) - F.tc(nom0, pv0)) - (rd.rows[name][i]["inv"](1 - p) - F.tc(nom1, pv1)) for i in rd.w) / len(rd.w)
+            strain = sum(((rd.rows[name][i]["inv"](1.0) - F.tc(nom0, pv0)) - (rd.rows[name][i]["inv"](1 - p) - F.tc(nom1, pv1))) * wt for i, wt in rd.w.items())
             assert abs(gain - debt - strain) < 1e-9, (n, name, gain, debt, strain)
             out["%d|%s" % (n, name)] = {"gain": gain, "debt_penalty_saving": debt, "strain_change": strain}
     return out
 
 
 # ─────────────────────────────── main ───────────────────────────────
-WORLDS = ("as played", "Embraer low", "Embraer base", "Embraer high", "share only", "price only", "deterred",
+WORLDS = ("as played", "line only", "Embraer low", "Embraer base", "Embraer high", "share only", "price only", "deterred",
           "expected", "expected, deterred", "expected, partly deterred")
 ROUND1_ONLY = ("deterred", "expected", "expected, deterred", "expected, partly deterred")      # Boeing decides in 2030 before Embraer does; by 2035
                                                                   # it knows whether Embraer launched
 
 
 def make_round(world, n, rname, case):
-    q, qf = P_LAUNCH["base"], P_LAUNCH_IF_BOEING["base"]
+    q, qf, qn = P_LAUNCH["base"], P_LAUNCH_IF_BOEING["base"], P_LAUNCH_IF_NOT["base"]
     if world == "expected":
         return Mix([(make_round("Embraer base", n, rname, case), q), (make_round("as played", n, rname, case), 1 - q)])
     if world == "expected, deterred":
-        return Mix([(make_round("deterred", n, rname, case), q), (make_round("as played", n, rname, case), 1 - q)])
+        # Embraer launches with chance qn if Boeing does not launch in 2030, never if it does
+        return Mix([(make_round("deterred", n, rname, case), qn), (make_round("as played", n, rname, case), 1 - qn)])
     if world == "expected, partly deterred":
-        # Embraer launches with chance qf if Boeing launches an fps in 2030, q if not: the fps plans see Embraer with
-        # chance qf, Do Nothing and the status quo with chance q (weights: Embraer world qf, deterred q - qf, none 1 - q)
-        return Mix([(make_round("Embraer base", n, rname, case), qf), (make_round("deterred", n, rname, case), q - qf),
-                    (make_round("as played", n, rname, case), 1 - q)])
+        # Embraer launches with chance qf if Boeing launches an fps in 2030, qn if not: the fps plans see Embraer with
+        # chance qf, Do Nothing and the status quo with chance qn (weights: Embraer world qf, deterred qn - qf, none 1 - qn)
+        return Mix([(make_round("Embraer base", n, rname, case), qf), (make_round("deterred", n, rname, case), qn - qf),
+                    (make_round("as played", n, rname, case), 1 - qn)])
     if world == "deterred":
         if ("deterred", n) not in W:
             W[("deterred", n)] = hybrid("as played", "Embraer base", n)
@@ -517,9 +531,10 @@ def main():
     load_world("as played", T.O)
     for lv in ("low", "base", "high"):
         load_world("Embraer " + lv, world_options(lv))
-    W["share only"] = W["Embraer base"]
-    W["price only"] = W["as played"]
-    res = {"embraer": EMB, "p_launch": P_LAUNCH, "p_launch_if_boeing": P_LAUNCH_IF_BOEING, "partner_rates": PARTNER_RATES,
+    load_world("line only", world_options("base", share=False))   # Embraer-Korea's line, serving only overflow customers
+    W["share only"] = W["Embraer base"]                           # line and share, no price cut
+    W["price only"] = W["line only"]                              # line and price cut, no share
+    res = {"embraer": EMB, "p_launch": P_LAUNCH, "p_launch_if_boeing": P_LAUNCH_IF_BOEING, "p_launch_if_not": P_LAUNCH_IF_NOT, "partner_rates": PARTNER_RATES,
            "p_max": P_MAX, "fixed": FIXED, "packages": PACKAGES,
            "price_options": {lv: price_options(lv) for lv in ("low", "base", "high")}, "checks": {}, "worlds": {}}
     res["checks"]["no_embraer_equals_politics"] = check_no_embraer()

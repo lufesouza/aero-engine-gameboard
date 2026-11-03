@@ -1,5 +1,10 @@
 {
- "about": "Research for embraer.py and fps_embraer.html: five web research tracks (Embraer and Korea, Brazil-US relations, price pressure from a third maker, partner precedents, Korean and Japanese industry), each checked by an adversarial verifier who opened or searched each finding's source. Many hosts were not reachable from the session (DNS), so several findings rest on search-result extracts; each finding carries its own confidence and each verdict its source.",
+ "about": "Research for embraer.py and fps_embraer.html: five web research tracks (Embraer and Korea, Brazil-US relations, price pressure from a third maker, partner precedents, Korean and Japanese industry), each followed by an adversarial verifier. The verifiers could not open web sources (the session's search budget was used up and many hosts did not resolve), so they checked what they could against the Boeing and Embraer call transcripts, 10-Ks and Airbus's Board Report in the repository: 21 findings confirmed, 16 corrected, 151 could not be checked. Findings rest on search-result extracts unless a verdict says otherwise; each carries its own confidence.",
+ "verdicts": {
+  "unverifiable": 151,
+  "corrected": 16,
+  "confirmed": 21
+ },
  "tracks": {
   "embraer-korea": {
    "research": {
@@ -2080,6 +2085,265 @@
      "Delta's own implied CS100 price (one analysis said about $23.3M) and the Ryanair SEC filing were not opened directly."
     ],
     "summary": "The evidence points to a modest market-wide price effect from a third credible single-aisle maker, but large cuts in the campaigns where it actually bids. Structural work (Irwin-Pavcnik) puts aircraft price-cost margins around 14-17%. It finds prices move only a few percent after shocks: +3.7% after the 1992 subsidy rules, and rivals' prices change little when an entrant product (the A380) arrives, which takes most from its closest substitutes. Calibrated Cournot arithmetic on those margins gives about a 3-6% fall in market-average net price when an entrant reaches 10-30% share, so 5% is the base. Calibrated models are known to be very sensitive to the 2-versus-3 firm question, so the band is wide (2-10%). Episodes show what happens in contested deals: Boeing cut about 45% below normal net pricing to keep the CS100 out of United (2016). Bombardier priced the CSeries about two-thirds off list and booked a $492M loss on 127 launch orders. The A220 went to JetBlue at 66-72% off against the E2. PROEX financing gave Embraer about a 13-15% price edge over the CRJ. The US ITC nevertheless found no injury to Boeing and no general price depression, and treated the Delta deal as a one-off. Pressure starts well before entry into service: the neo/MAX price war began at the 2010-11 launches, 5-6 years before entry into service, and incumbents discounted pre-emptively against entrants. But airlines commit to an entrant only when it is close to service, so I model the effect starting about 4 years before entry into service, half felt at entry into service and full about 3 years later. If Boeing has no new airplane, the cut is larger (base 1.3x) only if customers use the entrant to discipline Airbus. If the entrant simply replaces Boeing's MAX as the second source, the market price effect is about unchanged. In that case Airbus bears most of the per-unit price cut and Boeing most of the lost volume. Airline appetite is documented: in a BofA/Aviation Week survey, 71% would buy an Embraer narrowbody on merit, and United's Kirby and Ryanair's O'Leary both complain of duopoly leverage. But no sell-side house has published a quantified third-supplier price effect, and the C919 has shown no measurable effect on Western prices so far."
+   },
+   "verify": {
+    "checks": [
+     {
+      "id": "ACA-1",
+      "verdict": "unverifiable",
+      "correction": "Could not check. The egress proxy refused www.nber.org, and this turn's WebSearch budget was used up. No local copy. Two warnings. (1) ACA-1 says the 3.7% applies to narrow- and wide-body markets, but ACA-2 says the paper's demand system covers wide-bodies only. My unchecked recollection is that the paper is about the wide-body market, so any narrow-body use is unconfirmed. (2) A 3.7% price response to a roughly 5% marginal-cost rise is cost pass-through, not an entry effect.",
+      "url": "https://www.nber.org/papers/w8648 (refused by the egress proxy)"
+     },
+     {
+      "id": "ACA-2",
+      "verdict": "unverifiable",
+      "correction": "Host bpb-us-e1.wpmucdn.com refused by the egress proxy; no local copy. Even if correct, these are wide-body (p-c)/p estimates for 1969-1998 under assumed learning rates, not a single-aisle Lerner index.",
+      "url": "https://bpb-us-e1.wpmucdn.com/sites.dartmouth.edu/dist/c/1993/files/2018/08/Irwin-Pavcnik-Airbus-2la4z2g.pdf (refused)"
+     },
+     {
+      "id": "ACA-3",
+      "verdict": "unverifiable",
+      "correction": "NBER host refused. The finding's own conflict (a 14.8-point fall in 747 share in one draft, 1.6 points in another) is unresolved. The 0.6-2.2% Boeing price fall has no confirmed scenario. This is a wide-body/A380 simulation, so it is weak support for single-aisle entry.",
+      "url": "https://www.nber.org/system/files/working_papers/w8648/w8648.pdf (refused)"
+     },
+     {
+      "id": "ACA-4",
+      "verdict": "unverifiable",
+      "correction": "Not checked: I stopped trying further hosts after two DNS/proxy refusals, and no web search budget was left. The citation (RES 71(3), 581-611, 2004) matches my recollection but is unchecked. None of the figures were checked: about 10% welfare loss against a planner, 'up to 50% below cost', and the -0.29 learning parameter. The learning-rate figures may come from Benkard's 2000 AER paper rather than the 2004 RES paper; check before citing.",
+      "url": "https://ideas.repec.org/a/oup/restud/v71y2004i3p581-611.html (not opened)"
+     },
+     {
+      "id": "ACA-5",
+      "verdict": "unverifiable",
+      "correction": "Not checked (no web access). The source is a typeset.io mirror of a working-paper version, not the published Economic Policy article, so the $100bn and two-thirds figures may differ from the published text.",
+      "url": "https://typeset.io/pdf/european-industrial-policy-the-airbus-case-1we69fmfhl.pdf (not opened)"
+     },
+     {
+      "id": "ACA-6",
+      "verdict": "unverifiable",
+      "correction": "Not checked (no web access). The source is a secondary Korean review, not the Baldwin-Krugman chapter. No price figure is given.",
+      "url": "https://koreascience.or.kr/article/JAKO199441847756682.pdf (not opened)"
+     },
+     {
+      "id": "ACA-7",
+      "verdict": "unverifiable",
+      "correction": "Not checked (no web access). The source is an unofficial Scribd upload, its authorship is uncertain ('probably Esty-Ghemawat'), and the quoted phrase was not seen.",
+      "url": "https://www.scribd.com/document/551571677/Esty-Airbus-Boeing (not opened)"
+     },
+     {
+      "id": "CS-1",
+      "verdict": "unverifiable",
+      "correction": "The Reuters/Investing.com page was not opened, so the two-thirds discount and the $71.8M list price are unchecked. Related primary evidence I could read is Embraer's Q1 2016 call (29 Apr 2016). There, CEO Frederico Curado called the Delta campaign 'somewhat atypical'. He said Embraer's bid was 'a combination of new and used aircraft' as Delta requested, and that the ~$0.5bn onerous-contract provision 'explains a lot about what happened there'. This supports a deep, one-off launch discount but gives no percentage.",
+      "url": "https://www.investing.com/news/stock-market-news/big-delta-order-boosts-momentum-for-bombardier's-cseries-jets-398592 (not opened); checked against local transcript /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt"
+     },
+     {
+      "id": "CS-2",
+      "verdict": "unverifiable",
+      "correction": "The egress proxy refused leehamnews.com. The $19.6M and $33.2M figures are unchecked. They are an interested party's ITC-adjusted numbers in any case.",
+      "url": "https://leehamnews.com/2017/05/25/bombardier-delta-deal-can-put-boeing-business-company-claims/ (refused)"
+     },
+     {
+      "id": "CS-3",
+      "verdict": "corrected",
+      "correction": "The timing is likely wrong. On 29 Apr 2016, Embraer CEO Curado already referred to 'the onerous contract provision was $0.5 billion'. He said that 'between that order [Delta] and Air Canada's order, there's $0.5 billion impairment'. So the provision was public by end-April 2016, which points to Bombardier's Q1 2016 results (late April 2016), not a Q2 2016 charge or an August 2016 date. Still unchecked: the exact $492M, the 127-aircraft split (Delta 75, Air Canada 45, airBaltic 7) and $3.9M per aircraft. The provision is Bombardier's official disclosure, but the cited source is trade press (Aviation Week).",
+      "url": "Local transcript, Embraer FQ1 2016 call, 29 Apr 2016: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt; cited https://aviationweek.com/air-transport/aircraft-propulsion/bombardier-losses-key-cseries-sales-total-492-million (not opened)"
+     },
+     {
+      "id": "CS-4",
+      "verdict": "unverifiable",
+      "correction": "The Commerce fact sheet was not opened. The internal arithmetic is consistent: 79.82 + 212.39 = 292.21. The finding's own point stands: the AD rate rests on adverse facts available, not a measured price-cost gap.",
+      "url": "https://2017-2021.commerce.gov/sites/default/files/fact_sheet_commerce_finds_dumping_and_subsidization_of_imports_of_100-_to_150-seat_large_civil_aircraft_from_canada.pdf (not opened)"
+     },
+     {
+      "id": "CS-5",
+      "verdict": "unverifiable",
+      "correction": "The Reuters/Yahoo page was not opened, and the 4-0 count is unchecked. The date is probably wrong for the reasoning claims. On Boeing's 31 Jan 2018 call, CEO Dennis Muilenburg said 'we won't have the details until the full ruling is released later in February'. So the 26 Jan 2018 vote date cannot be the date of a report on the 194-page opinion's reasons (no lost sales, prices unlikely to be depressed); that report must date from February 2018. Separately, Boeing's CFO said on 27 Jan 2016 that there was no material pricing pressure for 2016-17, which fits the ITC view.",
+      "url": "Local transcript, Boeing FQ4 2017 call, 31 Jan 2018: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/tr/all.txt; cited https://au.news.yahoo.com/a/39005433/u-s-trade-agency-rejected-cseries-duties-as-jet-sales-did-not-hurt-boeing/ (not opened)"
+     },
+     {
+      "id": "CS-6",
+      "verdict": "unverifiable",
+      "correction": "The Business Insider page was not opened, so the $20-25M price, 73% discount and 40+25 aircraft split are unchecked. Boeing's Q4 2015 call (27 Jan 2016) mentions only 'purchase decisions announced just last week by Southwest and United Airlines'. On that call the CFO, asked about pricing pressure in 2016-17 excluding escalation, answered 'No, nothing material.' The '45% further cut' is the researcher's arithmetic on two unverified estimates.",
+      "url": "https://www.businessinsider.in/boeing-just-gave-united-a-massive-discount/articleshow/51335765.cms (not opened); local Boeing transcript /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/tr/all.txt"
+     },
+     {
+      "id": "CS-7",
+      "verdict": "unverifiable",
+      "correction": "Not opened. The status is mislabelled: the cited source is FlightGlobal reporting on an ITC staff report, so it is 'reported', not 'official'.",
+      "url": "https://flightglobal.com/news/articles/us-trade-staff-issue-final-report-before-bombardier-444986 (not opened)"
+     },
+     {
+      "id": "A220-1",
+      "verdict": "unverifiable",
+      "correction": "Not opened. This is a Moody's appraiser-based estimate reported by BNN Bloomberg, not a disclosed price.",
+      "url": "https://www.bnnbloomberg.ca/airbus-a220s-sold-to-jetblue-at-discount-of-up-to-72-moody-s-1.1107879 (not opened)"
+     },
+     {
+      "id": "A220-2",
+      "verdict": "unverifiable",
+      "correction": "SEC page not opened; no local Spirit filings. The $242.2M figure is misattributed. The cited FY2024 10-K, filed around Feb 2025, cannot contain 'first nine months of 2025' data, which would come from a 2025 10-Q. That sub-claim needs its own source.",
+      "url": "https://www.sec.gov/Archives/edgar/data/1364885/000162828025009088/spr-20241231.htm (not opened)"
+     },
+     {
+      "id": "A220-3",
+      "verdict": "unverifiable",
+      "correction": "Leeham was refused by the egress proxy, and the Slattery quote was not seen. Check that the quote is contemporaneous with the April 2020 article and not recycled from the 2018-19 Boeing-JV period.",
+      "url": "https://leehamnews.com/2020/04/27/the-squeeze-on-embraer/ (refused)"
+     },
+     {
+      "id": "A220-4",
+      "verdict": "confirmed",
+      "correction": "Confirmed from a local copy of the FY2019 10-K (filed Jan 2020): 'After the acquisition of a majority share of Bombardier's C Series (now A220) in 2018, Airbus continues to expand in the 100-150 seat transcontinental market... This market environment has resulted in intense pressures on pricing and other competitive factors, and we expect these pressures to continue or intensify in the coming years.' Caveat: the pricing-pressure sentence is boilerplate. It appears almost word for word in the FY2017 and FY2024 10-Ks, and similar text appears in FY2012. It is also tied to launch aid and all competitors, not to the A220 alone. Weak evidence of a specific third-design price effect.",
+      "url": "Local: /home/user/aero-engine-gameboard/Boeing 10ks.zip (text at /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/10k/boeing10k.txt); cited https://www.sec.gov/Archives/edgar/data/0000012927/000001292720000014/a201912dec3110k.htm"
+     },
+     {
+      "id": "PW-1",
+      "verdict": "unverifiable",
+      "correction": "The Reuters/Mail & Guardian page was not opened, and the Leahy and Tinseth quotes were not seen. Boeing's own calls frame this period as normal transition pricing, not a war. VP James Albaugh, 25 Jan 2012: 'Anytime you roll out a new airplane or you're trying to launch a new airplane there is some aggressive pricing'. CEO Jim McNerney, 25 Jul 2012: narrowbody pricing is 'similar to other transitions... the NG transition from the classics... I would not call it abnormal'.",
+      "url": "https://mg.co.za/article/2012-07-08-how-plane-giants-descended-into-global-price-war/ (not opened); local /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/tr/all.txt"
+     },
+     {
+      "id": "PW-2",
+      "verdict": "unverifiable",
+      "correction": "The egress proxy refused Leeham. Wells Fargo, AirInsight and the 8-K figures are all unchecked.",
+      "url": "https://leehamnews.com/2012/05/18/wells-fargo-estimates-southwest-paid-base-price-34-7m-for-max/ (refused)"
+     },
+     {
+      "id": "PW-3",
+      "verdict": "unverifiable",
+      "correction": "The egress proxy refused Leeham. The arithmetic is right (a move from 50% to 59% off list cuts net price by 18%), but both discount levels are unverified analyst estimates.",
+      "url": "https://leehamnews.com/2014/08/11/odds-and-ends-boeing-discounting-a380-analysis-a320neo-leap/ (refused)"
+     },
+     {
+      "id": "PW-4",
+      "verdict": "corrected",
+      "correction": "Boeing's Q2 2011 call (27 Jul 2011) confirms the core. The order 'included 100 737NGs and a commitment by the airline for an additional 100 re-engined NGs pending launch approval of that program by our Board'. McNerney said the competition 'did get pretty heated as Airbus... wanted to come in and get market share... pretty aggressively priced, but not irresponsibly priced'. But Boeing denies the American order alone drove the re-engine: 'this didn't occur to us a week before the American Airline competition', and it was 'part of a much broader voice of the marketplace'. The commitment was conditional on later board approval. Unchecked: the $6bn of financing, and the list value. Check whether $22.6bn covers the Airbus 260 only, since it looks low for all 460 aircraft.",
+      "url": "Local transcript /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/tr/all.txt (Boeing FQ2 2011, 27 Jul 2011); cited https://m.washingtontimes.com/news/2011/jul/20/airbus-boeing-to-share-american-airlines-order/ (not opened)"
+     },
+     {
+      "id": "PW-5",
+      "verdict": "unverifiable",
+      "correction": "Not opened. The source is an individual's blog using their own assumptions, so treat it as an anecdote, not a data point.",
+      "url": "https://helix-azalea-cf2t.squarespace.com/blog/ryanairs-aircraft-cost-advantage (not opened)"
+     },
+     {
+      "id": "PW-6",
+      "verdict": "unverifiable",
+      "correction": "The Irish Times page was not opened, and the O'Leary quote was not seen.",
+      "url": "https://www.irishtimes.com/business/transport-and-tourism/ryanair-ready-for-long-wait-for-boeing-to-cut-max-price-says-o-leary-1.4668236 (not opened)"
+     },
+     {
+      "id": "PW-7",
+      "verdict": "unverifiable",
+      "correction": "Not opened. The date is the researcher's inference, and the quotes were not seen. No Airbus call transcripts are in the local files.",
+      "url": "https://www.flightglobal.com/air-transport/airbus-experiencing-aggressive-pricing-in-widebody-campaigns-faury/156937.article (not opened)"
+     },
+     {
+      "id": "MG-1",
+      "verdict": "confirmed",
+      "correction": "Boeing's FY2018 10-K (local copy) shows Commercial Airplanes operating margins of 13.0% (2018), 9.4% (2017) and 3.3% (2016), with 806 deliveries in 2018. The press release itself was not opened, but the official figures match. Note: this is a program-accounting operating margin after R&D, not a price-cost margin.",
+      "url": "Local: /home/user/aero-engine-gameboard/Boeing 10ks.zip (FY2018 10-K); cited https://investors.boeing.com/investors/news/press-release-details/2019/Boeing-Reports-Record-2018-Results-and-Provides-2019-Guidance/default.aspx"
+     },
+     {
+      "id": "MG-2",
+      "verdict": "confirmed",
+      "correction": "Confirmed from the Airbus SE Report of the Board of Directors FY2025 (dated 18 Feb 2026), printed p.125: 'EBIT Adjusted related to Airbus' commercial aircraft activities increased to EUR 5,470 million (2024: EUR 5,093 million)'. Airbus segment revenue was EUR 52,577M, group EBIT Adjusted EUR 7,128M on revenue of EUR 73,420M, and 793 deliveries. 5,470/52,577 = 10.4% (derived). The segment includes services and A220 losses, and the margin is after R&D.",
+      "url": "Local: /home/user/aero-engine-gameboard/airbus_se_report_of_the_board_of_directors_fy_2025.zip (PDF p.126); cited https://www.airbus.com/en/newsroom/press-releases/2026-02-airbus-reports-full-year-fy-2025-results (not opened)"
+     },
+     {
+      "id": "MG-3",
+      "verdict": "unverifiable",
+      "correction": "The Acumen PDF was not opened. The AirInsight/IBA secondary values are low confidence by the researcher's own account.",
+      "url": "https://acumen.aero/uploads/marketinsight/289188320240620.pdf (not opened)"
+     },
+     {
+      "id": "RJ-1",
+      "verdict": "unverifiable",
+      "correction": "Not opened. One figure to check: 'Canada later sought sanctions of up to $3.4bn'. My unverified recollection is that the DS46 arbitrators (2000) authorised Canadian countermeasures of about C$344.2 million a year. If so, $3.4bn may be a factor-of-ten slip; check the WTO DS46 page. PROEX is a financing subsidy, so its 13-15% equivalent is not a list-price cut.",
+      "url": "https://www.flightglobal.com/regional-brinkmanship/19361.article (not opened)"
+     },
+     {
+      "id": "RJ-2",
+      "verdict": "unverifiable",
+      "correction": "Not opened, the article is undated, and the quote was not seen.",
+      "url": "https://flightglobal.com/bombardier-is-foiled-by-embraer-50-seat-scoop/8437.article (not opened)"
+     },
+     {
+      "id": "RJ-3",
+      "verdict": "corrected",
+      "correction": "The Motley Fool page was not opened, but Embraer's Q4 2014 call (5 Mar 2015) gives the primary account. CFO Jos\u00e9 Filippo described price pressure 'about 200 basis points, right, 2%' with further pressure, giving 'tepid margins for 2015'. CEO Curado attributed the harder pricing to three things: 'As we get closer to the E2, the E1 becomes less and less attractive', 'the bulk of the demand is coming from the U.S., large orders', and 'competition very much starved for cash'. Bombardier is not named, and the quantified effect is about 2%, not 'big discounts'. The Q4 2022 sub-claim is confirmed. On 10 Mar 2023, commercial CEO Arjan Meijer said 'some deals from a few years ago... are still causing some pricing pressure on the 175-E1'.",
+      "url": "Local transcripts /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt; cited https://www.fool.com/investing/general/2015/03/11/embraers-drop-could-be-a-buying-opportunity.aspx (not opened)"
+     },
+     {
+      "id": "C9-1",
+      "verdict": "unverifiable",
+      "correction": "Not opened. The claim mixes sources and dates: a May 2022 CompositesWorld article cannot carry the 2024 Air China/Caixin $108M figure. The status should be 'reported', not 'official'.",
+      "url": "https://compositesworld.com/news/first-production-comac-c919-narrowbody-completes-maiden-flight-price-higher-than-expected (not opened)"
+     },
+     {
+      "id": "C9-2",
+      "verdict": "unverifiable",
+      "correction": "The Bloomberg page (paywalled) was not opened. The underlying China Eastern exchange filing would be the official source.",
+      "url": "https://www.bloomberg.com/news/articles/2023-09-28/china-eastern-orders-100-homegrown-comac-jets-worth-9-9-billion (not opened)"
+     },
+     {
+      "id": "C9-3",
+      "verdict": "unverifiable",
+      "correction": "The IBA page was not opened. The Cirium split came via a secondary summary. Airbus's FY2025 Board Report (printed p.12) goes further than this finding: Airbus states 'the period of a duopoly in the mainline commercial aircraft market has ended' and considers COMAC's penetration 'a more significant risk in the 2030s'.",
+      "url": "https://www.iba.aero/resources/articles/comacs-rising-impact-in-chinas-aviation-market/ (not opened); local Airbus report /home/user/aero-engine-gameboard/airbus_se_report_of_the_board_of_directors_fy_2025.zip"
+     },
+     {
+      "id": "SUR-1",
+      "verdict": "unverifiable",
+      "correction": "Not opened, and the date is inferred. '71% would consider' measures willingness to consider Embraer, not the share of campaigns it would contest.",
+      "url": "https://aviationweek.com/aerospace/aircraft-propulsion/aviation-weekbofa-survey-shows-great-interest-potential-embraer (not opened)"
+     },
+     {
+      "id": "SUR-2",
+      "verdict": "unverifiable",
+      "correction": "The Fortune page was not opened, and the Kirby quotes were not seen. The aviationa2z follow-up is a low-tier source.",
+      "url": "https://fortune.com/asia/2024/06/04/united-airlines-ceo-scott-kirby-more-competition-aerospace-boeing-airbus-unlikely-comac (not opened)"
+     },
+     {
+      "id": "EMB-1",
+      "verdict": "unverifiable",
+      "correction": "The 'three or four makers' quote and Faury's 'think twice' could not be checked. The near-term rule-out is supported by Embraer's own calls. Q1 2024 call (7 May 2024), CEO Francisco Gomes Neto: 'we don't have a [plan] to develop or launch a narrowbody or other aircraft in the next few years'. Q1 2025 call (6 May 2025): 'customers, they have asked us about our plans to go bigger... we are making studies in all fronts. We don't have a decision', while investing in 'new fuselage, new wings, cockpit'.",
+      "url": "https://www.airdatanews.com/embraer-ceo-says-global-jet-market-has-room-for-more-boeing-and-airbus-rivals/ (not opened); local /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt"
+     },
+     {
+      "id": "EMB-2",
+      "verdict": "unverifiable",
+      "correction": "The egress proxy refused Leeham. The 28 Jul 2026 KAI-Embraer MOU is also unchecked: local Embraer transcripts end at the Q1 2026 call (8 May 2026).",
+      "url": "https://leehamnews.com/2026/09/04/will-embraer-go-big-by-developing-a-large-narrowbody-jet/ (refused)"
+     },
+     {
+      "id": "EMB-3",
+      "verdict": "unverifiable",
+      "correction": "Not opened. The attribution came from a search summary over several pages and is undated, so the quote is not verified.",
+      "url": "https://www.cityam.com/heres-what-it-would-take-for-embraer-to-break-the-boeing-airbus-duopoly/ (not opened)"
+     },
+     {
+      "id": "AI-1",
+      "verdict": "unverifiable",
+      "correction": "Not opened, and it is undated. Only the comment thread was seen, so the quote may be a reader's comment, not AirInsight's view.",
+      "url": "https://airinsight.com/will-airbus-and-boeing-end-the-price-war/ (not opened)"
+     }
+    ],
+    "missing": [
+     "OFFICIAL, Airbus FY2025 Board Report (dated 18 Feb 2026), printed p.12: 'the period of a duopoly in the mainline commercial aircraft market has ended'; COMAC's penetration is 'a more significant risk in the 2030s'; Embraer's 'largest E2-jet product overlaps with the smallest Airbus aircraft'. Source (local copy, no URL opened): /home/user/aero-engine-gameboard/airbus_se_report_of_the_board_of_directors_fy_2025.zip",
+     "OFFICIAL, same report, printed p.11: the market went from oversupply to 'undersupply', and Airbus 'anticipates this supply-demand mismatch will endure as long as industry production rate and supply-chain challenges persist'. Printed p.9: NGSA 'could enter into service in the second half of the next decade'. Scarce delivery slots damp price effects from entry. Source: /home/user/aero-engine-gameboard/airbus_se_report_of_the_board_of_directors_fy_2025.zip",
+     "OFFICIAL, Boeing CFO Jesus Malave, company conference, 17 Mar 2026: 'we are seeing a better pricing environment... It's not just being kind of opportunistic because there's minimal slots available. Yes, that's a factor.' On a new airplane: 'That day is not today, and it's not any time near.' Boeing Q3 2026 call (27 Oct 2026): 'record backlog of $745 billion with improved pricing dynamics'; legacy 'pricing penalties' still burden 2027 cash. Source (local S&P transcripts): /home/user/aero-engine-gameboard/Transcript Digest (4).pdf",
+     "OFFICIAL, Embraer CEO Francisco Gomes Neto, Q1 2024 call (7 May 2024), asked about E2 pricing against the A220: 'why don't we have a free competition in the market? The result is pressure on the price, which benefit the customers... we don't sell our aircraft below cost.' This bears directly on the entrant below-cost input. Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt",
+     "OFFICIAL, Embraer Commercial Aviation adjusted margin was 2.5% (2024) and 2.7% (2025) (Q4 2025 call, 6 Mar 2026; the transcript labels it adjusted EBITDA). On 27 Feb 2025 CFO Antonio Carlos Garcia said 'we have some tough campaigns' and targeted 5-6% in the mid term. A third supplier competing with the A220 earns thin margins, which helps calibrate an Embraer entrant's pricing room. Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/q4_25.txt and emb_tr.txt",
+     "OFFICIAL, Embraer commercial CEO Arjan Meijer, 10 Mar 2023, on the E2: 'we want to be very sensitive on the pricing... But also, we are very aware that we need to bring E2 into the market and build our market share... it's finding that balance'. This is an entrant explicitly trading price for share. Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt",
+     "OFFICIAL, Embraer executive Eduardo Couto, conference on 8 Jun 2016, on CSeries pricing: 'we have seen some aggressive movements that we don't want to be part of... They cannot offer planes below cost for longer. So we believe that the recent competition is more short term.' Curado, 29 Apr 2016: the Delta campaign was 'somewhat atypical'. Rivals read entrant launch pricing as temporary. Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt",
+     "OFFICIAL, Embraer's Paulo Cesar de Souza e Silva, 31 Oct 2016: Boeing and Airbus re-engined 'after Bombardier launched the C Series. And with that, we also had to launch the E2'. He added that Embraer would not launch anything larger than the E2 'if Boeing and Airbus are still in this segment'. An entrant's launch triggered incumbent product responses years before its entry into service, a different channel from price cuts. Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/fc_brazil/emb_tr.txt",
+     "OFFICIAL, Boeing CFO Greg Smith, 27 Jan 2016, days after United's 737-700 order: asked about pricing pressure in 2016-17 excluding escalation, he said 'No, nothing material.' Randy Tinseth, 16 Mar 2016: pricing is competitive, but single-aisle market values and lease rates 'have held up quite well'. The market-average price effect stayed small even at the peak of the CSeries campaigns. Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/tr/all.txt",
+     "OFFICIAL, Boeing's McNerney, 24 Jul 2013, asked whether 50-50 share against the neo is possible without a price war: customers 'ask for better pricing in every campaign', but he did not see pricing 'to the place where it destroys or significantly impairs our economics'. On 25 Jul 2012 he described launch pricing as 'a little more aggressive for a while' plus 'fill-the-gap pressure' on old models. Separate the duopoly transition effect from the entry effect. Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/tr/all.txt",
+     "OFFICIAL, Boeing's Randy Tinseth (Boeing event, Apr 2016; transcript filed with the FQ1 2016 call): 'there will be a successful third competitor... probably later rather than sooner... Embraer is choosing to compete just below us. The CSeries is trying to take Boeing and Airbus head on, and that's not working too well for them.' Source: /tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/franchise/tr/all.txt",
+     "Access note: no web facts could be added. The egress proxy refused www.nber.org, bpb-us-e1.wpmucdn.com and leehamnews.com, and this turn's shared WebSearch budget (200 calls) was used up. Those hosts must be allowed in the session's network settings, or the user can send a follow-up to continue searching. Still unsearched: Bombardier's Q1/Q2 2016 report (provision timing), the ITC final opinion (Feb 2018), Spirit's 2025 10-Q, and the WTO DS46/DS222 award amounts."
+    ],
+    "inputs_review": "Caveat first: I could verify only 4 of 35 findings (A220-4, MG-1, MG-2 confirmed; RJ-3, PW-4 and CS-3 corrected from primary transcripts). The rest are unverifiable because the web was blocked. So most input bases rest on unchecked secondary claims.\n\n(1) Lerner index 0.10/0.15/0.20. MG-1 (13.0%) and MG-2 (10.4%) are operating margins after R&D, SG&A and program-accounting averaging, not (p - mc)/p. ACA-2 is a wide-body 1969-98 estimate. The true single-aisle Lerner is probably above the operating margin. This input drives everything else, because in the Cournot formula the price cut scales with it. A 20% entrant gives -4.7% at L=0.15 but about -8.5% at L=0.25. Either widen the high end to 0.25-0.30, or set the market-average cut directly and vary it together with L in the sensitivity runs.\n\n(2) Market-average cut 2%/5%/10%. The order of magnitude is defensible. ITC (unverified), Boeing's CFO in 2016 ('nothing material') and today's slot scarcity all argue for small market-wide effects. Airbus expects undersupply to persist, and Boeing reports 'better pricing environment... minimal slots'. Drop ACA-1 (cost pass-through) and ACA-3 (wide-body A380) from the basis; they are not entry effects. Do not use PW-3's 18% as an entrant case. That figure is a duopoly product-transition war. The game already has its own trigger for one, the Airbus NGSA and fps launches, so model it separately. Recommend making the cut depend on the backlog: damp it while incumbent backlogs exceed several years of output.\n\n(3) Campaign-level cut 8%/15%/40%. The 40% high rests on CS-6 (unverified; an end-of-line 737-700 deal the ITC treated as one-off) and on launch-customer pricing (PW-2, PW-3), which is not an entrant contest. RJ-1 is a PROEX financing subsidy, not a price cut. Suggest low 0.05, base 0.10-0.15, high 0.25-0.30.\n\n(4) Share of campaigns contested 0.15/0.3/0.5. Acceptable, but SUR-1 measures willingness to consider Embraer, not contest rate. Cap the implied wins by capacity. At 20 a month (240 a year) against roughly 1,500 or more incumbent single-aisle deliveries a year, the entrant can take only about 12-15% of units. The 30% share behind the high multiplier needs about 50 a month.\n\n(5) Price pressure starts 2/4/6 years before entry into service. The basis is incumbent re-engine launches (neo/MAX), not entrant pressure. For the CSeries (launched 2008, entry into service 2016), the deep contested deals (United in January 2016, Delta in April 2016) came within about a year of entry into service, and Embraer called that competition 'short term'. Embraer's 2016 remark shows the earlier channel was an incumbent product response, not price. Suggest splitting the two: a product-response or launch-timing effect from 3-6 years before entry into service, and a price effect starting at low 0, base 2, high 4 years before.\n\n(6) Share felt by entry into service 0.3/0.5/0.8. Fine. The CSeries record argues for a base nearer 0.3-0.4.\n\n(7) No-fps multiplier 1.0/1.3/1.8. Logic is fine, but 1.8 assumes a 25-30% entrant share, which conflicts with 20 a month. Use about 1.5 as the high unless the entrant's rate grows.\n\n(8)-(10) Airbus and Boeing split shares. These are analysis-only and plausible. A220-3 and C9-3 are unverified. Airbus's report confirms that the E2 overlaps the A220 and smallest A320neo, so an Embraer narrowbody would press on Airbus's A220/A320 range.\n\n(11) Entrant price below own cost 0.15/0.3/0.5. Embraer's CEO says 'we don't sell our aircraft below cost' (May 2024), and Embraer runs a 2-3% commercial margin. CS-3's roughly 15-20% of price is Bombardier's and unverified. CS-2's 41% is an interested party's adjusted number. ACA-4's 50% is below learning-curve marginal cost at introduction, not below average cost. For an Embraer-led programme, suggest low 0, base about 0.10-0.15, high 0.30. Keep 0.5 only for a scenario where a state-backed partner (for example Korean) subsidises launch pricing."
    }
   },
   "partners-precedents": {
@@ -3123,6 +3387,243 @@
      "No sourced hurdle rates exist for Japanese or Korean partners, sovereign lenders or export-credit agencies. The cost-of-capital inputs are derived from loan-cover precedents and judgement, and the USD-equivalent adjustment for yen or won funding is my assumption.",
      "Korea's status under the WTO Agreement on Trade in Civil Aircraft, and how far that limits Korean state support, was not established. An earlier run's truncated note says Korean industry asked the government in May 2026 to join the WTO civil aircraft agreement, but the full text was not available."
     ]
+   },
+   "verify": {
+    "checks": [
+     {
+      "id": "KOR-1",
+      "verdict": "unverifiable",
+      "correction": "Could not check. WebFetch could not resolve www.newscj.com (the host is outside this session's allowed network domains), and the shared limit of 200 WebSearch calls per turn was already used up. The finding says the researcher saw only an earlier run's search extract (scratchpad r_embkor.txt), so 'official / high' overstates it. Label it 'reported (Korean press on an official event) / medium' until the KASA release is read. 'Programmes expected to start around 2030' is Korea's expectation, not Boeing's: Boeing's CFO said on 17 Mar 2026 that a launch is 'not any time near' (BOE-2).",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3417718 (not reachable)"
+     },
+     {
+      "id": "KOR-2",
+      "verdict": "unverifiable",
+      "correction": "Could not check: m.news.nate.com does not resolve in this session and no searches were left. The finding puts at least three sources under one URL: Nate, 17 Jul, for the 135 trillion won target; KED Global, 15 Jul, for the consortium of about 100 companies; and KASA's 2026 work plan. Each needs its own URL.",
+      "url": "https://m.news.nate.com/view/20260717n09179 (not reachable)"
+     },
+     {
+      "id": "KOR-3",
+      "verdict": "unverifiable",
+      "correction": "Could not check (the Nate host is blocked and no searches were left). The conversion holds: 15 trillion won is about $10.3-10.9B at 1,380-1,450 won to the dollar. This is a press figure, not an official cost estimate.",
+      "url": "https://m.news.nate.com/view/20260714n30888 (not reachable)"
+     },
+     {
+      "id": "KOR-4",
+      "verdict": "unverifiable",
+      "correction": "Could not check: no fetch after several hosts failed, and no searches were left. An RTTNews/Nasdaq article on FY25 results can at most support the revenue (3.696 trillion won) and operating profit (269.2 billion won). The contract history (A320 panels, 737NG, 777X ribs, A350 ribs, the Collins nacelle deal) and Hanwha's 15.89% stake need their own sources, as the finding admits. Status should be 'reported' (a news summary), not 'official'.",
+      "url": "https://www.nasdaq.com/articles/korea-aerospace-industries-fy25-profit-rises (not reached)"
+     },
+     {
+      "id": "KOR-5",
+      "verdict": "unverifiable",
+      "correction": "Could not check (ch-aviation was not reached and no searches were left). The product list is plausible but unconfirmed. The 2012 Bombardier-Korea turboprop item has no source at all.",
+      "url": "https://www.ch-aviation.com/news/141550-korean-air-secures-boeing-parts-contract (not reached)"
+     },
+     {
+      "id": "KOR-6",
+      "verdict": "unverifiable",
+      "correction": "Could not check (UPI was not reached and no searches were left). A UPI piece on the 4,500-lbf engine is unlikely to also give Hanwha's GTF shares (1%, 3%, 2%), which need a separate source. Status should be 'reported'. The P&W-only framing is also narrow: from background knowledge, not checked here, Hanwha licence-builds GE F414 engines for the KF-21.",
+      "url": "https://www.upi.com/Top_News/World-News/2026/05/26/launch-project-to-develop-first-south-korea-made-turbofan-aircraft-engine/9291779834634/ (not reached)"
+     },
+     {
+      "id": "KOR-7",
+      "verdict": "unverifiable",
+      "correction": "The 16 Sep 2026 Boeing release could not be opened and no searches were left. Partial support in the repository: on Boeing's FQ1 2025 call (23 Apr 2025, Transcripts from 2006-2025_Compressed.pdf p.73) BCA booked 20 777-9s and 20 787-10s for Korean Air, a separate earlier booking. At an 11 Sep 2025 conference (p.24), Morgan Stanley's Kristine Liwag listed Korean Air among trade-agreement orders. 50+20+25+8 does sum to 103. The implication goes too far: the earlier run's own extract (r_embkor KOR-6) says Korean Air will standardise on both the 737 and the A321neo after the Asiana merger, so its narrowbody fleet is dual-sourced, not Boeing-only.",
+      "url": "https://boeing.mediaroom.com/2026-09-16-Boeing,-Korean-Air-Announce-Record-103-Airplane-Order (not reached); /home/user/aero-engine-gameboard/Transcripts from 2006-2025_Compressed.pdf p.73, p.24"
+     },
+     {
+      "id": "KOR-8",
+      "verdict": "unverifiable",
+      "correction": "Could not check: www.koreaherald.com does not resolve in this session and no searches were left. The quotes rest on an earlier run's search extract, so 'official / high' should be 'reported / medium' until the article or a presidential-office transcript is read.",
+      "url": "https://www.koreaherald.com/article/10823525 (not reachable)"
+     },
+     {
+      "id": "KOR-9",
+      "verdict": "unverifiable",
+      "correction": "Could not check (koreaherald.com is blocked; no searches left). What Embraer itself said on record in 2025-26 (repository) does not mention 150-200 seats. On 4 Nov 2025 (Embraer Transcripts 2010-2020 (1).pdf pp.70-71) Gomes Neto said new products 'could refer to Commercial Aviation, meaning larger planes than E195-E2. It could be larger or smaller' and that there was no 'time line definition'. On 8 May 2026 (p.13) Embraer was 'making studies for a new cycle of products ... either a commercial jet or a business jet'.",
+      "url": "https://www.koreaherald.com/article/10823634 (not reachable); /home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf pp.13, 70-71"
+     },
+     {
+      "id": "KOR-10",
+      "verdict": "unverifiable",
+      "correction": "Could not check: www.airframer.com does not resolve and no searches were left. The KAI-Embraer link is older than 2026: on Embraer's FQ3 2022 call (14 Nov 2022, Embraer Transcripts PDF p.313) the company said it 'signed some MoUs with South Korea Aerospace Industries for future collaboration in the KC-390 program'.",
+      "url": "https://www.airframer.com/news_story.html?report=37941 (not reachable); /home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf p.313"
+     },
+     {
+      "id": "KOR-11",
+      "verdict": "unverifiable",
+      "correction": "Could not check (the Nate host is blocked; no searches left). The only source for KAI supplying Embraer wing and eVTOL structures, and Korean Air supplying Embraer fuselage parts, is this press extract, yet ANL-3 depends on them.",
+      "url": "https://m.news.nate.com/view/20260729n26331 (not reachable)"
+     },
+     {
+      "id": "KOR-12",
+      "verdict": "unverifiable",
+      "correction": "Could not check: aviationweek.com was not reached, the article is paywalled, and no searches were left. It is rightly labelled 'reported', and the unconfirmed CAPA '200-plus-seat / Hanwha engine' item is rightly left out.",
+      "url": "https://aviationweek.com/air-transport/aircraft-propulsion/south-korea-seeks-international-partner-airliner-program (not reached)"
+     },
+     {
+      "id": "KOR-13",
+      "verdict": "unverifiable",
+      "correction": "Could not check (korea.net was not reached; no searches left). The text of the February 2026 KAI-Embraer announcement is still missing, so the claim that joint development was 'announced' in February rests only on a July briefing.",
+      "url": "https://www.korea.net/NewsFocus/policies/view?articleId=287898 (not reached)"
+     },
+     {
+      "id": "KOR-14",
+      "verdict": "unverifiable",
+      "correction": "The Korea Times URL could not be opened. Partial support in the repository. On Embraer's FQ3 2023 call (6 Nov 2023, p.258), Gomes Neto counted '3 from South Korea' among expected C-390 orders. On the FQ4 2023 call (18 Mar 2024, p.241) Embraer said that in 2023 South Korea 'was in the spotlight with the victory of the C-390 in the public tender becoming the first customer in Asia'. Still unchecked: the 4 Dec 2023 date, the 710 billion won budget, the rival bidders and the industrial terms.",
+      "url": "https://www.koreatimes.co.kr/southkorea/defense/20231204/s-korea-selects-embraers-c-390-for-new-military-transport-aircraft (not reached); /home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf pp.241, 258"
+     },
+     {
+      "id": "KOR-15",
+      "verdict": "unverifiable",
+      "correction": "Could not check (tovima was not reached; no searches left). An earlier run in this session (politics_research.json) dates the WSJ report to about 30 Apr 2024, with Embraer's denial reported on 2 May 2024 (aviationa2z), so 'May 2024' may be a day or two late. The report relies on unnamed sources.",
+      "url": "https://www.tovima.com/wsj/brazils-embraer-plots-a-new-737-sized-jet-to-rival-boeing/amp/ (not reached)"
+     },
+     {
+      "id": "JPN-1",
+      "verdict": "unverifiable",
+      "correction": "Could not check: an earlier run in this session found csmonitor.com unresolvable, and no searches were left. 'About 10% each' rests on a search-result summary. The commonly quoted 15% was neither confirmed nor ruled out.",
+      "url": "https://csmonitor.com/1983/0708/070844.html (not reached)"
+     },
+     {
+      "id": "JPN-2",
+      "verdict": "unverifiable",
+      "correction": "Could not check mhi.com (no fetch; no searches left). The date looks wrong: MHI news-release IDs normally start with the release date as YYMMDD, so 1112051479 points to a release around 5 Dec 2011. 1991 is when the partnership began, not the source's date. Also, the earlier extract shows the '21% ... of the risk capital' wording came from GlobalSecurity, which was seen in search results only (another GlobalSecurity page says 20%), not from MHI. MHI's release supports only '21% of the airplane body'.",
+      "url": "https://mhi.com/news/1112051479.html (not reached)"
+     },
+     {
+      "id": "JPN-3",
+      "verdict": "unverifiable",
+      "correction": "Could not check: flightglobal.com was unresolvable for an earlier run in this session, and no searches were left. The figures come from a search summary. $570M implies about \u00a5105 to the dollar, a 2004 rate, while the 777 loan was drawn in the early-to-mid 1990s at other rates, so use the dollar figure loosely. The \u00a5100B total is the researcher's own arithmetic.",
+      "url": "https://www.flightglobal.com/japanese-consider-state-cash-backing-for-7e7/55062.article (not reached)"
+     },
+     {
+      "id": "JPN-4",
+      "verdict": "unverifiable",
+      "correction": "Could not check (no fetch; no searches left). The 35% share is widely cited, but the May 2005 contract date rests only on search summaries.",
+      "url": "https://asiamattersforamerica.org/articles/787-dreamliner-connects-us-japan (not reached)"
+     },
+     {
+      "id": "JPN-5",
+      "verdict": "unverifiable",
+      "correction": "Could not check (flightglobal is blocked; no searches left). 70% is the cover JADC sought. The extracts do not show what cover was finally granted, yet ANL-1 treats 70% as granted.",
+      "url": "https://www.flightglobal.com/japanese-7e7-loans-await-airline-launch-orders/53901.article (not reached)"
+     },
+     {
+      "id": "JPN-6",
+      "verdict": "unverifiable",
+      "correction": "Could not check: archive.seattletimes.com was unresolvable for an earlier run, and no searches were left. The quoted wording ('pump an estimated $1.6 billion into its companies' 787 work') does not say the money was loans covering 70% of costs. Dividing by 0.7 in ANL-1 is therefore an assumption, not a sourced figure.",
+      "url": "https://archive.seattletimes.com/archive/20050501/nagoya01/heavies-help-carry-787 (not reached)"
+     },
+     {
+      "id": "JPN-7",
+      "verdict": "unverifiable",
+      "correction": "Boeing's release could not be opened. The repository supports the timing arithmetic: Boeing's FQ4 2013 call (29 Jan 2014, Transcripts 2006-2025 PDF p.2030) confirms the 777X launch at the Dubai Airshow (November 2013, 259 commitments). That puts the June 2014 agreement about 7 months after launch and July 2015 about 20 months after. The 21% share and the July 2015 formal agreement remain unchecked.",
+      "url": "https://boeing.mediaroom.com/2014-06-12-Boeing-Japanese-Partners-Reach-Agreement-on-777X-Supplier-Work?asPDF=1 (not reached); /home/user/aero-engine-gameboard/Transcripts from 2006-2025_Compressed.pdf p.2030"
+     },
+     {
+      "id": "JPN-8",
+      "verdict": "unverifiable",
+      "correction": "Could not check mhi.com (no fetch; no searches left). In the franchise run, the FY2019 and FY2021 loss and impairment figures came from secondary sites (AirInsight, ch-aviation, Aviation Week), not the MHI notice, so citing a single URL overstates their sourcing.",
+      "url": "https://mhi.com/notice/notice_230207.html (not reached)"
+     },
+     {
+      "id": "JPN-9",
+      "verdict": "unverifiable",
+      "correction": "Could not check (theaircurrent.com was not reached; no searches left). The sourcing looks wrong. The earlier run's EMB-8 describes the Japan item as a later Air Current report ('Japan added to Embraer partners list'), separate from the cited PIF article. EMB-8 also says Embraer told the outlet in October 2024 that it was eyeing a 2025-26 decision. So the June 2024 date and this URL probably belong to the PIF story, not to the Japan talks.",
+      "url": "https://theaircurrent.com/aircraft-development/embraer-saudi-ksa-mbs-pif-new-airplane-funds/ (not reached)"
+     },
+     {
+      "id": "JPN-10",
+      "verdict": "unverifiable",
+      "correction": "Could not check: axios.com was blocked for an earlier run in this session, and no searches were left. The 100 aircraft were a political commitment, not a firm order, and no airline breakdown is given.",
+      "url": "https://www.axios.com/2025/07/23/japan-trade-deal-boeing-trump-tariffs (not reached)"
+     },
+     {
+      "id": "BOE-1",
+      "verdict": "confirmed",
+      "correction": "",
+      "url": "/home/user/aero-engine-gameboard/Transcript Digest (4).pdf, PDF p.46 (printed p.14), Boeing FQ2 2026 call, 28 Jul 2026, Ortberg answering Ronald Epstein (BofA)"
+     },
+     {
+      "id": "BOE-2",
+      "verdict": "confirmed",
+      "correction": "Confirmed as quoted (Malave, 'Executive VP of Finance & CFO', 17 Mar 2026, p.100; Ortberg, 27 Oct 2026, p.16). Worth adding: on 27 Oct 2026 Malave said the 2029 free-cash outlook contains no 'significant types of investments' for a new airplane, with 'more of our investments ... in kind of R&D tech development type'.",
+      "url": "/home/user/aero-engine-gameboard/Transcript Digest (4).pdf, PDF pp.100 and 16"
+     },
+     {
+      "id": "BOE-3",
+      "verdict": "confirmed",
+      "correction": "Confirmed (Albaugh, 24 May 2011, PDF p.2606). Wording detail: he said 'On the -8, I think we did about 50% of engineering and in-house ... now, we're doing about 70% in-house', answering a question on the 787-9/-10. 'For the most part, internal' referred to the new-airplane supply-chain and production-system work. He added that the right answer lies 'somewhere in between' the 787 and 777 models.",
+      "url": "/home/user/aero-engine-gameboard/Transcripts from 2006-2025_Compressed.pdf, PDF p.2606"
+     },
+     {
+      "id": "BOE-4",
+      "verdict": "confirmed",
+      "correction": "The quote is confirmed (Conner, 21 May 2014, PDF p.1983). The point that the most valuable 787 structure 'did not go to Japan' on the 777X is the researcher's inference. It fits Conner's statement that the wing is built in Everett, but he does not say it.",
+      "url": "/home/user/aero-engine-gameboard/Transcripts from 2006-2025_Compressed.pdf, PDF p.1983"
+     },
+     {
+      "id": "BOE-5",
+      "verdict": "confirmed",
+      "correction": "",
+      "url": "/home/user/aero-engine-gameboard/Transcripts from 2006-2025_Compressed.pdf, PDF p.1932 (McNerney prepared remarks, FQ2 2014 call, 23 Jul 2014)"
+     },
+     {
+      "id": "BOE-6",
+      "verdict": "corrected",
+      "correction": "1) The competitor phrase '...and other entrants from Russia, China and Japan' is in every 10-K in the compilation from FY2010 to FY2020, not only FY2012-FY2020. The FY2008 and FY2009 10-Ks already say competitors from Russia, China and Japan 'are likely to enter the 70 to 150/190 seat' market. 2) The FY2021 10-K is not in the compilation, so Japan was dropped somewhere between FY2020 and FY2022. 3) Russia was dropped at the same time. 4) The FY2022 10-K was signed on 27 Jan 2023, before MHI ended the SpaceJet on 7 Feb 2023. So Japan was dropped after the 2020 pause, not after the termination. 5) The supplier sentence ('some key suppliers and subcontractors are located in Europe and Japan') is in every year from FY2008 to FY2024.",
+      "url": "/home/user/aero-engine-gameboard/Boeing 10ks.zip (Boeing 10ks.pdf), FY2008-FY2024 Item 1 / geographic sections"
+     },
+     {
+      "id": "EMB-A",
+      "verdict": "confirmed",
+      "correction": "Confirmed (FQ3 2016 call, 31 Oct 2016, PDF p.695; the segment he named was '104- to 150-seater jets'). It is a 2016 statement. Embraer's 2025-26 position in the same PDF is that it is studying 'larger planes than E195-E2' without that condition (4 Nov 2025, pp.70-71), so this quote should carry less weight in the conditional probabilities.",
+      "url": "/home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf, PDF p.695"
+     },
+     {
+      "id": "EMB-B",
+      "verdict": "confirmed",
+      "correction": "The quote is confirmed (Curado, FQ4 2010 call, 25 Mar 2011; the question is on PDF p.1091 and the answer on p.1092). Context: the question was mainly about the Bombardier-COMAC CSeries/C919 tie-up, with a follow-on about Boeing and Mitsubishi. The implication needs a caveat: Embraer later agreed to sell 80% of its commercial business to Boeing for $4.2B (terms agreed 17 Dec 2018; Boeing terminated in 2020), as Boeing's FY2018 and FY2020 10-Ks show. Its 2011 independence stance did not hold, so 'Embraer would lead' is not certain.",
+      "url": "/home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf, PDF pp.1091-1092; /home/user/aero-engine-gameboard/Boeing 10ks.zip (FY2018 'Strategic Partnership with Embraer'; FY2020 termination note)"
+     },
+     {
+      "id": "AIR-1",
+      "verdict": "unverifiable",
+      "correction": "Could not check (airdatanews was blocked for an earlier run; no searches left). Earlier runs in this session disagree on the date. The Embraer run dates the report 26 Jun 2026, from an Aviation Week interview. The politics run says 'dates not confirmed, likely late 2024'. Both the date and whether the 2027 engine choice and 2030 launch timeline come from the same interview need checking.",
+      "url": "https://www.airdatanews.com/airbus-ceo-says-embraer-should-think-twice-before-entering-narrowbody-market/ (not reached)"
+     },
+     {
+      "id": "ANL-1",
+      "verdict": "corrected",
+      "correction": "Small arithmetic fix: 2.0/0.7 = 2.86, and 2.86 x 1.025^30 (2.098) = $6.0B, not $6.1B, so the top of the range is 9.6% of $62.5B, not 9.8% ($4.8B, 7.7% at the low end is right). Method problems: (a) the 0.7 divisor treats JADC's requested 70% cover as granted, and treats the Seattle Times '$1.6B into its companies' 787 work' as 70% loan cover; neither is sourced (JPN-5, JPN-6). (b) Japan's absolute 2005 dollars are scaled by inflation alone, while the $62.5B denominator is several times the 787's original budget, which mechanically pushes the share down. (c) The cited URL (Seattle Times) cannot support the analysis, and its inputs JPN-5/JPN-6 are unverified.",
+      "url": "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/r_a97680dcf68ef3150.txt (inputs); own recomputation"
+     },
+     {
+      "id": "ANL-2",
+      "verdict": "confirmed",
+      "correction": "Re-ran asia_pv.py and the outputs match: savings of 0.45, 0.34, 0.25 and 0.16 per $1 at hurdles of 5.5%, 7%, 8% and 9%; premiums of $1.06M, $0.48M, $1.53M and $1.00M. Caveat: the premium is priced at a profit-share ratio of 1.0. If partners demand the 1.2x the earlier run used as base, the saving falls to about 0.34 at 5.5% and about 0.21 at 7%.",
+      "url": "/tmp/claude-0/-home-user-aero-engine-gameboard/95fa875c-ca9d-5564-a6e5-4c9b461d7e56/scratchpad/asia/scripts/asia_pv.py"
+     },
+     {
+      "id": "ANL-3",
+      "verdict": "unverifiable",
+      "correction": "The reasoning is coherent, and its Boeing premises (BOE-3, BOE-4) are confirmed. Its key Korean premises are not: that Korean firms already supply Embraer (KOR-11), the 15 trillion won cost (KOR-3) and KASA's main track (KOR-1). Point (c) also leaves out that Korean Air will run A321neos alongside 737s, so Korea's home market is not Boeing-only.",
+      "url": "https://www.newscj.com/news/articleView.html?idxno=3417718 (not reachable)"
+     }
+    ],
+    "missing": [
+     "Embraer's own 2025 position (repository): on the FQ3 2025 call (4 Nov 2025) Gomes Neto said new products 'could refer to Commercial Aviation, meaning larger planes than E195-E2. It could be larger or smaller', and 'we don't have a time line definition at this point of time'. This is newer than the 2016 condition in EMB-A. Source: /home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf, PDF pp.70-71.",
+     "On the FQ1 2026 call (8 May 2026) Gomes Neto said Embraer is 'making studies for a new cycle of products ... either a commercial jet or a business jet' and is 'talking to potential suppliers' (when asked about Rolls-Royce). Embraer itself has not confirmed a 150-200 seat study. Source: /home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf, PDF p.13.",
+     "The KAI-Embraer tie started on the defence side well before 2026. On the FQ3 2022 call (14 Nov 2022) Embraer said it 'signed some MoUs with South Korea Aerospace Industries for future collaboration in the KC-390 program'. Source: /home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf, PDF p.313.",
+     "Korea's C-390 win from Embraer's side: '3 from South Korea' among expected orders (FQ3 2023 call, 6 Nov 2023, p.258), and in 2023 Korea 'was in the spotlight with the victory of the C-390 in the public tender becoming the first customer in Asia' (FQ4 2023 call, 18 Mar 2024, p.241). Source: /home/user/aero-engine-gameboard/Embraer Transcripts 2010-2020 (1).pdf.",
+     "Korean Air's Boeing commitments are larger than the 103-aircraft order: Boeing booked 20 777-9s and 20 787-10s for Korean Air in Q1 2025 (FQ1 2025 call, 23 Apr 2025). The record does not show whether this overlaps the 103. Source: /home/user/aero-engine-gameboard/Transcripts from 2006-2025_Compressed.pdf, PDF p.73.",
+     "Boeing has set aside no fps launch money through 2029. On the FQ3 2026 call (27 Oct 2026) CFO Malave said there are no 'significant types of investments' for a new airplane in the 2029 free-cash outlook, and that 'more of our investments would be in kind of R&D tech development type'. Partner funding deals are therefore unlikely before about 2029-30. Source: /home/user/aero-engine-gameboard/Transcript Digest (4).pdf, PDF p.16.",
+     "Embraer once accepted a Boeing-led structure. Boeing and Embraer agreed terms on 17 Dec 2018 for Boeing to take 80% of a joint venture holding Embraer's commercial business for $4.2B, plus 49% of a KC-390 joint venture. Boeing terminated in 2020 and the dispute went to arbitration. This undercuts EMB-B's 'Embraer will always lead', and the walk-away is a trust cost for any Boeing-Embraer or Boeing-Korea-Embraer arrangement. Source: /home/user/aero-engine-gameboard/Boeing 10ks.zip (FY2018 'Strategic Partnership with Embraer'; FY2020 note).",
+     "Boeing's FY2022 10-K, signed 27 Jan 2023 before the SpaceJet's formal end on 7 Feb 2023, dropped both Russia and Japan from its competitor list ('Airbus and entrants from China'). Source: /home/user/aero-engine-gameboard/Boeing 10ks.zip (FY2022 Item 1 and signature page)."
+    ],
+    "inputs_review": "Limits first: I could not open a single web source. WebFetch failed to resolve www.newscj.com, m.news.nate.com, www.koreaherald.com and www.airframer.com, so I followed the tool's guidance and stopped trying more hosts. The shared limit of 200 WebSearch calls per turn was already used up. All web findings are therefore unverifiable by me. Only the repository-based items (BOE-1 to BOE-6, EMB-A, EMB-B) and the arithmetic were checked. To check the Korean and Japanese claims, these hosts would need to be allowed: newscj.com, news.nate.com, koreaherald.com, airframer.com, flightglobal.com, csmonitor.com, archive.seattletimes.com, axios.com and mhi.com. Several Korean findings are labelled 'official / high' although only search extracts were seen (KOR-1, KOR-4, KOR-6, KOR-8 to KOR-10); downgrade them to 'reported / medium'.\n\nRanges:\n(1) japan_partner_share_of_fps_bill 0.04/0.08/0.15 is defensible as a judgement. Its central derivation is weak: it divides an unverified $1.6-2B by a 70% cover that JADC requested, not one shown to be granted. It also scales Japan's 2005 dollars by inflation alone, against a $62.5B denominator several times the 787's original budget. Recompute the top of the base derivation as 9.6%, not 9.8%. State that the low end, a 777X-type package of 21% of structure, already excludes the wing, so no further 'wing kept' cut is needed. A precedent worth sourcing (background knowledge, not checked here): Japan's JADC was lined up as a partner on Boeing's 1980s 7J7 single-aisle study. That would weaken the claim in p_japan_takes_fps_risk_sharing_package_if_boeing_launches that no Japanese single-aisle precedent exists.\n(2) japan_partner_funded_dollars 2.5/5/9.4 is consistent with (1).\n(3) The state-loan cover of 0.5/0.6/0.7 is fine. Label 0.7 as requested, not granted.\n(4) korea_partner_share_if_partners_boeing 0.01/0.03/0.08. The high case of $5B is a stretch. It is about half of Korea's own 15 trillion won (about $10.5B) estimate for a whole airliner, about 2x KAI's annual revenue, and more than the $3.6B the earlier run gave Korea on an Embraer airliner. Unless a state budget line is found, about 0.05-0.06 is a better high.\n(5) korea_share_if_commits_to_embraer 0/0.01/0.02 is fine.\n(6) Partner costs of capital (Japan 3.5/5.5/8%, Korea 5/7/9%) are unsourced, and they drive most of the value: the saving per $1 runs from 0.58 down to 0.16 across them. Under interest parity, yen or won funding is not cheap in dollar terms unless the state subsidises the interest, as on the 777, where the government initially covered it. Keep the ranges wide and pair the ANL-2 savings with the partner profit-share ratio. At 1.2x the base savings fall to about 0.34 for Japan and 0.21 for Korea.\n(7) Probabilities. The unconditional p_korea_commits_to_embraer_rather_than_boeing (0.25) duplicates the two conditionals and should be derived from the game's own launch timing rather than entered separately. With the conditionals at 0.12 and 0.45, 0.25 implies about a 60% chance that Boeing launches around 2030, which is far above what Boeing says ('not any time near'; no launch money in the 2029 outlook). Either raise the unconditional or drop it.\nThe model also lacks an Airbus branch. Airbus launches around 2030, before Boeing in most game paths, and KASA's stated aim is Airbus or Boeing. Korea's and Japan's lead packages could go to the Airbus NGSA, which cuts their fps share whatever happens with Embraer. Add p_korea_lead_package_to_airbus (about 0.3-0.5 if Boeing has not launched by 2030) and a smaller Japanese equivalent.\nEMB-A (2016) is out of date as the driver for the conditionals: Embraer has said since 2025 that it is studying larger jets without that condition.\np_japan_backs_embraer 0.02/0.05/0.15 is fine. JPN-9, its only support, looks mis-sourced.\np_japan_takes_fps_package 0.6/0.8/0.9 is reasonable.\n(8) lag_from_fps_launch_to_partner_funding_agreement 0.5/1/1.75 matches the 777X timeline: launch in November 2013, which the repository confirms, then about 0.6 and about 1.7 years. Note that Japanese partners can be chosen before launch, as reportedly on the 787, even when their money arrives later."
    }
   }
  }

@@ -34,7 +34,8 @@
  "price_pressure": {
   "from": 2039,
   "ramp_years": 7,
-  "cut": 0.05
+  "cut": 0.02,
+  "cut_boeing_no_fps": 0.026000000000000002
  },
- "_note": "Proposed for a re-run of the MAX phase-out game with Embraer-Korea as a third single-aisle maker (embraer.py, base case; not played): Embraer-Korea in service 2040, 8 a month 8 years later; it wins 6% of new customers once an fps is in service and 9% while Boeing has no new narrowbody in service; its campaigns cut single-aisle prices by up to 5.0% from 2039 over 7 years. Otherwise the run's own options (sd_options_phaseout.json)."
+ "_note": "Proposed for a re-run of the MAX phase-out game with Embraer-Korea as a third single-aisle maker (embraer.py, base case; not played): Embraer-Korea in service 2040, 8 a month 8 years later; it wins 6% of new customers once an fps is in service and 9% while Boeing has no new narrowbody in service; its campaigns cut single-aisle prices by up to 2.0% from 2039 over 7 years. Otherwise the run's own options (sd_options_phaseout.json)."
 }
