@@ -24,7 +24,7 @@ EXECS = {"boeing": ["boeing-ortberg", "boeing-malave", "boeing-pope", "boeing-bo
          "cfm": ["cfm-culp", "cfm-ghai", "cfm-ali", "cfm-board"],
          "pratt_whitney": ["pratt-whitney-calio", "pratt-whitney-mitchill", "pratt-whitney-eddy", "pratt-whitney-board"],
          "rolls_royce": ["rolls-royce-erginbilgic", "rolls-royce-mccabe", "rolls-royce-watson", "rolls-royce-board"],
-         "embraer": ["embraer-gomes-neto", "embraer-garcia", "embraer-meijer", "embraer-board"]}
+         "embraer": ["embraer-gomes-neto", "embraer-santana", "embraer-meijer", "embraer-board", "embraer-garcia"]}
 XF = {side: [n + ".md" for n in names] for side, names in EXECS.items()}
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",

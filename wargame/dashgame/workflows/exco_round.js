@@ -96,9 +96,9 @@ const TEAMS = {
   },
   embraer: {
     board: 'embraer-board', boardName: 'the Embraer S.A. Board of Directors',
-    company: 'Embraer', ceo: 'embraer-gomes-neto', cfo: 'embraer-garcia', ops: 'embraer-meijer',
-    names: { ceo: 'Francisco Gomes Neto', cfo: 'Antonio Carlos Garcia', ops: 'Arjan Meijer' },
-    rule: (A0.rules && A0.rules.embraer) || 'Gomes Neto proposes and decides. Garcia tests cash, leverage and partner money: he can veto a launch that fails his balance-sheet test. Meijer tests the product and the market: he can veto a launch whose airplane or campaign case does not stand. Gomes Neto decides everything else. A launch or a cancellation is a Board item. (Both vetoes are inferences.)',
+    company: 'Embraer', ceo: 'embraer-gomes-neto', cfo: 'embraer-santana', ops: 'embraer-meijer',
+    names: { ceo: 'Francisco Gomes Neto', cfo: 'Felipe Santana', ops: 'Arjan Meijer' },
+    rule: (A0.rules && A0.rules.embraer) || 'Gomes Neto proposes and decides. Santana (CFO since May 2026, carrying Garcia\'s funding doctrine) tests the funding: a failed test is a binding veto. Meijer tests the market window and readiness: a failed test is a soft veto. Gomes Neto decides everything else. A launch or a cancellation is a Board item. (Both vetoes are inferences.)',
     veto: {
       cfo: { ground: (A0.rules && A0.rules.embraer_cfo) || 'a launch that fails your balance-sheet test (leverage, cash, partner money not in hand)', binding: true },
       ops: { ground: (A0.rules && A0.rules.embraer_ops) || 'a launch whose airplane or campaign case does not stand (product, customers, supply chain, ramp)', binding: true },
