@@ -3,7 +3,7 @@
  "embraer_2030_order": "hold",
  "played": {
   "value": {
-   "boeing": -0.2874442187202275,
+   "boeing": -0.24025941648212346,
    "airbus": 10.855243652411811,
    "cfm": -9.470015241186161,
    "pratt_whitney": 6.095808249285767,
@@ -20,7 +20,7 @@
    "debt_penalty": -0.0,
    "two_front_strain": -0.0,
    "naked_fine": -0.0,
-   "political_exit_cost": -0.12006307535690335,
+   "political_exit_cost": -0.07287827311879921,
    "supply_demand": 3.4724349607045872,
    "supply_plan": 0.0
   },
@@ -286,7 +286,7 @@
  },
  "flipped": {
   "value": {
-   "boeing": -3.032242596139077,
+   "boeing": -2.985057793900973,
    "airbus": 2.2001910368881754,
    "cfm": -13.56632665718584,
    "pratt_whitney": 10.1880258811305,
@@ -303,7 +303,7 @@
    "debt_penalty": -0.0,
    "two_front_strain": -0.0,
    "naked_fine": -0.0,
-   "political_exit_cost": -0.12006307535690335,
+   "political_exit_cost": -0.07287827311879921,
    "supply_demand": 0.727636583285738,
    "supply_plan": 0.0
   },
@@ -577,13 +577,63 @@
   "own_share": 0.5499999999999999
  },
  "politics": {
-  "boeing_with": -0.2874442187202275,
+  "boeing_with": -0.24025941648212346,
   "boeing_without": -0.1673811433633241,
   "terms": {
    "government_cofunding": 0.0,
-   "political_exit_cost": -0.12006307535690335
+   "political_exit_cost": -0.07287827311879921
   },
   "exit_cost_2030": 0.12006307535690335,
   "exit_cost_2050": 0.07287827311879921
+ },
+ "cofund": {
+  "2030": {
+   "fps 10-yr at Renton": {
+    "none": -6.201170988768206,
+    "as_played": -5.728925933843824,
+    "needed": 0.3247222900390625
+   },
+   "fps 10-yr at new sites": {
+    "none": -6.59374003005849,
+    "as_played": -6.121494975134108,
+    "needed": 0.343719482421875
+   }
+  },
+  "2035": {
+   "fps 10-yr at Renton": {
+    "none": -5.059092582379609,
+    "as_played": -4.772439887623339,
+    "needed": 0.46242523193359375
+   },
+   "fps 10-yr at new sites": {
+    "none": -5.323653204056861,
+    "as_played": -5.037000509300591,
+    "needed": 0.48468017578125
+   }
+  },
+  "2045": {
+   "fps 10-yr at Renton": {
+    "none": -3.16868486621616,
+    "as_played": -3.063068006970976,
+    "needed": 0.94036865234375
+   },
+   "fps 10-yr at new sites": {
+    "none": -3.330637998905441,
+    "as_played": -3.225021139660257,
+    "needed": 0.9837722778320312
+   }
+  },
+  "2050": {
+   "fps 10-yr at Renton": {
+    "none": -2.1940224298572986,
+    "as_played": -2.1299130082791873,
+    "needed": null
+   },
+   "fps 10-yr at new sites": {
+    "none": -2.2946701176105546,
+    "as_played": -2.2305606960324433,
+    "needed": null
+   }
+  }
  }
 }

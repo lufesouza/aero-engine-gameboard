@@ -64,6 +64,22 @@ def boeing_fin(r):
     return out
 
 
+FIN_IN = json.load(open(os.path.join(HERE, "..", "..", "dashgame", "finance_inputs.json")))
+
+
+def owners(rows):
+    """Cash to owners each year (the tracker's rule): free cash flow left once net debt is at the historical level."""
+    H, cpi, prev = FIN_IN["historical_level_b"], FIN_IN["cpi"], FIN_IN["start_debt_b"]
+    for r in rows:
+        if r["debt"] is None:
+            r["owners"] = None
+            continue
+        Dr = prev / (1 + cpi)
+        r["owners"] = max(0.0, r["fcf"] - max(0.0, Dr - H)) if Dr - r["fcf"] < H else 0.0
+        prev = r["debt"]
+    return rows
+
+
 def run_facts(run):
     D = jl(run, "report_data.json")
     R = D["rounds"]
@@ -76,7 +92,7 @@ def run_facts(run):
                        "bridge": {s: r["value"][s]["bridge"] for s in sides},
                        "public_statements": r["public_statements"],
                        "objectives": r["objectives"]} for r in R],
-           "market": market(last), "boeing_fin": boeing_fin(last),
+           "market": market(last), "boeing_fin": owners(boeing_fin(last)),
            "debt_inputs": last["control2"]["debt_inputs"],
            "timeline": last["timeline"]["programmes"],
            "engine_fit": last["timeline"]["engine_fit"],

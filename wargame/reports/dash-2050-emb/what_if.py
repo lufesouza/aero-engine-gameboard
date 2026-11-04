@@ -85,6 +85,41 @@ def emb_2030(opts_patch):
         SD.options = lambda: base
 
 
+FPS_PLANS = {"fps 10-yr at Renton": {"fps": "launch_10yr", "fps_engine_code": 7, "fps_site": "renton"},
+             "fps 10-yr at new sites": {"fps": "launch_10yr", "fps_engine_code": 7, "fps_site": "new_site"}}
+
+
+def fps_item(n, plan, c):
+    """Boeing's fps launch in round n against Do Nothing, everyone else's recorded orders that round, nobody moving
+    after (the brief's view), with governments carrying share c of the fps bill."""
+    base = SD.options()
+    o = copy.deepcopy(base)
+    o.setdefault("politics", {})["boeing_cofund"] = c
+    SD.options = lambda: o
+    try:
+        rec, prev = RECS[n - 1], jl("state_r%d.json" % (n - 1))
+        orders = {s: dict(rec["orders"][s]) for s in M.SIDES}
+        dn, _ = R.adjudicate(prev, rec["year"], orders)
+        orders["boeing"] = dict(orders["boeing"], **FPS_PLANS[plan])
+        fp, _ = R.adjudicate(prev, rec["year"], orders)
+        return M.value(fp, covert=True, series=False)["boeing"]["pv_delta"] - M.value(dn, covert=True, series=False)["boeing"]["pv_delta"]
+    finally:
+        SD.options = lambda: base
+
+
+def cofund_needed():
+    """Per round and fps plan: the item value with no co-funding, with the game's 2%, and the share of the bill
+    governments would have to carry for the item to clear the Board's +$1B business case."""
+    out = {}
+    for n, rec in enumerate(RECS, 1):
+        out[str(rec["year"])] = {}
+        for plan in FPS_PLANS:
+            f = lambda c: fps_item(n, plan, c) - 1.0
+            out[str(rec["year"])][plan] = {"none": fps_item(n, plan, 0.0), "as_played": fps_item(n, plan, SD.options()["politics"]["boeing_cofund"]),
+                                           "needed": solve(f, 0.0, 1.0, 1e-5)}
+    return out
+
+
 def solve(f, lo, hi, tol=1e-6):
     """x in [lo, hi] with f(x) = 0 (f increasing), or None if f(hi) < 0."""
     if f(hi) < 0:
@@ -143,6 +178,7 @@ def main():
     out["politics"] = {"boeing_with": v["boeing"]["pv_delta"], "boeing_without": v0["boeing"]["pv_delta"],
                        "terms": {k: v["boeing"]["bridge"].get(k, 0.0) for k in ("government_cofunding", "political_exit_cost")},
                        "exit_cost_2030": M.exit_cost(v["boeing"]["wacc"], 2030), "exit_cost_2050": M.exit_cost(v["boeing"]["wacc"], 2050)}
+    out["cofund"] = cofund_needed()
     json.dump(out, open(os.path.join(HERE, "data", "what_if.json"), "w"), indent=1, default=str)
     print("Embraer 2030:", out["embraer_2030_order"], "| flipped values:", {k: round(x, 2) for k, x in out["flipped"]["value"].items()})
     print("played values:", {k: round(x, 2) for k, x in out["played"]["value"].items()})

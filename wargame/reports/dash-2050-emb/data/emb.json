@@ -729,6 +729,243 @@
       }
      ]
     }
+   },
+   {
+    "round": 4,
+    "year": 2050,
+    "orders": {
+     "boeing": {
+      "fps": "hold",
+      "fps_engine_code": null,
+      "rate_737": "hold",
+      "re787": "hold",
+      "fps_site": "new_site"
+     },
+     "airbus": {
+      "ngsa": "hold",
+      "ngsa_engine_code": null,
+      "rea350": "hold",
+      "delay_tactics": "none",
+      "a320_plan": "alt"
+     },
+     "cfm": {
+      "ducted": "hold",
+      "open_fan": "hold",
+      "partner_embraer": "hold",
+      "lobby_emissions": "hold",
+      "genx": "hold"
+     },
+     "pratt_whitney": {
+      "gtf2_solo": "hold",
+      "jv_with_rr": "hold"
+     },
+     "rolls_royce": {
+      "ultrafan_nb_solo": "hold",
+      "jv_with_pw": "hold",
+      "ultrafan_wb": "hold",
+      "t1000_upgrade": "hold"
+     },
+     "embraer": {
+      "enb": "hold"
+     }
+    },
+    "log": [],
+    "value": {
+     "boeing": -0.24025941648212346,
+     "airbus": 10.855243652411811,
+     "cfm": -9.470015241186161,
+     "pratt_whitney": 6.095808249285767,
+     "rolls_royce": -0.5635260699895213,
+     "embraer": 0.0
+    },
+    "yield": {
+     "boeing": 99.81518506424452,
+     "airbus": 107.23682910160787,
+     "cfm": 94.08124047425865,
+     "pratt_whitney": 105.54164386298706,
+     "rolls_royce": 99.4877035727368,
+     "embraer": 100.0
+    },
+    "bridge": {
+     "boeing": {
+      "nb_profit_vs_sq": -3.6398161040679113,
+      "wb_profit_vs_sq": 0.0,
+      "programme_investment": -0.0,
+      "rate_hike": -0.0,
+      "delay_tactics_spend": -0.0,
+      "write_offs": 0,
+      "debt_penalty": -0.0,
+      "two_front_strain": -0.0,
+      "naked_fine": -0.0,
+      "political_exit_cost": -0.07287827311879921,
+      "supply_demand": 3.4724349607045872,
+      "supply_plan": 0.0
+     },
+     "airbus": {
+      "nb_profit_vs_sq": 61.587868172949086,
+      "wb_profit_vs_sq": 0.0,
+      "programme_investment": -15.233919163674058,
+      "rate_hike": -0.0,
+      "delay_tactics_spend": -0.0,
+      "write_offs": 0,
+      "debt_penalty": -0.5336483319295144,
+      "two_front_strain": -0.0,
+      "naked_fine": -0.0,
+      "supply_demand": -34.64339488043045,
+      "supply_plan": -0.3216621445032529
+     },
+     "cfm": {
+      "engine_value_vs_sq": -9.470015241186161,
+      "r_and_d": -0.0,
+      "strain": -0.0,
+      "write_offs": -0.0
+     },
+     "pratt_whitney": {
+      "engine_value_vs_sq": 8.095808249285767,
+      "r_and_d": -2.0,
+      "strain": -0.0,
+      "write_offs": -0.0
+     },
+     "rolls_royce": {
+      "engine_value_vs_sq": -0.5635260699895213,
+      "r_and_d": -0.0,
+      "strain": -0.0,
+      "write_offs": -0.0
+     },
+     "embraer": {
+      "nb_profit_vs_sq": 0.0,
+      "programme_investment": -0.0,
+      "write_offs": 0,
+      "debt_penalty": -0.0
+     }
+    },
+    "public_statements": {
+     "boeing": "The balance sheet is where it belongs, and it has stayed there for a long time. The 737 and 787 lines are running stable. A lot of people built that by doing it the right way every day, and we're not going to give it back.\n\nThe 737 MAX is in the last decade of its production life. We're bringing the rate down the way we brought it up: one step at a time, on the data, keeping the line and our suppliers stable. Some customers will wait longer than they'd like. I don't take that lightly, but I'd much rather have a customer waiting than a production system that goes unstable. And when the last 737 leaves the line, we'll keep supporting that fleet for as long as it flies. Every operator flying a 737 can count on that.\n\nOn a new single-aisle airplane, I'll be straight with you. We looked at it again this year, and we looked hard. We're ready financially, and the technology is there. The business case isn't. So we are not launching a new single-aisle airplane. I'm not going to launch an airplane that doesn't pay, and I'm not going to launch one to meet a date. I'm also not going to pretend this decision is free. It isn't. It matters to our people, to our customers and to our suppliers, and we'll own it. If that case ever changes, the terms won't: the market, the technology and us all ready, more than one engine source with durability first, headroom in the schedule, and no development at a fixed price. You won't get a date from me before a launch.\n\nOur people are staying with us. As the 737 steps down, skilled people will move into defence, into the 787 and into supporting the fleet in service.\n\nOne correction. Last time we put a number on 787 output out to 2060. That number assumed a step we didn't take, so it doesn't hold. Charleston will be sized to the 787 demand we can see, with headroom. I'd rather correct it now than let it stand.\n\nWe'll keep working with the whole industry for a tariff-free environment in aerospace. That's good for everybody in this business.\n\nIt is so much more important that we do this right than fast. And doing it right includes saying plainly what we've decided and what it costs.",
+     "airbus": "Our core principles of safety, quality, integrity, compliance and security will remain at the heart of all we do. Our next-generation single-aisle aircraft has been in service since 2037. In the years ahead its production passes its highest rates and then steps down gradually as replacement demand eases. We will manage that step-down as we managed the ramp-up: in a disciplined and controlled way, in steps and on the data, paced by our customers' demand, keeping our people, our lines and our suppliers stable, and never at the expense of safety or quality. The aircraft flies with two engine sources, CFM and Pratt & Whitney. A stable, diversified supply of parts, engines first, remains a condition of our production. We are extending our long-range, rate-gated signals to our suppliers for the years ahead, sized to our own needs. How the engine makers organise themselves is their decision. On widebodies, the A350 family continues to serve our customers, and we keep improving it step by step. Any further step would be taken only once its engine is mature and its durability is proven, and we speak of it in windows, not dates. We take on one major development at a time and fund it from our own cash flow, preserving our financial flexibility and a strong balance sheet. With our partners across the industry, on both sides of the Atlantic, we keep working for a tariff-free, zero-for-zero trade regime in civil aerospace. And we keep recruiting, training and developing, in Europe and across our global footprint, the people who design and build Airbus aircraft.",
+     "cfm": "Safety, quality, delivery and cost, always in that order. That's how we run this business, and it's how we made this call.\n\nHere's what we know. CFM, with our partners at Safran, is on Airbus's new single-aisle, and we'll earn our place on it every day, on time on wing. We'll support that ramp on the signals Airbus gives us, jointly with Safran, and spares won't crowd out new engines. As the 737 MAX line steps down, we'll step down with it on Boeing's data, jointly with Safran. Inspection on safety-critical parts doesn't step down with the rate. LEAP-1A durability hardware is certified. It's in every new -1A engine and going into the fleet through the shops. We'll report LEAP time on wing in cycles once the fleet has proven it. The GEnx upgrade is ready for our 787 customers.\n\nHere's what we don't know: when the next new narrowbodies will be launched, by whom, and on which engines. That's really not for us to say. It's the airframers' call. We don't have a birthright on that next order. We intend to earn it. A LEAP derivative is on offer to every airframer, and a new engine comes when an airframer and the returns are both there.\n\nRISE stays all in as technology, together with Safran. When that architecture enters service is really not for us to say. We'll tell you about dates when the testing tells us.\n\nWe get paid in dollars, not in percentages. It's that simple, ain't that hard.",
+     "pratt_whitney": "I'll start where we always start, with the fleet. For years the GTF fleet was not where it needed to be, and our customers carried that. We own it, and we have not forgotten it. So we control what we can control.\n\nGTF2 has been in service on Airbus's next-generation single-aisle since 2037, alongside CFM. We judge it the way our customers do, on time on wing. We will report that record as the fleet measures it, and not before. Any later-block feature enters the fleet only when it is proven and instrumented. We will not compress testing to meet anyone's rate.\n\nSupply is where we have let customers down before. So we size castings and forgings capacity in steps, with our suppliers, against our customers' signals, and the fleet flying today keeps first call on material.\n\nFor any airframer that selects Pratt & Whitney, sole or shared, GTF2 is ready today, on standard terms. We're not in the early entry phase, the launch phase. The GTF Hot Section kit remains available at shop visit, on the same standard terms.\n\nRolls-Royce's commitment stands, and we respect it. We have no Joint Venture to announce. We share risk and investment with partners, never our core technology.\n\nWe keep investing in geared technology for the next cycle, inside the R&D we already fund. It is technology, and we have no product or date to announce. If you miss a cycle in this business, you get shut out for decades, and we do not intend to miss one.\n\nWe speak for our engines, not for any airframer's dates or rates. We have learned our lesson from the prior iterations of the GTF. These are responsible bets with responsible paybacks.",
+     "rolls_royce": "So. We reviewed our commitment to a Joint Venture with Pratt & Whitney, and it stands. When we commit something, we honor it. Standard terms, terms that credit the technology we bring. No payment, no concession. No solo narrowbody programme. Maturity sets the date, and we compress nothing. Support through our partners will be in place before we take any share of the fleet. Widebody is our core, and we will protect it. We are not after market share. We won't do anything not profitable. I will say that categorically.",
+     "embraer": "Safety first and quality always: that is the foundation of our culture. We believe we are still in our harvest season, right? We keep delivering our plan with the products we have: the E2 family, our executive jets, defence and services. And we keep a healthy balance sheet to support a potential next move.\n\nOn a new airplane I will give you the same answer I always give. We are investing in new technologies so that we are prepared to make that decision when the time comes. A launch needs a strong product with a strong value proposition and a robust, I mean, funding strategy, because we don't want to put in risk the financial health of the company. We have done the work again this year, with our partners, and the numbers do not prove the return. The investment has to prove its return. So today we have no decision to announce, and we will not discuss a segment or a date. We continue to talk to our partners, including in Korea, and to all the engine makers. Any large investment will be made with partners, with the funding defined at the time of approval. This does not depend only on us. I will not say conservative, but I would say, realistic.\n\nOn the decisions of other manufacturers: those are their decisions. We have our own strategy, and I can only speak for Embraer.\n\nOn trade, Embraer is about engineering. We focus on data and things that are under our control. More than 40% of our aircraft is US content, so tariffs mean fewer US parts bought and fewer US jobs. We continue to work with both governments for zero tariffs in aerospace, and we are cautiously optimistic.\n\nWe compete hard in every campaign, but we don't sell our aircraft below cost. As we proudly say in Embraer, We Live for the Challenge."
+    },
+    "objectives": {
+     "boeing": [
+      {
+       "label": "Hold the 50/50 NB split: Boeing NB share \u2265 50% in 2040, 2045, 2050",
+       "met": false,
+       "detail": "worst year 26.0% (2040 52.6%, 2045 31.0%, 2050 26.0%)"
+      },
+      {
+       "label": "Defend incumbency: Boeing NB share \u2265 40% (status quo) in 2030, 2035, 2040, 2045 and 2050",
+       "met": false,
+       "detail": "worst year 26.0%"
+      },
+      {
+       "label": "Repair the balance sheet: net debt back to historical levels (\u2264 $0B, rounded from its 2010-2018 average of about -$0.6B, a small net cash) by end-2030",
+       "met": true,
+       "detail": "reached in 2029; net debt end-2030 $0.0B; with no new programme it would be reached in 2029"
+      },
+      {
+       "label": "Keep it repaired: net debt \u2264 $0B at end-2035, 2040, 2045, 2050",
+       "met": true,
+       "detail": "2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2030"
+      },
+      {
+       "label": "Keep it repaired in the stress case (free cash flow one-third below consensus): net debt back to \u2264 $0B by end-2030 and held at end-2035, 2040, 2045, 2050",
+       "met": true,
+       "detail": "reached in 2030; 2035 $0.0B, 2040 $0.0B, 2045 $0.0B, 2050 $0.0B; highest after repair $0.0B in 2031"
+      },
+      {
+       "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       "met": false,
+       "detail": "2040 737 MAX: CFM (1); 2045 737 MAX: CFM (1); 2050 737 MAX: CFM (1)"
+      },
+      {
+       "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       "met": false,
+       "detail": "2045 CFM, P&W; 2050 CFM, P&W"
+      }
+     ],
+     "airbus": [
+      {
+       "label": "Defend the 60/40 edge: Airbus NB share \u2265 60% in 2040, 2045, 2050",
+       "met": false,
+       "detail": "worst year 47.4% (2040 47.4%, 2045 69.0%, 2050 74.0%)"
+      },
+      {
+       "label": "Protect the A320 family: \u2265 60% in every listed year before NGSA enters service",
+       "met": true,
+       "detail": "worst counted year 60.0%"
+      },
+      {
+       "label": "Enabler, stable engine supply: dual or triple engine sources on your narrowbody in production in 2040, 2045 and 2050",
+       "met": true,
+       "detail": "2040 NGSA: CFM + P&W GTF2 (2); 2045 NGSA: CFM + P&W GTF2 (2); 2050 NGSA: CFM + P&W GTF2 (2)"
+      },
+      {
+       "label": "Enabler, stable engine supply: three narrowbody engine makers in the market in 2045 and 2050",
+       "met": false,
+       "detail": "2045 CFM, P&W; 2050 CFM, P&W"
+      }
+     ],
+     "cfm": [
+      {
+       "label": "Dominate NB engines: CFM NB engine share \u2265 50% in 2040, 2045, 2050",
+       "met": true,
+       "detail": "worst year 57.4%"
+      },
+      {
+       "label": "Introduce the Open Fan: launched and ready by 2050",
+       "met": false,
+       "detail": "not launched"
+      }
+     ],
+     "pratt_whitney": [
+      {
+       "label": "Restore credibility: a new P&W engine (GTF2 or Joint Venture) in service on a new airframe by 2050",
+       "met": true,
+       "detail": "on NGSA"
+      },
+      {
+       "label": "Capitalise on the GTF: \u0394PV \u2265 0",
+       "met": true,
+       "detail": "+6.10 $B"
+      }
+     ],
+     "rolls_royce": [
+      {
+       "label": "Enter the NB market: RR NB engine share > 0 in 2045 and 2050",
+       "met": false,
+       "detail": "2045 0.0%, 2050 0.0%"
+      },
+      {
+       "label": "Keep WB dominance: RR WB engine share \u2265 50% in 2040, 2045, 2050",
+       "met": true,
+       "detail": "worst year 55.2%"
+      },
+      {
+       "label": "Protect the widebody cash cow, bounded NB risk: RR's own NB development money \u2264 $4B. The Joint Venture share is $4B and UltraFan NB Solo $8B; a Solo cancelled or folded into the Joint Venture counts its spend to date (a Solo launched in 2030 and folded in 2035 is $5.7B)",
+       "met": true,
+       "detail": "$0.00B committed or written off"
+      },
+      {
+       "label": "Protect the widebody cash cow, WB never starved: never hold an NB engine programme (UltraFan NB Solo or the Joint Venture) and a WB programme (UltraFan WB or Trent 1000 upgrade) at the same time. The board charges a one-off $5B strain whenever both are on record, whatever their dates and even after one is ready; only cancelling one before it is ready removes it",
+       "met": true,
+       "detail": "strain charged $0.0B"
+      }
+     ],
+     "embraer": [
+      {
+       "label": "A place in the large single-aisle market: your new narrowbody in service by 2040",
+       "met": false,
+       "detail": "not launched"
+      },
+      {
+       "label": "Profitable, the balance sheet safe: \u0394PV \u2265 0 (debt penalty included)",
+       "met": true,
+       "detail": "+0.00 $B; deliveries in 2045: 0"
+      }
+     ]
+    }
    }
   ],
   "market": [
@@ -1559,7 +1796,8 @@
     "debt": null,
     "debt_no_programme": null,
     "debt_stress": null,
-    "spend_items": null
+    "spend_items": null,
+    "owners": null
    },
    {
     "year": 2027,
@@ -1581,7 +1819,8 @@
     "debt": 16.494009784735816,
     "debt_no_programme": 16.494009784735816,
     "debt_stress": 18.344158084735813,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 0.0
    },
    {
     "year": 2028,
@@ -1603,7 +1842,8 @@
     "debt": 6.700952822637783,
     "debt_no_programme": 6.700952822637783,
     "debt_stress": 11.656959455514492,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 0.0
    },
    {
     "year": 2029,
@@ -1625,7 +1865,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 3.270286764495589,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 5.646294694092188
    },
    {
     "year": 2030,
@@ -1647,7 +1888,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2031,
@@ -1669,7 +1911,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2032,
@@ -1691,7 +1934,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2033,
@@ -1713,7 +1957,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2034,
@@ -1735,7 +1980,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2035,
@@ -1757,7 +2003,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2036,
@@ -1779,7 +2026,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2037,
@@ -1801,7 +2049,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.741915819935615
    },
    {
     "year": 2038,
@@ -1823,7 +2072,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.7139737692672
    },
    {
     "year": 2039,
@@ -1845,7 +2095,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2040,
@@ -1867,7 +2118,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2041,
@@ -1889,7 +2141,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2042,
@@ -1911,7 +2164,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2043,
@@ -1933,7 +2187,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2044,
@@ -1955,7 +2210,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2045,
@@ -1977,7 +2233,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.688587810203375
    },
    {
     "year": 2046,
@@ -1999,7 +2256,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.515235558912
    },
    {
     "year": 2047,
@@ -2021,7 +2279,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.5647074106368
    },
    {
     "year": 2048,
@@ -2043,7 +2302,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.6661074321408
    },
    {
     "year": 2049,
@@ -2065,7 +2325,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.7845692573184
    },
    {
     "year": 2050,
@@ -2087,7 +2348,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2051,
@@ -2109,7 +2371,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2052,
@@ -2131,7 +2394,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2053,
@@ -2153,7 +2417,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2054,
@@ -2175,7 +2440,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2055,
@@ -2197,7 +2463,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2056,
@@ -2219,7 +2486,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2057,
@@ -2241,7 +2509,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2058,
@@ -2263,7 +2532,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2059,
@@ -2285,7 +2555,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2060,
@@ -2307,7 +2578,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    }
   ],
   "debt_inputs": {
@@ -2483,7 +2755,7 @@
    "1": {
     "boeing": {
      "actual_myopic": -0.2874442187202275,
-     "actual_ex_post": -0.2874442187202275,
+     "actual_ex_post": -0.24025941648212346,
      "regret_myopic": 3.3009188558124447,
      "regret_ex_post": 3.3009188558124447,
      "best_myopic": "fps: hold + 787 Re-engine",
@@ -2492,22 +2764,22 @@
       {
        "plan": "fps: hold + 787: hold",
        "myopic": -0.2874442187202275,
-       "ex_post": -0.2874442187202275
+       "ex_post": -0.24025941648212346
       },
       {
        "plan": "fps: hold + 787 Re-engine",
        "myopic": 3.013474637092217,
-       "ex_post": 3.013474637092217
+       "ex_post": 3.0606594393303213
       },
       {
        "plan": "fps: hold + 737 rate up + 787: hold",
        "myopic": -1.3443847044958384,
-       "ex_post": -1.3443847044958384
+       "ex_post": -1.2971999022577343
       },
       {
        "plan": "fps: hold + 737 rate up + 787 Re-engine",
        "myopic": 1.9565341513166055,
-       "ex_post": 1.9565341513166055
+       "ex_post": 2.00371895355471
       },
       {
        "plan": "fps 7-yr + 787: hold",
@@ -3015,7 +3287,7 @@
    "2": {
     "boeing": {
      "actual_myopic": -0.2874442187202275,
-     "actual_ex_post": -0.2874442187202275,
+     "actual_ex_post": -0.24025941648212346,
      "regret_myopic": 2.003657370942565,
      "regret_ex_post": 2.003657370942565,
      "best_myopic": "fps: hold + 787 Re-engine",
@@ -3024,12 +3296,12 @@
       {
        "plan": "fps: hold + 787: hold",
        "myopic": -0.2874442187202275,
-       "ex_post": -0.2874442187202275
+       "ex_post": -0.24025941648212346
       },
       {
        "plan": "fps: hold + 787 Re-engine",
        "myopic": 1.7162131522223374,
-       "ex_post": 1.7162131522223374
+       "ex_post": 1.7633979544604417
       },
       {
        "plan": "fps 7-yr + 787: hold",
@@ -3412,7 +3684,7 @@
    "3": {
     "boeing": {
      "actual_myopic": -0.2874442187202275,
-     "actual_ex_post": -0.2874442187202275,
+     "actual_ex_post": -0.24025941648212346,
      "regret_myopic": 0.738245278671982,
      "regret_ex_post": 0.738245278671982,
      "best_myopic": "fps: hold + 787 Re-engine",
@@ -3421,12 +3693,12 @@
       {
        "plan": "fps: hold + 787: hold",
        "myopic": -0.2874442187202275,
-       "ex_post": -0.2874442187202275
+       "ex_post": -0.24025941648212346
       },
       {
        "plan": "fps: hold + 787 Re-engine",
        "myopic": 0.45080105995175446,
-       "ex_post": 0.45080105995175446
+       "ex_post": 0.4979858621898585
       },
       {
        "plan": "fps 7-yr + 787: hold",
@@ -3436,7 +3708,7 @@
       {
        "plan": "fps 7-yr at Renton + 787: hold",
        "myopic": -4.506479467841545,
-       "ex_post": -4.506479467841545
+       "ex_post": -4.69802941908684
       },
       {
        "plan": "fps 7-yr + 787 Re-engine",
@@ -3446,7 +3718,7 @@
       {
        "plan": "fps 7-yr at Renton + 787 Re-engine",
        "myopic": -4.215668248216457,
-       "ex_post": -4.215668248216457
+       "ex_post": -4.407218199461752
       },
       {
        "plan": "fps 10-yr + 787: hold",
@@ -3456,7 +3728,7 @@
       {
        "plan": "fps 10-yr at Renton + 787: hold",
        "myopic": -3.3505122256912037,
-       "ex_post": -3.3505122256912037
+       "ex_post": -3.5124653583804846
       },
       {
        "plan": "fps 10-yr + 787 Re-engine",
@@ -3466,7 +3738,7 @@
       {
        "plan": "fps 10-yr at Renton + 787 Re-engine",
        "myopic": -2.854276965468482,
-       "ex_post": -2.854276965468482
+       "ex_post": -3.016230098157763
       },
       {
        "plan": "fps via Embraer + 787: hold",
@@ -3476,7 +3748,7 @@
       {
        "plan": "fps via Embraer at Renton + 787: hold",
        "myopic": -7.261562436591781,
-       "ex_post": -7.261562436591781
+       "ex_post": -7.423515569281062
       },
       {
        "plan": "fps via Embraer + 787 Re-engine",
@@ -3486,7 +3758,7 @@
       {
        "plan": "fps via Embraer at Renton + 787 Re-engine",
        "myopic": -6.945681421204354,
-       "ex_post": -6.945681421204354
+       "ex_post": -7.107634553893635
       }
      ]
     },
@@ -3732,6 +4004,333 @@
        "plan": "Launch the new narrowbody with Korea",
        "myopic": -0.27550288654042615,
        "ex_post": -0.27550288654042615
+      }
+     ]
+    }
+   },
+   "4": {
+    "boeing": {
+     "actual_myopic": -0.24025941648212346,
+     "actual_ex_post": -0.24025941648212346,
+     "regret_myopic": 0.44811480038960116,
+     "regret_ex_post": 0.44811480038960116,
+     "best_myopic": "fps: hold + 787 Re-engine",
+     "best_ex_post": "fps: hold + 787 Re-engine",
+     "alternatives": [
+      {
+       "plan": "fps: hold + 787: hold",
+       "myopic": -0.24025941648212346,
+       "ex_post": -0.24025941648212346
+      },
+      {
+       "plan": "fps: hold + 787 Re-engine",
+       "myopic": 0.2078553839074777,
+       "ex_post": 0.2078553839074777
+      },
+      {
+       "plan": "fps 7-yr + 787: hold",
+       "myopic": -3.4069134093310183,
+       "ex_post": -3.4069134093310183
+      },
+      {
+       "plan": "fps 7-yr at Renton + 787: hold",
+       "myopic": -3.271116265383512,
+       "ex_post": -3.271116265383512
+      },
+      {
+       "plan": "fps 7-yr + 787 Re-engine",
+       "myopic": -3.2303910320152074,
+       "ex_post": -3.2303910320152074
+      },
+      {
+       "plan": "fps 7-yr at Renton + 787 Re-engine",
+       "myopic": -3.0945938880677013,
+       "ex_post": -3.0945938880677013
+      },
+      {
+       "plan": "fps 10-yr + 787: hold",
+       "myopic": -2.470820112514567,
+       "ex_post": -2.470820112514567
+      },
+      {
+       "plan": "fps 10-yr at Renton + 787: hold",
+       "myopic": -2.3701724247613107,
+       "ex_post": -2.3701724247613107
+      },
+      {
+       "plan": "fps 10-yr + 787 Re-engine",
+       "myopic": -2.169605365864233,
+       "ex_post": -2.169605365864233
+      },
+      {
+       "plan": "fps 10-yr at Renton + 787 Re-engine",
+       "myopic": -2.068957678110977,
+       "ex_post": -2.068957678110977
+      },
+      {
+       "plan": "fps via Embraer + 787: hold",
+       "myopic": -4.844827146767674,
+       "ex_post": -4.844827146767674
+      },
+      {
+       "plan": "fps via Embraer at Renton + 787: hold",
+       "myopic": -4.7441794590144175,
+       "ex_post": -4.7441794590144175
+      },
+      {
+       "plan": "fps via Embraer + 787 Re-engine",
+       "myopic": -4.653087406268644,
+       "ex_post": -4.653087406268644
+      },
+      {
+       "plan": "fps via Embraer at Renton + 787 Re-engine",
+       "myopic": -4.552439718515387,
+       "ex_post": -4.552439718515387
+      }
+     ]
+    },
+    "airbus": {
+     "actual_myopic": 10.855243652411811,
+     "actual_ex_post": 10.855243652411811,
+     "regret_myopic": 0.5715628285308441,
+     "regret_ex_post": 0.5715628285308441,
+     "best_myopic": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+     "best_ex_post": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+     "alternatives": [
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+       "myopic": 10.855243652411811,
+       "ex_post": 10.855243652411811
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (one move)",
+       "myopic": 3.051047275777944,
+       "ex_post": 3.051047275777944
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (both moves)",
+       "myopic": 2.866039118881635,
+       "ex_post": 2.866039118881635
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+       "myopic": 11.426806480942655,
+       "ex_post": 11.426806480942655
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+       "myopic": 3.6186413943103988,
+       "ex_post": 3.6186413943103988
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+       "myopic": 3.429608163923189,
+       "ex_post": 3.429608163923189
+      }
+     ]
+    },
+    "cfm": {
+     "actual_myopic": -9.470015241186161,
+     "actual_ex_post": -9.470015241186161,
+     "regret_myopic": 0.0,
+     "regret_ex_post": 0.0,
+     "best_myopic": "hold everything",
+     "best_ex_post": "hold everything",
+     "alternatives": [
+      {
+       "plan": "hold everything",
+       "myopic": -9.470015241186161,
+       "ex_post": -9.470015241186161
+      },
+      {
+       "plan": "Open Fan",
+       "myopic": -26.639344498460503,
+       "ex_post": -26.639344498460503
+      },
+      {
+       "plan": "Open Fan + Lobby",
+       "myopic": -24.566774816771527,
+       "ex_post": -24.566774816771527
+      },
+      {
+       "plan": "Open Fan + Partner Embraer",
+       "myopic": -26.639344498460503,
+       "ex_post": -26.639344498460503
+      },
+      {
+       "plan": "Open Fan + Partner Embraer + Lobby",
+       "myopic": -24.566774816771527,
+       "ex_post": -24.566774816771527
+      },
+      {
+       "plan": "Ducted",
+       "myopic": -15.246329051931781,
+       "ex_post": -15.246329051931781
+      },
+      {
+       "plan": "Ducted + Partner Embraer",
+       "myopic": -15.246329051931781,
+       "ex_post": -15.246329051931781
+      },
+      {
+       "plan": "Ducted + Open Fan",
+       "myopic": -30.415658309206123,
+       "ex_post": -30.415658309206123
+      },
+      {
+       "plan": "Ducted + Open Fan + Lobby",
+       "myopic": -28.34308862751712,
+       "ex_post": -28.34308862751712
+      },
+      {
+       "plan": "Ducted + Open Fan + Partner Embraer",
+       "myopic": -30.415658309206123,
+       "ex_post": -30.415658309206123
+      },
+      {
+       "plan": "Ducted + Open Fan + Partner Embraer + Lobby",
+       "myopic": -28.34308862751712,
+       "ex_post": -28.34308862751712
+      }
+     ]
+    },
+    "pratt_whitney": {
+     "actual_myopic": 6.095808249285767,
+     "actual_ex_post": 6.095808249285767,
+     "regret_myopic": 0.0,
+     "regret_ex_post": 0.0,
+     "best_myopic": "GTF2: hold",
+     "best_ex_post": "GTF2: hold",
+     "alternatives": [
+      {
+       "plan": "GTF2: hold",
+       "myopic": 6.095808249285767,
+       "ex_post": 6.095808249285767
+      },
+      {
+       "plan": "GTF2: hold + commit to JV",
+       "myopic": 2.793842616079651,
+       "ex_post": 2.793842616079651
+      }
+     ]
+    },
+    "rolls_royce": {
+     "actual_myopic": -0.5635260699895213,
+     "actual_ex_post": -0.5635260699895213,
+     "regret_myopic": 0.0,
+     "regret_ex_post": 0.0,
+     "best_myopic": "UltraFan NB: hold",
+     "best_ex_post": "UltraFan NB: hold",
+     "alternatives": [
+      {
+       "plan": "UltraFan NB: hold",
+       "myopic": -0.5635260699895213,
+       "ex_post": -0.5635260699895213
+      },
+      {
+       "plan": "UltraFan NB: hold + T1000 upgrade",
+       "myopic": -2.2916025067575703,
+       "ex_post": -2.2916025067575703
+      },
+      {
+       "plan": "UltraFan NB: hold + UltraFan WB",
+       "myopic": -4.563526069989521,
+       "ex_post": -4.563526069989521
+      },
+      {
+       "plan": "UltraFan NB: hold + withdraw JV commitment",
+       "myopic": -0.5635260699895213,
+       "ex_post": -0.5635260699895213
+      },
+      {
+       "plan": "UltraFan NB: hold + withdraw JV commitment + T1000 upgrade",
+       "myopic": -2.2916025067575703,
+       "ex_post": -2.2916025067575703
+      },
+      {
+       "plan": "UltraFan NB: hold + withdraw JV commitment + UltraFan WB",
+       "myopic": -4.563526069989521,
+       "ex_post": -4.563526069989521
+      },
+      {
+       "plan": "UltraFan NB Solo",
+       "myopic": -8.563526069989521,
+       "ex_post": -8.563526069989521
+      },
+      {
+       "plan": "UltraFan NB Solo + T1000 upgrade",
+       "myopic": -15.29160250675757,
+       "ex_post": -15.29160250675757
+      },
+      {
+       "plan": "UltraFan NB Solo + UltraFan WB",
+       "myopic": -17.56352606998952,
+       "ex_post": -17.56352606998952
+      },
+      {
+       "plan": "UltraFan NB Solo + withdraw JV commitment",
+       "myopic": -8.563526069989521,
+       "ex_post": -8.563526069989521
+      },
+      {
+       "plan": "UltraFan NB Solo + withdraw JV commitment + T1000 upgrade",
+       "myopic": -15.29160250675757,
+       "ex_post": -15.29160250675757
+      },
+      {
+       "plan": "UltraFan NB Solo + withdraw JV commitment + UltraFan WB",
+       "myopic": -17.56352606998952,
+       "ex_post": -17.56352606998952
+      },
+      {
+       "plan": "UltraFan NB if selected",
+       "myopic": -0.5635260699895213,
+       "ex_post": -0.5635260699895213
+      },
+      {
+       "plan": "UltraFan NB if selected + T1000 upgrade",
+       "myopic": -2.2916025067575703,
+       "ex_post": -2.2916025067575703
+      },
+      {
+       "plan": "UltraFan NB if selected + UltraFan WB",
+       "myopic": -4.563526069989521,
+       "ex_post": -4.563526069989521
+      },
+      {
+       "plan": "UltraFan NB if selected + withdraw JV commitment",
+       "myopic": -0.5635260699895213,
+       "ex_post": -0.5635260699895213
+      },
+      {
+       "plan": "UltraFan NB if selected + withdraw JV commitment + T1000 upgrade",
+       "myopic": -2.2916025067575703,
+       "ex_post": -2.2916025067575703
+      },
+      {
+       "plan": "UltraFan NB if selected + withdraw JV commitment + UltraFan WB",
+       "myopic": -4.563526069989521,
+       "ex_post": -4.563526069989521
+      }
+     ]
+    },
+    "embraer": {
+     "actual_myopic": 0.0,
+     "actual_ex_post": 0.0,
+     "regret_myopic": 0.0,
+     "regret_ex_post": 0.0,
+     "best_myopic": "Do Nothing (no new narrowbody)",
+     "best_ex_post": "Do Nothing (no new narrowbody)",
+     "alternatives": [
+      {
+       "plan": "Do Nothing (no new narrowbody)",
+       "myopic": 0.0,
+       "ex_post": 0.0
+      },
+      {
+       "plan": "Launch the new narrowbody with Korea",
+       "myopic": -0.2186847192555725,
+       "ex_post": -0.2186847192555725
       }
      ]
     }
@@ -5502,6 +6101,268 @@
       }
      ]
     }
+   },
+   "4": {
+    "boeing": {
+     "scenarios": [
+      "Rivals hold",
+      "Airbus launches A350 Re-engine",
+      "Risk case: Airbus Delay Tactics (covert)",
+      "Embraer launches its new narrowbody"
+     ],
+     "rows": [
+      {
+       "plan": "fps: hold + 787: hold",
+       "cells": [
+        -0.24025941648212346,
+        -0.3370300793500558,
+        -0.24025941648212346,
+        -0.27276384603284765
+       ]
+      },
+      {
+       "plan": "fps: hold + 787 Re-engine",
+       "cells": [
+        0.2078553839074777,
+        -0.9325996735128403,
+        0.2078553839074777,
+        0.17535095435675352
+       ]
+      },
+      {
+       "plan": "fps 7-yr + 787: hold",
+       "cells": [
+        -3.4069134093310183,
+        -3.5036840721989506,
+        -3.4629214330451394,
+        -3.5364765547432935
+       ]
+      },
+      {
+       "plan": "fps 7-yr at Renton + 787: hold",
+       "cells": [
+        -3.271116265383512,
+        -3.3678869282514445,
+        -3.3271242890976334,
+        -3.4006794107957874
+       ]
+      },
+      {
+       "plan": "fps 7-yr + 787 Re-engine",
+       "cells": [
+        -3.2303910320152074,
+        -4.370846089435526,
+        -3.2863990557293286,
+        -3.3599541774274826
+       ]
+      },
+      {
+       "plan": "fps 7-yr at Renton + 787 Re-engine",
+       "cells": [
+        -3.0945938880677013,
+        -4.235048945488019,
+        -3.1506019117818225,
+        -3.2241570334799765
+       ]
+      },
+      {
+       "plan": "fps 10-yr + 787: hold",
+       "cells": [
+        -2.470820112514567,
+        -2.567590775382499,
+        -2.500253699130288,
+        -2.5627372134940134
+       ]
+      },
+      {
+       "plan": "fps 10-yr at Renton + 787: hold",
+       "cells": [
+        -2.3701724247613107,
+        -2.466943087629243,
+        -2.399606011377032,
+        -2.4620895257407573
+       ]
+      },
+      {
+       "plan": "fps 10-yr + 787 Re-engine",
+       "cells": [
+        -2.169605365864233,
+        -3.310060423284551,
+        -2.1990389524799543,
+        -2.2615224668436795
+       ]
+      },
+      {
+       "plan": "fps 10-yr at Renton + 787 Re-engine",
+       "cells": [
+        -2.068957678110977,
+        -3.209412735531295,
+        -2.0983912647266982,
+        -2.1608747790904235
+       ]
+      },
+      {
+       "plan": "fps via Embraer + 787: hold",
+       "cells": [
+        -4.844827146767674,
+        -4.941597809635606,
+        -4.874260733383396,
+        -4.844827146767674
+       ]
+      },
+      {
+       "plan": "fps via Embraer at Renton + 787: hold",
+       "cells": [
+        -4.7441794590144175,
+        -4.84095012188235,
+        -4.77361304563014,
+        -4.7441794590144175
+       ]
+      },
+      {
+       "plan": "fps via Embraer + 787 Re-engine",
+       "cells": [
+        -4.653087406268644,
+        -5.793542463688962,
+        -4.682520992884365,
+        -4.653087406268644
+       ]
+      },
+      {
+       "plan": "fps via Embraer at Renton + 787 Re-engine",
+       "cells": [
+        -4.552439718515387,
+        -5.692894775935706,
+        -4.581873305131109,
+        -4.552439718515387
+       ]
+      }
+     ]
+    },
+    "airbus": {
+     "scenarios": [
+      "Rivals hold",
+      "Boeing launches fps 10-yr",
+      "Boeing launches fps 10-yr at Renton",
+      "Boeing launches fps 7-yr",
+      "Boeing launches fps via Embraer",
+      "Boeing launches 787 Re-engine",
+      "Boeing launches fps 10-yr + 787 Re-engine",
+      "Embraer launches its new narrowbody",
+      "Boeing launches fps 10-yr + Embraer launches"
+     ],
+     "rows": [
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350: hold",
+       "cells": [
+        10.855243652411811,
+        10.8552436524118,
+        10.8552436524118,
+        10.8552436524118,
+        10.8552436524118,
+        10.821479644372626,
+        10.821479644372616,
+        10.519364721212856,
+        10.519364721212842
+       ]
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (one move)",
+       "cells": [
+        3.051047275777944,
+        10.721075201939762,
+        10.721075201939762,
+        10.703232681640245,
+        10.721075201939762,
+        3.017283267738759,
+        10.687311193900577,
+        2.7151683445789887,
+        10.385196270740803
+       ]
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350: hold + Delay Tactics (both moves)",
+       "cells": [
+        2.866039118881635,
+        10.586196830856196,
+        10.586196830856196,
+        10.550464026143416,
+        10.586196830856196,
+        2.83227511084245,
+        10.55243282281701,
+        2.5301601876826796,
+        10.250317899657237
+       ]
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine",
+       "cells": [
+        11.426806480942655,
+        11.426806480942645,
+        11.426806480942645,
+        11.426806480942645,
+        11.426806480942645,
+        10.406281040553164,
+        10.406281040553154,
+        11.0909275497437,
+        11.090927549743686
+       ]
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (one move)",
+       "cells": [
+        3.6186413943103988,
+        11.289016780274977,
+        11.289016780274977,
+        11.271050258753576,
+        11.289016780274977,
+        2.5981159539209076,
+        10.268491339885486,
+        3.2827624631114434,
+        10.953137849076018
+       ]
+      },
+      {
+       "plan": "NGSA: hold (A320 Alt plan) + A350 Re-engine + Delay Tactics (both moves)",
+       "cells": [
+        3.429608163923189,
+        11.150473659620374,
+        11.150473659620374,
+        11.114488261526333,
+        11.150473659620374,
+        2.4090827235336976,
+        10.129948219230883,
+        3.0937292327242334,
+        10.814594728421415
+       ]
+      }
+     ]
+    },
+    "embraer": {
+     "scenarios": [
+      "Rivals hold",
+      "Boeing launches fps 10-yr",
+      "Boeing launches fps 7-yr"
+     ],
+     "rows": [
+      {
+       "plan": "Do Nothing (no new narrowbody)",
+       "cells": [
+        0.0,
+        0.0,
+        0.0
+       ]
+      },
+      {
+       "plan": "Launch the new narrowbody with Korea",
+       "cells": [
+        -0.2186847192555725,
+        -0.19812505331004548,
+        -0.226095403325811
+       ]
+      }
+     ]
+    }
    }
   }
  },
@@ -7210,7 +8071,8 @@
     "debt": null,
     "debt_no_programme": null,
     "debt_stress": null,
-    "spend_items": null
+    "spend_items": null,
+    "owners": null
    },
    {
     "year": 2027,
@@ -7232,7 +8094,8 @@
     "debt": 16.494009784735816,
     "debt_no_programme": 16.494009784735816,
     "debt_stress": 18.344158084735813,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 0.0
    },
    {
     "year": 2028,
@@ -7254,7 +8117,8 @@
     "debt": 6.700952822637783,
     "debt_no_programme": 6.700952822637783,
     "debt_stress": 11.656959455514492,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 0.0
    },
    {
     "year": 2029,
@@ -7276,7 +8140,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 3.270286764495589,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 5.646294694092188
    },
    {
     "year": 2030,
@@ -7298,7 +8163,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2031,
@@ -7320,7 +8186,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2032,
@@ -7342,7 +8209,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2033,
@@ -7364,7 +8232,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2034,
@@ -7386,7 +8255,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2035,
@@ -7408,7 +8278,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2036,
@@ -7430,7 +8301,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2037,
@@ -7452,7 +8324,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.741915819935615
    },
    {
     "year": 2038,
@@ -7474,7 +8347,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.7139737692672
    },
    {
     "year": 2039,
@@ -7496,7 +8370,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2040,
@@ -7518,7 +8393,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2041,
@@ -7540,7 +8416,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2042,
@@ -7562,7 +8439,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2043,
@@ -7584,7 +8462,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2044,
@@ -7606,7 +8485,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.520192798876899
    },
    {
     "year": 2045,
@@ -7628,7 +8508,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.3928403679744
    },
    {
     "year": 2046,
@@ -7650,7 +8531,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.515235558912
    },
    {
     "year": 2047,
@@ -7672,7 +8554,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.5647074106368
    },
    {
     "year": 2048,
@@ -7694,7 +8577,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.6661074321408
    },
    {
     "year": 2049,
@@ -7716,7 +8600,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.7845692573184
    },
    {
     "year": 2050,
@@ -7738,7 +8623,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2051,
@@ -7760,7 +8646,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2052,
@@ -7782,7 +8669,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2053,
@@ -7804,7 +8692,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2054,
@@ -7826,7 +8715,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2055,
@@ -7848,7 +8738,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2056,
@@ -7870,7 +8761,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2057,
@@ -7892,7 +8784,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2058,
@@ -7914,7 +8807,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2059,
@@ -7936,7 +8830,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    },
    {
     "year": 2060,
@@ -7958,7 +8853,8 @@
     "debt": 0.0,
     "debt_no_programme": 0.0,
     "debt_stress": 0.0,
-    "spend_items": {}
+    "spend_items": {},
+    "owners": 13.789
    }
   ],
   "debt_inputs": {
