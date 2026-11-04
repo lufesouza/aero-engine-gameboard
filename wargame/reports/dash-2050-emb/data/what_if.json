@@ -3,7 +3,7 @@
  "embraer_2030_order": "hold",
  "played": {
   "value": {
-   "boeing": -0.24025941648212346,
+   "boeing": -0.2874442187202275,
    "airbus": 10.855243652411811,
    "cfm": -9.470015241186161,
    "pratt_whitney": 6.095808249285767,
@@ -20,7 +20,7 @@
    "debt_penalty": -0.0,
    "two_front_strain": -0.0,
    "naked_fine": -0.0,
-   "political_exit_cost": -0.07287827311879921,
+   "political_exit_cost": -0.12006307535690335,
    "supply_demand": 3.4724349607045872,
    "supply_plan": 0.0
   },
@@ -172,6 +172,43 @@
    "2059": 0.035949640195894556,
    "2060": 0.0
   },
+  "boeing_board_share": {
+   "2026": 0.4,
+   "2027": 0.4,
+   "2028": 0.4,
+   "2029": 0.4,
+   "2030": 0.4,
+   "2031": 0.4,
+   "2032": 0.4,
+   "2033": 0.4,
+   "2034": 0.4,
+   "2035": 0.4,
+   "2036": 0.4,
+   "2037": 0.37,
+   "2038": 0.3400000000000001,
+   "2039": 0.31000000000000005,
+   "2040": 0.28,
+   "2041": 0.25,
+   "2042": 0.21999999999999997,
+   "2043": 0.19999999999999996,
+   "2044": 0.19999999999999996,
+   "2045": 0.19999999999999996,
+   "2046": 0.19999999999999996,
+   "2047": 0.19999999999999996,
+   "2048": 0.19999999999999996,
+   "2049": 0.19999999999999996,
+   "2050": 0.19999999999999996,
+   "2051": 0.19999999999999996,
+   "2052": 0.19999999999999996,
+   "2053": 0.19999999999999996,
+   "2054": 0.19999999999999996,
+   "2055": 0.19999999999999996,
+   "2056": 0.19999999999999996,
+   "2057": 0.19999999999999996,
+   "2058": 0.19999999999999996,
+   "2059": 0.19999999999999996,
+   "2060": 0.19999999999999996
+  },
   "boeing_profit": {
    "2026": 4.695164502486486,
    "2027": 4.969931659381622,
@@ -286,7 +323,7 @@
  },
  "flipped": {
   "value": {
-   "boeing": -2.985057793900973,
+   "boeing": -3.032242596139077,
    "airbus": 2.2001910368881754,
    "cfm": -13.56632665718584,
    "pratt_whitney": 10.1880258811305,
@@ -303,7 +340,7 @@
    "debt_penalty": -0.0,
    "two_front_strain": -0.0,
    "naked_fine": -0.0,
-   "political_exit_cost": -0.07287827311879921,
+   "political_exit_cost": -0.12006307535690335,
    "supply_demand": 0.727636583285738,
    "supply_plan": 0.0
   },
@@ -455,6 +492,43 @@
    "2059": 0.03543761885983007,
    "2060": 0.0
   },
+  "boeing_board_share": {
+   "2026": 0.4,
+   "2027": 0.4,
+   "2028": 0.4,
+   "2029": 0.4,
+   "2030": 0.4,
+   "2031": 0.4,
+   "2032": 0.4,
+   "2033": 0.4,
+   "2034": 0.4,
+   "2035": 0.4,
+   "2036": 0.4,
+   "2037": 0.37,
+   "2038": 0.3400000000000001,
+   "2039": 0.31000000000000005,
+   "2040": 0.28,
+   "2041": 0.25,
+   "2042": 0.21999999999999997,
+   "2043": 0.19999999999999996,
+   "2044": 0.19999999999999996,
+   "2045": 0.19999999999999996,
+   "2046": 0.19999999999999996,
+   "2047": 0.19999999999999996,
+   "2048": 0.19999999999999996,
+   "2049": 0.19999999999999996,
+   "2050": 0.19999999999999996,
+   "2051": 0.19999999999999996,
+   "2052": 0.19999999999999996,
+   "2053": 0.19999999999999996,
+   "2054": 0.19999999999999996,
+   "2055": 0.19999999999999996,
+   "2056": 0.19999999999999996,
+   "2057": 0.19999999999999996,
+   "2058": 0.19999999999999996,
+   "2059": 0.19999999999999996,
+   "2060": 0.19999999999999996
+  },
   "boeing_profit": {
    "2026": 4.695164502486486,
    "2027": 4.969931659381622,
@@ -576,15 +650,238 @@
   "bill_b": 6.429460220970311,
   "own_share": 0.5499999999999999
  },
+ "played_path": [
+  {
+   "round": 1,
+   "year": 2030,
+   "value": {
+    "boeing": -0.2874442187202275,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "record_value": {
+    "boeing": -0.2874442187202275,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "bridge": {
+    "boeing": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "political_exit_cost": -0.12006307535690335,
+     "supply_demand": 3.4724349607045872,
+     "supply_plan": 0.0
+    },
+    "airbus": {
+     "nb_profit_vs_sq": 61.587868172949086,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -15.233919163674058,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.5336483319295144,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -34.64339488043045,
+     "supply_plan": -0.3216621445032529
+    },
+    "embraer": {
+     "nb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0
+    }
+   }
+  },
+  {
+   "round": 2,
+   "year": 2035,
+   "value": {
+    "boeing": -0.2874442187202275,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "record_value": {
+    "boeing": -0.2874442187202275,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "bridge": {
+    "boeing": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "political_exit_cost": -0.12006307535690335,
+     "supply_demand": 3.4724349607045872,
+     "supply_plan": 0.0
+    },
+    "airbus": {
+     "nb_profit_vs_sq": 61.587868172949086,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -15.233919163674058,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.5336483319295144,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -34.64339488043045,
+     "supply_plan": -0.3216621445032529
+    },
+    "embraer": {
+     "nb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0
+    }
+   }
+  },
+  {
+   "round": 3,
+   "year": 2045,
+   "value": {
+    "boeing": -0.2874442187202275,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "record_value": {
+    "boeing": -0.2874442187202275,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "bridge": {
+    "boeing": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "political_exit_cost": -0.12006307535690335,
+     "supply_demand": 3.4724349607045872,
+     "supply_plan": 0.0
+    },
+    "airbus": {
+     "nb_profit_vs_sq": 61.587868172949086,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -15.233919163674058,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.5336483319295144,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -34.64339488043045,
+     "supply_plan": -0.3216621445032529
+    },
+    "embraer": {
+     "nb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0
+    }
+   }
+  },
+  {
+   "round": 4,
+   "year": 2050,
+   "value": {
+    "boeing": -0.2874442187202275,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "record_value": {
+    "boeing": -0.24025941648212346,
+    "airbus": 10.855243652411811,
+    "cfm": -9.470015241186161,
+    "pratt_whitney": 6.095808249285767,
+    "rolls_royce": -0.5635260699895213,
+    "embraer": 0.0
+   },
+   "bridge": {
+    "boeing": {
+     "nb_profit_vs_sq": -3.6398161040679113,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "political_exit_cost": -0.12006307535690335,
+     "supply_demand": 3.4724349607045872,
+     "supply_plan": 0.0
+    },
+    "airbus": {
+     "nb_profit_vs_sq": 61.587868172949086,
+     "wb_profit_vs_sq": 0.0,
+     "programme_investment": -15.233919163674058,
+     "rate_hike": -0.0,
+     "delay_tactics_spend": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.5336483319295144,
+     "two_front_strain": -0.0,
+     "naked_fine": -0.0,
+     "supply_demand": -34.64339488043045,
+     "supply_plan": -0.3216621445032529
+    },
+    "embraer": {
+     "nb_profit_vs_sq": 0.0,
+     "programme_investment": -0.0,
+     "write_offs": 0,
+     "debt_penalty": -0.0
+    }
+   }
+  }
+ ],
  "politics": {
-  "boeing_with": -0.24025941648212346,
+  "boeing_with": -0.2874442187202275,
   "boeing_without": -0.1673811433633241,
   "terms": {
    "government_cofunding": 0.0,
-   "political_exit_cost": -0.07287827311879921
+   "political_exit_cost": -0.12006307535690335
   },
   "exit_cost_2030": 0.12006307535690335,
-  "exit_cost_2050": 0.07287827311879921
+  "exit_cost_2050": 0.07287827311879921,
+  "record_boeing": -0.24025941648212346
  },
  "cofund": {
   "2030": {

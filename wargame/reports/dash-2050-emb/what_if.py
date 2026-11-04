@@ -8,6 +8,12 @@ terms, in the MAX phase-out game). Writes data/what_if.json:
                   view): Embraer's ΔPV from a launch, and the value of one lever at a time that brings it to zero:
                   partners' share of the bill, operating margin, line peak rate, no US tariff cut
   politics        Boeing's ΔPV in the final state with the political terms off, and each term's size
+  played_path     every company's ΔPV and Boeing's bridge after each round on the played-path basis (model.played_path:
+                  the political exit cost counts from 2045, the years the path carried with no fps, where the record
+                  and the briefs count it from the later of 2045 and the round's year)
+
+The counterfactual worlds and the politics block are valued on the played-path basis too; the break-even and the
+co-funding items are decisions in their round, valued as the briefs value them.
 
   DASH_RUN=dash-2050-emb DASH_BOARD=v3 python3 what_if.py
 """
@@ -51,7 +57,8 @@ def replay(flip_emb_2030=False):
 
 
 def world(s, trail):
-    v = M.value(s, covert=True, series=True)
+    with M.played_path():
+        v = M.value(s, covert=True, series=True)
     with FIN.history_override(trail):
         debt = FIN.debt_path(s, v, covert=True)
     af = {r["year"]: r for r in v["_af_series"]["years"]}
@@ -63,6 +70,7 @@ def world(s, trail):
             "airbus_nb_units": {y: af[y]["airbus"]["nb_units"] for y in yrs},
             "embraer_units": {y: em[y]["nb_units"] for y in yrs},
             "boeing_share": {y: af[y]["boeing"]["nb_share"] for y in yrs},
+            "boeing_board_share": {y: af[y]["boeing"]["board_nb_units"] / M.P_NB for y in yrs},
             "boeing_profit": {y: af[y]["boeing"]["nb_profit"] + af[y]["boeing"]["wb_profit"] for y in yrs},
             "boeing_cut": {y: af[y]["boeing"].get("price_cut", 0.0) for y in yrs},
             "boeing_debt": {r["year"]: r["debt"] for r in debt},
@@ -165,8 +173,19 @@ def main():
         be["bill_b"] = lo
     be["own_share"] = own
     out["break_even"] = be
-    # politics: Boeing's final ΔPV without the political terms, and each term
-    v = M.value(played, covert=True, series=True)
+    # every round's value on the played-path basis, next to the record's (decision) basis
+    pp = []
+    for n, rec in enumerate(RECS, 1):
+        st = jl("state_r%d.json" % n)
+        with M.played_path():
+            vp = M.value(st, covert=True, series=False)
+        pp.append({"round": n, "year": rec["year"], "value": {x: vp[x]["pv_delta"] for x in M.SIDES},
+                   "record_value": {x: rec["value"][x]["pv_delta"] for x in M.SIDES},
+                   "bridge": {x: vp[x]["bridge"] for x in ("boeing", "airbus") + (("embraer",) if "embraer" in M.SIDES else ())}})
+    out["played_path"] = pp
+    # politics: Boeing's final ΔPV without the political terms, and each term (played-path basis)
+    with M.played_path():
+        v = M.value(played, covert=True, series=True)
     po = copy.deepcopy(SD.options())
     po.pop("politics", None)
     keep = SD.options
@@ -177,13 +196,15 @@ def main():
         SD.options = keep
     out["politics"] = {"boeing_with": v["boeing"]["pv_delta"], "boeing_without": v0["boeing"]["pv_delta"],
                        "terms": {k: v["boeing"]["bridge"].get(k, 0.0) for k in ("government_cofunding", "political_exit_cost")},
-                       "exit_cost_2030": M.exit_cost(v["boeing"]["wacc"], 2030), "exit_cost_2050": M.exit_cost(v["boeing"]["wacc"], 2050)}
+                       "exit_cost_2030": M.exit_cost(v["boeing"]["wacc"], 2030), "exit_cost_2050": M.exit_cost(v["boeing"]["wacc"], 2050),
+                       "record_boeing": RECS[-1]["value"]["boeing"]["pv_delta"]}
     out["cofund"] = cofund_needed()
     json.dump(out, open(os.path.join(HERE, "data", "what_if.json"), "w"), indent=1, default=str)
     print("Embraer 2030:", out["embraer_2030_order"], "| flipped values:", {k: round(x, 2) for k, x in out["flipped"]["value"].items()})
     print("played values:", {k: round(x, 2) for k, x in out["played"]["value"].items()})
     print("break-even:", {k: (round(x, 4) if isinstance(x, float) else x) for k, x in be.items()})
     print("politics:", out["politics"])
+    print("played path:", [(x["year"], round(x["value"]["boeing"], 4), round(x["record_value"]["boeing"], 4)) for x in pp])
 
 
 if __name__ == "__main__":

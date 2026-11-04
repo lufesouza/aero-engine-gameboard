@@ -1,0 +1,22 @@
+{
+ "run": "dash-2050-emb",
+ "cells": 1734,
+ "moved": [
+  {
+   "round": 3,
+   "side": "embraer",
+   "plan": "Launch the new narrowbody with Korea",
+   "column": "Rivals hold",
+   "was": -0.27550288654042615,
+   "now": -0.2296791813929634
+  },
+  {
+   "round": 4,
+   "side": "embraer",
+   "plan": "Launch the new narrowbody with Korea",
+   "column": "Rivals hold",
+   "was": -0.2186847192555725,
+   "now": -0.1702617175078045
+  }
+ ]
+}

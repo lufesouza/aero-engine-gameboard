@@ -5,7 +5,8 @@ politics), on the MAX phase-out market of sd_options_embraer.json.
 2. Political terms: with no fps, Boeing pays exactly the exit cost; with an fps, the co-funding line is the share of
    the bill at EIS and the debt penalty falls; Airbus and the engine makers are untouched.
 3. Embraer launched: EIS 4 years on, its line and won share follow the rule (by new-generation types in service),
-   nothing above capacity or negative, its ΔPV equals a manual build, and its price pressure starts a year before EIS.
+   nothing above capacity or negative, its ΔPV equals a manual build, and its price pressure starts a year before EIS;
+   a last-round launch (2050) counts all 20 years of its window; the played path counts the exit cost from 2045.
 4. Engines: Embraer's aircraft fly P&W (CFM with CFM's Embraer partnership); engine volumes cover every delivery.
 5. Rules: a 2030 launch cannot be cancelled in 2035 (in service); fps via Embraer and Embraer's own jet exclude each
    other.
@@ -94,6 +95,13 @@ check(abs(on_f["boeing"]["bridge"]["government_cofunding"] - cof) < 1e-12 and d_
       "fps: co-funding = 2%% of the bill at EIS (%.3f $B) and the debt penalty falls (%.3f $B)" % (cof, d_pen))
 check(all(abs(on_f[s]["pv_delta"] - off_f[s]["pv_delta"]) < 1e-12 for s in ("airbus", "cfm", "pratt_whitney", "rolls_royce")),
       "politics leaves Airbus and the engine makers unchanged")
+s50 = dict(s_dn, year=2050)          # the same path, valued at the 2050 decision
+d50 = val(s50)["boeing"]["pv_delta"]
+with M.played_path():
+    p50 = val(s50)["boeing"]["pv_delta"]
+check(abs((p50 - d50) + (M.exit_cost(w, 2030) - M.exit_cost(w, 2050))) < 1e-9 and abs(p50 - on_dn["boeing"]["pv_delta"]) < 1e-9,
+      "a 2050 decision counts the exit cost from 2050 (%.3f $B); the played path counts it from 2045 (%.3f $B)" % (
+          M.exit_cost(w, 2050), M.exit_cost(w, 2030)))
 
 # 3. Embraer launched
 use(opts())
@@ -131,6 +139,15 @@ check(pp == {"from": 2033, "ramp_years": em["ramp_years"], "cut": 0.02, "cut_boe
 s_dn_e = play(both(EMB, NGSA))[0]
 check(abs(SD.price_cut(s_dn_e, "boeing", 2040) - 0.026) < 1e-12 and abs(SD.price_cut(s_dn_e, "airbus", 2040) - 0.02) < 1e-12 and
       abs(SD.price_cut(s_dn_e, "airbus", 2034) - 0.02 * 2 / 7) < 1e-12, "the cut ramps over 7 years from 2033")
+
+s9, _ = play(EMB, year=2050)          # a last-round launch with rivals holding: the full 20-year window counts
+v9 = val(s9)
+e9 = [x for x in v9["_emb_series"]["years"] if x["in_window"]]
+r9 = {x["year"]: x for x in v9["_af_series"]["years"]}
+prof9 = sum(r9[y]["sd"]["dlv_embraer"] * em["price_m"] * em["margin"] / 1000 / (1 + wE) ** (y - 2026) for y in range(2054, 2074))
+check(s9["prog"]["enb"]["eis"] == 2054 and len(e9) == 20 and e9[-1]["year"] == 2073 and
+      abs(v9["embraer"]["bridge"]["nb_profit_vs_sq"] - prof9) < 1e-9 and M.board_t_end(play({})[0]) == 2060 - 2026 + 1,
+      "a 2050 launch counts all 20 years of its window (2054-73, profit %.3f $B); without it the loop ends in 2060" % prof9)
 
 # 4. engines
 en = {x["year"]: x for x in v["_en_series"]["years"]}

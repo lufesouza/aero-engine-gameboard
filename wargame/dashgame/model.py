@@ -13,6 +13,7 @@ programme ready at the board's EIS and a fixed 50/50 split it reproduces simulat
 
 All values are $B; present values (PV) are discounted to 2026 at each player's board WACC.
 """
+import contextlib
 import functools
 import math
 import os
@@ -69,8 +70,12 @@ _TR_INJ = (_TR_ANCHOR + NL +
            "a_wb_in=(t <= _a_wb_end_t), df_b=df_b, df_a=df_a))")
 # The per-year loop is extended to 2060 so the tables have shares for every year shown. Every PV accumulation in the
 # loop is masked by its programme window, so the extension cannot change a PV (test_model.py checks all 256 cells).
+# With a live Embraer narrowbody (the Embraer player) it runs to the end of that jet's 20-year window from EIS, because
+# value_embraer counts 20 years of profit on these rows (a hold column's loop would otherwise end in 2061 and cut a
+# late launch's window short). eval_cell passes the length in the session (`_T_END`); every state without a live
+# Embraer jet, and every run without the Embraer player, runs exactly as before.
 _T_ANCHOR = "        T_dynamic = max(TIMELINE_YRS,"
-_T_INJ = "        T_dynamic = max(TIMELINE_YRS, %d," % (REPORT_END - Y0 + 1)
+_T_INJ = "        T_dynamic = max(TIMELINE_YRS, st.session_state.get('_T_END') or %d," % (REPORT_END - Y0 + 1)
 AF_PATCH = H.OVERLAP_PATCH + [(_TR_ANCHOR, _TR_INJ, 1), (_T_ANCHOR, _T_INJ, 1)]
 
 
@@ -96,17 +101,30 @@ def af_params():
     return af_board((DEFAULT_EIS["fps"], DEFAULT_EIS["ngsa"], DEFAULT_EIS["re787"], DEFAULT_EIS["rea350"]))["_AFLOC"]
 
 
-def eval_cell(eis, a_strat, b_strat, trace=False):
+def eval_cell(eis, a_strat, b_strat, trace=False, t_end=None):
+    """One board cell; `t_end` (years from 2026) lengthens the per-year loop (board_t_end)."""
     SS = af_board(eis)
     if trace:
         SS["_TRACE"] = []
+    SS["_T_END"] = t_end
     try:
         cell = dict(SS["_EVAL"](a_strat, b_strat))
         if trace:
             cell["_trace"] = SS["_TRACE"]
     finally:
         SS["_TRACE"] = None
+        SS["_T_END"] = None
     return cell
+
+
+def board_t_end(state):
+    """Length of the board's per-year loop for a state, in years from 2026: to REPORT_END, or with a live Embraer
+    narrowbody to the end of its 20-year window from EIS if that is later."""
+    n = REPORT_END - Y0 + 1
+    r = live(state, "enb") if (SD_ON and SD.embraer()) else None
+    if r:
+        n = max(n, r["eis"] + 19 - Y0 + 1)
+    return n
 
 
 def true_cost(nom, pv, debt, ev, alpha):
@@ -382,7 +400,7 @@ def value_airframers(state, covert=True, series=True):
     """Board cell at the state's EIS dates plus GM adjustments. Returns {'boeing': {...}, 'airbus': {...}}."""
     p = af_params()
     eis, a, b, dt = af_inputs(state, covert)
-    cell = eval_cell(eis, a, b, trace=series or SD_ON)
+    cell = eval_cell(eis, a, b, trace=series or SD_ON, t_end=board_t_end(state))
     out = {}
     for side, pre, wacc, ev, debt in (("boeing", "b", p["WACC_B"], p["v_ev_boeing"], p["v_debt_boeing"]),
                                       ("airbus", "a", p["WACC_A"], p["v_ev_airbus"], p["v_debt_airbus"])):
@@ -427,7 +445,7 @@ def value_airframers(state, covert=True, series=True):
                 cof_nom = float(pol["boeing_cofund"]) * af_bill("fps", f_["variant"])
                 cof_pv = cof_nom / ((1 + wacc) ** (f_["eis"] - Y0))
             if not f_:
-                exit_pv = exit_cost(wacc, state.get("year"))
+                exit_pv = exit_cost(wacc, state.get("year") if _EXIT_FROM_DECISION[0] else None)
         tc_gm = true_cost(nom + sunk_nom - cof_nom, pv_gm + sunk_pv - cof_pv, debt, ev, p["v_alpha"])
         strain_gm = strain_nom * (pv_gm / nom) if nom > 0 else strain_pv
         board_total = cell[pre + "_total_delta"]
@@ -470,10 +488,26 @@ def value_airframers(state, covert=True, series=True):
     return out
 
 
+_EXIT_FROM_DECISION = [True]
+
+
+@contextlib.contextmanager
+def played_path():
+    """Value a played path instead of a decision. A brief values a decision in its round's year: political cost
+    already incurred is sunk whatever is chosen, so the exit cost counts from the later of exit_from and that year.
+    A played path has carried those years, so inside this context it counts from exit_from whatever the state's year
+    (no fps on the path from exit_from on). Records and briefs use the decision basis; reports may use this one."""
+    _EXIT_FROM_DECISION[0] = False
+    try:
+        yield
+    finally:
+        _EXIT_FROM_DECISION[0] = True
+
+
 def exit_cost(wacc, year=None):
     """PV (2026) of the political cost of leaving the narrowbody market (option `politics`): a chance exit_p that
     Washington makes Boeing pay for leaving (defence, export finance, the FAA) times exit_loss_b a year of defence
-    profit at risk, for exit_years from max(exit_from, the decision year)."""
+    profit at risk, for exit_years from max(exit_from, the decision year); with no year, from exit_from."""
     pol = politics()
     if not pol or not pol.get("exit_p"):
         return 0.0
