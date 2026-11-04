@@ -38,6 +38,7 @@ KEY = [2030, 2035, 2040, 2045, 2050, 2055, 2060]
 EMB_OPT = C["options"].get("embraer_player", {})
 POL = C["options"].get("politics", {})
 DEFAULTS = {"hold", None, "none", "new_site", "base"}
+EMB_DLV = EMB and any(r["embraer"] > 0.5 for r in C["market"])      # Embraer delivered anything in the final state
 
 
 def b(v, dp=2, sign=True):
@@ -114,7 +115,7 @@ def lc(series, lo, hi, step, fmt, label, aria, end_labels, refs=(), notes=(), x_
     return K.line_chart(series, lo, hi, step, fmt, label, list(refs), aria, end_labels, list(notes), x_lo=2026, x_hi=x_hi)
 
 
-def spread(vals, gap=16, span=(0, 280)):
+def spread(vals, gap=22, span=(0, 280)):
     """End-label offsets so labels at the right edge do not collide: vals are pixel y positions."""
     order = sorted(range(len(vals)), key=lambda i: vals[i])
     pos = [vals[i] for i in order]
@@ -153,7 +154,7 @@ def debt_chart():
     return lc([("This game", "s1", s_c), ("Stress case", "s2", s_s), ("Previous game", "muted", s_p)], lo, hi, 25, "int",
               "Boeing net debt at year end, $B (2026 prices)", "Boeing's net debt path, this game, its stress case and the previous game",
               [(offs[0], "This game"), (offs[1], "Stress case"), (offs[2], "Previous game")],
-              refs=[(C["debt_inputs"]["historical_level_b"], "Historical level", "below")])
+              refs=[(C["debt_inputs"]["historical_level_b"], "Historical level", "above")])
 
 
 def deliveries_chart(narrow=False):
@@ -202,9 +203,9 @@ def share_chart():
     ys = list(range(2026, 2061))
     ser = [("Boeing", "s1", [(y, MK[y]["sh_boeing"]) for y in ys]), ("Airbus", "s2", [(y, MK[y]["sh_airbus"]) for y in ys]),
            ("COMAC", "comac", [(y, MK[y]["sh_comac"]) for y in ys])]
-    if EMB:
+    if EMB_DLV:
         ser.append(("Embraer", "s3", [(y, MK[y]["sh_embraer"]) for y in ys]))
-    ser.append(("Boeing, previous game", "muted", [(y, PMK[y]["sh_boeing"]) for y in ys]))
+    ser.append(("Boeing (prev.)", "muted", [(y, PMK[y]["sh_boeing"]) for y in ys]))
     yfun = lambda v: 26 + (0.8 - v) / 0.8 * (346 - 26 - 46)
     offs = spread([yfun(s[2][-1][1]) for s in ser])
     return lc(ser, 0, 0.8, 0.2, "pct", "Share of single-aisle deliveries", "Single-aisle delivery shares by maker, final state",
@@ -339,6 +340,13 @@ CSS_EXTRA = """
 :root { --comac: #8a5cc4; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --comac: #9b6fd6; } }
 :root[data-theme="dark"] { --comac: #9b6fd6; }
+.scroll { background:
+    linear-gradient(to right, var(--surface) 40%, transparent) left / 32px 100% no-repeat local,
+    linear-gradient(to left, var(--surface) 40%, transparent) right / 32px 100% no-repeat local,
+    linear-gradient(to right, color-mix(in srgb, var(--fg) 22%, transparent), transparent) left / 14px 100% no-repeat scroll,
+    linear-gradient(to left, color-mix(in srgb, var(--fg) 22%, transparent), transparent) right / 14px 100% no-repeat scroll; }
+.scroll > table { background: transparent; }
+ul.cav li, footer { overflow-wrap: anywhere; }
 .chain { display: grid; gap: 10px; margin-top: 10px; }
 .step { border-left: 3px solid var(--line); padding: 2px 0 2px 12px; }
 .step.final { border-left-color: var(--s1); }
@@ -396,3 +404,211 @@ def break_even_table():
             ["Development bill", f"${o['bill_b']:.1f}B", f"${be['bill_b']:.1f}B" if be["bill_b"] is not None else "not reachable", "with the same 55% own share"],
             ["No US tariff cut", f"{pc(o['us_tariff_share_cut'], 0)} fewer customers", b(be["no_tariff"]), "Embraer's line is full anyway, so the tariff barely matters"]]
     return K.table(["Lever (one at a time)", "This game", "Break-even", "Note"], rows, num_cols=(1, 2))
+
+
+# ─────────────────────────────── per-round decision summaries ───────────────────────────────
+def col_index(txt, n):
+    m = re.search(r"\bS(\d+)\b", txt or "")
+    return int(m.group(1)) - 1 if m else 0
+
+
+def grid(n, side):
+    return C["grids"][str(n)][side]
+
+
+def row(n, side, plan):
+    for r in grid(n, side)["rows"]:
+        if r["plan"] == plan:
+            return r["cells"]
+    return None
+
+
+def boeing_round_rows():
+    out = []
+    for r in C["rounds"]:
+        n = r["round"]
+        g = grid(n, "boeing")
+        x = REC(n)["boeing"]
+        j = col_index((x.get("decision") or {}).get("expected_scenario"), n)
+        dn = row(n, "boeing", "fps: hold + 787: hold")
+        fps = [(p["plan"], p["cells"][j] - dn[j]) for p in g["rows"] if p["plan"].startswith("fps ") and "787: hold" in p["plan"] and "Embraer" not in p["plan"]]
+        bf = max(fps, key=lambda t: t[1]) if fps else ("—", 0.0)
+        re_ = row(n, "boeing", "fps: hold + 787 Re-engine")
+        re_gap = (re_[j] - dn[j]) if re_ else None
+        re_worst = min(a - b_ for a, b_ in zip(re_, dn)) if re_ else None
+        emb_col = [k for k, s in enumerate(g["scenarios"]) if s.startswith("Embraer launches")]
+        emb_hit = (dn[emb_col[0]] - dn[0]) if emb_col else None
+        vet = [s for s in ("cfo", "ops") if any(v.get("binding") for v in ((x.get(s) or {}).get("vetoes") or []))]
+        out.append({"year": r["year"], "expected": g["scenarios"][j], "best_fps": bf, "re787": re_gap, "re787_worst": re_worst,
+                    "emb_hit": emb_hit, "vetoes": vet, "board_items": x.get("board_items") or [], "board_vetoed": x.get("board_vetoed") or [],
+                    "orders": r["orders"]["boeing"]})
+    return out
+
+
+def airbus_round_rows():
+    out = []
+    for r in C["rounds"]:
+        n = r["round"]
+        g = grid(n, "airbus")
+        x = REC(n)["airbus"]
+        j = col_index((x.get("decision") or {}).get("expected_scenario"), n)
+        best = max(g["rows"], key=lambda p: p["cells"][j])
+        out.append({"year": r["year"], "expected": g["scenarios"][j], "best": (best["plan"], best["cells"][j]),
+                    "chosen": move_txt("airbus", r["orders"]["airbus"]), "board_items": x.get("board_items") or [],
+                    "board_vetoed": x.get("board_vetoed") or []})
+    return out
+
+
+def embraer_round_rows():
+    out = []
+    for r in C["rounds"]:
+        n = r["round"]
+        g = grid(n, "embraer")
+        la = row(n, "embraer", "Launch the new narrowbody with Korea")
+        x = REC(n)["embraer"]
+        out.append({"year": r["year"], "launch": la, "scen": g["scenarios"], "chosen": move_txt("embraer", r["orders"]["embraer"]),
+                    "cfo": [(t.get("name", ""), t.get("result", "")) for t in (x.get("cfo") or {}).get("tests", [])[:3]],
+                    "ops_window": next((t.get("result") for t in (x.get("ops") or {}).get("tests", []) if "window" in t.get("name", "").lower()), "")})
+    return out
+
+
+def boeing_summary_table(rows):
+    head = ["Round", "CEO's expected column", "Best fps against Do Nothing there", "787 Re-engine against Do Nothing (worst column)",
+            "Embraer's launch would cost Boeing", "Binding vetoes in the ExCo", "Board", "Orders"]
+    body = []
+    for x in rows:
+        body.append([str(x["year"]), esc(x["expected"]), f'{esc(x["best_fps"][0])}: {b(x["best_fps"][1])}',
+                     (f'{b(x["re787"])} ({b(x["re787_worst"])})' if x["re787"] is not None else "—"),
+                     (b(x["emb_hit"]) if x["emb_hit"] is not None else "—"),
+                     esc(", ".join({"cfo": "CFO's buffer test", "ops": "operating head's KPI test"}[v] for v in x["vetoes"]) or "none"),
+                     esc(("vetoed " + ", ".join(x["board_vetoed"])) if x["board_vetoed"] else ("approved " + ", ".join(x["board_items"])) if x["board_items"] else "no Board item"),
+                     esc(move_txt("boeing", x["orders"]))])
+    return K.table(head, body, num_cols=(2, 3, 4))
+
+
+def airbus_summary_table(rows):
+    head = ["Round", "CEO's expected column", "Best grid plan there", "Orders", "Board"]
+    body = [[str(x["year"]), esc(x["expected"]), f'{esc(x["best"][0])}: {b(x["best"][1])}', esc(x["chosen"]),
+             esc(("vetoed " + ", ".join(x["board_vetoed"])) if x["board_vetoed"] else ("approved " + ", ".join(x["board_items"])) if x["board_items"] else "no Board item")] for x in rows]
+    return K.table(head, body, num_cols=(2,))
+
+
+def embraer_summary_table(rows):
+    head = ["Round", "Launch against Do Nothing, by column", "CFO's funding test (legs 1-3)", "Market window (operating head)", "Orders"]
+    body = []
+    for x in rows:
+        cols = "; ".join(f"{esc(s)} {b(v)}" for s, v in zip(x["scen"], x["launch"])) if x["launch"] else "—"
+        body.append([str(x["year"]), cols, esc(", ".join(r for _, r in x["cfo"])), esc(x["ops_window"] or "—"), esc(x["chosen"])])
+    return K.table(head, body)
+
+
+# ─────────────────────────────── page ───────────────────────────────
+def first_year_at(rows, key, level):
+    for r in rows:
+        if r.get(key) is not None and r["year"] >= 2027 and r[key] <= level + 1e-9:
+            return r["year"]
+    return None
+
+
+def tiles():
+    fin = C["rounds"][-1]
+    bv = fin["value"]["boeing"]
+    pv = P["rounds"][-1]["value"]["boeing"]
+    H = C["debt_inputs"]["historical_level_b"]
+    rep = first_year_at(C["boeing_fin"], "debt", H)
+    er = embraer_round_rows() if EMB else []
+    best_emb = max((max(x["launch"]) for x in er if x["launch"]), default=None)
+    best_emb_y = next((x["year"] for x in er if x["launch"] and max(x["launch"]) == best_emb), None)
+    t = [("Boeing's value, end of game", bp(bv), f"against the status quo (PV at 2026), after four rounds of Do Nothing; {b(pv)} in the previous game"),
+         ("Boeing's share of single-aisle deliveries", f"{pc(MK[2030]['sh_boeing'], 0)} → {pc(MK[2050]['sh_boeing'], 0)}",
+          f"2030 to 2050, as the MAX phases out and NGSA ramps; {pc(MK[2060]['sh_boeing'], 0)} in 2060"),
+         ("Boeing's net debt", f"back to ${H:.0f}B in {rep}" if rep else "not repaired",
+          f"and {('held there to 2060' if all((r['debt'] or 0) <= H + 1e-9 for r in C['boeing_fin'] if r['year'] >= (rep or 9999)) else 'not held')}; the stress case (free cash flow a third lower) peaks at ${max((r['debt_stress'] or 0) for r in C['boeing_fin'] if r['year'] >= 2030):.1f}B after 2030")]
+    if EMB:
+        t.append(("Embraer's new narrowbody", "Never launched",
+                  f"its best launch case was {b(best_emb)} ({best_emb_y}); its CFO's binding funding test failed in every round"))
+    return '<div class="tiles">' + "".join(f'<div class="panel tile"><div class="k">{esc(k)}</div><div class="v">{esc(v)}</div><div class="d">{d}</div></div>' for k, v, d in t) + "</div>"
+
+
+def politics_table():
+    if not W:
+        return ""
+    po = W["politics"]
+    rows = [["Governments carry part of the fps bill", f"{pc(POL.get('boeing_cofund', 0), 0)} of the bill (state siting packages, federal research money)",
+             b(po["terms"]["government_cofunding"]) + " (no fps launched)", "on a 10-year fps launched in 2030 it was worth about $0.30B, plus $0.17B less debt penalty"],
+            ["Political cost of leaving the narrowbody market", f"{pc(POL.get('exit_p', 0), 0)} chance × ${POL.get('exit_loss_b', 0):.2f}B a year of defence profit, 20 years from {POL.get('exit_from', 2045)}",
+             b(po["terms"]["political_exit_cost"]), f"charged to every plan with no fps: {b(-po['exit_cost_2030'])} in the 2030 brief, {b(-po['exit_cost_2050'])} in 2050"],
+            ["Boeing's ΔPV without the political terms", "—", b(po["boeing_without"]), f"with them: {b(po['boeing_with'])}"]]
+    if EMB:
+        rows.append(["US tariffs on Embraer's jets", f"{pc(EMB_OPT.get('us_tariff_share_cut', 0), 0)} fewer new customers for Embraer", "—",
+                     f"a 2030 launch without it: {b(W['break_even']['no_tariff'])} against {b(W['break_even']['base'])}; Embraer's line is full anyway"])
+        rows.append(["Korea, suppliers and Brazil carry part of Embraer's bill",
+                     f"{pc(EMB_OPT['partner_share'], 0)} Korea, {pc(EMB_OPT['supplier_share'], 0)} suppliers, {pc(EMB_OPT['state_share'], 0)} Brazil's state", "—",
+                     f"Embraer still carries {pc(W['break_even']['own_share'], 0)} (${EMB_OPT['bill_b'] * W['break_even']['own_share']:.1f}B)"])
+    return K.table(["Political term", "As set in this game", "Effect on the final value", "Note"], rows, num_cols=(2,))
+
+
+def compare_table():
+    head = ["Round"] + [f"{NAME[s]}: this game / previous" for s in ("boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce")]
+    rows = []
+    for rc, rp in zip(C["rounds"], P["rounds"]):
+        cells = [str(rc["year"])]
+        for s in ("boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce"):
+            a, p_ = move_txt(s, rc["orders"][s]), move_txt(s, rp["orders"][s])
+            cells.append(esc(a) + ("" if a == p_ else f' <span class="muted">/ {esc(p_)}</span>'))
+        rows.append(cells)
+    return K.table(head, rows).replace("<table>", '<table class="cmp">', 1)
+
+
+def section(title, inner, sid=None):
+    return f'<section{f" id={sid}" if sid else ""}><h2>{esc(title)}</h2>{inner}</section>'
+
+
+def panel(inner, title=None, cap=None):
+    return ('<div class="panel">' + (f'<p class="ctitle">{title}</p>' if title else "") + inner +
+            (f'<p class="cap">{cap}</p>' if cap else "") + "</div>")
+
+
+def build(out_path, text):
+    """text: the page's narrative strings (lede, captions), written in narrative() from the same data."""
+    br = C["rounds"][-1]["bridge"]["boeing"]
+    pbr = P["rounds"][-1]["bridge"]["boeing"]
+    body = [
+        f'<header class="top"><p class="eyebrow">Boeing Product Development · war game rerun · six players · BOEING PROPRIETARY</p>'
+        f'<h1>{esc(text["h1"])}</h1><p class="lede">{text["lede"]}</p><p class="gloss">{text["gloss"]}</p></header>',
+        f'<section style="margin-top:18px">{tiles()}</section>',
+        section("What each company did", panel(moves_table(C), cap=text["moves_cap"])),
+        section("Boeing's financials", '<div class="stack">' +
+                panel(f'<div class="cw">{profit_chart()}</div>', text["profit_title"], text["profit_cap"]) +
+                panel(f'<div class="cw">{debt_chart()}</div>', text["debt_title"], text["debt_cap"]) +
+                panel(fin_table(), "Boeing by year: deliveries, P&amp;L and cash", text["fin_cap"]) +
+                panel(bridge_table(br, pbr), "Boeing's value against the status quo, by component", text["bridge_cap"]) + "</div>"),
+        section("Market shares", '<div class="stack">' +
+                panel(f'<div class="cw only-wide">{deliveries_chart()}</div><div class="cw only-narrow">{deliveries_chart(True)}</div>'
+                      '<div class="legend"><span><i class="sq" style="background:var(--s1)"></i>Boeing</span><span><i class="sq" style="background:var(--s2)"></i>Airbus</span>'
+                      '<span><i class="sq" style="background:var(--comac)"></i>COMAC</span>' + ('<span><i class="sq" style="background:var(--s3)"></i>Embraer</span>' if EMB_DLV else "") +
+                      '<span><i class="solid" style="border-top-color:var(--fg)"></i>Demand</span></div>', text["mkt_title"], text["mkt_cap"]) +
+                panel(f'<div class="cw">{share_chart()}</div>', text["share_title"], text["share_cap"]) +
+                panel(share_table(), "Deliveries and shares by year", text["share_tab_cap"]) + "</div>"),
+        section("How Boeing decided, round by round", panel(boeing_summary_table(boeing_round_rows()), cap=text["boeing_dec_cap"]) + chains_section("boeing"), "boeing"),
+        section("How Airbus decided, round by round", panel(airbus_summary_table(airbus_round_rows()), cap=text["airbus_dec_cap"]) + chains_section("airbus"), "airbus"),
+    ]
+    if EMB:
+        body.append(section("Embraer, the third airframer", panel(embraer_summary_table(embraer_round_rows()), cap=text["emb_dec_cap"]) +
+                            panel(break_even_table(), "What would make Embraer's 2030 launch pay", text["be_cap"]) +
+                            panel(emb_flip_table(), "If Embraer had launched in 2030", text["flip_cap"]) +
+                            panel(emb_flip_market(), "Boeing with and without Embraer's jet", text["flip_mkt_cap"]) +
+                            chains_section("embraer"), "embraer"))
+    body.append(section("Politics in the payoffs", panel(politics_table(), cap=text["pol_cap"])))
+    body.append(section("Against the previous game", panel(compare_table(), cap=text["cmp_cap"]) + panel(value_table(), "Every company's value after each round", text["val_cap"])))
+    body.append(section("How this game was run", panel(f'<ul class="cav">{text["method"]}</ul>')))
+    page = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Six-Player Rerun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>{K.CSS + CSS_EXTRA + moves_css()}</style></head><body><div class="wrap">
+{"".join(body)}
+<footer><p>BOEING PROPRIETARY. Run {esc(C["run"])} on the combined_dash.py board (v3), against {esc(P["run"])}. Values are $B, PV at 2026, against the status quo; Boeing's cash and net debt come from the game master's balance-sheet tracker in 2026 dollars.</p></footer>
+</div><script>{K.JS}</script></body></html>'''
+    open(out_path, "w").write(page)
+    return page
