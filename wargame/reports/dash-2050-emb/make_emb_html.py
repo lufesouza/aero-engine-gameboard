@@ -96,6 +96,8 @@ CODES = [(r"`?fps:\s*launch_10yr`?", "the 10-year fps"), (r"`?fps:\s*launch_7yr`
                                                                                              "ducted": "Ducted engine", "enb": "Embraer's new narrowbody"}[m.group(1)])]
 
 
+ID1 = r"[A-Z]{1,3}X?G?-\d{3,4}"
+IDS = r"(?:record:\s*)?\b" + ID1 + r"(?:,\s*" + ID1 + r")*\b"
 ROUND_CTX = [None]        # the round whose record is being rendered (clean() words NGSA's hold by round)
 
 PRE = [  # order values, engine codes, file names and section marks the agents quote: before CODES
@@ -104,8 +106,21 @@ PRE = [  # order values, engine codes, file names and section marks the agents q
     (r"(?i)\b(?:NGSA )?(?:engine )?code:? 7\b", lambda m: ("The" if m.group(0)[0].isupper() and not m.group(0).startswith("NGSA") else "the") + " all-three-makers engine order"),
     (r"\bfps_site at new_site\b", "the fps at new sites"), (r",? ?fps_site:? new_site\b", ""),
     (r"\bA320 plan alt\b|\ba320_plan alt\b", "the A320 Alt plan"), (r"\bthe revision is null\b", "nothing was revised"),
-    (r",? run dash-2050-\w+", ""), (r"\(?teams\.md Step 2; ?", "("), (r"`?teams\.md`?", "the team file"), (r"`?profile\.md`?", "the profile"),
-    (r" ?\((?:profile|brief) §\d+\)", ""), (r"\b[Bb]rief §\d+( grid)?", "the brief"), (r" ?\(§ orders\)", ""), (r" ?\(profile §\d+\)", ""),
+    (r",? run dash-2050-\w+", ""), (r"\(?teams\.md Step 2; ?", "("),
+    (r"`?\bteams\.md`? section \d+", "the team rule"), (r"`?\bteams\.md`?", "the team rule"),
+    (r"`?\bdashboard_game\.md`?(?: section \d+| §\d+)?", "the board's rules"),
+    (r" ?\((?:profile|brief) §\d+\)", ""), (r"`?\bprofile\.md`?(?: section \d+| §\d+)?", "the company profile"),
+    (r"`?\bround\d\.md`?(?: section \d+)?", "the brief"),
+    (r" ?\(`?rules\.md`?\)", ""), (r"`?\brules\.md`? allows\b", "the game rules allow"), (r"`?\brules\.md`?", "the game rules"),
+    (r"\bBrief §\d+\.\s+", ""), (r"\bBrief §\d+(?: grid)?", "The brief"), (r"\bbrief §\d+(?: grid)?", "the brief"),
+    (r"\bbrief section 2\b", "the brief's balance-sheet section"), (r"\b(?:brief )?[Ss]ection 1's\b", "the brief's 'position now'"),
+    (r"\bSection 1\b", "The brief's 'position now'"), (r"\b(?:brief )?section 1\b", "the brief's 'position now'"),
+    (r"\bbrief section \d\b", "the brief"),
+    (r"\bMy agent file says that when\b", "Under the team rule, when"), (r"\bmy agent file\b", "the team rule"),
+    (r" ?\(§ orders\)", ""), (r" ?\(profile §\d+\)", ""),
+    (r"\s*\bfor `?other_moves`?", ""), (r"`?\bother_moves\b`?", "the other-moves order"),
+    (r"That's a triple layer question[,.] (?:so |So )?(?:three parts\.|Three parts\.|let me start with the window\.)\s*", ""),
+    (r"\b(?:he|she) judges\b", "they judge"),
     (r"\bon every field\b", "on every order"),
     (r",? ?`?[\w-]+\.md`?(?: §\d+)?", ""), (r"\bprofile §\d+\s*", "the company's "), (r"\(§\d+: ", "("), (r" ?§ ?\d+\b", ""),
     (r"\bagainst ((?:\d, )+\d) and None\b", "against the other engine orders and no order"),
@@ -121,6 +136,12 @@ def _codes(m):
 
 
 POST = [  # one name for each thing, and the page's number style
+    (r"no engine code \(7 has been final since EIS\)", "no new engine order (the all-three-makers order has been final since EIS)"),
+    (r"there is no code order this round \(no engine order\)", "there is no engine order this round"),
+    (r"\bwhich engine code\b", "which engine order"), (r"\bthe only code that\b", "the only engine order that"),
+    (r"\bEngine code, tested\b", "Engine order, tested"), (r"\b([Ee])very field (is|stays) at its default\b", r"\1very order \2 at its default"),
+    (r"Embraer's new narrowbody = hold\b", "Embraer holding"),
+    (r"a valid value in the brief's order field \(`?hold`?, `?launch`?\)", "one of the brief's two choices (hold or launch)"),
     (r"(?i)\b(?:NGSA |fps )?engine code:? ([1-7])\b", lambda m: ("The " if m.group(0)[0] == "E" else "the ") + CODE_LBL[int(m.group(1))] + " engine order"),
     (r"\b([Cc]odes?):? ((?:[1-7](?:, | and | or )?)+)\b", _codes),
     (r"\b737 rate up\b", "737 Rate Increase"), (r"\b(?:the )?737 rate increase\b", lambda m: ("the " if m.group(0).startswith("the") else "") + "737 Rate Increase"),
@@ -142,7 +163,11 @@ def ngsa_hold(t):
 def clean(t):
     """Agent prose for the page: no order codes, evidence ids, file names or code ticks."""
     t = re.sub(r"\s*\[(?:[A-Z]{1,3}X?G?-\d{3,4}(?:,\s*)?)+[^\]]*\]", "", str(t or ""))
-    # evidence ids outside brackets, e.g. "(inference, BX-1331)" or "(record: BX-1331, applied ...)"
+    # evidence ids outside brackets, e.g. "(inference, BX-1331)", "(one remark, BX-1329; inference)" or "(record: BX-1331, applied ...)":
+    # drop the id group and one separator, keep the other
+    t = re.sub(r"\s+from\s+" + IDS + r"(?=\s*\))", "", t)
+    t = re.sub(r"\(\s*" + IDS + r"\s*[,;:]?\s*", "(", t)
+    t = re.sub(r"\s*[,;:]?\s*" + IDS + r"(?=\s*[;)])", "", t)
     t = re.sub(r"\s*[,;:]?\s*(?:record:\s*)?\b[A-Z]{1,3}X?G?-\d{3,4}\b\s*[,;]?", "", t)
     t = re.sub(r"\(\s*[,;:]?\s*", "(", t)
     t = re.sub(r"\s*[,;:]\s*\)", ")", t)
@@ -156,6 +181,8 @@ def clean(t):
     for pat, sub in PRE[:3] + POST:            # engine codes again, now that CODES has spelled the field names
         t = re.sub(pat, sub, t)
     t = ngsa_hold(t)
+    t = re.sub(r"\s*\((?:inference|research, unverified)(?: from)?\)", "", t)
+    t = re.sub(r"\s*\(\s*\)", "", t)
     # people's pronouns are not stated in the sources: name the thing instead, or use they/them
     for pat, sub in ((r"\bHe reads his test\b", "The CFO reads the test"), (r"\b(?:his|her) (memo|correction|test|expected column|veto|tests|view|record)\b", r"the \1"),
                      (r"\b(?:with|from|to|for) (?:him|her)\b", lambda m: m.group(0).split()[0] + " them"),
@@ -168,10 +195,12 @@ def short(t, n=320):
     """Clean, one line, at most n characters: cut at a sentence end, else at a word with ' …'; never leave an open
     bracket or a dangling separator."""
     t = clean(t)
+    t = re.sub(r"^\s*-\s+(\w)", lambda m: m.group(1).upper(), t)
     t = re.sub(r"([.;:])?\s*\n\s*-\s+", lambda m: (m.group(1) + " ") if m.group(1) else ". ", t)   # inline bullets become sentences
     t = re.sub(r"(?<=[.;:])\s+-\s+", " ", t)
     t = re.sub(r"\s+", " ", t).strip()
     t = re.sub(r"\.\s*\.", ".", t).replace(":.", ":").replace(". .", ".")
+    t = re.sub(r"(?<!\be\.g)(?<!\bi\.e)([.!?] )([a-z])(?!ps\b)", lambda m: m.group(1) + m.group(2).upper(), t)
     if len(t) > n:
         cut = t[:n]
         k = cut.rfind(". ")
@@ -441,7 +470,7 @@ _COLS = ("<b>S1, S2 …</b> are the columns of that round's brief, one per rival
          "the same code means a different move for each company and in each round).")
 CODE_KEY = {
     "boeing": ("<p><b>How to read Boeing's memos.</b> " + _COLS + " <b>A, B …</b> are the options the CEO put to the seats. "
-               "<b>Ask (n)</b> is the CEO's numbered question to that seat. The <b>buffer test</b> is the CFO's binding veto on a plan "
+               "<b>Ask (n)</b> is the CEO's numbered question to that seat; <b>Board ask n</b> is a numbered request in the Board's guidance. The <b>buffer test</b> is the CFO's binding veto on a plan "
                "more than $2B below Do Nothing in the risk case. <b>Boeing's hard rules:</b> H1 no fps order in round 1 · H2 no fps "
                "planned to enter service before its technology is ready · H3 no 787 Re-engine in round 1, and none once Airbus has "
                "launched the A350 Re-engine · H4 one major development at a time (a Solo fps and the 787 Re-engine overlap for at most "
@@ -449,6 +478,7 @@ CODE_KEY = {
                "Airbus or during a quality, FAA or supply crisis · H7 no fps launch while a Boeing crisis is live · H8 the money rule: gaps "
                "within the $1B tie band are ties that doctrine decides, and at most $2B may be given up for a doctrine choice.</p>"),
     "airbus": ("<p><b>How to read Airbus's memos.</b> " + _COLS + " <b>Row A, Row B …</b> are the options the CEO put to the seats. "
+               "<b>Ask n</b> is the CEO's numbered question to that seat; <b>Board ask n</b> is a numbered request in the Board's guidance. "
                "A <b>soft veto</b> from the CFO or the head of Commercial Aircraft binds unless the plan is at least $1B better, which "
                "lets the CEO override it; the five pillars (safety, quality, integrity, compliance, security) and the company's rules bind everyone. "
                "<b>Airbus's rules:</b> 1 NGSA never enters service before its technology is ready (launch window 2028-30) · 2 its own "
@@ -459,7 +489,7 @@ CODE_KEY = {
                "to Boeing · 8 no engine that pushes NGSA past 2037.</p>"),
     "embraer": ("<p><b>How to read Embraer's memos.</b> " + _COLS + " <b>Row 1</b> is holding, <b>Row 2</b> launching the new "
                 "narrowbody. A <b>yield point</b> is 1% of Embraer's enterprise value ($0.11B). <b>Ask (n)</b> is the CEO's numbered "
-                "question to that seat. <b>Embraer's hard rules:</b> H1 no launch without Team Korea · H2 no launch that risks the "
+                "question to that seat; <b>Board ask n</b> is a numbered request in the Board's guidance. <b>Embraer's hard rules:</b> H1 no launch without Team Korea · H2 no launch that risks the "
                 "balance sheet: the launch must be at or above zero in the expected column, debt penalty included, and the CFO's "
                 "funding test must pass · H3 launch only into a window: it is shut when both fps and NGSA are in service, or due, "
                 "within two years of Embraer's entry into service · H4 cancel only before entry into service, and only when writing "
@@ -642,7 +672,15 @@ def emb_flip_market():
         rows.append([k, n0(fl["embraer_units"][k]), n0(pl["boeing_nb_units"][k]), n0(fl["boeing_nb_units"][k]), pc(fl["boeing_cut"][k]),
                      K.num(fl["boeing_profit"][k] - pl["boeing_profit"][k], "+.2f"),
                      f'{pl["boeing_debt"].get(k, 0.0):.1f}', f'{fl["boeing_debt"].get(k, 0.0):.1f}'])
+    head, rows, _ = drop_flat(head, rows)
     return K.table(head, rows, num_cols=tuple(range(1, len(head))))
+
+
+def flip_debt_flat():
+    """True when Boeing's net debt is the same in every key year, with and without Embraer's jet."""
+    pl, fl = W["played"], W["flipped"]
+    v = {round(pl["boeing_debt"].get(str(y), 0.0), 1) for y in KEY} | {round(fl["boeing_debt"].get(str(y), 0.0), 1) for y in KEY}
+    return v.pop() if len(v) == 1 else None
 
 
 def break_even_table():
@@ -1038,9 +1076,11 @@ def narrative():
     j4 = col_index(REC(NR)["boeing"]["decision"]["expected_scenario"], NR)
     dn4, re4 = row(NR, "boeing", "fps: hold + 787: hold"), row(NR, "boeing", "fps 10-yr at Renton + 787 Re-engine")
     al4 = row(NR, "boeing", "fps 10-yr at Renton + 787: hold")
+    ns4 = row(NR, "boeing", "fps 10-yr + 787 Re-engine")          # the same plan at new sites
     lim4 = dn4[k_risk] - 2.0
     best4 = max(r["cells"][j4] for r in g4["rows"])
     assert re4[k_risk] >= lim4 > al4[k_risk], "the 2050 buffer-test facts changed"
+    assert ns4[k_risk] >= lim4 and re4[j4] > ns4[j4], "the 2050 new-sites row's facts changed"
     assert "Not a veto. The row passes my buffer test" in rec_text(NR, "boeing") and "H8" in REC(NR)["boeing"]["decision"]["rationale"]
     # Airbus: the record's own reasons
     t1, t2, t3, t4 = (rec_text(n, "airbus") for n in (1, 2, 3, 4))
@@ -1126,7 +1166,9 @@ def narrative():
         v0 = float(fgone[[h for h, _ in fgone].index(nd[0])][1])
         gone_l.append(f"net debt is ${v0:.0f}B in " + (who[0] if len(who) == 1 else ", ".join(who[:-1]) + " and " + who[-1]))
     gone_txt = "; ".join(gone_l)
-    T["fin_cap"] = ("NB and WB deliveries are aircraft a year; revenue and operating profit $B at 2026 prices, Commercial Airplanes only. Free "
+    dcols = [h for h in fh if h.endswith("deliveries")]
+    T["fin_cap"] = ((" and ".join(h.replace(" deliveries", "") for h in dcols) + " deliveries are aircraft a year; " if dcols else "")
+                    + "revenue and operating profit $B at 2026 prices, Commercial Airplanes only. Free "
                     "cash flow is the whole company's consensus in 2026 dollars and does not fall with the MAX phase-out (see the limit under the "
                     "debt chart)."
                     + (" Every year's free cash flow goes to the owners, so cash for owners equals it." if same_owners else "")
@@ -1140,15 +1182,24 @@ def narrative():
         f"launched), so Boeing keeps waiting customers that entrant took; the political cost, new in this game, more than offsets it.")
     T["mkt_title"] = (f"Airbus's NGSA and COMAC take the single-aisle market as the MAX runs down: in 2050 Boeing delivers {n0(MK[2050]['max'])}, "
                       f"Airbus {n0(MK[2050]['ngsa'])} and COMAC {n0(MK[2050]['comac'])}")
+    dl = lambda y: MK[y]["max"] + MK[y]["fps"] + MK[y]["a320"] + MK[y]["ngsa"] + MK[y]["comac"] + MK[y]["embraer"] + MK[y]["entrant"]
+    short_y = [y for y in yrs if dl(y) < (MK[y]["demand"] or 0) - 30]
+    over_y = [y for y in yrs if dl(y) > (MK[y]["demand"] or 0) + 30]
+    late_y = [y for y in yrs if y >= 2050 and dl(y) < (MK[y]["demand"] or 0) - 1]
+    assert short_y and over_y and min(over_y) > max(y for y in short_y if y < min(over_y))
+    T["demand_note"] = (f"Demand is each year's new demand (replacement plus growth). Customers who cannot get a delivery slot wait, and a tenth of them "
+                        f"drop out each year. So deliveries fall short of demand in {spans([y for y in short_y if y < min(over_y)])}, when the lines are full, "
+                        f"exceed it in {spans(over_y)} as the waiting customers are served"
+                        + (f", and run slightly below it from {min(late_y)} as the MAX phases out." if late_y else "."))
     T["mkt_cap"] = ("737/A320-class aircraft delivered each year in the final state, with demand (the line). COMAC sells its capacity first to its own "
-                    "customers (150 a year in 2035, 250 from 2050). Embraer built nothing, so there is no Embraer bar.")
+                    "customers (150 a year in 2035, 250 from 2050). Embraer built nothing, so there is no Embraer bar. " + T["demand_note"])
     T["share_title"] = (f"Boeing's share of deliveries: {pc(MK[2030]['sh_boeing'], 0)} in 2030, {pc(MK[2040]['sh_boeing'], 0)} in 2040, "
                         f"{pc(MK[2050]['sh_boeing'], 0)} in 2050, none in 2060")
     T["share_cap"] = (f"Shares of the market's deliveries. Airbus reaches {pc(MK[2060]['sh_airbus'], 0)} and COMAC {pc(MK[2060]['sh_comac'], 0)} in 2060. "
                       "Boeing's line in the previous game (dashed) is almost the same. Boeing's widebody share stays at "
                       f"{pc(MK[2050]['wb_boeing'], 0)}: nobody re-engined a widebody.")
     sh_, srows, sgone = share_cols()
-    T["share_tab_cap"] = "Aircraft a year and shares of deliveries, final state." + (
+    T["share_tab_cap"] = "Aircraft a year and shares of deliveries, final state. " + T["demand_note"] + (
         " Columns left out because they do not change in the years shown: " +
         "; ".join({"of which fps": f"fps deliveries are {v}", "Boeing widebody share": f"Boeing's widebody share is {v}"}.get(h, f"{h} is {v}") for h, v in sgone) + "."
         if sgone else "")
@@ -1156,10 +1207,11 @@ def narrative():
         "Each round Boeing's chain ran: Board guidance (priorities, risk appetite, what it would approve or veto), the CEO's framing, the CFO's "
         "and the head of Commercial Airplanes' tests, the CEO's decision, their veto checks, and the Board's review of any order that differed "
         f"from Do Nothing. In {', '.join(str(x['year']) for x in BR[:-2])} and {BR[-2]['year']} the CFO's binding buffer test struck every fps plan. "
-        f"In {BR[-1]['year']} it struck the 10-year fps alone, the 7-year and the fps via Embraer, but the 10-year fps at Renton with the 787 Re-engine "
-        f"passed it ({b(re4[k_risk])} in the risk case against a {b(lim4)} limit). The CEO struck that plan on their own tests: it was "
-        f"{b(dn4[j4] - re4[j4], 2, False)} below Do Nothing in the expected column, it passed only on the Re-engine's {b(re4[k_risk] - al4[k_risk])}, "
-        f"and it was {b(best4 - re4[j4], 2, False)} below the grid's best, over the $2B cap of the money rule (H8). The best fps on its own ran from "
+        f"In {BR[-1]['year']} it struck the 10-year fps alone, the 7-year and the fps via Embraer, but the 10-year fps with the 787 Re-engine "
+        f"passed it at both sites ({b(re4[k_risk])} at Renton and {b(ns4[k_risk])} at new sites in the risk case, against a {b(lim4)} limit). The CEO "
+        f"struck both on their own tests: even the Renton row, the better of the two, was {b(dn4[j4] - re4[j4], 2, False)} below Do Nothing in the "
+        f"expected column, passed only on the Re-engine's {b(re4[k_risk] - al4[k_risk])}, and was {b(best4 - re4[j4], 2, False)} below the grid's "
+        f"best, over the $2B cap of the money rule (H8). The best fps on its own ran from "
         f"{b(BR[0]['best_fps'][1])} ({BR[0]['year']}) to {b(BR[-1]['best_fps'][1])} ({BR[-1]['year']}) against Do Nothing in the CEO's expected column, "
         f"far from the Board's +$1B. The 787 Re-engine led Do Nothing by {b(BR[0]['re787'])} in 2030 and {b(BR[1]['re787'])} in 2035 but lost "
         f"{b(-BR[0]['re787_worst'], 2, False)} and {b(-BR[1]['re787_worst'], 2, False)} if Airbus re-engined the A350 in the same round, outside "
@@ -1207,8 +1259,10 @@ def narrative():
         f"{b(-fl['embraer'], 2, False)}. Boeing loses {b(pl['boeing'] - fl['boeing'], 2, False)} and Airbus {b(pl['airbus'] - fl['airbus'], 2, False)}, mostly through "
         "the price cut; P&amp;W gains because Embraer's jet flies its engines. The others did not get to respond, so this is a bound on the threat, "
         "not a forecast.")
+    fd = flip_debt_flat()
     T["flip_mkt_cap"] = ("Boeing's deliveries, the price cut on its aircraft and its profit with Embraer's jet in the market, against the game as played. "
-                         "Net debt is the tracker's, as above.")
+                         + (f"Boeing's net debt (the tracker's) is ${fd:.0f}B in every year shown, with or without Embraer's jet." if fd is not None
+                            else "Net debt is the tracker's, as above."))
     T["pol_cap"] = (
         "Boeing's terms come from the earlier politics study: US governments carry a share of an fps bill (state siting packages and federal "
         "research money, as in the past; no federal launch funding), and leaving the narrowbody market has a political cost (defence, export "
@@ -1242,8 +1296,9 @@ def narrative():
         f"Political exit cost: each round's brief counts it from the later of {POL.get('exit_from', 2045)} and that round, because earlier years are "
         f"sunk whatever is chosen. The values on this page follow the played path and count it from {POL.get('exit_from', 2045)}, when the MAX "
         "phase-out begins, because Boeing had no fps in service or in development from then on.",
-        "After the game a review found that a launch's 20-year window was cut at 2061 in the rivals-hold column, which affected two of Embraer's "
-        "1,734 briefed cells (2045 and 2050) and nothing else; the engine now counts the full window, and the briefs as played are kept as the record."])
+        f"After the game a review found that a launch's 20-year window was cut at 2061 in the rivals-hold column. It affected two of the game's "
+        f"{RECHECK.get('cells', 0):,} briefed cells, both Embraer's launch in the rivals-hold column (2045 and 2050), and nothing else; the engine now "
+        "counts the full window, and the briefs as played are kept as the record."])
     return T
 
 
