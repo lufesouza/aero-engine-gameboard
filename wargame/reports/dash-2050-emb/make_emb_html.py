@@ -357,3 +357,42 @@ details.rnd > summary { cursor: pointer; } details.rnd { margin-bottom: 10px; }
 
 def moves_css():
     return "".join(f'.moves td:nth-of-type({i + 1})::before {{ content: "{NAME[s]}"; }} ' for i, s in enumerate(SIDES))
+
+
+# ─────────────────────────────── what Embraer's choice did ───────────────────────────────
+def emb_flip_table():
+    if not W:
+        return ""
+    pl, fl = W["played"], W["flipped"]
+    head = ["Company", "As played", "If Embraer had " + ("held" if W["embraer_2030_order"] == "launch" else "launched") + " in 2030", "Difference"]
+    rows = [[NAME[s], b(pl["value"][s]), b(fl["value"][s]), b(fl["value"][s] - pl["value"][s])] for s in SIDES]
+    return K.table(head, rows, num_cols=(1, 2, 3))
+
+
+def emb_flip_market():
+    if not W:
+        return ""
+    pl, fl = W["played"], W["flipped"]
+    head = ["Year", "Embraer deliveries", "Boeing deliveries, as played", "Boeing deliveries, with Embraer", "Boeing's price cut", "Boeing profit change $B",
+            "Boeing net debt, as played", "with Embraer"]
+    rows = []
+    for y in KEY:
+        k = str(y)
+        rows.append([k, n0(fl["embraer_units"][k]), n0(pl["boeing_nb_units"][k]), n0(fl["boeing_nb_units"][k]), pc(fl["boeing_cut"][k]),
+                     K.num(fl["boeing_profit"][k] - pl["boeing_profit"][k], "+.2f"),
+                     f'{pl["boeing_debt"].get(k, 0.0):.1f}', f'{fl["boeing_debt"].get(k, 0.0):.1f}'])
+    return K.table(head, rows, num_cols=tuple(range(1, len(head))))
+
+
+def break_even_table():
+    if not W:
+        return ""
+    be = W["break_even"]
+    o = EMB_OPT
+    rows = [["Korea's share of the bill", pc(o["partner_share"], 0), pc(be["partner_share"], 0) if be["partner_share"] is not None else "not reachable",
+             f"Embraer's own share falls from {pc(be['own_share'], 0)} to {pc(1 - be['partner_share'] - o['supplier_share'] - o['state_share'], 0)}" if be["partner_share"] is not None else ""],
+            ["Operating margin", pc(o["margin"], 0), pc(be["margin"], 1) if be["margin"] is not None else "not reachable", "against 13% on the A320neo and 26% on a new-generation type"],
+            ["Line peak rate (a month)", f"{o['peak_a_month']:.0f}", f"{be['peak_a_month']:.0f}" if be["peak_a_month"] is not None else "not reachable", "Embraer's best was about 9 E-Jets a month"],
+            ["Development bill", f"${o['bill_b']:.1f}B", f"${be['bill_b']:.1f}B" if be["bill_b"] is not None else "not reachable", "with the same 55% own share"],
+            ["No US tariff cut", f"{pc(o['us_tariff_share_cut'], 0)} fewer customers", b(be["no_tariff"]), "Embraer's line is full anyway, so the tariff barely matters"]]
+    return K.table(["Lever (one at a time)", "This game", "Break-even", "Note"], rows, num_cols=(1, 2))
