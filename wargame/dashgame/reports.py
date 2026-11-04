@@ -36,7 +36,7 @@ def rounds_played():
 
 
 def years_block(v):
-    """Per-year series 2026-2060 for all five players."""
+    """Per-year series 2026-2060 for every player."""
     af = {r["year"]: r for r in v["_af_series"]["years"]}
     en = {r["year"]: r for r in v["_en_series"]["years"]}
     out = {"year": list(range(2026, M.REPORT_END + 1))}
@@ -68,6 +68,17 @@ def years_block(v):
             d["nonrecurring"].append(sum(nr.get(y, {}).values()))
         d["nonrecurring_items"] = {str(y): items for y, items in nr.items()}
         out[s] = d
+    if "embraer" in M.SIDES:                   # the sixth player: its new narrowbody (none in the status quo)
+        em = {r["year"]: r for r in v["_emb_series"]["years"]}
+        nr = v["_emb_series"]["nonrecurring"]
+        d = {k: [em[y][k] for y in out["year"]] for k in ("nb_units", "nb_share", "nb_revenue", "nb_profit", "capacity",
+                                                           "customer_share")}
+        d["revenue"], d["profit"] = list(d["nb_revenue"]), list(d["nb_profit"])
+        d["sq_profit"] = [0.0 for _ in out["year"]]
+        d["nonrecurring"] = [sum(nr.get(y, {}).values()) for y in out["year"]]
+        d["nonrecurring_items"] = {str(y): items for y, items in nr.items()}
+        d["wb_share"] = [0.0 for _ in out["year"]]
+        out["embraer"] = d
     out["engine_moves"] = {str(r["year"]): list(r["moves"]) for r in v["_en_series"]["years"] if r["year"] <= M.REPORT_END}
     return out
 
@@ -77,6 +88,7 @@ def period_sums(yb):
     for s in M.SIDES:
         d = yb[s]
         keys = ["nb_units", "wb_units", "revenue", "profit", "sq_profit", "nonrecurring"] if s in ("boeing", "airbus") else \
+            ["nb_units", "revenue", "profit", "nonrecurring"] if s == "embraer" else \
             ["nb_units", "wb_units", "value", "sq_value", "nonrecurring"]
         out[s] = []
         for a, b in PERIODS:
@@ -89,7 +101,7 @@ def timeline(state, year):
     rows = B.programme_rows(state, year if year else 2100)
     for r in rows:
         r["owner"] = {"fps": "boeing", "re787": "boeing", "rate737": "boeing", "ngsa": "airbus", "rea350": "airbus",
-                      "jv": "pratt_whitney+rolls_royce"}.get(r["key"], M.EN_SIDE.get(r["key"], ""))
+                      "jv": "pratt_whitney+rolls_royce", "enb": "embraer"}.get(r["key"], M.EN_SIDE.get(r["key"], ""))
         if r["key"] in M.EN_SIDE and r["key"] != "jv":
             r["owner"] = M.EN_SIDE[r["key"]]
     fit = R.engine_fit(state)
@@ -131,6 +143,9 @@ def sd_block(state, v):
     for k in ("demand", "demand_gross", "pref_b_base", "airbus_capacity_factor", "cap_max", "cap_fps", "cap_a320",
               "cap_ngsa", "lost", "backlog_b", "backlog_a", "firm_b", "firm_a", "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa"):
         out[k] = [r["sd"][k] for r in rows]
+    for k in ("dlv_comac", "dlv_entrant", "cap_comac", "cap_entrant", "dlv_embraer", "share_embraer"):
+        out[k] = [r["sd"].get(k, 0.0) for r in rows]
+    out["price_cut"] = {side: [r[side].get("price_cut", 0.0) for r in rows] for side in ("boeing", "airbus")}
     for k in ("delivered_b", "delivered_a", "lost", "dlv_max", "dlv_a320"):
         out["sq_" + k] = [r["sd_sq"][k] for r in rows]
     for side in ("boeing", "airbus"):
