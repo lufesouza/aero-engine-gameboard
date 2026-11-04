@@ -28,6 +28,8 @@ CASES = [
     ("cfm-culp", "Read", {"file_path": REPO + "/.claude/agents/embraer-gomes-neto.md"}, "deny"),
     ("embraer-gomes-neto", "Read", {"file_path": "/tmp/wargame-boeing/dash-2050-emb/round1.md"}, "deny"),
     ("embraer-garcia", "Read", {"file_path": REPO + "/wargame/profiles/airbus/profile.md"}, "deny"),
+    ("embraer-santana", "Read", {"file_path": "/tmp/wargame-airbus/dash-2050-emb/round1.md"}, "deny"),
+    ("embraer-santana", "Read", {"file_path": REPO + "/wargame/profiles/embraer/executives/garcia.md"}, "allow"),
     ("embraer-board", "Bash", {"command": "cat " + REPO + "/wargame/dashgame/model.py"}, "deny"),
     ("embraer-meijer", "Grep", {"pattern": "x", "path": REPO + "/wargame/profiles"}, "deny"),
     ("embraer-gomes-neto", "Read", {"file_path": "/tmp/wargame-embraer/dash-2050-emb/round1.md"}, "allow"),

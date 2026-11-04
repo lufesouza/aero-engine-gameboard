@@ -17,6 +17,7 @@ export const meta = {
 
 // args: {run: 'dash-2050-exco', round: 1, year: 2030, sides: ['boeing', ...] (optional, default every team),
 //        personas: {embraer: {ceo, cfo, ops, board}} (agent-file texts for seats whose agent type this session lacks),
+//        persona_files: {embraer: true} (or: such seats read their own .claude/agents file first),
 //        rules: {embraer, embraer_cfo, embraer_ops} (optional: Embraer's decision rule and veto grounds),
 //        plans: {boeing: {fps_site}, airbus: {a320_plan}} (supply-and-demand runs: the standing supply plans),
 //        board: true (optional; false runs the ExCo alone)}
@@ -95,13 +96,13 @@ const TEAMS = {
     },
   },
   embraer: {
-    board: 'embraer-board', boardName: 'the Embraer S.A. Board of Directors',
+    board: 'embraer-board', boardName: 'the Embraer S.A. Board of Directors (the Brazilian state holds a golden share)',
     company: 'Embraer', ceo: 'embraer-gomes-neto', cfo: 'embraer-santana', ops: 'embraer-meijer',
     names: { ceo: 'Francisco Gomes Neto', cfo: 'Felipe Santana', ops: 'Arjan Meijer' },
-    rule: (A0.rules && A0.rules.embraer) || 'Gomes Neto proposes and decides. Santana (CFO since May 2026, carrying Garcia\'s funding doctrine) tests the funding: a failed test is a binding veto. Meijer tests the market window and readiness: a failed test is a soft veto. Gomes Neto decides everything else. A launch or a cancellation is a Board item. (Both vetoes are inferences.)',
+    rule: 'Gomes Neto proposes and decides, bound by the CEO\'s own three launch conditions: a strong product, a strong value proposition and a robust funding strategy that does not put the company\'s financial health at risk. Santana, the CFO, tests the funding on the doctrine inherited from Garcia: a launch needs Team Korea carrying its share of the bill in the brief, ΔPV (debt penalty included) at or above zero in the expected column (the rival plan Gomes Neto names as most likely), and no loss of more than 5 yield points against Hold in the risk column; a launch that fails is vetoed and the veto binds, with no override. Meijer tests the market window and readiness: a launch fails if one new-generation rival type (fps or NGSA) is already in service at its entry into service, or if the brief reports a supply-chain or engine problem that would hold the line; this is a soft veto, binding unless Gomes Neto records an override, as a Board item, for a plan more than 5 yield points better than Hold in the expected column. No launch at all when both fps and NGSA are in service, or due within 2 years, at its entry into service, or while Boeing\'s fps via Embraer is live (company hard rules). Cancel only before entry into service, when writing off beats continuing by more than 2 yield points. Within 2 yield points, hold in 2030 if, in the expected rival plan, a 2035 launch keeps an open window, otherwise launch; launch in 2035 if ΔPV is at or above zero. Any launch and any cancel are Board items. (teams.md; both vetoes are inferences.)',
     veto: {
-      cfo: { ground: (A0.rules && A0.rules.embraer_cfo) || 'a launch that fails your balance-sheet test (leverage, cash, partner money not in hand)', binding: true },
-      ops: { ground: (A0.rules && A0.rules.embraer_ops) || 'a launch whose airplane or campaign case does not stand (product, customers, supply chain, ramp)', binding: true },
+      cfo: { ground: 'a launch whose funding fails your test: no partner share in the brief, ΔPV below zero with the debt penalty included in the expected column, or a loss of more than 5 yield points against Hold in the risk column', binding: true },
+      ops: { ground: 'a launch into a narrow window (one new-generation rival type, fps or NGSA, already in service at its entry into service) or with a supply-chain or engine problem in the brief that would hold the line: a soft veto, binding unless Gomes Neto records an override, as a Board item, for a plan more than 5 yield points better than Hold in the expected column', binding: 'soft' },
     },
   },
 }
@@ -202,12 +203,17 @@ OBJECTIVES.pratt_whitney = 'Your objectives are unchanged in this game. Your com
 const objNote = side => (OBJ2 && OBJECTIVES[side]) ? [OBJECTIVES[side]] : []
 
 // A persona passed in args (the agent type has no file in this session): its text leads the prompt.
+// args.persona_files {side: true} names seats whose agent file exists (.claude/agents/<agent>.md) but cannot be loaded
+// as an agent type in this session: the seat runs as a general-purpose agent told to read that file first.
 const persona = (side, seat) => (A.personas && A.personas[side] && A.personas[side][seat]) || null
-const agentTypeOf = (side, seat) => persona(side, seat) ? 'general-purpose' : TEAMS[side][seat]
+const personaFile = (side, seat) => (A.persona_files && A.persona_files[side]) ? `.claude/agents/${TEAMS[side][seat]}.md` : null
+const agentTypeOf = (side, seat) => (persona(side, seat) || personaFile(side, seat)) ? 'general-purpose' : TEAMS[side][seat]
 function personaHead(side, seat) {
-  const p = persona(side, seat)
-  if (!p) return []
-  return ['The game master passes your agent file below, because this session cannot load it as an agent type. Treat it exactly as your agent file: it defines who you are and how you work.\n\n<agent_file>\n' + p + '\n</agent_file>',
+  const p = persona(side, seat), f = personaFile(side, seat)
+  if (!p && !f) return []
+  const intro = p ? 'The game master passes your agent file below, because this session cannot load it as an agent type. Treat it exactly as your agent file: it defines who you are and how you work.\n\n<agent_file>\n' + p + '\n</agent_file>'
+    : `Before anything else, read your agent file \`/home/user/aero-engine-gameboard/${f}\` in full (this session cannot load it as an agent type, so the game master names it here). Treat it exactly as your agent file: it defines who you are, how you work and what you return.`
+  return [intro,
     `Independence (enforced by the game master's audit of your tool calls, as no hook covers this agent type): read only \`/tmp/wargame-${side}/${RUN}/\` and \`wargame/profiles/${side}/\`. Never open another company's folder (\`/tmp/wargame-<other>/\`, \`wargame/profiles/<other>/\`, other companies' agent files in \`.claude/agents/\`), \`wargame/runs\`, \`wargame/reports\`, \`wargame/dashgame\`, the dashboard code, the session scratchpad or any agent transcript. Write nothing anywhere except \`/tmp/wargame-${side}/${RUN}/work/\`.`]
 }
 
