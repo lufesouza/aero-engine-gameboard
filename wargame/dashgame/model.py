@@ -42,9 +42,22 @@ REPORT_END = 2060                     # last calendar year shown in the year-by-
 # snapshot sliders (unlaunched programmes): v2 fps 2041, NGSA 2037, Re-engines 2035; v3 Re-engines 2042
 DEFAULT_EIS = {"fps": H.SNAP["af_fps_eis"], "ngsa": H.SNAP["af_ngsa_eis"], "re787": H.SNAP["af_787_eis"],
                "rea350": H.SNAP["af_a350_eis"]}
-SIDES = ["boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce"]
+BASE_SIDES = ["boeing", "airbus", "cfm", "pratt_whitney", "rolls_royce"]
+SIDES = list(BASE_SIDES)
 NAMES = {"boeing": "Boeing", "airbus": "Airbus", "cfm": "CFM/GE", "pratt_whitney": "Pratt & Whitney",
-         "rolls_royce": "Rolls-Royce"}
+         "rolls_royce": "Rolls-Royce", "embraer": "Embraer"}
+
+
+def refresh_sides():
+    """Embraer is a sixth player only in runs whose supply-and-demand options name it (embraer_player); SIDES is
+    updated in place so every module's M.SIDES sees it."""
+    SIDES[:] = BASE_SIDES + (["embraer"] if (SD_ON and SD.embraer()) else [])
+    return SIDES
+
+
+def politics():
+    """The run's political terms (supply-and-demand option `politics`), or {}."""
+    return (SD.options().get("politics") or {}) if SD_ON else {}
 
 NL = H.NL
 _TR_ANCHOR = "                a_scen_wb_pv += (WB_PER_YR * a_sh_wb * PRICE_WB * a_wb_margin_t) * df_a"
@@ -59,6 +72,9 @@ _TR_INJ = (_TR_ANCHOR + NL +
 _T_ANCHOR = "        T_dynamic = max(TIMELINE_YRS,"
 _T_INJ = "        T_dynamic = max(TIMELINE_YRS, %d," % (REPORT_END - Y0 + 1)
 AF_PATCH = H.OVERLAP_PATCH + [(_TR_ANCHOR, _TR_INJ, 1), (_T_ANCHOR, _T_INJ, 1)]
+
+
+refresh_sides()
 
 
 # ─────────────────────────────── airframer board ───────────────────────────────
@@ -227,14 +243,16 @@ FPS_STRAT = {"7yr": "Launch_fps_7yr_Solo", "10yr": "Launch_fps_10yr_Solo", "embr
 EN_SIDE = {"cfm_ducted": "cfm", "cfm_open_fan": "cfm", "cfm_embraer": "cfm", "cfm_lobby": "cfm", "cfm_genx": "cfm",
            "pw_solo": "pratt_whitney", "rr_solo": "rolls_royce", "jv": "jv", "rr_uf_wb": "rolls_royce",
            "rr_t1000": "rolls_royce"}
-AF_SIDE = {"fps": "boeing", "re787": "boeing", "rate737": "boeing", "ngsa": "airbus", "rea350": "airbus"}
+AF_SIDE = {"fps": "boeing", "re787": "boeing", "rate737": "boeing", "ngsa": "airbus", "rea350": "airbus",
+           "enb": "embraer"}
 OPEN_FAN_EARLIEST = 2045            # the board: "Open Fan not ready until 2045"
 
 PROG_LABEL = {"fps": "fps (Boeing)", "re787": "787 Re-engine (Boeing)", "ngsa": "NGSA (Airbus)",
               "rea350": "A350 Re-engine (Airbus)", "cfm_ducted": "CFM ducted engine", "cfm_open_fan": "CFM Open Fan (RISE)",
               "cfm_embraer": "CFM-Embraer partnership", "cfm_lobby": "CFM emissions lobbying",
               "cfm_genx": "GEnx (CFM/GE)", "pw_solo": "P&W GTF2 (Solo)", "rr_solo": "RR UltraFan NB (Solo)",
-              "jv": "P&W-RR Joint Venture NB engine", "rr_uf_wb": "RR UltraFan WB", "rr_t1000": "RR Trent 1000 upgrade"}
+              "jv": "P&W-RR Joint Venture NB engine", "rr_uf_wb": "RR UltraFan WB", "rr_t1000": "RR Trent 1000 upgrade",
+              "enb": "Embraer new narrowbody (with Korea)"}
 
 
 
@@ -245,7 +263,15 @@ def engine_ready(key, launch):
             "jv": launch + 6, "rr_uf_wb": launch + 6, "rr_t1000": launch + 3}[key]
 
 
+def emb_own_share():
+    """Share of Embraer's development bill Embraer carries itself (after its partners and the Brazilian state)."""
+    e = SD.embraer()
+    return 1.0 - float(e.get("partner_share", 0.0)) - float(e.get("supplier_share", 0.0)) - float(e.get("state_share", 0.0))
+
+
 def af_bill(key, variant=None):
+    if key == "enb":                     # Embraer's own share of its bill ($B nominal, booked at EIS)
+        return float(SD.embraer()["bill_b"]) * emb_own_share()
     p = af_params()
     if key == "fps":
         return {"7yr": p["v_capex_fps_7yr"], "10yr": p["v_capex_fps_10yr"], "embraer": p["v_capex_fps_emb"]}[variant]
@@ -253,6 +279,8 @@ def af_bill(key, variant=None):
 
 
 def af_dev(key, variant=None):
+    if key == "enb":
+        return int(SD.embraer().get("dev_years", 4))
     return AF_DEV["fps_" + variant] if key == "fps" else AF_DEV[key]
 
 
@@ -389,20 +417,35 @@ def value_airframers(state, covert=True, series=True):
         sunk_nom = sum(d["sunk_nom"] for d in state["dead"] if d["side"] == side)
         sunk_pv = sum(d["sunk_nom"] / ((1 + wacc) ** (d["cancel"] - Y0)) for d in state["dead"] if d["side"] == side)
         pv_gm = pv - sab_pv_board + sab_pv_gm
-        tc_gm = true_cost(nom + sunk_nom, pv_gm + sunk_pv, debt, ev, p["v_alpha"])
+        # political terms (runs with the `politics` option): governments carry a share of the fps bill (it cuts
+        # Boeing's spend and so its debt penalty), and leaving the narrowbody market has a political cost
+        pol = politics()
+        cof_nom = cof_pv = exit_pv = 0.0
+        if side == "boeing" and pol:
+            f_ = live(state, "fps")
+            if f_ and pol.get("boeing_cofund"):
+                cof_nom = float(pol["boeing_cofund"]) * af_bill("fps", f_["variant"])
+                cof_pv = cof_nom / ((1 + wacc) ** (f_["eis"] - Y0))
+            if not f_:
+                exit_pv = exit_cost(wacc, state.get("year"))
+        tc_gm = true_cost(nom + sunk_nom - cof_nom, pv_gm + sunk_pv - cof_pv, debt, ev, p["v_alpha"])
         strain_gm = strain_nom * (pv_gm / nom) if nom > 0 else strain_pv
         board_total = cell[pre + "_total_delta"]
-        total = board_total - (tc_gm - board_tc) - (strain_gm - strain_pv) - (fine_gm - fine_board)
+        total = board_total - (tc_gm - board_tc) - (strain_gm - strain_pv) - (fine_gm - fine_board) - exit_pv
         adj = {"true_cost_change": -(tc_gm - board_tc), "strain_change": -(strain_gm - strain_pv),
-               "fine_change": -(fine_gm - fine_board)}
+               "fine_change": -(fine_gm - fine_board), "political_exit_cost": -exit_pv}
         rate_pv = -cell.get("b_pv_rate_hike", 0.0) if side == "boeing" else 0.0
         # bridge: every line in PV $B at 2026; sums exactly to `total`
         inv_pv = cell[pre + "_pv_nb_invest"] + cell[pre + "_pv_wb_invest"]
-        alpha_pv = tc_gm - (pv_gm + sunk_pv)
+        alpha_pv = tc_gm - (pv_gm + sunk_pv - cof_pv)
         bridge = {"nb_profit_vs_sq": cell[pre + "_delta_nb"], "wb_profit_vs_sq": cell[pre + "_delta_wb"],
                   "programme_investment": -inv_pv, "rate_hike": -rate_pv,
                   "delay_tactics_spend": -sab_pv_gm, "write_offs": -sunk_pv, "debt_penalty": -alpha_pv,
                   "two_front_strain": -strain_gm, "naked_fine": -fine_gm}
+        if cof_pv:
+            bridge["government_cofunding"] = cof_pv
+        if exit_pv:
+            bridge["political_exit_cost"] = -exit_pv
         chk = sum(bridge.values())
         assert abs(chk - total) < 1e-9, (side, chk, total, bridge)
         out[side] = {"pv_delta": total, "yield": 100.0 + total / ev * 100.0, "board_pv_delta": board_total,
@@ -425,6 +468,58 @@ def value_airframers(state, covert=True, series=True):
     if series:
         out["_series"] = ser
     return out
+
+
+def exit_cost(wacc, year=None):
+    """PV (2026) of the political cost of leaving the narrowbody market (option `politics`): a chance exit_p that
+    Washington makes Boeing pay for leaving (defence, export finance, the FAA) times exit_loss_b a year of defence
+    profit at risk, for exit_years from max(exit_from, the decision year)."""
+    pol = politics()
+    if not pol or not pol.get("exit_p"):
+        return 0.0
+    t0 = max(int(pol.get("exit_from", 2045)), int(year or 2030))
+    ann = sum((1 + wacc) ** -t for t in range(int(pol.get("exit_years", 20))))
+    return float(pol["exit_p"]) * float(pol["exit_loss_b"]) * ann * (1 + wacc) ** -(t0 - Y0)
+
+
+def value_embraer(state, ser):
+    """Embraer's ΔPV against the status quo (no new Embraer narrowbody): operating profit on its new narrowbody's
+    deliveries (supply_demand rows, `dlv_embraer`) over 20 years from EIS, less its own share of the bill (booked at
+    EIS) and write-offs with the board's α debt penalty on its balance sheet. Embraer's E-Jets and business jets are
+    the same in every plan and the status quo, so they do not enter."""
+    e = SD.embraer()
+    w, ev, debt, alpha = float(e["wacc"]), float(e["ev_b"]), float(e["debt_b"]), float(e.get("alpha", 0.3))
+    r = live(state, "enb")
+    price, margin = float(e["price_m"]), float(e["margin"])
+    rows, prof = [], 0.0
+    for row in ser["years"]:
+        y = row["year"]
+        u = row["sd"].get("dlv_embraer", 0.0)
+        inw = bool(r and r["eis"] <= y <= r["eis"] + 19)
+        p_ = u * price * margin / 1000.0
+        if inw:
+            prof += p_ / ((1 + w) ** (y - Y0))
+        tot = row["boeing"]["nb_units"] + row["airbus"]["nb_units"] + row["sd"]["dlv_comac"] + u
+        rows.append({"year": y, "nb_units": u, "nb_revenue": u * price / 1000.0, "nb_profit": p_,
+                     "nb_share": u / tot if tot > 0 else 0.0, "customer_share": row["sd"].get("share_embraer", 0.0),
+                     "capacity": row["sd"].get("cap_entrant", 0.0), "in_window": inw})
+    nom = af_bill("enb") if r else 0.0
+    pv = nom / ((1 + w) ** (r["eis"] - Y0)) if r else 0.0
+    sunk_nom = sum(d["sunk_nom"] for d in state["dead"] if d["side"] == "embraer")
+    sunk_pv = sum(d["sunk_nom"] / ((1 + w) ** (d["cancel"] - Y0)) for d in state["dead"] if d["side"] == "embraer")
+    tc = true_cost(nom + sunk_nom, pv + sunk_pv, debt, ev, alpha)
+    bridge = {"nb_profit_vs_sq": prof, "programme_investment": -pv, "write_offs": -sunk_pv,
+              "debt_penalty": -(tc - pv - sunk_pv)}
+    total = prof - tc
+    assert abs(sum(bridge.values()) - total) < 1e-9
+    nr = {}
+    if r:
+        nr.setdefault(r["eis"], {})["Embraer new narrowbody (own share of the bill)"] = nom
+    for d in state["dead"]:
+        if d["side"] == "embraer":
+            nr.setdefault(d["cancel"], {})["write-off: " + d["label"]] = d["sunk_nom"]
+    return {"pv_delta": total, "yield": 100.0 + total / ev * 100.0, "ev": ev, "wacc": w, "bridge": bridge,
+            "_series": {"years": rows, "nonrecurring": nr}}
 
 
 def af_series(state, cell, eis, dt):
@@ -582,11 +677,28 @@ def nb_slots_at(state, yr, b_share):
     return [(bset, b_share), (aset, 1.0 - b_share)]
 
 
+def emb_engine_maker(state):
+    """Index (CFM 0, P&W 1, RR 2) of the engine maker on Embraer's new narrowbody: CFM when CFM's Embraer partnership
+    is live, else P&W (the E2's engine maker)."""
+    return 0 if live(state, "cfm_embraer") else 1
+
+
+def with_embraer(nb, lines, state):
+    """Blend Embraer's deliveries (the 5th entry of `lines`, if any) into narrowbody engine shares from the other
+    four lines: Embraer's aircraft all fly its engine maker's engines."""
+    if len(lines) < 5 or not lines[4]:
+        return nb
+    e, tot4 = lines[4], sum(lines[:4])
+    tot = tot4 + e
+    i = emb_engine_maker(state)
+    return tuple((nb[k] * tot4 + (e if k == i else 0.0)) / tot for k in range(3))
+
+
 def sd_engine_shares(state, yr, lines, moves, jv, base_nb, start_wb, P):
     """Narrowbody engine shares under supply and demand, after the first new narrowbody enters service: 737 MAX and
     A320neo keep today's engines (CFM; CFM 60% / P&W 40%), and the engine moves shift share only on the new types
     (fps, NGSA), starting from their fitted makers. Widebody shares as on the board."""
-    mx, fp, a3, ng = lines
+    mx, fp, a3, ng = lines[:4]
     tot = (mx + fp + a3 + ng) or 1.0
     fps, ngsa = live(state, "fps"), live(state, "ngsa")
     slots = []
@@ -603,13 +715,13 @@ def sd_engine_shares(state, yr, lines, moves, jv, base_nb, start_wb, P):
     leg = legacy_engine_shares((mx, 0.0, a3, 0.0), base_nb)
     old_units, new_units = mx + a3, fp + ng
     nb = tuple((leg[i] * old_units + nb_new[i] * new_units) / tot for i in range(3))
-    return nb, wb_post
+    return with_embraer(nb, lines, state), wb_post
 
 
 def legacy_engine_shares(lines, base_nb):
     """Before any new narrowbody: the 737 MAX flies CFM only and the A320neo is split as the board's status quo
     implies at 40/60 (CFM 60%, P&W 40% of A320neo engines), so the status-quo mix gives the board's base shares."""
-    mx, fp, a3, ng = lines
+    mx, fp, a3, ng = lines[:4]
     tot = (mx + a3) or 1.0
     a_cfm = (base_nb[0] - 0.40) / 0.60
     return ((mx + a3 * a_cfm) / tot, a3 * (1.0 - a_cfm) / tot, 0.0)
@@ -660,7 +772,8 @@ def value_engines(state, b_nb_share, series=True, board_mode=None, nb_scale=None
         sq_nb = base_nb
         if nb_lines is not None and not board_mode:
             if nb_anchor_t is None or t < nb_anchor_t:
-                nb_sh = legacy_engine_shares(nb_lines[0].get(yr, nb_lines[0][max(nb_lines[0])]), base_nb)
+                ln0 = nb_lines[0].get(yr, nb_lines[0][max(nb_lines[0])])
+                nb_sh = with_embraer(legacy_engine_shares(ln0, base_nb), ln0, state)
             sq_nb = legacy_engine_shares(nb_lines[1].get(yr, nb_lines[1][max(nb_lines[1])]), base_nb)
         # board mode switches WB at the board's anchor; in the game each WB move has its own start year (above)
         wb_sh = (base_wb if t < wb_anchor_t else wb_post) if board_mode else wb_post
@@ -746,14 +859,17 @@ P_NB = 2000.0       # the board's narrowbody market, aircraft a year
 
 
 def value(state, covert=True, series=True):
-    """Full valuation of a state for all five players."""
+    """Full valuation of a state for every player (five, or six with the Embraer player)."""
     af = value_airframers(state, covert=covert, series=True)
     ys = af["_series"]["years"]
     if SD_ON:      # engine makers sell on the aircraft actually delivered (supply_demand.py)
         bshare = {r["year"]: r["boeing"]["nb_delivered_share"] for r in ys}
-        scale = {r["year"]: (r["boeing"]["nb_units"] + r["airbus"]["nb_units"]) / P_NB for r in ys}
+        # Embraer's new narrowbody (the Embraer player) flies one maker's engines (emb_engine_maker)
+        emb = {r["year"]: r["sd"].get("dlv_embraer", 0.0) for r in ys}
+        scale = {r["year"]: (r["boeing"]["nb_units"] + r["airbus"]["nb_units"] + emb[r["year"]]) / P_NB for r in ys}
         scale_sq = {r["year"]: (r["sd_sq"]["delivered_b"] + r["sd_sq"]["delivered_a"]) / P_NB for r in ys}
-        lines = {r["year"]: (r["sd"]["dlv_max"], r["sd"]["dlv_fps"], r["sd"]["dlv_a320"], r["sd"]["dlv_ngsa"]) for r in ys}
+        lines = {r["year"]: (r["sd"]["dlv_max"], r["sd"]["dlv_fps"], r["sd"]["dlv_a320"], r["sd"]["dlv_ngsa"]) +
+                 ((emb[r["year"]],) if emb[r["year"]] else ()) for r in ys}
         lines_sq = {r["year"]: (r["sd_sq"]["dlv_max"], 0.0, r["sd_sq"]["dlv_a320"], 0.0) for r in ys}
         en = value_engines(state, bshare, series=series, nb_scale=(scale, scale_sq), nb_lines=(lines, lines_sq))
     else:
@@ -761,6 +877,13 @@ def value(state, covert=True, series=True):
         en = value_engines(state, bshare, series=series)
     out = {"boeing": af["boeing"], "airbus": af["airbus"], "cfm": en["cfm"], "pratt_whitney": en["pratt_whitney"],
            "rolls_royce": en["rolls_royce"], "_af_inputs": af["_inputs"], "_engine_timing": en["_timing"]}
+    if "embraer" in SIDES:
+        em = value_embraer(state, af["_series"])
+        if series:
+            out["_emb_series"] = em.pop("_series")
+        else:
+            em.pop("_series")
+        out["embraer"] = em
     if series:
         out["_af_series"] = af["_series"]
         out["_en_series"] = en["_series"]

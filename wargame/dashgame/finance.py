@@ -71,8 +71,9 @@ def programme_cash(state, F=None):
         key = k.split("_")[2] if k.startswith("_cancelled_") else k
         if key in ("fps", "re787"):
             recs.append((key, r))
+    cof = float(M.politics().get("boeing_cofund", 0.0))   # governments carry this share of the fps bill (politics)
     for key, r in recs:
-        bill = M.af_bill(key, r.get("variant"))
+        bill = M.af_bill(key, r.get("variant")) * ((1.0 - cof) if key == "fps" else 1.0)
         launch, eis = r["launch"], r["eis"]
         n = max(1, eis - launch)
         shares = stretch(curve, n)

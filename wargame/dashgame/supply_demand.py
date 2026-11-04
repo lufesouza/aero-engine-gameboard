@@ -85,7 +85,15 @@ def options():
                         supplier's campaigns cut the price of every new single-aisle delivered (both makers, every type,
                         the status quo too) by cut x price, from `from`, rising in a straight line over ramp_years; cost
                         is unchanged, so profit falls by the whole cut. cut_boeing_no_fps replaces cut on Boeing's
-                        aircraft in the years Boeing has no new narrowbody in service (the status quo in every year)"""
+                        aircraft in the years Boeing has no new narrowbody in service (the status quo in every year)
+      embraer_player    Embraer is a player (rules.py order `enb`): its new narrowbody is the entrant, from its own EIS
+                        (none in the status quo). {"peak_a_month", "years_to_peak": its line; "share_by_newgen": [share
+                        of new customers with 0, 1, 2 new-generation types (fps, NGSA) in service]; "us_tariff_share_cut":
+                        share of that lost to US tariffs; "cut", "cut_boeing_no_fps_mult", "lead", "ramp_years": its price
+                        pressure, from `lead` years before its EIS (none while no Embraer airliner is launched)} plus its
+                        economics (model.value_embraer). The run's generic entrant is not used with it.
+      politics          {"boeing_cofund": share of the fps bill governments carry, "exit_p", "exit_loss_b", "exit_from",
+                        "exit_years": the political cost of leaving the narrowbody market} (model.value_airframers)"""
     run = os.environ.get("DASH_RUN")
     path = os.path.join(HERE, "..", "runs", run, "sd_options.json") if run else None
     if path and os.path.exists(path):
@@ -214,16 +222,44 @@ def _points(pts, year):
     return 0.0
 
 
-def third_capacity(year):
-    """(COMAC, entrant) capacity in `year`, aircraft a year (options()['third_party']; zeros without it)."""
-    t = options().get("third_party")
-    if not t:
+def embraer():
+    """The run's Embraer-player options (options()['embraer_player']), or None."""
+    return options().get("embraer_player")
+
+
+def embraer_line(state):
+    """Embraer's live new narrowbody (rules.py `enb`), or None."""
+    return _live(state, "enb") if embraer() else None
+
+
+def third_capacity(year, state=None):
+    """(COMAC, entrant) capacity in `year`, aircraft a year (options()['third_party']; zeros without it). With the
+    Embraer player the entrant is Embraer's new narrowbody, from its EIS in `state` (none in the status quo)."""
+    t = options().get("third_party") or {}
+    em = embraer()
+    if not t and not em:
         return 0.0, 0.0
     e = t.get("entrant") or {}
     ce = 0.0
-    if e and year >= e["eis"]:
+    if em:
+        r = _live(state, "enb") if state is not None else None
+        if r and year >= r["eis"]:
+            ce = 12.0 * em["peak_a_month"] * min(1.0, (year - r["eis"] + 1) / em["years_to_peak"])
+    elif e and year >= e["eis"]:
         ce = 12.0 * e["peak_a_month"] * min(1.0, (year - e["eis"] + 1) / e["years_to_peak"])
     return _points(t.get("comac") or {"2026": 0}, year), ce
+
+
+def newgen_in_service(state, year):
+    """Number of new-generation narrowbodies (fps, NGSA) in service in `year`."""
+    return sum(1 for k in ("fps", "ngsa") if _live(state, k) and year >= _live(state, k)["eis"])
+
+
+def embraer_share(state, year):
+    """Share of the year's new customers Embraer's new narrowbody wins (before its line's capacity)."""
+    em = embraer()
+    sh = em["share_by_newgen"][min(2, newgen_in_service(state, year))]
+    return float(sh) * (1.0 - float(em.get("us_tariff_share_cut", 0.0)))
 
 
 def airbus_capacity(state, year):
@@ -321,6 +357,7 @@ def year_rows(state, b_pref_by_year, years):
     resp = float(o.get("airbus_capacity_response") or 0.0)
     m_a = 1.0                                   # Airbus capacity against its plan (capacity response)
     tp = o.get("third_party") or {}
+    emb = embraer()
     ngsa_live = _live(state, "ngsa")
     fps_live = _live(state, "fps")
     ys = sorted(years)
@@ -346,12 +383,14 @@ def year_rows(state, b_pref_by_year, years):
             d = gross - need
         else:
             fb_in, fa_in, d = kb, ka, gross
-        cc, ce = third_capacity(y)              # COMAC's home sales and the entrant's won share come off the top
+        cc, ce = third_capacity(y, state)       # COMAC's home sales and the entrant's won share come off the top
         pc = min(cc * float(tp.get("comac_first", 0.0)), d)
         d -= pc
         sh_e = float(tp.get("entrant_share", 0.0))
         if "entrant_share_no_fps" in tp and not (fps_live and y >= fps_live["eis"]):
             sh_e = float(tp["entrant_share_no_fps"])       # no new Boeing narrowbody in service: the second-source share
+        if emb:
+            sh_e = embraer_share(state, y)                 # Embraer the player: by new-generation types in service
         pe = min(ce, d * sh_e)
         d -= pe
         base = boeing_base_pref(state, y, b_pref_by_year[y])
@@ -373,7 +412,8 @@ def year_rows(state, b_pref_by_year, years):
             te = take - tc
             r["backlog_b"], r["backlog_a"] = (ub - tb) * (1.0 - lapse), (ua - ta) * (1.0 - lapse)
             r["lost"] = (ub - tb + ua - ta) * lapse
-        r.update({"cap_comac": cc, "cap_entrant": ce, "dlv_comac": pc + tc, "dlv_entrant": pe + te, "cap_airbus_extra": xa})
+        r.update({"cap_comac": cc, "cap_entrant": ce, "dlv_comac": pc + tc, "dlv_entrant": pe + te, "cap_airbus_extra": xa,
+                  "dlv_embraer": (pe + te) if emb else 0.0, "share_embraer": sh_e if emb else 0.0})
         if netted:                              # called firm orders not delivered wait (never lapse); uncalled stay open
             cb, ca = r["firm_b"], r["firm_a"]
             r["firm_in_b"], r["firm_in_a"] = open_b, open_a
@@ -417,10 +457,24 @@ def costs(state):
     return out
 
 
+def price_pressure(state):
+    """The price-pressure terms in force for `state`: the run's option, or with the Embraer player the terms its
+    launched airliner brings (from `lead` years before its EIS; none while it is not launched or is cancelled)."""
+    em = embraer()
+    if not em:
+        return options().get("price_pressure")
+    r = _live(state, "enb")
+    if not r:
+        return None
+    c = float(em["cut"])
+    return {"from": r["eis"] - int(em.get("lead", 0)), "ramp_years": em["ramp_years"], "cut": c,
+            "cut_boeing_no_fps": c * float(em.get("cut_boeing_no_fps_mult", 1.0))}
+
+
 def price_cut(state, side, year):
     """Share of the price a third supplier's campaigns take off each new single-aisle `side` delivers in `year`
-    (options()['price_pressure']; 0 without it)."""
-    pp = options().get("price_pressure")
+    (options()['price_pressure'], or the Embraer player's launched airliner; 0 without it)."""
+    pp = price_pressure(state)
     if not pp or year < pp["from"]:
         return 0.0
     c = float(pp["cut"])
@@ -472,7 +526,7 @@ def apply(state, rows, waccs):
         r["sd"] = {k: s[k] for k in ("demand", "demand_gross", "pref_b_base", "airbus_capacity_factor", "cap_max", "cap_fps", "cap_a320",
                                      "cap_ngsa", "lost", "backlog_b", "backlog_a", "firm_b", "firm_a",
                                      "dlv_max", "dlv_fps", "dlv_a320", "dlv_ngsa", "dlv_comac", "dlv_entrant", "cap_comac",
-                                     "cap_entrant", "cap_airbus_extra")}
+                                     "cap_entrant", "cap_airbus_extra", "dlv_embraer", "share_embraer")}
         r["sd_sq"] = {"delivered_b": q["delivered_b"], "delivered_a": q["delivered_a"], "lost": q["lost"],
                       "dlv_max": q["dlv_max"], "dlv_a320": q["dlv_a320"]}
     plan = {"boeing": 0.0, "airbus": 0.0}

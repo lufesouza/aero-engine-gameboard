@@ -1,6 +1,6 @@
 """Rules of the dash-2050 war game: legal orders, validation and adjudication. Pure functions on a state dict.
 
-Rounds are decision years 2030, 2035, 2045 and 2050. In each round the five players move simultaneously.
+Rounds are decision years 2030, 2035, 2045 and 2050. In each round the five players (six with Embraer) move simultaneously.
 A programme launched in round year Y enters service (airframes) or is ready (engines) after its development time.
 """
 import copy
@@ -29,6 +29,8 @@ ORDER_FIELDS = {
     "rolls_royce": {"ultrafan_nb_solo": ["hold", "launch", "launch_if_selected", "cancel"],
                     "jv_with_pw": ["hold", "commit", "withdraw"],
                     "ultrafan_wb": ["hold", "launch", "cancel"], "t1000_upgrade": ["hold", "launch", "cancel"]},
+    # Embraer plays only in runs with the embraer_player option (model.SIDES); its new narrowbody, with Korea
+    "embraer": {"enb": ["hold", "launch", "cancel"]},
 }
 DEFAULT_ORDER = {s: {k: v[0] for k, v in f.items()} for s, f in ORDER_FIELDS.items()}
 # Supply-and-demand fields (supply_demand.py): only in runs that switch the layer on; a missing value keeps the plan.
@@ -59,6 +61,8 @@ def legal_options(state, side, year):
             L[field] = ["hold"]
     if side == "boeing":
         prog_opts("fps", ["launch_7yr", "launch_10yr", "launch_via_embraer"], "fps")
+        if M.live(state, "enb") and "launch_via_embraer" in L["fps"]:
+            L["fps"].remove("launch_via_embraer")            # Embraer is building its own narrowbody
         prog_opts("re787", ["launch"], "re787")
         L["rate_737"] = ["hold", "increase"] if (year == ROUNDS[0] and not state["rate737"]) else ["hold"]
         fps = M.live(state, "fps")
@@ -82,6 +86,11 @@ def legal_options(state, side, year):
         L["lobby_emissions"] = ["hold"] if M.live(state, "cfm_lobby") else ["hold", "launch"]
         g = M.live(state, "cfm_genx")
         L["genx"] = ["hold", "upgrade_genx9", "invest_genx"] if g is None else (["hold", "cancel"] if g["ready"] > year else ["hold"])
+    elif side == "embraer":
+        prog_opts("enb", ["launch"], "enb")
+        f_ = M.live(state, "fps")
+        if f_ and f_.get("variant") == "embraer" and not M.live(state, "enb"):
+            L["enb"] = ["hold"]                              # Embraer is building Boeing's fps
     elif side == "pratt_whitney":
         prog_opts("pw_solo", ["launch", "launch_if_selected"], "gtf2_solo")
         if M.live(state, "jv"):
@@ -179,10 +188,11 @@ def _launch(state, key, year, log, **extra):
 
 
 def adjudicate(state, year, orders):
-    """Apply one round of validated orders (all five sides) and return (new_state, log)."""
+    """Apply one round of validated orders (every side) and return (new_state, log)."""
     s = copy.deepcopy(state)
     log = []
     o = {side: dict(DEFAULT_ORDER[side], **orders.get(side, {})) for side in M.SIDES}
+    emb = o.get("embraer", {})
     # cancellations first (they free the slot)
     for side, field, key in (("boeing", "fps", "fps"), ("boeing", "re787", "re787"), ("airbus", "ngsa", "ngsa"),
                              ("airbus", "rea350", "rea350"), ("cfm", "ducted", "cfm_ducted"),
@@ -192,6 +202,8 @@ def adjudicate(state, year, orders):
                              ("rolls_royce", "t1000_upgrade", "rr_t1000")):
         if o[side][field] == "cancel" and M.live(s, key):
             _cancel(s, key, year, log)
+    if emb.get("enb") == "cancel" and M.live(s, "enb"):
+        _cancel(s, "enb", year, log)
     # Embraer partnership lapses if CFM is left with no new engine programme
     if M.live(s, "cfm_embraer") and not (M.live(s, "cfm_ducted") or M.live(s, "cfm_open_fan")) and \
             o["cfm"]["ducted"] != "launch" and o["cfm"]["open_fan"] != "launch":
@@ -210,6 +222,12 @@ def adjudicate(state, year, orders):
         _launch(s, "ngsa", year, log)
     if a["rea350"] == "launch":
         _launch(s, "rea350", year, log)
+    if emb.get("enb") == "launch" and not M.live(s, "enb"):
+        f_ = M.live(s, "fps")
+        if f_ and f_.get("variant") == "embraer":
+            log.append("Embraer's new narrowbody refused: Embraer is building Boeing's fps (launched via Embraer)")
+        else:
+            _launch(s, "enb", year, log)
     dt = a.get("delay_tactics", "none")
     for x in ("bottleneck", "poaching"):
         if dt in (x, "both") and not s["dt"][x]:

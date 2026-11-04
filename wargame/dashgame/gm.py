@@ -55,6 +55,7 @@ def init(objective_set=None, sd=False, sd_options=None):
     elif os.path.exists(flag):
         os.remove(flag)
         M.SD_ON = False
+    M.refresh_sides()                      # Embraer plays only in runs whose options name it
     with open(os.path.join(RUN_DIR, "board.txt"), "w") as f:
         f.write(M.H.VERSION + "\n")       # the run keeps this board version (model.py reads it back)
     if objective_set:                      # e.g. control2: Control's added objectives (briefs.objective_set reads it)

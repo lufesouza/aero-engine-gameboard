@@ -15,7 +15,9 @@ export const meta = {
   ],
 }
 
-// args: {run: 'dash-2050-exco', round: 1, year: 2030, sides: ['boeing', ...] (optional, default all five),
+// args: {run: 'dash-2050-exco', round: 1, year: 2030, sides: ['boeing', ...] (optional, default every team),
+//        personas: {embraer: {ceo, cfo, ops, board}} (agent-file texts for seats whose agent type this session lacks),
+//        rules: {embraer, embraer_cfo, embraer_ops} (optional: Embraer's decision rule and veto grounds),
 //        plans: {boeing: {fps_site}, airbus: {a320_plan}} (supply-and-demand runs: the standing supply plans),
 //        board: true (optional; false runs the ExCo alone)}
 // `run` must equal the DASH_RUN that gm.py used to write the briefs, and must not be the earlier game's dash-2050.
@@ -30,11 +32,16 @@ const ORDER_FIELDS = {
   "airbus": {"ngsa": ["hold", "launch", "cancel"], "ngsa_engine_code": [null, 1, 2, 3, 4, 5, 6, 7], "rea350": ["hold", "launch", "cancel"], "delay_tactics": ["none", "bottleneck", "poaching", "both"], "a320_plan": ["base", "alt"]},
   "cfm": {"ducted": ["hold", "launch", "cancel"], "open_fan": ["hold", "launch", "cancel"], "partner_embraer": ["hold", "launch", "cancel"], "lobby_emissions": ["hold", "launch"], "genx": ["hold", "upgrade_genx9", "invest_genx", "cancel"]},
   "pratt_whitney": {"gtf2_solo": ["hold", "launch", "launch_if_selected", "cancel"], "jv_with_rr": ["hold", "commit", "withdraw"]},
-  "rolls_royce": {"ultrafan_nb_solo": ["hold", "launch", "launch_if_selected", "cancel"], "jv_with_pw": ["hold", "commit", "withdraw"], "ultrafan_wb": ["hold", "launch", "cancel"], "t1000_upgrade": ["hold", "launch", "cancel"]}
+  "rolls_royce": {"ultrafan_nb_solo": ["hold", "launch", "launch_if_selected", "cancel"], "jv_with_pw": ["hold", "commit", "withdraw"], "ultrafan_wb": ["hold", "launch", "cancel"], "t1000_upgrade": ["hold", "launch", "cancel"]},
+  "embraer": {"enb": ["hold", "launch", "cancel"]}
 }
 // ORDER_FIELDS_END
+const A0 = args || {}
 
 // The default 2026 ExCo of each company and its decision rule (from executives/teams.md).
+// Embraer (runs with the embraer_player option) has agent files .claude/agents/embraer-*.md; a session that started
+// before they existed cannot load them, so the game master passes each persona's text in args.personas.embraer
+// {ceo, cfo, ops, board} and the seats run as general-purpose agents (see head()).
 const TEAMS = {
   boeing: {
     board: 'boeing-board', boardName: 'the Boeing Board of Directors',
@@ -85,6 +92,16 @@ const TEAMS = {
     veto: {
       cfo: { ground: 'withholding your joint sign-off on a launch or aggressive terms (hurdle, unselected downside), or a balance-sheet veto', binding: true },
       ops: { ground: 'compressed maturity, a disclosed entry into service earlier than launch plus development time, or no support in place before entry into service', binding: true },
+    },
+  },
+  embraer: {
+    board: 'embraer-board', boardName: 'the Embraer S.A. Board of Directors',
+    company: 'Embraer', ceo: 'embraer-gomes-neto', cfo: 'embraer-garcia', ops: 'embraer-meijer',
+    names: { ceo: 'Francisco Gomes Neto', cfo: 'Antonio Carlos Garcia', ops: 'Arjan Meijer' },
+    rule: (A0.rules && A0.rules.embraer) || 'Gomes Neto proposes and decides. Garcia tests cash, leverage and partner money: he can veto a launch that fails his balance-sheet test. Meijer tests the product and the market: he can veto a launch whose airplane or campaign case does not stand. Gomes Neto decides everything else. A launch or a cancellation is a Board item. (Both vetoes are inferences.)',
+    veto: {
+      cfo: { ground: (A0.rules && A0.rules.embraer_cfo) || 'a launch that fails your balance-sheet test (leverage, cash, partner money not in hand)', binding: true },
+      ops: { ground: (A0.rules && A0.rules.embraer_ops) || 'a launch whose airplane or campaign case does not stand (product, customers, supply chain, ramp)', binding: true },
     },
   },
 }
@@ -180,14 +197,25 @@ const OBJECTIVES = {
   rolls_royce: 'Control has added to your mission for this game (the GM scores it alongside ΔPV; it never changes the payoff): **Protect the widebody cash cow.** Your widebody engines (the only engine on the A350 and the A330neo, one of two on the 787) carry the company\'s profit and cash. A narrowbody engine is a new product with its own risks, so a heavy narrowbody investment could put the widebody franchise at risk. Measured: your own narrowbody development money, committed or written off, stays within $4B (the Joint Venture share; an UltraFan NB Solo is $8B, and a Solo later folded into the Joint Venture counts its spend to date); and you never hold a narrowbody engine programme and a widebody programme (UltraFan WB or Trent 1000 upgrade) at the same time (the board charges a one-off $5B strain whenever both are on record, whatever their dates). Your objective to enter the narrowbody market stands; this sets the terms. Your brief shows the metrics for every plan. Your company\'s 2026 analyst-model baseline is in `wargame/profiles/rolls_royce/analyst_models_2026.md`.',
 }
 OBJECTIVES.cfm = 'Your objectives are unchanged in this game. Your company\'s 2026 analyst-model baseline (GE Aerospace and Safran, from the Morgan Stanley and Goldman Sachs models) is in `wargame/profiles/cfm/analyst_models_2026.md`.'
+OBJECTIVES.embraer = 'Your objectives are in your brief §2. You are a new, sixth player in this game.'
 OBJECTIVES.pratt_whitney = 'Your objectives are unchanged in this game. Your company\'s 2026 analyst-model baseline (RTX and Pratt & Whitney, from the Morgan Stanley and Goldman Sachs models) is in `wargame/profiles/pratt_whitney/analyst_models_2026.md`.'
 const objNote = side => (OBJ2 && OBJECTIVES[side]) ? [OBJECTIVES[side]] : []
+
+// A persona passed in args (the agent type has no file in this session): its text leads the prompt.
+const persona = (side, seat) => (A.personas && A.personas[side] && A.personas[side][seat]) || null
+const agentTypeOf = (side, seat) => persona(side, seat) ? 'general-purpose' : TEAMS[side][seat]
+function personaHead(side, seat) {
+  const p = persona(side, seat)
+  if (!p) return []
+  return ['The game master passes your agent file below, because this session cannot load it as an agent type. Treat it exactly as your agent file: it defines who you are and how you work.\n\n<agent_file>\n' + p + '\n</agent_file>',
+    `Independence (enforced by the game master's audit of your tool calls, as no hook covers this agent type): read only \`/tmp/wargame-${side}/${RUN}/\` and \`wargame/profiles/${side}/\`. Never open another company's folder (\`/tmp/wargame-<other>/\`, \`wargame/profiles/<other>/\`, other companies' agent files in \`.claude/agents/\`), \`wargame/runs\`, \`wargame/reports\`, \`wargame/dashgame\`, the dashboard code, the session scratchpad or any agent transcript. Write nothing anywhere except \`/tmp/wargame-${side}/${RUN}/work/\`.`]
+}
 
 function head(side, seat, step) {
   const t = TEAMS[side]
   if (seat === 'board') return headBoard(side, step)
   const dir = `/tmp/wargame-${side}/${RUN}`
-  return [
+  return personaHead(side, seat).concat([
     `War game run \`${RUN}\`, round ${N} (decision year ${YEAR}). Your step: **${step}**.`,
     `You are ${t.names[seat]} of ${t.company}. Follow your agent file: "Your step in each round", "Your tests", "Your vetoes and red lines", "Your voice".`,
     `Your company's run folder is \`${dir}/\` (use it instead of any other run folder your agent file names). Your brief for this round: \`${dir}/round${N}.md\`; the public rules: \`${dir}/rules.md\`.` +
@@ -195,13 +223,14 @@ function head(side, seat, step) {
     `Your ExCo's decision rule: ${t.rule}`,
     'Use only numbers from your brief and your own company\'s profile files. Read nothing of another company. Run no wargame.engine command.',
     `For scratch files (calculations, drafts) use \`${dir}/work/\` (create it). The session scratchpad your environment names belongs to the game master and is closed to you.`,
-  ].concat(CURRENT[side] ? [CURRENT[side]] : []).concat(objNote(side)).join('\n\n')
+  ]).concat(CURRENT[side] ? [CURRENT[side]] : []).concat(objNote(side)).join('\n\n')
 }
 
 function headBoard(side, step) {
   const t = TEAMS[side]
   const dir = `/tmp/wargame-${side}/${RUN}`
   return [
+    ...personaHead(side, 'board'),
     `War game run \`${RUN}\`, round ${N} (decision year ${YEAR}). Your step: **${step}**.`,
     `You are ${t.boardName}. Follow your agent file: "Your step in each round", "Your culture", "Your tests", "Your veto and its limits", "Your recommendations".`,
     `Your company's run folder is \`${dir}/\`. The brief for this round: \`${dir}/round${N}.md\`; the public rules: \`${dir}/rules.md\`.` +
@@ -239,14 +268,14 @@ async function guidance(side) {
   const t = TEAMS[side]
   if (!BOARD) return null
   const p = head(side, 'board', 'guidance') + '\n\nGive the ExCo your guidance for this round: your priorities, your risk appetite this round, what you expect to see in the package, what you would approve and what you would veto, and your recommendations. It does not bind; your veto comes at the review.'
-  return agent(p, { label: `${side}:board:guidance`, phase: 'Board guidance', agentType: t.board, schema: GUIDE })
+  return agent(p, { label: `${side}:board:guidance`, phase: 'Board guidance', agentType: agentTypeOf(side, 'board'), schema: GUIDE })
 }
 
 async function frame(side, board_guidance) {
   const t = TEAMS[side]
   const g = board_guidance ? `\n\nThe Board's guidance for this round (non-binding; its veto comes after your decision):\n${js(board_guidance)}` : ''
   const p = head(side, 'ceo', 'frame') + g + '\n\nWrite the framing note for your ExCo: the question this round, the levers in play, the options worth testing, the red lines in force, what you ask of your CFO and of your operating head, and your initial lean. Your colleagues see only what you return here.'
-  const fr = await agent(p, { label: `${side}:frame`, phase: 'Frame', agentType: t.ceo, schema: FRAME })
+  const fr = await agent(p, { label: `${side}:frame`, phase: 'Frame', agentType: agentTypeOf(side, 'ceo'), schema: FRAME })
   return fr && Object.assign({}, fr, { _board_guidance: board_guidance })
 }
 
@@ -258,7 +287,7 @@ async function test(fr, side) {
     const g = fr._board_guidance ? `\n\nThe Board's guidance for this round:\n${js(fr._board_guidance)}` : ''
     const frame = Object.assign({}, fr); delete frame._board_guidance
     const p = head(side, seat, 'test') + `\n\nYour CEO's framing note, passed by the game master:\n${js(frame)}${g}\n\nTest it independently: you do not see your colleague's memo. Apply your own tests with thresholds and the grid numbers you used, give your recommended orders, and state any veto with its ground and whether the team rule makes it binding (your veto: ${t.veto[seat].ground}). Memo of at most 250 words, in your voice.` + extra
-    return agent(p, { label: `${side}:test:${seat}`, phase: 'Test', agentType: t[seat], schema: testSchema(side) })
+    return agent(p, { label: `${side}:test:${seat}`, phase: 'Test', agentType: agentTypeOf(side, seat), schema: testSchema(side) })
   }
   const [cfo, ops] = await parallel([() => one('cfo'), () => one('ops')])
   const frame = Object.assign({}, fr); delete frame._board_guidance
@@ -270,7 +299,7 @@ async function decide(x, side) {
   const g = x.board_guidance ? `\n\nThe Board's guidance for this round:\n${js(x.board_guidance)}` : ''
   const br = x.board_guidance ? ' Answer each of the Board\'s recommendations in `board_response`: how you took it up, or why not. Every order that differs from the default goes to the Board, which can veto it.' : ''
   const p = head(side, 'ceo', 'decide') + `\n\nYour framing note:\n${js(x.frame)}${g}\n\n${t.names.cfo}'s test memo:\n${js(x.cfo)}\n\n${t.names.ops}'s test memo:\n${js(x.ops)}\n\nDecide by the team rule. Return the company's sealed orders (one value per field), other moves, the public statement, the rationale, and how you weighed each memo. Any override of a colleague's veto goes in \`overrides\` and must be allowed by the rule.${br}`
-  const decision = await agent(p, { label: `${side}:decide`, phase: 'Decide', agentType: t.ceo, schema: decideSchema(side) })
+  const decision = await agent(p, { label: `${side}:decide`, phase: 'Decide', agentType: agentTypeOf(side, 'ceo'), schema: decideSchema(side) })
   return Object.assign({}, x, { decision })
 }
 
@@ -279,7 +308,7 @@ async function vetoCheck(x, side) {
   const t = TEAMS[side]
   const one = seat => {
     const p = head(side, seat, 'veto_check') + `\n\nYour own test memo:\n${js(x[seat])}\n\nThe CEO's decision:\n${js(x.decision)}\n\nConcur, or invoke a veto only on a ground the team rule gives you: ${t.veto[seat].ground}. Set \`veto.binding\` true only if, under the rule, the CEO must revise within it (or record an allowed override). Separately, if the orders break a company hard rule (a red line), set \`red_line_breach\` true and name the rule in \`red_line\`: that is not a veto, but the CEO must strike the breach.`
-    return agent(p, { label: `${side}:veto:${seat}`, phase: 'Veto check', agentType: t[seat], schema: VETO })
+    return agent(p, { label: `${side}:veto:${seat}`, phase: 'Veto check', agentType: agentTypeOf(side, seat), schema: VETO })
   }
   const [cfo, ops] = await parallel([() => one('cfo'), () => one('ops')])
   return Object.assign({}, x, { veto_checks: { cfo, ops } })
@@ -295,7 +324,7 @@ async function revise(x, side) {
   if (binding.length) parts.push('Binding veto(es) from your ExCo:\n\n' + binding.map(s => `${t.names[s]}: ${js(vc[s])}`).join('\n\n'))
   if (flags.length) parts.push('Company red-line breach(es) flagged by your ExCo:\n\n' + flags.map(s => `${t.names[s]}: ${js({ red_line: vc[s].red_line, note: vc[s].note })}`).join('\n\n'))
   const p = head(side, 'ceo', 'revise') + `\n\nYour decision:\n${js(x.decision)}\n\n${parts.join('\n\n')}\n\nRevise your orders once. Stay within each binding veto, or override only where the team rule allows it and record each override in \`overrides\`. Strike every flagged red-line breach you confirm (red lines are never traded for PV); if you judge a flag mistaken, keep the order and say why in \`rationale\`.`
-  const revision = await agent(p, { label: `${side}:revise`, phase: 'Revise', agentType: t.ceo, schema: decideSchema(side) })
+  const revision = await agent(p, { label: `${side}:revise`, phase: 'Revise', agentType: agentTypeOf(side, 'ceo'), schema: decideSchema(side) })
   return Object.assign({}, x, { binding_vetoes: binding, red_line_flags: flags, revision, final: revision || x.decision })
 }
 
@@ -306,7 +335,7 @@ async function boardReview(x, side) {
   if (!items.length) return Object.assign({}, x, { board_items: [], board_review: { items: [], recommendations: [], overall: 'approve', note: 'No Board items: every order is the default.' } })
   const pkg = { frame: x.frame, cfo_memo: x.cfo, ops_memo: x.ops, decision: x.decision, veto_checks: x.veto_checks, revision: x.revision }
   const p = head(side, 'board', 'review') + `\n\nYour guidance this round:\n${js(x.board_guidance)}\n\nThe ExCo's package, passed by the game master:\n${js(pkg)}\n\nThe orders it submits:\n${js(x.final.orders)}\n\nThe Board items: ${items.join(', ')}. For each, approve or veto, with the ground and evidence; for a veto you may name acceptable alternatives (other values of that order field, or the default). Then your recommendations.`
-  const rv = await agent(p, { label: `${side}:board:review`, phase: 'Board review', agentType: t.board, schema: REVIEW })
+  const rv = await agent(p, { label: `${side}:board:review`, phase: 'Board review', agentType: agentTypeOf(side, 'board'), schema: REVIEW })
   if (!rv) {   // fail closed: no Board approval, no Board item
     log(`${side}: no Board review returned; its Board items revert to the default: ${items.join(', ')}`)
     return Object.assign({}, x, { board_items: items, board_review: { failed: true, items: [], recommendations: [], overall: 'veto', note: 'No review returned: failed closed.' } })
@@ -325,7 +354,7 @@ async function boardReviseConfirm(x, side) {
   const vetoed = rv ? rv.items.filter(i => i.decision === 'veto' && x.board_items.includes(i.order_field)).map(i => i.order_field) : []
   if (!vetoed.length) return Object.assign({}, x, { board_vetoed: [], board_revision: null, board_confirm: null, board_reverted: [], final_orders: x.final.orders })
   const p = head(side, 'ceo', 'board_revise') + `\n\nYour orders as submitted:\n${js(x.final)}\n\nThe Board's review:\n${js(rv)}\n\nThe Board vetoed: ${vetoed.join(', ')}. Revise once, within the Board's veto: for each vetoed order choose an alternative the Board named, or the default. Keep the approved orders. Answer the Board's recommendations in \`board_response\`.`
-  const rev = await agent(p, { label: `${side}:board:revise`, phase: 'Board revise', agentType: t.ceo, schema: decideSchema(side) })
+  const rev = await agent(p, { label: `${side}:board:revise`, phase: 'Board revise', agentType: agentTypeOf(side, 'ceo'), schema: decideSchema(side) })
   let orders = rev ? Object.assign({}, x.final.orders, ...vetoed.map(k => ({ [k]: rev.orders[k] }))) : revert(side, x.final.orders, vetoed)
   if (rev) for (const k of vetoed) { const c = `${k}_engine_code`; if (c in rev.orders) orders[c] = rev.orders[c] }
   const changed = vetoed.filter(k => orders[k] !== DEFAULTS[side][k])
@@ -333,7 +362,7 @@ async function boardReviseConfirm(x, side) {
   if (changed.length) {
     const pkg = { frame: x.frame, cfo_memo: x.cfo, ops_memo: x.ops, decision: x.decision, veto_checks: x.veto_checks, revision: x.revision }
     const cp = head(side, 'board', 'confirm') + `\n\nYour guidance this round:\n${js(x.board_guidance)}\n\nThe ExCo's package:\n${js(pkg)}\n\nYour review:\n${js(rv)}\n\nThe CEO's revision after your veto:\n${js(rev)}\n\nThe orders now, after the revision:\n${js(orders)}\n\nThe revised Board items: ${changed.map(k => `${k} = ${orders[k]}`).join(', ')}. Approve or veto each (an alternative you named should pass unless something changed). A still-vetoed item reverts to the default.`
-    confirm = await agent(cp, { label: `${side}:board:confirm`, phase: 'Board confirm', agentType: t.board, schema: REVIEW })
+    confirm = await agent(cp, { label: `${side}:board:confirm`, phase: 'Board confirm', agentType: agentTypeOf(side, 'board'), schema: REVIEW })
     const still = confirm ? confirm.items.filter(i => i.decision === 'veto' && changed.includes(i.order_field)).map(i => i.order_field) : changed
     orders = revert(side, orders, still)
     reverted = reverted.concat(still)

@@ -17,7 +17,7 @@ FIELD_LABEL = {
     "ducted": "Ducted", "open_fan": "Open Fan", "partner_embraer": "Partner Embraer", "lobby_emissions": "Lobby",
     "genx": "GEnx", "gtf2_solo": "GTF2 Solo", "jv_with_rr": "JV with RR", "ultrafan_nb_solo": "UltraFan NB Solo",
     "jv_with_pw": "JV with PW", "ultrafan_wb": "UltraFan WB", "t1000_upgrade": "T1000 upgrade",
-    "fps_site": "fps site", "a320_plan": "A320 plan"}
+    "fps_site": "fps site", "a320_plan": "A320 plan", "enb": "Embraer new narrowbody"}
 PROG_LABEL = M.PROG_LABEL
 
 
@@ -79,9 +79,11 @@ def public_rules():
 the whole board. You see the public record and your own position. You never see another player's payoffs, finances,
 orders or reasoning.
 
-**Players.** Boeing and Airbus (airframers); CFM/GE, Pratt & Whitney (P&W) and Rolls-Royce (RR) (engine makers).
+**Players.** Boeing and Airbus (airframers); CFM/GE, Pratt & Whitney (P&W) and Rolls-Royce (RR) (engine makers).""" + (
+        """
+Embraer is a sixth player in this game: a third airframer that can launch a new narrowbody with a Korean partner.""" if emb_on() else "") + f"""
 
-**Rounds.** Four decision years: 2030, 2035, 2045, 2050. In each round all five players submit sealed orders at the
+**Rounds.** Four decision years: 2030, 2035, 2045, 2050. In each round all {n_players()} players submit sealed orders at the
 same time. The GM adjudicates them and publishes a bulletin before the next round.
 
 **Markets.**
@@ -118,7 +120,9 @@ same time. The GM adjudicates them and publishes a bulletin before the next roun
 | RR | UltraFan widebody | `ultrafan_wb`: `launch` | ready 6 years after launch; counts only once a re-engined 787 or A350 is in service |
 | RR | Trent 1000 upgrade (widebody) | `t1000_upgrade`: `launch` (exclusive with UltraFan WB) | counts 3 years after launch |
 | RR | Do Nothing (continue Trent only) | `hold` | |
-
+""" + ("""| Embraer | Launch its new narrowbody (150-180 seats, with Team Korea) | `enb`: `launch` | EIS 4 years after launch |
+| Embraer | Do Nothing (E-Jets and business jets only) | `hold` | |
+""" if emb_on() else "") + f"""
 **Other moves.** You may also propose moves your company has historically made that are not on this list (for example
 a pricing campaign, an alliance or a derivative aircraft). Put them in `other_moves` and say whether each is public.
 The board does not price them. The GM records them, publishes the public ones, and reports them qualitatively; they
@@ -186,7 +190,10 @@ Shares are floored at zero and re-normalised to 100%.
 - Airframers: operating profit on NB and WB aircraft, less programme investment (booked at EIS), a debt penalty,
   two-front strain, rate-increase cost, Delay Tactics spend and fines.
 - Engine makers: lifetime value of engines delivered (engine price × a 1.6 lifecycle multiplier, with 2.2% a year
-  price inflation), less R&D, strain and write-offs.
+  price inflation), less R&D, strain and write-offs.""" + ("""
+- Embraer: operating profit on its new narrowbody over 20 years from its EIS, less its own share of the development
+  bill (booked at EIS), write-offs and a debt penalty on its balance sheet. Its E-Jets and business jets are the same
+  in every plan and in the status quo.""" if emb_on() else "") + f"""
 - Your own numbers are in your private brief.
 
 ## What is public
@@ -205,7 +212,46 @@ Shares are floored at zero and re-normalised to 100%.
 - One or both moves give the same {p['v_sabotage_share']:.0f} pp effect, from fps EIS.
 - If Boeing never launches fps, the tactics are "naked" and draw a $48.32B fine.
 - They can be ordered in any round before fps enters service.
-""" + (sd_rules() if M.SD_ON else "")
+""" + (emb_conflict_rule() if emb_on() else "") + (politics_rules() if M.politics() else "") + (sd_rules() if M.SD_ON else "")
+
+
+def emb_on():
+    return "embraer" in M.SIDES
+
+
+def n_players():
+    return {5: "five", 6: "six"}.get(len(M.SIDES), str(len(M.SIDES)))
+
+
+def emb_conflict_rule():
+    return """
+**Embraer's new narrowbody and Boeing's fps via Embraer** cannot both stand: once one is launched, the other cannot
+be. If both are ordered in the same round, Boeing's order stands (it was negotiated with Embraer) and Embraer's launch
+is refused.
+"""
+
+
+def politics_rules():
+    """The public political context (identical for everyone). Each company's own political terms are in its brief."""
+    return """
+## Politics (public context)
+
+- **Washington and Boeing.** Boeing is the last US maker of large airliners. Federal help for airliners has come as
+  research money and demonstrators, and states have offered siting packages; no federal launch funding has been given
+  since the 1970s. A US government that sees Boeing leave the narrowbody market could make it pay elsewhere (defence,
+  export finance, regulation).
+- **Europe and Airbus.** Airbus's launch aid (refundable advances) is now on market-consistent terms after the WTO
+  disputes; European governments back Airbus politically and as customers.
+- **Brazil, Korea and Embraer.** Brazil's government presents Embraer as a national champion and is at odds with
+  Washington: in 2025 the US put tariffs on Brazilian goods, and US buyers paid a 10% duty on Embraer's jets for a
+  time. BNDES, Brazil's development bank, finances Embraer's exports. The Brazilian state holds a golden share in
+  Embraer. Korea's president has named joint development of a civil aircraft with Brazil a priority, and Korean
+  industry (KAI and others) builds airliner structures for Boeing and Airbus today.
+- **Engine makers.** CFM is a 50/50 joint venture of GE (US) and Safran (France); P&W is part of RTX (US); Rolls-Royce
+  is British. Engine export rules and defence ties follow their home governments.
+- The political terms that change a company's own payoff are in its private brief. The board prices nothing else
+  political.
+"""
 
 
 def sd_option_rules():
@@ -221,7 +267,8 @@ def sd_option_rules():
     if t:
         ce = t.get("entrant") or {}
         pts = sorted((int(k), v) for k, v in (t.get("comac") or {}).items())
-        out += ("\n- **COMAC and a new entrant build 737/A320-class aircraft too.** COMAC's capacity: "
+        out += (("\n- **COMAC (and Embraer, if it launches) build 737/A320-class aircraft too.** COMAC's capacity: " if o.get("embraer_player") else
+                 "\n- **COMAC and a new entrant build 737/A320-class aircraft too.** COMAC's capacity: ")
                 + ", ".join(f"{v:,.0f} a year in {k}" for k, v in pts) + " (straight lines between; flat after). "
                 + (f"COMAC sells {100 * float(t.get('comac_first', 0)):.0f}% of its capacity first, off the top of each year's new customers (its\n"
                    f"  home market), before Boeing and Airbus split the rest. " if t.get("comac_first") else "")
@@ -230,8 +277,25 @@ def sd_option_rules():
                 + (f"; it wins {100 * float(t.get('entrant_share', 0)):.0f}% of new customers, up to its capacity" if t.get("entrant_share") else "")
                 + (f" ({100 * float(t['entrant_share_no_fps']):.0f}% in the years Boeing has no new narrowbody in service: customers\n"
                    f"  who want a second source to Airbus)" if "entrant_share_no_fps" in t else "")
-                + f". Customers neither Boeing nor Airbus can serve (after the overflow between them) take a free COMAC or entrant\n"
-                  f"  slot ({100 * float(t.get('willing', 1.0)):.0f}% of them). The status quo runs the same rules.")
+                + (". " if ce else "") + f"Customers neither Boeing nor Airbus can serve (after the overflow between them) take a free COMAC or %s\n"
+                  f"  slot ({100 * float(t.get('willing', 1.0)):.0f}%% of them). The status quo runs the same rules." % ("Embraer" if o.get("embraer_player") else "entrant"))
+    em = o.get("embraer_player")
+    if em:
+        sh = em["share_by_newgen"]
+        cut_t = float(em.get("us_tariff_share_cut", 0.0))
+        out += ("\n- **Embraer's new narrowbody (if Embraer launches it).** It enters service 4 years after launch. Its line rises in a\n"
+                f"  straight line to {em['peak_a_month']:.0f} a month {em['years_to_peak']} years after EIS. It is slightly better for airlines than the 737 MAX\n"
+                "  and A320neo and worse than a new-generation airplane (fps, NGSA), so the share of each year's new customers it\n"
+                f"  wins (off the top, up to its capacity, like COMAC) falls as new-generation airplanes enter service: {100 * sh[0]:.0f}% while neither\n"
+                f"  fps nor NGSA is in service, {100 * sh[1]:.0f}% with one, {100 * sh[2]:.0f}% with both"
+                + (f", each {100 * cut_t:.0f}% lower for US tariffs on Brazilian jets (US buyers stay away)" if cut_t else "")
+                + ". Customers Boeing and Airbus cannot serve also take its free slots. It flies P&W engines (the E2's maker), or CFM's\n"
+                  "  if CFM's Embraer partnership is live.\n"
+                f"- **Its campaigns cut single-aisle prices:** from {em.get('lead', 0)} year(s) before its EIS, the price of every new single-aisle Boeing and\n"
+                f"  Airbus deliver falls by up to {100 * float(em['cut']):.1f}%, rising in a straight line over {em['ramp_years']} years "
+                f"({100 * float(em['cut']) * float(em.get('cut_boeing_no_fps_mult', 1.0)):.1f}% on Boeing's aircraft in the years Boeing has no new narrowbody in service); costs do not change,\n"
+                "  so profit falls by the whole cut.\n"
+                "- The status quo has no new Embraer narrowbody (and so no Embraer price pressure).")
     pp = o.get("price_pressure")
     if pp:
         out += (f"\n- **A third supplier cuts single-aisle prices:** from {pp['from']}, the price of every new single-aisle delivered (Boeing and\n"
@@ -418,6 +482,8 @@ def observed(state, year):
                     "wb_boeing": a["boeing"]["wb_share"], "wb_airbus": a["airbus"]["wb_share"],
                     "nb_units_boeing": a["boeing"]["nb_units"], "nb_units_airbus": a["airbus"]["nb_units"],
                     "wb_units_boeing": a["boeing"]["wb_units"], "wb_units_airbus": a["airbus"]["wb_units"],
+                    "nb_units_comac": a["sd"]["dlv_comac"] if "sd" in a else 0.0,
+                    "nb_units_embraer": a["sd"].get("dlv_embraer", 0.0) if "sd" in a else 0.0,
                     "eng_nb": (e["cfm"]["nb_share"], e["pratt_whitney"]["nb_share"], e["rolls_royce"]["nb_share"]),
                     "eng_wb": (e["cfm"]["wb_share"], e["pratt_whitney"]["wb_share"], e["rolls_royce"]["wb_share"])})
     return out
@@ -426,7 +492,7 @@ def observed(state, year):
 def bulletin(state, year, round_no, statements=None, public_other=None, notes=None):
     """Public bulletin at the start of a round (identical for all players)."""
     L = ["# Public bulletin — round %d, decision year %d" % (round_no, year), ""]
-    L.append("Published by the game master to all five players. Everything here is public.")
+    L.append("Published by the game master to all %s players. Everything here is public." % n_players())
     L.append("")
     if notes:
         L += ["## Game-master notes", ""] + ["- " + n for n in notes] + [""]
@@ -484,13 +550,17 @@ def bulletin(state, year, round_no, statements=None, public_other=None, notes=No
               "give for the programmes on record (shares in the table below). The game master does not attribute causes." % (
                   sf[0][0], sf[-1][0], " / ".join(sorted({"%.0f points of market share" % (100 * (p_ - a)) for _, a, p_ in sf}))), ""]
     obs = observed(state, year)
+    ce = emb_on()
     L += ["## Observed market, %d-%d" % (2026, year - 1), "",
           "Shares of deliveries. Engine shares are of all engines delivered on narrowbody and widebody aircraft.", "",
-          "| Year | NB Boeing | NB Airbus | NB deliveries Boeing / Airbus | WB Boeing | WB Airbus | NB engines CFM / P&W / RR | WB engines CFM / P&W / RR |",
+          "| Year | NB Boeing | NB Airbus | NB deliveries Boeing / Airbus%s | WB Boeing | WB Airbus | NB engines CFM / P&W / RR | WB engines CFM / P&W / RR |" % (
+              " / COMAC / Embraer" if ce else ""),
           "|---:|---:|---:|---:|---:|---:|---|---|"]
     for o in obs:
-        L.append("| %d | %s | %s | %d / %d | %s | %s | %s | %s |" % (
-            o["year"], pct(o["nb_boeing"]), pct(o["nb_airbus"]), round(o["nb_units_boeing"]), round(o["nb_units_airbus"]),
+        L.append("| %d | %s | %s | %s | %s | %s | %s | %s |" % (
+            o["year"], pct(o["nb_boeing"]), pct(o["nb_airbus"]),
+            " / ".join("%d" % round(x) for x in ([o["nb_units_boeing"], o["nb_units_airbus"]] +
+                                                ([o["nb_units_comac"], o["nb_units_embraer"]] if ce else []))),
             pct(o["wb_boeing"]), pct(o["wb_airbus"]),
             " / ".join(pct(x) for x in o["eng_nb"]), " / ".join(pct(x) for x in o["eng_wb"])))
     L.append("")
@@ -504,6 +574,8 @@ OBJECTIVES = {
     "cfm": "Dominate narrowbody engines; introduce the Open Fan",
     "pratt_whitney": "Restore credibility; capitalise on the GTF investment",
     "rolls_royce": "Enter the narrowbody market; keep widebody dominance",
+    "embraer": "Grow beyond regional jets: a profitable place in the large single-aisle market, without risking the "
+               "balance sheet",
 }
 # Control's additions (set "control2" in runs/<run>/objectives.txt; runs without the file keep the base set):
 # Boeing repairs its balance sheet; Boeing and Airbus gain an engine-supply enabler; Rolls-Royce protects its
@@ -625,6 +697,13 @@ def objective_status(side, state, v, covert=True):
         out.append(("Restore credibility: a new P&W engine (GTF2 or Joint Venture) in service on a new airframe by 2050",
                     bool(fitted), ("on " + ", ".join("fps" if k == "fps" else "NGSA" for k in fitted)) if fitted else "none"))
         out.append(("Capitalise on the GTF: ΔPV ≥ 0", v["pratt_whitney"]["pv_delta"] >= 0, money(v["pratt_whitney"]["pv_delta"]) + " $B"))
+    elif side == "embraer":
+        r = M.live(state, "enb")
+        em = {x["year"]: x for x in v["_emb_series"]["years"]}
+        out.append(("A place in the large single-aisle market: your new narrowbody in service by 2040",
+                    bool(r and r["eis"] <= 2040), ("EIS %d" % r["eis"]) if r else "not launched"))
+        out.append(("Profitable, the balance sheet safe: ΔPV ≥ 0 (debt penalty included)", v["embraer"]["pv_delta"] >= 0,
+                    money(v["embraer"]["pv_delta"]) + " $B; deliveries in 2045: %d" % round(em[2045]["nb_units"])))
     elif side == "rolls_royce":
         sh = {y: en[y]["rolls_royce"]["nb_share"] for y in (2045, 2050)}
         out.append(("Enter the NB market: RR NB engine share > 0 in 2045 and 2050", min(sh.values()) > 1e-9,
@@ -770,6 +849,10 @@ def own_options(state, side, year):
                     lab.append({"ducted": "Ducted", "open_fan": "Open Fan", "partner_embraer": "Partner Embraer",
                                 "lobby_emissions": "Lobby", "genx": "GEnx upgrade"}[k] + ("" if v in ("launch", "upgrade_genx9") else " (" + v + ")"))
             out.append((" + ".join(lab) or "hold everything", o))
+    elif side == "embraer":
+        for f in L["enb"]:
+            out.append(({"hold": "Do Nothing (no new narrowbody)", "launch": "Launch the new narrowbody with Korea",
+                         "cancel": "Cancel the new narrowbody"}[f], {"enb": f}))
     elif side == "pratt_whitney":
         for g, j in itertools.product(L["gtf2_solo"], L["jv_with_rr"]):
             o = {"gtf2_solo": g, "jv_with_rr": j}
@@ -805,6 +888,9 @@ def rival_scenarios(state, side, year):
     sc = [("Rivals hold", {})]
     fps_free, ngsa_free = _nb_launch(state, "fps"), _nb_launch(state, "ngsa")
     fps_dev = M.live(state, "fps") and M.live(state, "fps")["eis"] > year
+    fps_emb = bool(M.live(state, "fps") and M.live(state, "fps")["variant"] == "embraer")
+    emb_free = emb_on() and M.live(state, "enb") is None and not fps_emb
+    emb_dev = emb_on() and bool(M.live(state, "enb") and M.live(state, "enb")["eis"] > year)
     if side == "boeing":
         if ngsa_free:
             sc.append(("Airbus launches NGSA", {"airbus": {"ngsa": "launch", "ngsa_engine_code": 6}}))
@@ -825,6 +911,26 @@ def rival_scenarios(state, side, year):
             base = {"ngsa": "launch", "ngsa_engine_code": 6} if ngsa_free else {}
             sc.append(("Risk case: %sAirbus Delay Tactics (covert)" % ("NGSA + " if ngsa_free else ""),
                        {"airbus": dict(base, delay_tactics="bottleneck")}))
+        if emb_free:
+            sc.append(("Embraer launches its new narrowbody", {"embraer": {"enb": "launch"}}))
+            if ngsa_free:
+                sc.append(("Airbus launches NGSA + Embraer launches", {"airbus": {"ngsa": "launch", "ngsa_engine_code": 6},
+                                                                       "embraer": {"enb": "launch"}}))
+        elif emb_dev:
+            sc.append(("Embraer cancels its new narrowbody", {"embraer": {"enb": "cancel"}}))
+    elif side == "embraer":
+        if fps_free:
+            sc.append(("Boeing launches fps 10-yr", {"boeing": {"fps": "launch_10yr", "fps_engine_code": 7}}))
+            sc.append(("Boeing launches fps 7-yr", {"boeing": {"fps": "launch_7yr", "fps_engine_code": 7}}))
+        elif fps_dev:
+            sc.append(("Boeing cancels fps", {"boeing": {"fps": "cancel"}}))
+        if ngsa_free:
+            sc.append(("Airbus launches NGSA", {"airbus": {"ngsa": "launch", "ngsa_engine_code": 6}}))
+            if fps_free:
+                sc.append(("Boeing launches fps 10-yr and Airbus launches NGSA",
+                           {"boeing": {"fps": "launch_10yr", "fps_engine_code": 7}, "airbus": {"ngsa": "launch", "ngsa_engine_code": 6}}))
+        elif M.live(state, "ngsa") and M.live(state, "ngsa")["eis"] > year:
+            sc.append(("Airbus cancels NGSA", {"airbus": {"ngsa": "cancel"}}))
     elif side == "airbus":
         if fps_free:
             sc.append(("Boeing launches fps 10-yr", {"boeing": {"fps": "launch_10yr", "fps_engine_code": 7}}))
@@ -836,6 +942,13 @@ def rival_scenarios(state, side, year):
             sc.append(("Boeing launches 787 Re-engine", {"boeing": {"re787": "launch"}}))
             if fps_free:
                 sc.append(("Boeing launches fps 10-yr + 787 Re-engine", {"boeing": {"fps": "launch_10yr", "fps_engine_code": 7, "re787": "launch"}}))
+        if emb_free:
+            sc.append(("Embraer launches its new narrowbody", {"embraer": {"enb": "launch"}}))
+            if fps_free:
+                sc.append(("Boeing launches fps 10-yr + Embraer launches", {"boeing": {"fps": "launch_10yr", "fps_engine_code": 7},
+                                                                           "embraer": {"enb": "launch"}}))
+        elif emb_dev:
+            sc.append(("Embraer cancels its new narrowbody", {"embraer": {"enb": "cancel"}}))
     else:
         mk = {"cfm": "CFM", "pratt_whitney": "PW", "rolls_royce": "RR"}[side]
         # codes that include / exclude this maker, and the rival makers' conditional launches that go with them
@@ -878,6 +991,8 @@ def rival_scenarios(state, side, year):
         if side == "rolls_royce" and M.live(state, "re787") is None and M.live(state, "rea350") is None:
             sc.append(("Boeing launches 787 Re-engine and Airbus A350 Re-engine",
                        {"boeing": {"re787": "launch"}, "airbus": {"rea350": "launch"}}))
+        if emb_free:
+            sc.append(("Embraer launches its new narrowbody", dict({"embraer": {"enb": "launch"}}, **rivals)))
     return sc
 
 
@@ -1031,7 +1146,7 @@ METRIC_KEY = {
 # ─────────────────────────────── private brief ───────────────────────────────
 OWN_KEYS = {"boeing": ("fps", "re787", "rate737"), "airbus": ("ngsa", "rea350"),
             "cfm": ("cfm_ducted", "cfm_open_fan", "cfm_embraer", "cfm_lobby", "cfm_genx"),
-            "pratt_whitney": ("pw_solo", "jv"), "rolls_royce": ("rr_solo", "jv", "rr_uf_wb", "rr_t1000")}
+            "pratt_whitney": ("pw_solo", "jv"), "rolls_royce": ("rr_solo", "jv", "rr_uf_wb", "rr_t1000"), "embraer": ("enb",)}
 BRIDGE_LABEL = {"nb_profit_vs_sq": "Narrowbody operating profit vs status quo", "wb_profit_vs_sq": "Widebody operating profit vs status quo",
                 "programme_investment": "Programme investment (booked at EIS)", "rate_hike": "737 rate increase",
                 "delay_tactics_spend": "Delay Tactics spend", "write_offs": "Cancellation write-offs",
@@ -1039,12 +1154,25 @@ BRIDGE_LABEL = {"nb_profit_vs_sq": "Narrowbody operating profit vs status quo", 
                 "engine_value_vs_sq": "Engine value vs status quo", "r_and_d": "R&D (undiscounted, as the board)",
                 "strain": "Strain (concurrent programmes)",
                 "supply_demand": "Supply and demand: aircraft your factories can deliver, against the board's market",
-                "supply_plan": "Supply plan cost or saving (your plan)"}
+                "supply_plan": "Supply plan cost or saving (your plan)",
+                "government_cofunding": "Politics: governments carry part of the fps bill",
+                "political_exit_cost": "Politics: the cost of leaving the narrowbody market (no fps)"}
 SUPPLY_PLAN_LABEL = {"boeing": "Supply plan: new-site capex avoided at Renton", "airbus": "Supply plan: A320 Alt plan cost"}
 
 
 def projection_rows(side, v):
     rows = []
+    if side == "embraer":
+        nr = v["_emb_series"]["nonrecurring"]
+        for x in v["_emb_series"]["years"]:
+            y = x["year"]
+            if y > M.REPORT_END:
+                continue
+            rows.append([y, "%d" % round(x["capacity"]), pct(x["customer_share"]) if x["capacity"] > 0 else "—", "%d" % round(x["nb_units"]),
+                         pct(x["nb_share"]), f1(x["nb_revenue"]), f1(x["nb_profit"]),
+                         f1(sum(nr.get(y, {}).values())) if nr.get(y) else "—"])
+        return ["Year", "Your new line's capacity", "Share of new customers you win", "Your new-narrowbody deliveries",
+                "Share of the market's deliveries", "Revenue $B", "Operating profit $B", "Non-recurring $B"], rows
     if side in ("boeing", "airbus"):
         nr = v["_af_series"]["nonrecurring"][side]
         for r in v["_af_series"]["years"]:
@@ -1105,6 +1233,73 @@ def sd_outlook(side, state, v):
     return L
 
 
+def embraer_economics(state):
+    """Embraer's own programme economics (Embraer's brief only)."""
+    e = M.SD.embraer()
+    own = M.emb_own_share()
+    bill = float(e["bill_b"])
+    return ["", "**Your new narrowbody's economics** (the game master's terms for this game; constant 2026 $):", "",
+            "- Development bill $%.1fB. Team Korea (KAI and Korean state money) carries %.0f%%, risk-sharing suppliers %.0f%% and "
+            "Brazilian state research money %.0f%%; you carry %.0f%%: **$%.2fB**, booked at EIS (a cancellation writes off the "
+            "spend to date: your share × years elapsed ÷ %d)." % (
+                bill, 100 * float(e.get("partner_share", 0)), 100 * float(e.get("supplier_share", 0)),
+                100 * float(e.get("state_share", 0)), 100 * own, bill * own, M.af_dev("enb")),
+            "- Price $%.0fM an aircraft, operating margin %.0f%% (after your partners' work-share prices)." % (
+                float(e["price_m"]), 100 * float(e["margin"])),
+            "- Debt penalty on your balance sheet (net debt $%.1fB, enterprise value $%.0fB): penalty = D × %.1f × (D ÷ EV)², "
+            "charged on the rise in D from your share of the bill, in present value as the airframers' is." % (
+                float(e["debt_b"]), float(e["ev_b"]), float(e.get("alpha", 0.3))),
+            "- Your cost of capital: %.1f%%. Your E-Jets and business jets are the same in every plan and in the status quo, "
+            "so they are not in ΔPV." % (100 * float(e["wacc"]))]
+
+
+def embraer_launch_preview(state, year):
+    """Embraer's brief, before a launch: what a launch this round would deliver if nobody else moves."""
+    if M.live(state, "enb") or "launch" not in R.legal_options(state, "embraer", year)["enb"]:
+        return []
+    s1, _ = R.adjudicate(state, year, {"embraer": {"enb": "launch"}})
+    v = M.value(s1, covert=False, series=True)
+    rows = [[x["year"], "%d" % round(x["capacity"]), pct(x["customer_share"]), "%d" % round(x["nb_units"]),
+             pct(x["nb_share"]), f1(x["nb_profit"])]
+            for x in v["_emb_series"]["years"] if x["year"] in SD_YEARS and x["year"] >= year]
+    return (["", "**If you launch this round and nobody else moves** (EIS %d; your ΔPV %s $B):" % (
+        M.live(s1, "enb")["eis"], money(v["embraer"]["pv_delta"])), ""] +
+        table(["Year", "Your new line's capacity", "Share of new customers you win", "Your deliveries",
+               "Share of the market's deliveries", "Operating profit $B"], rows))
+
+
+def politics_private(side, state, v):
+    """The political terms in this company's own payoff, and its political context (private)."""
+    pol = M.politics()
+    L = ["", "**Politics in your payoff** (this game's terms):", ""]
+    if side == "boeing":
+        x = M.exit_cost(v["boeing"]["wacc"], state.get("year"))
+        L += ["- Governments carry %.0f%% of any fps bill (state siting packages and federal research money, as the US has "
+              "given before; no federal launch funding). It cuts your spend and so your debt penalty." % (100 * float(pol.get("boeing_cofund", 0))),
+              "- Leaving the narrowbody market has a political cost: a %.0f%% chance that Washington makes you pay for leaving "
+              "(defence, export finance, the FAA) × $%.2fB a year of defence profit at risk, for %d years from %d or the decision "
+              "year if later. Every plan with no fps carries it: **%s $B** in PV now (from %d)." % (
+                  100 * float(pol.get("exit_p", 0)), float(pol.get("exit_loss_b", 0)), int(pol.get("exit_years", 20)),
+                  int(pol.get("exit_from", 2045)), money(-x), max(int(pol.get("exit_from", 2045)), int(state.get("year") or 2030))),
+              "- Not priced: the brand and identity of the last US airliner maker, jobs politics in Washington State and "
+              "South Carolina, and how a US administration at odds with Brazil would treat an Embraer rival."]
+    elif side == "airbus":
+        L += ["- No cash term: European launch aid (refundable advances) is now on market-consistent terms, so it is priced "
+              "as your own money.",
+              "- Not priced: European governments' backing as owners (France, Germany and Spain hold about a quarter of "
+              "Airbus) and customers, trade friction with the US, and an Embraer-Korea rival backed by two governments."]
+    elif side == "embraer":
+        L += ["- Team Korea's share of your bill and Brazil's research money are in your economics above.",
+              "- US tariffs: Brazil's government is at odds with Washington. In 2025 US buyers paid a 10%% duty on your jets for a "
+              "time; in this game US buyers stay away enough to cut the share of new customers you win by %.0f%%." % (
+                  100 * float(M.SD.embraer().get("us_tariff_share_cut", 0))),
+              "- Not priced: BNDES export credit for your customers (it helps campaigns, the board does not price it), the "
+              "Brazilian state's golden share, and a US response to a Brazil-Korea airliner."]
+    else:
+        L += ["- No political term in your payoff. Your home government's export rules and defence ties are context only."]
+    return L
+
+
 def table(head, rows):
     out = ["| " + " | ".join(head) + " |", "|" + "|".join("---:" if i else "---" for i in range(len(head))) + "|"]
     for r in rows:
@@ -1147,20 +1342,27 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
     if M.SD_ON and side in ("boeing", "airbus") and "supply_demand" in me["bridge"]:
         L += ["", "The narrowbody line is the board's (2,000 a year, every aircraft delivered); the supply-and-demand line "
               "corrects it to the aircraft your factories can deliver, net of the same correction in the status quo."]
-    if M.SD_ON and side not in ("boeing", "airbus"):
+    if M.SD_ON and side not in ("boeing", "airbus", "embraer"):
         L += ["", "Supply and demand is on: your narrowbody engine volumes follow the aircraft actually delivered (two "
               "engines each), not the board's 2,000 a year. The 737 MAX keeps CFM and the A320neo CFM 60% / P&W 40%; "
               "engine moves shift share only on the fps and NGSA, from their fitted makers. While MAX and A320neo are "
               "still built alongside a slowly ramping new type, your moves reach fewer engines. See the last section "
               "of rules.md."]
+    if side == "embraer":
+        L += embraer_economics(state)
+        L += embraer_launch_preview(state, year)
+    if M.politics():
+        L += politics_private(side, state, v)
     L += ["", ("Year by year ($B at 2026 prices: the airframer board does not escalate; shares of the market's "
-               "deliveries):" if side in ("boeing", "airbus") else
+               "deliveries):" if side in ("boeing", "airbus", "embraer") else
                "Year by year (nominal $B; shares of the market's deliveries):"), ""]
     head, prow = projection_rows(side, v)
     L += table(head, prow)
     if side in ("boeing", "airbus") and M.SD_ON:
         L += sd_outlook(side, state, v)
-    if side in ("boeing", "airbus"):
+    if side == "embraer":
+        L += ["", "Your new narrowbody's market counts for 20 years from its EIS; years after that add nothing to ΔPV."]
+    elif side in ("boeing", "airbus"):
         L += ["", "The board counts each programme's market for 20 years from its EIS (unlaunched programmes use the "
               "snapshot dates fps %d, NGSA %d, Re-engines %d), so years after that window add nothing to ΔPV." % (
                   M.DEFAULT_EIS["fps"], M.DEFAULT_EIS["ngsa"], M.DEFAULT_EIS["re787"])]
@@ -1184,6 +1386,7 @@ def private_brief(state, side, year, round_no, last_orders=None, gm_notes=None):
     L += ["", "**Your payoff grid.** Your ΔPV in $B (yield in brackets) for each plan (rows) against what the others "
           "might do this round (columns), assuming nobody moves after this round. %s" % (
               "Engine codes do not change your own payoff on the board." if side in ("boeing", "airbus") else
+              "Your payoff depends on when Boeing's and Airbus's new-generation airplanes enter service." if side == "embraer" else
               "Your payoff depends heavily on which engines the airframers select."), ""]
     head = ["Your plan"] + ["S%d" % (i + 1) for i in range(len(scen))]
     rows = []

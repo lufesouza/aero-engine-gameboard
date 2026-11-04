@@ -23,7 +23,8 @@ EXECS = {"boeing": ["boeing-ortberg", "boeing-malave", "boeing-pope", "boeing-bo
          "airbus": ["airbus-faury", "airbus-toepfer", "airbus-wagner", "airbus-board"],
          "cfm": ["cfm-culp", "cfm-ghai", "cfm-ali", "cfm-board"],
          "pratt_whitney": ["pratt-whitney-calio", "pratt-whitney-mitchill", "pratt-whitney-eddy", "pratt-whitney-board"],
-         "rolls_royce": ["rolls-royce-erginbilgic", "rolls-royce-mccabe", "rolls-royce-watson", "rolls-royce-board"]}
+         "rolls_royce": ["rolls-royce-erginbilgic", "rolls-royce-mccabe", "rolls-royce-watson", "rolls-royce-board"],
+         "embraer": ["embraer-gomes-neto", "embraer-garcia", "embraer-meijer", "embraer-board"]}
 XF = {side: [n + ".md" for n in names] for side, names in EXECS.items()}
 # Build-time work areas (profile drafts, raw evidence, audits) hold both sides' material.
 BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", "/scratchpad/integ",
@@ -33,6 +34,8 @@ BUILD = ["profiles/build/work", "/scratchpad/profiles", "/scratchpad/evidence", 
 RR = ["profiles/rolls_royce", "rolls-royce-strategist.md", "wargame-rolls_royce"] + XF["rolls_royce"]
 PW = ["profiles/pratt_whitney", "pratt-whitney-strategist.md", "wargame-pratt_whitney"] + XF["pratt_whitney"]
 CFMP = ["profiles/cfm", "cfm-strategist.md", "wargame-cfm"] + XF["cfm"]
+# Embraer (a sixth player in runs with the embraer_player option): its profile, player folder and agent files
+EMB = ["profiles/embraer", "wargame-embraer"] + XF["embraer"]
 # The cross-player overview page summarises every side, the config holds every player's assigned objective,
 # and the root gameboard.py holds every engine maker's move table: no player reads them.
 SHARED = ["profiles/overview", "wargame/config", "gameboard.py"]
@@ -51,17 +54,19 @@ DASH = ["Combined_Game_Board", "combined_dash", "dashboard-fps-delay", "Game.txt
 BLOCK = {
     "boeing-2010": ["profiles/airbus", "profiles/boeing/", "airbus-2010.md", "airbus-strategist.md", "boeing-strategist.md",
                     "wargame/runs",
-                    "wargame-airbus"] + XF["boeing"] + XF["airbus"] + RR + PW + CFM + BUILD + RAW,
+                    "wargame-airbus"] + XF["boeing"] + XF["airbus"] + RR + PW + CFM + EMB + BUILD + RAW,
     "airbus-2010": ["profiles/boeing", "profiles/airbus/", "boeing-2010.md", "boeing-strategist.md", "airbus-strategist.md",
                     "wargame/runs",
-                    "wargame-boeing"] + XF["boeing"] + XF["airbus"] + RR + PW + CFM + BUILD + RAW,
-    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + XF["airbus"] + RR + PW + CFM + BUILD + DASH,
-    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + XF["boeing"] + RR + PW + CFM + BUILD + DASH,
-    "rolls-royce-strategist": AIRFRAMERS + PW + CFM + ["wargame/runs"] + BUILD + DASH,
-    "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + ["wargame/runs"] + BUILD + DASH,
-    "cfm-strategist": AIRFRAMERS + RR + PW + SHARED + ["wargame/runs"] + BUILD + DASH,
+                    "wargame-boeing"] + XF["boeing"] + XF["airbus"] + RR + PW + CFM + EMB + BUILD + RAW,
+    "boeing-strategist": ["profiles/airbus", "airbus-strategist.md", "wargame/runs", "wargame-airbus"] + XF["airbus"] + RR + PW + CFM + EMB + BUILD + DASH,
+    "airbus-strategist": ["profiles/boeing", "boeing-strategist.md", "wargame/runs", "wargame-boeing"] + XF["boeing"] + RR + PW + CFM + EMB + BUILD + DASH,
+    "rolls-royce-strategist": AIRFRAMERS + PW + CFM + EMB + ["wargame/runs"] + BUILD + DASH,
+    "pratt-whitney-strategist": AIRFRAMERS + RR + CFM + EMB + ["wargame/runs"] + BUILD + DASH,
+    "cfm-strategist": AIRFRAMERS + RR + PW + SHARED + EMB + ["wargame/runs"] + BUILD + DASH,
     "wargame-market": ["profiles/", "wargame/runs", "wargame/config", "gameboard.py", "wargame-boeing", "wargame-airbus",
-                       "wargame-rolls_royce", "wargame-pratt_whitney", "wargame-cfm"] + sum(XF.values(), []) + BUILD + DASH,
+                       "wargame-rolls_royce", "wargame-pratt_whitney", "wargame-cfm", "wargame-embraer"] + sum(XF.values(), []) + BUILD + DASH,
+    # Embraer has no strategist agent; its executives' limits are built from this entry below
+    "embraer-strategist": AIRFRAMERS + RR + PW + CFM + SHARED + ["wargame/runs"] + BUILD + DASH,
 }
 
 
@@ -98,13 +103,15 @@ OWN_ROOTS = {"boeing-strategist": ["wargame/profiles/boeing/", "/tmp/wargame-boe
              "pratt-whitney-strategist": ["wargame/profiles/pratt_whitney/", "/tmp/wargame-pratt_whitney"],
              "rolls-royce-strategist": ["wargame/profiles/rolls_royce/", "/tmp/wargame-rolls_royce"],
              "boeing-2010": ["wargame/profiles/boeing_2010/", "/tmp/wargame-boeing"],
-             "airbus-2010": ["wargame/profiles/airbus_2010/", "/tmp/wargame-airbus"]}
+             "airbus-2010": ["wargame/profiles/airbus_2010/", "/tmp/wargame-airbus"],
+             "embraer-strategist": ["wargame/profiles/embraer/", "/tmp/wargame-embraer"]}
 REPO = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 
 # Each executive inherits its company strategist's blocks and folders. On top: no engine or game-master code at all
 # (dash-2050 has none), not the earlier dash-2050 run (the replay must not see its orders), not the 2010 agents.
 COMPANY_AGENT = {"boeing": "boeing-strategist", "airbus": "airbus-strategist", "cfm": "cfm-strategist",
-                 "pratt_whitney": "pratt-whitney-strategist", "rolls_royce": "rolls-royce-strategist"}
+                 "pratt_whitney": "pratt-whitney-strategist", "rolls_royce": "rolls-royce-strategist",
+                 "embraer": "embraer-strategist"}
 for _side, _names in EXECS.items():
     for _n in _names:
         BLOCK[_n] = BLOCK[COMPANY_AGENT[_side]] + ["wargame.engine", "wargame.dashgame", "from wargame", "import wargame",

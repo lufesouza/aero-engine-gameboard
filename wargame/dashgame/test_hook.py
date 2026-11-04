@@ -22,6 +22,17 @@ def decide(agent, tool, ti, cwd=REPO):
 
 B = "boeing-strategist"
 CASES = [
+    # Embraer, the sixth player (runs with the embraer_player option)
+    ("boeing-ortberg", "Read", {"file_path": REPO + "/wargame/profiles/embraer/profile.md"}, "deny"),
+    ("airbus-board", "Bash", {"command": "cat /tmp/wargame-embraer/dash-2050-emb/round1.md"}, "deny"),
+    ("cfm-culp", "Read", {"file_path": REPO + "/.claude/agents/embraer-gomes-neto.md"}, "deny"),
+    ("embraer-gomes-neto", "Read", {"file_path": "/tmp/wargame-boeing/dash-2050-emb/round1.md"}, "deny"),
+    ("embraer-garcia", "Read", {"file_path": REPO + "/wargame/profiles/airbus/profile.md"}, "deny"),
+    ("embraer-board", "Bash", {"command": "cat " + REPO + "/wargame/dashgame/model.py"}, "deny"),
+    ("embraer-meijer", "Grep", {"pattern": "x", "path": REPO + "/wargame/profiles"}, "deny"),
+    ("embraer-gomes-neto", "Read", {"file_path": "/tmp/wargame-embraer/dash-2050-emb/round1.md"}, "allow"),
+    ("embraer-garcia", "Read", {"file_path": REPO + "/wargame/profiles/embraer/evidence.jsonl"}, "allow"),
+    ("embraer-board", "Grep", {"pattern": "golden", "path": REPO + "/wargame/profiles/embraer"}, "allow"),
     (B, "Bash", {"command": "cat /tmp/wargame-*/dash-2050/round3.md"}, "deny"),
     (B, "Grep", {"pattern": "Covert", "path": "/tmp"}, "deny"),
     (B, "Grep", {"pattern": "delay_tactics"}, "deny"),
